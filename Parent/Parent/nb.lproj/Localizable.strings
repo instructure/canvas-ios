@@ -16,9 +16,6 @@
 /* Unauthorized Student Error Title */
 "Access Denied" = "Nektet tilgang";
 
-/* Add Student Settings Button Title */
-"Add Student" = "Legg til student";
-
 /* Alert Section Header */
 "Alert me when:" = "Varsle meg når:";
 
@@ -52,9 +49,6 @@
 /* Authorization Failed Title */
 "Authorization Failed." = "Autorisasjon mislyktes.";
 
-/* Back Button Title */
-"Back" = "Tilbake";
-
 /* Courses Tab */
 "COURSES" = "EMNE";
 
@@ -85,9 +79,6 @@
 /* Close Button Title */
 "Close" = "Lukk";
 
-/* Error alert message */
-"Could not create domain.  Please check your school's domain and try again." = "Kunne ikke opprette domene.  Vennligst sjekk skolens domene og prøv igjen.";
-
 /* Course Announcement Description */
 "Course announcements" = "Kunngjøringer for emne";
 
@@ -97,31 +88,13 @@
 /* Course Grade Low On Description */
 "Course grade below" = "Emnevurdering under";
 
-/* Submits the form to create an account */
-"Create Account" = "Opprett konto";
-
 /* Title for field */
 "Describe your problem" = "Beskriv problemet ditt";
 
 /* No comment provided by engineer. */
 "Dismiss" = "Avvis";
 
-/* Title for alert shown when the server couldn't find an email to reset the password for */
-"Email Not Found" = "E-post ikke funnet";
-
-/* Title for alert shown when user attempts to reset their password */
-"Email Sent" = "E-post sendt";
-
-/* Empty Response */
-"Empty Response." = "Tomt svar.";
-
-/* Prompt for logging in as student */
-"Enter student's login information" = "Skriv inn studentens påloggingsinformasjon";
-
-/* prompt for canvas observer login page */
-"Enter your Canvas Observer credentials" = "Skriv inn Canvas-observatøropplysningene dine";
-
-/* Title for an error popup */
+/* No comment provided by engineer. */
 "Error" = "Feil";
 
 /* No comment provided by engineer. */
@@ -135,12 +108,6 @@
 
 /* Status level for issue being reported */
 "Extremely critical emergency" = "Ekstremt kritisk nødsituasjon";
-
-/* Domain Picker Search Placeholder */
-"Find your school or district" = "Finn din skole eller ditt distrikt";
-
-/* Domain Picker Search Placeholder */
-"Find your student's school or district" = "Finn studenten din sin skole eller distrikt";
 
 /* No comment provided by engineer. */
 "Germany" = "Tyskland";
@@ -166,32 +133,14 @@
 /* Institution Announcement Description */
 "Institution announcements" = "Institusjonskunngjøringer";
 
-/* Invalid Canvas URL */
-"Invalid Canvas URL." = "Ugyldig Canvas URL.";
-
-/* Alert title when logging in with invalid credentials */
-"Invalid Credentials" = "Ugyldige akkreditering";
-
 /* Title for an alert view */
 "Invalid Input" = "Ugyldig inndata";
 
 /* Support Ticket Invalid Input Message */
 "Invalid Input.  Check fields and try again." = "Ugyldig inndata.  Sjekk feltene, og prøv igjen.";
 
-/* Invalid User Agent */
-"Invalid User Agent." = "Ugyldig brukeragent.";
-
-/* Invalid Domain title */
-"Invalid domain." = "Ugyldig domene.";
-
-/* Alert Message for invalid domain */
-"Invalid student domain.\nPlease double-check the domain and try again." = "Ugyldig studentdomene.\nDobbeltsjekk domene og forsøk igjen.";
-
 /* No comment provided by engineer. */
 "Ireland" = "Irland";
-
-/* JSON Parsing Error */
-"JSON Parsing Error." = "JSON Parsing-feil.";
 
 /* Last Week Button Accessibility Label */
 "Last Week" = "Siste uke";
@@ -207,9 +156,6 @@
 
 /* No comment provided by engineer. */
 "Log In" = "Logg på";
-
-/* Submits the login form */
-"Login" = "Logg inn";
 
 /* Logout Confirm Button */
 "Logout" = "Logg ut";
@@ -238,9 +184,6 @@
 /* Title for label when no grade has been assigned to the course */
 "No Grade" = "Ingen vurdering";
 
-/* No Result */
-"No Result." = "Ikke noe resultat.";
-
 /* Empty Students Text */
 "No Students" = "Ingen studenter";
 
@@ -253,17 +196,11 @@
 /* Not Found Error Title */
 "Not Found" = "Ikke funnet";
 
-/* Not authorized */
-"Not authorized." = "Ikke autorisert.";
-
 /* Empty Calendar Events Text */
 "Nothing this week" = "Ingenting denne uken";
 
 /* OK Button Title */
 "OK" = "OK";
-
-/* Canvas Observer Auth Failed Message */
-"Only Canvas observers can authenticate in Canvas Parent." = "Kun Canvas-observatører kan autentisere i Canvas Parent.";
 
 /* Open a url in the application Safari */
 "Open in Safari" = "Åpne i Safari";
@@ -271,23 +208,11 @@
 /* Open file in another application */
 "Open in..." = "Åpne i ...";
 
-/* Title for alert when resetting password is successful */
-"Password Reset Successful" = "Passordet tilbakestilt";
-
-/* Invalid Domain message */
-"Please double-check the domain and try again." = "Dobbeltsjekk domenet og forsøk igjen.";
-
-/* Title for alert shown when something goes wrong resetting the password */
-"Problem Resetting Password" = "Problem med å tilbakestille passordet";
-
 /* Remove button title */
 "Remove" = "Fjern";
 
 /* delete student from login */
 "Remove Student" = "Fjern student";
-
-/* re-authenticate user when token fails */
-"Repair Access" = "Reparere tilgang";
 
 /* Support Ticket Creation Failed */
 "Request Failed!  Check network and try again!" = "Forespørsel mislyktes!  Sjekk nettverket, og prøv igjen!";
@@ -298,9 +223,6 @@
 /* Select Impact Placeholder */
 "Select Impact" = "Velg innvirkning";
 
-/* No comment provided by engineer. */
-"Select Region" = "Velg region";
-
 /* Server Error Title */
 "Server Error" = "Serverfeil";
 
@@ -310,17 +232,8 @@
 /* Status level for issue being reported */
 "Something is broken but I can work around it" = "Noe er ødelagt, men jeg kan omgå det";
 
-/* Body for alert shown when something goes wrong resetting the password */
-"Something went wrong while attempting to reset your password. Try again later." = "Noe gikk galt under forsøket på å tilbakestille passordet ditt. Forsøk igjen senere.";
-
-/* Body for alert shown when something goes wrong resetting the password */
-"Something went wrong while attempting to send a password reset email. Try again later." = "Noe gikk galt under forsøket på å sende en e-post for å tilbakestille passordet. Forsøk igjen seinere. ";
-
 /* Title for the subject field */
 "Subject" = "Tittel";
-
-/* Button title for forgot password */
-"Submit" = "Send inn";
 
 /* No comment provided by engineer. */
 "Submitted" = "Sendt inn";
@@ -337,14 +250,8 @@
 /* Support Ticket Created Successfully */
 "Thanks, your request was received!" = "Takk, forespørselen din ble mottatt!";
 
-/* Alert message when logging in with invalid credentials. Please check your region and try again. */
-"The email and password combination were invalid" = "E-post og passordkombinasjonen er ugyldig";
-
 /* Error message */
 "There are no actions for this item" = "Det er ingen handlinger for dette elementet";
-
-/* AccountDomain Database Load Failure Message */
-"There was a problem loading the AccountDomain database file." = "Det oppstod et problem under lasting av AccountDomain databasefilen.";
 
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "Det oppstod et problem under lasting av AlertKit databasefilen.";
@@ -352,26 +259,8 @@
 /* Airwolf database error message */
 "There was a problem loading the database." = "Det oppstod et problem under lasting av databasen.";
 
-/* Message for an error alert */
-"There was a problem verifying the following domain: (stringURL)" = "Det oppstod et problem under verifisering av følgende domene: (stringURL)";
-
 /* No comment provided by engineer. */
 "There was an error loading your content. If it  is an audio or video upload it may still be processing." = "Det oppsto en feil med lasting av innholdet ditt. Hvis det er en lyd- eller video-opplasting kan den fremdeles være under behandling.";
-
-/* Alert Message for institution not authorized */
-"This institution has not enabled access to the Canvas Parent mobile app." = "Denne institusjonen har ikke aktivert tilgang til mobilappen Canvas forelder.";
-
-/* No comment provided by engineer. */
-"This institution is located outside of your selected region. To add a student at this institution, please use the “Region Picker” option on the login page to select the region of (region), and create a new account." = "Denne institusjonen ligger utenfor din valgte region. For å legge til en student ved denne institusjonen, bruk alternativet \"Regionvalg\" på påloggingssiden for å velge region i (region), og opprett en ny konto.";
-
-/* Title for alert when failing to add student domain */
-"Unable to Add Student" = "Kunne ikke legge til student";
-
-/* Title for alert when failing to create account */
-"Unable to Create Account" = "Kunne ikke opprette konto";
-
-/* No comment provided by engineer. */
-"Unauthorized Region" = "Uautorisert region";
 
 /* Auth Failed Message */
 "Unexpected Authentication Error.  Please try logging in again" = "Uventet autentiseringsfeil. Forsøk å logge inn på nytt";
@@ -379,8 +268,7 @@
 /* No comment provided by engineer. */
 "United States" = "USA";
 
-/* Unknown region for student account
-   Unknown T`hreshold Description */
+/* Unknown T`hreshold Description */
 "Unknown" = "Ukjent";
 
 /* Default name given a user until we find their real name */
@@ -395,24 +283,12 @@
 /* Calendar Tab */
 "WEEK" = "UKE";
 
-/* Error message when failing to create account */
-"We couldn't create your account. Double check your information or try again later." = "Vi kunne ikke opprette kontoen din. Dobbeltsjekk informasjonen din eller forsøk seinere.";
-
-/* Body for alert shown when the server couldn't find an email to reset the password for */
-"We couldn't find an account associated with that email. Double check that you entered it correctly, check your region, and try again." = "Vi kunne ikke finne en konto knyttet til den e-postadressen. Kontroller at du har skrevet det riktig, sjekk din region, og prøv igjen.";
-
 /* Title for field */
 "What can we do better?" = "Hva kan vi gjøre bedre?";
 
 /* Not Authorized Error Message */
 "You are unauthorized to access this information.  Check your user permissions and try again." = "Du er ikke autorisert til å få tilgang til denne informasjonen. Sjekk brukertillatelsene dine og forsøk igjen.";
 
-/* Body for alert shown when resetting password */
-"You will receive an email shortly to finish the process of resetting your password." = "Du vil snart motta en e-post for å fullføre behandlingen av å tilbakestille passordet ditt.";
-
 /* Title for the email field */
 "Your Email" = "Din e-post";
-
-/* Body for alert after having successfully reset the password */
-"Your password has been successfully reset. Please log in now." = "Passordet ditt er tilbakestilt. Forsøk å logge inn nå.";
 

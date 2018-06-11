@@ -16,9 +16,6 @@
 /* Unauthorized Student Error Title */
 "Access Denied" = "Aukatia te Uru";
 
-/* Add Student Settings Button Title */
-"Add Student" = "Tāpiri Ākonga";
-
 /* Alert Section Header */
 "Alert me when:" = "Matohi ahau ina:";
 
@@ -52,9 +49,6 @@
 /* Authorization Failed Title */
 "Authorization Failed." = "I rahua Whakamanatanga.";
 
-/* Back Button Title */
-"Back" = "Hoki";
-
 /* Courses Tab */
 "COURSES" = "NGĀ AKORANGA";
 
@@ -85,9 +79,6 @@
 /* Close Button Title */
 "Close" = "Katia";
 
-/* Error alert message */
-"Could not create domain.  Please check your school's domain and try again." = "Kaore i taea te hanga rohe.  Tēnā koa titiro te rohe o tō kura me te ngana anō..";
-
 /* Course Announcement Description */
 "Course announcements" = "mau faaararaa akoranga";
 
@@ -97,31 +88,13 @@
 /* Course Grade Low On Description */
 "Course grade below" = "kōeke akoranga i raro";
 
-/* Submits the form to create an account */
-"Create Account" = "Waihanga Pūkete";
-
 /* Title for field */
 "Describe your problem" = "Whakaahuatia koutou raruraru";
 
 /* No comment provided by engineer. */
 "Dismiss" = "Tonoa";
 
-/* Title for alert shown when the server couldn't find an email to reset the password for */
-"Email Not Found" = "Īmēra Kāore Kitea";
-
-/* Title for alert shown when user attempts to reset their password */
-"Email Sent" = "Īmēra Tono";
-
-/* Empty Response */
-"Empty Response." = "He whakautu tahanga.";
-
-/* Prompt for logging in as student */
-"Enter student's login information" = "Tomo ngā mōhiohio takiuru o ngā ākonga";
-
-/* prompt for canvas observer login page */
-"Enter your Canvas Observer credentials" = "Whakauru ō Canvas Kaimātakitaki taipitopito";
-
-/* Title for an error popup */
+/* No comment provided by engineer. */
 "Error" = "Hapa";
 
 /* No comment provided by engineer. */
@@ -135,12 +108,6 @@
 
 /* Status level for issue being reported */
 "Extremely critical emergency" = "whawhati tata tino nui";
-
-/* Domain Picker Search Placeholder */
-"Find your school or district" = "Kimihia koutou kura takiwa ranei";
-
-/* Domain Picker Search Placeholder */
-"Find your student's school or district" = "Kimihia te kura o tou ākonga rohe ranei";
 
 /* No comment provided by engineer. */
 "Germany" = "Tiamana";
@@ -166,32 +133,14 @@
 /* Institution Announcement Description */
 "Institution announcements" = "mau faaararaa MoE";
 
-/* Invalid Canvas URL */
-"Invalid Canvas URL." = "Koremana Canvas URL";
-
-/* Alert title when logging in with invalid credentials */
-"Invalid Credentials" = "Taipitopito Muhu";
-
 /* Title for an alert view */
 "Invalid Input" = "Tāuru muhu";
 
 /* Support Ticket Invalid Input Message */
 "Invalid Input.  Check fields and try again." = "Whakauru koremana.  Tirohia ngā whīra me te ngana anō.";
 
-/* Invalid User Agent */
-"Invalid User Agent." = "Koremana Kaimahi Māngai";
-
-/* Invalid Domain title */
-"Invalid domain." = "Rohe muhu.";
-
-/* Alert Message for invalid domain */
-"Invalid student domain.\nPlease double-check the domain and try again." = "rohe ākonga muhu.\nKoa-tirohia rua te rohe, me te ngana anō.";
-
 /* No comment provided by engineer. */
 "Ireland" = "Ireland";
-
-/* JSON Parsing Error */
-"JSON Parsing Error." = "JSON Poroporo Hē.";
 
 /* Last Week Button Accessibility Label */
 "Last Week" = "Wiki Whakamutunga";
@@ -207,9 +156,6 @@
 
 /* No comment provided by engineer. */
 "Log In" = "Takiuru ki roto";
-
-/* Submits the login form */
-"Login" = "Takiuru I roto i";
 
 /* Logout Confirm Button */
 "Logout" = "Takiuru Out";
@@ -238,9 +184,6 @@
 /* Title for label when no grade has been assigned to the course */
 "No Grade" = "Kahore Kōeke";
 
-/* No Result */
-"No Result." = "Kaore he Hua";
-
 /* Empty Students Text */
 "No Students" = "Kāore he ākonga";
 
@@ -253,17 +196,11 @@
 /* Not Found Error Title */
 "Not Found" = "Kaore i kitea";
 
-/* Not authorized */
-"Not authorized." = "Kaore i whakamanahia";
-
 /* Empty Calendar Events Text */
 "Nothing this week" = "Kahore tenei wiki";
 
 /* OK Button Title */
 "OK" = "Ok";
-
-/* Canvas Observer Auth Failed Message */
-"Only Canvas observers can authenticate in Canvas Parent." = "Ka taea e ngā Canvas kaitirotiro te whakamotuhēhē te Canvas Matua.";
 
 /* Open a url in the application Safari */
 "Open in Safari" = "Tuwhera i roto i te Safari";
@@ -271,23 +208,11 @@
 /* Open file in another application */
 "Open in..." = "Tuwhera i roto i ...";
 
-/* Title for alert when resetting password is successful */
-"Password Reset Successful" = "Tautuhi Kupuhipa Momoho";
-
-/* Invalid Domain message */
-"Please double-check the domain and try again." = "Tēnā koa āta titiro anō ki te rohe me te ngana anō i muri mai.";
-
-/* Title for alert shown when something goes wrong resetting the password */
-"Problem Resetting Password" = "Raruraru Kupuhipa Tautuhianō";
-
 /* Remove button title */
 "Remove" = "Tangohia te";
 
 /* delete student from login */
 "Remove Student" = "Tangohia Te Ākonga";
-
-/* re-authenticate user when token fails */
-"Repair Access" = "Uru Tapia";
 
 /* Support Ticket Creation Failed */
 "Request Failed!  Check network and try again!" = "I rāhua te tono!  Tirohia te whatunga ka ngana anō!";
@@ -298,9 +223,6 @@
 /* Select Impact Placeholder */
 "Select Impact" = "Tīpako Pānga";
 
-/* No comment provided by engineer. */
-"Select Region" = "Tīpako Rohe";
-
 /* Server Error Title */
 "Server Error" = "Hapa Tūmau";
 
@@ -310,17 +232,8 @@
 /* Status level for issue being reported */
 "Something is broken but I can work around it" = "pakaru te tahi mea te engari ka taea e ahau te mahi a tawhio noa te reira";
 
-/* Body for alert shown when something goes wrong resetting the password */
-"Something went wrong while attempting to reset your password. Try again later." = "haere he tahi mea i te ngana ki te tautuhi anō i tō kupuhipa. Whakamātauria ano i muri mai.";
-
-/* Body for alert shown when something goes wrong resetting the password */
-"Something went wrong while attempting to send a password reset email. Try again later." = "haere he tahi mea i te ngana ki te tuku i te īmēra tautuhi kupuhipa. Whakamātauria ano i muri mai.";
-
 /* Title for the subject field */
 "Subject" = "Kaupapa";
-
-/* Button title for forgot password */
-"Submit" = "Tuku";
 
 /* No comment provided by engineer. */
 "Submitted" = "Tukuna";
@@ -337,14 +250,8 @@
 /* Support Ticket Created Successfully */
 "Thanks, your request was received!" = "Mihi, ka riro koutou tono!";
 
-/* Alert message when logging in with invalid credentials. Please check your region and try again. */
-"The email and password combination were invalid" = "I muhu te huinga īmēra me te kupuhipa";
-
 /* Error message */
 "There are no actions for this item" = "Kāore he mahi hoki tenei tūemi";
-
-/* AccountDomain Database Load Failure Message */
-"There was a problem loading the AccountDomain database file." = "He raruraru i te wā e uta ana i te AccountDomain kōnae pātengi rarunga.";
 
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "He raruraru i te wā e uta ana i te AlertKit kōnae pātengi rarunga.";
@@ -352,26 +259,8 @@
 /* Airwolf database error message */
 "There was a problem loading the database." = "He raruraru i te wā e uta ana i tepātengi raraunga.";
 
-/* Message for an error alert */
-"There was a problem verifying the following domain: (stringURL)" = "He raruraru i reira i te wā e manatoko ana i te rohe e whai ake nei: (stringURL)";
-
 /* No comment provided by engineer. */
 "There was an error loading your content. If it  is an audio or video upload it may still be processing." = "He ko he hapa uta koutou ihirangi. Ki te mea he ororongo ataata ranei tukuake ai tonu te tukatuka i te reira.";
-
-/* Alert Message for institution not authorized */
-"This institution has not enabled access to the Canvas Parent mobile app." = "e kore i tenei whare whakahohea uru ki te taupānga pūkoro Kanaweti Parent.";
-
-/* No comment provided by engineer. */
-"This institution is located outside of your selected region. To add a student at this institution, please use the “Region Picker” option on the login page to select the region of (region), and create a new account." = "Tēnei kāinga kei waho o tō rohe kua tohua e koe. Ki te tāpiri atu i tētahi akonga ki tēnei kāinga, tēnā koa whakamahi i te wāhanga \"Kaiwhiwhi Rohe\" i te rārangi takiuru hei tīpako i te rohe o te (rohe), me te hanga pūkete hou.";
-
-/* Title for alert when failing to add student domain */
-"Unable to Add Student" = "Kāore e taea te Tāpiri Ākonga";
-
-/* Title for alert when failing to create account */
-"Unable to Create Account" = "Kāore e taea te Waihanga Pūkete";
-
-/* No comment provided by engineer. */
-"Unauthorized Region" = "Rohe kaore e manahia";
 
 /* Auth Failed Message */
 "Unexpected Authentication Error.  Please try logging in again" = "Hapa Motuhēhēnga Ta'e'amanekina. Koa ngana takiuru roto ano";
@@ -379,8 +268,7 @@
 /* No comment provided by engineer. */
 "United States" = "United States";
 
-/* Unknown region for student account
-   Unknown T`hreshold Description */
+/* Unknown T`hreshold Description */
 "Unknown" = "unknown";
 
 /* Default name given a user until we find their real name */
@@ -395,24 +283,12 @@
 /* Calendar Tab */
 "WEEK" = "WIKI";
 
-/* Error message when failing to create account */
-"We couldn't create your account. Double check your information or try again later." = "kihai matou i taea te waihanga i tō pūkete. Rua tirohia koutou mōhiohio ngana anō i muri mai ranei.";
-
-/* Body for alert shown when the server couldn't find an email to reset the password for */
-"We couldn't find an account associated with that email. Double check that you entered it correctly, check your region, and try again." = "Kaore i kitea e mātou he pūkete e hoapā ana ki tēnā īmēra. Tirohia kia rua wā kua whakaurutia tika e koe, tirohia tō rohe, ana ka tarai anō.";
-
 /* Title for field */
 "What can we do better?" = "Me pēhea e whakapiki ake ai te mahi ei mātou";
 
 /* Not Authorized Error Message */
 "You are unauthorized to access this information.  Check your user permissions and try again." = "He kāore i ki te uru i tēnei mōhiohio e koe. Tirohia koutou whakaaetanga kaiwhakamahi, me te ngana anō.";
 
-/* Body for alert shown when resetting password */
-"You will receive an email shortly to finish the process of resetting your password." = "ka riro ia koe he īmēra tata ki te whakaoti i te tukanga o te tautuhianō o koutou kupuhipa.";
-
 /* Title for the email field */
 "Your Email" = "Tō īmēra";
-
-/* Body for alert after having successfully reset the password */
-"Your password has been successfully reset. Please log in now." = "kua tou kupuhipa kua pai tautuhi anō. Tena takiuru roto i teie nei.";
 

@@ -16,9 +16,6 @@
 /* Unauthorized Student Error Title */
 "Access Denied" = "Åtkomst nekad";
 
-/* Add Student Settings Button Title */
-"Add Student" = "Lägg till elev";
-
 /* Alert Section Header */
 "Alert me when:" = "Larma mig när:";
 
@@ -52,9 +49,6 @@
 /* Authorization Failed Title */
 "Authorization Failed." = "Auktorisering misslyckades.";
 
-/* Back Button Title */
-"Back" = "Tillbaka";
-
 /* Courses Tab */
 "COURSES" = "KURSER";
 
@@ -85,9 +79,6 @@
 /* Close Button Title */
 "Close" = "Stäng";
 
-/* Error alert message */
-"Could not create domain.  Please check your school's domain and try again." = "Kunde inte skapa domän.  Vänligen kontrollera din skolas domän och försök igen.";
-
 /* Course Announcement Description */
 "Course announcements" = "Kursannonseringar";
 
@@ -97,31 +88,13 @@
 /* Course Grade Low On Description */
 "Course grade below" = "Kursbetyg under";
 
-/* Submits the form to create an account */
-"Create Account" = "Skapa konto";
-
 /* Title for field */
 "Describe your problem" = "Beskriv ditt problem";
 
 /* No comment provided by engineer. */
 "Dismiss" = "Avfärda";
 
-/* Title for alert shown when the server couldn't find an email to reset the password for */
-"Email Not Found" = "E-posten hittades inte";
-
-/* Title for alert shown when user attempts to reset their password */
-"Email Sent" = "E-postmeddelandet skickades";
-
-/* Empty Response */
-"Empty Response." = "Tomt svar.";
-
-/* Prompt for logging in as student */
-"Enter student's login information" = "Fyll i elevens inloggningsinformation";
-
-/* prompt for canvas observer login page */
-"Enter your Canvas Observer credentials" = "Ange dina Canvas Observer referenser";
-
-/* Title for an error popup */
+/* No comment provided by engineer. */
 "Error" = "Fel";
 
 /* No comment provided by engineer. */
@@ -135,12 +108,6 @@
 
 /* Status level for issue being reported */
 "Extremely critical emergency" = "Extremt kritiskt nödläge";
-
-/* Domain Picker Search Placeholder */
-"Find your school or district" = "Hitta din skola eller distrikt";
-
-/* Domain Picker Search Placeholder */
-"Find your student's school or district" = "Hitta din students skola eller distrikt";
 
 /* No comment provided by engineer. */
 "Germany" = "Tyskland";
@@ -166,32 +133,14 @@
 /* Institution Announcement Description */
 "Institution announcements" = "Institutionsannonseringar";
 
-/* Invalid Canvas URL */
-"Invalid Canvas URL." = "Ogiltig Canvas webbadress.";
-
-/* Alert title when logging in with invalid credentials */
-"Invalid Credentials" = "Ogiltiga uppgifter";
-
 /* Title for an alert view */
 "Invalid Input" = "Ogiltig inmatning";
 
 /* Support Ticket Invalid Input Message */
 "Invalid Input.  Check fields and try again." = "Ogiltig inmatning.  Kontrollera fält och försök igen.";
 
-/* Invalid User Agent */
-"Invalid User Agent." = "Ogiltig användarombud.";
-
-/* Invalid Domain title */
-"Invalid domain." = "Ogiltig domän.";
-
-/* Alert Message for invalid domain */
-"Invalid student domain.\nPlease double-check the domain and try again." = "Ogiltig elevdomän.\nDubbelkolla domänen och försök igen.";
-
 /* No comment provided by engineer. */
 "Ireland" = "Irland";
-
-/* JSON Parsing Error */
-"JSON Parsing Error." = "JSON analysfel.";
 
 /* Last Week Button Accessibility Label */
 "Last Week" = "Förra veckan";
@@ -207,9 +156,6 @@
 
 /* No comment provided by engineer. */
 "Log In" = "Logga in";
-
-/* Submits the login form */
-"Login" = "Inloggning";
 
 /* Logout Confirm Button */
 "Logout" = "Logga ut";
@@ -238,9 +184,6 @@
 /* Title for label when no grade has been assigned to the course */
 "No Grade" = "Inget betyg";
 
-/* No Result */
-"No Result." = "Inget resultat.";
-
 /* Empty Students Text */
 "No Students" = "Inga studenter";
 
@@ -253,17 +196,11 @@
 /* Not Found Error Title */
 "Not Found" = "Hittades inte";
 
-/* Not authorized */
-"Not authorized." = "Inte behörig.";
-
 /* Empty Calendar Events Text */
 "Nothing this week" = "Inget den här veckan";
 
 /* OK Button Title */
 "OK" = "OK";
-
-/* Canvas Observer Auth Failed Message */
-"Only Canvas observers can authenticate in Canvas Parent." = "Endast Canvas observatörer kan verifiera i Canvas Parent.";
 
 /* Open a url in the application Safari */
 "Open in Safari" = "Öppna i Safari";
@@ -271,23 +208,11 @@
 /* Open file in another application */
 "Open in..." = "Öppna i...";
 
-/* Title for alert when resetting password is successful */
-"Password Reset Successful" = "Återställning av lösenord lyckades";
-
-/* Invalid Domain message */
-"Please double-check the domain and try again." = "Vänligen kontrollera domänen och försök igen.";
-
-/* Title for alert shown when something goes wrong resetting the password */
-"Problem Resetting Password" = "Problem vid återställning av lösenord";
-
 /* Remove button title */
 "Remove" = "Ta bort";
 
 /* delete student from login */
 "Remove Student" = "Ta bort elev";
-
-/* re-authenticate user when token fails */
-"Repair Access" = "Reparera åtkomst";
 
 /* Support Ticket Creation Failed */
 "Request Failed!  Check network and try again!" = "Begäran misslyckades!  Kontrollera nätverket och försök igen!";
@@ -298,9 +223,6 @@
 /* Select Impact Placeholder */
 "Select Impact" = "Välj påverkan";
 
-/* No comment provided by engineer. */
-"Select Region" = "Välj region";
-
 /* Server Error Title */
 "Server Error" = "Serverfel";
 
@@ -310,17 +232,8 @@
 /* Status level for issue being reported */
 "Something is broken but I can work around it" = "Något är trasigt och jag kan inte hitta en alternativ lösning";
 
-/* Body for alert shown when something goes wrong resetting the password */
-"Something went wrong while attempting to reset your password. Try again later." = "Något gick fel när ditt lösenord återställdes. Försök igen senare.";
-
-/* Body for alert shown when something goes wrong resetting the password */
-"Something went wrong while attempting to send a password reset email. Try again later." = "Något gick fel när mailet för lösenordsåterställning skickades. Försök igen senare.";
-
 /* Title for the subject field */
 "Subject" = "Ämne";
-
-/* Button title for forgot password */
-"Submit" = "Skicka in";
 
 /* No comment provided by engineer. */
 "Submitted" = "Inskickad";
@@ -337,14 +250,8 @@
 /* Support Ticket Created Successfully */
 "Thanks, your request was received!" = "Tack, din förfrågan har tagits emot!";
 
-/* Alert message when logging in with invalid credentials. Please check your region and try again. */
-"The email and password combination were invalid" = "Kombination av lösenord och e-post är ogiltig";
-
 /* Error message */
 "There are no actions for this item" = "Det finns inga åtgärder för det här objektet";
-
-/* AccountDomain Database Load Failure Message */
-"There was a problem loading the AccountDomain database file." = "Ett problem uppstod vid laddningen av AccountDomain databas filen.";
 
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "Ett problem uppstod vid laddningen av AlertKit databas filen.";
@@ -352,26 +259,8 @@
 /* Airwolf database error message */
 "There was a problem loading the database." = "Det uppstod ett problem vid laddning av databasen.";
 
-/* Message for an error alert */
-"There was a problem verifying the following domain: (stringURL)" = "Ett problem uppstod vid verifiering av följande domän: (stringURL)";
-
 /* No comment provided by engineer. */
 "There was an error loading your content. If it  is an audio or video upload it may still be processing." = "Ett fel inträffade när innehållet laddades. Om det var ljud eller video kanske innehållet fortfarande bearbetas.";
-
-/* Alert Message for institution not authorized */
-"This institution has not enabled access to the Canvas Parent mobile app." = "Den här institutionen har inte aktiverat mobilappen Canvas Parent.";
-
-/* No comment provided by engineer. */
-"This institution is located outside of your selected region. To add a student at this institution, please use the “Region Picker” option on the login page to select the region of (region), and create a new account." = "Denna institution ligger utanför din valda region. För att lägga till en student vid denna institution, använd alternativet \"Regionväljare\" på inloggningssidan för att välja region i (region) och skapa ett nytt konto.";
-
-/* Title for alert when failing to add student domain */
-"Unable to Add Student" = "Kunde inte lägga till elev";
-
-/* Title for alert when failing to create account */
-"Unable to Create Account" = "Kunde inte skapa konto";
-
-/* No comment provided by engineer. */
-"Unauthorized Region" = "Obehörig region";
 
 /* Auth Failed Message */
 "Unexpected Authentication Error.  Please try logging in again" = "Ett oväntat autentiseringsfel inträffade. Försök att logga in igen.";
@@ -379,8 +268,7 @@
 /* No comment provided by engineer. */
 "United States" = "USA";
 
-/* Unknown region for student account
-   Unknown T`hreshold Description */
+/* Unknown T`hreshold Description */
 "Unknown" = "Okänd";
 
 /* Default name given a user until we find their real name */
@@ -395,24 +283,12 @@
 /* Calendar Tab */
 "WEEK" = "VECKA";
 
-/* Error message when failing to create account */
-"We couldn't create your account. Double check your information or try again later." = "Vi kunde inte skapa ditt konto. Dubbelkolla din information och försök igen senare.";
-
-/* Body for alert shown when the server couldn't find an email to reset the password for */
-"We couldn't find an account associated with that email. Double check that you entered it correctly, check your region, and try again." = "Vi kunde inte hitta ett konto som är kopplat till det mejlet. Dubbel kontrollera att du har skrivit in korrekt, kontrollera din region och försök igen.";
-
 /* Title for field */
 "What can we do better?" = "Vad kan vi förbättra?";
 
 /* Not Authorized Error Message */
 "You are unauthorized to access this information.  Check your user permissions and try again." = "Du har inte behörighet att komma åt den här informationen. Kontrollera din behörighet och försök igen.";
 
-/* Body for alert shown when resetting password */
-"You will receive an email shortly to finish the process of resetting your password." = "Du kommer att få ett e-postmeddelande inom kort för att slutföra återställningen av ditt lösenord.";
-
 /* Title for the email field */
 "Your Email" = "Din e-post";
-
-/* Body for alert after having successfully reset the password */
-"Your password has been successfully reset. Please log in now." = "Ditt lösenord har återställts. Nu kan du logga in.";
 

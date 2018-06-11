@@ -16,9 +16,6 @@
 /* Unauthorized Student Error Title */
 "Access Denied" = "アクセスが拒否されました";
 
-/* Add Student Settings Button Title */
-"Add Student" = "受講生を追加する";
-
 /* Alert Section Header */
 "Alert me when:" = "次の時にアラートしてください：";
 
@@ -52,9 +49,6 @@
 /* Authorization Failed Title */
 "Authorization Failed." = "認証に失敗しました。";
 
-/* Back Button Title */
-"Back" = "戻る";
-
 /* Courses Tab */
 "COURSES" = "コース";
 
@@ -85,9 +79,6 @@
 /* Close Button Title */
 "Close" = "閉じる";
 
-/* Error alert message */
-"Could not create domain.  Please check your school's domain and try again." = "ドメインを作成できませんでした。学校のドメインをチェックして、もういちど試してください。";
-
 /* Course Announcement Description */
 "Course announcements" = "コースのアナウンスメント";
 
@@ -97,31 +88,13 @@
 /* Course Grade Low On Description */
 "Course grade below" = "より下のコース成績";
 
-/* Submits the form to create an account */
-"Create Account" = "アカウントの作成";
-
 /* Title for field */
 "Describe your problem" = "問題についてお聞かせください";
 
 /* No comment provided by engineer. */
 "Dismiss" = "棄却する";
 
-/* Title for alert shown when the server couldn't find an email to reset the password for */
-"Email Not Found" = "Eメールが見つかりません";
-
-/* Title for alert shown when user attempts to reset their password */
-"Email Sent" = "送信済みのEメール";
-
-/* Empty Response */
-"Empty Response." = "回答が空白。";
-
-/* Prompt for logging in as student */
-"Enter student's login information" = "受講生のログイン情報を入力する";
-
-/* prompt for canvas observer login page */
-"Enter your Canvas Observer credentials" = "Canvas オブザーバーの資格情報を入力します";
-
-/* Title for an error popup */
+/* No comment provided by engineer. */
 "Error" = "エラー";
 
 /* No comment provided by engineer. */
@@ -135,12 +108,6 @@
 
 /* Status level for issue being reported */
 "Extremely critical emergency" = "非常に深刻な緊急事態";
-
-/* Domain Picker Search Placeholder */
-"Find your school or district" = "あなたの学校または地域を見つける";
-
-/* Domain Picker Search Placeholder */
-"Find your student's school or district" = "受講生の学校または学区を探す";
 
 /* No comment provided by engineer. */
 "Germany" = "ドイツ";
@@ -166,32 +133,14 @@
 /* Institution Announcement Description */
 "Institution announcements" = "教育機関のアナウンスメント";
 
-/* Invalid Canvas URL */
-"Invalid Canvas URL." = "Canvas URL が無効。";
-
-/* Alert title when logging in with invalid credentials */
-"Invalid Credentials" = "無効な資格証明";
-
 /* Title for an alert view */
 "Invalid Input" = "無効な入力";
 
 /* Support Ticket Invalid Input Message */
 "Invalid Input.  Check fields and try again." = "入力が無効。フィールドをチェックして、もういちど試してください。";
 
-/* Invalid User Agent */
-"Invalid User Agent." = "ユーザーエージェントが無効。";
-
-/* Invalid Domain title */
-"Invalid domain." = "無効なドメイン。";
-
-/* Alert Message for invalid domain */
-"Invalid student domain.\nPlease double-check the domain and try again." = "無効な受講生ドメインです。\nドメインを再確認してやり直してください。";
-
 /* No comment provided by engineer. */
 "Ireland" = "アイルランド";
-
-/* JSON Parsing Error */
-"JSON Parsing Error." = "JSON パース中エラー。";
 
 /* Last Week Button Accessibility Label */
 "Last Week" = "先週";
@@ -207,9 +156,6 @@
 
 /* No comment provided by engineer. */
 "Log In" = "ログイン";
-
-/* Submits the login form */
-"Login" = "ログイン";
 
 /* Logout Confirm Button */
 "Logout" = "ログアウト";
@@ -238,9 +184,6 @@
 /* Title for label when no grade has been assigned to the course */
 "No Grade" = "成績なし";
 
-/* No Result */
-"No Result." = "結果なし。";
-
 /* Empty Students Text */
 "No Students" = "受講生なし";
 
@@ -253,17 +196,11 @@
 /* Not Found Error Title */
 "Not Found" = "見つかりません";
 
-/* Not authorized */
-"Not authorized." = "権限がありません。";
-
 /* Empty Calendar Events Text */
 "Nothing this week" = "今週はありません";
 
 /* OK Button Title */
 "OK" = "OK";
-
-/* Canvas Observer Auth Failed Message */
-"Only Canvas observers can authenticate in Canvas Parent." = "Canvas オブサーバーのみが Canvas Parent 内で承認を行うことができます。";
 
 /* Open a url in the application Safari */
 "Open in Safari" = "Safariで開く";
@@ -271,23 +208,11 @@
 /* Open file in another application */
 "Open in..." = "...で開く";
 
-/* Title for alert when resetting password is successful */
-"Password Reset Successful" = "パスワードのリセットが完了しました";
-
-/* Invalid Domain message */
-"Please double-check the domain and try again." = "ドメインを確認して、再試行してください。";
-
-/* Title for alert shown when something goes wrong resetting the password */
-"Problem Resetting Password" = "パスワードリセットに関する問題";
-
 /* Remove button title */
 "Remove" = "削除する";
 
 /* delete student from login */
 "Remove Student" = "受講生を削除する";
-
-/* re-authenticate user when token fails */
-"Repair Access" = "アクセスを修復する";
 
 /* Support Ticket Creation Failed */
 "Request Failed!  Check network and try again!" = "リクエストに失敗しました！ネットワークをチェックして、もういちど試してください。";
@@ -298,9 +223,6 @@
 /* Select Impact Placeholder */
 "Select Impact" = "深刻度をお選びください";
 
-/* No comment provided by engineer. */
-"Select Region" = "地域を選択";
-
 /* Server Error Title */
 "Server Error" = "サーバーエラー";
 
@@ -310,17 +232,8 @@
 /* Status level for issue being reported */
 "Something is broken but I can work around it" = "何かが壊れていますが、それを避けて作業ができます";
 
-/* Body for alert shown when something goes wrong resetting the password */
-"Something went wrong while attempting to reset your password. Try again later." = "パスワードのリセット中に問題が発生しました。時間をおいて再度お試しください。";
-
-/* Body for alert shown when something goes wrong resetting the password */
-"Something went wrong while attempting to send a password reset email. Try again later." = "パスワードリセット用のEメール送信中に問題が発生しました。時間をおいて再度お試しください。";
-
 /* Title for the subject field */
 "Subject" = "件名";
-
-/* Button title for forgot password */
-"Submit" = "提出する";
 
 /* No comment provided by engineer. */
 "Submitted" = "提出済み";
@@ -337,14 +250,8 @@
 /* Support Ticket Created Successfully */
 "Thanks, your request was received!" = "リクエストが受理されました！";
 
-/* Alert message when logging in with invalid credentials. Please check your region and try again. */
-"The email and password combination were invalid" = "Eメールとパスワードの組み合わせが無効です";
-
 /* Error message */
 "There are no actions for this item" = "このアイテムへのアクションはありません";
-
-/* AccountDomain Database Load Failure Message */
-"There was a problem loading the AccountDomain database file." = "AccountDomain データベースファイルを読み込み中、問題がありました。.";
 
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "AlertKit データベースファイルを読み込み中、問題がありました。.";
@@ -352,26 +259,8 @@
 /* Airwolf database error message */
 "There was a problem loading the database." = "データベースの読み込み中、問題がありました。";
 
-/* Message for an error alert */
-"There was a problem verifying the following domain: (stringURL)" = "次のドメインを確認する際に問題が発生しました：(stringURL)";
-
 /* No comment provided by engineer. */
 "There was an error loading your content. If it  is an audio or video upload it may still be processing." = "コンテンツのロード中にエラーが発生しました。コンテンツがオーディオまたは動画のアップロードの場合、処理が継続中の可能性があります。";
-
-/* Alert Message for institution not authorized */
-"This institution has not enabled access to the Canvas Parent mobile app." = "この機関は、Canvasペアレントモバイルアプリへのアクセスを有効にしていません。";
-
-/* No comment provided by engineer. */
-"This institution is located outside of your selected region. To add a student at this institution, please use the “Region Picker” option on the login page to select the region of (region), and create a new account." = "この機関は選択した地域の外にあります。この機関に受講生を追加するには、ログインページの[地域選択]オプションを使用して、（地域）の地域を選択し、地域のアカウントを作成してください。";
-
-/* Title for alert when failing to add student domain */
-"Unable to Add Student" = "受講生の追加ができません";
-
-/* Title for alert when failing to create account */
-"Unable to Create Account" = "アカウントの作成ができません";
-
-/* No comment provided by engineer. */
-"Unauthorized Region" = "承認されていない地域";
 
 /* Auth Failed Message */
 "Unexpected Authentication Error.  Please try logging in again" = "予期しない認証エラーです。再度ログインしなおしてください";
@@ -379,8 +268,7 @@
 /* No comment provided by engineer. */
 "United States" = "アメリカ";
 
-/* Unknown region for student account
-   Unknown T`hreshold Description */
+/* Unknown T`hreshold Description */
 "Unknown" = "未知の";
 
 /* Default name given a user until we find their real name */
@@ -395,24 +283,12 @@
 /* Calendar Tab */
 "WEEK" = "週";
 
-/* Error message when failing to create account */
-"We couldn't create your account. Double check your information or try again later." = "アカウントの作成ができませんでした。情報を再確認するか、時間をおいて再度お試しください。";
-
-/* Body for alert shown when the server couldn't find an email to reset the password for */
-"We couldn't find an account associated with that email. Double check that you entered it correctly, check your region, and try again." = "そのメールに関連付けられているアカウントが見つかりませんでした。正しく入力されていることを再度確認し、地域を確認してもう一度お試しください。";
-
 /* Title for field */
 "What can we do better?" = "改善する余地はどこにあるでしょう？";
 
 /* Not Authorized Error Message */
 "You are unauthorized to access this information.  Check your user permissions and try again." = "この情報にアクセスする権限がありません。ユーザー承認をご確認のうえ、再度お試しください。";
 
-/* Body for alert shown when resetting password */
-"You will receive an email shortly to finish the process of resetting your password." = "パスワードリセットのプロセスを完了するためのEメールがすぐに送信されます。";
-
 /* Title for the email field */
 "Your Email" = "あなたのメールアドレス";
-
-/* Body for alert after having successfully reset the password */
-"Your password has been successfully reset. Please log in now." = "パスワードのリセットが完了しました。今すぐログインしてください。";
 

@@ -16,9 +16,6 @@
 /* Unauthorized Student Error Title */
 "Access Denied" = "Access Denied";
 
-/* Add Student Settings Button Title */
-"Add Student" = "Add Student";
-
 /* Alert Section Header */
 "Alert me when:" = "Alert me when:";
 
@@ -52,9 +49,6 @@
 /* Authorization Failed Title */
 "Authorization Failed." = "Authorisation Failed.";
 
-/* Back Button Title */
-"Back" = "Back";
-
 /* Courses Tab */
 "COURSES" = "COURSES";
 
@@ -85,9 +79,6 @@
 /* Close Button Title */
 "Close" = "Close";
 
-/* Error alert message */
-"Could not create domain.  Please check your school's domain and try again." = "Could not create domain.  Please check your school's domain and try again.";
-
 /* Course Announcement Description */
 "Course announcements" = "Course announcements";
 
@@ -97,31 +88,13 @@
 /* Course Grade Low On Description */
 "Course grade below" = "Course grade below";
 
-/* Submits the form to create an account */
-"Create Account" = "Create Account";
-
 /* Title for field */
 "Describe your problem" = "Describe your problem.";
 
 /* No comment provided by engineer. */
 "Dismiss" = "Dismiss";
 
-/* Title for alert shown when the server couldn't find an email to reset the password for */
-"Email Not Found" = "Email Not Found";
-
-/* Title for alert shown when user attempts to reset their password */
-"Email Sent" = "Email Sent";
-
-/* Empty Response */
-"Empty Response." = "Empty Response.";
-
-/* Prompt for logging in as student */
-"Enter student's login information" = "Enter student's login information";
-
-/* prompt for canvas observer login page */
-"Enter your Canvas Observer credentials" = "Enter your Canvas Observer credentials";
-
-/* Title for an error popup */
+/* No comment provided by engineer. */
 "Error" = "Error";
 
 /* No comment provided by engineer. */
@@ -135,12 +108,6 @@
 
 /* Status level for issue being reported */
 "Extremely critical emergency" = "Extremely critical emergency";
-
-/* Domain Picker Search Placeholder */
-"Find your school or district" = "Find your school or district";
-
-/* Domain Picker Search Placeholder */
-"Find your student's school or district" = "Find your student's school or district";
 
 /* No comment provided by engineer. */
 "Germany" = "Germany";
@@ -166,32 +133,14 @@
 /* Institution Announcement Description */
 "Institution announcements" = "Institution announcements";
 
-/* Invalid Canvas URL */
-"Invalid Canvas URL." = "Invalid Canvas URL.";
-
-/* Alert title when logging in with invalid credentials */
-"Invalid Credentials" = "Invalid Credentials";
-
 /* Title for an alert view */
 "Invalid Input" = "Invalid Input";
 
 /* Support Ticket Invalid Input Message */
 "Invalid Input.  Check fields and try again." = "Invalid Input.  Check fields and try again.";
 
-/* Invalid User Agent */
-"Invalid User Agent." = "Invalid User Agent.";
-
-/* Invalid Domain title */
-"Invalid domain." = "Invalid domain.";
-
-/* Alert Message for invalid domain */
-"Invalid student domain.\nPlease double-check the domain and try again." = "Invalid student domain.\nPlease double-check the domain and try again.";
-
 /* No comment provided by engineer. */
 "Ireland" = "Ireland";
-
-/* JSON Parsing Error */
-"JSON Parsing Error." = "JSON Parsing Error.";
 
 /* Last Week Button Accessibility Label */
 "Last Week" = "Last Week";
@@ -207,9 +156,6 @@
 
 /* No comment provided by engineer. */
 "Log In" = "Log In";
-
-/* Submits the login form */
-"Login" = "Login";
 
 /* Logout Confirm Button */
 "Logout" = "Logout";
@@ -238,9 +184,6 @@
 /* Title for label when no grade has been assigned to the course */
 "No Grade" = "No Grade";
 
-/* No Result */
-"No Result." = "No Result.";
-
 /* Empty Students Text */
 "No Students" = "No Students";
 
@@ -253,17 +196,11 @@
 /* Not Found Error Title */
 "Not Found" = "Not Found";
 
-/* Not authorized */
-"Not authorized." = "Not authorised.";
-
 /* Empty Calendar Events Text */
 "Nothing this week" = "Nothing this week";
 
 /* OK Button Title */
 "OK" = "OK";
-
-/* Canvas Observer Auth Failed Message */
-"Only Canvas observers can authenticate in Canvas Parent." = "Only Canvas observers can authenticate in Canvas Parent.";
 
 /* Open a url in the application Safari */
 "Open in Safari" = "Open in Safari";
@@ -271,23 +208,11 @@
 /* Open file in another application */
 "Open in..." = "Open in...";
 
-/* Title for alert when resetting password is successful */
-"Password Reset Successful" = "Password Reset Successful";
-
-/* Invalid Domain message */
-"Please double-check the domain and try again." = "Please double-check the domain and try again.";
-
-/* Title for alert shown when something goes wrong resetting the password */
-"Problem Resetting Password" = "Problem Resetting Password";
-
 /* Remove button title */
 "Remove" = "Remove";
 
 /* delete student from login */
 "Remove Student" = "Remove Student";
-
-/* re-authenticate user when token fails */
-"Repair Access" = "Repair Access";
 
 /* Support Ticket Creation Failed */
 "Request Failed!  Check network and try again!" = "Request Failed!  Check network and try again!";
@@ -298,9 +223,6 @@
 /* Select Impact Placeholder */
 "Select Impact" = "Select Impact";
 
-/* No comment provided by engineer. */
-"Select Region" = "Select Region";
-
 /* Server Error Title */
 "Server Error" = "Server Error";
 
@@ -310,17 +232,8 @@
 /* Status level for issue being reported */
 "Something is broken but I can work around it" = "Something is broken but I can work around it.";
 
-/* Body for alert shown when something goes wrong resetting the password */
-"Something went wrong while attempting to reset your password. Try again later." = "Something went wrong while attempting to reset your password. Please try again later.";
-
-/* Body for alert shown when something goes wrong resetting the password */
-"Something went wrong while attempting to send a password reset email. Try again later." = "Something went wrong while attempting to send a password reset email. Please try again later.";
-
 /* Title for the subject field */
 "Subject" = "Subject";
-
-/* Button title for forgot password */
-"Submit" = "Submit";
 
 /* No comment provided by engineer. */
 "Submitted" = "Submitted";
@@ -337,14 +250,8 @@
 /* Support Ticket Created Successfully */
 "Thanks, your request was received!" = "Thanks, your request was received!";
 
-/* Alert message when logging in with invalid credentials. Please check your region and try again. */
-"The email and password combination were invalid" = "The email and password combination was invalid.";
-
 /* Error message */
 "There are no actions for this item" = "There are no actions for this item.";
-
-/* AccountDomain Database Load Failure Message */
-"There was a problem loading the AccountDomain database file." = "There was a problem loading the AccountDomain database file.";
 
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "There was a problem loading the AlertKit database file.";
@@ -352,26 +259,8 @@
 /* Airwolf database error message */
 "There was a problem loading the database." = "There was a problem loading the database.";
 
-/* Message for an error alert */
-"There was a problem verifying the following domain: (stringURL)" = "There was a problem verifying the following domain: (stringURL)";
-
 /* No comment provided by engineer. */
 "There was an error loading your content. If it  is an audio or video upload it may still be processing." = "There was an error loading your content. If it is an audio or video upload, it may still be processing.";
-
-/* Alert Message for institution not authorized */
-"This institution has not enabled access to the Canvas Parent mobile app." = "This institution has not enabled access to the Canvas Parent mobile app.";
-
-/* No comment provided by engineer. */
-"This institution is located outside of your selected region. To add a student at this institution, please use the “Region Picker” option on the login page to select the region of (region), and create a new account." = "This institution is located outside of your selected region. To add a student at this institution, please use the “Region Picker” option on the login page to select the region of (region), and create a new account.";
-
-/* Title for alert when failing to add student domain */
-"Unable to Add Student" = "Unable to Add Student";
-
-/* Title for alert when failing to create account */
-"Unable to Create Account" = "Unable to Create Account";
-
-/* No comment provided by engineer. */
-"Unauthorized Region" = "Unauthorised Region";
 
 /* Auth Failed Message */
 "Unexpected Authentication Error.  Please try logging in again" = "Unexpected Authentication Error.  Please try logging in again.";
@@ -379,8 +268,7 @@
 /* No comment provided by engineer. */
 "United States" = "United States";
 
-/* Unknown region for student account
-   Unknown T`hreshold Description */
+/* Unknown T`hreshold Description */
 "Unknown" = "Unknown";
 
 /* Default name given a user until we find their real name */
@@ -395,24 +283,12 @@
 /* Calendar Tab */
 "WEEK" = "WEEK";
 
-/* Error message when failing to create account */
-"We couldn't create your account. Double check your information or try again later." = "We couldn't create your account. Double check your information or try again later.";
-
-/* Body for alert shown when the server couldn't find an email to reset the password for */
-"We couldn't find an account associated with that email. Double check that you entered it correctly, check your region, and try again." = "We couldn't find an account associated with that email. Double check that you entered it correctly, check your region, and try again.";
-
 /* Title for field */
 "What can we do better?" = "What can we do better?";
 
 /* Not Authorized Error Message */
 "You are unauthorized to access this information.  Check your user permissions and try again." = "You are unauthorised to access this information.  Please check your user permissions and try again.";
 
-/* Body for alert shown when resetting password */
-"You will receive an email shortly to finish the process of resetting your password." = "You will receive an email shortly to finish the process of resetting your password.";
-
 /* Title for the email field */
 "Your Email" = "Your Email";
-
-/* Body for alert after having successfully reset the password */
-"Your password has been successfully reset. Please log in now." = "Your password has been successfully reset. Please log in now.";
 
