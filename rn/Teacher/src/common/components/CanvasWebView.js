@@ -50,6 +50,7 @@ export type Props = {
   onMessage?: (message: Message) => void,
   onError?: (error: any) => void,
   automaticallyAdjustContentInsets?: boolean,
+  isOpaque?: boolean,
   baseURL?: ?string,
   heightCacheKey?: any,
 }

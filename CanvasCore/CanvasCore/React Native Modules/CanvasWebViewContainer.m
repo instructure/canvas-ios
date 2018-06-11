@@ -201,4 +201,9 @@ static NSString *WebViewKeyPath = @"webView.scrollView.contentSize";
   object_setClass(subview, newClass);
 }
 
+-(void)setIsOpaque:(BOOL)isOpaque
+{
+    [_webView setOpaque:isOpaque];
+}
+
 @end

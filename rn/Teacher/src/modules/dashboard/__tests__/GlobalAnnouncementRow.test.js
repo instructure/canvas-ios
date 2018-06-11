@@ -18,22 +18,21 @@
 
 import { shallow } from 'enzyme'
 import React from 'react'
-import { accountNotification } from '../../../__templates__/account-notification'
-import { navigator } from '../../../__templates__/helm'
+import * as templates from '../../../__templates__'
 import GlobalAnnouncementRow from '../GlobalAnnouncementRow'
 
 describe('GlobalAnnouncementRow', () => {
   const defaults = {
-    notification: accountNotification({}),
+    notification: templates.accountNotification({}),
     onDismiss () {},
-    navigator: navigator(),
+    navigator: templates.navigator(),
   }
 
   it('renders error announcements', () => {
     const tree = shallow(
       <GlobalAnnouncementRow
         {...defaults}
-        notification={accountNotification({ icon: 'error' })}
+        notification={templates.accountNotification({ icon: 'error' })}
       />
     )
     expect(tree).toMatchSnapshot()
@@ -43,7 +42,7 @@ describe('GlobalAnnouncementRow', () => {
     const tree = shallow(
       <GlobalAnnouncementRow
         {...defaults}
-        notification={accountNotification({ icon: 'calendar' })}
+        notification={templates.accountNotification({ icon: 'calendar' })}
       />
     )
     expect(tree).toMatchSnapshot()
@@ -53,7 +52,7 @@ describe('GlobalAnnouncementRow', () => {
     const tree = shallow(
       <GlobalAnnouncementRow
         {...defaults}
-        notification={accountNotification({ icon: 'warning' })}
+        notification={templates.accountNotification({ icon: 'warning' })}
       />
     )
     expect(tree).toMatchSnapshot()
@@ -63,7 +62,7 @@ describe('GlobalAnnouncementRow', () => {
     const tree = shallow(
       <GlobalAnnouncementRow
         {...defaults}
-        notification={accountNotification({ icon: 'question' })}
+        notification={templates.accountNotification({ icon: 'question' })}
       />
     )
     expect(tree).toMatchSnapshot()
@@ -73,7 +72,7 @@ describe('GlobalAnnouncementRow', () => {
     const tree = shallow(
       <GlobalAnnouncementRow
         {...defaults}
-        notification={accountNotification({ icon: 'information' })}
+        notification={templates.accountNotification({ icon: 'information' })}
       />
     )
     expect(tree).toMatchSnapshot()
@@ -83,7 +82,7 @@ describe('GlobalAnnouncementRow', () => {
     const tree = shallow(
       <GlobalAnnouncementRow
         {...defaults}
-        notification={accountNotification({ icon: 'bogus' })}
+        notification={templates.accountNotification({ icon: 'bogus' })}
       />
     )
     expect(tree).toMatchSnapshot()
@@ -94,14 +93,12 @@ describe('GlobalAnnouncementRow', () => {
     const tree = shallow(
       <GlobalAnnouncementRow
         {...defaults}
-        notification={accountNotification({ id: '34' })}
+        notification={templates.accountNotification({ id: '34' })}
         onDismiss={onDismiss}
       />
     )
-    tree.find('[testID="global-announcement-row.button"]').simulate('Press')
-    expect(onDismiss).toHaveBeenCalledWith('34')
-    tree.find('[testID="global-announcement-row.expand"]').simulate('Press')
+    tree.find('[testID="global-announcement-row.toggle"]').simulate('Press')
     tree.find('[testID="global-announcement-row.dismiss"]').simulate('Press')
-    expect(onDismiss).toHaveBeenCalledTimes(2)
+    expect(onDismiss).toHaveBeenCalledWith('34')
   })
 })

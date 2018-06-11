@@ -19,9 +19,8 @@
 import i18n from 'format-message'
 import React from 'react'
 import {
-  AccessibilityInfo,
-  findNodeHandle,
   Image,
+  LayoutAnimation,
   StyleSheet,
   TouchableHighlight,
   View,
@@ -62,16 +61,13 @@ export default class GlobalAnnouncementRow extends React.Component<Props, State>
 
   content: TouchableHighlight | View | null
 
-  toggle = () => this.setState({
-    collapsed: !this.state.collapsed,
-  }, () => {
-    const handle = findNodeHandle(this.content)
-    if (handle) {
-      AccessibilityInfo.setAccessibilityFocus(handle)
-    }
-  })
+  toggle = () => {
+    LayoutAnimation.easeInEaseOut()
+    this.setState({ collapsed: !this.state.collapsed })
+  }
 
   dismiss = () => {
+    LayoutAnimation.easeInEaseOut()
     this.props.onDismiss(this.props.notification.id)
   }
 
@@ -112,39 +108,38 @@ export default class GlobalAnnouncementRow extends React.Component<Props, State>
         contentStyle={[{ borderColor: color, borderWidth: 1 }]}
         hideShadow={true}
       >
-        {collapsed ? (
-          <TouchableHighlight
-            accessibilityTraits='button'
-            onPress={this.toggle}
-            underlayColor='transparent'
-            testID='global-announcement-row.expand'
-            ref={(node) => { this.content = node }}
-          >
-            <View style={styles.rowContent}>
-              <View style={[styles.iconContainer, { backgroundColor: color }]}>
-                <Image source={this.getIconSource(icon)} style={styles.icon} />
-              </View>
-              <View style={styles.announcementDetails}>
+        <View style={styles.rowContent}>
+          <View style={[styles.iconContainer, { backgroundColor: color }]}>
+            <Image source={this.getIconSource(icon)} style={styles.icon} />
+          </View>
+          <View style={styles.announcementDetails}>
+            <TouchableHighlight
+              accessibilityLabel={collapsed
+                ? undefined
+                : i18n('Hide content for {name}', { name: subject })
+              }
+              accessibilityTraits='button'
+              hitSlop={{ top: 8, right: 16, bottom: 16, left: 56 }}
+              onPress={this.toggle}
+              underlayColor='transparent'
+              testID='global-announcement-row.toggle'
+            >
+              <View>
                 <Text style={styles.title}>{subject}</Text>
-                <SubTitle>{i18n('Tap to view announcement')}</SubTitle>
+                { collapsed &&
+                  <SubTitle>{i18n('Tap to view announcement')}</SubTitle>
+                }
               </View>
-            </View>
-          </TouchableHighlight>
-        ) : (
-          <View style={styles.rowContent}>
-            <View style={[styles.iconContainer, { backgroundColor: color }]}>
-              <Image source={this.getIconSource(icon)} style={styles.icon} />
-            </View>
-            <View style={styles.announcementDetails}>
-              <View ref={(node) => { this.content = node }}>
-                <Text style={styles.openTitle}>{subject}</Text>
-              </View>
-              <CanvasWebView
-                automaticallySetHeight
-                style={styles.message}
-                html={MESSAGE_STYLE + message}
-                navigator={this.props.navigator}
-              />
+            </TouchableHighlight>
+            <CanvasWebView
+              accessibilityElementsHidden={collapsed}
+              automaticallySetHeight
+              html={MESSAGE_STYLE + message}
+              navigator={this.props.navigator}
+              style={collapsed ? styles.collapsed : styles.expanded}
+              isOpaque={false}
+            />
+            { !collapsed &&
               <LinkButton
                 accessibilityLabel={i18n('Dismiss {name}', { name: subject })}
                 style={styles.dismiss}
@@ -154,25 +149,9 @@ export default class GlobalAnnouncementRow extends React.Component<Props, State>
               >
                 {i18n('Dismiss')}
               </LinkButton>
-            </View>
+            }
           </View>
-        )}
-        <TouchableHighlight
-          accessibilityTraits='button'
-          accessibilityLabel={collapsed
-            ? i18n('Dismiss {name}', { name: subject })
-            : i18n('Hide content for {name}', { name: subject })
-          }
-          onPress={collapsed ? this.dismiss : this.toggle}
-          underlayColor='transparent'
-          style={styles.action}
-          testID='global-announcement-row.button'
-        >
-          {collapsed
-            ? <Image source={images.x} style={styles.dismissIcon} />
-            : <Image source={images.chevronUp} style={styles.collapseIcon} />
-          }
-        </TouchableHighlight>
+        </View>
       </DashboardContent>
     )
   }
@@ -199,20 +178,6 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     marginRight: 32,
   },
-  openTitle: {
-    fontWeight: '600',
-    marginRight: 32,
-    marginTop: 8,
-  },
-  message: {
-    marginVertical: 8,
-  },
-  action: {
-    position: 'absolute',
-    right: 0,
-    top: 0,
-    padding: 12,
-  },
   dismiss: {
     alignSelf: 'flex-end',
     paddingHorizontal: 4,
@@ -221,13 +186,11 @@ const styles = StyleSheet.create({
   dismissText: {
     fontSize: 16,
   },
-  dismissIcon: {
-    width: 16,
-    tintColor: colors.grey4,
+  collapsed: {
+    height: 0,
+    overflow: 'hidden',
   },
-  collapseIcon: {
-    marginVertical: 3,
-    width: 16,
-    tintColor: colors.grey4,
+  expanded: {
+    overflow: 'hidden',
   },
 })

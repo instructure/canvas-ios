@@ -12,102 +12,113 @@ exports[`GlobalAnnouncementRow renders calendar announcements 1`] = `
   }
   hideShadow={true}
 >
-  <TouchableHighlight
-    accessibilityTraits="button"
-    activeOpacity={0.85}
-    onPress={[Function]}
-    testID="global-announcement-row.expand"
-    underlayColor="transparent"
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+      }
+    }
   >
     <View
       style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "width": 40,
+          },
+          Object {
+            "backgroundColor": "#374A59",
+          },
+        ]
+      }
+    >
+      <Image
+        source={
+          Object {
+            "testUri": "../../../src/images/dashboard/calendar.png",
+          }
+        }
+        style={
+          Object {
+            "marginTop": 14,
+            "tintColor": "white",
+          }
+        }
+      />
+    </View>
+    <View
+      style={
         Object {
-          "flexDirection": "row",
+          "flex": 1,
+          "marginHorizontal": 12,
+          "marginVertical": 8,
         }
       }
     >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "width": 40,
-            },
-            Object {
-              "backgroundColor": "#374A59",
-            },
-          ]
+      <TouchableHighlight
+        accessibilityTraits="button"
+        activeOpacity={0.85}
+        hitSlop={
+          Object {
+            "bottom": 16,
+            "left": 56,
+            "right": 16,
+            "top": 8,
+          }
         }
+        onPress={[Function]}
+        testID="global-announcement-row.toggle"
+        underlayColor="transparent"
       >
-        <Image
-          source={
-            Object {
-              "testUri": "../../../src/images/dashboard/calendar.png",
+        <View>
+          <Text
+            style={
+              Object {
+                "fontWeight": "600",
+                "marginRight": 32,
+              }
             }
+          >
+            Permission Slips!
+          </Text>
+          <SubTitle>
+            Tap to view announcement
+          </SubTitle>
+        </View>
+      </TouchableHighlight>
+      <CanvasWebView
+        accessibilityElementsHidden={true}
+        automaticallySetHeight={true}
+        html="
+      <style>
+        html, body {
+          color: #2D3B45;
+          font-size: 16px;
+        }
+      </style>
+      Don’t forget your permission slips this Wednesday."
+        isOpaque={false}
+        navigator={
+          Object {
+            "dismiss": [Function],
+            "dismissAllModals": [Function],
+            "isModal": false,
+            "pop": [Function],
+            "replace": [Function],
+            "show": [Function],
+            "traitCollection": [Function],
           }
-          style={
-            Object {
-              "marginTop": 14,
-              "tintColor": "white",
-            }
-          }
-        />
-      </View>
-      <View
+        }
+        scrollEnabled={true}
         style={
           Object {
-            "flex": 1,
-            "marginHorizontal": 12,
-            "marginVertical": 8,
+            "height": 0,
+            "overflow": "hidden",
           }
         }
-      >
-        <Text
-          style={
-            Object {
-              "fontWeight": "600",
-              "marginRight": 32,
-            }
-          }
-        >
-          Permission Slips!
-        </Text>
-        <SubTitle>
-          Tap to view announcement
-        </SubTitle>
-      </View>
+      />
     </View>
-  </TouchableHighlight>
-  <TouchableHighlight
-    accessibilityLabel="Dismiss Permission Slips!"
-    accessibilityTraits="button"
-    activeOpacity={0.85}
-    onPress={[Function]}
-    style={
-      Object {
-        "padding": 12,
-        "position": "absolute",
-        "right": 0,
-        "top": 0,
-      }
-    }
-    testID="global-announcement-row.button"
-    underlayColor="transparent"
-  >
-    <Image
-      source={
-        Object {
-          "testUri": "../../../src/images/x-icon.png",
-        }
-      }
-      style={
-        Object {
-          "tintColor": "#8B969E",
-          "width": 16,
-        }
-      }
-    />
-  </TouchableHighlight>
+  </View>
 </Component>
 `;
 
@@ -123,102 +134,113 @@ exports[`GlobalAnnouncementRow renders error announcements 1`] = `
   }
   hideShadow={true}
 >
-  <TouchableHighlight
-    accessibilityTraits="button"
-    activeOpacity={0.85}
-    onPress={[Function]}
-    testID="global-announcement-row.expand"
-    underlayColor="transparent"
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+      }
+    }
   >
     <View
       style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "width": 40,
+          },
+          Object {
+            "backgroundColor": "#EE0612",
+          },
+        ]
+      }
+    >
+      <Image
+        source={
+          Object {
+            "testUri": "../../../src/images/Warning.png",
+          }
+        }
+        style={
+          Object {
+            "marginTop": 14,
+            "tintColor": "white",
+          }
+        }
+      />
+    </View>
+    <View
+      style={
         Object {
-          "flexDirection": "row",
+          "flex": 1,
+          "marginHorizontal": 12,
+          "marginVertical": 8,
         }
       }
     >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "width": 40,
-            },
-            Object {
-              "backgroundColor": "#EE0612",
-            },
-          ]
+      <TouchableHighlight
+        accessibilityTraits="button"
+        activeOpacity={0.85}
+        hitSlop={
+          Object {
+            "bottom": 16,
+            "left": 56,
+            "right": 16,
+            "top": 8,
+          }
         }
+        onPress={[Function]}
+        testID="global-announcement-row.toggle"
+        underlayColor="transparent"
       >
-        <Image
-          source={
-            Object {
-              "testUri": "../../../src/images/Warning.png",
+        <View>
+          <Text
+            style={
+              Object {
+                "fontWeight": "600",
+                "marginRight": 32,
+              }
             }
+          >
+            Permission Slips!
+          </Text>
+          <SubTitle>
+            Tap to view announcement
+          </SubTitle>
+        </View>
+      </TouchableHighlight>
+      <CanvasWebView
+        accessibilityElementsHidden={true}
+        automaticallySetHeight={true}
+        html="
+      <style>
+        html, body {
+          color: #2D3B45;
+          font-size: 16px;
+        }
+      </style>
+      Don’t forget your permission slips this Wednesday."
+        isOpaque={false}
+        navigator={
+          Object {
+            "dismiss": [Function],
+            "dismissAllModals": [Function],
+            "isModal": false,
+            "pop": [Function],
+            "replace": [Function],
+            "show": [Function],
+            "traitCollection": [Function],
           }
-          style={
-            Object {
-              "marginTop": 14,
-              "tintColor": "white",
-            }
-          }
-        />
-      </View>
-      <View
+        }
+        scrollEnabled={true}
         style={
           Object {
-            "flex": 1,
-            "marginHorizontal": 12,
-            "marginVertical": 8,
+            "height": 0,
+            "overflow": "hidden",
           }
         }
-      >
-        <Text
-          style={
-            Object {
-              "fontWeight": "600",
-              "marginRight": 32,
-            }
-          }
-        >
-          Permission Slips!
-        </Text>
-        <SubTitle>
-          Tap to view announcement
-        </SubTitle>
-      </View>
+      />
     </View>
-  </TouchableHighlight>
-  <TouchableHighlight
-    accessibilityLabel="Dismiss Permission Slips!"
-    accessibilityTraits="button"
-    activeOpacity={0.85}
-    onPress={[Function]}
-    style={
-      Object {
-        "padding": 12,
-        "position": "absolute",
-        "right": 0,
-        "top": 0,
-      }
-    }
-    testID="global-announcement-row.button"
-    underlayColor="transparent"
-  >
-    <Image
-      source={
-        Object {
-          "testUri": "../../../src/images/x-icon.png",
-        }
-      }
-      style={
-        Object {
-          "tintColor": "#8B969E",
-          "width": 16,
-        }
-      }
-    />
-  </TouchableHighlight>
+  </View>
 </Component>
 `;
 
@@ -234,102 +256,113 @@ exports[`GlobalAnnouncementRow renders information announcements 1`] = `
   }
   hideShadow={true}
 >
-  <TouchableHighlight
-    accessibilityTraits="button"
-    activeOpacity={0.85}
-    onPress={[Function]}
-    testID="global-announcement-row.expand"
-    underlayColor="transparent"
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+      }
+    }
   >
     <View
       style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "width": 40,
+          },
+          Object {
+            "backgroundColor": "#374A59",
+          },
+        ]
+      }
+    >
+      <Image
+        source={
+          Object {
+            "testUri": "../../../src/images/dashboard/info.png",
+          }
+        }
+        style={
+          Object {
+            "marginTop": 14,
+            "tintColor": "white",
+          }
+        }
+      />
+    </View>
+    <View
+      style={
         Object {
-          "flexDirection": "row",
+          "flex": 1,
+          "marginHorizontal": 12,
+          "marginVertical": 8,
         }
       }
     >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "width": 40,
-            },
-            Object {
-              "backgroundColor": "#374A59",
-            },
-          ]
+      <TouchableHighlight
+        accessibilityTraits="button"
+        activeOpacity={0.85}
+        hitSlop={
+          Object {
+            "bottom": 16,
+            "left": 56,
+            "right": 16,
+            "top": 8,
+          }
         }
+        onPress={[Function]}
+        testID="global-announcement-row.toggle"
+        underlayColor="transparent"
       >
-        <Image
-          source={
-            Object {
-              "testUri": "../../../src/images/dashboard/info.png",
+        <View>
+          <Text
+            style={
+              Object {
+                "fontWeight": "600",
+                "marginRight": 32,
+              }
             }
+          >
+            Permission Slips!
+          </Text>
+          <SubTitle>
+            Tap to view announcement
+          </SubTitle>
+        </View>
+      </TouchableHighlight>
+      <CanvasWebView
+        accessibilityElementsHidden={true}
+        automaticallySetHeight={true}
+        html="
+      <style>
+        html, body {
+          color: #2D3B45;
+          font-size: 16px;
+        }
+      </style>
+      Don’t forget your permission slips this Wednesday."
+        isOpaque={false}
+        navigator={
+          Object {
+            "dismiss": [Function],
+            "dismissAllModals": [Function],
+            "isModal": false,
+            "pop": [Function],
+            "replace": [Function],
+            "show": [Function],
+            "traitCollection": [Function],
           }
-          style={
-            Object {
-              "marginTop": 14,
-              "tintColor": "white",
-            }
-          }
-        />
-      </View>
-      <View
+        }
+        scrollEnabled={true}
         style={
           Object {
-            "flex": 1,
-            "marginHorizontal": 12,
-            "marginVertical": 8,
+            "height": 0,
+            "overflow": "hidden",
           }
         }
-      >
-        <Text
-          style={
-            Object {
-              "fontWeight": "600",
-              "marginRight": 32,
-            }
-          }
-        >
-          Permission Slips!
-        </Text>
-        <SubTitle>
-          Tap to view announcement
-        </SubTitle>
-      </View>
+      />
     </View>
-  </TouchableHighlight>
-  <TouchableHighlight
-    accessibilityLabel="Dismiss Permission Slips!"
-    accessibilityTraits="button"
-    activeOpacity={0.85}
-    onPress={[Function]}
-    style={
-      Object {
-        "padding": 12,
-        "position": "absolute",
-        "right": 0,
-        "top": 0,
-      }
-    }
-    testID="global-announcement-row.button"
-    underlayColor="transparent"
-  >
-    <Image
-      source={
-        Object {
-          "testUri": "../../../src/images/x-icon.png",
-        }
-      }
-      style={
-        Object {
-          "tintColor": "#8B969E",
-          "width": 16,
-        }
-      }
-    />
-  </TouchableHighlight>
+  </View>
 </Component>
 `;
 
@@ -345,102 +378,113 @@ exports[`GlobalAnnouncementRow renders question announcements 1`] = `
   }
   hideShadow={true}
 >
-  <TouchableHighlight
-    accessibilityTraits="button"
-    activeOpacity={0.85}
-    onPress={[Function]}
-    testID="global-announcement-row.expand"
-    underlayColor="transparent"
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+      }
+    }
   >
     <View
       style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "width": 40,
+          },
+          Object {
+            "backgroundColor": "#374A59",
+          },
+        ]
+      }
+    >
+      <Image
+        source={
+          Object {
+            "testUri": "../../../src/images/dashboard/help.png",
+          }
+        }
+        style={
+          Object {
+            "marginTop": 14,
+            "tintColor": "white",
+          }
+        }
+      />
+    </View>
+    <View
+      style={
         Object {
-          "flexDirection": "row",
+          "flex": 1,
+          "marginHorizontal": 12,
+          "marginVertical": 8,
         }
       }
     >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "width": 40,
-            },
-            Object {
-              "backgroundColor": "#374A59",
-            },
-          ]
+      <TouchableHighlight
+        accessibilityTraits="button"
+        activeOpacity={0.85}
+        hitSlop={
+          Object {
+            "bottom": 16,
+            "left": 56,
+            "right": 16,
+            "top": 8,
+          }
         }
+        onPress={[Function]}
+        testID="global-announcement-row.toggle"
+        underlayColor="transparent"
       >
-        <Image
-          source={
-            Object {
-              "testUri": "../../../src/images/dashboard/help.png",
+        <View>
+          <Text
+            style={
+              Object {
+                "fontWeight": "600",
+                "marginRight": 32,
+              }
             }
+          >
+            Permission Slips!
+          </Text>
+          <SubTitle>
+            Tap to view announcement
+          </SubTitle>
+        </View>
+      </TouchableHighlight>
+      <CanvasWebView
+        accessibilityElementsHidden={true}
+        automaticallySetHeight={true}
+        html="
+      <style>
+        html, body {
+          color: #2D3B45;
+          font-size: 16px;
+        }
+      </style>
+      Don’t forget your permission slips this Wednesday."
+        isOpaque={false}
+        navigator={
+          Object {
+            "dismiss": [Function],
+            "dismissAllModals": [Function],
+            "isModal": false,
+            "pop": [Function],
+            "replace": [Function],
+            "show": [Function],
+            "traitCollection": [Function],
           }
-          style={
-            Object {
-              "marginTop": 14,
-              "tintColor": "white",
-            }
-          }
-        />
-      </View>
-      <View
+        }
+        scrollEnabled={true}
         style={
           Object {
-            "flex": 1,
-            "marginHorizontal": 12,
-            "marginVertical": 8,
+            "height": 0,
+            "overflow": "hidden",
           }
         }
-      >
-        <Text
-          style={
-            Object {
-              "fontWeight": "600",
-              "marginRight": 32,
-            }
-          }
-        >
-          Permission Slips!
-        </Text>
-        <SubTitle>
-          Tap to view announcement
-        </SubTitle>
-      </View>
+      />
     </View>
-  </TouchableHighlight>
-  <TouchableHighlight
-    accessibilityLabel="Dismiss Permission Slips!"
-    accessibilityTraits="button"
-    activeOpacity={0.85}
-    onPress={[Function]}
-    style={
-      Object {
-        "padding": 12,
-        "position": "absolute",
-        "right": 0,
-        "top": 0,
-      }
-    }
-    testID="global-announcement-row.button"
-    underlayColor="transparent"
-  >
-    <Image
-      source={
-        Object {
-          "testUri": "../../../src/images/x-icon.png",
-        }
-      }
-      style={
-        Object {
-          "tintColor": "#8B969E",
-          "width": 16,
-        }
-      }
-    />
-  </TouchableHighlight>
+  </View>
 </Component>
 `;
 
@@ -456,102 +500,113 @@ exports[`GlobalAnnouncementRow renders unexpected icon as information 1`] = `
   }
   hideShadow={true}
 >
-  <TouchableHighlight
-    accessibilityTraits="button"
-    activeOpacity={0.85}
-    onPress={[Function]}
-    testID="global-announcement-row.expand"
-    underlayColor="transparent"
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+      }
+    }
   >
     <View
       style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "width": 40,
+          },
+          Object {
+            "backgroundColor": "#374A59",
+          },
+        ]
+      }
+    >
+      <Image
+        source={
+          Object {
+            "testUri": "../../../src/images/dashboard/info.png",
+          }
+        }
+        style={
+          Object {
+            "marginTop": 14,
+            "tintColor": "white",
+          }
+        }
+      />
+    </View>
+    <View
+      style={
         Object {
-          "flexDirection": "row",
+          "flex": 1,
+          "marginHorizontal": 12,
+          "marginVertical": 8,
         }
       }
     >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "width": 40,
-            },
-            Object {
-              "backgroundColor": "#374A59",
-            },
-          ]
+      <TouchableHighlight
+        accessibilityTraits="button"
+        activeOpacity={0.85}
+        hitSlop={
+          Object {
+            "bottom": 16,
+            "left": 56,
+            "right": 16,
+            "top": 8,
+          }
         }
+        onPress={[Function]}
+        testID="global-announcement-row.toggle"
+        underlayColor="transparent"
       >
-        <Image
-          source={
-            Object {
-              "testUri": "../../../src/images/dashboard/info.png",
+        <View>
+          <Text
+            style={
+              Object {
+                "fontWeight": "600",
+                "marginRight": 32,
+              }
             }
+          >
+            Permission Slips!
+          </Text>
+          <SubTitle>
+            Tap to view announcement
+          </SubTitle>
+        </View>
+      </TouchableHighlight>
+      <CanvasWebView
+        accessibilityElementsHidden={true}
+        automaticallySetHeight={true}
+        html="
+      <style>
+        html, body {
+          color: #2D3B45;
+          font-size: 16px;
+        }
+      </style>
+      Don’t forget your permission slips this Wednesday."
+        isOpaque={false}
+        navigator={
+          Object {
+            "dismiss": [Function],
+            "dismissAllModals": [Function],
+            "isModal": false,
+            "pop": [Function],
+            "replace": [Function],
+            "show": [Function],
+            "traitCollection": [Function],
           }
-          style={
-            Object {
-              "marginTop": 14,
-              "tintColor": "white",
-            }
-          }
-        />
-      </View>
-      <View
+        }
+        scrollEnabled={true}
         style={
           Object {
-            "flex": 1,
-            "marginHorizontal": 12,
-            "marginVertical": 8,
+            "height": 0,
+            "overflow": "hidden",
           }
         }
-      >
-        <Text
-          style={
-            Object {
-              "fontWeight": "600",
-              "marginRight": 32,
-            }
-          }
-        >
-          Permission Slips!
-        </Text>
-        <SubTitle>
-          Tap to view announcement
-        </SubTitle>
-      </View>
+      />
     </View>
-  </TouchableHighlight>
-  <TouchableHighlight
-    accessibilityLabel="Dismiss Permission Slips!"
-    accessibilityTraits="button"
-    activeOpacity={0.85}
-    onPress={[Function]}
-    style={
-      Object {
-        "padding": 12,
-        "position": "absolute",
-        "right": 0,
-        "top": 0,
-      }
-    }
-    testID="global-announcement-row.button"
-    underlayColor="transparent"
-  >
-    <Image
-      source={
-        Object {
-          "testUri": "../../../src/images/x-icon.png",
-        }
-      }
-      style={
-        Object {
-          "tintColor": "#8B969E",
-          "width": 16,
-        }
-      }
-    />
-  </TouchableHighlight>
+  </View>
 </Component>
 `;
 
@@ -567,101 +622,112 @@ exports[`GlobalAnnouncementRow renders warning announcements 1`] = `
   }
   hideShadow={true}
 >
-  <TouchableHighlight
-    accessibilityTraits="button"
-    activeOpacity={0.85}
-    onPress={[Function]}
-    testID="global-announcement-row.expand"
-    underlayColor="transparent"
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+      }
+    }
   >
     <View
       style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "width": 40,
+          },
+          Object {
+            "backgroundColor": "#FC5E13",
+          },
+        ]
+      }
+    >
+      <Image
+        source={
+          Object {
+            "testUri": "../../../src/images/Warning.png",
+          }
+        }
+        style={
+          Object {
+            "marginTop": 14,
+            "tintColor": "white",
+          }
+        }
+      />
+    </View>
+    <View
+      style={
         Object {
-          "flexDirection": "row",
+          "flex": 1,
+          "marginHorizontal": 12,
+          "marginVertical": 8,
         }
       }
     >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "width": 40,
-            },
-            Object {
-              "backgroundColor": "#FC5E13",
-            },
-          ]
+      <TouchableHighlight
+        accessibilityTraits="button"
+        activeOpacity={0.85}
+        hitSlop={
+          Object {
+            "bottom": 16,
+            "left": 56,
+            "right": 16,
+            "top": 8,
+          }
         }
+        onPress={[Function]}
+        testID="global-announcement-row.toggle"
+        underlayColor="transparent"
       >
-        <Image
-          source={
-            Object {
-              "testUri": "../../../src/images/Warning.png",
+        <View>
+          <Text
+            style={
+              Object {
+                "fontWeight": "600",
+                "marginRight": 32,
+              }
             }
+          >
+            Permission Slips!
+          </Text>
+          <SubTitle>
+            Tap to view announcement
+          </SubTitle>
+        </View>
+      </TouchableHighlight>
+      <CanvasWebView
+        accessibilityElementsHidden={true}
+        automaticallySetHeight={true}
+        html="
+      <style>
+        html, body {
+          color: #2D3B45;
+          font-size: 16px;
+        }
+      </style>
+      Don’t forget your permission slips this Wednesday."
+        isOpaque={false}
+        navigator={
+          Object {
+            "dismiss": [Function],
+            "dismissAllModals": [Function],
+            "isModal": false,
+            "pop": [Function],
+            "replace": [Function],
+            "show": [Function],
+            "traitCollection": [Function],
           }
-          style={
-            Object {
-              "marginTop": 14,
-              "tintColor": "white",
-            }
-          }
-        />
-      </View>
-      <View
+        }
+        scrollEnabled={true}
         style={
           Object {
-            "flex": 1,
-            "marginHorizontal": 12,
-            "marginVertical": 8,
+            "height": 0,
+            "overflow": "hidden",
           }
         }
-      >
-        <Text
-          style={
-            Object {
-              "fontWeight": "600",
-              "marginRight": 32,
-            }
-          }
-        >
-          Permission Slips!
-        </Text>
-        <SubTitle>
-          Tap to view announcement
-        </SubTitle>
-      </View>
+      />
     </View>
-  </TouchableHighlight>
-  <TouchableHighlight
-    accessibilityLabel="Dismiss Permission Slips!"
-    accessibilityTraits="button"
-    activeOpacity={0.85}
-    onPress={[Function]}
-    style={
-      Object {
-        "padding": 12,
-        "position": "absolute",
-        "right": 0,
-        "top": 0,
-      }
-    }
-    testID="global-announcement-row.button"
-    underlayColor="transparent"
-  >
-    <Image
-      source={
-        Object {
-          "testUri": "../../../src/images/x-icon.png",
-        }
-      }
-      style={
-        Object {
-          "tintColor": "#8B969E",
-          "width": 16,
-        }
-      }
-    />
-  </TouchableHighlight>
+  </View>
 </Component>
 `;
