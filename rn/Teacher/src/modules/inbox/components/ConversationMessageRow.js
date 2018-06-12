@@ -207,7 +207,6 @@ export default class ConversationMessageRow extends Component<ConversationMessag
               testID='inbox.conversation-message-row.reply-button'
               onPress={this._replyButtonPressed}
               style={styles.replyButton}
-              textStyle={styles.replyButtonText}
             >
               {i18n('Reply')}
             </LinkButton>
@@ -281,10 +280,6 @@ const styles = StyleSheet.create({
   },
   replyButton: {
     marginTop: global.style.defaultPadding / 2,
-  },
-  replyButtonText: {
-    fontSize: 16,
-    fontWeight: '500',
   },
   avatar: {
     width: 32,

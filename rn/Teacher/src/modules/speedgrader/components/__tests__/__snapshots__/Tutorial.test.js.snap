@@ -105,15 +105,9 @@ exports[`Tutorial will render the tutorial after data from async storage has bee
               Array [
                 Object {
                   "color": "#374A59",
-                  "fontSize": 14,
+                  "fontSize": 16,
+                  "fontWeight": "500",
                 },
-                Object {
-                  "fontFamily": ".SFUIDisplay-bold",
-                },
-                Object {
-                  "color": "#374A59",
-                },
-                Object {},
                 Object {
                   "fontSize": 16,
                   "fontWeight": "600",

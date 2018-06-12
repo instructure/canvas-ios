@@ -143,7 +143,6 @@ export default class GlobalAnnouncementRow extends React.Component<Props, State>
               <LinkButton
                 accessibilityLabel={i18n('Dismiss {name}', { name: subject })}
                 style={styles.dismiss}
-                textStyle={styles.dismissText}
                 onPress={this.dismiss}
                 testID='global-announcement-row.dismiss'
               >
@@ -182,9 +181,6 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
     paddingHorizontal: 4,
     paddingVertical: 2,
-  },
-  dismissText: {
-    fontSize: 16,
   },
   collapsed: {
     height: 0,

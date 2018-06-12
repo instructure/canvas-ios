@@ -14,12 +14,14 @@
 // limitations under the License.
 //
 
-/**
- * @flow
- */
+// @flow
 
-import 'react-native'
-import { branding, setupBrandingFromNativeBrandingInfo } from '../branding'
+import {
+  branding,
+  createStyleSheet,
+  setupBrandingFromNativeBrandingInfo,
+} from '../branding'
+import colors from '../colors'
 
 describe('setupBrandingFromNativeBrandingInfo', () => {
   it('uses defaults', () => {
@@ -52,5 +54,27 @@ describe('setupBrandingFromNativeBrandingInfo', () => {
     setupBrandingFromNativeBrandingInfo(input)
 
     expect(branding).toEqual(expected)
+  })
+
+  it('updates created StyleSheet', () => {
+    setupBrandingFromNativeBrandingInfo({ 'ic-brand-primary': 'red' })
+    const sheet = createStyleSheet(colors => ({
+      test: { color: colors.primaryBrandColor },
+    }))
+    // $FlowFixMe StyleSheet doesn't convert to number in tests
+    expect(sheet.test.color).toBe('red')
+    setupBrandingFromNativeBrandingInfo({ 'ic-brand-primary': 'blue' })
+    // $FlowFixMe StyleSheet doesn't convert to number in tests
+    expect(sheet.test.color).toBe('blue')
+  })
+})
+
+describe('createStyleSheet', () => {
+  it('calls the passed function with colors', () => {
+    const factory = jest.fn(() => ({}))
+    createStyleSheet(factory)
+    expect(factory).toHaveBeenCalledWith(colors)
+    setupBrandingFromNativeBrandingInfo({})
+    expect(factory).toHaveBeenCalledTimes(2)
   })
 })

@@ -266,7 +266,7 @@ export default class Reply extends Component<Props, State> {
     const { canRate, showRating, discussionLockedForUser } = this.props
     if (discussionLockedForUser && !showRating) return
 
-    const buttonTextAttributes = {
+    const buttonTextStyle = {
       fontWeight: '500',
       color: colors.grey4,
       fontSize: 16,
@@ -279,14 +279,14 @@ export default class Reply extends Component<Props, State> {
       <View style={containerStyles}>
         { !discussionLockedForUser &&
           <View style={style.footerActionsContainer}>
-            <LinkButton style={style.footer} textAttributes={buttonTextAttributes} onPress={this._actionReply} testID='discussion.reply-btn'>
+            <LinkButton style={style.footer} textStyle={buttonTextStyle} onPress={this._actionReply} testID='discussion.reply-btn'>
               {i18n('Reply')}
             </LinkButton>
             { this._canEdit() &&
               <Text style={[style.footer, { color: colors.grey2, textAlign: 'center', alignSelf: 'center', paddingLeft: 10, paddingRight: 10 }]} accessible={false}>|</Text>
             }
             { this._canEdit() &&
-              <LinkButton style={style.footer} textAttributes={buttonTextAttributes} onPress={this._actionEdit} testID='discussion.edit-btn'>
+              <LinkButton style={style.footer} textStyle={buttonTextStyle} onPress={this._actionEdit} testID='discussion.edit-btn'>
                 {i18n('Edit')}
               </LinkButton>
             }
@@ -297,10 +297,10 @@ export default class Reply extends Component<Props, State> {
             { this.ratingCount() > 0 &&
               <Text
                 style={[
-                  buttonTextAttributes,
+                  buttonTextStyle,
                   {
                     marginRight: 6,
-                    color: this.hasRated() ? colors.primaryBrandColor : buttonTextAttributes.color,
+                    color: this.hasRated() ? colors.primaryBrandColor : buttonTextStyle.color,
                   },
                 ]}
                 testID='discussion.reply.rating-count'
@@ -314,7 +314,7 @@ export default class Reply extends Component<Props, State> {
                   source={this.hasRated() ? Images.discussions.rated : Images.discussions.rate}
                   style={[
                     style.ratingIcon,
-                    { tintColor: this.hasRated() ? colors.primaryBrandColor : buttonTextAttributes.color },
+                    { tintColor: this.hasRated() ? colors.primaryBrandColor : buttonTextStyle.color },
                   ]}
                 />
               </TouchableOpacity>

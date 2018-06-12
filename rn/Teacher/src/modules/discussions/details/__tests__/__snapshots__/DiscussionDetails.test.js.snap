@@ -1570,13 +1570,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                           }
                         }
                         testID="discussion.reply-btn"
-                        textAttributes={
-                          Object {
-                            "color": "#8B969E",
-                            "fontSize": 16,
-                            "fontWeight": "500",
-                          }
-                        }
                       >
                         <View>
                           <Text
@@ -1595,13 +1588,8 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                                 Array [
                                   Object {
                                     "color": "#374A59",
-                                    "fontSize": 14,
-                                  },
-                                  Object {
-                                    "fontFamily": ".SFUIDisplay-bold",
-                                  },
-                                  Object {
-                                    "color": "#374A59",
+                                    "fontSize": 16,
+                                    "fontWeight": "500",
                                   },
                                   Object {
                                     "color": "#8B969E",
@@ -1675,13 +1663,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                           }
                         }
                         testID="discussion.edit-btn"
-                        textAttributes={
-                          Object {
-                            "color": "#8B969E",
-                            "fontSize": 16,
-                            "fontWeight": "500",
-                          }
-                        }
                       >
                         <View>
                           <Text
@@ -1700,13 +1681,8 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                                 Array [
                                   Object {
                                     "color": "#374A59",
-                                    "fontSize": 14,
-                                  },
-                                  Object {
-                                    "fontFamily": ".SFUIDisplay-bold",
-                                  },
-                                  Object {
-                                    "color": "#374A59",
+                                    "fontSize": 16,
+                                    "fontWeight": "500",
                                   },
                                   Object {
                                     "color": "#8B969E",
@@ -3459,13 +3435,6 @@ exports[`DiscussionDetails renders in student app 1`] = `
                           }
                         }
                         testID="discussion.reply-btn"
-                        textAttributes={
-                          Object {
-                            "color": "#8B969E",
-                            "fontSize": 16,
-                            "fontWeight": "500",
-                          }
-                        }
                       >
                         <View>
                           <Text
@@ -3484,13 +3453,8 @@ exports[`DiscussionDetails renders in student app 1`] = `
                                 Array [
                                   Object {
                                     "color": "#374A59",
-                                    "fontSize": 14,
-                                  },
-                                  Object {
-                                    "fontFamily": ".SFUIDisplay-bold",
-                                  },
-                                  Object {
-                                    "color": "#374A59",
+                                    "fontSize": 16,
+                                    "fontWeight": "500",
                                   },
                                   Object {
                                     "color": "#8B969E",
@@ -6536,13 +6500,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                           }
                         }
                         testID="discussion.reply-btn"
-                        textAttributes={
-                          Object {
-                            "color": "#8B969E",
-                            "fontSize": 16,
-                            "fontWeight": "500",
-                          }
-                        }
                       >
                         <View>
                           <Text
@@ -6561,13 +6518,8 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                                 Array [
                                   Object {
                                     "color": "#374A59",
-                                    "fontSize": 14,
-                                  },
-                                  Object {
-                                    "fontFamily": ".SFUIDisplay-bold",
-                                  },
-                                  Object {
-                                    "color": "#374A59",
+                                    "fontSize": 16,
+                                    "fontWeight": "500",
                                   },
                                   Object {
                                     "color": "#8B969E",
@@ -6641,13 +6593,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                           }
                         }
                         testID="discussion.edit-btn"
-                        textAttributes={
-                          Object {
-                            "color": "#8B969E",
-                            "fontSize": 16,
-                            "fontWeight": "500",
-                          }
-                        }
                       >
                         <View>
                           <Text
@@ -6666,13 +6611,8 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                                 Array [
                                   Object {
                                     "color": "#374A59",
-                                    "fontSize": 14,
-                                  },
-                                  Object {
-                                    "fontFamily": ".SFUIDisplay-bold",
-                                  },
-                                  Object {
-                                    "color": "#374A59",
+                                    "fontSize": 16,
+                                    "fontWeight": "500",
                                   },
                                   Object {
                                     "color": "#8B969E",
@@ -6918,13 +6858,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                           }
                         }
                         testID="discussion.reply-btn"
-                        textAttributes={
-                          Object {
-                            "color": "#8B969E",
-                            "fontSize": 16,
-                            "fontWeight": "500",
-                          }
-                        }
                       >
                         <View>
                           <Text
@@ -6943,13 +6876,8 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                                 Array [
                                   Object {
                                     "color": "#374A59",
-                                    "fontSize": 14,
-                                  },
-                                  Object {
-                                    "fontFamily": ".SFUIDisplay-bold",
-                                  },
-                                  Object {
-                                    "color": "#374A59",
+                                    "fontSize": 16,
+                                    "fontWeight": "500",
                                   },
                                   Object {
                                     "color": "#8B969E",
@@ -7023,13 +6951,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                           }
                         }
                         testID="discussion.edit-btn"
-                        textAttributes={
-                          Object {
-                            "color": "#8B969E",
-                            "fontSize": 16,
-                            "fontWeight": "500",
-                          }
-                        }
                       >
                         <View>
                           <Text
@@ -7048,13 +6969,8 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                                 Array [
                                   Object {
                                     "color": "#374A59",
-                                    "fontSize": 14,
-                                  },
-                                  Object {
-                                    "fontFamily": ".SFUIDisplay-bold",
-                                  },
-                                  Object {
-                                    "color": "#374A59",
+                                    "fontSize": 16,
+                                    "fontWeight": "500",
                                   },
                                   Object {
                                     "color": "#8B969E",
@@ -8775,13 +8691,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                           }
                         }
                         testID="discussion.reply-btn"
-                        textAttributes={
-                          Object {
-                            "color": "#8B969E",
-                            "fontSize": 16,
-                            "fontWeight": "500",
-                          }
-                        }
                       >
                         <View>
                           <Text
@@ -8800,13 +8709,8 @@ exports[`DiscussionDetails renders with replies 1`] = `
                                 Array [
                                   Object {
                                     "color": "#374A59",
-                                    "fontSize": 14,
-                                  },
-                                  Object {
-                                    "fontFamily": ".SFUIDisplay-bold",
-                                  },
-                                  Object {
-                                    "color": "#374A59",
+                                    "fontSize": 16,
+                                    "fontWeight": "500",
                                   },
                                   Object {
                                     "color": "#8B969E",
@@ -8880,13 +8784,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                           }
                         }
                         testID="discussion.edit-btn"
-                        textAttributes={
-                          Object {
-                            "color": "#8B969E",
-                            "fontSize": 16,
-                            "fontWeight": "500",
-                          }
-                        }
                       >
                         <View>
                           <Text
@@ -8905,13 +8802,8 @@ exports[`DiscussionDetails renders with replies 1`] = `
                                 Array [
                                   Object {
                                     "color": "#374A59",
-                                    "fontSize": 14,
-                                  },
-                                  Object {
-                                    "fontFamily": ".SFUIDisplay-bold",
-                                  },
-                                  Object {
-                                    "color": "#374A59",
+                                    "fontSize": 16,
+                                    "fontWeight": "500",
                                   },
                                   Object {
                                     "color": "#8B969E",

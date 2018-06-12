@@ -568,15 +568,9 @@ exports[`Rubric has the correct score 1`] = `
                       Array [
                         Object {
                           "color": "#374A59",
-                          "fontSize": 14,
+                          "fontSize": 16,
+                          "fontWeight": "500",
                         },
-                        Object {
-                          "fontFamily": ".SFUIDisplay-bold",
-                        },
-                        Object {
-                          "color": "#374A59",
-                        },
-                        Object {},
                         Object {
                           "fontSize": 14,
                           "fontWeight": "500",
@@ -1171,15 +1165,9 @@ exports[`Rubric renders a rubric 1`] = `
                       Array [
                         Object {
                           "color": "#374A59",
-                          "fontSize": 14,
+                          "fontSize": 16,
+                          "fontWeight": "500",
                         },
-                        Object {
-                          "fontFamily": ".SFUIDisplay-bold",
-                        },
-                        Object {
-                          "color": "#374A59",
-                        },
-                        Object {},
                         Object {
                           "fontSize": 14,
                           "fontWeight": "500",
@@ -1564,15 +1552,9 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
                       Array [
                         Object {
                           "color": "#374A59",
-                          "fontSize": 14,
+                          "fontSize": 16,
+                          "fontWeight": "500",
                         },
-                        Object {
-                          "fontFamily": ".SFUIDisplay-bold",
-                        },
-                        Object {
-                          "color": "#374A59",
-                        },
-                        Object {},
                         Object {
                           "fontSize": 14,
                           "fontWeight": "500",
@@ -1645,15 +1627,9 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
                       Array [
                         Object {
                           "color": "#374A59",
-                          "fontSize": 14,
+                          "fontSize": 16,
+                          "fontWeight": "500",
                         },
-                        Object {
-                          "fontFamily": ".SFUIDisplay-bold",
-                        },
-                        Object {
-                          "color": "#374A59",
-                        },
-                        Object {},
                         Object {
                           "fontSize": 14,
                           "fontWeight": "500",
@@ -2439,15 +2415,9 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                       Array [
                         Object {
                           "color": "#374A59",
-                          "fontSize": 14,
+                          "fontSize": 16,
+                          "fontWeight": "500",
                         },
-                        Object {
-                          "fontFamily": ".SFUIDisplay-bold",
-                        },
-                        Object {
-                          "color": "#374A59",
-                        },
-                        Object {},
                         Object {
                           "fontSize": 14,
                           "fontWeight": "500",

@@ -92,9 +92,6 @@ exports[`renders NoCourses correctly 1`] = `
           "padding": 10,
         },
         Object {
-          "backgroundColor": "#374A59",
-        },
-        Object {
           "borderRadius": 4,
           "paddingHorizontal": 24,
           "paddingVertical": 16,
@@ -117,9 +114,6 @@ exports[`renders NoCourses correctly 1`] = `
           },
           null,
           Array [
-            Object {
-              "color": "white",
-            },
             Object {
               "color": "white",
             },

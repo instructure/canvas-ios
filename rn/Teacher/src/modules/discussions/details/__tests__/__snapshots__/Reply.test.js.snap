@@ -173,7 +173,7 @@ exports[`DiscussionReplies ratings renders rating after user rates for first tim
               }
             }
             testID="discussion.reply-btn"
-            textAttributes={
+            textStyle={
               Object {
                 "color": "#8B969E",
                 "fontSize": 16,
@@ -216,7 +216,7 @@ exports[`DiscussionReplies ratings renders rating after user rates for first tim
               }
             }
             testID="discussion.edit-btn"
-            textAttributes={
+            textStyle={
               Object {
                 "color": "#8B969E",
                 "fontSize": 16,
@@ -438,7 +438,7 @@ exports[`DiscussionReplies ratings renders rating after user updates rating 1`] 
               }
             }
             testID="discussion.reply-btn"
-            textAttributes={
+            textStyle={
               Object {
                 "color": "#8B969E",
                 "fontSize": 16,
@@ -481,7 +481,7 @@ exports[`DiscussionReplies ratings renders rating after user updates rating 1`] 
               }
             }
             testID="discussion.edit-btn"
-            textAttributes={
+            textStyle={
               Object {
                 "color": "#8B969E",
                 "fontSize": 16,
@@ -715,7 +715,7 @@ exports[`DiscussionReplies renders 1`] = `
               }
             }
             testID="discussion.reply-btn"
-            textAttributes={
+            textStyle={
               Object {
                 "color": "#8B969E",
                 "fontSize": 16,
@@ -758,7 +758,7 @@ exports[`DiscussionReplies renders 1`] = `
               }
             }
             testID="discussion.edit-btn"
-            textAttributes={
+            textStyle={
               Object {
                 "color": "#8B969E",
                 "fontSize": 16,

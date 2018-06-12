@@ -401,18 +401,13 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
                     Array [
                       Object {
                         "color": "#374A59",
-                        "fontSize": 14,
+                        "fontSize": 16,
+                        "fontWeight": "500",
                       },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-bold",
-                      },
-                      Object {
-                        "color": "#374A59",
-                      },
-                      Object {},
+                      undefined,
                     ],
                     Object {
-                      "fontFamily": ".SFUIDisplay",
+                      "fontFamily": ".SFUIDisplay-medium",
                     },
                   ]
                 }
@@ -2580,18 +2575,13 @@ exports[`Dashboard render 1`] = `
                     Array [
                       Object {
                         "color": "#374A59",
-                        "fontSize": 14,
+                        "fontSize": 16,
+                        "fontWeight": "500",
                       },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-bold",
-                      },
-                      Object {
-                        "color": "#374A59",
-                      },
-                      Object {},
+                      undefined,
                     ],
                     Object {
-                      "fontFamily": ".SFUIDisplay",
+                      "fontFamily": ".SFUIDisplay-medium",
                     },
                   ]
                 }
@@ -3580,18 +3570,13 @@ exports[`Dashboard render while pending 1`] = `
                     Array [
                       Object {
                         "color": "#374A59",
-                        "fontSize": 14,
+                        "fontSize": 16,
+                        "fontWeight": "500",
                       },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-bold",
-                      },
-                      Object {
-                        "color": "#374A59",
-                      },
-                      Object {},
+                      undefined,
                     ],
                     Object {
-                      "fontFamily": ".SFUIDisplay",
+                      "fontFamily": ".SFUIDisplay-medium",
                     },
                   ]
                 }
@@ -4380,18 +4365,13 @@ exports[`Dashboard render without courses and *zero* total courses 1`] = `
                     Array [
                       Object {
                         "color": "#374A59",
-                        "fontSize": 14,
+                        "fontSize": 16,
+                        "fontWeight": "500",
                       },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-bold",
-                      },
-                      Object {
-                        "color": "#374A59",
-                      },
-                      Object {},
+                      undefined,
                     ],
                     Object {
-                      "fontFamily": ".SFUIDisplay",
+                      "fontFamily": ".SFUIDisplay-medium",
                     },
                   ]
                 }
@@ -4509,9 +4489,6 @@ exports[`Dashboard render without courses and *zero* total courses 1`] = `
                     "padding": 10,
                   },
                   Object {
-                    "backgroundColor": "#374A59",
-                  },
-                  Object {
                     "borderRadius": 4,
                     "paddingHorizontal": 24,
                     "paddingVertical": 16,
@@ -4534,9 +4511,6 @@ exports[`Dashboard render without courses and *zero* total courses 1`] = `
                     },
                     null,
                     Array [
-                      Object {
-                        "color": "white",
-                      },
                       Object {
                         "color": "white",
                       },
@@ -4772,18 +4746,13 @@ exports[`Dashboard render without favorite courses 1`] = `
                     Array [
                       Object {
                         "color": "#374A59",
-                        "fontSize": 14,
+                        "fontSize": 16,
+                        "fontWeight": "500",
                       },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-bold",
-                      },
-                      Object {
-                        "color": "#374A59",
-                      },
-                      Object {},
+                      undefined,
                     ],
                     Object {
-                      "fontFamily": ".SFUIDisplay",
+                      "fontFamily": ".SFUIDisplay-medium",
                     },
                   ]
                 }
@@ -4901,9 +4870,6 @@ exports[`Dashboard render without favorite courses 1`] = `
                     "padding": 10,
                   },
                   Object {
-                    "backgroundColor": "#374A59",
-                  },
-                  Object {
                     "borderRadius": 4,
                     "paddingHorizontal": 24,
                     "paddingVertical": 16,
@@ -4926,9 +4892,6 @@ exports[`Dashboard render without favorite courses 1`] = `
                     },
                     null,
                     Array [
-                      Object {
-                        "color": "white",
-                      },
                       Object {
                         "color": "white",
                       },
@@ -5620,9 +5583,6 @@ exports[`Dashboard renders course invites 1`] = `
                           "overflow": "hidden",
                           "padding": 10,
                         },
-                        Object {
-                          "backgroundColor": "#374A59",
-                        },
                         Array [
                           Object {
                             "borderRadius": 4,
@@ -5661,9 +5621,6 @@ exports[`Dashboard renders course invites 1`] = `
                               "color": "white",
                             },
                             Object {
-                              "color": "white",
-                            },
-                            Object {
                               "color": "#73818C",
                               "fontWeight": "600",
                             },
@@ -5694,9 +5651,6 @@ exports[`Dashboard renders course invites 1`] = `
                           "overflow": "hidden",
                           "padding": 10,
                         },
-                        Object {
-                          "backgroundColor": "#374A59",
-                        },
                         Array [
                           Object {
                             "borderRadius": 4,
@@ -5726,9 +5680,6 @@ exports[`Dashboard renders course invites 1`] = `
                           },
                           null,
                           Array [
-                            Object {
-                              "color": "white",
-                            },
                             Object {
                               "color": "white",
                             },
@@ -5912,9 +5863,6 @@ exports[`Dashboard renders course invites 1`] = `
                           "overflow": "hidden",
                           "padding": 10,
                         },
-                        Object {
-                          "backgroundColor": "#374A59",
-                        },
                         Array [
                           Object {
                             "borderRadius": 4,
@@ -5953,9 +5901,6 @@ exports[`Dashboard renders course invites 1`] = `
                               "color": "white",
                             },
                             Object {
-                              "color": "white",
-                            },
-                            Object {
                               "color": "#73818C",
                               "fontWeight": "600",
                             },
@@ -5986,9 +5931,6 @@ exports[`Dashboard renders course invites 1`] = `
                           "overflow": "hidden",
                           "padding": 10,
                         },
-                        Object {
-                          "backgroundColor": "#374A59",
-                        },
                         Array [
                           Object {
                             "borderRadius": 4,
@@ -6018,9 +5960,6 @@ exports[`Dashboard renders course invites 1`] = `
                           },
                           null,
                           Array [
-                            Object {
-                              "color": "white",
-                            },
                             Object {
                               "color": "white",
                             },
@@ -6120,18 +6059,13 @@ exports[`Dashboard renders course invites 1`] = `
                     Array [
                       Object {
                         "color": "#374A59",
-                        "fontSize": 14,
+                        "fontSize": 16,
+                        "fontWeight": "500",
                       },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-bold",
-                      },
-                      Object {
-                        "color": "#374A59",
-                      },
-                      Object {},
+                      undefined,
                     ],
                     Object {
-                      "fontFamily": ".SFUIDisplay",
+                      "fontFamily": ".SFUIDisplay-medium",
                     },
                   ]
                 }

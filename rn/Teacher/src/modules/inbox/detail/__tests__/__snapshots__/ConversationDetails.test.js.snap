@@ -1178,19 +1178,10 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
                         Array [
                           Object {
                             "color": "#374A59",
-                            "fontSize": 14,
-                          },
-                          Object {
-                            "fontFamily": ".SFUIDisplay-bold",
-                          },
-                          Object {
-                            "color": "#374A59",
-                          },
-                          Object {},
-                          Object {
                             "fontSize": 16,
                             "fontWeight": "500",
                           },
+                          undefined,
                         ],
                         Object {
                           "fontFamily": ".SFUIDisplay-medium",

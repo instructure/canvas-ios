@@ -14,73 +14,62 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-/**
- * @flow
- */
+// @flow
 
-import React, { PureComponent } from 'react'
+import * as React from 'react'
 import {
   View,
-  StyleSheet,
   TouchableOpacity,
 } from 'react-native'
 import BaseButton from 'react-native-button'
-import colors from './colors'
-import { Text, BOLD_FONT } from './text'
+import { createStyleSheet } from './branding'
+import { Text } from './text'
 
-export function Button ({ style, containerStyle, ...props }: Object) {
-  let brandingContainerStyles = {
-    backgroundColor: colors.primaryButtonColor,
-  }
-  let brandingStyles = {
-    color: colors.primaryButtonTextColor,
-  }
-  return (<BaseButton style={[styles.textColor, brandingStyles, style]} containerStyle={[styles.container, brandingContainerStyles, containerStyle]} {...props} />)
-}
+type ButtonProps = React.ElementConfig<typeof BaseButton>
 
-export class LinkButton extends PureComponent<Object> {
-  render () {
-    const {
-      textStyle,
-      ...props
-    } = this.props
-    const brandingStyles = { color: colors.primaryButtonColor }
-    const textAttributes = this.props.textAttributes || {}
-    const textStyles = [linkButtonStyles.textColor, linkButtonStyles.font, brandingStyles, textAttributes, textStyle].filter(Boolean)
-    return (
-      <TouchableOpacity
-        hitSlop={{ top: 15, left: 15, bottom: 15, right: 15 }}
-        {...props}
-        accessibilityTraits='button'
-      >
-        <View>
-          <Text style={textStyles}>
-            {this.props.children}
-          </Text>
-        </View>
-      </TouchableOpacity>
-    )
-  }
-}
+export const Button = ({ containerStyle, style, ...props }: ButtonProps) => (
+  <BaseButton
+    containerStyle={[styles.container, containerStyle]}
+    style={[styles.text, style]}
+    {...props}
+  />
+)
 
-const styles = StyleSheet.create({
+type TextStyle = $PropertyType<React.ElementConfig<typeof Text>, 'style'>
+type LinkButtonProps = {
+  textStyle?: TextStyle,
+} & React.ElementConfig<typeof TouchableOpacity>
+
+export const LinkButton = ({ children, textStyle, ...props }: LinkButtonProps) => (
+  <TouchableOpacity
+    accessibilityTraits='button'
+    hitSlop={{ top: 15, left: 15, bottom: 15, right: 15 }}
+    {...props}
+  >
+    <View>
+      <Text style={[linkButtonStyles.text, textStyle]}>
+        {children}
+      </Text>
+    </View>
+  </TouchableOpacity>
+)
+
+const styles = createStyleSheet(colors => ({
   container: {
     backgroundColor: colors.primaryButtonColor,
     overflow: 'hidden',
     padding: 10,
     borderRadius: 8,
   },
-  textColor: {
+  text: {
     color: colors.primaryButtonTextColor,
   },
-})
+}))
 
-const linkButtonStyles = StyleSheet.create({
-  font: {
-    fontFamily: BOLD_FONT,
-  },
-  textColor: {
-    fontSize: 14,
+const linkButtonStyles = createStyleSheet(colors => ({
+  text: {
+    fontSize: 16,
+    fontWeight: '500',
     color: colors.primaryButtonColor,
   },
-})
+}))

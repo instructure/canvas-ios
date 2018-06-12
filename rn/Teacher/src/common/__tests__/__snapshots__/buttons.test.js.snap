@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders button correctly 1`] = `
+exports[`common buttons <Button> adds additional styles to the base button 1`] = `
 <Button
   containerStyle={
     Array [
@@ -10,10 +10,7 @@ exports[`renders button correctly 1`] = `
         "overflow": "hidden",
         "padding": 10,
       },
-      Object {
-        "backgroundColor": "#374A59",
-      },
-      undefined,
+      5,
     ]
   }
   style={
@@ -21,23 +18,18 @@ exports[`renders button correctly 1`] = `
       Object {
         "color": "white",
       },
-      Object {
-        "color": "white",
-      },
-      undefined,
+      42,
     ]
   }
-/>
+>
+  push
+</Button>
 `;
 
-exports[`renders link correctly 1`] = `
-<View
-  accessibilityComponentType={undefined}
-  accessibilityLabel={undefined}
+exports[`common buttons <LinkButton> adds additional styles to the base button 1`] = `
+<TouchableOpacity
   accessibilityTraits="button"
-  accessible={true}
-  collapsable={undefined}
-  hasTVPreferredFocus={undefined}
+  activeOpacity={0.2}
   hitSlop={
     Object {
       "bottom": 15,
@@ -46,56 +38,22 @@ exports[`renders link correctly 1`] = `
       "top": 15,
     }
   }
-  isTVSelectable={true}
-  nativeID={undefined}
-  onLayout={undefined}
-  onResponderGrant={[Function]}
-  onResponderMove={[Function]}
-  onResponderRelease={[Function]}
-  onResponderTerminate={[Function]}
-  onResponderTerminationRequest={[Function]}
-  onStartShouldSetResponder={[Function]}
-  style={
-    Object {
-      "opacity": 1,
-    }
-  }
-  testID={undefined}
-  tvParallaxProperties={undefined}
 >
   <View>
     <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
       style={
         Array [
           Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
-            "color": "#2D3B45",
+            "color": "#374A59",
             "fontSize": 16,
+            "fontWeight": "500",
           },
-          Array [
-            Object {
-              "color": "#374A59",
-              "fontSize": 14,
-            },
-            Object {
-              "fontFamily": ".SFUIDisplay-bold",
-            },
-            Object {
-              "color": "#374A59",
-            },
-            Object {},
-          ],
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
+          42,
         ]
       }
-    />
+    >
+      push
+    </Text>
   </View>
-</View>
+</TouchableOpacity>
 `;
