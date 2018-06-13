@@ -27,11 +27,6 @@ public class StartupManager {
     public static let shared = StartupManager()
     var blocks: [StartupManagerTask] = []
     var startupFinished = false
-
-    public func reset() {
-        startupFinished = false
-        blocks.removeAll()
-    }
     
     public func markStartupFinished() {
         startupFinished = true

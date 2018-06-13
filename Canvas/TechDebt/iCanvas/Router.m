@@ -277,7 +277,7 @@
 - (void)openCanvasURL:(NSURL *)url withOptions:(NSDictionary *)options {
     // This still has the weakness of two people logged into the app with the same domain
     // That should occur much less frequently with push tokens being deregistered correctly, though
-    if ([[TheKeymaster currentClient].baseURL.host isEqualToString:url.host]) {
+    if ([TheKeymaster currentClientHasHost:url.host]) {
         UIViewController *root = UIApplication.sharedApplication.windows[0].rootViewController;
         [self routeFromController:root.currentLeaf toURL:url withOptions:options];
     } else {

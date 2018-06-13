@@ -227,41 +227,7 @@ extension AppDelegate {
 
 // MARK: Launching URLS
 extension AppDelegate {
-    private func logIn(withURL url: URL) {
-        if let host = url.host {
-            let clients = TheKeymaster.clients(forHost: host)
-            let reset = {
-                /*
-                 We have to reset the StartupManager because the tasks
-                 about to be enqueued will fire right away if there's already
-                 an active user logged in and the tasks might not be meant for
-                 the active user.
-                */
-                StartupManager.shared.reset()
-                TheKeymaster.switchUser()
-            }
-            if clients.isEmpty {
-                // No users are logged into this domain.
-                reset()
-                TheKeymaster.login(withSuggestedDomain: host)
-            } else if clients.count == 1, let client = clients.first {
-                // We have exactly one client for this domain so log them in (if they're not already).
-                let current = TheKeymaster.currentClient
-                let isLoggedIn = current?.currentUser.id == client.currentUser.id && current?.baseURL == client.baseURL
-                if !isLoggedIn {
-                    reset()
-                    TheKeymaster.login(with: client)
-                }
-            } else {
-                // Too many users on this domain so have them pick.
-                reset()
-            }
-        }
-    }
-
     @discardableResult func openCanvasURL(_ url: URL) -> Bool {
-        TheKeymaster.automaticallyLogInOnlyUser = false
-        logIn(withURL: url)
         // the student app doesn't have as predictable of a tab bar setup and for
         // several views, does not have a route configured for them so for now we
         // will hard code until we move more things over to helm
@@ -269,24 +235,22 @@ extension AppDelegate {
         StartupManager.shared.enqueueTask({ [weak self] in
             let path = url.path
             var index: Int?
-
+            
             for (i, element) in tabRoutes.enumerated() {
                 if let _ = element.index(of: path) {
                     index = i
                     break
                 }
             }
-
+            
             if let i = index {
-                guard let tabBarController = UIApplication.shared.keyWindow?.rootViewController as? UITabBarController else {
-                    return
-                }
-
+                guard let tabBarController = UIApplication.shared.keyWindow?.rootViewController as? UITabBarController else { return }
+                
                 let finish = {
                     tabBarController.selectedIndex = i
                     tabBarController.resetSelectedViewController()
                 }
-
+                
                 if let _ = tabBarController.presentedViewController {
                     tabBarController.dismiss(animated: true, completion: {
                         DispatchQueue.main.async(execute: finish)
@@ -295,10 +259,11 @@ extension AppDelegate {
                     finish()
                 }
             } else {
+                
                 if handleDropboxOpenURL(url) {
                     return
                 }
-
+                
                 if url.scheme == "file" {
                     do {
                         try ReceivedFilesViewController.add(toReceivedFiles: url)
@@ -309,7 +274,7 @@ extension AppDelegate {
                     Router.shared().openCanvasURL(url, withOptions: ["modal": true])
                 }
             }
-        })
+        })        
         return true
     }
 }
@@ -318,7 +283,7 @@ extension AppDelegate: NativeLoginManagerDelegate {
     func didLogin(_ client: CKIClient) {
         let session = client.authSession
         self.session = session
-        
+        PageViewEventController.instance.userDidChange()
         LegacyModuleProgressShim.observeProgress(session)
         ModuleItem.beginObservingProgress(session)
         CKCanvasAPI.updateCurrentAPI()
@@ -329,6 +294,7 @@ extension AppDelegate: NativeLoginManagerDelegate {
     }
     
     func didLogout(_ controller: UIViewController) {
+        PageViewEventController.instance.userDidChange()
         NotificationKitController.deregisterPushNotifications { _ in
             // this is a no-op because we don't want errors to prevent logging out
         }

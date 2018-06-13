@@ -75,17 +75,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) BOOL fetchesBranding;
 
 /**
- If set to YES, we will not automatically log in with the only known client on app launch.
- Defaults to YES
- */
-@property (nonatomic) BOOL automaticallyLogInOnlyUser;
-
-/**
  The current client (last one delivered on
  `signalForCurrentClient`) or nil if not logged
  in
  */
 @property (nonatomic, readonly, nullable) CKIClient *currentClient;
+
 
 @property (nonatomic, readonly) NSString *logFilePath;
 
@@ -102,9 +97,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)switchUser;
 
 /**
- @return Returns YES if any known client matches this host. If not, or if there is are no clients, returns NO
+ @return Returns YES if the currently logged in client matches this host. If not, or if there is no current client, returns NO
  */
-- (NSArray<CKIClient *> *)clientsForHost:(NSString *)host;
+- (BOOL)currentClientHasHost:(NSString *)host;
 
 /**
  Masquerade as the user with the given id.
@@ -121,8 +116,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (CKIClient *)clientWithMobileVerifiedDetails:(NSDictionary *)details accountDomain:(nullable CKIAccountDomain *)domain;
 
 - (void)loginWithMobileVerifyDetails:(NSDictionary *)details;
-- (void)loginWithSuggestedDomain:(nullable NSString *)host;
-- (void)loginWithClient:(CKIClient *)client;
 
 @end
 

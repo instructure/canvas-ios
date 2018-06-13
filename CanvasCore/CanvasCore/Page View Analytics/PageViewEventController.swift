@@ -50,7 +50,13 @@ open class PageViewEventController: NSObject {
         let event = PageViewEvent(eventName: eventNameOrPath, attributes: mutableAttributes, userID: userID, eventDuration: eventDurationInSeconds)
         Persistency.instance.addToQueue(event)
     }
-    
+
+    public func userDidChange() {
+        sync({ [weak self] in
+            self?.requestManager.cleanup()
+        })
+    }
+
     //  MARK: - App Lifecycle
     
     @objc private func didEnterBackground(_ notification: Notification) {
@@ -79,17 +85,6 @@ open class PageViewEventController: NSObject {
             NotificationCenter.default.addObserver(self, selector: #selector(PageViewEventController.didEnterBackground(_:)), name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
             NotificationCenter.default.addObserver(self, selector: #selector(PageViewEventController.willEnterForeground(_:)), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
             NotificationCenter.default.addObserver(self, selector: #selector(PageViewEventController.appWillTerminate(_:)), name: NSNotification.Name.UIApplicationWillTerminate, object: nil)
-            CanvasKeymaster.the().signalForLogout.subscribeNext({ [weak self] (_) in
-                self?.sync({ [weak self] in
-                    self?.requestManager.cleanup()
-                })
-            })
-            
-            CanvasKeymaster.the().signalForLogin.subscribeNext { [weak self] (client) in
-                self?.sync({ [weak self] in
-                    self?.requestManager.cleanup()
-                })
-            }
         } else {
             NotificationCenter.default.removeObserver(self)
         }

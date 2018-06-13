@@ -163,8 +163,7 @@ const emitter = new NativeEventEmitter(NativeLogin)
 emitter.addListener('Login', loginHandler)
 
 AppState.addEventListener('change', (nextAppState) => {
-  let session = getSessionUnsafe()
-  if (session && nextAppState === 'active') {
+  if (nextAppState === 'active') {
     loginVerify()
     updateBadgeCounts()
   }
