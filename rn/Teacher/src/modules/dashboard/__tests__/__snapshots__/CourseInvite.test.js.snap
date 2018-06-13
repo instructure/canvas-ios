@@ -3,12 +3,10 @@
 exports[`CourseInvite can hide 1`] = `
 <Component
   contentStyle={
-    Array [
-      Object {
-        "borderColor": "#00AC18",
-        "borderWidth": 1,
-      },
-    ]
+    Object {
+      "borderColor": "#00AC18",
+      "borderWidth": 1,
+    }
   }
   hideShadow={true}
 >
@@ -21,16 +19,12 @@ exports[`CourseInvite can hide 1`] = `
   >
     <View
       style={
-        Array [
-          Object {
-            "alignItems": "center",
-            "justifyContent": "flex-start",
-            "width": 40,
-          },
-          Object {
-            "backgroundColor": "#00AC18",
-          },
-        ]
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#00AC18",
+          "justifyContent": "flex-start",
+          "width": 40,
+        }
       }
     >
       <Image
@@ -51,7 +45,6 @@ exports[`CourseInvite can hide 1`] = `
       style={
         Object {
           "flex": 1,
-          "margin": 8,
         }
       }
       testID="course-invite.acted"
@@ -61,9 +54,9 @@ exports[`CourseInvite can hide 1`] = `
           Object {
             "fontSize": 18,
             "fontWeight": "600",
-            "marginBottom": 4,
-            "marginRight": 32,
-            "marginTop": 4,
+            "margin": 12,
+            "marginBottom": 0,
+            "marginTop": 8,
           }
         }
       >
@@ -107,12 +100,10 @@ exports[`CourseInvite can hide 1`] = `
 exports[`CourseInvite renders action taken -- accept 1`] = `
 <Component
   contentStyle={
-    Array [
-      Object {
-        "borderColor": "#00AC18",
-        "borderWidth": 1,
-      },
-    ]
+    Object {
+      "borderColor": "#00AC18",
+      "borderWidth": 1,
+    }
   }
   hideShadow={true}
 >
@@ -125,16 +116,12 @@ exports[`CourseInvite renders action taken -- accept 1`] = `
   >
     <View
       style={
-        Array [
-          Object {
-            "alignItems": "center",
-            "justifyContent": "flex-start",
-            "width": 40,
-          },
-          Object {
-            "backgroundColor": "#00AC18",
-          },
-        ]
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#00AC18",
+          "justifyContent": "flex-start",
+          "width": 40,
+        }
       }
     >
       <Image
@@ -155,7 +142,6 @@ exports[`CourseInvite renders action taken -- accept 1`] = `
       style={
         Object {
           "flex": 1,
-          "margin": 8,
         }
       }
       testID="course-invite.acted"
@@ -165,9 +151,9 @@ exports[`CourseInvite renders action taken -- accept 1`] = `
           Object {
             "fontSize": 18,
             "fontWeight": "600",
-            "marginBottom": 4,
-            "marginRight": 32,
-            "marginTop": 4,
+            "margin": 12,
+            "marginBottom": 0,
+            "marginTop": 8,
           }
         }
       >
@@ -211,12 +197,10 @@ exports[`CourseInvite renders action taken -- accept 1`] = `
 exports[`CourseInvite renders action taken -- reject 1`] = `
 <Component
   contentStyle={
-    Array [
-      Object {
-        "borderColor": "#00AC18",
-        "borderWidth": 1,
-      },
-    ]
+    Object {
+      "borderColor": "#00AC18",
+      "borderWidth": 1,
+    }
   }
   hideShadow={true}
 >
@@ -229,16 +213,12 @@ exports[`CourseInvite renders action taken -- reject 1`] = `
   >
     <View
       style={
-        Array [
-          Object {
-            "alignItems": "center",
-            "justifyContent": "flex-start",
-            "width": 40,
-          },
-          Object {
-            "backgroundColor": "#00AC18",
-          },
-        ]
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#00AC18",
+          "justifyContent": "flex-start",
+          "width": 40,
+        }
       }
     >
       <Image
@@ -259,7 +239,6 @@ exports[`CourseInvite renders action taken -- reject 1`] = `
       style={
         Object {
           "flex": 1,
-          "margin": 8,
         }
       }
       testID="course-invite.acted"
@@ -269,9 +248,9 @@ exports[`CourseInvite renders action taken -- reject 1`] = `
           Object {
             "fontSize": 18,
             "fontWeight": "600",
-            "marginBottom": 4,
-            "marginRight": 32,
-            "marginTop": 4,
+            "margin": 12,
+            "marginBottom": 0,
+            "marginTop": 8,
           }
         }
       >
@@ -315,12 +294,10 @@ exports[`CourseInvite renders action taken -- reject 1`] = `
 exports[`CourseInvite renders displayState acted -- accept 1`] = `
 <Component
   contentStyle={
-    Array [
-      Object {
-        "borderColor": "#00AC18",
-        "borderWidth": 1,
-      },
-    ]
+    Object {
+      "borderColor": "#00AC18",
+      "borderWidth": 1,
+    }
   }
   hideShadow={true}
 >
@@ -333,16 +310,12 @@ exports[`CourseInvite renders displayState acted -- accept 1`] = `
   >
     <View
       style={
-        Array [
-          Object {
-            "alignItems": "center",
-            "justifyContent": "flex-start",
-            "width": 40,
-          },
-          Object {
-            "backgroundColor": "#00AC18",
-          },
-        ]
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#00AC18",
+          "justifyContent": "flex-start",
+          "width": 40,
+        }
       }
     >
       <Image
@@ -363,7 +336,6 @@ exports[`CourseInvite renders displayState acted -- accept 1`] = `
       style={
         Object {
           "flex": 1,
-          "margin": 8,
         }
       }
       testID="course-invite.acted"
@@ -373,9 +345,9 @@ exports[`CourseInvite renders displayState acted -- accept 1`] = `
           Object {
             "fontSize": 18,
             "fontWeight": "600",
-            "marginBottom": 4,
-            "marginRight": 32,
-            "marginTop": 4,
+            "margin": 12,
+            "marginBottom": 0,
+            "marginTop": 8,
           }
         }
       >
@@ -419,12 +391,10 @@ exports[`CourseInvite renders displayState acted -- accept 1`] = `
 exports[`CourseInvite renders displayState acted -- reject 1`] = `
 <Component
   contentStyle={
-    Array [
-      Object {
-        "borderColor": "#00AC18",
-        "borderWidth": 1,
-      },
-    ]
+    Object {
+      "borderColor": "#00AC18",
+      "borderWidth": 1,
+    }
   }
   hideShadow={true}
 >
@@ -437,16 +407,12 @@ exports[`CourseInvite renders displayState acted -- reject 1`] = `
   >
     <View
       style={
-        Array [
-          Object {
-            "alignItems": "center",
-            "justifyContent": "flex-start",
-            "width": 40,
-          },
-          Object {
-            "backgroundColor": "#00AC18",
-          },
-        ]
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#00AC18",
+          "justifyContent": "flex-start",
+          "width": 40,
+        }
       }
     >
       <Image
@@ -467,7 +433,6 @@ exports[`CourseInvite renders displayState acted -- reject 1`] = `
       style={
         Object {
           "flex": 1,
-          "margin": 8,
         }
       }
       testID="course-invite.acted"
@@ -477,9 +442,9 @@ exports[`CourseInvite renders displayState acted -- reject 1`] = `
           Object {
             "fontSize": 18,
             "fontWeight": "600",
-            "marginBottom": 4,
-            "marginRight": 32,
-            "marginTop": 4,
+            "margin": 12,
+            "marginBottom": 0,
+            "marginTop": 8,
           }
         }
       >
@@ -523,12 +488,10 @@ exports[`CourseInvite renders displayState acted -- reject 1`] = `
 exports[`CourseInvite renders hidden 1`] = `
 <Component
   contentStyle={
-    Array [
-      Object {
-        "borderColor": "#00AC18",
-        "borderWidth": 1,
-      },
-    ]
+    Object {
+      "borderColor": "#00AC18",
+      "borderWidth": 1,
+    }
   }
   hideShadow={true}
 >
@@ -541,16 +504,12 @@ exports[`CourseInvite renders hidden 1`] = `
   >
     <View
       style={
-        Array [
-          Object {
-            "alignItems": "center",
-            "justifyContent": "flex-start",
-            "width": 40,
-          },
-          Object {
-            "backgroundColor": "#00AC18",
-          },
-        ]
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#00AC18",
+          "justifyContent": "flex-start",
+          "width": 40,
+        }
       }
     >
       <Image
@@ -571,7 +530,6 @@ exports[`CourseInvite renders hidden 1`] = `
       style={
         Object {
           "flex": 1,
-          "margin": 8,
         }
       }
     >
@@ -580,9 +538,9 @@ exports[`CourseInvite renders hidden 1`] = `
           Object {
             "fontSize": 18,
             "fontWeight": "600",
-            "marginBottom": 4,
-            "marginRight": 32,
-            "marginTop": 4,
+            "margin": 12,
+            "marginBottom": 0,
+            "marginTop": 8,
           }
         }
       >
@@ -592,7 +550,8 @@ exports[`CourseInvite renders hidden 1`] = `
         numberOfLines={1}
         style={
           Object {
-            "marginBottom": 6,
+            "marginBottom": 4,
+            "marginHorizontal": 12,
           }
         }
       >
@@ -607,6 +566,7 @@ exports[`CourseInvite renders hidden 1`] = `
             "flexDirection": "row",
             "flexWrap": "wrap",
             "justifyContent": "flex-start",
+            "margin": 8,
           }
         }
       >
@@ -615,27 +575,31 @@ exports[`CourseInvite renders hidden 1`] = `
           containerStyle={
             Array [
               Object {
+                "backgroundColor": "#00AC18",
                 "borderRadius": 4,
+                "flex": 1,
                 "height": 40,
-                "marginBottom": 4,
-                "width": 136,
+                "margin": 4,
               },
               Object {
                 "backgroundColor": "white",
-                "borderWidth": 0.5,
-                "marginRight": 8,
-              },
-              Object {
                 "borderColor": "#8B969E",
+                "borderWidth": 0.5,
               },
             ]
           }
           onPress={[Function]}
           style={
-            Object {
-              "color": "#73818C",
-              "fontWeight": "600",
-            }
+            Array [
+              Object {
+                "color": "white",
+                "fontSize": 16,
+                "fontWeight": "600",
+              },
+              Object {
+                "color": "#73818C",
+              },
+            ]
           }
           testID="course-invite.1.reject-button"
         >
@@ -644,22 +608,19 @@ exports[`CourseInvite renders hidden 1`] = `
         <Button
           accessibilityTraits="button"
           containerStyle={
-            Array [
-              Object {
-                "borderRadius": 4,
-                "height": 40,
-                "marginBottom": 4,
-                "width": 136,
-              },
-              Object {
-                "backgroundColor": "#00AC18",
-              },
-            ]
+            Object {
+              "backgroundColor": "#00AC18",
+              "borderRadius": 4,
+              "flex": 1,
+              "height": 40,
+              "margin": 4,
+            }
           }
           onPress={[Function]}
           style={
             Object {
-              "color": "#fff",
+              "color": "white",
+              "fontSize": 16,
               "fontWeight": "600",
             }
           }
@@ -676,12 +637,10 @@ exports[`CourseInvite renders hidden 1`] = `
 exports[`CourseInvite renders invite 1`] = `
 <Component
   contentStyle={
-    Array [
-      Object {
-        "borderColor": "#00AC18",
-        "borderWidth": 1,
-      },
-    ]
+    Object {
+      "borderColor": "#00AC18",
+      "borderWidth": 1,
+    }
   }
   hideShadow={true}
 >
@@ -694,16 +653,12 @@ exports[`CourseInvite renders invite 1`] = `
   >
     <View
       style={
-        Array [
-          Object {
-            "alignItems": "center",
-            "justifyContent": "flex-start",
-            "width": 40,
-          },
-          Object {
-            "backgroundColor": "#00AC18",
-          },
-        ]
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#00AC18",
+          "justifyContent": "flex-start",
+          "width": 40,
+        }
       }
     >
       <Image
@@ -724,7 +679,6 @@ exports[`CourseInvite renders invite 1`] = `
       style={
         Object {
           "flex": 1,
-          "margin": 8,
         }
       }
     >
@@ -733,9 +687,9 @@ exports[`CourseInvite renders invite 1`] = `
           Object {
             "fontSize": 18,
             "fontWeight": "600",
-            "marginBottom": 4,
-            "marginRight": 32,
-            "marginTop": 4,
+            "margin": 12,
+            "marginBottom": 0,
+            "marginTop": 8,
           }
         }
       >
@@ -745,7 +699,8 @@ exports[`CourseInvite renders invite 1`] = `
         numberOfLines={1}
         style={
           Object {
-            "marginBottom": 6,
+            "marginBottom": 4,
+            "marginHorizontal": 12,
           }
         }
       >
@@ -760,6 +715,7 @@ exports[`CourseInvite renders invite 1`] = `
             "flexDirection": "row",
             "flexWrap": "wrap",
             "justifyContent": "flex-start",
+            "margin": 8,
           }
         }
       >
@@ -768,27 +724,31 @@ exports[`CourseInvite renders invite 1`] = `
           containerStyle={
             Array [
               Object {
+                "backgroundColor": "#00AC18",
                 "borderRadius": 4,
+                "flex": 1,
                 "height": 40,
-                "marginBottom": 4,
-                "width": 136,
+                "margin": 4,
               },
               Object {
                 "backgroundColor": "white",
-                "borderWidth": 0.5,
-                "marginRight": 8,
-              },
-              Object {
                 "borderColor": "#8B969E",
+                "borderWidth": 0.5,
               },
             ]
           }
           onPress={[Function]}
           style={
-            Object {
-              "color": "#73818C",
-              "fontWeight": "600",
-            }
+            Array [
+              Object {
+                "color": "white",
+                "fontSize": 16,
+                "fontWeight": "600",
+              },
+              Object {
+                "color": "#73818C",
+              },
+            ]
           }
           testID="course-invite.1.reject-button"
         >
@@ -797,22 +757,19 @@ exports[`CourseInvite renders invite 1`] = `
         <Button
           accessibilityTraits="button"
           containerStyle={
-            Array [
-              Object {
-                "borderRadius": 4,
-                "height": 40,
-                "marginBottom": 4,
-                "width": 136,
-              },
-              Object {
-                "backgroundColor": "#00AC18",
-              },
-            ]
+            Object {
+              "backgroundColor": "#00AC18",
+              "borderRadius": 4,
+              "flex": 1,
+              "height": 40,
+              "margin": 4,
+            }
           }
           onPress={[Function]}
           style={
             Object {
-              "color": "#fff",
+              "color": "white",
+              "fontSize": 16,
               "fontWeight": "600",
             }
           }
@@ -829,12 +786,10 @@ exports[`CourseInvite renders invite 1`] = `
 exports[`CourseInvite renders invite with course section 1`] = `
 <Component
   contentStyle={
-    Array [
-      Object {
-        "borderColor": "#00AC18",
-        "borderWidth": 1,
-      },
-    ]
+    Object {
+      "borderColor": "#00AC18",
+      "borderWidth": 1,
+    }
   }
   hideShadow={true}
 >
@@ -847,16 +802,12 @@ exports[`CourseInvite renders invite with course section 1`] = `
   >
     <View
       style={
-        Array [
-          Object {
-            "alignItems": "center",
-            "justifyContent": "flex-start",
-            "width": 40,
-          },
-          Object {
-            "backgroundColor": "#00AC18",
-          },
-        ]
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#00AC18",
+          "justifyContent": "flex-start",
+          "width": 40,
+        }
       }
     >
       <Image
@@ -877,7 +828,6 @@ exports[`CourseInvite renders invite with course section 1`] = `
       style={
         Object {
           "flex": 1,
-          "margin": 8,
         }
       }
     >
@@ -886,9 +836,9 @@ exports[`CourseInvite renders invite with course section 1`] = `
           Object {
             "fontSize": 18,
             "fontWeight": "600",
-            "marginBottom": 4,
-            "marginRight": 32,
-            "marginTop": 4,
+            "margin": 12,
+            "marginBottom": 0,
+            "marginTop": 8,
           }
         }
       >
@@ -898,7 +848,8 @@ exports[`CourseInvite renders invite with course section 1`] = `
         numberOfLines={1}
         style={
           Object {
-            "marginBottom": 6,
+            "marginBottom": 4,
+            "marginHorizontal": 12,
           }
         }
       >
@@ -911,6 +862,7 @@ exports[`CourseInvite renders invite with course section 1`] = `
             "flexDirection": "row",
             "flexWrap": "wrap",
             "justifyContent": "flex-start",
+            "margin": 8,
           }
         }
       >
@@ -919,27 +871,31 @@ exports[`CourseInvite renders invite with course section 1`] = `
           containerStyle={
             Array [
               Object {
+                "backgroundColor": "#00AC18",
                 "borderRadius": 4,
+                "flex": 1,
                 "height": 40,
-                "marginBottom": 4,
-                "width": 136,
+                "margin": 4,
               },
               Object {
                 "backgroundColor": "white",
-                "borderWidth": 0.5,
-                "marginRight": 8,
-              },
-              Object {
                 "borderColor": "#8B969E",
+                "borderWidth": 0.5,
               },
             ]
           }
           onPress={[Function]}
           style={
-            Object {
-              "color": "#73818C",
-              "fontWeight": "600",
-            }
+            Array [
+              Object {
+                "color": "white",
+                "fontSize": 16,
+                "fontWeight": "600",
+              },
+              Object {
+                "color": "#73818C",
+              },
+            ]
           }
           testID="course-invite.1.reject-button"
         >
@@ -948,22 +904,19 @@ exports[`CourseInvite renders invite with course section 1`] = `
         <Button
           accessibilityTraits="button"
           containerStyle={
-            Array [
-              Object {
-                "borderRadius": 4,
-                "height": 40,
-                "marginBottom": 4,
-                "width": 136,
-              },
-              Object {
-                "backgroundColor": "#00AC18",
-              },
-            ]
+            Object {
+              "backgroundColor": "#00AC18",
+              "borderRadius": 4,
+              "flex": 1,
+              "height": 40,
+              "margin": 4,
+            }
           }
           onPress={[Function]}
           style={
             Object {
-              "color": "#fff",
+              "color": "white",
+              "fontSize": 16,
               "fontWeight": "600",
             }
           }

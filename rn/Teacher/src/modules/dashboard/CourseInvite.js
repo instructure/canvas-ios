@@ -27,7 +27,7 @@ import {
   NativeModules,
 } from 'react-native'
 import images from '../../images'
-import colors from '../../common/colors'
+import { createStyleSheet } from '../../common/branding'
 import {
   Text,
 } from '../../common/text'
@@ -76,9 +76,9 @@ export default class CourseInvite extends React.Component<Props> {
   renderCourseSection () {
     const { courseName, sectionName } = this.props
     if (courseName === sectionName) {
-      return <Text numberOfLines={1} style={styles.names}>{courseName}</Text>
+      return <Text numberOfLines={1} style={styles.names}>{courseName.trim()}</Text>
     } else {
-      return <Text numberOfLines={1} style={styles.names}>{courseName}, {sectionName}</Text>
+      return <Text numberOfLines={1} style={styles.names}>{courseName.trim()}, {sectionName.trim()}</Text>
     }
   }
 
@@ -89,18 +89,14 @@ export default class CourseInvite extends React.Component<Props> {
     if (invite.displayState === 'acted') {
       acceptedOrRejected = invite.enrollment_state === 'active' ? i18n('Invite accepted!') : i18n('Invite declined!')
     }
-    const color = colors.checkmarkGreen
-    const declineColor = {
-      borderColor: colors.grey4,
-    }
     return (
       <DashboardContent
         style={style}
-        contentStyle={[{ borderColor: color, borderWidth: 1 }]}
+        contentStyle={styles.content}
         hideShadow={true}
       >
         <View style={styles.rowContent}>
-          <View style={[styles.iconContainer, { backgroundColor: color }]}>
+          <View style={styles.iconContainer}>
             <Image source={images.dashboard.invite} style={styles.icon} />
           </View>
           { invite.displayState === 'acted' ? (
@@ -114,18 +110,22 @@ export default class CourseInvite extends React.Component<Props> {
               <View style={styles.buttonContainer}>
                 <Button
                   onPress={() => this.handleInvite('reject')}
-                  style={{ color: colors.secondaryButton, fontWeight: '600' }}
-                  containerStyle={[styles.button, styles.declineButton, declineColor]}
+                  style={[styles.buttonText, styles.declineButtonText]}
+                  containerStyle={[styles.button, styles.declineButton]}
                   testID={`course-invite.${invite.id}.reject-button`}
                   accessibilityTraits='button'
-                >{i18n('Decline')}</Button>
+                >
+                  {i18n('Decline')}
+                </Button>
                 <Button
                   onPress={() => this.handleInvite('accept')}
-                  style={{ color: colors.primaryButtonText, fontWeight: '600' }}
-                  containerStyle={[styles.button, { backgroundColor: color }]}
+                  style={styles.buttonText}
+                  containerStyle={styles.button}
                   testID={`course-invite.${invite.id}.accept-button`}
                   accessibilityTraits='button'
-                >{i18n('Accept')}</Button>
+                >
+                  {i18n('Accept')}
+                </Button>
               </View>
             </View>
           )}
@@ -147,7 +147,11 @@ export default class CourseInvite extends React.Component<Props> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet(colors => ({
+  content: {
+    borderColor: colors.checkmarkGreen,
+    borderWidth: 1,
+  },
   icon: {
     tintColor: 'white',
     marginTop: 14,
@@ -159,37 +163,48 @@ const styles = StyleSheet.create({
     width: 40,
     alignItems: 'center',
     justifyContent: 'flex-start',
+    backgroundColor: colors.checkmarkGreen,
   },
   inviteDetails: {
-    margin: 8,
     flex: 1,
   },
   title: {
     fontWeight: '600',
     fontSize: 18,
-    marginRight: 32,
-    marginBottom: 4,
-    marginTop: 4,
+    margin: 12,
+    marginBottom: 0,
+    marginTop: 8,
   },
   names: {
-    marginBottom: 6,
+    marginHorizontal: 12,
+    marginBottom: 4,
   },
   buttonContainer: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-start',
     flexWrap: 'wrap',
+    margin: 8,
   },
   button: {
-    width: 136,
+    flex: 1,
     height: 40,
     borderRadius: 4,
-    marginBottom: 4,
+    margin: 4,
+    backgroundColor: colors.checkmarkGreen,
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: '600',
   },
   declineButton: {
     backgroundColor: 'white',
+    borderColor: colors.grey4,
     borderWidth: StyleSheet.hairlineWidth,
-    marginRight: 8,
+  },
+  declineButtonText: {
+    color: colors.secondaryButton,
   },
   action: {
     position: 'absolute',
@@ -201,4 +216,4 @@ const styles = StyleSheet.create({
     width: 16,
     tintColor: colors.grey4,
   },
-})
+}))
