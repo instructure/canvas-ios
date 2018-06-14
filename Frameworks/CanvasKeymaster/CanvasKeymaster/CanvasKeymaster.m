@@ -253,8 +253,9 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
     self.domainPicker = [CKMDomainPickerViewController new];
     self.domainPickerNavigationController = [[UINavigationController alloc] initWithRootViewController:self.domainPicker];
     [self.domainPickerNavigationController setNavigationBarHidden:YES animated:NO];
-    
-    RACSignal *signalForClientForUsersDomain =  [[self.domainPicker selectedADomainSignal] flattenMap:^__kindof RACStream * _Nullable(CKIAccountDomain *domain) {
+
+    RACSignal *selectedADomainSignal = host ? [RACSignal return:[[CKIAccountDomain alloc] initWithDomain:host]] : [self.domainPicker selectedADomainSignal];
+    RACSignal *signalForClientForUsersDomain =  [selectedADomainSignal flattenMap:^__kindof RACStream * _Nullable(CKIAccountDomain *domain) {
         return [[self clientForMobileVerifiedDomain:domain] deliverOn:[RACScheduler mainThreadScheduler]];
     }];
     
@@ -270,7 +271,7 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
     [self loginWithSuggestedDomain:nil];
 }
 
-- (void)loginWithSuggestedDomain:(NSString *)host
+- (void)loginWithSuggestedDomain:(nullable NSString *)host
 {
     RACSignal *signalForClientForUsersDomain = [self clientForSuggestedDomain:host];
     

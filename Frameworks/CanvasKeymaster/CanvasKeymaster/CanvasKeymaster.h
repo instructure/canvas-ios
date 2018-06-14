@@ -116,6 +116,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (CKIClient *)clientWithMobileVerifiedDetails:(NSDictionary *)details accountDomain:(nullable CKIAccountDomain *)domain;
 
 - (void)loginWithMobileVerifyDetails:(NSDictionary *)details;
+- (void)loginWithSuggestedDomain:(nullable NSString *)host;
 
 @end
 

@@ -228,6 +228,9 @@ extension AppDelegate {
 // MARK: Launching URLS
 extension AppDelegate {
     @discardableResult func openCanvasURL(_ url: URL) -> Bool {
+        if TheKeymaster.numberOfClients == 0, let host = url.host {
+            TheKeymaster.login(withSuggestedDomain: host)
+        }
         // the student app doesn't have as predictable of a tab bar setup and for
         // several views, does not have a route configured for them so for now we
         // will hard code until we move more things over to helm
