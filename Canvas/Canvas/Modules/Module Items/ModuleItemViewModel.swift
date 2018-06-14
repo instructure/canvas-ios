@@ -46,6 +46,9 @@ class ModuleItemViewModel: NSObject {
                 switch content {
                 case .externalURL(url: let url):
                     let webView = CanvasWebView()
+                    webView.finishedLoading = { [weak self] in
+                        self?.markAsViewedAction.apply(()).start()
+                    }
                     webView.load(source: .url(url))
                     return CanvasWebViewController(webView: webView, showDoneButton: false, showShareButton: true)
                 case .externalTool(_, _):
@@ -339,24 +342,6 @@ class ModuleItemViewModel: NSObject {
             try Assignment.invalidateDetailsCache(session: session, courseID: courseID, id: id)
         default:
             break
-        }
-    }
-}
-
-
-// MARK: - WebBrowserViewControllerDelegate
-extension ModuleItemViewModel: WebBrowserViewControllerDelegate {
-    func webBrowser(_ webBrowser: WebBrowserViewController!, didFinishLoading webView: WKWebView!) {
-        if moduleItemMatches(webBrowser.url) {
-            markAsViewedAction.apply(()).start()
-        }
-    }
-
-    fileprivate func moduleItemMatches(_ externalURL: URL) -> Bool {
-        switch self.moduleItem.value?.content {
-        case let .some(.externalURL(url)):
-            return externalURL == url
-        default: return false
         }
     }
 }
