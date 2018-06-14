@@ -509,6 +509,7 @@
 		B1411D5A1FE825ED00CD4967 /* CoreDataSyncHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1411D591FE825ED00CD4967 /* CoreDataSyncHelper.swift */; };
 		B196F79B206AB60400DE640F /* CoreDataSync.m in Sources */ = {isa = PBXBuildFile; fileRef = B196F79A206AB60400DE640F /* CoreDataSync.m */; };
 		B1BE249720AB13FE00C521C3 /* SafariActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BE249620AB13FE00C521C3 /* SafariActivity.swift */; };
+		B1C3407820D1AD3B00D0554D /* ModuleItemsProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = B1C3407720D1AD3B00D0554D /* ModuleItemsProgress.m */; };
 		B1CA05061FE448F300B7D5AA /* NativeNotificationCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = B1CA05041FE448F300B7D5AA /* NativeNotificationCenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B1CA05071FE448F300B7D5AA /* NativeNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = B1CA05051FE448F300B7D5AA /* NativeNotificationCenter.m */; };
 		B1CE74412020CE92003F2366 /* ExternalToolManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CE74402020CE92003F2366 /* ExternalToolManager.swift */; };
@@ -1135,6 +1136,7 @@
 		B1411D591FE825ED00CD4967 /* CoreDataSyncHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataSyncHelper.swift; sourceTree = "<group>"; };
 		B196F79A206AB60400DE640F /* CoreDataSync.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataSync.m; sourceTree = "<group>"; };
 		B1BE249620AB13FE00C521C3 /* SafariActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariActivity.swift; sourceTree = "<group>"; };
+		B1C3407720D1AD3B00D0554D /* ModuleItemsProgress.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModuleItemsProgress.m; sourceTree = "<group>"; };
 		B1CA05041FE448F300B7D5AA /* NativeNotificationCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NativeNotificationCenter.h; path = "CanvasCore/React Native Modules/NativeNotificationCenter/NativeNotificationCenter.h"; sourceTree = SOURCE_ROOT; };
 		B1CA05051FE448F300B7D5AA /* NativeNotificationCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = NativeNotificationCenter.m; path = "CanvasCore/React Native Modules/NativeNotificationCenter/NativeNotificationCenter.m"; sourceTree = SOURCE_ROOT; };
 		B1CE74402020CE92003F2366 /* ExternalToolManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalToolManager.swift; sourceTree = "<group>"; };
@@ -1748,6 +1750,7 @@
 				9FB85498208677DB007499DA /* AdjustableManager.m */,
 				9FA866962086820D000ECFC9 /* Adjustable.swift */,
 				7DD89E8A20AB626600650227 /* AppStoreReview.m */,
+				B1C3407720D1AD3B00D0554D /* ModuleItemsProgress.m */,
 			);
 			path = "React Native Modules";
 			sourceTree = "<group>";
@@ -3438,6 +3441,7 @@
 				49CE979E1F900D0000121A43 /* UserEnrollment+Network.swift in Sources */,
 				4961F6201F8FB6E40093EC86 /* CustomizeEnrollmentViewController.swift in Sources */,
 				4961F5D91F8FB3EF0093EC86 /* ManagedObjectContextScheduler.swift in Sources */,
+				B1C3407820D1AD3B00D0554D /* ModuleItemsProgress.m in Sources */,
 				497CA7731F82D19600501613 /* HelmSplitViewController.swift in Sources */,
 				49CE96EC1F8FFC4500121A43 /* Session+SoEdventurous.swift in Sources */,
 				493020521F902364006BD777 /* GCD+SoLazy.swift in Sources */,

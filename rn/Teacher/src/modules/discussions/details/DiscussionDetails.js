@@ -90,7 +90,7 @@ const {
   markAllAsRead,
   markEntryAsRead,
 } = DetailActions
-const { NativeAccessibility } = NativeModules
+const { NativeAccessibility, ModuleItemsProgress } = NativeModules
 const { deleteDiscussion } = EditActions
 
 const Actions = {
@@ -154,6 +154,9 @@ export class DiscussionDetails extends Component<Props, any> {
           this.props.navigator.replace(`/groups/${group_id}/discussion_topics/${id}`)
         }
       }
+
+      // Mark this discussion as viewed
+      ModuleItemsProgress.viewedDiscussion(nextProps.contextID, nextProps.discussionID)
     }
 
     if (this.state.deletePending && !nextProps.pending && !nextProps.error && !nextProps.discussion) {

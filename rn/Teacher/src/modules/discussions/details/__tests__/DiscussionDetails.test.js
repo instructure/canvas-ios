@@ -686,6 +686,21 @@ describe('DiscussionDetails', () => {
     expect(props.navigator.replace).toHaveBeenCalledWith('/groups/4/discussion_topics/49')
   })
 
+  it('marks discussion as viewed', () => {
+    const spy = jest.fn()
+    NativeModules.ModuleItemsProgress.viewedDiscussion = spy
+    props.discussion = null
+    props.context = 'courses'
+    props.contextID = '1'
+    props.discussionID = '2'
+    const screen = shallow(<DiscussionDetails {...props} />)
+    const discussion = template.discussion({ id: '2' })
+
+    screen.setProps({ discussion })
+
+    expect(spy).toHaveBeenCalledWith('1', '2')
+  })
+
   it('wont replace with group discussion more than once', () => {
     props.discussion = null
     props.context = 'courses'

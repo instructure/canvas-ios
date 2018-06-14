@@ -248,6 +248,10 @@ NativeModules.NativeFileSystem = {
   convertToJPEG: jest.fn(() => Promise.resolve('/image.jpg')),
 }
 
+NativeModules.ModuleItemsProgress = {
+  viewedDiscussion: jest.fn(),
+}
+
 import './../../src/common/global-style'
 
 jest.mock('../../src/common/components/AuthenticatedWebView.js', () => 'AuthenticatedWebView')
