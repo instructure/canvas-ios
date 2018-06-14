@@ -29,6 +29,7 @@ class ModuleItemDetailViewController: UIViewController {
     let refresher: Refresher
     let route: (UIViewController, URL) -> Void
     var embeddedVC: UIViewController?
+    var rightBarButtons: [UIBarButtonItem]?
 
     lazy var toolbar: UIToolbar = {
         let toolbar = UIToolbar()
@@ -108,6 +109,7 @@ class ModuleItemDetailViewController: UIViewController {
         view.backgroundColor = .white
         automaticallyAdjustsScrollViewInsets = false
         rac_title <~ viewModel.title
+        rightBarButtons = navigationItem.rightBarButtonItems
 
         /// toolbar
         let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
@@ -158,7 +160,9 @@ class ModuleItemDetailViewController: UIViewController {
 
     func updateNavigationBarButtonItems(_ embeddedViewController: UIViewController) {
         var items = embeddedViewController.navigationItem.rightBarButtonItems ?? []
-        if let rightButtons = navigationItem.rightBarButtonItems, rightButtons.count > 0 {
+
+        // Don't override buttons possibly set by presenters or the system (like `Done`)
+        if let rightButtons = rightBarButtons {
             items = items + rightButtons
         }
 
