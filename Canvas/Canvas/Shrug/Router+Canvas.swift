@@ -330,7 +330,13 @@ extension Router {
             }
             return eventVC
         }
-
+        
+        addContextRoute([.course], subPath: "users/:userID") { (contextID, parameters) -> UIViewController? in
+            guard let userID = try? parameters.stringID("userID") else { return nil }
+            let props = ["userID": userID, "courseID": contextID.id]
+            return HelmViewController(moduleName: "/courses/:courseID/users/:userID", props: props)
+        }
+        
         CBIConversationStarter.setConversationStarter { recipients, context in
             guard
                 let contextID = ContextID(canvasContext: context),
