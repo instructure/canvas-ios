@@ -315,7 +315,7 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
     stickyHeaderIndices={Array []}
     stickySectionHeadersEnabled={false}
     updateCellsBatchingPeriod={50}
-    windowSize={21}
+    windowSize={100}
   >
     <RCTRefreshControl />
     <View>
@@ -1352,7 +1352,7 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
     stickyHeaderIndices={Array []}
     stickySectionHeadersEnabled={false}
     updateCellsBatchingPeriod={50}
-    windowSize={21}
+    windowSize={100}
   >
     <RCTRefreshControl />
     <View>
@@ -2489,7 +2489,7 @@ exports[`Dashboard render 1`] = `
     stickyHeaderIndices={Array []}
     stickySectionHeadersEnabled={false}
     updateCellsBatchingPeriod={50}
-    windowSize={21}
+    windowSize={100}
   >
     <RCTRefreshControl />
     <View>
@@ -3484,7 +3484,7 @@ exports[`Dashboard render while pending 1`] = `
     stickyHeaderIndices={Array []}
     stickySectionHeadersEnabled={false}
     updateCellsBatchingPeriod={50}
-    windowSize={21}
+    windowSize={100}
   >
     <RCTRefreshControl />
     <View>
@@ -4279,7 +4279,7 @@ exports[`Dashboard render without courses and *zero* total courses 1`] = `
     stickyHeaderIndices={Array []}
     stickySectionHeadersEnabled={false}
     updateCellsBatchingPeriod={50}
-    windowSize={21}
+    windowSize={100}
   >
     <RCTRefreshControl />
     <View>
@@ -4660,7 +4660,7 @@ exports[`Dashboard render without favorite courses 1`] = `
     stickyHeaderIndices={Array []}
     stickySectionHeadersEnabled={false}
     updateCellsBatchingPeriod={50}
-    windowSize={21}
+    windowSize={100}
   >
     <RCTRefreshControl />
     <View>
@@ -5405,7 +5405,7 @@ exports[`Dashboard renders course invites 1`] = `
     stickyHeaderIndices={Array []}
     stickySectionHeadersEnabled={false}
     updateCellsBatchingPeriod={50}
-    windowSize={21}
+    windowSize={100}
   >
     <RCTRefreshControl />
     <View>

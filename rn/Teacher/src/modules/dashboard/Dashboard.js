@@ -381,6 +381,7 @@ export class Dashboard extends React.Component<Props, State> {
         onLayout={this.onLayout}
         sections={sections}
         renderItem={() => {}}
+        windowSize={100}
         // this prop is only necessary because renderItem is not listed as an optional prop
         // https://github.com/facebook/react-native/pull/17262
       />
