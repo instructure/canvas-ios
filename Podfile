@@ -1,4 +1,3 @@
-source 'git@github.com:instructure/ios-podspecs.git'
 source 'https://github.com/CocoaPods/Specs.git'
 
 workspace 'AllTheThings.xcworkspace'
@@ -54,7 +53,6 @@ abstract_target 'defaults' do
   pod 'Cartography', '~> 1.1'
   pod 'ReactiveSwift'
   pod 'Kingfisher', '~> 3.2'
-  pod 'JSTokenField', '~> 1.1'
   pod 'CocoaLumberjack', '~> 3.0'
   pod 'Masonry', '~> 1.0'
   pod 'SVProgressHUD', '~> 2.0'
@@ -87,7 +85,6 @@ abstract_target 'defaults' do
 
   target 'TechDebt' do
     project 'Canvas/Canvas.xcodeproj'
-    pod 'JSTokenField', '~> 1.1'
     pod 'Google/Analytics'
     pod 'FXKeychain', '~> 1.5'
     pod 'Crashlytics', '~> 3.8'

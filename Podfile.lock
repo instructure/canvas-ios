@@ -69,7 +69,6 @@ PODS:
   - gRPC-Core/Interface (1.11.0)
   - Interactable (0.0.9):
     - React
-  - JSTokenField (1.1)
   - Kingfisher (3.13.1)
   - Mantle (1.5.8):
     - Mantle/extobjc (= 1.5.8)
@@ -191,7 +190,6 @@ DEPENDENCIES:
   - FXKeychain (~> 1.5)
   - Google/Analytics
   - Interactable (from `./rn/Teacher/node_modules/react-native-interactable`)
-  - JSTokenField (~> 1.1)
   - Kingfisher (~> 3.2)
   - Mantle (~> 1.5.5)
   - Marshal (~> 1.1)
@@ -239,8 +237,6 @@ DEPENDENCIES:
   - yoga (from `./rn/Teacher/node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
-  "git@github.com:instructure/ios-podspecs.git":
-    - JSTokenField
   https://github.com/cocoapods/specs.git:
     - AFNetworking
     - BoringSSL
@@ -354,7 +350,6 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
   gRPC-Core: 164639cd8ae18ca8b65477fafb2efbaecf4f181a
   Interactable: b69c171636bec426b3010e0fc3ef59212ce09dd6
-  JSTokenField: f619bc91e942f05b2bf4e67fe46aabd9e7891f5a
   Kingfisher: ed9707a409cc47fddafbcd12a43a9757e3600af5
   Mantle: f03b2b606c3f0cabd80214ad8a2fed6b464a7359
   Marshal: 8e04e6624e506921db7143b0bfd83caee03f32d6
@@ -389,6 +384,6 @@ SPEC CHECKSUMS:
   TPKeyboardAvoiding: cb69d5ddbe90ce0170e4bc2db1e5e41d4a3ad9a4
   yoga: 17521bbb0dd54a47c0b3ac43253e78cdac7488e0
 
-PODFILE CHECKSUM: 0d666a02f25aeea0eef7ce4e3669b1f34ad056dc
+PODFILE CHECKSUM: f77e4747b7101ad2060bcaaa4cedc325f9e1db56
 
 COCOAPODS: 1.5.2
