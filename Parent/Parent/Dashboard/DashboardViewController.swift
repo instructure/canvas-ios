@@ -85,6 +85,7 @@ class DashboardViewController: UIViewController {
 
     var studentCountObserver: ManagedObjectCountObserver<Student>!
     var noStudentsViewController: NoStudentsViewController!
+    var adminViewController: AdminViewController!
     
     // ---------------------------------------------
     // MARK: - Initializers
@@ -230,10 +231,24 @@ class DashboardViewController: UIViewController {
         noStudentsViewController.view.translatesAutoresizingMaskIntoConstraints = false
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[noStudents]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["noStudents": noStudentsViewController.view]))
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[noStudents]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["noStudents": noStudentsViewController.view]))
-
+        
+        let storyboard = UIStoryboard(name: "AdminViewController", bundle: nil)
+        adminViewController = storyboard.instantiateViewController(withIdentifier: "vc") as! AdminViewController
+        
         studentCountObserver = try Student.countOfObservedStudentsObserver(session) { [weak self] count in
             DispatchQueue.main.async {
-                self?.noStudentsViewController.view.isHidden = count > 0
+                let isSiteAdmin = self?.session.isSiteAdmin ?? false
+                let hideNoStudentsView = count > 0 || isSiteAdmin
+                let hideTabBar = count == 0
+                
+                self?.noStudentsViewController.view.isHidden = hideNoStudentsView
+                self?.tabBar.isHidden = hideTabBar
+                
+                if isSiteAdmin {
+                    self?.studentInfoName.text = NSLocalizedString("Admin", comment: "Label displayed when logged in as an admin")
+                    self?.studentInfoAvatar.isHidden = true
+                    self?.pageViewController?.setViewControllers([self!.adminViewController], direction: .reverse, animated: false, completion: { _ in })
+                }
             }
         }
     }
@@ -396,13 +411,14 @@ class DashboardViewController: UIViewController {
     func updateStudentInfoView() {
         guard let student = currentStudent else { return }
         
+        studentInfoName.text = student.name
+        studentInfoAvatar.isHidden = false
+        
         if let url = student.avatarURL {
             studentInfoAvatar.accessibilityLabel = student.name
             studentInfoAvatar.kf.setImage(with: url,
                                  placeholder: DefaultAvatarCoordinator.defaultAvatarForStudent(student))
         }
-        
-        studentInfoName.text = student.name
     }
 }
 

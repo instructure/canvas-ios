@@ -87,6 +87,12 @@ open class Session: NSObject {
         return components.joined(separator: "-")
     }
     
+    open var isSiteAdmin: Bool {
+        guard let host = baseURL.host else { return false }
+
+        return host.lowercased().contains("siteadmin")
+    }
+    
     open var localStoreDirectoryURL: URL {
         let fileURL: URL
 
