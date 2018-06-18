@@ -207,13 +207,13 @@
     "message": "利用可能となる日："
   },
   "available_from_587ce92f": {
-    "message": "次から使用可能"
+    "message": "次の日時から"
   },
   "available_from_date_bb9d5115": {
     "message": "利用可能となる日：{ date }"
   },
   "available_from_f84e4611": {
-    "message": "次から使用可能"
+    "message": "次の日時から"
   },
   "available_from_must_be_before_available_to_b73ad479": {
     "message": "利用可能初日は利用可能最終日の前である必要があります。"

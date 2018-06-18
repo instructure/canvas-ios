@@ -10,9 +10,6 @@
 /* Server Error Message */
 "A server error has occurred.  Please try again." = "Произошла ошибка сервера. Пожалуйста, попробуйте еще раз.";
 
-/* Alerts Tab */
-"ALERTS" = "ПРЕДУПРЕЖДЕНИЯ";
-
 /* Unauthorized Student Error Title */
 "Access Denied" = "Доступ закрыт";
 
@@ -48,9 +45,6 @@
 
 /* Authorization Failed Title */
 "Authorization Failed." = "Авторизация не удалась.";
-
-/* Courses Tab */
-"COURSES" = "КУРСЫ";
 
 /* No comment provided by engineer. */
 "Cache cleared" = "Данные кэша очищены";
@@ -279,9 +273,6 @@
 
 /* Name of action when viewing a reminder */
 "View" = "Просмотр";
-
-/* Calendar Tab */
-"WEEK" = "НЕДЕЛЯ";
 
 /* Title for field */
 "What can we do better?" = "Что мы можем сделать лучше?";

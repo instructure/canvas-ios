@@ -10,9 +10,6 @@
 /* Server Error Message */
 "A server error has occurred.  Please try again." = "حدث خطأ في الخادم. يرجى إعادة المحاولة.";
 
-/* Alerts Tab */
-"ALERTS" = "تنبيهات";
-
 /* Unauthorized Student Error Title */
 "Access Denied" = "الوصول مرفوض";
 
@@ -48,9 +45,6 @@
 
 /* Authorization Failed Title */
 "Authorization Failed." = "فشل التخويل.";
-
-/* Courses Tab */
-"COURSES" = "المساقات";
 
 /* No comment provided by engineer. */
 "Cache cleared" = "تم مسح ذاكرة التخزين المؤقت";
@@ -279,9 +273,6 @@
 
 /* Name of action when viewing a reminder */
 "View" = "عرض";
-
-/* Calendar Tab */
-"WEEK" = "أسبوع";
 
 /* Title for field */
 "What can we do better?" = "ماذا يمكننا فعله لتطوير أداءنا؟";

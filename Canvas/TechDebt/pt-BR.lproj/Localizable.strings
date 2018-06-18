@@ -1274,13 +1274,13 @@
 "Toggles selection of item" = "Alterna a seleção do item";
 
 /* title for assignment submission button */
-"Turn In" = "Ligar";
+"Turn In" = "Entregar";
 
 /* title for re-submitting an assignment */
-"Turn In Again" = "Ligar Novamente";
+"Turn In Again" = "Entregar Novamente";
 
 /* (No Comment) */
-"Turn in %@" = "Ligar %@";
+"Turn in %@" = "Entregar %@";
 
 /* (No Comment) */
 "Uh-oh! No Internet Connection" = "Uh-oh! Sem conexão com a Internet";

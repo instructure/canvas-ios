@@ -10,9 +10,6 @@
 /* Server Error Message */
 "A server error has occurred.  Please try again." = "Ocorreu um erro de servidor. Por favor tente novamente.";
 
-/* Alerts Tab */
-"ALERTS" = "ALERTAS";
-
 /* Unauthorized Student Error Title */
 "Access Denied" = "Acesso Negado";
 
@@ -48,9 +45,6 @@
 
 /* Authorization Failed Title */
 "Authorization Failed." = "Autorização Falhou.";
-
-/* Courses Tab */
-"COURSES" = "CURSOS";
 
 /* No comment provided by engineer. */
 "Cache cleared" = "Cache limpo";
@@ -279,9 +273,6 @@
 
 /* Name of action when viewing a reminder */
 "View" = "Visualizar";
-
-/* Calendar Tab */
-"WEEK" = "SEMANA";
 
 /* Title for field */
 "What can we do better?" = "O que podemos fazer melhor?";

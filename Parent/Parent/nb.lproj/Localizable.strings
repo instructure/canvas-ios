@@ -10,9 +10,6 @@
 /* Server Error Message */
 "A server error has occurred.  Please try again." = "Det har oppstått en serverfeil. Vennligst forsøk igjen.";
 
-/* Alerts Tab */
-"ALERTS" = "VARSLER";
-
 /* Unauthorized Student Error Title */
 "Access Denied" = "Nektet tilgang";
 
@@ -48,9 +45,6 @@
 
 /* Authorization Failed Title */
 "Authorization Failed." = "Autorisasjon mislyktes.";
-
-/* Courses Tab */
-"COURSES" = "EMNE";
 
 /* No comment provided by engineer. */
 "Cache cleared" = "Hurtiglager nullstilt";
@@ -279,9 +273,6 @@
 
 /* Name of action when viewing a reminder */
 "View" = "Vis";
-
-/* Calendar Tab */
-"WEEK" = "UKE";
 
 /* Title for field */
 "What can we do better?" = "Hva kan vi gjøre bedre?";

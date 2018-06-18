@@ -10,9 +10,6 @@
 /* Server Error Message */
 "A server error has occurred.  Please try again." = "Er heeft zich een serverfout voorgedaan. Probeer het nogmaals.";
 
-/* Alerts Tab */
-"ALERTS" = "WAARSCHUWINGEN";
-
 /* Unauthorized Student Error Title */
 "Access Denied" = "Toegang geweigerd";
 
@@ -48,9 +45,6 @@
 
 /* Authorization Failed Title */
 "Authorization Failed." = "Toestemming mislukt.";
-
-/* Courses Tab */
-"COURSES" = "CURSUSSEN";
 
 /* No comment provided by engineer. */
 "Cache cleared" = "Cache gewist";
@@ -279,9 +273,6 @@
 
 /* Name of action when viewing a reminder */
 "View" = "Bekijken";
-
-/* Calendar Tab */
-"WEEK" = "WEEK";
 
 /* Title for field */
 "What can we do better?" = "Wat kunnen we beter doen?";

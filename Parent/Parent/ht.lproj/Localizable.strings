@@ -10,9 +10,6 @@
 /* Server Error Message */
 "A server error has occurred.  Please try again." = "Yon erè te fèt sou sèvè a. Tanpri eseye ankò.";
 
-/* Alerts Tab */
-"ALERTS" = "AVÈTISMAN";
-
 /* Unauthorized Student Error Title */
 "Access Denied" = "Aksè Refize";
 
@@ -48,9 +45,6 @@
 
 /* Authorization Failed Title */
 "Authorization Failed." = "Otorizasyon Echwe.";
-
-/* Courses Tab */
-"COURSES" = "KOU";
 
 /* No comment provided by engineer. */
 "Cache cleared" = "Kache netwaye";
@@ -279,9 +273,6 @@
 
 /* Name of action when viewing a reminder */
 "View" = "Gade";
-
-/* Calendar Tab */
-"WEEK" = "SEMENN";
 
 /* Title for field */
 "What can we do better?" = "Kisa nou ka amelyore?";

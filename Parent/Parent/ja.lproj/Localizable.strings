@@ -10,9 +10,6 @@
 /* Server Error Message */
 "A server error has occurred.  Please try again." = "サーバーエラーが発生しました。再度お試しください。";
 
-/* Alerts Tab */
-"ALERTS" = "アラート";
-
 /* Unauthorized Student Error Title */
 "Access Denied" = "アクセスが拒否されました";
 
@@ -48,9 +45,6 @@
 
 /* Authorization Failed Title */
 "Authorization Failed." = "認証に失敗しました。";
-
-/* Courses Tab */
-"COURSES" = "コース";
 
 /* No comment provided by engineer. */
 "Cache cleared" = "キャッシュがクリアされました";
@@ -279,9 +273,6 @@
 
 /* Name of action when viewing a reminder */
 "View" = "表示";
-
-/* Calendar Tab */
-"WEEK" = "週";
 
 /* Title for field */
 "What can we do better?" = "改善する余地はどこにあるでしょう？";

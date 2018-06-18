@@ -705,7 +705,7 @@
     "message": "Masquer le contenu pour { name }"
   },
   "hide_correct_answers_at_b1a59408": {
-    "message": "Masquer les réponses correctes à"
+    "message": "Masquer les réponses correctes le"
   },
   "hide_date_cannot_be_before_show_date_cfaa35f0": {
     "message": "La « Date de masquage » ne peut être antérieure à la « Date d'affichage »"

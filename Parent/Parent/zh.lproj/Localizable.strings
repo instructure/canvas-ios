@@ -10,9 +10,6 @@
 /* Server Error Message */
 "A server error has occurred.  Please try again." = "服务器出现错误。请再次尝试。";
 
-/* Alerts Tab */
-"ALERTS" = "通知";
-
 /* Unauthorized Student Error Title */
 "Access Denied" = "拒绝访问";
 
@@ -48,9 +45,6 @@
 
 /* Authorization Failed Title */
 "Authorization Failed." = "验证失败。";
-
-/* Courses Tab */
-"COURSES" = "课程";
 
 /* No comment provided by engineer. */
 "Cache cleared" = "清除缓存";
@@ -279,9 +273,6 @@
 
 /* Name of action when viewing a reminder */
 "View" = "查看";
-
-/* Calendar Tab */
-"WEEK" = "星期";
 
 /* Title for field */
 "What can we do better?" = "我们如何能做得更好？";
