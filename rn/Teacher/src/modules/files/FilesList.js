@@ -360,16 +360,12 @@ export class FilesList extends Component<Props, State> {
     if (item.type === 'file') {
       selected = this.isRowSelected(item)
       name = item.display_name
-      switch (item.mime_class) {
-        case 'image':
-          icon = { uri: item.thumbnail_url }
-          break
-        case 'video':
-          icon = images.files.media
-          break
-        default:
-          icon = images.document
-          break
+      if (item.mime_class === 'image' && item.thumbnail_url) {
+        icon = { uri: item.thumbnail_url }
+      } else if (item.mime_class === 'video') {
+        icon = images.files.media
+      } else {
+        icon = images.document
       }
       subtitle = bytes(item.size)
     } else {

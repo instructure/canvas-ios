@@ -39,71 +39,7 @@
 @import PSPDFKitUI;
 @import CanvasKeymaster;
 
-// TODO: REMOVE
-
-// This is just a simple controller to present a webview as a child
-// controller, so it can be used analogously to QLPreviewController.
-@interface HTMLPreviewController : UIViewController <UIWebViewDelegate>
-@property (nonatomic) NSURL *url;
-@end
-
-@implementation HTMLPreviewController
-- (void)loadView
-{
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    UIWebView *webView = [[UIWebView alloc] init];
-    webView.scalesPageToFit = YES;
-    webView.delegate = self;
-    if (self.url) {
-        NSURLRequest *request = [NSURLRequest requestWithURL:self.url];
-        [webView loadRequest:request];
-        [webView setBackgroundColor:[UIColor clearColor]];
-    }
-    self.view = webView;
-}
-
-- (void)setUrl:(NSURL *)url
-{
-    if (url == _url) {
-        return;
-    }
-    _url = url;
-    NSURLRequest *request = [NSURLRequest requestWithURL:self.url];
-    [(UIWebView *)self.view loadRequest:request];
-}
-
-#pragma mark - UIWebViewDelegate
-
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
-    [webView replaceHREFsWithAPISafeURLs];
-}
-
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-    if (error.code != NSURLErrorCancelled) {
-        NSString *errorMessage = [NSString stringWithFormat:NSLocalizedString(@"There was a problem accessing the requested file.\n\nError: %@", "Error message when fetching a file fails"), error.localizedDescription];
-        [UIAlertController showAlertWithTitle:nil message:errorMessage];
-    }
-}
-
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    if (navigationType == UIWebViewNavigationTypeLinkClicked) {
-        
-        UINavigationController *controller = (UINavigationController *)[[UIStoryboard storyboardWithName:@"Storyboard-WebBrowser" bundle:[NSBundle bundleForClass:[self class]]] instantiateInitialViewController];
-        WebBrowserViewController *browser = controller.viewControllers[0];
-        [browser setUrl:request.URL];
-        [controller setModalPresentationStyle:UIModalPresentationFullScreen];
-        [self presentViewController:controller animated:YES completion:nil];
-        
-        return NO;
-    }
-    return YES;
-}
-
-@end
-
-
-
-@interface FileViewController () < UIDocumentInteractionControllerDelegate, QLPreviewControllerDelegate>
+@interface FileViewController () < UIDocumentInteractionControllerDelegate>
 @property (nonatomic, strong) UIActivityIndicatorView *activityView;
 @end
 
@@ -286,16 +222,9 @@
 }
 
 - (UIViewController *)childControllerForContentAtURL:(NSURL *)url {
-    NSString *uti;
-    [url getResourceValue:&uti forKey:NSURLTypeIdentifierKey error:NULL];
-    
     UIViewController *controller = nil;
     
-    if (UTTypeConformsTo((__bridge CFStringRef)uti, kUTTypeHTML)) {
-        HTMLPreviewController *webController = [[HTMLPreviewController alloc] init];
-        webController.url = url;
-        controller = webController;
-    } else if ([_file.contentType isEqualToString:@"application/pdf"]) {
+    if ([_file.contentType isEqualToString:@"application/pdf"]) {
         pdfDocPresenter = [[PreSubmissionPDFDocumentPresenter alloc] initWithDocumentURL:url session:TheKeymaster.currentClient.authSession defaultCourseID:[self hackishlyGetDefaultCourseIfPossible] defaultAssignmentID:[self hackishlyGetDefaultAssignmentIfPossible]];
         @weakify(self);
         pdfDocPresenter.didSubmitAssignment = ^{
@@ -309,17 +238,21 @@
             [self.navigationController popViewControllerAnimated:YES];
         };
         controller = [pdfDocPresenter getPDFViewController];
-    } else if ([QLPreviewController canPreviewItem:_url]) {
-        CKURLPreviewViewController *previewController = [[CKURLPreviewViewController alloc] init];
-        previewController.delegate = self;
-        previewController.url = url;
-        [previewController reloadData];
-        controller = previewController;
-    }
-    else {
-        NoPreviewAvailableController *noPreviewController = [NoPreviewAvailableController new];
-        noPreviewController.url = url;
-        controller = noPreviewController;
+    } else {
+        CanvasWebView *webView = [CanvasWebView new];
+        webView.presentingViewController = self;
+        [webView setNavigationHandlerWithRouteToURL:^(NSURL * _Nonnull url) {
+            CanvasWebView *webView = [CanvasWebView new];
+            [webView loadRequest:[NSURLRequest requestWithURL:url]];
+            CanvasWebViewController *controller = [[CanvasWebViewController alloc] initWithWebView:webView showDoneButton:YES showShareButton:YES];
+            [controller setModalPresentationStyle:UIModalPresentationFullScreen];
+            UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
+            [self presentViewController:navController animated:YES completion:nil];
+        }];
+        [webView loadFileURL:_url allowingReadAccessToURL:_url];
+        UIViewController *viewController = [UIViewController new];
+        viewController.view = webView;
+        controller = viewController;
     }
     return controller;
 }
@@ -530,20 +463,6 @@
     else {
         [printController presentAnimated:YES completionHandler:NULL];
     }
-}
-
-#pragma mark - QLPreviewControllerDelegate
-
-- (BOOL)previewController:(QLPreviewController *)controller shouldOpenURL:(NSURL *)url forPreviewItem:(id<QLPreviewItem>)item
-{
-    UINavigationController *navController = (UINavigationController *)[[UIStoryboard storyboardWithName:@"Storyboard-WebBrowser" bundle:[NSBundle bundleForClass:[self class]]] instantiateInitialViewController];
-    WebBrowserViewController *browser = navController.viewControllers[0];
-    [browser setUrl:url];
-    [navController setModalPresentationStyle:UIModalPresentationFullScreen];
-    [self presentViewController:navController animated:YES completion:nil];
-    
-    
-    return NO;
 }
 
 #pragma mark - Locking

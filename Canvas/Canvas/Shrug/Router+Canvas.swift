@@ -146,6 +146,31 @@ extension Router {
             return nil
         }
 
+        let downloadFile: RouteHandler = { parameters, _ in
+            guard let parameters = parameters else {
+                return nil
+            }
+            let fileVC = FileViewController()
+            fileVC.applyRoutingParameters(parameters)
+            return fileVC
+        }
+
+        addRoute("groups/:groupID/files/:fileID", handler: downloadFile)
+        addRoute("groups/:groupID/files/:fileID/download", handler: downloadFile)
+        addRoute("/courses/:courseID/files/:fileIdent") { parameters, sender in
+            // This route might have a module_item_id param
+            // If so, it needs to be embedded in ModuleItemDetailViewController
+            if let parameters = parameters, let moduleItem = moduleItemDetailViewController(routerParameters: parameters) {
+                return moduleItem
+            }
+            return downloadFile(parameters, sender)
+        }
+        addRoute("/courses/:courseID/files/:fileID/download", handler: downloadFile)
+        addRoute("/users/:userID/files/:fileID", handler: downloadFile)
+        addRoute("/users/:userID/files/:fileID/download", handler: downloadFile)
+        addRoute("/files/:fileID/download", handler: downloadFile)
+        addRoute("/files/:fileID", handler: downloadFile)
+
         // The :ignored part is usually users_{id}, but canvas ignores it, it can be anything and
         // you will still see your files, and the actual folder path doesn't start until after it.
         addRoute("/files/folder/:ignored") { parameters, _ in

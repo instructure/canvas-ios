@@ -173,7 +173,7 @@
 		4927068F1CF4B88600C631C6 /* CBIFileViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706801CF4B88600C631C6 /* CBIFileViewModel.m */; };
 		492706901CF4B88600C631C6 /* CBIFolderViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706811CF4B88600C631C6 /* CBIFolderViewModel.h */; };
 		492706911CF4B88600C631C6 /* CBIFolderViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706821CF4B88600C631C6 /* CBIFolderViewModel.m */; };
-		492706931CF4B88600C631C6 /* FileViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706841CF4B88600C631C6 /* FileViewController.h */; };
+		492706931CF4B88600C631C6 /* FileViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706841CF4B88600C631C6 /* FileViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		492706941CF4B88600C631C6 /* FileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706851CF4B88600C631C6 /* FileViewController.m */; };
 		492706971CF4B88600C631C6 /* NoPreviewAvailableController.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706881CF4B88600C631C6 /* NoPreviewAvailableController.h */; };
 		492706981CF4B88600C631C6 /* NoPreviewAvailableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706891CF4B88600C631C6 /* NoPreviewAvailableController.m */; };

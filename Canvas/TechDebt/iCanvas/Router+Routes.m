@@ -380,17 +380,6 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
         return (UIViewController *)fileVC;
     };
     
-    [self addRoutesWithDictionary:@{
-        @"/groups/:groupIdent/files/:fileIdent" : fileDownloadConstructor,
-        @"/groups/:groupIdent/files/:fileIdent/download" : fileDownloadConstructor,
-        @"/courses/:courseIdent/files/:fileIdent" : fileDownloadConstructor,
-        @"/courses/:courseIdent/files/:fileIdent/download" : fileDownloadConstructor,
-        @"/users/:userIdent/files/:fileIdent" : fileDownloadConstructor,
-        @"/users/:userIdent/files/:fileIdent/download" : fileDownloadConstructor,
-        @"/files/:fileIdent/download" : fileDownloadConstructor,
-        @"/files/:fileIdent" : fileDownloadConstructor,
-    }];
-    
     [WhizzyWigView setOpenURLHandler:^(NSURL *url) {
         if ([url.host isEqualToString:TheKeymaster.currentClient.baseURL.host]) {
             [self openCanvasURL:url withOptions:nil];

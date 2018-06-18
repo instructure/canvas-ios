@@ -21,6 +21,7 @@ import { ActionSheetIOS, AlertIOS, Alert } from 'react-native'
 import { shallow } from 'enzyme'
 
 import { FilesList, mapStateToProps } from '../FilesList'
+import images from '../../../images'
 
 import * as template from '../../../__templates__'
 
@@ -368,6 +369,23 @@ describe('FilesList', () => {
     const image = shallow(row.prop('renderImage')())
     const icon = image.find('AccessIcon')
     expect(icon.prop('image').uri).toEqual(thumb)
+  })
+
+  it('uses default icon for images without a thumbnail_url', () => {
+    const data = [
+      template.file({
+        type: 'file',
+        key: 'file-1',
+        thumbnail_url: null,
+        mime_class: 'image',
+      }),
+    ]
+    const view = shallow(<FilesList data={data} navigator={template.navigator()} />)
+    const item = shallow(view.find('FlatList').prop('renderItem')({ item: data[0], index: 0 }))
+    const row = item.find('Row')
+    const image = shallow(row.prop('renderImage')())
+    const icon = image.find('AccessIcon')
+    expect(icon.prop('image')).toEqual(images.document)
   })
 
   it('uses correct icon for videos', () => {
