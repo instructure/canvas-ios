@@ -155,8 +155,8 @@ extension Router {
             return fileVC
         }
 
-        addRoute("groups/:groupID/files/:fileID", handler: downloadFile)
-        addRoute("groups/:groupID/files/:fileID/download", handler: downloadFile)
+        addRoute("groups/:groupID/files/:fileIdent", handler: downloadFile)
+        addRoute("groups/:groupID/files/:fileIdent/download", handler: downloadFile)
         addRoute("/courses/:courseID/files/:fileIdent") { parameters, sender in
             // This route might have a module_item_id param
             // If so, it needs to be embedded in ModuleItemDetailViewController
@@ -165,11 +165,11 @@ extension Router {
             }
             return downloadFile(parameters, sender)
         }
-        addRoute("/courses/:courseID/files/:fileID/download", handler: downloadFile)
-        addRoute("/users/:userID/files/:fileID", handler: downloadFile)
-        addRoute("/users/:userID/files/:fileID/download", handler: downloadFile)
-        addRoute("/files/:fileID/download", handler: downloadFile)
-        addRoute("/files/:fileID", handler: downloadFile)
+        addRoute("/courses/:courseID/files/:fileIdent/download", handler: downloadFile)
+        addRoute("/users/:userID/files/:fileIdent", handler: downloadFile)
+        addRoute("/users/:userID/files/:fileIdent/download", handler: downloadFile)
+        addRoute("/files/:fileIdent/download", handler: downloadFile)
+        addRoute("/files/:fileIdent", handler: downloadFile)
 
         // The :ignored part is usually users_{id}, but canvas ignores it, it can be anything and
         // you will still see your files, and the actual folder path doesn't start until after it.
