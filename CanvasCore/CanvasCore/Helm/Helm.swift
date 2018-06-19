@@ -425,7 +425,8 @@ extension HelmManager {
                 return splitViewController?.masterHelmNavigationController as? HelmNavigationController
             }
 
-            if (splitViewController?.detailHelmNavigationController == nil) {
+            let isDeepLink = options["deepLink"] as? Bool ?? false
+            if (splitViewController?.detailHelmNavigationController == nil && !isDeepLink) {
                 splitViewController?.primeEmptyDetailNavigationController()
             }
 
