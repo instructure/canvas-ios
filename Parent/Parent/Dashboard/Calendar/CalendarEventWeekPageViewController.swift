@@ -78,19 +78,19 @@ class CalendarEventWeekPageViewController: UIViewController {
 
         let nextImage = UIImage.RTLImage("icon_forward", renderingMode: .alwaysTemplate)
         let prevImage = UIImage.RTLImage("icon_back", renderingMode: .alwaysTemplate)
-        
-        nextWeekButton.tintColor = UIAccessibilityIsReduceTransparencyEnabled() ? UIColor.black : UIColor.white
+
+        nextWeekButton.tintColor = UIColor.white
         nextWeekButton.setImage(nextImage, for: .normal)
         nextWeekButton.accessibilityIdentifier = "next_week_button"
         nextWeekButton.accessibilityLabel = NSLocalizedString("Next Week", comment: "Next Week Button Accessibility Label")
         
-        prevWeekButton.tintColor = UIAccessibilityIsReduceTransparencyEnabled() ? UIColor.black : UIColor.white
+        prevWeekButton.tintColor = UIColor.white
         prevWeekButton.setImage(prevImage, for: .normal)
         prevWeekButton.accessibilityIdentifier = "last_week_button"
         prevWeekButton.accessibilityLabel = NSLocalizedString("Last Week", comment: "Last Week Button Accessibility Label")
         
         updateHeaderTitle()
-        
+
         let colorScheme = ColorCoordinator.colorSchemeForStudentID(studentID)
         view.backgroundColor = colorScheme.secondaryColor
     }
@@ -126,7 +126,7 @@ class CalendarEventWeekPageViewController: UIViewController {
         headerLabel.text = "\(formatter.string(from: viewController.startDate)) - \(formatter.string(from: viewController.endDate - 1.secondsComponents))"
         headerLabel.accessibilityIdentifier = "week_header_label"
         headerLabel.accessibilityLabel = String(format: NSLocalizedString("%@ to %@", comment: "Something to Something"), formatter.string(from: viewController.startDate), formatter.string(from: viewController.endDate))
-        headerLabel.textColor = UIAccessibilityIsReduceTransparencyEnabled() ? UIColor.black : UIColor.white
+        headerLabel.textColor = UIColor.white
 
     }
 

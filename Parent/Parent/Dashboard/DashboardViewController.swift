@@ -306,7 +306,6 @@ class DashboardViewController: UIViewController {
         }
 
         let calendarWeekPageVC = CalendarEventWeekPageViewController.new(session: session, studentID: currentStudent.id)
-        calendarWeekPageVC.view.backgroundColor = .clear
         calendarWeekPageVC.selectCalendarEventAction = { [weak self] in
             self?.selectCalendarEventAction?($0, $1, $2)
         }
