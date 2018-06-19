@@ -102,10 +102,38 @@ public final class Soseedy_SeedyGroupsServiceClient: ServiceClientBase, Soseedy_
 /// To build a server, implement a class that conforms to this protocol.
 /// If one of the methods returning `ServerStatus?` returns nil,
 /// it is expected that you have already returned a status to the client by means of `session.close`.
-public protocol Soseedy_SeedyGroupsProvider {
+public protocol Soseedy_SeedyGroupsProvider: ServiceProvider {
   func createCourseGroupCategory(request: Soseedy_CreateCourseGroupCategoryRequest, session: Soseedy_SeedyGroupsCreateCourseGroupCategorySession) throws -> Soseedy_GroupCategory
   func createGroup(request: Soseedy_CreateGroupRequest, session: Soseedy_SeedyGroupsCreateGroupSession) throws -> Soseedy_Group
   func createGroupMembership(request: Soseedy_CreateGroupMembershipRequest, session: Soseedy_SeedyGroupsCreateGroupMembershipSession) throws -> Soseedy_GroupMembership
+}
+
+extension Soseedy_SeedyGroupsProvider {
+  public var serviceName: String { return "soseedy.SeedyGroups" }
+
+  /// Determines and calls the appropriate request handler, depending on the request's method.
+  /// Throws `HandleMethodError.unknownMethod` for methods not handled by this service.
+  public func handleMethod(_ method: String, handler: Handler) throws -> ServerStatus? {
+    switch method {
+    case "/soseedy.SeedyGroups/CreateCourseGroupCategory":
+      return try Soseedy_SeedyGroupsCreateCourseGroupCategorySessionBase(
+        handler: handler,
+        providerBlock: { try self.createCourseGroupCategory(request: $0, session: $1 as! Soseedy_SeedyGroupsCreateCourseGroupCategorySessionBase) })
+          .run()
+    case "/soseedy.SeedyGroups/CreateGroup":
+      return try Soseedy_SeedyGroupsCreateGroupSessionBase(
+        handler: handler,
+        providerBlock: { try self.createGroup(request: $0, session: $1 as! Soseedy_SeedyGroupsCreateGroupSessionBase) })
+          .run()
+    case "/soseedy.SeedyGroups/CreateGroupMembership":
+      return try Soseedy_SeedyGroupsCreateGroupMembershipSessionBase(
+        handler: handler,
+        providerBlock: { try self.createGroupMembership(request: $0, session: $1 as! Soseedy_SeedyGroupsCreateGroupMembershipSessionBase) })
+          .run()
+    default:
+      throw HandleMethodError.unknownMethod
+    }
+  }
 }
 
 public protocol Soseedy_SeedyGroupsCreateCourseGroupCategorySession: ServerSessionUnary {}
@@ -119,50 +147,3 @@ fileprivate final class Soseedy_SeedyGroupsCreateGroupSessionBase: ServerSession
 public protocol Soseedy_SeedyGroupsCreateGroupMembershipSession: ServerSessionUnary {}
 
 fileprivate final class Soseedy_SeedyGroupsCreateGroupMembershipSessionBase: ServerSessionUnaryBase<Soseedy_CreateGroupMembershipRequest, Soseedy_GroupMembership>, Soseedy_SeedyGroupsCreateGroupMembershipSession {}
-
-
-/// Main server for generated service
-public final class Soseedy_SeedyGroupsServer: ServiceServer {
-  private let provider: Soseedy_SeedyGroupsProvider
-
-  public init(address: String, provider: Soseedy_SeedyGroupsProvider) {
-    self.provider = provider
-    super.init(address: address)
-  }
-
-  public init?(address: String, certificateURL: URL, keyURL: URL, provider: Soseedy_SeedyGroupsProvider) {
-    self.provider = provider
-    super.init(address: address, certificateURL: certificateURL, keyURL: keyURL)
-  }
-
-  public init?(address: String, certificateString: String, keyString: String, provider: Soseedy_SeedyGroupsProvider) {
-    self.provider = provider
-    super.init(address: address, certificateString: certificateString, keyString: keyString)
-  }
-
-  /// Determines and calls the appropriate request handler, depending on the request's method.
-  /// Throws `HandleMethodError.unknownMethod` for methods not handled by this service.
-  public override func handleMethod(_ method: String, handler: Handler) throws -> ServerStatus? {
-    let provider = self.provider
-    switch method {
-    case "/soseedy.SeedyGroups/CreateCourseGroupCategory":
-      return try Soseedy_SeedyGroupsCreateCourseGroupCategorySessionBase(
-        handler: handler,
-        providerBlock: { try provider.createCourseGroupCategory(request: $0, session: $1 as! Soseedy_SeedyGroupsCreateCourseGroupCategorySessionBase) })
-          .run()
-    case "/soseedy.SeedyGroups/CreateGroup":
-      return try Soseedy_SeedyGroupsCreateGroupSessionBase(
-        handler: handler,
-        providerBlock: { try provider.createGroup(request: $0, session: $1 as! Soseedy_SeedyGroupsCreateGroupSessionBase) })
-          .run()
-    case "/soseedy.SeedyGroups/CreateGroupMembership":
-      return try Soseedy_SeedyGroupsCreateGroupMembershipSessionBase(
-        handler: handler,
-        providerBlock: { try provider.createGroupMembership(request: $0, session: $1 as! Soseedy_SeedyGroupsCreateGroupMembershipSessionBase) })
-          .run()
-    default:
-      throw HandleMethodError.unknownMethod
-    }
-  }
-}
-

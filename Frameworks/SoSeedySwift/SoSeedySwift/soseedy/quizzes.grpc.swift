@@ -190,7 +190,7 @@ public final class Soseedy_SeedyQuizzesServiceClient: ServiceClientBase, Soseedy
 /// To build a server, implement a class that conforms to this protocol.
 /// If one of the methods returning `ServerStatus?` returns nil,
 /// it is expected that you have already returned a status to the client by means of `session.close`.
-public protocol Soseedy_SeedyQuizzesProvider {
+public protocol Soseedy_SeedyQuizzesProvider: ServiceProvider {
   func createQuiz(request: Soseedy_CreateQuizRequest, session: Soseedy_SeedyQuizzesCreateQuizSession) throws -> Soseedy_Quiz
   func createQuizSubmission(request: Soseedy_CreateQuizSubmissionRequest, session: Soseedy_SeedyQuizzesCreateQuizSubmissionSession) throws -> Soseedy_QuizSubmission
   func completeQuizSubmission(request: Soseedy_CompleteQuizSubmissionRequest, session: Soseedy_SeedyQuizzesCompleteQuizSubmissionSession) throws -> Soseedy_QuizSubmission
@@ -198,6 +198,54 @@ public protocol Soseedy_SeedyQuizzesProvider {
   func publishQuiz(request: Soseedy_PublishQuizRequest, session: Soseedy_SeedyQuizzesPublishQuizSession) throws -> Soseedy_Quiz
   func seedQuizzes(request: Soseedy_SeedQuizzesRequest, session: Soseedy_SeedyQuizzesSeedQuizzesSession) throws -> Soseedy_Quizzes
   func seedQuizSubmission(request: Soseedy_SeedQuizSubmissionRequest, session: Soseedy_SeedyQuizzesSeedQuizSubmissionSession) throws -> Soseedy_QuizSubmission
+}
+
+extension Soseedy_SeedyQuizzesProvider {
+  public var serviceName: String { return "soseedy.SeedyQuizzes" }
+
+  /// Determines and calls the appropriate request handler, depending on the request's method.
+  /// Throws `HandleMethodError.unknownMethod` for methods not handled by this service.
+  public func handleMethod(_ method: String, handler: Handler) throws -> ServerStatus? {
+    switch method {
+    case "/soseedy.SeedyQuizzes/CreateQuiz":
+      return try Soseedy_SeedyQuizzesCreateQuizSessionBase(
+        handler: handler,
+        providerBlock: { try self.createQuiz(request: $0, session: $1 as! Soseedy_SeedyQuizzesCreateQuizSessionBase) })
+          .run()
+    case "/soseedy.SeedyQuizzes/CreateQuizSubmission":
+      return try Soseedy_SeedyQuizzesCreateQuizSubmissionSessionBase(
+        handler: handler,
+        providerBlock: { try self.createQuizSubmission(request: $0, session: $1 as! Soseedy_SeedyQuizzesCreateQuizSubmissionSessionBase) })
+          .run()
+    case "/soseedy.SeedyQuizzes/CompleteQuizSubmission":
+      return try Soseedy_SeedyQuizzesCompleteQuizSubmissionSessionBase(
+        handler: handler,
+        providerBlock: { try self.completeQuizSubmission(request: $0, session: $1 as! Soseedy_SeedyQuizzesCompleteQuizSubmissionSessionBase) })
+          .run()
+    case "/soseedy.SeedyQuizzes/CreateQuizQuestion":
+      return try Soseedy_SeedyQuizzesCreateQuizQuestionSessionBase(
+        handler: handler,
+        providerBlock: { try self.createQuizQuestion(request: $0, session: $1 as! Soseedy_SeedyQuizzesCreateQuizQuestionSessionBase) })
+          .run()
+    case "/soseedy.SeedyQuizzes/PublishQuiz":
+      return try Soseedy_SeedyQuizzesPublishQuizSessionBase(
+        handler: handler,
+        providerBlock: { try self.publishQuiz(request: $0, session: $1 as! Soseedy_SeedyQuizzesPublishQuizSessionBase) })
+          .run()
+    case "/soseedy.SeedyQuizzes/SeedQuizzes":
+      return try Soseedy_SeedyQuizzesSeedQuizzesSessionBase(
+        handler: handler,
+        providerBlock: { try self.seedQuizzes(request: $0, session: $1 as! Soseedy_SeedyQuizzesSeedQuizzesSessionBase) })
+          .run()
+    case "/soseedy.SeedyQuizzes/SeedQuizSubmission":
+      return try Soseedy_SeedyQuizzesSeedQuizSubmissionSessionBase(
+        handler: handler,
+        providerBlock: { try self.seedQuizSubmission(request: $0, session: $1 as! Soseedy_SeedyQuizzesSeedQuizSubmissionSessionBase) })
+          .run()
+    default:
+      throw HandleMethodError.unknownMethod
+    }
+  }
 }
 
 public protocol Soseedy_SeedyQuizzesCreateQuizSession: ServerSessionUnary {}
@@ -227,70 +275,3 @@ fileprivate final class Soseedy_SeedyQuizzesSeedQuizzesSessionBase: ServerSessio
 public protocol Soseedy_SeedyQuizzesSeedQuizSubmissionSession: ServerSessionUnary {}
 
 fileprivate final class Soseedy_SeedyQuizzesSeedQuizSubmissionSessionBase: ServerSessionUnaryBase<Soseedy_SeedQuizSubmissionRequest, Soseedy_QuizSubmission>, Soseedy_SeedyQuizzesSeedQuizSubmissionSession {}
-
-
-/// Main server for generated service
-public final class Soseedy_SeedyQuizzesServer: ServiceServer {
-  private let provider: Soseedy_SeedyQuizzesProvider
-
-  public init(address: String, provider: Soseedy_SeedyQuizzesProvider) {
-    self.provider = provider
-    super.init(address: address)
-  }
-
-  public init?(address: String, certificateURL: URL, keyURL: URL, provider: Soseedy_SeedyQuizzesProvider) {
-    self.provider = provider
-    super.init(address: address, certificateURL: certificateURL, keyURL: keyURL)
-  }
-
-  public init?(address: String, certificateString: String, keyString: String, provider: Soseedy_SeedyQuizzesProvider) {
-    self.provider = provider
-    super.init(address: address, certificateString: certificateString, keyString: keyString)
-  }
-
-  /// Determines and calls the appropriate request handler, depending on the request's method.
-  /// Throws `HandleMethodError.unknownMethod` for methods not handled by this service.
-  public override func handleMethod(_ method: String, handler: Handler) throws -> ServerStatus? {
-    let provider = self.provider
-    switch method {
-    case "/soseedy.SeedyQuizzes/CreateQuiz":
-      return try Soseedy_SeedyQuizzesCreateQuizSessionBase(
-        handler: handler,
-        providerBlock: { try provider.createQuiz(request: $0, session: $1 as! Soseedy_SeedyQuizzesCreateQuizSessionBase) })
-          .run()
-    case "/soseedy.SeedyQuizzes/CreateQuizSubmission":
-      return try Soseedy_SeedyQuizzesCreateQuizSubmissionSessionBase(
-        handler: handler,
-        providerBlock: { try provider.createQuizSubmission(request: $0, session: $1 as! Soseedy_SeedyQuizzesCreateQuizSubmissionSessionBase) })
-          .run()
-    case "/soseedy.SeedyQuizzes/CompleteQuizSubmission":
-      return try Soseedy_SeedyQuizzesCompleteQuizSubmissionSessionBase(
-        handler: handler,
-        providerBlock: { try provider.completeQuizSubmission(request: $0, session: $1 as! Soseedy_SeedyQuizzesCompleteQuizSubmissionSessionBase) })
-          .run()
-    case "/soseedy.SeedyQuizzes/CreateQuizQuestion":
-      return try Soseedy_SeedyQuizzesCreateQuizQuestionSessionBase(
-        handler: handler,
-        providerBlock: { try provider.createQuizQuestion(request: $0, session: $1 as! Soseedy_SeedyQuizzesCreateQuizQuestionSessionBase) })
-          .run()
-    case "/soseedy.SeedyQuizzes/PublishQuiz":
-      return try Soseedy_SeedyQuizzesPublishQuizSessionBase(
-        handler: handler,
-        providerBlock: { try provider.publishQuiz(request: $0, session: $1 as! Soseedy_SeedyQuizzesPublishQuizSessionBase) })
-          .run()
-    case "/soseedy.SeedyQuizzes/SeedQuizzes":
-      return try Soseedy_SeedyQuizzesSeedQuizzesSessionBase(
-        handler: handler,
-        providerBlock: { try provider.seedQuizzes(request: $0, session: $1 as! Soseedy_SeedyQuizzesSeedQuizzesSessionBase) })
-          .run()
-    case "/soseedy.SeedyQuizzes/SeedQuizSubmission":
-      return try Soseedy_SeedyQuizzesSeedQuizSubmissionSessionBase(
-        handler: handler,
-        providerBlock: { try provider.seedQuizSubmission(request: $0, session: $1 as! Soseedy_SeedyQuizzesSeedQuizSubmissionSessionBase) })
-          .run()
-    default:
-      throw HandleMethodError.unknownMethod
-    }
-  }
-}
-

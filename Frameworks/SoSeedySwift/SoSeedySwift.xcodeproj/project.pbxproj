@@ -8,35 +8,43 @@
 
 /* Begin PBXBuildFile section */
 		89FE55DDB246505CC9530ADE /* Pods_defaults_SoSeedySwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DEFCAB2504D00C252B680F /* Pods_defaults_SoSeedySwift.framework */; };
+		F9B03FAC20D8688B00DF764C /* assignments.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B03F8C20D8688900DF764C /* assignments.grpc.swift */; };
+		F9B03FAD20D8688B00DF764C /* discussions.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B03F8D20D8688900DF764C /* discussions.pb.swift */; };
+		F9B03FAE20D8688B00DF764C /* sections.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B03F8E20D8688900DF764C /* sections.grpc.swift */; };
+		F9B03FAF20D8688B00DF764C /* conversations.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B03F8F20D8688900DF764C /* conversations.pb.swift */; };
+		F9B03FB020D8688B00DF764C /* observer.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B03F9020D8688900DF764C /* observer.pb.swift */; };
+		F9B03FB120D8688B00DF764C /* feature_flags.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B03F9120D8688900DF764C /* feature_flags.pb.swift */; };
+		F9B03FB220D8688B00DF764C /* pages.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B03F9220D8688A00DF764C /* pages.pb.swift */; };
+		F9B03FB320D8688B00DF764C /* quizzes.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B03F9320D8688A00DF764C /* quizzes.pb.swift */; };
+		F9B03FB420D8688B00DF764C /* user.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B03F9420D8688A00DF764C /* user.pb.swift */; };
+		F9B03FB520D8688B00DF764C /* groups.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B03F9520D8688A00DF764C /* groups.pb.swift */; };
+		F9B03FB620D8688B00DF764C /* enrollments.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B03F9620D8688A00DF764C /* enrollments.pb.swift */; };
+		F9B03FB720D8688B00DF764C /* groups.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B03F9720D8688A00DF764C /* groups.grpc.swift */; };
+		F9B03FB820D8688B00DF764C /* quizzes.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B03F9820D8688A00DF764C /* quizzes.grpc.swift */; };
+		F9B03FB920D8688B00DF764C /* conversations.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B03F9920D8688A00DF764C /* conversations.grpc.swift */; };
+		F9B03FBA20D8688B00DF764C /* discussions.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B03F9A20D8688A00DF764C /* discussions.grpc.swift */; };
+		F9B03FBB20D8688B00DF764C /* general.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B03F9B20D8688A00DF764C /* general.pb.swift */; };
+		F9B03FBC20D8688B00DF764C /* feature_flags.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B03F9C20D8688A00DF764C /* feature_flags.grpc.swift */; };
+		F9B03FBD20D8688B00DF764C /* modules.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B03F9D20D8688A00DF764C /* modules.grpc.swift */; };
+		F9B03FBE20D8688B00DF764C /* observer.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B03F9E20D8688A00DF764C /* observer.grpc.swift */; };
+		F9B03FBF20D8688B00DF764C /* files.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B03F9F20D8688A00DF764C /* files.pb.swift */; };
+		F9B03FC020D8688B00DF764C /* grading_periods.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B03FA020D8688A00DF764C /* grading_periods.grpc.swift */; };
+		F9B03FC120D8688B00DF764C /* pages.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B03FA120D8688A00DF764C /* pages.grpc.swift */; };
+		F9B03FC220D8688B00DF764C /* courses.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B03FA220D8688A00DF764C /* courses.pb.swift */; };
+		F9B03FC320D8688B00DF764C /* user.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B03FA320D8688A00DF764C /* user.grpc.swift */; };
+		F9B03FC420D8688B00DF764C /* general.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B03FA420D8688A00DF764C /* general.grpc.swift */; };
+		F9B03FC520D8688B00DF764C /* courses.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B03FA520D8688A00DF764C /* courses.grpc.swift */; };
+		F9B03FC620D8688B00DF764C /* sections.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B03FA620D8688A00DF764C /* sections.pb.swift */; };
+		F9B03FC720D8688B00DF764C /* files.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B03FA720D8688B00DF764C /* files.grpc.swift */; };
+		F9B03FC820D8688B00DF764C /* assignments.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B03FA820D8688B00DF764C /* assignments.pb.swift */; };
+		F9B03FC920D8688B00DF764C /* grading_periods.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B03FA920D8688B00DF764C /* grading_periods.pb.swift */; };
+		F9B03FCA20D8688B00DF764C /* modules.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B03FAA20D8688B00DF764C /* modules.pb.swift */; };
+		F9B03FCB20D8688B00DF764C /* enrollments.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B03FAB20D8688B00DF764C /* enrollments.grpc.swift */; };
+		F9B03FCD20D89B1200DF764C /* Certs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B03FCC20D89B1200DF764C /* Certs.swift */; };
+		F9B03FD120D89C8F00DF764C /* client.crt in Resources */ = {isa = PBXBuildFile; fileRef = F9B03FCE20D89C8F00DF764C /* client.crt */; };
+		F9B03FD220D89C8F00DF764C /* client.pem in Resources */ = {isa = PBXBuildFile; fileRef = F9B03FCF20D89C8F00DF764C /* client.pem */; };
+		F9B03FD320D89C8F00DF764C /* ca.crt in Resources */ = {isa = PBXBuildFile; fileRef = F9B03FD020D89C8F00DF764C /* ca.crt */; };
 		F9F700DF207E53F3002EB2BE /* SoSeedySwift.h in Headers */ = {isa = PBXBuildFile; fileRef = F9F700DD207E53F3002EB2BE /* SoSeedySwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F9F70103207E5480002EB2BE /* quizzes.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F700E6207E5480002EB2BE /* quizzes.grpc.swift */; };
-		F9F70104207E5480002EB2BE /* pages.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F700E7207E5480002EB2BE /* pages.pb.swift */; };
-		F9F70105207E5480002EB2BE /* sections.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F700E8207E5480002EB2BE /* sections.grpc.swift */; };
-		F9F70106207E5480002EB2BE /* groups.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F700E9207E5480002EB2BE /* groups.pb.swift */; };
-		F9F70107207E5480002EB2BE /* quizzes.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F700EA207E5480002EB2BE /* quizzes.pb.swift */; };
-		F9F70108207E5480002EB2BE /* user.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F700EB207E5480002EB2BE /* user.grpc.swift */; };
-		F9F70109207E5480002EB2BE /* discussions.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F700EC207E5480002EB2BE /* discussions.pb.swift */; };
-		F9F7010A207E5480002EB2BE /* feature_flags.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F700ED207E5480002EB2BE /* feature_flags.grpc.swift */; };
-		F9F7010B207E5480002EB2BE /* conversations.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F700EE207E5480002EB2BE /* conversations.grpc.swift */; };
-		F9F7010C207E5480002EB2BE /* grading_periods.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F700EF207E5480002EB2BE /* grading_periods.grpc.swift */; };
-		F9F7010D207E5480002EB2BE /* courses.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F700F0207E5480002EB2BE /* courses.grpc.swift */; };
-		F9F7010E207E5480002EB2BE /* groups.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F700F1207E5480002EB2BE /* groups.grpc.swift */; };
-		F9F7010F207E5480002EB2BE /* grading_periods.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F700F2207E5480002EB2BE /* grading_periods.pb.swift */; };
-		F9F70110207E5480002EB2BE /* general.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F700F3207E5480002EB2BE /* general.grpc.swift */; };
-		F9F70111207E5481002EB2BE /* assignments.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F700F4207E5480002EB2BE /* assignments.grpc.swift */; };
-		F9F70112207E5481002EB2BE /* assignments.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F700F5207E5480002EB2BE /* assignments.pb.swift */; };
-		F9F70113207E5481002EB2BE /* courses.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F700F6207E5480002EB2BE /* courses.pb.swift */; };
-		F9F70114207E5481002EB2BE /* files.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F700F7207E5480002EB2BE /* files.grpc.swift */; };
-		F9F70115207E5481002EB2BE /* pages.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F700F8207E5480002EB2BE /* pages.grpc.swift */; };
-		F9F70116207E5481002EB2BE /* user.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F700F9207E5480002EB2BE /* user.pb.swift */; };
-		F9F70117207E5481002EB2BE /* enrollments.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F700FA207E5480002EB2BE /* enrollments.pb.swift */; };
-		F9F70118207E5481002EB2BE /* enrollments.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F700FB207E5480002EB2BE /* enrollments.grpc.swift */; };
-		F9F70119207E5481002EB2BE /* feature_flags.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F700FC207E5480002EB2BE /* feature_flags.pb.swift */; };
-		F9F7011A207E5481002EB2BE /* files.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F700FD207E5480002EB2BE /* files.pb.swift */; };
-		F9F7011B207E5481002EB2BE /* sections.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F700FE207E5480002EB2BE /* sections.pb.swift */; };
-		F9F7011C207E5481002EB2BE /* discussions.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F700FF207E5480002EB2BE /* discussions.grpc.swift */; };
-		F9F7011D207E5481002EB2BE /* general.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F70100207E5480002EB2BE /* general.pb.swift */; };
-		F9F7011E207E5481002EB2BE /* conversations.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F70101207E5480002EB2BE /* conversations.pb.swift */; };
 		F9F7011F207E5481002EB2BE /* SoSeedy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F70102207E5480002EB2BE /* SoSeedy.swift */; };
 /* End PBXBuildFile section */
 
@@ -57,37 +65,45 @@
 		04DEFCAB2504D00C252B680F /* Pods_defaults_SoSeedySwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_SoSeedySwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		965B6F817B4FF5E0F9105AAB /* Pods-defaults-SoSeedySwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-SoSeedySwift.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-SoSeedySwift/Pods-defaults-SoSeedySwift.debug.xcconfig"; sourceTree = "<group>"; };
 		A09DBF17EC444D398BF7D91A /* Pods-defaults-SoSeedySwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-SoSeedySwift.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-SoSeedySwift/Pods-defaults-SoSeedySwift.release.xcconfig"; sourceTree = "<group>"; };
+		F9B03F8C20D8688900DF764C /* assignments.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = assignments.grpc.swift; sourceTree = "<group>"; };
+		F9B03F8D20D8688900DF764C /* discussions.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = discussions.pb.swift; sourceTree = "<group>"; };
+		F9B03F8E20D8688900DF764C /* sections.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sections.grpc.swift; sourceTree = "<group>"; };
+		F9B03F8F20D8688900DF764C /* conversations.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = conversations.pb.swift; sourceTree = "<group>"; };
+		F9B03F9020D8688900DF764C /* observer.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = observer.pb.swift; sourceTree = "<group>"; };
+		F9B03F9120D8688900DF764C /* feature_flags.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = feature_flags.pb.swift; sourceTree = "<group>"; };
+		F9B03F9220D8688A00DF764C /* pages.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pages.pb.swift; sourceTree = "<group>"; };
+		F9B03F9320D8688A00DF764C /* quizzes.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = quizzes.pb.swift; sourceTree = "<group>"; };
+		F9B03F9420D8688A00DF764C /* user.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = user.pb.swift; sourceTree = "<group>"; };
+		F9B03F9520D8688A00DF764C /* groups.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = groups.pb.swift; sourceTree = "<group>"; };
+		F9B03F9620D8688A00DF764C /* enrollments.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = enrollments.pb.swift; sourceTree = "<group>"; };
+		F9B03F9720D8688A00DF764C /* groups.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = groups.grpc.swift; sourceTree = "<group>"; };
+		F9B03F9820D8688A00DF764C /* quizzes.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = quizzes.grpc.swift; sourceTree = "<group>"; };
+		F9B03F9920D8688A00DF764C /* conversations.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = conversations.grpc.swift; sourceTree = "<group>"; };
+		F9B03F9A20D8688A00DF764C /* discussions.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = discussions.grpc.swift; sourceTree = "<group>"; };
+		F9B03F9B20D8688A00DF764C /* general.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = general.pb.swift; sourceTree = "<group>"; };
+		F9B03F9C20D8688A00DF764C /* feature_flags.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = feature_flags.grpc.swift; sourceTree = "<group>"; };
+		F9B03F9D20D8688A00DF764C /* modules.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = modules.grpc.swift; sourceTree = "<group>"; };
+		F9B03F9E20D8688A00DF764C /* observer.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = observer.grpc.swift; sourceTree = "<group>"; };
+		F9B03F9F20D8688A00DF764C /* files.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = files.pb.swift; sourceTree = "<group>"; };
+		F9B03FA020D8688A00DF764C /* grading_periods.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = grading_periods.grpc.swift; sourceTree = "<group>"; };
+		F9B03FA120D8688A00DF764C /* pages.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pages.grpc.swift; sourceTree = "<group>"; };
+		F9B03FA220D8688A00DF764C /* courses.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = courses.pb.swift; sourceTree = "<group>"; };
+		F9B03FA320D8688A00DF764C /* user.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = user.grpc.swift; sourceTree = "<group>"; };
+		F9B03FA420D8688A00DF764C /* general.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = general.grpc.swift; sourceTree = "<group>"; };
+		F9B03FA520D8688A00DF764C /* courses.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = courses.grpc.swift; sourceTree = "<group>"; };
+		F9B03FA620D8688A00DF764C /* sections.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sections.pb.swift; sourceTree = "<group>"; };
+		F9B03FA720D8688B00DF764C /* files.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = files.grpc.swift; sourceTree = "<group>"; };
+		F9B03FA820D8688B00DF764C /* assignments.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = assignments.pb.swift; sourceTree = "<group>"; };
+		F9B03FA920D8688B00DF764C /* grading_periods.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = grading_periods.pb.swift; sourceTree = "<group>"; };
+		F9B03FAA20D8688B00DF764C /* modules.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = modules.pb.swift; sourceTree = "<group>"; };
+		F9B03FAB20D8688B00DF764C /* enrollments.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = enrollments.grpc.swift; sourceTree = "<group>"; };
+		F9B03FCC20D89B1200DF764C /* Certs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Certs.swift; sourceTree = "<group>"; };
+		F9B03FCE20D89C8F00DF764C /* client.crt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = client.crt; path = ../../../secrets/client.crt; sourceTree = "<group>"; };
+		F9B03FCF20D89C8F00DF764C /* client.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = client.pem; path = ../../../secrets/client.pem; sourceTree = "<group>"; };
+		F9B03FD020D89C8F00DF764C /* ca.crt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ca.crt; path = ../../../secrets/ca.crt; sourceTree = "<group>"; };
 		F9F700DA207E53F3002EB2BE /* SoSeedySwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SoSeedySwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9F700DD207E53F3002EB2BE /* SoSeedySwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SoSeedySwift.h; sourceTree = "<group>"; };
 		F9F700DE207E53F3002EB2BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F9F700E6207E5480002EB2BE /* quizzes.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = quizzes.grpc.swift; sourceTree = "<group>"; };
-		F9F700E7207E5480002EB2BE /* pages.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pages.pb.swift; sourceTree = "<group>"; };
-		F9F700E8207E5480002EB2BE /* sections.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sections.grpc.swift; sourceTree = "<group>"; };
-		F9F700E9207E5480002EB2BE /* groups.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = groups.pb.swift; sourceTree = "<group>"; };
-		F9F700EA207E5480002EB2BE /* quizzes.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = quizzes.pb.swift; sourceTree = "<group>"; };
-		F9F700EB207E5480002EB2BE /* user.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = user.grpc.swift; sourceTree = "<group>"; };
-		F9F700EC207E5480002EB2BE /* discussions.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = discussions.pb.swift; sourceTree = "<group>"; };
-		F9F700ED207E5480002EB2BE /* feature_flags.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = feature_flags.grpc.swift; sourceTree = "<group>"; };
-		F9F700EE207E5480002EB2BE /* conversations.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = conversations.grpc.swift; sourceTree = "<group>"; };
-		F9F700EF207E5480002EB2BE /* grading_periods.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = grading_periods.grpc.swift; sourceTree = "<group>"; };
-		F9F700F0207E5480002EB2BE /* courses.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = courses.grpc.swift; sourceTree = "<group>"; };
-		F9F700F1207E5480002EB2BE /* groups.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = groups.grpc.swift; sourceTree = "<group>"; };
-		F9F700F2207E5480002EB2BE /* grading_periods.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = grading_periods.pb.swift; sourceTree = "<group>"; };
-		F9F700F3207E5480002EB2BE /* general.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = general.grpc.swift; sourceTree = "<group>"; };
-		F9F700F4207E5480002EB2BE /* assignments.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = assignments.grpc.swift; sourceTree = "<group>"; };
-		F9F700F5207E5480002EB2BE /* assignments.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = assignments.pb.swift; sourceTree = "<group>"; };
-		F9F700F6207E5480002EB2BE /* courses.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = courses.pb.swift; sourceTree = "<group>"; };
-		F9F700F7207E5480002EB2BE /* files.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = files.grpc.swift; sourceTree = "<group>"; };
-		F9F700F8207E5480002EB2BE /* pages.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pages.grpc.swift; sourceTree = "<group>"; };
-		F9F700F9207E5480002EB2BE /* user.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = user.pb.swift; sourceTree = "<group>"; };
-		F9F700FA207E5480002EB2BE /* enrollments.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = enrollments.pb.swift; sourceTree = "<group>"; };
-		F9F700FB207E5480002EB2BE /* enrollments.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = enrollments.grpc.swift; sourceTree = "<group>"; };
-		F9F700FC207E5480002EB2BE /* feature_flags.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = feature_flags.pb.swift; sourceTree = "<group>"; };
-		F9F700FD207E5480002EB2BE /* files.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = files.pb.swift; sourceTree = "<group>"; };
-		F9F700FE207E5480002EB2BE /* sections.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sections.pb.swift; sourceTree = "<group>"; };
-		F9F700FF207E5480002EB2BE /* discussions.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = discussions.grpc.swift; sourceTree = "<group>"; };
-		F9F70100207E5480002EB2BE /* general.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = general.pb.swift; sourceTree = "<group>"; };
-		F9F70101207E5480002EB2BE /* conversations.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = conversations.pb.swift; sourceTree = "<group>"; };
 		F9F70102207E5480002EB2BE /* SoSeedy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoSeedy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -141,9 +157,13 @@
 		F9F700DC207E53F3002EB2BE /* SoSeedySwift */ = {
 			isa = PBXGroup;
 			children = (
-				F9F700DD207E53F3002EB2BE /* SoSeedySwift.h */,
 				F9F700E5207E5480002EB2BE /* soseedy */,
+				F9F700DD207E53F3002EB2BE /* SoSeedySwift.h */,
+				F9B03FCC20D89B1200DF764C /* Certs.swift */,
 				F9F70102207E5480002EB2BE /* SoSeedy.swift */,
+				F9B03FD020D89C8F00DF764C /* ca.crt */,
+				F9B03FCE20D89C8F00DF764C /* client.crt */,
+				F9B03FCF20D89C8F00DF764C /* client.pem */,
 				F9F700DE207E53F3002EB2BE /* Info.plist */,
 			);
 			path = SoSeedySwift;
@@ -152,34 +172,38 @@
 		F9F700E5207E5480002EB2BE /* soseedy */ = {
 			isa = PBXGroup;
 			children = (
-				F9F700E6207E5480002EB2BE /* quizzes.grpc.swift */,
-				F9F700E7207E5480002EB2BE /* pages.pb.swift */,
-				F9F700E8207E5480002EB2BE /* sections.grpc.swift */,
-				F9F700E9207E5480002EB2BE /* groups.pb.swift */,
-				F9F700EA207E5480002EB2BE /* quizzes.pb.swift */,
-				F9F700EB207E5480002EB2BE /* user.grpc.swift */,
-				F9F700EC207E5480002EB2BE /* discussions.pb.swift */,
-				F9F700ED207E5480002EB2BE /* feature_flags.grpc.swift */,
-				F9F700EE207E5480002EB2BE /* conversations.grpc.swift */,
-				F9F700EF207E5480002EB2BE /* grading_periods.grpc.swift */,
-				F9F700F0207E5480002EB2BE /* courses.grpc.swift */,
-				F9F700F1207E5480002EB2BE /* groups.grpc.swift */,
-				F9F700F2207E5480002EB2BE /* grading_periods.pb.swift */,
-				F9F700F3207E5480002EB2BE /* general.grpc.swift */,
-				F9F700F4207E5480002EB2BE /* assignments.grpc.swift */,
-				F9F700F5207E5480002EB2BE /* assignments.pb.swift */,
-				F9F700F6207E5480002EB2BE /* courses.pb.swift */,
-				F9F700F7207E5480002EB2BE /* files.grpc.swift */,
-				F9F700F8207E5480002EB2BE /* pages.grpc.swift */,
-				F9F700F9207E5480002EB2BE /* user.pb.swift */,
-				F9F700FA207E5480002EB2BE /* enrollments.pb.swift */,
-				F9F700FB207E5480002EB2BE /* enrollments.grpc.swift */,
-				F9F700FC207E5480002EB2BE /* feature_flags.pb.swift */,
-				F9F700FD207E5480002EB2BE /* files.pb.swift */,
-				F9F700FE207E5480002EB2BE /* sections.pb.swift */,
-				F9F700FF207E5480002EB2BE /* discussions.grpc.swift */,
-				F9F70100207E5480002EB2BE /* general.pb.swift */,
-				F9F70101207E5480002EB2BE /* conversations.pb.swift */,
+				F9B03F8C20D8688900DF764C /* assignments.grpc.swift */,
+				F9B03FA820D8688B00DF764C /* assignments.pb.swift */,
+				F9B03F9920D8688A00DF764C /* conversations.grpc.swift */,
+				F9B03F8F20D8688900DF764C /* conversations.pb.swift */,
+				F9B03FA520D8688A00DF764C /* courses.grpc.swift */,
+				F9B03FA220D8688A00DF764C /* courses.pb.swift */,
+				F9B03F9A20D8688A00DF764C /* discussions.grpc.swift */,
+				F9B03F8D20D8688900DF764C /* discussions.pb.swift */,
+				F9B03FAB20D8688B00DF764C /* enrollments.grpc.swift */,
+				F9B03F9620D8688A00DF764C /* enrollments.pb.swift */,
+				F9B03F9C20D8688A00DF764C /* feature_flags.grpc.swift */,
+				F9B03F9120D8688900DF764C /* feature_flags.pb.swift */,
+				F9B03FA720D8688B00DF764C /* files.grpc.swift */,
+				F9B03F9F20D8688A00DF764C /* files.pb.swift */,
+				F9B03FA420D8688A00DF764C /* general.grpc.swift */,
+				F9B03F9B20D8688A00DF764C /* general.pb.swift */,
+				F9B03FA020D8688A00DF764C /* grading_periods.grpc.swift */,
+				F9B03FA920D8688B00DF764C /* grading_periods.pb.swift */,
+				F9B03F9720D8688A00DF764C /* groups.grpc.swift */,
+				F9B03F9520D8688A00DF764C /* groups.pb.swift */,
+				F9B03F9D20D8688A00DF764C /* modules.grpc.swift */,
+				F9B03FAA20D8688B00DF764C /* modules.pb.swift */,
+				F9B03F9E20D8688A00DF764C /* observer.grpc.swift */,
+				F9B03F9020D8688900DF764C /* observer.pb.swift */,
+				F9B03FA120D8688A00DF764C /* pages.grpc.swift */,
+				F9B03F9220D8688A00DF764C /* pages.pb.swift */,
+				F9B03F9820D8688A00DF764C /* quizzes.grpc.swift */,
+				F9B03F9320D8688A00DF764C /* quizzes.pb.swift */,
+				F9B03F8E20D8688900DF764C /* sections.grpc.swift */,
+				F9B03FA620D8688A00DF764C /* sections.pb.swift */,
+				F9B03FA320D8688A00DF764C /* user.grpc.swift */,
+				F9B03F9420D8688A00DF764C /* user.pb.swift */,
 			);
 			path = soseedy;
 			sourceTree = "<group>";
@@ -256,6 +280,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9B03FD120D89C8F00DF764C /* client.crt in Resources */,
+				F9B03FD320D89C8F00DF764C /* ca.crt in Resources */,
+				F9B03FD220D89C8F00DF764C /* client.pem in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,35 +314,40 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F9F70117207E5481002EB2BE /* enrollments.pb.swift in Sources */,
-				F9F70114207E5481002EB2BE /* files.grpc.swift in Sources */,
-				F9F70103207E5480002EB2BE /* quizzes.grpc.swift in Sources */,
-				F9F7010B207E5480002EB2BE /* conversations.grpc.swift in Sources */,
-				F9F7011D207E5481002EB2BE /* general.pb.swift in Sources */,
-				F9F7011A207E5481002EB2BE /* files.pb.swift in Sources */,
-				F9F70116207E5481002EB2BE /* user.pb.swift in Sources */,
-				F9F7010C207E5480002EB2BE /* grading_periods.grpc.swift in Sources */,
-				F9F70113207E5481002EB2BE /* courses.pb.swift in Sources */,
-				F9F70110207E5480002EB2BE /* general.grpc.swift in Sources */,
-				F9F70104207E5480002EB2BE /* pages.pb.swift in Sources */,
-				F9F70106207E5480002EB2BE /* groups.pb.swift in Sources */,
-				F9F70111207E5481002EB2BE /* assignments.grpc.swift in Sources */,
-				F9F7011C207E5481002EB2BE /* discussions.grpc.swift in Sources */,
-				F9F70108207E5480002EB2BE /* user.grpc.swift in Sources */,
-				F9F70105207E5480002EB2BE /* sections.grpc.swift in Sources */,
-				F9F7010A207E5480002EB2BE /* feature_flags.grpc.swift in Sources */,
-				F9F7010D207E5480002EB2BE /* courses.grpc.swift in Sources */,
+				F9B03FC020D8688B00DF764C /* grading_periods.grpc.swift in Sources */,
+				F9B03FC420D8688B00DF764C /* general.grpc.swift in Sources */,
+				F9B03FB820D8688B00DF764C /* quizzes.grpc.swift in Sources */,
+				F9B03FB920D8688B00DF764C /* conversations.grpc.swift in Sources */,
+				F9B03FCA20D8688B00DF764C /* modules.pb.swift in Sources */,
+				F9B03FC320D8688B00DF764C /* user.grpc.swift in Sources */,
+				F9B03FBA20D8688B00DF764C /* discussions.grpc.swift in Sources */,
+				F9B03FBC20D8688B00DF764C /* feature_flags.grpc.swift in Sources */,
+				F9B03FC520D8688B00DF764C /* courses.grpc.swift in Sources */,
+				F9B03FBE20D8688B00DF764C /* observer.grpc.swift in Sources */,
+				F9B03FB020D8688B00DF764C /* observer.pb.swift in Sources */,
+				F9B03FC220D8688B00DF764C /* courses.pb.swift in Sources */,
+				F9B03FB220D8688B00DF764C /* pages.pb.swift in Sources */,
+				F9B03FC620D8688B00DF764C /* sections.pb.swift in Sources */,
+				F9B03FAE20D8688B00DF764C /* sections.grpc.swift in Sources */,
+				F9B03FC120D8688B00DF764C /* pages.grpc.swift in Sources */,
+				F9B03FC820D8688B00DF764C /* assignments.pb.swift in Sources */,
+				F9B03FB420D8688B00DF764C /* user.pb.swift in Sources */,
+				F9B03FC920D8688B00DF764C /* grading_periods.pb.swift in Sources */,
+				F9B03FAD20D8688B00DF764C /* discussions.pb.swift in Sources */,
+				F9B03FBF20D8688B00DF764C /* files.pb.swift in Sources */,
+				F9B03FAF20D8688B00DF764C /* conversations.pb.swift in Sources */,
+				F9B03FB620D8688B00DF764C /* enrollments.pb.swift in Sources */,
+				F9B03FCD20D89B1200DF764C /* Certs.swift in Sources */,
+				F9B03FBB20D8688B00DF764C /* general.pb.swift in Sources */,
 				F9F7011F207E5481002EB2BE /* SoSeedy.swift in Sources */,
-				F9F70119207E5481002EB2BE /* feature_flags.pb.swift in Sources */,
-				F9F70112207E5481002EB2BE /* assignments.pb.swift in Sources */,
-				F9F70118207E5481002EB2BE /* enrollments.grpc.swift in Sources */,
-				F9F7010F207E5480002EB2BE /* grading_periods.pb.swift in Sources */,
-				F9F70107207E5480002EB2BE /* quizzes.pb.swift in Sources */,
-				F9F7011E207E5481002EB2BE /* conversations.pb.swift in Sources */,
-				F9F7010E207E5480002EB2BE /* groups.grpc.swift in Sources */,
-				F9F7011B207E5481002EB2BE /* sections.pb.swift in Sources */,
-				F9F70115207E5481002EB2BE /* pages.grpc.swift in Sources */,
-				F9F70109207E5480002EB2BE /* discussions.pb.swift in Sources */,
+				F9B03FBD20D8688B00DF764C /* modules.grpc.swift in Sources */,
+				F9B03FB120D8688B00DF764C /* feature_flags.pb.swift in Sources */,
+				F9B03FCB20D8688B00DF764C /* enrollments.grpc.swift in Sources */,
+				F9B03FC720D8688B00DF764C /* files.grpc.swift in Sources */,
+				F9B03FAC20D8688B00DF764C /* assignments.grpc.swift in Sources */,
+				F9B03FB520D8688B00DF764C /* groups.pb.swift in Sources */,
+				F9B03FB720D8688B00DF764C /* groups.grpc.swift in Sources */,
+				F9B03FB320D8688B00DF764C /* quizzes.pb.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

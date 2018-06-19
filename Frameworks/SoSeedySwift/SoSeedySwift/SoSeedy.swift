@@ -15,22 +15,34 @@
 //
 
 import Foundation
+import SwiftGRPC
 
 let address = "localhost:50051"
-let secure = false
-let assignmentsClient = Soseedy_SeedyAssignmentsServiceClient(address: address, secure: secure)
-let conversationsClient = Soseedy_SeedyConversationsServiceClient(address: address, secure: secure)
-let coursesClient = Soseedy_SeedyCoursesServiceClient(address: address, secure: secure)
-let discussionsClient = Soseedy_SeedyDiscussionsServiceClient(address: address, secure: secure)
-let enrollmentsClient = Soseedy_SeedyEnrollmentsServiceClient(address: address, secure: secure)
-let filesClient = Soseedy_SeedyFilesServiceClient(address: address, secure: secure)
-let generalClient = Soseedy_SeedyGeneralServiceClient(address: address, secure: secure)
-let gradingPeriodsClient = Soseedy_SeedyGradingPeriodsServiceClient(address: address, secure: secure)
-let groupsClient = Soseedy_SeedyGroupsServiceClient(address: address, secure: secure)
-let pagesClient = Soseedy_SeedyPagesServiceClient(address: address, secure: secure)
-let quizzesClient = Soseedy_SeedyQuizzesServiceClient(address: address, secure: secure)
-let sectionsClient = Soseedy_SeedySectionsServiceClient(address: address, secure: secure)
-let usersClient = Soseedy_SeedyUsersServiceClient(address: address, secure: secure)
+let hostname = "example.com"
+
+func makeClient<T: ServiceClientBase >(_ client: T.Type) -> T {
+  let client = client.init(address: address,
+                     certificates: Certs.caCert,
+                     clientCertificates: Certs.clientCert,
+                     clientKey: Certs.clientPrivateKey,
+                     arguments: [.sslTargetNameOverride(hostname)])
+  client.host = hostname
+  return client
+}
+
+let assignmentsClient = makeClient(Soseedy_SeedyAssignmentsServiceClient.self)
+let conversationsClient = makeClient(Soseedy_SeedyConversationsServiceClient.self)
+let coursesClient = makeClient(Soseedy_SeedyCoursesServiceClient.self)
+let discussionsClient = makeClient(Soseedy_SeedyDiscussionsServiceClient.self)
+let enrollmentsClient = makeClient(Soseedy_SeedyEnrollmentsServiceClient.self)
+let filesClient = makeClient(Soseedy_SeedyFilesServiceClient.self)
+let generalClient = makeClient(Soseedy_SeedyGeneralServiceClient.self)
+let gradingPeriodsClient = makeClient(Soseedy_SeedyGradingPeriodsServiceClient.self)
+let groupsClient = makeClient(Soseedy_SeedyGroupsServiceClient.self)
+let pagesClient = makeClient(Soseedy_SeedyPagesServiceClient.self)
+let quizzesClient = makeClient(Soseedy_SeedyQuizzesServiceClient.self)
+let sectionsClient = makeClient(Soseedy_SeedySectionsServiceClient.self)
+let usersClient = makeClient(Soseedy_SeedyUsersServiceClient.self)
 
 // MARK: - Enrollments
 

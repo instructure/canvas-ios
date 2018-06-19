@@ -80,9 +80,32 @@ public final class Soseedy_SeedyCoursesServiceClient: ServiceClientBase, Soseedy
 /// To build a server, implement a class that conforms to this protocol.
 /// If one of the methods returning `ServerStatus?` returns nil,
 /// it is expected that you have already returned a status to the client by means of `session.close`.
-public protocol Soseedy_SeedyCoursesProvider {
+public protocol Soseedy_SeedyCoursesProvider: ServiceProvider {
   func createCourse(request: Soseedy_CreateCourseRequest, session: Soseedy_SeedyCoursesCreateCourseSession) throws -> Soseedy_Course
   func addFavoriteCourse(request: Soseedy_AddFavoriteCourseRequest, session: Soseedy_SeedyCoursesAddFavoriteCourseSession) throws -> Soseedy_Favorite
+}
+
+extension Soseedy_SeedyCoursesProvider {
+  public var serviceName: String { return "soseedy.SeedyCourses" }
+
+  /// Determines and calls the appropriate request handler, depending on the request's method.
+  /// Throws `HandleMethodError.unknownMethod` for methods not handled by this service.
+  public func handleMethod(_ method: String, handler: Handler) throws -> ServerStatus? {
+    switch method {
+    case "/soseedy.SeedyCourses/CreateCourse":
+      return try Soseedy_SeedyCoursesCreateCourseSessionBase(
+        handler: handler,
+        providerBlock: { try self.createCourse(request: $0, session: $1 as! Soseedy_SeedyCoursesCreateCourseSessionBase) })
+          .run()
+    case "/soseedy.SeedyCourses/AddFavoriteCourse":
+      return try Soseedy_SeedyCoursesAddFavoriteCourseSessionBase(
+        handler: handler,
+        providerBlock: { try self.addFavoriteCourse(request: $0, session: $1 as! Soseedy_SeedyCoursesAddFavoriteCourseSessionBase) })
+          .run()
+    default:
+      throw HandleMethodError.unknownMethod
+    }
+  }
 }
 
 public protocol Soseedy_SeedyCoursesCreateCourseSession: ServerSessionUnary {}
@@ -92,45 +115,3 @@ fileprivate final class Soseedy_SeedyCoursesCreateCourseSessionBase: ServerSessi
 public protocol Soseedy_SeedyCoursesAddFavoriteCourseSession: ServerSessionUnary {}
 
 fileprivate final class Soseedy_SeedyCoursesAddFavoriteCourseSessionBase: ServerSessionUnaryBase<Soseedy_AddFavoriteCourseRequest, Soseedy_Favorite>, Soseedy_SeedyCoursesAddFavoriteCourseSession {}
-
-
-/// Main server for generated service
-public final class Soseedy_SeedyCoursesServer: ServiceServer {
-  private let provider: Soseedy_SeedyCoursesProvider
-
-  public init(address: String, provider: Soseedy_SeedyCoursesProvider) {
-    self.provider = provider
-    super.init(address: address)
-  }
-
-  public init?(address: String, certificateURL: URL, keyURL: URL, provider: Soseedy_SeedyCoursesProvider) {
-    self.provider = provider
-    super.init(address: address, certificateURL: certificateURL, keyURL: keyURL)
-  }
-
-  public init?(address: String, certificateString: String, keyString: String, provider: Soseedy_SeedyCoursesProvider) {
-    self.provider = provider
-    super.init(address: address, certificateString: certificateString, keyString: keyString)
-  }
-
-  /// Determines and calls the appropriate request handler, depending on the request's method.
-  /// Throws `HandleMethodError.unknownMethod` for methods not handled by this service.
-  public override func handleMethod(_ method: String, handler: Handler) throws -> ServerStatus? {
-    let provider = self.provider
-    switch method {
-    case "/soseedy.SeedyCourses/CreateCourse":
-      return try Soseedy_SeedyCoursesCreateCourseSessionBase(
-        handler: handler,
-        providerBlock: { try provider.createCourse(request: $0, session: $1 as! Soseedy_SeedyCoursesCreateCourseSessionBase) })
-          .run()
-    case "/soseedy.SeedyCourses/AddFavoriteCourse":
-      return try Soseedy_SeedyCoursesAddFavoriteCourseSessionBase(
-        handler: handler,
-        providerBlock: { try provider.addFavoriteCourse(request: $0, session: $1 as! Soseedy_SeedyCoursesAddFavoriteCourseSessionBase) })
-          .run()
-    default:
-      throw HandleMethodError.unknownMethod
-    }
-  }
-}
-

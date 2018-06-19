@@ -58,43 +58,21 @@ public final class Soseedy_SeedySectionsServiceClient: ServiceClientBase, Soseed
 /// To build a server, implement a class that conforms to this protocol.
 /// If one of the methods returning `ServerStatus?` returns nil,
 /// it is expected that you have already returned a status to the client by means of `session.close`.
-public protocol Soseedy_SeedySectionsProvider {
+public protocol Soseedy_SeedySectionsProvider: ServiceProvider {
   func createSection(request: Soseedy_CreateSectionRequest, session: Soseedy_SeedySectionsCreateSectionSession) throws -> Soseedy_Section
 }
 
-public protocol Soseedy_SeedySectionsCreateSectionSession: ServerSessionUnary {}
-
-fileprivate final class Soseedy_SeedySectionsCreateSectionSessionBase: ServerSessionUnaryBase<Soseedy_CreateSectionRequest, Soseedy_Section>, Soseedy_SeedySectionsCreateSectionSession {}
-
-
-/// Main server for generated service
-public final class Soseedy_SeedySectionsServer: ServiceServer {
-  private let provider: Soseedy_SeedySectionsProvider
-
-  public init(address: String, provider: Soseedy_SeedySectionsProvider) {
-    self.provider = provider
-    super.init(address: address)
-  }
-
-  public init?(address: String, certificateURL: URL, keyURL: URL, provider: Soseedy_SeedySectionsProvider) {
-    self.provider = provider
-    super.init(address: address, certificateURL: certificateURL, keyURL: keyURL)
-  }
-
-  public init?(address: String, certificateString: String, keyString: String, provider: Soseedy_SeedySectionsProvider) {
-    self.provider = provider
-    super.init(address: address, certificateString: certificateString, keyString: keyString)
-  }
+extension Soseedy_SeedySectionsProvider {
+  public var serviceName: String { return "soseedy.SeedySections" }
 
   /// Determines and calls the appropriate request handler, depending on the request's method.
   /// Throws `HandleMethodError.unknownMethod` for methods not handled by this service.
-  public override func handleMethod(_ method: String, handler: Handler) throws -> ServerStatus? {
-    let provider = self.provider
+  public func handleMethod(_ method: String, handler: Handler) throws -> ServerStatus? {
     switch method {
     case "/soseedy.SeedySections/CreateSection":
       return try Soseedy_SeedySectionsCreateSectionSessionBase(
         handler: handler,
-        providerBlock: { try provider.createSection(request: $0, session: $1 as! Soseedy_SeedySectionsCreateSectionSessionBase) })
+        providerBlock: { try self.createSection(request: $0, session: $1 as! Soseedy_SeedySectionsCreateSectionSessionBase) })
           .run()
     default:
       throw HandleMethodError.unknownMethod
@@ -102,3 +80,6 @@ public final class Soseedy_SeedySectionsServer: ServiceServer {
   }
 }
 
+public protocol Soseedy_SeedySectionsCreateSectionSession: ServerSessionUnary {}
+
+fileprivate final class Soseedy_SeedySectionsCreateSectionSessionBase: ServerSessionUnaryBase<Soseedy_CreateSectionRequest, Soseedy_Section>, Soseedy_SeedySectionsCreateSectionSession {}

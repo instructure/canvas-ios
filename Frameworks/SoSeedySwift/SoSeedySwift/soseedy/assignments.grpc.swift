@@ -49,6 +49,12 @@ fileprivate final class Soseedy_SeedyAssignmentsCreateCourseAssignmentSubmission
   override class var method: String { return "/soseedy.SeedyAssignments/CreateCourseAssignmentSubmissionComment" }
 }
 
+public protocol Soseedy_SeedyAssignmentsGetSubmissionCall: ClientCallUnary {}
+
+fileprivate final class Soseedy_SeedyAssignmentsGetSubmissionCallBase: ClientCallUnaryBase<Soseedy_GetSubmissionRequest, Soseedy_CourseAssignmentSubmission>, Soseedy_SeedyAssignmentsGetSubmissionCall {
+  override class var method: String { return "/soseedy.SeedyAssignments/GetSubmission" }
+}
+
 public protocol Soseedy_SeedyAssignmentsSeedAssignmentsCall: ClientCallUnary {}
 
 fileprivate final class Soseedy_SeedyAssignmentsSeedAssignmentsCallBase: ClientCallUnaryBase<Soseedy_SeedAssignmentRequest, Soseedy_Assignments>, Soseedy_SeedyAssignmentsSeedAssignmentsCall {
@@ -83,6 +89,11 @@ public protocol Soseedy_SeedyAssignmentsService: ServiceClient {
   func createCourseAssignmentSubmissionComment(_ request: Soseedy_CreateCourseAssignmentCommentRequest) throws -> Soseedy_CourseAssignmentSubmission
   /// Asynchronous. Unary.
   func createCourseAssignmentSubmissionComment(_ request: Soseedy_CreateCourseAssignmentCommentRequest, completion: @escaping (Soseedy_CourseAssignmentSubmission?, CallResult) -> Void) throws -> Soseedy_SeedyAssignmentsCreateCourseAssignmentSubmissionCommentCall
+
+  /// Synchronous. Unary.
+  func getSubmission(_ request: Soseedy_GetSubmissionRequest) throws -> Soseedy_CourseAssignmentSubmission
+  /// Asynchronous. Unary.
+  func getSubmission(_ request: Soseedy_GetSubmissionRequest, completion: @escaping (Soseedy_CourseAssignmentSubmission?, CallResult) -> Void) throws -> Soseedy_SeedyAssignmentsGetSubmissionCall
 
   /// Synchronous. Unary.
   func seedAssignments(_ request: Soseedy_SeedAssignmentRequest) throws -> Soseedy_Assignments
@@ -142,6 +153,17 @@ public final class Soseedy_SeedyAssignmentsServiceClient: ServiceClientBase, Sos
   }
 
   /// Synchronous. Unary.
+  public func getSubmission(_ request: Soseedy_GetSubmissionRequest) throws -> Soseedy_CourseAssignmentSubmission {
+    return try Soseedy_SeedyAssignmentsGetSubmissionCallBase(channel)
+      .run(request: request, metadata: metadata)
+  }
+  /// Asynchronous. Unary.
+  public func getSubmission(_ request: Soseedy_GetSubmissionRequest, completion: @escaping (Soseedy_CourseAssignmentSubmission?, CallResult) -> Void) throws -> Soseedy_SeedyAssignmentsGetSubmissionCall {
+    return try Soseedy_SeedyAssignmentsGetSubmissionCallBase(channel)
+      .start(request: request, metadata: metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
   public func seedAssignments(_ request: Soseedy_SeedAssignmentRequest) throws -> Soseedy_Assignments {
     return try Soseedy_SeedyAssignmentsSeedAssignmentsCallBase(channel)
       .run(request: request, metadata: metadata)
@@ -168,13 +190,62 @@ public final class Soseedy_SeedyAssignmentsServiceClient: ServiceClientBase, Sos
 /// To build a server, implement a class that conforms to this protocol.
 /// If one of the methods returning `ServerStatus?` returns nil,
 /// it is expected that you have already returned a status to the client by means of `session.close`.
-public protocol Soseedy_SeedyAssignmentsProvider {
+public protocol Soseedy_SeedyAssignmentsProvider: ServiceProvider {
   func createAssignment(request: Soseedy_CreateAssignmentRequest, session: Soseedy_SeedyAssignmentsCreateAssignmentSession) throws -> Soseedy_Assignment
   func createAssignmentOverride(request: Soseedy_CreateAssignmentOverrideRequest, session: Soseedy_SeedyAssignmentsCreateAssignmentOverrideSession) throws -> Soseedy_AssignmentOverride
   func submitCourseAssignment(request: Soseedy_SubmitCourseAssignmentRequest, session: Soseedy_SeedyAssignmentsSubmitCourseAssignmentSession) throws -> Soseedy_CourseAssignmentSubmission
   func createCourseAssignmentSubmissionComment(request: Soseedy_CreateCourseAssignmentCommentRequest, session: Soseedy_SeedyAssignmentsCreateCourseAssignmentSubmissionCommentSession) throws -> Soseedy_CourseAssignmentSubmission
+  func getSubmission(request: Soseedy_GetSubmissionRequest, session: Soseedy_SeedyAssignmentsGetSubmissionSession) throws -> Soseedy_CourseAssignmentSubmission
   func seedAssignments(request: Soseedy_SeedAssignmentRequest, session: Soseedy_SeedyAssignmentsSeedAssignmentsSession) throws -> Soseedy_Assignments
   func seedAssignmentSubmission(request: Soseedy_SeedAssignmentSubmissionRequest, session: Soseedy_SeedyAssignmentsSeedAssignmentSubmissionSession) throws -> Soseedy_SeededCourseAssignmentSubmissions
+}
+
+extension Soseedy_SeedyAssignmentsProvider {
+  public var serviceName: String { return "soseedy.SeedyAssignments" }
+
+  /// Determines and calls the appropriate request handler, depending on the request's method.
+  /// Throws `HandleMethodError.unknownMethod` for methods not handled by this service.
+  public func handleMethod(_ method: String, handler: Handler) throws -> ServerStatus? {
+    switch method {
+    case "/soseedy.SeedyAssignments/CreateAssignment":
+      return try Soseedy_SeedyAssignmentsCreateAssignmentSessionBase(
+        handler: handler,
+        providerBlock: { try self.createAssignment(request: $0, session: $1 as! Soseedy_SeedyAssignmentsCreateAssignmentSessionBase) })
+          .run()
+    case "/soseedy.SeedyAssignments/CreateAssignmentOverride":
+      return try Soseedy_SeedyAssignmentsCreateAssignmentOverrideSessionBase(
+        handler: handler,
+        providerBlock: { try self.createAssignmentOverride(request: $0, session: $1 as! Soseedy_SeedyAssignmentsCreateAssignmentOverrideSessionBase) })
+          .run()
+    case "/soseedy.SeedyAssignments/SubmitCourseAssignment":
+      return try Soseedy_SeedyAssignmentsSubmitCourseAssignmentSessionBase(
+        handler: handler,
+        providerBlock: { try self.submitCourseAssignment(request: $0, session: $1 as! Soseedy_SeedyAssignmentsSubmitCourseAssignmentSessionBase) })
+          .run()
+    case "/soseedy.SeedyAssignments/CreateCourseAssignmentSubmissionComment":
+      return try Soseedy_SeedyAssignmentsCreateCourseAssignmentSubmissionCommentSessionBase(
+        handler: handler,
+        providerBlock: { try self.createCourseAssignmentSubmissionComment(request: $0, session: $1 as! Soseedy_SeedyAssignmentsCreateCourseAssignmentSubmissionCommentSessionBase) })
+          .run()
+    case "/soseedy.SeedyAssignments/GetSubmission":
+      return try Soseedy_SeedyAssignmentsGetSubmissionSessionBase(
+        handler: handler,
+        providerBlock: { try self.getSubmission(request: $0, session: $1 as! Soseedy_SeedyAssignmentsGetSubmissionSessionBase) })
+          .run()
+    case "/soseedy.SeedyAssignments/SeedAssignments":
+      return try Soseedy_SeedyAssignmentsSeedAssignmentsSessionBase(
+        handler: handler,
+        providerBlock: { try self.seedAssignments(request: $0, session: $1 as! Soseedy_SeedyAssignmentsSeedAssignmentsSessionBase) })
+          .run()
+    case "/soseedy.SeedyAssignments/SeedAssignmentSubmission":
+      return try Soseedy_SeedyAssignmentsSeedAssignmentSubmissionSessionBase(
+        handler: handler,
+        providerBlock: { try self.seedAssignmentSubmission(request: $0, session: $1 as! Soseedy_SeedyAssignmentsSeedAssignmentSubmissionSessionBase) })
+          .run()
+    default:
+      throw HandleMethodError.unknownMethod
+    }
+  }
 }
 
 public protocol Soseedy_SeedyAssignmentsCreateAssignmentSession: ServerSessionUnary {}
@@ -193,6 +264,10 @@ public protocol Soseedy_SeedyAssignmentsCreateCourseAssignmentSubmissionCommentS
 
 fileprivate final class Soseedy_SeedyAssignmentsCreateCourseAssignmentSubmissionCommentSessionBase: ServerSessionUnaryBase<Soseedy_CreateCourseAssignmentCommentRequest, Soseedy_CourseAssignmentSubmission>, Soseedy_SeedyAssignmentsCreateCourseAssignmentSubmissionCommentSession {}
 
+public protocol Soseedy_SeedyAssignmentsGetSubmissionSession: ServerSessionUnary {}
+
+fileprivate final class Soseedy_SeedyAssignmentsGetSubmissionSessionBase: ServerSessionUnaryBase<Soseedy_GetSubmissionRequest, Soseedy_CourseAssignmentSubmission>, Soseedy_SeedyAssignmentsGetSubmissionSession {}
+
 public protocol Soseedy_SeedyAssignmentsSeedAssignmentsSession: ServerSessionUnary {}
 
 fileprivate final class Soseedy_SeedyAssignmentsSeedAssignmentsSessionBase: ServerSessionUnaryBase<Soseedy_SeedAssignmentRequest, Soseedy_Assignments>, Soseedy_SeedyAssignmentsSeedAssignmentsSession {}
@@ -200,65 +275,3 @@ fileprivate final class Soseedy_SeedyAssignmentsSeedAssignmentsSessionBase: Serv
 public protocol Soseedy_SeedyAssignmentsSeedAssignmentSubmissionSession: ServerSessionUnary {}
 
 fileprivate final class Soseedy_SeedyAssignmentsSeedAssignmentSubmissionSessionBase: ServerSessionUnaryBase<Soseedy_SeedAssignmentSubmissionRequest, Soseedy_SeededCourseAssignmentSubmissions>, Soseedy_SeedyAssignmentsSeedAssignmentSubmissionSession {}
-
-
-/// Main server for generated service
-public final class Soseedy_SeedyAssignmentsServer: ServiceServer {
-  private let provider: Soseedy_SeedyAssignmentsProvider
-
-  public init(address: String, provider: Soseedy_SeedyAssignmentsProvider) {
-    self.provider = provider
-    super.init(address: address)
-  }
-
-  public init?(address: String, certificateURL: URL, keyURL: URL, provider: Soseedy_SeedyAssignmentsProvider) {
-    self.provider = provider
-    super.init(address: address, certificateURL: certificateURL, keyURL: keyURL)
-  }
-
-  public init?(address: String, certificateString: String, keyString: String, provider: Soseedy_SeedyAssignmentsProvider) {
-    self.provider = provider
-    super.init(address: address, certificateString: certificateString, keyString: keyString)
-  }
-
-  /// Determines and calls the appropriate request handler, depending on the request's method.
-  /// Throws `HandleMethodError.unknownMethod` for methods not handled by this service.
-  public override func handleMethod(_ method: String, handler: Handler) throws -> ServerStatus? {
-    let provider = self.provider
-    switch method {
-    case "/soseedy.SeedyAssignments/CreateAssignment":
-      return try Soseedy_SeedyAssignmentsCreateAssignmentSessionBase(
-        handler: handler,
-        providerBlock: { try provider.createAssignment(request: $0, session: $1 as! Soseedy_SeedyAssignmentsCreateAssignmentSessionBase) })
-          .run()
-    case "/soseedy.SeedyAssignments/CreateAssignmentOverride":
-      return try Soseedy_SeedyAssignmentsCreateAssignmentOverrideSessionBase(
-        handler: handler,
-        providerBlock: { try provider.createAssignmentOverride(request: $0, session: $1 as! Soseedy_SeedyAssignmentsCreateAssignmentOverrideSessionBase) })
-          .run()
-    case "/soseedy.SeedyAssignments/SubmitCourseAssignment":
-      return try Soseedy_SeedyAssignmentsSubmitCourseAssignmentSessionBase(
-        handler: handler,
-        providerBlock: { try provider.submitCourseAssignment(request: $0, session: $1 as! Soseedy_SeedyAssignmentsSubmitCourseAssignmentSessionBase) })
-          .run()
-    case "/soseedy.SeedyAssignments/CreateCourseAssignmentSubmissionComment":
-      return try Soseedy_SeedyAssignmentsCreateCourseAssignmentSubmissionCommentSessionBase(
-        handler: handler,
-        providerBlock: { try provider.createCourseAssignmentSubmissionComment(request: $0, session: $1 as! Soseedy_SeedyAssignmentsCreateCourseAssignmentSubmissionCommentSessionBase) })
-          .run()
-    case "/soseedy.SeedyAssignments/SeedAssignments":
-      return try Soseedy_SeedyAssignmentsSeedAssignmentsSessionBase(
-        handler: handler,
-        providerBlock: { try provider.seedAssignments(request: $0, session: $1 as! Soseedy_SeedyAssignmentsSeedAssignmentsSessionBase) })
-          .run()
-    case "/soseedy.SeedyAssignments/SeedAssignmentSubmission":
-      return try Soseedy_SeedyAssignmentsSeedAssignmentSubmissionSessionBase(
-        handler: handler,
-        providerBlock: { try provider.seedAssignmentSubmission(request: $0, session: $1 as! Soseedy_SeedyAssignmentsSeedAssignmentSubmissionSessionBase) })
-          .run()
-    default:
-      throw HandleMethodError.unknownMethod
-    }
-  }
-}
-

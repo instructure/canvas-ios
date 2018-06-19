@@ -80,9 +80,32 @@ public final class Soseedy_SeedyGeneralServiceClient: ServiceClientBase, Soseedy
 /// To build a server, implement a class that conforms to this protocol.
 /// If one of the methods returning `ServerStatus?` returns nil,
 /// it is expected that you have already returned a status to the client by means of `session.close`.
-public protocol Soseedy_SeedyGeneralProvider {
+public protocol Soseedy_SeedyGeneralProvider: ServiceProvider {
   func getHealthCheck(request: Soseedy_HealthCheckRequest, session: Soseedy_SeedyGeneralGetHealthCheckSession) throws -> Soseedy_HealthCheck
   func seedData(request: Soseedy_SeedDataRequest, session: Soseedy_SeedyGeneralSeedDataSession) throws -> Soseedy_SeededData
+}
+
+extension Soseedy_SeedyGeneralProvider {
+  public var serviceName: String { return "soseedy.SeedyGeneral" }
+
+  /// Determines and calls the appropriate request handler, depending on the request's method.
+  /// Throws `HandleMethodError.unknownMethod` for methods not handled by this service.
+  public func handleMethod(_ method: String, handler: Handler) throws -> ServerStatus? {
+    switch method {
+    case "/soseedy.SeedyGeneral/GetHealthCheck":
+      return try Soseedy_SeedyGeneralGetHealthCheckSessionBase(
+        handler: handler,
+        providerBlock: { try self.getHealthCheck(request: $0, session: $1 as! Soseedy_SeedyGeneralGetHealthCheckSessionBase) })
+          .run()
+    case "/soseedy.SeedyGeneral/SeedData":
+      return try Soseedy_SeedyGeneralSeedDataSessionBase(
+        handler: handler,
+        providerBlock: { try self.seedData(request: $0, session: $1 as! Soseedy_SeedyGeneralSeedDataSessionBase) })
+          .run()
+    default:
+      throw HandleMethodError.unknownMethod
+    }
+  }
 }
 
 public protocol Soseedy_SeedyGeneralGetHealthCheckSession: ServerSessionUnary {}
@@ -92,45 +115,3 @@ fileprivate final class Soseedy_SeedyGeneralGetHealthCheckSessionBase: ServerSes
 public protocol Soseedy_SeedyGeneralSeedDataSession: ServerSessionUnary {}
 
 fileprivate final class Soseedy_SeedyGeneralSeedDataSessionBase: ServerSessionUnaryBase<Soseedy_SeedDataRequest, Soseedy_SeededData>, Soseedy_SeedyGeneralSeedDataSession {}
-
-
-/// Main server for generated service
-public final class Soseedy_SeedyGeneralServer: ServiceServer {
-  private let provider: Soseedy_SeedyGeneralProvider
-
-  public init(address: String, provider: Soseedy_SeedyGeneralProvider) {
-    self.provider = provider
-    super.init(address: address)
-  }
-
-  public init?(address: String, certificateURL: URL, keyURL: URL, provider: Soseedy_SeedyGeneralProvider) {
-    self.provider = provider
-    super.init(address: address, certificateURL: certificateURL, keyURL: keyURL)
-  }
-
-  public init?(address: String, certificateString: String, keyString: String, provider: Soseedy_SeedyGeneralProvider) {
-    self.provider = provider
-    super.init(address: address, certificateString: certificateString, keyString: keyString)
-  }
-
-  /// Determines and calls the appropriate request handler, depending on the request's method.
-  /// Throws `HandleMethodError.unknownMethod` for methods not handled by this service.
-  public override func handleMethod(_ method: String, handler: Handler) throws -> ServerStatus? {
-    let provider = self.provider
-    switch method {
-    case "/soseedy.SeedyGeneral/GetHealthCheck":
-      return try Soseedy_SeedyGeneralGetHealthCheckSessionBase(
-        handler: handler,
-        providerBlock: { try provider.getHealthCheck(request: $0, session: $1 as! Soseedy_SeedyGeneralGetHealthCheckSessionBase) })
-          .run()
-    case "/soseedy.SeedyGeneral/SeedData":
-      return try Soseedy_SeedyGeneralSeedDataSessionBase(
-        handler: handler,
-        providerBlock: { try provider.seedData(request: $0, session: $1 as! Soseedy_SeedyGeneralSeedDataSessionBase) })
-          .run()
-    default:
-      throw HandleMethodError.unknownMethod
-    }
-  }
-}
-

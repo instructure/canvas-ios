@@ -80,9 +80,32 @@ public final class Soseedy_SeedyGradingPeriodsServiceClient: ServiceClientBase, 
 /// To build a server, implement a class that conforms to this protocol.
 /// If one of the methods returning `ServerStatus?` returns nil,
 /// it is expected that you have already returned a status to the client by means of `session.close`.
-public protocol Soseedy_SeedyGradingPeriodsProvider {
+public protocol Soseedy_SeedyGradingPeriodsProvider: ServiceProvider {
   func createGradingPeriodSet(request: Soseedy_CreateGradingPeriodSetRequest, session: Soseedy_SeedyGradingPeriodsCreateGradingPeriodSetSession) throws -> Soseedy_GradingPeriodSet
   func createGradingPeriod(request: Soseedy_CreateGradingPeriodRequest, session: Soseedy_SeedyGradingPeriodsCreateGradingPeriodSession) throws -> Soseedy_GradingPeriod
+}
+
+extension Soseedy_SeedyGradingPeriodsProvider {
+  public var serviceName: String { return "soseedy.SeedyGradingPeriods" }
+
+  /// Determines and calls the appropriate request handler, depending on the request's method.
+  /// Throws `HandleMethodError.unknownMethod` for methods not handled by this service.
+  public func handleMethod(_ method: String, handler: Handler) throws -> ServerStatus? {
+    switch method {
+    case "/soseedy.SeedyGradingPeriods/CreateGradingPeriodSet":
+      return try Soseedy_SeedyGradingPeriodsCreateGradingPeriodSetSessionBase(
+        handler: handler,
+        providerBlock: { try self.createGradingPeriodSet(request: $0, session: $1 as! Soseedy_SeedyGradingPeriodsCreateGradingPeriodSetSessionBase) })
+          .run()
+    case "/soseedy.SeedyGradingPeriods/CreateGradingPeriod":
+      return try Soseedy_SeedyGradingPeriodsCreateGradingPeriodSessionBase(
+        handler: handler,
+        providerBlock: { try self.createGradingPeriod(request: $0, session: $1 as! Soseedy_SeedyGradingPeriodsCreateGradingPeriodSessionBase) })
+          .run()
+    default:
+      throw HandleMethodError.unknownMethod
+    }
+  }
 }
 
 public protocol Soseedy_SeedyGradingPeriodsCreateGradingPeriodSetSession: ServerSessionUnary {}
@@ -92,45 +115,3 @@ fileprivate final class Soseedy_SeedyGradingPeriodsCreateGradingPeriodSetSession
 public protocol Soseedy_SeedyGradingPeriodsCreateGradingPeriodSession: ServerSessionUnary {}
 
 fileprivate final class Soseedy_SeedyGradingPeriodsCreateGradingPeriodSessionBase: ServerSessionUnaryBase<Soseedy_CreateGradingPeriodRequest, Soseedy_GradingPeriod>, Soseedy_SeedyGradingPeriodsCreateGradingPeriodSession {}
-
-
-/// Main server for generated service
-public final class Soseedy_SeedyGradingPeriodsServer: ServiceServer {
-  private let provider: Soseedy_SeedyGradingPeriodsProvider
-
-  public init(address: String, provider: Soseedy_SeedyGradingPeriodsProvider) {
-    self.provider = provider
-    super.init(address: address)
-  }
-
-  public init?(address: String, certificateURL: URL, keyURL: URL, provider: Soseedy_SeedyGradingPeriodsProvider) {
-    self.provider = provider
-    super.init(address: address, certificateURL: certificateURL, keyURL: keyURL)
-  }
-
-  public init?(address: String, certificateString: String, keyString: String, provider: Soseedy_SeedyGradingPeriodsProvider) {
-    self.provider = provider
-    super.init(address: address, certificateString: certificateString, keyString: keyString)
-  }
-
-  /// Determines and calls the appropriate request handler, depending on the request's method.
-  /// Throws `HandleMethodError.unknownMethod` for methods not handled by this service.
-  public override func handleMethod(_ method: String, handler: Handler) throws -> ServerStatus? {
-    let provider = self.provider
-    switch method {
-    case "/soseedy.SeedyGradingPeriods/CreateGradingPeriodSet":
-      return try Soseedy_SeedyGradingPeriodsCreateGradingPeriodSetSessionBase(
-        handler: handler,
-        providerBlock: { try provider.createGradingPeriodSet(request: $0, session: $1 as! Soseedy_SeedyGradingPeriodsCreateGradingPeriodSetSessionBase) })
-          .run()
-    case "/soseedy.SeedyGradingPeriods/CreateGradingPeriod":
-      return try Soseedy_SeedyGradingPeriodsCreateGradingPeriodSessionBase(
-        handler: handler,
-        providerBlock: { try provider.createGradingPeriod(request: $0, session: $1 as! Soseedy_SeedyGradingPeriodsCreateGradingPeriodSessionBase) })
-          .run()
-    default:
-      throw HandleMethodError.unknownMethod
-    }
-  }
-}
-

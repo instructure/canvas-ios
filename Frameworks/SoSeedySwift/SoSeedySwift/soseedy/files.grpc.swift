@@ -58,43 +58,21 @@ public final class Soseedy_SeedyFilesServiceClient: ServiceClientBase, Soseedy_S
 /// To build a server, implement a class that conforms to this protocol.
 /// If one of the methods returning `ServerStatus?` returns nil,
 /// it is expected that you have already returned a status to the client by means of `session.close`.
-public protocol Soseedy_SeedyFilesProvider {
+public protocol Soseedy_SeedyFilesProvider: ServiceProvider {
   func uploadFile(request: Soseedy_UploadFileRequest, session: Soseedy_SeedyFilesUploadFileSession) throws -> Soseedy_Attachment
 }
 
-public protocol Soseedy_SeedyFilesUploadFileSession: ServerSessionUnary {}
-
-fileprivate final class Soseedy_SeedyFilesUploadFileSessionBase: ServerSessionUnaryBase<Soseedy_UploadFileRequest, Soseedy_Attachment>, Soseedy_SeedyFilesUploadFileSession {}
-
-
-/// Main server for generated service
-public final class Soseedy_SeedyFilesServer: ServiceServer {
-  private let provider: Soseedy_SeedyFilesProvider
-
-  public init(address: String, provider: Soseedy_SeedyFilesProvider) {
-    self.provider = provider
-    super.init(address: address)
-  }
-
-  public init?(address: String, certificateURL: URL, keyURL: URL, provider: Soseedy_SeedyFilesProvider) {
-    self.provider = provider
-    super.init(address: address, certificateURL: certificateURL, keyURL: keyURL)
-  }
-
-  public init?(address: String, certificateString: String, keyString: String, provider: Soseedy_SeedyFilesProvider) {
-    self.provider = provider
-    super.init(address: address, certificateString: certificateString, keyString: keyString)
-  }
+extension Soseedy_SeedyFilesProvider {
+  public var serviceName: String { return "soseedy.SeedyFiles" }
 
   /// Determines and calls the appropriate request handler, depending on the request's method.
   /// Throws `HandleMethodError.unknownMethod` for methods not handled by this service.
-  public override func handleMethod(_ method: String, handler: Handler) throws -> ServerStatus? {
-    let provider = self.provider
+  public func handleMethod(_ method: String, handler: Handler) throws -> ServerStatus? {
     switch method {
     case "/soseedy.SeedyFiles/UploadFile":
       return try Soseedy_SeedyFilesUploadFileSessionBase(
         handler: handler,
-        providerBlock: { try provider.uploadFile(request: $0, session: $1 as! Soseedy_SeedyFilesUploadFileSessionBase) })
+        providerBlock: { try self.uploadFile(request: $0, session: $1 as! Soseedy_SeedyFilesUploadFileSessionBase) })
           .run()
     default:
       throw HandleMethodError.unknownMethod
@@ -102,3 +80,6 @@ public final class Soseedy_SeedyFilesServer: ServiceServer {
   }
 }
 
+public protocol Soseedy_SeedyFilesUploadFileSession: ServerSessionUnary {}
+
+fileprivate final class Soseedy_SeedyFilesUploadFileSessionBase: ServerSessionUnaryBase<Soseedy_UploadFileRequest, Soseedy_Attachment>, Soseedy_SeedyFilesUploadFileSession {}

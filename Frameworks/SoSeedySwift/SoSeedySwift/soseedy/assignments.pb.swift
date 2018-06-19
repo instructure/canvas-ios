@@ -251,6 +251,8 @@ public struct Soseedy_SubmissionSeed {
 
   public var attachments: [Soseedy_Attachment] = []
 
+  public var checkForLateStatus: Bool = false
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -355,6 +357,10 @@ public struct Soseedy_CourseAssignmentSubmission {
 
   public var attachments: [Soseedy_Attachment] = []
 
+  public var userID: Int64 = 0
+
+  public var late: Bool = false
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -370,6 +376,24 @@ public struct Soseedy_Comment {
   public var comment: String = String()
 
   public var attachments: [Soseedy_Attachment] = []
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Soseedy_GetSubmissionRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var token: String = String()
+
+  public var courseID: Int64 = 0
+
+  public var assignmentID: Int64 = 0
+
+  public var studentID: Int64 = 0
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -792,6 +816,7 @@ extension Soseedy_SubmissionSeed: SwiftProtobuf.Message, SwiftProtobuf._MessageI
     2: .same(proto: "amount"),
     3: .same(proto: "fileType"),
     4: .same(proto: "attachments"),
+    5: .same(proto: "checkForLateStatus"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -801,6 +826,7 @@ extension Soseedy_SubmissionSeed: SwiftProtobuf.Message, SwiftProtobuf._MessageI
       case 2: try decoder.decodeSingularInt32Field(value: &self.amount)
       case 3: try decoder.decodeSingularEnumField(value: &self.fileType)
       case 4: try decoder.decodeRepeatedMessageField(value: &self.attachments)
+      case 5: try decoder.decodeSingularBoolField(value: &self.checkForLateStatus)
       default: break
       }
     }
@@ -819,6 +845,9 @@ extension Soseedy_SubmissionSeed: SwiftProtobuf.Message, SwiftProtobuf._MessageI
     if !self.attachments.isEmpty {
       try visitor.visitRepeatedMessageField(value: self.attachments, fieldNumber: 4)
     }
+    if self.checkForLateStatus != false {
+      try visitor.visitSingularBoolField(value: self.checkForLateStatus, fieldNumber: 5)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -827,6 +856,7 @@ extension Soseedy_SubmissionSeed: SwiftProtobuf.Message, SwiftProtobuf._MessageI
     if self.amount != other.amount {return false}
     if self.fileType != other.fileType {return false}
     if self.attachments != other.attachments {return false}
+    if self.checkForLateStatus != other.checkForLateStatus {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }
@@ -1057,6 +1087,8 @@ extension Soseedy_CourseAssignmentSubmission: SwiftProtobuf.Message, SwiftProtob
     3: .same(proto: "url"),
     4: .same(proto: "submissionComments"),
     5: .same(proto: "attachments"),
+    6: .same(proto: "userId"),
+    7: .same(proto: "late"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1067,6 +1099,8 @@ extension Soseedy_CourseAssignmentSubmission: SwiftProtobuf.Message, SwiftProtob
       case 3: try decoder.decodeSingularStringField(value: &self.url)
       case 4: try decoder.decodeRepeatedMessageField(value: &self.submissionComments)
       case 5: try decoder.decodeRepeatedMessageField(value: &self.attachments)
+      case 6: try decoder.decodeSingularInt64Field(value: &self.userID)
+      case 7: try decoder.decodeSingularBoolField(value: &self.late)
       default: break
       }
     }
@@ -1088,6 +1122,12 @@ extension Soseedy_CourseAssignmentSubmission: SwiftProtobuf.Message, SwiftProtob
     if !self.attachments.isEmpty {
       try visitor.visitRepeatedMessageField(value: self.attachments, fieldNumber: 5)
     }
+    if self.userID != 0 {
+      try visitor.visitSingularInt64Field(value: self.userID, fieldNumber: 6)
+    }
+    if self.late != false {
+      try visitor.visitSingularBoolField(value: self.late, fieldNumber: 7)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -1097,6 +1137,8 @@ extension Soseedy_CourseAssignmentSubmission: SwiftProtobuf.Message, SwiftProtob
     if self.url != other.url {return false}
     if self.submissionComments != other.submissionComments {return false}
     if self.attachments != other.attachments {return false}
+    if self.userID != other.userID {return false}
+    if self.late != other.late {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }
@@ -1138,6 +1180,53 @@ extension Soseedy_Comment: SwiftProtobuf.Message, SwiftProtobuf._MessageImplemen
     if self.authorName != other.authorName {return false}
     if self.comment != other.comment {return false}
     if self.attachments != other.attachments {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Soseedy_GetSubmissionRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".GetSubmissionRequest"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "token"),
+    2: .same(proto: "courseId"),
+    3: .same(proto: "assignmentId"),
+    4: .same(proto: "studentId"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.token)
+      case 2: try decoder.decodeSingularInt64Field(value: &self.courseID)
+      case 3: try decoder.decodeSingularInt64Field(value: &self.assignmentID)
+      case 4: try decoder.decodeSingularInt64Field(value: &self.studentID)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.token.isEmpty {
+      try visitor.visitSingularStringField(value: self.token, fieldNumber: 1)
+    }
+    if self.courseID != 0 {
+      try visitor.visitSingularInt64Field(value: self.courseID, fieldNumber: 2)
+    }
+    if self.assignmentID != 0 {
+      try visitor.visitSingularInt64Field(value: self.assignmentID, fieldNumber: 3)
+    }
+    if self.studentID != 0 {
+      try visitor.visitSingularInt64Field(value: self.studentID, fieldNumber: 4)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public func _protobuf_generated_isEqualTo(other: Soseedy_GetSubmissionRequest) -> Bool {
+    if self.token != other.token {return false}
+    if self.courseID != other.courseID {return false}
+    if self.assignmentID != other.assignmentID {return false}
+    if self.studentID != other.studentID {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }
