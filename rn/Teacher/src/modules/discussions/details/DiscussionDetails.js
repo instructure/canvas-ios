@@ -125,8 +125,16 @@ export class DiscussionDetails extends Component<Props, any> {
       unread_entries: props.unreadEntries || [],
       entry_ratings: props.entryRatings || {},
     }
-    this.state.flatReplies = this.rootRepliesData(props.discussion, [], this.state.maxReplyNodeDepth)
-    NativeModules.AppStoreReview.handleNavigateToAssignment()
+    const groupDiscussion = this.groupDiscussion(props)
+    if (groupDiscussion && this.showingWrongDiscussionForGroups(props)) {
+      // We're showing the wrong discussion. Replace with group version.
+      const { group_id, id } = groupDiscussion
+      this.hasReplaced = true
+      this.props.navigator.replace(`/groups/${group_id}/discussion_topics/${id}`)
+    } else {
+      this.state.flatReplies = this.rootRepliesData(props.discussion, [], this.state.maxReplyNodeDepth)
+      NativeModules.AppStoreReview.handleNavigateToAssignment()
+    }
   }
 
   componentWillUnmount () {
@@ -137,24 +145,21 @@ export class DiscussionDetails extends Component<Props, any> {
   }
 
   componentWillReceiveProps (nextProps: Props) {
+    const groupDiscussion = this.groupDiscussion(nextProps)
+    if (!this.hasReplaced && groupDiscussion && this.showingWrongDiscussionForGroups(nextProps)) {
+      // We're showing the wrong discussion. Replace with group version.
+      const { group_id, id } = groupDiscussion
+      this.hasReplaced = true
+      this.props.navigator.replace(`/groups/${group_id}/discussion_topics/${id}`)
+      return
+    }
+
     if (nextProps.error && nextProps.error !== this.props.error) {
       alertError(nextProps.error)
     }
 
     const { discussion } = nextProps
     if (discussion) {
-      if (!this.hasReplaced && nextProps.context !== 'groups' && discussion.group_category_id && discussion.group_topic_children) {
-        // This is a group discussion but we're showing the main discussion
-        // So replace with the correct group discussion
-        const groups = Object.keys(nextProps.groups)
-        const groupDiscussion = discussion.group_topic_children.find(({ group_id }) => groups.includes(group_id))
-        if (groupDiscussion) {
-          const { group_id, id } = groupDiscussion
-          this.hasReplaced = true
-          this.props.navigator.replace(`/groups/${group_id}/discussion_topics/${id}`)
-        }
-      }
-
       // Mark this discussion as viewed
       ModuleItemsProgress.viewedDiscussion(nextProps.contextID, nextProps.discussionID)
     }
@@ -168,6 +173,7 @@ export class DiscussionDetails extends Component<Props, any> {
       this.props.navigator.pop()
       return
     }
+
     this.setState({
       unread_entries: nextProps.unreadEntries,
       entry_ratings: nextProps.entryRatings || {},
@@ -185,6 +191,25 @@ export class DiscussionDetails extends Component<Props, any> {
       maxReplyNodeDepth,
       flatReplies: this.rootRepliesData(this.props.discussion, this.state.rootNodePath, maxReplyNodeDepth),
     })
+  }
+
+  showingWrongDiscussionForGroups = (props: Props) => {
+    const { discussion } = props
+    // True if we're not in a group context and this is a group discussion
+    return discussion &&
+      props.context !== 'groups' &&
+      discussion.group_category_id &&
+      discussion.group_topic_children
+  }
+
+  groupDiscussion = (props: Props) => {
+    const { discussion } = props
+    if (!discussion || !discussion.group_topic_children) {
+      return null
+    }
+    const groups = Object.keys(props.groups)
+    const groupDiscussion = discussion.group_topic_children.find(({ group_id }) => groups.includes(group_id))
+    return groupDiscussion
   }
 
   navigateToContextCard = () => {

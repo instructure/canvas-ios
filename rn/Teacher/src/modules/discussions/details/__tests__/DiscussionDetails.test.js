@@ -664,7 +664,7 @@ describe('DiscussionDetails', () => {
       .toHaveBeenCalled()
   })
 
-  it('replaces with correct group discussion', () => {
+  it('replaces with correct group discussion when received new props', () => {
     props.discussion = null
     props.context = 'courses'
     props.navigator = template.navigator({ replace: jest.fn() })
@@ -682,6 +682,26 @@ describe('DiscussionDetails', () => {
       ],
     })
     screen.setProps({ discussion })
+
+    expect(props.navigator.replace).toHaveBeenCalledWith('/groups/4/discussion_topics/49')
+  })
+
+  it('replaces with correct group discussion when created', () => {
+    const discussion = template.discussion({
+      id: '1',
+      group_category_id: '3',
+      group_topic_children: [
+        {
+          id: '49',
+          group_id: '4',
+        },
+      ],
+    })
+    props.discussion = discussion
+    props.context = 'courses'
+    props.navigator = template.navigator({ replace: jest.fn() })
+    props.groups = { '4': { group: template.group(), color: '' } }
+    shallow(<DiscussionDetails {...props} />)
 
     expect(props.navigator.replace).toHaveBeenCalledWith('/groups/4/discussion_topics/49')
   })
