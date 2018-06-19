@@ -39,8 +39,19 @@ extension Course {
             // filter out restricted courses because their json is too sparse and will cause parsing issues
             .map { coursesJSON in
                 return coursesJSON.filter { json in
+                    // filter out restricted courses because their json is too sparse and will cause parsing issues
                     let restricted: Bool = (try? json <| "access_restricted_by_date") ?? false
-                    return !restricted
+                    if restricted {
+                        return false
+                    }
+
+                    // only include courses for this studentID
+                    let enrollments: [JSONObject] = (try? json <| "enrollments") ?? []
+                    let observing = enrollments.any { enrollment in
+                        let associated_user_id = try? enrollment.stringID("associated_user_id")
+                        return associated_user_id == studentID
+                    }
+                    return observing
                 }
         }
     }
