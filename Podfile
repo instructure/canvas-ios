@@ -119,21 +119,21 @@ abstract_target 'defaults' do
   abstract_target 'common_ui_tests' do
     target 'TeacherUITests' do
       pod 'EarlGrey', '~> 1.1'
-      pod 'SwiftGRPC', git: 'https://github.com/n8armstrong/grpc-swift.git', branch: 'tls-mutual-auth'
+      pod 'SwiftGRPC', git: 'https://github.com/grpc/grpc-swift.git'
       pod 'fishhook'
       project 'rn/Teacher/ios/Teacher.xcodeproj'
     end
 
     target 'StudentUITests' do
       pod 'EarlGrey', '~> 1.1'
-      pod 'SwiftGRPC', git: 'https://github.com/n8armstrong/grpc-swift.git', branch: 'tls-mutual-auth'
+      pod 'SwiftGRPC', git: 'https://github.com/grpc/grpc-swift.git'
       pod 'fishhook'
       project 'Canvas/Canvas.xcodeproj'
     end
   end
 
   target 'SoSeedySwift' do
-    pod 'SwiftGRPC', git: 'https://github.com/n8armstrong/grpc-swift.git', branch: 'tls-mutual-auth'
+    pod 'SwiftGRPC', git: 'https://github.com/grpc/grpc-swift.git'
     project 'Frameworks/SoSeedySwift/SoSeedySwift.xcodeproj'
   end
 end
