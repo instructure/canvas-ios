@@ -26,28 +26,15 @@ import CanvasCore
 extension CalendarEvent {
     
     // MARK: - Collection
-    public static func getCalendarEventsFromAirwolf(_ session: Session, studentID: String, startDate: Date, endDate: Date, contextCodes: [String]) throws -> SignalProducer<[JSONObject], NSError> {
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "YYYY-MM-dd"
-        dateFormatter.locale = NSLocale(localeIdentifier: "en") as Locale
-        
-        let nillableParams: [String: Any?] = [
-            "start_date": dateFormatter.string(from: startDate),
-            "end_date": dateFormatter.string(from: endDate),
-            "context_codes": contextCodes,
-            "include": ["submission"]
-        ]
-
-        let parameters = Session.rejectNilParameters(nillableParams)
-        
-        let request = try session.GET("/api/v1/calendar_events", parameters: parameters)
-        return session.paginatedJSONSignalProducer(request)
+    public static func getCalendarEvents(_ session: Session, studentID: String, startDate: Date, endDate: Date, contextCodes: [String]) throws -> SignalProducer<[JSONObject], NSError> {
+        let getEvents = try getCalendarEvents(session, type: .event, startDate: startDate, endDate: endDate, contextCodes: contextCodes)
+        let getAssignments = try getCalendarEvents(session, type: .assignment, startDate: startDate, endDate: endDate, contextCodes: contextCodes)
+        return getEvents.concat(getAssignments)
     }
 
     public static func calendarEventsAirwolfCollectionRefresher(_ session: Session, studentID: String, startDate: Date, endDate: Date, contextCodes: [String]) throws -> Refresher {
         let predicate = CalendarEvent.predicate(startDate, endDate: endDate, contextCodes: contextCodes)
-        let remote = try CalendarEvent.getCalendarEventsFromAirwolf(session, studentID: studentID, startDate: startDate, endDate: endDate, contextCodes: contextCodes)
+        let remote = try CalendarEvent.getCalendarEvents(session, studentID: studentID, startDate: startDate, endDate: endDate, contextCodes: contextCodes)
         let context = try session.calendarEventsManagedObjectContext(studentID)
         let sync = CalendarEvent.syncSignalProducer(predicate, inContext: context, fetchRemote: remote)
 

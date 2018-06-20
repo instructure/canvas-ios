@@ -27,7 +27,7 @@ extension CalendarEvent {
         return session.JSONSignalProducer(request)
     }
 
-    static func getCalendarEvents(_ session: Session, type: CalendarEventAPI.RequestType, startDate: Date, endDate: Date, contextCodes: [String]? = nil) throws -> SignalProducer<[JSONObject], NSError> {
+    public static func getCalendarEvents(_ session: Session, type: CalendarEventAPI.RequestType, startDate: Date, endDate: Date, contextCodes: [String]? = nil) throws -> SignalProducer<[JSONObject], NSError> {
         let request = try CalendarEventAPI.getCalendarEvents(session, type: type, startDate: startDate, endDate: endDate, contextCodes: contextCodes)
         return session.paginatedJSONSignalProducer(request)
     }
