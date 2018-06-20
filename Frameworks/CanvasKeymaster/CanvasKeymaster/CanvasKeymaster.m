@@ -337,6 +337,7 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
 
 - (void)logout
 {
+    self.willLogout();
     [self logoutWithCompletionBlock:^{
         [self completeLogout];
     }];
@@ -369,6 +370,7 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
 
 - (void)switchUser
 {
+    self.willLogout();
     [self completeLogout];
 }
 
@@ -378,6 +380,7 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
 
 - (RACSignal *)masqueradeAsUserWithID:(NSString *)id domain:(NSString *)domain
 {
+    NSString * originalIDOfMasqueradingUser = self.currentClient.currentUser.id;
     if ([domain rangeOfString:@"."].location == NSNotFound) {
         // lets tack on a `.instructure.com`
         domain = [domain stringByAppendingString:@".instructure.com"];
@@ -408,6 +411,7 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
     [fetchUserID subscribeNext:^(CKIUser *masqueradingUser) {
         [newClient setValue:masqueradingUser forKeyPath:@"currentUser"];
         self.currentClient = newClient;
+        self.currentClient.originalIDOfMasqueradingUser = originalIDOfMasqueradingUser;
         [_subjectForClientLogin sendNext:newClient];
     }];
     

@@ -38,7 +38,7 @@ export default class PageViewEvents extends Component<Props, any> {
     events = events.map((o) => {
       let attr = o['attributes']
       delete o['attributes']
-      return { ...o, url: attr['url'] }
+      return { ...o, url: attr['url'], domain: attr['domain'], context: attr['context'], contextID: attr['contextID'] }
     }).filter((o) => { return o.eventName !== '/dev-menu' && o.eventName !== '/page-view-events' })
     return events
   }

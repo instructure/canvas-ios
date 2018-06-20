@@ -43,6 +43,7 @@
 		2CE40C9D1F87D37300ECEACB /* PSPDFViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B31F843B59001A8F31 /* PSPDFViewManager.m */; };
 		2CF6DEB62006A039007A5591 /* UIViewController+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF6DEB52006A039007A5591 /* UIViewController+Core.swift */; };
 		2CFAFBD11FD21B3800F22C7F /* WindowTraits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFAFBD01FD21B3800F22C7F /* WindowTraits.swift */; };
+		3B05B14C20D81C7A00D156E9 /* PageViewSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B05B14B20D81C7A00D156E9 /* PageViewSession.swift */; };
 		3B10AC0B206D8838007EFC2F /* Array+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B10AC0A206D8838007EFC2F /* Array+Core.swift */; };
 		3B1B0456205090F800CB256A /* String+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0455205090F800CB256A /* String+Core.swift */; };
 		3B210C282051B7640062F6A7 /* CodableValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B210C272051B7640062F6A7 /* CodableValue.swift */; };
@@ -568,6 +569,7 @@
 		2CD7769D201111F700589D4F /* EnrollmentSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrollmentSplitViewController.swift; sourceTree = "<group>"; };
 		2CF6DEB52006A039007A5591 /* UIViewController+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Core.swift"; sourceTree = "<group>"; };
 		2CFAFBD01FD21B3800F22C7F /* WindowTraits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowTraits.swift; sourceTree = "<group>"; };
+		3B05B14B20D81C7A00D156E9 /* PageViewSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewSession.swift; sourceTree = "<group>"; };
 		3B10AC0A206D8838007EFC2F /* Array+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Core.swift"; sourceTree = "<group>"; };
 		3B1B0455205090F800CB256A /* String+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Core.swift"; sourceTree = "<group>"; };
 		3B210C272051B7640062F6A7 /* CodableValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableValue.swift; sourceTree = "<group>"; };
@@ -1352,6 +1354,7 @@
 				3BF2B3D5204F058800B5E5E5 /* PageViewEventLogger.m */,
 				3B210C292051DCA50062F6A7 /* PageViewEventViewControllerLoggingProtocol.swift */,
 				3BD715A520B7562500F5A422 /* PageViewEventRequestManager.swift */,
+				3B05B14B20D81C7A00D156E9 /* PageViewSession.swift */,
 			);
 			path = "Page View Analytics";
 			sourceTree = "<group>";
@@ -3266,6 +3269,7 @@
 				493020711F902462006BD777 /* Session.swift in Sources */,
 				494AE09C1F843A09001A8F31 /* HapticFeedback.m in Sources */,
 				493020561F902364006BD777 /* NSURLSession+SoLazy.swift in Sources */,
+				3B05B14C20D81C7A00D156E9 /* PageViewSession.swift in Sources */,
 				49CE96BF1F8FF94B00121A43 /* Page+Network.swift in Sources */,
 				49CE97481F8FFEA600121A43 /* DueDateOverride.swift in Sources */,
 				49301FEF1F901854006BD777 /* NotificationPreferencesTableViewCell.swift in Sources */,

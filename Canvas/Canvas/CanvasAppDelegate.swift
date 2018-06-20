@@ -283,6 +283,10 @@ extension AppDelegate {
 }
 
 extension AppDelegate: NativeLoginManagerDelegate {
+    func willLogout() {
+        PageViewEventController.instance.userDidChange()
+    }
+    
     func didLogin(_ client: CKIClient) {
         let session = client.authSession
         self.session = session
@@ -297,7 +301,6 @@ extension AppDelegate: NativeLoginManagerDelegate {
     }
     
     func didLogout(_ controller: UIViewController) {
-        PageViewEventController.instance.userDidChange()
         NotificationKitController.deregisterPushNotifications { _ in
             // this is a no-op because we don't want errors to prevent logging out
         }

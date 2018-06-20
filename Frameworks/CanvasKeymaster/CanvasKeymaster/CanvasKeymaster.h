@@ -62,7 +62,10 @@ NS_ASSUME_NONNULL_BEGIN
  Fires on logout sending the login view controller
  */
 @property (nonatomic, readonly) RACSignal<UIViewController *> *signalForLogout;
-
+/**
+ Fires before logout
+ */
+@property (nonatomic, copy, nullable) void (^willLogout)(void);
 /**
     Signal for "can't login because we have more than one logged in user"
  */
@@ -117,7 +120,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)loginWithMobileVerifyDetails:(NSDictionary *)details;
 - (void)loginWithSuggestedDomain:(nullable NSString *)host;
-
 @end
 
 @interface CKIClient (CanvasKeymaster)

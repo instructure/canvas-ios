@@ -208,7 +208,9 @@ RCT_EXPORT_METHOD(stopObserving)
             [self sendLoginEvent:nil];
         }
     };
-    
+
+    __weak typeof(self) weakself = self;
+    TheKeymaster.willLogout = ^{ [weakself.delegate willLogout]; };
     self.logoutObserver = [TheKeymaster.signalForLogout subscribeNext:logoutHandler];
     self.multipleLoginObserver = [TheKeymaster.signalForCannotLoginAutomatically subscribeNext:logoutHandler];
     

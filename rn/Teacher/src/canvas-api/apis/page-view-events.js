@@ -21,28 +21,46 @@ const appKey = 'CANVAS_STUDENT_IOS'
 
 export function fetchPandataToken (userID: string): ApiPromise<any> {
   const options = { app_key: appKey }
-  return httpClient().post(`/users/${userID}/pandata_token`, options)
+  return httpClient().post(`/users/self/pandata_events_token`, options)
 }
 
-export async function sendEvents (eventsAsJsonString: string, pandataToken: string): ApiPromise<any> {
+export async function sendEvents (eventsAsJsonString: string, endpointInfo: {[string]: any}): ApiPromise<any> {
+  let authToken = endpointInfo.auth_token
+  let propsToken = endpointInfo.props_token
+  let url = endpointInfo.url
+
   let events = JSON.parse(eventsAsJsonString)
   let mappedEvents = events.map((e) => {
+    let attributes = e.attributes || {}
     return {
       timestamp: e.timestamp,
       appTag: appKey,
       eventType: 'page_view',
-      userID: e.userID,
-      properties: { page_name: e.eventName, url: e.attributes.url, interaction_seconds: e.eventDuration } }
+      properties: {
+        page_name: e.eventName,
+        url: attributes.url,
+        interaction_seconds: e.eventDuration,
+        domain: attributes.domain,
+        context_type: attributes.context_type,
+        context_id: attributes.context_id,
+        app_name: attributes.app_name,
+        real_user_id: attributes.real_user_id,
+        user_id: attributes.user_id,
+        session_id: attributes.session_id,
+        agent: attributes.agent,
+      },
+      signedProperties: propsToken,
+    }
   })
 
   const options = { events: mappedEvents }
   const config = {
-    baseURL: 'https://cbbsk4vb5k.execute-api.us-east-1.amazonaws.com',
+    baseURL: url,
     headers: {
-      'Authorization': `Bearer ${pandataToken}`,
+      'Authorization': `Bearer ${authToken}`,
     },
     excludeVersion: true,
   }
-  return httpClient().post('/prod/pandata-event', options, config)
+  return httpClient().post('', options, config)
 }
 

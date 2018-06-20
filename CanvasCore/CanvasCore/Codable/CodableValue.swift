@@ -65,7 +65,8 @@ enum CodableValueError: Swift.Error {
 }
 
 extension CodableValue {
-    public init(_ value: Any) throws {
+    public init(_ value: Any?) throws {
+        guard let value = value else { throw CodableValueError.decodingError }
         switch value {
         case let num as Double:
             self = .number(num)

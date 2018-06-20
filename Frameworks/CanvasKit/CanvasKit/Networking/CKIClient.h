@@ -64,6 +64,11 @@ extern NSString *const CKIClientAccessTokenExpiredNotification;
 @property (nonatomic) NSString *actAsUserID;
 
 /**
+ The ID of the masquerading user
+ */
+@property (nonatomic) NSString * _Nullable originalIDOfMasqueradingUser;
+
+/**
  When acting as a user, the original base url to revert to once masquerading has finished
  */
 @property (nonatomic) NSURL *originalBaseURL;

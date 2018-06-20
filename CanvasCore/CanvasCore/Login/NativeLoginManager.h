@@ -59,6 +59,10 @@ NS_ASSUME_NONNULL_BEGIN
 // The view controller passed in will be a login view controller
 - (void)didLogout:(UIViewController *)controller;
 
+@optional
+// Called before a logout event
+- (void)willLogout;
+
 @end
 
 NS_ASSUME_NONNULL_END

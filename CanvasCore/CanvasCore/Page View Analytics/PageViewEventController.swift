@@ -23,6 +23,7 @@ typealias ErrorHandler = (Error?) -> Void
 open class PageViewEventController: NSObject {
     open static let instance = PageViewEventController()
     private var requestManager = PageViewEventRequestManager()
+    private let session = PageViewSession()
     
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -43,8 +44,21 @@ open class PageViewEventController: NSObject {
         guard let userID = CanvasKeymaster.the().currentClient?.currentUser.id else { return }
         
         var mutableAttributes = attributes?.convertToPageViewEventDictionary() ?? PageViewEventDictionary()
+        mutableAttributes["session_id"] = try? CodableValue(session.ID)
+        mutableAttributes["app_name"] = try? CodableValue("Canvas Student for iOS")
+        mutableAttributes["user_id"] = try? CodableValue(userID)
+        mutableAttributes["agent"] = try? CodableValue(CanvasCore.defaultHTTPHeaders["User-Agent"] ?? "Unknown")
+        if let masqueradeID = CanvasKeymaster.the().currentClient?.actAsUserID, let originalUserID = CanvasKeymaster.the().currentClient?.originalIDOfMasqueradingUser {
+            mutableAttributes["user_id"] = try? CodableValue(masqueradeID)
+            mutableAttributes["real_user_id"] = try? CodableValue(originalUserID)
+        }
         if let url = cleanupUrl(url: eventNameOrPath, attributes: mutableAttributes), let codableUrl = try? CodableValue(url) {
             mutableAttributes["url"] = codableUrl
+            if let parsedUrlPieces = parsePageViewParts(url) {
+                mutableAttributes["domain"] = try? CodableValue(parsedUrlPieces.domain)
+                mutableAttributes["context_type"] = try? CodableValue(parsedUrlPieces.context)
+                mutableAttributes["context_id"] = try? CodableValue(parsedUrlPieces.contextID)
+            }
         }
         
         let event = PageViewEvent(eventName: eventNameOrPath, attributes: mutableAttributes, userID: userID, eventDuration: eventDurationInSeconds)
@@ -54,6 +68,7 @@ open class PageViewEventController: NSObject {
     public func userDidChange() {
         sync({ [weak self] in
             self?.requestManager.cleanup()
+            self?.session.resetSessionInfo()
         })
     }
 
@@ -130,6 +145,44 @@ open class PageViewEventController: NSObject {
         }
         
         return baseURL.appendingPathComponent(path).absoluteString
+    }
+    
+    private enum Context: String {
+        case courses = "courses"
+        case groups = "groups"
+        case users = "users"
+        case accounts = "accounts"
+        
+        func properName() -> String {
+            switch(self) {
+            case .courses:
+                return "Course"
+            case .groups:
+                return "Group"
+            case .users:
+                return "User"
+            case .accounts:
+                return "Account"
+            }
+         }
+    }
+    
+    private func parsePageViewParts(_ url: String) -> (domain: String?, context: String?, contextID: String?)? {
+        guard let urlObj = URL(string: url) else { return nil }
+        let comps = urlObj.pathComponents
+        let host = urlObj.host
+        var context: String? = nil
+        var contextID: String? = nil
+        for i in 0..<comps.count {
+            if let c = Context(rawValue: comps[i]) {
+                context = c.properName()
+                if(i + 1 < comps.count) {
+                    contextID = comps[i+1]
+                }
+                break
+            }
+        }
+        return (host, context, contextID)
     }
 }
 
