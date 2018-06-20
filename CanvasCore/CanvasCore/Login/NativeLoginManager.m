@@ -210,7 +210,11 @@ RCT_EXPORT_METHOD(stopObserving)
     };
 
     __weak typeof(self) weakself = self;
-    TheKeymaster.willLogout = ^{ [weakself.delegate willLogout]; };
+    TheKeymaster.willLogout = ^{
+        if([weakself.delegate respondsToSelector:@selector(willLogout)]) {
+            [weakself.delegate willLogout];
+        }
+    };
     self.logoutObserver = [TheKeymaster.signalForLogout subscribeNext:logoutHandler];
     self.multipleLoginObserver = [TheKeymaster.signalForCannotLoginAutomatically subscribeNext:logoutHandler];
     
