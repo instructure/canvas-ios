@@ -18,4 +18,3 @@
 
 #import "iCarousel.h"
 #import <BuddyBuildSDK/BuddyBuildSDK.h>
-#import "SimplePing.h"

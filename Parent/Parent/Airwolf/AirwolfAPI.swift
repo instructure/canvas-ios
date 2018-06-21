@@ -19,51 +19,10 @@ import CanvasCore
 
 open class AirwolfAPI {
     // MARK: Parent calls
-    open class func authenticateRequest(email: String, password: String) throws -> URLRequest {
-        let url = RegionPicker.shared.apiURL
-            .appendingPathComponent("authenticate")
-        return try URLRequest(method: .POST, URL: url, parameters: ["username": email, "password": password], encoding: .json)
-    }
-    
-    open class func authenticateAsCanvasObserver(_ domain: String, provider: String?) -> URLRequest {
-        let url = RegionPicker.shared.apiURL
-            .appendingPathComponent("canvas")
-            .appendingPathComponent("authenticate")
-
-        var parameters = ["domain": domain]
-        if let provider = provider {
-            parameters["authentication_provider"] = provider
-        }
-        
-        var request = try! URLRequest(method: .GET, URL: url, parameters: parameters, encoding: .url)
-        request.setValue(self.loginUserAgent(), forHTTPHeaderField: "User-Agent")
-        return request
-    }
-
     open class func loginUserAgent() -> String {
         let template = "Mozilla/5.0 (iPhone; CPU iPhone OS %@ like Mac OS X) AppleWebKit/603.1.23 (KHTML, like Gecko) Version/10.0 Mobile/14E5239e Safari/602.1"
         let version = UIDevice.current.systemVersion.replacingOccurrences(of: ".", with: "_")
         return String(format: template, version)
-    }
-    
-    open class func createAccountRequest(email: String, password: String, firstName: String, lastName: String) throws -> URLRequest {
-        let url = RegionPicker.shared.apiURL
-            .appendingPathComponent("newparent")
-        return try URLRequest(method: .PUT, URL: url, parameters: ["parent": ["username": email, "password": password, "first_name": firstName, "last_name": lastName]], encoding: .json)
-    }
-
-    open class func sendPasswordResetEmailRequest(email: String) throws -> URLRequest {
-        let url = RegionPicker.shared.apiURL
-            .appendingPathComponent("send_password_reset/\(email)")
-        return try URLRequest(method: .POST, URL: url, parameters: [:], encoding: .urlEncodedInURL)
-    }
-
-    open class func resetPasswordRequest(email: String, password: String, token: String) throws -> URLRequest {
-        let url = RegionPicker.shared.apiURL
-            .appendingPathComponent("reset_password")
-        var request = try URLRequest(method: .POST, URL: url, parameters: ["username": email, "password": password], encoding: .json)
-        request.setValue(token, forHTTPHeaderField: "Authorization")
-        return request
     }
 
     // MARK: Student calls

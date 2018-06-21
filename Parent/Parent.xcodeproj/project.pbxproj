@@ -78,10 +78,6 @@
 		497C48C21F912BD100A3BC06 /* Alert+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48B41F912BD100A3BC06 /* Alert+Network.swift */; };
 		497C48C31F912BD100A3BC06 /* ObserverAlertKit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 497C48B51F912BD100A3BC06 /* ObserverAlertKit.xcdatamodeld */; };
 		497C48C41F912BD100A3BC06 /* AlertCountCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48B71F912BD100A3BC06 /* AlertCountCoordinator.swift */; };
-		497C48DD1F9153D100A3BC06 /* RegionPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48C71F9153D000A3BC06 /* RegionPicker.swift */; };
-		497C48DE1F9153D100A3BC06 /* RegionPinger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48C91F9153D000A3BC06 /* RegionPinger.swift */; };
-		497C48DF1F9153D100A3BC06 /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48CA1F9153D000A3BC06 /* Region.swift */; };
-		497C48E01F9153D100A3BC06 /* SimplePing.m in Sources */ = {isa = PBXBuildFile; fileRef = 497C48CB1F9153D000A3BC06 /* SimplePing.m */; };
 		497C48E11F9153D100A3BC06 /* Session+Airwolf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48CC1F9153D000A3BC06 /* Session+Airwolf.swift */; };
 		497C48E21F9153D100A3BC06 /* Airwolf.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 497C48CE1F9153D000A3BC06 /* Airwolf.xcdatamodeld */; };
 		497C48E31F9153D100A3BC06 /* Student+Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48D11F9153D000A3BC06 /* Student+Collections.swift */; };
@@ -89,7 +85,6 @@
 		497C48E51F9153D100A3BC06 /* Student+Edits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48D31F9153D000A3BC06 /* Student+Edits.swift */; };
 		497C48E61F9153D100A3BC06 /* Student+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48D41F9153D000A3BC06 /* Student+Network.swift */; };
 		497C48E71F9153D100A3BC06 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48D51F9153D000A3BC06 /* Student.swift */; };
-		497C48E81F9153D100A3BC06 /* Airwolf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48D61F9153D000A3BC06 /* Airwolf.swift */; };
 		497C48E91F9153D100A3BC06 /* AirwolfAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48D71F9153D000A3BC06 /* AirwolfAPI.swift */; };
 		497C48EA1F9153D100A3BC06 /* Assignments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48D91F9153D000A3BC06 /* Assignments.swift */; };
 		497C48EB1F9153D100A3BC06 /* CalendarEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48DA1F9153D000A3BC06 /* CalendarEvents.swift */; };
@@ -689,11 +684,6 @@
 		497C48B41F912BD100A3BC06 /* Alert+Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Alert+Network.swift"; sourceTree = "<group>"; };
 		497C48B61F912BD100A3BC06 /* ObserverAlertKit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ObserverAlertKit.xcdatamodel; sourceTree = "<group>"; };
 		497C48B71F912BD100A3BC06 /* AlertCountCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertCountCoordinator.swift; sourceTree = "<group>"; };
-		497C48C71F9153D000A3BC06 /* RegionPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegionPicker.swift; sourceTree = "<group>"; };
-		497C48C81F9153D000A3BC06 /* SimplePing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimplePing.h; sourceTree = "<group>"; };
-		497C48C91F9153D000A3BC06 /* RegionPinger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegionPinger.swift; sourceTree = "<group>"; };
-		497C48CA1F9153D000A3BC06 /* Region.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
-		497C48CB1F9153D000A3BC06 /* SimplePing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimplePing.m; sourceTree = "<group>"; };
 		497C48CC1F9153D000A3BC06 /* Session+Airwolf.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+Airwolf.swift"; sourceTree = "<group>"; };
 		497C48CF1F9153D000A3BC06 /* Airwolf.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Airwolf.xcdatamodel; sourceTree = "<group>"; };
 		497C48D11F9153D000A3BC06 /* Student+Collections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Student+Collections.swift"; sourceTree = "<group>"; };
@@ -701,7 +691,6 @@
 		497C48D31F9153D000A3BC06 /* Student+Edits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Student+Edits.swift"; sourceTree = "<group>"; };
 		497C48D41F9153D000A3BC06 /* Student+Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Student+Network.swift"; sourceTree = "<group>"; };
 		497C48D51F9153D000A3BC06 /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
-		497C48D61F9153D000A3BC06 /* Airwolf.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Airwolf.swift; sourceTree = "<group>"; };
 		497C48D71F9153D000A3BC06 /* AirwolfAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AirwolfAPI.swift; sourceTree = "<group>"; };
 		497C48D91F9153D000A3BC06 /* Assignments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assignments.swift; sourceTree = "<group>"; };
 		497C48DA1F9153D000A3BC06 /* CalendarEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEvents.swift; sourceTree = "<group>"; };
@@ -1068,26 +1057,12 @@
 		497C48C51F91539700A3BC06 /* Airwolf */ = {
 			isa = PBXGroup;
 			children = (
-				497C48D61F9153D000A3BC06 /* Airwolf.swift */,
 				497C48D71F9153D000A3BC06 /* AirwolfAPI.swift */,
 				497C48D81F9153D000A3BC06 /* Canvas */,
 				497C48CD1F9153D000A3BC06 /* Model */,
-				497C48C61F9153D000A3BC06 /* Region Picker */,
 				497C48CC1F9153D000A3BC06 /* Session+Airwolf.swift */,
 			);
 			path = Airwolf;
-			sourceTree = "<group>";
-		};
-		497C48C61F9153D000A3BC06 /* Region Picker */ = {
-			isa = PBXGroup;
-			children = (
-				497C48C71F9153D000A3BC06 /* RegionPicker.swift */,
-				497C48C81F9153D000A3BC06 /* SimplePing.h */,
-				497C48C91F9153D000A3BC06 /* RegionPinger.swift */,
-				497C48CA1F9153D000A3BC06 /* Region.swift */,
-				497C48CB1F9153D000A3BC06 /* SimplePing.m */,
-			);
-			path = "Region Picker";
 			sourceTree = "<group>";
 		};
 		497C48CD1F9153D000A3BC06 /* Model */ = {
@@ -1886,9 +1861,7 @@
 				619FCC5D1CAC57AB003C97AA /* WebBrowserViewController.swift in Sources */,
 				619CB8BA1CA9B3B60022D26F /* UINavigationController+Parent.swift in Sources */,
 				5E0F9A741C739E6A00BB7707 /* SettingsObserveeCell.swift in Sources */,
-				497C48DE1F9153D100A3BC06 /* RegionPinger.swift in Sources */,
 				497C48E71F9153D100A3BC06 /* Student.swift in Sources */,
-				497C48E81F9153D100A3BC06 /* Airwolf.swift in Sources */,
 				5E6441CA1C3EE581003D7397 /* Router.swift in Sources */,
 				497C48EA1F9153D100A3BC06 /* Assignments.swift in Sources */,
 				617BE8751CA584EF008A6908 /* AnnouncementDetailsViewController.swift in Sources */,
@@ -1941,7 +1914,6 @@
 				5EF946291CAD76C400D10247 /* TableEmptyView.swift in Sources */,
 				5E41048B1C99E08B0021567C /* UIImage+Resize.swift in Sources */,
 				497C48C21F912BD100A3BC06 /* Alert+Network.swift in Sources */,
-				497C48DD1F9153D100A3BC06 /* RegionPicker.swift in Sources */,
 				4948BE691F915D330035BAFD /* Bundle+Parent.swift in Sources */,
 				5E5EE0FF1D0218C700FB0BA5 /* Router+Errors.swift in Sources */,
 				497C48E21F9153D100A3BC06 /* Airwolf.xcdatamodeld in Sources */,
@@ -1949,7 +1921,6 @@
 				497C48ED1F9153D100A3BC06 /* Courses.swift in Sources */,
 				49DB0AE61E4E27030036D96E /* Student+AccessRemoved.swift in Sources */,
 				5E0F9A761C739E6A00BB7707 /* SettingsObserveeCellViewModel.swift in Sources */,
-				497C48DF1F9153D100A3BC06 /* Region.swift in Sources */,
 				5E0F9A691C739E6A00BB7707 /* AlertCellViewModel.swift in Sources */,
 				61EB8D651CF62A2100E794A4 /* NoStudentsViewController.swift in Sources */,
 				497C48BD1F912BD100A3BC06 /* AlertThresholds+Edits.swift in Sources */,
@@ -1970,7 +1941,6 @@
 				615300121C86422E002529CF /* DetailsDateCell.swift in Sources */,
 				7893BDFD20D1A83F00231DF7 /* AdminViewController.swift in Sources */,
 				6196FC3A1CA1A47D0032B8EF /* EventDetailsViewModel.swift in Sources */,
-				497C48E01F9153D100A3BC06 /* SimplePing.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
