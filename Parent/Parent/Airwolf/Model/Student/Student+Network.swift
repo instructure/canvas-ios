@@ -20,6 +20,9 @@ import Marshal
 import CanvasCore
 
 extension Student {
+    enum Error {
+        static let NoObserverEnrollments = 100
+    }
     public static func addStudent(_ session: Session, parentID: String, domain: URL, authenticationProvider: String?) throws -> SignalProducer<(), NSError> {
         let request = try AirwolfAPI.addStudentRequest(session, parentID: parentID, studentDomain: domain, authenticationProvider: authenticationProvider)
         return session.emptyResponseSignalProducer(request)
@@ -32,6 +35,15 @@ extension Student {
 
     public static func getStudents(_ session: Session, parentID: String) throws -> SignalProducer<[JSONObject], NSError> {
         return try getEnrollments(session: session)
+            .flatMap(.concat, transform: { (enrollments) -> SignalProducer<[JSONObject], NSError> in
+                if(!enrollments.any(hasObserverEnrollment)) {
+                    let error = NSError(domain: "com.instructure.Enrollments", code: Error.NoObserverEnrollments, userInfo: [NSLocalizedDescriptionKey: "User has no observer enrollments"])
+                    return SignalProducer<[JSONObject], NSError>(error: error)
+                }
+                else {
+                    return SignalProducer<[JSONObject], NSError>(value: enrollments)
+                }
+            })
             .map(extractStudents)
             .map(insertValue(parentID, forKey: "parent_id"))
             .map(insertValue(session.baseURL.absoluteString, forKey: "student_domain"))
@@ -91,5 +103,10 @@ extension Student {
                 return o
             }
         }
+    }
+    
+    private static func hasObserverEnrollment(_ enrollment: JSONObject) -> Bool {
+        guard let role = enrollment["role"] as? String else { return false }
+        return role == "ObserverEnrollment"
     }
 }

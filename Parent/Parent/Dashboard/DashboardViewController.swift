@@ -29,6 +29,12 @@ typealias DashboardSelectAlertAction = (_ session: Session, _ observeeID: String
 
 let DrawerTransition = DrawerTransitionDelegate()
 
+struct DashboardViewState {
+    var studentCount = 0
+    var isSiteAdmin = false
+    var isValidObserver = true
+}
+
 class DashboardViewController: UIViewController {
     var studentCollection: FetchedCollection<Student>!
     var studentSyncProducer: Student.ModelPageSignalProducer!
@@ -86,6 +92,7 @@ class DashboardViewController: UIViewController {
     var studentCountObserver: ManagedObjectCountObserver<Student>!
     var noStudentsViewController: NoStudentsViewController!
     var adminViewController: AdminViewController!
+    var viewState = DashboardViewState()
     
     // ---------------------------------------------
     // MARK: - Initializers
@@ -96,9 +103,8 @@ class DashboardViewController: UIViewController {
             fatalError("Initial ViewController is not of type DashboardViewController")
         }
         controller.session = session
-        
         do {
-            try controller.setupStudentCollection()
+            try controller.setup()
         } catch let error as NSError {
             print(error)
         }
@@ -143,13 +149,21 @@ class DashboardViewController: UIViewController {
             tabBar.tintColor = colorScheme.mainColor
         }
         
-        do {
-            setupTabs()
-            try setupNoStudentsViewController()
-            displayDefaultStudent()
-        } catch let error as NSError {
-            print(error)
+    }
+    
+    func setupDidComplete() {
+        setupTabs()
+        if(!viewState.isValidObserver) {
+            showNotAParentView()
         }
+        else if(viewState.studentCount == 0) {
+            showNoStudentsViewController()
+        }
+        
+        if(viewState.isSiteAdmin) {
+            showSiteAdminViews()
+        }
+        displayDefaultStudent()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -179,9 +193,22 @@ class DashboardViewController: UIViewController {
         }
     }
 
-    func setupStudentCollection() throws {
+    func setup() throws {
+        viewState.isSiteAdmin = session.isSiteAdmin
         studentCollection = try Student.observedStudentsCollection(session)
+        studentCountObserver = try Student.countOfObservedStudentsObserver(session) { [weak self] count in
+            self?.viewState.studentCount = count
+        }
         studentSyncProducer = try Student.observedStudentsSyncProducer(session)
+        studentSyncProducer.startWithSignal { [weak self] (signal, disposable) in
+            signal.observe({ (event) in
+                if let error = event.error, error.code == Student.Error.NoObserverEnrollments {
+                    self?.viewState.isValidObserver = false
+                }
+                self?.setupDidComplete()
+                disposable.dispose()
+            })
+        }
     }
     
     func studentAtIndex(_ index: Int) -> Student? {
@@ -218,39 +245,41 @@ class DashboardViewController: UIViewController {
         selectCoursesTab()
     }
 
-    func setupNoStudentsViewController() throws {
+    func showNoStudentsViewController() {
+        if(noStudentsViewController == nil) {
+            setupNoStudentsViewController()
+        }
+        tabBar.isHidden = true
+    }
+    
+    func showSiteAdminViews() {
+        studentInfoName.text = NSLocalizedString("Admin", comment: "Label displayed when logged in as an admin")
+        studentInfoAvatar.isHidden = true
+        let storyboard = UIStoryboard(name: "AdminViewController", bundle: nil)
+        adminViewController = storyboard.instantiateViewController(withIdentifier: "vc") as! AdminViewController
+        pageViewController?.setViewControllers([adminViewController], direction: .reverse, animated: false, completion: { _ in })
+    }
+    
+    func setupNoStudentsViewController() {
         noStudentsViewController = NoStudentsViewController()
         noStudentsViewController.logoutAction = { [weak self] in self?.logoutAction?() }
         noStudentsViewController.proceedAction = { [weak self] in self?.addStudentAction?() }
-
-        noStudentsViewController.willMove(toParentViewController: self)
-        addChildViewController(noStudentsViewController)
-        view.addSubview(noStudentsViewController.view)
-        noStudentsViewController.didMove(toParentViewController: self)
-
-        noStudentsViewController.view.translatesAutoresizingMaskIntoConstraints = false
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[noStudents]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["noStudents": noStudentsViewController.view]))
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[noStudents]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["noStudents": noStudentsViewController.view]))
-        
-        let storyboard = UIStoryboard(name: "AdminViewController", bundle: nil)
-        adminViewController = storyboard.instantiateViewController(withIdentifier: "vc") as! AdminViewController
-        
-        studentCountObserver = try Student.countOfObservedStudentsObserver(session) { [weak self] count in
-            DispatchQueue.main.async {
-                let isSiteAdmin = self?.session.isSiteAdmin ?? false
-                let hideNoStudentsView = count > 0 || isSiteAdmin
-                let hideTabBar = count == 0
-                
-                self?.noStudentsViewController.view.isHidden = hideNoStudentsView
-                self?.tabBar.isHidden = hideTabBar
-                
-                if isSiteAdmin {
-                    self?.studentInfoName.text = NSLocalizedString("Admin", comment: "Label displayed when logged in as an admin")
-                    self?.studentInfoAvatar.isHidden = true
-                    self?.pageViewController?.setViewControllers([self!.adminViewController], direction: .reverse, animated: false, completion: { _ in })
-                }
-            }
-        }
+        showViewController(noStudentsViewController)
+    }
+    
+    func showNotAParentView() {
+        let vc =  HelmViewController( moduleName: "/parent/notAParent", props: [:] )
+        showViewController(vc)
+    }
+    
+    //  MARK: - Helpers
+    
+    func showViewController(_ viewController: UIViewController) {
+        viewController.willMove(toParentViewController: self)
+        addChildViewController(viewController)
+        view.addSubview(viewController.view)
+        viewController.didMove(toParentViewController: self)
+        viewController.view.pinToAllSidesOfSuperview()
     }
     
     // ---------------------------------------------
@@ -318,7 +347,6 @@ class DashboardViewController: UIViewController {
         return try! AlertsListViewController(session: session, observeeID: currentStudent.id)
     }
     
-     
     func studentInfoTapped(gesture: UITapGestureRecognizer) {
         guard let collection = studentCollection else { return }
         guard collection.numberOfItemsInSection(0) > 1 else { return }
@@ -342,7 +370,6 @@ class DashboardViewController: UIViewController {
         
         present(alertController, animated: true, completion: nil)
     }
-    
 
     func selectCoursesTab() {
         tabBar.selectedItem = coursesTabItem

@@ -96,6 +96,7 @@ const images = {
   noTeacher: {
     parent: require('./Canvas-Parent.png'),
     student: require('./Canvas-Student.png'),
+    teacher: require('./Canvas-Teacher.png'),
   },
   attachments: {
     complete: require('./attachments/complete-icon.png'),

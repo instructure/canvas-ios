@@ -78,6 +78,7 @@ import FeatureFlags from '../modules/developer-menu/FeatureFlags'
 import RatingRequest from '../modules/developer-menu/RatingRequest'
 import GradesList from '../modules/grades/GradesList'
 import PageViewEvents from '../modules/developer-menu/PageViewEvents'
+import NotAParent from '../modules/parent/NotAParent'
 import { Store } from 'redux'
 import { registerScreen } from './'
 import { isTeacher, isStudent, isParent } from '../modules/app'
@@ -211,5 +212,6 @@ export function registerScreens (store: Store): void {
 
   if (isParent()) {
     registerScreen('/parent/manage-students', null, null, { canBecomeMaster: true })
+    registerScreen('/parent/notAParent', wrap(NotAParent), store)
   }
 }
