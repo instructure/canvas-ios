@@ -271,6 +271,28 @@ describe('CourseNavigation', () => {
     expect(navigator.show).toHaveBeenLastCalledWith(`/courses/${props.course.id}/pages/front_page`)
     App.setCurrentApp(currentApp.appId)
   })
+
+  it('navigates to pages list when selecting pages tab', () => {
+    const tab = template.tab({
+      id: 'pages',
+      html_url: '/courses/1/wiki',
+    })
+    const props = {
+      ...defaultProps,
+      tabs: [tab],
+      navigator: template.navigator({
+        show: jest.fn(),
+      }),
+    }
+
+    const tree = shallow(<CourseNavigation {...props} />)
+    tree
+      .find('TabsList').first().dive()
+      .find('OnLayout').first().dive()
+      .find('[testID="courses-details.tab.pages"]')
+      .simulate('Press', tab)
+    expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/pages')
+  })
 })
 
 describe('mapStateToProps', () => {
