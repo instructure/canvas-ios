@@ -77,7 +77,7 @@ extension ParentAppDelegate: RCTBridgeDelegate {
         
         HelmManager.shared.registerNativeViewController(for: "/native-route/*route", factory: nativeFactory)
         HelmManager.shared.registerNativeViewController(for: "/native-route-master/*route", factory: nativeFactory)
-        HelmManager.shared.registerNativeViewController(for: "/parent/manage-students", factory: { (props) -> UIViewController? in
+        HelmManager.shared.registerNativeViewController(for: "/parent/manage-children", factory: { (props) -> UIViewController? in
             return Router.sharedInstance.matchURL(Router.sharedInstance.settingsRoute())
         })
         

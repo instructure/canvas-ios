@@ -152,7 +152,10 @@ extension Router {
                 CanvasKeymaster.the().logout()
             }
             
-            return dashboardVC
+            
+            let navController = UINavigationController.parentNavigationController(withRootViewController: dashboardVC)
+            navController.navigationBar.accessibilityIdentifier = "navigation_bar"
+            return navController
         }
     }
     
@@ -173,20 +176,17 @@ extension Router {
                 self.route(settingsVC, toURL: self.thresholdSettingsRoute(studentID: String(observee.id)))
             }
 
-            let navigationController = UINavigationController.coloredTriangleNavigationController(withRootViewController: settingsVC)
-            navigationController.modalPresentationStyle = .formSheet
-            return navigationController
+            return settingsVC
         }
     }
 
     func adjustThresholdsHandler() -> RouteHandler {
         return { params in
-            guard let session = self.session, let parameters = params, let studentID = parameters["studentID"] as? String else {
+            guard let session = self.session, let parameters = params, let studentID: String = try? parameters.stringID("studentID") else {
                 fatalError("You can't edit thresholds without a Session and studentID")
             }
 
-            let studentSettingsVC = StudentSettingsViewController.new(session, studentID: studentID)
-            return studentSettingsVC
+            return StudentSettingsViewController.new(session, studentID: studentID)
         }
     }
 
@@ -233,8 +233,7 @@ extension Router {
                 calendarWeekPageVC.navigationItem.rightBarButtonItem = syllabusButton
             }
 
-            let navController = UINavigationController.coloredTriangleNavigationController(withRootViewController: calendarWeekPageVC, forObservee: studentID)
-            navController.navigationBar.tintColor = .white
+            let navController = UINavigationController.parentNavigationController(withRootViewController: calendarWeekPageVC, forObservee: studentID)
             navController.navigationBar.accessibilityIdentifier = "navigation_bar"
             return navController
         }
@@ -259,8 +258,7 @@ extension Router {
             assignmentDetailsVC.navigationItem.leftBarButtonItem = closeButton
             assignmentDetailsVC.navigationItem.leftBarButtonItem?.tintColor = .white
 
-            let navController = UINavigationController.coloredTriangleNavigationController(withRootViewController: assignmentDetailsVC, forObservee: studentID.stringValue)
-            return navController
+            return UINavigationController.parentNavigationController(withRootViewController: assignmentDetailsVC, forObservee: studentID.stringValue)
         }
     }
 
@@ -294,8 +292,7 @@ extension Router {
             calendarEventDetailsVC.navigationItem.leftBarButtonItem = closeButton
             calendarEventDetailsVC.navigationItem.leftBarButtonItem?.tintColor = .white
 
-            let navController = UINavigationController.coloredTriangleNavigationController(withRootViewController: calendarEventDetailsVC, forObservee: studentID.stringValue)
-            return navController
+            return UINavigationController.parentNavigationController(withRootViewController: calendarEventDetailsVC, forObservee: studentID.stringValue)
         }
     }
 
@@ -342,8 +339,7 @@ extension Router {
             announcementVC.navigationItem.leftBarButtonItem = closeButton
             announcementVC.navigationItem.leftBarButtonItem?.tintColor = .white
 
-            let navController = UINavigationController.coloredTriangleNavigationController(withRootViewController: announcementVC, forObservee: studentID.stringValue)
-            return navController
+            return UINavigationController.parentNavigationController(withRootViewController: announcementVC, forObservee: studentID.stringValue)
         }
     }
 }

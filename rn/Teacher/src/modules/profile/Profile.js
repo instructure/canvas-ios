@@ -179,7 +179,7 @@ export class Profile extends Component<Object, State> {
 
   manageObserverStudents = async () => {
     await this.props.navigator.dismiss()
-    this.props.navigator.show('/parent/manage-students', { modal: true })
+    this.props.navigator.show('/parent/manage-children', { modal: false })
   }
 
   toggleShowGrades = () => {

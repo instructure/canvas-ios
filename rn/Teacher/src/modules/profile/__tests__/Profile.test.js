@@ -115,6 +115,15 @@ describe('Profile Tests', () => {
     expect(tree.find('[testID="profile.navigation-settings-btn"]').length).toEqual(0)
   })
 
+  it('navigate to manage children screen', async () => {
+    app.setCurrentApp('parent')
+    const instance = renderer.create(
+      <Profile { ...defaultProps } />
+    ).getInstance()
+    await instance.manageObserverStudents()
+    expect(defaultProps.navigator.show).toHaveBeenCalledWith('/parent/manage-children', { modal: false })
+  })
+
   it('renders correctly without masquerade', () => {
     const tree = renderer.create(
       <Profile { ...defaultProps } canMasquerade={false} />

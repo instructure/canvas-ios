@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cdc-P3-RTh">
-                                <rect key="frame" x="0.0" y="90" width="375" height="639"/>
+                                <rect key="frame" x="0.0" y="88" width="375" height="641"/>
                                 <connections>
                                     <segue destination="mwO-C7-kK6" kind="embed" identifier="embed_page_view_controller" id="7BX-NE-W3g"/>
                                 </connections>
@@ -49,10 +49,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yv8-k3-kWU">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LhY-UH-BvJ" userLabel="Hamburger Button">
-                                        <rect key="frame" x="20" y="56" width="22" height="22"/>
+                                        <rect key="frame" x="20" y="54" width="22" height="22"/>
                                         <accessibility key="accessibilityConfiguration" identifier="parent-drawer-button" label="Settings"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="22" id="WBI-uc-NFt"/>
@@ -64,7 +64,7 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k8J-bS-THt">
-                                        <rect key="frame" x="60" y="40" width="255" height="50"/>
+                                        <rect key="frame" x="60" y="38" width="255" height="50"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="dqt-sV-zAy">
                                                 <rect key="frame" x="75.333333333333343" y="11" width="104.66666666666666" height="34"/>
@@ -84,7 +84,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <imageView verifyAmbiguity="ignoreSizes" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" placeholderIntrinsicWidth="20" placeholderIntrinsicHeight="20" translatesAutoresizingMaskIntoConstraints="NO" id="duK-LJ-Xy2">
-                                                        <rect key="frame" x="94.666666666666657" y="14.666666666666671" width="10" height="5"/>
+                                                        <rect key="frame" x="94.666666666666657" y="14.666666666666664" width="10" height="5"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="5" id="hMv-3M-txe"/>
@@ -112,7 +112,7 @@
                                 <color key="backgroundColor" red="0.27890285725982999" green="1" blue="0.70971178099419863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="LhY-UH-BvJ" secondAttribute="bottom" constant="12" id="2Ep-QX-SUP"/>
-                                    <constraint firstAttribute="height" constant="90" id="FgR-qC-FR0"/>
+                                    <constraint firstAttribute="height" constant="88" id="FgR-qC-FR0"/>
                                     <constraint firstItem="LhY-UH-BvJ" firstAttribute="leading" secondItem="yv8-k3-kWU" secondAttribute="leading" constant="20" id="SQB-il-QLQ"/>
                                     <constraint firstItem="k8J-bS-THt" firstAttribute="leading" secondItem="yv8-k3-kWU" secondAttribute="leading" constant="60" id="YFr-Ke-5yl"/>
                                     <constraint firstAttribute="bottom" secondItem="k8J-bS-THt" secondAttribute="bottom" id="nxb-o1-WGA"/>

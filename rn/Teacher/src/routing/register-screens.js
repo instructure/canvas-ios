@@ -211,7 +211,7 @@ export function registerScreens (store: Store): void {
   }
 
   if (isParent()) {
-    registerScreen('/parent/manage-students', null, null, { canBecomeMaster: true })
+    registerScreen('/parent/manage-children', null, null, { canBecomeMaster: true })
     registerScreen('/parent/notAParent', wrap(NotAParent), store)
   }
 }

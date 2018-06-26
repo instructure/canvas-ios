@@ -94,18 +94,6 @@ class SettingsViewController: UIViewController {
         self.navigationController?.navigationBar.barTintColor = ColorCoordinator.colorSchemeForParent().mainColor
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-
-        setupCloseButton()
-    }
-
-    func setupCloseButton() {
-        let closeButton = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(SettingsViewController.closeButtonPressed(_:)))
-        closeButton.accessibilityLabel = NSLocalizedString("Close", comment: "Close Button Title")
-        closeButton.accessibilityIdentifier = "close_button"
-        closeButton.tintColor = UIColor.white
-        self.navigationItem.leftBarButtonItem = closeButton
-
-        self.closeButton = closeButton
     }
 
     func setupObserveeList() {

@@ -77,6 +77,7 @@ class DashboardViewController: UIViewController {
                     let colorScheme = ColorCoordinator.colorSchemeForStudentID(student.id)
                     headerContainerView.backgroundColor = colorScheme.mainColor
                     tabBar.tintColor = colorScheme.mainColor
+                    navigationController?.view.backgroundColor = colorScheme.mainColor
                 }
             }
 
@@ -165,9 +166,10 @@ class DashboardViewController: UIViewController {
         }
         displayDefaultStudent()
     }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
