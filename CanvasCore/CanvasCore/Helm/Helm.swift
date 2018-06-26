@@ -242,7 +242,23 @@ open class HelmManager: NSObject {
         if let navigationController = topViewController.navigationController {
             pushOntoNav(navigationController)
             callback?()
-        } else {
+        }
+            //  This is a hack to fix coming from native assignment detail
+            //  with a NON-Helm splitviewController navigating to a child group discussion
+            //  As more code moves to RN this will probably lose it's need here,
+        else if let replace = options["replace"] as? Bool, replace,
+            let svc = topMostViewController() as? SplitViewController,
+            let nav = svc.viewControllers.last as? UINavigationController,
+            let helmViewController = viewController as? HelmViewController {
+                var viewControllers = nav.viewControllers
+                viewControllers.removeLast()
+                viewControllers.append(helmViewController)
+                nav.setViewControllers(viewControllers, animated: false)
+                helmViewController.loadViewIfNeeded()
+                helmViewController.onReadyToPresent = {}
+                callback?()
+        }
+        else {
             assertionFailure("\(#function) invalid controller: \(topViewController)")
         }
     }
