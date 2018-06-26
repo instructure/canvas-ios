@@ -13,7 +13,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-    
+
 import Foundation
 import ReactiveSwift
 import Marshal
@@ -22,15 +22,6 @@ import CanvasCore
 extension Student {
     enum Error {
         static let NoObserverEnrollments = 100
-    }
-    public static func addStudent(_ session: Session, parentID: String, domain: URL, authenticationProvider: String?) throws -> SignalProducer<(), NSError> {
-        let request = try AirwolfAPI.addStudentRequest(session, parentID: parentID, studentDomain: domain, authenticationProvider: authenticationProvider)
-        return session.emptyResponseSignalProducer(request)
-    }
-
-    public static func checkDomain(_ session: Session, parentID: String, domain: URL) throws -> SignalProducer<(), NSError> {
-        let request = try AirwolfAPI.checkDomainRequest(session, parentID: parentID, studentDomain: domain)
-        return session.emptyResponseSignalProducer(request)
     }
 
     public static func getStudents(_ session: Session, parentID: String) throws -> SignalProducer<[JSONObject], NSError> {
@@ -47,11 +38,6 @@ extension Student {
             .map(extractStudents)
             .map(insertValue(parentID, forKey: "parent_id"))
             .map(insertValue(session.baseURL.absoluteString, forKey: "student_domain"))
-    }
-
-    public static func deleteStudent(_ session: Session, parentID: String, studentID: String) throws -> SignalProducer<(), NSError> {
-        let request = try AirwolfAPI.deleteStudentRequest(session, parentID: parentID, studentID: studentID)
-        return session.emptyResponseSignalProducer(request)
     }
 
     private static func getEnrollments(session: Session) throws -> SignalProducer<[JSONObject], NSError> {
@@ -104,7 +90,7 @@ extension Student {
             }
         }
     }
-    
+
     private static func hasObserverEnrollment(_ enrollment: JSONObject) -> Bool {
         guard let role = enrollment["role"] as? String else { return false }
         return role == "ObserverEnrollment"

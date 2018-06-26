@@ -303,7 +303,7 @@ class DashboardViewController: UIViewController {
         if let observeeID = currentStudent?.id {
             alertsTabItem.badgeValue = nil
             let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [Alert.unreadPredicate(), Alert.undismissedPredicate(), Alert.observeePredicate(observeeID)])
-            alertTabBadgeCountCoordinator = AlertCountCoordinator(session: session, predicate: predicate) { [weak self] count in
+            alertTabBadgeCountCoordinator = AlertCountCoordinator(session: session, studentID: observeeID, predicate: predicate) { [weak self] count in
                 self?.alertsTabItem.badgeValue = count > 0 ? "\(count)" : nil
             }
         } else {

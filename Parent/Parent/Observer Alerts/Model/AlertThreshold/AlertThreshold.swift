@@ -40,7 +40,8 @@ public enum AlertThresholdType: String {
             .assignmentGradeLow,
             .assignmentMissing,
             .courseGradeHigh,
-            .courseGradeLow
+            .courseGradeLow,
+            .institutionAnnouncement,
         ]
     }
 
@@ -98,9 +99,9 @@ extension AlertThreshold: SynchronizedModel {
 
     public func updateValues(_ json: JSONObject, inContext context: NSManagedObjectContext) throws {
         id = try json.stringID("id")
-        studentID = try json.stringID("student_id")
+        studentID = try json.stringID("user_id")
         primitiveType = try json <| "alert_type"
         threshold = try json <| "threshold"
-        observerID = try json.stringID("parent_id")
+        observerID = try json.stringID("observer_id")
     }
 }

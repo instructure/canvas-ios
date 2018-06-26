@@ -49,13 +49,14 @@ extension Alert {
 
     public static func refresher(_ session: Session, observeeID: String) throws -> Refresher {
         let predicate = Alert.observeePredicate(observeeID)
-        let remote = try Alert.getObserveeAlerts(session, observeeID: observeeID)
+        let remote = try Alert.getAlerts(session, studentID: observeeID)
         let context = try session.alertsManagedObjectContext()
-        let sync = Alert.syncSignalProducer(predicate, inContext: context, fetchRemote: remote).on(failed: {error in
-            if error.code == 401 {
-                AirwolfAPI.validateSessionAndLogout(session, parentID: session.user.id)
-            }
-        })
+        let sync = Alert.syncSignalProducer(predicate, inContext: context, fetchRemote: remote)
+            .on(failed: { error in
+                if error.code == 401 {
+                    AirwolfAPI.validateSessionAndLogout(session, parentID: session.user.id)
+                }
+            })
 
         let key = self.cacheKey(context, [session.user.id, observeeID])
         return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)

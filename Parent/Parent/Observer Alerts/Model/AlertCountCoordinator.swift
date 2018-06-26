@@ -20,16 +20,18 @@ import CanvasCore
 
 open class AlertCountCoordinator: ManagedObjectCountObserver<Alert> {
     fileprivate let session: Session
+    fileprivate let studentID: String
 
-    public init(session: Session, predicate: NSPredicate, alertCountUpdated: @escaping (Int)->Void) {
+    public init(session: Session, studentID: String, predicate: NSPredicate, alertCountUpdated: @escaping (Int)->Void) {
         self.session = session
+        self.studentID = studentID
         let context = try! session.alertsManagedObjectContext()
 
         super.init(predicate: predicate, inContext: context, objectCountUpdated: alertCountUpdated)
     }
 
     open func refresh() {
-        guard let remote = try? Alert.getAlerts(session) else { return }
+        guard let remote = try? Alert.getAlerts(session, studentID: studentID) else { return }
         let sync = Alert.syncSignalProducer(inContext: context, fetchRemote: remote)
         let _ = sync.start { event in
             switch event {

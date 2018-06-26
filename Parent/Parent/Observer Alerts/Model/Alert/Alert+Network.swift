@@ -20,23 +20,18 @@ import Marshal
 import CanvasCore
 
 extension Alert {
-    static func getObserveeAlerts(_ session: Session, observeeID: String) throws -> SignalProducer<[JSONObject], NSError> {
-        let request = try AlertAPI.getAlertsForParent(session, observerID: session.user.id, studentID: observeeID)
-        return session.paginatedJSONSignalProducer(request)
-    }
-
-    static func getAlerts(_ session: Session) throws -> SignalProducer<[JSONObject], NSError> {
-        let request = try AlertAPI.getAlerts(session)
+    static func getAlerts(_ session: Session, studentID: String) throws -> SignalProducer<[JSONObject], NSError> {
+        let request = try AlertAPI.getAlerts(session, studentID: studentID)
         return session.paginatedJSONSignalProducer(request)
     }
 
     func markAsRead(_ read: Bool, session: Session) throws -> SignalProducer<JSONObject, NSError> {
-        let request = try AlertAPI.updateAlert(session, observerID: session.user.id, alertID: id, read: read)
+        let request = try AlertAPI.readAlert(session, alertID: id)
         return session.JSONSignalProducer(request)
     }
 
     func markDismissed(_ dismissed: Bool, session: Session) throws -> SignalProducer<JSONObject, NSError> {
-        let request = try AlertAPI.updateAlert(session, observerID: session.user.id, alertID: id, dismissed: dismissed)
+        let request = try AlertAPI.dismissAlert(session, alertID: id)
         return session.JSONSignalProducer(request)
     }
 }

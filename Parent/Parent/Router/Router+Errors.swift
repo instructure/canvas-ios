@@ -44,8 +44,6 @@ extension Router {
                     }
                 case 404:
                     self.presentResourceNotFoundError(viewController, error: error)
-                case 418:
-                    self.presentUnauthorizedUserError(viewController, error: error)
                 case 500..<600:
                     self.presentServerError(viewController, error: error)
                 default:
@@ -71,65 +69,6 @@ extension Router {
         presentGenericError(viewController,
                             title: NSLocalizedString("Not Found", comment: "Not Found Error Title"),
                             message: NSLocalizedString("Resource not found.  Please try again.", comment: "Not Found Error Message"))
-    }
-}
-
-
-// Handle 418 Errors
-extension Router {
-    func presentUnauthorizedUserError(_ viewController: UIViewController, error: NSError) {
-        guard let data = error.data,
-            let dictionary = try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as? Dictionary<String, Any>,
-            let name = dictionary["student_name"] as? String else {
-                ❨╯°□°❩╯⌢"Can't remove student without user info"
-        }
-
-        let message = String.localizedStringWithFormat("You are unauthorized to access information for %@.", name)
-        let style = UIDevice.current.userInterfaceIdiom == .pad ? UIAlertControllerStyle.alert : UIAlertControllerStyle.actionSheet
-        let alert = UIAlertController(title: NSLocalizedString("Access Denied", comment: "Unauthorized Student Error Title"), message: message, preferredStyle: style)
-
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Remove Student", comment: "delete student from login"), style: .destructive, handler: { _ in
-            self.removeStudentPressed(viewController, dictionary: dictionary)
-        }))
-
-        viewController.present(alert, animated: true, completion: nil)
-    }
-
-    // ---------------------------------------------
-    // MARK: - IBActions
-    // ---------------------------------------------
-    func removeStudentPressed(_ viewController: UIViewController, dictionary: Dictionary<String, Any>) {
-        guard let name = dictionary["student_name"] as? String,
-            let studentID = dictionary["student_id"] as? String else {
-            ❨╯°□°❩╯⌢"Can't remove student without name and ID"
-        }
-
-        let message = String.localizedStringWithFormat("Are you sure you want to remove %@.", name)
-        let style = UIDevice.current.userInterfaceIdiom == .pad ? UIAlertControllerStyle.alert : UIAlertControllerStyle.actionSheet
-        let alertController = UIAlertController(title: nil, message: message, preferredStyle: style)
-
-        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel button title"), style: .cancel) { _ in }
-        alertController.addAction(cancelAction)
-
-        let destroyAction = UIAlertAction(title: NSLocalizedString("Remove", comment: "Remove button title"), style: .destructive) { [unowned self] _ in
-            self.removeStudent(studentID)
-        }
-        alertController.addAction(destroyAction)
-
-        viewController.present(alertController, animated: true) { }
-    }
-
-    func removeStudent(_ studentID: String) {
-        guard let session = session else { return }
-        let studentObserver = try! Student.observer(session, studentID: studentID)
-
-        // TODO: Show Animation - This is a nice to have and should be added in 1.1`
-        guard let student = studentObserver.object else { return }
-        student.remove(session) { result in
-            DispatchQueue.main.async {
-                // TODO: Hide Animation
-            }
-        }
     }
 }
 

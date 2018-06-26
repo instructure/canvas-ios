@@ -78,7 +78,7 @@ class AlertsListViewController: FetchedTableViewController<Alert> {
         alert.markAsRead(session)
         self.tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
 
-        if let routeURL = Router.sharedInstance.alertRoute(studentID: observeeID, alertAssetPath: alert.assetPath) {
+        if let assetPath = alert.assetPath, let routeURL = Router.sharedInstance.alertRoute(studentID: observeeID, alertAssetPath: assetPath) {
             Router.sharedInstance.route(self, toURL: routeURL, modal: true)
         }
     }

@@ -19,50 +19,41 @@ import CanvasCore
 
 open class AlertThresholdAPI {
 
-    open class func deleteAlertThreshold(_ session: Session, observerID: String, alertThresholdID: String) throws -> URLRequest {
-        let path = "/alertthreshold/\(observerID)/\(alertThresholdID)"
-        let parameters: [String: Any] = [:]
+    open class func deleteAlertThreshold(_ session: Session, alertThresholdID: String) throws -> URLRequest {
+        let path = "/api/v1/users/self/observer_alert_thresholds/\(alertThresholdID)"
 
-        return try session.DELETE(path, parameters: parameters)
+        return try session.DELETE(path)
     }
 
-    open class func getAlertThresholdByObservee(_ session: Session, parentID: String, studentID: String) throws -> URLRequest {
-        let path = "/alertthreshold/student/\(parentID)/\(studentID)"
-        let parameters: [String: Any] = [:]
+    open class func getAlertThresholds(_ session: Session, studentID: String) throws -> URLRequest {
+        let path = "/api/v1/users/self/observer_alert_thresholds"
+        let parameters: [String: Any] = ["student_id": studentID]
 
         return try session.GET(path, parameters: parameters)
     }
 
-    open class func getAllAlertThresholds(_ session: Session) throws -> URLRequest {
-        let path = "/alertthreshold/\(session.user.id)"
-        let parameters: [String: Any] = [:]
+    open class func createAlertThreshold(_ session: Session, studentID: String, alertType: String, threshold: String? = nil) throws -> URLRequest {
+        let path = "/api/v1/users/self/observer_alert_thresholds"
+        let nillableParameters = [
+            "user_id": studentID,
+            "alert_type": alertType,
+            "threshold": threshold
+        ]
 
-        return try session.GET(path, parameters: parameters)
+        let parameters = Session.rejectNilParameters(nillableParameters)
+
+        return try session.POST(path, parameters: ["observer_alert_threshold": parameters])
     }
 
-    open class func insertAlertThreshold(_ session: Session, observerID: String, studentID: String, alertType: String, threshold: String? = nil) throws -> URLRequest {
-        let path = "/alertthreshold/\(observerID)/"
-        let nillableParameters: [String: Any?] = [
-            "observer_id": observerID as Optional<Any>,
-            "student_id": studentID as Optional<Any>,
-            "alert_type": alertType as Optional<Any>,
-            "threshold": threshold as Optional<Any>
+    open class func updateAlertThreshold(_ session: Session, alertThresholdID: String, alertType: String, threshold: String? = nil) throws -> URLRequest {
+        let path = "/api/v1/users/self/observer_alert_thresholds/\(alertThresholdID)"
+        let nillableParameters = [
+            "alert_type": alertType,
+            "threshold": threshold
         ]
 
         let parameters = Session.rejectNilParameters(nillableParameters)
 
         return try session.PUT(path, parameters: parameters)
-    }
-
-    open class func updateAlertThreshold(_ session: Session, observerID: String, alertThresholdID: String, alertType: String, threshold: String? = nil) throws -> URLRequest {
-        let path = "/alertthreshold/\(observerID)/\(alertThresholdID)"
-        let nillableParameters: [String: Any?] = [
-            "alert_type": alertType as Optional<Any>,
-            "threshold": threshold as Optional<Any>
-        ]
-
-        let parameters = Session.rejectNilParameters(nillableParameters)
-
-        return try session.POST(path, parameters: parameters)
     }
 }

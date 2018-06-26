@@ -25,13 +25,13 @@ import CanvasCore
 
 extension Assignment {
     
-    public static func getAssignmentFromAirwolf(_ session: Session, studentID: String, courseID: String, assignmentID: String) throws -> SignalProducer<JSONObject, NSError> {
-        let request = try session.GET("/canvas/\(session.user.id)/\(studentID)/courses/\(courseID)/assignments/\(assignmentID)", parameters: Assignment.parameters)
+    public static func getAssignment(_ session: Session, courseID: String, assignmentID: String) throws -> SignalProducer<JSONObject, NSError> {
+        let request = try session.GET("/api/v1/courses/\(courseID)/assignments/\(assignmentID)", parameters: Assignment.parameters)
         return session.JSONSignalProducer(request)
     }
 
     public static func refresher(_ session: Session, studentID: String, courseID: String, assignmentID: String) throws -> Refresher {
-        let remote = try Assignment.getAssignmentFromAirwolf(session, studentID: studentID, courseID: courseID, assignmentID: assignmentID).map { [$0] }
+        let remote = try Assignment.getAssignment(session, courseID: courseID, assignmentID: assignmentID).map { [$0] }
         let local = predicate(courseID, assignmentID: assignmentID)
         let context = try session.assignmentsManagedObjectContext(studentID)
         let sync = Assignment.syncSignalProducer(local, inContext: context, fetchRemote: remote)

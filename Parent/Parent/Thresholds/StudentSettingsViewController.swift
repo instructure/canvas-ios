@@ -60,7 +60,7 @@ open class StudentSettingsViewController : FormViewController {
         let controller = StudentSettingsViewController()
         controller.session = session
         controller.studentID = studentID
-        controller.thresholdsRefresher = try! AlertThreshold.refresher(session)
+        controller.thresholdsRefresher = try! AlertThreshold.refresher(session, studentID: studentID)
         _ = controller.thresholdsRefresher?.refreshingCompleted.observeValues { _ in
             controller.thresholdsRefresher?.refreshControl.endRefreshing()
         }
@@ -88,7 +88,6 @@ open class StudentSettingsViewController : FormViewController {
         self.navigationItem.leftBarButtonItem = cancelButton
         self.navigationItem.rightBarButtonItem = doneButton
 
-        setupToolbar()
         setupNavigationBar()
 
         if let refreshControl = thresholdsRefresher?.refreshControl {
@@ -121,6 +120,7 @@ open class StudentSettingsViewController : FormViewController {
             <<< rowForThresholdType(.assignmentGradeHigh)
             <<< rowForThresholdType(.assignmentGradeLow)
             <<< rowForThresholdType(.courseAnnouncement)
+            <<< rowForThresholdType(.institutionAnnouncement)
 
         self.refresh(nil)
     }
@@ -131,7 +131,7 @@ open class StudentSettingsViewController : FormViewController {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         switch type {
-        case .courseAnnouncement, .assignmentMissing:
+        case .courseAnnouncement, .assignmentMissing, .institutionAnnouncement:
             let row = SwitchRow(type.rawValue) {
                 $0.title = self.descriptionForType(type)
                 if let _ = thresholdForType(type) {
@@ -264,54 +264,11 @@ open class StudentSettingsViewController : FormViewController {
         navBar.backgroundColor = scheme.mainColor
     }
 
-    func setupToolbar() {
-        let rightSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let leftSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        removeButton = UIBarButtonItem(title: NSLocalizedString("Remove", comment: "Remove button title"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(StudentSettingsViewController.removeButtonPressed(_:)))
-        removeButton.tintColor = UIColor.red
-        removeToolbarItems = [rightSpace, removeButton, leftSpace]
-        self.toolbarItems = removeToolbarItems
-
-        let activityIndicatorItem = UIBarButtonItem(customView: removeActivityIndicator)
-        activityToolbarItems = [UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil), activityIndicatorItem, UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)]
-    }
-
-    // ---------------------------------------------
-    // MARK: - IBActions
-    // ---------------------------------------------
-    func removeButtonPressed(_ sender: UIBarButtonItem) {
-        let alertController = UIAlertController(title: nil, message: NSLocalizedString("Are you sure you want to remove this observee?", comment: "Remove Observee Confirmation"), preferredStyle: .actionSheet)
-
-        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel button title"), style: .cancel) { _ in }
-        alertController.addAction(cancelAction)
-
-        let destroyAction = UIAlertAction(title: NSLocalizedString("Remove", comment: "Remove button title"), style: .destructive) { [unowned self] _ in
-            self.removeStudent()
-        }
-        alertController.addAction(destroyAction)
-
-        alertController.popoverPresentationController?.sourceView = self.view
-        alertController.popoverPresentationController?.barButtonItem = sender
-        self.present(alertController, animated: true) { }
-    }
-
-    func removeStudent() {
-        self.toolbarItems = activityToolbarItems
-        removeActivityIndicator.startAnimating()
-        guard let student = studentObserver?.object else { return }
-        student.remove(session) { [unowned self] result in
-            DispatchQueue.main.async {
-                self.removeActivityIndicator.stopAnimating()
-                self.toolbarItems = self.removeToolbarItems
-            }
-        }
-    }
-
     func updateThreshold(_ type: AlertThresholdType) {
         guard let row = form.rowBy(tag: type.rawValue) else { return }
 
         switch type {
-        case .courseAnnouncement, .assignmentMissing:
+        case .courseAnnouncement, .assignmentMissing, .institutionAnnouncement:
             guard let switchRow = row as? SwitchRow else {
                 ❨╯°□°❩╯⌢"Row for these types should always be a switch row"
             }
@@ -320,16 +277,26 @@ open class StudentSettingsViewController : FormViewController {
             switchRow.evaluateDisabled()
 
             guard let threshold = thresholdForType(type) else {
-                AlertThreshold.createThreshold(session, type: type, observerID: session.user.id, observeeID: studentID).observe(on: UIScheduler()).startWithCompleted {
-                    switchRow.disabled = false
-                    switchRow.evaluateDisabled()
+                AlertThreshold.createThreshold(session, type: type, observerID: session.user.id, observeeID: studentID).observe(on: UIScheduler()).start { event in
+                    switch event {
+                    case .completed, .failed:
+                        switchRow.disabled = false
+                        switchRow.evaluateDisabled()
+                    default:
+                        break
+                    }
                 }
                 return
             }
 
-            threshold.remove(session).observe(on: UIScheduler()).startWithCompleted {
-                switchRow.disabled = false
-                switchRow.evaluateDisabled()
+            threshold.remove(session).observe(on: UIScheduler()).start { event in
+                switch event {
+                case .completed, .failed:
+                    switchRow.disabled = false
+                    switchRow.evaluateDisabled()
+                default:
+                    break
+                }
             }
         default:
             guard let intRow = row as? IntRow else {
@@ -362,7 +329,7 @@ open class StudentSettingsViewController : FormViewController {
         for type in AlertThresholdType.validThresholdTypes {
             guard let row = form.rowBy(tag: type.rawValue) else { continue }
             switch type {
-            case .courseAnnouncement, .assignmentMissing:
+            case .courseAnnouncement, .assignmentMissing, .institutionAnnouncement:
                 guard let boolRow = row as? SwitchRow else {
                     ❨╯°□°❩╯⌢"Row for these types should always be a switch row"
                 }

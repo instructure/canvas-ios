@@ -24,13 +24,13 @@ import Marshal
 import CanvasCore
 
 extension DiscussionTopic {
-    public static func getDiscussionTopicFromAirwolf(_ session: Session, studentID: String, courseID: String, discussionTopicID: String) throws -> SignalProducer<JSONObject, NSError> {
-        let request = try session.GET("/canvas/\(session.user.id)/\(studentID)/courses/\(courseID)/discussion_topics/\(discussionTopicID)")
+    public static func getDiscussionTopic(_ session: Session, courseID: String, discussionTopicID: String) throws -> SignalProducer<JSONObject, NSError> {
+        let request = try session.GET("/api/v1/courses/\(courseID)/discussion_topics/\(discussionTopicID)")
         return session.JSONSignalProducer(request)
     }
 
     public static func refresher(_ session: Session, studentID: String, courseID: String, discussionTopicID: String) throws -> Refresher {
-        let remote = try DiscussionTopic.getDiscussionTopicFromAirwolf(session, studentID: studentID, courseID: courseID, discussionTopicID: discussionTopicID).map { [$0] }
+        let remote = try DiscussionTopic.getDiscussionTopic(session, courseID: courseID, discussionTopicID: discussionTopicID).map { [$0] }
         let context = try session.discussionsManagedObjectContext(studentID)
         let sync = DiscussionTopic.syncSignalProducer(inContext: context, fetchRemote: remote)
 

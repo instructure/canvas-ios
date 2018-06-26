@@ -28,7 +28,7 @@ extension Course {
         return NSPredicate(format: "%K == %@", "id", courseID)
     }
     
-    public static func getCoursesFromAirwolf(_ session: Session, studentID: String) throws -> SignalProducer<[JSONObject], NSError> {
+    public static func getCourses(_ session: Session, studentID: String) throws -> SignalProducer<[JSONObject], NSError> {
         
         var coursesParams = getCoursesParameters
         coursesParams["enrollment_state"] = "active"
@@ -56,13 +56,13 @@ extension Course {
         }
     }
     
-    public static func getCourseFromAirwolf(_ session: Session, studentID: String, courseID: String) throws -> SignalProducer<JSONObject, NSError> {
+    public static func getCourse(_ session: Session, studentID: String, courseID: String) throws -> SignalProducer<JSONObject, NSError> {
         let request = try session.GET("/api/v1/courses/\(courseID)", parameters: Course.getCourseParameters)
         return session.JSONSignalProducer(request)
     }
     
     public static func airwolfCollectionRefresher(_ session: Session, studentID: String) throws -> Refresher {
-        let remote = try Course.getCoursesFromAirwolf(session, studentID: studentID)
+        let remote = try Course.getCourses(session, studentID: studentID)
         let context = try session.enrollmentManagedObjectContext(studentID)
         
         let sync = Course.syncSignalProducer(inContext: context, fetchRemote: remote)
@@ -72,7 +72,7 @@ extension Course {
     }
     
     public static func airwolfRefresher(_ session: Session, studentID: String, courseID: String) throws -> Refresher {
-        let remote = try Course.getCourseFromAirwolf(session, studentID: studentID, courseID: courseID).map { [$0] }
+        let remote = try Course.getCourse(session, studentID: studentID, courseID: courseID).map { [$0] }
         let context = try session.enrollmentManagedObjectContext(studentID)
         let predicate = Course.predicate(courseID)
         

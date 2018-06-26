@@ -82,7 +82,6 @@
 		497C48E21F9153D100A3BC06 /* Airwolf.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 497C48CE1F9153D000A3BC06 /* Airwolf.xcdatamodeld */; };
 		497C48E31F9153D100A3BC06 /* Student+Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48D11F9153D000A3BC06 /* Student+Collections.swift */; };
 		497C48E41F9153D100A3BC06 /* Student+Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48D21F9153D000A3BC06 /* Student+Details.swift */; };
-		497C48E51F9153D100A3BC06 /* Student+Edits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48D31F9153D000A3BC06 /* Student+Edits.swift */; };
 		497C48E61F9153D100A3BC06 /* Student+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48D41F9153D000A3BC06 /* Student+Network.swift */; };
 		497C48E71F9153D100A3BC06 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48D51F9153D000A3BC06 /* Student.swift */; };
 		497C48E91F9153D100A3BC06 /* AirwolfAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48D71F9153D000A3BC06 /* AirwolfAPI.swift */; };
@@ -138,7 +137,6 @@
 		612D64431C8794480045E03B /* DetailsInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612D64411C8794470045E03B /* DetailsInfoCell.swift */; };
 		6132D74F1D81FB9C0001FADA /* DetailsLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6132D74E1D81FB9C0001FADA /* DetailsLocationCell.swift */; };
 		613E90E61D088DA600416EBE /* UITextField+ReturnKeyUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613E90E51D088DA600416EBE /* UITextField+ReturnKeyUpdate.swift */; };
-		614BAAB61CE6685000BAF7D6 /* AddStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614BAAB41CE6685000BAF7D6 /* AddStudentViewController.swift */; };
 		6153000E1C863F0F002529CF /* DetailsReminderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6153000C1C863F0F002529CF /* DetailsReminderCell.swift */; };
 		615300121C86422E002529CF /* DetailsDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615300101C86422E002529CF /* DetailsDateCell.swift */; };
 		6153FFFE1C80AAC4002529CF /* AssignmentDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6153FFFD1C80AAC4002529CF /* AssignmentDetailsViewController.swift */; };
@@ -688,7 +686,6 @@
 		497C48CF1F9153D000A3BC06 /* Airwolf.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Airwolf.xcdatamodel; sourceTree = "<group>"; };
 		497C48D11F9153D000A3BC06 /* Student+Collections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Student+Collections.swift"; sourceTree = "<group>"; };
 		497C48D21F9153D000A3BC06 /* Student+Details.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Student+Details.swift"; sourceTree = "<group>"; };
-		497C48D31F9153D000A3BC06 /* Student+Edits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Student+Edits.swift"; sourceTree = "<group>"; };
 		497C48D41F9153D000A3BC06 /* Student+Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Student+Network.swift"; sourceTree = "<group>"; };
 		497C48D51F9153D000A3BC06 /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		497C48D71F9153D000A3BC06 /* AirwolfAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AirwolfAPI.swift; sourceTree = "<group>"; };
@@ -768,7 +765,6 @@
 		612D64411C8794470045E03B /* DetailsInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsInfoCell.swift; sourceTree = "<group>"; };
 		6132D74E1D81FB9C0001FADA /* DetailsLocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsLocationCell.swift; sourceTree = "<group>"; };
 		613E90E51D088DA600416EBE /* UITextField+ReturnKeyUpdate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+ReturnKeyUpdate.swift"; sourceTree = "<group>"; };
-		614BAAB41CE6685000BAF7D6 /* AddStudentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddStudentViewController.swift; sourceTree = "<group>"; };
 		6153000C1C863F0F002529CF /* DetailsReminderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsReminderCell.swift; sourceTree = "<group>"; };
 		615300101C86422E002529CF /* DetailsDateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsDateCell.swift; sourceTree = "<group>"; };
 		6153FFFD1C80AAC4002529CF /* AssignmentDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsViewController.swift; sourceTree = "<group>"; };
@@ -1079,7 +1075,6 @@
 			children = (
 				497C48D11F9153D000A3BC06 /* Student+Collections.swift */,
 				497C48D21F9153D000A3BC06 /* Student+Details.swift */,
-				497C48D31F9153D000A3BC06 /* Student+Edits.swift */,
 				497C48D41F9153D000A3BC06 /* Student+Network.swift */,
 				497C48D51F9153D000A3BC06 /* Student.swift */,
 			);
@@ -1187,7 +1182,6 @@
 				5E0F9A651C739E6A00BB7707 /* SettingsViewController.swift */,
 				5E0F9A661C739E6A00BB7707 /* SettingsViewModel.swift */,
 				2CB69BC51D91CE140059C5A5 /* UserCell.xib */,
-				614BAAB41CE6685000BAF7D6 /* AddStudentViewController.swift */,
 				49DB0AE51E4E27030036D96E /* Student+AccessRemoved.swift */,
 			);
 			path = Settings;
@@ -1895,7 +1889,6 @@
 				497C48C41F912BD100A3BC06 /* AlertCountCoordinator.swift in Sources */,
 				5E6441C91C3EE581003D7397 /* Router+Routes.swift in Sources */,
 				5E6442321C3F1C2D003D7397 /* iCarousel.m in Sources */,
-				614BAAB61CE6685000BAF7D6 /* AddStudentViewController.swift in Sources */,
 				5E41048D1C9B1F3E0021567C /* CalendarEvent+Submissions.swift in Sources */,
 				5E4E20511C927EB100E7D709 /* ColorCoordinator.swift in Sources */,
 				613E90E61D088DA600416EBE /* UITextField+ReturnKeyUpdate.swift in Sources */,
@@ -1906,7 +1899,6 @@
 				497C48B81F912BD100A3BC06 /* AlertAPI.swift in Sources */,
 				5E0F9A7B1C739F2700BB7707 /* StudentsListViewController.swift in Sources */,
 				61B536F71C9B77900052B8CB /* CourseSyllabusViewController.swift in Sources */,
-				497C48E51F9153D100A3BC06 /* Student+Edits.swift in Sources */,
 				4938ACDB1F8FD0730069F43D /* Session+Log.swift in Sources */,
 				61D6A84D1C8F84E400370117 /* AlertsListViewController.swift in Sources */,
 				5E0F9A6C1C739E6A00BB7707 /* CalendarEventCellViewModel.swift in Sources */,

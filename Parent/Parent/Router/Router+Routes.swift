@@ -41,6 +41,7 @@ class RouteTemplates {
     static let studentThresholdRouteTemplate = "students/:studentID/thresholds"
     static let assignmentDetailsTemplate = "students/:studentID/courses/:courseID/assignments/:assignmentID"
     static let standaloneAssignmentDetailsTemplate = "students/:studentID/courses/:courseID/assignments/:assignmentID/standalone"
+    static let courseTemplate = "students/:studentID/courses/:courseID"
     static let courseCalendarEventsTemplate = "students/:studentID/courses/:courseID/calendar_events"
     static let calendarEventDetailsTemplate = "students/:studentID/courses/:courseID/calendar_events/:calendarEventID"
     static let standaloneCalendarEventDetailsTemplate = "students/:studentID/courses/:courseID/calendar_events/:calendarEventID/standalone"
@@ -107,6 +108,7 @@ extension Router {
             RouteTemplates.standaloneAssignmentDetailsTemplate: standaloneAssignmentDetailsHandler(),
             RouteTemplates.calendarEventDetailsTemplate: calendarEventDetailsHandler(),
             RouteTemplates.standaloneCalendarEventDetailsTemplate: standaloneCalendarEventDetailsHandler(),
+            RouteTemplates.courseTemplate: courseCalendarEventsHandler(),
             RouteTemplates.courseCalendarEventsTemplate: courseCalendarEventsHandler(),
             RouteTemplates.courseSyllabusTemplate: courseSyllabusHandler(),
             RouteTemplates.courseAnnouncementTemplate: courseAnnouncementHandler()

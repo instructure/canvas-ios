@@ -41,8 +41,8 @@ extension AlertThreshold {
         )
     }
 
-    public static func refresher(_ session: Session) throws -> Refresher {
-        let remote = try AlertThreshold.getAllAlertThresholds(session)
+    public static func refresher(_ session: Session, studentID: String) throws -> Refresher {
+        let remote = try AlertThreshold.getAlertThresholds(session, studentID: studentID)
         let context = try session.alertsManagedObjectContext()
         let sync = AlertThreshold.syncSignalProducer(inContext: context, fetchRemote: remote).on(failed: {error in
             if error.code == 401 {

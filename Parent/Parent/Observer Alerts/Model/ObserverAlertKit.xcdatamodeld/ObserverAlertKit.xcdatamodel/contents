@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Xcode 7.0">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14133" systemVersion="17F77" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="Alert" representedClassName=".Alert" syncable="YES">
-        <attribute name="actionDate" attributeType="Date" syncable="YES"/>
-        <attribute name="assetPath" attributeType="String" syncable="YES"/>
+        <attribute name="actionDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="assetPath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="courseID" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
-        <attribute name="dismissed" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="dismissed" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="id" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="observerID" attributeType="String" syncable="YES"/>
-        <attribute name="read" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="read" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="studentID" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="thresholdID" attributeType="String" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>

@@ -38,7 +38,7 @@ extension AlertThreshold {
                     let _ = try? context.save()
                 }
 
-                let producer = try me.deleteAlertThreshold(session, observerID: session.user.id, thresholdID: thresholdID)
+                let producer = try me.deleteAlertThreshold(session, thresholdID: thresholdID)
                 producer.startWithSignal { signal, disposable in
                     signal.observe(on: ManagedObjectContextScheduler(context: context)).observe { event in
                         switch event {
@@ -86,7 +86,7 @@ extension AlertThreshold {
                     let _ = try? context.save()
                 }
 
-                let producer = try AlertThreshold.insertAlertThreshold(session, observerID: session.user.id, studentID: observeeID, type: type.rawValue, threshold: threshold).observe(on: ManagedObjectContextScheduler(context: context))
+                let producer = try AlertThreshold.createAlertThreshold(session, studentID: observeeID, type: type.rawValue, threshold: threshold).observe(on: ManagedObjectContextScheduler(context: context))
                     .flatMap(.concat) { json in
                         return attemptProducer {
                             let _ = try? alertThreshold.updateValues(json, inContext: context)
@@ -131,7 +131,7 @@ extension AlertThreshold {
                     let _ = try? context.save()
                 }
 
-                let producer = try me.updateAlertThreshold(session, observerID: session.user.id)
+                let producer = try me.updateAlertThreshold(session)
                 producer.startWithSignal { signal, disposable in
                     signal.observe(on: ManagedObjectContextScheduler(context: context)).observe { event in
                         switch event {

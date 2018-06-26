@@ -23,6 +23,9 @@ import Marshal
 import CanvasCore
 
 public final class Alert: NSManagedObject {
+    enum WorkflowState: String {
+        case unread, read, dismissed
+    }
 
     @NSManaged internal (set) public var id: String
     @NSManaged internal (set) public var observerID: String
@@ -51,7 +54,7 @@ public final class Alert: NSManagedObject {
     @NSManaged internal (set) public var read: Bool
     @NSManaged internal (set) public var dismissed: Bool
     @NSManaged internal (set) public var actionDate: Date
-    @NSManaged internal (set) public var assetPath: String
+    @NSManaged internal (set) public var assetPath: String?
 }
 
 extension Alert: SynchronizedModel {
@@ -62,19 +65,20 @@ extension Alert: SynchronizedModel {
 
     public func updateValues(_ json: JSONObject, inContext context: NSManagedObjectContext) throws {
         id = try json.stringID("id")
-        observerID = try json.stringID("parent_id")
-        studentID = try json.stringID("student_id")
+        observerID = try json.stringID("observer_id")
+        studentID = try json.stringID("user_id")
         courseID = try json.stringID("course_id")
-        thresholdID = try json.stringID("alert_threshold_id")
+        thresholdID = try json.stringID("observer_alert_threshold_id")
+        assetPath = try json <| "html_url"
+        actionDate = try json <| "action_date"
 
         willChangeValue(forKey: Alert.typeKey)
         primitiveType = try json <| "alert_type"
         didChangeValue(forKey: Alert.typeKey)
-        
+
         title = try json <| "title"
-        read = try json <| "marked_read"
-        dismissed = try json <| "dismissed"
-        actionDate = try json <| "action_date"
-        assetPath = try json <| "asset_url"
+        let workflowState: WorkflowState = try json <| "workflow_state"
+        read = workflowState == .read
+        dismissed = workflowState == .dismissed
     }
 }
