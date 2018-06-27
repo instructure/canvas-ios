@@ -184,6 +184,12 @@ static UIImage *_loadingImage = nil;
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
 {
+    if ([navigationAction.request.URL.absoluteString containsString:@"community.canvaslms.com"]) {
+        [[UIApplication sharedApplication] openURL:[navigationAction.request URL] options:@{} completionHandler:^(BOOL success) {}];
+        decisionHandler(WKNavigationActionPolicyCancel);
+        return;
+    }
+    
     if ([[[navigationAction.request URL] description] isEqualToString:@"about:blank"]) {
         decisionHandler(WKNavigationActionPolicyCancel);
         return;
