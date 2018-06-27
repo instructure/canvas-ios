@@ -14,11 +14,12 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-/* @flow */
+// @flow
 
 // needs to be commonjs so eslint-plugin-format-message can read it
 module.exports = {
   ar: require('./ar.json'),
+  cy: require('./cy.json'),
   da: require('./da.json'),
   de: require('./de.json'),
   'en-AU': require('./en_AU.json'),
