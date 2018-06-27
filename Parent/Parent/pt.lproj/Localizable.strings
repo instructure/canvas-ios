@@ -40,17 +40,11 @@
 /* No comment provided by engineer. */
 "Assignment reminder: %@ is due at %@" = "Relembrar Tarefa: %1$@ termina a %2$@";
 
-/* No comment provided by engineer. */
-"Australia" = "Austrália";
-
 /* Authorization Failed Title */
 "Authorization Failed." = "A Autorização Falhou.";
 
 /* No comment provided by engineer. */
 "Cache cleared" = "Cache Limpo";
-
-/* No comment provided by engineer. */
-"Canada" = "Canadá";
 
 /* Cancel button title */
 "Cancel" = "Cancelar";
@@ -103,9 +97,6 @@
 /* Status level for issue being reported */
 "Extremely critical emergency" = "Emergência extremamente crítica";
 
-/* No comment provided by engineer. */
-"Germany" = "Alemanha";
-
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "A nota mais elevada da tarefa não pode ser inferior à nota da tarefa";
 
@@ -133,9 +124,6 @@
 /* Support Ticket Invalid Input Message */
 "Invalid Input.  Check fields and try again." = "Entrada Inválida.  Verifique os campos e tente novamente.";
 
-/* No comment provided by engineer. */
-"Ireland" = "Irlanda";
-
 /* Last Week Button Accessibility Label */
 "Last Week" = "Semana passada";
 
@@ -159,6 +147,9 @@
 
 /* Low Course Grade too High */
 "Low course grade cannot be higher than high course grade" = "A nota mais baixa da disciplina não pode ser superior à nota mais elevada da tarefa";
+
+/* Title of the manage children screen. This screen is used to add/remove children that a parent is observing. */
+"Manage Children" = "Gerir crianças";
 
 /* No comment provided by engineer. */
 "Missing" = "Em falta";
@@ -220,9 +211,6 @@
 /* Server Error Title */
 "Server Error" = "Erro do Servidor";
 
-/* No comment provided by engineer. */
-"Singapore" = "Singapura";
-
 /* Status level for issue being reported */
 "Something is broken but I can work around it" = "Algo está avariado mas consigo resolver";
 
@@ -258,9 +246,6 @@
 
 /* Auth Failed Message */
 "Unexpected Authentication Error.  Please try logging in again" = "Erro de Autenticação Inesperado. Por favor tente registar novamente";
-
-/* No comment provided by engineer. */
-"United States" = "Estados Unidos";
 
 /* Unknown T`hreshold Description */
 "Unknown" = "Desconhecido";

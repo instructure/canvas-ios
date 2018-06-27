@@ -1,0 +1,270 @@
+/* <String> <Int> of <Int> */
+"%@ %d of %d" = "%1$@ %2$d o %3$d";
+
+/* Something to Something */
+"%@ to %@" = "%1$@ i %2$@";
+
+/* Percentage field placeholder */
+"1-100%" = "1-100%";
+
+/* Server Error Message */
+"A server error has occurred.  Please try again." = "Gwall ar y gweinydd.  Rhowch gynnig arall arni.";
+
+/* Unauthorized Student Error Title */
+"Access Denied" = "Gwrthodwyd Mynediad";
+
+/* Alert Section Header */
+"Alert me when:" = "Rhowch wybod i mi pan:";
+
+/* Generic Network Error Message */
+"An unexpected error occurred.  Please try again." = "Gwall Annisgwyl.  Rhowch gynnig arall arni.";
+
+/* Logout Confirmation */
+"Are you sure you want to logout?" = "Ydych chi’n siŵr eich bod am allgofnodi?";
+
+/* Remove Observee Confirmation */
+"Are you sure you want to remove this observee?" = "Ydych chi’n siŵr eich bod am dynnu’r defnyddiwr hwn sy'n cael ei arsyllu?";
+
+/* Assignment Grade High On Description */
+"Assignment grade above" = "Gradd yr aseiniad yn uwch na";
+
+/* Assignment Grade Low On Description */
+"Assignment grade below" = "Gradd yr aseiniad yn is na";
+
+/* Assignment Missing Description */
+"Assignment missing" = "Aseiniad ar goll";
+
+/* No comment provided by engineer. */
+"Assignment reminder: %@" = "Nodyn atgoffa ar gyfer aseiniad: %@";
+
+/* No comment provided by engineer. */
+"Assignment reminder: %@ is due at %@" = "Nodyn atgoffa ar gyfer aseiniad: %1$@ erbyn %2$@";
+
+/* Authorization Failed Title */
+"Authorization Failed." = "Wedi methu awdurdodi.";
+
+/* No comment provided by engineer. */
+"Cache cleared" = "Storfa wedi’i chlirio";
+
+/* Cancel button title */
+"Cancel" = "Canslo";
+
+/* Percent value is over 100 */
+"Cannot use percent that is higher than 100" = "Methu defnyddio canran mwy na 100";
+
+/* Percent value is under 0 */
+"Cannot use percent that is less than 0" = "Methu defnyddio canran llai na 0";
+
+/* Cancel the question/suggestion form */
+"Casual question or suggestion" = "Awgrym neu gwestiwn anffurfiol";
+
+/* Empty Alerts Text */
+"Caught up on Alerts" = "Wedi gweld y negeseuon hysbysu diweddaraf";
+
+/* title for status selection field */
+"Choose One" = "Dewiswch Un";
+
+/* Close Button Title */
+"Close" = "Cau";
+
+/* Course Announcement Description */
+"Course announcements" = "Cyhoeddiadau cwrs";
+
+/* Course Grade High On Description */
+"Course grade above" = "Gradd y cwrs yn uwch na";
+
+/* Course Grade Low On Description */
+"Course grade below" = "Gradd y cwrs yn is na";
+
+/* Title for field */
+"Describe your problem" = "Disgrifiwch eich problem";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Diystyru";
+
+/* No comment provided by engineer. */
+"Error" = "Gwall";
+
+/* No comment provided by engineer. */
+"Event reminder: %@" = "Nodyn atgoffa ar gyfer digwyddiad: %@";
+
+/* No comment provided by engineer. */
+"Event reminder: %@ will begin at %@" = "Nodyn atgoffa ar gyfer digwyddiad: %1$@ yn dechrau am %2$@";
+
+/* No comment provided by engineer. */
+"Excused" = "Wedi esgusodi";
+
+/* Status level for issue being reported */
+"Extremely critical emergency" = "Argyfwng difrifol iawn";
+
+/* High Assignment Grade too Low */
+"High assignment grade cannot be lower than low assignment grade" = "Ni all gradd aseiniad uchel fod yn is na gradd aseiniad isel";
+
+/* High Course Grade too Low */
+"High course grade cannot be lower than low course grade" = "Ni all gradd cwrs uchel fod yn is na gradd cwrs isel";
+
+/* Status level for issue being reported */
+"I can't get things done until fixed" = "Alla i ddim gorffen fy ngwaith nes bydd y broblem wedi'i datrys";
+
+/* Status level for issue being reported */
+"I need help but it's not urgent" = "Mae angen help arna i, ond dydy’r mater ddim yn un brys";
+
+/* Impact Title */
+"Impact:" = "Effaith:";
+
+/* No comment provided by engineer. */
+"In-Class" = "Yn y dosbarth";
+
+/* Institution Announcement Description */
+"Institution announcements" = "Cyhoeddiadau sefydliadau";
+
+/* Title for an alert view */
+"Invalid Input" = "Mewnbwn Annilys";
+
+/* Support Ticket Invalid Input Message */
+"Invalid Input.  Check fields and try again." = "Mewnbwn Annilys.  Gwiriwch y meysydd a rhoi cynnig arall arni.";
+
+/* Last Week Button Accessibility Label */
+"Last Week" = "Wythnos Diwethaf";
+
+/* No comment provided by engineer. */
+"Late" = "Yn Hwyr";
+
+/* No comment provided by engineer. */
+"Late: %@" = "Yn Hwyr: %@";
+
+/* No comment provided by engineer. */
+"Late: %@ (%@/%@)" = "Yn Hwyr: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Log In" = "Mewngofnodi";
+
+/* Logout Confirm Button */
+"Logout" = "Allgofnodi";
+
+/* Low Assignment Grade too High */
+"Low assignment grade cannot be higher than high assignment grade" = "Ni all gradd aseiniad isel fod yn uwch na gradd aseiniad uchel";
+
+/* Low Course Grade too High */
+"Low course grade cannot be higher than high course grade" = "Ni all gradd cwrs isel fod yn uwch na gradd cwrs uchel";
+
+/* Title of the manage children screen. This screen is used to add/remove children that a parent is observing. */
+"Manage Children" = "Rheoli Plant";
+
+/* No comment provided by engineer. */
+"Missing" = "Ar goll";
+
+/* No comment provided by engineer. */
+"Missing: (-/%@)" = "Ar goll: (-/%@)";
+
+/* Generic Network Error Title */
+"Network Error" = "Gwall ar y Rhwydwaith";
+
+/* Next Week Button Accessibility Label */
+"Next Week" = "Wythnos Nesaf";
+
+/* Empty Courses Text */
+"No Courses" = "Dim Cyrsiau";
+
+/* Title for label when no grade has been assigned to the course */
+"No Grade" = "Dim Gradd";
+
+/* Empty Students Text */
+"No Students" = "Dim Myfyrwyr";
+
+/* Error message */
+"No installed apps support opening this file" = "Does dim apiau wedi'u llwytho i lawr sy'n gallu agor y ffeil hon";
+
+/* Not Authorized Error Title */
+"Not Authorized" = "Heb ei awdurdodi";
+
+/* Not Found Error Title */
+"Not Found" = "Heb ganfod";
+
+/* Empty Calendar Events Text */
+"Nothing this week" = "Dim byd yr wythnos hon";
+
+/* OK Button Title */
+"OK" = "Iawn";
+
+/* Open a url in the application Safari */
+"Open in Safari" = "Agor yn Safari";
+
+/* Open file in another application */
+"Open in..." = "Agor yn...";
+
+/* Remove button title */
+"Remove" = "Tynnu";
+
+/* delete student from login */
+"Remove Student" = "Tynnu Myfyriwr";
+
+/* Support Ticket Creation Failed */
+"Request Failed!  Check network and try again!" = "Mae'r cais wedi methu!  Gwiriwch y rhwydwaith a rhoi cynnig arall arni!";
+
+/* Not Found Error Message */
+"Resource not found.  Please try again." = "Heb ddod o hyd i'r adnodd.  Rhowch gynnig arall arni.";
+
+/* Select Impact Placeholder */
+"Select Impact" = "Dewiswch Effaith";
+
+/* Server Error Title */
+"Server Error" = "Gwall ar y Gweinydd";
+
+/* Status level for issue being reported */
+"Something is broken but I can work around it" = "Mae rhywbeth wedi mynd o’i le, ond fe alla i ddal ati";
+
+/* Title for the subject field */
+"Subject" = "Pwnc";
+
+/* No comment provided by engineer. */
+"Submitted" = "Wedi cyflwyno";
+
+/* No comment provided by engineer. */
+"Submitted: %@" = "Wedi cyflwyno: %@";
+
+/* No comment provided by engineer. */
+"Submitted: %@ (%@/%@)" = "Wedi cyflwyno: %1$@ (%2$@/%3$@)";
+
+/* Syllabus Button Title */
+"Syllabus" = "Maes Llafur";
+
+/* Support Ticket Created Successfully */
+"Thanks, your request was received!" = "Wedi cael eich cais, diolch!";
+
+/* Error message */
+"There are no actions for this item" = "Does dim gweithrediadau ar gyfer yr eitem hon.";
+
+/* AlertKit Database Load Failure Message */
+"There was a problem loading the AlertKit database file." = "Problem wrth lwytho’r ffeil cronfa ddata AlertKit.";
+
+/* Airwolf database error message */
+"There was a problem loading the database." = "Problem wrth lwytho’r gronfa ddata.";
+
+/* No comment provided by engineer. */
+"There was an error loading your content. If it  is an audio or video upload it may still be processing." = "Gwall wrth lwytho’ch cynnwys. Os ydych chi'n llwytho sain neu fideo i fyny, gall fod wrthi'n prosesu o hyd.";
+
+/* Auth Failed Message */
+"Unexpected Authentication Error.  Please try logging in again" = "Gwall Dilysu Annisgwyl.  Ceisiwch fewngofnodi eto";
+
+/* Unknown T`hreshold Description */
+"Unknown" = "Dieithr";
+
+/* Default name given a user until we find their real name */
+"Unknown User" = "Defnyddiwr Dieithr";
+
+/* Default user name, the computer-friendly version of their name, until we find their real user name */
+"Unknown User Name" = "Enw Defnyddiwr Dieithr";
+
+/* Name of action when viewing a reminder */
+"View" = "Gweld";
+
+/* Title for field */
+"What can we do better?" = "Beth fydden ni'n gallu ei wneud yn well?";
+
+/* Not Authorized Error Message */
+"You are unauthorized to access this information.  Check your user permissions and try again." = "Does gennych chi ddim hawl i gael mynediad at yr wybodaeth hon.  Gwiriwch eich hawliau defnyddiwr a rhoi cynnig arall arni.";
+
+/* Title for the email field */
+"Your Email" = "Eich E-bost";
+

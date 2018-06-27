@@ -4,6 +4,9 @@
 /* No comment provided by engineer. */
 "Build all the things" = "建立一切";
 
+/* Help label when user can't find their school. */
+"Can't find your school? Try typing the full school URL." = "找不到您的學校？請嘗試輸入學校完整 URL。";
+
 /* No comment provided by engineer. */
 "Cancel" = "取消";
 
@@ -45,6 +48,9 @@
 
 /* Help View Controller Title */
 "Help" = "幫助";
+
+/* Help label when domain search has started */
+"How do I find my school?" = "怎樣找到我的學校？";
 
 /* No comment provided by engineer. */
 "I am stuck and can't get things done" = "我遇到困難，無法完成任務";

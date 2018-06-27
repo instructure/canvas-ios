@@ -287,6 +287,9 @@
   "clear_recording_5a97b475": {
     "message": "Opname wissen"
   },
+  "close_d634289d": {
+    "message": "Sluiten"
+  },
   "close_for_comments_ce0e5d00": {
     "message": "Sluiten voor opmerkingen"
   },
@@ -566,6 +569,9 @@
   "excused_cf8792eb": {
     "message": "Verontschuldigd"
   },
+  "extensions_and_lastextension_f45d68e7": {
+    "message": "{ extensions } en { lastExtension }"
+  },
   "external_tool_c5a6410a": {
     "message": "Extern hulpmiddel"
   },
@@ -595,6 +601,9 @@
   },
   "favorite_courses_fbd356f0": {
     "message": "Favoriete cursussen"
+  },
+  "file_types_6fa69505": {
+    "message": "Bestandstypen"
   },
   "files_c300e900": {
     "message": "Bestanden"
@@ -698,6 +707,9 @@
   "help_4c4968b1": {
     "message": "Help"
   },
+  "hidden_14a032a7": {
+    "message": "Verborgen"
+  },
   "hidden_files_inside_will_be_available_with_links_e9e3d233": {
     "message": "Verborgen. De hierin opgenomen bestanden zijn met koppelingen beschikbaar."
   },
@@ -746,6 +758,9 @@
   "it_looks_like_your_internet_connection_is_offline__cf4003": {
     "message": "Het ziet ernaar uit dat je internetverbinding offline is. Maak verbinding met internet en probeer het opnieuw."
   },
+  "it_seems_there_aren_t_any_valid_submissions_to_gra_f136675": {
+    "message": "Het lijkt erop dat er geen geldige inleveringen zijn om te beoordelen."
+  },
   "italic_ac45200a": {
     "message": "Cursief"
   },
@@ -793,6 +808,9 @@
   },
   "long_description_7d89285c": {
     "message": "Lange beschrijving"
+  },
+  "manage_children_a28d764e": {
+    "message": "Kinderen beheren"
   },
   "mark_all_as_read_8f3bdf57": {
     "message": "Alles als gelezen markeren"
@@ -919,6 +937,9 @@
   },
   "no_subject_58b7941c": {
     "message": "Geen onderwerp"
+  },
+  "no_submissions_to_display_6f1491cf": {
+    "message": "Geen inleveringen om weer te geven"
   },
   "no_time_limit_2147d9bf": {
     "message": "Geen tijdslimiet"
@@ -1463,6 +1484,9 @@
   "this_assignment_does_not_allow_submissions_30af1caa": {
     "message": "Voor deze opdracht zijn er geen inzendingen toegestaan."
   },
+  "this_assignment_doesn_t_have_a_description_e2f37ec3": {
+    "message": "Deze opdracht heeft geen beschrijving."
+  },
   "this_assignment_only_allows_on_paper_submissions_f478408a": {
     "message": "Voor deze opdracht zijn alleen schriftelijke inzendingen toegestaan."
   },
@@ -1619,6 +1643,9 @@
   },
   "view_all_submissions_915a8b78": {
     "message": "Alle inzendingen bekijken"
+  },
+  "view_canvas_guides_a1c62a97": {
+    "message": "Canvas-handleidingen weergeven"
   },
   "view_long_description_2b592c0e": {
     "message": "Uitgebreide beschrijving bekijken"

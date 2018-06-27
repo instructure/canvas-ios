@@ -31,6 +31,9 @@
 /* Class = "UILabel"; text = "Subtitle"; ObjectID = "nTZ-ii-mqn"; */
 "nTZ-ii-mqn.text" = "Subtítulo";
 
+/* Class = "UITextField"; placeholder = "Find your school or district"; ObjectID = "xzj-lX-iaI"; */
+"xzj-lX-iaI.placeholder" = "Encontre sua escola ou distrito";
+
 /* Class = "UIButton"; normalTitle = "Find my school"; ObjectID = "zQQ-hy-gpK"; */
 "zQQ-hy-gpK.normalTitle" = "Encontrar minha escola";
 

@@ -287,6 +287,9 @@
   "clear_recording_5a97b475": {
     "message": "Clear recording"
   },
+  "close_d634289d": {
+    "message": "Close"
+  },
   "close_for_comments_ce0e5d00": {
     "message": "Close for comments"
   },
@@ -566,6 +569,9 @@
   "excused_cf8792eb": {
     "message": "Excused"
   },
+  "extensions_and_lastextension_f45d68e7": {
+    "message": "{ extensions } and { lastExtension }"
+  },
   "external_tool_c5a6410a": {
     "message": "External tool"
   },
@@ -595,6 +601,9 @@
   },
   "favorite_courses_fbd356f0": {
     "message": "Favourite courses"
+  },
+  "file_types_6fa69505": {
+    "message": "File types"
   },
   "files_c300e900": {
     "message": "Files"
@@ -698,6 +707,9 @@
   "help_4c4968b1": {
     "message": "Help"
   },
+  "hidden_14a032a7": {
+    "message": "Hidden"
+  },
   "hidden_files_inside_will_be_available_with_links_e9e3d233": {
     "message": "Hidden. Files inside will be available with links."
   },
@@ -746,6 +758,9 @@
   "it_looks_like_your_internet_connection_is_offline__cf4003": {
     "message": "It looks like your internet connection is offline. Reconnect to the internet and try again."
   },
+  "it_seems_there_aren_t_any_valid_submissions_to_gra_f136675": {
+    "message": "It seems there aren't any valid submissions to grade."
+  },
   "italic_ac45200a": {
     "message": "Italic"
   },
@@ -793,6 +808,9 @@
   },
   "long_description_7d89285c": {
     "message": "Long description"
+  },
+  "manage_children_a28d764e": {
+    "message": "Manage children"
   },
   "mark_all_as_read_8f3bdf57": {
     "message": "Mark all as read"
@@ -919,6 +937,9 @@
   },
   "no_subject_58b7941c": {
     "message": "No Subject"
+  },
+  "no_submissions_to_display_6f1491cf": {
+    "message": "No submissions to display"
   },
   "no_time_limit_2147d9bf": {
     "message": "No time limit"
@@ -1463,6 +1484,9 @@
   "this_assignment_does_not_allow_submissions_30af1caa": {
     "message": "This assignment does not allow submissions."
   },
+  "this_assignment_doesn_t_have_a_description_e2f37ec3": {
+    "message": "This assignment doesn't have a description."
+  },
   "this_assignment_only_allows_on_paper_submissions_f478408a": {
     "message": "This assignment only allows on-paper submissions."
   },
@@ -1619,6 +1643,9 @@
   },
   "view_all_submissions_915a8b78": {
     "message": "View all submissions"
+  },
+  "view_canvas_guides_a1c62a97": {
+    "message": "View Canvas Guides"
   },
   "view_long_description_2b592c0e": {
     "message": "View Long Description"

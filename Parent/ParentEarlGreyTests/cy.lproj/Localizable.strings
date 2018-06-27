@@ -1,0 +1,9 @@
+/* Logout Confirmation */
+"Are you sure you want to logout?" = "Ydych chi’n siŵr eich bod am allgofnodi?";
+
+/* Logout Cancel Button */
+"Cancel" = "Canslo";
+
+/* Logout Confirm Button */
+"Logout" = "Allgofnodi";
+

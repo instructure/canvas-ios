@@ -4,6 +4,9 @@
 /* No comment provided by engineer. */
 "Build all the things" = "Hanga ngā mea katoa";
 
+/* Help label when user can't find their school. */
+"Can't find your school? Try typing the full school URL." = "Kaore e taea te kimi i tō kura? Ngana ki te pātō te nuinga o te kura url";
+
 /* No comment provided by engineer. */
 "Cancel" = "Whakakore";
 
@@ -45,6 +48,9 @@
 
 /* Help View Controller Title */
 "Help" = "Āwhina";
+
+/* Help label when domain search has started */
+"How do I find my school?" = "Me pehea e kitea ai e ahau taku kura?";
 
 /* No comment provided by engineer. */
 "I am stuck and can't get things done" = "Kei te raru ahau a kaore e taea ki te whakaoti mahi";

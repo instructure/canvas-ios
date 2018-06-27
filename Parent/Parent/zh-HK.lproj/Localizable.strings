@@ -40,17 +40,11 @@
 /* No comment provided by engineer. */
 "Assignment reminder: %@ is due at %@" = "任務提醒：%1$@  的截止到期日在 %2$@";
 
-/* No comment provided by engineer. */
-"Australia" = "澳大利亞";
-
 /* Authorization Failed Title */
 "Authorization Failed." = "驗證失敗。";
 
 /* No comment provided by engineer. */
 "Cache cleared" = "緩存已清空";
-
-/* No comment provided by engineer. */
-"Canada" = "加拿大";
 
 /* Cancel button title */
 "Cancel" = "取消";
@@ -103,9 +97,6 @@
 /* Status level for issue being reported */
 "Extremely critical emergency" = "萬分危急的緊急情況";
 
-/* No comment provided by engineer. */
-"Germany" = "德國";
-
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "高的任務評分不可低於低的任務評分";
 
@@ -133,9 +124,6 @@
 /* Support Ticket Invalid Input Message */
 "Invalid Input.  Check fields and try again." = "無效的輸入。請檢查欄位並重試。";
 
-/* No comment provided by engineer. */
-"Ireland" = "愛爾蘭";
-
 /* Last Week Button Accessibility Label */
 "Last Week" = "上週";
 
@@ -159,6 +147,9 @@
 
 /* Low Course Grade too High */
 "Low course grade cannot be higher than high course grade" = "低的課程評分不可高於高的課程評分";
+
+/* Title of the manage children screen. This screen is used to add/remove children that a parent is observing. */
+"Manage Children" = "管理兒童";
 
 /* No comment provided by engineer. */
 "Missing" = "缺少";
@@ -220,9 +211,6 @@
 /* Server Error Title */
 "Server Error" = "伺服器錯誤";
 
-/* No comment provided by engineer. */
-"Singapore" = "新加坡";
-
 /* Status level for issue being reported */
 "Something is broken but I can work around it" = "出現某些故障但我能解決它";
 
@@ -258,9 +246,6 @@
 
 /* Auth Failed Message */
 "Unexpected Authentication Error.  Please try logging in again" = "出現意外驗證故障。請重試登入。";
-
-/* No comment provided by engineer. */
-"United States" = "美國";
 
 /* Unknown T`hreshold Description */
 "Unknown" = "未知";

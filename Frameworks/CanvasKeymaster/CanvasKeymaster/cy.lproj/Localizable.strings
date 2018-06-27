@@ -1,0 +1,123 @@
+/* The distance in miles that a user is from a school. */
+"%@ miles away" = "%@ milltir i ffwrdd";
+
+/* No comment provided by engineer. */
+"Build all the things" = "Adeiladu popeth";
+
+/* Help label when user can't find their school. */
+"Can't find your school? Try typing the full school URL." = "Methu dod o hyd i’ch ysgol? Rhowch gynnig ar deipio URL llawn yr ysgol.";
+
+/* No comment provided by engineer. */
+"Cancel" = "Canslo";
+
+/* No comment provided by engineer. */
+"Cancel Request" = "Canslo'r cais";
+
+/* Label displayed when forcing canvas login */
+"Canvas Login" = "Manylion Mewngofnodi Canvas";
+
+/* No comment provided by engineer. */
+"Casual question or suggestion" = "Awgrym neu gwestiwn anffurfiol";
+
+/* No comment provided by engineer. */
+"Check network and try again!" = "Gwiriwch y rhwydwaith a rhoi cynnig arall arni!";
+
+/* No comment provided by engineer. */
+"Choose One" = "Dewiswch Un";
+
+/* No comment provided by engineer. */
+"Continue Editing" = "Parhau i olygu";
+
+/* No comment provided by engineer. */
+"Describe the feature here" = "Disgrifiwch y nodwedd yma";
+
+/* Dismiss login expired/revoked alert button */
+"Dismiss" = "Diystyru";
+
+/* No comment provided by engineer. */
+"Emergency" = "Argyfwng";
+
+/* Text view to enter the description of the ticket */
+"Enter ticket description" = "Rhowch ddisgrifiad o'r tocyn";
+
+/* Text field to enter subject of the ticket */
+"Enter ticket subject" = "Rhowch bwnc y tocyn";
+
+/* No comment provided by engineer. */
+"Extremely critical emergency" = "Argyfwng difrifol iawn";
+
+/* Help View Controller Title */
+"Help" = "Help";
+
+/* Help label when domain search has started */
+"How do I find my school?" = "Sut ydw i’n dod o hyd i fy ysgol?";
+
+/* No comment provided by engineer. */
+"I am stuck and can't get things done" = "Alla i ddim gorffen fy ngwaith";
+
+/* No comment provided by engineer. */
+"I can't get things done until I hear back from you" = "Alla i ddim gorffen fy ngwaith nes bydda i wedi cael ateb gennych chi";
+
+/* No comment provided by engineer. */
+"I need help but it's not urgent" = "Mae angen help arna i, ond dydy’r mater ddim yn un brys";
+
+/* No comment provided by engineer. */
+"Invalid Canvas URL." = "URL Canvas annilys.";
+
+/* No comment provided by engineer. */
+"Invalid User Agent." = "Asiant Defnyddiwr Annilys.";
+
+/* No comment provided by engineer. */
+"Non-urgent help needed" = "Angen help, ond does dim brys";
+
+/* No comment provided by engineer. */
+"Not authorized." = "Heb ei awdurdodi.";
+
+/* No comment provided by engineer. */
+"OK" = "Iawn";
+
+/* No comment provided by engineer. */
+"Report a Problem" = "Rhoi gwybod am broblem";
+
+/* No comment provided by engineer. */
+"Request Failed!" = "Mae'r cais wedi methu!";
+
+/* No comment provided by engineer. */
+"Request a Feature" = "Gofyn am Nodwedd";
+
+/* Button to select the severity of the ticket */
+"Select ticket impact level" = "Dewiswch lefel effaith y tocyn";
+
+/* No comment provided by engineer. */
+"Send" = "Anfon";
+
+/* Label displayed when logging in as site admin */
+"Site Admin Login" = "Manylion Mewngofnodi Gweinyddwr y Safle";
+
+/* No comment provided by engineer. */
+"Something is broken but I can work around it" = "Mae rhywbeth wedi mynd o’i le, ond fe alla i ddal ati";
+
+/* No comment provided by engineer. */
+"Success!" = "Wedi llwyddo!";
+
+/* Subtitle help text describing how to find a school. */
+"Tap here for help." = "Cliciwch yma i gael help.";
+
+/* No comment provided by engineer. */
+"Thanks, your request was received!" = "Wedi cael eich cais, diolch!";
+
+/* when the access token has been revoked */
+"Your login has expired or has been removed by the server. Please log in again." = "Mae eich manylion mewngofnodi wedi dod i ben neu wedi cael eu tynnu gan y gweinydd. Mewngofnodwch eto.";
+
+/* No comment provided by engineer. */
+"describe your problem" = "disgrifiwch eich problem";
+
+/* No comment provided by engineer. */
+"enter a subject" = "rhowch bwnc";
+
+/* Placeholder for delete icon in Multi User Table View Cell */
+"remove user" = "tynnu defnyddiwr";
+
+/* No comment provided by engineer. */
+"select the impact" = "dewiswch yr effaith";
+

@@ -287,6 +287,9 @@
   "clear_recording_5a97b475": {
     "message": "Aufzeichnung löschen"
   },
+  "close_d634289d": {
+    "message": "Schließen"
+  },
   "close_for_comments_ce0e5d00": {
     "message": "Für Kommentare schließen"
   },
@@ -566,6 +569,9 @@
   "excused_cf8792eb": {
     "message": "Entschuldigt"
   },
+  "extensions_and_lastextension_f45d68e7": {
+    "message": "{ extensions } und { lastExtension }"
+  },
   "external_tool_c5a6410a": {
     "message": "Externe Tools"
   },
@@ -595,6 +601,9 @@
   },
   "favorite_courses_fbd356f0": {
     "message": "Lieblingskurse"
+  },
+  "file_types_6fa69505": {
+    "message": "Dateitypen"
   },
   "files_c300e900": {
     "message": "Dateien"
@@ -698,6 +707,9 @@
   "help_4c4968b1": {
     "message": "Hilfe"
   },
+  "hidden_14a032a7": {
+    "message": "Ausgeblendet"
+  },
   "hidden_files_inside_will_be_available_with_links_e9e3d233": {
     "message": "Ausgeblendet. Darin enthaltene Dateien sind über Links verfügbar."
   },
@@ -746,6 +758,9 @@
   "it_looks_like_your_internet_connection_is_offline__cf4003": {
     "message": "Ihre Internetverbindung scheint offline zu sein. Stellen Sie erneut eine Verbindung zum Internet her, und versuchen Sie es erneut."
   },
+  "it_seems_there_aren_t_any_valid_submissions_to_gra_f136675": {
+    "message": "Es scheint, es gibt keine gültigen zu benotenden Abgaben."
+  },
   "italic_ac45200a": {
     "message": "Kursiv"
   },
@@ -793,6 +808,9 @@
   },
   "long_description_7d89285c": {
     "message": "Ausführliche Beschreibung"
+  },
+  "manage_children_a28d764e": {
+    "message": "Kinder verwalten"
   },
   "mark_all_as_read_8f3bdf57": {
     "message": "Alle als gelesen markieren"
@@ -919,6 +937,9 @@
   },
   "no_subject_58b7941c": {
     "message": "Kein Betreff"
+  },
+  "no_submissions_to_display_6f1491cf": {
+    "message": "Keine Abgaben anzuzeigen"
   },
   "no_time_limit_2147d9bf": {
     "message": "Kein Zeitlimit"
@@ -1463,6 +1484,9 @@
   "this_assignment_does_not_allow_submissions_30af1caa": {
     "message": "Diese Aufgabe lässt keine Abgaben zu."
   },
+  "this_assignment_doesn_t_have_a_description_e2f37ec3": {
+    "message": "Für diese Aufgabe gibt es keine Beschreibung."
+  },
   "this_assignment_only_allows_on_paper_submissions_f478408a": {
     "message": "Diese Aufgabe erlaubt nur Abgaben auf Papier."
   },
@@ -1619,6 +1643,9 @@
   },
   "view_all_submissions_915a8b78": {
     "message": "Alle Abgaben anzeigen"
+  },
+  "view_canvas_guides_a1c62a97": {
+    "message": "Canvas-Anleitungen anzeigen"
   },
   "view_long_description_2b592c0e": {
     "message": "Lange Beschreibung anzeigen"

@@ -40,17 +40,11 @@
 /* No comment provided by engineer. */
 "Assignment reminder: %@ is due at %@" = "Assignment reminder: %1$@ is due at %2$@";
 
-/* No comment provided by engineer. */
-"Australia" = "Australia";
-
 /* Authorization Failed Title */
 "Authorization Failed." = "Authorisation Failed.";
 
 /* No comment provided by engineer. */
 "Cache cleared" = "Cache cleared";
-
-/* No comment provided by engineer. */
-"Canada" = "Canada";
 
 /* Cancel button title */
 "Cancel" = "Cancel";
@@ -103,9 +97,6 @@
 /* Status level for issue being reported */
 "Extremely critical emergency" = "Extremely critical emergency";
 
-/* No comment provided by engineer. */
-"Germany" = "Germany";
-
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "High assignment grade cannot be lower than low assignment grade";
 
@@ -133,9 +124,6 @@
 /* Support Ticket Invalid Input Message */
 "Invalid Input.  Check fields and try again." = "Invalid Input.  Check fields and try again.";
 
-/* No comment provided by engineer. */
-"Ireland" = "Ireland";
-
 /* Last Week Button Accessibility Label */
 "Last Week" = "Last Week";
 
@@ -159,6 +147,9 @@
 
 /* Low Course Grade too High */
 "Low course grade cannot be higher than high course grade" = "Low course grade cannot be higher than high course grade";
+
+/* Title of the manage children screen. This screen is used to add/remove children that a parent is observing. */
+"Manage Children" = "Manage Children";
 
 /* No comment provided by engineer. */
 "Missing" = "Missing";
@@ -220,9 +211,6 @@
 /* Server Error Title */
 "Server Error" = "Server Error";
 
-/* No comment provided by engineer. */
-"Singapore" = "Singapore";
-
 /* Status level for issue being reported */
 "Something is broken but I can work around it" = "Something is broken but I can work around it.";
 
@@ -258,9 +246,6 @@
 
 /* Auth Failed Message */
 "Unexpected Authentication Error.  Please try logging in again" = "Unexpected Authentication Error.  Please try logging in again.";
-
-/* No comment provided by engineer. */
-"United States" = "United States";
 
 /* Unknown T`hreshold Description */
 "Unknown" = "Unknown";

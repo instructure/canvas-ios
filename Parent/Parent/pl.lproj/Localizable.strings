@@ -40,17 +40,11 @@
 /* No comment provided by engineer. */
 "Assignment reminder: %@ is due at %@" = "Przypomnienie o zadaniu: %1$@ ma termin %2$@";
 
-/* No comment provided by engineer. */
-"Australia" = "Australia";
-
 /* Authorization Failed Title */
 "Authorization Failed." = "Autoryzacja nie powiodła się";
 
 /* No comment provided by engineer. */
 "Cache cleared" = "Pamięć podręczna wyczyszczona";
-
-/* No comment provided by engineer. */
-"Canada" = "Kanada";
 
 /* Cancel button title */
 "Cancel" = "Anuluj";
@@ -103,9 +97,6 @@
 /* Status level for issue being reported */
 "Extremely critical emergency" = "Niezwykle krytyczna awaria";
 
-/* No comment provided by engineer. */
-"Germany" = "Niemcy";
-
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "Wysoka ocena za zadanie nie może być niższa od niskiej oceny za zadanie";
 
@@ -133,9 +124,6 @@
 /* Support Ticket Invalid Input Message */
 "Invalid Input.  Check fields and try again." = "Nieprawidłowe dane.  Sprawdź pola i spróbuj ponownie.";
 
-/* No comment provided by engineer. */
-"Ireland" = "Irlandia";
-
 /* Last Week Button Accessibility Label */
 "Last Week" = "Poprzedni tydzień";
 
@@ -159,6 +147,9 @@
 
 /* Low Course Grade too High */
 "Low course grade cannot be higher than high course grade" = "Niska ocena za zadanie nie może być wyższa od wysokiej oceny za zadanie";
+
+/* Title of the manage children screen. This screen is used to add/remove children that a parent is observing. */
+"Manage Children" = "Zarządzaj dziećmi";
 
 /* No comment provided by engineer. */
 "Missing" = "Brakuje";
@@ -220,9 +211,6 @@
 /* Server Error Title */
 "Server Error" = "Błąd serwera";
 
-/* No comment provided by engineer. */
-"Singapore" = "Singapur";
-
 /* Status level for issue being reported */
 "Something is broken but I can work around it" = "Coś się zepsuło, ale poradzę sobie bez tego";
 
@@ -258,9 +246,6 @@
 
 /* Auth Failed Message */
 "Unexpected Authentication Error.  Please try logging in again" = "Nieoczekiwany błąd uwierzytelniania. Spróbuj zalogować się ponownie";
-
-/* No comment provided by engineer. */
-"United States" = "Stany Zjednoczone";
 
 /* Unknown T`hreshold Description */
 "Unknown" = "Nieznany";

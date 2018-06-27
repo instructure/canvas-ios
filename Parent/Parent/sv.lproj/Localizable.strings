@@ -40,17 +40,11 @@
 /* No comment provided by engineer. */
 "Assignment reminder: %@ is due at %@" = "Uppgiftspåminnelse: %1$@ ska vara klar %2$@";
 
-/* No comment provided by engineer. */
-"Australia" = "Australien";
-
 /* Authorization Failed Title */
 "Authorization Failed." = "Auktorisering misslyckades.";
 
 /* No comment provided by engineer. */
 "Cache cleared" = "Cacheminnet har rensats";
-
-/* No comment provided by engineer. */
-"Canada" = "Kanada";
 
 /* Cancel button title */
 "Cancel" = "Avbryt";
@@ -103,9 +97,6 @@
 /* Status level for issue being reported */
 "Extremely critical emergency" = "Extremt kritiskt nödläge";
 
-/* No comment provided by engineer. */
-"Germany" = "Tyskland";
-
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "Högt uppgiftsbetyg kan inte vara lägre än lågt uppgiftsbetyg";
 
@@ -133,9 +124,6 @@
 /* Support Ticket Invalid Input Message */
 "Invalid Input.  Check fields and try again." = "Ogiltig inmatning.  Kontrollera fält och försök igen.";
 
-/* No comment provided by engineer. */
-"Ireland" = "Irland";
-
 /* Last Week Button Accessibility Label */
 "Last Week" = "Förra veckan";
 
@@ -159,6 +147,9 @@
 
 /* Low Course Grade too High */
 "Low course grade cannot be higher than high course grade" = "Lågt kursbetyg kan inte vara högre än högt kursbetyg";
+
+/* Title of the manage children screen. This screen is used to add/remove children that a parent is observing. */
+"Manage Children" = "Hantera barn";
 
 /* No comment provided by engineer. */
 "Missing" = "Saknas";
@@ -220,9 +211,6 @@
 /* Server Error Title */
 "Server Error" = "Serverfel";
 
-/* No comment provided by engineer. */
-"Singapore" = "Singapore";
-
 /* Status level for issue being reported */
 "Something is broken but I can work around it" = "Något är trasigt och jag kan inte hitta en alternativ lösning";
 
@@ -258,9 +246,6 @@
 
 /* Auth Failed Message */
 "Unexpected Authentication Error.  Please try logging in again" = "Ett oväntat autentiseringsfel inträffade. Försök att logga in igen.";
-
-/* No comment provided by engineer. */
-"United States" = "USA";
 
 /* Unknown T`hreshold Description */
 "Unknown" = "Okänd";

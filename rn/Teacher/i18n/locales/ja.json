@@ -287,6 +287,9 @@
   "clear_recording_5a97b475": {
     "message": "録音をクリアする"
   },
+  "close_d634289d": {
+    "message": "閉じる"
+  },
   "close_for_comments_ce0e5d00": {
     "message": "コメントを閉じる"
   },
@@ -566,6 +569,9 @@
   "excused_cf8792eb": {
     "message": "免除"
   },
+  "extensions_and_lastextension_f45d68e7": {
+    "message": "{ extensions }および{ lastExtension }"
+  },
   "external_tool_c5a6410a": {
     "message": "外部ツール"
   },
@@ -595,6 +601,9 @@
   },
   "favorite_courses_fbd356f0": {
     "message": "お気に入りのコース"
+  },
+  "file_types_6fa69505": {
+    "message": "ファイル タイプ"
   },
   "files_c300e900": {
     "message": "ファイル"
@@ -698,6 +707,9 @@
   "help_4c4968b1": {
     "message": "ヘルプ"
   },
+  "hidden_14a032a7": {
+    "message": "非表示"
+  },
   "hidden_files_inside_will_be_available_with_links_e9e3d233": {
     "message": "非表示。内部のファイルはリンクで利用可能となります。"
   },
@@ -746,6 +758,9 @@
   "it_looks_like_your_internet_connection_is_offline__cf4003": {
     "message": "インターネット接続がオフラインになっているようです。インターネットに再接続してもう一度お試しください。"
   },
+  "it_seems_there_aren_t_any_valid_submissions_to_gra_f136675": {
+    "message": "採点する有効な提出物がないようです。"
+  },
   "italic_ac45200a": {
     "message": "イタリック体"
   },
@@ -793,6 +808,9 @@
   },
   "long_description_7d89285c": {
     "message": "長い説明"
+  },
+  "manage_children_a28d764e": {
+    "message": "「子」を管理する"
   },
   "mark_all_as_read_8f3bdf57": {
     "message": "すべて既読にする"
@@ -919,6 +937,9 @@
   },
   "no_subject_58b7941c": {
     "message": "件名なし"
+  },
+  "no_submissions_to_display_6f1491cf": {
+    "message": "表示する提出物なし"
   },
   "no_time_limit_2147d9bf": {
     "message": "時間制限なし"
@@ -1463,6 +1484,9 @@
   "this_assignment_does_not_allow_submissions_30af1caa": {
     "message": "この課題は提出を許可していません。"
   },
+  "this_assignment_doesn_t_have_a_description_e2f37ec3": {
+    "message": "この課題には説明がありません。"
+  },
   "this_assignment_only_allows_on_paper_submissions_f478408a": {
     "message": "この課題は、論文の提出のみを許可します。"
   },
@@ -1619,6 +1643,9 @@
   },
   "view_all_submissions_915a8b78": {
     "message": "すべての提出を表示"
+  },
+  "view_canvas_guides_a1c62a97": {
+    "message": " Canvas ガイドを見る"
   },
   "view_long_description_2b592c0e": {
     "message": "長い説明を表示"

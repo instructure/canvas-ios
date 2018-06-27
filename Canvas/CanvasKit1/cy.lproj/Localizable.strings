@@ -1,0 +1,168 @@
+/* Description for rubric criterion rating object */
+" Rating for %@, Score: %g" = " Lefel sgôr ar gyfer %1$@, Sgôr: %2$g";
+
+/* Gigabytes */
+"%0.2f GB" = "%0.2f GB";
+
+/* Kilobytes */
+"%0.2f KB" = "%0.2f KB";
+
+/* Megabytes */
+"%0.2f MB" = "%0.2f MB";
+
+/* B- (83 out of 100 points */
+"%@ (%g out of %@)" = "%1$@ (%2$g allan o %3$@)";
+
+/* something at something */
+"%@ at %@" = "%1$@ yn %2$@";
+
+/* 88 out of 100 points */
+"%@ out of %@" = "%1$@ allan o %2$@";
+
+/* {point range max} to > {point range min} pts */
+"%@ to > %@ pts" = "%1$@ i > %2$@ pwynt";
+
+/* 83% (83 out of 100 points */
+"%@%% (%g out of %@)" = "%1$@%% (%2$g allan o %3$@)";
+
+/* Word and ellipses */
+"%@..." = "%@...";
+
+/* 88 out of 100 points */
+"%g out of %@" = "%1$g allan o %2$@";
+
+/* As in, '15 bytes' */
+"%qu bytes" = "%qu beit";
+
+/* Media type is audio */
+"Audio" = "Sain";
+
+/* No comment provided by engineer. */
+"Audio input hardware not available" = "Does dim caledwedd mewnbynnu sain ar gael";
+
+/* Assignment grade: Complete */
+"Complete" = "Cwblhau";
+
+/* A custom grade not specified by the rubric. */
+"Custom Grade" = "Gradd Bersonol";
+
+/* No comment provided by engineer. */
+"Done" = "Wedi gorffen";
+
+/* The file extension for a submission is not acceptable */
+"File extension not allowed: %@" = "Dyma'r estyniad ffeil a ganiateir: %@";
+
+/* Comes before a list of file extensions allowed for an assinment submission */
+"File extension(s) permitted for this assignment: " = "Dyma'r estyniad(au) ffeil a ganiateir ar gyfer yr aseiniad hwn: ";
+
+/* File upload failed. */
+"File upload failed." = "Wedi methu llwytho ffeil i fyny.";
+
+/* Assignment grade: Incomplete */
+"Incomplete" = "Heb Gwblhau";
+
+/* No comment provided by engineer. */
+"Me" = "Fi";
+
+/* No comment provided by engineer. */
+"Media Comment" = "Sylw ar Gyfryngau";
+
+/* The name for a video or audio response to something */
+"Media comment" = "Sylw ar gyfryngau";
+
+/* A slider to choose between media types */
+"Media type selector. %@" = "Nodwedd dewis math o gyfryngau. %@";
+
+/* Pass/fail assignment is not complete */
+"Not Complete" = "Heb Gwblhau";
+
+/* not graded string. */
+"Not graded" = "Heb raddio";
+
+/* not graded with points possible */
+"Not graded (0 out of %@)" = "Heb raddio (0 allan o %@)";
+
+/* No comment provided by engineer. */
+"Note: Media files are not immediately available for playback while they are processed on the server." = "Nodyn: Dydy ffeiliau cyfryngau ddim ar gael i'w chwarae ar unwaith tra maent yn cael eu prosesu ar y gweinydd.";
+
+/* Short name for observer enrollment */
+"Observer" = "Arsyllwr";
+
+/* A button that plays */
+"Play" = "Chwarae";
+
+/* No comment provided by engineer. */
+"Post Comment" = "Postio Sylw";
+
+/* No comment provided by engineer. */
+"Posts your comment" = "Yn postio eich sylw";
+
+/* A button that records */
+"Record" = "Recordio";
+
+/* No comment provided by engineer. */
+"Score" = "Sgôr";
+
+/* Hint about the play button */
+"Starts playing your recording" = "Mae'n dechrau chwarae eich recordiad";
+
+/* Hint about the record button */
+"Starts recording a media comment" = "Mae'n dechrau recordio sylw ar gyfryngau";
+
+/* A button that stops */
+"Stop" = "Stopio";
+
+/* Hint about the play button */
+"Stops playing your recording" = "Mae'n stopio chwarae eich recordiad";
+
+/* Hint about the record button */
+"Stops recording a media comment" = "Mae'n stopio recordio sylw ar gyfryngau";
+
+/* Short name for student enrollment */
+"Student" = "Myfyriwr";
+
+/* Hint about media input selection */
+"Switches media input between audio and video. Currently set to %@" = "Mae'n newid yn ôl ac ymlaen rhwng cyfryngau sain a fideo. Wedi’i osod ar hyn o bryd – %@";
+
+/* No comment provided by engineer. */
+"Switches to media comment mode" = "Mae'n newid i'r modd rhoi sylw ar gyfryngau";
+
+/* No comment provided by engineer. */
+"Switches to text comment mode" = "Mae'n newid i'r modd rhoi sylw ar destun";
+
+/* Short name for TA enrollment */
+"TA" = "Cynorthwyydd Dysgu";
+
+/* Short name for teacher enrollment */
+"Teacher" = "Athro";
+
+/* No comment provided by engineer. */
+"Text Comment" = "Sylw Ysgrifenedig";
+
+/* Generic name for a submission entered online. */
+"Text Submission" = "Cyflwyniad Testun";
+
+/* Error description when a user tries to upload a file that's too big */
+"The file you are trying to uploading is %@, but the maximum size is %@." = "Mae'r ffeil rydych chi'n ceisio ei llwytho i fyny yn %1$@, ond y maint mwyaf a ganiateir yw %2$@.";
+
+/* Media type is video */
+"Video" = "Fideo";
+
+/* No comment provided by engineer. */
+"Video Error" = "Gwall ar y Fideo";
+
+/* No comment provided by engineer. */
+"Warning" = "Rhybudd";
+
+/* Accessibility label for out or grading style */
+"out of" = "allan o";
+
+/* The assignment is out of 100 points */
+"out of %@" = "allan o %@";
+
+/* No comment provided by engineer. */
+"out of %@ points" = "allan o %@ pwynt";
+
+/* When we don't know the name of a file, we display this */
+"unknown" = "dieithr";
+

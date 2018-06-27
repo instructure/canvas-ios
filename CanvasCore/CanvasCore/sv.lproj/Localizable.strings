@@ -397,6 +397,9 @@
 "Observer" = "Observatör";
 
 /* No comment provided by engineer. */
+"Open in Safari" = "Öppna i Safari";
+
+/* No comment provided by engineer. */
 "Open in…" = "Öppna i...";
 
 /* Accessibility hint for the profile button */
@@ -501,6 +504,9 @@
 
 /* red course color button */
 "Red" = "Röd";
+
+/* No comment provided by engineer. */
+"Remove" = "Ta bort";
 
 /* Remove the formatting of the essay question text */
 "Remove Formatting" = "Ta bort formatering";

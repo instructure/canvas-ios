@@ -287,6 +287,9 @@
   "clear_recording_5a97b475": {
     "message": "清除錄製"
   },
+  "close_d634289d": {
+    "message": "關閉"
+  },
   "close_for_comments_ce0e5d00": {
     "message": "結束以徵求意見"
   },
@@ -566,6 +569,9 @@
   "excused_cf8792eb": {
     "message": "已豁免"
   },
+  "extensions_and_lastextension_f45d68e7": {
+    "message": "{ extensions } 和 { lastExtension }"
+  },
   "external_tool_c5a6410a": {
     "message": "外部工具"
   },
@@ -595,6 +601,9 @@
   },
   "favorite_courses_fbd356f0": {
     "message": "最喜愛的課程"
+  },
+  "file_types_6fa69505": {
+    "message": "檔案類型"
   },
   "files_c300e900": {
     "message": "資料夾"
@@ -698,6 +707,9 @@
   "help_4c4968b1": {
     "message": "支援"
   },
+  "hidden_14a032a7": {
+    "message": "已隱藏"
+  },
   "hidden_files_inside_will_be_available_with_links_e9e3d233": {
     "message": "已隱藏。透過連結可獲取裡面的檔案。"
   },
@@ -746,6 +758,9 @@
   "it_looks_like_your_internet_connection_is_offline__cf4003": {
     "message": "似乎您的網絡連線已離線。重新連線到網絡並重試。"
   },
+  "it_seems_there_aren_t_any_valid_submissions_to_gra_f136675": {
+    "message": "好像沒有任何有效的提交項目可以評分。"
+  },
   "italic_ac45200a": {
     "message": "斜體"
   },
@@ -793,6 +808,9 @@
   },
   "long_description_7d89285c": {
     "message": "完整描述"
+  },
+  "manage_children_a28d764e": {
+    "message": "管理兒童"
   },
   "mark_all_as_read_8f3bdf57": {
     "message": "全部標記為已讀"
@@ -919,6 +937,9 @@
   },
   "no_subject_58b7941c": {
     "message": "無主題"
+  },
+  "no_submissions_to_display_6f1491cf": {
+    "message": "沒有可顯示的提交項目"
   },
   "no_time_limit_2147d9bf": {
     "message": "沒有時間限制"
@@ -1463,6 +1484,9 @@
   "this_assignment_does_not_allow_submissions_30af1caa": {
     "message": "此作業不允許提交。"
   },
+  "this_assignment_doesn_t_have_a_description_e2f37ec3": {
+    "message": "此作業沒有描述。"
+  },
   "this_assignment_only_allows_on_paper_submissions_f478408a": {
     "message": "此作業只能以紙本提交。"
   },
@@ -1619,6 +1643,9 @@
   },
   "view_all_submissions_915a8b78": {
     "message": "檢視所有提交項目"
+  },
+  "view_canvas_guides_a1c62a97": {
+    "message": "查看 Canvas 指南"
   },
   "view_long_description_2b592c0e": {
     "message": "查看完整描述"

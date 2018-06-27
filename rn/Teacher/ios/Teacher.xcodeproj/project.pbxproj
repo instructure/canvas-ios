@@ -213,6 +213,9 @@
 		5B84172020317A5800A90B68 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = Teacher/sv.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		5B8EF63020317A6000E13F2D /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = Teacher/zh.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		5B97ADA920317A670083EAAB /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "Teacher/zh-HK.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		5BAE6B8C20DF7FF2006311D2 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = Teacher/cy.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		5BAE6B8D20DF7FF2006311D2 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = Teacher/cy.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5BAE6B8E20DF7FF2006311D2 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5BEA4877203179E300E25A15 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = Teacher/ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		5BF38602203179E900CA3A83 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = Teacher/da.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		5BFC7C90203179F000E64F79 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = Teacher/de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -945,6 +948,7 @@
 				2C3DE5661F214B1C00AE1D59 /* sv */,
 				2C3DE56B1F214B2B00AE1D59 /* zh-HK */,
 				2C3DE5701F214B3900AE1D59 /* zh */,
+				5BAE6B8E20DF7FF2006311D2 /* cy */,
 			);
 			name = InfoPlist.strings;
 			path = Teacher;
@@ -974,6 +978,7 @@
 				5B84172020317A5800A90B68 /* sv */,
 				5B8EF63020317A6000E13F2D /* zh */,
 				5B97ADA920317A670083EAAB /* zh-HK */,
+				5BAE6B8C20DF7FF2006311D2 /* cy */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -1002,6 +1007,7 @@
 				2C3DE5641F214B1900AE1D59 /* sv */,
 				2C3DE5691F214B2900AE1D59 /* zh-HK */,
 				2C3DE56E1F214B3700AE1D59 /* zh */,
+				5BAE6B8D20DF7FF2006311D2 /* cy */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

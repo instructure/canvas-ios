@@ -40,17 +40,11 @@
 /* No comment provided by engineer. */
 "Assignment reminder: %@ is due at %@" = "Taumahi whakamaumahara: %1$@ he tika i %2$@";
 
-/* No comment provided by engineer. */
-"Australia" = "Ahitereiria";
-
 /* Authorization Failed Title */
 "Authorization Failed." = "I rahua Whakamanatanga.";
 
 /* No comment provided by engineer. */
 "Cache cleared" = "whakawāteatia Keteroki";
-
-/* No comment provided by engineer. */
-"Canada" = "Kānata";
 
 /* Cancel button title */
 "Cancel" = "Whakakore";
@@ -103,9 +97,6 @@
 /* Status level for issue being reported */
 "Extremely critical emergency" = "whawhati tata tino nui";
 
-/* No comment provided by engineer. */
-"Germany" = "Tiamana";
-
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "e kore e taea e ohipa teitei kōeke e raro atu kōeke taumahi iti";
 
@@ -133,9 +124,6 @@
 /* Support Ticket Invalid Input Message */
 "Invalid Input.  Check fields and try again." = "Whakauru koremana.  Tirohia ngā whīra me te ngana anō.";
 
-/* No comment provided by engineer. */
-"Ireland" = "Ireland";
-
 /* Last Week Button Accessibility Label */
 "Last Week" = "Wiki Whakamutunga";
 
@@ -159,6 +147,9 @@
 
 /* Low Course Grade too High */
 "Low course grade cannot be higher than high course grade" = "e kore e taea e kōeke akoranga iti kia tiketike ake kōeke akoranga tiketike";
+
+/* Title of the manage children screen. This screen is used to add/remove children that a parent is observing. */
+"Manage Children" = "Whakahaere ngā tamariki";
 
 /* No comment provided by engineer. */
 "Missing" = "Ngaro";
@@ -220,9 +211,6 @@
 /* Server Error Title */
 "Server Error" = "Hapa Tūmau";
 
-/* No comment provided by engineer. */
-"Singapore" = "Haragapore";
-
 /* Status level for issue being reported */
 "Something is broken but I can work around it" = "pakaru te tahi mea te engari ka taea e ahau te mahi a tawhio noa te reira";
 
@@ -258,9 +246,6 @@
 
 /* Auth Failed Message */
 "Unexpected Authentication Error.  Please try logging in again" = "Hapa Motuhēhēnga Ta'e'amanekina. Koa ngana takiuru roto ano";
-
-/* No comment provided by engineer. */
-"United States" = "United States";
 
 /* Unknown T`hreshold Description */
 "Unknown" = "unknown";

@@ -1,0 +1,1446 @@
+/* prerequisites for unlocking item */
+"\n\nYou must first complete:" = "\n\nBydd yn rhaid i chi gwblhau’r canlynol yn gyntaf:";
+
+/* when locked item will become unlocked */
+" until %@" = " tan %@";
+
+/* explanation for locked module item */
+"\"%@\" is locked as part of \"%@\"" = "\"%1$@\" ar glo fel rhan o \"%2$@\"";
+
+/* (No Comment) */
+"%0.2f GB" = "%0.2f GB";
+
+/* (No Comment) */
+"%0.2f KB" = "%0.2f KB";
+
+/* (No Comment) */
+"%0.2f MB" = "%0.2f MB";
+
+/* (No Comment) */
+"%1$@ (%2$d)" = "%1$@ (%2$d)";
+
+/* (No Comment) */
+"%1$@ (%2$g out of %3$@)" = "%1$@ (%2$g allan o %3$@)";
+
+/* (No Comment) */
+"%1$@ at %2$@" = "%1$@ yn %2$@";
+
+/* (No Comment) */
+"%1$@ is due in %2$@" = "%1$@ angen cyflwyno erbyn %2$@";
+
+/* (No Comment) */
+"%1$@ out of %2$@" = "%1$@ allan o %2$@";
+
+/* (No Comment) */
+"%1$@%% (%2$g out of %3$@)" = "%1$@%% (%2$g allan o %3$@)";
+
+/* (No Comment) */
+"%1$@. %2$@. Type: %3$@." = "%1$@. %2$@. Math: %3$@.";
+
+/* (No Comment) */
+"%1$@. %2$@. Type: %3$@. Status: %4$@" = "%1$@. %2$@. Math: %3$@. Statws: %4$@";
+
+/* (No Comment) */
+"%1$d %2$@" = "%1$d %2$@";
+
+/* (No Comment) */
+"%1$g out of %2$@" = "%1$g allan o %2$@";
+
+/* Button to submit files to an assignment */
+"%@ (%d)" = "%1$@ (%2$d)";
+
+/* Message for unsupported tab coming soon */
+"%@ is coming soon!" = "%@ i ddod yn fuan!";
+
+/* local notification countdown alert */
+"%@ is due in %@" = "%1$@ angen cyflwyno erbyn %2$@";
+
+/* explanation for locked item */
+"%@ is locked" = "%@ ar glo";
+
+/* No comment provided by engineer. */
+"%@ is not a valid URL" = "%@ ddim yn URL dilys";
+
+/* (No Comment) */
+"%@ is not a valid host" = "%@ ddim yn lletywr dilys";
+
+/* Message for unsupported tab */
+"%@ is not currently supported." = "%@ ddim yn gydnaws ar hyn o bryd.";
+
+/* (No Comment) */
+"%@ likes" = "%@ yn hoffi";
+
+/* (No Comment) */
+"%@ need grading" = "%@ angen eu graddio";
+
+/* (No Comment) */
+"%@..." = "%@...";
+
+/* A number and a collective noun, like '5 pigs' */
+"%d %@" = "%1$d %2$@";
+
+/* (No Comment) */
+"%d days ago" = "%d diwrnod yn ôl";
+
+/* (No Comment) */
+"%d hours ago" = "%d awr yn ôl";
+
+/* (No Comment) */
+"%d items" = "%d awr yn ôl";
+
+/* (No Comment) */
+"%d minutes ago" = "%d munud yn ôl";
+
+/* (No Comment) */
+"%d months ago" = "%d mis yn ôl";
+
+/* In the context 'Joe, Fred, ((25 more))' */
+"%d more" = "%d arall";
+
+/* (No Comment) */
+"%d replies" = "%d ateb";
+
+/* (No Comment) */
+"%d unread" = "%d heb eu darllen";
+
+/* (No Comment) */
+"%d years ago" = "%d mlynedd yn ôl";
+
+/* (No Comment) */
+"%qu bytes" = "%qu beit";
+
+/* offset for one day */
+"%tu day" = "%tu diwrnod";
+
+/* offset for number of days */
+"%tu days" = "%tu diwrnod";
+
+/* offset for an hour */
+"%tu hour" = "%tu awr";
+
+/* offset for number of hours */
+"%tu hours" = "%tu awr";
+
+/* offset for less than one minute */
+"%tu minute" = "%tu munud";
+
+/* offset for under an hour */
+"%tu minutes" = "%tu munud";
+
+/* (No Comment) */
+"%u Attachments" = "%u Atodiadau";
+
+/* Label indicating multiple files are attached to a single homework submission. %u will be a positive number, and will not be '1' */
+"%u files" = "%u ffeil";
+
+/* (No Comment) */
+"&quot;%1$@&quot; is locked as part of &quot;%2$@&quot;" = "&quot;%1$@&quot; ar glo fel rhan o &quot;%2$@&quot;";
+
+/* %@ will be replaced by the filename */
+"'%@' is now ready to submit to assignments" = "'%@' yn barod i gyflwyno i'r nodwedd aseiniadau";
+
+/* (No Comment) */
+"1 Attachment" = "1 Atodiad";
+
+/* one day */
+"1 day" = "1 diwrnod";
+
+/* (No Comment) */
+"1 day ago" = "1 diwrnod yn ôl";
+
+/* one hour */
+"1 hour" = "1 awr";
+
+/* (No Comment) */
+"1 hour ago" = "1 awr yn ôl";
+
+/* (No Comment) */
+"1 item" = "1 eitem";
+
+/* (No Comment) */
+"1 like" = "1 yn hoffi";
+
+/* (No Comment) */
+"1 minute ago" = "1 munud yn ôl";
+
+/* (No Comment) */
+"1 month ago" = "1 mis yn ôl";
+
+/* (No Comment) */
+"1 needs grading" = "1 angen ei raddio";
+
+/* (No Comment) */
+"1 year ago" = "1 flwyddyn yn ôl";
+
+/* three days */
+"3 days" = "3 diwrnod";
+
+/* five minutes */
+"5 minutes" = "5 munud";
+
+/* Name of a tab displaying Canvas Info including legal info */
+"About" = "Ynghylch";
+
+/* (No Comment) */
+"Access Denied" = "Gwrthodwyd Mynediad";
+
+/* Error handling message when a network request has been denied by a server. Specifically with the HTTP 401 error code. */
+"Access denied. Please check your permissions for the action you're trying to complete." = "Gwrthodwyd mynediad. Edrychwch ar eich hawliau yng nghyswllt y weithred rydych chi'n ceisio ei chyflawni.";
+
+/* (No Comment) */
+"Add Attachment" = "Ychwanegu Atodiad";
+
+/* add comment button */
+"Add Comment" = "Ychwanegu Sylw";
+
+/* No comment provided by engineer. */
+"Add Cover Photo" = "Ychwanegu Llun Clawr";
+
+/* No comment provided by engineer. */
+"Add a folder" = "Ychwanegu ffolder";
+
+/* Title for attachment action sheet from rich text view */
+"Add attachment" = "Ychwanegu atodiad";
+
+/* No comment provided by engineer. */
+"Add comment" = "Ychwanegu sylw";
+
+/* (No Comment) */
+"Add folder" = "Ychwanegu ffolder";
+
+/* (No Comment) */
+"Add inline media" = "Ychwanegu cyfryngau yn yr un lle";
+
+/* (No Comment) */
+"Add recipients" = "Ychwanegu derbynnydd";
+
+/* (No Comment) */
+"All members" = "Pob aelod";
+
+/* (No Comment) */
+"An unknown error occurred" = "Gwall annisgwyl";
+
+/* (No Comment) */
+"Announcement" = "Cyhoeddiad";
+
+/* (No Comment) */
+"Announcements" = "Cyhoeddiadau";
+
+/* Assignment submission type for selecting an Arc video */
+"Arc" = "Arc";
+
+/* (No Comment) */
+"Archive" = "Archif";
+
+/* (No Comment) */
+"Archive Selected Messages Button" = "Archifo'r Botwm Negeseuon dan sylw";
+
+/* (No Comment) */
+"Archive all selected messages" = "Archifo pob neges dan sylw";
+
+/* (No Comment) */
+"Archived" = "Archifwyd";
+
+/* (No Comment) */
+"Are you ready to logout?" = "Ydych chi’n barod i allgofnodi?";
+
+/* Confirmation alert text for submitting an Arc video for an assignment */
+"Are you sure you want to submit this Arc video for this assignment?" = "Ydych chi’n siŵr eich bod am gyflwyno'r fideo Arc hwn ar gyfer yr aseiniad hwn?";
+
+/* (No Comment) */
+"Ask me later" = "Gofyn i mi wedyn";
+
+/* (No Comment) */
+"Assignment" = "Aseiniad";
+
+/* (No Comment) */
+"Assignments" = "Aseiniadau";
+
+/* An item for attaching to a discussion */
+"Attachment" = "Atodiad";
+
+/* label for an attachment */
+"Attachment %d" = "Atodiad %d";
+
+/* (No Comment) */
+"Attachment %i" = "Atodiad %i";
+
+/* (No Comment) */
+"Attachments" = "Atodiad";
+
+/* (No Comment) */
+"Attendance" = "Presenoldeb";
+
+/* Audio file type */
+"Audio" = "Sain";
+
+/* (No Comment) */
+"Audio input hardware not available" = "Does dim caledwedd mewnbynnu sain ar gael";
+
+/* Title for an error popup */
+"Authentication error" = "Gwall dilysu";
+
+/* Link to building panda avatar */
+"Build Avatar" = "Creu Avatar";
+
+/* (No Comment) */
+"Cache cleared" = "Storfa wedi’i chlirio";
+
+/* (No Comment) */
+"Calendar" = "Calendr";
+
+/* No comment provided by engineer. */
+"Can't load tool" = "yn methu llwytho adnodd";
+
+/* Setup only allows media but no Kaltura instance error title */
+"Can't submit media" = "yn methu cyflwyno cyfryngau";
+
+/* Cancel button title
+   Cancel button title to cancel submitting an Arc video as an assignment submission */
+"Cancel" = "Canslo";
+
+/* Cancel button title */
+"Cancel Message" = "Canslo Neges";
+
+/* No comment provided by engineer. */
+"Canvas appears to be unavailable. Please try again later." = "Mae’n ymddangos bod Canvas ddim ar gael. Rhowch gynnig arall arni rywbryd eto.";
+
+/* (No Comment) */
+"Canvas failed to find recipients for your current search. Please try again later." = "Canvas wedi methu canfod derbynwyr ar gyfer eich chwiliad presennol. Rhowch gynnig arall arni rywbryd eto.";
+
+/* mobile quze warning info */
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Mae cwisiau Canvas yn gallu delio â sawl math o arddull asesu. Mae modd delio â'r rhan fwyaf o'r arddulliau hyn ar ddyfeisiau symudol, ond mae rhai nad oes modd delio â nhw. Os byddwch yn ceisio gwneud un o'r cwisiau hyn nad oes modd delio â nhw ar eich ffôn, efallai na fydd modd i chi gwblhau'r cwis, a fydd yn golygu eich bod dan anfantais.\n\nMae'r mathau o gwestiynau nad oes modd delio â nhw yn cynnwys rhai sy'n defnyddio Adobe Flash™, yn ogystal â mathau eraill.\n\nOs ydych chi'n meddwl bod cynnwys nad oes modd delio ag ef mewn cwis, ewch ati i'w wneud ar gyfrifiadur neu liniadur. Os ydych chi'n gwybod mai dim ond cynnwys y mae modd delio ag ef sydd mewn cwis, mae croeso i chi ei wneud ar eich dyfais symudol.";
+
+/* (No Comment) */
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Mae cwisiau Canvas yn gallu delio â sawl math o arddull asesu. Mae modd delio â'r rhan fwyaf o'r arddulliau hyn ar ddyfeisiau symudol, ond mae rhai nad oes modd delio â nhw. Os byddwch yn ceisio gwneud un o'r cwisiau hyn nad oes modd delio â nhw ar eich ffôn, efallai na fydd modd i chi gwblhau'r cwis, a fydd yn golygu eich bod dan anfantais.\n\nMae'r mathau o gwestiynau nad oes modd delio â nhw yn cynnwys rhai sy'n defnyddio Adobe Flash™ a ffeiliau wedi’u llwytho i fyny, yn ogystal â mathau eraill.\n\nOs ydych chi'n meddwl bod cynnwys nad oes modd delio ag ef mewn cwis, ewch ati i'w wneud ar gyfrifiadur neu liniadur. Os ydych chi'n gwybod mai dim ond cynnwys y mae modd delio ag ef sydd mewn cwis, mae croeso i chi ei wneud ar eich dyfais symudol.";
+
+/* button to change user's profile image */
+"Change Profile Image" = "Newid Llun Proffil";
+
+/* (No Comment) */
+"Change User" = "Newid Defnyddiwr";
+
+/* Button label for choosing a photo */
+"Choose Photo" = "Dewiswch Lun";
+
+/* No comment provided by engineer. */
+"Choose Profile Picture" = "Dewiswch Lun Proffil";
+
+/* Choose a video to send as a comment */
+"Choose Video" = "Dewiswch Fideo";
+
+/* No comment provided by engineer. */
+"Choose a name for the new folder" = "Dewiswch enw ar gyfer y ffolder newydd";
+
+/* (No Comment) */
+"Choose a name for the new folder." = "Dewiswch enw ar gyfer y ffolder newydd.";
+
+/* No comment provided by engineer. */
+"Choose a submission type" = "Dewiswch fath o gyflwyniad";
+
+/* Choose an existing picture or video to use in a comment. */
+"Choose from Library..." = "Dewis o’r llyfrgell...";
+
+/* action sheet text for picking video from library */
+"Choose video" = "Dewiswch fideo";
+
+/* Close the window */
+"Close" = "Cau";
+
+/* (No Comment) */
+"Closed for Comments" = "Wedi Cau ar gyfer Sylwadau";
+
+/* Title for Collaborations tab */
+"Collaborations" = "Cydweithrediadau";
+
+/* Add message button for teacher or ta */
+"Comment" = "Sylw";
+
+/* title for media comment upload failure */
+"Comment Error" = "Gwall â'r Sylw";
+
+/* (No Comment) */
+"Comments" = "Sylwadau";
+
+/* (No Comment) */
+"Comments are disabled" = "Sylwadau wedi'u hanalluogi";
+
+/* (No Comment) */
+"Complete" = "Cwblhau";
+
+/* (No Comment) */
+"Completed" = "Wedi cwblhau";
+
+/* (No Comment) */
+"Compose Message Button" = "Creu Botwm Neges";
+
+/* (No Comment) */
+"Compose a message" = "Creu neges";
+
+/* Title for Conferences tab */
+"Conferences" = "Cynadleddau";
+
+/* Confirm an arc video submission for an assignment */
+"Confirm Submission" = "Cadarnhau'r Cyflwyniad";
+
+/* (No Comment) */
+"Confirm deletion" = "Cadarnhau’r dileu";
+
+/* Button title for selecting to continue on to quiz. The will appear in the alert view notfifying the user of mobile quiz limitations. */
+"Continue" = "Bwrw ymlaen";
+
+/* No comment provided by engineer. */
+"Could not authenticate with server" = "Methu dilysu â'r gweinydd";
+
+/* error title for failure to load a file submission */
+"Couldn't Load Submission" = "Doedd dim modd Llwytho'r Cyflwyniad";
+
+/* (No Comment) */
+"Couldn't find recipients" = "Doedd dim modd dod o hyd i dderbynwyr";
+
+/* Title for Course Syllabus view controller */
+"Course Syllabus" = "Maes Llafur Cwrs";
+
+/* (No Comment) */
+"Courses" = "Cwrs";
+
+/* Cancel button title */
+"Create Folder" = "Creu Ffolder";
+
+/* Header for a section showing submitted filenames */
+"Current Submission" = "Cyflwyniad Presennol";
+
+/* Message telling users that quiz support on mobile is limited */
+"Currently there is limited quiz support on mobile" = "Does dim llawer o gymorth ar gyfer cwisiau ar gael ar ddyfeisiau symudol ar hyn o bryd";
+
+/* (No Comment) */
+"Custom Grade" = "Gradd Bersonol";
+
+/* (No Comment) */
+"Customize" = "Addasu";
+
+/* Default delete button MLVC */
+"Delete" = "Dileu";
+
+/* (No Comment) */
+"Delete (%d)" = "Dileu (%d)";
+
+/* (No Comment) */
+"Delete this reply?" = "Dileu’r ateb hwn?";
+
+/* delete file confirmation alert */
+"Deleted file: \"%@\"" = "Ffeil wedi'i dileu: \"%@\"";
+
+/* (No Comment) */
+"Deleted file: &quot;%@&quot;" = "Ffeil wedi'i dileu: &quot;%@&quot;";
+
+/* No comment provided by engineer. */
+"Detail" = "Manylyn";
+
+/* (No Comment) */
+"Details" = "Manylion";
+
+/* (No Comment) */
+"Discard" = "Hepgor";
+
+/* (No Comment) */
+"Discard this entry?" = "Hepgor y cofnod hwn?";
+
+/* (No Comment) */
+"Discussion" = "Trafodaeth";
+
+/* Title for discussion entry submission */
+"Discussion Entry" = "Cofnod Trafodaeth";
+
+/* (No Comment) */
+"Discussion Topics" = "Pynciau Trafod";
+
+/* (No Comment) */
+"Discussions" = "Trafodaethau";
+
+/* Dismiss button title
+   uialertaction button name for dismissing the failed refresh error message */
+"Dismiss" = "Diystyru";
+
+/* Alert title asking if you want to masquerade */
+"Do you want to masquerade as this user?" = "Ydych chi am esgus mai chi yw'r defnyddiwr hwn?";
+
+/* The domain for the institution/school that the user is currently using */
+"Domain" = "Parth";
+
+/* (No Comment) */
+"Don't ask me again" = "Peidiwch â gofyn i mi eto";
+
+/* (No Comment) */
+"Don't delete" = "Peidio â dileu";
+
+/* (No Comment) */
+"Done" = "Wedi gorffen";
+
+/* Shown when we cancel a file download */
+"Download Canceled" = "Wedi canslo'r broses llwytho i lawr";
+
+/* Shown while downloading a file */
+"Downloading..." = "Wrthi'n llwytho i lawr...";
+
+/* (No Comment) */
+"Due:" = "Erbyn:";
+
+/* (No Comment) */
+"Due: %1$@ at %2$@" = "Erbyn: %1$@ am %2$@";
+
+/* Due date label indicating when an assignment is due */
+"Due: %@" = "Erbyn: %@";
+
+/* Link to the End User License Agreement document */
+"EULA" = "EULA";
+
+/* (No Comment) */
+"Edit" = "Golygu";
+
+/* (No Comment) */
+"Edit Course List" = "Golygu Rhestr y Cwrs";
+
+/* (No Comment) */
+"Edit Group List" = "Golygu Rhestr y Grŵp";
+
+/* (No Comment) */
+"Edit items" = "Golygu eitemau";
+
+/* (No Comment) */
+"Editing reply by %1$@, %2$@" = "Wrthi'n golygu ymateb gan %1$@, %2$@";
+
+/* the users email */
+"Email" = "E-bost";
+
+/* (No Comment) */
+"Enable Push Notifications" = "Galluogi Hysbysiadau Marchnata";
+
+/* (No Comment) */
+"Enter User ID and Domain." = "Rhoi Parth ac ID Defnyddiwr.";
+
+/* No comment provided by engineer. */
+"Enter folder name" = "Rhowch enw'r ffolder";
+
+/* Submission input view placeholder text */
+"Enter submission" = "Rhowch y cyflwyniad";
+
+/* (No Comment) */
+"Entry posted" = "Wedi postio'r cofnod";
+
+/* Title for an error popup */
+"Error" = "Gwall";
+
+/* (No Comment) */
+"Error adding recipeints" = "Gwall wrth ychwanegu derbynwyr";
+
+/* Error deleting file alert view title */
+"Error deleting file \"%@\"" = "Gwall wrth ddileu'r ffeil \"%@\"";
+
+/* (No Comment) */
+"Error deleting file &quot;%@&quot;" = "Gwall wrth ddileu ffeil &quot;%@&quot;";
+
+/* Error deleting folder alert view title */
+"Error deleting folder" = "Gwall wrth ddileu ffolder";
+
+/* (No Comment) */
+"Event" = "Digwyddiad";
+
+/* No comment provided by engineer. */
+"Existing Attachments..." = "Atodiadau Presennol...";
+
+/* Title for an external tool submission */
+"External Tool" = "Adnodd Allanol";
+
+/* (No Comment) */
+"External URL" = "URL allanol";
+
+/* Error title for refresh failing on an MLVC tableview controller */
+"Failed to load" = "Wedi methu llwytho";
+
+/* (No Comment) */
+"File" = "Ffeil";
+
+/* (No Comment) */
+"File extension not allowed: %@" = "Dyma'r estyniad ffeil a ganiateir: %@";
+
+/* (No Comment) */
+"File extension(s) permitted for this assignment:" = "Dyma'r estyniad(au) ffeil a ganiateir ar gyfer yr aseiniad hwn:";
+
+/* No comment provided by engineer. */
+"File received" = "Wedi cael y ffeil";
+
+/* (No Comment) */
+"File unavailable" = "Ffeil ddim ar gael";
+
+/* File upload submission type */
+"File upload" = "Ffeil wedi’i llwytho i fyny";
+
+/* (No Comment) */
+"File upload failed." = "Wedi methu llwytho ffeil i fyny.";
+
+/* Title for the files screen */
+"Files" = "Ffeiliau";
+
+/* No comment provided by engineer. */
+"Final Grade" = "Gradd Derfynol";
+
+/* Shown when we finish downloading a file */
+"Finished downloading" = "Wedi gorffen llwytho i lawr";
+
+/* (No Comment) */
+"Front Page" = "Tudalen Flaen";
+
+/* No comment provided by engineer. */
+"Future" = "Yn y Dyfodol";
+
+/* title for discussion assignment submission button */
+"Go To Discussion" = "Mynd i’r Drafodaeth";
+
+/* (No Comment) */
+"Go to App Store" = "Mynd i’r App Store";
+
+/* (No Comment) */
+"Go to Quiz" = "Mynd i’r Cwis";
+
+/* (No Comment) */
+"Go to discussion" = "Mynd i’r drafodaeth";
+
+/* No comment provided by engineer. */
+"Grade" = "Gradd";
+
+/* (No Comment) */
+"Grade %@" = "Gradd %@";
+
+/* (No Comment) */
+"Grade in SpeedGrader" = "Gradd yn SpeedGrader";
+
+/* (No Comment) */
+"Grade: %1$i / %2$g" = "Gradd: %1$i / %2$g";
+
+/* (No Comment) */
+"Grade: %@" = "Gradd: %@";
+
+/* (No Comment) */
+"Graded Discussion" = "Trafodaeth wedi’i Graddio";
+
+/* (No Comment) */
+"Graded discussion." = "Trafodaeth wedi’i graddio.";
+
+/* (No Comment) */
+"Graded discussion. %g points possible." = "Trafodaeth wedi’i graddio. %g pwynt yn bosib.";
+
+/* (No Comment) */
+"Grades" = "Graddau";
+
+/* (No Comment) */
+"Group conversation" = "Sgwrs grŵp";
+
+/* (No Comment) */
+"Groups" = "Grwpiau";
+
+/* (No Comment) */
+"Help" = "Help";
+
+/* (No Comment) */
+"Hide Grades" = "Cuddio Graddau";
+
+/* (No Comment) */
+"How do you like Canvas?" = "Beth yw eich barn am Canvas?";
+
+/* (No Comment) */
+"I give you back your time, use it wisely." = "Rwyf yn rhoi'ch amser yn ôl i chi, defnyddiwch ef yn ddoeth.";
+
+/* Image file type */
+"Image" = "Delwedd";
+
+/* No comment provided by engineer. */
+"Import from Dropbox" = "Mewngludo o Dropbox";
+
+/* No comment provided by engineer. */
+"Import from camera" = "Mewngludo o gamera";
+
+/* (No Comment) */
+"Inbox" = "Blwch Derbyn";
+
+/* (No Comment) */
+"Incomplete" = "Heb Gwblhau";
+
+/* (No Comment) */
+"Individual messages" = "Negeseuon unigol";
+
+/* (No Comment) */
+"Invalid URL" = "URL annilys";
+
+/* (No Comment) */
+"It has problems" = "Problem";
+
+/* (No Comment) */
+"Item %1$d of %2$d" = "Eitem %1$d o %2$d";
+
+/* No comment provided by engineer. */
+"Item %d of %d" = "Eitem %1$d o %2$d";
+
+/* (No Comment) */
+"It’s empty, what are you still doing here." = "Mae'n wag, does dim angen i chi fod yma.";
+
+/* (No Comment) */
+"Jumps to current day on calendar" = "Mae'n neidio i'r dyddiad presennol ar y calendr";
+
+/* (No Comment) */
+"Keep" = "Cadw";
+
+/* Title for an LTI launch submitted as an assignment */
+"LTI Tool" = "Adnodd LTI";
+
+/* (No Comment) */
+"Landing Page" = "Tudalen lanio";
+
+/* (No Comment) */
+"Large file" = "Ffeil fawr";
+
+/* No comment provided by engineer. */
+"Late Penalty" = "Cosb am fod yn hwyr";
+
+/* (No Comment) */
+"Later" = "Wedyn";
+
+/* title for submission button */
+"Launch External Tool" = "Lansio Adnodd Allanol";
+
+/* Title for legal section on the about page */
+"Legal" = "Cyfreithiol";
+
+/* (No Comment) */
+"Loading..." = "Wrthi’n llwytho...";
+
+/* (No Comment) */
+"Locked" = "Ar glo";
+
+/* (No Comment) */
+"Locked until %@" = "Ar glo tan %@";
+
+/* Typically the email address correlated to the user */
+"Login ID" = "ID Mewngofnodi";
+
+/* (No Comment) */
+"Login Problem" = "Problem wrth fewngofnodi";
+
+/* (No Comment) */
+"Logout" = "Allgofnodi";
+
+/* (No Comment) */
+"Love it!" = "Wrth fy modd!";
+
+/* (No Comment) */
+"Mark as Done" = "Marcio eu bod wedi’u gwneud";
+
+/* Button title for beginning masquerading */
+"Masquerade" = "Ffugio";
+
+/* (No Comment) */
+"Me" = "Fi";
+
+/* (No Comment) */
+"Media Comment" = "Sylw ar Gyfryngau";
+
+/* Title for a media submission */
+"Media Submission" = "Cyflwyniad cyfryngau";
+
+/* (No Comment) */
+"Media comment" = "Sylw ar gyfryngau";
+
+/* Media recording submission type */
+"Media recording" = "Recordio cyfryngau";
+
+/* (No Comment) */
+"Media type selector. %@" = "Nodwedd dewis math o gyfryngau. %@";
+
+/* Add message button */
+"Message Instructor" = "Anfon Neges at Addysgwr";
+
+/* (No Comment) */
+"Message Sent." = "Mae’r neges wedi’i hanfon.";
+
+/* (No Comment) */
+"Message everyone separately, or add everyone to a group conversation?" = "Anfon neges at bawb ar wahân, neu ychwanegu pawb at sgwrs grŵp?";
+
+/* (No Comment) */
+"Messages" = "Negeseuon";
+
+/* Warnging for taking quizzes on a mobile device */
+"Mobile Quiz Warning" = "Rhybudd ynghylch Cwis Symudol";
+
+/* (No Comment) */
+"Modules" = "Modiwlau";
+
+/* Button title for selecting to view more info about the limitations of mobile quizzes */
+"More Info" = "Rhagor o Wybodaeth";
+
+/* (No Comment) */
+"Multiple Due Dates" = "Mwy nag un dyddiad erbyn";
+
+/* (No Comment) */
+"Must contribute" = "Yn gorfod cyfrannu";
+
+/* (No Comment) */
+"Must mark as done" = "Rhaid marcio eu bod wedi’u gwneud";
+
+/* (No Comment) */
+"Must score %@ or higher" = "Yn gorfod sgorio o leiaf %@";
+
+/* (No Comment) */
+"Must submit" = "Yn gorfod cyflwyno";
+
+/* (No Comment) */
+"Must view" = "Yn gorfod gweld";
+
+/* (No Comment) */
+"My Files" = "Fy Ffeiliau";
+
+/* the users name */
+"Name" = "Enw";
+
+/* (No Comment) */
+"Need SpeedGrader for iPad" = "Angen SpeedGrader ar gyfer iPad";
+
+/* Network error title */
+"Network Error" = "Gwall ar y Rhwydwaith";
+
+/* No comment provided by engineer. */
+"New Folder" = "Ffolder newydd";
+
+/* No comment provided by engineer. */
+"Next 7 Days" = "Yn y 7 Diwrnod Nesaf";
+
+/* No comment provided by engineer. */
+"Next item" = "Eitem nesaf";
+
+/* (No Comment) */
+"No" = "Na";
+
+/* No comment provided by engineer. */
+"No Date" = "Dim Dyddiad";
+
+/* (No Comment) */
+"No Due Date" = "Dim Dyddiad Erbyn";
+
+/* Title for attempting submission without a comment */
+"No Recorded Audio" = "Dim Sain wedi'i Recordio";
+
+/* No Submission groupong */
+"No Submission" = "Dim cyflwyniad";
+
+/* (No Comment) */
+"No Thanks" = "Dim diolch";
+
+/* Text of alert when attempting to select a file that can't be printed or passed to any other app */
+"No actions available for this file" = "Does dim gweithrediadau ar gael ar gyfer y ffeil hon";
+
+/* Message for attempting submission without a comment */
+"No audio was recorded." = "Dim sain wedi'i recordio.";
+
+/* Indicates an assignment does not have a due date
+   String for when assignment has no due date */
+"No due date" = "Dim dyddiad erbyn";
+
+/* Error message */
+"No installed apps support opening this file" = "Does dim apiau wedi'u llwytho i lawr sy'n gallu agor y ffeil hon";
+
+/* (No Comment) */
+"No recipients" = "Dim derbynwyr";
+
+/* (No Comment) */
+"No results found" = "Heb ddod o hyd i unrhyw ganlyniadau";
+
+/* (No Comment) */
+"Not Authorized" = "Heb ei awdurdodi";
+
+/* (No Comment) */
+"Not Complete" = "Heb Gwblhau";
+
+/* No comment provided by engineer. */
+"Not available" = "Ddim ar gael";
+
+/* (No Comment) */
+"Not graded" = "Heb raddio";
+
+/* (No Comment) */
+"Not graded (0 out of %@)" = "Heb raddio (0 allan o %@)";
+
+/* (No Comment) */
+"Note: Media files are not immediately available for playback while they are processed on the server." = "Nodyn: Dydy ffeiliau cyfryngau ddim ar gael i'w chwarae ar unwaith tra maent yn cael eu prosesu ar y gweinydd.";
+
+/* (No Comment) */
+"Nothing to do, go play outside!" = "Dim byd i'w wneud, ewch allan i chwarae!";
+
+/* (No Comment) */
+"Nothing to see here." = "Dim byd i'w weld yma.";
+
+/* (No Comment) */
+"Notification" = "Hysbysiad";
+
+/* (No Comment) */
+"Notification Preferences" = "Dewisiadau Hysbysiadau";
+
+/* (No Comment) */
+"Notifications" = "Hysbysiadau";
+
+/* No comment provided by engineer. */
+"OK" = "Iawn";
+
+/* No comment provided by engineer. */
+"Observer" = "Arsyllwr";
+
+/* (No Comment) */
+"Ok" = "Iawn";
+
+/* Online URL submission type */
+"Online URL" = "URL Ar-lein";
+
+/* Title for an error alert */
+"Oops!" = "Wps!";
+
+/* Link to Open Source Components */
+"Open Source Components" = "Cydrannau Ffynhonnell Agored";
+
+/* Open a document in the application Safari */
+"Open in Safari" = "Agor yn Safari";
+
+/* (No Comment) */
+"Open in SpeedGrader" = "Agor yn SpeedGrader";
+
+/* Open file in another application */
+"Open in..." = "Agor yn...";
+
+/* No comment provided by engineer. */
+"Other" = "Arall";
+
+/* (No Comment) */
+"Other replies hidden until you reply" = "Atebion eraill wedi'u cuddio nes eich bod yn ateb";
+
+/* Title for Outcomes tab */
+"Outcomes" = "Deilliannau";
+
+/* (No Comment) */
+"Page" = "Tudalen";
+
+/* No comment provided by engineer. */
+"Past" = "Blaenorol";
+
+/* Title for the people view */
+"People" = "Pobl";
+
+/* (No Comment) */
+"Pinned Discussions" = "Trafodaethau wedi’u Pinio";
+
+/* (No Comment) */
+"Play" = "Chwarae";
+
+/* Network error message */
+"Please check your network connection and try again." = "Gwiriwch eich cysylltiad rhwydwaith a rhoi cynnig arall arni.";
+
+/* No comment provided by engineer. */
+"Post" = "Postio";
+
+/* (No Comment) */
+"Post Comment" = "Postio Sylw";
+
+/* No comment provided by engineer. */
+"Post comment" = "Postio sylw";
+
+/* (No Comment) */
+"Posting…" = "Wrthi'n postio...";
+
+/* (No Comment) */
+"Posts your comment" = "Yn postio eich sylw";
+
+/* No comment provided by engineer. */
+"Previous item" = "Eitem flaenorol";
+
+/* Link to the privacy policy */
+"Privacy Policy" = "Polisi Preifatrwydd";
+
+/* Title for profile screen */
+"Profile" = "Proffil";
+
+/* A short test taken by students */
+"Quiz" = "Cwis";
+
+/* Title for alert notifying users that support for quizzes on mobile is limited. */
+"Quiz Alert" = "Hysbysiad Cwis";
+
+/* The title for the list of quizzes for a course */
+"Quizzes" = "Cwisiau";
+
+/* (No Comment) */
+"Rate on App Store" = "Sgorio yn yr App Store";
+
+/* (No Comment) */
+"Rating for %1$@, Score: %2$g" = "Lefel sgôr ar gyfer %1$@, Sgôr: %2$g";
+
+/* Title for a button allowing user to re-submit files for an assignment */
+"Re-submit Assignment" = "Ail-gyflwyno aseiniad";
+
+/* (No Comment) */
+"Recipients" = "Derbynwyr";
+
+/* (No Comment) */
+"Record" = "Recordio";
+
+/* Record audio submission comment */
+"Record Audio" = "Recordio Sain";
+
+/* Record audio to use in a comment. */
+"Record Audio..." = "Recordio Sain...";
+
+/* Record video submission comment option */
+"Record Video" = "Recordio Fideo";
+
+/* No comment provided by engineer. */
+"Record audio" = "Recordio sain";
+
+/* No comment provided by engineer. */
+"Record video" = "Recordio fideo";
+
+/* (No Comment) */
+"Refresh Button" = "Botwm Adnewyddu";
+
+/* (No Comment) */
+"Refreshes the calendar content" = "Adnewyddu cynnwys y calendr";
+
+/* (No Comment) */
+"Refreshing Calendar Events" = "Adnewyddu Digwyddiadau'r Calendr";
+
+/* Confirmation for removing a file */
+"Remove" = "Tynnu";
+
+/* Button title for confirming a file deletion */
+"Remove this file?" = "Ydych chi am dynnu'r ffeil hon?";
+
+/* (No Comment) */
+"Report a problem" = "Rhoi gwybod am broblem";
+
+/* (No Comment) */
+"Request a feature" = "Gofyn am nodwedd";
+
+/* (No Comment) */
+"Rubric" = "Cyfarwyddyd sgorio";
+
+/* (No Comment) */
+"Save" = "Cadw";
+
+/* Title for Assignment Notifications Sheet */
+"Schedule Notification" = "Trefnu Hysbysiad";
+
+/* (No Comment) */
+"Search for recipients" = "Chwilio am dderbynwyr";
+
+/* Title for a file picker window */
+"Select file(s)" = "Dewiswch ffeil(iau)";
+
+/* No comment provided by engineer. */
+"Select or deselect" = "Dewis neu ddad-ddewis";
+
+/* No comment provided by engineer. */
+"Selected" = "Wedi dewis";
+
+/* (No Comment) */
+"Send" = "Anfon";
+
+/* (No Comment) */
+"Send %@ a message" = "Anfon neges at %@";
+
+/* No comment provided by engineer. */
+"Send Message" = "Anfon Neges";
+
+/* (No Comment) */
+"Sent" = "Wedi anfon";
+
+/* Title for Settings */
+"Settings" = "Gosodiadau";
+
+/* (No Comment) */
+"Show Grades" = "Dangos Graddau";
+
+/* title for quiz assignment submission button */
+"Show Quiz" = "Dangos y Cwis";
+
+/* (No Comment) */
+"Show file" = "Dangos y ffeil";
+
+/* (No Comment) */
+"Show recipients" = "Dangos y derbynwyr";
+
+/* (No Comment) */
+"Some items could not be deleted" = "Doedd dim modd dileu rhai eitemau";
+
+/* (No Comment) */
+"Some selected folders are not empty. Are you sure you want to delete them?" = "Dydy rhai o'r ffeiliau sydd wedi'u dewis ddim yn wag. Ydych chi’n siŵr eich bod am eu dileu?";
+
+/* 404 Error for missing assignment */
+"Sorry, we couldn't find the assignment. This assignment may have been deleted." = "Yn anffodus, doedd dim modd dod o hyd i’r aseiniad. Efallai  bod yr aseiniad hwn wedi’i ddileu.";
+
+/* (No Comment) */
+"Starts playing your recording" = "Mae'n dechrau chwarae eich recordiad";
+
+/* (No Comment) */
+"Starts recording a media comment" = "Mae'n dechrau recordio sylw ar gyfryngau";
+
+/* (No Comment) */
+"Stay Logged In" = "Aros wedi mewngofnodi";
+
+/* Stop loading button for webview */
+"Stop" = "Stopio";
+
+/* (No Comment) */
+"Stop Masquerading" = "Stopio Ffugio";
+
+/* (No Comment) */
+"Stops playing your recording" = "Mae'n stopio chwarae eich recordiad";
+
+/* (No Comment) */
+"Stops recording a media comment" = "Mae'n stopio recordio sylw ar gyfryngau";
+
+/* No comment provided by engineer. */
+"Student" = "Myfyriwr";
+
+/* (No Comment) */
+"Sub Header" = "Isbennawd";
+
+/* No comment provided by engineer. */
+"Submission" = "Cyflwyniad";
+
+/* Title for file submission error */
+"Submission Error" = "Gwall Cyflwyno";
+
+/* (No Comment) */
+"Submission complete" = "Wedi llwytho'r cyflwyniad i fyny";
+
+/* Submit Arc video as assignment button */
+"Submit" = "Cyflwyno";
+
+/* Submitted grouping */
+"Submitted" = "Wedi’u cyflwyno";
+
+/* (No Comment) */
+"Submitting..." = "Wrthi’n cyflwyno...";
+
+/* Subscribe to calendar feed allows the user to export their calendar events to a 3rd party calendar */
+"Subscribe to calendar feed" = "Tanysgrifio i ffrwd y calendr";
+
+/* Masquerade success title */
+"Success!" = "Wedi llwyddo!";
+
+/* (No Comment) */
+"Sure!" = "Iawn!";
+
+/* (No Comment) */
+"Switches media input between audio and video. Currently set to %@" = "Mae'n newid yn ôl ac ymlaen rhwng cyfryngau sain a fideo. Wedi’i osod ar hyn o bryd – %@";
+
+/* (No Comment) */
+"Switches to media comment mode" = "Mae'n newid i'r modd rhoi sylw ar gyfryngau";
+
+/* (No Comment) */
+"Switches to text comment mode" = "Mae'n newid i'r modd rhoi sylw ar destun";
+
+/* Title for Syllabus screen */
+"Syllabus" = "Maes Llafur";
+
+/* (No Comment) */
+"TA" = "Cynorthwyydd Dysgu";
+
+/* No comment provided by engineer. */
+"TAs" = "Cynorthwywyr Dysgu";
+
+/* Button label for taking a photo */
+"Take Photo" = "Tynnwch lun gyda Chamera";
+
+/* Take a picture or video to use in a comment. */
+"Take Photo or Video..." = "Tynnwch Lun neu recordio Fideo...";
+
+/* Take a picture to use in a comment. */
+"Take a Photo..." = "Tynnwch Lun...";
+
+/* Take a video to use in a comment. */
+"Take a Video..." = "Recordiwch Fideo...";
+
+/* (No Comment) */
+"Tap to try again" = "Tapiwch i roi cynnig arall arni";
+
+/* (No Comment) */
+"Teacher" = "Athro";
+
+/* No comment provided by engineer. */
+"Teachers" = "Athrawon";
+
+/* (No Comment) */
+"Tell us what's wrong" = "Dywedwch wrthym ni beth sy'n bod";
+
+/* Link to the Terms of Use */
+"Terms of Use" = "Telerau Defnyddio";
+
+/* (No Comment) */
+"Text Comment" = "Sylw Ysgrifenedig";
+
+/* Title for a text submission cell */
+"Text Submission" = "Cyflwyniad Testun";
+
+/* Text entry submission type */
+"Text entry" = "Cofnod testun";
+
+/* (No Comment) */
+"The recipients could not be added. Please try again. (%@)" = "Doedd dim modd ychwanegu'r derbynwyr hyn. Rhowch gynnig arall arni. (%@)";
+
+/* (No Comment) */
+"The server could not be reached" = "Doedd dim modd cyrraedd y gweinydd";
+
+/* (No Comment) */
+"The server you entered is not authorized for this app." = "Dydy’r gweinydd rydych chi wedi'i roi ddim wedi’i awdurdodi ar gyfer yr ap hwn.";
+
+/* (No Comment) */
+"The user agent for this app is unauthorized." = "Dydy’r asiant defnyddiwr ar gyfer yr ap hwn ddim wedi’i awdurdodi.";
+
+/* Error message */
+"There are no actions for this item" = "Does dim gweithrediadau ar gyfer yr eitem hon.";
+
+/* (No Comment) */
+"There are no items to display" = "Does dim eitemau i’w dangos";
+
+/* message for media comment upload failure */
+"There was a network error posting your comment." = "Problem â'r rhwydwaith wrth bostio eich sylw.";
+
+/* message for failed submission upload */
+"There was a network problem while attempting to upload your submission" = "Problem â'r rhwydwaith wrth geisio cyflwyno eich cyflwyniad";
+
+/* Error message when fetching a file fails */
+"There was a problem accessing the requested file.\n\nError: %@" = "Problem wrth gael mynediad at y ffeil dan sylw.\n\nGwall: %@";
+
+/* No comment provided by engineer. */
+"There was a problem launching Safari" = "Problem wrth gychwyn Safari";
+
+/* Web browser error handling message */
+"There was an error loading the document." = "Gwall wrth lwytho'r ddogfen.";
+
+/* No comment provided by engineer. */
+"There was an error loading your content. If it is an audio or video upload it may still be processing." = "Gwall wrth lwytho’ch cynnwys. Os ydych chi'n llwytho sain neu fideo i fyny, gall fod wrthi'n prosesu o hyd.";
+
+/* (No Comment) */
+"This app is not authorized for use." = "Dydi’r ap hwn ddim wedi’i awdurdodi i’w ddefnyddio.";
+
+/* No comment provided by engineer. */
+"This assignment doesn't appear to be a valid external tool or is misconfigured." = "Mae’n ymddangos nad yw'r aseiniad hwn yn adnodd allanol, neu y mae wedi'i gamffurfweddu.";
+
+/* message displayed in the details section if there is no comment. */
+"This assignment has no details." = "Does dim manylion ar gyfer yr aseiniad hwn.";
+
+/* Error message for refresh failing with an unauthorized code */
+"This can happen if your course hasn't started yet or you don't have permission to access this page." = "Gall hyn ddigwydd os nad yw'ch cwrs wedi dechrau eto neu os nad oes gennych chi hawl i fynd i’r dudalen hon.";
+
+/* (No Comment) */
+"This entry has been deleted" = "Mae'r cofnod hwn wedi’i ddileu";
+
+/* Text indicating a file cannot be previewed */
+"This file cannot be displayed on this device." = "Does dim modd dangos y ffeil hon ar y ddyfais hon.";
+
+/* (No Comment) */
+"This file is locked" = "Mae'r ffeil wedi’i chloi";
+
+/* (No Comment) */
+"This folder is locked" = "Mae’r ffolder wedi'i chloi";
+
+/* (No Comment) */
+"This is a media message." = "Neges cyfryngau yw hon.";
+
+/* (No Comment) */
+"This would be a great time to do some extra credit." = "Byddai hwn yn amser gwych i wneud rhywfaint o waith am gredyd ychwanegol.";
+
+/* (No Comment) */
+"To Do" = "Tasgau i’w Gwneud";
+
+/* (No Comment) */
+"To:" = "At:";
+
+/* No comment provided by engineer. */
+"Today" = "Heddiw";
+
+/* (No Comment) */
+"Today Button" = "Botwm Heddiw";
+
+/* No comment provided by engineer. */
+"Toggles selection of current item" = "Toglo dewis yr eitem bresennol";
+
+/* No comment provided by engineer. */
+"Toggles selection of item" = "Toglo dewis yr eitem";
+
+/* title for assignment submission button */
+"Turn In" = "Cyflwyno";
+
+/* title for re-submitting an assignment */
+"Turn In Again" = "Cyflwyno eto";
+
+/* (No Comment) */
+"Turn in %@" = "Cyflwyno %@";
+
+/* (No Comment) */
+"Uh-oh! No Internet Connection" = "O na! Dim cysylltiad â'r rhyngrwyd";
+
+/* (No Comment) */
+"Unable to load" = "Methu llwytho";
+
+/* (No Comment) */
+"Unable to post. Please try again later" = "Methu postio. Rhowch gynnig arall arni rywbryd eto";
+
+/* message saying that avatar couldn't be loaded to server */
+"Unable to upload to server" = "Wedi methu llwytho i fyny i'r gweinydd";
+
+/* Error message for refresh failing on an MLVC tableview controller */
+"Unauthorized" = "Heb awdurdodi";
+
+/* (No Comment) */
+"Unavailable" = "Ddim ar gael";
+
+/* (No Comment) */
+"Ungraded" = "Heb raddio";
+
+/* Unknown file type */
+"Unknown" = "Dieithr";
+
+/* (No Comment) */
+"Unread" = "Heb ddarllen";
+
+/* (No Comment) */
+"Unsaved Reply" = "Ateb heb ei gadw";
+
+/* Button title for uploading a file */
+"Upload" = "Llwytho i fyny";
+
+/* (No Comment) */
+"Upload Error" = "Gwall wrth lwytho i fyny";
+
+/* No comment provided by engineer. */
+"Upload a file" = "Llwytho ffeil i fyny";
+
+/* (No Comment) */
+"Upload failed. Reason: (%@)" = "Wedi methu llwytho i fyny. Rheswm: (%@)";
+
+/* (No Comment) */
+"Upload file" = "Llwytho ffeil i fyny";
+
+/* Error message */
+"Upload to assignment \"%@\" failed" = "Wedi methu llwytho i fyny i'r aseiniad \"%@\"";
+
+/* (No Comment) */
+"Upload to assignment &quot;%@&quot; failed" = "Wedi methu llwytho i fyny i'r aseiniad &quot;%@&quot;";
+
+/* (No Comment) */
+"Upload to folder &quot;%@&quot; failed" = "Wedi methu llwytho i fyny i'r ffolder &quot;%@&quot;";
+
+/* button for using the recorded audio */
+"Use" = "Defnyddio";
+
+/* (No Comment) */
+"User ID" = "ID Defnyddiwr";
+
+/* Title for User Info section on the about page */
+"User Info" = "Gwybodaeth am Ddefnyddiwr";
+
+/* Video file type */
+"Video" = "Fideo";
+
+/* (No Comment) */
+"Video error" = "Gwall ar y fideo";
+
+/* (No Comment) */
+"View" = "Gweld";
+
+/* (No Comment) */
+"Warning" = "Rhybudd";
+
+/* error message for failure to load a file submission */
+"We had a problem loading the submission. Please try again later." = "Problem wrth lwytho'r cyflwyniad. Rhowch gynnig arall arni rywbryd eto.";
+
+/* (No Comment) */
+"We were unable to verify the server for use with this app." = "Doedd dim modd dilysu’r gweinydd i’w ddefnyddio gyda’r ap hwn.";
+
+/* Error Title */
+"Whoops!" = "Wps!";
+
+/* (No Comment) */
+"Will unlock %@." = "Bydd yn datgloi %@.";
+
+/* (No Comment) */
+"Would you like to create a new message?" = "Hoffech chi greu neges newydd?";
+
+/* (No Comment) */
+"Would you mind giving us a rating on the app store?" = "A fyddech chi gystal â rhoi sgôr i ni ar yr App Store?";
+
+/* (No Comment) */
+"Would you mind letting us know the problems you have been having with the app?" = "A fyddai ots gennych chi roi gwybod i ni pa broblemau rydych chi wedi bod yn eu cael â'r ap?";
+
+/* (No Comment) */
+"Yes" = "Iawn";
+
+/* (No Comment) */
+"You are now masquerading as %@" = "Ar hyn o bryd, rydych chi’n esgus bod yn %@";
+
+/* Masquerade success message */
+"You are now masquerading as %@. To Stop Masquerading go to your Profile." = "Ar hyn o bryd, rydych chi’n esgus bod yn %@. I Stopio Ffugio, ewch i'ch Proffil.";
+
+/* (No Comment) */
+"You do not have SpeedGrader for iPad. You can download it for free from the App Store." = "Does gennych chi ddim SpeedGrader ar gyfer iPad. Gallwch ei lwytho i lawr am ddim o'r App Store.";
+
+/* (No Comment) */
+"You do not have access to this content. The Course or Group may not have started, or may have been concluded." = "Does gennych chi ddim mynediad at y cynnwys hwn. Efallai fod y Cwrs neu'r Grŵp wedi dirwyn i ben neu heb ddechrau.";
+
+/* (No Comment) */
+"You do not have permission to delete this reply" = "Does gennych chi ddim hawl i ddileu'r ateb hwn";
+
+/* Masquerade error message */
+"You don't have permission to masquerade as this user or there is no user with that ID" = "Does gennych chi ddim hawl i esgus mai chi yw'r defnyddiwr hwn neu does dim defnyddiwr â'r ID hwnnw";
+
+/* (No Comment) */
+"You have an unsaved reply. Would you like to discard that reply?" = "Mae gennych chi ateb heb ei gadw. Hoffech chi hepgor yr ateb hwnnw?";
+
+/* An explanation of how to transfer files to the Canvas app. */
+"You have no files available for upload. To add files from other apps, find a file in another app, then find the \"Open In\" button to open it in Canvas. You can also tap and hold on attachments in the Mail app to open them in Canvas." = "Does gennych chi ddim ffeiliau i'w llwytho i fyny. I ychwanegu ffeiliau o apiau eraill, ewch ati i ganfod ffeil mewn ap arall, wedyn dod o hyd i'r botwm \"Agor yn\" i'w agor yn Canvas. Hefyd, mae modd tapio a dal atodiadau yn yr ap Mail er mwyn eu hagor yn Canvas.";
+
+/* (No Comment) */
+"You must first complete:" = "Bydd yn rhaid i chi gwblhau’r canlynol yn gyntaf:";
+
+/* (No Comment) */
+"You need a title and a description to post" = "Mae angen teitl a disgrifiad arnoch er mwyn postio";
+
+/* (No Comment) */
+"You should go rate Canvas on the App Store!" = "Ewch ati i roi sgôr i Canvas ar yr App Store!";
+
+/* (No Comment) */
+"Your files could not be found" = "Doedd dim modd dod o hyd i'ch ffeiliau";
+
+/* Media submission type selected with no Kaltura set up */
+"Your school's configuration does not allow the type of submission selected for this assignment" = "Dydy ffurfweddiad eich ysgol ddim yn caniatáu'r math o gyflwyniad sydd wedi'i ddewis ar gyfer yr aseiniad hwn";
+
+/* (No Comment) */
+"due on %1$@ at %2$@" = "angen cyflwyno erbyn %1$@ am %2$@";
+
+/* (No Comment) */
+"moments ago" = "eiliadau yn ôl";
+
+/* No comment provided by engineer. */
+"out of" = "allan o";
+
+/* (No Comment) */
+"out of %@" = "allan o %@";
+
+/* (No Comment) */
+"out of %@ points" = "allan o %@ pwynt";
+
+/* (No Comment) */
+"photo" = "llun";
+
+/* (No Comment) */
+"unknown" = "dieithr";
+
+/* (No Comment) */
+"until %@" = "tan %@";
+

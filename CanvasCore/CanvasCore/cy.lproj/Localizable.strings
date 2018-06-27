@@ -1,0 +1,830 @@
+/* Error message component with the report id */
+" Error report ID: (reportID)" = " ID yr Adroddiad Gwallau: (reportID)";
+
+/* Failure reason from the JSON payload from canvas */
+" Failure reason: (reason)." = " Rheswm dros fethu: (rheswm).";
+
+/* Shows the number of flagged questions */
+"%@ Flagged" = "%@ Wedi fflagio";
+
+/* Accessiblity hint for question drawer button */
+"%@ Questions Answered" = "%@ Cwestiynau wedi'u hateb";
+
+/* Question number in a quiz */
+"%@." = "%@.";
+
+/* Confirmations alerting user of unanswered questions */
+"%d questions not answered" = "%d cwestiynau heb eu hateb";
+
+/* Accessiblity hint for question drawer button */
+"0 Questions Answered" = "Wedi ateb 0 cwestiwn";
+
+/* Notification to alert the user that there is only 5 minutes left in the timed quiz */
+"5 minutes remaining" = "5 munud ar ôl";
+
+/* Notification to alert the user that there is only 30 seconds left in the time quiz */
+"30 seconds remaining" = "30 eiliad ar ôl";
+
+/* Mark student absent
+   Student is present in class */
+"Absent" = "Absennol";
+
+/* URL submission option */
+"Add Website Address" = "Ychwanegu Cyfeiriad Gwefan";
+
+/* Shows the number questions */
+"All %@ Questions" = "Pob Cwestiwn %@";
+
+/* option to view results for all grading periods */
+"All Grading Periods" = "Pob Cyfnod Graddio";
+
+/* all pages segmented control title */
+"All Pages" = "Pob Tudalen";
+
+/* No comment provided by engineer. */
+"All notifications are currently disabled." = "Pob hysbysiad wedi'i analluogi ar hyn o bryd.";
+
+/* No comment provided by engineer. */
+"All notifications are currently enabled." = "Pob hysbysiad wedi'i alluogi ar hyn o bryd.";
+
+/* No comment provided by engineer. */
+"Allow Notifications in Settings" = "Caniatáu Hysbysiadau yn eich Gosodiadau";
+
+/* label for number of attempts that are allowed */
+"Allowed Attempts" = "Ymgeisiau a ganiateir";
+
+/* Default error message displayed when a file fails to upload */
+"An error occured, please try again." = "Aeth rhywbeth o'i le, rhowch gynnig arall arni.";
+
+/* an unknown error's message */
+"An unknown error has occurred." = "Gwall annisgwyl.";
+
+/* Question to confirm user wants to navigate away from a quiz. */
+"Are you sure you want to leave this quiz?" = "Ydych chi’n siŵr eich bod am adael y cwis hwn?";
+
+/* Confirmation before submitting a quiz */
+"Are you sure you want to submit your answers?" = "Ydych chi’n siŵr eich bod am gyflwyno’ch atebion?";
+
+/* No comment provided by engineer. */
+"Are you sure you would like to delete this comment?" = "Ydych chi’n siŵr eich bod am ddileu’r sylw hwn?";
+
+/* No comment provided by engineer. */
+"Attendance" = "Presenoldeb";
+
+/* Error title for attendance app */
+"Attendance Error" = "Gwall Presenoldeb";
+
+/* label for quiz availability date */
+"Available Until" = "Ar gael tan";
+
+/* stop record button a11y hint */
+"Begin recording" = "Dechrau'r recordiad";
+
+/* Blue course color button */
+"Blue" = "Glas";
+
+/* Title for screen to build a panda avatar */
+"Build Your Panda!" = "Creu eich Panda!";
+
+/* Alert title when unable to parse JSON for communication channels */
+"Can't Display Communication Channels" = "Methu dangos y Sianeli Cyfathrebu";
+
+/* Alert title when unable to parse JSON for notification preferences */
+"Can't Display Notification Preferences" = "Methu dangos Dewisiadau Hysbysiadau";
+
+/* Cancel Audio recording.
+   Cancel button title
+   Cancel submission option
+   Cancel upload */
+"Cancel" = "Canslo";
+
+/* No comment provided by engineer. */
+"Change Section" = "Newid yr Adran";
+
+/* Description for Chat communication channel */
+"Chat" = "Sgwrsio";
+
+/* No comment provided by engineer. */
+"Choose Date" = "Dewiswch Ddyddiad";
+
+/* Choose a file */
+"Choose a File" = "Dewiswch Ffeil";
+
+/* Pick a photo from library */
+"Choose a Photo" = "Dewiswch Lun";
+
+/* Pick a photo or video */
+"Choose a Photo or Video" = "Dewiswch Lun neu Fideo";
+
+/* No comment provided by engineer. */
+"Choose a Section" = "Dewiswch Adran";
+
+/* Pick a video from library */
+"Choose a Video" = "Dewiswch Fideo";
+
+/* Label indicating that the question is a multiple dropdown answer question and answer must be chosen. */
+"Choose your answers below" = "Dewiswch eich atebion isod";
+
+/* No comment provided by engineer. */
+"Collapse" = "Crebachu";
+
+/* No comment provided by engineer. */
+"Comments" = "Sylwadau";
+
+/* File upload completed */
+"Complete" = "Cwblhau";
+
+/* Title of a screen that shows all of our open source components */
+"Components" = "Cydrannau";
+
+/* Button for electing to be late on a quiz */
+"Continue Quiz" = "Parhau â'r Cwis";
+
+/* Notification display name for conversations group */
+"Conversations" = "Sgyrsiau";
+
+/* Alert title when unable to load notification preferences */
+"Could not load notification preferences" = "Methu llwytho dewisiadau hysbysiadau";
+
+/* Failure reason for why it couldn't associate a tab with a context */
+"Could not parse context id from URL" = "Doedd dim modd dosrannu’r ID cynnwys o'r URL";
+
+/* Error title for being unable to update a push notification preference */
+"Could not update" = "Methu diweddaru";
+
+/* Notification display name for course activities group */
+"Course Activities" = "Gweithgareddau Cwrs";
+
+/* Header label for a screen that customizes a course */
+"Customize" = "Addasu";
+
+/* Cyan course color button */
+"Cyan" = "Cyan";
+
+/* name for upload data */
+"Data" = "Data";
+
+/* Error title for a persistence related data failure */
+"Data Error" = "Gwall Data";
+
+/* No comment provided by engineer. */
+"Date picker" = "Dewiswr dyddiadau";
+
+/* DeepOrange course color button */
+"DeepOrange" = "DeepOrange";
+
+/* DeepPurple course color button */
+"DeepPurple" = "DeepPurple";
+
+/* Delete button
+   Delete button for file upload */
+"Delete" = "Dileu";
+
+/* No comment provided by engineer. */
+"Delete Comment" = "Dileu Sylw";
+
+/* message for delete dialog of audio recorder */
+"Delete recording?" = "Dileu’r recordiad?";
+
+/* Designer role */
+"Designer" = "Dylunydd";
+
+/* Notification display name for discussions group */
+"Discussions" = "Trafodaeth";
+
+/* Error title to alert user their device is out of storage space */
+"Disk Error" = "Gwall ar y Ddisg";
+
+/* Dismiss an error alert
+   Dismiss an error dialog
+   Dismiss button for error alert
+   Dismiss button for error messages */
+"Dismiss" = "Diystyru";
+
+/* Done button
+   Done recording button */
+"Done" = "Wedi gorffen";
+
+/* due date label for quiz due date */
+"Due Date" = "Dyddiad Erbyn";
+
+/* Description for email communication channel */
+"Email" = "E-bost";
+
+/* Data encoding error title */
+"Encoding Error" = "Gwall Amgodio";
+
+/* Text submission option */
+"Enter Text" = "Rhoi Testun";
+
+/* Placeholder for URL */
+"Enter URL..." = "Rhoi URL...";
+
+/* Default text for essay cell */
+"Enter answer..." = "Rhoi ateb...";
+
+/* Prompt for text upload */
+"Enter your submission..." = "Rhowch eich cyflwyniad...";
+
+/* Title for quiz loading error */
+"Error Loading Quiz" = "Gwall wrth lwytho'r Cwis";
+
+/* Error title for parsing assignment data from server */
+"Error Updating Assignment" = "Gwall wrth ddiweddaru'r Aseiniad";
+
+/* error message for when the cache management database fails to load */
+"Error loading cache management database." = "Gwall wrth lwytho storfa'r gronfa ddata rheoli.";
+
+/* No comment provided by engineer. */
+"Error parsing the Roll Call response. Expected (e), received (a)" = "Gwall wrth ddosrannu'r ymateb i'r Gofrestr. Disgwyliedig (e), wedi derbyn (a)";
+
+/* No comment provided by engineer. */
+"Error parsing the Roll Call response. Expected (e), received (a) for key (k)" = "Gwall wrth ddosrannu'r ymateb i'r Gofrestr. Disgwyliedig (e), wedi derbyn (a) ar gyfer allwedd (k)";
+
+/* No comment provided by engineer. */
+"Error parsing the Roll Call response. Key not found: (k)" = "Gwall wrth ddosrannu'r ymateb i'r Gofrestr. Heb ddod o hyd i'r allwedd: (k)";
+
+/* No comment provided by engineer. */
+"Error parsing the Roll Call response. Unexpected null value: (k)" = "Gwall wrth ddosrannu'r ymateb i'r Gofrestr. Gwerth nwl annisgwyl: (k)";
+
+/* No comment provided by engineer. */
+"Error retrieving tool launch URL" = "Gwall wrth adfer URL lansio adnodd";
+
+/* rollcall status error */
+"Error: No data returned from the rollcall api." = "Gwall: Dim data wedi'i ddychwelyd o API y gofrestr.";
+
+/* Exit button to leave the quiz */
+"Exit" = "Gadael";
+
+/* No comment provided by engineer. */
+"Expand" = "Ehangu";
+
+/* Error message when the server returns a invalid response */
+"Expected a response in the 200-299 range. Got %@" = "Disgwyl ymateb yn yr ystod 200-299. Wedi Cael %@";
+
+/* File upload failed */
+"Failed" = "Wedi Methu";
+
+/* Error when submitting an assignment */
+"Failed to Submit" = "Wedi methu Cyflwyno";
+
+/* No comment provided by engineer. */
+"Failed to find image at path" = "Wedi methu dod o hyd i'r ddelwedd yn y llwybr";
+
+/* Error Message when the app can't load an object model from the database */
+"Failed to load (discussionKitModelName) NSManagedObjectModel" = "Wedi methu llwytho (discussionKitModelName) NSManagedObjectModel";
+
+/* No comment provided by engineer. */
+"Failed to write image" = "Wedi methu ysgrifennu delwedd";
+
+/* favorite courses or groups */
+"Favorites" = "Ffefrynnau";
+
+/* title for file upload errors */
+"File Upload Error" = "Gwall wrth lwytho ffeiliau i fyny";
+
+/* File uploads screen title */
+"File Uploads" = "Ffeiliau wedi’u llwytho i fyny";
+
+/* State of the flagged question */
+"Flagged" = "Wedi fflagio";
+
+/* front page segmented control title */
+"Front Page" = "Tudalen Flaen";
+
+/* navigate */
+"Go" = "Mynd";
+
+/* Title for grading periods picker */
+"Grading Periods" = "Cyfnodau Graddio";
+
+/* Green course color button */
+"Green" = "Gwyrdd";
+
+/* Notification display name for groups group */
+"Groups" = "Grwpiau";
+
+/* Non favorite hidden courses or groups */
+"Hidden" = "Cudd";
+
+/* Hides the question list */
+"Hide Question List" = "Cuddio'r Rhestr Cwestiynau";
+
+/* Inbox tab title */
+"Inbox" = "Blwch Derbyn";
+
+/* Indigo course color button */
+"Indigo" = "Indigo";
+
+/* Mark student late
+   Student is present in class */
+"Late" = "Yn Hwyr";
+
+/* No comment provided by engineer. */
+"Launch External Tool" = "Lansio Adnodd Allanol";
+
+/* Leave the quiz */
+"Leave" = "Gadael";
+
+/* LightBlue course color button */
+"LightBlue" = "LightBlue";
+
+/* LightGreen course color button */
+"LightGreen" = "LightGreen";
+
+/* LightPink course color button */
+"LightPink" = "LightPink";
+
+/* Label indicating that the quiz lock date was reached and the quiz is auto submitting */
+"Lock Date Reached\nSubmitting" = "Wedi cyrraedd y Dyddiad Cloi\nWrthi'n Cyflwyno";
+
+/* Title for when another tool called Lockdown Browser is required to take a quiz */
+"Lockdown Browser Required" = "Mae angen Porwr Lockdown";
+
+/* Detail label for when a tool called Lockdown Browser is required to take the quiz */
+"Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue." = "Mae angen porwr Lockdown i weld eich canlyniadau. Agorwch y cwis yn y Porwr Lockdown i fwrw ymlaen.";
+
+/* No comment provided by engineer. */
+"Mark All as Present" = "Marcio bod y Cyfan yn Bresennol";
+
+/* No comment provided by engineer. */
+"Mark Remaining as Present" = "Marcio bod y Gweddill yn Bresennol";
+
+/* Error alert title for network error
+   Title for network errors */
+"Network Error" = "Gwall ar y Rhwydwaith";
+
+/* Next button for advancing a quiz */
+"Next" = "Nesaf";
+
+/* Alert title when unable to load communication channels */
+"No Communication Channels Found" = "Heb ganfod Sianeli Cyfathrebu";
+
+/* A quiz that has no due date */
+"No Due Date" = "Dim Dyddiad Erbyn";
+
+/* Title for alert when a module item doesn't have mastery paths configured */
+"No Mastery Paths" = "Dim Llwybrau Meistroli";
+
+/* Error when push channel cannot be found in notificaitons */
+"No push channel found" = "Heb ddod o hyd sianel marchnata";
+
+/* No comment provided by engineer. */
+"No sections available. Please make sure you are enrolled as a teacher or TA in at least on section of this course." = "Dim adrannau ar gael. Gwnewch yn siŵr eich bod wedi ymrestru fel athro neu gynorthwyydd dysgu o leiaf ar adran o'r cwrs hwn.";
+
+/* when a quiz has no time limit */
+"No time limit" = "Dim terfyn amser";
+
+/* Section header for assignments without an assignment group */
+"None" = "Dim";
+
+/* can't record because request for mic access was denied title */
+"Not Permitted" = "Dim Hawl";
+
+/* Title for alert showing when a quiz isn't takeable */
+"Not Takeable" = "Dim modd ei gymryd";
+
+/* Error title for push notification registration error */
+"Notification Error" = "Gwall Hysbysu";
+
+/* Title for the notification preferences page */
+"Notification Preferences" = "Dewisiadau Hysbysiadau";
+
+/* OK Button Title */
+"OK" = "Iawn";
+
+/* Observer role */
+"Observer" = "Arsyllwr";
+
+/* No comment provided by engineer. */
+"Open in Safari" = "Agor yn y Porwr";
+
+/* No comment provided by engineer. */
+"Open in…" = "Agor yn...";
+
+/* Accessibility hint for the profile button */
+"Opens profile" = "Yn agor proffil";
+
+/* Orange course color button */
+"Orange" = "Oren";
+
+/* Overdue assignmnets (not turned in) */
+"Overdue" = "Hwyr";
+
+/* Assignments that have been turned in and are past */
+"Past" = "Blaenorol";
+
+/* Pause recording/playback */
+"Pause" = "Rhewi";
+
+/* record button a11y hint */
+"Pause playback" = "Rhewi'r chwarae";
+
+/* name for a photo just taken */
+"Photo" = "Llun";
+
+/* Photos backdrops */
+"Photos" = "Lluniau";
+
+/* Pink course color button */
+"Pink" = "Pinc";
+
+/* Playback button */
+"Play" = "Chwarae";
+
+/* play button a11y hint */
+"Play back recording" = "Chwarae'r recordiad";
+
+/* Title for playback error messages */
+"Playback Error" = "Gwall wrth Chwarae";
+
+/* No comment provided by engineer. */
+"Please check your network connection and try again." = "Gwiriwch eich cysylltiad rhwydwaith a rhoi cynnig arall arni.";
+
+/* label for number of points in a quiz */
+"Points" = "Pwyntiau";
+
+/* Mark student present
+   Student is present in class */
+"Present" = "Presennol";
+
+/* Accessibility label for the profile button */
+"Profile" = "Proffil";
+
+/* Purple course color button */
+"Purple" = "Porffor";
+
+/* Description for Push Notification channel */
+"Push Notifications" = "Hysbysiadau Marchnata";
+
+/* accessibility label for a quiz question */
+"Question" = "Cwestiwn";
+
+/* Shows question position */
+"Question %@" = "Cwestiwn %@";
+
+/* state for a question that has been flagged */
+"Question (number) Flagged" = "Wedi fflagio cwestiwn (rhif)";
+
+/* state for unflagged question */
+"Question (number) Unflagged" = "Wedi dad-fflagio cwestiwn (rhif)";
+
+/* label for the number of questions */
+"Questions" = "Cwestiynau";
+
+/* Title for alert that shows when a quiz hits the due date */
+"Quiz Due" = "Cwis i'w Gyflwyno";
+
+/* Title for quiz error */
+"Quiz Error" = "Gwall ar y Cwis";
+
+/* Label for indication that the quiz submission was successful */
+"Quiz Submitted" = "Cwis wedi'i gyflwyno";
+
+/* Label for indication that the quiz submission failed */
+"QuizSubmission Failure" = "QuizSubmission Methiant";
+
+/* tile for error reading cache */
+"Read Error" = "Darllen y Gwall";
+
+/* button to read more of the description */
+"Read More" = "Darllen mwy";
+
+/* Record button a11y label */
+"Record" = "Recordio";
+
+/* Choose record audio submission */
+"Record Audio" = "Recordio Sain";
+
+/* permission denied button a11y label */
+"Record Permission Help" = "Cymorth â Hawliau Recordio";
+
+/* title for a recording error */
+"Recording Error" = "Gwall wrth Recordio";
+
+/* red course color button */
+"Red" = "Coch";
+
+/* No comment provided by engineer. */
+"Remove" = "Dileu";
+
+/* Remove the formatting of the essay question text */
+"Remove Formatting" = "Tynnu'r Fformatio";
+
+/* No comment provided by engineer. */
+"Removed %1$@" = "Wedi tynnu %1$@";
+
+/* No comment provided by engineer. */
+"Removed %1$@ by %2$@" = "%1$@ wedi’i dynnu gan %2$@";
+
+/* No comment provided by engineer. */
+"Reply" = "Ateb";
+
+/* Button to report an error */
+"Report" = "Adroddiad";
+
+/* Record button a11y label */
+"Request Audio Recording Permission" = "Gofyn am Hawl i Recordio Sain";
+
+/* stop record button a11y hint */
+"Request Permission to record audio" = "Gofyn am Hawl i Recordio Sain";
+
+/* button for resuming a quiz */
+"Resume Quiz" = "Parhau â'r Cwis";
+
+/* button for retaking quiz */
+"Retake Quiz" = "Gwneud y Cwis eto";
+
+/* Description for SMS communication channel */
+"SMS" = "SMS";
+
+/* Notification display name for scheduling group */
+"Scheduling" = "Trefnu";
+
+/* Indicates that a matching quiz question needs to have an answer selected */
+"Select Answer" = "Dewiswch Ateb";
+
+/* Label indicating that the question is a multiple answer question and more than 1 answer can be correct */
+"Select all that apply" = "Dewiswch bob un sy'n berthnasol";
+
+/* No comment provided by engineer. */
+"Select to change the roll call date" = "Dewiswch i newid dyddiad y gofrestr";
+
+/* when a button is selected */
+"Selected" = "Wedi dewis";
+
+/* Shapes backdrops */
+"Shapes" = "Siapiau";
+
+/* Hides the question list */
+"Show Question List" = "Dangos y Rhestr Cwestiynau";
+
+/* Text for a button that toggles to show a timer for a timed quiz */
+"Show Timer" = "Dangos yr Amserydd";
+
+/* Error message displayed when the file is unrecognized. */
+"Something went wrong. Check the file format and try again." = "Aeth rhywbeth o’i le. Gwnewch yn siŵr bod fformat y ffeil yn iawn a rhoi cynnig arall arni.";
+
+/* Text only quiz question label */
+"Spacer" = "Testun ychwanegol";
+
+/* Stay on the quiz view */
+"Stay" = "Aros";
+
+/* stop recording button a11y label */
+"Stop" = "Stopio";
+
+/* File upload was stopped */
+"Stopped" = "Wedi stopio";
+
+/* Student role */
+"Student" = "Myfyriwr";
+
+/* No comment provided by engineer. */
+"Style" = "Arddull";
+
+/* Submit assignment button
+   Submit button title
+   Turn in this url button */
+"Submit" = "Cyflwyno";
+
+/* Title for button to submit assignment */
+"Submit Assignment" = "Cyflwyno Aseiniad";
+
+/* No comment provided by engineer. */
+"Submitted!" = "Wedi Cyflwyno!";
+
+/* No comment provided by engineer. */
+"Submitting" = "Wrthi'n Cyflwyno";
+
+/* Label for indication of submitting quiz */
+"Submitting Quiz" = "Wrthi'n cyflwyno'r Cwis";
+
+/* TA role */
+"TA" = "Cynorthwyydd Dysgu";
+
+/* Take a photo or video submission choice */
+"Take Photo or Video" = "Tynnwch Lun neu Fideo";
+
+/* Button for taking the quiz */
+"Take Quiz" = "Gwnewch y Cwis";
+
+/* Take a photo submission choice */
+"Take a Photo" = "Tynnwch Lun";
+
+/* Take a video submission choice */
+"Take a Video" = "Recordiwch Fideo";
+
+/* Teacher role */
+"Teacher" = "Athro";
+
+/* Teal course color button */
+"Teal" = "Glaswyrdd";
+
+/* This shouldn't ever happen. */
+"The Pages are gone!? Why are the pages always gone?" = "Mae'r Tudalennau wedi mynd!? Pam mae'r tudalennau wedi mynd bob amser?";
+
+/* Error message for a file missing */
+"The file does not exist." = "Dydy’r ffeil ddim yn bodoli.";
+
+/* Description for alert that shows when the quiz hits the due date */
+"The quiz is due in 1 minute. Would you like to submit now and be on time or continue taking the quiz and possibly be late?" = "Mae angen cyflwyno'r cwis mewn 1 munud. Hoffech chi gyflwyno nawr a bod ar amser neu fwrw ymlaen â'r cwis a mentro bod yn hwyr?";
+
+/* Error message for interrupted requests marking a to do as done */
+"The request to mark a to do as done was interrupted" = "Fe wnaeth rhywbeth amharu ar y cais i farcio bod eitem wedi'i chwblhau ar y rhestr 'pethau i'w gwneud'.";
+
+/* bad url message */
+"The text you entered is not a valid URL" = "Dydy’r URL y gwnaethoch ei roi ddim yn ddilys";
+
+/* Data encoding error message */
+"There was a problem encoding UTF8 Data" = "Problem wrth amgodio Data UTF8";
+
+/* No comment provided by engineer. */
+"There was a problem fetching the list of course sections." = "Problem wrth nôl y rhestr o adrannau'r cwrs.";
+
+/* JSON Parsing error description */
+"There was a problem interpreting a response from the server." = "Problem wrth ddehongli ymateb gan y gweinydd.";
+
+/* CalendarKit Database Load Failure Message */
+"There was a problem loading the (kitModelName) database file." = "Problem wrth lwytho’r ffeil cronfa ddata (kitModelName).";
+
+/* AssignmentKit database load failure message */
+"There was a problem loading the AssignmentKit database file." = "Problem wrth lwytho’r ffeil cronfa ddata AssignmentKit.";
+
+/* CalendarKit Database Load Failure Message */
+"There was a problem loading the CalendarKit database file." = "Problem wrth lwytho’r ffeil cronfa ddata CalendarKit.";
+
+/* DiscussionKit Database Load Failure Message */
+"There was a problem loading the DiscussionKit database file." = "Problem wrth lwytho’r ffeil cronfa ddata DiscussionKit.";
+
+/* EnrollmentKit Database Load Failure Message */
+"There was a problem loading the EnrollmentKit database file." = "Problem wrth lwytho’r ffeil cronfa ddata EnrollmentKit.";
+
+/* FileKit Database Load Failure Message */
+"There was a problem loading the FileKit database file." = "Problem wrth lwytho’r ffeil cronfa ddata FileKit.";
+
+/* Page list fails */
+"There was a problem loading the Pages database file." = "Problem wrth lwytho’r ffeil cronfa ddata Tudalennau.";
+
+/* PeepKit Database Load Failure Message */
+"There was a problem loading the PeepKit database file." = "Problem wrth lwytho’r ffeil cronfa ddata PeepKit.";
+
+/* SoEdventurous database load failure message */
+"There was a problem loading the SoEdventurous database file." = "Problem wrth lwytho’r ffeil cronfa ddata SoEdventurous.";
+
+/* File upload error message */
+"There was a problem preparing the file for upload" = "Problem wrth baratoi'r broblem i gael ei llwytho i fyny";
+
+/* Persistence error message */
+"There was a problem reading cached data" = "Problem wrth ddarllen y data wedi'i storio";
+
+/* Error description for Push Notifications registration error. */
+"There was a problem registering your device for push notifications." = "Problem wrth gofrestru'ch dyfais i dderbyn hysbysiadau marchnata.";
+
+/* Message when fails to submit an assignment */
+"There was a problem submitting your assignment. Please try again later." = "Problem wrth gyflwyno’ch aseiniad. Rhowch gynnig arall arni rywbryd eto.";
+
+/* Error description for failing to compute the URL to a quiz */
+"There was a problem updating the Quiz URL" = "Problem wrth ddiweddaru URL y Cwis";
+
+/* generic error message */
+"There was a problem with the Canvas request." = "Problem gyda’r cais i Canvas.";
+
+/* Error message when parsing contextID for a course or group tab */
+"There was an error associating a tab with a course or group." = "Gwall wrth gysylltu tab â chwrs neu grŵp.";
+
+/* An error message shown when the Users cache file fails to load */
+"There was an error loading the Users cache." = "Gwall wrth lwytho'r storfa Defnyddwyr.";
+
+/* Error message for a network fail */
+"There was an error while communicating with the server." = "Gwall wrth gyfathrebu â'r gweinydd.";
+
+/* No comment provided by engineer. */
+"There was no data!" = "Doedd dim data!";
+
+/* Warning to users editing an essay question that was edited on the web. */
+"This essay question has been edited on the web and may contain formatting, links or images. In order to edit this response on your mobile device we will need to clear the formatting (including links and images). Otherwise you may continue editing the question via a web browser." = "Mae'r cwestiwn traethawd wedi cael ei olygu ar y we a gall gynnwys fformatio, dolenni neu ddelweddau. I olygu'r ymateb hwn ar eich dyfais symudol, bydd angen i chi glirio'r fformatio (gan gynnwys dolenni a delweddau). Fel arall, efallai y byddwch yn parhau i olygu'r cwestiwn drwy borwr gwe.";
+
+/* Body for alert when a module item doesn't have mastery paths configured */
+"This module item does not have mastery paths configured." = "Does dim llwybrau meistroli wedi'u ffurfweddu ar gyfer eitem y modiwl hwn.";
+
+/* The HTML page is currently not viewable by the user because it has been locked by the teacher. */
+"This page is currently locked and not viewable." = "Mae’r dudalen hon wedi’i chloi ar hyn o bryd, a does dim modd ei gweld.";
+
+/* Message when telling the user they can't take the quiz because the quiz has an IP address filter set */
+"This quiz has an IP address filter set." = "Mae hidlydd cyfeiriad IP wedi'i bennu ar gyfer y cwis hwn.";
+
+/* Message when telling the user they can't take the quiz for some weird reason */
+"This quiz is currently unavailable." = "Dydy'r cwis hwn ddim ar gael ar hyn o bryd.";
+
+/* Message when telling the user they can't take the quiz because the quiz is locked */
+"This quiz is locked." = "Mae'r cwis hwn wedi’i gloi.";
+
+/* label for the time limit */
+"Time Limit" = "Terfyn Amser";
+
+/* Toggle flag accessiblity action */
+"Toggle Flag" = "Toglo’r Fflag";
+
+/* Total grade label */
+"Total Grade" = "Gradd Gyffredinol";
+
+/* Description for Twitter communication channel */
+"Twitter" = "Twitter";
+
+/* Alert message when unable to parse JSON for communication channels */
+"Unable to display any Communication Channels returned from the server at this time." = "Does dim modd dangos unrhyw Sianeli Cyfathrebu sydd wedi'u dychwelyd o'r gweinydd ar hyn o bryd.";
+
+/* Alert message when unable to parse JSON for notification preferences */
+"Unable to display any notification preferences returned from the server at this time." = "Does dim modd dangos unrhyw ddewisiadau hysbysiadau sydd wedi'u dychwelyd o'r gweinydd ar hyn o bryd.";
+
+/* Alert message when unable to load communication channels */
+"Unable to load any Communication Channels at this time." = "Does dim modd llwytho Sianeli Cyfathrebu ar hyn o bryd.";
+
+/* Alert message when unable to load notification preferences */
+"Unable to load any notification preferences at this time.  Error: %@" = "Does dim modd llwytho unrhyw ddymuniadau o ran hysbysiadau ar hyn o bryd.  Gwall: %@";
+
+/* Error message when parsing communication preferences */
+"Unable to parse JSON for communication channels" = "Methu dosrannu JSON ar gyfer sianeli cyfathrebu";
+
+/* Error message when parsing notification preferences */
+"Unable to parse JSON for notification preferences" = "Methu dosrannu JSON ar gyfer dewisiadau hysbysiadau";
+
+/* Assignments with no dates */
+"Undated" = "Heb ddyddiad";
+
+/* Unexpected response type */
+"Unexpected response type" = "Math o ymateb annisgwyl";
+
+/* Ungraded quiz */
+"Ungraded" = "Heb raddio";
+
+/* An unknown error title */
+"Unknown Error" = "Gwall Anhysbys";
+
+/* When a quiz has no limit on the number of attempts */
+"Unlimited" = "Diderfyn";
+
+/* Remove attendance status */
+"Unmark" = "Dad-farcio";
+
+/* Upcoming assignments */
+"Upcoming" = "Ar y gweill";
+
+/* File upload submission option */
+"Upload File" = "Llwytho ffeil i fyny";
+
+/* Message displayed while a file is being uploaded */
+"Uploading file..." = "Wrthi’n llwytho ffeil i fyny...";
+
+/* permission denied button a11y hint */
+"User has denied record permission" = "Defnyddiwr wedi gwrthod hawl i recordio";
+
+/* Error message if we can't pull the avatar image */
+"User has no valid avatar image url" = "Does gan y defnyddiwr ddim URL delwedd avatar dilys";
+
+/* button for viewing quiz results */
+"View Results" = "Gweld Canlyniadau";
+
+/* a warning message */
+"Warning" = "Rhybudd";
+
+/* Error message for being unable to update a push notification preference */
+"We were not able to update this value with the server" = "Doedd dim modd i ni ddiweddaru’r gwerth hwn gyda'r gweinydd";
+
+/* Yellow course color button */
+"Yellow" = "Melyn";
+
+/* Description for Yo communication channel */
+"Yo" = "Yo";
+
+/* Shows time limit on a quiz */
+"You have %d minutes." = "Mae gennych chi %d munud.";
+
+/* Message when telling the user they can't take the quiz because they used up all their attempts */
+"You have used all your attempts available on this quiz." = "Rydych chi wedi defnyddio pob ymgais sydd ar gael ar gyfer y cwis hwn.";
+
+/* permission was rejected */
+"You must grant (appName) Microphone access in the Settings app in order to record audio." = "Rhaid i chi alluogi hawliau mynediad y Microffonar gyfer (appName) yn yr ap Gosodiadau er mwyn recordio sain.";
+
+/* Error description for file out of space */
+"Your device is out of storage space. Please free up space and try again." = "Does dim lle storio ar ôl yn eich dyfais. Ewch ati i ryddhau rhywfaint o le a rhoi cynnig arall arni.";
+
+/* label to be read for visually impaired users with assignment types */
+"assignment" = "aseiniad";
+
+/* label to be read for visually impaired users with discusstion topic assignment types */
+"discussion topic" = "pwnc trafod";
+
+/* label to be read for visually impaired users with external tool assignment types */
+"external tool" = "adnodd allanol";
+
+/* label to be read for visually impaired users with quiz assignment types */
+"quiz" = "cwis";
+
+/* File upload in progress */
+"uploading..." = "wrthi’n llwytho i fyny...";
+
+/* web content failed to load */
+"⚠️ Error Loading Content" = "⚠️ Gwall wrth lwytho cynnwys";
+

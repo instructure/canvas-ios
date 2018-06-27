@@ -397,6 +397,9 @@
 "Observer" = "Observateur";
 
 /* No comment provided by engineer. */
+"Open in Safari" = "Ouvrir avec Safari";
+
+/* No comment provided by engineer. */
 "Open in…" = "Ouvrir avec...";
 
 /* Accessibility hint for the profile button */
@@ -501,6 +504,9 @@
 
 /* red course color button */
 "Red" = "Rouge";
+
+/* No comment provided by engineer. */
+"Remove" = "Supprimer";
 
 /* Remove the formatting of the essay question text */
 "Remove Formatting" = "Enlever la mise en page";

@@ -287,6 +287,9 @@
   "clear_recording_5a97b475": {
     "message": "Effacer l’enregistrement"
   },
+  "close_d634289d": {
+    "message": "Fermer"
+  },
   "close_for_comments_ce0e5d00": {
     "message": "Fermer les commentaires"
   },
@@ -566,6 +569,9 @@
   "excused_cf8792eb": {
     "message": "Exempté"
   },
+  "extensions_and_lastextension_f45d68e7": {
+    "message": "{ extensions } et { lastExtension }"
+  },
   "external_tool_c5a6410a": {
     "message": "Outil externe"
   },
@@ -595,6 +601,9 @@
   },
   "favorite_courses_fbd356f0": {
     "message": "Cours favoris"
+  },
+  "file_types_6fa69505": {
+    "message": "Types de fichiers"
   },
   "files_c300e900": {
     "message": "Fichiers"
@@ -698,6 +707,9 @@
   "help_4c4968b1": {
     "message": "Aide"
   },
+  "hidden_14a032a7": {
+    "message": "Masqué"
+  },
   "hidden_files_inside_will_be_available_with_links_e9e3d233": {
     "message": "Masqué. Les fichiers à l’intérieur seront disponibles via un lien."
   },
@@ -746,6 +758,9 @@
   "it_looks_like_your_internet_connection_is_offline__cf4003": {
     "message": "On dirait que votre connexion Internet est hors ligne. Reconnectez-vous à Internet et réessayez."
   },
+  "it_seems_there_aren_t_any_valid_submissions_to_gra_f136675": {
+    "message": "Il semble qu'il n'y a aucune soumission valide pour la note."
+  },
   "italic_ac45200a": {
     "message": "Italique"
   },
@@ -793,6 +808,9 @@
   },
   "long_description_7d89285c": {
     "message": "Description longue"
+  },
+  "manage_children_a28d764e": {
+    "message": "Gérer les enfants"
   },
   "mark_all_as_read_8f3bdf57": {
     "message": "Marquer tout comme lu"
@@ -919,6 +937,9 @@
   },
   "no_subject_58b7941c": {
     "message": "Aucun sujet"
+  },
+  "no_submissions_to_display_6f1491cf": {
+    "message": "Aucune soumission à afficher"
   },
   "no_time_limit_2147d9bf": {
     "message": "Aucune limite de temps"
@@ -1463,6 +1484,9 @@
   "this_assignment_does_not_allow_submissions_30af1caa": {
     "message": "Cette tâche ne permet pas les envois."
   },
+  "this_assignment_doesn_t_have_a_description_e2f37ec3": {
+    "message": "Ce travail n'a pas de description."
+  },
   "this_assignment_only_allows_on_paper_submissions_f478408a": {
     "message": "Cette tâche ne permet que les envois sur papier."
   },
@@ -1619,6 +1643,9 @@
   },
   "view_all_submissions_915a8b78": {
     "message": "Voir toutes les soumissions"
+  },
+  "view_canvas_guides_a1c62a97": {
+    "message": "Afficher les manuels Canvas"
   },
   "view_long_description_2b592c0e": {
     "message": "Afficher la description longue"

@@ -40,17 +40,11 @@
 /* No comment provided by engineer. */
 "Assignment reminder: %@ is due at %@" = "Rappel de travail assigné : %1$@ est dû à %2$@";
 
-/* No comment provided by engineer. */
-"Australia" = "Australie";
-
 /* Authorization Failed Title */
 "Authorization Failed." = "L'autorisation a échoué.";
 
 /* No comment provided by engineer. */
 "Cache cleared" = "Mémoire cache vidée";
-
-/* No comment provided by engineer. */
-"Canada" = "Canada";
 
 /* Cancel button title */
 "Cancel" = "Annuler";
@@ -103,9 +97,6 @@
 /* Status level for issue being reported */
 "Extremely critical emergency" = "État d'urgence extrêmement critique";
 
-/* No comment provided by engineer. */
-"Germany" = "Allemagne";
-
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "La note 'élevée' du travail assigné ne peut pas être inférieure à la note 'basse' du travail assigné";
 
@@ -133,9 +124,6 @@
 /* Support Ticket Invalid Input Message */
 "Invalid Input.  Check fields and try again." = "Entrée invalide.  Vérifiez les champs, puis réessayez.";
 
-/* No comment provided by engineer. */
-"Ireland" = "Irlande";
-
 /* Last Week Button Accessibility Label */
 "Last Week" = "La semaine dernière";
 
@@ -159,6 +147,9 @@
 
 /* Low Course Grade too High */
 "Low course grade cannot be higher than high course grade" = "La note 'basse' du cours ne peut pas être supérieure à la note 'élevée' du cours";
+
+/* Title of the manage children screen. This screen is used to add/remove children that a parent is observing. */
+"Manage Children" = "Gérer les enfants";
 
 /* No comment provided by engineer. */
 "Missing" = "Manquant";
@@ -220,9 +211,6 @@
 /* Server Error Title */
 "Server Error" = "Erreur du serveur";
 
-/* No comment provided by engineer. */
-"Singapore" = "Singapour";
-
 /* Status level for issue being reported */
 "Something is broken but I can work around it" = "Quelquechose ne fonctionne plus mais je peux quand même travailler sans";
 
@@ -258,9 +246,6 @@
 
 /* Auth Failed Message */
 "Unexpected Authentication Error.  Please try logging in again" = "Erreur d'authentification inattendue. Veuillez réessayer de vous connecter.";
-
-/* No comment provided by engineer. */
-"United States" = "États-Unis";
 
 /* Unknown T`hreshold Description */
 "Unknown" = "Inconnu";

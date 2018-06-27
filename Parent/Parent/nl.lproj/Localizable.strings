@@ -40,17 +40,11 @@
 /* No comment provided by engineer. */
 "Assignment reminder: %@ is due at %@" = "Opdracht herinnering: %1$@ moet ingeleverd zijn op  %2$@";
 
-/* No comment provided by engineer. */
-"Australia" = "Australië";
-
 /* Authorization Failed Title */
 "Authorization Failed." = "Toestemming mislukt.";
 
 /* No comment provided by engineer. */
 "Cache cleared" = "Cache gewist";
-
-/* No comment provided by engineer. */
-"Canada" = "Canada";
 
 /* Cancel button title */
 "Cancel" = "Annuleren";
@@ -103,9 +97,6 @@
 /* Status level for issue being reported */
 "Extremely critical emergency" = "Extreem noodgeval";
 
-/* No comment provided by engineer. */
-"Germany" = "Duitsland";
-
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "Hoog beoordelingscijfer kan niet lager zijn dan laag beoordelingscijfer";
 
@@ -133,9 +124,6 @@
 /* Support Ticket Invalid Input Message */
 "Invalid Input.  Check fields and try again." = "Ongeldige invoer.  Controleer velden en probeer het nogmaals.";
 
-/* No comment provided by engineer. */
-"Ireland" = "Ierland";
-
 /* Last Week Button Accessibility Label */
 "Last Week" = "Vorige week";
 
@@ -159,6 +147,9 @@
 
 /* Low Course Grade too High */
 "Low course grade cannot be higher than high course grade" = "Laag cursuscijfer kan niet hoger zijn dan hoog cursuscijfer";
+
+/* Title of the manage children screen. This screen is used to add/remove children that a parent is observing. */
+"Manage Children" = "Kinderen beheren";
 
 /* No comment provided by engineer. */
 "Missing" = "Ontbrekend";
@@ -220,9 +211,6 @@
 /* Server Error Title */
 "Server Error" = "Serverfout";
 
-/* No comment provided by engineer. */
-"Singapore" = "Singapore";
-
 /* Status level for issue being reported */
 "Something is broken but I can work around it" = "Er is iets kapot maar ik kan er wel omheen werken";
 
@@ -258,9 +246,6 @@
 
 /* Auth Failed Message */
 "Unexpected Authentication Error.  Please try logging in again" = "Onverwachte verificatiefout. Probeer opnieuw in te loggen";
-
-/* No comment provided by engineer. */
-"United States" = "Verenigde Staten";
 
 /* Unknown T`hreshold Description */
 "Unknown" = "Onbekend";

@@ -287,6 +287,9 @@
   "clear_recording_5a97b475": {
     "message": "Efase anrejistreman"
   },
+  "close_d634289d": {
+    "message": "Fèmen"
+  },
   "close_for_comments_ce0e5d00": {
     "message": "Fèmen pou kòmantè"
   },
@@ -566,6 +569,9 @@
   "excused_cf8792eb": {
     "message": "Eskize"
   },
+  "extensions_and_lastextension_f45d68e7": {
+    "message": "{ extensions } epi { lastExtension }"
+  },
   "external_tool_c5a6410a": {
     "message": "Zouti Eksteryè"
   },
@@ -595,6 +601,9 @@
   },
   "favorite_courses_fbd356f0": {
     "message": "Kou Prefere"
+  },
+  "file_types_6fa69505": {
+    "message": "Tip Fichye"
   },
   "files_c300e900": {
     "message": "Fichye"
@@ -698,6 +707,9 @@
   "help_4c4968b1": {
     "message": "Èd"
   },
+  "hidden_14a032a7": {
+    "message": "Kache"
+  },
   "hidden_files_inside_will_be_available_with_links_e9e3d233": {
     "message": "Kache. Fichye andedan yo ap disponib ak lyen."
   },
@@ -746,6 +758,9 @@
   "it_looks_like_your_internet_connection_is_offline__cf4003": {
     "message": "Ta sanble entènèt ou a dekonekte. Rekonekte entènèt ou a epi eseye ankò."
   },
+  "it_seems_there_aren_t_any_valid_submissions_to_gra_f136675": {
+    "message": "Ta sanble pa gen okenn soumisyon valid pou klase."
+  },
   "italic_ac45200a": {
     "message": "Italik"
   },
@@ -793,6 +808,9 @@
   },
   "long_description_7d89285c": {
     "message": "Deskripsyon Long"
+  },
+  "manage_children_a28d764e": {
+    "message": "Jere Timoun yo"
   },
   "mark_all_as_read_8f3bdf57": {
     "message": "Make Tout Ke yo Li"
@@ -919,6 +937,9 @@
   },
   "no_subject_58b7941c": {
     "message": "Pa gen Sijè"
+  },
+  "no_submissions_to_display_6f1491cf": {
+    "message": "Pa gen Soumisyon pou Afiche"
   },
   "no_time_limit_2147d9bf": {
     "message": "Pa Gen Delè"
@@ -1463,6 +1484,9 @@
   "this_assignment_does_not_allow_submissions_30af1caa": {
     "message": "Sesyon sa a pa otorize soumisyon."
   },
+  "this_assignment_doesn_t_have_a_description_e2f37ec3": {
+    "message": "Sesyon sa a pa gen deskripsyon."
+  },
   "this_assignment_only_allows_on_paper_submissions_f478408a": {
     "message": "Sesyon sa a otorize soumisyon ou papye sèlman."
   },
@@ -1619,6 +1643,9 @@
   },
   "view_all_submissions_915a8b78": {
     "message": "Afiche tout soumisyon"
+  },
+  "view_canvas_guides_a1c62a97": {
+    "message": "Afiche Gid Canvas"
   },
   "view_long_description_2b592c0e": {
     "message": "Afiche Deskripsyon Long"

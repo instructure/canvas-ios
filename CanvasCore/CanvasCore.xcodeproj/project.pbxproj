@@ -1064,6 +1064,10 @@
 		49CE97941F900CFF00121A43 /* ProfileBarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileBarButtonItem.swift; sourceTree = "<group>"; };
 		49CE97951F900D0000121A43 /* PandaImages.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PandaImages.xcassets; sourceTree = "<group>"; };
 		49F0F92F1F9E50E300DD1512 /* AttendanceStatusController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttendanceStatusController.swift; sourceTree = "<group>"; };
+		5B85C9F420DF8096007AFAFC /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/TimedQuizViewController.strings; sourceTree = "<group>"; };
+		5B85C9F520DF8096007AFAFC /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5B85C9F620DF8096007AFAFC /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/SubmissionConfirmationViewController.strings; sourceTree = "<group>"; };
+		5B85C9F720DF8096007AFAFC /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7C6B70EE92D795277E0861B4 /* Pods_defaults_CanvasCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DD89E8A20AB626600650227 /* AppStoreReview.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppStoreReview.m; sourceTree = "<group>"; };
 		7DF5A775208AAB8000419AB9 /* CanvadocsAnnotationStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvadocsAnnotationStateManager.swift; sourceTree = "<group>"; };
@@ -3560,6 +3564,7 @@
 				3BA8BEBF1FE2EDFE003EC4FD /* pt */,
 				3BA8BEC11FE2EE03003EC4FD /* ht */,
 				3BA8BEC31FE2EE09003EC4FD /* zh */,
+				5B85C9F620DF8096007AFAFC /* cy */,
 			);
 			name = SubmissionConfirmationViewController.xib;
 			sourceTree = "<group>";
@@ -3615,6 +3620,7 @@
 				9F490CF91FBB76A100F9E913 /* da */,
 				9F523E071FBB76A40092A474 /* ht */,
 				9F5BA85B1FBB76A800BDC402 /* es */,
+				5B85C9F420DF8096007AFAFC /* cy */,
 			);
 			name = TimedQuizViewController.xib;
 			sourceTree = "<group>";
@@ -3642,6 +3648,7 @@
 				9F490CF71FBB76A100F9E913 /* da */,
 				9F523E051FBB76A40092A474 /* ht */,
 				9F5BA8591FBB76A800BDC402 /* es */,
+				5B85C9F520DF8096007AFAFC /* cy */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -3669,6 +3676,7 @@
 				9F490CF81FBB76A100F9E913 /* da */,
 				9F523E061FBB76A40092A474 /* ht */,
 				9F5BA85A1FBB76A800BDC402 /* es */,
+				5B85C9F720DF8096007AFAFC /* cy */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

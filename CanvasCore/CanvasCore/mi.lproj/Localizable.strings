@@ -397,6 +397,9 @@
 "Observer" = "Kaimatakitaki";
 
 /* No comment provided by engineer. */
+"Open in Safari" = "Tuwhera i roto i te Safari";
+
+/* No comment provided by engineer. */
 "Open in…" = "Huaki i roto ī…";
 
 /* Accessibility hint for the profile button */
@@ -501,6 +504,9 @@
 
 /* red course color button */
 "Red" = "whero";
+
+/* No comment provided by engineer. */
+"Remove" = "Tango";
 
 /* Remove the formatting of the essay question text */
 "Remove Formatting" = "Tangohia te Hōputu";

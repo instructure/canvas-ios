@@ -4,6 +4,9 @@
 /* No comment provided by engineer. */
 "Build all the things" = "Построить все";
 
+/* Help label when user can't find their school. */
+"Can't find your school? Try typing the full school URL." = "Не можете найти ваше учебное заведение? Попробуйте набрать полный адрес URL учебного заведения.";
+
 /* No comment provided by engineer. */
 "Cancel" = "Отменить";
 
@@ -45,6 +48,9 @@
 
 /* Help View Controller Title */
 "Help" = "Справка";
+
+/* Help label when domain search has started */
+"How do I find my school?" = "Как мне найти свою школу?";
 
 /* No comment provided by engineer. */
 "I am stuck and can't get things done" = "Я зашел в тупик и не могу завершить начатое";

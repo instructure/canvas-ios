@@ -397,6 +397,9 @@
 "Observer" = "观察员";
 
 /* No comment provided by engineer. */
+"Open in Safari" = "在Safari中打开";
+
+/* No comment provided by engineer. */
 "Open in…" = "打开...";
 
 /* Accessibility hint for the profile button */
@@ -501,6 +504,9 @@
 
 /* red course color button */
 "Red" = "红色";
+
+/* No comment provided by engineer. */
+"Remove" = "移除";
 
 /* Remove the formatting of the essay question text */
 "Remove Formatting" = "移除格式化";

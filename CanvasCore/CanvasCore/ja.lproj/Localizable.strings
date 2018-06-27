@@ -397,6 +397,9 @@
 "Observer" = "オブザーバー";
 
 /* No comment provided by engineer. */
+"Open in Safari" = "Safariで開く";
+
+/* No comment provided by engineer. */
 "Open in…" = "...で開く";
 
 /* Accessibility hint for the profile button */
@@ -501,6 +504,9 @@
 
 /* red course color button */
 "Red" = "レッド";
+
+/* No comment provided by engineer. */
+"Remove" = "削除";
 
 /* Remove the formatting of the essay question text */
 "Remove Formatting" = "フォーマットを取り消す";

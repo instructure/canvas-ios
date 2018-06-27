@@ -287,6 +287,9 @@
   "clear_recording_5a97b475": {
     "message": "Fjern opptak"
   },
+  "close_d634289d": {
+    "message": "Lukk"
+  },
   "close_for_comments_ce0e5d00": {
     "message": "Lukk for kommentarer"
   },
@@ -566,6 +569,9 @@
   "excused_cf8792eb": {
     "message": "Unnskyldt"
   },
+  "extensions_and_lastextension_f45d68e7": {
+    "message": "{ extensions } og { lastExtension }"
+  },
   "external_tool_c5a6410a": {
     "message": "Eksternt verktøy"
   },
@@ -595,6 +601,9 @@
   },
   "favorite_courses_fbd356f0": {
     "message": "Favorittemner"
+  },
+  "file_types_6fa69505": {
+    "message": "Filtyper"
   },
   "files_c300e900": {
     "message": "Filer"
@@ -698,6 +707,9 @@
   "help_4c4968b1": {
     "message": "Hjelp"
   },
+  "hidden_14a032a7": {
+    "message": "Skjult"
+  },
   "hidden_files_inside_will_be_available_with_links_e9e3d233": {
     "message": "Skjult. Filene inni vil være tilgjengelige med lenker."
   },
@@ -746,6 +758,9 @@
   "it_looks_like_your_internet_connection_is_offline__cf4003": {
     "message": "Det ser ut til at du ikke er koblet til Internett. Koble til Internett på nytt og prøv igjen."
   },
+  "it_seems_there_aren_t_any_valid_submissions_to_gra_f136675": {
+    "message": "Det ser ut til at det ikke er noen gyldige innleveringer å karaktersette."
+  },
   "italic_ac45200a": {
     "message": "Kursiv"
   },
@@ -793,6 +808,9 @@
   },
   "long_description_7d89285c": {
     "message": "Lang beskrivelse"
+  },
+  "manage_children_a28d764e": {
+    "message": "Administrere barn"
   },
   "mark_all_as_read_8f3bdf57": {
     "message": "Merk alle som lest"
@@ -919,6 +937,9 @@
   },
   "no_subject_58b7941c": {
     "message": "Intet emne"
+  },
+  "no_submissions_to_display_6f1491cf": {
+    "message": "Ingen innleveringer å vise"
   },
   "no_time_limit_2147d9bf": {
     "message": "Ingen tidsfrist"
@@ -1463,6 +1484,9 @@
   "this_assignment_does_not_allow_submissions_30af1caa": {
     "message": "Denne oppgaven tillater ikke innleveringer."
   },
+  "this_assignment_doesn_t_have_a_description_e2f37ec3": {
+    "message": "Denne oppgaven har ikke noen tittel."
+  },
   "this_assignment_only_allows_on_paper_submissions_f478408a": {
     "message": "Denne oppgaven tillater kun innlevering på papir."
   },
@@ -1619,6 +1643,9 @@
   },
   "view_all_submissions_915a8b78": {
     "message": "Vis alle innleveringer"
+  },
+  "view_canvas_guides_a1c62a97": {
+    "message": "Vis veivisning til Canvas"
   },
   "view_long_description_2b592c0e": {
     "message": "Vis lang beskrivelse"

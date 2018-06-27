@@ -287,6 +287,9 @@
   "clear_recording_5a97b475": {
     "message": "Удалить запись"
   },
+  "close_d634289d": {
+    "message": "Закрыть"
+  },
   "close_for_comments_ce0e5d00": {
     "message": "Закрыто для комментариев"
   },
@@ -566,6 +569,9 @@
   "excused_cf8792eb": {
     "message": "По уважительной причине"
   },
+  "extensions_and_lastextension_f45d68e7": {
+    "message": "{ extensions } и { lastExtension }"
+  },
   "external_tool_c5a6410a": {
     "message": "Внешний инструмент"
   },
@@ -595,6 +601,9 @@
   },
   "favorite_courses_fbd356f0": {
     "message": "Избранные курсы"
+  },
+  "file_types_6fa69505": {
+    "message": "Типы файлов"
   },
   "files_c300e900": {
     "message": "Файлы"
@@ -698,6 +707,9 @@
   "help_4c4968b1": {
     "message": "Справка"
   },
+  "hidden_14a032a7": {
+    "message": "Скрыто"
+  },
   "hidden_files_inside_will_be_available_with_links_e9e3d233": {
     "message": "Скрыто. Находящиеся внутри файлы будут доступны по ссылкам."
   },
@@ -746,6 +758,9 @@
   "it_looks_like_your_internet_connection_is_offline__cf4003": {
     "message": "Похоже, что вы не подключены к Интернету. Подключитесь к Интернету и попробуйте еще раз."
   },
+  "it_seems_there_aren_t_any_valid_submissions_to_gra_f136675": {
+    "message": "По-видимому, нет актуальных сданных работ для проверки."
+  },
   "italic_ac45200a": {
     "message": "Курсив"
   },
@@ -793,6 +808,9 @@
   },
   "long_description_7d89285c": {
     "message": "Длинное описание"
+  },
+  "manage_children_a28d764e": {
+    "message": "Управление детьми"
   },
   "mark_all_as_read_8f3bdf57": {
     "message": "Отметить все как прочитанное"
@@ -919,6 +937,9 @@
   },
   "no_subject_58b7941c": {
     "message": "Нет темы"
+  },
+  "no_submissions_to_display_6f1491cf": {
+    "message": "Нет сданных работ для отображения"
   },
   "no_time_limit_2147d9bf": {
     "message": "Нет ограничения времени"
@@ -1463,6 +1484,9 @@
   "this_assignment_does_not_allow_submissions_30af1caa": {
     "message": "Это задание не может быть отправлено."
   },
+  "this_assignment_doesn_t_have_a_description_e2f37ec3": {
+    "message": "Это задание не имеет описания."
+  },
   "this_assignment_only_allows_on_paper_submissions_f478408a": {
     "message": "Это задание может быть отправлено только в печатном виде."
   },
@@ -1619,6 +1643,9 @@
   },
   "view_all_submissions_915a8b78": {
     "message": "Просмотреть все отправки"
+  },
+  "view_canvas_guides_a1c62a97": {
+    "message": "Просмотр руководств Canvas"
   },
   "view_long_description_2b592c0e": {
     "message": "Просмотреть длинное описание"

@@ -40,17 +40,11 @@
 /* No comment provided by engineer. */
 "Assignment reminder: %@ is due at %@" = "تذكير بالمهمة: موعد استحقاق %1$@ هو %2$@";
 
-/* No comment provided by engineer. */
-"Australia" = "أستراليا";
-
 /* Authorization Failed Title */
 "Authorization Failed." = "فشل التخويل.";
 
 /* No comment provided by engineer. */
 "Cache cleared" = "تم مسح ذاكرة التخزين المؤقت";
-
-/* No comment provided by engineer. */
-"Canada" = "كندا";
 
 /* Cancel button title */
 "Cancel" = "إلغاء";
@@ -103,9 +97,6 @@
 /* Status level for issue being reported */
 "Extremely critical emergency" = "حالة طارئة حرجة للغاية";
 
-/* No comment provided by engineer. */
-"Germany" = "ألمانيا";
-
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "لا يمكن أن تكون أعلى درجة للمهمة أقل من أدنى درجة للمهمة";
 
@@ -133,9 +124,6 @@
 /* Support Ticket Invalid Input Message */
 "Invalid Input.  Check fields and try again." = "إدخال غير صالح.  تحقق من الحقول وحاول مرة أخرى.";
 
-/* No comment provided by engineer. */
-"Ireland" = "أيرلندا";
-
 /* Last Week Button Accessibility Label */
 "Last Week" = "الأسبوع الماضي";
 
@@ -159,6 +147,9 @@
 
 /* Low Course Grade too High */
 "Low course grade cannot be higher than high course grade" = "لا يمكن أن تكون أدنى درجة للمساق أكبر من أعلى درجة للمساق";
+
+/* Title of the manage children screen. This screen is used to add/remove children that a parent is observing. */
+"Manage Children" = "إدارة الأطفال";
 
 /* No comment provided by engineer. */
 "Missing" = "غير منجزة";
@@ -220,9 +211,6 @@
 /* Server Error Title */
 "Server Error" = "خطأ في الخادم";
 
-/* No comment provided by engineer. */
-"Singapore" = "سنغافورة";
-
 /* Status level for issue being reported */
 "Something is broken but I can work around it" = "شيء ما معطل لكن أستطيع تدبير أموري";
 
@@ -258,9 +246,6 @@
 
 /* Auth Failed Message */
 "Unexpected Authentication Error.  Please try logging in again" = "حدث خطأ مصادقة غير متوقع. يرجى إعادة تسجيل الدخول.";
-
-/* No comment provided by engineer. */
-"United States" = "الولايات المتحدة";
 
 /* Unknown T`hreshold Description */
 "Unknown" = "غير معروف";

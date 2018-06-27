@@ -4,6 +4,9 @@
 /* No comment provided by engineer. */
 "Build all the things" = "Construire toutes les choses";
 
+/* Help label when user can't find their school. */
+"Can't find your school? Try typing the full school URL." = "Vous ne trouvez pas votre école? Essayez de saisir l'URL complète de l’école.";
+
 /* No comment provided by engineer. */
 "Cancel" = "Annuler";
 
@@ -45,6 +48,9 @@
 
 /* Help View Controller Title */
 "Help" = "Aide";
+
+/* Help label when domain search has started */
+"How do I find my school?" = "Comment puis-je trouver mon école?";
 
 /* No comment provided by engineer. */
 "I am stuck and can't get things done" = "Je suis coincé et je ne peut pas faire avancer les choses";

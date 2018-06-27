@@ -824,6 +824,10 @@
 		499D1BAC1C8646B4005A86D2 /* Mantle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Mantle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		499D1BB81C864835005A86D2 /* EXTScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTScope.h; sourceTree = "<group>"; };
 		499D1BB91C864835005A86D2 /* metamacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = metamacros.h; sourceTree = "<group>"; };
+		5B3DFCF020DF8291004D771E /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5B3DFCF120DF8292004D771E /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5B3DFCF220DF8292004D771E /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5B3DFCF320DF8292004D771E /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		73FDCB1E035EF6A93E758F42 /* Pods_defaults_CanvasKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DCAC85F1FE1CFAA0069F653 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		89D0BBE2474CFAFFCAB82936 /* Pods-CanvasKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CanvasKit.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-CanvasKit/Pods-CanvasKit.release.xcconfig"; sourceTree = "<group>"; };
@@ -2097,6 +2101,7 @@
 				9FA979A31FBB773A005B21D2 /* ht */,
 				9FB1E2BF1FBB773D009807C0 /* es */,
 				7DCAC85F1FE1CFAA0069F653 /* fr */,
+				5B3DFCF220DF8292004D771E /* cy */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2124,6 +2129,7 @@
 				9FA171FB1FBB773700FD6E77 /* da */,
 				9FA979A21FBB773A005B21D2 /* ht */,
 				9FB1E2BE1FBB773D009807C0 /* es */,
+				5B3DFCF120DF8292004D771E /* cy */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -2151,6 +2157,7 @@
 				9FA171FD1FBB773700FD6E77 /* da */,
 				9FA979A41FBB773A005B21D2 /* ht */,
 				9FB1E2C01FBB773D009807C0 /* es */,
+				5B3DFCF320DF8292004D771E /* cy */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2179,6 +2186,7 @@
 				9FA979A51FBB773A005B21D2 /* ht */,
 				9FB1E2C11FBB773D009807C0 /* es */,
 				2CD80599201BCF1A001D22CC /* en */,
+				5B3DFCF020DF8291004D771E /* cy */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

@@ -4,6 +4,9 @@
 /* No comment provided by engineer. */
 "Build all the things" = "Bygg alla saker";
 
+/* Help label when user can't find their school. */
+"Can't find your school? Try typing the full school URL." = "Kan du inte hitta din skola? Försök att skriva in skolans fullständiga URL.";
+
 /* No comment provided by engineer. */
 "Cancel" = "Avbryt";
 
@@ -45,6 +48,9 @@
 
 /* Help View Controller Title */
 "Help" = "Hjälp";
+
+/* Help label when domain search has started */
+"How do I find my school?" = "Hur hittar jag min skola?";
 
 /* No comment provided by engineer. */
 "I am stuck and can't get things done" = "Jag sitter fast och kan inte få saker gjorda\t";

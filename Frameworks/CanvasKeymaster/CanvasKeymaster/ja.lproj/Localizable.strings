@@ -4,6 +4,9 @@
 /* No comment provided by engineer. */
 "Build all the things" = "すべてのものをビルドする";
 
+/* Help label when user can't find their school. */
+"Can't find your school? Try typing the full school URL." = "学校が見つかりませんか？学校の完全なURLを入力してみてください。";
+
 /* No comment provided by engineer. */
 "Cancel" = "キャンセル";
 
@@ -45,6 +48,9 @@
 
 /* Help View Controller Title */
 "Help" = "ヘルプ";
+
+/* Help label when domain search has started */
+"How do I find my school?" = "私のスクールの見つけ方は？";
 
 /* No comment provided by engineer. */
 "I am stuck and can't get things done" = "私はスタックしており、物事を完了することができません";

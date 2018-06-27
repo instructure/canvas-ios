@@ -155,6 +155,12 @@
 		49E9589E1909979C00A1BFB7 /* CKMDomainSuggestionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKMDomainSuggestionTableViewController.m; sourceTree = "<group>"; };
 		49E958A31909A66B00A1BFB7 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		49E958A51909A67500A1BFB7 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		5B58B4B720DF8189008B8856 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/Main.strings; sourceTree = "<group>"; };
+		5B58B4B820DF818A008B8856 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5B58B4B920DF818A008B8856 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5B58B4BA20DF818A008B8856 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5B58B4BB20DF818A008B8856 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/SupportTicket.strings; sourceTree = "<group>"; };
+		5B58B4BC20DF818A008B8856 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/CKMDomainPickerViewController.strings; sourceTree = "<group>"; };
 		5B63522A40D7F33C56E0E141 /* Pods-defaults-CanvasKeymaster.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasKeymaster.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-CanvasKeymaster/Pods-defaults-CanvasKeymaster.release.xcconfig"; sourceTree = "<group>"; };
 		5E274A401914434100E04789 /* icon_cancel_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_cancel_light.png; sourceTree = "<group>"; };
 		5E274A411914434100E04789 /* icon_cancel_light@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_cancel_light@2x.png"; sourceTree = "<group>"; };
@@ -806,6 +812,7 @@
 				B10E9FF31E2FDCAE000F5D01 /* sv */,
 				B10E9FFA1E2FDCCF000F5D01 /* zh-HK */,
 				B10EA0011E2FDCDA000F5D01 /* zh */,
+				5B58B4BA20DF818A008B8856 /* cy */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -834,6 +841,7 @@
 				B10E9FF11E2FDCAC000F5D01 /* sv */,
 				B10E9FF81E2FDCCD000F5D01 /* zh-HK */,
 				B10E9FFF1E2FDCD9000F5D01 /* zh */,
+				5B58B4B720DF8189008B8856 /* cy */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -861,6 +869,7 @@
 				B10E9FF21E2FDCAD000F5D01 /* sv */,
 				B10E9FF91E2FDCCE000F5D01 /* zh-HK */,
 				B10EA0001E2FDCDA000F5D01 /* zh */,
+				5B58B4B820DF818A008B8856 /* cy */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -888,6 +897,7 @@
 				B10E9FF41E2FDCAF000F5D01 /* sv */,
 				B10E9FFB1E2FDCCF000F5D01 /* zh-HK */,
 				B10EA0021E2FDCDB000F5D01 /* zh */,
+				5B58B4B920DF818A008B8856 /* cy */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -916,6 +926,7 @@
 				B10E9FF51E2FDCAF000F5D01 /* sv */,
 				B10E9FFC1E2FDCD0000F5D01 /* zh-HK */,
 				B10EA0031E2FDCDC000F5D01 /* zh */,
+				5B58B4BC20DF818A008B8856 /* cy */,
 			);
 			name = CKMDomainPickerViewController.storyboard;
 			sourceTree = "<group>";
@@ -944,6 +955,7 @@
 				B10E9FF01E2FDCAC000F5D01 /* sv */,
 				B10E9FF71E2FDCCD000F5D01 /* zh-HK */,
 				B10E9FFE1E2FDCD9000F5D01 /* zh */,
+				5B58B4BB20DF818A008B8856 /* cy */,
 			);
 			name = SupportTicket.storyboard;
 			sourceTree = "<group>";

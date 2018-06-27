@@ -287,6 +287,9 @@
   "clear_recording_5a97b475": {
     "message": "Mukua te tuhi"
   },
+  "close_d634289d": {
+    "message": "Katia"
+  },
   "close_for_comments_ce0e5d00": {
     "message": "Kati mō te kōrero"
   },
@@ -569,6 +572,9 @@
   "excused_cf8792eb": {
     "message": "Tukua"
   },
+  "extensions_and_lastextension_f45d68e7": {
+    "message": "{ extensions } me { lastExtension }"
+  },
   "external_tool_c5a6410a": {
     "message": "Taputapu Waho"
   },
@@ -598,6 +604,9 @@
   },
   "favorite_courses_fbd356f0": {
     "message": "Ngā akoranga makau"
+  },
+  "file_types_6fa69505": {
+    "message": "Momo kōnae"
   },
   "files_c300e900": {
     "message": "Kōnae"
@@ -701,6 +710,9 @@
   "help_4c4968b1": {
     "message": "Āwhina"
   },
+  "hidden_14a032a7": {
+    "message": "Huna"
+  },
   "hidden_files_inside_will_be_available_with_links_e9e3d233": {
     "message": "Kua hunahia. Ka wātea ngā kōnae i roto me ngā hononga."
   },
@@ -749,6 +761,9 @@
   "it_looks_like_your_internet_connection_is_offline__cf4003": {
     "message": "He rite kei te tuimotuhia tō hononga ipurangi. Hono anō ki te ipurangi ka ngana anō"
   },
+  "it_seems_there_aren_t_any_valid_submissions_to_gra_f136675": {
+    "message": "Ano nei kaore he tukuna whaimana hei kōeke."
+  },
   "italic_ac45200a": {
     "message": "Italic"
   },
@@ -796,6 +811,9 @@
   },
   "long_description_7d89285c": {
     "message": "Whakaahuatanga roa"
+  },
+  "manage_children_a28d764e": {
+    "message": "Whakahaaere ngā tamariki"
   },
   "mark_all_as_read_8f3bdf57": {
     "message": "Mākahia Kua Pānuihia te Katoa"
@@ -922,6 +940,9 @@
   },
   "no_subject_58b7941c": {
     "message": "Kāore he Kaupapa"
+  },
+  "no_submissions_to_display_6f1491cf": {
+    "message": "Kaore he Tukuna hei Whakātu"
   },
   "no_time_limit_2147d9bf": {
     "message": "Kāore he rohe wā"
@@ -1466,6 +1487,9 @@
   "this_assignment_does_not_allow_submissions_30af1caa": {
     "message": "Kāore tēnei taumahi e whakaae ngā tukunga"
   },
+  "this_assignment_doesn_t_have_a_description_e2f37ec3": {
+    "message": "Kāore he whakāturanga mō tēnei whakataunga."
+  },
   "this_assignment_only_allows_on_paper_submissions_f478408a": {
     "message": "Tēnei tukunga e whakaae ana pepa tukunga anake."
   },
@@ -1622,6 +1646,9 @@
   },
   "view_all_submissions_915a8b78": {
     "message": "Tiro ki ngā tāpaetanga katoa"
+  },
+  "view_canvas_guides_a1c62a97": {
+    "message": "Titiro ki ngā Canvas Kaiarahi"
   },
   "view_long_description_2b592c0e": {
     "message": "Tirohia te whakāturanga roa"

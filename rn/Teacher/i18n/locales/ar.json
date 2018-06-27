@@ -287,6 +287,9 @@
   "clear_recording_5a97b475": {
     "message": "مسح التسجيل"
   },
+  "close_d634289d": {
+    "message": "إغلاق"
+  },
   "close_for_comments_ce0e5d00": {
     "message": "التعليقات مغلقة"
   },
@@ -566,6 +569,9 @@
   "excused_cf8792eb": {
     "message": "غير إجباري"
   },
+  "extensions_and_lastextension_f45d68e7": {
+    "message": "{ extensions } و{ lastExtension }"
+  },
   "external_tool_c5a6410a": {
     "message": "أداة خارجية"
   },
@@ -595,6 +601,9 @@
   },
   "favorite_courses_fbd356f0": {
     "message": "المساقات المفضلة"
+  },
+  "file_types_6fa69505": {
+    "message": "أنواع الملفات"
   },
   "files_c300e900": {
     "message": "ملفات"
@@ -698,6 +707,9 @@
   "help_4c4968b1": {
     "message": "المساعدة"
   },
+  "hidden_14a032a7": {
+    "message": "مخفي"
+  },
   "hidden_files_inside_will_be_available_with_links_e9e3d233": {
     "message": "مخفي. ستتوفر الملفات الداخلية بارتباطات."
   },
@@ -746,6 +758,9 @@
   "it_looks_like_your_internet_connection_is_offline__cf4003": {
     "message": "يبدو أنك غير متصل بالإنترنت. أعد الاتصال بالإنترنت وأعد المحاولة."
   },
+  "it_seems_there_aren_t_any_valid_submissions_to_gra_f136675": {
+    "message": "يبدو أنه لا توجد أي إرسالات صالحة للدرجة."
+  },
   "italic_ac45200a": {
     "message": "مائل"
   },
@@ -793,6 +808,9 @@
   },
   "long_description_7d89285c": {
     "message": "الوصف الطويل"
+  },
+  "manage_children_a28d764e": {
+    "message": "إدارة الفرعية"
   },
   "mark_all_as_read_8f3bdf57": {
     "message": "وضع علامة على الكل كمقروء"
@@ -919,6 +937,9 @@
   },
   "no_subject_58b7941c": {
     "message": "لا يوجد موضوع"
+  },
+  "no_submissions_to_display_6f1491cf": {
+    "message": "لا توجد إرسالات للعرض"
   },
   "no_time_limit_2147d9bf": {
     "message": "لا يوجد حد زمني"
@@ -1463,6 +1484,9 @@
   "this_assignment_does_not_allow_submissions_30af1caa": {
     "message": "لا تسمح هذه المهمة بإرسالات."
   },
+  "this_assignment_doesn_t_have_a_description_e2f37ec3": {
+    "message": "لا تحتوي هذه المهمة على وصف."
+  },
   "this_assignment_only_allows_on_paper_submissions_f478408a": {
     "message": "لا تسمح هذه المهمة إلا بالإرسالات الورقية."
   },
@@ -1619,6 +1643,9 @@
   },
   "view_all_submissions_915a8b78": {
     "message": "عرض جميع الإرسالات"
+  },
+  "view_canvas_guides_a1c62a97": {
+    "message": "عرض Canvas Guides"
   },
   "view_long_description_2b592c0e": {
     "message": "عرض وصف طويل"
