@@ -45,6 +45,7 @@ NSInteger const GRADE_TAB_INDEX = 2;
 
 @interface CBIAssignmentDetailViewController () <UIActionSheetDelegate, SKStoreProductViewControllerDelegate, ModuleItemEmbeddedProtocol>
 
+@property (strong, nonatomic) UIBarButtonItem *alarmBarButtonItem;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (strong, nonatomic) AssignmentDetailsViewController *detailsController;
@@ -347,7 +348,21 @@ NSInteger const GRADE_TAB_INDEX = 2;
         alarmImage = [UIImage techDebtImageNamed:@"icon_alarm_fill"];
     }
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:alarmImage style:UIBarButtonItemStylePlain target:self action:@selector(schedule:)];
+    // This method gets called multiple times and we don't want to have multiple alarm bar button items.
+    // After the initial call, we only update the image and return.
+    if (self.alarmBarButtonItem != nil) {
+        self.alarmBarButtonItem.image = alarmImage;
+        return;
+    }
+    
+    NSMutableArray *items = [NSMutableArray array];
+    if (self.navigationItem.rightBarButtonItems != nil) {
+        [items addObjectsFromArray:self.navigationItem.rightBarButtonItems];
+    }
+    
+    self.alarmBarButtonItem = [[UIBarButtonItem alloc] initWithImage:alarmImage style:UIBarButtonItemStylePlain target:self action:@selector(schedule:)];
+    [items addObject:self.alarmBarButtonItem];
+    self.navigationItem.rightBarButtonItems = items;
 }
 
 - (void)showAssignmentNotificationSheet:(UIBarButtonItem *)alarmButton {
