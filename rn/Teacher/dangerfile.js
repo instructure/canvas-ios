@@ -16,7 +16,7 @@
 
 // @flow
 
-import { danger, warn, markdown } from 'danger'
+import { danger, warn, markdown, fail } from 'danger'
 import fs from 'fs'
 import path from 'path'
 import _ from 'lodash'
@@ -55,28 +55,6 @@ export function annotations (): void {
 
   if (unFlowedFiles.length > 0) {
     warn(`Please add @flow to these files: ${linkableFiles(unFlowedFiles)}`)
-  }
-}
-
-// Warns if there is not reference to a jira ticket starting with MBL- in the PR title or body
-export function jira (): void {
-  const title = danger.github.pr.title || ''
-  const body = danger.github.pr.body || ''
-  const issues = (title + ' ' + body).match(/mbl-\d+/gi) || []
-  if (!issues.length) {
-    warn('Please add a JIRA ticket number to the pull request.')
-  } else {
-    const set = new Set(issues.map(issue => issue.toUpperCase()))
-    markdown([ ...set ].map(issue =>
-      `[${issue}](https://instructure.atlassian.net/browse/${issue})`
-    ).join('\n'))
-  }
-}
-
-export function testPlan (): void {
-  const body = danger.github.pr.body || ''
-  if (!body.match(/testplan/i) && !body.match(/test plan/i)) {
-    warn('Please add a test plan.')
   }
 }
 
@@ -119,9 +97,9 @@ export function coverageReport (): void {
                          'Lines |' + coverageContent.total.lines.pct + '% | ' + linesCoverageDiff.toFixed(2) + '%\n'
   markdown(coverageMarkdown)
 
-  const coverageDropWarnThreshold = -5
+  const coverageDropWarnThreshold = -1
   if (statementsCoverageDiff < coverageDropWarnThreshold || branchesCoverageDiff < coverageDropWarnThreshold || functionsCoverageDiff < coverageDropWarnThreshold || linesCoverageDiff < coverageDropWarnThreshold) {
-    warn('One or more of your coverage numbers have dropped more than 5% because of this PR. Get with the program, dude.')
+    warn('One or more of your coverage numbers have dropped more than 1% because of this PR. Get with the program, dude.')
   }
 }
 
@@ -136,10 +114,100 @@ export function packages (): void {
   }
 }
 
+export function commitMessage (): void {
+  const commit = danger.github.commits[0]
+  if (!commit) {
+    return fail('Somehow you made a pull request without a commit. Good job!')
+  }
+
+  const message = commit.commit.message
+
+  if (!message.trim()) {
+    fail('Please add a commit message.')
+  }
+
+  // There are a few cases where linting commits is not required
+  if (message.match(/\[ignore-commit-lint\]/g)) {
+    return
+  }
+  handleReleaseNotes(message)
+  handleAffects(message)
+
+  if (!message.match(/test plan:/gi)) {
+    fail('Please add a test plan. It should be prefixed with `test plan:`.')
+  }
+
+  handleJira(message)
+}
+
+function handleReleaseNotes (message) {
+  var releaseNotes = /release note:(.+)/gi.exec(message)
+  if (!releaseNotes) {
+    fail('Please add a release note. If no release note is wanted, use `none`. Example: `release note: Fixed a bug that prevented users from enjoying the app.`')
+    return
+  }
+
+  releaseNotes = releaseNotes || []
+  if (releaseNotes.length > 2) {
+    fail('Please add only one release note.')
+  }
+
+  const releaseNoteText = (releaseNotes[1] || '').trim()
+  if (!releaseNoteText) {
+    fail('Trying to be sneaky? You added a release note but left it blank?')
+  } else {
+    if (releaseNoteText === 'none') {
+      warn('This pull request will not generate a release note.')
+    } else {
+      markdown(`#### Release Note: \n${releaseNoteText}`)
+    }
+  }
+}
+
+function handleAffects (message) {
+  const affects = /affects:(.+)/gi.exec(message)
+  if (!affects) {
+    fail('Please add which apps this change affects. Example: `affects: Teacher, Student` or `affects: none`')
+    return
+  }
+
+  let apps = affects[1]
+  if (!apps) {
+    fail('Did you forget to add app names after `affects:`?')
+    return
+  }
+
+  apps = apps.split(',').map((x) => x.trim())
+  const valid = ['student', 'teacher', 'parent', 'none']
+  const invalid = apps.filter((e) => _.find(valid, e.toLowerCase()))
+  if (invalid.length > 0) {
+    fail(`You have included an invalid app. Valid values are: ${valid.map((e) => _.startCase(e)).join(', ')}`)
+    return
+  }
+
+  const description = apps.map((a) => _.startCase(a)).join(', ')
+  markdown(`#### Affected Apps: ${description}`)
+}
+
+function handleJira (message) {
+  // Make sure to have jira ticket refs
+  if (!message.match(/refs:/gi)) {
+    fail('Please add a reference to a jira ticket. For example: `refs: MBL-10023`')
+  }
+
+  // Add links to the jira tickets in the markdown
+  const issues = message.match(/mbl-\d+/gi) || []
+  if (issues.length) {
+    const set = new Set(issues.map(issue => issue.toUpperCase()))
+    markdown([ ...set ].map(issue =>
+      `[${issue}](https://instructure.atlassian.net/browse/${issue})`
+    ).join('\n'))
+  }
+}
+
 if (!danger.__TEST__) {
+  commitMessage()
   annotations()
-  jira()
-  testPlan()
   untestedFiles()
   coverageReport()
 }

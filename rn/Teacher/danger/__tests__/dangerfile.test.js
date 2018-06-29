@@ -18,11 +18,10 @@
 
 import {
   annotations,
-  jira,
   untestedFiles,
   packages,
 } from '../../dangerfile'
-import { warn, danger, markdown } from 'danger'
+import { warn, danger } from 'danger'
 import path from 'path'
 
 jest
@@ -73,28 +72,6 @@ describe('annotations', () => {
     annotations()
     const warning = 'Please add @flow to these files: <a href=\'https://github.com/instructure/ios/blob/master/path/to/file3.js\'>/path/to/file3.js</a>'
     expect(warn).toHaveBeenCalledWith(warning)
-  })
-})
-
-describe('jira', () => {
-  it('warns if there is not a reference to a jira ticket', () => {
-    danger.__setGithub({ pr: { title: 'No reference', body: 'No reference' } })
-    jira()
-    expect(warn).toHaveBeenCalled()
-  })
-
-  it('does not warn if there is a reference in the title', () => {
-    danger.__setGithub({ pr: { title: '[Mbl-1234] Title', body: 'No reference' } })
-    jira()
-    expect(warn).not.toHaveBeenCalled()
-    expect(markdown).toHaveBeenCalledWith('[MBL-1234](https://instructure.atlassian.net/browse/MBL-1234)')
-  })
-
-  it('does not warn if there is a reference in the body', () => {
-    danger.__setGithub({ pr: { title: 'Title', body: 'Body mbl-1234' } })
-    jira()
-    expect(warn).not.toHaveBeenCalled()
-    expect(markdown).toHaveBeenCalledWith('[MBL-1234](https://instructure.atlassian.net/browse/MBL-1234)')
   })
 })
 
