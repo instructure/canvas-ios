@@ -37,6 +37,7 @@ import currentWindowTraits from '../../utils/windowTraits'
 import { isTeacher, isStudent } from '../app'
 import * as LTITools from '../../common/LTITools'
 import TabsList from '../tabs/TabsList'
+import { featureFlagEnabled } from '@common/feature-flags'
 
 type RoutingParams = {
   +courseID: string,
@@ -115,6 +116,8 @@ export class CourseNavigation extends Component<CourseNavigationProps, any> {
           }
           const url = `native-route/courses/${this.props.courseID}/${view}`
           this.props.navigator.show(url, undefined, { color: processColor(this.props.color) })
+        } else if (tab.id === 'conferences' && featureFlagEnabled('conferences')) {
+          this.props.navigator.show(tab.html_url, undefined, { color: this.props.color, course: this.props.course })
         } else {
           const url = `/native-route-master${tab.html_url}`
           this.props.navigator.show(url)

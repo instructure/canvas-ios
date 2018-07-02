@@ -79,6 +79,7 @@ import RatingRequest from '../modules/developer-menu/RatingRequest'
 import GradesList from '../modules/grades/GradesList'
 import PageViewEvents from '../modules/developer-menu/PageViewEvents'
 import NotAParent from '../modules/parent/NotAParent'
+import ConferenceList from '../modules/courses/conferences/ConferenceList'
 import { Store } from 'redux'
 import { registerScreen } from './'
 import { isTeacher, isStudent, isParent } from '../modules/app'
@@ -199,6 +200,7 @@ export function registerScreens (store: Store): void {
     registerScreen('/courses/:courseID/modules/:moduleID', null, store, { deepLink: true })
     registerScreen('/courses/:courseID/modules/:moduleID/items/:itemID', null, store, { deepLink: true })
     registerScreen('/courses/:courseID/modules/items/:itemID', null, store, { deepLink: true })
+    registerScreen('/courses/:courseID/conferences', wrap(ConferenceList), store, { deepLink: true })
     registerScreen('/groups/:groupID', wrap(CourseNavigation), store, { canBecomeMaster: true, deepLink: true })
     registerScreen('/groups/:groupID/tabs', wrap(CourseNavigation), store, { canBecomeMaster: true, deepLink: true })
     registerScreen('/groups/:groupID/users', wrap(GroupList), store)

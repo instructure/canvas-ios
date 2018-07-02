@@ -125,3 +125,7 @@ export function getCourseLicenses (courseID: string): ApiPromise<License[]> {
 export function getCoursePermissions (courseID: string): ApiPromise<{ [string]: boolean }> {
   return httpClient().get(`courses/${courseID}/permissions`)
 }
+
+export function getConferences (courseID: string): ApiPromise<Conference[]> {
+  return httpClient().get(`courses/${courseID}/conferences`)
+}

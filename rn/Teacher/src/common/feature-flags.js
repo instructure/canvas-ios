@@ -44,7 +44,8 @@ export type FeatureFlagName = 'pageViewLogging' |
                               'newGroupNavigation' |
                               'rceUserFiles' |
                               'simpleDiscussionRenderer' |
-                              'newStudentAssignmentView'
+                              'newStudentAssignmentView' |
+                              'conferences'
 
 // if a feature is listed here it will be turned off
 // unless in development, the current user is on a domain
@@ -57,6 +58,7 @@ export const featureFlags: { [FeatureFlagName]: FeatureFlag } = {
   rceUserFiles: { exempt: { apps: ['teacher'] } },
   simpleDiscussionRenderer: {},
   newStudentAssignmentView: {},
+  conferences: {},
 }
 
 export const exemptDomains = [

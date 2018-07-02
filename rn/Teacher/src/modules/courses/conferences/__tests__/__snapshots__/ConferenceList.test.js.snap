@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ConferenceList List renders 1`] = `
+<Screen
+  navBarStyle="dark"
+  showDismissButton={true}
+  statusBarStyle="default"
+  subtitle="Learn React Native"
+  title="Conferences"
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <FlatList
+      ItemSeparatorComponent={[Function]}
+      ListEmptyComponent={
+        <ListEmptyComponent
+          title="There are no conferences to display."
+        />
+      }
+      data={null}
+      disableVirtualization={false}
+      horizontal={false}
+      initialNumToRender={10}
+      keyExtractor={[Function]}
+      maxToRenderPerBatch={10}
+      numColumns={1}
+      onEndReachedThreshold={2}
+      onRefresh={[Function]}
+      refreshing={false}
+      renderItem={[Function]}
+      scrollEventThrottle={50}
+      testID="conferences.list.list"
+      updateCellsBatchingPeriod={50}
+      windowSize={21}
+    />
+  </View>
+</Screen>
+`;
+
+exports[`ConferenceList List renders with rows 1`] = `
+<Screen
+  navBarStyle="dark"
+  showDismissButton={true}
+  statusBarStyle="default"
+  subtitle="Learn React Native"
+  title="Conferences"
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <FlatList
+      ItemSeparatorComponent={[Function]}
+      ListEmptyComponent={
+        <ListEmptyComponent
+          title="There are no conferences to display."
+        />
+      }
+      data={
+        Array [
+          Object {
+            "description": "this is going to be a great conference",
+            "id": "1",
+            "join_url": "https://wwww.instructure.com/courses/1/conference/1",
+            "title": "super sabido sensacional",
+          },
+        ]
+      }
+      disableVirtualization={false}
+      horizontal={false}
+      initialNumToRender={10}
+      keyExtractor={[Function]}
+      maxToRenderPerBatch={10}
+      numColumns={1}
+      onEndReachedThreshold={2}
+      onRefresh={[Function]}
+      refreshing={false}
+      renderItem={[Function]}
+      scrollEventThrottle={50}
+      testID="conferences.list.list"
+      updateCellsBatchingPeriod={50}
+      windowSize={21}
+    />
+  </View>
+</Screen>
+`;

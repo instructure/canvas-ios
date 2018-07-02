@@ -25,6 +25,7 @@ import {
   CourseModel,
   PageModel,
   ToDoModel,
+  ConferenceModel,
 } from './model'
 
 type ApiPolicy = 'cache-only' | 'cache-and-network' | 'network-only'
@@ -192,6 +193,12 @@ export class API {
   getToDos (): Paginated<ToDoModel[]> {
     return this.paginate('users/self/todo', {
       transform: (todos: ToDoItem[]) => todos.map(todo => new ToDoModel(todo)),
+    })
+  }
+
+  getConferences (courseID: string): ?ConferenceModel[] {
+    return this.get(`courses/${courseID}/conferences`, {
+      transform: (data: { [string]: any }) => data.conferences.map(conference => new ConferenceModel(conference)),
     })
   }
 }
