@@ -10,9 +10,6 @@
 /* Server Error Message */
 "A server error has occurred.  Please try again." = "Une erreur du serveur s'est produite. Veuillez réessayer.";
 
-/* Unauthorized Student Error Title */
-"Access Denied" = "Accès refusé";
-
 /* Alert Section Header */
 "Alert me when:" = "M'alerter lorsque : ";
 
@@ -21,9 +18,6 @@
 
 /* Logout Confirmation */
 "Are you sure you want to logout?" = "Êtes-vous certain de vouloir vous déconnecter ?";
-
-/* Remove Observee Confirmation */
-"Are you sure you want to remove this observee?" = "Êtes-vous certain de vouloir supprimer cette personne observée ?";
 
 /* Assignment Grade High On Description */
 "Assignment grade above" = "Note du devoir assigné supérieur à";
@@ -39,9 +33,6 @@
 
 /* No comment provided by engineer. */
 "Assignment reminder: %@ is due at %@" = "Rappel de travail assigné : %1$@ est dû à %2$@";
-
-/* Authorization Failed Title */
-"Authorization Failed." = "L'autorisation a échoué.";
 
 /* No comment provided by engineer. */
 "Cache cleared" = "Mémoire cache vidée";
@@ -136,9 +127,6 @@
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "En retard : %1$@ (%2$@/%3$@)";
 
-/* No comment provided by engineer. */
-"Log In" = "Connexion";
-
 /* Logout Confirm Button */
 "Logout" = "Déconnexion";
 
@@ -193,12 +181,6 @@
 /* Open file in another application */
 "Open in..." = "Ouvrir avec...";
 
-/* Remove button title */
-"Remove" = "Supprimer";
-
-/* delete student from login */
-"Remove Student" = "Supprimer un étudiant";
-
 /* Support Ticket Creation Failed */
 "Request Failed!  Check network and try again!" = "La requête a échoué !  Vérifiez l’état du réseau, puis réessayez !";
 
@@ -243,9 +225,6 @@
 
 /* No comment provided by engineer. */
 "There was an error loading your content. If it  is an audio or video upload it may still be processing." = "Une erreur est survenue lors du chargement de votre contenu. Si le fichier était une photo ou une vidéo, il se pourrait qu'il soit toujours en cours de traitement.";
-
-/* Auth Failed Message */
-"Unexpected Authentication Error.  Please try logging in again" = "Erreur d'authentification inattendue. Veuillez réessayer de vous connecter.";
 
 /* Unknown T`hreshold Description */
 "Unknown" = "Inconnu";

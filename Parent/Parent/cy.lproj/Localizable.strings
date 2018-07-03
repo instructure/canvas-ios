@@ -10,9 +10,6 @@
 /* Server Error Message */
 "A server error has occurred.  Please try again." = "Gwall ar y gweinydd.  Rhowch gynnig arall arni.";
 
-/* Unauthorized Student Error Title */
-"Access Denied" = "Gwrthodwyd Mynediad";
-
 /* Alert Section Header */
 "Alert me when:" = "Rhowch wybod i mi pan:";
 
@@ -21,9 +18,6 @@
 
 /* Logout Confirmation */
 "Are you sure you want to logout?" = "Ydych chi’n siŵr eich bod am allgofnodi?";
-
-/* Remove Observee Confirmation */
-"Are you sure you want to remove this observee?" = "Ydych chi’n siŵr eich bod am dynnu’r defnyddiwr hwn sy'n cael ei arsyllu?";
 
 /* Assignment Grade High On Description */
 "Assignment grade above" = "Gradd yr aseiniad yn uwch na";
@@ -39,9 +33,6 @@
 
 /* No comment provided by engineer. */
 "Assignment reminder: %@ is due at %@" = "Nodyn atgoffa ar gyfer aseiniad: %1$@ erbyn %2$@";
-
-/* Authorization Failed Title */
-"Authorization Failed." = "Wedi methu awdurdodi.";
 
 /* No comment provided by engineer. */
 "Cache cleared" = "Storfa wedi’i chlirio";
@@ -136,9 +127,6 @@
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "Yn Hwyr: %1$@ (%2$@/%3$@)";
 
-/* No comment provided by engineer. */
-"Log In" = "Mewngofnodi";
-
 /* Logout Confirm Button */
 "Logout" = "Allgofnodi";
 
@@ -193,12 +181,6 @@
 /* Open file in another application */
 "Open in..." = "Agor yn...";
 
-/* Remove button title */
-"Remove" = "Tynnu";
-
-/* delete student from login */
-"Remove Student" = "Tynnu Myfyriwr";
-
 /* Support Ticket Creation Failed */
 "Request Failed!  Check network and try again!" = "Mae'r cais wedi methu!  Gwiriwch y rhwydwaith a rhoi cynnig arall arni!";
 
@@ -243,9 +225,6 @@
 
 /* No comment provided by engineer. */
 "There was an error loading your content. If it  is an audio or video upload it may still be processing." = "Gwall wrth lwytho’ch cynnwys. Os ydych chi'n llwytho sain neu fideo i fyny, gall fod wrthi'n prosesu o hyd.";
-
-/* Auth Failed Message */
-"Unexpected Authentication Error.  Please try logging in again" = "Gwall Dilysu Annisgwyl.  Ceisiwch fewngofnodi eto";
 
 /* Unknown T`hreshold Description */
 "Unknown" = "Dieithr";

@@ -10,9 +10,6 @@
 /* Server Error Message */
 "A server error has occurred.  Please try again." = "サーバーエラーが発生しました。再度お試しください。";
 
-/* Unauthorized Student Error Title */
-"Access Denied" = "アクセスが拒否されました";
-
 /* Alert Section Header */
 "Alert me when:" = "次の時にアラートしてください：";
 
@@ -21,9 +18,6 @@
 
 /* Logout Confirmation */
 "Are you sure you want to logout?" = "ログアウトしますか？";
-
-/* Remove Observee Confirmation */
-"Are you sure you want to remove this observee?" = "この被監視者を削除しますか？";
 
 /* Assignment Grade High On Description */
 "Assignment grade above" = "より上の課題成績";
@@ -39,9 +33,6 @@
 
 /* No comment provided by engineer. */
 "Assignment reminder: %@ is due at %@" = "課題のリマインダー: %1$@の期限は%2$@です";
-
-/* Authorization Failed Title */
-"Authorization Failed." = "認証に失敗しました。";
 
 /* No comment provided by engineer. */
 "Cache cleared" = "キャッシュがクリアされました";
@@ -136,9 +127,6 @@
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "遅滞: %1$@ (%2$@/%3$@)";
 
-/* No comment provided by engineer. */
-"Log In" = "ログイン";
-
 /* Logout Confirm Button */
 "Logout" = "ログアウト";
 
@@ -193,12 +181,6 @@
 /* Open file in another application */
 "Open in..." = "...で開く";
 
-/* Remove button title */
-"Remove" = "削除する";
-
-/* delete student from login */
-"Remove Student" = "受講生を削除する";
-
 /* Support Ticket Creation Failed */
 "Request Failed!  Check network and try again!" = "リクエストに失敗しました！ネットワークをチェックして、もういちど試してください。";
 
@@ -243,9 +225,6 @@
 
 /* No comment provided by engineer. */
 "There was an error loading your content. If it  is an audio or video upload it may still be processing." = "コンテンツのロード中にエラーが発生しました。コンテンツがオーディオまたは動画のアップロードの場合、処理が継続中の可能性があります。";
-
-/* Auth Failed Message */
-"Unexpected Authentication Error.  Please try logging in again" = "予期しない認証エラーです。再度ログインしなおしてください";
 
 /* Unknown T`hreshold Description */
 "Unknown" = "未知の";

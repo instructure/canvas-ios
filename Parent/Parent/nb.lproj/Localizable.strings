@@ -10,9 +10,6 @@
 /* Server Error Message */
 "A server error has occurred.  Please try again." = "Det har oppstått en serverfeil. Vennligst forsøk igjen.";
 
-/* Unauthorized Student Error Title */
-"Access Denied" = "Nektet tilgang";
-
 /* Alert Section Header */
 "Alert me when:" = "Varsle meg når:";
 
@@ -21,9 +18,6 @@
 
 /* Logout Confirmation */
 "Are you sure you want to logout?" = "Er du sikker på at du ønsker å logge av?";
-
-/* Remove Observee Confirmation */
-"Are you sure you want to remove this observee?" = "Er du sikker på ar du ønsker å fjerne denne observatøren? ";
 
 /* Assignment Grade High On Description */
 "Assignment grade above" = "Oppgavevurdering over";
@@ -39,9 +33,6 @@
 
 /* No comment provided by engineer. */
 "Assignment reminder: %@ is due at %@" = "Oppgavepåminnelse: %1$@ har frist til %2$@";
-
-/* Authorization Failed Title */
-"Authorization Failed." = "Autorisasjon mislyktes.";
 
 /* No comment provided by engineer. */
 "Cache cleared" = "Hurtiglager nullstilt";
@@ -136,9 +127,6 @@
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "Seint: %1$@ (%2$@/%3$@)";
 
-/* No comment provided by engineer. */
-"Log In" = "Logg på";
-
 /* Logout Confirm Button */
 "Logout" = "Logg ut";
 
@@ -193,12 +181,6 @@
 /* Open file in another application */
 "Open in..." = "Åpne i ...";
 
-/* Remove button title */
-"Remove" = "Fjern";
-
-/* delete student from login */
-"Remove Student" = "Fjern student";
-
 /* Support Ticket Creation Failed */
 "Request Failed!  Check network and try again!" = "Forespørsel mislyktes!  Sjekk nettverket, og prøv igjen!";
 
@@ -243,9 +225,6 @@
 
 /* No comment provided by engineer. */
 "There was an error loading your content. If it  is an audio or video upload it may still be processing." = "Det oppsto en feil med lasting av innholdet ditt. Hvis det er en lyd- eller video-opplasting kan den fremdeles være under behandling.";
-
-/* Auth Failed Message */
-"Unexpected Authentication Error.  Please try logging in again" = "Uventet autentiseringsfeil. Forsøk å logge inn på nytt";
 
 /* Unknown T`hreshold Description */
 "Unknown" = "Ukjent";
