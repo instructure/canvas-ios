@@ -153,7 +153,7 @@ external_frameworks_dir = File.join(destination, 'ExternalFrameworks')
 FileUtils.cp File.join(opensource_files_dir, 'README.md'), File.join(destination, 'README.md')
 
 # Remove GoogleServices plist
-google_services_path = File.join(destination, 'Canvas', 'Canvas', 'Shrug', 'GoogleService-Info.plist')
+google_services_path = File.join(destination, 'Canvas', 'GoogleService-Info.plist')
 purge_plist google_services_path
 
 # Remove buddybuild scripts

@@ -18,9 +18,7 @@ RCT_EXPORT_MODULE(TabBarBadgeCounts);
 RCT_EXTERN_METHOD(updateUnreadMessageCount:);
 RCT_EXTERN_METHOD(updateTodoListCount:);
 
-- (dispatch_queue_t)methodQueue
-{
-    return dispatch_get_main_queue();
-}
+- (dispatch_queue_t)methodQueue { return dispatch_get_main_queue(); }
++ (BOOL)requiresMainQueueSetup { return YES; }
 
 @end

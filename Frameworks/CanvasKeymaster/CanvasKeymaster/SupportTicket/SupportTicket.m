@@ -15,7 +15,6 @@
 //
 
 #import "SupportTicket.h"
-#import <CocoaLumberjack/DDFileLogger.h>
 #import "UIDevice+CKMHardware.h"
 #import "CanvasKeymaster.h"
 

@@ -95,10 +95,9 @@ open class SupportTicket {
 
     open let impact: ImpactLevel
     open let type: SupportTicketType
-    open let logFilePath: String?
 
     //intentionally not localizing this area since this is what support will see and our support staff is only expected to read English
-    init(requesterName: String = "Unknown User", requesterUsername: String = "Unknown User", requesterEmail: String = "unknown_user@test.com", requesterDomain: URL = URL(string: "https://canvas.instructure.com")!, subject: String = "N/A", body: String = "N/A", impact: ImpactLevel = .None, type: SupportTicketType = .featureRequest, logFilePath: String? = nil) {
+    init(requesterName: String = "Unknown User", requesterUsername: String = "Unknown User", requesterEmail: String = "unknown_user@test.com", requesterDomain: URL = URL(string: "https://canvas.instructure.com")!, subject: String = "N/A", body: String = "N/A", impact: ImpactLevel = .None, type: SupportTicketType = .featureRequest) {
         self.requesterName = requesterName
         self.requesterUsername = requesterUsername
         self.requesterEmail = requesterEmail
@@ -108,7 +107,6 @@ open class SupportTicket {
 
         self.impact = impact
         self.type = type
-        self.logFilePath = logFilePath
     }
 
     init(session: Session, subject: String = "N/A", body: String = "N/A", impact: ImpactLevel = .None, type: SupportTicketType = .featureRequest) {
@@ -121,7 +119,6 @@ open class SupportTicket {
 
         self.impact = impact
         self.type = type
-        self.logFilePath = session.logFilePath()?.absoluteString
     }
 
     func dictionaryValue() -> [String: Any] {
@@ -151,7 +148,6 @@ open class SupportTicket {
         dictionary["App Version"] = appVersionString()
         dictionary["Platform"] = device.description
         dictionary["OS Version"] = UIDevice.current.systemVersion
-        dictionary["user_log"] = log()
 
         return dictionary
     }
@@ -162,22 +158,4 @@ open class SupportTicket {
         }
         return "\(version) (\(appBundle))"
     }
-
-    fileprivate func log() -> String {
-        let emptyLogString = "EMPTY LOG"
-        guard let filePath = logFilePath, let data = try? Data(contentsOf: URL(fileURLWithPath: filePath)) else { return emptyLogString }
-
-        let logData = String(data: data, encoding: String.Encoding.utf8)
-        guard let stringsByLine = logData?.components(separatedBy: CharacterSet.newlines) else { return emptyLogString }
-
-        var logString = "------------\nLog\n------------\n\n:"
-        for lineNum in 0..<stringsByLine.count {
-            if lineNum > 150 { break }
-
-            logString.append(stringsByLine[lineNum])
-        }
-
-        return logString
-    }
-
 }

@@ -17,11 +17,9 @@
     
 
 #import <CanvasKit1/CanvasKit1.h>
-#import "UIViewController+AnalyticsTracking.h"
 #import <CanvasKit1/CKActionSheetWithBlocks.h>
 #import "WebBrowserViewController.h"
 #import "iCanvasConstants.h"
-#import "Analytics.h"
 #import "UIAlertController+TechDebt.h"
 
 @import CanvasCore;
@@ -178,9 +176,6 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    
-    NSLog(@"TRACKING: %@", kGAIScreenWebBrowser);
-    [Analytics logScreenView:kGAIScreenWebBrowser];
 }
 
 - (void)configureWebView

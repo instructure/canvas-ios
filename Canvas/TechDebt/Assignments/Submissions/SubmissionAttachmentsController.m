@@ -17,8 +17,6 @@
     
 
 #import <MediaPlayer/MediaPlayer.h>
-#import "UIViewController+AnalyticsTracking.h"
-
 #import "SubmissionAttachmentsController.h"
 #import "WebBrowserViewController.h"
 #import "CBISubmissionAnnotationPreviewHelper.h"

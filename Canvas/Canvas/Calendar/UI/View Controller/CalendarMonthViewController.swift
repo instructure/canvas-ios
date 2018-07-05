@@ -18,7 +18,6 @@
 
 import UIKit
 import ReactiveSwift
-import Crashlytics
 import CanvasCore
 
 open class CalendarMonthViewController: UIViewController, CalendarViewDelegate, CalendarViewDataSource, PageViewEventViewControllerLoggingProtocol {
@@ -113,12 +112,7 @@ open class CalendarMonthViewController: UIViewController, CalendarViewDelegate, 
         super.viewDidLoad()
         
         self.navigationController?.applyDefaultBranding()
-        
-        CLSLogv("locale: %@", getVaList([Locale.current.identifier]))
-        CLSLogv("calendar: %@", getVaList([Calendar.current.description]))
-
         initNavigationButtons()
-
         backTitleDateFormatter.dateFormat = "MMMM"
 
         calendarView.translatesAutoresizingMaskIntoConstraints = false

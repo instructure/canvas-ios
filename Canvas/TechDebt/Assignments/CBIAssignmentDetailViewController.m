@@ -29,7 +29,6 @@
 #import <StoreKit/StoreKit.h>
 #import "EXTScope.h"
 #import "CKCanvasAPI+CurrentAPI.h"
-#import "CBILog.h"
 #import "UIImage+TechDebt.h"
 
 @import CanvasKeymaster;

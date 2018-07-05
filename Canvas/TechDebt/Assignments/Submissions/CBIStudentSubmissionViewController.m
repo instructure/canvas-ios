@@ -32,7 +32,6 @@
 #import <CanvasKit1/CKAudioCommentRecorderView.h>
 #import <CanvasKit1/CKOverlayViewController.h>
 #import "CKCanvasAPI+CurrentAPI.h"
-#import "CBILog.h"
 #import "CKIClient+CBIClient.h"
 #import "MobileQuizInformationViewController.h"
 #import "Router.h"
@@ -81,8 +80,6 @@ typedef enum CBISubmissionState : NSUInteger {
 
 - (instancetype)init {
     self = [super initWithStyle:UITableViewStylePlain];
-    DDLogVerbose(@"%@ - %@", NSStringFromClass(self.class), NSStringFromSelector(_cmd));
-
     self.avatarImageCache = [NSCache new];
     
     RAC(self, assignment) = [RACObserve(self, viewModel.model) flattenMap:^(CKIAssignment *assignment) {
@@ -175,7 +172,6 @@ typedef enum CBISubmissionState : NSUInteger {
 }
 
 - (void)viewDidLoad {
-    DDLogVerbose(@"%@ - %@", NSStringFromClass(self.class), NSStringFromSelector(_cmd));
     [super viewDidLoad];
     if (@available(iOS 11.0, *)) {
         self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
@@ -235,7 +231,6 @@ typedef enum CBISubmissionState : NSUInteger {
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    DDLogVerbose(@"%@ - %@", NSStringFromClass(self.class), NSStringFromSelector(_cmd));
     [super viewDidAppear:animated];
     [self floatActionBar];
 }
@@ -254,7 +249,6 @@ typedef enum CBISubmissionState : NSUInteger {
 #pragma mark - floatingActionBar
 
 - (void)addFloatingActionBar {
-    DDLogVerbose(@"%@ - %@", NSStringFromClass(self.class), NSStringFromSelector(_cmd));
     [[UINib nibWithNibName:@"CBIFloatingActionBar" bundle:[NSBundle bundleForClass:[self class]]] instantiateWithOwner:self options:nil];
     
     @weakify(self)
@@ -316,14 +310,12 @@ typedef enum CBISubmissionState : NSUInteger {
 }
 
 - (void)postUploadError {
-    DDLogVerbose(@"%@ - %@", NSStringFromClass(self.class), NSStringFromSelector(_cmd));
     NSString *title = NSLocalizedString(@"Submission Error", @"Title for file submission error");
     NSString *message = NSLocalizedString(@"There was a network problem while attempting to upload your submission", @"message for failed submission upload");
     [UIAlertController showAlertWithTitle:title message:message];
 }
 
 - (IBAction)tappedTurnIn:(id)sender {
-    DDLogVerbose(@"%@ - %@", NSStringFromClass(self.class), NSStringFromSelector(_cmd));
     SubmissionWorkflowController *controller = [[SubmissionWorkflowController alloc] initWithViewController:self];
     controller.allowsMediaSubmission = CKCanvasAPI.currentAPI.mediaServer.enabled;
     controller.legacyAssignment = self.legacyAssignment;
@@ -350,11 +342,9 @@ typedef enum CBISubmissionState : NSUInteger {
     controller.uploadCompleteBlock = ^(CKSubmission * _Nullable submission, NSError *error) {
         @strongify(self);
         if (error) {
-            DDLogVerbose(@"%@ - %@ : error: %@", NSStringFromClass(self.class), NSStringFromSelector(_cmd), [error localizedDescription]);
             [self postUploadError];
         }
         else {
-            DDLogVerbose(@"%@ - %@ : success", NSStringFromClass(self.class), NSStringFromSelector(_cmd));
             progressView.progress = 0.9;
             [[self.viewModel refreshViewModelSignalForced:YES] subscribeError:^(NSError *error) {
                 NSLog(@"trouble refreshing after submitting");
@@ -490,7 +480,6 @@ typedef enum CBISubmissionState : NSUInteger {
 }
 
 - (IBAction)tappedAdComment:(id)sender {
-    DDLogVerbose(@"%@ - %@", NSStringFromClass(self.class), NSStringFromSelector(_cmd));
     if (self.userIsCommenting) {
         [self.viewModel.collectionController removeObjectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     } else {
@@ -504,7 +493,6 @@ typedef enum CBISubmissionState : NSUInteger {
 }
 
 - (void)submitComment:(NSString *)commentText onSuccess:(void (^)(void))success onFailure:(void (^)(void))failure {
-    DDLogVerbose(@"%@ - %@", NSStringFromClass(self.class), NSStringFromSelector(_cmd));
     CKISubmissionComment *comment = [CKISubmissionComment new];
     comment.context = self.viewModel.record;
     comment.comment = commentText;
@@ -526,14 +514,8 @@ typedef enum CBISubmissionState : NSUInteger {
 
 
 - (void)chooseMediaComment:(UIButton *)sender {
-    DDLogVerbose(@"%@ - %@", NSStringFromClass(self.class), NSStringFromSelector(_cmd));
-    
     NSString *recordVideo = NSLocalizedString(@"Record Video", @"Record video submission comment option");
-    
-
     NSString *chooseVideo = NSLocalizedString(@"Choose Video", @"Choose a video to send as a comment");
-    
-    
     NSString *recordAudio = NSLocalizedString(@"Record Audio", @"Record audio submission comment");
     
     UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", @"Cancel button title") destructiveButtonTitle:nil otherButtonTitles:recordVideo, chooseVideo, recordAudio, nil];
@@ -569,7 +551,6 @@ typedef enum CBISubmissionState : NSUInteger {
 }
 
 - (void)uploadMediaCommentAtURL:(NSURL *)localURL {
-    DDLogVerbose(@"%@ - %@", NSStringFromClass(self.class), NSStringFromSelector(_cmd));
     UIApplication *application = [UIApplication sharedApplication];
     __block UIBackgroundTaskIdentifier backgroundTask = UIBackgroundTaskInvalid;
     backgroundTask = [application beginBackgroundTaskWithExpirationHandler:^{
@@ -592,13 +573,11 @@ typedef enum CBISubmissionState : NSUInteger {
         [progress removeFromSuperview];
         progress = nil;
         if (error) {
-            DDLogVerbose(@"%@ - error=%@", NSStringFromSelector(_cmd), error);
             NSString *title = NSLocalizedString(@"Comment Error", @"title for media comment upload failure");
             NSString *message = NSLocalizedString(@"There was a network error posting your comment.", @"message for media comment upload failure");
             [UIAlertController showAlertWithTitle:title message:message];
         }
         else {
-            DDLogVerbose(@"%@ - success!", NSStringFromSelector(_cmd));
             @strongify(self);
             CKSubmissionComment *legacyComment = submission.comments.lastObject;
             CKISubmissionComment *comment = [CKISubmissionComment new];
@@ -623,7 +602,6 @@ typedef enum CBISubmissionState : NSUInteger {
 }
 
 - (void)showVideoRecorderWithSourceType:(UIImagePickerControllerSourceType)type {
-    DDLogVerbose(@"%@ - %@", NSStringFromClass(self.class), NSStringFromSelector(_cmd));
     VideoRecorderController *picker = [[VideoRecorderController alloc] initWithSourceType:type Handler:^(NSURL *movieURL) {
         [self uploadMediaCommentAtURL:movieURL];
     }];
@@ -632,7 +610,6 @@ typedef enum CBISubmissionState : NSUInteger {
 }
 
 - (void)showAudioRecorder {
-    DDLogVerbose(@"%@ - %@", NSStringFromClass(self.class), NSStringFromSelector(_cmd));
     CKAudioCommentRecorderView *audioRecorder = [[CKAudioCommentRecorderView alloc] init];
     
     CKOverlayViewController *overlay = [[CKOverlayViewController alloc] initWithView:audioRecorder];
@@ -651,7 +628,6 @@ typedef enum CBISubmissionState : NSUInteger {
 }
 
 - (void)postAudioCommentFromAudioRecorder {
-    DDLogVerbose(@"%@ - %@", NSStringFromClass(self.class), NSStringFromSelector(_cmd));
     NSURL *audioURL = self.recordAudio.recordedFileURL;
     
     if (!audioURL) {

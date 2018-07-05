@@ -24,7 +24,6 @@
 #import "CBIConversationStarter.h"
 #import "UIView+Circular.h"
 @import CanvasKeymaster;
-#import "CBILog.h"
 @import CanvasCore;
 
 @interface CBIPeopleDetailViewController () <UIGestureRecognizerDelegate>
@@ -113,12 +112,10 @@
 {
     if (masqueradeAs.length > 0) {
         [[TheKeymaster masqueradeAsUserWithID:masqueradeAs] subscribeNext:^(id client) {
-            DDLogVerbose(@"masqueradeAsUserSuccess : %@", [CKIClient currentClient].currentUser.id);
             NSString *title = NSLocalizedString(@"Success!", @"Masquerade success title");
             NSString *message = [NSString stringWithFormat:NSLocalizedString(@"You are now masquerading as %@. To Stop Masquerading go to your Profile.", @"Masquerade success message"), [CKIClient currentClient].currentUser.name];
             [UIAlertController showAlertWithTitle:title message:message];
         } error:^(NSError *error) {
-            DDLogVerbose(@"masqueradeAsUserError : %@", [error localizedDescription]);
             NSString *title = NSLocalizedString(@"Oops!", @"Title for an error alert");
             NSString *message = NSLocalizedString(@"You don't have permission to masquerade as this user or there is no user with that ID", @"Masquerade error message");
             [UIAlertController showAlertWithTitle:title message:message];

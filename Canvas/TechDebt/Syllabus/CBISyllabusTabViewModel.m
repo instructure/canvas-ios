@@ -23,7 +23,6 @@
 #import <CanvasKit/CanvasKit.h>
 #import "Router.h"
 @import CanvasKeymaster;
-#import "CBILog.h"
 
 @interface CBISyllabusTabViewModel ()
 @property (nonatomic) NSMutableDictionary *syllabusItemsByID;
@@ -189,7 +188,6 @@ typedef NS_ENUM(NSInteger, sectionType) {
 }
 
 - (void)tableViewController:(MLVCTableViewController *)controller didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    DDLogVerbose(@"didSelectSyllabusItem");
     [[Router sharedRouter] routeFromController:controller toViewModel:self];
 }
 @end

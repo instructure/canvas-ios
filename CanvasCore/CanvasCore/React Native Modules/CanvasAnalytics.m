@@ -13,27 +13,22 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-    
-    
 
-#import "UIViewController+AnalyticsTracking.h"
-#import <GoogleAnalytics/GAIFields.h>
-#import "Analytics.h"
+#import "CanvasAnalytics.h"
 
-@implementation UIViewController (AnalyticsTracking)
+static id<CanvasAnalyticsHandler> _handler = nil;
 
-- (void)sendTrackingByClassName {
-    NSString *className = NSStringFromClass([self class]);
-    NSString *viewName = [className stringByReplacingOccurrencesOfString:@"Controller" withString:@""];
-    
-    [Analytics logScreenView:viewName];
+@implementation CanvasAnalytics
+
+RCT_EXPORT_MODULE();
+
++ (void)setHandler:(id<CanvasAnalyticsHandler>)handler {
+    _handler = handler;
 }
 
-- (void)trackScreenViewWithScreenName:(NSString *)screenName
+RCT_EXPORT_METHOD(logEvent:(NSString *)name parameters:(nullable NSDictionary<NSString *, id>*)parameters)
 {
-    
-    [Analytics logScreenView:screenName];
+    [_handler handleEvent:name parameters:parameters];
 }
-
 
 @end

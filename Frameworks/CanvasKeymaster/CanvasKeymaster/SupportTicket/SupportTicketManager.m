@@ -16,7 +16,6 @@
 
 #import "SupportTicketManager.h"
 @import ReactiveObjC;
-@import CocoaLumberjack;
 #import "CanvasKeymaster.h"
 
 static NSString *const ERRORS_PATH = @"error_reports.json";

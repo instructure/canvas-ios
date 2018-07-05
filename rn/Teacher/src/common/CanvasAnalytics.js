@@ -13,14 +13,17 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-    
-    
 
-@import CocoaLumberjack;
+// @flow
 
-@interface CBILogger : DDAbstractLogger
+//
+//  A simple wrapper around the CanvasAnalytics native module
+//
 
-+ (CBILogger *)sharedInstance;
-+ (void)install:(id <DDLogFileManager>)logFileManager;
+import { NativeModules } from 'react-native'
 
-@end
+const { CanvasAnalytics } = NativeModules
+
+export function logEvent (name: string, parameters?: { [string]: any }): void {
+  CanvasAnalytics.logEvent(name, parameters)
+}

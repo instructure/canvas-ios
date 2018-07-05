@@ -18,7 +18,6 @@
 
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <AVFoundation/AVFoundation.h>
-#import "UIViewController+AnalyticsTracking.h"
 #import <CanvasKit1/CKActionSheetWithBlocks.h>
 #import <CanvasKit1/NSFileManager+CKAdditions.h>
 #import "UIAlertController+TechDebt.h"
@@ -26,8 +25,6 @@
 #import "DocumentLibraryView.h"
 
 #import "CBIDropbox.h"
-
-#import "CBILog.h"
 
 @interface ReceivedFilesViewController () <DocumentLibraryViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *libraryContainer;
@@ -170,8 +167,6 @@ static NSURL *receivedFilesFolder() {
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    
-    DDLogVerbose(@"%@ - viewDidAppear", NSStringFromClass([self class]));
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -245,8 +240,6 @@ static NSURL *receivedFilesFolder() {
 }
 
 - (IBAction)dismiss:(id)sender {
-    
-    DDLogVerbose(@"dismissPressed");
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -344,7 +337,6 @@ static NSURL *receivedFilesFolder() {
                                                               @"Button title for confirming a file deletion")];
     [actionSheet addButtonWithTitle:NSLocalizedString(@"Remove", @"Confirmation for removing a file")
                             handler:^{
-                                DDLogVerbose(@"fileRemovedAtURL : %@", [selectedItem absoluteString]);
                                 NSFileManager *fileManager = [NSFileManager new];
                                 NSError *error;
                                 if ([fileManager removeItemAtURL:selectedItem error:&error]) {
@@ -366,7 +358,6 @@ static NSURL *receivedFilesFolder() {
 }
 
 - (void)showImagePickerWithSourceType:(UIImagePickerControllerSourceType)sourceType {
-    DDLogVerbose(@"showImagePickerWithSourceType : %zd", sourceType);
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
     picker.sourceType = sourceType;
@@ -381,7 +372,6 @@ static NSURL *receivedFilesFolder() {
 }
 
 - (void)showVideoRecorderWithSourceType:(UIImagePickerControllerSourceType)sourceType {
-    DDLogVerbose(@"showVideoRecorderWithSourceType : %zd", sourceType);
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
     picker.sourceType = sourceType;
@@ -392,21 +382,17 @@ static NSURL *receivedFilesFolder() {
 }
 
 - (void)tappedCameraURL {
-    DDLogVerbose(@"tappedCameraURL");
     BOOL cameraAvailable = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
     if (cameraAvailable) {
         CKActionSheetWithBlocks *actionSheet = [[CKActionSheetWithBlocks alloc] initWithTitle:nil];
         [actionSheet addButtonWithTitle:NSLocalizedString(@"Take Photo or Video...", nil) handler:^{
-            DDLogVerbose(@"cameraSourceSelected");
             [self showVideoRecorderWithSourceType:UIImagePickerControllerSourceTypeCamera];
         }];
         [actionSheet addButtonWithTitle:NSLocalizedString(@"Choose from Library...", nil) handler:^{
-            DDLogVerbose(@"librarySourceSelected");
             [self showImagePickerWithSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
         }];
         
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-            DDLogVerbose(@"cancelSelected");
             [actionSheet addCancelButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
         }
         

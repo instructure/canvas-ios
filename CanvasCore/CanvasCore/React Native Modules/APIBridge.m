@@ -32,13 +32,9 @@ RCT_EXPORT_MODULE();
     return self;
 }
 
-- (dispatch_queue_t)methodQueue {
-    return dispatch_get_main_queue();
-}
-
-- (NSArray<NSString *> *)supportedEvents {
-    return @[@"APICall"];
-}
+- (dispatch_queue_t)methodQueue { return dispatch_get_main_queue(); }
++ (BOOL)requiresMainQueueSetup { return YES; }
+- (NSArray<NSString *> *)supportedEvents { return @[@"APICall"]; }
 
 - (void)call:(NSString *)name args:(NSArray *)args callback:(APIBridgeCallback)callback {
     NSString *requestID = [[NSUUID UUID] UUIDString];

@@ -17,7 +17,6 @@
     
 
 #import "MobileQuizInformationViewController.h"
-#import "CBILog.h"
 
 @interface MobileQuizInformationViewController ()
 @property (weak, nonatomic) IBOutlet UITextView *textView;
@@ -44,16 +43,10 @@
     self.title = NSLocalizedString(@"Mobile Quiz Warning", @"Warnging for taking quizzes on a mobile device");
 
 }
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    
-    DDLogVerbose(@"%@ - viewDidAppear", NSStringFromClass([self class]));
-}
 
 - (IBAction)doneButtonTapped:(id)sender
 {
     [self dismissViewControllerAnimated:YES completion:nil];
-    DDLogVerbose(@"doneButtonTapped");
 }
 
 @end

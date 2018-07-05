@@ -244,10 +244,6 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
     return [NSString stringWithFormat:@"%@/%@   %@/iOS %@", self.delegate.appNameForMobileVerify, appVersion, hardwarePlatform, [[UIDevice currentDevice] systemVersion]];
 }
 
-- (NSString *)logFilePath {
-    return self.delegate.logFilePath;
-}
-
 - (RACSignal *)clientForSuggestedDomain:(NSString *)host
 {
     self.domainPicker = [CKMDomainPickerViewController new];

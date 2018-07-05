@@ -100,7 +100,7 @@ open class SupportTicketViewController : FormViewController {
             }
             <<< TextAreaRow(SupportTicketCellTag.Comment.rawValue) {
                 $0.placeholder = type.description()
-                $0.cell.textView.accessibilityHint = "\($0.placeholder)"
+                $0.cell.textView.accessibilityHint = "\(String(describing: $0.placeholder))"
                 $0.textAreaHeight = .dynamic(initialTextViewHeight: 100)
                 }.onChange { [weak self] row in
                     self?.validateForm()

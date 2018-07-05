@@ -32,14 +32,13 @@
 		2C9C44FF207EBC2D008A8DF1 /* SoSeedySwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C9C44FA207EBBFF008A8DF1 /* SoSeedySwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2C9C4500207EBC2E008A8DF1 /* SoGrey.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C9C44FD207EBC0D008A8DF1 /* SoGrey.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2C9C4501207EBC30008A8DF1 /* CanvasCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C9C44FC207EBC04008A8DF1 /* CanvasCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2CE205B820EBF690002A6A64 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CE205B720EBF68F002A6A64 /* GoogleService-Info.plist */; };
 		3B0107A41FBBA7C600062DB2 /* GradeWidgetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B0107A31FBBA7C600062DB2 /* GradeWidgetCell.xib */; };
 		3B1642C31FBA0426006C55D2 /* CanvasKeymaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B1642C51FBA0426006C55D2 /* CanvasKeymaster.framework */; };
 		3B6DCCA71FB502CE005EE8D2 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6DCCA61FB502CE005EE8D2 /* NotificationCenter.framework */; };
 		3B6DCCAA1FB502CE005EE8D2 /* GradesTodayWidgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6DCCA91FB502CE005EE8D2 /* GradesTodayWidgetViewController.swift */; };
 		3B6DCCAD1FB502CE005EE8D2 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B6DCCAB1FB502CE005EE8D2 /* MainInterface.storyboard */; };
 		3B6DCCB11FB502CE005EE8D2 /* GradesWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3B6DCCA51FB502CD005EE8D2 /* GradesWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		4902E1251CF4C8890069E043 /* Analytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 4902E1231CF4C8890069E043 /* Analytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4902E1261CF4C8890069E043 /* Analytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 4902E1241CF4C8890069E043 /* Analytics.m */; };
 		490687951D02151E0072DBEA /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490687911D02151E0072DBEA /* SettingsViewController.swift */; };
 		490687961D02151E0072DBEA /* SystemSettingsLinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490687921D02151E0072DBEA /* SystemSettingsLinkCell.swift */; };
 		490687981D0215330072DBEA /* LandingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490687971D0215330072DBEA /* LandingPageViewController.swift */; };
@@ -140,8 +139,6 @@
 		492705D31CF4B73300C631C6 /* UIView+FloatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 492705911CF4B73200C631C6 /* UIView+FloatingView.m */; };
 		492705D41CF4B73300C631C6 /* UIView_render_IN.h in Headers */ = {isa = PBXBuildFile; fileRef = 492705921CF4B73200C631C6 /* UIView_render_IN.h */; };
 		492705D51CF4B73300C631C6 /* UIView_render_IN.m in Sources */ = {isa = PBXBuildFile; fileRef = 492705931CF4B73200C631C6 /* UIView_render_IN.m */; };
-		492705D61CF4B73300C631C6 /* UIViewController+AnalyticsTracking.h in Headers */ = {isa = PBXBuildFile; fileRef = 492705941CF4B73200C631C6 /* UIViewController+AnalyticsTracking.h */; };
-		492705D71CF4B73300C631C6 /* UIViewController+AnalyticsTracking.m in Sources */ = {isa = PBXBuildFile; fileRef = 492705951CF4B73200C631C6 /* UIViewController+AnalyticsTracking.m */; };
 		492705DA1CF4B73300C631C6 /* UIWebView+iCanvas.h in Headers */ = {isa = PBXBuildFile; fileRef = 492705981CF4B73200C631C6 /* UIWebView+iCanvas.h */; };
 		492705DB1CF4B73300C631C6 /* UIWebView+iCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 492705991CF4B73200C631C6 /* UIWebView+iCanvas.m */; };
 		492705E01CF4B73300C631C6 /* UIWebView+SafeAPIURL.h in Headers */ = {isa = PBXBuildFile; fileRef = 4927059E1CF4B73200C631C6 /* UIWebView+SafeAPIURL.h */; };
@@ -195,11 +192,6 @@
 		492706D31CF4BA7B00C631C6 /* ContentLockViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706CC1CF4BA7B00C631C6 /* ContentLockViewController.h */; };
 		492706D41CF4BA7B00C631C6 /* ContentLockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706CD1CF4BA7B00C631C6 /* ContentLockViewController.m */; };
 		492706D51CF4BA7B00C631C6 /* ContentLockViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 492706CE1CF4BA7B00C631C6 /* ContentLockViewController.storyboard */; };
-		492706DC1CF4BA8400C631C6 /* CBILog.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706D71CF4BA8400C631C6 /* CBILog.h */; };
-		492706DD1CF4BA8400C631C6 /* CBILogFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706D81CF4BA8400C631C6 /* CBILogFormatter.h */; };
-		492706DE1CF4BA8400C631C6 /* CBILogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706D91CF4BA8400C631C6 /* CBILogFormatter.m */; };
-		492706DF1CF4BA8400C631C6 /* CBILogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706DA1CF4BA8400C631C6 /* CBILogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		492706E01CF4BA8400C631C6 /* CBILogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706DB1CF4BA8400C631C6 /* CBILogger.m */; };
 		492706E41CF4BAB500C631C6 /* VideoRecorderController.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706E21CF4BAB500C631C6 /* VideoRecorderController.h */; };
 		492706E51CF4BAB500C631C6 /* VideoRecorderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706E31CF4BAB500C631C6 /* VideoRecorderController.m */; };
 		4927077C1CF4BB2100C631C6 /* CBIModuleProgressNotifications.h in Headers */ = {isa = PBXBuildFile; fileRef = 492707691CF4BB2100C631C6 /* CBIModuleProgressNotifications.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -256,7 +248,6 @@
 		49642BC71CF4C4DC00238B3F /* CanvasKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49642BC31CF4C4CD00238B3F /* CanvasKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49642BC81CF4C4DF00238B3F /* CanvasKeymaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49642BC21CF4C4CD00238B3F /* CanvasKeymaster.framework */; };
 		49642BC91CF4C4DF00238B3F /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49642BC31CF4C4CD00238B3F /* CanvasKit.framework */; };
-		496D31241CF7529A00A3B11E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 496D31231CF7529A00A3B11E /* GoogleService-Info.plist */; };
 		496D31261CF752C600A3B11E /* LegacyModuleProgressShim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496D31251CF752C600A3B11E /* LegacyModuleProgressShim.swift */; };
 		496D312A1CF7550A00A3B11E /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496D31291CF7550A00A3B11E /* NetworkMonitor.swift */; };
 		4976C2001FBB84B900160EE4 /* CalendarEventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4976C1FF1FBB84B900160EE4 /* CalendarEventDetailViewController.swift */; };
@@ -756,6 +747,7 @@
 		2C9C44FA207EBBFF008A8DF1 /* SoSeedySwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoSeedySwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C9C44FC207EBC04008A8DF1 /* CanvasCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C9C44FD207EBC0D008A8DF1 /* SoGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoGrey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2CE205B720EBF68F002A6A64 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		2F60CD48D1AD6AD81369BEFD /* Pods-defaults-PreSubmissionAnnotations.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-PreSubmissionAnnotations.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-PreSubmissionAnnotations/Pods-defaults-PreSubmissionAnnotations.debug.xcconfig"; sourceTree = "<group>"; };
 		3105EE2FF7DE0582A458F38F /* Pods-defaults-TechDebt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-TechDebt.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-TechDebt/Pods-defaults-TechDebt.debug.xcconfig"; sourceTree = "<group>"; };
 		35490A998ED46E2FC6020548 /* Pods_defaults_Canvas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_Canvas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -771,8 +763,6 @@
 		3B90C1FF1FBE282F00A32303 /* GradesWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GradesWidget.entitlements; sourceTree = "<group>"; };
 		3E3C1D72C08DB705A5532B30 /* Pods-Canvas.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Canvas.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Canvas/Pods-Canvas.release.xcconfig"; sourceTree = "<group>"; };
 		43E5B38B510D37257C1FEFA6 /* Pods-GradesWidget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GradesWidget.release.xcconfig"; path = "../Pods/Target Support Files/Pods-GradesWidget/Pods-GradesWidget.release.xcconfig"; sourceTree = "<group>"; };
-		4902E1231CF4C8890069E043 /* Analytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Analytics.h; sourceTree = "<group>"; };
-		4902E1241CF4C8890069E043 /* Analytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Analytics.m; sourceTree = "<group>"; };
 		490687911D02151E0072DBEA /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		490687921D02151E0072DBEA /* SystemSettingsLinkCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemSettingsLinkCell.swift; sourceTree = "<group>"; };
 		490687971D0215330072DBEA /* LandingPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingPageViewController.swift; sourceTree = "<group>"; };
@@ -875,8 +865,6 @@
 		492705911CF4B73200C631C6 /* UIView+FloatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FloatingView.m"; sourceTree = "<group>"; };
 		492705921CF4B73200C631C6 /* UIView_render_IN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIView_render_IN.h; sourceTree = "<group>"; };
 		492705931CF4B73200C631C6 /* UIView_render_IN.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIView_render_IN.m; sourceTree = "<group>"; };
-		492705941CF4B73200C631C6 /* UIViewController+AnalyticsTracking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+AnalyticsTracking.h"; sourceTree = "<group>"; };
-		492705951CF4B73200C631C6 /* UIViewController+AnalyticsTracking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+AnalyticsTracking.m"; sourceTree = "<group>"; };
 		492705981CF4B73200C631C6 /* UIWebView+iCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+iCanvas.h"; sourceTree = "<group>"; };
 		492705991CF4B73200C631C6 /* UIWebView+iCanvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+iCanvas.m"; sourceTree = "<group>"; };
 		4927059E1CF4B73200C631C6 /* UIWebView+SafeAPIURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+SafeAPIURL.h"; sourceTree = "<group>"; };
@@ -930,11 +918,6 @@
 		492706CC1CF4BA7B00C631C6 /* ContentLockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentLockViewController.h; sourceTree = "<group>"; };
 		492706CD1CF4BA7B00C631C6 /* ContentLockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ContentLockViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		492706CE1CF4BA7B00C631C6 /* ContentLockViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ContentLockViewController.storyboard; sourceTree = "<group>"; };
-		492706D71CF4BA8400C631C6 /* CBILog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBILog.h; sourceTree = "<group>"; };
-		492706D81CF4BA8400C631C6 /* CBILogFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBILogFormatter.h; sourceTree = "<group>"; };
-		492706D91CF4BA8400C631C6 /* CBILogFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBILogFormatter.m; sourceTree = "<group>"; };
-		492706DA1CF4BA8400C631C6 /* CBILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBILogger.h; sourceTree = "<group>"; };
-		492706DB1CF4BA8400C631C6 /* CBILogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBILogger.m; sourceTree = "<group>"; };
 		492706E21CF4BAB500C631C6 /* VideoRecorderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoRecorderController.h; sourceTree = "<group>"; };
 		492706E31CF4BAB500C631C6 /* VideoRecorderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoRecorderController.m; sourceTree = "<group>"; };
 		492707691CF4BB2100C631C6 /* CBIModuleProgressNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBIModuleProgressNotifications.h; sourceTree = "<group>"; };
@@ -988,7 +971,6 @@
 		49642BC21CF4C4CD00238B3F /* CanvasKeymaster.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKeymaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49642BC31CF4C4CD00238B3F /* CanvasKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49642BCA1CF4C66200238B3F /* Canvas.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Canvas.entitlements; sourceTree = "<group>"; };
-		496D31231CF7529A00A3B11E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		496D31251CF752C600A3B11E /* LegacyModuleProgressShim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegacyModuleProgressShim.swift; sourceTree = "<group>"; };
 		496D31291CF7550A00A3B11E /* NetworkMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		4976C1FF1FBB84B900160EE4 /* CalendarEventDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventDetailViewController.swift; sourceTree = "<group>"; };
@@ -1797,6 +1779,7 @@
 		492704751CF4AF7100C631C6 /* Canvas */ = {
 			isa = PBXGroup;
 			children = (
+				2CE205B720EBF68F002A6A64 /* GoogleService-Info.plist */,
 				49383CE01F84834A009C8F8E /* Login */,
 				2C0CAD771DEF6C33008D90FA /* InfoPlist.strings */,
 				B5E212D51D88856B009D8C07 /* Localizable.strings */,
@@ -1830,8 +1813,6 @@
 				2C0CAD6C1DEF6C30008D90FA /* InfoPlist.strings */,
 				B5A790A61D8C743400ACA9FE /* Localizable.strings */,
 				495068551D414DC00030A9D5 /* Resources */,
-				4902E1231CF4C8890069E043 /* Analytics.h */,
-				4902E1241CF4C8890069E043 /* Analytics.m */,
 				492705E21CF4B73900C631C6 /* CBIViewModel.h */,
 				492705E31CF4B73900C631C6 /* CBIViewModel.m */,
 				2C7041AC203CDDB600745253 /* UIAlertController+TechDebt.h */,
@@ -1850,7 +1831,6 @@
 				492706A41CF4B97A00C631C6 /* iCanvas */,
 				492706C21CF4BA7400C631C6 /* LocalNotifications */,
 				492706C71CF4BA7B00C631C6 /* Locked */,
-				492706D61CF4BA8400C631C6 /* Logging */,
 				492706E11CF4BAB500C631C6 /* Media Recording */,
 				4927075D1CF4BB2100C631C6 /* Modules */,
 				49AA2D121CF4DC3F0055862D /* People */,
@@ -1998,8 +1978,6 @@
 				492705911CF4B73200C631C6 /* UIView+FloatingView.m */,
 				492705921CF4B73200C631C6 /* UIView_render_IN.h */,
 				492705931CF4B73200C631C6 /* UIView_render_IN.m */,
-				492705941CF4B73200C631C6 /* UIViewController+AnalyticsTracking.h */,
-				492705951CF4B73200C631C6 /* UIViewController+AnalyticsTracking.m */,
 				492705981CF4B73200C631C6 /* UIWebView+iCanvas.h */,
 				492705991CF4B73200C631C6 /* UIWebView+iCanvas.m */,
 				4927059E1CF4B73200C631C6 /* UIWebView+SafeAPIURL.h */,
@@ -2135,18 +2113,6 @@
 				492706CE1CF4BA7B00C631C6 /* ContentLockViewController.storyboard */,
 			);
 			path = Locked;
-			sourceTree = "<group>";
-		};
-		492706D61CF4BA8400C631C6 /* Logging */ = {
-			isa = PBXGroup;
-			children = (
-				492706D71CF4BA8400C631C6 /* CBILog.h */,
-				492706D81CF4BA8400C631C6 /* CBILogFormatter.h */,
-				492706D91CF4BA8400C631C6 /* CBILogFormatter.m */,
-				492706DA1CF4BA8400C631C6 /* CBILogger.h */,
-				492706DB1CF4BA8400C631C6 /* CBILogger.m */,
-			);
-			path = Logging;
 			sourceTree = "<group>";
 		};
 		492706E11CF4BAB500C631C6 /* Media Recording */ = {
@@ -2293,7 +2259,6 @@
 			isa = PBXGroup;
 			children = (
 				496D31251CF752C600A3B11E /* LegacyModuleProgressShim.swift */,
-				496D31231CF7529A00A3B11E /* GoogleService-Info.plist */,
 				496D31291CF7550A00A3B11E /* NetworkMonitor.swift */,
 				49BC9BC61CF768FF00DCB3DD /* PSPDFKit+Canvas.swift */,
 				49F9FA4C1CF89F8600654758 /* Router+Canvas.swift */,
@@ -3040,7 +3005,6 @@
 				49CE97781F900B4700121A43 /* NSObject+RACCollectionChanges.h in Headers */,
 				492706651CF4B7CF00C631C6 /* CBIDropbox.h in Headers */,
 				49CE97681F900B4700121A43 /* MLVCViewController.h in Headers */,
-				492706DF1CF4BA8400C631C6 /* CBILogger.h in Headers */,
 				492706971CF4B88600C631C6 /* NoPreviewAvailableController.h in Headers */,
 				492705F01CF4B76A00C631C6 /* CBIColorfulCell.h in Headers */,
 				2C7041AE203CDDB700745253 /* UIAlertController+TechDebt.h in Headers */,
@@ -3052,9 +3016,7 @@
 				492706AB1CF4B98900C631C6 /* iCanvasErrorHandler.h in Headers */,
 				49AA2D2F1CF4DC540055862D /* CBIPeopleViewModel.h in Headers */,
 				492705391CF4B70600C631C6 /* CBISubmissionDialogViewModel.h in Headers */,
-				4902E1251CF4C8890069E043 /* Analytics.h in Headers */,
 				49CE97711F900B4700121A43 /* MLVCCollectionViewCellViewModel.h in Headers */,
-				492706DC1CF4BA8400C631C6 /* CBILog.h in Headers */,
 				4927051A1CF4B70600C631C6 /* CKAttachmentManager.h in Headers */,
 				49CE97731F900B4700121A43 /* MLVCTableViewCellViewModel.h in Headers */,
 				492706B11CF4B99700C631C6 /* Router.h in Headers */,
@@ -3073,7 +3035,6 @@
 				4927051E1CF4B70600C631C6 /* CKRichTextInputView.h in Headers */,
 				492706091CF4B79B00C631C6 /* CNVTableViewCell.h in Headers */,
 				492705261CF4B70600C631C6 /* CBIStudentSubmissionViewController.h in Headers */,
-				492706DD1CF4BA8400C631C6 /* CBILogFormatter.h in Headers */,
 				49A04E271CF506810051E1E7 /* CKCanvasAPI+CurrentAPI.h in Headers */,
 				492706141CF4B79B00C631C6 /* ProgressTableViewCell.h in Headers */,
 				492705B81CF4B73200C631C6 /* NSString+IN_Additions.h in Headers */,
@@ -3102,7 +3063,6 @@
 				492705351CF4B70600C631C6 /* CBISubmissionCommentCell.h in Headers */,
 				492705E41CF4B73900C631C6 /* CBIViewModel.h in Headers */,
 				49CE97751F900B4700121A43 /* MLVCTableViewController.h in Headers */,
-				492705D61CF4B73300C631C6 /* UIViewController+AnalyticsTracking.h in Headers */,
 				49AA2D2D1CF4DC540055862D /* CBIPeopleTabViewModel.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3439,10 +3399,10 @@
 				5EB46DF51D21A75C00C859A4 /* CalendarDayListCell.xib in Resources */,
 				5EB46DFE1D21A75C00C859A4 /* NoResultsView.xib in Resources */,
 				61CF10AB1DBFF93A00B68E45 /* MasteryPathAssignmentInfoCell.xib in Resources */,
+				2CE205B820EBF690002A6A64 /* GoogleService-Info.plist in Resources */,
 				B5E212D31D88856B009D8C07 /* Localizable.strings in Resources */,
 				B177E6FD1E2EC8BA00D7477D /* Settings.storyboard in Resources */,
 				49F9FA4B1CF7B73100654758 /* Canvas.xcassets in Resources */,
-				496D31241CF7529A00A3B11E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3774,6 +3734,7 @@
 				"${BUILT_PRODUCTS_DIR}/react-native-mail/react_native_mail.framework",
 				"${BUILT_PRODUCTS_DIR}/yoga/yoga.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -3819,6 +3780,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_mail.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/yoga.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3891,13 +3853,13 @@
 				"${BUILT_PRODUCTS_DIR}/react-native-image-picker/react_native_image_picker.framework",
 				"${BUILT_PRODUCTS_DIR}/react-native-mail/react_native_mail.framework",
 				"${BUILT_PRODUCTS_DIR}/yoga/yoga.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 				"${PODS_ROOT}/EarlGrey/EarlGrey/EarlGrey.framework",
 				"${BUILT_PRODUCTS_DIR}/fishhook/fishhook.framework",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftGRPC/SwiftGRPC.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftProtobuf/SwiftProtobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -3942,13 +3904,13 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_image_picker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_mail.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/yoga.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EarlGrey.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/fishhook.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftGRPC.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftProtobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -4061,7 +4023,6 @@
 				4927077D1CF4BB2100C631C6 /* CBIModuleProgressNotifications.m in Sources */,
 				49AA2D2E1CF4DC540055862D /* CBIPeopleTabViewModel.m in Sources */,
 				4927053B1CF4B70600C631C6 /* CBISubmissionInputView.m in Sources */,
-				492705D71CF4B73300C631C6 /* UIViewController+AnalyticsTracking.m in Sources */,
 				492706D21CF4BA7B00C631C6 /* CBILockableViewModel.m in Sources */,
 				49AA2D281CF4DC540055862D /* AFHTTPAvatarImageResponseSerializer.m in Sources */,
 				492708421CF4BC3200C631C6 /* CBISyllabusViewModel.m in Sources */,
@@ -4070,7 +4031,6 @@
 				4927051F1CF4B70600C631C6 /* CKRichTextInputView.m in Sources */,
 				4927052B1CF4B70600C631C6 /* CBISubmissionAnnotationPreviewHelper.m in Sources */,
 				4927054E1CF4B70600C631C6 /* SubmissionAttachmentsController.m in Sources */,
-				4902E1261CF4C8890069E043 /* Analytics.m in Sources */,
 				49295B531F87F01D001DAB1F /* CBIResizableTextView.m in Sources */,
 				492705F61CF4B76A00C631C6 /* CBIColorfulViewModel.m in Sources */,
 				492707F71CF4BC1000C631C6 /* RubricViewController.m in Sources */,
@@ -4111,7 +4071,6 @@
 				49CE97761F900B4700121A43 /* MLVCViewController.m in Sources */,
 				492705D31CF4B73300C631C6 /* UIView+FloatingView.m in Sources */,
 				494E13A01D355C690068279D /* MobileQuizInformationViewController.m in Sources */,
-				492706E01CF4BA8400C631C6 /* CBILogger.m in Sources */,
 				49CE97691F900B4700121A43 /* MLVCCollectionController.m in Sources */,
 				492706C61CF4BA7400C631C6 /* CBILocalNotificationHandler.m in Sources */,
 				492705161CF4B70600C631C6 /* CBIAssignmentViewModel.m in Sources */,
@@ -4135,7 +4094,6 @@
 				492705B51CF4B73200C631C6 /* NSArray_in_additions.m in Sources */,
 				492705421CF4B70600C631C6 /* CBITeacherSubmissionViewModel.m in Sources */,
 				492705E11CF4B73300C631C6 /* UIWebView+SafeAPIURL.m in Sources */,
-				492706DE1CF4BA8400C631C6 /* CBILogFormatter.m in Sources */,
 				492705A71CF4B73200C631C6 /* CKIClient+CBIClient.m in Sources */,
 				492705211CF4B70600C631C6 /* CBIAddSubmissionCommentCell.m in Sources */,
 				49CE97671F900B4700121A43 /* MLVCTableViewController.m in Sources */,

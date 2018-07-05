@@ -37,9 +37,7 @@ RCT_REMAP_METHOD(setState, setStateAsync:(NSString *)key withValue:(NSNumber * _
     resolve(nil);
 }
 
-- (dispatch_queue_t)methodQueue
-{
-    return dispatch_get_main_queue();
-}
+- (dispatch_queue_t)methodQueue { return dispatch_get_main_queue(); }
++ (BOOL)requiresMainQueueSetup { return YES; }
 
 @end

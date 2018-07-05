@@ -138,6 +138,10 @@ NativeModules.AppStoreReview = {
   handleNavigateFromAssignment: jest.fn(),
 }
 
+NativeModules.CanvasAnalytics = {
+  logEvent: jest.fn(),
+}
+
 jest.mock('NativeEventEmitter')
 
 jest.mock('NetInfo', () => ({

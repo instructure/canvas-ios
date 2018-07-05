@@ -30,13 +30,11 @@
 #import "CKIClient+CBIClient.h"
 #import "CKIUser+SwiftCompatibility.h"
 #import "CKCanvasAPI+CurrentAPI.h"
-#import "Analytics.h"
 #import "UIAlertController+TechDebt.h"
 
 @import CanvasCore;
 @import CanvasKit;
 @import CanvasKeymaster;
-#import "CBILog.h"
 
 #ifdef __APPLE__
 #import "TargetConditionals.h"
@@ -209,8 +207,6 @@ CGFloat square(CGFloat x){return x*x;}
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
-    DDLogVerbose(@"%@ - viewDidAppear", NSStringFromClass([self class]));
     [UIView animateWithDuration:0.5 animations:^{
         [self.nameLabel setAlpha:1.0f];
         [self.emailLabel setAlpha:1.0f];
@@ -305,7 +301,6 @@ CGFloat square(CGFloat x){return x*x;}
 - (IBAction)pickAvatar:(id)sender
 {
     UIButton *avatarButton = (UIButton *)sender;
-    DDLogVerbose(@"pickAvatarPressed");
     CKActionSheetWithBlocks *actionSheet = [[CKActionSheetWithBlocks alloc] initWithTitle:NSLocalizedString(@"Choose Profile Picture", nil)];
     
     __weak __typeof(&*self)weakSelf = self;
@@ -326,7 +321,6 @@ CGFloat square(CGFloat x){return x*x;}
     
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         [actionSheet addButtonWithTitle:NSLocalizedString(@"Take Photo", @"Button label for taking a photo") handler:^{
-            DDLogVerbose(@"AvatarTakePhotoPressed");
             UIImagePickerController *imagePicker = [UIImagePickerController new];
             imagePicker.delegate = self;
             imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
@@ -338,7 +332,6 @@ CGFloat square(CGFloat x){return x*x;}
     }
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
         [actionSheet addButtonWithTitle:NSLocalizedString(@"Choose Photo", @"Button label for choosing a photo") handler:^{
-            DDLogVerbose(@"AvatarChoosePhotoPressed");
             UIImagePickerController *imagePicker = [UIImagePickerController new];
             imagePicker.delegate = self;
             imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;

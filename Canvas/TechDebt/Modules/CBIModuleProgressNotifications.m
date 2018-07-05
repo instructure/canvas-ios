@@ -17,9 +17,6 @@
     
 
 #import "CBIModuleProgressNotifications.h"
-@import CocoaLumberjack;
-
-extern NSInteger ddLogLevel;
 
 NSString *const CBIModuleItemProgressUpdatedNotification = @"CBIModuleItemProgressUpdatedNotification";
 
@@ -44,9 +41,6 @@ void CBIPostModuleItemProgressUpdate(NSString *itemID, NSString *completionRequi
                                    };
         
         [[NSNotificationCenter defaultCenter] postNotificationName:CBIModuleItemProgressUpdatedNotification object:nil userInfo:userInfo];
-    } else {
-        DDLogError(@"CBIPostModuleItemProgressUpdate error itemID: %@,",itemID);
-        DDLogError(@"CBIPostModuleItemProgressUpdate error completionRequirement: %@",completionRequirement);
     }
 }
 
@@ -60,8 +54,6 @@ void CBIPostModuleProgressUpdate(NSString *moduleID)
                                    };
         
         [[NSNotificationCenter defaultCenter] postNotificationName:CBIModuleProgressUpdatedNotification object:nil userInfo:userInfo];
-    } else {
-        DDLogError(@"CBIPostModuleProgressUpdate attempted to insert nil item into NSDictionary moduleID: %@", moduleID);
     }
 }
 
@@ -75,7 +67,5 @@ void CBIPostProgressionMadeModuleItemActiveUpdate(NSString *itemID)
                                    };
 
         [[NSNotificationCenter defaultCenter] postNotificationName:CBIModuleItemProgressUpdatedNotification object:nil userInfo:userInfo];
-    } else {
-        DDLogError(@"CBIPostModuleItemProgressUpdate error itemID: %@,",itemID);
     }
 }

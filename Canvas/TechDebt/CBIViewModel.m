@@ -17,7 +17,6 @@
     
 
 #import "CBIViewModel.h"
-#import "CBILog.h"
 
 @implementation CBIViewModel
 
@@ -33,11 +32,6 @@
     return ^(CKIModel *model) {
         return [self viewModelForModel:model];
     };
-}
-
-- (void)viewControllerViewDidLoad:(UIViewController *)viewController
-{
-    DDLogVerbose(@"%@ - viewControllerViewDidLoad", NSStringFromClass([self class]));
 }
 
 - (NSString *)description {

@@ -40,22 +40,22 @@ PODS:
   - EarlGrey (1.14.0)
   - Eureka (3.0.0)
   - Fabric (1.7.7)
-  - FirebaseAnalytics (3.9.0):
-    - FirebaseCore (~> 3.6)
-    - FirebaseInstanceID (~> 1.0)
+  - Firebase/Core (5.4.0):
+    - Firebase/CoreOnly
+    - FirebaseAnalytics (= 5.0.1)
+  - Firebase/CoreOnly (5.4.0):
+    - FirebaseCore (= 5.0.5)
+  - FirebaseAnalytics (5.0.1):
+    - FirebaseCore (~> 5.0)
+    - FirebaseInstanceID (~> 3.0)
     - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
-  - FirebaseCore (3.6.0):
+    - nanopb (~> 0.3)
+  - FirebaseCore (5.0.5):
     - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
-  - FirebaseInstanceID (1.0.10):
-    - FirebaseCore (~> 3.6)
+  - FirebaseInstanceID (3.1.1):
+    - FirebaseCore (~> 5.0)
   - fishhook (0.2)
   - FXKeychain (1.5.3)
-  - Google/Analytics (3.1.0):
-    - Google/Core
-    - GoogleAnalytics (~> 3.12)
-  - Google/Core (3.1.0):
-    - FirebaseAnalytics (~> 3.2)
-  - GoogleAnalytics (3.17.0)
   - GoogleToolboxForMac/Defines (2.1.4)
   - "GoogleToolboxForMac/NSData+zlib (2.1.4)":
     - GoogleToolboxForMac/Defines (= 2.1.4)
@@ -180,15 +180,14 @@ DEPENDENCIES:
   - BugsnagReactNative (from `./rn/Teacher/node_modules/bugsnag-react-native`)
   - BVLinearGradient (from `./rn/Teacher/node_modules/react-native-linear-gradient`)
   - Cartography (~> 1.1)
-  - CocoaLumberjack (~> 3.0)
-  - Crashlytics (~> 3.8)
+  - Crashlytics (~> 3.10.2)
   - DeviceKit (~> 1.0)
   - EarlGrey (~> 1.1)
   - Eureka (from `https://github.com/xmartlabs/Eureka`, branch `Swift-3.3`)
-  - Fabric (~> 1.6)
+  - Fabric (~> 1.7.7)
+  - Firebase/Core
   - fishhook
   - FXKeychain (~> 1.5)
-  - Google/Analytics
   - Interactable (from `./rn/Teacher/node_modules/react-native-interactable`)
   - Kingfisher (~> 3.2)
   - Mantle (~> 1.5.5)
@@ -246,13 +245,12 @@ SPEC REPOS:
     - DeviceKit
     - EarlGrey
     - Fabric
+    - Firebase
     - FirebaseAnalytics
     - FirebaseCore
     - FirebaseInstanceID
     - fishhook
     - FXKeychain
-    - Google
-    - GoogleAnalytics
     - GoogleToolboxForMac
     - gRPC-Core
     - Kingfisher
@@ -340,13 +338,12 @@ SPEC CHECKSUMS:
   EarlGrey: 334a8a524345243392a8cf5f15f7d2ad030441f7
   Eureka: 5b9418d7bfdc21ca977d69d124a6409f3e9af2c7
   Fabric: bda89e242bce1b7b8ab264248cf3407774ce0095
-  FirebaseAnalytics: e5fe8486efc01bec33f6bf82e2fa9fce4b124052
-  FirebaseCore: 9691ee2ade70c098d7cf92440f4303f16d83ca75
-  FirebaseInstanceID: b9eedd6846fb5e1f0f7279e1deaa7a7e4cf8392e
+  Firebase: d66f4f29c23f22d96808d9abc174d81d8eee968f
+  FirebaseAnalytics: b3628aea54c50464c32c393fb2ea032566e7ecc2
+  FirebaseCore: 42b3267233bd21a5abd54117ccc38ca3dd0f8e83
+  FirebaseInstanceID: f3f0657372592ecdfdfe2cac604a5a75758376a6
   fishhook: ea19933abfe8f2f52c55fd8b6e2718467d3ebc89
   FXKeychain: 2fe54573946ffef634f4e2a2851e6c8f4ea15e76
-  Google: 98da4b1a60ed0beb80a290387a28333406a1eb90
-  GoogleAnalytics: f42cc53a87a51fe94334821868d9c8481ff47a7b
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
   gRPC-Core: 9696b220565b283e021cf2722d473a4a74b7622a
   Interactable: b69c171636bec426b3010e0fc3ef59212ce09dd6
@@ -384,6 +381,6 @@ SPEC CHECKSUMS:
   TPKeyboardAvoiding: cb69d5ddbe90ce0170e4bc2db1e5e41d4a3ad9a4
   yoga: 17521bbb0dd54a47c0b3ac43253e78cdac7488e0
 
-PODFILE CHECKSUM: f77e4747b7101ad2060bcaaa4cedc325f9e1db56
+PODFILE CHECKSUM: 7ed1edc39cc636603be4740b47ebab3758c2f316
 
 COCOAPODS: 1.5.3

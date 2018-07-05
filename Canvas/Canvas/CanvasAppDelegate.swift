@@ -24,6 +24,7 @@ import CanvasCore
 import ReactiveSwift
 import BugsnagReactNative
 import UserNotifications
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -40,6 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         ResetAppIfNecessary()
+        FirebaseApp.configure()
         NotificationKitController.setupForPushNotifications(delegate: self)
         TheKeymaster.fetchesBranding = true
         TheKeymaster.delegate = loginConfig
@@ -138,14 +140,19 @@ extension AppDelegate {
     func postLaunchSetup() {
         PSPDFKit.license()
         prepareReactNative()
-        Analytics.prepare()
         NetworkMonitor.engage()
-        CBILogger.install(loginConfig.logFileManager)
         excludeHelmInBranding()
         Router.shared().addCanvasRoutes(handleError)
         setupDefaultErrorHandling()
         UIApplication.shared.reactive.applicationIconBadgeNumber
             <~ TabBarBadgeCounts.applicationIconBadgeNumber
+        CanvasAnalytics.setHandler(self)
+    }
+}
+
+extension AppDelegate: CanvasAnalyticsHandler {
+    func handleEvent(_ name: String, parameters: [String : Any]?) {
+        Analytics.logEvent(name, parameters: parameters)
     }
 }
 
@@ -294,6 +301,8 @@ extension AppDelegate: NativeLoginManagerDelegate {
         LegacyModuleProgressShim.observeProgress(session)
         ModuleItem.beginObservingProgress(session)
         CKCanvasAPI.updateCurrentAPI()
+        Analytics.setUserID(client.currentUser.id)
+        Analytics.setUserProperty(client.baseURL?.absoluteString, forName: "base_url")
         
         if let brandingInfo = client.branding?.jsonDictionary() as? [String: Any] {
             Brand.setCurrent(Brand(webPayload: brandingInfo), applyInWindow: window)

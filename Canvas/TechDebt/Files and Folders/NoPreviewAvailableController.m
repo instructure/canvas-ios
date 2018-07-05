@@ -17,8 +17,6 @@
     
 
 #import "NoPreviewAvailableController.h"
-#import "UIViewController+AnalyticsTracking.h"
-#import "Analytics.h"
 
 @implementation NoPreviewAvailableController
 
@@ -59,8 +57,6 @@
 {
     [super viewDidAppear:animated];
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    
-    [Analytics logScreenView:kGAIScreenNoPreviewAvailable];
 }
 
 @end

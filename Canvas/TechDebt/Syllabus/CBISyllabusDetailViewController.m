@@ -19,13 +19,10 @@
 #import "CBISyllabusDetailViewController.h"
 #import <CanvasKit/CanvasKit.h>
 #import <CanvasKit1/CanvasKit1.h>
-#import "UIViewController+AnalyticsTracking.h"
 #import "UIWebView+SafeAPIURL.h"
 #import "CKIClient+CBIClient.h"
 #import "Router.h"
 @import CanvasKeymaster;
-#import "CBILog.h"
-@import Crashlytics;
 @import CanvasCore;
 
 @interface CBISyllabusDetailViewController () <UIWebViewDelegate>
@@ -48,11 +45,8 @@
     }
 }
 
-- (void)viewDidLoad
-{
-    
+- (void)viewDidLoad {
     [super viewDidLoad];
-    CLS_LOG(@"Loaded Syllabus Detail View");
     
     self.webView = [[CanvasWebView alloc] init];
     self.webView.presentingViewController = self;

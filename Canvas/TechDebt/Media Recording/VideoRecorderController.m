@@ -17,10 +17,8 @@
     
 
 #import "VideoRecorderController.h"
-#import "UIViewController+AnalyticsTracking.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "iCanvasConstants.h"
-#import "Analytics.h"
 
 @interface VideoRecorderController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -51,9 +49,6 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    
-    NSLog(@"TRACKING: %@", kGAIScreenVideoRecorder);
-    [Analytics logScreenView:kGAIScreenVideoRecorder];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

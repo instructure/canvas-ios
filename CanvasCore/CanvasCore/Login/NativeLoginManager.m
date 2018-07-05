@@ -20,7 +20,6 @@
 #import <CanvasCore/CanvasCore-Swift.h>
 
 @import CanvasKeymaster;
-@import CocoaLumberjack;
 
 CanvasApp _Nonnull CanvasAppStudent = @"student";
 CanvasApp _Nonnull CanvasAppTeacher = @"teacher";
@@ -145,9 +144,9 @@ RCT_EXPORT_METHOD(stopObserving)
     self.isObserving = NO;
 }
 
-- (dispatch_queue_t)methodQueue {
-    return dispatch_get_main_queue();
-}
+- (dispatch_queue_t)methodQueue { return dispatch_get_main_queue(); }
++ (BOOL)requiresMainQueueSetup { return YES; }
+- (NSArray<NSString *> *)supportedEvents { return @[@"Login"]; }
 
 - (void)sendEventWithName:(NSString *)name body:(id)body {
     if (self.isObserving) {
@@ -156,10 +155,6 @@ RCT_EXPORT_METHOD(stopObserving)
     else {
         self.pendingEvents[name] = body;
     }
-}
-
-- (NSArray<NSString *> *)supportedEvents {
-    return @[@"Login"];
 }
 
 @end

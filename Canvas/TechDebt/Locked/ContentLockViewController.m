@@ -18,12 +18,8 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import <CanvasKit1/CanvasKit1.h>
-#import "UIViewController+AnalyticsTracking.h"
-
 #import "ContentLockViewController.h"
-
 #import "Router.h"
-#import "Analytics.h"
 
 @interface ContentLockViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *explanationLabel;
@@ -56,11 +52,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    
-    [Analytics logScreenView:kGAIScreenLockedContent];
- 
 }
-
 
 #pragma mark - Content Lock
 

@@ -18,8 +18,6 @@
 
 #import "UnsupportedViewController.h"
 #import "UIAlertController+TechDebt.h"
-#import "UIViewController+AnalyticsTracking.h"
-#import "CBILog.h"
 
 @import CanvasKit;
 @import CanvasKeymaster;
@@ -44,16 +42,8 @@
     [self.openInSafariButton setTitle:NSLocalizedString(@"Open in Safari", nil) forState:UIControlStateNormal];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    
-    DDLogVerbose(@"%@ - viewDidAppear : %@", NSStringFromClass([self class]), self.tabName);
-}
-
 - (IBAction)openInSafarButtonTouched:(id)sender
 {
-    DDLogVerbose(@"openInSafarButtonTouched : %@", self.tabName);
     if ([[UIApplication sharedApplication] canOpenURL:self.canvasURL]) {
         
         [[APIBridge shared] call:@"getAuthenticatedSessionURL" args: [NSArray arrayWithObjects: self.canvasURL.absoluteString, nil] callback:^(id  _Nullable response, NSError * _Nullable error) {

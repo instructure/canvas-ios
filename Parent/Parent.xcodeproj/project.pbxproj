@@ -123,7 +123,6 @@
 		5E6441951C3EE2E0003D7397 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E6441931C3EE2E0003D7397 /* LaunchScreen.storyboard */; };
 		5E6441C91C3EE581003D7397 /* Router+Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6441C51C3EE581003D7397 /* Router+Routes.swift */; };
 		5E6441CA1C3EE581003D7397 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6441C61C3EE581003D7397 /* Router.swift */; };
-		5E6442321C3F1C2D003D7397 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E6442311C3F1C2D003D7397 /* iCarousel.m */; };
 		5E722C6269FC4E47FC0228EA /* Parent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB6E5A59B673384E6504E16 /* Parent.swift */; };
 		5E75B6001C4D4A8E00A44160 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EEB551C1C483E7200953B20 /* CoreData.framework */; };
 		5EA8B06A1CB7078500C8A9F1 /* DefaultAvatarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA8B0691CB7078500C8A9F1 /* DefaultAvatarCoordinator.swift */; };
@@ -773,8 +772,6 @@
 		5E6441961C3EE2E0003D7397 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5E6441C51C3EE581003D7397 /* Router+Routes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Router+Routes.swift"; sourceTree = "<group>"; };
 		5E6441C61C3EE581003D7397 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Router.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		5E6442301C3F1C2D003D7397 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
-		5E6442311C3F1C2D003D7397 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = iCarousel.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		5E6442331C3F1C9C003D7397 /* Parent-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Parent-Bridging-Header.h"; sourceTree = "<group>"; };
 		5EA8B0691CB7078500C8A9F1 /* DefaultAvatarCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultAvatarCoordinator.swift; sourceTree = "<group>"; };
 		5EB4B5BA1C9749CD00CD8885 /* CalendarEventWeekPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEventWeekPageViewController.swift; sourceTree = "<group>"; };
@@ -1310,22 +1307,12 @@
 		5E64422E1C3F1C2D003D7397 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				5E64422F1C3F1C2D003D7397 /* iCarousel */,
 				5EF946241CACD83500D10247 /* TableSectionHeaderView.swift */,
 				5EF946261CACD91B00D10247 /* TokenLabelView.swift */,
 				5EF946281CAD76C400D10247 /* TableEmptyView.swift */,
 				2CB69BCB1D91CE1D0059C5A5 /* TableEmptyView.xib */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		5E64422F1C3F1C2D003D7397 /* iCarousel */ = {
-			isa = PBXGroup;
-			children = (
-				5E6442301C3F1C2D003D7397 /* iCarousel.h */,
-				5E6442311C3F1C2D003D7397 /* iCarousel.m */,
-			);
-			path = iCarousel;
 			sourceTree = "<group>";
 		};
 		5E7790AF1C46CBA100429BF8 /* Frameworks */ = {
@@ -1911,7 +1898,6 @@
 				497C48E11F9153D100A3BC06 /* Session+Airwolf.swift in Sources */,
 				497C48C41F912BD100A3BC06 /* AlertCountCoordinator.swift in Sources */,
 				5E6441C91C3EE581003D7397 /* Router+Routes.swift in Sources */,
-				5E6442321C3F1C2D003D7397 /* iCarousel.m in Sources */,
 				5E41048D1C9B1F3E0021567C /* CalendarEvent+Submissions.swift in Sources */,
 				5E4E20511C927EB100E7D709 /* ColorCoordinator.swift in Sources */,
 				613E90E61D088DA600416EBE /* UITextField+ReturnKeyUpdate.swift in Sources */,

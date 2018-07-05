@@ -17,9 +17,7 @@
     
 
 #import "URLSubmissionPreviewViewController.h"
-#import "UIViewController+AnalyticsTracking.h"
 #import "UIWebView+SafeAPIURL.h"
-#import "Analytics.h"
 #import "UIAlertController+TechDebt.h"
 
 @interface URLSubmissionPreviewViewController () <UIWebViewDelegate, UITextFieldDelegate>
@@ -74,8 +72,6 @@
     [super viewDidAppear:animated];
     self.edgesForExtendedLayout = UIRectEdgeNone;
     [self startObservingKeyboard];
-    
-    [Analytics logScreenView:kGAIScreenURLSubmissionPreview];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

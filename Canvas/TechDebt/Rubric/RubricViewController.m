@@ -19,12 +19,9 @@
 #import <CanvasKit1/CanvasKit1.h>
 #import "RubricViewController.h"
 #import <CanvasKit1/CKCanvasAPI.h>
-#import "UIViewController+AnalyticsTracking.h"
 #import <CanvasKit1/CKRubricView.h>
-
 #import "RubricViewController.h"
 #import "iCanvasErrorHandler.h"
-#import "CBILog.h"
 @import CanvasCore;
 
 @interface RubricViewController()
@@ -71,9 +68,6 @@
     [super viewDidAppear:animated];
     self.edgesForExtendedLayout = UIRectEdgeNone;
     [self resizeRubricPopover];
-    
-    // TODO: Add GAI Event
-    DDLogVerbose(@"%@ - viewDidAppear", NSStringFromClass([self class]));
 }
 
 - (void)viewWillAppear:(BOOL)animated

@@ -16,21 +16,15 @@
 
 import UIKit
 import CanvasKeymaster
-import CocoaLumberjack
 
 public class LoginConfiguration: NSObject, CanvasKeymasterDelegate {
     
-    public init(mobileVerifyName: String, logo: UIImage, fullLogo: UIImage, supportsCanvasNetworkLogin: Bool = true) {
-        self.appNameForMobileVerify = mobileVerifyName
-        self.logoForDomainPicker = logo
-        self.fullLogoForDomainPicker = fullLogo
-        self.supportsCanvasNetworkLogin = supportsCanvasNetworkLogin
-    }
-    
-  public let logFileManager: DDLogFileManagerDefault = {
-    let logsDirectory = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first! as NSString).appendingPathComponent("InstructureLog")
-    return DDLogFileManagerDefault(logsDirectory: logsDirectory)
-  }()
+  public init(mobileVerifyName: String, logo: UIImage, fullLogo: UIImage, supportsCanvasNetworkLogin: Bool = true) {
+    self.appNameForMobileVerify = mobileVerifyName
+    self.logoForDomainPicker = logo
+    self.fullLogoForDomainPicker = fullLogo
+    self.supportsCanvasNetworkLogin = supportsCanvasNetworkLogin
+  }
 
   public var appNameForMobileVerify: String
   public let logoForDomainPicker: UIImage
@@ -41,9 +35,5 @@ public class LoginConfiguration: NSObject, CanvasKeymasterDelegate {
     let view = UIView()
     view.backgroundColor = UIColor(white: 1.0, alpha: 1)
     return view
-  }
-
-  public var logFilePath: String? {
-    return logFileManager.sortedLogFilePaths.first
   }
 }

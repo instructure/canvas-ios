@@ -16,16 +16,13 @@
     
     
 #import <CanvasKit1/CKAssignment.h>
-#import "UIViewController+AnalyticsTracking.h"
 #import <QuartzCore/QuartzCore.h>
-
 #import "AssignmentDetailsViewController.h"
 #import "iCanvasErrorHandler.h"
 #import "Router.h"
 #import "CBIModuleProgressNotifications.h"
 #import "NSURL+TechDebt.h"
 @import CanvasKit;
-#import "CBILog.h"
 @import CanvasKeymaster;
 @import CanvasCore;
 
@@ -88,12 +85,6 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    DDLogVerbose(@"%@ - viewDidAppear", NSStringFromClass([self class]));
-}
-
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
@@ -110,8 +101,6 @@
     [self.webView.scrollView setContentInset:UIEdgeInsetsMake(self.topContentInset, 0, self.bottomContentInset, 0)];
     [self.webView.scrollView setScrollIndicatorInsets:UIEdgeInsetsMake(self.topContentInset, 0, self.bottomContentInset, 0)];
     [self.webView.scrollView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
-    
-    DDLogVerbose(@"AssignmentDetailViewController posting module item progress update");
     CBIPostModuleItemProgressUpdate([@(self.assignment.ident) description], CKIModuleItemCompletionRequirementMustView);
 }
 

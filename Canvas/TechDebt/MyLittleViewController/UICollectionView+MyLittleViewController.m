@@ -20,18 +20,7 @@
 #import "MLVCCollectionController.h"
 #import <objc/runtime.h>
 #import "EXTScope.h"
-@import CocoaLumberjack;
-
 @import ReactiveObjC;
-#define ddLogLevel LOG_LEVEL_VERBOSE
-
-
-int ddLogLevel =
-#ifdef DEBUG
-    DDLogLevelVerbose;
-#else
-    DDLogLevelError;
-#endif
 
 #define SYNTHESIZE_NONATOMIC(class, getter, setter, objcAssociation) \
 - (class *)getter { \
@@ -95,21 +84,16 @@ SYNTHESIZE_NONATOMIC(MLVCCollectionController, observedCollectionController, set
     __block NSInteger sectionInsertCount = 0;
     
     self.beginUpdates = [collectionController.beginUpdatesSignal subscribeNext:^(id x) {
-        DDLogVerbose(@"UICollectionView+MyLittleViewController beginUpdates /// MLVCCollectionController contents: %@", collectionController.groups);
         performingBatchUpdates = YES;
         sectionInsertCount = 0;
     }];
     
     @weakify(self, collectionController);
     self.endUpdates = [collectionController.endUpdatesSignal subscribeNext:^(id x) {
-        DDLogVerbose(@"UICollectionView+MyLittleViewController endUpdates /// MLVCCollectionController contents: %@", collectionController.groups);
         if (performingBatchUpdates) {
             @strongify(self, collectionController);
             NSInteger preUpdateCount = self.numberOfSections;
             NSInteger postupdateCount = collectionController.groups.count;
-            if (preUpdateCount == 1 && postupdateCount == 1 && sectionInsertCount == 1) {
-                DDLogVerbose(@"UICollectionView+MyLittleViewController - After 1 insert the section count doesn't change from 1 to 1. /// MLVCCollectionController contents: %@", collectionController.groups);
-            }
             [self performBatchUpdates:^{
                 for (void (^collectionViewUpdateBlock)(UICollectionView *) in changes) {
                     collectionViewUpdateBlock(self);

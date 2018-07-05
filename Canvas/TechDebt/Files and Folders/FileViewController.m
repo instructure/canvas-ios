@@ -18,10 +18,8 @@
 
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <CanvasKit1/CanvasKit1.h>
-#import "UIViewController+AnalyticsTracking.h"
 #import <CanvasKit1/CKURLPreviewViewController.h>
 #import <CanvasKit1/CKUploadProgressToolbar.h>
-
 #import "FileViewController.h"
 #import "WebBrowserViewController.h"
 #import "NoPreviewAvailableController.h"
@@ -29,8 +27,6 @@
 #import "ContentLockViewController.h"
 #import "UIWebView+SafeAPIURL.h"
 #import "CBIModuleProgressNotifications.h"
-#import "Analytics.h"
-#import "CBILog.h"
 #import "CKIClient+CBIClient.h"
 #import "CBIAssignmentDetailViewController.h"
 #import "UIAlertController+TechDebt.h"
@@ -106,9 +102,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
     [self.view addSubview:self.activityView];
-    [Analytics logScreenView:kGAIScreenFilePreview];
     [self.pageViewEventLog start];
 }
 
@@ -169,7 +163,6 @@
             [self.activityView stopAnimating];
             self.downloadProgress = 1.0;
             self.showsInteractionButton = YES;
-            DDLogVerbose(@"CBIFileViewController posting module item progress update after fetching file");
             CBIPostModuleItemProgressUpdate([@(self.fileIdent) description], CKIModuleItemCompletionRequirementMustView);
 
             NSURL *url = [[NSURL alloc] initFileURLWithPath:path];
@@ -193,7 +186,6 @@
                 }
 
                 [self.activityView stopAnimating];
-                DDLogVerbose(@"CBIFileViewController posting module item progress update after fetching file");
                 CBIPostModuleItemProgressUpdate([@(self.fileIdent) description], CKIModuleItemCompletionRequirementMustView);
             }];
         }
@@ -386,7 +378,6 @@
 
 
 - (void)tappedActionButton:(id)sender {
-    DDLogVerbose(@"tappedActionButton");
     if (!interactionController) {
         interactionController = [UIDocumentInteractionController interactionControllerWithURL:self.url];
         interactionController.delegate = self;

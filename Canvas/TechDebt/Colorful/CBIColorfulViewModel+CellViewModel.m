@@ -19,7 +19,6 @@
 #import "CBIColorfulViewModel+CellViewModel.h"
 #import "CBIColorfulCell.h"
 #import "Router.h"
-#import "CBILog.h"
 
 @implementation CBIColorfulViewModel (CellViewModel)
 
@@ -31,7 +30,6 @@
 }
 
 - (void)tableViewController:(MLVCTableViewController *)controller didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    DDLogVerbose(@"didSelectRowAtIndexPath - %@ : model : %@", NSStringFromClass([self class]), NSStringFromClass([self.model class]));
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
         controller.tableView.userInteractionEnabled = NO;
     }

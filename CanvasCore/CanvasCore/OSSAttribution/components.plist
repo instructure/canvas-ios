@@ -76,12 +76,6 @@
 	</dict>
 	<dict>
 		<key>name</key>
-		<string>Cocoa Lumberjack</string>
-		<key>url</key>
-		<string>https://github.com/CocoaLumberjack/CocoaLumberjack</string>
-	</dict>
-	<dict>
-		<key>name</key>
 		<string>Mantle</string>
 		<key>url</key>
 		<string>https://github.com/Mantle/Mantle</string>
@@ -145,12 +139,6 @@
 		<string>Google Analytics</string>
 		<key>url</key>
 		<string>https://github.com/googleanalytics/</string>
-	</dict>
-	<dict>
-		<key>name</key>
-		<string>iCarousel</string>
-		<key>url</key>
-		<string>https://github.com/nicklockwood/iCarousel</string>
 	</dict>
 	<dict>
 		<key>name</key>

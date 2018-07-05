@@ -21,7 +21,6 @@
 #import "CBIAddSubmissionCommentCell.h"
 #import "CBIStudentSubmissionViewController.h"
 #import "CBIResizableTextView.h"
-#import "CBILog.h"
 
 @interface CBIAddSubmissionCommentViewModel ()
 @property (nonatomic) CBIAddSubmissionCommentCell *cell;
@@ -41,13 +40,9 @@
                 NSString *text = self.cell.resizeableTextView.text;
                 [controller submitComment:text onSuccess:^{
                     self.isPostingComment = NO;
-                    DDLogVerbose(@"Sent comment - %@",NSStringFromClass([self class]));
                 } onFailure:^{
                     self.isPostingComment = NO;
-                    DDLogVerbose(@"Failed to send comment - %@", NSStringFromClass([self class]));
                 }];
-            } else {
-                DDLogVerbose(@"User tapped send while already attempting to send. Tap happy? - %@", NSStringFromClass([self class]));
             }
             return [RACSignal empty];
         }];

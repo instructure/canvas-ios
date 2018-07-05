@@ -52,6 +52,7 @@ import AccountNotificationActions from './account-notification-actions'
 import { extractGradeInfo } from '@utils/course-grades'
 import { extractDateFromString } from '@utils/dateUtils'
 import { featureFlagEnabled } from '@common/feature-flags'
+import { logEvent } from '@common/CanvasAnalytics'
 
 type ColorfulCourse = { color: string } & Course
 type Props = {
@@ -397,6 +398,7 @@ export class Dashboard extends React.Component<Props, State> {
   }
 
   selectCourse = (course: Course) => {
+    logEvent('course_card_selected', { course_id: course.id })
     this.props.navigator.show(`/courses/${course.id}`)
   }
 
@@ -409,6 +411,7 @@ export class Dashboard extends React.Component<Props, State> {
   }
 
   showGroup = (groupID: string) => {
+    logEvent('group_card_selected', { group_id: groupID })
     this.props.navigator.show(`/groups/${groupID}`)
   }
 

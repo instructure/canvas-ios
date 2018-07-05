@@ -17,7 +17,6 @@
 #import "CKMDomainPickerViewController.h"
 #import "CKMDomainSearchViewController.h"
 @import ReactiveObjC;
-#import <CocoaLumberjack/DDLog.h>
 #import <MessageUI/MessageUI.h>
 @import Mantle;
 
@@ -25,20 +24,10 @@
 #import "CanvasKeymaster.h"
 #import "CKMMultiUserTableViewController.h"
 @import CanvasKit;
-@import CocoaLumberjack;
 #import "CKMLocationManager.h"
 #import "CKMDomainHelpViewController.h"
 #import "CKMDomainPickerViewController.h"
 #import "CKMLocationSchoolSuggester.h"
-
-#define ddLogLevel LOG_LEVEL_VERBOSE
-
-int ddLogLevel =
-#ifdef DEBUG
-    DDLogLevelVerbose;
-#else
-    DDLogLevelError;
-#endif
 
 static BOOL PerformedStartupAnimation = NO;
 
@@ -118,9 +107,6 @@ static BOOL PerformedStartupAnimation = NO;
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    DDLogVerbose(@"%@ - viewDidAppear", NSStringFromClass([self class]));
-    
     if (!PerformedStartupAnimation) {
         [self launchAnimation];
         PerformedStartupAnimation = YES;
@@ -297,7 +283,6 @@ static BOOL PerformedStartupAnimation = NO;
 static NSString *const CanvasNetworkDomain = @"learn.canvas.net";
 
 - (IBAction)logIntoCanvasNetwork {
-    DDLogVerbose(@"logIntoCanvasNetworkPressed : %@", CanvasNetworkDomain);
     CKIAccountDomain *domain = [[CKIAccountDomain alloc] initWithDomain:CanvasNetworkDomain];
     [self sendDomain:domain];
 }

@@ -22,17 +22,9 @@
 #import "CLLocation+CKMDistance.h"
 @import Mantle;
 @import CanvasKit;
-@import CocoaLumberjack;
 
 static double const CKMDistanceThreshold = 50.0;
 static CKMLocationSchoolSuggester* _sharedInstance = nil;
-
-int ddLogLevel =
-#ifdef DEBUG
-    DDLogLevelVerbose;
-#else
-    DDLogLevelError;
-#endif
 
 @interface CKMLocationSchoolSuggester ()
 @property (nonatomic, strong) NSMutableSet *availableSchools;
@@ -73,7 +65,6 @@ int ddLogLevel =
         [self.availableSchools addObjectsFromArray:accountDomains];
         self.schoolSearchString = [self.schoolSearchString copy];
     } error:^(NSError *error) {
-        DDLogError(@"ERROR DOWNLOADING ACCOUNT DOMAINS: %@", error.localizedDescription);
         self.fetching = NO;
     } completed:^{
         self.fetching = NO;
