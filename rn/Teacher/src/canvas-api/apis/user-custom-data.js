@@ -26,7 +26,7 @@ export function refreshGroupFavorites (userID: string): ApiPromise<EntityRefs> {
       ns: constructNamespace(),
     },
   }
-  return httpClient().get(url, options)
+  return httpClient.get(url, options)
 }
 
 export function updateGroupFavorites (userID: string, favorites: string[]): ApiPromise<EntityRefs> {
@@ -35,7 +35,7 @@ export function updateGroupFavorites (userID: string, favorites: string[]): ApiP
     ns: constructNamespace(),
     data: favorites,
   }
-  return httpClient().put(url, options)
+  return httpClient.put(url, options)
 }
 
 export function constructNamespace (): string {

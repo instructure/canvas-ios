@@ -35,7 +35,7 @@ import i18n from 'format-message'
 export type SubmissionBreakdownGraphSectionProps = {
   courseID: string,
   assignmentID: string,
-  style: any,
+  style: ViewStyleProp,
   onPress: (string) => void,
   graded: number,
   ungraded: number,

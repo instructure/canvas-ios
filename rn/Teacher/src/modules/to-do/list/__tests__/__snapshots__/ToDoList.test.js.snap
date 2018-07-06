@@ -171,21 +171,13 @@ exports[`ToDoList renders items 1`] = `
           },
         ]
       }
-      disableVirtualization={false}
-      horizontal={false}
-      initialNumToRender={10}
       keyExtractor={[Function]}
-      maxToRenderPerBatch={10}
-      numColumns={1}
       onEndReached={[Function]}
       onEndReachedThreshold={0.5}
       onRefresh={[Function]}
       refreshing={false}
       renderItem={[Function]}
-      scrollEventThrottle={50}
       testID="to-do-list.list"
-      updateCellsBatchingPeriod={50}
-      windowSize={21}
     />
   </View>
 </Screen>

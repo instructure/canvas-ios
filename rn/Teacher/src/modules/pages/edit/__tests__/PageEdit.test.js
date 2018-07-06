@@ -49,14 +49,14 @@ describe('PageEdit', () => {
   it('gets page from the model api', () => {
     const page = template.pageModel({ url: 'test' })
     httpCache.handle('GET', 'courses/1/pages/test', page)
-    const tree = shallow(<ConnectedPageEdit courseID='1' url='test' />)
+    const tree = shallow(<ConnectedPageEdit courseID='1' url='test' navigator={template.navigator()} />)
     expect(tree.find(PageEdit).props()).toMatchObject({
       page,
     })
   })
 
   it('gets newPage when url is null', () => {
-    const tree = shallow(<ConnectedPageEdit courseID='1' />)
+    const tree = shallow(<ConnectedPageEdit courseID='1' navigator={template.navigator()} />)
     expect(tree.find(PageEdit).props()).toMatchObject({
       page: PageModel.newPage,
     })

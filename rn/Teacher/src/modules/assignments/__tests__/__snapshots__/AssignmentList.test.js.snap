@@ -69,18 +69,11 @@ exports[`renders correctly 1`] = `
           title="There are no assignments to display."
         />
       }
-      data={Array []}
-      disableVirtualization={false}
-      horizontal={false}
-      initialNumToRender={10}
       keyExtractor={[Function]}
-      maxToRenderPerBatch={10}
-      onEndReachedThreshold={2}
       onRefresh={[Function]}
       refreshing={false}
       renderItem={[Function]}
       renderSectionHeader={[Function]}
-      scrollEventThrottle={50}
       sections={
         Array [
           Object {
@@ -168,10 +161,7 @@ exports[`renders correctly 1`] = `
           },
         ]
       }
-      stickySectionHeadersEnabled={true}
       testID="assignment-list.list"
-      updateCellsBatchingPeriod={50}
-      windowSize={21}
     />
   </View>
 </Screen>

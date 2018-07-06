@@ -15,81 +15,39 @@ exports[`QuizzesList renders 1`] = `
       }
     }
   >
-    <RCTScrollView
-      ItemSeparatorComponent={undefined}
-      ListEmptyComponent={
-        <ListEmptyComponent
-          title="There are no quizzes to display."
-        />
-      }
-      data={Array []}
-      disableVirtualization={false}
-      extraData={true}
-      getItem={[Function]}
-      getItemCount={[Function]}
-      horizontal={false}
-      initialNumToRender={10}
-      keyExtractor={[Function]}
-      maxToRenderPerBatch={10}
-      onContentSizeChange={[Function]}
-      onEndReachedThreshold={2}
-      onLayout={[Function]}
-      onMomentumScrollEnd={[Function]}
-      onRefresh={undefined}
-      onScroll={[Function]}
-      onScrollBeginDrag={[Function]}
-      onScrollEndDrag={[Function]}
-      onViewableItemsChanged={undefined}
-      refreshing={false}
-      renderItem={[Function]}
-      renderSectionHeader={[Function]}
-      scrollEventThrottle={50}
-      sections={Array []}
-      stickyHeaderIndices={Array []}
-      stickySectionHeadersEnabled={true}
-      testID="quiz-list.list"
-      updateCellsBatchingPeriod={50}
-      windowSize={21}
-    >
-      <View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        >
-          <View
-            style={
+    <list>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "height": 100,
+            "justifyContent": "center",
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
               Object {
-                "alignItems": "center",
-                "flex": 1,
-                "height": 100,
-                "justifyContent": "center",
-              }
-            }
-          >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontFamily": ".SFUIDisplay-semibold",
-                    "fontSize": 16,
-                  },
-                  undefined,
-                ]
-              }
-            >
-              There are no quizzes to display.
-            </Text>
-          </View>
-        </View>
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 16,
+              },
+              undefined,
+            ]
+          }
+        >
+          There are no quizzes to display.
+        </Text>
       </View>
-    </RCTScrollView>
+    </list>
   </View>
 </RCTSafeAreaView>
 `;
@@ -109,237 +67,60 @@ exports[`QuizzesList renders in correct order 1`] = `
       }
     }
   >
-    <RCTScrollView
-      ItemSeparatorComponent={undefined}
-      ListEmptyComponent={
-        <ListEmptyComponent
-          title="There are no quizzes to display."
-        />
-      }
-      data={
-        Array [
-          Object {
-            "data": Array [
-              Object {
-                "access_code": null,
-                "all_dates": Array [],
-                "allowed_attempts": -1,
-                "assignment_group_id": null,
-                "can_unpublish": true,
-                "cant_go_back": false,
-                "description": "This is quiz 1",
-                "due_at": "2117-03-28T15:07:56.312Z",
-                "hide_correct_answers_at": null,
-                "hide_results": null,
-                "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
-                "id": "2",
-                "lock_at": null,
-                "mobile_url": "canvas-courses://mobiledev.instructure.com/courses/1/quizzes",
-                "one_question_at_a_time": false,
-                "points_possible": 20,
-                "published": true,
-                "question_count": 12,
-                "quiz_type": "assignment",
-                "scoring_policy": "keep_latest",
-                "show_correct_answers": false,
-                "show_correct_answers_at": null,
-                "show_correct_answers_last_attempt": false,
-                "shuffle_answers": false,
-                "time_limit": null,
-                "title": "Second",
-              },
-              Object {
-                "access_code": null,
-                "all_dates": Array [],
-                "allowed_attempts": -1,
-                "assignment_group_id": null,
-                "can_unpublish": true,
-                "cant_go_back": false,
-                "description": "This is quiz 1",
-                "due_at": "2118-03-28T15:07:56.312Z",
-                "hide_correct_answers_at": null,
-                "hide_results": null,
-                "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
-                "id": "1",
-                "lock_at": null,
-                "mobile_url": "canvas-courses://mobiledev.instructure.com/courses/1/quizzes",
-                "one_question_at_a_time": false,
-                "points_possible": 20,
-                "published": true,
-                "question_count": 12,
-                "quiz_type": "assignment",
-                "scoring_policy": "keep_latest",
-                "show_correct_answers": false,
-                "show_correct_answers_at": null,
-                "show_correct_answers_last_attempt": false,
-                "shuffle_answers": false,
-                "time_limit": null,
-                "title": "First",
-              },
-            ],
-            "index": 0,
-            "key": "assignment",
-          },
-        ]
-      }
-      disableVirtualization={false}
-      extraData={true}
-      getItem={[Function]}
-      getItemCount={[Function]}
-      horizontal={false}
-      initialNumToRender={10}
-      keyExtractor={[Function]}
-      maxToRenderPerBatch={10}
-      onContentSizeChange={[Function]}
-      onEndReachedThreshold={2}
-      onLayout={[Function]}
-      onMomentumScrollEnd={[Function]}
-      onRefresh={undefined}
-      onScroll={[Function]}
-      onScrollBeginDrag={[Function]}
-      onScrollEndDrag={[Function]}
-      onViewableItemsChanged={undefined}
-      refreshing={false}
-      renderItem={[Function]}
-      renderSectionHeader={[Function]}
-      scrollEventThrottle={50}
-      sections={
-        Array [
-          Object {
-            "data": Array [
-              Object {
-                "access_code": null,
-                "all_dates": Array [],
-                "allowed_attempts": -1,
-                "assignment_group_id": null,
-                "can_unpublish": true,
-                "cant_go_back": false,
-                "description": "This is quiz 1",
-                "due_at": "2117-03-28T15:07:56.312Z",
-                "hide_correct_answers_at": null,
-                "hide_results": null,
-                "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
-                "id": "2",
-                "lock_at": null,
-                "mobile_url": "canvas-courses://mobiledev.instructure.com/courses/1/quizzes",
-                "one_question_at_a_time": false,
-                "points_possible": 20,
-                "published": true,
-                "question_count": 12,
-                "quiz_type": "assignment",
-                "scoring_policy": "keep_latest",
-                "show_correct_answers": false,
-                "show_correct_answers_at": null,
-                "show_correct_answers_last_attempt": false,
-                "shuffle_answers": false,
-                "time_limit": null,
-                "title": "Second",
-              },
-              Object {
-                "access_code": null,
-                "all_dates": Array [],
-                "allowed_attempts": -1,
-                "assignment_group_id": null,
-                "can_unpublish": true,
-                "cant_go_back": false,
-                "description": "This is quiz 1",
-                "due_at": "2118-03-28T15:07:56.312Z",
-                "hide_correct_answers_at": null,
-                "hide_results": null,
-                "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
-                "id": "1",
-                "lock_at": null,
-                "mobile_url": "canvas-courses://mobiledev.instructure.com/courses/1/quizzes",
-                "one_question_at_a_time": false,
-                "points_possible": 20,
-                "published": true,
-                "question_count": 12,
-                "quiz_type": "assignment",
-                "scoring_policy": "keep_latest",
-                "show_correct_answers": false,
-                "show_correct_answers_at": null,
-                "show_correct_answers_last_attempt": false,
-                "shuffle_answers": false,
-                "time_limit": null,
-                "title": "First",
-              },
-            ],
-            "index": 0,
-            "key": "assignment",
-          },
-        ]
-      }
-      stickyHeaderIndices={
-        Array [
-          0,
-        ]
-      }
-      stickySectionHeadersEnabled={true}
-      testID="quiz-list.list"
-      updateCellsBatchingPeriod={50}
-      windowSize={21}
-    >
-      <View>
+    <list>
+      <section>
         <View
-          onLayout={[Function]}
-          style={null}
+          accessibilityTraits="header"
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#f5f5f5",
+                "flex": 1,
+                "justifyContent": "center",
+                "paddingLeft": 16,
+                "paddingRight": 8,
+                "paddingVertical": 4,
+              },
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+              Object {
+                "borderTopColor": "#C7CDD1",
+                "borderTopWidth": 0.5,
+              },
+            ]
+          }
         >
-          <View
-            accessibilityTraits="header"
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
             style={
               Array [
                 Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
                   "backgroundColor": "#f5f5f5",
-                  "flex": 1,
-                  "justifyContent": "center",
-                  "paddingLeft": 16,
-                  "paddingRight": 8,
-                  "paddingVertical": 4,
+                  "color": "#73818C",
+                  "fontSize": 14,
+                  "fontWeight": "600",
                 },
                 Object {
-                  "borderBottomColor": "#C7CDD1",
-                  "borderBottomWidth": 0.5,
-                },
-                Object {
-                  "borderTopColor": "#C7CDD1",
-                  "borderTopWidth": 0.5,
+                  "fontFamily": ".SFUIDisplay-semibold",
                 },
               ]
             }
           >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "backgroundColor": "#f5f5f5",
-                    "color": "#73818C",
-                    "fontSize": 14,
-                    "fontWeight": "600",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              Assignments
-            </Text>
-          </View>
+            Assignments
+          </Text>
         </View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        >
+        <item>
           <TouchableHighlight
             accessibilityLabel={undefined}
             accessibilityTraits={
@@ -672,11 +453,8 @@ exports[`QuizzesList renders in correct order 1`] = `
               </View>
             </View>
           </TouchableHighlight>
-        </View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        >
+        </item>
+        <item>
           <TouchableHighlight
             accessibilityLabel={undefined}
             accessibilityTraits={
@@ -1009,13 +787,9 @@ exports[`QuizzesList renders in correct order 1`] = `
               </View>
             </View>
           </TouchableHighlight>
-        </View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        />
-      </View>
-    </RCTScrollView>
+        </item>
+      </section>
+    </list>
   </View>
 </RCTSafeAreaView>
 `;
@@ -1035,237 +809,60 @@ exports[`QuizzesList renders quizzes 1`] = `
       }
     }
   >
-    <RCTScrollView
-      ItemSeparatorComponent={undefined}
-      ListEmptyComponent={
-        <ListEmptyComponent
-          title="There are no quizzes to display."
-        />
-      }
-      data={
-        Array [
-          Object {
-            "data": Array [
-              Object {
-                "access_code": null,
-                "all_dates": Array [],
-                "allowed_attempts": -1,
-                "assignment_group_id": null,
-                "can_unpublish": true,
-                "cant_go_back": false,
-                "description": "This is quiz 1",
-                "due_at": "2013-01-23T23:59:00-07:00",
-                "hide_correct_answers_at": null,
-                "hide_results": null,
-                "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
-                "id": "2",
-                "lock_at": null,
-                "mobile_url": "canvas-courses://mobiledev.instructure.com/courses/1/quizzes",
-                "one_question_at_a_time": false,
-                "points_possible": 20,
-                "published": true,
-                "question_count": 12,
-                "quiz_type": "assignment",
-                "scoring_policy": "keep_latest",
-                "show_correct_answers": false,
-                "show_correct_answers_at": null,
-                "show_correct_answers_last_attempt": false,
-                "shuffle_answers": false,
-                "time_limit": null,
-                "title": "Quiz 2",
-              },
-              Object {
-                "access_code": null,
-                "all_dates": Array [],
-                "allowed_attempts": -1,
-                "assignment_group_id": null,
-                "can_unpublish": true,
-                "cant_go_back": false,
-                "description": "This is quiz 1",
-                "due_at": "2013-01-23T23:59:00-07:00",
-                "hide_correct_answers_at": null,
-                "hide_results": null,
-                "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
-                "id": "1",
-                "lock_at": null,
-                "mobile_url": "canvas-courses://mobiledev.instructure.com/courses/1/quizzes",
-                "one_question_at_a_time": false,
-                "points_possible": 20,
-                "published": true,
-                "question_count": 12,
-                "quiz_type": "assignment",
-                "scoring_policy": "keep_latest",
-                "show_correct_answers": false,
-                "show_correct_answers_at": null,
-                "show_correct_answers_last_attempt": false,
-                "shuffle_answers": false,
-                "time_limit": null,
-                "title": "Quiz 1",
-              },
-            ],
-            "index": 0,
-            "key": "assignment",
-          },
-        ]
-      }
-      disableVirtualization={false}
-      extraData={true}
-      getItem={[Function]}
-      getItemCount={[Function]}
-      horizontal={false}
-      initialNumToRender={10}
-      keyExtractor={[Function]}
-      maxToRenderPerBatch={10}
-      onContentSizeChange={[Function]}
-      onEndReachedThreshold={2}
-      onLayout={[Function]}
-      onMomentumScrollEnd={[Function]}
-      onRefresh={undefined}
-      onScroll={[Function]}
-      onScrollBeginDrag={[Function]}
-      onScrollEndDrag={[Function]}
-      onViewableItemsChanged={undefined}
-      refreshing={false}
-      renderItem={[Function]}
-      renderSectionHeader={[Function]}
-      scrollEventThrottle={50}
-      sections={
-        Array [
-          Object {
-            "data": Array [
-              Object {
-                "access_code": null,
-                "all_dates": Array [],
-                "allowed_attempts": -1,
-                "assignment_group_id": null,
-                "can_unpublish": true,
-                "cant_go_back": false,
-                "description": "This is quiz 1",
-                "due_at": "2013-01-23T23:59:00-07:00",
-                "hide_correct_answers_at": null,
-                "hide_results": null,
-                "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
-                "id": "2",
-                "lock_at": null,
-                "mobile_url": "canvas-courses://mobiledev.instructure.com/courses/1/quizzes",
-                "one_question_at_a_time": false,
-                "points_possible": 20,
-                "published": true,
-                "question_count": 12,
-                "quiz_type": "assignment",
-                "scoring_policy": "keep_latest",
-                "show_correct_answers": false,
-                "show_correct_answers_at": null,
-                "show_correct_answers_last_attempt": false,
-                "shuffle_answers": false,
-                "time_limit": null,
-                "title": "Quiz 2",
-              },
-              Object {
-                "access_code": null,
-                "all_dates": Array [],
-                "allowed_attempts": -1,
-                "assignment_group_id": null,
-                "can_unpublish": true,
-                "cant_go_back": false,
-                "description": "This is quiz 1",
-                "due_at": "2013-01-23T23:59:00-07:00",
-                "hide_correct_answers_at": null,
-                "hide_results": null,
-                "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
-                "id": "1",
-                "lock_at": null,
-                "mobile_url": "canvas-courses://mobiledev.instructure.com/courses/1/quizzes",
-                "one_question_at_a_time": false,
-                "points_possible": 20,
-                "published": true,
-                "question_count": 12,
-                "quiz_type": "assignment",
-                "scoring_policy": "keep_latest",
-                "show_correct_answers": false,
-                "show_correct_answers_at": null,
-                "show_correct_answers_last_attempt": false,
-                "shuffle_answers": false,
-                "time_limit": null,
-                "title": "Quiz 1",
-              },
-            ],
-            "index": 0,
-            "key": "assignment",
-          },
-        ]
-      }
-      stickyHeaderIndices={
-        Array [
-          0,
-        ]
-      }
-      stickySectionHeadersEnabled={true}
-      testID="quiz-list.list"
-      updateCellsBatchingPeriod={50}
-      windowSize={21}
-    >
-      <View>
+    <list>
+      <section>
         <View
-          onLayout={[Function]}
-          style={null}
+          accessibilityTraits="header"
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#f5f5f5",
+                "flex": 1,
+                "justifyContent": "center",
+                "paddingLeft": 16,
+                "paddingRight": 8,
+                "paddingVertical": 4,
+              },
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+              Object {
+                "borderTopColor": "#C7CDD1",
+                "borderTopWidth": 0.5,
+              },
+            ]
+          }
         >
-          <View
-            accessibilityTraits="header"
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
             style={
               Array [
                 Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
                   "backgroundColor": "#f5f5f5",
-                  "flex": 1,
-                  "justifyContent": "center",
-                  "paddingLeft": 16,
-                  "paddingRight": 8,
-                  "paddingVertical": 4,
+                  "color": "#73818C",
+                  "fontSize": 14,
+                  "fontWeight": "600",
                 },
                 Object {
-                  "borderBottomColor": "#C7CDD1",
-                  "borderBottomWidth": 0.5,
-                },
-                Object {
-                  "borderTopColor": "#C7CDD1",
-                  "borderTopWidth": 0.5,
+                  "fontFamily": ".SFUIDisplay-semibold",
                 },
               ]
             }
           >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "backgroundColor": "#f5f5f5",
-                    "color": "#73818C",
-                    "fontSize": 14,
-                    "fontWeight": "600",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              Assignments
-            </Text>
-          </View>
+            Assignments
+          </Text>
         </View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        >
+        <item>
           <TouchableHighlight
             accessibilityLabel={undefined}
             accessibilityTraits={
@@ -1598,11 +1195,8 @@ exports[`QuizzesList renders quizzes 1`] = `
               </View>
             </View>
           </TouchableHighlight>
-        </View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        >
+        </item>
+        <item>
           <TouchableHighlight
             accessibilityLabel={undefined}
             accessibilityTraits={
@@ -1935,13 +1529,9 @@ exports[`QuizzesList renders quizzes 1`] = `
               </View>
             </View>
           </TouchableHighlight>
-        </View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        />
-      </View>
-    </RCTScrollView>
+        </item>
+      </section>
+    </list>
   </View>
 </RCTSafeAreaView>
 `;

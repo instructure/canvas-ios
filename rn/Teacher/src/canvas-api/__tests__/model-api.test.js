@@ -49,16 +49,16 @@ describe('model api', () => {
 
     it('does not hit the network api for GET', () => {
       api.get('courses/1/pages/test')
-      expect(httpClient().get).not.toHaveBeenCalled()
+      expect(httpClient.get).not.toHaveBeenCalled()
     })
 
     it('still hits the network api for non-GET', () => {
       api.post('/one', {})
-      expect(httpClient().post).toHaveBeenCalled()
+      expect(httpClient.post).toHaveBeenCalled()
       api.put('/two', {})
-      expect(httpClient().put).toHaveBeenCalled()
+      expect(httpClient.put).toHaveBeenCalled()
       api.delete('/three')
-      expect(httpClient().delete).toHaveBeenCalled()
+      expect(httpClient.delete).toHaveBeenCalled()
     })
 
     it('will not try to rehydrate getNextPage for pagination', () => {
@@ -87,7 +87,7 @@ describe('model api', () => {
       const page = template.pageModel()
       httpCache.handle('GET', 'courses/1/pages/test', page)
       api.get('courses/1/pages/test')
-      expect(httpClient().get).toHaveBeenCalledWith(
+      expect(httpClient.get).toHaveBeenCalledWith(
         'courses/1/pages/test',
         {}
       )
@@ -95,11 +95,11 @@ describe('model api', () => {
 
     it('hits the network api for non-GET', () => {
       api.post('/one', {})
-      expect(httpClient().post).toHaveBeenCalled()
+      expect(httpClient.post).toHaveBeenCalled()
       api.put('/two', {})
-      expect(httpClient().put).toHaveBeenCalled()
+      expect(httpClient.put).toHaveBeenCalled()
       api.delete('/three')
-      expect(httpClient().delete).toHaveBeenCalled()
+      expect(httpClient.delete).toHaveBeenCalled()
     })
 
     it('will rehydrate getNextPage for pagination', () => {
@@ -114,7 +114,7 @@ describe('model api', () => {
         getNextPage: expect.any(Function),
       })
       result.getNextPage()
-      expect(httpClient().get).toHaveBeenCalledWith(
+      expect(httpClient.get).toHaveBeenCalledWith(
         'users/self/todo?page=bookmark:asdf',
         { transform: expect.any(Function) }
       )
@@ -135,20 +135,20 @@ describe('model api', () => {
       const page = template.pageModel()
       httpCache.handle('GET', 'courses/1/pages/test', page)
       api.get('courses/1/pages/test')
-      expect(httpClient().get).not.toHaveBeenCalled()
+      expect(httpClient.get).not.toHaveBeenCalled()
     })
 
     it('does hit the network api for expired GET', () => {
       const page = template.pageModel()
       httpCache.handle('GET', 'courses/1/pages/test', page, { ttl: -1 })
       api.get('courses/1/pages/test')
-      expect(httpClient().get).toHaveBeenCalledWith(
+      expect(httpClient.get).toHaveBeenCalledWith(
         'courses/1/pages/test',
         {}
       )
       httpCache.handle('GET', 'users/self/todo', { list: [] }, { ttl: -1 })
       api.paginate('users/self/todo')
-      expect(httpClient().get).toHaveBeenCalledWith(
+      expect(httpClient.get).toHaveBeenCalledWith(
         'users/self/todo',
         { transform: expect.any(Function) }
       )
@@ -156,11 +156,11 @@ describe('model api', () => {
 
     it('hits the network api for non-GET', () => {
       api.post('/one', {})
-      expect(httpClient().post).toHaveBeenCalled()
+      expect(httpClient.post).toHaveBeenCalled()
       api.put('/two', {})
-      expect(httpClient().put).toHaveBeenCalled()
+      expect(httpClient.put).toHaveBeenCalled()
       api.delete('/three')
-      expect(httpClient().delete).toHaveBeenCalled()
+      expect(httpClient.delete).toHaveBeenCalled()
     })
 
     it('will rehydrate getNextPage for pagination', () => {
@@ -175,7 +175,7 @@ describe('model api', () => {
         getNextPage: expect.any(Function),
       })
       result.getNextPage()
-      expect(httpClient().get).toHaveBeenCalledWith(
+      expect(httpClient.get).toHaveBeenCalledWith(
         'users/self/todo?page=bookmark:asdf',
         { transform: expect.any(Function) }
       )
@@ -187,7 +187,7 @@ describe('model api', () => {
 
     it('adds the subsequent pages to the base cache entry', () => {
       api.paginate('users/self/todo')
-      const config = mock(httpClient().get).mock.calls[0][1]
+      const config = mock(httpClient.get).mock.calls[0][1]
       let response = template.apiResponse({
         data: [ 2 ],
         headers: { link: template.apiLinkHeader({
@@ -213,7 +213,7 @@ describe('model api', () => {
 
     it('automatically calls getNextPage if page size >= 99', () => {
       api.paginate('users/self/todo', { params: { per_page: 99 } })
-      const config = mock(httpClient().get).mock.calls[0][1]
+      const config = mock(httpClient.get).mock.calls[0][1]
       let response = template.apiResponse({
         data: [ 1 ],
         headers: { link: template.apiLinkHeader({
@@ -228,7 +228,7 @@ describe('model api', () => {
         next: 'users/self/todo?page=2',
         getNextPage: expect.any(Function),
       })
-      expect(httpClient().get).toHaveBeenCalledWith(
+      expect(httpClient.get).toHaveBeenCalledWith(
         'users/self/todo?page=2',
         {
           params: { per_page: 99 },
@@ -245,7 +245,7 @@ describe('model api', () => {
       onError: jest.fn(),
       onComplete: jest.fn(),
     })
-    mock(httpClient().delete).mockImplementation(() => Promise.reject())
+    mock(httpClient.delete).mockImplementation(() => Promise.reject())
     const request = api.delete('/')
     expect(api.options.onStart).toHaveBeenCalled()
     await request.catch(() => {})
@@ -275,7 +275,7 @@ describe('model api', () => {
         custom_colors: { course_1: 'green' },
       })
       expect(api.getCourseColor('1')).toBe('green')
-      expect(httpClient().get).toHaveBeenCalledWith(
+      expect(httpClient.get).toHaveBeenCalledWith(
         'users/self/colors',
         {}
       )
@@ -283,7 +283,7 @@ describe('model api', () => {
 
     it('can getCourse', () => {
       expect(api.getCourse('1')).toBe(null)
-      expect(httpClient().get).toHaveBeenCalledWith(
+      expect(httpClient.get).toHaveBeenCalledWith(
         'courses/1',
         {
           params: {
@@ -292,7 +292,7 @@ describe('model api', () => {
           transform: expect.any(Function),
         }
       )
-      const { transform } = mock(httpClient().get).mock.calls[0][1]
+      const { transform } = mock(httpClient.get).mock.calls[0][1]
       expect(transform(template.course())).toEqual(
         new CourseModel(template.course())
       )
@@ -308,14 +308,14 @@ describe('model api', () => {
         next: null,
         getNextPage: null,
       })
-      expect(httpClient().get).toHaveBeenCalledWith(
+      expect(httpClient.get).toHaveBeenCalledWith(
         'courses/1/pages',
         {
           params: { per_page: 99 },
           transform: expect.any(Function),
         }
       )
-      const args = mock(httpClient().get).mock.calls[0]
+      const args = mock(httpClient.get).mock.calls[0]
       const response = template.apiResponse({ data: [
         template.page({ title: 'syllabus' }),
         template.page({ title: 'another' }),
@@ -339,12 +339,12 @@ describe('model api', () => {
       }
       const promise = api.createPage('courses', '1', page)
       expect(promise).toBeInstanceOf(Promise)
-      expect(httpClient().post).toHaveBeenCalledWith(
+      expect(httpClient.post).toHaveBeenCalledWith(
         'courses/1/pages',
         { wiki_page: page },
         { transform: expect.any(Function) }
       )
-      const { transform } = mock(httpClient().post).mock.calls[0][2]
+      const { transform } = mock(httpClient.post).mock.calls[0][2]
       expect(transform(template.page())).toEqual(
         new PageModel(template.page())
       )
@@ -352,11 +352,11 @@ describe('model api', () => {
 
     it('can getPage', () => {
       api.getPage('courses', '1', 'home')
-      expect(httpClient().get).toHaveBeenCalledWith(
+      expect(httpClient.get).toHaveBeenCalledWith(
         'courses/1/pages/home',
         { transform: expect.any(Function) }
       )
-      const { transform } = mock(httpClient().get).mock.calls[0][1]
+      const { transform } = mock(httpClient.get).mock.calls[0][1]
       expect(transform(template.page())).toEqual(
         new PageModel(template.page())
       )
@@ -364,11 +364,11 @@ describe('model api', () => {
 
     it('can getFrontPage', () => {
       api.getFrontPage('1')
-      expect(httpClient().get).toHaveBeenCalledWith(
+      expect(httpClient.get).toHaveBeenCalledWith(
         'courses/1/front_page',
         { transform: expect.any(Function) }
       )
-      const { transform } = mock(httpClient().get).mock.calls[0][1]
+      const { transform } = mock(httpClient.get).mock.calls[0][1]
       expect(transform(template.page())).toEqual(
         new PageModel(template.page())
       )
@@ -384,12 +384,12 @@ describe('model api', () => {
       }
       const promise = api.updatePage('courses', '1', 'test', page)
       expect(promise).toBeInstanceOf(Promise)
-      expect(httpClient().put).toHaveBeenCalledWith(
+      expect(httpClient.put).toHaveBeenCalledWith(
         'courses/1/pages/test',
         { wiki_page: page },
         { transform: expect.any(Function) }
       )
-      const { transform } = mock(httpClient().put).mock.calls[0][2]
+      const { transform } = mock(httpClient.put).mock.calls[0][2]
       expect(transform(template.page())).toEqual(
         new PageModel(template.page())
       )
@@ -398,7 +398,7 @@ describe('model api', () => {
     it('can deletePage', () => {
       const promise = api.deletePage('courses', '1', 'test')
       expect(promise).toBeInstanceOf(Promise)
-      expect(httpClient().delete).toHaveBeenCalledWith(
+      expect(httpClient.delete).toHaveBeenCalledWith(
         'courses/1/pages/test',
         {}
       )
@@ -410,11 +410,11 @@ describe('model api', () => {
 
     it('can getToDos', () => {
       api.getToDos()
-      expect(httpClient().get).toHaveBeenCalledWith(
+      expect(httpClient.get).toHaveBeenCalledWith(
         'users/self/todo',
         { transform: expect.any(Function) }
       )
-      const { transform } = mock(httpClient().get).mock.calls[0][1]
+      const { transform } = mock(httpClient.get).mock.calls[0][1]
       const response = template.apiResponse({
         data: [ template.toDoItem() ],
         headers: {

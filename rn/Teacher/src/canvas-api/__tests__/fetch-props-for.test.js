@@ -18,7 +18,7 @@
 import { shallow } from 'enzyme'
 import React from 'react'
 import httpClient, { httpCache } from '../httpClient'
-import { fetchPropsFor } from '../fetch-props-for'
+import { fetchPropsFor, type FetchProps } from '../fetch-props-for'
 
 jest.mock('../httpClient')
 jest.useFakeTimers()
@@ -27,7 +27,7 @@ describe('fetchPropsFor', () => {
   const View = () => {}
 
   it('always hoists static functions', () => {
-    class Test extends React.Component<{}> {
+    class Test extends React.Component<FetchProps> {
       static electricity = 1
       render () {}
     }
@@ -78,7 +78,7 @@ describe('fetchPropsFor', () => {
   })
 
   it('unsets isLoading when api requests complete', () => {
-    httpClient().get = () => ({ // fake promise
+    httpClient.get = () => ({ // fake promise
       catch () { return this },
       then: (cb: Function) => setTimeout(cb, 0),
     })
@@ -94,7 +94,7 @@ describe('fetchPropsFor', () => {
 
   it('sends errors in loading data', () => {
     const error = new Error('doh!')
-    httpClient().get = () => ({ // fake promise
+    httpClient.get = () => ({ // fake promise
       catch (cb: Function) { setTimeout(() => cb(error), 0); return this },
       then: (cb: Function) => { cb() },
     })
@@ -109,7 +109,7 @@ describe('fetchPropsFor', () => {
   })
 
   it('sets isSaving when an api is called by the view', () => {
-    httpClient().get = () => ({ // fake promise
+    httpClient.get = () => ({ // fake promise
       catch () { return this },
       then: (cb: Function) => setTimeout(cb, 0),
     })
@@ -128,7 +128,7 @@ describe('fetchPropsFor', () => {
 
   it('sends errors in saving data', () => {
     const error = new Error('doh!')
-    httpClient().get = () => ({ // fake promise
+    httpClient.get = () => ({ // fake promise
       catch (cb: Function) { cb(error); return this },
       then: (cb: Function) => setTimeout(cb, 0),
     })
@@ -160,7 +160,7 @@ describe('fetchPropsFor', () => {
   })
 
   it('cleans up on unmount', () => {
-    httpClient().get = () => ({ // fake promise
+    httpClient.get = () => ({ // fake promise
       catch () { return this },
       then: (cb: Function) => setTimeout(cb, 0),
     })

@@ -24,6 +24,8 @@ import Enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 Enzyme.configure({ adapter: new Adapter() })
 
+import * as React from 'react'
+
 import * as template from '../../src/__templates__'
 
 import setupI18n from '../../i18n/setup'
@@ -268,3 +270,48 @@ jest.mock('react-native-device-info', () => {
 })
 
 jest.mock('../../src/canvas-api/httpClient')
+
+// makes tree.find('FlatList').dive() useful
+jest.mock('FlatList', () => function FlatList (props: Object) {
+  const empty = (
+    typeof props.ListEmptyComponent === 'function' && <props.ListEmptyComponent /> ||
+    props.ListEmptyComponent || null
+  )
+  return (
+    <list>
+      {props.data && props.data.length > 0
+        ? props.data.map((item, index) =>
+          <item key={item.key || props.keyExtractor(item, index)}>
+            {props.renderItem({ item, index })}
+          </item>
+        )
+        : empty
+      }
+    </list>
+  )
+})
+
+// makes tree.find('SectionList').dive() useful
+jest.mock('SectionList', () => function SectionList (props: Object) {
+  const empty = (
+    typeof props.ListEmptyComponent === 'function' && <props.ListEmptyComponent /> ||
+    props.ListEmptyComponent || null
+  )
+  return (
+    <list>
+      {props.sections && props.sections.length > 0
+        ? props.sections.map((section, index) =>
+          <section key={section.key || index}>
+            {props.renderSectionHeader && props.renderSectionHeader({ section })}
+            {section.data.map((item, index) =>
+              <item key={item.key || (section.keyExtractor || props.keyExtractor)(item, index)}>
+                {(section.renderItem || props.renderItem)({ item, index })}
+              </item>
+            )}
+          </section>
+        )
+        : empty
+      }
+    </list>
+  )
+})

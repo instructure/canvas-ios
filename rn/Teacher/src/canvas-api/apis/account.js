@@ -29,9 +29,9 @@ export function getAccountNotifications (): ApiPromise<AccountNotification[]> {
 }
 
 export function deleteAccountNotification (id: string): ApiPromise<null> {
-  return httpClient().delete(`accounts/self/users/self/account_notifications/${id}`)
+  return httpClient.delete(`accounts/self/users/self/account_notifications/${id}`)
 }
 
 export function getTermsOfService (): ApiPromise<TermsOfService> {
-  return httpClient().get(`accounts/self/terms_of_service`)
+  return httpClient.get(`accounts/self/terms_of_service`)
 }

@@ -19,11 +19,11 @@
 import httpClient from '../httpClient'
 
 export function getCustomColors (): ApiPromise<CustomColors> {
-  return httpClient().get('users/self/colors')
+  return httpClient.get('users/self/colors')
 }
 
 export function getUserProfile (userID: string): ApiPromise<User> {
-  return httpClient().get(`/users/${userID}/profile`)
+  return httpClient.get(`/users/${userID}/profile`)
 }
 
 export function createUser (createUserData: CreateUser): ApiPromise<User> {
@@ -44,9 +44,9 @@ export function createUser (createUserData: CreateUser): ApiPromise<User> {
     },
     communication_channel: createUserData.communication_channel,
   }
-  return httpClient().post(`/accounts/self/users`, data)
+  return httpClient.post(`/accounts/self/users`, data)
 }
 
 export function getToDoCount (): ApiPromise<Object> {
-  return httpClient().get('users/self/todo_item_count')
+  return httpClient.get('users/self/todo_item_count')
 }

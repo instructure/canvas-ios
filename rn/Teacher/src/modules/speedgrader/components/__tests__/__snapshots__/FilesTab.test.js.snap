@@ -3,147 +3,99 @@
 exports[`SpeedGraderFilesTab ignores attachments for URL Submissions 1`] = `
 <RCTScrollView>
   <View>
-    <RCTScrollView
-      ListEmptyComponent={
-        <ListEmptyComponent
-          title="There are no files to display."
-        />
-      }
-      data={
-        Array [
-          Object {
-            "display_name": "cool file.doc",
-            "id": "1234",
-            "mime_class": "doc",
-            "thumbnail_url": null,
-          },
-        ]
-      }
-      disableVirtualization={false}
-      extraData={
-        Object {
-          "selected": null,
-        }
-      }
-      getItem={[Function]}
-      getItemCount={[Function]}
-      horizontal={false}
-      initialNumToRender={10}
-      keyExtractor={[Function]}
-      maxToRenderPerBatch={10}
-      numColumns={1}
-      onContentSizeChange={[Function]}
-      onEndReachedThreshold={2}
-      onLayout={[Function]}
-      onMomentumScrollEnd={[Function]}
-      onScroll={[Function]}
-      onScrollBeginDrag={[Function]}
-      onScrollEndDrag={[Function]}
-      renderItem={[Function]}
-      scrollEventThrottle={50}
-      stickyHeaderIndices={Array []}
-      testID="speedgrader.files.list"
-      updateCellsBatchingPeriod={50}
-      viewabilityConfigCallbackPairs={Array []}
-      windowSize={21}
-    >
-      <View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        >
-          <View>
-            <TouchableHighlight
-              accessibilityTraits="none"
-              accessible={true}
-              onPress={[Function]}
-              testID="speedgrader.files.row0"
-              underlayColor="#eee"
+    <list>
+      <item>
+        <View>
+          <TouchableHighlight
+            accessibilityTraits="none"
+            accessible={true}
+            onPress={[Function]}
+            testID="speedgrader.files.row0"
+            underlayColor="#eee"
+          >
+            <View
+              style={
+                Object {
+                  "borderBottomColor": "lightgrey",
+                  "borderBottomWidth": 0.5,
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "paddingHorizontal": 16,
+                  "paddingVertical": 16,
+                }
+              }
             >
               <View
                 style={
                   Object {
-                    "borderBottomColor": "lightgrey",
-                    "borderBottomWidth": 0.5,
-                    "flex": 1,
-                    "flexDirection": "row",
-                    "justifyContent": "space-between",
-                    "paddingHorizontal": 16,
-                    "paddingVertical": 16,
+                    "marginRight": 16,
                   }
                 }
               >
-                <View
-                  style={
+                <Image
+                  source={
                     Object {
-                      "marginRight": 16,
+                      "testUri": "../../../src/images/speedgrader/page.png",
                     }
                   }
-                >
-                  <Image
-                    source={
-                      Object {
-                        "testUri": "../../../src/images/speedgrader/page.png",
-                      }
-                    }
-                    style={
-                      Object {
-                        "resizeMode": "contain",
-                        "tintColor": "#00BCD5",
-                        "width": 24,
-                      }
-                    }
-                  />
-                </View>
-                <View
                   style={
                     Object {
-                      "alignSelf": "flex-end",
-                      "flex": -1,
-                      "flexGrow": 1,
-                    }
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {
-                          "fontWeight": "500",
-                          "overflow": "hidden",
-                          "textAlign": "left",
-                        },
-                        Object {
-                          "fontFamily": ".SFUIDisplay-medium",
-                        },
-                      ]
-                    }
-                  >
-                    cool file.doc
-                  </Text>
-                </View>
-                <View
-                  style={
-                    Object {
-                      "alignSelf": "center",
+                      "resizeMode": "contain",
+                      "tintColor": "#00BCD5",
+                      "width": 24,
                     }
                   }
                 />
               </View>
-            </TouchableHighlight>
-          </View>
+              <View
+                style={
+                  Object {
+                    "alignSelf": "flex-end",
+                    "flex": -1,
+                    "flexGrow": 1,
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "fontWeight": "500",
+                        "overflow": "hidden",
+                        "textAlign": "left",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-medium",
+                      },
+                    ]
+                  }
+                >
+                  cool file.doc
+                </Text>
+              </View>
+              <View
+                style={
+                  Object {
+                    "alignSelf": "center",
+                  }
+                }
+              />
+            </View>
+          </TouchableHighlight>
         </View>
-      </View>
-    </RCTScrollView>
+      </item>
+    </list>
   </View>
 </RCTScrollView>
 `;
@@ -151,163 +103,115 @@ exports[`SpeedGraderFilesTab ignores attachments for URL Submissions 1`] = `
 exports[`SpeedGraderFilesTab renders a selected 0 index item 1`] = `
 <RCTScrollView>
   <View>
-    <RCTScrollView
-      ListEmptyComponent={
-        <ListEmptyComponent
-          title="There are no files to display."
-        />
-      }
-      data={
-        Array [
-          Object {
-            "display_name": "cool file.doc",
-            "id": "1234",
-            "mime_class": "doc",
-            "thumbnail_url": null,
-          },
-        ]
-      }
-      disableVirtualization={false}
-      extraData={
-        Object {
-          "selected": 0,
-        }
-      }
-      getItem={[Function]}
-      getItemCount={[Function]}
-      horizontal={false}
-      initialNumToRender={10}
-      keyExtractor={[Function]}
-      maxToRenderPerBatch={10}
-      numColumns={1}
-      onContentSizeChange={[Function]}
-      onEndReachedThreshold={2}
-      onLayout={[Function]}
-      onMomentumScrollEnd={[Function]}
-      onScroll={[Function]}
-      onScrollBeginDrag={[Function]}
-      onScrollEndDrag={[Function]}
-      renderItem={[Function]}
-      scrollEventThrottle={50}
-      stickyHeaderIndices={Array []}
-      testID="speedgrader.files.list"
-      updateCellsBatchingPeriod={50}
-      viewabilityConfigCallbackPairs={Array []}
-      windowSize={21}
-    >
-      <View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        >
-          <View>
-            <TouchableHighlight
-              accessibilityTraits="selected"
-              accessible={true}
-              onPress={[Function]}
-              testID="speedgrader.files.row0"
-              underlayColor="#eee"
+    <list>
+      <item>
+        <View>
+          <TouchableHighlight
+            accessibilityTraits="selected"
+            accessible={true}
+            onPress={[Function]}
+            testID="speedgrader.files.row0"
+            underlayColor="#eee"
+          >
+            <View
+              style={
+                Object {
+                  "borderBottomColor": "lightgrey",
+                  "borderBottomWidth": 0.5,
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "paddingHorizontal": 16,
+                  "paddingVertical": 16,
+                }
+              }
             >
               <View
                 style={
                   Object {
-                    "borderBottomColor": "lightgrey",
-                    "borderBottomWidth": 0.5,
-                    "flex": 1,
-                    "flexDirection": "row",
-                    "justifyContent": "space-between",
-                    "paddingHorizontal": 16,
-                    "paddingVertical": 16,
+                    "marginRight": 16,
                   }
                 }
               >
-                <View
-                  style={
+                <Image
+                  source={
                     Object {
-                      "marginRight": 16,
+                      "testUri": "../../../src/images/speedgrader/page.png",
                     }
                   }
-                >
-                  <Image
-                    source={
-                      Object {
-                        "testUri": "../../../src/images/speedgrader/page.png",
-                      }
-                    }
-                    style={
-                      Object {
-                        "resizeMode": "contain",
-                        "tintColor": "#00BCD5",
-                        "width": 24,
-                      }
-                    }
-                  />
-                </View>
-                <View
                   style={
                     Object {
-                      "alignSelf": "flex-end",
-                      "flex": -1,
-                      "flexGrow": 1,
+                      "resizeMode": "contain",
+                      "tintColor": "#00BCD5",
+                      "width": 24,
                     }
                   }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {
-                          "fontWeight": "500",
-                          "overflow": "hidden",
-                          "textAlign": "left",
-                        },
-                        Object {
-                          "fontFamily": ".SFUIDisplay-medium",
-                        },
-                      ]
-                    }
-                  >
-                    cool file.doc
-                  </Text>
-                </View>
-                <View
-                  style={
-                    Object {
-                      "alignSelf": "center",
-                    }
-                  }
-                >
-                  <Image
-                    source={
-                      Object {
-                        "testUri": "../../../src/images/check-white.png",
-                      }
-                    }
-                    style={
-                      Object {
-                        "height": 10,
-                        "resizeMode": "contain",
-                        "tintColor": "#008EE2",
-                        "width": 13,
-                      }
-                    }
-                  />
-                </View>
+                />
               </View>
-            </TouchableHighlight>
-          </View>
+              <View
+                style={
+                  Object {
+                    "alignSelf": "flex-end",
+                    "flex": -1,
+                    "flexGrow": 1,
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "fontWeight": "500",
+                        "overflow": "hidden",
+                        "textAlign": "left",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-medium",
+                      },
+                    ]
+                  }
+                >
+                  cool file.doc
+                </Text>
+              </View>
+              <View
+                style={
+                  Object {
+                    "alignSelf": "center",
+                  }
+                }
+              >
+                <Image
+                  source={
+                    Object {
+                      "testUri": "../../../src/images/check-white.png",
+                    }
+                  }
+                  style={
+                    Object {
+                      "height": 10,
+                      "resizeMode": "contain",
+                      "tintColor": "#008EE2",
+                      "width": 13,
+                    }
+                  }
+                />
+              </View>
+            </View>
+          </TouchableHighlight>
         </View>
-      </View>
-    </RCTScrollView>
+      </item>
+    </list>
   </View>
 </RCTScrollView>
 `;
@@ -315,562 +219,478 @@ exports[`SpeedGraderFilesTab renders a selected 0 index item 1`] = `
 exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
 <RCTScrollView>
   <View>
-    <RCTScrollView
-      ListEmptyComponent={
-        <ListEmptyComponent
-          title="There are no files to display."
-        />
-      }
-      data={
-        Array [
-          Object {
-            "display_name": "cool file.doc",
-            "id": "1234",
-            "mime_class": "doc",
-            "thumbnail_url": null,
-          },
-          Object {
-            "display_name": "cool pic.jpg",
-            "id": "1235",
-            "mime_class": "image",
-            "thumbnail_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-          },
-          Object {
-            "display_name": "cool video.mp4",
-            "id": "1236",
-            "mime_class": "video",
-            "thumbnail_url": null,
-          },
-          Object {
-            "display_name": "cool audio.mp3",
-            "id": "1237",
-            "mime_class": "audio",
-            "thumbnail_url": null,
-          },
-          Object {
-            "display_name": "cool pdf.pdf",
-            "id": "1238",
-            "mime_class": "pdf",
-            "thumbnail_url": null,
-          },
-        ]
-      }
-      disableVirtualization={false}
-      extraData={
-        Object {
-          "selected": 1,
-        }
-      }
-      getItem={[Function]}
-      getItemCount={[Function]}
-      horizontal={false}
-      initialNumToRender={10}
-      keyExtractor={[Function]}
-      maxToRenderPerBatch={10}
-      numColumns={1}
-      onContentSizeChange={[Function]}
-      onEndReachedThreshold={2}
-      onLayout={[Function]}
-      onMomentumScrollEnd={[Function]}
-      onScroll={[Function]}
-      onScrollBeginDrag={[Function]}
-      onScrollEndDrag={[Function]}
-      renderItem={[Function]}
-      scrollEventThrottle={50}
-      stickyHeaderIndices={Array []}
-      testID="speedgrader.files.list"
-      updateCellsBatchingPeriod={50}
-      viewabilityConfigCallbackPairs={Array []}
-      windowSize={21}
-    >
-      <View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        >
-          <View>
-            <TouchableHighlight
-              accessibilityTraits="none"
-              accessible={true}
-              onPress={[Function]}
-              testID="speedgrader.files.row0"
-              underlayColor="#eee"
+    <list>
+      <item>
+        <View>
+          <TouchableHighlight
+            accessibilityTraits="none"
+            accessible={true}
+            onPress={[Function]}
+            testID="speedgrader.files.row0"
+            underlayColor="#eee"
+          >
+            <View
+              style={
+                Object {
+                  "borderBottomColor": "lightgrey",
+                  "borderBottomWidth": 0.5,
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "paddingHorizontal": 16,
+                  "paddingVertical": 16,
+                }
+              }
             >
               <View
                 style={
                   Object {
-                    "borderBottomColor": "lightgrey",
-                    "borderBottomWidth": 0.5,
-                    "flex": 1,
-                    "flexDirection": "row",
-                    "justifyContent": "space-between",
-                    "paddingHorizontal": 16,
-                    "paddingVertical": 16,
+                    "marginRight": 16,
                   }
                 }
               >
-                <View
-                  style={
+                <Image
+                  source={
                     Object {
-                      "marginRight": 16,
+                      "testUri": "../../../src/images/speedgrader/page.png",
                     }
                   }
-                >
-                  <Image
-                    source={
-                      Object {
-                        "testUri": "../../../src/images/speedgrader/page.png",
-                      }
-                    }
-                    style={
-                      Object {
-                        "resizeMode": "contain",
-                        "tintColor": "#00BCD5",
-                        "width": 24,
-                      }
-                    }
-                  />
-                </View>
-                <View
                   style={
                     Object {
-                      "alignSelf": "flex-end",
-                      "flex": -1,
-                      "flexGrow": 1,
-                    }
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {
-                          "fontWeight": "500",
-                          "overflow": "hidden",
-                          "textAlign": "left",
-                        },
-                        Object {
-                          "fontFamily": ".SFUIDisplay-medium",
-                        },
-                      ]
-                    }
-                  >
-                    cool file.doc
-                  </Text>
-                </View>
-                <View
-                  style={
-                    Object {
-                      "alignSelf": "center",
+                      "resizeMode": "contain",
+                      "tintColor": "#00BCD5",
+                      "width": 24,
                     }
                   }
                 />
               </View>
-            </TouchableHighlight>
-          </View>
-        </View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        >
-          <View>
-            <TouchableHighlight
-              accessibilityTraits="selected"
-              accessible={true}
-              onPress={[Function]}
-              testID="speedgrader.files.row1"
-              underlayColor="#eee"
-            >
               <View
                 style={
                   Object {
-                    "borderBottomColor": "lightgrey",
-                    "borderBottomWidth": 0.5,
-                    "flex": 1,
-                    "flexDirection": "row",
-                    "justifyContent": "space-between",
-                    "paddingHorizontal": 16,
-                    "paddingVertical": 16,
+                    "alignSelf": "flex-end",
+                    "flex": -1,
+                    "flexGrow": 1,
                   }
                 }
               >
-                <View
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
                   style={
-                    Object {
-                      "marginRight": 16,
-                    }
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "fontWeight": "500",
+                        "overflow": "hidden",
+                        "textAlign": "left",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-medium",
+                      },
+                    ]
                   }
                 >
-                  <Image
-                    source={
-                      Object {
-                        "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-                      }
-                    }
-                    style={
-                      Object {
-                        "height": 24,
-                        "width": 24,
-                      }
-                    }
-                  />
-                </View>
-                <View
-                  style={
-                    Object {
-                      "alignSelf": "flex-end",
-                      "flex": -1,
-                      "flexGrow": 1,
-                    }
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {
-                          "fontWeight": "500",
-                          "overflow": "hidden",
-                          "textAlign": "left",
-                        },
-                        Object {
-                          "fontFamily": ".SFUIDisplay-medium",
-                        },
-                      ]
-                    }
-                  >
-                    cool pic.jpg
-                  </Text>
-                </View>
-                <View
-                  style={
-                    Object {
-                      "alignSelf": "center",
-                    }
-                  }
-                >
-                  <Image
-                    source={
-                      Object {
-                        "testUri": "../../../src/images/check-white.png",
-                      }
-                    }
-                    style={
-                      Object {
-                        "height": 10,
-                        "resizeMode": "contain",
-                        "tintColor": "#008EE2",
-                        "width": 13,
-                      }
-                    }
-                  />
-                </View>
+                  cool file.doc
+                </Text>
               </View>
-            </TouchableHighlight>
-          </View>
+              <View
+                style={
+                  Object {
+                    "alignSelf": "center",
+                  }
+                }
+              />
+            </View>
+          </TouchableHighlight>
         </View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        >
-          <View>
-            <TouchableHighlight
-              accessibilityTraits="none"
-              accessible={true}
-              onPress={[Function]}
-              testID="speedgrader.files.row2"
-              underlayColor="#eee"
+      </item>
+      <item>
+        <View>
+          <TouchableHighlight
+            accessibilityTraits="selected"
+            accessible={true}
+            onPress={[Function]}
+            testID="speedgrader.files.row1"
+            underlayColor="#eee"
+          >
+            <View
+              style={
+                Object {
+                  "borderBottomColor": "lightgrey",
+                  "borderBottomWidth": 0.5,
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "paddingHorizontal": 16,
+                  "paddingVertical": 16,
+                }
+              }
             >
               <View
                 style={
                   Object {
-                    "borderBottomColor": "lightgrey",
-                    "borderBottomWidth": 0.5,
-                    "flex": 1,
-                    "flexDirection": "row",
-                    "justifyContent": "space-between",
-                    "paddingHorizontal": 16,
-                    "paddingVertical": 16,
+                    "marginRight": 16,
                   }
                 }
               >
-                <View
-                  style={
+                <Image
+                  source={
                     Object {
-                      "marginRight": 16,
+                      "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
                     }
                   }
-                >
-                  <Image
-                    source={
-                      Object {
-                        "testUri": "../../../src/images/speedgrader/icon_video_clip.png",
-                      }
-                    }
-                    style={
-                      Object {
-                        "resizeMode": "contain",
-                        "tintColor": "#00BCD5",
-                        "width": 24,
-                      }
-                    }
-                  />
-                </View>
-                <View
                   style={
                     Object {
-                      "alignSelf": "flex-end",
-                      "flex": -1,
-                      "flexGrow": 1,
-                    }
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {
-                          "fontWeight": "500",
-                          "overflow": "hidden",
-                          "textAlign": "left",
-                        },
-                        Object {
-                          "fontFamily": ".SFUIDisplay-medium",
-                        },
-                      ]
-                    }
-                  >
-                    cool video.mp4
-                  </Text>
-                </View>
-                <View
-                  style={
-                    Object {
-                      "alignSelf": "center",
+                      "height": 24,
+                      "width": 24,
                     }
                   }
                 />
               </View>
-            </TouchableHighlight>
-          </View>
-        </View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        >
-          <View>
-            <TouchableHighlight
-              accessibilityTraits="none"
-              accessible={true}
-              onPress={[Function]}
-              testID="speedgrader.files.row3"
-              underlayColor="#eee"
-            >
               <View
                 style={
                   Object {
-                    "borderBottomColor": "lightgrey",
-                    "borderBottomWidth": 0.5,
-                    "flex": 1,
-                    "flexDirection": "row",
-                    "justifyContent": "space-between",
-                    "paddingHorizontal": 16,
-                    "paddingVertical": 16,
+                    "alignSelf": "flex-end",
+                    "flex": -1,
+                    "flexGrow": 1,
                   }
                 }
               >
-                <View
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
                   style={
-                    Object {
-                      "marginRight": 16,
-                    }
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "fontWeight": "500",
+                        "overflow": "hidden",
+                        "textAlign": "left",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-medium",
+                      },
+                    ]
                   }
                 >
-                  <Image
-                    source={
-                      Object {
-                        "testUri": "../../../src/images/speedgrader/icon_audio.png",
-                      }
-                    }
-                    style={
-                      Object {
-                        "resizeMode": "contain",
-                        "tintColor": "#00BCD5",
-                        "width": 24,
-                      }
-                    }
-                  />
-                </View>
-                <View
-                  style={
+                  cool pic.jpg
+                </Text>
+              </View>
+              <View
+                style={
+                  Object {
+                    "alignSelf": "center",
+                  }
+                }
+              >
+                <Image
+                  source={
                     Object {
-                      "alignSelf": "flex-end",
-                      "flex": -1,
-                      "flexGrow": 1,
+                      "testUri": "../../../src/images/check-white.png",
                     }
                   }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {
-                          "fontWeight": "500",
-                          "overflow": "hidden",
-                          "textAlign": "left",
-                        },
-                        Object {
-                          "fontFamily": ".SFUIDisplay-medium",
-                        },
-                      ]
-                    }
-                  >
-                    cool audio.mp3
-                  </Text>
-                </View>
-                <View
                   style={
                     Object {
-                      "alignSelf": "center",
+                      "height": 10,
+                      "resizeMode": "contain",
+                      "tintColor": "#008EE2",
+                      "width": 13,
                     }
                   }
                 />
               </View>
-            </TouchableHighlight>
-          </View>
+            </View>
+          </TouchableHighlight>
         </View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        >
-          <View>
-            <TouchableHighlight
-              accessibilityTraits="none"
-              accessible={true}
-              onPress={[Function]}
-              testID="speedgrader.files.row4"
-              underlayColor="#eee"
+      </item>
+      <item>
+        <View>
+          <TouchableHighlight
+            accessibilityTraits="none"
+            accessible={true}
+            onPress={[Function]}
+            testID="speedgrader.files.row2"
+            underlayColor="#eee"
+          >
+            <View
+              style={
+                Object {
+                  "borderBottomColor": "lightgrey",
+                  "borderBottomWidth": 0.5,
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "paddingHorizontal": 16,
+                  "paddingVertical": 16,
+                }
+              }
             >
               <View
                 style={
                   Object {
-                    "borderBottomColor": "lightgrey",
-                    "borderBottomWidth": 0.5,
-                    "flex": 1,
-                    "flexDirection": "row",
-                    "justifyContent": "space-between",
-                    "paddingHorizontal": 16,
-                    "paddingVertical": 16,
+                    "marginRight": 16,
                   }
                 }
               >
-                <View
-                  style={
+                <Image
+                  source={
                     Object {
-                      "marginRight": 16,
+                      "testUri": "../../../src/images/speedgrader/icon_video_clip.png",
                     }
                   }
-                >
-                  <Image
-                    source={
-                      Object {
-                        "testUri": "../../../src/images/speedgrader/pdf-icon.png",
-                      }
-                    }
-                    style={
-                      Object {
-                        "resizeMode": "contain",
-                        "tintColor": "#00BCD5",
-                        "width": 24,
-                      }
-                    }
-                  />
-                </View>
-                <View
                   style={
                     Object {
-                      "alignSelf": "flex-end",
-                      "flex": -1,
-                      "flexGrow": 1,
-                    }
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {
-                          "fontWeight": "500",
-                          "overflow": "hidden",
-                          "textAlign": "left",
-                        },
-                        Object {
-                          "fontFamily": ".SFUIDisplay-medium",
-                        },
-                      ]
-                    }
-                  >
-                    cool pdf.pdf
-                  </Text>
-                </View>
-                <View
-                  style={
-                    Object {
-                      "alignSelf": "center",
+                      "resizeMode": "contain",
+                      "tintColor": "#00BCD5",
+                      "width": 24,
                     }
                   }
                 />
               </View>
-            </TouchableHighlight>
-          </View>
+              <View
+                style={
+                  Object {
+                    "alignSelf": "flex-end",
+                    "flex": -1,
+                    "flexGrow": 1,
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "fontWeight": "500",
+                        "overflow": "hidden",
+                        "textAlign": "left",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-medium",
+                      },
+                    ]
+                  }
+                >
+                  cool video.mp4
+                </Text>
+              </View>
+              <View
+                style={
+                  Object {
+                    "alignSelf": "center",
+                  }
+                }
+              />
+            </View>
+          </TouchableHighlight>
         </View>
-      </View>
-    </RCTScrollView>
+      </item>
+      <item>
+        <View>
+          <TouchableHighlight
+            accessibilityTraits="none"
+            accessible={true}
+            onPress={[Function]}
+            testID="speedgrader.files.row3"
+            underlayColor="#eee"
+          >
+            <View
+              style={
+                Object {
+                  "borderBottomColor": "lightgrey",
+                  "borderBottomWidth": 0.5,
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "paddingHorizontal": 16,
+                  "paddingVertical": 16,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "marginRight": 16,
+                  }
+                }
+              >
+                <Image
+                  source={
+                    Object {
+                      "testUri": "../../../src/images/speedgrader/icon_audio.png",
+                    }
+                  }
+                  style={
+                    Object {
+                      "resizeMode": "contain",
+                      "tintColor": "#00BCD5",
+                      "width": 24,
+                    }
+                  }
+                />
+              </View>
+              <View
+                style={
+                  Object {
+                    "alignSelf": "flex-end",
+                    "flex": -1,
+                    "flexGrow": 1,
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "fontWeight": "500",
+                        "overflow": "hidden",
+                        "textAlign": "left",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-medium",
+                      },
+                    ]
+                  }
+                >
+                  cool audio.mp3
+                </Text>
+              </View>
+              <View
+                style={
+                  Object {
+                    "alignSelf": "center",
+                  }
+                }
+              />
+            </View>
+          </TouchableHighlight>
+        </View>
+      </item>
+      <item>
+        <View>
+          <TouchableHighlight
+            accessibilityTraits="none"
+            accessible={true}
+            onPress={[Function]}
+            testID="speedgrader.files.row4"
+            underlayColor="#eee"
+          >
+            <View
+              style={
+                Object {
+                  "borderBottomColor": "lightgrey",
+                  "borderBottomWidth": 0.5,
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "paddingHorizontal": 16,
+                  "paddingVertical": 16,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "marginRight": 16,
+                  }
+                }
+              >
+                <Image
+                  source={
+                    Object {
+                      "testUri": "../../../src/images/speedgrader/pdf-icon.png",
+                    }
+                  }
+                  style={
+                    Object {
+                      "resizeMode": "contain",
+                      "tintColor": "#00BCD5",
+                      "width": 24,
+                    }
+                  }
+                />
+              </View>
+              <View
+                style={
+                  Object {
+                    "alignSelf": "flex-end",
+                    "flex": -1,
+                    "flexGrow": 1,
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "fontWeight": "500",
+                        "overflow": "hidden",
+                        "textAlign": "left",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-medium",
+                      },
+                    ]
+                  }
+                >
+                  cool pdf.pdf
+                </Text>
+              </View>
+              <View
+                style={
+                  Object {
+                    "alignSelf": "center",
+                  }
+                }
+              />
+            </View>
+          </TouchableHighlight>
+        </View>
+      </item>
+    </list>
   </View>
 </RCTScrollView>
 `;
@@ -878,147 +698,99 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
 exports[`SpeedGraderFilesTab renders with a submission 1`] = `
 <RCTScrollView>
   <View>
-    <RCTScrollView
-      ListEmptyComponent={
-        <ListEmptyComponent
-          title="There are no files to display."
-        />
-      }
-      data={
-        Array [
-          Object {
-            "display_name": "cool file.doc",
-            "id": "1234",
-            "mime_class": "doc",
-            "thumbnail_url": null,
-          },
-        ]
-      }
-      disableVirtualization={false}
-      extraData={
-        Object {
-          "selected": null,
-        }
-      }
-      getItem={[Function]}
-      getItemCount={[Function]}
-      horizontal={false}
-      initialNumToRender={10}
-      keyExtractor={[Function]}
-      maxToRenderPerBatch={10}
-      numColumns={1}
-      onContentSizeChange={[Function]}
-      onEndReachedThreshold={2}
-      onLayout={[Function]}
-      onMomentumScrollEnd={[Function]}
-      onScroll={[Function]}
-      onScrollBeginDrag={[Function]}
-      onScrollEndDrag={[Function]}
-      renderItem={[Function]}
-      scrollEventThrottle={50}
-      stickyHeaderIndices={Array []}
-      testID="speedgrader.files.list"
-      updateCellsBatchingPeriod={50}
-      viewabilityConfigCallbackPairs={Array []}
-      windowSize={21}
-    >
-      <View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        >
-          <View>
-            <TouchableHighlight
-              accessibilityTraits="none"
-              accessible={true}
-              onPress={[Function]}
-              testID="speedgrader.files.row0"
-              underlayColor="#eee"
+    <list>
+      <item>
+        <View>
+          <TouchableHighlight
+            accessibilityTraits="none"
+            accessible={true}
+            onPress={[Function]}
+            testID="speedgrader.files.row0"
+            underlayColor="#eee"
+          >
+            <View
+              style={
+                Object {
+                  "borderBottomColor": "lightgrey",
+                  "borderBottomWidth": 0.5,
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "paddingHorizontal": 16,
+                  "paddingVertical": 16,
+                }
+              }
             >
               <View
                 style={
                   Object {
-                    "borderBottomColor": "lightgrey",
-                    "borderBottomWidth": 0.5,
-                    "flex": 1,
-                    "flexDirection": "row",
-                    "justifyContent": "space-between",
-                    "paddingHorizontal": 16,
-                    "paddingVertical": 16,
+                    "marginRight": 16,
                   }
                 }
               >
-                <View
-                  style={
+                <Image
+                  source={
                     Object {
-                      "marginRight": 16,
+                      "testUri": "../../../src/images/speedgrader/page.png",
                     }
                   }
-                >
-                  <Image
-                    source={
-                      Object {
-                        "testUri": "../../../src/images/speedgrader/page.png",
-                      }
-                    }
-                    style={
-                      Object {
-                        "resizeMode": "contain",
-                        "tintColor": "#00BCD5",
-                        "width": 24,
-                      }
-                    }
-                  />
-                </View>
-                <View
                   style={
                     Object {
-                      "alignSelf": "flex-end",
-                      "flex": -1,
-                      "flexGrow": 1,
-                    }
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {
-                          "fontWeight": "500",
-                          "overflow": "hidden",
-                          "textAlign": "left",
-                        },
-                        Object {
-                          "fontFamily": ".SFUIDisplay-medium",
-                        },
-                      ]
-                    }
-                  >
-                    cool file.doc
-                  </Text>
-                </View>
-                <View
-                  style={
-                    Object {
-                      "alignSelf": "center",
+                      "resizeMode": "contain",
+                      "tintColor": "#00BCD5",
+                      "width": 24,
                     }
                   }
                 />
               </View>
-            </TouchableHighlight>
-          </View>
+              <View
+                style={
+                  Object {
+                    "alignSelf": "flex-end",
+                    "flex": -1,
+                    "flexGrow": 1,
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "fontWeight": "500",
+                        "overflow": "hidden",
+                        "textAlign": "left",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-medium",
+                      },
+                    ]
+                  }
+                >
+                  cool file.doc
+                </Text>
+              </View>
+              <View
+                style={
+                  Object {
+                    "alignSelf": "center",
+                  }
+                }
+              />
+            </View>
+          </TouchableHighlight>
         </View>
-      </View>
-    </RCTScrollView>
+      </item>
+    </list>
   </View>
 </RCTScrollView>
 `;
@@ -1026,147 +798,99 @@ exports[`SpeedGraderFilesTab renders with a submission 1`] = `
 exports[`SpeedGraderFilesTab renders without a submission 1`] = `
 <RCTScrollView>
   <View>
-    <RCTScrollView
-      ListEmptyComponent={
-        <ListEmptyComponent
-          title="There are no files to display."
-        />
-      }
-      data={
-        Array [
-          Object {
-            "display_name": "cool file.doc",
-            "id": "1234",
-            "mime_class": "doc",
-            "thumbnail_url": null,
-          },
-        ]
-      }
-      disableVirtualization={false}
-      extraData={
-        Object {
-          "selected": null,
-        }
-      }
-      getItem={[Function]}
-      getItemCount={[Function]}
-      horizontal={false}
-      initialNumToRender={10}
-      keyExtractor={[Function]}
-      maxToRenderPerBatch={10}
-      numColumns={1}
-      onContentSizeChange={[Function]}
-      onEndReachedThreshold={2}
-      onLayout={[Function]}
-      onMomentumScrollEnd={[Function]}
-      onScroll={[Function]}
-      onScrollBeginDrag={[Function]}
-      onScrollEndDrag={[Function]}
-      renderItem={[Function]}
-      scrollEventThrottle={50}
-      stickyHeaderIndices={Array []}
-      testID="speedgrader.files.list"
-      updateCellsBatchingPeriod={50}
-      viewabilityConfigCallbackPairs={Array []}
-      windowSize={21}
-    >
-      <View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        >
-          <View>
-            <TouchableHighlight
-              accessibilityTraits="none"
-              accessible={true}
-              onPress={[Function]}
-              testID="speedgrader.files.row0"
-              underlayColor="#eee"
+    <list>
+      <item>
+        <View>
+          <TouchableHighlight
+            accessibilityTraits="none"
+            accessible={true}
+            onPress={[Function]}
+            testID="speedgrader.files.row0"
+            underlayColor="#eee"
+          >
+            <View
+              style={
+                Object {
+                  "borderBottomColor": "lightgrey",
+                  "borderBottomWidth": 0.5,
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "paddingHorizontal": 16,
+                  "paddingVertical": 16,
+                }
+              }
             >
               <View
                 style={
                   Object {
-                    "borderBottomColor": "lightgrey",
-                    "borderBottomWidth": 0.5,
-                    "flex": 1,
-                    "flexDirection": "row",
-                    "justifyContent": "space-between",
-                    "paddingHorizontal": 16,
-                    "paddingVertical": 16,
+                    "marginRight": 16,
                   }
                 }
               >
-                <View
-                  style={
+                <Image
+                  source={
                     Object {
-                      "marginRight": 16,
+                      "testUri": "../../../src/images/speedgrader/page.png",
                     }
                   }
-                >
-                  <Image
-                    source={
-                      Object {
-                        "testUri": "../../../src/images/speedgrader/page.png",
-                      }
-                    }
-                    style={
-                      Object {
-                        "resizeMode": "contain",
-                        "tintColor": "#00BCD5",
-                        "width": 24,
-                      }
-                    }
-                  />
-                </View>
-                <View
                   style={
                     Object {
-                      "alignSelf": "flex-end",
-                      "flex": -1,
-                      "flexGrow": 1,
-                    }
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {
-                          "fontWeight": "500",
-                          "overflow": "hidden",
-                          "textAlign": "left",
-                        },
-                        Object {
-                          "fontFamily": ".SFUIDisplay-medium",
-                        },
-                      ]
-                    }
-                  >
-                    cool file.doc
-                  </Text>
-                </View>
-                <View
-                  style={
-                    Object {
-                      "alignSelf": "center",
+                      "resizeMode": "contain",
+                      "tintColor": "#00BCD5",
+                      "width": 24,
                     }
                   }
                 />
               </View>
-            </TouchableHighlight>
-          </View>
+              <View
+                style={
+                  Object {
+                    "alignSelf": "flex-end",
+                    "flex": -1,
+                    "flexGrow": 1,
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "fontWeight": "500",
+                        "overflow": "hidden",
+                        "textAlign": "left",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-medium",
+                      },
+                    ]
+                  }
+                >
+                  cool file.doc
+                </Text>
+              </View>
+              <View
+                style={
+                  Object {
+                    "alignSelf": "center",
+                  }
+                }
+              />
+            </View>
+          </TouchableHighlight>
         </View>
-      </View>
-    </RCTScrollView>
+      </item>
+    </list>
   </View>
 </RCTScrollView>
 `;

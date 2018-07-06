@@ -18,471 +18,157 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
   subtitle="Learn React Native"
   title="Donald Trump"
 >
-  <RCTScrollView
-    ItemSeparatorComponent={[Function]}
-    ListHeaderComponent={
-      <View
-        style={
-          Object {
-            "paddingTop": 8,
-          }
+  <list>
+    <item>
+      <TouchableHighlight
+        accessibilityLabel={undefined}
+        accessibilityTraits={
+          Array [
+            "button",
+          ]
         }
-      >
-        <View
-          style={
+        onPress={[Function]}
+        style={
+          Array [
+            undefined,
             Object {
               "borderBottomColor": "#C7CDD1",
               "borderBottomWidth": 0.5,
-              "padding": 16,
-            }
-          }
-        >
-          <View
-            style={
+            },
+          ]
+        }
+        testID="user-submission-row.cell-1"
+      >
+        <View
+          style={
+            Array [
               Object {
                 "alignItems": "center",
-                "display": "flex",
+                "backgroundColor": "white",
+                "flex": 1,
                 "flexDirection": "row",
-                "marginBottom": 24,
-              }
-            }
-          >
-            <Avatar
-              avatarURL="http://www.fillmurray.com/100/100"
-              height={80}
-              userName="Donald Trump"
-            />
-            <View
-              style={
-                Object {
-                  "marginLeft": 12,
-                }
-              }
-            >
-              <Text
-                style={
-                  Object {
-                    "fontSize": 28,
-                    "lineHeight": 34,
-                  }
-                }
-              >
-                Donald Trump
-              </Text>
-            </View>
-          </View>
-          <View>
-            <Heading1>
-              Learn React Native
-            </Heading1>
-            <Text
-              style={
-                Object {
-                  "fontSize": 14,
-                  "marginVertical": 4,
-                }
-              }
-              testID="context-card.section-name"
-            >
-              Section: the section 1
-            </Text>
-            <SubTitle
-              testID="context-card.last-activity"
-            >
-              Last activity on April 5 at 9:12 AM
-            </SubTitle>
-          </View>
-        </View>
-        <View
-          style={
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-              "padding": 16,
-            }
-          }
-        >
-          <Heading1
-            style={
+                "minHeight": 54,
+                "paddingBottom": 12,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 12,
+              },
               Object {
-                "marginBottom": 16,
-              }
-            }
-          >
-            Submissions
-          </Heading1>
-          <View
-            style={
-              Object {
-                "flexDirection": "row",
-              }
-            }
-          >
-            <View
-              accessibilityLabel="Grade 100"
-              accessible={true}
-              style={
-                Object {
-                  "flex": 1,
-                }
-              }
-            >
-              <Text
-                style={
-                  Object {
-                    "color": "#2D3B45",
-                    "flex": 1,
-                    "fontSize": 28,
-                    "fontWeight": "700",
-                  }
-                }
-                testID="context-card.grade"
-              >
-                100
-              </Text>
-              <Text
-                style={
-                  Object {
-                    "flex": 1,
-                  }
-                }
-              >
-                Grade
-              </Text>
-            </View>
-            <View
-              accessibilityLabel="Late Submissions 10"
-              accessible={true}
-              style={
-                Object {
-                  "flex": 1,
-                }
-              }
-            >
-              <Text
-                style={
-                  Object {
-                    "color": "#2D3B45",
-                    "flex": 1,
-                    "fontSize": 28,
-                    "fontWeight": "700",
-                  }
-                }
-              >
-                10
-              </Text>
-              <Text
-                style={
-                  Object {
-                    "flex": 1,
-                  }
-                }
-              >
-                Late
-              </Text>
-            </View>
-            <View
-              accessibilityLabel="Missing Submissions 20"
-              accessible={true}
-              style={
-                Object {
-                  "flex": 1,
-                }
-              }
-            >
-              <Text
-                style={
-                  Object {
-                    "color": "#2D3B45",
-                    "flex": 1,
-                    "fontSize": 28,
-                    "fontWeight": "700",
-                  }
-                }
-              >
-                20
-              </Text>
-              <Text
-                style={
-                  Object {
-                    "flex": 1,
-                  }
-                }
-              >
-                Missing
-              </Text>
-            </View>
-          </View>
-        </View>
-      </View>
-    }
-    data={
-      Array [
-        Object {
-          "assignment": Object {
-            "assignment_group_id": "1376",
-            "automatic_peer_reviews": false,
-            "course_id": "987654321",
-            "created_at": "2017-03-17T19:15:25Z",
-            "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-            "due_at": "2037-06-01T05:59:00Z",
-            "grade_group_students_individually": false,
-            "grading_type": "points",
-            "group_category_id": null,
-            "has_overrides": false,
-            "html_url": "http://hostname.tld/whatever",
-            "id": "1",
-            "lock_at": "2037-06-01T05:59:59Z",
-            "name": "learn to write code",
-            "needs_grading_count": 0,
-            "only_visible_to_overrides": false,
-            "overrides": Array [],
-            "peer_reviews": false,
-            "points_possible": 100,
-            "position": 1,
-            "published": true,
-            "rubric": null,
-            "rubric_assessment": Object {},
-            "rubric_settings": null,
-            "submission_types": Array [
-              "online_text_entry",
-              "online_url",
-              "media_recording",
-              "online_upload",
-            ],
-            "unlock_at": "2017-03-17T06:00:00Z",
-            "unpublishable": false,
-            "updated_at": "2017-03-17T19:15:25Z",
-          },
-          "assignment_id": "1",
-          "attachments": Array [],
-          "attempt": 1,
-          "body": "This is my submission!",
-          "excused": false,
-          "grade": 50,
-          "grade_matches_current_submission": true,
-          "id": "1",
-          "late": false,
-          "missing": false,
-          "preview_url": "",
-          "submission_type": "online_text_entry",
-          "submitted_at": "2017-04-05T15:12:45Z",
-          "user": Object {
-            "avatar_url": "http://www.fillmurray.com/100/100",
-            "bio": "my bio is yuuuuuuuge",
-            "id": "55",
-            "name": "Donald Trump",
-            "primary_email": "donald@trump.com",
-            "short_name": "The Donald",
-            "sortable_name": "Mr. President",
-          },
-          "user_id": "55",
-          "workflow_state": "submitted",
-        },
-      ]
-    }
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    numColumns={1}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    renderItem={[Function]}
-    scrollEventThrottle={50}
-    stickyHeaderIndices={Array []}
-    updateCellsBatchingPeriod={50}
-    viewabilityConfigCallbackPairs={Array []}
-    windowSize={21}
-  >
-    <View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <View
-          style={
-            Object {
-              "paddingTop": 8,
-            }
+                "backgroundColor": "white",
+              },
+            ]
           }
         >
           <View
             style={
               Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-                "padding": 16,
+                "alignSelf": "flex-start",
               }
             }
+            testID="user-submission-row-icon-published-1.icon-img"
           >
             <View
+              accessibilityLabel="Published"
               style={
                 Object {
                   "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                  "marginBottom": 24,
+                  "flex": 0,
                 }
               }
             >
-              <View
-                accessibilityLabel=""
+              <Image
+                resizeMode="cover"
+                source={
+                  Object {
+                    "testUri": "../../../src/images/course/Assignment.png",
+                  }
+                }
                 style={
                   Array [
+                    false,
                     Object {
-                      "overflow": "hidden",
-                    },
-                    Object {
-                      "height": 80,
-                      "width": 80,
-                    },
-                    Object {
-                      "borderRadius": 40,
-                    },
-                    Object {
-                      "backgroundColor": "#F5F5F5",
+                      "minHeight": 24,
+                      "minWidth": 24,
                     },
                   ]
+                }
+                testID="access-icon-image"
+              />
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "borderRadius": 8,
+                    "bottom": -6,
+                    "height": 16,
+                    "justifyContent": "center",
+                    "position": "absolute",
+                    "right": -5,
+                    "width": 16,
+                  }
                 }
               >
                 <Image
                   source={
                     Object {
-                      "uri": "http://www.fillmurray.com/100/100",
+                      "testUri": "../../../src/images/publish-small.png",
                     }
                   }
                   style={
                     Object {
-                      "height": 80,
-                      "width": 80,
+                      "height": 12,
+                      "tintColor": "#00AC18",
+                      "width": 12,
                     }
                   }
+                  testID="access-icon-icon"
                 />
               </View>
-              <View
-                style={
-                  Object {
-                    "marginLeft": 12,
-                  }
-                }
-              >
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontSize": 16,
-                      },
-                      Object {
-                        "fontSize": 28,
-                        "lineHeight": 34,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                    ]
-                  }
-                >
-                  Donald Trump
-                </Text>
-              </View>
-            </View>
-            <View>
-              <Text
-                accessibilityTraits="header"
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-heavy",
-                      "fontSize": 24,
-                    },
-                    undefined,
-                  ]
-                }
-              >
-                Learn React Native
-              </Text>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "fontSize": 14,
-                      "marginVertical": 4,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                  ]
-                }
-                testID="context-card.section-name"
-              >
-                Section: the section 1
-              </Text>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#7F91A7",
-                      "fontSize": 14,
-                    },
-                    undefined,
-                  ]
-                }
-                testID="context-card.last-activity"
-              >
-                Last activity on April 5 at 9:12 AM
-              </Text>
             </View>
           </View>
           <View
             style={
-              Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-                "padding": 16,
-              }
+              Array [
+                Object {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                },
+                Object {
+                  "marginLeft": 12,
+                },
+              ]
             }
           >
             <Text
-              accessibilityTraits="header"
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              numberOfLines={2}
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Array [
+                    Object {
+                      "fontWeight": "600",
+                    },
+                  ],
+                  Object {
+                    "fontFamily": ".SFUIDisplay-semibold",
+                  },
+                ]
+              }
+            >
+              learn to write code
+            </Text>
+            <Text
               accessible={true}
               allowFontScaling={true}
               ellipsizeMode="tail"
@@ -493,403 +179,33 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
                   },
                   Object {
                     "color": "#2D3B45",
-                    "fontFamily": ".SFUIDisplay-heavy",
-                    "fontSize": 24,
+                    "fontSize": 16,
                   },
+                  Array [
+                    Object {
+                      "fontSize": 14,
+                      "paddingTop": 2,
+                    },
+                    Object {
+                      "marginBottom": 8,
+                    },
+                    Object {
+                      "color": "#8B969E",
+                    },
+                  ],
                   Object {
-                    "marginBottom": 16,
+                    "fontFamily": ".SFUIDisplay",
                   },
                 ]
               }
             >
-              Submissions
+              Not Submitted
             </Text>
-            <View
-              style={
-                Object {
-                  "flexDirection": "row",
-                }
-              }
-            >
-              <View
-                accessibilityLabel="Grade 100"
-                accessible={true}
-                style={
-                  Object {
-                    "flex": 1,
-                  }
-                }
-              >
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontSize": 16,
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "flex": 1,
-                        "fontSize": 28,
-                        "fontWeight": "700",
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-bold",
-                      },
-                    ]
-                  }
-                  testID="context-card.grade"
-                >
-                  100
-                </Text>
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontSize": 16,
-                      },
-                      Object {
-                        "flex": 1,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                    ]
-                  }
-                >
-                  Grade
-                </Text>
-              </View>
-              <View
-                accessibilityLabel="Late Submissions 10"
-                accessible={true}
-                style={
-                  Object {
-                    "flex": 1,
-                  }
-                }
-              >
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontSize": 16,
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "flex": 1,
-                        "fontSize": 28,
-                        "fontWeight": "700",
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-bold",
-                      },
-                    ]
-                  }
-                >
-                  10
-                </Text>
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontSize": 16,
-                      },
-                      Object {
-                        "flex": 1,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                    ]
-                  }
-                >
-                  Late
-                </Text>
-              </View>
-              <View
-                accessibilityLabel="Missing Submissions 20"
-                accessible={true}
-                style={
-                  Object {
-                    "flex": 1,
-                  }
-                }
-              >
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontSize": 16,
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "flex": 1,
-                        "fontSize": 28,
-                        "fontWeight": "700",
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-bold",
-                      },
-                    ]
-                  }
-                >
-                  20
-                </Text>
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontSize": 16,
-                      },
-                      Object {
-                        "flex": 1,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                    ]
-                  }
-                >
-                  Missing
-                </Text>
-              </View>
-            </View>
           </View>
         </View>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <TouchableHighlight
-          accessibilityLabel={undefined}
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
-          onPress={[Function]}
-          style={
-            Array [
-              undefined,
-              Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-              },
-            ]
-          }
-          testID="user-submission-row.cell-1"
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "minHeight": 54,
-                  "paddingBottom": 12,
-                  "paddingLeft": 16,
-                  "paddingRight": 16,
-                  "paddingTop": 12,
-                },
-                Object {
-                  "backgroundColor": "white",
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignSelf": "flex-start",
-                }
-              }
-              testID="user-submission-row-icon-published-1.icon-img"
-            >
-              <View
-                accessibilityLabel="Published"
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "flex": 0,
-                  }
-                }
-              >
-                <Image
-                  resizeMode="cover"
-                  source={
-                    Object {
-                      "testUri": "../../../src/images/course/Assignment.png",
-                    }
-                  }
-                  style={
-                    Array [
-                      false,
-                      Object {
-                        "minHeight": 24,
-                        "minWidth": 24,
-                      },
-                    ]
-                  }
-                  testID="access-icon-image"
-                />
-                <View
-                  style={
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "white",
-                      "borderRadius": 8,
-                      "bottom": -6,
-                      "height": 16,
-                      "justifyContent": "center",
-                      "position": "absolute",
-                      "right": -5,
-                      "width": 16,
-                    }
-                  }
-                >
-                  <Image
-                    source={
-                      Object {
-                        "testUri": "../../../src/images/publish-small.png",
-                      }
-                    }
-                    style={
-                      Object {
-                        "height": 12,
-                        "tintColor": "#00AC18",
-                        "width": 12,
-                      }
-                    }
-                    testID="access-icon-icon"
-                  />
-                </View>
-              </View>
-            </View>
-            <View
-              style={
-                Array [
-                  Object {
-                    "flex": 1,
-                    "flexDirection": "column",
-                    "justifyContent": "center",
-                  },
-                  Object {
-                    "marginLeft": 12,
-                  },
-                ]
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={2}
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Array [
-                      Object {
-                        "fontWeight": "600",
-                      },
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
-                }
-              >
-                learn to write code
-              </Text>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Array [
-                      Object {
-                        "fontSize": 14,
-                        "paddingTop": 2,
-                      },
-                      Object {
-                        "marginBottom": 8,
-                      },
-                      Object {
-                        "color": "#8B969E",
-                      },
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                  ]
-                }
-              >
-                Not Submitted
-              </Text>
-            </View>
-          </View>
-        </TouchableHighlight>
-      </View>
-    </View>
-  </RCTScrollView>
+      </TouchableHighlight>
+    </item>
+  </list>
 </Screen>
 `;
 
@@ -911,471 +227,157 @@ exports[`ContextCard renders 1`] = `
   subtitle="Learn React Native"
   title="Donald Trump"
 >
-  <RCTScrollView
-    ItemSeparatorComponent={[Function]}
-    ListHeaderComponent={
-      <View
-        style={
-          Object {
-            "paddingTop": 8,
-          }
+  <list>
+    <item>
+      <TouchableHighlight
+        accessibilityLabel={undefined}
+        accessibilityTraits={
+          Array [
+            "button",
+          ]
         }
-      >
-        <View
-          style={
+        onPress={[Function]}
+        style={
+          Array [
+            undefined,
             Object {
               "borderBottomColor": "#C7CDD1",
               "borderBottomWidth": 0.5,
-              "padding": 16,
-            }
-          }
-        >
-          <View
-            style={
+            },
+          ]
+        }
+        testID="user-submission-row.cell-1"
+      >
+        <View
+          style={
+            Array [
               Object {
                 "alignItems": "center",
-                "display": "flex",
+                "backgroundColor": "white",
+                "flex": 1,
                 "flexDirection": "row",
-                "marginBottom": 24,
-              }
-            }
-          >
-            <Avatar
-              avatarURL="http://www.fillmurray.com/100/100"
-              height={80}
-              userName="Donald Trump"
-            />
-            <View
-              style={
-                Object {
-                  "marginLeft": 12,
-                }
-              }
-            >
-              <Text
-                style={
-                  Object {
-                    "fontSize": 28,
-                    "lineHeight": 34,
-                  }
-                }
-              >
-                Donald Trump
-              </Text>
-            </View>
-          </View>
-          <View>
-            <Heading1>
-              Learn React Native
-            </Heading1>
-            <Text
-              style={
-                Object {
-                  "fontSize": 14,
-                  "marginVertical": 4,
-                }
-              }
-              testID="context-card.section-name"
-            >
-              Section: the section 1
-            </Text>
-            <SubTitle
-              testID="context-card.last-activity"
-            >
-              Last activity on April 5 at 9:12 AM
-            </SubTitle>
-          </View>
-        </View>
-        <View
-          style={
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-              "padding": 16,
-            }
-          }
-        >
-          <Heading1
-            style={
+                "minHeight": 54,
+                "paddingBottom": 12,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 12,
+              },
               Object {
-                "marginBottom": 16,
-              }
-            }
-          >
-            Submissions
-          </Heading1>
-          <View
-            style={
-              Object {
-                "flexDirection": "row",
-              }
-            }
-          >
-            <View
-              accessibilityLabel="Grade A"
-              accessible={true}
-              style={
-                Object {
-                  "flex": 1,
-                }
-              }
-            >
-              <Text
-                style={
-                  Object {
-                    "color": "#2D3B45",
-                    "flex": 1,
-                    "fontSize": 28,
-                    "fontWeight": "700",
-                  }
-                }
-                testID="context-card.grade"
-              >
-                A
-              </Text>
-              <Text
-                style={
-                  Object {
-                    "flex": 1,
-                  }
-                }
-              >
-                Grade
-              </Text>
-            </View>
-            <View
-              accessibilityLabel="Late Submissions 10"
-              accessible={true}
-              style={
-                Object {
-                  "flex": 1,
-                }
-              }
-            >
-              <Text
-                style={
-                  Object {
-                    "color": "#2D3B45",
-                    "flex": 1,
-                    "fontSize": 28,
-                    "fontWeight": "700",
-                  }
-                }
-              >
-                10
-              </Text>
-              <Text
-                style={
-                  Object {
-                    "flex": 1,
-                  }
-                }
-              >
-                Late
-              </Text>
-            </View>
-            <View
-              accessibilityLabel="Missing Submissions 20"
-              accessible={true}
-              style={
-                Object {
-                  "flex": 1,
-                }
-              }
-            >
-              <Text
-                style={
-                  Object {
-                    "color": "#2D3B45",
-                    "flex": 1,
-                    "fontSize": 28,
-                    "fontWeight": "700",
-                  }
-                }
-              >
-                20
-              </Text>
-              <Text
-                style={
-                  Object {
-                    "flex": 1,
-                  }
-                }
-              >
-                Missing
-              </Text>
-            </View>
-          </View>
-        </View>
-      </View>
-    }
-    data={
-      Array [
-        Object {
-          "assignment": Object {
-            "assignment_group_id": "1376",
-            "automatic_peer_reviews": false,
-            "course_id": "987654321",
-            "created_at": "2017-03-17T19:15:25Z",
-            "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-            "due_at": "2037-06-01T05:59:00Z",
-            "grade_group_students_individually": false,
-            "grading_type": "points",
-            "group_category_id": null,
-            "has_overrides": false,
-            "html_url": "http://hostname.tld/whatever",
-            "id": "1",
-            "lock_at": "2037-06-01T05:59:59Z",
-            "name": "learn to write code",
-            "needs_grading_count": 0,
-            "only_visible_to_overrides": false,
-            "overrides": Array [],
-            "peer_reviews": false,
-            "points_possible": 100,
-            "position": 1,
-            "published": true,
-            "rubric": null,
-            "rubric_assessment": Object {},
-            "rubric_settings": null,
-            "submission_types": Array [
-              "online_text_entry",
-              "online_url",
-              "media_recording",
-              "online_upload",
-            ],
-            "unlock_at": "2017-03-17T06:00:00Z",
-            "unpublishable": false,
-            "updated_at": "2017-03-17T19:15:25Z",
-          },
-          "assignment_id": "1",
-          "attachments": Array [],
-          "attempt": 1,
-          "body": "This is my submission!",
-          "excused": false,
-          "grade": 50,
-          "grade_matches_current_submission": true,
-          "id": "1",
-          "late": false,
-          "missing": false,
-          "preview_url": "",
-          "submission_type": "online_text_entry",
-          "submitted_at": "2017-04-05T15:12:45Z",
-          "user": Object {
-            "avatar_url": "http://www.fillmurray.com/100/100",
-            "bio": "my bio is yuuuuuuuge",
-            "id": "55",
-            "name": "Donald Trump",
-            "primary_email": "donald@trump.com",
-            "short_name": "The Donald",
-            "sortable_name": "Mr. President",
-          },
-          "user_id": "55",
-          "workflow_state": "submitted",
-        },
-      ]
-    }
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    numColumns={1}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    renderItem={[Function]}
-    scrollEventThrottle={50}
-    stickyHeaderIndices={Array []}
-    updateCellsBatchingPeriod={50}
-    viewabilityConfigCallbackPairs={Array []}
-    windowSize={21}
-  >
-    <View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <View
-          style={
-            Object {
-              "paddingTop": 8,
-            }
+                "backgroundColor": "white",
+              },
+            ]
           }
         >
           <View
             style={
               Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-                "padding": 16,
+                "alignSelf": "flex-start",
               }
             }
+            testID="user-submission-row-icon-published-1.icon-img"
           >
             <View
+              accessibilityLabel="Published"
               style={
                 Object {
                   "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                  "marginBottom": 24,
+                  "flex": 0,
                 }
               }
             >
-              <View
-                accessibilityLabel=""
+              <Image
+                resizeMode="cover"
+                source={
+                  Object {
+                    "testUri": "../../../src/images/course/Assignment.png",
+                  }
+                }
                 style={
                   Array [
+                    false,
                     Object {
-                      "overflow": "hidden",
-                    },
-                    Object {
-                      "height": 80,
-                      "width": 80,
-                    },
-                    Object {
-                      "borderRadius": 40,
-                    },
-                    Object {
-                      "backgroundColor": "#F5F5F5",
+                      "minHeight": 24,
+                      "minWidth": 24,
                     },
                   ]
+                }
+                testID="access-icon-image"
+              />
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "borderRadius": 8,
+                    "bottom": -6,
+                    "height": 16,
+                    "justifyContent": "center",
+                    "position": "absolute",
+                    "right": -5,
+                    "width": 16,
+                  }
                 }
               >
                 <Image
                   source={
                     Object {
-                      "uri": "http://www.fillmurray.com/100/100",
+                      "testUri": "../../../src/images/publish-small.png",
                     }
                   }
                   style={
                     Object {
-                      "height": 80,
-                      "width": 80,
+                      "height": 12,
+                      "tintColor": "#00AC18",
+                      "width": 12,
                     }
                   }
+                  testID="access-icon-icon"
                 />
               </View>
-              <View
-                style={
-                  Object {
-                    "marginLeft": 12,
-                  }
-                }
-              >
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontSize": 16,
-                      },
-                      Object {
-                        "fontSize": 28,
-                        "lineHeight": 34,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                    ]
-                  }
-                >
-                  Donald Trump
-                </Text>
-              </View>
-            </View>
-            <View>
-              <Text
-                accessibilityTraits="header"
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-heavy",
-                      "fontSize": 24,
-                    },
-                    undefined,
-                  ]
-                }
-              >
-                Learn React Native
-              </Text>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "fontSize": 14,
-                      "marginVertical": 4,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                  ]
-                }
-                testID="context-card.section-name"
-              >
-                Section: the section 1
-              </Text>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#7F91A7",
-                      "fontSize": 14,
-                    },
-                    undefined,
-                  ]
-                }
-                testID="context-card.last-activity"
-              >
-                Last activity on April 5 at 9:12 AM
-              </Text>
             </View>
           </View>
           <View
             style={
-              Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-                "padding": 16,
-              }
+              Array [
+                Object {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                },
+                Object {
+                  "marginLeft": 12,
+                },
+              ]
             }
           >
             <Text
-              accessibilityTraits="header"
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              numberOfLines={2}
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Array [
+                    Object {
+                      "fontWeight": "600",
+                    },
+                  ],
+                  Object {
+                    "fontFamily": ".SFUIDisplay-semibold",
+                  },
+                ]
+              }
+            >
+              learn to write code
+            </Text>
+            <Text
               accessible={true}
               allowFontScaling={true}
               ellipsizeMode="tail"
@@ -1386,403 +388,33 @@ exports[`ContextCard renders 1`] = `
                   },
                   Object {
                     "color": "#2D3B45",
-                    "fontFamily": ".SFUIDisplay-heavy",
-                    "fontSize": 24,
+                    "fontSize": 16,
                   },
+                  Array [
+                    Object {
+                      "fontSize": 14,
+                      "paddingTop": 2,
+                    },
+                    Object {
+                      "marginBottom": 8,
+                    },
+                    Object {
+                      "color": "#8B969E",
+                    },
+                  ],
                   Object {
-                    "marginBottom": 16,
+                    "fontFamily": ".SFUIDisplay",
                   },
                 ]
               }
             >
-              Submissions
+              Not Submitted
             </Text>
-            <View
-              style={
-                Object {
-                  "flexDirection": "row",
-                }
-              }
-            >
-              <View
-                accessibilityLabel="Grade A"
-                accessible={true}
-                style={
-                  Object {
-                    "flex": 1,
-                  }
-                }
-              >
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontSize": 16,
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "flex": 1,
-                        "fontSize": 28,
-                        "fontWeight": "700",
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-bold",
-                      },
-                    ]
-                  }
-                  testID="context-card.grade"
-                >
-                  A
-                </Text>
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontSize": 16,
-                      },
-                      Object {
-                        "flex": 1,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                    ]
-                  }
-                >
-                  Grade
-                </Text>
-              </View>
-              <View
-                accessibilityLabel="Late Submissions 10"
-                accessible={true}
-                style={
-                  Object {
-                    "flex": 1,
-                  }
-                }
-              >
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontSize": 16,
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "flex": 1,
-                        "fontSize": 28,
-                        "fontWeight": "700",
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-bold",
-                      },
-                    ]
-                  }
-                >
-                  10
-                </Text>
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontSize": 16,
-                      },
-                      Object {
-                        "flex": 1,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                    ]
-                  }
-                >
-                  Late
-                </Text>
-              </View>
-              <View
-                accessibilityLabel="Missing Submissions 20"
-                accessible={true}
-                style={
-                  Object {
-                    "flex": 1,
-                  }
-                }
-              >
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontSize": 16,
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "flex": 1,
-                        "fontSize": 28,
-                        "fontWeight": "700",
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-bold",
-                      },
-                    ]
-                  }
-                >
-                  20
-                </Text>
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontSize": 16,
-                      },
-                      Object {
-                        "flex": 1,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                    ]
-                  }
-                >
-                  Missing
-                </Text>
-              </View>
-            </View>
           </View>
         </View>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <TouchableHighlight
-          accessibilityLabel={undefined}
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
-          onPress={[Function]}
-          style={
-            Array [
-              undefined,
-              Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-              },
-            ]
-          }
-          testID="user-submission-row.cell-1"
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "minHeight": 54,
-                  "paddingBottom": 12,
-                  "paddingLeft": 16,
-                  "paddingRight": 16,
-                  "paddingTop": 12,
-                },
-                Object {
-                  "backgroundColor": "white",
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignSelf": "flex-start",
-                }
-              }
-              testID="user-submission-row-icon-published-1.icon-img"
-            >
-              <View
-                accessibilityLabel="Published"
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "flex": 0,
-                  }
-                }
-              >
-                <Image
-                  resizeMode="cover"
-                  source={
-                    Object {
-                      "testUri": "../../../src/images/course/Assignment.png",
-                    }
-                  }
-                  style={
-                    Array [
-                      false,
-                      Object {
-                        "minHeight": 24,
-                        "minWidth": 24,
-                      },
-                    ]
-                  }
-                  testID="access-icon-image"
-                />
-                <View
-                  style={
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "white",
-                      "borderRadius": 8,
-                      "bottom": -6,
-                      "height": 16,
-                      "justifyContent": "center",
-                      "position": "absolute",
-                      "right": -5,
-                      "width": 16,
-                    }
-                  }
-                >
-                  <Image
-                    source={
-                      Object {
-                        "testUri": "../../../src/images/publish-small.png",
-                      }
-                    }
-                    style={
-                      Object {
-                        "height": 12,
-                        "tintColor": "#00AC18",
-                        "width": 12,
-                      }
-                    }
-                    testID="access-icon-icon"
-                  />
-                </View>
-              </View>
-            </View>
-            <View
-              style={
-                Array [
-                  Object {
-                    "flex": 1,
-                    "flexDirection": "column",
-                    "justifyContent": "center",
-                  },
-                  Object {
-                    "marginLeft": 12,
-                  },
-                ]
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={2}
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Array [
-                      Object {
-                        "fontWeight": "600",
-                      },
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
-                }
-              >
-                learn to write code
-              </Text>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Array [
-                      Object {
-                        "fontSize": 14,
-                        "paddingTop": 2,
-                      },
-                      Object {
-                        "marginBottom": 8,
-                      },
-                      Object {
-                        "color": "#8B969E",
-                      },
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                  ]
-                }
-              >
-                Not Submitted
-              </Text>
-            </View>
-          </View>
-        </TouchableHighlight>
-      </View>
-    </View>
-  </RCTScrollView>
+      </TouchableHighlight>
+    </item>
+  </list>
 </Screen>
 `;
 
@@ -1826,279 +458,7 @@ exports[`ContextCard renders for a non student 1`] = `
   subtitle="Learn React Native"
   title="Donald Trump"
 >
-  <RCTScrollView
-    ItemSeparatorComponent={[Function]}
-    ListHeaderComponent={
-      <View
-        style={
-          Object {
-            "paddingTop": 8,
-          }
-        }
-      >
-        <View
-          style={
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-              "padding": 16,
-            }
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "display": "flex",
-                "flexDirection": "row",
-                "marginBottom": 24,
-              }
-            }
-          >
-            <Avatar
-              avatarURL="http://www.fillmurray.com/100/100"
-              height={80}
-              userName="Donald Trump"
-            />
-            <View
-              style={
-                Object {
-                  "marginLeft": 12,
-                }
-              }
-            >
-              <Text
-                style={
-                  Object {
-                    "fontSize": 28,
-                    "lineHeight": 34,
-                  }
-                }
-              >
-                Donald Trump
-              </Text>
-            </View>
-          </View>
-          <View>
-            <Heading1>
-              Learn React Native
-            </Heading1>
-            <Text
-              style={
-                Object {
-                  "fontSize": 14,
-                  "marginVertical": 4,
-                }
-              }
-              testID="context-card.section-name"
-            >
-              Section: the section 1
-            </Text>
-            <SubTitle
-              testID="context-card.last-activity"
-            >
-              Last activity on April 5 at 9:12 AM
-            </SubTitle>
-          </View>
-        </View>
-      </View>
-    }
-    data={Array []}
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    numColumns={1}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    renderItem={[Function]}
-    scrollEventThrottle={50}
-    stickyHeaderIndices={Array []}
-    updateCellsBatchingPeriod={50}
-    viewabilityConfigCallbackPairs={Array []}
-    windowSize={21}
-  >
-    <View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <View
-          style={
-            Object {
-              "paddingTop": 8,
-            }
-          }
-        >
-          <View
-            style={
-              Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-                "padding": 16,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                  "marginBottom": 24,
-                }
-              }
-            >
-              <View
-                accessibilityLabel=""
-                style={
-                  Array [
-                    Object {
-                      "overflow": "hidden",
-                    },
-                    Object {
-                      "height": 80,
-                      "width": 80,
-                    },
-                    Object {
-                      "borderRadius": 40,
-                    },
-                    Object {
-                      "backgroundColor": "#F5F5F5",
-                    },
-                  ]
-                }
-              >
-                <Image
-                  source={
-                    Object {
-                      "uri": "http://www.fillmurray.com/100/100",
-                    }
-                  }
-                  style={
-                    Object {
-                      "height": 80,
-                      "width": 80,
-                    }
-                  }
-                />
-              </View>
-              <View
-                style={
-                  Object {
-                    "marginLeft": 12,
-                  }
-                }
-              >
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontSize": 16,
-                      },
-                      Object {
-                        "fontSize": 28,
-                        "lineHeight": 34,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                    ]
-                  }
-                >
-                  Donald Trump
-                </Text>
-              </View>
-            </View>
-            <View>
-              <Text
-                accessibilityTraits="header"
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-heavy",
-                      "fontSize": 24,
-                    },
-                    undefined,
-                  ]
-                }
-              >
-                Learn React Native
-              </Text>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "fontSize": 14,
-                      "marginVertical": 4,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                  ]
-                }
-                testID="context-card.section-name"
-              >
-                Section: the section 1
-              </Text>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#7F91A7",
-                      "fontSize": 14,
-                    },
-                    undefined,
-                  ]
-                }
-                testID="context-card.last-activity"
-              >
-                Last activity on April 5 at 9:12 AM
-              </Text>
-            </View>
-          </View>
-        </View>
-      </View>
-    </View>
-  </RCTScrollView>
+  <list />
 </Screen>
 `;
 
@@ -2120,279 +480,7 @@ exports[`ContextCard renders for a user that cannot view analytics 1`] = `
   subtitle="Learn React Native"
   title="Donald Trump"
 >
-  <RCTScrollView
-    ItemSeparatorComponent={[Function]}
-    ListHeaderComponent={
-      <View
-        style={
-          Object {
-            "paddingTop": 8,
-          }
-        }
-      >
-        <View
-          style={
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-              "padding": 16,
-            }
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "display": "flex",
-                "flexDirection": "row",
-                "marginBottom": 24,
-              }
-            }
-          >
-            <Avatar
-              avatarURL="http://www.fillmurray.com/100/100"
-              height={80}
-              userName="Donald Trump"
-            />
-            <View
-              style={
-                Object {
-                  "marginLeft": 12,
-                }
-              }
-            >
-              <Text
-                style={
-                  Object {
-                    "fontSize": 28,
-                    "lineHeight": 34,
-                  }
-                }
-              >
-                Donald Trump
-              </Text>
-            </View>
-          </View>
-          <View>
-            <Heading1>
-              Learn React Native
-            </Heading1>
-            <Text
-              style={
-                Object {
-                  "fontSize": 14,
-                  "marginVertical": 4,
-                }
-              }
-              testID="context-card.section-name"
-            >
-              Section: the section 1
-            </Text>
-            <SubTitle
-              testID="context-card.last-activity"
-            >
-              Last activity on April 5 at 9:12 AM
-            </SubTitle>
-          </View>
-        </View>
-      </View>
-    }
-    data={Array []}
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    numColumns={1}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    renderItem={[Function]}
-    scrollEventThrottle={50}
-    stickyHeaderIndices={Array []}
-    updateCellsBatchingPeriod={50}
-    viewabilityConfigCallbackPairs={Array []}
-    windowSize={21}
-  >
-    <View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <View
-          style={
-            Object {
-              "paddingTop": 8,
-            }
-          }
-        >
-          <View
-            style={
-              Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-                "padding": 16,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                  "marginBottom": 24,
-                }
-              }
-            >
-              <View
-                accessibilityLabel=""
-                style={
-                  Array [
-                    Object {
-                      "overflow": "hidden",
-                    },
-                    Object {
-                      "height": 80,
-                      "width": 80,
-                    },
-                    Object {
-                      "borderRadius": 40,
-                    },
-                    Object {
-                      "backgroundColor": "#F5F5F5",
-                    },
-                  ]
-                }
-              >
-                <Image
-                  source={
-                    Object {
-                      "uri": "http://www.fillmurray.com/100/100",
-                    }
-                  }
-                  style={
-                    Object {
-                      "height": 80,
-                      "width": 80,
-                    }
-                  }
-                />
-              </View>
-              <View
-                style={
-                  Object {
-                    "marginLeft": 12,
-                  }
-                }
-              >
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontSize": 16,
-                      },
-                      Object {
-                        "fontSize": 28,
-                        "lineHeight": 34,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                    ]
-                  }
-                >
-                  Donald Trump
-                </Text>
-              </View>
-            </View>
-            <View>
-              <Text
-                accessibilityTraits="header"
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-heavy",
-                      "fontSize": 24,
-                    },
-                    undefined,
-                  ]
-                }
-              >
-                Learn React Native
-              </Text>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "fontSize": 14,
-                      "marginVertical": 4,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                  ]
-                }
-                testID="context-card.section-name"
-              >
-                Section: the section 1
-              </Text>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#7F91A7",
-                      "fontSize": 14,
-                    },
-                    undefined,
-                  ]
-                }
-                testID="context-card.last-activity"
-              >
-                Last activity on April 5 at 9:12 AM
-              </Text>
-            </View>
-          </View>
-        </View>
-      </View>
-    </View>
-  </RCTScrollView>
+  <list />
 </Screen>
 `;
 
@@ -2414,491 +502,194 @@ exports[`ContextCard renders if there is no enrollment 1`] = `
   subtitle="Learn React Native"
   title="Donald Trump"
 >
-  <RCTScrollView
-    ItemSeparatorComponent={[Function]}
-    ListHeaderComponent={
-      <View
-        style={
-          Object {
-            "paddingTop": 8,
-          }
+  <list>
+    <item>
+      <TouchableHighlight
+        accessibilityLabel={undefined}
+        accessibilityTraits={
+          Array [
+            "button",
+          ]
         }
-      >
-        <View
-          style={
+        onPress={[Function]}
+        style={
+          Array [
+            undefined,
             Object {
               "borderBottomColor": "#C7CDD1",
               "borderBottomWidth": 0.5,
-              "padding": 16,
-            }
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "display": "flex",
-                "flexDirection": "row",
-                "marginBottom": 24,
-              }
-            }
-          >
-            <Avatar
-              avatarURL="http://www.fillmurray.com/100/100"
-              height={80}
-              userName="Donald Trump"
-            />
-            <View
-              style={
-                Object {
-                  "marginLeft": 12,
-                }
-              }
-            >
-              <Text
-                style={
-                  Object {
-                    "fontSize": 28,
-                    "lineHeight": 34,
-                  }
-                }
-              >
-                Donald Trump
-              </Text>
-            </View>
-          </View>
-          <View>
-            <Heading1>
-              Learn React Native
-            </Heading1>
-            <SubTitle
-              testID="context-card.last-activity"
-            />
-          </View>
-        </View>
-      </View>
-    }
-    data={
-      Array [
-        Object {
-          "assignment": Object {
-            "assignment_group_id": "1376",
-            "automatic_peer_reviews": false,
-            "course_id": "987654321",
-            "created_at": "2017-03-17T19:15:25Z",
-            "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-            "due_at": "2037-06-01T05:59:00Z",
-            "grade_group_students_individually": false,
-            "grading_type": "points",
-            "group_category_id": null,
-            "has_overrides": false,
-            "html_url": "http://hostname.tld/whatever",
-            "id": "1",
-            "lock_at": "2037-06-01T05:59:59Z",
-            "name": "learn to write code",
-            "needs_grading_count": 0,
-            "only_visible_to_overrides": false,
-            "overrides": Array [],
-            "peer_reviews": false,
-            "points_possible": 100,
-            "position": 1,
-            "published": true,
-            "rubric": null,
-            "rubric_assessment": Object {},
-            "rubric_settings": null,
-            "submission_types": Array [
-              "online_text_entry",
-              "online_url",
-              "media_recording",
-              "online_upload",
-            ],
-            "unlock_at": "2017-03-17T06:00:00Z",
-            "unpublishable": false,
-            "updated_at": "2017-03-17T19:15:25Z",
-          },
-          "assignment_id": "1",
-          "attachments": Array [],
-          "attempt": 1,
-          "body": "This is my submission!",
-          "excused": false,
-          "grade": 50,
-          "grade_matches_current_submission": true,
-          "id": "1",
-          "late": false,
-          "missing": false,
-          "preview_url": "",
-          "submission_type": "online_text_entry",
-          "submitted_at": "2017-04-05T15:12:45Z",
-          "user": Object {
-            "avatar_url": "http://www.fillmurray.com/100/100",
-            "bio": "my bio is yuuuuuuuge",
-            "id": "55",
-            "name": "Donald Trump",
-            "primary_email": "donald@trump.com",
-            "short_name": "The Donald",
-            "sortable_name": "Mr. President",
-          },
-          "user_id": "55",
-          "workflow_state": "submitted",
-        },
-      ]
-    }
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    numColumns={1}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    renderItem={[Function]}
-    scrollEventThrottle={50}
-    stickyHeaderIndices={Array []}
-    updateCellsBatchingPeriod={50}
-    viewabilityConfigCallbackPairs={Array []}
-    windowSize={21}
-  >
-    <View>
-      <View
-        onLayout={[Function]}
-        style={null}
+            },
+          ]
+        }
+        testID="user-submission-row.cell-1"
       >
         <View
           style={
-            Object {
-              "paddingTop": 8,
-            }
+            Array [
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "white",
+                "flex": 1,
+                "flexDirection": "row",
+                "minHeight": 54,
+                "paddingBottom": 12,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 12,
+              },
+              Object {
+                "backgroundColor": "white",
+              },
+            ]
           }
         >
           <View
             style={
               Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-                "padding": 16,
+                "alignSelf": "flex-start",
               }
             }
+            testID="user-submission-row-icon-published-1.icon-img"
           >
             <View
+              accessibilityLabel="Published"
               style={
                 Object {
                   "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                  "marginBottom": 24,
+                  "flex": 0,
                 }
               }
             >
-              <View
-                accessibilityLabel=""
+              <Image
+                resizeMode="cover"
+                source={
+                  Object {
+                    "testUri": "../../../src/images/course/Assignment.png",
+                  }
+                }
                 style={
                   Array [
+                    false,
                     Object {
-                      "overflow": "hidden",
-                    },
-                    Object {
-                      "height": 80,
-                      "width": 80,
-                    },
-                    Object {
-                      "borderRadius": 40,
-                    },
-                    Object {
-                      "backgroundColor": "#F5F5F5",
+                      "minHeight": 24,
+                      "minWidth": 24,
                     },
                   ]
+                }
+                testID="access-icon-image"
+              />
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "borderRadius": 8,
+                    "bottom": -6,
+                    "height": 16,
+                    "justifyContent": "center",
+                    "position": "absolute",
+                    "right": -5,
+                    "width": 16,
+                  }
                 }
               >
                 <Image
                   source={
                     Object {
-                      "uri": "http://www.fillmurray.com/100/100",
+                      "testUri": "../../../src/images/publish-small.png",
                     }
                   }
                   style={
                     Object {
-                      "height": 80,
-                      "width": 80,
+                      "height": 12,
+                      "tintColor": "#00AC18",
+                      "width": 12,
                     }
                   }
+                  testID="access-icon-icon"
                 />
               </View>
-              <View
-                style={
-                  Object {
-                    "marginLeft": 12,
-                  }
-                }
-              >
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontSize": 16,
-                      },
-                      Object {
-                        "fontSize": 28,
-                        "lineHeight": 34,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                    ]
-                  }
-                >
-                  Donald Trump
-                </Text>
-              </View>
-            </View>
-            <View>
-              <Text
-                accessibilityTraits="header"
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-heavy",
-                      "fontSize": 24,
-                    },
-                    undefined,
-                  ]
-                }
-              >
-                Learn React Native
-              </Text>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#7F91A7",
-                      "fontSize": 14,
-                    },
-                    undefined,
-                  ]
-                }
-                testID="context-card.last-activity"
-              />
             </View>
           </View>
-        </View>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <TouchableHighlight
-          accessibilityLabel={undefined}
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
-          onPress={[Function]}
-          style={
-            Array [
-              undefined,
-              Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-              },
-            ]
-          }
-          testID="user-submission-row.cell-1"
-        >
           <View
             style={
               Array [
                 Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
                   "flex": 1,
-                  "flexDirection": "row",
-                  "minHeight": 54,
-                  "paddingBottom": 12,
-                  "paddingLeft": 16,
-                  "paddingRight": 16,
-                  "paddingTop": 12,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
                 },
                 Object {
-                  "backgroundColor": "white",
+                  "marginLeft": 12,
                 },
               ]
             }
           >
-            <View
-              style={
-                Object {
-                  "alignSelf": "flex-start",
-                }
-              }
-              testID="user-submission-row-icon-published-1.icon-img"
-            >
-              <View
-                accessibilityLabel="Published"
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "flex": 0,
-                  }
-                }
-              >
-                <Image
-                  resizeMode="cover"
-                  source={
-                    Object {
-                      "testUri": "../../../src/images/course/Assignment.png",
-                    }
-                  }
-                  style={
-                    Array [
-                      false,
-                      Object {
-                        "minHeight": 24,
-                        "minWidth": 24,
-                      },
-                    ]
-                  }
-                  testID="access-icon-image"
-                />
-                <View
-                  style={
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "white",
-                      "borderRadius": 8,
-                      "bottom": -6,
-                      "height": 16,
-                      "justifyContent": "center",
-                      "position": "absolute",
-                      "right": -5,
-                      "width": 16,
-                    }
-                  }
-                >
-                  <Image
-                    source={
-                      Object {
-                        "testUri": "../../../src/images/publish-small.png",
-                      }
-                    }
-                    style={
-                      Object {
-                        "height": 12,
-                        "tintColor": "#00AC18",
-                        "width": 12,
-                      }
-                    }
-                    testID="access-icon-icon"
-                  />
-                </View>
-              </View>
-            </View>
-            <View
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              numberOfLines={2}
               style={
                 Array [
                   Object {
-                    "flex": 1,
-                    "flexDirection": "column",
-                    "justifyContent": "center",
+                    "fontFamily": ".SFUIDisplay",
                   },
                   Object {
-                    "marginLeft": 12,
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Array [
+                    Object {
+                      "fontWeight": "600",
+                    },
+                  ],
+                  Object {
+                    "fontFamily": ".SFUIDisplay-semibold",
                   },
                 ]
               }
             >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={2}
-                style={
+              learn to write code
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
+                      "fontSize": 14,
+                      "paddingTop": 2,
                     },
                     Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Array [
-                      Object {
-                        "fontWeight": "600",
-                      },
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
-                }
-              >
-                learn to write code
-              </Text>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
+                      "marginBottom": 8,
                     },
                     Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
+                      "color": "#8B969E",
                     },
-                    Array [
-                      Object {
-                        "fontSize": 14,
-                        "paddingTop": 2,
-                      },
-                      Object {
-                        "marginBottom": 8,
-                      },
-                      Object {
-                        "color": "#8B969E",
-                      },
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                  ]
-                }
-              >
-                Not Submitted
-              </Text>
-            </View>
+                  ],
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                ]
+              }
+            >
+              Not Submitted
+            </Text>
           </View>
-        </TouchableHighlight>
-      </View>
-    </View>
-  </RCTScrollView>
+        </View>
+      </TouchableHighlight>
+    </item>
+  </list>
 </Screen>
 `;
 
@@ -2920,434 +711,157 @@ exports[`ContextCard renders if there is no section in the enrollment 1`] = `
   subtitle="Learn React Native"
   title="Donald Trump"
 >
-  <RCTScrollView
-    ItemSeparatorComponent={[Function]}
-    ListHeaderComponent={
-      <View
-        style={
-          Object {
-            "paddingTop": 8,
-          }
+  <list>
+    <item>
+      <TouchableHighlight
+        accessibilityLabel={undefined}
+        accessibilityTraits={
+          Array [
+            "button",
+          ]
         }
-      >
-        <View
-          style={
+        onPress={[Function]}
+        style={
+          Array [
+            undefined,
             Object {
               "borderBottomColor": "#C7CDD1",
               "borderBottomWidth": 0.5,
-              "padding": 16,
-            }
-          }
-        >
-          <View
-            style={
+            },
+          ]
+        }
+        testID="user-submission-row.cell-1"
+      >
+        <View
+          style={
+            Array [
               Object {
                 "alignItems": "center",
-                "display": "flex",
+                "backgroundColor": "white",
+                "flex": 1,
                 "flexDirection": "row",
-                "marginBottom": 24,
-              }
-            }
-          >
-            <Avatar
-              avatarURL="http://www.fillmurray.com/100/100"
-              height={80}
-              userName="Donald Trump"
-            />
-            <View
-              style={
-                Object {
-                  "marginLeft": 12,
-                }
-              }
-            >
-              <Text
-                style={
-                  Object {
-                    "fontSize": 28,
-                    "lineHeight": 34,
-                  }
-                }
-              >
-                Donald Trump
-              </Text>
-            </View>
-          </View>
-          <View>
-            <Heading1>
-              Learn React Native
-            </Heading1>
-            <SubTitle
-              testID="context-card.last-activity"
-            >
-              Last activity on April 5 at 9:12 AM
-            </SubTitle>
-          </View>
-        </View>
-        <View
-          style={
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-              "padding": 16,
-            }
-          }
-        >
-          <Heading1
-            style={
+                "minHeight": 54,
+                "paddingBottom": 12,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 12,
+              },
               Object {
-                "marginBottom": 16,
-              }
-            }
-          >
-            Submissions
-          </Heading1>
-          <View
-            style={
-              Object {
-                "flexDirection": "row",
-              }
-            }
-          >
-            <View
-              accessibilityLabel="Grade 99%"
-              accessible={true}
-              style={
-                Object {
-                  "flex": 1,
-                }
-              }
-            >
-              <Text
-                style={
-                  Object {
-                    "color": "#2D3B45",
-                    "flex": 1,
-                    "fontSize": 28,
-                    "fontWeight": "700",
-                  }
-                }
-                testID="context-card.grade"
-              >
-                99%
-              </Text>
-              <Text
-                style={
-                  Object {
-                    "flex": 1,
-                  }
-                }
-              >
-                Grade
-              </Text>
-            </View>
-            <View
-              accessibilityLabel="Late Submissions 10"
-              accessible={true}
-              style={
-                Object {
-                  "flex": 1,
-                }
-              }
-            >
-              <Text
-                style={
-                  Object {
-                    "color": "#2D3B45",
-                    "flex": 1,
-                    "fontSize": 28,
-                    "fontWeight": "700",
-                  }
-                }
-              >
-                10
-              </Text>
-              <Text
-                style={
-                  Object {
-                    "flex": 1,
-                  }
-                }
-              >
-                Late
-              </Text>
-            </View>
-            <View
-              accessibilityLabel="Missing Submissions 20"
-              accessible={true}
-              style={
-                Object {
-                  "flex": 1,
-                }
-              }
-            >
-              <Text
-                style={
-                  Object {
-                    "color": "#2D3B45",
-                    "flex": 1,
-                    "fontSize": 28,
-                    "fontWeight": "700",
-                  }
-                }
-              >
-                20
-              </Text>
-              <Text
-                style={
-                  Object {
-                    "flex": 1,
-                  }
-                }
-              >
-                Missing
-              </Text>
-            </View>
-          </View>
-        </View>
-      </View>
-    }
-    data={
-      Array [
-        Object {
-          "assignment": Object {
-            "assignment_group_id": "1376",
-            "automatic_peer_reviews": false,
-            "course_id": "987654321",
-            "created_at": "2017-03-17T19:15:25Z",
-            "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-            "due_at": "2037-06-01T05:59:00Z",
-            "grade_group_students_individually": false,
-            "grading_type": "points",
-            "group_category_id": null,
-            "has_overrides": false,
-            "html_url": "http://hostname.tld/whatever",
-            "id": "1",
-            "lock_at": "2037-06-01T05:59:59Z",
-            "name": "learn to write code",
-            "needs_grading_count": 0,
-            "only_visible_to_overrides": false,
-            "overrides": Array [],
-            "peer_reviews": false,
-            "points_possible": 100,
-            "position": 1,
-            "published": true,
-            "rubric": null,
-            "rubric_assessment": Object {},
-            "rubric_settings": null,
-            "submission_types": Array [
-              "online_text_entry",
-              "online_url",
-              "media_recording",
-              "online_upload",
-            ],
-            "unlock_at": "2017-03-17T06:00:00Z",
-            "unpublishable": false,
-            "updated_at": "2017-03-17T19:15:25Z",
-          },
-          "assignment_id": "1",
-          "attachments": Array [],
-          "attempt": 1,
-          "body": "This is my submission!",
-          "excused": false,
-          "grade": 50,
-          "grade_matches_current_submission": true,
-          "id": "1",
-          "late": false,
-          "missing": false,
-          "preview_url": "",
-          "submission_type": "online_text_entry",
-          "submitted_at": "2017-04-05T15:12:45Z",
-          "user": Object {
-            "avatar_url": "http://www.fillmurray.com/100/100",
-            "bio": "my bio is yuuuuuuuge",
-            "id": "55",
-            "name": "Donald Trump",
-            "primary_email": "donald@trump.com",
-            "short_name": "The Donald",
-            "sortable_name": "Mr. President",
-          },
-          "user_id": "55",
-          "workflow_state": "submitted",
-        },
-      ]
-    }
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    numColumns={1}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    renderItem={[Function]}
-    scrollEventThrottle={50}
-    stickyHeaderIndices={Array []}
-    updateCellsBatchingPeriod={50}
-    viewabilityConfigCallbackPairs={Array []}
-    windowSize={21}
-  >
-    <View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <View
-          style={
-            Object {
-              "paddingTop": 8,
-            }
+                "backgroundColor": "white",
+              },
+            ]
           }
         >
           <View
             style={
               Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-                "padding": 16,
+                "alignSelf": "flex-start",
               }
             }
+            testID="user-submission-row-icon-published-1.icon-img"
           >
             <View
+              accessibilityLabel="Published"
               style={
                 Object {
                   "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                  "marginBottom": 24,
+                  "flex": 0,
                 }
               }
             >
-              <View
-                accessibilityLabel=""
+              <Image
+                resizeMode="cover"
+                source={
+                  Object {
+                    "testUri": "../../../src/images/course/Assignment.png",
+                  }
+                }
                 style={
                   Array [
+                    false,
                     Object {
-                      "overflow": "hidden",
-                    },
-                    Object {
-                      "height": 80,
-                      "width": 80,
-                    },
-                    Object {
-                      "borderRadius": 40,
-                    },
-                    Object {
-                      "backgroundColor": "#F5F5F5",
+                      "minHeight": 24,
+                      "minWidth": 24,
                     },
                   ]
+                }
+                testID="access-icon-image"
+              />
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "borderRadius": 8,
+                    "bottom": -6,
+                    "height": 16,
+                    "justifyContent": "center",
+                    "position": "absolute",
+                    "right": -5,
+                    "width": 16,
+                  }
                 }
               >
                 <Image
                   source={
                     Object {
-                      "uri": "http://www.fillmurray.com/100/100",
+                      "testUri": "../../../src/images/publish-small.png",
                     }
                   }
                   style={
                     Object {
-                      "height": 80,
-                      "width": 80,
+                      "height": 12,
+                      "tintColor": "#00AC18",
+                      "width": 12,
                     }
                   }
+                  testID="access-icon-icon"
                 />
               </View>
-              <View
-                style={
-                  Object {
-                    "marginLeft": 12,
-                  }
-                }
-              >
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontSize": 16,
-                      },
-                      Object {
-                        "fontSize": 28,
-                        "lineHeight": 34,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                    ]
-                  }
-                >
-                  Donald Trump
-                </Text>
-              </View>
-            </View>
-            <View>
-              <Text
-                accessibilityTraits="header"
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-heavy",
-                      "fontSize": 24,
-                    },
-                    undefined,
-                  ]
-                }
-              >
-                Learn React Native
-              </Text>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#7F91A7",
-                      "fontSize": 14,
-                    },
-                    undefined,
-                  ]
-                }
-                testID="context-card.last-activity"
-              >
-                Last activity on April 5 at 9:12 AM
-              </Text>
             </View>
           </View>
           <View
             style={
-              Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-                "padding": 16,
-              }
+              Array [
+                Object {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                },
+                Object {
+                  "marginLeft": 12,
+                },
+              ]
             }
           >
             <Text
-              accessibilityTraits="header"
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              numberOfLines={2}
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Array [
+                    Object {
+                      "fontWeight": "600",
+                    },
+                  ],
+                  Object {
+                    "fontFamily": ".SFUIDisplay-semibold",
+                  },
+                ]
+              }
+            >
+              learn to write code
+            </Text>
+            <Text
               accessible={true}
               allowFontScaling={true}
               ellipsizeMode="tail"
@@ -3358,403 +872,33 @@ exports[`ContextCard renders if there is no section in the enrollment 1`] = `
                   },
                   Object {
                     "color": "#2D3B45",
-                    "fontFamily": ".SFUIDisplay-heavy",
-                    "fontSize": 24,
+                    "fontSize": 16,
                   },
+                  Array [
+                    Object {
+                      "fontSize": 14,
+                      "paddingTop": 2,
+                    },
+                    Object {
+                      "marginBottom": 8,
+                    },
+                    Object {
+                      "color": "#8B969E",
+                    },
+                  ],
                   Object {
-                    "marginBottom": 16,
+                    "fontFamily": ".SFUIDisplay",
                   },
                 ]
               }
             >
-              Submissions
+              Not Submitted
             </Text>
-            <View
-              style={
-                Object {
-                  "flexDirection": "row",
-                }
-              }
-            >
-              <View
-                accessibilityLabel="Grade 99%"
-                accessible={true}
-                style={
-                  Object {
-                    "flex": 1,
-                  }
-                }
-              >
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontSize": 16,
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "flex": 1,
-                        "fontSize": 28,
-                        "fontWeight": "700",
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-bold",
-                      },
-                    ]
-                  }
-                  testID="context-card.grade"
-                >
-                  99%
-                </Text>
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontSize": 16,
-                      },
-                      Object {
-                        "flex": 1,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                    ]
-                  }
-                >
-                  Grade
-                </Text>
-              </View>
-              <View
-                accessibilityLabel="Late Submissions 10"
-                accessible={true}
-                style={
-                  Object {
-                    "flex": 1,
-                  }
-                }
-              >
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontSize": 16,
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "flex": 1,
-                        "fontSize": 28,
-                        "fontWeight": "700",
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-bold",
-                      },
-                    ]
-                  }
-                >
-                  10
-                </Text>
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontSize": 16,
-                      },
-                      Object {
-                        "flex": 1,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                    ]
-                  }
-                >
-                  Late
-                </Text>
-              </View>
-              <View
-                accessibilityLabel="Missing Submissions 20"
-                accessible={true}
-                style={
-                  Object {
-                    "flex": 1,
-                  }
-                }
-              >
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontSize": 16,
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "flex": 1,
-                        "fontSize": 28,
-                        "fontWeight": "700",
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-bold",
-                      },
-                    ]
-                  }
-                >
-                  20
-                </Text>
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontSize": 16,
-                      },
-                      Object {
-                        "flex": 1,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                    ]
-                  }
-                >
-                  Missing
-                </Text>
-              </View>
-            </View>
           </View>
         </View>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <TouchableHighlight
-          accessibilityLabel={undefined}
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
-          onPress={[Function]}
-          style={
-            Array [
-              undefined,
-              Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-              },
-            ]
-          }
-          testID="user-submission-row.cell-1"
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "minHeight": 54,
-                  "paddingBottom": 12,
-                  "paddingLeft": 16,
-                  "paddingRight": 16,
-                  "paddingTop": 12,
-                },
-                Object {
-                  "backgroundColor": "white",
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignSelf": "flex-start",
-                }
-              }
-              testID="user-submission-row-icon-published-1.icon-img"
-            >
-              <View
-                accessibilityLabel="Published"
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "flex": 0,
-                  }
-                }
-              >
-                <Image
-                  resizeMode="cover"
-                  source={
-                    Object {
-                      "testUri": "../../../src/images/course/Assignment.png",
-                    }
-                  }
-                  style={
-                    Array [
-                      false,
-                      Object {
-                        "minHeight": 24,
-                        "minWidth": 24,
-                      },
-                    ]
-                  }
-                  testID="access-icon-image"
-                />
-                <View
-                  style={
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "white",
-                      "borderRadius": 8,
-                      "bottom": -6,
-                      "height": 16,
-                      "justifyContent": "center",
-                      "position": "absolute",
-                      "right": -5,
-                      "width": 16,
-                    }
-                  }
-                >
-                  <Image
-                    source={
-                      Object {
-                        "testUri": "../../../src/images/publish-small.png",
-                      }
-                    }
-                    style={
-                      Object {
-                        "height": 12,
-                        "tintColor": "#00AC18",
-                        "width": 12,
-                      }
-                    }
-                    testID="access-icon-icon"
-                  />
-                </View>
-              </View>
-            </View>
-            <View
-              style={
-                Array [
-                  Object {
-                    "flex": 1,
-                    "flexDirection": "column",
-                    "justifyContent": "center",
-                  },
-                  Object {
-                    "marginLeft": 12,
-                  },
-                ]
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={2}
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Array [
-                      Object {
-                        "fontWeight": "600",
-                      },
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
-                }
-              >
-                learn to write code
-              </Text>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Array [
-                      Object {
-                        "fontSize": 14,
-                        "paddingTop": 2,
-                      },
-                      Object {
-                        "marginBottom": 8,
-                      },
-                      Object {
-                        "color": "#8B969E",
-                      },
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                  ]
-                }
-              >
-                Not Submitted
-              </Text>
-            </View>
-          </View>
-        </TouchableHighlight>
-      </View>
-    </View>
-  </RCTScrollView>
+      </TouchableHighlight>
+    </item>
+  </list>
 </Screen>
 `;
 
@@ -3776,471 +920,157 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
   subtitle="Learn React Native"
   title="Donald Trump"
 >
-  <RCTScrollView
-    ItemSeparatorComponent={[Function]}
-    ListHeaderComponent={
-      <View
-        style={
-          Object {
-            "paddingTop": 8,
-          }
+  <list>
+    <item>
+      <TouchableHighlight
+        accessibilityLabel={undefined}
+        accessibilityTraits={
+          Array [
+            "button",
+          ]
         }
-      >
-        <View
-          style={
+        onPress={[Function]}
+        style={
+          Array [
+            undefined,
             Object {
               "borderBottomColor": "#C7CDD1",
               "borderBottomWidth": 0.5,
-              "padding": 16,
-            }
-          }
-        >
-          <View
-            style={
+            },
+          ]
+        }
+        testID="user-submission-row.cell-1"
+      >
+        <View
+          style={
+            Array [
               Object {
                 "alignItems": "center",
-                "display": "flex",
+                "backgroundColor": "white",
+                "flex": 1,
                 "flexDirection": "row",
-                "marginBottom": 24,
-              }
-            }
-          >
-            <Avatar
-              avatarURL="http://www.fillmurray.com/100/100"
-              height={80}
-              userName="Donald Trump"
-            />
-            <View
-              style={
-                Object {
-                  "marginLeft": 12,
-                }
-              }
-            >
-              <Text
-                style={
-                  Object {
-                    "fontSize": 28,
-                    "lineHeight": 34,
-                  }
-                }
-              >
-                Donald Trump
-              </Text>
-            </View>
-          </View>
-          <View>
-            <Heading1>
-              Learn React Native
-            </Heading1>
-            <Text
-              style={
-                Object {
-                  "fontSize": 14,
-                  "marginVertical": 4,
-                }
-              }
-              testID="context-card.section-name"
-            >
-              Section: the section 1
-            </Text>
-            <SubTitle
-              testID="context-card.last-activity"
-            >
-              Last activity on April 5 at 9:12 AM
-            </SubTitle>
-          </View>
-        </View>
-        <View
-          style={
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-              "padding": 16,
-            }
-          }
-        >
-          <Heading1
-            style={
+                "minHeight": 54,
+                "paddingBottom": 12,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 12,
+              },
               Object {
-                "marginBottom": 16,
-              }
-            }
-          >
-            Submissions
-          </Heading1>
-          <View
-            style={
-              Object {
-                "flexDirection": "row",
-              }
-            }
-          >
-            <View
-              accessibilityLabel="Grade 100%"
-              accessible={true}
-              style={
-                Object {
-                  "flex": 1,
-                }
-              }
-            >
-              <Text
-                style={
-                  Object {
-                    "color": "#2D3B45",
-                    "flex": 1,
-                    "fontSize": 28,
-                    "fontWeight": "700",
-                  }
-                }
-                testID="context-card.grade"
-              >
-                100%
-              </Text>
-              <Text
-                style={
-                  Object {
-                    "flex": 1,
-                  }
-                }
-              >
-                Grade
-              </Text>
-            </View>
-            <View
-              accessibilityLabel="Late Submissions 10"
-              accessible={true}
-              style={
-                Object {
-                  "flex": 1,
-                }
-              }
-            >
-              <Text
-                style={
-                  Object {
-                    "color": "#2D3B45",
-                    "flex": 1,
-                    "fontSize": 28,
-                    "fontWeight": "700",
-                  }
-                }
-              >
-                10
-              </Text>
-              <Text
-                style={
-                  Object {
-                    "flex": 1,
-                  }
-                }
-              >
-                Late
-              </Text>
-            </View>
-            <View
-              accessibilityLabel="Missing Submissions 20"
-              accessible={true}
-              style={
-                Object {
-                  "flex": 1,
-                }
-              }
-            >
-              <Text
-                style={
-                  Object {
-                    "color": "#2D3B45",
-                    "flex": 1,
-                    "fontSize": 28,
-                    "fontWeight": "700",
-                  }
-                }
-              >
-                20
-              </Text>
-              <Text
-                style={
-                  Object {
-                    "flex": 1,
-                  }
-                }
-              >
-                Missing
-              </Text>
-            </View>
-          </View>
-        </View>
-      </View>
-    }
-    data={
-      Array [
-        Object {
-          "assignment": Object {
-            "assignment_group_id": "1376",
-            "automatic_peer_reviews": false,
-            "course_id": "987654321",
-            "created_at": "2017-03-17T19:15:25Z",
-            "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-            "due_at": "2037-06-01T05:59:00Z",
-            "grade_group_students_individually": false,
-            "grading_type": "points",
-            "group_category_id": null,
-            "has_overrides": false,
-            "html_url": "http://hostname.tld/whatever",
-            "id": "1",
-            "lock_at": "2037-06-01T05:59:59Z",
-            "name": "learn to write code",
-            "needs_grading_count": 0,
-            "only_visible_to_overrides": false,
-            "overrides": Array [],
-            "peer_reviews": false,
-            "points_possible": 100,
-            "position": 1,
-            "published": true,
-            "rubric": null,
-            "rubric_assessment": Object {},
-            "rubric_settings": null,
-            "submission_types": Array [
-              "online_text_entry",
-              "online_url",
-              "media_recording",
-              "online_upload",
-            ],
-            "unlock_at": "2017-03-17T06:00:00Z",
-            "unpublishable": false,
-            "updated_at": "2017-03-17T19:15:25Z",
-          },
-          "assignment_id": "1",
-          "attachments": Array [],
-          "attempt": 1,
-          "body": "This is my submission!",
-          "excused": false,
-          "grade": 50,
-          "grade_matches_current_submission": true,
-          "id": "1",
-          "late": false,
-          "missing": false,
-          "preview_url": "",
-          "submission_type": "online_text_entry",
-          "submitted_at": "2017-04-05T15:12:45Z",
-          "user": Object {
-            "avatar_url": "http://www.fillmurray.com/100/100",
-            "bio": "my bio is yuuuuuuuge",
-            "id": "55",
-            "name": "Donald Trump",
-            "primary_email": "donald@trump.com",
-            "short_name": "The Donald",
-            "sortable_name": "Mr. President",
-          },
-          "user_id": "55",
-          "workflow_state": "submitted",
-        },
-      ]
-    }
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    numColumns={1}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    renderItem={[Function]}
-    scrollEventThrottle={50}
-    stickyHeaderIndices={Array []}
-    updateCellsBatchingPeriod={50}
-    viewabilityConfigCallbackPairs={Array []}
-    windowSize={21}
-  >
-    <View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <View
-          style={
-            Object {
-              "paddingTop": 8,
-            }
+                "backgroundColor": "white",
+              },
+            ]
           }
         >
           <View
             style={
               Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-                "padding": 16,
+                "alignSelf": "flex-start",
               }
             }
+            testID="user-submission-row-icon-published-1.icon-img"
           >
             <View
+              accessibilityLabel="Published"
               style={
                 Object {
                   "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                  "marginBottom": 24,
+                  "flex": 0,
                 }
               }
             >
-              <View
-                accessibilityLabel=""
+              <Image
+                resizeMode="cover"
+                source={
+                  Object {
+                    "testUri": "../../../src/images/course/Assignment.png",
+                  }
+                }
                 style={
                   Array [
+                    false,
                     Object {
-                      "overflow": "hidden",
-                    },
-                    Object {
-                      "height": 80,
-                      "width": 80,
-                    },
-                    Object {
-                      "borderRadius": 40,
-                    },
-                    Object {
-                      "backgroundColor": "#F5F5F5",
+                      "minHeight": 24,
+                      "minWidth": 24,
                     },
                   ]
+                }
+                testID="access-icon-image"
+              />
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "borderRadius": 8,
+                    "bottom": -6,
+                    "height": 16,
+                    "justifyContent": "center",
+                    "position": "absolute",
+                    "right": -5,
+                    "width": 16,
+                  }
                 }
               >
                 <Image
                   source={
                     Object {
-                      "uri": "http://www.fillmurray.com/100/100",
+                      "testUri": "../../../src/images/publish-small.png",
                     }
                   }
                   style={
                     Object {
-                      "height": 80,
-                      "width": 80,
+                      "height": 12,
+                      "tintColor": "#00AC18",
+                      "width": 12,
                     }
                   }
+                  testID="access-icon-icon"
                 />
               </View>
-              <View
-                style={
-                  Object {
-                    "marginLeft": 12,
-                  }
-                }
-              >
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontSize": 16,
-                      },
-                      Object {
-                        "fontSize": 28,
-                        "lineHeight": 34,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                    ]
-                  }
-                >
-                  Donald Trump
-                </Text>
-              </View>
-            </View>
-            <View>
-              <Text
-                accessibilityTraits="header"
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-heavy",
-                      "fontSize": 24,
-                    },
-                    undefined,
-                  ]
-                }
-              >
-                Learn React Native
-              </Text>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "fontSize": 14,
-                      "marginVertical": 4,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                  ]
-                }
-                testID="context-card.section-name"
-              >
-                Section: the section 1
-              </Text>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#7F91A7",
-                      "fontSize": 14,
-                    },
-                    undefined,
-                  ]
-                }
-                testID="context-card.last-activity"
-              >
-                Last activity on April 5 at 9:12 AM
-              </Text>
             </View>
           </View>
           <View
             style={
-              Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-                "padding": 16,
-              }
+              Array [
+                Object {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                },
+                Object {
+                  "marginLeft": 12,
+                },
+              ]
             }
           >
             <Text
-              accessibilityTraits="header"
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              numberOfLines={2}
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Array [
+                    Object {
+                      "fontWeight": "600",
+                    },
+                  ],
+                  Object {
+                    "fontFamily": ".SFUIDisplay-semibold",
+                  },
+                ]
+              }
+            >
+              learn to write code
+            </Text>
+            <Text
               accessible={true}
               allowFontScaling={true}
               ellipsizeMode="tail"
@@ -4251,403 +1081,33 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
                   },
                   Object {
                     "color": "#2D3B45",
-                    "fontFamily": ".SFUIDisplay-heavy",
-                    "fontSize": 24,
+                    "fontSize": 16,
                   },
+                  Array [
+                    Object {
+                      "fontSize": 14,
+                      "paddingTop": 2,
+                    },
+                    Object {
+                      "marginBottom": 8,
+                    },
+                    Object {
+                      "color": "#8B969E",
+                    },
+                  ],
                   Object {
-                    "marginBottom": 16,
+                    "fontFamily": ".SFUIDisplay",
                   },
                 ]
               }
             >
-              Submissions
+              Not Submitted
             </Text>
-            <View
-              style={
-                Object {
-                  "flexDirection": "row",
-                }
-              }
-            >
-              <View
-                accessibilityLabel="Grade 100%"
-                accessible={true}
-                style={
-                  Object {
-                    "flex": 1,
-                  }
-                }
-              >
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontSize": 16,
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "flex": 1,
-                        "fontSize": 28,
-                        "fontWeight": "700",
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-bold",
-                      },
-                    ]
-                  }
-                  testID="context-card.grade"
-                >
-                  100%
-                </Text>
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontSize": 16,
-                      },
-                      Object {
-                        "flex": 1,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                    ]
-                  }
-                >
-                  Grade
-                </Text>
-              </View>
-              <View
-                accessibilityLabel="Late Submissions 10"
-                accessible={true}
-                style={
-                  Object {
-                    "flex": 1,
-                  }
-                }
-              >
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontSize": 16,
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "flex": 1,
-                        "fontSize": 28,
-                        "fontWeight": "700",
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-bold",
-                      },
-                    ]
-                  }
-                >
-                  10
-                </Text>
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontSize": 16,
-                      },
-                      Object {
-                        "flex": 1,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                    ]
-                  }
-                >
-                  Late
-                </Text>
-              </View>
-              <View
-                accessibilityLabel="Missing Submissions 20"
-                accessible={true}
-                style={
-                  Object {
-                    "flex": 1,
-                  }
-                }
-              >
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontSize": 16,
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "flex": 1,
-                        "fontSize": 28,
-                        "fontWeight": "700",
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-bold",
-                      },
-                    ]
-                  }
-                >
-                  20
-                </Text>
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontSize": 16,
-                      },
-                      Object {
-                        "flex": 1,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                    ]
-                  }
-                >
-                  Missing
-                </Text>
-              </View>
-            </View>
           </View>
         </View>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <TouchableHighlight
-          accessibilityLabel={undefined}
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
-          onPress={[Function]}
-          style={
-            Array [
-              undefined,
-              Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-              },
-            ]
-          }
-          testID="user-submission-row.cell-1"
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "minHeight": 54,
-                  "paddingBottom": 12,
-                  "paddingLeft": 16,
-                  "paddingRight": 16,
-                  "paddingTop": 12,
-                },
-                Object {
-                  "backgroundColor": "white",
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignSelf": "flex-start",
-                }
-              }
-              testID="user-submission-row-icon-published-1.icon-img"
-            >
-              <View
-                accessibilityLabel="Published"
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "flex": 0,
-                  }
-                }
-              >
-                <Image
-                  resizeMode="cover"
-                  source={
-                    Object {
-                      "testUri": "../../../src/images/course/Assignment.png",
-                    }
-                  }
-                  style={
-                    Array [
-                      false,
-                      Object {
-                        "minHeight": 24,
-                        "minWidth": 24,
-                      },
-                    ]
-                  }
-                  testID="access-icon-image"
-                />
-                <View
-                  style={
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "white",
-                      "borderRadius": 8,
-                      "bottom": -6,
-                      "height": 16,
-                      "justifyContent": "center",
-                      "position": "absolute",
-                      "right": -5,
-                      "width": 16,
-                    }
-                  }
-                >
-                  <Image
-                    source={
-                      Object {
-                        "testUri": "../../../src/images/publish-small.png",
-                      }
-                    }
-                    style={
-                      Object {
-                        "height": 12,
-                        "tintColor": "#00AC18",
-                        "width": 12,
-                      }
-                    }
-                    testID="access-icon-icon"
-                  />
-                </View>
-              </View>
-            </View>
-            <View
-              style={
-                Array [
-                  Object {
-                    "flex": 1,
-                    "flexDirection": "column",
-                    "justifyContent": "center",
-                  },
-                  Object {
-                    "marginLeft": 12,
-                  },
-                ]
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={2}
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Array [
-                      Object {
-                        "fontWeight": "600",
-                      },
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
-                }
-              >
-                learn to write code
-              </Text>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Array [
-                      Object {
-                        "fontSize": 14,
-                        "paddingTop": 2,
-                      },
-                      Object {
-                        "marginBottom": 8,
-                      },
-                      Object {
-                        "color": "#8B969E",
-                      },
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                  ]
-                }
-              >
-                Not Submitted
-              </Text>
-            </View>
-          </View>
-        </TouchableHighlight>
-      </View>
-    </View>
-  </RCTScrollView>
+      </TouchableHighlight>
+    </item>
+  </list>
 </Screen>
 `;
 

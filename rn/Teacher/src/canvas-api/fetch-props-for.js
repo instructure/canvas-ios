@@ -16,8 +16,8 @@
 
 // @flow
 import hoistStatics from 'hoist-non-react-statics'
-import React, { type ComponentType } from 'react'
-import { API, httpCache } from './model-api'
+import * as React from 'react'
+import { API, httpCache as cache } from './model-api'
 
 export type FetchProps = {
   api: API,
@@ -28,12 +28,12 @@ export type FetchProps = {
   refresh: () => void,
 }
 
-export function fetchPropsFor<OrigProps, QueryProps> (
-  View: ComponentType<{ ...OrigProps, ...QueryProps, ...FetchProps }>,
-  query: (OrigProps, API) => QueryProps
-) {
-  type State = { ...QueryProps, ...FetchProps }
-  class Wrapper extends React.PureComponent<OrigProps, State> {
+export function fetchPropsFor<AllProps: Object, Statics: Object, HocProps: Object> (
+  View: React.ComponentType<AllProps> & Statics,
+  query: (HocProps, API) => $Diff<$Diff<AllProps, FetchProps>, HocProps>
+): React.ComponentType<HocProps> & Statics {
+  type State = $Diff<$Diff<AllProps, FetchProps>, HocProps> & FetchProps
+  class Wrapper extends React.PureComponent<HocProps, State> {
     loads: Set<ApiPromise<any>> = new Set()
     saves: Set<ApiPromise<any>> = new Set()
     softRefreshTimer: TimeoutID | void
@@ -43,6 +43,7 @@ export function fetchPropsFor<OrigProps, QueryProps> (
       if (this.isReady) {
         this.setState(state)
       } else {
+        // $FlowFixMe
         this.state = { ...this.state, ...state }
       }
     }
@@ -89,7 +90,7 @@ export function fetchPropsFor<OrigProps, QueryProps> (
       this.update({ saveError })
     }
 
-    unsubscribe = httpCache.subscribe((request: ?ApiPromise<any>) => {
+    unsubscribe = cache.subscribe((request: ?ApiPromise<any>) => {
       if (request && (this.loads.has(request) || this.saves.has(request))) return
       clearTimeout(this.softRefreshTimer)
       this.softRefreshTimer = setTimeout(() => {
@@ -133,10 +134,6 @@ export function fetchPropsFor<OrigProps, QueryProps> (
       refresh: this.refresh,
     }
 
-    componentWillMount () {
-      this.isReady = true
-    }
-
     componentWillUnmount () {
       // prevent calling setState on unmounted component
       this.isReady = false
@@ -151,9 +148,11 @@ export function fetchPropsFor<OrigProps, QueryProps> (
     }
 
     render () {
+      this.isReady = true // start using setState
       return <View {...this.props} {...this.state} />
     }
   }
   Wrapper.displayName = View.displayName || View.name
+  // $FlowFixMe Mixing spread and intersection prop types causes confusion
   return hoistStatics(Wrapper, View)
 }

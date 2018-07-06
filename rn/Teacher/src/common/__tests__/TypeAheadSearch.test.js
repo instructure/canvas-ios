@@ -45,7 +45,7 @@ describe('TypeAheadSearch', () => {
     props.endpoint = '/defaultQuery'
     props.parameters = (query) => ({ search: query })
     shallow(<TypeAheadSearch {...props} />)
-    expect(httpClient().get).toHaveBeenCalledWith('/defaultQuery', {
+    expect(httpClient.get).toHaveBeenCalledWith('/defaultQuery', {
       params: { search: 'Malfurion' },
     })
   })
@@ -60,7 +60,7 @@ describe('TypeAheadSearch', () => {
   it('sends request results', async () => {
     const data = [{ id: '1' }]
     let p = Promise.resolve({ data, headers: {} })
-    httpClient().get.mockReturnValueOnce(p)
+    httpClient.get.mockReturnValueOnce(p)
 
     const screen = shallow(<TypeAheadSearch {...props} />)
     screen.find('SearchBar').simulate('ChangeText', 'uther')
@@ -77,7 +77,7 @@ describe('TypeAheadSearch', () => {
              <https://example.com/items?page=4&per_page=1>; rel="last"',
     }
     let p1 = Promise.resolve({ data, headers })
-    httpClient().get.mockReturnValueOnce(p1)
+    httpClient.get.mockReturnValueOnce(p1)
 
     const screen = shallow(<TypeAheadSearch {...props} />)
     screen.find('SearchBar').simulate('ChangeText', 'uther')
@@ -85,7 +85,7 @@ describe('TypeAheadSearch', () => {
     expect(props.onRequestFinished).toHaveBeenCalled()
 
     let p2 = Promise.resolve({ data, headers: {} })
-    httpClient().get.mockReturnValueOnce(p2)
+    httpClient.get.mockReturnValueOnce(p2)
     screen.instance().next()
 
     await p2
@@ -94,7 +94,7 @@ describe('TypeAheadSearch', () => {
 
   it('sends request errors', () => {
     let rejectedPromise = Promise.reject({ message: 'uh oh' })
-    httpClient().get.mockReturnValueOnce(rejectedPromise)
+    httpClient.get.mockReturnValueOnce(rejectedPromise)
 
     const screen = shallow(<TypeAheadSearch {...props} />)
     screen.find('SearchBar').simulate('ChangeText', 'uther')
@@ -105,7 +105,7 @@ describe('TypeAheadSearch', () => {
   })
 
   it('should notify when request starts', () => {
-    httpClient().get.mockReturnValueOnce(Promise.resolve())
+    httpClient.get.mockReturnValueOnce(Promise.resolve())
     const screen = shallow(<TypeAheadSearch {...props} />)
     screen.find('SearchBar').simulate('ChangeText', 'gather tribute')
     expect(props.onRequestStarted).toHaveBeenCalled()

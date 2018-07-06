@@ -21,13 +21,7 @@ import { PeopleList, mapStateToProps, type Props } from '../PeopleList'
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer'
 import explore from '../../../../test/helpers/explore'
-
-const template = {
-  ...require('../../../__templates__/addressBook'),
-  ...require('../../../__templates__/course'),
-  ...require('../../../redux/__templates__/app-state'),
-  ...require('../../../__templates__/helm'),
-}
+import * as template from '../../../__templates__'
 
 jest
   .mock('TouchableHighlight', () => 'TouchableHighlight')
@@ -37,6 +31,7 @@ jest
   .mock('ActionSheetIOS', () => ({
     showActionSheetWithOptions: jest.fn(),
   }))
+  .unmock('FlatList')
 
 const u1 = template.addressBookResult({
   id: '1',

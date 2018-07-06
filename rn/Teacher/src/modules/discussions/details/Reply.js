@@ -237,7 +237,7 @@ export default class Reply extends Component<Props, State> {
   fixBrokenImages = (urls: Array<string>) => {
     urls.forEach(async (url) => {
       try {
-        const { data } = await httpClient().get(url)
+        const { data } = await httpClient.get(url)
         if (data && data.url && this.webView) {
           this.webView.evaluateJavaScript(`;(() => {
             let image = document.querySelector('img[data-api-endpoint="${url}"]')

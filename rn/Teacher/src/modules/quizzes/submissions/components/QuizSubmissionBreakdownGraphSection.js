@@ -36,7 +36,7 @@ export type QuizSubmissionBreakdownGraphSectionProps = {
   courseID: string,
   quizID: string,
   assignmentID?: ?string,
-  style: any,
+  style: ViewStyleProp,
   onPress: (string) => void,
   refreshQuizSubmissions: Function,
   refreshEnrollments: Function,

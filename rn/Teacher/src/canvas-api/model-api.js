@@ -70,7 +70,7 @@ export class API {
       policy === 'network-only' ||
       (policy === 'cache-and-network' && cached.expiresAt < Date.now())
     ) {
-      this.request(httpClient().get(url, config))
+      this.request(httpClient.get(url, config))
     }
     return cached.value || null
   }
@@ -81,7 +81,7 @@ export class API {
       const list = transform ? transform(value, response) : value
       const { current, first, next } = parseLink(response.headers.link) || {}
       const getNextPage = next && (() => {
-        this.request(httpClient().get(next, config))
+        this.request(httpClient.get(next, config))
       })
       if (getNextPage && config.params && config.params.per_page >= 99) {
         getNextPage() // automatically request all pages
@@ -108,26 +108,26 @@ export class API {
       policy === 'network-only' ||
       (policy === 'cache-and-network' && cached.expiresAt < Date.now())
     ) {
-      this.request(httpClient().get(url, config))
+      this.request(httpClient.get(url, config))
     }
     // getNextPage won't survive serialization
     const value = cached.value
     if (value && value.next && !value.getNextPage && policy !== 'cache-only') {
-      value.getNextPage = () => this.request(httpClient().get(value.next, config))
+      value.getNextPage = () => this.request(httpClient.get(value.next, config))
     }
     return value || emptyPaginated
   }
 
   post (url: string, data: *, config: ApiConfig = {}) {
-    return this.request(httpClient().post(url, data, config))
+    return this.request(httpClient.post(url, data, config))
   }
 
   put (url: string, data: *, config: ApiConfig = {}) {
-    return this.request(httpClient().put(url, data, config))
+    return this.request(httpClient.put(url, data, config))
   }
 
   delete (url: string, config: ApiConfig = {}) {
-    return this.request(httpClient().delete(url, config))
+    return this.request(httpClient.delete(url, config))
   }
 
   request (promise: ApiPromise<any>) {

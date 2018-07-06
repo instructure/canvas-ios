@@ -39,7 +39,7 @@ export function parseNext (response: any): ?string {
 }
 
 export function paginate<T> (url: string, config: ApiConfig = {}): ApiPromise<T> {
-  return httpClient().get(url, config).then((response: any) => {
+  return httpClient.get(url, config).then((response: any) => {
     const next = parseNext(response)
     return {
       ...response,

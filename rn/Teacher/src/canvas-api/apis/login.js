@@ -25,5 +25,5 @@ export function getAuthenticatedSessionURL (url: string): ApiPromise<any> {
     },
     excludeVersion: true,
   }
-  return httpClient().get('login/session_token', options)
+  return httpClient.get('login/session_token', options)
 }

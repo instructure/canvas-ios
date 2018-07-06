@@ -21,184 +21,9 @@ exports[`render correctly 1`] = `
       onSearchButtonPress={[Function]}
       placeholder="Search"
     />
-    <RCTScrollView
-      ItemSeparatorComponent={undefined}
-      ListEmptyComponent={
-        <ListEmptyComponent
-          title="No results"
-        />
-      }
-      ListHeaderComponent={<RowSeparator />}
-      data={
-        Array [
-          Object {
-            "data": Array [
-              Object {
-                "dataId": "everyone",
-                "id": "everyone",
-                "name": "Everyone",
-                "type": "everyone",
-              },
-            ],
-            "key": "everyone",
-          },
-          Object {
-            "data": Array [
-              Object {
-                "dataId": "32",
-                "id": "section-32",
-                "info": "984534 students",
-                "name": "the section 1",
-                "type": "section",
-              },
-            ],
-            "key": "Course Sections",
-          },
-          Object {
-            "data": Array [
-              Object {
-                "dataId": "1",
-                "id": "group-1",
-                "info": "23432343 students",
-                "name": "Red Squadron",
-                "type": "group",
-              },
-            ],
-            "key": "Groups",
-          },
-          Object {
-            "data": Array [
-              Object {
-                "dataId": "1",
-                "id": "student-1",
-                "imageURL": "http://www.fillmurray.com/100/100",
-                "info": undefined,
-                "name": "Donald Trump",
-                "type": "student",
-              },
-            ],
-            "key": "Students",
-          },
-        ]
-      }
-      disableVirtualization={false}
-      getItem={[Function]}
-      getItemCount={[Function]}
-      horizontal={false}
-      initialNumToRender={10}
-      keyExtractor={[Function]}
-      maxToRenderPerBatch={10}
-      onContentSizeChange={[Function]}
-      onEndReachedThreshold={2}
-      onLayout={[Function]}
-      onMomentumScrollEnd={[Function]}
-      onRefresh={[Function]}
-      onScroll={[Function]}
-      onScrollBeginDrag={[Function]}
-      onScrollEndDrag={[Function]}
-      onViewableItemsChanged={undefined}
-      refreshControl={
-        <RefreshControlMock
-          onRefresh={[Function]}
-          progressViewOffset={undefined}
-          refreshing={false}
-        />
-      }
-      refreshing={false}
-      renderItem={[Function]}
-      renderSectionHeader={[Function]}
-      scrollEventThrottle={50}
-      sections={
-        Array [
-          Object {
-            "data": Array [
-              Object {
-                "dataId": "everyone",
-                "id": "everyone",
-                "name": "Everyone",
-                "type": "everyone",
-              },
-            ],
-            "key": "everyone",
-          },
-          Object {
-            "data": Array [
-              Object {
-                "dataId": "32",
-                "id": "section-32",
-                "info": "984534 students",
-                "name": "the section 1",
-                "type": "section",
-              },
-            ],
-            "key": "Course Sections",
-          },
-          Object {
-            "data": Array [
-              Object {
-                "dataId": "1",
-                "id": "group-1",
-                "info": "23432343 students",
-                "name": "Red Squadron",
-                "type": "group",
-              },
-            ],
-            "key": "Groups",
-          },
-          Object {
-            "data": Array [
-              Object {
-                "dataId": "1",
-                "id": "student-1",
-                "imageURL": "http://www.fillmurray.com/100/100",
-                "info": undefined,
-                "name": "Donald Trump",
-                "type": "student",
-              },
-            ],
-            "key": "Students",
-          },
-        ]
-      }
-      stickyHeaderIndices={
-        Array [
-          1,
-          4,
-          7,
-          10,
-        ]
-      }
-      stickySectionHeadersEnabled={true}
-      testID="assignee-picker.list"
-      updateCellsBatchingPeriod={50}
-      windowSize={21}
-    >
-      <RCTRefreshControl />
-      <View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "#C7CDD1",
-                  "height": 0.5,
-                },
-                undefined,
-              ]
-            }
-          />
-        </View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        />
-        <View
-          onLayout={[Function]}
-          style={null}
-        >
+    <list>
+      <section>
+        <item>
           <View
             accessibilityComponentType={undefined}
             accessibilityLabel={undefined}
@@ -333,68 +158,58 @@ exports[`render correctly 1`] = `
               </View>
             </View>
           </View>
-        </View>
+        </item>
+      </section>
+      <section>
         <View
-          onLayout={[Function]}
-          style={null}
-        />
-        <View
-          onLayout={[Function]}
-          style={null}
+          accessibilityTraits="header"
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#f5f5f5",
+                "flex": 1,
+                "justifyContent": "center",
+                "paddingLeft": 16,
+                "paddingRight": 8,
+                "paddingVertical": 4,
+              },
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+              undefined,
+            ]
+          }
         >
-          <View
-            accessibilityTraits="header"
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
             style={
               Array [
                 Object {
-                  "backgroundColor": "#f5f5f5",
-                  "flex": 1,
-                  "justifyContent": "center",
-                  "paddingLeft": 16,
-                  "paddingRight": 8,
-                  "paddingVertical": 4,
+                  "fontFamily": ".SFUIDisplay",
                 },
                 Object {
-                  "borderBottomColor": "#C7CDD1",
-                  "borderBottomWidth": 0.5,
+                  "color": "#2D3B45",
+                  "fontSize": 16,
                 },
-                undefined,
+                Object {
+                  "backgroundColor": "#f5f5f5",
+                  "color": "#73818C",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
               ]
             }
           >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "backgroundColor": "#f5f5f5",
-                    "color": "#73818C",
-                    "fontSize": 14,
-                    "fontWeight": "600",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              Course Sections
-            </Text>
-          </View>
+            Course Sections
+          </Text>
         </View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        >
+        <item>
           <View
             accessibilityComponentType={undefined}
             accessibilityLabel={undefined}
@@ -555,68 +370,58 @@ exports[`render correctly 1`] = `
               </View>
             </View>
           </View>
-        </View>
+        </item>
+      </section>
+      <section>
         <View
-          onLayout={[Function]}
-          style={null}
-        />
-        <View
-          onLayout={[Function]}
-          style={null}
+          accessibilityTraits="header"
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#f5f5f5",
+                "flex": 1,
+                "justifyContent": "center",
+                "paddingLeft": 16,
+                "paddingRight": 8,
+                "paddingVertical": 4,
+              },
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+              undefined,
+            ]
+          }
         >
-          <View
-            accessibilityTraits="header"
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
             style={
               Array [
                 Object {
-                  "backgroundColor": "#f5f5f5",
-                  "flex": 1,
-                  "justifyContent": "center",
-                  "paddingLeft": 16,
-                  "paddingRight": 8,
-                  "paddingVertical": 4,
+                  "fontFamily": ".SFUIDisplay",
                 },
                 Object {
-                  "borderBottomColor": "#C7CDD1",
-                  "borderBottomWidth": 0.5,
+                  "color": "#2D3B45",
+                  "fontSize": 16,
                 },
-                undefined,
+                Object {
+                  "backgroundColor": "#f5f5f5",
+                  "color": "#73818C",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
               ]
             }
           >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "backgroundColor": "#f5f5f5",
-                    "color": "#73818C",
-                    "fontSize": 14,
-                    "fontWeight": "600",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              Groups
-            </Text>
-          </View>
+            Groups
+          </Text>
         </View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        >
+        <item>
           <View
             accessibilityComponentType={undefined}
             accessibilityLabel={undefined}
@@ -777,73 +582,189 @@ exports[`render correctly 1`] = `
               </View>
             </View>
           </View>
-        </View>
+        </item>
+      </section>
+      <section>
         <View
-          onLayout={[Function]}
-          style={null}
-        />
-        <View
-          onLayout={[Function]}
-          style={null}
+          accessibilityTraits="header"
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#f5f5f5",
+                "flex": 1,
+                "justifyContent": "center",
+                "paddingLeft": 16,
+                "paddingRight": 8,
+                "paddingVertical": 4,
+              },
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+              undefined,
+            ]
+          }
         >
-          <View
-            accessibilityTraits="header"
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
             style={
               Array [
                 Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
                   "backgroundColor": "#f5f5f5",
-                  "flex": 1,
-                  "justifyContent": "center",
-                  "paddingLeft": 16,
-                  "paddingRight": 8,
-                  "paddingVertical": 4,
+                  "color": "#73818C",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            Students
+          </Text>
+        </View>
+        <item>
+          <View
+            accessibilityComponentType={undefined}
+            accessibilityLabel={undefined}
+            accessibilityTraits={undefined}
+            accessible={true}
+            hasTVPreferredFocus={undefined}
+            hitSlop={undefined}
+            isTVSelectable={true}
+            nativeID={undefined}
+            onLayout={undefined}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
                 },
                 Object {
                   "borderBottomColor": "#C7CDD1",
                   "borderBottomWidth": 0.5,
+                  "flex": 1,
+                  "height": "auto",
                 },
-                undefined,
               ]
             }
+            testID={undefined}
+            tvParallaxProperties={undefined}
           >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
+            <View
               style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "backgroundColor": "#f5f5f5",
-                    "color": "#73818C",
-                    "fontSize": 14,
-                    "fontWeight": "600",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingVertical": 8,
+                }
               }
             >
-              Students
-            </Text>
+              <View
+                style={
+                  Object {
+                    "borderRadius": 20,
+                    "height": 40,
+                    "marginRight": 16,
+                    "overflow": "hidden",
+                    "width": 40,
+                  }
+                }
+              >
+                <View
+                  accessibilityLabel=""
+                  style={
+                    Array [
+                      Object {
+                        "overflow": "hidden",
+                      },
+                      Object {
+                        "height": 40,
+                        "width": 40,
+                      },
+                      Object {
+                        "borderRadius": 20,
+                      },
+                      Object {
+                        "backgroundColor": "#F5F5F5",
+                      },
+                    ]
+                  }
+                >
+                  <Image
+                    source={
+                      Object {
+                        "uri": "http://www.fillmurray.com/100/100",
+                      }
+                    }
+                    style={
+                      Object {
+                        "height": 40,
+                        "width": 40,
+                      }
+                    }
+                  />
+                </View>
+              </View>
+              <View
+                style={
+                  Object {
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  numberOfLines={1}
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontWeight": "600",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Donald Trump
+                </Text>
+              </View>
+            </View>
           </View>
-        </View>
-        <View
-          style={
-            Object {
-              "height": 0,
-            }
-          }
-        />
-      </View>
-    </RCTScrollView>
+        </item>
+      </section>
+    </list>
   </View>
 </RCTSafeAreaView>
 `;
@@ -869,183 +790,57 @@ exports[`render correctly 2`] = `
       onSearchButtonPress={[Function]}
       placeholder="Search"
     />
-    <RCTScrollView
-      ItemSeparatorComponent={undefined}
-      ListEmptyComponent={
-        <ListEmptyComponent
-          title="No results"
-        />
-      }
-      ListHeaderComponent={<RowSeparator />}
-      data={
-        Array [
-          Object {
-            "data": Array [
-              Object {
-                "dataId": "32",
-                "id": "section-32",
-                "info": "984534 students",
-                "name": "the section 1",
-                "type": "section",
-              },
-            ],
-            "key": "Course Sections",
-          },
-          Object {
-            "data": Array [
-              Object {
-                "dataId": "1",
-                "id": "group-1",
-                "info": "23432343 students",
-                "name": "Red Squadron",
-                "type": "group",
-              },
-            ],
-            "key": "Groups",
-          },
-        ]
-      }
-      disableVirtualization={false}
-      getItem={[Function]}
-      getItemCount={[Function]}
-      horizontal={false}
-      initialNumToRender={10}
-      keyExtractor={[Function]}
-      maxToRenderPerBatch={10}
-      onContentSizeChange={[Function]}
-      onEndReachedThreshold={2}
-      onLayout={[Function]}
-      onMomentumScrollEnd={[Function]}
-      onRefresh={[Function]}
-      onScroll={[Function]}
-      onScrollBeginDrag={[Function]}
-      onScrollEndDrag={[Function]}
-      onViewableItemsChanged={undefined}
-      refreshControl={
-        <RefreshControlMock
-          onRefresh={[Function]}
-          progressViewOffset={undefined}
-          refreshing={false}
-        />
-      }
-      refreshing={false}
-      renderItem={[Function]}
-      renderSectionHeader={[Function]}
-      scrollEventThrottle={50}
-      sections={
-        Array [
-          Object {
-            "data": Array [
-              Object {
-                "dataId": "32",
-                "id": "section-32",
-                "info": "984534 students",
-                "name": "the section 1",
-                "type": "section",
-              },
-            ],
-            "key": "Course Sections",
-          },
-          Object {
-            "data": Array [
-              Object {
-                "dataId": "1",
-                "id": "group-1",
-                "info": "23432343 students",
-                "name": "Red Squadron",
-                "type": "group",
-              },
-            ],
-            "key": "Groups",
-          },
-        ]
-      }
-      stickyHeaderIndices={
-        Array [
-          1,
-          4,
-        ]
-      }
-      stickySectionHeadersEnabled={true}
-      testID="assignee-picker.list"
-      updateCellsBatchingPeriod={50}
-      windowSize={21}
-    >
-      <RCTRefreshControl />
-      <View>
+    <list>
+      <section>
         <View
-          onLayout={[Function]}
-          style={null}
+          accessibilityTraits="header"
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#f5f5f5",
+                "flex": 1,
+                "justifyContent": "center",
+                "paddingLeft": 16,
+                "paddingRight": 8,
+                "paddingVertical": 4,
+              },
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+              undefined,
+            ]
+          }
         >
-          <View
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
             style={
               Array [
                 Object {
-                  "backgroundColor": "#C7CDD1",
-                  "height": 0.5,
+                  "fontFamily": ".SFUIDisplay",
                 },
-                undefined,
-              ]
-            }
-          />
-        </View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        >
-          <View
-            accessibilityTraits="header"
-            style={
-              Array [
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
                 Object {
                   "backgroundColor": "#f5f5f5",
-                  "flex": 1,
-                  "justifyContent": "center",
-                  "paddingLeft": 16,
-                  "paddingRight": 8,
-                  "paddingVertical": 4,
+                  "color": "#73818C",
+                  "fontSize": 14,
+                  "fontWeight": "600",
                 },
                 Object {
-                  "borderBottomColor": "#C7CDD1",
-                  "borderBottomWidth": 0.5,
+                  "fontFamily": ".SFUIDisplay-semibold",
                 },
-                undefined,
               ]
             }
           >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "backgroundColor": "#f5f5f5",
-                    "color": "#73818C",
-                    "fontSize": 14,
-                    "fontWeight": "600",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              Course Sections
-            </Text>
-          </View>
+            Course Sections
+          </Text>
         </View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        >
+        <item>
           <View
             accessibilityComponentType={undefined}
             accessibilityLabel={undefined}
@@ -1206,68 +1001,58 @@ exports[`render correctly 2`] = `
               </View>
             </View>
           </View>
-        </View>
+        </item>
+      </section>
+      <section>
         <View
-          onLayout={[Function]}
-          style={null}
-        />
-        <View
-          onLayout={[Function]}
-          style={null}
+          accessibilityTraits="header"
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#f5f5f5",
+                "flex": 1,
+                "justifyContent": "center",
+                "paddingLeft": 16,
+                "paddingRight": 8,
+                "paddingVertical": 4,
+              },
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+              undefined,
+            ]
+          }
         >
-          <View
-            accessibilityTraits="header"
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
             style={
               Array [
                 Object {
-                  "backgroundColor": "#f5f5f5",
-                  "flex": 1,
-                  "justifyContent": "center",
-                  "paddingLeft": 16,
-                  "paddingRight": 8,
-                  "paddingVertical": 4,
+                  "fontFamily": ".SFUIDisplay",
                 },
                 Object {
-                  "borderBottomColor": "#C7CDD1",
-                  "borderBottomWidth": 0.5,
+                  "color": "#2D3B45",
+                  "fontSize": 16,
                 },
-                undefined,
+                Object {
+                  "backgroundColor": "#f5f5f5",
+                  "color": "#73818C",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
               ]
             }
           >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "backgroundColor": "#f5f5f5",
-                    "color": "#73818C",
-                    "fontSize": 14,
-                    "fontWeight": "600",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              Groups
-            </Text>
-          </View>
+            Groups
+          </Text>
         </View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        >
+        <item>
           <View
             accessibilityComponentType={undefined}
             accessibilityLabel={undefined}
@@ -1428,13 +1213,9 @@ exports[`render correctly 2`] = `
               </View>
             </View>
           </View>
-        </View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        />
-      </View>
-    </RCTScrollView>
+        </item>
+      </section>
+    </list>
   </View>
 </RCTSafeAreaView>
 `;

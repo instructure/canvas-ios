@@ -36,7 +36,6 @@ exports[`PagesList renders empty 1`] = `
         />
       }
       data={Array []}
-      disableVirtualization={false}
       extraData={
         Object {
           "pages": Array [],
@@ -47,19 +46,11 @@ exports[`PagesList renders empty 1`] = `
           },
         }
       }
-      horizontal={false}
-      initialNumToRender={10}
       keyExtractor={[Function]}
-      maxToRenderPerBatch={10}
-      numColumns={1}
-      onEndReachedThreshold={2}
       onRefresh={[Function]}
       refreshing={false}
       renderItem={[Function]}
-      scrollEventThrottle={50}
       testID="pages.list.list"
-      updateCellsBatchingPeriod={50}
-      windowSize={21}
     />
   </View>
 </Screen>
@@ -96,7 +87,6 @@ exports[`PagesList renders loading 1`] = `
     <FlatList
       ListEmptyComponent={null}
       data={Array []}
-      disableVirtualization={false}
       extraData={
         Object {
           "pages": Array [],
@@ -107,19 +97,11 @@ exports[`PagesList renders loading 1`] = `
           },
         }
       }
-      horizontal={false}
-      initialNumToRender={10}
       keyExtractor={[Function]}
-      maxToRenderPerBatch={10}
-      numColumns={1}
-      onEndReachedThreshold={2}
       onRefresh={[Function]}
       refreshing={true}
       renderItem={[Function]}
-      scrollEventThrottle={50}
       testID="pages.list.list"
-      updateCellsBatchingPeriod={50}
-      windowSize={21}
     />
   </View>
 </Screen>

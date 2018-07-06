@@ -21,7 +21,7 @@ const appKey = 'CANVAS_STUDENT_IOS'
 
 export function fetchPandataToken (userID: string): ApiPromise<any> {
   const options = { app_key: appKey }
-  return httpClient().post(`/users/self/pandata_events_token`, options)
+  return httpClient.post(`/users/self/pandata_events_token`, options)
 }
 
 export async function sendEvents (eventsAsJsonString: string, endpointInfo: {[string]: any}): ApiPromise<any> {
@@ -61,6 +61,6 @@ export async function sendEvents (eventsAsJsonString: string, endpointInfo: {[st
     },
     excludeVersion: true,
   }
-  return httpClient().post('', options, config)
+  return httpClient.post('', options, config)
 }
 

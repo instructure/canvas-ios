@@ -11,6 +11,7 @@ exports[`renders 1`] = `
         Object {
           "height": 160,
         },
+        Object {},
         Object {
           "height": 100,
         },
@@ -194,6 +195,7 @@ exports[`renders with a grade 1`] = `
         Object {
           "height": 160,
         },
+        Object {},
         Object {
           "height": 100,
         },
@@ -424,6 +426,7 @@ exports[`renders with a grade even if the grade does not exist 1`] = `
         Object {
           "height": 160,
         },
+        Object {},
         Object {
           "height": 100,
         },
@@ -654,6 +657,7 @@ exports[`renders with empty image url 1`] = `
         Object {
           "height": 160,
         },
+        Object {},
         Object {
           "height": 100,
         },
@@ -825,6 +829,7 @@ exports[`renders with image url 1`] = `
         Object {
           "height": 160,
         },
+        Object {},
         Object {
           "height": 100,
         },
@@ -1008,6 +1013,7 @@ exports[`renders without image url 1`] = `
         Object {
           "height": 160,
         },
+        Object {},
         Object {
           "height": 100,
         },

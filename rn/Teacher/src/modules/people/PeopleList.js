@@ -72,7 +72,7 @@ export async function fetch (url: string, params: { [string]: any } = {}, callba
   }
 
   try {
-    let response = await httpClient().get(url, options)
+    let response = await httpClient.get(url, options)
     callback(response.data, null)
   } catch (thrown) {
     if (!isAbort(thrown)) {

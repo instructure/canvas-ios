@@ -232,7 +232,7 @@ describe('DiscussionReplies', () => {
       const evaluateJavaScript = jest.fn()
       const url = 'https://canvas.instructure.com/files/1/preview?verifier=1234'
       const promise = Promise.resolve({ data: template.file({ url }) })
-      httpClient().get = jest.fn(() => promise)
+      httpClient.get = jest.fn(() => promise)
       let imageReply = template.discussionReply({ id: '1', message: `<img src="${url}" />` })
 
       const screen = shallow(<Reply {...props} reply={imageReply} />)

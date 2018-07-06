@@ -35,7 +35,7 @@ export function getAssignment (courseID: string, assignmentID: string): ApiPromi
     },
   }
 
-  return httpClient().get(url, options)
+  return httpClient.get(url, options)
 }
 
 export function updateAssignment (courseID: string, assignment: Assignment): ApiPromise<Assignment> {
@@ -47,7 +47,7 @@ export function updateAssignment (courseID: string, assignment: Assignment): Api
   }
 
   const url = `courses/${courseID}/assignments/${assignment.id}`
-  return httpClient().put(url, {
+  return httpClient.put(url, {
     assignment: updatedAssignment,
   })
 }

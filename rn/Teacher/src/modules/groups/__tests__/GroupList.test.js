@@ -19,12 +19,7 @@
 import React from 'react'
 import { GroupList, mapStateToProps } from '../GroupList'
 import renderer from 'react-native-test-utils'
-
-const template = {
-  ...require('../../../__templates__/helm'),
-  ...require('../../../__templates__/group'),
-  ...require('../../../redux/__templates__/app-state'),
-}
+import * as template from '../../../__templates__'
 
 let defaultProps = {
   group: template.group(),

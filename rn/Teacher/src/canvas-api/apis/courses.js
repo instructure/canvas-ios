@@ -42,7 +42,7 @@ export function getCourseTabs (courseID: string): ApiPromise<Tab[]> {
 }
 
 export function getCourse (courseID: string): ApiPromise<Course> {
-  return httpClient().get(`/courses/${courseID}`, {
+  return httpClient.get(`/courses/${courseID}`, {
     params: {
       include: ['permissions', 'term', 'favorites', 'course_image', 'sections', 'total_scores', 'current_grading_period_scores'],
     },
@@ -54,21 +54,21 @@ export function updateCourse (course: Course): ApiPromise<Course> {
     name: course.name,
     default_view: course.default_view,
   }
-  return httpClient().put(`/courses/${course.id}`, { course: safeParams })
+  return httpClient.put(`/courses/${course.id}`, { course: safeParams })
 }
 
 export function updateCourseNickname (course: Course, nickname: string): ApiPromise<Course> {
-  return httpClient().put(`/users/self/course_nicknames/${course.id}`, { nickname })
+  return httpClient.put(`/users/self/course_nicknames/${course.id}`, { nickname })
 }
 
 export function getCourseAssignments (courseID: string): ApiPromise<Assignment[]> {
   const url = `courses/${courseID}/assignments`
-  return httpClient().get(url)
+  return httpClient.get(url)
 }
 
 export function getCourseGradingPeriods (courseID: string): ApiPromise<GradingPeriodResponse> {
   const url = `courses/${courseID}/grading_periods`
-  return httpClient().get(url)
+  return httpClient.get(url)
 }
 
 export function getCourseSections (courseID: string): ApiPromise<Section[]> {
@@ -91,23 +91,23 @@ export function getCourseUsers (courseID: string, enrollmentType?: string = '', 
     params.user_ids = userIDs
   }
   const options = { params }
-  return httpClient().get(url, options)
+  return httpClient.get(url, options)
 }
 
 export function favoriteCourse (courseID: string): ApiPromise<Favorite> {
-  return httpClient().post(`users/self/favorites/courses/${courseID}`)
+  return httpClient.post(`users/self/favorites/courses/${courseID}`)
 }
 
 export function unfavoriteCourse (courseID: string): ApiPromise<Favorite> {
-  return httpClient().delete(`users/self/favorites/courses/${courseID}`)
+  return httpClient.delete(`users/self/favorites/courses/${courseID}`)
 }
 
 export function updateCourseColor (courseID: string, hexcode: string): ApiPromise<UpdateCustomColorResponse> {
-  return httpClient().put(`users/self/colors/course_${courseID}`, { hexcode })
+  return httpClient.put(`users/self/colors/course_${courseID}`, { hexcode })
 }
 
 export function createCourse (course: CreateCourse): ApiPromise<Course> {
-  return httpClient().post(`accounts/self/courses`, course)
+  return httpClient.post(`accounts/self/courses`, course)
 }
 
 export function getCourseEnabledFeatures (courseID: string): ApiPromise<string[]> {
@@ -123,9 +123,9 @@ export function getCourseLicenses (courseID: string): ApiPromise<License[]> {
 }
 
 export function getCoursePermissions (courseID: string): ApiPromise<{ [string]: boolean }> {
-  return httpClient().get(`courses/${courseID}/permissions`)
+  return httpClient.get(`courses/${courseID}/permissions`)
 }
 
 export function getConferences (courseID: string): ApiPromise<Conference[]> {
-  return httpClient().get(`courses/${courseID}/conferences`)
+  return httpClient.get(`courses/${courseID}/conferences`)
 }

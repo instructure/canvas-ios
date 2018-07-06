@@ -23,7 +23,6 @@ import { httpCache } from '../../../../canvas-api/model-api'
 import * as template from '../../../../__templates__'
 import app from '../../../app'
 import ConnectedPagesList, { PagesList } from '../PagesList'
-import { diveFlatList } from '../../../../../test/helpers/enzymeUtils'
 
 jest.mock('../../../../redux/middleware/error-handler', () => {
   return { alertError: jest.fn() }
@@ -79,7 +78,7 @@ describe('PagesList', () => {
   it('renders front page row', () => {
     props.pages = [template.pageModel({ isFrontPage: true, title: 'Page 1' })]
     const tree = shallow(<PagesList {...props} />)
-    const row = diveFlatList(tree).find('FeatureRow').first()
+    const row = tree.find('FlatList').dive().find('FeatureRow').first()
     expect(row.prop('title')).toBe('Front Page')
     expect(row.prop('subtitle')).toBe('Page 1')
   })
@@ -105,7 +104,7 @@ describe('PagesList', () => {
   it('shows access icon for teachers', () => {
     app.setCurrentApp('teacher')
     const tree = shallow(<PagesList {...props} />)
-    const row = diveFlatList(tree).find('Row').first()
+    const row = tree.find('FlatList').dive().find('Row').first()
     expect(row.prop('renderImage')()).toMatchSnapshot()
   })
 
@@ -122,7 +121,7 @@ describe('PagesList', () => {
     props.navigator = template.navigator({ show: jest.fn() })
     props.pages = [template.pageModel({ url: 'abc' })]
     const tree = shallow(<PagesList {...props} />)
-    diveFlatList(tree).find('Row').first()
+    tree.find('FlatList').dive().find('Row').first()
       .simulate('Press', 'abc')
     expect(props.navigator.show).toHaveBeenCalledWith(
       '/courses/1/pages/abc',

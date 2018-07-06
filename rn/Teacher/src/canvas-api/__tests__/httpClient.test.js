@@ -65,7 +65,7 @@ describe('httpClient', () => {
 
   it('has blank defaults if no session is set', () => {
     setSession(null)
-    httpClient().get('')
+    httpClient.get('')
     expect(request.open).toHaveBeenCalledWith('GET', '/api/v1/', true)
     expect(request.setRequestHeader).toHaveBeenCalledWith(
       'Authorization',
@@ -76,7 +76,7 @@ describe('httpClient', () => {
   it('uses the session that we set', () => {
     const session = templates.session({ actAsUserID: 2 })
     setSession(session)
-    httpClient().get('')
+    httpClient.get('')
     expect(request.open).toHaveBeenCalledWith(
       'GET',
       'http://mobiledev.instructure.com/api/v1/?as_user_id=2',
@@ -95,7 +95,7 @@ describe('httpClient', () => {
   it('handles baseURL without trailing slash', () => {
     const session = templates.session({ baseURL: 'https://canvas.sfu.ca' })
     setSession(session)
-    httpClient().get('')
+    httpClient.get('')
     expect(request.open).toHaveBeenCalledWith(
       'GET',
       'https://canvas.sfu.ca/api/v1/',
@@ -104,7 +104,7 @@ describe('httpClient', () => {
   })
 
   it('serializes params and adds them to the url', () => {
-    httpClient().get('/params', {
+    httpClient.get('/params', {
       params: {
         array: [ 1, 2 ],
         string: 's',
@@ -119,7 +119,7 @@ describe('httpClient', () => {
   })
 
   it('handles params on url with params', () => {
-    httpClient().get('/params?b=b', { params: { a: 'a' } })
+    httpClient.get('/params?b=b', { params: { a: 'a' } })
     expect(request.open).toHaveBeenCalledWith(
       'GET',
       '/api/v1/params?b=b&a=a',
@@ -128,7 +128,7 @@ describe('httpClient', () => {
   })
 
   it('does not prepend base url to absolute urls', () => {
-    httpClient().get('https://s3.amazon.com')
+    httpClient.get('https://s3.amazon.com')
     expect(request.open).toHaveBeenCalledWith(
       'GET',
       'https://s3.amazon.com',
@@ -137,7 +137,7 @@ describe('httpClient', () => {
   })
 
   it('does not attach the version if excludeVersion is passed in', () => {
-    httpClient().get('/courses/1', { excludeVersion: true })
+    httpClient.get('/courses/1', { excludeVersion: true })
     expect(request.open).toHaveBeenCalledWith(
       'GET',
       '/courses/1',
@@ -146,14 +146,14 @@ describe('httpClient', () => {
   })
 
   it('dedupes get requests', () => {
-    const a = httpClient().get('/courses/22')
-    const b = httpClient().get('/courses/22')
+    const a = httpClient.get('/courses/22')
+    const b = httpClient.get('/courses/22')
     expect(request.open).toHaveBeenCalledTimes(1)
     expect(b).toBe(a)
   })
 
   it('passes along headers', () => {
-    httpClient().delete('', {
+    httpClient.delete('', {
       headers: {
         'Authorization': '',
         'X-My-Header': 'value',
@@ -164,26 +164,26 @@ describe('httpClient', () => {
   })
 
   it('serializes object bodies as json', () => {
-    httpClient().post('', { a: 1 })
+    httpClient.post('', { a: 1 })
     expect(request.setRequestHeader).toHaveBeenCalledWith('Content-Type', 'application/json')
     expect(request.send).toHaveBeenCalledWith('{"a":1}')
   })
 
   it('passes along string bodies', () => {
-    httpClient().put('', 'some value')
+    httpClient.put('', 'some value')
     expect(request.setRequestHeader).not.toHaveBeenCalledWith('Content-Type', 'application/json')
     expect(request.send).toHaveBeenCalledWith('some value')
   })
 
   it('passes along blob bodies', () => {
     const blob = new Blob()
-    httpClient().post('', blob)
+    httpClient.post('', blob)
     expect(request.setRequestHeader).not.toHaveBeenCalledWith('Content-Type', 'application/json')
     expect(request.send).toHaveBeenCalledWith(blob)
   })
 
   it('handles abort events', async () => {
-    const fetching = httpClient().get('')
+    const fetching = httpClient.get('')
     expect(request.addEventListener).toHaveBeenCalledWith('abort', expect.any(Object))
     const handler = request.addEventListener.mock.calls[0][1]
     handler.handleEvent({ type: 'abort' })
@@ -193,7 +193,7 @@ describe('httpClient', () => {
   })
 
   it('handles timeout events', async () => {
-    const fetching = httpClient().get('')
+    const fetching = httpClient.get('')
     expect(request.addEventListener).toHaveBeenCalledWith('timeout', expect.any(Object))
     const handler = request.addEventListener.mock.calls[0][1]
     handler.handleEvent({ type: 'timeout' })
@@ -203,7 +203,7 @@ describe('httpClient', () => {
   })
 
   it('handles error events with actual errors attached', async () => {
-    const fetching = httpClient().get('')
+    const fetching = httpClient.get('')
     expect(request.addEventListener).toHaveBeenCalledWith('error', expect.any(Object))
     const handler = request.addEventListener.mock.calls[0][1]
     handler.handleEvent({ type: 'error', error: new Error('oops') })
@@ -213,7 +213,7 @@ describe('httpClient', () => {
   })
 
   it('handles error events with message attached', async () => {
-    const fetching = httpClient().get('')
+    const fetching = httpClient.get('')
     expect(request.addEventListener).toHaveBeenCalledWith('error', expect.any(Object))
     const handler = request.addEventListener.mock.calls[0][1]
     handler.handleEvent({ type: 'error', message: 'oops2' })
@@ -223,7 +223,7 @@ describe('httpClient', () => {
   })
 
   it('handles empty error events', async () => {
-    const fetching = httpClient().get('')
+    const fetching = httpClient.get('')
     expect(request.addEventListener).toHaveBeenCalledWith('error', expect.any(Object))
     const handler = request.addEventListener.mock.calls[0][1]
     handler.handleEvent({ type: 'error' })
@@ -233,7 +233,7 @@ describe('httpClient', () => {
   })
 
   it('parses response headers', async () => {
-    const fetching = httpClient().get('')
+    const fetching = httpClient.get('')
     request.getAllResponseHeaders = () =>
       'Content-Type: application/json+canvas-string-ids\r\n' +
       'Link: <next>; rel=next'
@@ -248,7 +248,7 @@ describe('httpClient', () => {
   })
 
   it('returns the response object as data', async () => {
-    const fetching = httpClient().get('')
+    const fetching = httpClient.get('')
     request.response = {}
     request.responseText = '{"a":"a"}'
     expect(request.addEventListener).toHaveBeenCalledWith('load', expect.any(Object))
@@ -259,7 +259,7 @@ describe('httpClient', () => {
   })
 
   it('can transform the response data', async () => {
-    const fetching = httpClient().get('', { transform: () => 'transformed' })
+    const fetching = httpClient.get('', { transform: () => 'transformed' })
     request.response = {}
     expect(request.addEventListener).toHaveBeenCalledWith('load', expect.any(Object))
     const handler = request.addEventListener.mock.calls[0][1]
@@ -269,7 +269,7 @@ describe('httpClient', () => {
   })
 
   it('considers status >= 400 an error', async () => {
-    const fetching = httpClient().get('')
+    const fetching = httpClient.get('')
     request.response = { error: [] }
     request.status = 400
     expect(request.addEventListener).toHaveBeenCalledWith('load', expect.any(Object))

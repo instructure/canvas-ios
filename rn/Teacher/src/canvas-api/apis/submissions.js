@@ -43,13 +43,13 @@ type SubmissionGradeParams = {
 }
 
 export function gradeSubmission (courseID: string, assignmentID: string, userID: string, submissionParams: SubmissionGradeParams): ApiPromise<Submission> {
-  return httpClient().put(`/courses/${courseID}/assignments/${assignmentID}/submissions/${userID}`, {
+  return httpClient.put(`/courses/${courseID}/assignments/${assignmentID}/submissions/${userID}`, {
     submission: submissionParams,
   })
 }
 
 export function gradeSubmissionWithRubric (courseID: string, assignmentID: string, userID: string, rubricParams: { [string]: RubricAssessment }): ApiPromise<Submission> {
-  return httpClient().put(`/courses/${courseID}/assignments/${assignmentID}/submissions/${userID}`, {
+  return httpClient.put(`/courses/${courseID}/assignments/${assignmentID}/submissions/${userID}`, {
     rubric_assessment: rubricParams,
   })
 }
@@ -70,11 +70,11 @@ export function commentOnSubmission (courseID: string, assignmentID: string, use
     data.comment.group_comment = true
   }
 
-  return httpClient().put(`/courses/${courseID}/assignments/${assignmentID}/submissions/${userID}`, data)
+  return httpClient.put(`/courses/${courseID}/assignments/${assignmentID}/submissions/${userID}`, data)
 }
 
 export function refreshSubmissionSummary (courseID: string, assignmentID: string): ApiPromise<Submission> {
-  return httpClient().get(`/courses/${courseID}/assignments/${assignmentID}/submission_summary`)
+  return httpClient.get(`/courses/${courseID}/assignments/${assignmentID}/submission_summary`)
 }
 
 export function getSubmissionsForUsers (courseID: string, userIDs: string[]): ApiPromise<Submission[]> {

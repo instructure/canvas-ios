@@ -57,7 +57,7 @@ async function requestUploadTarget (attachment: Attachment, options: UploadOptio
   if (options.parentFolderID) params.parent_folder_id = options.parentFolderID
   if (options.parentFolderPath) params.parent_folder_path = options.parentFolderPath
 
-  const response = await httpClient().post(options.path, params)
+  const response = await httpClient.post(options.path, params)
   if (response.data.attachments && response.attachments.length) {
     return response.data.attachments[0]
   }
@@ -74,7 +74,7 @@ async function postFile (uri: string, target: UploadTarget, options: UploadOptio
     type: 'multipart/form-data',
   })
 
-  const uploading = httpClient().post(upload_url, formdata, {
+  const uploading = httpClient.post(upload_url, formdata, {
     headers: { // remove default auth & accept
       'Authorization': null,
       'Accept': 'application/json',

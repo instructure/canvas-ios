@@ -35,7 +35,7 @@ export function getGroupsForCategoryID (groupCategoryID: string): ApiPromise<Gro
 
 export function getGroupByID (groupID: string): ApiPromise<Group[]> {
   const url = `groups/${groupID}`
-  return httpClient().get(url)
+  return httpClient.get(url)
 }
 
 export function getUsersForGroupID (groupID: string): ApiPromise<User[]> {
@@ -43,7 +43,7 @@ export function getUsersForGroupID (groupID: string): ApiPromise<User[]> {
   const options = {
     params: { include: ['avatar_url'] },
   }
-  return httpClient().get(url, options)
+  return httpClient.get(url, options)
 }
 
 export function getUsersGroups (userID: string): ApiPromise<Group[]> {

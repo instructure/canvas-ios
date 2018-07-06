@@ -32,7 +32,7 @@ describe('paginate', () => {
     }
 
     const mock = apiResponse([], { headers: headers })
-    httpClient().get = mock
+    httpClient.get = mock
 
     const result = await paginate('courses')
 
@@ -53,7 +53,7 @@ describe('paginate', () => {
     }
 
     const mock = apiResponse([], { headers: headers })
-    httpClient().get = mock
+    httpClient.get = mock
 
     const result = await paginate('courses')
 
@@ -64,7 +64,7 @@ describe('paginate', () => {
 
   it('should handle no links in header', async () => {
     const mock = apiResponse([], { headers: { link: null } })
-    httpClient().get = mock
+    httpClient.get = mock
 
     const result = await paginate('courses')
 
@@ -74,7 +74,7 @@ describe('paginate', () => {
   })
 
   it('should propagate errors', async () => {
-    httpClient().get = apiError()
+    httpClient.get = apiError()
 
     let error
     let response
@@ -97,7 +97,7 @@ describe('paginate', () => {
         },
       },
     })
-    httpClient().get = mock
+    httpClient.get = mock
 
     const result = await paginate('grading_periods')
     expect(mock).toHaveBeenCalledWith('grading_periods', {})
@@ -108,7 +108,7 @@ describe('paginate', () => {
 
   it('should accept options', async () => {
     const mock = apiResponse([])
-    httpClient().get = mock
+    httpClient.get = mock
 
     let options = {
       params: {

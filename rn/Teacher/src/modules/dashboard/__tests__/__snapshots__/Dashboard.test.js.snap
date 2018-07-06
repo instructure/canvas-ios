@@ -34,394 +34,96 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
   }
   statusBarStyle="light"
 >
-  <RCTScrollView
-    ItemSeparatorComponent={undefined}
-    contentContainerStyle={
-      Object {
-        "flexDirection": "row",
-        "flexWrap": "wrap",
-        "padding": 8,
-      }
-    }
-    data={
-      Array [
-        Object {
-          "data": Array [],
-          "keyExtractor": [Function],
-          "renderItem": [Function],
-          "sectionID": "dashboard.announcements",
-        },
-        Object {
-          "data": Array [
-            Object {
-              "account_id": "1",
-              "color": "#27B9CD",
-              "course_code": "BIO 101",
-              "default_view": "wiki",
-              "end_at": "2030-02-08T23:13:39Z",
-              "enrollments": Array [
-                Object {
-                  "enrollment_state": "active",
-                  "role": "TeacherEnrollment",
-                  "role_id": "1",
-                  "type": "teacher",
-                  "user_id": "1",
-                },
-              ],
-              "id": "1",
-              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-              "is_favorite": true,
-              "name": "Biology 101",
-              "permissions": Object {
-                "viewAllGrades": true,
-                "viewAnalytics": true,
-              },
-              "short_name": "BIO 101",
-              "term": Object {
-                "created_at": "2018-02-08T23:13:39Z",
-                "end_at": "2030-02-08T23:13:39Z",
-                "id": "1",
-                "name": "Default Term",
-                "start_at": "2018-02-08T23:13:39Z",
-                "workflow_state": "available",
-              },
-              "workflow_state": "available",
-            },
-            Object {
-              "account_id": "1",
-              "color": "#8F3E97",
-              "course_code": "LIT 401",
-              "default_view": "wiki",
-              "end_at": "2030-02-08T23:13:39Z",
-              "enrollments": Array [
-                Object {
-                  "enrollment_state": "active",
-                  "role": "TeacherEnrollment",
-                  "role_id": "1",
-                  "type": "teacher",
-                  "user_id": "1",
-                },
-              ],
-              "id": "2",
-              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-              "is_favorite": false,
-              "name": "American Literature Psysicks foobar hello world 401",
-              "permissions": Object {
-                "viewAllGrades": true,
-                "viewAnalytics": true,
-              },
-              "short_name": "LIT 401",
-              "term": Object {
-                "created_at": "2018-02-08T23:13:39Z",
-                "end_at": "2030-02-08T23:13:39Z",
-                "id": "1",
-                "name": "Default Term",
-                "start_at": "2018-02-08T23:13:39Z",
-                "workflow_state": "available",
-              },
-              "workflow_state": "available",
-            },
-            Object {
-              "account_id": "1",
-              "color": "#8F3E99",
-              "course_code": "FOO 102",
-              "default_view": "wiki",
-              "end_at": "2030-02-08T23:13:39Z",
-              "enrollments": Array [
-                Object {
-                  "enrollment_state": "active",
-                  "role": "TeacherEnrollment",
-                  "role_id": "1",
-                  "type": "teacher",
-                  "user_id": "1",
-                },
-              ],
-              "id": "3",
-              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-              "is_favorite": true,
-              "name": "Foobar 102",
-              "permissions": Object {
-                "viewAllGrades": true,
-                "viewAnalytics": true,
-              },
-              "short_name": "FOO 102",
-              "term": Object {
-                "created_at": "2018-02-08T23:13:39Z",
-                "end_at": "2030-02-08T23:13:39Z",
-                "id": "1",
-                "name": "Default Term",
-                "start_at": "2018-02-08T23:13:39Z",
-                "workflow_state": "available",
-              },
-              "workflow_state": "available",
-            },
-          ],
-          "keyExtractor": [Function],
-          "renderItem": [Function],
-          "sectionID": "dashboard.courses",
-          "seeAll": [Function],
-          "title": "Courses",
-        },
-      ]
-    }
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onRefresh={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
-    refreshControl={
-      <RefreshControlMock
-        onRefresh={[Function]}
-        progressViewOffset={undefined}
-        refreshing={false}
-      />
-    }
-    refreshing={false}
-    renderItem={[Function]}
-    renderSectionHeader={[Function]}
-    scrollEventThrottle={50}
-    sections={
-      Array [
-        Object {
-          "data": Array [],
-          "keyExtractor": [Function],
-          "renderItem": [Function],
-          "sectionID": "dashboard.announcements",
-        },
-        Object {
-          "data": Array [
-            Object {
-              "account_id": "1",
-              "color": "#27B9CD",
-              "course_code": "BIO 101",
-              "default_view": "wiki",
-              "end_at": "2030-02-08T23:13:39Z",
-              "enrollments": Array [
-                Object {
-                  "enrollment_state": "active",
-                  "role": "TeacherEnrollment",
-                  "role_id": "1",
-                  "type": "teacher",
-                  "user_id": "1",
-                },
-              ],
-              "id": "1",
-              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-              "is_favorite": true,
-              "name": "Biology 101",
-              "permissions": Object {
-                "viewAllGrades": true,
-                "viewAnalytics": true,
-              },
-              "short_name": "BIO 101",
-              "term": Object {
-                "created_at": "2018-02-08T23:13:39Z",
-                "end_at": "2030-02-08T23:13:39Z",
-                "id": "1",
-                "name": "Default Term",
-                "start_at": "2018-02-08T23:13:39Z",
-                "workflow_state": "available",
-              },
-              "workflow_state": "available",
-            },
-            Object {
-              "account_id": "1",
-              "color": "#8F3E97",
-              "course_code": "LIT 401",
-              "default_view": "wiki",
-              "end_at": "2030-02-08T23:13:39Z",
-              "enrollments": Array [
-                Object {
-                  "enrollment_state": "active",
-                  "role": "TeacherEnrollment",
-                  "role_id": "1",
-                  "type": "teacher",
-                  "user_id": "1",
-                },
-              ],
-              "id": "2",
-              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-              "is_favorite": false,
-              "name": "American Literature Psysicks foobar hello world 401",
-              "permissions": Object {
-                "viewAllGrades": true,
-                "viewAnalytics": true,
-              },
-              "short_name": "LIT 401",
-              "term": Object {
-                "created_at": "2018-02-08T23:13:39Z",
-                "end_at": "2030-02-08T23:13:39Z",
-                "id": "1",
-                "name": "Default Term",
-                "start_at": "2018-02-08T23:13:39Z",
-                "workflow_state": "available",
-              },
-              "workflow_state": "available",
-            },
-            Object {
-              "account_id": "1",
-              "color": "#8F3E99",
-              "course_code": "FOO 102",
-              "default_view": "wiki",
-              "end_at": "2030-02-08T23:13:39Z",
-              "enrollments": Array [
-                Object {
-                  "enrollment_state": "active",
-                  "role": "TeacherEnrollment",
-                  "role_id": "1",
-                  "type": "teacher",
-                  "user_id": "1",
-                },
-              ],
-              "id": "3",
-              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-              "is_favorite": true,
-              "name": "Foobar 102",
-              "permissions": Object {
-                "viewAllGrades": true,
-                "viewAnalytics": true,
-              },
-              "short_name": "FOO 102",
-              "term": Object {
-                "created_at": "2018-02-08T23:13:39Z",
-                "end_at": "2030-02-08T23:13:39Z",
-                "id": "1",
-                "name": "Default Term",
-                "start_at": "2018-02-08T23:13:39Z",
-                "workflow_state": "available",
-              },
-              "workflow_state": "available",
-            },
-          ],
-          "keyExtractor": [Function],
-          "renderItem": [Function],
-          "sectionID": "dashboard.courses",
-          "seeAll": [Function],
-          "title": "Courses",
-        },
-      ]
-    }
-    stickyHeaderIndices={Array []}
-    stickySectionHeadersEnabled={false}
-    updateCellsBatchingPeriod={50}
-    windowSize={100}
-  >
-    <RCTRefreshControl />
-    <View>
+  <list>
+    <section />
+    <section>
       <View
-        onLayout={[Function]}
-        style={null}
-      />
-      <View
-        onLayout={[Function]}
-        style={null}
-      />
-      <View
-        onLayout={[Function]}
-        style={null}
+        accessibitilityTraits="heading"
+        style={
+          Array [
+            Object {
+              "padding": 8,
+              "width": 359,
+            },
+            Object {
+              "alignItems": "flex-end",
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "paddingBottom": 0,
+              "paddingTop": 16,
+            },
+          ]
+        }
       >
-        <View
-          accessibitilityTraits="heading"
+        <Text
+          accessibilityTraits="header"
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
           style={
             Array [
               Object {
-                "padding": 8,
-                "width": 359,
+                "fontFamily": ".SFUIDisplay",
               },
               Object {
-                "alignItems": "flex-end",
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-                "paddingBottom": 0,
-                "paddingTop": 16,
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-heavy",
+                "fontSize": 24,
               },
+              undefined,
             ]
           }
+          testID="dashboard.courses.heading-lbl"
         >
-          <Text
-            accessibilityTraits="header"
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-heavy",
-                  "fontSize": 24,
-                },
-                undefined,
-              ]
+          Courses
+        </Text>
+        <TouchableOpacity
+          accessibilityTraits="button"
+          hitSlop={
+            Object {
+              "bottom": 15,
+              "left": 15,
+              "right": 15,
+              "top": 15,
             }
-            testID="dashboard.courses.heading-lbl"
-          >
-            Courses
-          </Text>
-          <TouchableOpacity
-            accessibilityTraits="button"
-            hitSlop={
-              Object {
-                "bottom": 15,
-                "left": 15,
-                "right": 15,
-                "top": 15,
-              }
-            }
-            onPress={[Function]}
-            testID="dashboard.courses.see-all-btn"
-          >
-            <View>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
+          }
+          onPress={[Function]}
+          testID="dashboard.courses.see-all-btn"
+        >
+          <View>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
+                      "color": "#374A59",
                       "fontSize": 16,
+                      "fontWeight": "500",
                     },
-                    Array [
-                      Object {
-                        "color": "#374A59",
-                        "fontSize": 16,
-                        "fontWeight": "500",
-                      },
-                      undefined,
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-medium",
-                    },
-                  ]
-                }
-              >
-                See All
-              </Text>
-            </View>
-          </TouchableOpacity>
-        </View>
+                    undefined,
+                  ],
+                  Object {
+                    "fontFamily": ".SFUIDisplay-medium",
+                  },
+                ]
+              }
+            >
+              See All
+            </Text>
+          </View>
+        </TouchableOpacity>
       </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
+      <item>
         <A11yGroup>
           <TouchableHighlight
             accessible={false}
@@ -433,9 +135,12 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
                   "height": 160,
                 },
                 Object {
-                  "height": 0,
+                  "height": undefined,
                   "padding": 8,
                   "width": undefined,
+                },
+                Object {
+                  "height": 0,
                 },
               ]
             }
@@ -604,11 +309,8 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
             </View>
           </TouchableHighlight>
         </A11yGroup>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
+      </item>
+      <item>
         <A11yGroup>
           <TouchableHighlight
             accessible={false}
@@ -620,9 +322,12 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
                   "height": 160,
                 },
                 Object {
-                  "height": 0,
+                  "height": undefined,
                   "padding": 8,
                   "width": undefined,
+                },
+                Object {
+                  "height": 0,
                 },
               ]
             }
@@ -791,11 +496,8 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
             </View>
           </TouchableHighlight>
         </A11yGroup>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
+      </item>
+      <item>
         <A11yGroup>
           <TouchableHighlight
             accessible={false}
@@ -807,9 +509,12 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
                   "height": 160,
                 },
                 Object {
-                  "height": 0,
+                  "height": undefined,
                   "padding": 8,
                   "width": undefined,
+                },
+                Object {
+                  "height": 0,
                 },
               ]
             }
@@ -978,20 +683,9 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
             </View>
           </TouchableHighlight>
         </A11yGroup>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      />
-      <View
-        style={
-          Object {
-            "height": 0,
-          }
-        }
-      />
-    </View>
-  </RCTScrollView>
+      </item>
+    </section>
+  </list>
 </Screen>
 `;
 
@@ -1003,367 +697,9 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
   statusBarStyle="light"
   title="All Courses"
 >
-  <RCTScrollView
-    ItemSeparatorComponent={undefined}
-    contentContainerStyle={
-      Object {
-        "flexDirection": "row",
-        "flexWrap": "wrap",
-        "padding": 8,
-      }
-    }
-    data={
-      Array [
-        Object {
-          "data": Array [
-            Object {
-              "account_id": "1",
-              "color": "#27B9CD",
-              "course_code": "BIO 101",
-              "default_view": "wiki",
-              "end_at": "2030-02-08T23:13:39Z",
-              "enrollments": Array [
-                Object {
-                  "enrollment_state": "active",
-                  "role": "TeacherEnrollment",
-                  "role_id": "1",
-                  "type": "teacher",
-                  "user_id": "1",
-                },
-              ],
-              "id": "1",
-              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-              "is_favorite": true,
-              "name": "Biology 101",
-              "permissions": Object {
-                "viewAllGrades": true,
-                "viewAnalytics": true,
-              },
-              "short_name": "BIO 101",
-              "term": Object {
-                "created_at": "2018-02-08T23:13:39Z",
-                "end_at": "2030-02-08T23:13:39Z",
-                "id": "1",
-                "name": "Default Term",
-                "start_at": "2018-02-08T23:13:39Z",
-                "workflow_state": "available",
-              },
-              "workflow_state": "available",
-            },
-            Object {
-              "account_id": "1",
-              "color": "#8F3E97",
-              "course_code": "LIT 401",
-              "default_view": "wiki",
-              "end_at": "2030-02-08T23:13:39Z",
-              "enrollments": Array [
-                Object {
-                  "enrollment_state": "active",
-                  "role": "TeacherEnrollment",
-                  "role_id": "1",
-                  "type": "teacher",
-                  "user_id": "1",
-                },
-              ],
-              "id": "2",
-              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-              "is_favorite": false,
-              "name": "American Literature Psysicks foobar hello world 401",
-              "permissions": Object {
-                "viewAllGrades": true,
-                "viewAnalytics": true,
-              },
-              "short_name": "LIT 401",
-              "term": Object {
-                "created_at": "2018-02-08T23:13:39Z",
-                "end_at": "2030-02-08T23:13:39Z",
-                "id": "1",
-                "name": "Default Term",
-                "start_at": "2018-02-08T23:13:39Z",
-                "workflow_state": "available",
-              },
-              "workflow_state": "available",
-            },
-            Object {
-              "account_id": "1",
-              "color": "#8F3E99",
-              "course_code": "FOO 102",
-              "default_view": "wiki",
-              "end_at": "2030-02-08T23:13:39Z",
-              "enrollments": Array [
-                Object {
-                  "enrollment_state": "active",
-                  "role": "TeacherEnrollment",
-                  "role_id": "1",
-                  "type": "teacher",
-                  "user_id": "1",
-                },
-              ],
-              "id": "3",
-              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-              "is_favorite": true,
-              "name": "Foobar 102",
-              "permissions": Object {
-                "viewAllGrades": true,
-                "viewAnalytics": true,
-              },
-              "short_name": "FOO 102",
-              "term": Object {
-                "created_at": "2018-02-08T23:13:39Z",
-                "end_at": "2030-02-08T23:13:39Z",
-                "id": "1",
-                "name": "Default Term",
-                "start_at": "2018-02-08T23:13:39Z",
-                "workflow_state": "available",
-              },
-              "workflow_state": "available",
-            },
-          ],
-          "keyExtractor": [Function],
-          "renderItem": [Function],
-          "sectionID": "dashboard.courses",
-        },
-        Object {
-          "data": Array [
-            Object {
-              "account_id": "1",
-              "color": undefined,
-              "course_code": "FOO 102",
-              "default_view": "wiki",
-              "end_at": "2030-02-08T23:13:39Z",
-              "enrollments": Array [
-                Object {
-                  "enrollment_state": "active",
-                  "role": "TeacherEnrollment",
-                  "role_id": "1",
-                  "type": "teacher",
-                  "user_id": "1",
-                },
-              ],
-              "id": "4",
-              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-              "is_favorite": true,
-              "name": "Foobar 102",
-              "permissions": Object {
-                "viewAllGrades": true,
-                "viewAnalytics": true,
-              },
-              "short_name": "FOO 102",
-              "term": Object {
-                "created_at": "2018-02-08T23:13:39Z",
-                "end_at": "2030-02-08T23:13:39Z",
-                "id": "1",
-                "name": "Default Term",
-                "start_at": "2018-02-08T23:13:39Z",
-                "workflow_state": "available",
-              },
-              "workflow_state": "completed",
-            },
-          ],
-          "keyExtractor": [Function],
-          "renderItem": [Function],
-          "sectionID": "dashboard.concluded-courses",
-          "title": "Past Enrollments",
-        },
-      ]
-    }
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onRefresh={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
-    refreshControl={
-      <RefreshControlMock
-        onRefresh={[Function]}
-        progressViewOffset={undefined}
-        refreshing={false}
-      />
-    }
-    refreshing={false}
-    renderItem={[Function]}
-    renderSectionHeader={[Function]}
-    scrollEventThrottle={50}
-    sections={
-      Array [
-        Object {
-          "data": Array [
-            Object {
-              "account_id": "1",
-              "color": "#27B9CD",
-              "course_code": "BIO 101",
-              "default_view": "wiki",
-              "end_at": "2030-02-08T23:13:39Z",
-              "enrollments": Array [
-                Object {
-                  "enrollment_state": "active",
-                  "role": "TeacherEnrollment",
-                  "role_id": "1",
-                  "type": "teacher",
-                  "user_id": "1",
-                },
-              ],
-              "id": "1",
-              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-              "is_favorite": true,
-              "name": "Biology 101",
-              "permissions": Object {
-                "viewAllGrades": true,
-                "viewAnalytics": true,
-              },
-              "short_name": "BIO 101",
-              "term": Object {
-                "created_at": "2018-02-08T23:13:39Z",
-                "end_at": "2030-02-08T23:13:39Z",
-                "id": "1",
-                "name": "Default Term",
-                "start_at": "2018-02-08T23:13:39Z",
-                "workflow_state": "available",
-              },
-              "workflow_state": "available",
-            },
-            Object {
-              "account_id": "1",
-              "color": "#8F3E97",
-              "course_code": "LIT 401",
-              "default_view": "wiki",
-              "end_at": "2030-02-08T23:13:39Z",
-              "enrollments": Array [
-                Object {
-                  "enrollment_state": "active",
-                  "role": "TeacherEnrollment",
-                  "role_id": "1",
-                  "type": "teacher",
-                  "user_id": "1",
-                },
-              ],
-              "id": "2",
-              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-              "is_favorite": false,
-              "name": "American Literature Psysicks foobar hello world 401",
-              "permissions": Object {
-                "viewAllGrades": true,
-                "viewAnalytics": true,
-              },
-              "short_name": "LIT 401",
-              "term": Object {
-                "created_at": "2018-02-08T23:13:39Z",
-                "end_at": "2030-02-08T23:13:39Z",
-                "id": "1",
-                "name": "Default Term",
-                "start_at": "2018-02-08T23:13:39Z",
-                "workflow_state": "available",
-              },
-              "workflow_state": "available",
-            },
-            Object {
-              "account_id": "1",
-              "color": "#8F3E99",
-              "course_code": "FOO 102",
-              "default_view": "wiki",
-              "end_at": "2030-02-08T23:13:39Z",
-              "enrollments": Array [
-                Object {
-                  "enrollment_state": "active",
-                  "role": "TeacherEnrollment",
-                  "role_id": "1",
-                  "type": "teacher",
-                  "user_id": "1",
-                },
-              ],
-              "id": "3",
-              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-              "is_favorite": true,
-              "name": "Foobar 102",
-              "permissions": Object {
-                "viewAllGrades": true,
-                "viewAnalytics": true,
-              },
-              "short_name": "FOO 102",
-              "term": Object {
-                "created_at": "2018-02-08T23:13:39Z",
-                "end_at": "2030-02-08T23:13:39Z",
-                "id": "1",
-                "name": "Default Term",
-                "start_at": "2018-02-08T23:13:39Z",
-                "workflow_state": "available",
-              },
-              "workflow_state": "available",
-            },
-          ],
-          "keyExtractor": [Function],
-          "renderItem": [Function],
-          "sectionID": "dashboard.courses",
-        },
-        Object {
-          "data": Array [
-            Object {
-              "account_id": "1",
-              "color": undefined,
-              "course_code": "FOO 102",
-              "default_view": "wiki",
-              "end_at": "2030-02-08T23:13:39Z",
-              "enrollments": Array [
-                Object {
-                  "enrollment_state": "active",
-                  "role": "TeacherEnrollment",
-                  "role_id": "1",
-                  "type": "teacher",
-                  "user_id": "1",
-                },
-              ],
-              "id": "4",
-              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-              "is_favorite": true,
-              "name": "Foobar 102",
-              "permissions": Object {
-                "viewAllGrades": true,
-                "viewAnalytics": true,
-              },
-              "short_name": "FOO 102",
-              "term": Object {
-                "created_at": "2018-02-08T23:13:39Z",
-                "end_at": "2030-02-08T23:13:39Z",
-                "id": "1",
-                "name": "Default Term",
-                "start_at": "2018-02-08T23:13:39Z",
-                "workflow_state": "available",
-              },
-              "workflow_state": "completed",
-            },
-          ],
-          "keyExtractor": [Function],
-          "renderItem": [Function],
-          "sectionID": "dashboard.concluded-courses",
-          "title": "Past Enrollments",
-        },
-      ]
-    }
-    stickyHeaderIndices={Array []}
-    stickySectionHeadersEnabled={false}
-    updateCellsBatchingPeriod={50}
-    windowSize={100}
-  >
-    <RCTRefreshControl />
-    <View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      />
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
+  <list>
+    <section>
+      <item>
         <A11yGroup>
           <TouchableHighlight
             accessible={false}
@@ -1375,9 +711,12 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                   "height": 160,
                 },
                 Object {
-                  "height": 0,
+                  "height": undefined,
                   "padding": 8,
                   "width": undefined,
+                },
+                Object {
+                  "height": 0,
                 },
               ]
             }
@@ -1546,11 +885,8 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
             </View>
           </TouchableHighlight>
         </A11yGroup>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
+      </item>
+      <item>
         <A11yGroup>
           <TouchableHighlight
             accessible={false}
@@ -1562,9 +898,12 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                   "height": 160,
                 },
                 Object {
-                  "height": 0,
+                  "height": undefined,
                   "padding": 8,
                   "width": undefined,
+                },
+                Object {
+                  "height": 0,
                 },
               ]
             }
@@ -1733,11 +1072,8 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
             </View>
           </TouchableHighlight>
         </A11yGroup>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
+      </item>
+      <item>
         <A11yGroup>
           <TouchableHighlight
             accessible={false}
@@ -1749,9 +1085,12 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                   "height": 160,
                 },
                 Object {
-                  "height": 0,
+                  "height": undefined,
                   "padding": 8,
                   "width": undefined,
+                },
+                Object {
+                  "height": 0,
                 },
               ]
             }
@@ -1920,61 +1259,51 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
             </View>
           </TouchableHighlight>
         </A11yGroup>
-      </View>
+      </item>
+    </section>
+    <section>
       <View
-        onLayout={[Function]}
-        style={null}
-      />
-      <View
-        onLayout={[Function]}
-        style={null}
+        accessibitilityTraits="heading"
+        style={
+          Array [
+            Object {
+              "padding": 8,
+              "width": 359,
+            },
+            Object {
+              "alignItems": "flex-end",
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "paddingBottom": 0,
+              "paddingTop": 16,
+            },
+          ]
+        }
       >
-        <View
-          accessibitilityTraits="heading"
+        <Text
+          accessibilityTraits="header"
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
           style={
             Array [
               Object {
-                "padding": 8,
-                "width": 359,
+                "fontFamily": ".SFUIDisplay",
               },
               Object {
-                "alignItems": "flex-end",
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-                "paddingBottom": 0,
-                "paddingTop": 16,
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-heavy",
+                "fontSize": 24,
               },
+              undefined,
             ]
           }
+          testID="dashboard.concluded-courses.heading-lbl"
         >
-          <Text
-            accessibilityTraits="header"
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-heavy",
-                  "fontSize": 24,
-                },
-                undefined,
-              ]
-            }
-            testID="dashboard.concluded-courses.heading-lbl"
-          >
-            Past Enrollments
-          </Text>
-        </View>
+          Past Enrollments
+        </Text>
       </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
+      <item>
         <A11yGroup>
           <TouchableHighlight
             accessible={false}
@@ -1986,9 +1315,12 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                   "height": 160,
                 },
                 Object {
-                  "height": 0,
+                  "height": undefined,
                   "padding": 8,
                   "width": undefined,
+                },
+                Object {
+                  "height": 0,
                 },
               ]
             }
@@ -2157,20 +1489,9 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
             </View>
           </TouchableHighlight>
         </A11yGroup>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      />
-      <View
-        style={
-          Object {
-            "height": 0,
-          }
-        }
-      />
-    </View>
-  </RCTScrollView>
+      </item>
+    </section>
+  </list>
 </Screen>
 `;
 
@@ -2208,394 +1529,96 @@ exports[`Dashboard render 1`] = `
   }
   statusBarStyle="light"
 >
-  <RCTScrollView
-    ItemSeparatorComponent={undefined}
-    contentContainerStyle={
-      Object {
-        "flexDirection": "row",
-        "flexWrap": "wrap",
-        "padding": 8,
-      }
-    }
-    data={
-      Array [
-        Object {
-          "data": Array [],
-          "keyExtractor": [Function],
-          "renderItem": [Function],
-          "sectionID": "dashboard.announcements",
-        },
-        Object {
-          "data": Array [
-            Object {
-              "account_id": "1",
-              "color": "#27B9CD",
-              "course_code": "BIO 101",
-              "default_view": "wiki",
-              "end_at": "2030-02-08T23:13:39Z",
-              "enrollments": Array [
-                Object {
-                  "enrollment_state": "active",
-                  "role": "TeacherEnrollment",
-                  "role_id": "1",
-                  "type": "teacher",
-                  "user_id": "1",
-                },
-              ],
-              "id": "1",
-              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-              "is_favorite": true,
-              "name": "Biology 101",
-              "permissions": Object {
-                "viewAllGrades": true,
-                "viewAnalytics": true,
-              },
-              "short_name": "BIO 101",
-              "term": Object {
-                "created_at": "2018-02-08T23:13:39Z",
-                "end_at": "2030-02-08T23:13:39Z",
-                "id": "1",
-                "name": "Default Term",
-                "start_at": "2018-02-08T23:13:39Z",
-                "workflow_state": "available",
-              },
-              "workflow_state": "available",
-            },
-            Object {
-              "account_id": "1",
-              "color": "#8F3E97",
-              "course_code": "LIT 401",
-              "default_view": "wiki",
-              "end_at": "2030-02-08T23:13:39Z",
-              "enrollments": Array [
-                Object {
-                  "enrollment_state": "active",
-                  "role": "TeacherEnrollment",
-                  "role_id": "1",
-                  "type": "teacher",
-                  "user_id": "1",
-                },
-              ],
-              "id": "2",
-              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-              "is_favorite": false,
-              "name": "American Literature Psysicks foobar hello world 401",
-              "permissions": Object {
-                "viewAllGrades": true,
-                "viewAnalytics": true,
-              },
-              "short_name": "LIT 401",
-              "term": Object {
-                "created_at": "2018-02-08T23:13:39Z",
-                "end_at": "2030-02-08T23:13:39Z",
-                "id": "1",
-                "name": "Default Term",
-                "start_at": "2018-02-08T23:13:39Z",
-                "workflow_state": "available",
-              },
-              "workflow_state": "available",
-            },
-            Object {
-              "account_id": "1",
-              "color": "#8F3E99",
-              "course_code": "FOO 102",
-              "default_view": "wiki",
-              "end_at": "2030-02-08T23:13:39Z",
-              "enrollments": Array [
-                Object {
-                  "enrollment_state": "active",
-                  "role": "TeacherEnrollment",
-                  "role_id": "1",
-                  "type": "teacher",
-                  "user_id": "1",
-                },
-              ],
-              "id": "3",
-              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-              "is_favorite": true,
-              "name": "Foobar 102",
-              "permissions": Object {
-                "viewAllGrades": true,
-                "viewAnalytics": true,
-              },
-              "short_name": "FOO 102",
-              "term": Object {
-                "created_at": "2018-02-08T23:13:39Z",
-                "end_at": "2030-02-08T23:13:39Z",
-                "id": "1",
-                "name": "Default Term",
-                "start_at": "2018-02-08T23:13:39Z",
-                "workflow_state": "available",
-              },
-              "workflow_state": "available",
-            },
-          ],
-          "keyExtractor": [Function],
-          "renderItem": [Function],
-          "sectionID": "dashboard.courses",
-          "seeAll": [Function],
-          "title": "Courses",
-        },
-      ]
-    }
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onRefresh={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
-    refreshControl={
-      <RefreshControlMock
-        onRefresh={[Function]}
-        progressViewOffset={undefined}
-        refreshing={false}
-      />
-    }
-    refreshing={false}
-    renderItem={[Function]}
-    renderSectionHeader={[Function]}
-    scrollEventThrottle={50}
-    sections={
-      Array [
-        Object {
-          "data": Array [],
-          "keyExtractor": [Function],
-          "renderItem": [Function],
-          "sectionID": "dashboard.announcements",
-        },
-        Object {
-          "data": Array [
-            Object {
-              "account_id": "1",
-              "color": "#27B9CD",
-              "course_code": "BIO 101",
-              "default_view": "wiki",
-              "end_at": "2030-02-08T23:13:39Z",
-              "enrollments": Array [
-                Object {
-                  "enrollment_state": "active",
-                  "role": "TeacherEnrollment",
-                  "role_id": "1",
-                  "type": "teacher",
-                  "user_id": "1",
-                },
-              ],
-              "id": "1",
-              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-              "is_favorite": true,
-              "name": "Biology 101",
-              "permissions": Object {
-                "viewAllGrades": true,
-                "viewAnalytics": true,
-              },
-              "short_name": "BIO 101",
-              "term": Object {
-                "created_at": "2018-02-08T23:13:39Z",
-                "end_at": "2030-02-08T23:13:39Z",
-                "id": "1",
-                "name": "Default Term",
-                "start_at": "2018-02-08T23:13:39Z",
-                "workflow_state": "available",
-              },
-              "workflow_state": "available",
-            },
-            Object {
-              "account_id": "1",
-              "color": "#8F3E97",
-              "course_code": "LIT 401",
-              "default_view": "wiki",
-              "end_at": "2030-02-08T23:13:39Z",
-              "enrollments": Array [
-                Object {
-                  "enrollment_state": "active",
-                  "role": "TeacherEnrollment",
-                  "role_id": "1",
-                  "type": "teacher",
-                  "user_id": "1",
-                },
-              ],
-              "id": "2",
-              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-              "is_favorite": false,
-              "name": "American Literature Psysicks foobar hello world 401",
-              "permissions": Object {
-                "viewAllGrades": true,
-                "viewAnalytics": true,
-              },
-              "short_name": "LIT 401",
-              "term": Object {
-                "created_at": "2018-02-08T23:13:39Z",
-                "end_at": "2030-02-08T23:13:39Z",
-                "id": "1",
-                "name": "Default Term",
-                "start_at": "2018-02-08T23:13:39Z",
-                "workflow_state": "available",
-              },
-              "workflow_state": "available",
-            },
-            Object {
-              "account_id": "1",
-              "color": "#8F3E99",
-              "course_code": "FOO 102",
-              "default_view": "wiki",
-              "end_at": "2030-02-08T23:13:39Z",
-              "enrollments": Array [
-                Object {
-                  "enrollment_state": "active",
-                  "role": "TeacherEnrollment",
-                  "role_id": "1",
-                  "type": "teacher",
-                  "user_id": "1",
-                },
-              ],
-              "id": "3",
-              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-              "is_favorite": true,
-              "name": "Foobar 102",
-              "permissions": Object {
-                "viewAllGrades": true,
-                "viewAnalytics": true,
-              },
-              "short_name": "FOO 102",
-              "term": Object {
-                "created_at": "2018-02-08T23:13:39Z",
-                "end_at": "2030-02-08T23:13:39Z",
-                "id": "1",
-                "name": "Default Term",
-                "start_at": "2018-02-08T23:13:39Z",
-                "workflow_state": "available",
-              },
-              "workflow_state": "available",
-            },
-          ],
-          "keyExtractor": [Function],
-          "renderItem": [Function],
-          "sectionID": "dashboard.courses",
-          "seeAll": [Function],
-          "title": "Courses",
-        },
-      ]
-    }
-    stickyHeaderIndices={Array []}
-    stickySectionHeadersEnabled={false}
-    updateCellsBatchingPeriod={50}
-    windowSize={100}
-  >
-    <RCTRefreshControl />
-    <View>
+  <list>
+    <section />
+    <section>
       <View
-        onLayout={[Function]}
-        style={null}
-      />
-      <View
-        onLayout={[Function]}
-        style={null}
-      />
-      <View
-        onLayout={[Function]}
-        style={null}
+        accessibitilityTraits="heading"
+        style={
+          Array [
+            Object {
+              "padding": 8,
+              "width": 359,
+            },
+            Object {
+              "alignItems": "flex-end",
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "paddingBottom": 0,
+              "paddingTop": 16,
+            },
+          ]
+        }
       >
-        <View
-          accessibitilityTraits="heading"
+        <Text
+          accessibilityTraits="header"
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
           style={
             Array [
               Object {
-                "padding": 8,
-                "width": 359,
+                "fontFamily": ".SFUIDisplay",
               },
               Object {
-                "alignItems": "flex-end",
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-                "paddingBottom": 0,
-                "paddingTop": 16,
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-heavy",
+                "fontSize": 24,
               },
+              undefined,
             ]
           }
+          testID="dashboard.courses.heading-lbl"
         >
-          <Text
-            accessibilityTraits="header"
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-heavy",
-                  "fontSize": 24,
-                },
-                undefined,
-              ]
+          Courses
+        </Text>
+        <TouchableOpacity
+          accessibilityTraits="button"
+          hitSlop={
+            Object {
+              "bottom": 15,
+              "left": 15,
+              "right": 15,
+              "top": 15,
             }
-            testID="dashboard.courses.heading-lbl"
-          >
-            Courses
-          </Text>
-          <TouchableOpacity
-            accessibilityTraits="button"
-            hitSlop={
-              Object {
-                "bottom": 15,
-                "left": 15,
-                "right": 15,
-                "top": 15,
-              }
-            }
-            onPress={[Function]}
-            testID="dashboard.courses.see-all-btn"
-          >
-            <View>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
+          }
+          onPress={[Function]}
+          testID="dashboard.courses.see-all-btn"
+        >
+          <View>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
+                      "color": "#374A59",
                       "fontSize": 16,
+                      "fontWeight": "500",
                     },
-                    Array [
-                      Object {
-                        "color": "#374A59",
-                        "fontSize": 16,
-                        "fontWeight": "500",
-                      },
-                      undefined,
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-medium",
-                    },
-                  ]
-                }
-              >
-                See All
-              </Text>
-            </View>
-          </TouchableOpacity>
-        </View>
+                    undefined,
+                  ],
+                  Object {
+                    "fontFamily": ".SFUIDisplay-medium",
+                  },
+                ]
+              }
+            >
+              See All
+            </Text>
+          </View>
+        </TouchableOpacity>
       </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
+      <item>
         <A11yGroup>
           <TouchableHighlight
             accessible={false}
@@ -2607,9 +1630,12 @@ exports[`Dashboard render 1`] = `
                   "height": 160,
                 },
                 Object {
-                  "height": 0,
+                  "height": undefined,
                   "padding": 8,
                   "width": undefined,
+                },
+                Object {
+                  "height": 0,
                 },
               ]
             }
@@ -2778,11 +1804,8 @@ exports[`Dashboard render 1`] = `
             </View>
           </TouchableHighlight>
         </A11yGroup>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
+      </item>
+      <item>
         <A11yGroup>
           <TouchableHighlight
             accessible={false}
@@ -2794,9 +1817,12 @@ exports[`Dashboard render 1`] = `
                   "height": 160,
                 },
                 Object {
-                  "height": 0,
+                  "height": undefined,
                   "padding": 8,
                   "width": undefined,
+                },
+                Object {
+                  "height": 0,
                 },
               ]
             }
@@ -2965,11 +1991,8 @@ exports[`Dashboard render 1`] = `
             </View>
           </TouchableHighlight>
         </A11yGroup>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
+      </item>
+      <item>
         <A11yGroup>
           <TouchableHighlight
             accessible={false}
@@ -2981,9 +2004,12 @@ exports[`Dashboard render 1`] = `
                   "height": 160,
                 },
                 Object {
-                  "height": 0,
+                  "height": undefined,
                   "padding": 8,
                   "width": undefined,
+                },
+                Object {
+                  "height": 0,
                 },
               ]
             }
@@ -3152,20 +2178,9 @@ exports[`Dashboard render 1`] = `
             </View>
           </TouchableHighlight>
         </A11yGroup>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      />
-      <View
-        style={
-          Object {
-            "height": 0,
-          }
-        }
-      />
-    </View>
-  </RCTScrollView>
+      </item>
+    </section>
+  </list>
 </Screen>
 `;
 
@@ -3203,394 +2218,96 @@ exports[`Dashboard render while pending 1`] = `
   }
   statusBarStyle="light"
 >
-  <RCTScrollView
-    ItemSeparatorComponent={undefined}
-    contentContainerStyle={
-      Object {
-        "flexDirection": "row",
-        "flexWrap": "wrap",
-        "padding": 8,
-      }
-    }
-    data={
-      Array [
-        Object {
-          "data": Array [],
-          "keyExtractor": [Function],
-          "renderItem": [Function],
-          "sectionID": "dashboard.announcements",
-        },
-        Object {
-          "data": Array [
-            Object {
-              "account_id": "1",
-              "color": "#27B9CD",
-              "course_code": "BIO 101",
-              "default_view": "wiki",
-              "end_at": "2030-02-08T23:13:39Z",
-              "enrollments": Array [
-                Object {
-                  "enrollment_state": "active",
-                  "role": "TeacherEnrollment",
-                  "role_id": "1",
-                  "type": "teacher",
-                  "user_id": "1",
-                },
-              ],
-              "id": "1",
-              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-              "is_favorite": true,
-              "name": "Biology 101",
-              "permissions": Object {
-                "viewAllGrades": true,
-                "viewAnalytics": true,
-              },
-              "short_name": "BIO 101",
-              "term": Object {
-                "created_at": "2018-02-08T23:13:39Z",
-                "end_at": "2030-02-08T23:13:39Z",
-                "id": "1",
-                "name": "Default Term",
-                "start_at": "2018-02-08T23:13:39Z",
-                "workflow_state": "available",
-              },
-              "workflow_state": "available",
-            },
-            Object {
-              "account_id": "1",
-              "color": "#8F3E97",
-              "course_code": "LIT 401",
-              "default_view": "wiki",
-              "end_at": "2030-02-08T23:13:39Z",
-              "enrollments": Array [
-                Object {
-                  "enrollment_state": "active",
-                  "role": "TeacherEnrollment",
-                  "role_id": "1",
-                  "type": "teacher",
-                  "user_id": "1",
-                },
-              ],
-              "id": "2",
-              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-              "is_favorite": false,
-              "name": "American Literature Psysicks foobar hello world 401",
-              "permissions": Object {
-                "viewAllGrades": true,
-                "viewAnalytics": true,
-              },
-              "short_name": "LIT 401",
-              "term": Object {
-                "created_at": "2018-02-08T23:13:39Z",
-                "end_at": "2030-02-08T23:13:39Z",
-                "id": "1",
-                "name": "Default Term",
-                "start_at": "2018-02-08T23:13:39Z",
-                "workflow_state": "available",
-              },
-              "workflow_state": "available",
-            },
-            Object {
-              "account_id": "1",
-              "color": "#8F3E99",
-              "course_code": "FOO 102",
-              "default_view": "wiki",
-              "end_at": "2030-02-08T23:13:39Z",
-              "enrollments": Array [
-                Object {
-                  "enrollment_state": "active",
-                  "role": "TeacherEnrollment",
-                  "role_id": "1",
-                  "type": "teacher",
-                  "user_id": "1",
-                },
-              ],
-              "id": "3",
-              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-              "is_favorite": true,
-              "name": "Foobar 102",
-              "permissions": Object {
-                "viewAllGrades": true,
-                "viewAnalytics": true,
-              },
-              "short_name": "FOO 102",
-              "term": Object {
-                "created_at": "2018-02-08T23:13:39Z",
-                "end_at": "2030-02-08T23:13:39Z",
-                "id": "1",
-                "name": "Default Term",
-                "start_at": "2018-02-08T23:13:39Z",
-                "workflow_state": "available",
-              },
-              "workflow_state": "available",
-            },
-          ],
-          "keyExtractor": [Function],
-          "renderItem": [Function],
-          "sectionID": "dashboard.courses",
-          "seeAll": [Function],
-          "title": "Courses",
-        },
-      ]
-    }
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onRefresh={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
-    refreshControl={
-      <RefreshControlMock
-        onRefresh={[Function]}
-        progressViewOffset={undefined}
-        refreshing={false}
-      />
-    }
-    refreshing={false}
-    renderItem={[Function]}
-    renderSectionHeader={[Function]}
-    scrollEventThrottle={50}
-    sections={
-      Array [
-        Object {
-          "data": Array [],
-          "keyExtractor": [Function],
-          "renderItem": [Function],
-          "sectionID": "dashboard.announcements",
-        },
-        Object {
-          "data": Array [
-            Object {
-              "account_id": "1",
-              "color": "#27B9CD",
-              "course_code": "BIO 101",
-              "default_view": "wiki",
-              "end_at": "2030-02-08T23:13:39Z",
-              "enrollments": Array [
-                Object {
-                  "enrollment_state": "active",
-                  "role": "TeacherEnrollment",
-                  "role_id": "1",
-                  "type": "teacher",
-                  "user_id": "1",
-                },
-              ],
-              "id": "1",
-              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-              "is_favorite": true,
-              "name": "Biology 101",
-              "permissions": Object {
-                "viewAllGrades": true,
-                "viewAnalytics": true,
-              },
-              "short_name": "BIO 101",
-              "term": Object {
-                "created_at": "2018-02-08T23:13:39Z",
-                "end_at": "2030-02-08T23:13:39Z",
-                "id": "1",
-                "name": "Default Term",
-                "start_at": "2018-02-08T23:13:39Z",
-                "workflow_state": "available",
-              },
-              "workflow_state": "available",
-            },
-            Object {
-              "account_id": "1",
-              "color": "#8F3E97",
-              "course_code": "LIT 401",
-              "default_view": "wiki",
-              "end_at": "2030-02-08T23:13:39Z",
-              "enrollments": Array [
-                Object {
-                  "enrollment_state": "active",
-                  "role": "TeacherEnrollment",
-                  "role_id": "1",
-                  "type": "teacher",
-                  "user_id": "1",
-                },
-              ],
-              "id": "2",
-              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-              "is_favorite": false,
-              "name": "American Literature Psysicks foobar hello world 401",
-              "permissions": Object {
-                "viewAllGrades": true,
-                "viewAnalytics": true,
-              },
-              "short_name": "LIT 401",
-              "term": Object {
-                "created_at": "2018-02-08T23:13:39Z",
-                "end_at": "2030-02-08T23:13:39Z",
-                "id": "1",
-                "name": "Default Term",
-                "start_at": "2018-02-08T23:13:39Z",
-                "workflow_state": "available",
-              },
-              "workflow_state": "available",
-            },
-            Object {
-              "account_id": "1",
-              "color": "#8F3E99",
-              "course_code": "FOO 102",
-              "default_view": "wiki",
-              "end_at": "2030-02-08T23:13:39Z",
-              "enrollments": Array [
-                Object {
-                  "enrollment_state": "active",
-                  "role": "TeacherEnrollment",
-                  "role_id": "1",
-                  "type": "teacher",
-                  "user_id": "1",
-                },
-              ],
-              "id": "3",
-              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-              "is_favorite": true,
-              "name": "Foobar 102",
-              "permissions": Object {
-                "viewAllGrades": true,
-                "viewAnalytics": true,
-              },
-              "short_name": "FOO 102",
-              "term": Object {
-                "created_at": "2018-02-08T23:13:39Z",
-                "end_at": "2030-02-08T23:13:39Z",
-                "id": "1",
-                "name": "Default Term",
-                "start_at": "2018-02-08T23:13:39Z",
-                "workflow_state": "available",
-              },
-              "workflow_state": "available",
-            },
-          ],
-          "keyExtractor": [Function],
-          "renderItem": [Function],
-          "sectionID": "dashboard.courses",
-          "seeAll": [Function],
-          "title": "Courses",
-        },
-      ]
-    }
-    stickyHeaderIndices={Array []}
-    stickySectionHeadersEnabled={false}
-    updateCellsBatchingPeriod={50}
-    windowSize={100}
-  >
-    <RCTRefreshControl />
-    <View>
+  <list>
+    <section />
+    <section>
       <View
-        onLayout={[Function]}
-        style={null}
-      />
-      <View
-        onLayout={[Function]}
-        style={null}
-      />
-      <View
-        onLayout={[Function]}
-        style={null}
+        accessibitilityTraits="heading"
+        style={
+          Array [
+            Object {
+              "padding": 8,
+              "width": 359,
+            },
+            Object {
+              "alignItems": "flex-end",
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "paddingBottom": 0,
+              "paddingTop": 16,
+            },
+          ]
+        }
       >
-        <View
-          accessibitilityTraits="heading"
+        <Text
+          accessibilityTraits="header"
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
           style={
             Array [
               Object {
-                "padding": 8,
-                "width": 359,
+                "fontFamily": ".SFUIDisplay",
               },
               Object {
-                "alignItems": "flex-end",
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-                "paddingBottom": 0,
-                "paddingTop": 16,
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-heavy",
+                "fontSize": 24,
               },
+              undefined,
             ]
           }
+          testID="dashboard.courses.heading-lbl"
         >
-          <Text
-            accessibilityTraits="header"
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-heavy",
-                  "fontSize": 24,
-                },
-                undefined,
-              ]
+          Courses
+        </Text>
+        <TouchableOpacity
+          accessibilityTraits="button"
+          hitSlop={
+            Object {
+              "bottom": 15,
+              "left": 15,
+              "right": 15,
+              "top": 15,
             }
-            testID="dashboard.courses.heading-lbl"
-          >
-            Courses
-          </Text>
-          <TouchableOpacity
-            accessibilityTraits="button"
-            hitSlop={
-              Object {
-                "bottom": 15,
-                "left": 15,
-                "right": 15,
-                "top": 15,
-              }
-            }
-            onPress={[Function]}
-            testID="dashboard.courses.see-all-btn"
-          >
-            <View>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
+          }
+          onPress={[Function]}
+          testID="dashboard.courses.see-all-btn"
+        >
+          <View>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
+                      "color": "#374A59",
                       "fontSize": 16,
+                      "fontWeight": "500",
                     },
-                    Array [
-                      Object {
-                        "color": "#374A59",
-                        "fontSize": 16,
-                        "fontWeight": "500",
-                      },
-                      undefined,
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-medium",
-                    },
-                  ]
-                }
-              >
-                See All
-              </Text>
-            </View>
-          </TouchableOpacity>
-        </View>
+                    undefined,
+                  ],
+                  Object {
+                    "fontFamily": ".SFUIDisplay-medium",
+                  },
+                ]
+              }
+            >
+              See All
+            </Text>
+          </View>
+        </TouchableOpacity>
       </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
+      <item>
         <A11yGroup>
           <TouchableHighlight
             accessible={false}
@@ -3602,9 +2319,12 @@ exports[`Dashboard render while pending 1`] = `
                   "height": 160,
                 },
                 Object {
-                  "height": 0,
+                  "height": undefined,
                   "padding": 8,
                   "width": undefined,
+                },
+                Object {
+                  "height": 0,
                 },
               ]
             }
@@ -3773,11 +2493,8 @@ exports[`Dashboard render while pending 1`] = `
             </View>
           </TouchableHighlight>
         </A11yGroup>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
+      </item>
+      <item>
         <A11yGroup>
           <TouchableHighlight
             accessible={false}
@@ -3789,9 +2506,12 @@ exports[`Dashboard render while pending 1`] = `
                   "height": 160,
                 },
                 Object {
-                  "height": 0,
+                  "height": undefined,
                   "padding": 8,
                   "width": undefined,
+                },
+                Object {
+                  "height": 0,
                 },
               ]
             }
@@ -3960,11 +2680,8 @@ exports[`Dashboard render while pending 1`] = `
             </View>
           </TouchableHighlight>
         </A11yGroup>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
+      </item>
+      <item>
         <A11yGroup>
           <TouchableHighlight
             accessible={false}
@@ -3976,9 +2693,12 @@ exports[`Dashboard render while pending 1`] = `
                   "height": 160,
                 },
                 Object {
-                  "height": 0,
+                  "height": undefined,
                   "padding": 8,
                   "width": undefined,
+                },
+                Object {
+                  "height": 0,
                 },
               ]
             }
@@ -4147,20 +2867,9 @@ exports[`Dashboard render while pending 1`] = `
             </View>
           </TouchableHighlight>
         </A11yGroup>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      />
-      <View
-        style={
-          Object {
-            "height": 0,
-          }
-        }
-      />
-    </View>
-  </RCTScrollView>
+      </item>
+    </section>
+  </list>
 </Screen>
 `;
 
@@ -4198,194 +2907,96 @@ exports[`Dashboard render without courses and *zero* total courses 1`] = `
   }
   statusBarStyle="light"
 >
-  <RCTScrollView
-    ItemSeparatorComponent={undefined}
-    contentContainerStyle={
-      Object {
-        "flexDirection": "row",
-        "flexWrap": "wrap",
-        "padding": 8,
-      }
-    }
-    data={
-      Array [
-        Object {
-          "data": Array [],
-          "keyExtractor": [Function],
-          "renderItem": [Function],
-          "sectionID": "dashboard.announcements",
-        },
-        Object {
-          "data": Array [
+  <list>
+    <section />
+    <section>
+      <View
+        accessibitilityTraits="heading"
+        style={
+          Array [
             Object {
-              "key": "welcome",
+              "padding": 8,
+              "width": 359,
             },
-          ],
-          "renderItem": [Function],
-          "sectionID": "dashboard.courses",
-          "seeAll": [Function],
-          "title": "Courses",
-        },
-      ]
-    }
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onRefresh={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
-    refreshControl={
-      <RefreshControlMock
-        onRefresh={[Function]}
-        progressViewOffset={undefined}
-        refreshing={false}
-      />
-    }
-    refreshing={false}
-    renderItem={[Function]}
-    renderSectionHeader={[Function]}
-    scrollEventThrottle={50}
-    sections={
-      Array [
-        Object {
-          "data": Array [],
-          "keyExtractor": [Function],
-          "renderItem": [Function],
-          "sectionID": "dashboard.announcements",
-        },
-        Object {
-          "data": Array [
             Object {
-              "key": "welcome",
+              "alignItems": "flex-end",
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "paddingBottom": 0,
+              "paddingTop": 16,
             },
-          ],
-          "renderItem": [Function],
-          "sectionID": "dashboard.courses",
-          "seeAll": [Function],
-          "title": "Courses",
-        },
-      ]
-    }
-    stickyHeaderIndices={Array []}
-    stickySectionHeadersEnabled={false}
-    updateCellsBatchingPeriod={50}
-    windowSize={100}
-  >
-    <RCTRefreshControl />
-    <View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      />
-      <View
-        onLayout={[Function]}
-        style={null}
-      />
-      <View
-        onLayout={[Function]}
-        style={null}
+          ]
+        }
       >
-        <View
-          accessibitilityTraits="heading"
+        <Text
+          accessibilityTraits="header"
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
           style={
             Array [
               Object {
-                "padding": 8,
-                "width": 359,
+                "fontFamily": ".SFUIDisplay",
               },
               Object {
-                "alignItems": "flex-end",
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-                "paddingBottom": 0,
-                "paddingTop": 16,
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-heavy",
+                "fontSize": 24,
               },
+              undefined,
             ]
           }
+          testID="dashboard.courses.heading-lbl"
         >
-          <Text
-            accessibilityTraits="header"
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-heavy",
-                  "fontSize": 24,
-                },
-                undefined,
-              ]
+          Courses
+        </Text>
+        <TouchableOpacity
+          accessibilityTraits="button"
+          hitSlop={
+            Object {
+              "bottom": 15,
+              "left": 15,
+              "right": 15,
+              "top": 15,
             }
-            testID="dashboard.courses.heading-lbl"
-          >
-            Courses
-          </Text>
-          <TouchableOpacity
-            accessibilityTraits="button"
-            hitSlop={
-              Object {
-                "bottom": 15,
-                "left": 15,
-                "right": 15,
-                "top": 15,
-              }
-            }
-            onPress={[Function]}
-            testID="dashboard.courses.see-all-btn"
-          >
-            <View>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
+          }
+          onPress={[Function]}
+          testID="dashboard.courses.see-all-btn"
+        >
+          <View>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
+                      "color": "#374A59",
                       "fontSize": 16,
+                      "fontWeight": "500",
                     },
-                    Array [
-                      Object {
-                        "color": "#374A59",
-                        "fontSize": 16,
-                        "fontWeight": "500",
-                      },
-                      undefined,
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-medium",
-                    },
-                  ]
-                }
-              >
-                See All
-              </Text>
-            </View>
-          </TouchableOpacity>
-        </View>
+                    undefined,
+                  ],
+                  Object {
+                    "fontFamily": ".SFUIDisplay-medium",
+                  },
+                ]
+              }
+            >
+              See All
+            </Text>
+          </View>
+        </TouchableOpacity>
       </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
+      <item>
         <View
           onLayout={[Function]}
         >
@@ -4528,20 +3139,9 @@ exports[`Dashboard render without courses and *zero* total courses 1`] = `
             </TouchableOpacity>
           </View>
         </View>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      />
-      <View
-        style={
-          Object {
-            "height": 0,
-          }
-        }
-      />
-    </View>
-  </RCTScrollView>
+      </item>
+    </section>
+  </list>
 </Screen>
 `;
 
@@ -4579,194 +3179,96 @@ exports[`Dashboard render without favorite courses 1`] = `
   }
   statusBarStyle="light"
 >
-  <RCTScrollView
-    ItemSeparatorComponent={undefined}
-    contentContainerStyle={
-      Object {
-        "flexDirection": "row",
-        "flexWrap": "wrap",
-        "padding": 8,
-      }
-    }
-    data={
-      Array [
-        Object {
-          "data": Array [],
-          "keyExtractor": [Function],
-          "renderItem": [Function],
-          "sectionID": "dashboard.announcements",
-        },
-        Object {
-          "data": Array [
+  <list>
+    <section />
+    <section>
+      <View
+        accessibitilityTraits="heading"
+        style={
+          Array [
             Object {
-              "key": "welcome",
+              "padding": 8,
+              "width": 359,
             },
-          ],
-          "renderItem": [Function],
-          "sectionID": "dashboard.courses",
-          "seeAll": [Function],
-          "title": "Courses",
-        },
-      ]
-    }
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onRefresh={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
-    refreshControl={
-      <RefreshControlMock
-        onRefresh={[Function]}
-        progressViewOffset={undefined}
-        refreshing={false}
-      />
-    }
-    refreshing={false}
-    renderItem={[Function]}
-    renderSectionHeader={[Function]}
-    scrollEventThrottle={50}
-    sections={
-      Array [
-        Object {
-          "data": Array [],
-          "keyExtractor": [Function],
-          "renderItem": [Function],
-          "sectionID": "dashboard.announcements",
-        },
-        Object {
-          "data": Array [
             Object {
-              "key": "welcome",
+              "alignItems": "flex-end",
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "paddingBottom": 0,
+              "paddingTop": 16,
             },
-          ],
-          "renderItem": [Function],
-          "sectionID": "dashboard.courses",
-          "seeAll": [Function],
-          "title": "Courses",
-        },
-      ]
-    }
-    stickyHeaderIndices={Array []}
-    stickySectionHeadersEnabled={false}
-    updateCellsBatchingPeriod={50}
-    windowSize={100}
-  >
-    <RCTRefreshControl />
-    <View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      />
-      <View
-        onLayout={[Function]}
-        style={null}
-      />
-      <View
-        onLayout={[Function]}
-        style={null}
+          ]
+        }
       >
-        <View
-          accessibitilityTraits="heading"
+        <Text
+          accessibilityTraits="header"
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
           style={
             Array [
               Object {
-                "padding": 8,
-                "width": 359,
+                "fontFamily": ".SFUIDisplay",
               },
               Object {
-                "alignItems": "flex-end",
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-                "paddingBottom": 0,
-                "paddingTop": 16,
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-heavy",
+                "fontSize": 24,
               },
+              undefined,
             ]
           }
+          testID="dashboard.courses.heading-lbl"
         >
-          <Text
-            accessibilityTraits="header"
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-heavy",
-                  "fontSize": 24,
-                },
-                undefined,
-              ]
+          Courses
+        </Text>
+        <TouchableOpacity
+          accessibilityTraits="button"
+          hitSlop={
+            Object {
+              "bottom": 15,
+              "left": 15,
+              "right": 15,
+              "top": 15,
             }
-            testID="dashboard.courses.heading-lbl"
-          >
-            Courses
-          </Text>
-          <TouchableOpacity
-            accessibilityTraits="button"
-            hitSlop={
-              Object {
-                "bottom": 15,
-                "left": 15,
-                "right": 15,
-                "top": 15,
-              }
-            }
-            onPress={[Function]}
-            testID="dashboard.courses.see-all-btn"
-          >
-            <View>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
+          }
+          onPress={[Function]}
+          testID="dashboard.courses.see-all-btn"
+        >
+          <View>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
+                      "color": "#374A59",
                       "fontSize": 16,
+                      "fontWeight": "500",
                     },
-                    Array [
-                      Object {
-                        "color": "#374A59",
-                        "fontSize": 16,
-                        "fontWeight": "500",
-                      },
-                      undefined,
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-medium",
-                    },
-                  ]
-                }
-              >
-                See All
-              </Text>
-            </View>
-          </TouchableOpacity>
-        </View>
+                    undefined,
+                  ],
+                  Object {
+                    "fontFamily": ".SFUIDisplay-medium",
+                  },
+                ]
+              }
+            >
+              See All
+            </Text>
+          </View>
+        </TouchableOpacity>
       </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
+      <item>
         <View
           onLayout={[Function]}
         >
@@ -4909,20 +3411,9 @@ exports[`Dashboard render without favorite courses 1`] = `
             </TouchableOpacity>
           </View>
         </View>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      />
-      <View
-        style={
-          Object {
-            "height": 0,
-          }
-        }
-      />
-    </View>
-  </RCTScrollView>
+      </item>
+    </section>
+  </list>
 </Screen>
 `;
 
@@ -4960,471 +3451,10 @@ exports[`Dashboard renders course invites 1`] = `
   }
   statusBarStyle="light"
 >
-  <RCTScrollView
-    ItemSeparatorComponent={undefined}
-    contentContainerStyle={
-      Object {
-        "flexDirection": "row",
-        "flexWrap": "wrap",
-        "padding": 8,
-      }
-    }
-    data={
-      Array [
-        Object {
-          "data": Array [],
-          "keyExtractor": [Function],
-          "renderItem": [Function],
-          "sectionID": "dashboard.announcements",
-        },
-        Object {
-          "data": Array [
-            Object {
-              "course_id": "4",
-              "course_section_id": "1",
-              "enrollment_state": "invited",
-              "grades": Object {
-                "current_grade": null,
-                "current_score": 99,
-                "final_grade": null,
-                "final_score": 99,
-                "html_url": "https://mobiledev.instructure.com/courses/1/grades/5123",
-              },
-              "id": "1",
-              "last_activity_at": "2017-04-05T15:12:45Z",
-              "role": "",
-              "role_id": "",
-              "type": "StudentEnrollment",
-              "user": Object {
-                "avatar_url": "http://www.fillmurray.com/100/100",
-                "bio": "my bio is yuuuuuuuge",
-                "id": "1",
-                "name": "Donald Trump",
-                "primary_email": "donald@trump.com",
-                "short_name": "The Donald",
-                "sortable_name": "Mr. President",
-              },
-              "user_id": "5123",
-            },
-            Object {
-              "course_id": "5",
-              "course_section_id": "2",
-              "enrollment_state": "invited",
-              "grades": Object {
-                "current_grade": null,
-                "current_score": 99,
-                "final_grade": null,
-                "final_score": 99,
-                "html_url": "https://mobiledev.instructure.com/courses/1/grades/5123",
-              },
-              "id": "2",
-              "last_activity_at": "2017-04-05T15:12:45Z",
-              "role": "",
-              "role_id": "",
-              "type": "StudentEnrollment",
-              "user": Object {
-                "avatar_url": "http://www.fillmurray.com/100/100",
-                "bio": "my bio is yuuuuuuuge",
-                "id": "1",
-                "name": "Donald Trump",
-                "primary_email": "donald@trump.com",
-                "short_name": "The Donald",
-                "sortable_name": "Mr. President",
-              },
-              "user_id": "5123",
-            },
-          ],
-          "keyExtractor": [Function],
-          "renderItem": [Function],
-          "sectionID": "dashboard.courseInvites",
-        },
-        Object {
-          "data": Array [
-            Object {
-              "account_id": "1",
-              "color": "#27B9CD",
-              "course_code": "BIO 101",
-              "default_view": "wiki",
-              "end_at": "2030-02-08T23:13:39Z",
-              "enrollments": Array [
-                Object {
-                  "enrollment_state": "active",
-                  "role": "TeacherEnrollment",
-                  "role_id": "1",
-                  "type": "teacher",
-                  "user_id": "1",
-                },
-              ],
-              "id": "1",
-              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-              "is_favorite": true,
-              "name": "Biology 101",
-              "permissions": Object {
-                "viewAllGrades": true,
-                "viewAnalytics": true,
-              },
-              "short_name": "BIO 101",
-              "term": Object {
-                "created_at": "2018-02-08T23:13:39Z",
-                "end_at": "2030-02-08T23:13:39Z",
-                "id": "1",
-                "name": "Default Term",
-                "start_at": "2018-02-08T23:13:39Z",
-                "workflow_state": "available",
-              },
-              "workflow_state": "available",
-            },
-            Object {
-              "account_id": "1",
-              "color": "#8F3E97",
-              "course_code": "LIT 401",
-              "default_view": "wiki",
-              "end_at": "2030-02-08T23:13:39Z",
-              "enrollments": Array [
-                Object {
-                  "enrollment_state": "active",
-                  "role": "TeacherEnrollment",
-                  "role_id": "1",
-                  "type": "teacher",
-                  "user_id": "1",
-                },
-              ],
-              "id": "2",
-              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-              "is_favorite": false,
-              "name": "American Literature Psysicks foobar hello world 401",
-              "permissions": Object {
-                "viewAllGrades": true,
-                "viewAnalytics": true,
-              },
-              "short_name": "LIT 401",
-              "term": Object {
-                "created_at": "2018-02-08T23:13:39Z",
-                "end_at": "2030-02-08T23:13:39Z",
-                "id": "1",
-                "name": "Default Term",
-                "start_at": "2018-02-08T23:13:39Z",
-                "workflow_state": "available",
-              },
-              "workflow_state": "available",
-            },
-            Object {
-              "account_id": "1",
-              "color": "#8F3E99",
-              "course_code": "FOO 102",
-              "default_view": "wiki",
-              "end_at": "2030-02-08T23:13:39Z",
-              "enrollments": Array [
-                Object {
-                  "enrollment_state": "active",
-                  "role": "TeacherEnrollment",
-                  "role_id": "1",
-                  "type": "teacher",
-                  "user_id": "1",
-                },
-              ],
-              "id": "3",
-              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-              "is_favorite": true,
-              "name": "Foobar 102",
-              "permissions": Object {
-                "viewAllGrades": true,
-                "viewAnalytics": true,
-              },
-              "short_name": "FOO 102",
-              "term": Object {
-                "created_at": "2018-02-08T23:13:39Z",
-                "end_at": "2030-02-08T23:13:39Z",
-                "id": "1",
-                "name": "Default Term",
-                "start_at": "2018-02-08T23:13:39Z",
-                "workflow_state": "available",
-              },
-              "workflow_state": "available",
-            },
-          ],
-          "keyExtractor": [Function],
-          "renderItem": [Function],
-          "sectionID": "dashboard.courses",
-          "seeAll": [Function],
-          "title": "Courses",
-        },
-        Object {
-          "data": Array [
-            Object {
-              "color": "#27B9CD",
-              "contextName": "Biology 101",
-              "id": "1",
-              "name": "Group 1",
-              "term": "Bio-101",
-            },
-            Object {
-              "color": "#8F3E99",
-              "contextName": "American Literature Psysicks foobar hello world 401",
-              "id": "2",
-              "name": "Group 2",
-            },
-          ],
-          "keyExtractor": [Function],
-          "renderItem": [Function],
-          "sectionID": "dashboard.groups",
-          "title": "Groups",
-        },
-      ]
-    }
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onRefresh={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
-    refreshControl={
-      <RefreshControlMock
-        onRefresh={[Function]}
-        progressViewOffset={undefined}
-        refreshing={false}
-      />
-    }
-    refreshing={false}
-    renderItem={[Function]}
-    renderSectionHeader={[Function]}
-    scrollEventThrottle={50}
-    sections={
-      Array [
-        Object {
-          "data": Array [],
-          "keyExtractor": [Function],
-          "renderItem": [Function],
-          "sectionID": "dashboard.announcements",
-        },
-        Object {
-          "data": Array [
-            Object {
-              "course_id": "4",
-              "course_section_id": "1",
-              "enrollment_state": "invited",
-              "grades": Object {
-                "current_grade": null,
-                "current_score": 99,
-                "final_grade": null,
-                "final_score": 99,
-                "html_url": "https://mobiledev.instructure.com/courses/1/grades/5123",
-              },
-              "id": "1",
-              "last_activity_at": "2017-04-05T15:12:45Z",
-              "role": "",
-              "role_id": "",
-              "type": "StudentEnrollment",
-              "user": Object {
-                "avatar_url": "http://www.fillmurray.com/100/100",
-                "bio": "my bio is yuuuuuuuge",
-                "id": "1",
-                "name": "Donald Trump",
-                "primary_email": "donald@trump.com",
-                "short_name": "The Donald",
-                "sortable_name": "Mr. President",
-              },
-              "user_id": "5123",
-            },
-            Object {
-              "course_id": "5",
-              "course_section_id": "2",
-              "enrollment_state": "invited",
-              "grades": Object {
-                "current_grade": null,
-                "current_score": 99,
-                "final_grade": null,
-                "final_score": 99,
-                "html_url": "https://mobiledev.instructure.com/courses/1/grades/5123",
-              },
-              "id": "2",
-              "last_activity_at": "2017-04-05T15:12:45Z",
-              "role": "",
-              "role_id": "",
-              "type": "StudentEnrollment",
-              "user": Object {
-                "avatar_url": "http://www.fillmurray.com/100/100",
-                "bio": "my bio is yuuuuuuuge",
-                "id": "1",
-                "name": "Donald Trump",
-                "primary_email": "donald@trump.com",
-                "short_name": "The Donald",
-                "sortable_name": "Mr. President",
-              },
-              "user_id": "5123",
-            },
-          ],
-          "keyExtractor": [Function],
-          "renderItem": [Function],
-          "sectionID": "dashboard.courseInvites",
-        },
-        Object {
-          "data": Array [
-            Object {
-              "account_id": "1",
-              "color": "#27B9CD",
-              "course_code": "BIO 101",
-              "default_view": "wiki",
-              "end_at": "2030-02-08T23:13:39Z",
-              "enrollments": Array [
-                Object {
-                  "enrollment_state": "active",
-                  "role": "TeacherEnrollment",
-                  "role_id": "1",
-                  "type": "teacher",
-                  "user_id": "1",
-                },
-              ],
-              "id": "1",
-              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-              "is_favorite": true,
-              "name": "Biology 101",
-              "permissions": Object {
-                "viewAllGrades": true,
-                "viewAnalytics": true,
-              },
-              "short_name": "BIO 101",
-              "term": Object {
-                "created_at": "2018-02-08T23:13:39Z",
-                "end_at": "2030-02-08T23:13:39Z",
-                "id": "1",
-                "name": "Default Term",
-                "start_at": "2018-02-08T23:13:39Z",
-                "workflow_state": "available",
-              },
-              "workflow_state": "available",
-            },
-            Object {
-              "account_id": "1",
-              "color": "#8F3E97",
-              "course_code": "LIT 401",
-              "default_view": "wiki",
-              "end_at": "2030-02-08T23:13:39Z",
-              "enrollments": Array [
-                Object {
-                  "enrollment_state": "active",
-                  "role": "TeacherEnrollment",
-                  "role_id": "1",
-                  "type": "teacher",
-                  "user_id": "1",
-                },
-              ],
-              "id": "2",
-              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-              "is_favorite": false,
-              "name": "American Literature Psysicks foobar hello world 401",
-              "permissions": Object {
-                "viewAllGrades": true,
-                "viewAnalytics": true,
-              },
-              "short_name": "LIT 401",
-              "term": Object {
-                "created_at": "2018-02-08T23:13:39Z",
-                "end_at": "2030-02-08T23:13:39Z",
-                "id": "1",
-                "name": "Default Term",
-                "start_at": "2018-02-08T23:13:39Z",
-                "workflow_state": "available",
-              },
-              "workflow_state": "available",
-            },
-            Object {
-              "account_id": "1",
-              "color": "#8F3E99",
-              "course_code": "FOO 102",
-              "default_view": "wiki",
-              "end_at": "2030-02-08T23:13:39Z",
-              "enrollments": Array [
-                Object {
-                  "enrollment_state": "active",
-                  "role": "TeacherEnrollment",
-                  "role_id": "1",
-                  "type": "teacher",
-                  "user_id": "1",
-                },
-              ],
-              "id": "3",
-              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-              "is_favorite": true,
-              "name": "Foobar 102",
-              "permissions": Object {
-                "viewAllGrades": true,
-                "viewAnalytics": true,
-              },
-              "short_name": "FOO 102",
-              "term": Object {
-                "created_at": "2018-02-08T23:13:39Z",
-                "end_at": "2030-02-08T23:13:39Z",
-                "id": "1",
-                "name": "Default Term",
-                "start_at": "2018-02-08T23:13:39Z",
-                "workflow_state": "available",
-              },
-              "workflow_state": "available",
-            },
-          ],
-          "keyExtractor": [Function],
-          "renderItem": [Function],
-          "sectionID": "dashboard.courses",
-          "seeAll": [Function],
-          "title": "Courses",
-        },
-        Object {
-          "data": Array [
-            Object {
-              "color": "#27B9CD",
-              "contextName": "Biology 101",
-              "id": "1",
-              "name": "Group 1",
-              "term": "Bio-101",
-            },
-            Object {
-              "color": "#8F3E99",
-              "contextName": "American Literature Psysicks foobar hello world 401",
-              "id": "2",
-              "name": "Group 2",
-            },
-          ],
-          "keyExtractor": [Function],
-          "renderItem": [Function],
-          "sectionID": "dashboard.groups",
-          "title": "Groups",
-        },
-      ]
-    }
-    stickyHeaderIndices={Array []}
-    stickySectionHeadersEnabled={false}
-    updateCellsBatchingPeriod={50}
-    windowSize={100}
-  >
-    <RCTRefreshControl />
-    <View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      />
-      <View
-        onLayout={[Function]}
-        style={null}
-      />
-      <View
-        onLayout={[Function]}
-        style={null}
-      />
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
+  <list>
+    <section />
+    <section>
+      <item>
         <View
           style={
             Array [
@@ -5696,11 +3726,8 @@ exports[`Dashboard renders course invites 1`] = `
             </View>
           </View>
         </View>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
+      </item>
+      <item>
         <View
           style={
             Array [
@@ -5972,106 +3999,96 @@ exports[`Dashboard renders course invites 1`] = `
             </View>
           </View>
         </View>
-      </View>
+      </item>
+    </section>
+    <section>
       <View
-        onLayout={[Function]}
-        style={null}
-      />
-      <View
-        onLayout={[Function]}
-        style={null}
+        accessibitilityTraits="heading"
+        style={
+          Array [
+            Object {
+              "padding": 8,
+              "width": 359,
+            },
+            Object {
+              "alignItems": "flex-end",
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "paddingBottom": 0,
+              "paddingTop": 16,
+            },
+          ]
+        }
       >
-        <View
-          accessibitilityTraits="heading"
+        <Text
+          accessibilityTraits="header"
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
           style={
             Array [
               Object {
-                "padding": 8,
-                "width": 359,
+                "fontFamily": ".SFUIDisplay",
               },
               Object {
-                "alignItems": "flex-end",
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-                "paddingBottom": 0,
-                "paddingTop": 16,
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-heavy",
+                "fontSize": 24,
               },
+              undefined,
             ]
           }
+          testID="dashboard.courses.heading-lbl"
         >
-          <Text
-            accessibilityTraits="header"
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-heavy",
-                  "fontSize": 24,
-                },
-                undefined,
-              ]
+          Courses
+        </Text>
+        <TouchableOpacity
+          accessibilityTraits="button"
+          hitSlop={
+            Object {
+              "bottom": 15,
+              "left": 15,
+              "right": 15,
+              "top": 15,
             }
-            testID="dashboard.courses.heading-lbl"
-          >
-            Courses
-          </Text>
-          <TouchableOpacity
-            accessibilityTraits="button"
-            hitSlop={
-              Object {
-                "bottom": 15,
-                "left": 15,
-                "right": 15,
-                "top": 15,
-              }
-            }
-            onPress={[Function]}
-            testID="dashboard.courses.see-all-btn"
-          >
-            <View>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
+          }
+          onPress={[Function]}
+          testID="dashboard.courses.see-all-btn"
+        >
+          <View>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
+                      "color": "#374A59",
                       "fontSize": 16,
+                      "fontWeight": "500",
                     },
-                    Array [
-                      Object {
-                        "color": "#374A59",
-                        "fontSize": 16,
-                        "fontWeight": "500",
-                      },
-                      undefined,
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-medium",
-                    },
-                  ]
-                }
-              >
-                See All
-              </Text>
-            </View>
-          </TouchableOpacity>
-        </View>
+                    undefined,
+                  ],
+                  Object {
+                    "fontFamily": ".SFUIDisplay-medium",
+                  },
+                ]
+              }
+            >
+              See All
+            </Text>
+          </View>
+        </TouchableOpacity>
       </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
+      <item>
         <A11yGroup>
           <TouchableHighlight
             accessible={false}
@@ -6083,9 +4100,12 @@ exports[`Dashboard renders course invites 1`] = `
                   "height": 160,
                 },
                 Object {
-                  "height": 0,
+                  "height": undefined,
                   "padding": 8,
                   "width": undefined,
+                },
+                Object {
+                  "height": 0,
                 },
               ]
             }
@@ -6254,11 +4274,8 @@ exports[`Dashboard renders course invites 1`] = `
             </View>
           </TouchableHighlight>
         </A11yGroup>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
+      </item>
+      <item>
         <A11yGroup>
           <TouchableHighlight
             accessible={false}
@@ -6270,9 +4287,12 @@ exports[`Dashboard renders course invites 1`] = `
                   "height": 160,
                 },
                 Object {
-                  "height": 0,
+                  "height": undefined,
                   "padding": 8,
                   "width": undefined,
+                },
+                Object {
+                  "height": 0,
                 },
               ]
             }
@@ -6441,11 +4461,8 @@ exports[`Dashboard renders course invites 1`] = `
             </View>
           </TouchableHighlight>
         </A11yGroup>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
+      </item>
+      <item>
         <A11yGroup>
           <TouchableHighlight
             accessible={false}
@@ -6457,9 +4474,12 @@ exports[`Dashboard renders course invites 1`] = `
                   "height": 160,
                 },
                 Object {
-                  "height": 0,
+                  "height": undefined,
                   "padding": 8,
                   "width": undefined,
+                },
+                Object {
+                  "height": 0,
                 },
               ]
             }
@@ -6628,15 +4648,317 @@ exports[`Dashboard renders course invites 1`] = `
             </View>
           </TouchableHighlight>
         </A11yGroup>
-      </View>
+      </item>
+    </section>
+    <section>
       <View
+        accessibitilityTraits="heading"
         style={
-          Object {
-            "height": 0,
-          }
+          Array [
+            Object {
+              "padding": 8,
+              "width": 359,
+            },
+            Object {
+              "alignItems": "flex-end",
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "paddingBottom": 0,
+              "paddingTop": 16,
+            },
+          ]
         }
-      />
-    </View>
-  </RCTScrollView>
+      >
+        <Text
+          accessibilityTraits="header"
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-heavy",
+                "fontSize": 24,
+              },
+              undefined,
+            ]
+          }
+          testID="dashboard.groups.heading-lbl"
+        >
+          Groups
+        </Text>
+      </View>
+      <item>
+        <TouchableHighlight
+          onPress={[Function]}
+          testID="group-row-1"
+          underlayColor="transparent"
+        >
+          <View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "#ffffff01",
+                    "shadowColor": "#000",
+                    "shadowOffset": Object {
+                      "height": 1,
+                      "width": 0,
+                    },
+                    "shadowOpacity": 0.2,
+                    "shadowRadius": 1,
+                  },
+                  Object {
+                    "padding": 8,
+                    "width": 359,
+                  },
+                ]
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "white",
+                      "borderColor": "#e3e3e3",
+                      "borderRadius": 4,
+                      "borderWidth": 0.5,
+                      "flex": 1,
+                      "overflow": "hidden",
+                    },
+                    Object {
+                      "flexDirection": "row",
+                      "minHeight": 82,
+                    },
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "width": 4,
+                      },
+                      Object {
+                        "backgroundColor": "#27B9CD",
+                      },
+                    ]
+                  }
+                />
+                <View
+                  style={
+                    Object {
+                      "margin": 8,
+                    }
+                  }
+                >
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "fontSize": 18,
+                          "fontWeight": "600",
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay-semibold",
+                        },
+                      ]
+                    }
+                  >
+                    Group 1
+                  </Text>
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#7F91A7",
+                          "fontSize": 14,
+                        },
+                        Array [
+                          Object {
+                            "color": "#27B9CD",
+                          },
+                          Object {
+                            "fontSize": 16,
+                            "fontWeight": "600",
+                          },
+                        ],
+                      ]
+                    }
+                  >
+                    Biology 101
+                  </Text>
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#7F91A7",
+                          "fontSize": 14,
+                        },
+                        Object {
+                          "fontSize": 12,
+                          "fontWeight": "600",
+                        },
+                      ]
+                    }
+                  >
+                    BIO-101
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
+        </TouchableHighlight>
+      </item>
+      <item>
+        <TouchableHighlight
+          onPress={[Function]}
+          testID="group-row-2"
+          underlayColor="transparent"
+        >
+          <View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "#ffffff01",
+                    "shadowColor": "#000",
+                    "shadowOffset": Object {
+                      "height": 1,
+                      "width": 0,
+                    },
+                    "shadowOpacity": 0.2,
+                    "shadowRadius": 1,
+                  },
+                  Object {
+                    "padding": 8,
+                    "width": 359,
+                  },
+                ]
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "white",
+                      "borderColor": "#e3e3e3",
+                      "borderRadius": 4,
+                      "borderWidth": 0.5,
+                      "flex": 1,
+                      "overflow": "hidden",
+                    },
+                    Object {
+                      "flexDirection": "row",
+                      "minHeight": 82,
+                    },
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "width": 4,
+                      },
+                      Object {
+                        "backgroundColor": "#8F3E99",
+                      },
+                    ]
+                  }
+                />
+                <View
+                  style={
+                    Object {
+                      "margin": 8,
+                    }
+                  }
+                >
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "fontSize": 18,
+                          "fontWeight": "600",
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay-semibold",
+                        },
+                      ]
+                    }
+                  >
+                    Group 2
+                  </Text>
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#7F91A7",
+                          "fontSize": 14,
+                        },
+                        Array [
+                          Object {
+                            "color": "#8F3E99",
+                          },
+                          Object {
+                            "fontSize": 16,
+                            "fontWeight": "600",
+                          },
+                        ],
+                      ]
+                    }
+                  >
+                    American Literature Psysicks foobar hello world 401
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
+        </TouchableHighlight>
+      </item>
+    </section>
+  </list>
 </Screen>
 `;

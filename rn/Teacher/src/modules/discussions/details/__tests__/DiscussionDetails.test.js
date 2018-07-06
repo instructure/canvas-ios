@@ -51,6 +51,7 @@ jest
   .mock('../../../../redux/middleware/error-handler', () => {
     return { alertError: jest.fn() }
   })
+  .unmock('FlatList')
 
 jest.useFakeTimers()
 

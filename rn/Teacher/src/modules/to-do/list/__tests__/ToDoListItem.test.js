@@ -33,7 +33,9 @@ describe('ToDoListItem', () => {
       courseColor: '#fff',
       api: new API({ policy: 'cache-only' }),
       isLoading: false,
+      isSaving: false,
       loadError: null,
+      saveError: null,
       refresh: jest.fn(),
       onPress: jest.fn(),
     }
@@ -44,7 +46,7 @@ describe('ToDoListItem', () => {
     const course = template.courseModel()
     httpCache.handle('GET', 'users/self/colors', { custom_colors: { course_1: courseColor } })
     httpCache.handle('GET', 'courses/1', course)
-    const tree = shallow(<Connected item={props.item} />)
+    const tree = shallow(<Connected item={props.item} onPress={jest.fn()} />)
     expect(tree.find(ToDoListItem).props()).toMatchObject({
       courseColor,
       courseName: course.name,

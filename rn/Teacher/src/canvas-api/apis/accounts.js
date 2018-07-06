@@ -20,9 +20,9 @@ import httpClient from '../httpClient'
 
 // Only admins can hit this api successfully. Otherwise, will send back a 401
 export function account (): ApiPromise<Account> {
-  return httpClient().get('accounts/self')
+  return httpClient.get('accounts/self')
 }
 
 export function becomeUserPermissions (accountID: string): ApiPromise<RolePermission> {
-  return httpClient().get(`/accounts/${accountID}/permissions?permissions[]=become_user`)
+  return httpClient.get(`/accounts/${accountID}/permissions?permissions[]=become_user`)
 }

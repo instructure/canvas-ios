@@ -41,7 +41,7 @@ export function getExternalTool (courseID: string, id: string, options: GetExter
     params['assignment_id'] = assignment.id
   }
 
-  return httpClient().get(url, { params })
+  return httpClient.get(url, { params })
 }
 
 export function getExternalTools (courseID: string, params: { include_parents?: boolean }): ApiPromise<Array<ExternalTool>> {
@@ -54,5 +54,5 @@ export function getSessionlessLaunchURL (courseID: string, options: GetExternalT
 }
 
 export function refreshAccountExternalTools (): ApiPromise<ExternalToolLaunchDefinition[]> {
-  return httpClient().get(`accounts/self/lti_apps/launch_definitions?placements[]=global_navigation`)
+  return httpClient.get(`accounts/self/lti_apps/launch_definitions?placements[]=global_navigation`)
 }

@@ -36,258 +36,60 @@ exports[`renders correctly 1`] = `
     }
   }
 >
-  <RCTScrollView
-    ItemSeparatorComponent={undefined}
-    data={
-      Array [
-        Object {
-          "data": Array [
-            Object {
-              "account_id": "1",
-              "course_code": "rn 101",
-              "default_view": "wiki",
-              "end_at": "2030-02-08T23:13:39Z",
-              "enrollments": Array [
-                Object {
-                  "enrollment_state": "active",
-                  "role": "TeacherEnrollment",
-                  "role_id": "1",
-                  "type": "teacher",
-                  "user_id": "1",
-                },
-              ],
-              "id": "1",
-              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-              "is_favorite": true,
-              "name": "Learn React Native",
-              "permissions": Object {
-                "viewAllGrades": true,
-                "viewAnalytics": true,
-              },
-              "short_name": "rn",
-              "term": Object {
-                "created_at": "2018-02-08T23:13:39Z",
-                "end_at": "2030-02-08T23:13:39Z",
-                "id": "1",
-                "name": "Default Term",
-                "start_at": "2018-02-08T23:13:39Z",
-                "workflow_state": "available",
-              },
-              "workflow_state": "available",
-            },
-            Object {
-              "account_id": "1",
-              "course_code": "rn 101",
-              "default_view": "wiki",
-              "end_at": "2030-02-08T23:13:39Z",
-              "enrollments": Array [
-                Object {
-                  "enrollment_state": "active",
-                  "role": "TeacherEnrollment",
-                  "role_id": "1",
-                  "type": "teacher",
-                  "user_id": "1",
-                },
-              ],
-              "id": "2",
-              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-              "is_favorite": true,
-              "name": "Learn React Native",
-              "permissions": Object {
-                "viewAllGrades": true,
-                "viewAnalytics": true,
-              },
-              "short_name": "rn",
-              "term": Object {
-                "created_at": "2018-02-08T23:13:39Z",
-                "end_at": "2030-02-08T23:13:39Z",
-                "id": "1",
-                "name": "Default Term",
-                "start_at": "2018-02-08T23:13:39Z",
-                "workflow_state": "available",
-              },
-              "workflow_state": "available",
-            },
-          ],
-          "keyExtractor": [Function],
-          "renderItem": [Function],
-          "sectionID": "editFavorites.courses",
-          "title": "Courses",
-        },
-      ]
-    }
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onRefresh={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
-    refreshControl={
-      <RefreshControlMock
-        onRefresh={[Function]}
-        progressViewOffset={undefined}
-        refreshing={false}
-      />
-    }
-    refreshing={false}
-    renderItem={[Function]}
-    renderSectionHeader={[Function]}
-    scrollEventThrottle={50}
-    sections={
-      Array [
-        Object {
-          "data": Array [
-            Object {
-              "account_id": "1",
-              "course_code": "rn 101",
-              "default_view": "wiki",
-              "end_at": "2030-02-08T23:13:39Z",
-              "enrollments": Array [
-                Object {
-                  "enrollment_state": "active",
-                  "role": "TeacherEnrollment",
-                  "role_id": "1",
-                  "type": "teacher",
-                  "user_id": "1",
-                },
-              ],
-              "id": "1",
-              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-              "is_favorite": true,
-              "name": "Learn React Native",
-              "permissions": Object {
-                "viewAllGrades": true,
-                "viewAnalytics": true,
-              },
-              "short_name": "rn",
-              "term": Object {
-                "created_at": "2018-02-08T23:13:39Z",
-                "end_at": "2030-02-08T23:13:39Z",
-                "id": "1",
-                "name": "Default Term",
-                "start_at": "2018-02-08T23:13:39Z",
-                "workflow_state": "available",
-              },
-              "workflow_state": "available",
-            },
-            Object {
-              "account_id": "1",
-              "course_code": "rn 101",
-              "default_view": "wiki",
-              "end_at": "2030-02-08T23:13:39Z",
-              "enrollments": Array [
-                Object {
-                  "enrollment_state": "active",
-                  "role": "TeacherEnrollment",
-                  "role_id": "1",
-                  "type": "teacher",
-                  "user_id": "1",
-                },
-              ],
-              "id": "2",
-              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-              "is_favorite": true,
-              "name": "Learn React Native",
-              "permissions": Object {
-                "viewAllGrades": true,
-                "viewAnalytics": true,
-              },
-              "short_name": "rn",
-              "term": Object {
-                "created_at": "2018-02-08T23:13:39Z",
-                "end_at": "2030-02-08T23:13:39Z",
-                "id": "1",
-                "name": "Default Term",
-                "start_at": "2018-02-08T23:13:39Z",
-                "workflow_state": "available",
-              },
-              "workflow_state": "available",
-            },
-          ],
-          "keyExtractor": [Function],
-          "renderItem": [Function],
-          "sectionID": "editFavorites.courses",
-          "title": "Courses",
-        },
-      ]
-    }
-    stickyHeaderIndices={Array []}
-    stickySectionHeadersEnabled={false}
-    updateCellsBatchingPeriod={50}
-    windowSize={21}
-  >
-    <RCTRefreshControl />
-    <View>
+  <list>
+    <section>
       <View
-        onLayout={[Function]}
-        style={null}
+        accessibilityTraits="header"
+        style={
+          Array [
+            Object {
+              "backgroundColor": "#f5f5f5",
+              "flex": 1,
+              "justifyContent": "center",
+              "paddingLeft": 16,
+              "paddingRight": 8,
+              "paddingVertical": 4,
+            },
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+            },
+            Object {
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
+            },
+          ]
+        }
       >
-        <View
-          accessibilityTraits="header"
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
           style={
             Array [
               Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
                 "backgroundColor": "#f5f5f5",
-                "flex": 1,
-                "justifyContent": "center",
-                "paddingLeft": 16,
-                "paddingRight": 8,
-                "paddingVertical": 4,
+                "color": "#73818C",
+                "fontSize": 14,
+                "fontWeight": "600",
               },
               Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-              },
-              Object {
-                "borderTopColor": "#C7CDD1",
-                "borderTopWidth": 0.5,
+                "fontFamily": ".SFUIDisplay-semibold",
               },
             ]
           }
         >
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontSize": 16,
-                },
-                Object {
-                  "backgroundColor": "#f5f5f5",
-                  "color": "#73818C",
-                  "fontSize": 14,
-                  "fontWeight": "600",
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
-              ]
-            }
-          >
-            Courses
-          </Text>
-        </View>
+          Courses
+        </Text>
       </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
+      <item>
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
@@ -380,11 +182,8 @@ exports[`renders correctly 1`] = `
             </Text>
           </View>
         </View>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
+      </item>
+      <item>
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
@@ -477,13 +276,9 @@ exports[`renders correctly 1`] = `
             </Text>
           </View>
         </View>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      />
-    </View>
-  </RCTScrollView>
+      </item>
+    </section>
+  </list>
 </RCTSafeAreaView>
 `;
 
@@ -495,342 +290,60 @@ exports[`renders correctly as student 1`] = `
     }
   }
 >
-  <RCTScrollView
-    ItemSeparatorComponent={undefined}
-    data={
-      Array [
-        Object {
-          "data": Array [
-            Object {
-              "account_id": "1",
-              "course_code": "rn 101",
-              "default_view": "wiki",
-              "end_at": "2030-02-08T23:13:39Z",
-              "enrollments": Array [
-                Object {
-                  "enrollment_state": "active",
-                  "role": "TeacherEnrollment",
-                  "role_id": "1",
-                  "type": "teacher",
-                  "user_id": "1",
-                },
-              ],
-              "id": "1",
-              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-              "is_favorite": true,
-              "name": "Learn React Native",
-              "permissions": Object {
-                "viewAllGrades": true,
-                "viewAnalytics": true,
-              },
-              "short_name": "rn",
-              "term": Object {
-                "created_at": "2018-02-08T23:13:39Z",
-                "end_at": "2030-02-08T23:13:39Z",
-                "id": "1",
-                "name": "Default Term",
-                "start_at": "2018-02-08T23:13:39Z",
-                "workflow_state": "available",
-              },
-              "workflow_state": "available",
-            },
-            Object {
-              "account_id": "1",
-              "course_code": "rn 101",
-              "default_view": "wiki",
-              "end_at": "2030-02-08T23:13:39Z",
-              "enrollments": Array [
-                Object {
-                  "enrollment_state": "active",
-                  "role": "TeacherEnrollment",
-                  "role_id": "1",
-                  "type": "teacher",
-                  "user_id": "1",
-                },
-              ],
-              "id": "2",
-              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-              "is_favorite": true,
-              "name": "Learn React Native",
-              "permissions": Object {
-                "viewAllGrades": true,
-                "viewAnalytics": true,
-              },
-              "short_name": "rn",
-              "term": Object {
-                "created_at": "2018-02-08T23:13:39Z",
-                "end_at": "2030-02-08T23:13:39Z",
-                "id": "1",
-                "name": "Default Term",
-                "start_at": "2018-02-08T23:13:39Z",
-                "workflow_state": "available",
-              },
-              "workflow_state": "available",
-            },
-          ],
-          "keyExtractor": [Function],
-          "renderItem": [Function],
-          "sectionID": "editFavorites.courses",
-          "title": "Courses",
-        },
-        Object {
-          "data": Array [
-            Object {
-              "group_category_id": "5531",
-              "id": "1",
-              "members_count": 23432343,
-              "name": "Red Squadron",
-              "users": Array [
-                Object {
-                  "avatar_url": "http://www.fillmurray.com/100/100",
-                  "bio": "my bio is yuuuuuuuge",
-                  "id": "1",
-                  "name": "Donald Trump",
-                  "primary_email": "donald@trump.com",
-                  "short_name": "The Donald",
-                  "sortable_name": "Mr. President",
-                },
-              ],
-            },
-            Object {
-              "group_category_id": "5531",
-              "id": "2",
-              "members_count": 23432343,
-              "name": "Red Squadron",
-              "users": Array [
-                Object {
-                  "avatar_url": "http://www.fillmurray.com/100/100",
-                  "bio": "my bio is yuuuuuuuge",
-                  "id": "1",
-                  "name": "Donald Trump",
-                  "primary_email": "donald@trump.com",
-                  "short_name": "The Donald",
-                  "sortable_name": "Mr. President",
-                },
-              ],
-            },
-          ],
-          "keyExtractor": [Function],
-          "renderItem": [Function],
-          "sectionID": "editFavorites.groups",
-          "title": "Groups",
-        },
-      ]
-    }
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onRefresh={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
-    refreshControl={
-      <RefreshControlMock
-        onRefresh={[Function]}
-        progressViewOffset={undefined}
-        refreshing={false}
-      />
-    }
-    refreshing={false}
-    renderItem={[Function]}
-    renderSectionHeader={[Function]}
-    scrollEventThrottle={50}
-    sections={
-      Array [
-        Object {
-          "data": Array [
-            Object {
-              "account_id": "1",
-              "course_code": "rn 101",
-              "default_view": "wiki",
-              "end_at": "2030-02-08T23:13:39Z",
-              "enrollments": Array [
-                Object {
-                  "enrollment_state": "active",
-                  "role": "TeacherEnrollment",
-                  "role_id": "1",
-                  "type": "teacher",
-                  "user_id": "1",
-                },
-              ],
-              "id": "1",
-              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-              "is_favorite": true,
-              "name": "Learn React Native",
-              "permissions": Object {
-                "viewAllGrades": true,
-                "viewAnalytics": true,
-              },
-              "short_name": "rn",
-              "term": Object {
-                "created_at": "2018-02-08T23:13:39Z",
-                "end_at": "2030-02-08T23:13:39Z",
-                "id": "1",
-                "name": "Default Term",
-                "start_at": "2018-02-08T23:13:39Z",
-                "workflow_state": "available",
-              },
-              "workflow_state": "available",
-            },
-            Object {
-              "account_id": "1",
-              "course_code": "rn 101",
-              "default_view": "wiki",
-              "end_at": "2030-02-08T23:13:39Z",
-              "enrollments": Array [
-                Object {
-                  "enrollment_state": "active",
-                  "role": "TeacherEnrollment",
-                  "role_id": "1",
-                  "type": "teacher",
-                  "user_id": "1",
-                },
-              ],
-              "id": "2",
-              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-              "is_favorite": true,
-              "name": "Learn React Native",
-              "permissions": Object {
-                "viewAllGrades": true,
-                "viewAnalytics": true,
-              },
-              "short_name": "rn",
-              "term": Object {
-                "created_at": "2018-02-08T23:13:39Z",
-                "end_at": "2030-02-08T23:13:39Z",
-                "id": "1",
-                "name": "Default Term",
-                "start_at": "2018-02-08T23:13:39Z",
-                "workflow_state": "available",
-              },
-              "workflow_state": "available",
-            },
-          ],
-          "keyExtractor": [Function],
-          "renderItem": [Function],
-          "sectionID": "editFavorites.courses",
-          "title": "Courses",
-        },
-        Object {
-          "data": Array [
-            Object {
-              "group_category_id": "5531",
-              "id": "1",
-              "members_count": 23432343,
-              "name": "Red Squadron",
-              "users": Array [
-                Object {
-                  "avatar_url": "http://www.fillmurray.com/100/100",
-                  "bio": "my bio is yuuuuuuuge",
-                  "id": "1",
-                  "name": "Donald Trump",
-                  "primary_email": "donald@trump.com",
-                  "short_name": "The Donald",
-                  "sortable_name": "Mr. President",
-                },
-              ],
-            },
-            Object {
-              "group_category_id": "5531",
-              "id": "2",
-              "members_count": 23432343,
-              "name": "Red Squadron",
-              "users": Array [
-                Object {
-                  "avatar_url": "http://www.fillmurray.com/100/100",
-                  "bio": "my bio is yuuuuuuuge",
-                  "id": "1",
-                  "name": "Donald Trump",
-                  "primary_email": "donald@trump.com",
-                  "short_name": "The Donald",
-                  "sortable_name": "Mr. President",
-                },
-              ],
-            },
-          ],
-          "keyExtractor": [Function],
-          "renderItem": [Function],
-          "sectionID": "editFavorites.groups",
-          "title": "Groups",
-        },
-      ]
-    }
-    stickyHeaderIndices={Array []}
-    stickySectionHeadersEnabled={false}
-    updateCellsBatchingPeriod={50}
-    windowSize={21}
-  >
-    <RCTRefreshControl />
-    <View>
+  <list>
+    <section>
       <View
-        onLayout={[Function]}
-        style={null}
+        accessibilityTraits="header"
+        style={
+          Array [
+            Object {
+              "backgroundColor": "#f5f5f5",
+              "flex": 1,
+              "justifyContent": "center",
+              "paddingLeft": 16,
+              "paddingRight": 8,
+              "paddingVertical": 4,
+            },
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+            },
+            Object {
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
+            },
+          ]
+        }
       >
-        <View
-          accessibilityTraits="header"
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
           style={
             Array [
               Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
                 "backgroundColor": "#f5f5f5",
-                "flex": 1,
-                "justifyContent": "center",
-                "paddingLeft": 16,
-                "paddingRight": 8,
-                "paddingVertical": 4,
+                "color": "#73818C",
+                "fontSize": 14,
+                "fontWeight": "600",
               },
               Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-              },
-              Object {
-                "borderTopColor": "#C7CDD1",
-                "borderTopWidth": 0.5,
+                "fontFamily": ".SFUIDisplay-semibold",
               },
             ]
           }
         >
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontSize": 16,
-                },
-                Object {
-                  "backgroundColor": "#f5f5f5",
-                  "color": "#73818C",
-                  "fontSize": 14,
-                  "fontWeight": "600",
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
-              ]
-            }
-          >
-            Courses
-          </Text>
-        </View>
+          Courses
+        </Text>
       </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
+      <item>
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
@@ -923,11 +436,8 @@ exports[`renders correctly as student 1`] = `
             </Text>
           </View>
         </View>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
+      </item>
+      <item>
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
@@ -1020,68 +530,58 @@ exports[`renders correctly as student 1`] = `
             </Text>
           </View>
         </View>
-      </View>
+      </item>
+    </section>
+    <section>
       <View
-        onLayout={[Function]}
-        style={null}
-      />
-      <View
-        onLayout={[Function]}
-        style={null}
+        accessibilityTraits="header"
+        style={
+          Array [
+            Object {
+              "backgroundColor": "#f5f5f5",
+              "flex": 1,
+              "justifyContent": "center",
+              "paddingLeft": 16,
+              "paddingRight": 8,
+              "paddingVertical": 4,
+            },
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+            },
+            undefined,
+          ]
+        }
       >
-        <View
-          accessibilityTraits="header"
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
           style={
             Array [
               Object {
-                "backgroundColor": "#f5f5f5",
-                "flex": 1,
-                "justifyContent": "center",
-                "paddingLeft": 16,
-                "paddingRight": 8,
-                "paddingVertical": 4,
+                "fontFamily": ".SFUIDisplay",
               },
               Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
+                "color": "#2D3B45",
+                "fontSize": 16,
               },
-              undefined,
+              Object {
+                "backgroundColor": "#f5f5f5",
+                "color": "#73818C",
+                "fontSize": 14,
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
             ]
           }
         >
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontSize": 16,
-                },
-                Object {
-                  "backgroundColor": "#f5f5f5",
-                  "color": "#73818C",
-                  "fontSize": 14,
-                  "fontWeight": "600",
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
-              ]
-            }
-          >
-            Groups
-          </Text>
-        </View>
+          Groups
+        </Text>
       </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
+      <item>
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
@@ -1174,11 +674,8 @@ exports[`renders correctly as student 1`] = `
             </Text>
           </View>
         </View>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
+      </item>
+      <item>
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
@@ -1271,13 +768,9 @@ exports[`renders correctly as student 1`] = `
             </Text>
           </View>
         </View>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      />
-    </View>
-  </RCTScrollView>
+      </item>
+    </section>
+  </list>
 </RCTSafeAreaView>
 `;
 
@@ -1289,192 +782,60 @@ exports[`updates when courses prop changes 1`] = `
     }
   }
 >
-  <RCTScrollView
-    ItemSeparatorComponent={undefined}
-    data={
-      Array [
-        Object {
-          "data": Array [
-            Object {
-              "account_id": "1",
-              "course_code": "rn 101",
-              "default_view": "wiki",
-              "end_at": "2030-02-08T23:13:39Z",
-              "enrollments": Array [
-                Object {
-                  "enrollment_state": "active",
-                  "role": "TeacherEnrollment",
-                  "role_id": "1",
-                  "type": "teacher",
-                  "user_id": "1",
-                },
-              ],
-              "id": "1",
-              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-              "is_favorite": true,
-              "name": "Learn React Native",
-              "permissions": Object {
-                "viewAllGrades": true,
-                "viewAnalytics": true,
-              },
-              "short_name": "rn",
-              "term": Object {
-                "created_at": "2018-02-08T23:13:39Z",
-                "end_at": "2030-02-08T23:13:39Z",
-                "id": "1",
-                "name": "Default Term",
-                "start_at": "2018-02-08T23:13:39Z",
-                "workflow_state": "available",
-              },
-              "workflow_state": "available",
-            },
-          ],
-          "keyExtractor": [Function],
-          "renderItem": [Function],
-          "sectionID": "editFavorites.courses",
-          "title": "Courses",
-        },
-      ]
-    }
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onRefresh={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
-    refreshControl={
-      <RefreshControlMock
-        onRefresh={[Function]}
-        progressViewOffset={undefined}
-        refreshing={false}
-      />
-    }
-    refreshing={false}
-    renderItem={[Function]}
-    renderSectionHeader={[Function]}
-    scrollEventThrottle={50}
-    sections={
-      Array [
-        Object {
-          "data": Array [
-            Object {
-              "account_id": "1",
-              "course_code": "rn 101",
-              "default_view": "wiki",
-              "end_at": "2030-02-08T23:13:39Z",
-              "enrollments": Array [
-                Object {
-                  "enrollment_state": "active",
-                  "role": "TeacherEnrollment",
-                  "role_id": "1",
-                  "type": "teacher",
-                  "user_id": "1",
-                },
-              ],
-              "id": "1",
-              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-              "is_favorite": true,
-              "name": "Learn React Native",
-              "permissions": Object {
-                "viewAllGrades": true,
-                "viewAnalytics": true,
-              },
-              "short_name": "rn",
-              "term": Object {
-                "created_at": "2018-02-08T23:13:39Z",
-                "end_at": "2030-02-08T23:13:39Z",
-                "id": "1",
-                "name": "Default Term",
-                "start_at": "2018-02-08T23:13:39Z",
-                "workflow_state": "available",
-              },
-              "workflow_state": "available",
-            },
-          ],
-          "keyExtractor": [Function],
-          "renderItem": [Function],
-          "sectionID": "editFavorites.courses",
-          "title": "Courses",
-        },
-      ]
-    }
-    stickyHeaderIndices={Array []}
-    stickySectionHeadersEnabled={false}
-    updateCellsBatchingPeriod={50}
-    windowSize={21}
-  >
-    <RCTRefreshControl />
-    <View>
+  <list>
+    <section>
       <View
-        onLayout={[Function]}
-        style={null}
+        accessibilityTraits="header"
+        style={
+          Array [
+            Object {
+              "backgroundColor": "#f5f5f5",
+              "flex": 1,
+              "justifyContent": "center",
+              "paddingLeft": 16,
+              "paddingRight": 8,
+              "paddingVertical": 4,
+            },
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+            },
+            Object {
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
+            },
+          ]
+        }
       >
-        <View
-          accessibilityTraits="header"
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
           style={
             Array [
               Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
                 "backgroundColor": "#f5f5f5",
-                "flex": 1,
-                "justifyContent": "center",
-                "paddingLeft": 16,
-                "paddingRight": 8,
-                "paddingVertical": 4,
+                "color": "#73818C",
+                "fontSize": 14,
+                "fontWeight": "600",
               },
               Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-              },
-              Object {
-                "borderTopColor": "#C7CDD1",
-                "borderTopWidth": 0.5,
+                "fontFamily": ".SFUIDisplay-semibold",
               },
             ]
           }
         >
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontSize": 16,
-                },
-                Object {
-                  "backgroundColor": "#f5f5f5",
-                  "color": "#73818C",
-                  "fontSize": 14,
-                  "fontWeight": "600",
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
-              ]
-            }
-          >
-            Courses
-          </Text>
-        </View>
+          Courses
+        </Text>
       </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
+      <item>
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
@@ -1567,13 +928,9 @@ exports[`updates when courses prop changes 1`] = `
             </Text>
           </View>
         </View>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      />
-    </View>
-  </RCTScrollView>
+      </item>
+    </section>
+  </list>
 </RCTSafeAreaView>
 `;
 
@@ -1585,192 +942,60 @@ exports[`updates when courses prop changes 2`] = `
     }
   }
 >
-  <RCTScrollView
-    ItemSeparatorComponent={undefined}
-    data={
-      Array [
-        Object {
-          "data": Array [
-            Object {
-              "account_id": "1",
-              "course_code": "rn 101",
-              "default_view": "wiki",
-              "end_at": "2030-02-08T23:13:39Z",
-              "enrollments": Array [
-                Object {
-                  "enrollment_state": "active",
-                  "role": "TeacherEnrollment",
-                  "role_id": "1",
-                  "type": "teacher",
-                  "user_id": "1",
-                },
-              ],
-              "id": "1",
-              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-              "is_favorite": false,
-              "name": "Learn React Native",
-              "permissions": Object {
-                "viewAllGrades": true,
-                "viewAnalytics": true,
-              },
-              "short_name": "rn",
-              "term": Object {
-                "created_at": "2018-02-08T23:13:39Z",
-                "end_at": "2030-02-08T23:13:39Z",
-                "id": "1",
-                "name": "Default Term",
-                "start_at": "2018-02-08T23:13:39Z",
-                "workflow_state": "available",
-              },
-              "workflow_state": "available",
-            },
-          ],
-          "keyExtractor": [Function],
-          "renderItem": [Function],
-          "sectionID": "editFavorites.courses",
-          "title": "Courses",
-        },
-      ]
-    }
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onRefresh={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
-    refreshControl={
-      <RefreshControlMock
-        onRefresh={[Function]}
-        progressViewOffset={undefined}
-        refreshing={false}
-      />
-    }
-    refreshing={false}
-    renderItem={[Function]}
-    renderSectionHeader={[Function]}
-    scrollEventThrottle={50}
-    sections={
-      Array [
-        Object {
-          "data": Array [
-            Object {
-              "account_id": "1",
-              "course_code": "rn 101",
-              "default_view": "wiki",
-              "end_at": "2030-02-08T23:13:39Z",
-              "enrollments": Array [
-                Object {
-                  "enrollment_state": "active",
-                  "role": "TeacherEnrollment",
-                  "role_id": "1",
-                  "type": "teacher",
-                  "user_id": "1",
-                },
-              ],
-              "id": "1",
-              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-              "is_favorite": false,
-              "name": "Learn React Native",
-              "permissions": Object {
-                "viewAllGrades": true,
-                "viewAnalytics": true,
-              },
-              "short_name": "rn",
-              "term": Object {
-                "created_at": "2018-02-08T23:13:39Z",
-                "end_at": "2030-02-08T23:13:39Z",
-                "id": "1",
-                "name": "Default Term",
-                "start_at": "2018-02-08T23:13:39Z",
-                "workflow_state": "available",
-              },
-              "workflow_state": "available",
-            },
-          ],
-          "keyExtractor": [Function],
-          "renderItem": [Function],
-          "sectionID": "editFavorites.courses",
-          "title": "Courses",
-        },
-      ]
-    }
-    stickyHeaderIndices={Array []}
-    stickySectionHeadersEnabled={false}
-    updateCellsBatchingPeriod={50}
-    windowSize={21}
-  >
-    <RCTRefreshControl />
-    <View>
+  <list>
+    <section>
       <View
-        onLayout={[Function]}
-        style={null}
+        accessibilityTraits="header"
+        style={
+          Array [
+            Object {
+              "backgroundColor": "#f5f5f5",
+              "flex": 1,
+              "justifyContent": "center",
+              "paddingLeft": 16,
+              "paddingRight": 8,
+              "paddingVertical": 4,
+            },
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+            },
+            Object {
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
+            },
+          ]
+        }
       >
-        <View
-          accessibilityTraits="header"
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
           style={
             Array [
               Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
                 "backgroundColor": "#f5f5f5",
-                "flex": 1,
-                "justifyContent": "center",
-                "paddingLeft": 16,
-                "paddingRight": 8,
-                "paddingVertical": 4,
+                "color": "#73818C",
+                "fontSize": 14,
+                "fontWeight": "600",
               },
               Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-              },
-              Object {
-                "borderTopColor": "#C7CDD1",
-                "borderTopWidth": 0.5,
+                "fontFamily": ".SFUIDisplay-semibold",
               },
             ]
           }
         >
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontSize": 16,
-                },
-                Object {
-                  "backgroundColor": "#f5f5f5",
-                  "color": "#73818C",
-                  "fontSize": 14,
-                  "fontWeight": "600",
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
-              ]
-            }
-          >
-            Courses
-          </Text>
-        </View>
+          Courses
+        </Text>
       </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
+      <item>
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
@@ -1863,12 +1088,8 @@ exports[`updates when courses prop changes 2`] = `
             </Text>
           </View>
         </View>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      />
-    </View>
-  </RCTScrollView>
+      </item>
+    </section>
+  </list>
 </RCTSafeAreaView>
 `;

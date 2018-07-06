@@ -36,26 +36,22 @@ import RichTextEditor from '../../../common/components/rich-text-editor/RichText
 import colors from '../../../common/colors'
 import {
   fetchPropsFor,
+  type FetchProps,
   PageModel,
-  API,
 } from '../../../canvas-api/model-api'
 import { alertError } from '../../../redux/middleware/error-handler'
 
 const PickerItem = PickerIOS.Item
 
-type Props = {
+type HocProps = {
   courseID: string,
-  url: ?string,
+  url?: ?string,
   navigator: Navigator,
-  page: ?PageModel,
   onChange?: PageModel => void,
-  api: API,
-  isLoading: boolean,
-  isSaving: boolean,
-  loadError: ?Error,
-  saveError: ?Error,
-  refresh: () => void,
 }
+type Props = HocProps & {
+  page: ?PageModel,
+} & FetchProps
 
 type State = {
   title: ?string,
@@ -283,6 +279,6 @@ const style = StyleSheet.create({
   },
 })
 
-export default fetchPropsFor(PageEdit, ({ courseID, url }, api) => ({
+export default fetchPropsFor(PageEdit, ({ courseID, url }: HocProps, api) => ({
   page: !url ? PageModel.newPage : api.getPage('courses', courseID, url),
 }))

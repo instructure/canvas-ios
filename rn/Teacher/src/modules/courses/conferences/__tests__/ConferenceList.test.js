@@ -20,7 +20,6 @@ import { shallow } from 'enzyme'
 import React from 'react'
 import { ConferenceList } from '../ConferenceList'
 import * as templates from '../../../../__templates__'
-import { diveFlatList } from '../../../../../test/helpers/enzymeUtils'
 import { alertError } from '../../../../redux/middleware/error-handler'
 
 jest.mock('../../../../redux/middleware/error-handler', () => {
@@ -59,7 +58,7 @@ describe('ConferenceList List', () => {
     props.navigator = templates.navigator({ show: jest.fn() })
     const conference = templates.conference()
     const tree = shallow(<ConferenceList { ...props } />)
-    diveFlatList(tree).find('Row').first().simulate('Press', conference)
+    tree.find('FlatList').dive().find('Row').first().simulate('Press', conference)
     expect(props.navigator.show).toHaveBeenCalledWith(conference.join_url)
   })
 
@@ -68,7 +67,7 @@ describe('ConferenceList List', () => {
     const conference = templates.conference({ join_url: null })
     props.conferences = [conference]
     const tree = shallow(<ConferenceList { ...props } />)
-    diveFlatList(tree).find('Row').first().simulate('Press', conference)
+    tree.find('FlatList').dive().find('Row').first().simulate('Press', conference)
     expect(props.navigator.show).toHaveBeenCalledWith('http://mobiledev.instructure.com/courses/1/conferences/1/join')
   })
 

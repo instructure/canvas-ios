@@ -21,7 +21,7 @@ import httpClient from '../httpClient'
 
 export function getUnreadConversationsCount (): ApiPromise<{ unread_count: number }> {
   const url = 'conversations/unread_count'
-  return httpClient().get(url)
+  return httpClient.get(url)
 }
 
 export function getConversations (scope: InboxScope): ApiPromise<Conversation> {
@@ -43,7 +43,7 @@ export function getConversationDetails (conversationID: string): ApiPromise<Conv
   const params = {
     include: ['participant_avatars'],
   }
-  return httpClient().get(url, { params })
+  return httpClient.get(url, { params })
 }
 
 export function starConversation (conversationID: string): ApiPromise<Conversation> {
@@ -52,7 +52,7 @@ export function starConversation (conversationID: string): ApiPromise<Conversati
     id: conversationID,
     starred: true,
   }
-  return httpClient().put(url, { conversation })
+  return httpClient.put(url, { conversation })
 }
 
 export function unstarConversation (conversationID: string): ApiPromise<Conversation> {
@@ -61,26 +61,26 @@ export function unstarConversation (conversationID: string): ApiPromise<Conversa
     id: conversationID,
     starred: false,
   }
-  return httpClient().put(url, { conversation })
+  return httpClient.put(url, { conversation })
 }
 
 export function deleteConversation (conversationID: string): ApiPromise<Conversation> {
-  return httpClient().delete(`conversations/${conversationID}`)
+  return httpClient.delete(`conversations/${conversationID}`)
 }
 
 export function deleteConversationMessage (conversationID: string, messageID: string): ApiPromise<null> {
-  return httpClient().post(`conversations/${conversationID}/remove_messages`, {
+  return httpClient.post(`conversations/${conversationID}/remove_messages`, {
     remove: [messageID],
   })
 }
 
 export function createConversation (conversation: CreateConversationParameters): ApiPromise<Conversation> {
   const url = 'conversations'
-  return httpClient().post(url, conversation)
+  return httpClient.post(url, conversation)
 }
 
 export function addMessage (conversationID: string, message: CreateConversationParameters): ApiPromise<Conversation> {
-  return httpClient().post(`conversations/${conversationID}/add_message`, message)
+  return httpClient.post(`conversations/${conversationID}/add_message`, message)
 }
 
 export function markConversationAsRead (conversationID: string): ApiPromise<Conversation> {
@@ -89,5 +89,5 @@ export function markConversationAsRead (conversationID: string): ApiPromise<Conv
     id: conversationID,
     workflow_state: 'read',
   }
-  return httpClient().put(url, { conversation })
+  return httpClient.put(url, { conversation })
 }

@@ -8,8 +8,8 @@ exports[`comments render properly 1`] = `
     }
   }
 >
-  <view>
-    <view>
+  <list>
+    <item>
       <View
         style={
           Array [
@@ -247,8 +247,8 @@ exports[`comments render properly 1`] = `
           </View>
         </View>
       </View>
-    </view>
-    <view>
+    </item>
+    <item>
       <View
         style={
           Array [
@@ -485,8 +485,8 @@ exports[`comments render properly 1`] = `
           </View>
         </View>
       </View>
-    </view>
-    <view>
+    </item>
+    <item>
       <View
         style={
           Array [
@@ -654,8 +654,8 @@ exports[`comments render properly 1`] = `
           <View />
         </View>
       </View>
-    </view>
-    <view>
+    </item>
+    <item>
       <View
         style={
           Array [
@@ -821,8 +821,8 @@ exports[`comments render properly 1`] = `
           }
         />
       </View>
-    </view>
-    <view>
+    </item>
+    <item>
       <View
         style={
           Array [
@@ -994,8 +994,8 @@ exports[`comments render properly 1`] = `
           />
         </View>
       </View>
-    </view>
-    <view>
+    </item>
+    <item>
       <View
         style={
           Array [
@@ -1261,8 +1261,8 @@ exports[`comments render properly 1`] = `
           </View>
         </View>
       </View>
-    </view>
-  </view>
+    </item>
+  </list>
   <CommentInput
     addMedia={[Function]}
     disabled={false}

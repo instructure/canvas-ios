@@ -35,18 +35,18 @@ export async function uploadMedia (uri: string, type: string, options: MediaUplo
 // HELPERS
 
 async function getMediaServerDomain (): Promise<string> {
-  const response = await httpClient().get('/services/kaltura')
+  const response = await httpClient.get('/services/kaltura')
   return response.data.domain
 }
 
 async function getMediaSession (): Promise<string> {
-  const response = await httpClient().post('/services/kaltura_session')
+  const response = await httpClient.post('/services/kaltura_session')
   return response.data.ks
 }
 
 async function getUploadToken (domain: string, session: string): Promise<string> {
   const url = uploadURL(domain, 'uploadtoken', 'add')
-  const response = await httpClient().post(url, { ks: session }, {
+  const response = await httpClient.post(url, { ks: session }, {
     responseType: 'text',
     headers: { // remove default auth & accept
       'Authorization': null,
@@ -66,7 +66,7 @@ async function postUpload (uri: string, domain: string, session: string, token: 
     type: 'multipart/form-data',
   })
 
-  const uploading = httpClient().post(url, formdata, {
+  const uploading = httpClient.post(url, formdata, {
     responseType: 'text',
     headers: { // remove default auth & accept
       'Authorization': null,
@@ -87,7 +87,7 @@ async function postUpload (uri: string, domain: string, session: string, token: 
 
 async function getMediaID (domain: string, session: string, token: string, type: string): Promise<string> {
   const url = `${uploadURL(domain, 'media', 'addFromUploadedFile')}&uploadTokenId=${token}&ks=${session}`
-  const response = await httpClient().post(url, {
+  const response = await httpClient.post(url, {
     'mediaEntry:name': 'Media Comment',
     'mediaEntry:mediaType': type === 'video' ? '1' : '5',
   }, {

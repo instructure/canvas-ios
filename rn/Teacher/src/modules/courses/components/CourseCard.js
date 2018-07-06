@@ -34,7 +34,7 @@ type Props = {
   grade: ?CourseGradeInfo,
   showGrade?: boolean,
   color: string,
-  style: any,
+  style: ViewStyleProp,
   onPress: Function,
   initialHeight?: number,
   onCoursePreferencesPressed: (courseId: string) => void,
@@ -80,10 +80,6 @@ export default class CourseCard extends Component<Props, State> {
 
   render () {
     const { course, grade, showGrade } = this.props
-    const style = {
-      ...this.props.style,
-      height: this.state.height,
-    }
     let gradeDisplay = null
     if (showGrade) {
       if (grade && grade.currentDisplay) {
@@ -96,7 +92,7 @@ export default class CourseCard extends Component<Props, State> {
       <A11yGroup>
         <TouchableHighlight
           onLayout={this.onLayout}
-          style={[styles.card, style]}
+          style={[styles.card, this.props.style, { height: this.state.height }]}
           testID={'course-' + course.id}
           onPress={this.onPress}
           accessible={false}

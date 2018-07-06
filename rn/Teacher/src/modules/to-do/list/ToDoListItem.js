@@ -29,15 +29,18 @@ import colors from '../../../common/colors'
 import images from '../../../images/'
 import {
   fetchPropsFor,
+  type FetchProps,
   ToDoModel,
 } from '../../../canvas-api/model-api'
 
-type Props = {
-  courseName: ?string,
-  courseColor: string,
+type HocProps = {
   item: ToDoModel,
   onPress: (ToDoModel) => void,
 }
+type Props = HocProps & {
+  courseName: ?string,
+  courseColor: string,
+} & FetchProps
 
 export class ToDoListItem extends Component<Props> {
   handlePress = () => {
@@ -170,7 +173,7 @@ const styles = StyleSheet.create({
   },
 })
 
-export default fetchPropsFor(ToDoListItem, ({ item }, api) => {
+export default fetchPropsFor(ToDoListItem, ({ item }: HocProps, api) => {
   const course = api.getCourse(item.courseID || '')
   return {
     courseName: course && course.name || '',

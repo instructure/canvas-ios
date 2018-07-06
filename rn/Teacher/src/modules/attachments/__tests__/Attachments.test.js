@@ -23,31 +23,7 @@ import {
   FlatList,
 } from 'react-native'
 import Attachments from '../Attachments'
-
-jest.mock('FlatList', () => {
-  return ({
-    ListEmptyComponent,
-    data,
-    renderItem,
-  }) => (
-    <view>
-      {data.length > 0
-        ? data.map((item, index) => (
-          <view key={index}>
-            {renderItem({ item, index })}
-          </view>
-        ))
-        : <ListEmptyComponent />
-      }
-    </view>
-  )
-})
-
-const template = {
-  ...require('../../../__templates__/attachment'),
-  ...require('../../../__templates__/file'),
-  ...require('../../../__templates__/helm'),
-}
+import * as template from '../../../__templates__'
 
 describe('Attachments', () => {
   let props

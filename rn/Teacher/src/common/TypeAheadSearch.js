@@ -49,7 +49,7 @@ export default class TypeAheadSearch extends Component<Props> {
 
     this.props.onRequestStarted && this.props.onRequestStarted()
     try {
-      const fetching = httpClient().get(url, { params })
+      const fetching = httpClient.get(url, { params })
       if (fetching.request) {
         this.cancel = () => fetching.request && fetching.request.abort()
       }

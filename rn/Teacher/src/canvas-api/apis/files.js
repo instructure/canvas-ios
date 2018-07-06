@@ -50,7 +50,7 @@ export function getContextFolderHierarchy (context: CanvasContext, contextID: st
       include: ['usage_rights'],
     },
   }
-  return httpClient().get(url, options)
+  return httpClient.get(url, options)
 }
 
 export function getFolder (folderID: string): ApiPromise<Folder> {
@@ -60,35 +60,35 @@ export function getFolder (folderID: string): ApiPromise<Folder> {
       include: ['usage_rights'],
     },
   }
-  return httpClient().get(url, options)
+  return httpClient.get(url, options)
 }
 
 export function getFile (fileID: string): ApiPromise<File> {
-  return httpClient().get(`files/${fileID}`)
+  return httpClient.get(`files/${fileID}`)
 }
 
 export function createFolder (context: CanvasContext, contextID: string, folder: NewFolder): ApiPromise<Folder> {
-  return httpClient().post(`${context}/${contextID}/folders`, folder)
+  return httpClient.post(`${context}/${contextID}/folders`, folder)
 }
 
 export function updateFolder (folderID: string, folder: UpdateFolderParameters): ApiPromise<Folder> {
-  return httpClient().put(`folders/${folderID}`, folder)
+  return httpClient.put(`folders/${folderID}`, folder)
 }
 
 export function deleteFolder (folderID: string, force?: boolean): ApiPromise<null> {
-  return httpClient().delete(`folders/${folderID}`, { params: { force } })
+  return httpClient.delete(`folders/${folderID}`, { params: { force } })
 }
 
 export function updateFile (fileID: string, file: UpdateFileParameters): ApiPromise<File> {
-  return httpClient().put(`files/${fileID}`, file)
+  return httpClient.put(`files/${fileID}`, file)
 }
 
 export function deleteFile (fileID: string): ApiPromise<null> {
-  return httpClient().delete(`files/${fileID}`)
+  return httpClient.delete(`files/${fileID}`)
 }
 
 export function updateCourseFileUsageRights (courseID: string, fileID: string, params: UpdateUsageRightsParameters): ApiPromise<UsageRights> {
-  return httpClient().put(`courses/${courseID}/usage_rights`, {
+  return httpClient.put(`courses/${courseID}/usage_rights`, {
     file_ids: [ fileID ],
     usage_rights: params,
   })

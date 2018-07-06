@@ -38,7 +38,7 @@ exports[`Attachments renders attachments 1`] = `
       }
     }
   >
-    <Component
+    <FlatList
       ItemSeparatorComponent={[Function]}
       ListEmptyComponent={[Function]}
       data={
@@ -181,7 +181,7 @@ exports[`Attachments renders empty state 1`] = `
       }
     }
   >
-    <Component
+    <FlatList
       ItemSeparatorComponent={[Function]}
       ListEmptyComponent={[Function]}
       data={Array []}

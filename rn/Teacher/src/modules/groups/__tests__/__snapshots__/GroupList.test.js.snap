@@ -12,85 +12,39 @@ exports[`GroupList renders empty list 1`] = `
       }
     }
   >
-    <RCTScrollView
-      ItemSeparatorComponent={[Function]}
-      ListEmptyComponent={
-        <ListEmptyComponent
-          title="No results"
-        />
-      }
-      data={null}
-      disableVirtualization={false}
-      getItem={[Function]}
-      getItemCount={[Function]}
-      horizontal={false}
-      initialNumToRender={10}
-      keyExtractor={[Function]}
-      maxToRenderPerBatch={10}
-      numColumns={1}
-      onContentSizeChange={[Function]}
-      onEndReachedThreshold={2}
-      onLayout={[Function]}
-      onMomentumScrollEnd={[Function]}
-      onRefresh={[Function]}
-      onScroll={[Function]}
-      onScrollBeginDrag={[Function]}
-      onScrollEndDrag={[Function]}
-      refreshControl={
-        <RefreshControlMock
-          onRefresh={[Function]}
-          progressViewOffset={undefined}
-          refreshing={false}
-        />
-      }
-      refreshing={false}
-      renderItem={[Function]}
-      scrollEventThrottle={50}
-      stickyHeaderIndices={Array []}
-      updateCellsBatchingPeriod={50}
-      viewabilityConfigCallbackPairs={Array []}
-      windowSize={21}
-    >
-      <RCTRefreshControl />
-      <View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        >
-          <View
-            style={
+    <list>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "height": 100,
+            "justifyContent": "center",
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
               Object {
-                "alignItems": "center",
-                "flex": 1,
-                "height": 100,
-                "justifyContent": "center",
-              }
-            }
-          >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontFamily": ".SFUIDisplay-semibold",
-                    "fontSize": 16,
-                  },
-                  undefined,
-                ]
-              }
-            >
-              No results
-            </Text>
-          </View>
-        </View>
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 16,
+              },
+              undefined,
+            ]
+          }
+        >
+          No results
+        </Text>
       </View>
-    </RCTScrollView>
+    </list>
   </View>
 </Screen>
 `;
@@ -107,238 +61,182 @@ exports[`GroupList renders properly 1`] = `
       }
     }
   >
-    <RCTScrollView
-      ItemSeparatorComponent={[Function]}
-      ListEmptyComponent={
-        <ListEmptyComponent
-          title="No results"
-        />
-      }
-      data={
-        Array [
-          Object {
-            "avatar_url": "http://www.fillmurray.com/100/100",
-            "bio": "my bio is yuuuuuuuge",
-            "id": "1",
-            "name": "Donald Trump",
-            "primary_email": "donald@trump.com",
-            "short_name": "The Donald",
-            "sortable_name": "Mr. President",
-          },
-        ]
-      }
-      disableVirtualization={false}
-      getItem={[Function]}
-      getItemCount={[Function]}
-      horizontal={false}
-      initialNumToRender={10}
-      keyExtractor={[Function]}
-      maxToRenderPerBatch={10}
-      numColumns={1}
-      onContentSizeChange={[Function]}
-      onEndReachedThreshold={2}
-      onLayout={[Function]}
-      onMomentumScrollEnd={[Function]}
-      onRefresh={[Function]}
-      onScroll={[Function]}
-      onScrollBeginDrag={[Function]}
-      onScrollEndDrag={[Function]}
-      refreshControl={
-        <RefreshControlMock
-          onRefresh={[Function]}
-          progressViewOffset={undefined}
-          refreshing={false}
-        />
-      }
-      refreshing={false}
-      renderItem={[Function]}
-      scrollEventThrottle={50}
-      stickyHeaderIndices={Array []}
-      updateCellsBatchingPeriod={50}
-      viewabilityConfigCallbackPairs={Array []}
-      windowSize={21}
-    >
-      <RCTRefreshControl />
-      <View>
+    <list>
+      <item>
         <View
-          onLayout={[Function]}
-          style={null}
+          accessibilityComponentType={undefined}
+          accessibilityLabel={undefined}
+          accessibilityTraits={Array []}
+          accessible={true}
+          hasTVPreferredFocus={undefined}
+          hitSlop={undefined}
+          isTVSelectable={true}
+          nativeID={undefined}
+          onLayout={undefined}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "transparent",
+              },
+              Array [
+                Object {
+                  "borderTopColor": "#C7CDD1",
+                  "borderTopWidth": 0.5,
+                },
+                Object {
+                  "borderBottomColor": "#C7CDD1",
+                  "borderBottomWidth": 0.5,
+                },
+              ],
+            ]
+          }
+          testID="1"
+          tvParallaxProperties={undefined}
         >
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={Array []}
-            accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
-            isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
             style={
               Array [
                 Object {
-                  "backgroundColor": "transparent",
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "minHeight": 54,
+                  "paddingBottom": 12,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 12,
                 },
-                Array [
-                  Object {
-                    "borderTopColor": "#C7CDD1",
-                    "borderTopWidth": 0.5,
-                  },
-                  Object {
-                    "borderBottomColor": "#C7CDD1",
-                    "borderBottomWidth": 0.5,
-                  },
-                ],
+                Object {
+                  "backgroundColor": "white",
+                },
               ]
             }
-            testID="1"
-            tvParallaxProperties={undefined}
           >
+            <View
+              style={
+                Object {
+                  "height": 40,
+                  "marginRight": 16,
+                  "width": 40,
+                }
+              }
+            >
+              <View
+                accessibilityComponentType={undefined}
+                accessibilityLabel={undefined}
+                accessibilityTraits={undefined}
+                accessible={true}
+                hasTVPreferredFocus={undefined}
+                hitSlop={undefined}
+                isTVSelectable={true}
+                nativeID={undefined}
+                onLayout={undefined}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                    },
+                    undefined,
+                  ]
+                }
+                testID={undefined}
+                tvParallaxProperties={undefined}
+              >
+                <View
+                  accessibilityLabel=""
+                  style={
+                    Array [
+                      Object {
+                        "overflow": "hidden",
+                      },
+                      Object {
+                        "height": 40,
+                        "width": 40,
+                      },
+                      Object {
+                        "borderRadius": 20,
+                      },
+                      Object {
+                        "backgroundColor": "#F5F5F5",
+                      },
+                    ]
+                  }
+                >
+                  <Image
+                    source={
+                      Object {
+                        "uri": "http://www.fillmurray.com/100/100",
+                      }
+                    }
+                    style={
+                      Object {
+                        "height": 40,
+                        "width": 40,
+                      }
+                    }
+                  />
+                </View>
+              </View>
+            </View>
             <View
               style={
                 Array [
                   Object {
-                    "alignItems": "center",
-                    "backgroundColor": "white",
                     "flex": 1,
-                    "flexDirection": "row",
-                    "minHeight": 54,
-                    "paddingBottom": 12,
-                    "paddingLeft": 16,
-                    "paddingRight": 16,
-                    "paddingTop": 12,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
                   },
                   Object {
-                    "backgroundColor": "white",
+                    "marginLeft": 12,
                   },
                 ]
               }
             >
-              <View
-                style={
-                  Object {
-                    "height": 40,
-                    "marginRight": 16,
-                    "width": 40,
-                  }
-                }
-              >
-                <View
-                  accessibilityComponentType={undefined}
-                  accessibilityLabel={undefined}
-                  accessibilityTraits={undefined}
-                  accessible={true}
-                  hasTVPreferredFocus={undefined}
-                  hitSlop={undefined}
-                  isTVSelectable={true}
-                  nativeID={undefined}
-                  onLayout={undefined}
-                  onResponderGrant={[Function]}
-                  onResponderMove={[Function]}
-                  onResponderRelease={[Function]}
-                  onResponderTerminate={[Function]}
-                  onResponderTerminationRequest={[Function]}
-                  onStartShouldSetResponder={[Function]}
-                  style={
-                    Array [
-                      Object {
-                        "backgroundColor": "transparent",
-                      },
-                      undefined,
-                    ]
-                  }
-                  testID={undefined}
-                  tvParallaxProperties={undefined}
-                >
-                  <View
-                    accessibilityLabel=""
-                    style={
-                      Array [
-                        Object {
-                          "overflow": "hidden",
-                        },
-                        Object {
-                          "height": 40,
-                          "width": 40,
-                        },
-                        Object {
-                          "borderRadius": 20,
-                        },
-                        Object {
-                          "backgroundColor": "#F5F5F5",
-                        },
-                      ]
-                    }
-                  >
-                    <Image
-                      source={
-                        Object {
-                          "uri": "http://www.fillmurray.com/100/100",
-                        }
-                      }
-                      style={
-                        Object {
-                          "height": 40,
-                          "width": 40,
-                        }
-                      }
-                    />
-                  </View>
-                </View>
-              </View>
-              <View
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                numberOfLines={0}
                 style={
                   Array [
                     Object {
-                      "flex": 1,
-                      "flexDirection": "column",
-                      "justifyContent": "center",
+                      "fontFamily": ".SFUIDisplay",
                     },
                     Object {
-                      "marginLeft": 12,
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Array [
+                      Object {
+                        "fontWeight": "600",
+                      },
+                    ],
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
                     },
                   ]
                 }
               >
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  numberOfLines={0}
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontSize": 16,
-                      },
-                      Array [
-                        Object {
-                          "fontWeight": "600",
-                        },
-                      ],
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
-                      },
-                    ]
-                  }
-                >
-                  Donald Trump
-                </Text>
-              </View>
+                Donald Trump
+              </Text>
             </View>
           </View>
         </View>
-      </View>
-    </RCTScrollView>
+      </item>
+    </list>
   </View>
 </Screen>
 `;
@@ -355,85 +253,39 @@ exports[`GroupList renders without a group 1`] = `
       }
     }
   >
-    <RCTScrollView
-      ItemSeparatorComponent={[Function]}
-      ListEmptyComponent={
-        <ListEmptyComponent
-          title="No results"
-        />
-      }
-      data={Array []}
-      disableVirtualization={false}
-      getItem={[Function]}
-      getItemCount={[Function]}
-      horizontal={false}
-      initialNumToRender={10}
-      keyExtractor={[Function]}
-      maxToRenderPerBatch={10}
-      numColumns={1}
-      onContentSizeChange={[Function]}
-      onEndReachedThreshold={2}
-      onLayout={[Function]}
-      onMomentumScrollEnd={[Function]}
-      onRefresh={[Function]}
-      onScroll={[Function]}
-      onScrollBeginDrag={[Function]}
-      onScrollEndDrag={[Function]}
-      refreshControl={
-        <RefreshControlMock
-          onRefresh={[Function]}
-          progressViewOffset={undefined}
-          refreshing={false}
-        />
-      }
-      refreshing={false}
-      renderItem={[Function]}
-      scrollEventThrottle={50}
-      stickyHeaderIndices={Array []}
-      updateCellsBatchingPeriod={50}
-      viewabilityConfigCallbackPairs={Array []}
-      windowSize={21}
-    >
-      <RCTRefreshControl />
-      <View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        >
-          <View
-            style={
+    <list>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "height": 100,
+            "justifyContent": "center",
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
               Object {
-                "alignItems": "center",
-                "flex": 1,
-                "height": 100,
-                "justifyContent": "center",
-              }
-            }
-          >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontFamily": ".SFUIDisplay-semibold",
-                    "fontSize": 16,
-                  },
-                  undefined,
-                ]
-              }
-            >
-              No results
-            </Text>
-          </View>
-        </View>
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 16,
+              },
+              undefined,
+            ]
+          }
+        >
+          No results
+        </Text>
       </View>
-    </RCTScrollView>
+    </list>
   </View>
 </Screen>
 `;

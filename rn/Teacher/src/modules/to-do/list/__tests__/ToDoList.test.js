@@ -23,7 +23,6 @@ import * as template from '../../../../__templates__'
 import { alertError } from '../../../../redux/middleware/error-handler'
 import { updateBadgeCounts } from '../../../tabbar/badge-counts'
 import Connected, { ToDoList } from '../ToDoList'
-import { diveFlatList } from '../../../../../test/helpers/enzymeUtils'
 
 jest.mock('../../../../redux/middleware/error-handler', () => {
   return { alertError: jest.fn() }
@@ -115,7 +114,7 @@ describe('ToDoList', () => {
       assignment: template.assignment({ id: '1' }),
     })]
     const tree = shallow(<ToDoList {...props} />)
-    diveFlatList(tree).find('ToDoListItem')
+    tree.find('FlatList').dive().find('ToDoListItem')
       .simulate('Press', props.list[0])
     expect(props.navigator.show).toHaveBeenCalledWith(
       '/courses/222/gradebook/speed_grader',
@@ -137,7 +136,7 @@ describe('ToDoList', () => {
       quiz: template.quiz({ id: '2', assignment_id: '1' }),
     })]
     const tree = shallow(<ToDoList {...props} />)
-    diveFlatList(tree).find('ToDoListItem')
+    tree.find('FlatList').dive().find('ToDoListItem')
       .simulate('Press', props.list[0])
     expect(props.navigator.show).toHaveBeenCalledWith(
       '/courses/222/gradebook/speed_grader',

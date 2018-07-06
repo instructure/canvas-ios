@@ -29,196 +29,7 @@ exports[`ConversationDetails doesnt render messages that are pendingDelete 1`] =
       }
     }
   >
-    <RCTScrollView
-      ItemSeparatorComponent={[Function]}
-      ListHeaderComponent={
-        <View
-          style={
-            Object {
-              "alignItems": "center",
-              "backgroundColor": "white",
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-              "flexDirection": "row",
-              "justifyContent": "space-between",
-              "padding": 16,
-              "paddingBottom": 8,
-            }
-          }
-        >
-          <Heading1>
-            learn to write code
-          </Heading1>
-          <TouchableOpacity
-            accessibilityLabel="Un-starred"
-            accessibilityTraits="button"
-            activeOpacity={0.2}
-            focusedOpacity={0.7}
-            hitSlop={
-              Object {
-                "bottom": 8,
-                "left": 8,
-                "right": 8,
-                "top": 8,
-              }
-            }
-            onPress={[Function]}
-            testID="inbox.detail.not-starred"
-          >
-            <View
-              style={
-                Object {
-                  "backgroundColor": "white",
-                }
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/star-lined.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 24,
-                    "tintColor": "#374A59",
-                    "width": 24,
-                  }
-                }
-              />
-            </View>
-          </TouchableOpacity>
-        </View>
-      }
-      data={Array []}
-      disableVirtualization={false}
-      getItem={[Function]}
-      getItemCount={[Function]}
-      horizontal={false}
-      initialNumToRender={10}
-      keyExtractor={[Function]}
-      maxToRenderPerBatch={10}
-      numColumns={1}
-      onContentSizeChange={[Function]}
-      onEndReachedThreshold={2}
-      onLayout={[Function]}
-      onMomentumScrollEnd={[Function]}
-      onRefresh={undefined}
-      onScroll={[Function]}
-      onScrollBeginDrag={[Function]}
-      onScrollEndDrag={[Function]}
-      refreshing={undefined}
-      renderItem={[Function]}
-      scrollEventThrottle={50}
-      stickyHeaderIndices={Array []}
-      style={
-        Object {
-          "backgroundColor": "#F5F5F5",
-        }
-      }
-      updateCellsBatchingPeriod={50}
-      viewabilityConfigCallbackPairs={Array []}
-      windowSize={21}
-    >
-      <View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "white",
-                "borderTopColor": "#C7CDD1",
-                "borderTopWidth": 0.5,
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-                "padding": 16,
-                "paddingBottom": 8,
-              }
-            }
-          >
-            <Text
-              accessibilityTraits="header"
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontFamily": ".SFUIDisplay-heavy",
-                    "fontSize": 24,
-                  },
-                  undefined,
-                ]
-              }
-            >
-              learn to write code
-            </Text>
-            <View
-              accessibilityComponentType={undefined}
-              accessibilityLabel="Un-starred"
-              accessibilityTraits="button"
-              accessible={true}
-              collapsable={undefined}
-              hasTVPreferredFocus={undefined}
-              hitSlop={
-                Object {
-                  "bottom": 8,
-                  "left": 8,
-                  "right": 8,
-                  "top": 8,
-                }
-              }
-              isTVSelectable={true}
-              nativeID={undefined}
-              onLayout={undefined}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                Object {
-                  "opacity": 1,
-                }
-              }
-              testID="inbox.detail.not-starred"
-              tvParallaxProperties={undefined}
-            >
-              <View
-                style={
-                  Object {
-                    "backgroundColor": "white",
-                  }
-                }
-              >
-                <Image
-                  source={
-                    Object {
-                      "testUri": "../../../src/images/star-lined.png",
-                    }
-                  }
-                  style={
-                    Object {
-                      "height": 24,
-                      "tintColor": "#374A59",
-                      "width": 24,
-                    }
-                  }
-                />
-              </View>
-            </View>
-          </View>
-        </View>
-      </View>
-    </RCTScrollView>
+    <list />
   </View>
 </Screen>
 `;
@@ -252,196 +63,7 @@ exports[`ConversationDetails renders correctly 1`] = `
       }
     }
   >
-    <RCTScrollView
-      ItemSeparatorComponent={[Function]}
-      ListHeaderComponent={
-        <View
-          style={
-            Object {
-              "alignItems": "center",
-              "backgroundColor": "white",
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-              "flexDirection": "row",
-              "justifyContent": "space-between",
-              "padding": 16,
-              "paddingBottom": 8,
-            }
-          }
-        >
-          <Heading1>
-            learn to write code
-          </Heading1>
-          <TouchableOpacity
-            accessibilityLabel="Un-starred"
-            accessibilityTraits="button"
-            activeOpacity={0.2}
-            focusedOpacity={0.7}
-            hitSlop={
-              Object {
-                "bottom": 8,
-                "left": 8,
-                "right": 8,
-                "top": 8,
-              }
-            }
-            onPress={[Function]}
-            testID="inbox.detail.not-starred"
-          >
-            <View
-              style={
-                Object {
-                  "backgroundColor": "white",
-                }
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/star-lined.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 24,
-                    "tintColor": "#374A59",
-                    "width": 24,
-                  }
-                }
-              />
-            </View>
-          </TouchableOpacity>
-        </View>
-      }
-      data={Array []}
-      disableVirtualization={false}
-      getItem={[Function]}
-      getItemCount={[Function]}
-      horizontal={false}
-      initialNumToRender={10}
-      keyExtractor={[Function]}
-      maxToRenderPerBatch={10}
-      numColumns={1}
-      onContentSizeChange={[Function]}
-      onEndReachedThreshold={2}
-      onLayout={[Function]}
-      onMomentumScrollEnd={[Function]}
-      onRefresh={undefined}
-      onScroll={[Function]}
-      onScrollBeginDrag={[Function]}
-      onScrollEndDrag={[Function]}
-      refreshing={undefined}
-      renderItem={[Function]}
-      scrollEventThrottle={50}
-      stickyHeaderIndices={Array []}
-      style={
-        Object {
-          "backgroundColor": "#F5F5F5",
-        }
-      }
-      updateCellsBatchingPeriod={50}
-      viewabilityConfigCallbackPairs={Array []}
-      windowSize={21}
-    >
-      <View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "white",
-                "borderTopColor": "#C7CDD1",
-                "borderTopWidth": 0.5,
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-                "padding": 16,
-                "paddingBottom": 8,
-              }
-            }
-          >
-            <Text
-              accessibilityTraits="header"
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontFamily": ".SFUIDisplay-heavy",
-                    "fontSize": 24,
-                  },
-                  undefined,
-                ]
-              }
-            >
-              learn to write code
-            </Text>
-            <View
-              accessibilityComponentType={undefined}
-              accessibilityLabel="Un-starred"
-              accessibilityTraits="button"
-              accessible={true}
-              collapsable={undefined}
-              hasTVPreferredFocus={undefined}
-              hitSlop={
-                Object {
-                  "bottom": 8,
-                  "left": 8,
-                  "right": 8,
-                  "top": 8,
-                }
-              }
-              isTVSelectable={true}
-              nativeID={undefined}
-              onLayout={undefined}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                Object {
-                  "opacity": 1,
-                }
-              }
-              testID="inbox.detail.not-starred"
-              tvParallaxProperties={undefined}
-            >
-              <View
-                style={
-                  Object {
-                    "backgroundColor": "white",
-                  }
-                }
-              >
-                <Image
-                  source={
-                    Object {
-                      "testUri": "../../../src/images/star-lined.png",
-                    }
-                  }
-                  style={
-                    Object {
-                      "height": 24,
-                      "tintColor": "#374A59",
-                      "width": 24,
-                    }
-                  }
-                />
-              </View>
-            </View>
-          </View>
-        </View>
-      </View>
-    </RCTScrollView>
+    <list />
   </View>
 </Screen>
 `;
@@ -475,48 +97,7 @@ exports[`ConversationDetails renders correctly with no conversation 1`] = `
       }
     }
   >
-    <RCTScrollView
-      ItemSeparatorComponent={[Function]}
-      ListHeaderComponent={<View />}
-      data={Array []}
-      disableVirtualization={false}
-      getItem={[Function]}
-      getItemCount={[Function]}
-      horizontal={false}
-      initialNumToRender={10}
-      keyExtractor={[Function]}
-      maxToRenderPerBatch={10}
-      numColumns={1}
-      onContentSizeChange={[Function]}
-      onEndReachedThreshold={2}
-      onLayout={[Function]}
-      onMomentumScrollEnd={[Function]}
-      onRefresh={undefined}
-      onScroll={[Function]}
-      onScrollBeginDrag={[Function]}
-      onScrollEndDrag={[Function]}
-      refreshing={undefined}
-      renderItem={[Function]}
-      scrollEventThrottle={50}
-      stickyHeaderIndices={Array []}
-      style={
-        Object {
-          "backgroundColor": "#F5F5F5",
-        }
-      }
-      updateCellsBatchingPeriod={50}
-      viewabilityConfigCallbackPairs={Array []}
-      windowSize={21}
-    >
-      <View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        >
-          <View />
-        </View>
-      </View>
-    </RCTScrollView>
+    <list />
   </View>
 </Screen>
 `;
@@ -550,307 +131,120 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
       }
     }
   >
-    <RCTScrollView
-      ItemSeparatorComponent={[Function]}
-      ListHeaderComponent={
+    <list>
+      <item>
         <View
-          style={
-            Object {
-              "alignItems": "center",
-              "backgroundColor": "white",
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-              "flexDirection": "row",
-              "justifyContent": "space-between",
-              "padding": 16,
-              "paddingBottom": 8,
-            }
-          }
-        >
-          <Heading1>
-            learn to write code
-          </Heading1>
-          <TouchableOpacity
-            accessibilityLabel="Un-starred"
-            accessibilityTraits="button"
-            activeOpacity={0.2}
-            focusedOpacity={0.7}
-            hitSlop={
-              Object {
-                "bottom": 8,
-                "left": 8,
-                "right": 8,
-                "top": 8,
-              }
-            }
-            onPress={[Function]}
-            testID="inbox.detail.not-starred"
-          >
-            <View
-              style={
-                Object {
-                  "backgroundColor": "white",
-                }
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/star-lined.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 24,
-                    "tintColor": "#374A59",
-                    "width": 24,
-                  }
-                }
-              />
-            </View>
-          </TouchableOpacity>
-        </View>
-      }
-      data={
-        Array [
-          Object {
-            "attachments": Array [
-              Object {
-                "display_name": "something.pdf",
-                "id": "1",
-                "mime_class": "pdf",
-              },
-            ],
-            "author_id": "1234",
-            "body": "this is neat",
-            "created_at": "2037-06-01T05:59:00Z",
-            "generated": false,
-            "id": "123456789",
-          },
-        ]
-      }
-      disableVirtualization={false}
-      getItem={[Function]}
-      getItemCount={[Function]}
-      horizontal={false}
-      initialNumToRender={10}
-      keyExtractor={[Function]}
-      maxToRenderPerBatch={10}
-      numColumns={1}
-      onContentSizeChange={[Function]}
-      onEndReachedThreshold={2}
-      onLayout={[Function]}
-      onMomentumScrollEnd={[Function]}
-      onRefresh={undefined}
-      onScroll={[Function]}
-      onScrollBeginDrag={[Function]}
-      onScrollEndDrag={[Function]}
-      refreshing={undefined}
-      renderItem={[Function]}
-      scrollEventThrottle={50}
-      stickyHeaderIndices={Array []}
-      style={
-        Object {
-          "backgroundColor": "#F5F5F5",
-        }
-      }
-      updateCellsBatchingPeriod={50}
-      viewabilityConfigCallbackPairs={Array []}
-      windowSize={21}
-    >
-      <View>
-        <View
-          onLayout={[Function]}
-          style={null}
+          testID="inbox.conversation-message-123456789"
         >
           <View
             style={
               Object {
-                "alignItems": "center",
                 "backgroundColor": "white",
                 "borderTopColor": "#C7CDD1",
                 "borderTopWidth": 0.5,
-                "flexDirection": "row",
-                "justifyContent": "space-between",
+                "flex": 1,
                 "padding": 16,
-                "paddingBottom": 8,
+                "paddingTop": 12,
               }
             }
           >
-            <Text
-              accessibilityTraits="header"
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontFamily": ".SFUIDisplay-heavy",
-                    "fontSize": 24,
-                  },
-                  undefined,
-                ]
-              }
-            >
-              learn to write code
-            </Text>
-            <View
-              accessibilityComponentType={undefined}
-              accessibilityLabel="Un-starred"
-              accessibilityTraits="button"
-              accessible={true}
-              collapsable={undefined}
-              hasTVPreferredFocus={undefined}
-              hitSlop={
-                Object {
-                  "bottom": 8,
-                  "left": 8,
-                  "right": 8,
-                  "top": 8,
-                }
-              }
-              isTVSelectable={true}
-              nativeID={undefined}
-              onLayout={undefined}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                Object {
-                  "opacity": 1,
-                }
-              }
-              testID="inbox.detail.not-starred"
-              tvParallaxProperties={undefined}
-            >
-              <View
-                style={
-                  Object {
-                    "backgroundColor": "white",
-                  }
-                }
-              >
-                <Image
-                  source={
-                    Object {
-                      "testUri": "../../../src/images/star-lined.png",
-                    }
-                  }
-                  style={
-                    Object {
-                      "height": 24,
-                      "tintColor": "#374A59",
-                      "width": 24,
-                    }
-                  }
-                />
-              </View>
-            </View>
-          </View>
-        </View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        >
-          <View
-            testID="inbox.conversation-message-123456789"
-          >
             <View
               style={
                 Object {
-                  "backgroundColor": "white",
-                  "borderTopColor": "#C7CDD1",
-                  "borderTopWidth": 0.5,
-                  "flex": 1,
-                  "padding": 16,
-                  "paddingTop": 12,
+                  "alignItems": "center",
+                  "borderBottomColor": "#C7CDD1",
+                  "borderBottomWidth": 0.5,
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "paddingBottom": 12,
                 }
               }
             >
               <View
+                accessibilityLabel="artorias of the abyss + 1 other to me May 31 at 11:59 PM"
+                accessible={true}
                 style={
                   Object {
-                    "alignItems": "center",
-                    "borderBottomColor": "#C7CDD1",
-                    "borderBottomWidth": 0.5,
                     "flexDirection": "row",
-                    "justifyContent": "space-between",
-                    "paddingBottom": 12,
                   }
                 }
               >
                 <View
-                  accessibilityLabel="artorias of the abyss + 1 other to me May 31 at 11:59 PM"
-                  accessible={true}
                   style={
                     Object {
-                      "flexDirection": "row",
+                      "height": 32,
+                      "marginRight": 8,
+                      "width": 32,
                     }
                   }
                 >
-                  <View
-                    style={
-                      Object {
-                        "height": 32,
-                        "marginRight": 8,
-                        "width": 32,
-                      }
-                    }
+                  <TouchableHighlight
+                    onPress={[Function]}
+                    underlayColor="transparent"
                   >
-                    <TouchableHighlight
-                      onPress={[Function]}
-                      underlayColor="transparent"
+                    <View
+                      accessibilityLabel=""
+                      style={
+                        Array [
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderColor": "#C7CDD1",
+                            "borderWidth": 0.5,
+                            "justifyContent": "center",
+                            "overflow": "hidden",
+                          },
+                          Object {
+                            "borderRadius": 16,
+                            "height": 32,
+                            "width": 32,
+                          },
+                        ]
+                      }
                     >
-                      <View
-                        accessibilityLabel=""
+                      <Text
+                        accessible={false}
+                        allowFontScaling={true}
+                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
-                              "alignItems": "center",
-                              "backgroundColor": "white",
-                              "borderColor": "#C7CDD1",
-                              "borderWidth": 0.5,
-                              "justifyContent": "center",
-                              "overflow": "hidden",
+                              "backgroundColor": "transparent",
+                              "color": "#73818C",
+                              "fontWeight": "600",
                             },
                             Object {
-                              "borderRadius": 16,
-                              "height": 32,
-                              "width": 32,
+                              "fontSize": 14,
                             },
                           ]
                         }
                       >
-                        <Text
-                          accessible={false}
-                          allowFontScaling={true}
-                          ellipsizeMode="tail"
-                          style={
-                            Array [
-                              Object {
-                                "backgroundColor": "transparent",
-                                "color": "#73818C",
-                                "fontWeight": "600",
-                              },
-                              Object {
-                                "fontSize": 14,
-                              },
-                            ]
-                          }
-                        >
-                          AO
-                        </Text>
-                      </View>
-                    </TouchableHighlight>
-                  </View>
-                  <View>
+                        AO
+                      </Text>
+                    </View>
+                  </TouchableHighlight>
+                </View>
+                <View>
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        undefined,
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                      ]
+                    }
+                  >
                     <Text
                       accessible={true}
                       allowFontScaling={true}
@@ -864,64 +258,18 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
                           Object {
-                            "fontFamily": ".SFUIDisplay",
+                            "color": "#2D3B45",
+                            "fontSize": 14,
+                            "fontWeight": "600",
+                          },
+                          Object {
+                            "fontFamily": ".SFUIDisplay-semibold",
                           },
                         ]
                       }
                     >
-                      <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
-                        style={
-                          Array [
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                            Object {
-                              "color": "#2D3B45",
-                              "fontSize": 16,
-                            },
-                            Object {
-                              "color": "#2D3B45",
-                              "fontSize": 14,
-                              "fontWeight": "600",
-                            },
-                            Object {
-                              "fontFamily": ".SFUIDisplay-semibold",
-                            },
-                          ]
-                        }
-                      >
-                        artorias of the abyss + 1 other 
-                      </Text>
-                      <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
-                        style={
-                          Array [
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                            Object {
-                              "color": "#2D3B45",
-                              "fontSize": 16,
-                            },
-                            Object {
-                              "color": "#8B969E",
-                              "fontSize": 14,
-                            },
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                          ]
-                        }
-                      >
-                        to me
-                      </Text>
+                      artorias of the abyss + 1 other 
                     </Text>
                     <Text
                       accessible={true}
@@ -938,7 +286,7 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
                           },
                           Object {
                             "color": "#8B969E",
-                            "fontSize": 12,
+                            "fontSize": 14,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -946,159 +294,9 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
                         ]
                       }
                     >
-                      May 31 at 11:59 PM
+                      to me
                     </Text>
-                  </View>
-                </View>
-                <View
-                  accessibilityComponentType={undefined}
-                  accessibilityLabel="Message options"
-                  accessibilityTraits="button"
-                  accessible={true}
-                  collapsable={undefined}
-                  hasTVPreferredFocus={undefined}
-                  hitSlop={undefined}
-                  isTVSelectable={true}
-                  nativeID={undefined}
-                  onLayout={undefined}
-                  onResponderGrant={[Function]}
-                  onResponderMove={[Function]}
-                  onResponderRelease={[Function]}
-                  onResponderTerminate={[Function]}
-                  onResponderTerminationRequest={[Function]}
-                  onStartShouldSetResponder={[Function]}
-                  style={
-                    Object {
-                      "alignItems": "flex-end",
-                      "height": 32,
-                      "justifyContent": "center",
-                      "opacity": 1,
-                      "width": 32,
-                    }
-                  }
-                  testID="conversation-message.kabob-123456789"
-                  tvParallaxProperties={undefined}
-                >
-                  <Image
-                    source={
-                      Object {
-                        "testUri": "../../../src/images/kabob.png",
-                      }
-                    }
-                    style={
-                      Object {
-                        "height": 18,
-                        "tintColor": "#8B969E",
-                        "transform": Array [
-                          Object {
-                            "rotate": "180deg",
-                          },
-                        ],
-                        "width": 18,
-                      }
-                    }
-                  />
-                </View>
-              </View>
-              <View
-                accessibilityComponentType={undefined}
-                accessibilityLabel={undefined}
-                accessibilityTraits={undefined}
-                accessible={true}
-                hitSlop={undefined}
-                nativeID={undefined}
-                onLayout={undefined}
-                onResponderGrant={[Function]}
-                onResponderMove={[Function]}
-                onResponderRelease={[Function]}
-                onResponderTerminate={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
-                style={
-                  Object {
-                    "flex": 1,
-                    "paddingTop": 16,
-                  }
-                }
-                testID={undefined}
-              >
-                <View
-                  style={undefined}
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    numberOfLines={0}
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                      ]
-                    }
-                  >
-                    this is neat
                   </Text>
-                </View>
-              </View>
-              <View
-                accessibilityComponentType={undefined}
-                accessibilityLabel={undefined}
-                accessibilityTraits={undefined}
-                accessible={true}
-                collapsable={undefined}
-                hasTVPreferredFocus={undefined}
-                hitSlop={undefined}
-                isTVSelectable={true}
-                nativeID={undefined}
-                onLayout={undefined}
-                onResponderGrant={[Function]}
-                onResponderMove={[Function]}
-                onResponderRelease={[Function]}
-                onResponderTerminate={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
-                style={
-                  Object {
-                    "opacity": 1,
-                  }
-                }
-                testID="inbox.conversation-message-123456789.attachment-1"
-                tvParallaxProperties={undefined}
-              >
-                <View
-                  style={
-                    Object {
-                      "alignItems": "center",
-                      "flexDirection": "row",
-                      "marginTop": 8,
-                    }
-                  }
-                >
-                  <Image
-                    source={
-                      Object {
-                        "testUri": "../../../src/images/attachment.png",
-                      }
-                    }
-                    style={
-                      Object {
-                        "tintColor": "#008EE2",
-                      }
-                    }
-                  />
                   <Text
                     accessible={true}
                     allowFontScaling={true}
@@ -1113,10 +311,8 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "color": "#008EE2",
-                          "fontFamily": ".SFUIDisplay-bold",
-                          "fontSize": 14,
-                          "marginLeft": 6,
+                          "color": "#8B969E",
+                          "fontSize": 12,
                         },
                         Object {
                           "fontFamily": ".SFUIDisplay",
@@ -1124,25 +320,18 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
                       ]
                     }
                   >
-                    something.pdf
+                    May 31 at 11:59 PM
                   </Text>
                 </View>
               </View>
               <View
                 accessibilityComponentType={undefined}
-                accessibilityLabel={undefined}
+                accessibilityLabel="Message options"
                 accessibilityTraits="button"
                 accessible={true}
                 collapsable={undefined}
                 hasTVPreferredFocus={undefined}
-                hitSlop={
-                  Object {
-                    "bottom": 15,
-                    "left": 15,
-                    "right": 15,
-                    "top": 15,
-                  }
-                }
+                hitSlop={undefined}
                 isTVSelectable={true}
                 nativeID={undefined}
                 onLayout={undefined}
@@ -1154,50 +343,234 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
                 onStartShouldSetResponder={[Function]}
                 style={
                   Object {
-                    "marginTop": 8,
+                    "alignItems": "flex-end",
+                    "height": 32,
+                    "justifyContent": "center",
                     "opacity": 1,
+                    "width": 32,
                   }
                 }
-                testID="inbox.conversation-message-row.reply-button"
+                testID="conversation-message.kabob-123456789"
                 tvParallaxProperties={undefined}
               >
-                <View>
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
+                <Image
+                  source={
+                    Object {
+                      "testUri": "../../../src/images/kabob.png",
+                    }
+                  }
+                  style={
+                    Object {
+                      "height": 18,
+                      "tintColor": "#8B969E",
+                      "transform": Array [
+                        Object {
+                          "rotate": "180deg",
+                        },
+                      ],
+                      "width": 18,
+                    }
+                  }
+                />
+              </View>
+            </View>
+            <View
+              accessibilityComponentType={undefined}
+              accessibilityLabel={undefined}
+              accessibilityTraits={undefined}
+              accessible={true}
+              hitSlop={undefined}
+              nativeID={undefined}
+              onLayout={undefined}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "flex": 1,
+                  "paddingTop": 16,
+                }
+              }
+              testID={undefined}
+            >
+              <View
+                style={undefined}
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  numberOfLines={0}
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                    ]
+                  }
+                >
+                  this is neat
+                </Text>
+              </View>
+            </View>
+            <View
+              accessibilityComponentType={undefined}
+              accessibilityLabel={undefined}
+              accessibilityTraits={undefined}
+              accessible={true}
+              collapsable={undefined}
+              hasTVPreferredFocus={undefined}
+              hitSlop={undefined}
+              isTVSelectable={true}
+              nativeID={undefined}
+              onLayout={undefined}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "opacity": 1,
+                }
+              }
+              testID="inbox.conversation-message-123456789.attachment-1"
+              tvParallaxProperties={undefined}
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                    "marginTop": 8,
+                  }
+                }
+              >
+                <Image
+                  source={
+                    Object {
+                      "testUri": "../../../src/images/attachment.png",
+                    }
+                  }
+                  style={
+                    Object {
+                      "tintColor": "#008EE2",
+                    }
+                  }
+                />
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#008EE2",
+                        "fontFamily": ".SFUIDisplay-bold",
+                        "fontSize": 14,
+                        "marginLeft": 6,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                    ]
+                  }
+                >
+                  something.pdf
+                </Text>
+              </View>
+            </View>
+            <View
+              accessibilityComponentType={undefined}
+              accessibilityLabel={undefined}
+              accessibilityTraits="button"
+              accessible={true}
+              collapsable={undefined}
+              hasTVPreferredFocus={undefined}
+              hitSlop={
+                Object {
+                  "bottom": 15,
+                  "left": 15,
+                  "right": 15,
+                  "top": 15,
+                }
+              }
+              isTVSelectable={true}
+              nativeID={undefined}
+              onLayout={undefined}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "marginTop": 8,
+                  "opacity": 1,
+                }
+              }
+              testID="inbox.conversation-message-row.reply-button"
+              tvParallaxProperties={undefined}
+            >
+              <View>
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
+                          "color": "#374A59",
                           "fontSize": 16,
+                          "fontWeight": "500",
                         },
-                        Array [
-                          Object {
-                            "color": "#374A59",
-                            "fontSize": 16,
-                            "fontWeight": "500",
-                          },
-                          undefined,
-                        ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay-medium",
-                        },
-                      ]
-                    }
-                  >
-                    Reply
-                  </Text>
-                </View>
+                        undefined,
+                      ],
+                      Object {
+                        "fontFamily": ".SFUIDisplay-medium",
+                      },
+                    ]
+                  }
+                >
+                  Reply
+                </Text>
               </View>
             </View>
           </View>
         </View>
-      </View>
-    </RCTScrollView>
+      </item>
+    </list>
   </View>
 </Screen>
 `;
@@ -1231,196 +604,7 @@ exports[`ConversationDetails renders with alternate data 1`] = `
       }
     }
   >
-    <RCTScrollView
-      ItemSeparatorComponent={[Function]}
-      ListHeaderComponent={
-        <View
-          style={
-            Object {
-              "alignItems": "center",
-              "backgroundColor": "white",
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-              "flexDirection": "row",
-              "justifyContent": "space-between",
-              "padding": 16,
-              "paddingBottom": 8,
-            }
-          }
-        >
-          <Heading1>
-            No Subject
-          </Heading1>
-          <TouchableOpacity
-            accessibilityLabel="Starred"
-            accessibilityTraits="button"
-            activeOpacity={0.2}
-            focusedOpacity={0.7}
-            hitSlop={
-              Object {
-                "bottom": 8,
-                "left": 8,
-                "right": 8,
-                "top": 8,
-              }
-            }
-            onPress={[Function]}
-            testID="inbox.detail.starred"
-          >
-            <View
-              style={
-                Object {
-                  "backgroundColor": "white",
-                }
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/star-filled.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 24,
-                    "tintColor": "#374A59",
-                    "width": 24,
-                  }
-                }
-              />
-            </View>
-          </TouchableOpacity>
-        </View>
-      }
-      data={Array []}
-      disableVirtualization={false}
-      getItem={[Function]}
-      getItemCount={[Function]}
-      horizontal={false}
-      initialNumToRender={10}
-      keyExtractor={[Function]}
-      maxToRenderPerBatch={10}
-      numColumns={1}
-      onContentSizeChange={[Function]}
-      onEndReachedThreshold={2}
-      onLayout={[Function]}
-      onMomentumScrollEnd={[Function]}
-      onRefresh={undefined}
-      onScroll={[Function]}
-      onScrollBeginDrag={[Function]}
-      onScrollEndDrag={[Function]}
-      refreshing={undefined}
-      renderItem={[Function]}
-      scrollEventThrottle={50}
-      stickyHeaderIndices={Array []}
-      style={
-        Object {
-          "backgroundColor": "#F5F5F5",
-        }
-      }
-      updateCellsBatchingPeriod={50}
-      viewabilityConfigCallbackPairs={Array []}
-      windowSize={21}
-    >
-      <View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "white",
-                "borderTopColor": "#C7CDD1",
-                "borderTopWidth": 0.5,
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-                "padding": 16,
-                "paddingBottom": 8,
-              }
-            }
-          >
-            <Text
-              accessibilityTraits="header"
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontFamily": ".SFUIDisplay-heavy",
-                    "fontSize": 24,
-                  },
-                  undefined,
-                ]
-              }
-            >
-              No Subject
-            </Text>
-            <View
-              accessibilityComponentType={undefined}
-              accessibilityLabel="Starred"
-              accessibilityTraits="button"
-              accessible={true}
-              collapsable={undefined}
-              hasTVPreferredFocus={undefined}
-              hitSlop={
-                Object {
-                  "bottom": 8,
-                  "left": 8,
-                  "right": 8,
-                  "top": 8,
-                }
-              }
-              isTVSelectable={true}
-              nativeID={undefined}
-              onLayout={undefined}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                Object {
-                  "opacity": 1,
-                }
-              }
-              testID="inbox.detail.starred"
-              tvParallaxProperties={undefined}
-            >
-              <View
-                style={
-                  Object {
-                    "backgroundColor": "white",
-                  }
-                }
-              >
-                <Image
-                  source={
-                    Object {
-                      "testUri": "../../../src/images/star-filled.png",
-                    }
-                  }
-                  style={
-                    Object {
-                      "height": 24,
-                      "tintColor": "#374A59",
-                      "width": 24,
-                    }
-                  }
-                />
-              </View>
-            </View>
-          </View>
-        </View>
-      </View>
-    </RCTScrollView>
+    <list />
   </View>
 </Screen>
 `;

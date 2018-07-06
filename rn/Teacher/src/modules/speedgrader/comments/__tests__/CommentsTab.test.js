@@ -42,24 +42,6 @@ jest
   .mock('../CommentInput', () => 'CommentInput')
   .mock('../../../../common/components/MediaComment', () => 'MediaComment')
   .mock('../../../../common/permissions')
-  .mock('FlatList', () => {
-    return ({
-      ListEmptyComponent,
-      data,
-      renderItem,
-    }) => (
-      <view>
-        {data.length > 0
-          ? data.map((item, index) => (
-            <view key={index}>
-              {renderItem({ item, index })}
-            </view>
-          ))
-          : <ListEmptyComponent />
-        }
-      </view>
-    )
-  })
 
 const comments = [
   {
