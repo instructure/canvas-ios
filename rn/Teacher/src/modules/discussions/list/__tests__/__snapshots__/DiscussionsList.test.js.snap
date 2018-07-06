@@ -236,7 +236,6 @@ exports[`DiscussionsList renders discussions 1`] = `
                   ]
                 }
                 accessible={false}
-                activeOpacity={1}
                 onPress={[Function]}
                 style={
                   Array [
@@ -656,7 +655,6 @@ exports[`DiscussionsList renders discussions 1`] = `
                   ]
                 }
                 accessible={false}
-                activeOpacity={1}
                 onPress={[Function]}
                 style={
                   Array [
@@ -1160,7 +1158,6 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                   ]
                 }
                 accessible={false}
-                activeOpacity={1}
                 onPress={[Function]}
                 style={
                   Array [
@@ -1547,7 +1544,6 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                   ]
                 }
                 accessible={false}
-                activeOpacity={1}
                 onPress={[Function]}
                 style={
                   Array [
@@ -2018,7 +2014,6 @@ exports[`DiscussionsList renders in correct order 1`] = `
                   ]
                 }
                 accessible={false}
-                activeOpacity={1}
                 onPress={[Function]}
                 style={
                   Array [
@@ -2438,7 +2433,6 @@ exports[`DiscussionsList renders in correct order 1`] = `
                   ]
                 }
                 accessible={false}
-                activeOpacity={1}
                 onPress={[Function]}
                 style={
                   Array [
@@ -2942,7 +2936,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                   ]
                 }
                 accessible={false}
-                activeOpacity={1}
                 onPress={[Function]}
                 style={
                   Array [
@@ -3362,7 +3355,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                   ]
                 }
                 accessible={false}
-                activeOpacity={1}
                 onPress={[Function]}
                 style={
                   Array [
@@ -3832,7 +3824,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                   ]
                 }
                 accessible={false}
-                activeOpacity={1}
                 onPress={[Function]}
                 style={
                   Array [

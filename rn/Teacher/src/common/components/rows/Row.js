@@ -95,10 +95,11 @@ export default class Row extends Component<RowProps> {
       backgroundColor = color.grey1
     }
 
-    if (this.props.selected !== undefined) {
-      // This row uses selected state so dont ever show active state
-      underlayProps.activeOpacity = 1
-    }
+    // This broke highlighting basically everywhere, so it needs to be disabled.
+    // if (this.props.selected !== undefined) {
+    //   // This row uses selected state so dont ever show active state
+    //   underlayProps.activeOpacity = 1
+    // }
 
     const titleStyles = [style.title, this.props.titleStyles].filter(Boolean)
     const subtitleStyles = [style.subtitle, this.props.subtitleStyles].filter(Boolean)
