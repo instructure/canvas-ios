@@ -124,10 +124,7 @@ class DashboardViewController: UIViewController {
         studentInfoContainer.backgroundColor = .clear
         studentInfoName.backgroundColor = .clear
         
-        // Initially hide the down arrow icon
         studentInfoDownArrow.image = UIImage.icon(.dropdown)
-        studentInfoDownArrow.isHidden = true
-        studentInfoStackView.removeArrangedSubview(studentInfoDownArrow)
         
         // Decorate the avatar to be circular
         studentInfoAvatar.layer.cornerRadius = studentInfoAvatar.frame.width / 2
@@ -150,21 +147,6 @@ class DashboardViewController: UIViewController {
             tabBar.tintColor = colorScheme.mainColor
         }
         
-    }
-    
-    func setupDidComplete() {
-        setupTabs()
-        if(!viewState.isValidObserver) {
-            showNotAParentView()
-        }
-        else if(viewState.studentCount == 0) {
-            showNoStudentsViewController()
-        }
-        
-        if(viewState.isSiteAdmin) {
-            showSiteAdminViews()
-        }
-        displayDefaultStudent()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -201,16 +183,37 @@ class DashboardViewController: UIViewController {
         studentCountObserver = try Student.countOfObservedStudentsObserver(session) { [weak self] count in
             self?.viewState.studentCount = count
         }
+        
+        try retrieveStudents()
+    }
+    
+    func retrieveStudents() throws {
         studentSyncProducer = try Student.observedStudentsSyncProducer(session)
         studentSyncProducer.startWithSignal { [weak self] (signal, disposable) in
             signal.observe({ (event) in
                 if let error = event.error, error.code == Student.Error.NoObserverEnrollments {
                     self?.viewState.isValidObserver = false
                 }
-                self?.setupDidComplete()
+                self?.retrieveStudentsCompleted()
                 disposable.dispose()
             })
         }
+    }
+    
+    func retrieveStudentsCompleted() {
+        setupTabs()
+        
+        if(viewState.isSiteAdmin && viewState.studentCount == 0) {
+            showSiteAdminViews()
+        } else if(!viewState.isValidObserver) {
+            showNotAParentView()
+        } else if(viewState.studentCount == 0) {
+            showNoStudentsViewController()
+        } else if (noStudentsViewController != nil && viewState.studentCount > 0){
+            hideNoStudentsViewController()
+        }
+        
+        displayDefaultStudent()
     }
     
     func studentAtIndex(_ index: Int) -> Student? {
@@ -254,18 +257,33 @@ class DashboardViewController: UIViewController {
         tabBar.isHidden = true
     }
     
+    func hideNoStudentsViewController() {
+        if(noStudentsViewController != nil) {
+            noStudentsViewController.removeFromParentViewController()
+            noStudentsViewController.view.removeFromSuperview()
+        }
+        tabBar.isHidden = false
+    }
+    
     func showSiteAdminViews() {
         studentInfoName.text = NSLocalizedString("Admin", comment: "Label displayed when logged in as an admin")
         studentInfoAvatar.isHidden = true
         let storyboard = UIStoryboard(name: "AdminViewController", bundle: nil)
         adminViewController = storyboard.instantiateViewController(withIdentifier: "vc") as! AdminViewController
+        
+        adminViewController.actAsUserHandler = { [weak self] in
+            let masquerade = HelmViewController(moduleName: "/masquerade", props: [:])
+            self?.present(masquerade, animated: true, completion: nil)
+        }
+        
         pageViewController?.setViewControllers([adminViewController], direction: .reverse, animated: false, completion: { _ in })
     }
     
     func setupNoStudentsViewController() {
         noStudentsViewController = NoStudentsViewController()
         noStudentsViewController.logoutAction = { [weak self] in self?.logoutAction?() }
-        noStudentsViewController.proceedAction = { [weak self] in self?.addStudentAction?() }
+        noStudentsViewController.proceedAction = { [weak self] in try? self?.retrieveStudents() }
+        
         showViewController(noStudentsViewController)
     }
     
@@ -351,7 +369,7 @@ class DashboardViewController: UIViewController {
     
     func studentInfoTapped(gesture: UITapGestureRecognizer) {
         guard let collection = studentCollection else { return }
-        guard collection.numberOfItemsInSection(0) > 1 else { return }
+        guard collection.numberOfItemsInSection(0) > 0 else { return }
         
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         if let popover = alertController.popoverPresentationController {
@@ -423,16 +441,6 @@ class DashboardViewController: UIViewController {
     }
     
     func displayDefaultStudent() {
-        if let collection = studentCollection {
-            if collection.numberOfItemsInSection(0) > 1 {
-                studentInfoStackView.addArrangedSubview(studentInfoDownArrow)
-                studentInfoDownArrow.isHidden = false
-            } else {
-                studentInfoStackView.removeArrangedSubview(studentInfoDownArrow)
-                studentInfoDownArrow.isHidden = true
-            }
-        }
-        
         currentStudent = studentAtIndex(0)
     }
     

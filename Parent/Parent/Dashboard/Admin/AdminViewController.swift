@@ -13,6 +13,8 @@ class AdminViewController : UIViewController {
     @IBOutlet weak var directionsLabel: UILabel!
     @IBOutlet weak var welcomeLabel: UILabel!
     
+    var actAsUserHandler: (() -> Void)?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,5 +26,9 @@ class AdminViewController : UIViewController {
         actAsUserButton.titleLabel?.text = NSLocalizedString("Act as User", comment: "Label for button that allows admin to Act as User")
         actAsUserButton.layer.cornerRadius = 5
         actAsUserButton.clipsToBounds = true
+    }
+    
+    @IBAction func actAsUserTapped(_ sender: UIButton) {
+        actAsUserHandler?()
     }
 }

@@ -65,10 +65,13 @@ extension Course {
         let remote = try Course.getCourses(session, studentID: studentID)
         let context = try session.enrollmentManagedObjectContext(studentID)
         
-        let sync = Course.syncSignalProducer(inContext: context, fetchRemote: remote)
-
+        let courses = Course.syncSignalProducer(inContext: context, fetchRemote: remote).map { _ in () }
+        let students = try Student.observedStudentsSyncProducer(session).map { _ in () }
+        
+        let producer = SignalProducer.concat([courses, students])
+        
         let key = cacheKey(context, [studentID])
-        return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
+        return SignalProducerRefresher(refreshSignalProducer: producer, scope: session.refreshScope, cacheKey: key)
     }
     
     public static func airwolfRefresher(_ session: Session, studentID: String, courseID: String) throws -> Refresher {
