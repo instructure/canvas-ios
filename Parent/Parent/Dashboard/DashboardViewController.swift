@@ -398,7 +398,7 @@ class DashboardViewController: UIViewController {
             return
         }
         
-        self.pageViewController?.setViewControllers([coursesViewController], direction: .reverse, animated: true, completion: { _ in })
+        self.pageViewController?.setViewControllers([coursesViewController], direction: .reverse, animated: false, completion: { _ in })
     }
     
     func selectCalendarTab() {
@@ -414,7 +414,7 @@ class DashboardViewController: UIViewController {
         if viewController == alertsViewController {
             direction = UIPageViewControllerNavigationDirection.reverse
         }
-        self.pageViewController?.setViewControllers([calendarViewController], direction: direction, animated: true, completion: { _ in })
+        self.pageViewController?.setViewControllers([calendarViewController], direction: direction, animated: false, completion: { _ in })
     }
     
     func selectAlertsTab() {
@@ -424,7 +424,7 @@ class DashboardViewController: UIViewController {
             return
         }
         
-        self.pageViewController?.setViewControllers([alertsViewController], direction: .forward, animated: true, completion: { _ in })
+        self.pageViewController?.setViewControllers([alertsViewController], direction: .forward, animated: false, completion: { _ in })
     }
     
     @IBAction func drawerDashboardButtonPreseed(_ sender: UIButton) {
