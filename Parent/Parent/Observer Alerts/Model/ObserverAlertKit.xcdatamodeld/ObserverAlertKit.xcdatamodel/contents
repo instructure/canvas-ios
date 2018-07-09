@@ -3,6 +3,7 @@
     <entity name="Alert" representedClassName=".Alert" syncable="YES">
         <attribute name="actionDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="assetPath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="contextID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="courseID" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="dismissed" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="id" attributeType="String" indexed="YES" syncable="YES"/>
@@ -21,7 +22,7 @@
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Alert" positionX="-63" positionY="-18" width="128" height="210"/>
+        <element name="Alert" positionX="-63" positionY="-18" width="128" height="225"/>
         <element name="AlertThreshold" positionX="-63" positionY="63" width="128" height="120"/>
     </elements>
 </model>

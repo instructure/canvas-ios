@@ -47,6 +47,7 @@ class RouteTemplates {
     static let standaloneCalendarEventDetailsTemplate = "students/:studentID/courses/:courseID/calendar_events/:calendarEventID/standalone"
     static let courseSyllabusTemplate = "students/:studentID/courses/:courseID/syllabus"
     static let courseAnnouncementTemplate = "students/:studentID/courses/:courseID/discussion_topics/:announcementID"
+    static let accountNotificationTemplate = "students/:studentID/account_notifications/:announcementID"
 }
 
 extension Router {
@@ -95,6 +96,10 @@ extension Router {
         guard let path = components?.path else { return nil }
         return URL(string: "students/\(studentID)")!.appendingPathComponent(path)
     }
+
+    func accountNotificationRoute(studentID: String, announcementID: String) -> URL {
+        return URL(string: "students/\(studentID)/account_notifications/\(announcementID)")!
+    }
 }
 
 extension Router {
@@ -111,7 +116,8 @@ extension Router {
             RouteTemplates.courseTemplate: courseCalendarEventsHandler(),
             RouteTemplates.courseCalendarEventsTemplate: courseCalendarEventsHandler(),
             RouteTemplates.courseSyllabusTemplate: courseSyllabusHandler(),
-            RouteTemplates.courseAnnouncementTemplate: courseAnnouncementHandler()
+            RouteTemplates.courseAnnouncementTemplate: courseAnnouncementHandler(),
+            RouteTemplates.accountNotificationTemplate: accountNotificationHandler()
         ]
 
         let handler = defaultErrorHandler()
@@ -126,7 +132,7 @@ extension Router {
     func parentDashboardHandler() -> RouteHandler {
         return { params in
             guard let session = self.session else {
-                fatalError("You can't create a ParentDashboardViewController without a Session")
+                return nil
             }
             
             let dashboardVC = DashboardViewController.new(session: session)
@@ -164,7 +170,7 @@ extension Router {
     func settingsPageHandler() -> RouteHandler {
         return { params in
             guard let session = self.session else {
-                fatalError("You can't get to the Settings Page without a Session")
+                return nil
             }
 
             let settingsVC = SettingsViewController.new(session: session)
@@ -185,7 +191,7 @@ extension Router {
     func adjustThresholdsHandler() -> RouteHandler {
         return { params in
             guard let session = self.session, let parameters = params, let studentID: String = try? parameters.stringID("studentID") else {
-                fatalError("You can't edit thresholds without a Session and studentID")
+                return nil
             }
 
             return StudentSettingsViewController.new(session, studentID: studentID)
@@ -195,7 +201,7 @@ extension Router {
     func courseCalendarEventsHandler() -> RouteHandler {
         return { params in
             guard let session = self.session, let parameters = params, let studentID: String = try? parameters.stringID("studentID"), let courseID: String = try? parameters.stringID("courseID") else {
-                fatalError("You can't show an course without having a session, student and course id!")
+                return nil
             }
 
             let calendarWeekPageVC = CalendarEventWeekPageViewController.new(session: session, studentID: studentID, contextCodes: [ContextID(id: courseID, context: .course).canvasContextID])
@@ -244,7 +250,7 @@ extension Router {
     func assignmentDetailsHandler() -> RouteHandler {
         return { params in
             guard let session = self.session, let parameters = params, let studentID = parameters["studentID"] as? NSNumber, let courseID = parameters["courseID"] as? NSNumber, let assignmentID = parameters["assignmentID"] as? NSNumber else {
-                fatalError("You can't show an assignment without having a session, course and assignment id!")
+                return nil
             }
 
             let assignmentDetailsVC = try! AssignmentDetailsViewController(session: session, studentID: studentID.stringValue, courseID: courseID.stringValue, assignmentID: assignmentID.stringValue)
@@ -267,7 +273,7 @@ extension Router {
     func standaloneAssignmentDetailsHandler() -> RouteHandler {
         return { params in
             guard let session = self.session, let parameters = params, let studentID = parameters["studentID"] as? NSNumber, let courseID = parameters["courseID"] as? NSNumber, let assignmentID = parameters["assignmentID"] as? NSNumber else {
-                fatalError("You can't show an assignment without having a session, course and assignment id!")
+                return nil
             }
 
             let assignmentDetailsVC = try! AssignmentDetailsViewController(session: session, studentID: studentID.stringValue, courseID: courseID.stringValue, assignmentID: assignmentID.stringValue)
@@ -278,7 +284,7 @@ extension Router {
     func calendarEventDetailsHandler() -> RouteHandler {
         return { params in
             guard let session = self.session, let parameters = params, let studentID = parameters["studentID"] as? NSNumber, let calendarEventID = parameters["calendarEventID"] as? NSNumber, let courseID = parameters["courseID"] as? NSNumber else {
-                fatalError("You can't show a calendar event without having a session and a calendar event id!")
+                return nil
             }
 
             let calendarEventDetailsVC = try! CalendarEventDetailsViewController(session: session, studentID: studentID.stringValue, courseID: courseID.stringValue, calendarEventID: calendarEventID.stringValue)
@@ -301,7 +307,7 @@ extension Router {
     func standaloneCalendarEventDetailsHandler() -> RouteHandler {
         return { params in
             guard let session = self.session, let parameters = params, let studentID = parameters["studentID"] as? NSNumber, let calendarEventID = parameters["calendarEventID"] as? NSNumber, let courseID = parameters["courseID"] as? NSNumber else {
-                fatalError("You can't show a calendar event without having a session and a calendar event id!")
+                return nil
             }
 
             let calendarEventDetailsVC = try! CalendarEventDetailsViewController(session: session, studentID: studentID.stringValue, courseID: courseID.stringValue, calendarEventID: calendarEventID.stringValue)
@@ -314,7 +320,7 @@ extension Router {
     func courseSyllabusHandler() -> RouteHandler {
         return { params in
             guard let session = self.session, let parameters = params, let studentID = parameters["studentID"] as? NSNumber, let courseID = parameters["courseID"] as? NSNumber else {
-                fatalError("You can't show a course syllabus without having a session, course id and an student id!")
+                return nil
             }
 
             let syllabusVC = CourseSyllabusViewController(courseID: courseID.stringValue, studentID: studentID.stringValue, session: session)
@@ -326,7 +332,7 @@ extension Router {
     func courseAnnouncementHandler() -> RouteHandler {
         return { params in
             guard let session = self.session, let parameters = params, let studentID = parameters["studentID"] as? NSNumber, let courseID = parameters["courseID"] as? NSNumber, let announcementID = parameters["announcementID"] as? NSNumber else {
-                ❨╯°□°❩╯⌢"You can't show a course announcement with having a session, studentID, courseID and an announcementID dude!"
+                return nil
             }
 
             let announcementVC = try! AnnouncementDetailsViewController(session: session, studentID: studentID.stringValue, courseID: courseID.stringValue, announcementID: announcementID.stringValue)
@@ -342,6 +348,26 @@ extension Router {
             announcementVC.navigationItem.leftBarButtonItem?.tintColor = .white
 
             return UINavigationController.parentNavigationController(withRootViewController: announcementVC, forObservee: studentID.stringValue)
+        }
+    }
+
+    func accountNotificationHandler() -> RouteHandler {
+        return { params in
+            guard let session = self.session, let parameters = params, let studentID: String = try? parameters.stringID("studentID"), let announcementID: String = try? parameters.stringID("announcementID") else {
+                return nil
+            }
+            let announcementVC = try! AccountNotificationViewController(session: session, announcementID: announcementID)
+            let closeButton = UIBarButtonItem(barButtonSystemItem: .stop, target: nil, action: nil)
+            closeButton.accessibilityLabel = NSLocalizedString("Close", comment: "Close Button Title")
+            closeButton.accessibilityIdentifier = "close_button"
+            let close = Action<(),(), NoError>() { _ in
+                announcementVC.dismiss(animated: true, completion: nil)
+                return .empty
+            }
+            closeButton.reactive.pressed = CocoaAction(close)
+            announcementVC.navigationItem.leftBarButtonItem = closeButton
+            announcementVC.navigationItem.leftBarButtonItem?.tintColor = .white
+            return UINavigationController.parentNavigationController(withRootViewController: announcementVC, forObservee: studentID)
         }
     }
 }

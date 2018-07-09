@@ -309,7 +309,7 @@ class DashboardViewController: UIViewController {
         coursesViewController = coursesViewController(session)
         calendarViewController = calendarViewController(session)
         alertsViewController = alertsViewController(session)
-        
+
         guard let coursesViewController = coursesViewController, let calendarViewController = calendarViewController, let alertsViewController = alertsViewController else {
             return
         }

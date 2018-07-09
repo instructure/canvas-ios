@@ -28,6 +28,7 @@ public final class Alert: NSManagedObject {
     }
 
     @NSManaged internal (set) public var id: String
+    @NSManaged internal (set) public var contextID: String?
     @NSManaged internal (set) public var observerID: String
     @NSManaged internal (set) public var studentID: String
     @NSManaged internal (set) public var courseID: String?
@@ -71,6 +72,7 @@ extension Alert: SynchronizedModel {
         thresholdID = try json.stringID("observer_alert_threshold_id")
         assetPath = try json <| "html_url"
         actionDate = try json <| "action_date"
+        contextID = try json.stringID("context_id")
 
         willChangeValue(forKey: Alert.typeKey)
         primitiveType = try json <| "alert_type"

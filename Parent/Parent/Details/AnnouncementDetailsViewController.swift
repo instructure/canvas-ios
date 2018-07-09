@@ -18,14 +18,8 @@
 
 import Foundation
 import CanvasCore
-
 import ReactiveSwift
-import CanvasCore
-
-import CanvasCore
-import CanvasCore
-
-
+import Marshal
 
 private let TitleCellReuseIdentifier = "TitleCell"
 private let AttachmentCellReuseIdentifier = "AttachmentCell"

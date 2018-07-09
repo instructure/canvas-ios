@@ -17,7 +17,7 @@
 import UIKit
 import CanvasCore
 
-typealias RouteHandler = (_ params: [String : Any]?) -> UIViewController
+typealias RouteHandler = (_ params: [String : Any]?) -> UIViewController?
 typealias FallbackHandler = (_ url: URL?) -> UIViewController?
 
 class Router {

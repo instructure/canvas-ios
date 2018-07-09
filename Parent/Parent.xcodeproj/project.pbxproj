@@ -168,6 +168,7 @@
 		A767CC255CD55BB8451B2F45 /* SettingsPageTests_testSettingsPage_displaysHelpMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DA29CF372AAB2318A6C107 /* SettingsPageTests_testSettingsPage_displaysHelpMenu.swift */; };
 		AA0D8C718E86B4919CDD8DBD /* GettingStartedPageTests_testGettingStartedPage_logoutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA21CFA2DA8BF6852893B43 /* GettingStartedPageTests_testGettingStartedPage_logoutButton.swift */; };
 		ADA375F3E48558FED756C65E /* CanvasUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D717C1344BD77482A213EA6 /* CanvasUser.swift */; };
+		B11A2CF720E42D9500A2DBDD /* AccountNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11A2CF620E42D9500A2DBDD /* AccountNotificationViewController.swift */; };
 		B58A7FC4C9664A1F8A3CC35B /* CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoConfirmPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EAE94AAC29858EE0FADD5D /* CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoConfirmPassword.swift */; };
 		B5CB1B611DC15AD800FE9C93 /* ArmchairLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5CB1B631DC15AD800FE9C93 /* ArmchairLocalizable.strings */; };
 		B823D81C914EED9D04CC1815 /* GettingStartedPageTests_testGettingStartedPage_displaysPageObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77F82EF5D44FFB863B8A0EC /* GettingStartedPageTests_testGettingStartedPage_displaysPageObjects.swift */; };
@@ -888,6 +889,7 @@
 		9FFE47181FBB754100AF2058 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9FFE47191FBB754100AF2058 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A77F82EF5D44FFB863B8A0EC /* GettingStartedPageTests_testGettingStartedPage_displaysPageObjects.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GettingStartedPageTests_testGettingStartedPage_displaysPageObjects.swift; path = GettingStartedPageTests/GettingStartedPageTests_testGettingStartedPage_displaysPageObjects.swift; sourceTree = "<group>"; };
+		B11A2CF620E42D9500A2DBDD /* AccountNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNotificationViewController.swift; sourceTree = "<group>"; };
 		B5CB1B621DC15AD800FE9C93 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/ArmchairLocalizable.strings; sourceTree = "<group>"; };
 		B5CB1B641DC15AE000FE9C93 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/ArmchairLocalizable.strings; sourceTree = "<group>"; };
 		B5CB1B651DC15AE100FE9C93 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/ArmchairLocalizable.strings; sourceTree = "<group>"; };
@@ -1349,6 +1351,7 @@
 				617BE8741CA584EF008A6908 /* AnnouncementDetailsViewController.swift */,
 				61B536F41C99E58B0052B8CB /* DatePickerViewController.swift */,
 				61BE87DE1C8E308600D79BF4 /* Remindable.swift */,
+				B11A2CF620E42D9500A2DBDD /* AccountNotificationViewController.swift */,
 				61B536E21C98B77B0052B8CB /* Cells */,
 			);
 			path = Details;
@@ -1906,6 +1909,7 @@
 				497C48BB1F912BD100A3BC06 /* AlertThreshold+Collections.swift in Sources */,
 				6153000E1C863F0F002529CF /* DetailsReminderCell.swift in Sources */,
 				497C48B81F912BD100A3BC06 /* AlertAPI.swift in Sources */,
+				B11A2CF720E42D9500A2DBDD /* AccountNotificationViewController.swift in Sources */,
 				5E0F9A7B1C739F2700BB7707 /* StudentsListViewController.swift in Sources */,
 				61B536F71C9B77900052B8CB /* CourseSyllabusViewController.swift in Sources */,
 				4938ACDB1F8FD0730069F43D /* Session+Log.swift in Sources */,

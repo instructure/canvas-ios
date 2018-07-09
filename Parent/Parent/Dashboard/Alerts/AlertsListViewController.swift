@@ -80,6 +80,10 @@ class AlertsListViewController: FetchedTableViewController<Alert> {
 
         if let assetPath = alert.assetPath, let routeURL = Router.sharedInstance.alertRoute(studentID: observeeID, alertAssetPath: assetPath) {
             Router.sharedInstance.route(self, toURL: routeURL, modal: true)
+        } else if alert.type == .institutionAnnouncement,
+            let announcementID = alert.contextID,
+            let routeURL = Router.sharedInstance.alertRoute(studentID: observeeID, alertAssetPath: "account_notifications/\(announcementID)") {
+            Router.sharedInstance.route(self, toURL: routeURL, modal: true)
         }
     }
 }

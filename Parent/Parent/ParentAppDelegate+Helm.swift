@@ -32,7 +32,7 @@ extension ParentAppDelegate: RCTBridgeDelegate {
                     guard let weakSelf = self, let window = weakSelf.window else { return }
                     
                     let dashboardHandler = Router.sharedInstance.parentDashboardHandler()
-                    let root = dashboardHandler(nil)
+                    guard let root = dashboardHandler(nil) else { return }
                     
                     weakSelf.addClearCacheGesture(root.view)
                     
