@@ -260,6 +260,9 @@
   "canvas_student_app_329567f": {
     "message": "Canvas studentapplikasjon"
   },
+  "canvas_teacher_app_9dc7d7ed": {
+    "message": "Canvas lærer-app"
+  },
   "change_discussiontitle_to_different_grouping_9f5ed8c1": {
     "message": "Endre { discussionTitle } til annen gruppering"
   },
@@ -952,6 +955,9 @@
   },
   "none_9b6c9bec": {
     "message": "ingen"
+  },
+  "not_a_parent_697e87e1": {
+    "message": "Ikke en foresatt?"
   },
   "not_a_teacher_b0d0fc55": {
     "message": "Ikke lærer?"

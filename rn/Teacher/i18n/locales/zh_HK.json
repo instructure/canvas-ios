@@ -260,6 +260,9 @@
   "canvas_student_app_329567f": {
     "message": "Canvas Student 應用程式"
   },
+  "canvas_teacher_app_9dc7d7ed": {
+    "message": "Canvas 教師應用程式"
+  },
   "change_discussiontitle_to_different_grouping_9f5ed8c1": {
     "message": "更改 { discussionTitle } 至其他群組"
   },
@@ -952,6 +955,9 @@
   },
   "none_9b6c9bec": {
     "message": "無"
+  },
+  "not_a_parent_697e87e1": {
+    "message": "不是父母？"
   },
   "not_a_teacher_b0d0fc55": {
     "message": "不是教師？"

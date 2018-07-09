@@ -1,12 +1,6 @@
-/* Class = "UIButton"; normalTitle = "Add Student"; ObjectID = "AlE-cd-Dx6"; */
-"AlE-cd-Dx6.normalTitle" = "Ychwanegu Myfyriwr";
-
 /* Class = "UILabel"; text = "There are no students associated with your account."; ObjectID = "eMA-cv-sB2"; */
 "eMA-cv-sB2.text" = "Does dim myfyrwyr wedi'u cysylltu â'ch cyfrif.";
 
 /* Class = "UIButton"; normalTitle = "Logout"; ObjectID = "eQ2-Tc-Vhp"; */
 "eQ2-Tc-Vhp.normalTitle" = "Allgofnodi";
-
-/* Class = "UILabel"; text = "Add a student to get started!"; ObjectID = "tne-nz-p5t"; */
-"tne-nz-p5t.text" = "Ychwanegwch fyfyriwr i ddechrau arni!";
 

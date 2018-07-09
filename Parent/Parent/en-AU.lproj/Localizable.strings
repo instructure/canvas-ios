@@ -10,8 +10,17 @@
 /* Server Error Message */
 "A server error has occurred.  Please try again." = "A server error has occurred.  Please try again.";
 
+/* Label for button that allows admin to Act as User */
+"Act as User" = "Act as User";
+
+/* Label displayed when logged in as an admin */
+"Admin" = "Admin";
+
 /* Alert Section Header */
 "Alert me when:" = "Alert me when:";
+
+/* Alerts Tab */
+"Alerts" = "Alerts";
 
 /* Generic Network Error Message */
 "An unexpected error occurred.  Please try again." = "An unexpected error occurred.  Please try again.";
@@ -66,6 +75,9 @@
 
 /* Course Grade Low On Description */
 "Course grade below" = "Course grade below";
+
+/* Courses Tab */
+"Courses" = "Courses";
 
 /* Title for field */
 "Describe your problem" = "Describe your problem.";
@@ -211,6 +223,9 @@
 /* Syllabus Button Title */
 "Syllabus" = "Syllabus";
 
+/* Directions in the admin view */
+"Tap to start viewing Canvas as another person." = "Tap to start viewing Canvas as another person.";
+
 /* Support Ticket Created Successfully */
 "Thanks, your request was received!" = "Thanks, your request was received!";
 
@@ -237,6 +252,12 @@
 
 /* Name of action when viewing a reminder */
 "View" = "View";
+
+/* Calendar Tab */
+"Week" = "Week";
+
+/* Header title of admin view */
+"Welcome!" = "Welcome!";
 
 /* Title for field */
 "What can we do better?" = "What can we do better?";

@@ -260,6 +260,9 @@
   "canvas_student_app_329567f": {
     "message": "Ap Canvas Student"
   },
+  "canvas_teacher_app_9dc7d7ed": {
+    "message": "Ap Canvas Teacher"
+  },
   "change_discussiontitle_to_different_grouping_9f5ed8c1": {
     "message": "Newid { discussionTitle } i grŵp gwahanol"
   },
@@ -955,6 +958,9 @@
   },
   "none_9b6c9bec": {
     "message": "dim"
+  },
+  "not_a_parent_697e87e1": {
+    "message": "Ddim yn rhiant?"
   },
   "not_a_teacher_b0d0fc55": {
     "message": "Ddim yn athro?"

@@ -1,12 +1,6 @@
-/* Class = "UIButton"; normalTitle = "Add Student"; ObjectID = "AlE-cd-Dx6"; */
-"AlE-cd-Dx6.normalTitle" = "Agregar estudiante";
-
 /* Class = "UILabel"; text = "There are no students associated with your account."; ObjectID = "eMA-cv-sB2"; */
 "eMA-cv-sB2.text" = "No hay estudiantes asociados con esta cuenta";
 
 /* Class = "UIButton"; normalTitle = "Logout"; ObjectID = "eQ2-Tc-Vhp"; */
 "eQ2-Tc-Vhp.normalTitle" = "Cerrar sesión";
-
-/* Class = "UILabel"; text = "Add a student to get started!"; ObjectID = "tne-nz-p5t"; */
-"tne-nz-p5t.text" = "¡Agregar un estudiante para comenzar!";
 

@@ -10,8 +10,17 @@
 /* Server Error Message */
 "A server error has occurred.  Please try again." = "Произошла ошибка сервера. Пожалуйста, попробуйте еще раз.";
 
+/* Label for button that allows admin to Act as User */
+"Act as User" = "Действовать как пользователь";
+
+/* Label displayed when logged in as an admin */
+"Admin" = "Админ";
+
 /* Alert Section Header */
 "Alert me when:" = "Оповестить меня, когда:";
+
+/* Alerts Tab */
+"Alerts" = "Предупреждения";
 
 /* Generic Network Error Message */
 "An unexpected error occurred.  Please try again." = "Произошла непредвиденная ошибка. Пожалуйста, попробуйте еще раз.";
@@ -66,6 +75,9 @@
 
 /* Course Grade Low On Description */
 "Course grade below" = "Оценка за курс ниже";
+
+/* Courses Tab */
+"Courses" = "Курсы";
 
 /* Title for field */
 "Describe your problem" = "Опишите вашу проблему";
@@ -211,6 +223,9 @@
 /* Syllabus Button Title */
 "Syllabus" = "Учебный план";
 
+/* Directions in the admin view */
+"Tap to start viewing Canvas as another person." = "Нажмите, чтобы начать просмотр Canvas как другой пользователь.";
+
 /* Support Ticket Created Successfully */
 "Thanks, your request was received!" = "Спасибо, ваш запрос был получен!";
 
@@ -237,6 +252,12 @@
 
 /* Name of action when viewing a reminder */
 "View" = "Просмотр";
+
+/* Calendar Tab */
+"Week" = "Неделя";
+
+/* Header title of admin view */
+"Welcome!" = "Добро пожаловать!";
 
 /* Title for field */
 "What can we do better?" = "Что мы можем сделать лучше?";

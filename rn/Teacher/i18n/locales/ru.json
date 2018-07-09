@@ -260,6 +260,9 @@
   "canvas_student_app_329567f": {
     "message": "Приложение Canvas для студентов"
   },
+  "canvas_teacher_app_9dc7d7ed": {
+    "message": "Приложение Canvas для преподавателей"
+  },
   "change_discussiontitle_to_different_grouping_9f5ed8c1": {
     "message": "Изменить { discussionTitle } на другое группирование"
   },
@@ -952,6 +955,9 @@
   },
   "none_9b6c9bec": {
     "message": "нет"
+  },
+  "not_a_parent_697e87e1": {
+    "message": "Не являетесь родителем?"
   },
   "not_a_teacher_b0d0fc55": {
     "message": "Не преподаватель?"

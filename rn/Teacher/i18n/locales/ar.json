@@ -260,6 +260,9 @@
   "canvas_student_app_329567f": {
     "message": "تطبيق Canvas Student"
   },
+  "canvas_teacher_app_9dc7d7ed": {
+    "message": "تطبيق Canvas Teacher"
+  },
   "change_discussiontitle_to_different_grouping_9f5ed8c1": {
     "message": "تغيير { discussionTitle } إلى تجميع مختلف"
   },
@@ -952,6 +955,9 @@
   },
   "none_9b6c9bec": {
     "message": "بلا"
+  },
+  "not_a_parent_697e87e1": {
+    "message": "لست ولي أمر؟"
   },
   "not_a_teacher_b0d0fc55": {
     "message": "لست معلمًا؟"

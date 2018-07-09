@@ -10,8 +10,17 @@
 /* Server Error Message */
 "A server error has occurred.  Please try again." = "服务器出现错误。请再次尝试。";
 
+/* Label for button that allows admin to Act as User */
+"Act as User" = "临时代理用户";
+
+/* Label displayed when logged in as an admin */
+"Admin" = "管理员";
+
 /* Alert Section Header */
 "Alert me when:" = "通知我当：";
+
+/* Alerts Tab */
+"Alerts" = "警告";
 
 /* Generic Network Error Message */
 "An unexpected error occurred.  Please try again." = "出现意外错误。请再次尝试。";
@@ -66,6 +75,9 @@
 
 /* Course Grade Low On Description */
 "Course grade below" = "以下课程成绩";
+
+/* Courses Tab */
+"Courses" = "课程";
 
 /* Title for field */
 "Describe your problem" = "描述您的问题";
@@ -211,6 +223,9 @@
 /* Syllabus Button Title */
 "Syllabus" = "教学大纲";
 
+/* Directions in the admin view */
+"Tap to start viewing Canvas as another person." = "轻触以开始以另一个人的身份查看 Canvas。";
+
 /* Support Ticket Created Successfully */
 "Thanks, your request was received!" = "谢谢，您的请求被接受！";
 
@@ -237,6 +252,12 @@
 
 /* Name of action when viewing a reminder */
 "View" = "查看";
+
+/* Calendar Tab */
+"Week" = "周";
+
+/* Header title of admin view */
+"Welcome!" = "欢迎！";
 
 /* Title for field */
 "What can we do better?" = "我们如何能做得更好？";

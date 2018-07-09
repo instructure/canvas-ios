@@ -10,8 +10,17 @@
 /* Server Error Message */
 "A server error has occurred.  Please try again." = "出現伺服器故障。請重試。";
 
+/* Label for button that allows admin to Act as User */
+"Act as User" = "作為使用者";
+
+/* Label displayed when logged in as an admin */
+"Admin" = "管理員";
+
 /* Alert Section Header */
 "Alert me when:" = "在下列情形時提醒我：";
+
+/* Alerts Tab */
+"Alerts" = "警示";
 
 /* Generic Network Error Message */
 "An unexpected error occurred.  Please try again." = "出現意外故障。請重試。";
@@ -66,6 +75,9 @@
 
 /* Course Grade Low On Description */
 "Course grade below" = "下方課程評分";
+
+/* Courses Tab */
+"Courses" = "課程";
 
 /* Title for field */
 "Describe your problem" = "描述您的問題";
@@ -211,6 +223,9 @@
 /* Syllabus Button Title */
 "Syllabus" = "課程大綱";
 
+/* Directions in the admin view */
+"Tap to start viewing Canvas as another person." = "點選以開始作為另一個人檢視 Canvas。";
+
 /* Support Ticket Created Successfully */
 "Thanks, your request was received!" = "謝謝，您的請求已經被接收！";
 
@@ -237,6 +252,12 @@
 
 /* Name of action when viewing a reminder */
 "View" = "檢視";
+
+/* Calendar Tab */
+"Week" = "週";
+
+/* Header title of admin view */
+"Welcome!" = "歡迎！";
 
 /* Title for field */
 "What can we do better?" = "我們有何可改進之處？";

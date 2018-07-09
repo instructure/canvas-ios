@@ -10,8 +10,17 @@
 /* Server Error Message */
 "A server error has occurred.  Please try again." = "サーバーエラーが発生しました。再度お試しください。";
 
+/* Label for button that allows admin to Act as User */
+"Act as User" = "ユーザーとして行動する";
+
+/* Label displayed when logged in as an admin */
+"Admin" = "管理者";
+
 /* Alert Section Header */
 "Alert me when:" = "次の時にアラートしてください：";
+
+/* Alerts Tab */
+"Alerts" = "アラート";
 
 /* Generic Network Error Message */
 "An unexpected error occurred.  Please try again." = "予期しないエラーが発生しました。再度お試しください。";
@@ -66,6 +75,9 @@
 
 /* Course Grade Low On Description */
 "Course grade below" = "より下のコース成績";
+
+/* Courses Tab */
+"Courses" = "コース";
 
 /* Title for field */
 "Describe your problem" = "問題についてお聞かせください";
@@ -211,6 +223,9 @@
 /* Syllabus Button Title */
 "Syllabus" = "シラバス";
 
+/* Directions in the admin view */
+"Tap to start viewing Canvas as another person." = "タップして別の人物としてCanvasの閲覧を開始する";
+
 /* Support Ticket Created Successfully */
 "Thanks, your request was received!" = "リクエストが受理されました！";
 
@@ -237,6 +252,12 @@
 
 /* Name of action when viewing a reminder */
 "View" = "表示";
+
+/* Calendar Tab */
+"Week" = "週";
+
+/* Header title of admin view */
+"Welcome!" = "どういたしまして！";
 
 /* Title for field */
 "What can we do better?" = "改善する余地はどこにあるでしょう？";

@@ -10,8 +10,17 @@
 /* Server Error Message */
 "A server error has occurred.  Please try again." = "Ett serverfel inträffade. Försök igen.";
 
+/* Label for button that allows admin to Act as User */
+"Act as User" = "Agera som användare";
+
+/* Label displayed when logged in as an admin */
+"Admin" = "Admin";
+
 /* Alert Section Header */
 "Alert me when:" = "Larma mig när:";
+
+/* Alerts Tab */
+"Alerts" = "Larm";
 
 /* Generic Network Error Message */
 "An unexpected error occurred.  Please try again." = "Ett oväntat fel inträffade. Försök igen.";
@@ -66,6 +75,9 @@
 
 /* Course Grade Low On Description */
 "Course grade below" = "Kursbetyg under";
+
+/* Courses Tab */
+"Courses" = "Kurser";
 
 /* Title for field */
 "Describe your problem" = "Beskriv ditt problem";
@@ -211,6 +223,9 @@
 /* Syllabus Button Title */
 "Syllabus" = "Antura tidsplan";
 
+/* Directions in the admin view */
+"Tap to start viewing Canvas as another person." = "Tryck för att använda Canvas som någon annan.";
+
 /* Support Ticket Created Successfully */
 "Thanks, your request was received!" = "Tack, din förfrågan har tagits emot!";
 
@@ -237,6 +252,12 @@
 
 /* Name of action when viewing a reminder */
 "View" = "Visa";
+
+/* Calendar Tab */
+"Week" = "Vecka";
+
+/* Header title of admin view */
+"Welcome!" = "Välkommen!";
 
 /* Title for field */
 "What can we do better?" = "Vad kan vi förbättra?";

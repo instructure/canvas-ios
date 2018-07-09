@@ -10,8 +10,17 @@
 /* Server Error Message */
 "A server error has occurred.  Please try again." = "Une erreur du serveur s'est produite. Veuillez réessayer.";
 
+/* Label for button that allows admin to Act as User */
+"Act as User" = "Agir en tant qu'utilisateur";
+
+/* Label displayed when logged in as an admin */
+"Admin" = "Admin";
+
 /* Alert Section Header */
 "Alert me when:" = "M'alerter lorsque : ";
+
+/* Alerts Tab */
+"Alerts" = "Alertes";
 
 /* Generic Network Error Message */
 "An unexpected error occurred.  Please try again." = "Une erreur inattendue s'est produite. Veuillez réessayer.";
@@ -66,6 +75,9 @@
 
 /* Course Grade Low On Description */
 "Course grade below" = "Note du cours inférieur à";
+
+/* Courses Tab */
+"Courses" = "Cours";
 
 /* Title for field */
 "Describe your problem" = "Décrivez votre problème";
@@ -211,6 +223,9 @@
 /* Syllabus Button Title */
 "Syllabus" = "Programme";
 
+/* Directions in the admin view */
+"Tap to start viewing Canvas as another person." = "Tapez pour commencer à voir Canvas comme une autre personne.";
+
 /* Support Ticket Created Successfully */
 "Thanks, your request was received!" = "Merci, votre requête a bien été reçue !";
 
@@ -237,6 +252,12 @@
 
 /* Name of action when viewing a reminder */
 "View" = "Voir";
+
+/* Calendar Tab */
+"Week" = "Semaine";
+
+/* Header title of admin view */
+"Welcome!" = "Bienvenue !";
 
 /* Title for field */
 "What can we do better?" = "En quoi pouvons-nous nous améliorer ?";

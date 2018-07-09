@@ -10,8 +10,17 @@
 /* Server Error Message */
 "A server error has occurred.  Please try again." = "حدث خطأ في الخادم. يرجى إعادة المحاولة.";
 
+/* Label for button that allows admin to Act as User */
+"Act as User" = "تصرف كمستخدم";
+
+/* Label displayed when logged in as an admin */
+"Admin" = "المسؤول";
+
 /* Alert Section Header */
 "Alert me when:" = "تنبيهي عندما:";
+
+/* Alerts Tab */
+"Alerts" = "تنبيهات";
 
 /* Generic Network Error Message */
 "An unexpected error occurred.  Please try again." = "حدث خطأ غير متوقع. يرجى إعادة المحاولة.";
@@ -66,6 +75,9 @@
 
 /* Course Grade Low On Description */
 "Course grade below" = "درجة المساق أصغر من";
+
+/* Courses Tab */
+"Courses" = "المساقات";
 
 /* Title for field */
 "Describe your problem" = "قم بوصف مشكلتك";
@@ -211,6 +223,9 @@
 /* Syllabus Button Title */
 "Syllabus" = "المناهج";
 
+/* Directions in the admin view */
+"Tap to start viewing Canvas as another person." = "انقر لبدء عرض Canvas كشخص آخر.";
+
 /* Support Ticket Created Successfully */
 "Thanks, your request was received!" = "شكراً، تم استلام طلبك!";
 
@@ -237,6 +252,12 @@
 
 /* Name of action when viewing a reminder */
 "View" = "عرض";
+
+/* Calendar Tab */
+"Week" = "الأسبوع";
+
+/* Header title of admin view */
+"Welcome!" = "مرحبًا!";
 
 /* Title for field */
 "What can we do better?" = "ماذا يمكننا فعله لتطوير أداءنا؟";

@@ -260,6 +260,9 @@
   "canvas_student_app_329567f": {
     "message": "Canvas Ākonga Taupanga"
   },
+  "canvas_teacher_app_9dc7d7ed": {
+    "message": "Canvas Kaiako App"
+  },
   "change_discussiontitle_to_different_grouping_9f5ed8c1": {
     "message": "Huri ki te { discussionTitle } Whkarōpū rerekē"
   },
@@ -955,6 +958,9 @@
   },
   "none_9b6c9bec": {
     "message": "kore"
+  },
+  "not_a_parent_697e87e1": {
+    "message": "Kaore i te matua?"
   },
   "not_a_teacher_b0d0fc55": {
     "message": "Kaore i te kaiako?"

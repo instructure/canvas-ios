@@ -10,8 +10,17 @@
 /* Server Error Message */
 "A server error has occurred.  Please try again." = "Gwall ar y gweinydd.  Rhowch gynnig arall arni.";
 
+/* Label for button that allows admin to Act as User */
+"Act as User" = "Gweithredu fel Defnyddiwr";
+
+/* Label displayed when logged in as an admin */
+"Admin" = "Gweinyddwr";
+
 /* Alert Section Header */
 "Alert me when:" = "Rhowch wybod i mi pan:";
+
+/* Alerts Tab */
+"Alerts" = "Negeseuon Hysbysu";
 
 /* Generic Network Error Message */
 "An unexpected error occurred.  Please try again." = "Gwall Annisgwyl.  Rhowch gynnig arall arni.";
@@ -66,6 +75,9 @@
 
 /* Course Grade Low On Description */
 "Course grade below" = "Gradd y cwrs yn is na";
+
+/* Courses Tab */
+"Courses" = "Cyrsiau";
 
 /* Title for field */
 "Describe your problem" = "Disgrifiwch eich problem";
@@ -211,6 +223,9 @@
 /* Syllabus Button Title */
 "Syllabus" = "Maes Llafur";
 
+/* Directions in the admin view */
+"Tap to start viewing Canvas as another person." = "Tapiwch i ddechrau gweld Canvas fel person arall.";
+
 /* Support Ticket Created Successfully */
 "Thanks, your request was received!" = "Wedi cael eich cais, diolch!";
 
@@ -237,6 +252,12 @@
 
 /* Name of action when viewing a reminder */
 "View" = "Gweld";
+
+/* Calendar Tab */
+"Week" = "Wythnos";
+
+/* Header title of admin view */
+"Welcome!" = "Croeso!";
 
 /* Title for field */
 "What can we do better?" = "Beth fydden ni'n gallu ei wneud yn well?";

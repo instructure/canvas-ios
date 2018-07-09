@@ -260,6 +260,9 @@
   "canvas_student_app_329567f": {
     "message": "Aplicação de aluno Canvas"
   },
+  "canvas_teacher_app_9dc7d7ed": {
+    "message": "App Canvas Teacher"
+  },
   "change_discussiontitle_to_different_grouping_9f5ed8c1": {
     "message": "Alterar { discussionTitle } para o agrupamento diferente"
   },
@@ -952,6 +955,9 @@
   },
   "none_9b6c9bec": {
     "message": "nenhum"
+  },
+  "not_a_parent_697e87e1": {
+    "message": "Não é um Pai?"
   },
   "not_a_teacher_b0d0fc55": {
     "message": "Não é professor?"

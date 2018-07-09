@@ -2,7 +2,7 @@
 "%@ %d of %d" = "%1$@ %2$d of %3$d";
 
 /* Something to Something */
-"%@ to %@" = "%1$@ do %2$@\n";
+"%@ to %@" = "%1$@ do %2$@";
 
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
@@ -10,8 +10,17 @@
 /* Server Error Message */
 "A server error has occurred.  Please try again." = "Wystąpił błąd serwera. Spróbuj ponownie.";
 
+/* Label for button that allows admin to Act as User */
+"Act as User" = "Działaj jako użytkownik";
+
+/* Label displayed when logged in as an admin */
+"Admin" = "Admin";
+
 /* Alert Section Header */
 "Alert me when:" = "Powiadom mnie gdy:";
+
+/* Alerts Tab */
+"Alerts" = "Alerty";
 
 /* Generic Network Error Message */
 "An unexpected error occurred.  Please try again." = "Wystąpił nieoczekiwany błąd. Spróbuj ponownie.";
@@ -66,6 +75,9 @@
 
 /* Course Grade Low On Description */
 "Course grade below" = "Ocena z kursu poniżej";
+
+/* Courses Tab */
+"Courses" = "Kursy";
 
 /* Title for field */
 "Describe your problem" = "Opisz problem";
@@ -211,6 +223,9 @@
 /* Syllabus Button Title */
 "Syllabus" = "Konspekt";
 
+/* Directions in the admin view */
+"Tap to start viewing Canvas as another person." = "Stuknij, aby rozpocząć wyświetlanie Canvas jako inna osoba.";
+
 /* Support Ticket Created Successfully */
 "Thanks, your request was received!" = "Dziękujemy, Twoja prośba została odebrana!";
 
@@ -237,6 +252,12 @@
 
 /* Name of action when viewing a reminder */
 "View" = "Podgląd";
+
+/* Calendar Tab */
+"Week" = "Tydzień";
+
+/* Header title of admin view */
+"Welcome!" = "Witamy!";
 
 /* Title for field */
 "What can we do better?" = "Co możemy ulepszyć?";

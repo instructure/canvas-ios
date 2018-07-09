@@ -260,6 +260,9 @@
   "canvas_student_app_329567f": {
     "message": "App Canvas Student"
   },
+  "canvas_teacher_app_9dc7d7ed": {
+    "message": "App Pwofesè Canvas"
+  },
   "change_discussiontitle_to_different_grouping_9f5ed8c1": {
     "message": "Chanje { discussionTitle } an diferan gwoupman"
   },
@@ -952,6 +955,9 @@
   },
   "none_9b6c9bec": {
     "message": "okenn"
+  },
+  "not_a_parent_697e87e1": {
+    "message": "Ou pa yon Paran?"
   },
   "not_a_teacher_b0d0fc55": {
     "message": "Se pa yon pofesè?"

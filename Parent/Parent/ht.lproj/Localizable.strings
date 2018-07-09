@@ -10,8 +10,17 @@
 /* Server Error Message */
 "A server error has occurred.  Please try again." = "Yon erè te fèt sou sèvè a. Tanpri eseye ankò.";
 
+/* Label for button that allows admin to Act as User */
+"Act as User" = "Aji tankou Itilizatè";
+
+/* Label displayed when logged in as an admin */
+"Admin" = "Admin";
+
 /* Alert Section Header */
 "Alert me when:" = "Avèti mwen lè:";
+
+/* Alerts Tab */
+"Alerts" = "Alèt";
 
 /* Generic Network Error Message */
 "An unexpected error occurred.  Please try again." = "Yon erè ki fèt sanzatann. Tanpri eseye ankò.";
@@ -66,6 +75,9 @@
 
 /* Course Grade Low On Description */
 "Course grade below" = "Nòt kou pi ba a";
+
+/* Courses Tab */
+"Courses" = "Kou";
 
 /* Title for field */
 "Describe your problem" = "Dekri Pwoblèm ou a";
@@ -211,6 +223,9 @@
 /* Syllabus Button Title */
 "Syllabus" = "Pwogram";
 
+/* Directions in the admin view */
+"Tap to start viewing Canvas as another person." = "Tape pou kòmanse afiche Canvas tankou yon lòt moun.";
+
 /* Support Ticket Created Successfully */
 "Thanks, your request was received!" = "Mèsi, nou resevwa demann ou an!";
 
@@ -237,6 +252,12 @@
 
 /* Name of action when viewing a reminder */
 "View" = "Gade";
+
+/* Calendar Tab */
+"Week" = "Semenn";
+
+/* Header title of admin view */
+"Welcome!" = "Bienveni!";
 
 /* Title for field */
 "What can we do better?" = "Kisa nou ka amelyore?";

@@ -260,6 +260,9 @@
   "canvas_student_app_329567f": {
     "message": "Canvas スチューデントアプリ"
   },
+  "canvas_teacher_app_9dc7d7ed": {
+    "message": "Canvas 講師アプリ"
+  },
   "change_discussiontitle_to_different_grouping_9f5ed8c1": {
     "message": "{ discussionTitle } を別のグループに変更する"
   },
@@ -952,6 +955,9 @@
   },
   "none_9b6c9bec": {
     "message": "なし"
+  },
+  "not_a_parent_697e87e1": {
+    "message": "親ではありませんか？"
   },
   "not_a_teacher_b0d0fc55": {
     "message": "講師ではありませんか？"

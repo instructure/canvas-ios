@@ -10,8 +10,17 @@
 /* Server Error Message */
 "A server error has occurred.  Please try again." = "Det har oppstått en serverfeil. Vennligst forsøk igjen.";
 
+/* Label for button that allows admin to Act as User */
+"Act as User" = "Opptre som bruker";
+
+/* Label displayed when logged in as an admin */
+"Admin" = "Admin";
+
 /* Alert Section Header */
 "Alert me when:" = "Varsle meg når:";
+
+/* Alerts Tab */
+"Alerts" = "Varsler";
 
 /* Generic Network Error Message */
 "An unexpected error occurred.  Please try again." = "Det oppsto en uventet feil. Vennligst forsøk igjen.";
@@ -66,6 +75,9 @@
 
 /* Course Grade Low On Description */
 "Course grade below" = "Emnevurdering under";
+
+/* Courses Tab */
+"Courses" = "Emner";
 
 /* Title for field */
 "Describe your problem" = "Beskriv problemet ditt";
@@ -211,6 +223,9 @@
 /* Syllabus Button Title */
 "Syllabus" = "Emneoversikt";
 
+/* Directions in the admin view */
+"Tap to start viewing Canvas as another person." = "Trykk på start for å vise Canvas som en annen person.";
+
 /* Support Ticket Created Successfully */
 "Thanks, your request was received!" = "Takk, forespørselen din ble mottatt!";
 
@@ -237,6 +252,12 @@
 
 /* Name of action when viewing a reminder */
 "View" = "Vis";
+
+/* Calendar Tab */
+"Week" = "Uke";
+
+/* Header title of admin view */
+"Welcome!" = "Velkommen!";
 
 /* Title for field */
 "What can we do better?" = "Hva kan vi gjøre bedre?";

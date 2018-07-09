@@ -10,8 +10,17 @@
 /* Server Error Message */
 "A server error has occurred.  Please try again." = "Er heeft zich een serverfout voorgedaan. Probeer het nogmaals.";
 
+/* Label for button that allows admin to Act as User */
+"Act as User" = "Optreden als gebruiker";
+
+/* Label displayed when logged in as an admin */
+"Admin" = "Beheer";
+
 /* Alert Section Header */
 "Alert me when:" = "Waarschuw me als:";
+
+/* Alerts Tab */
+"Alerts" = "Waarschuwingen";
 
 /* Generic Network Error Message */
 "An unexpected error occurred.  Please try again." = "Er heeft zich een onverwachte fout voorgedaan. Probeer het nogmaals.";
@@ -66,6 +75,9 @@
 
 /* Course Grade Low On Description */
 "Course grade below" = "Cursuscijfer lager dan";
+
+/* Courses Tab */
+"Courses" = "Cursussen";
 
 /* Title for field */
 "Describe your problem" = "Beschrijf je probleem";
@@ -211,6 +223,9 @@
 /* Syllabus Button Title */
 "Syllabus" = "Syllabus";
 
+/* Directions in the admin view */
+"Tap to start viewing Canvas as another person." = "Tik hierop om Canvas weer te geven als een andere persoon.";
+
 /* Support Ticket Created Successfully */
 "Thanks, your request was received!" = "Dank je, je verzoek is ontvangen!";
 
@@ -237,6 +252,12 @@
 
 /* Name of action when viewing a reminder */
 "View" = "Bekijken";
+
+/* Calendar Tab */
+"Week" = "Week";
+
+/* Header title of admin view */
+"Welcome!" = "Welkom!";
 
 /* Title for field */
 "What can we do better?" = "Wat kunnen we beter doen?";
