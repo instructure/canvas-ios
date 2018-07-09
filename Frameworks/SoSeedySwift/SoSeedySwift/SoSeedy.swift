@@ -17,16 +17,17 @@
 import Foundation
 import SwiftGRPC
 
-let address = "localhost:50051"
-let hostname = "example.com"
+let hostname = "soseedy.endpoints.delta-essence-114723.cloud.goog"
+let address = "\(hostname):80"
 
 func makeClient<T: ServiceClientBase >(_ client: T.Type) -> T {
   let client = client.init(address: address,
                      certificates: Certs.caCert,
                      clientCertificates: Certs.clientCert,
                      clientKey: Certs.clientPrivateKey,
-                     arguments: [.sslTargetNameOverride(hostname)])
+                     arguments: [.sslTargetNameOverride("example.com")])
   client.host = hostname
+  client.timeout = 5 * 60
   return client
 }
 
@@ -77,6 +78,10 @@ public func createStudent(inAll courses: [Soseedy_Course]) -> Soseedy_CanvasUser
     let user = createUser()
     courses.forEach { enroll(user, as: .teacher, in: $0) }
     return user
+}
+
+public func healthCheck() -> Soseedy_HealthCheck {
+  return try! generalClient.getHealthCheck(Soseedy_HealthCheckRequest())
 }
 
 public func createTeacher(in course: Soseedy_Course = createCourse()) -> Soseedy_CanvasUser {

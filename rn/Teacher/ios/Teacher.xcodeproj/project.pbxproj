@@ -869,7 +869,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if nc -w 5 -z localhost 50051 ; then\n  echo \"gRPC already running on port 50051\"\n  exit 0\nfi\n\nopen \"$SRCROOT/../../../scripts/grpc/launchGrpc.command\" || echo \"Failed to start gRPC server\"\n";
+			shellScript = "# # Moved to google cloud server\n#\n#if nc -w 5 -z localhost 50051 ; then\n#  echo \"gRPC already running on port 50051\"\n#  exit 0\n#fi\n#\n#open \"$SRCROOT/../../../scripts/grpc/launchGrpc.command\" || echo \"Failed to start gRPC server\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

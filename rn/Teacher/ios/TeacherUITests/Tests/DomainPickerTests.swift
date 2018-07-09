@@ -14,9 +14,14 @@
 // limitations under the License.
 //
 
+import SoSeedySwift
+import XCTest
+
 class LoginPageTests: TeacherTest {
-    
-    func testLoginPage_findMySchoolButtonExists() {
-        loginPage.assertPageObjects()
+
+    func testGrpc_serverIsOnline() {
+        let result = SoSeedySwift.healthCheck()
+        XCTAssertTrue(result.healthy)
     }
 }
+
