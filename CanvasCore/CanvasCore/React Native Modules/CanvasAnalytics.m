@@ -26,6 +26,14 @@ RCT_EXPORT_MODULE();
     _handler = handler;
 }
 
++ (void)logEvent:(NSString *)name {
+    [self logEvent:name parameters:nil];
+}
+
++ (void)logEvent:(NSString *)name parameters:(nullable NSDictionary<NSString *, id>*)parameters {
+    [_handler handleEvent:name parameters:parameters];
+}
+
 RCT_EXPORT_METHOD(logEvent:(NSString *)name parameters:(nullable NSDictionary<NSString *, id>*)parameters)
 {
     [_handler handleEvent:name parameters:parameters];

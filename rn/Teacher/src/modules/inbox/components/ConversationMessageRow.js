@@ -39,6 +39,7 @@ import Images from '../../../images'
 import Video from '../../../common/components/Video'
 import { LinkButton } from '../../../common/buttons'
 import Hyperlink from 'react-native-hyperlink'
+import { logEvent } from '@common/CanvasAnalytics'
 
 export type ConversationMessageProps = {
   conversation: Conversation,
@@ -58,6 +59,7 @@ export default class ConversationMessageRow extends Component<ConversationMessag
   }
 
   _replyButtonPressed = () => {
+    logEvent('inbox_message_replied')
     this.props.navigator.show(`/conversations/${this.props.conversation.id}/add_message`, { modal: true }, {
       recipients: this.props.conversation.participants.filter(p => this.props.conversation.audience.includes(p.id)),
       contextName: this.props.conversation.context_name,

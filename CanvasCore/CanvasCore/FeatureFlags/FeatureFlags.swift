@@ -29,10 +29,6 @@ open class FeatureFlags: NSObject {
     // The logic in this method is duplicated from ./rn/Teacher/src/common/feature-flags.js
     // Any changes here should be duplicated into that file
     public class func featureFlagEnabled(_ flagName: FeatureFlagName) -> Bool {
-        // always return true if in development
-        #if DEBUG
-        return true
-        #else
         guard let baseURL = CanvasKeymaster.the().currentClient?.baseURL?.absoluteString else { return false }
         // return true if the domain is in the list of always on domains
         if exemptDomains.contains(baseURL) {
@@ -58,7 +54,6 @@ open class FeatureFlags: NSObject {
         // if the feature flag exists or for any other reason not accounted for
         // turn off the feature flag
         return false
-        #endif
     }
     
     // For obj-c

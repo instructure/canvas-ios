@@ -30,9 +30,12 @@ import * as template from '../../src/__templates__'
 
 import setupI18n from '../../i18n/setup'
 import { shouldTrackAsyncActions } from '../../src/redux/middleware/redux-promise'
+import { enableAllFeaturesFlagsForTesting } from '@common/feature-flags'
+
 setupI18n('en')
 shouldTrackAsyncActions(false)
 setSession(template.session())
+enableAllFeaturesFlagsForTesting()
 
 const { NativeModules } = require('react-native')
 

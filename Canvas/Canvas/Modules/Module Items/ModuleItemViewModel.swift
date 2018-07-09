@@ -114,6 +114,7 @@ class ModuleItemViewModel: NSObject {
                 guard let next = self.nextModuleItem.value else {
                     fatalError("This action should only be enabled if there is a next item")
                 }
+                CanvasAnalytics.logEvent("module_item_content_selected_next")
                 self.observer = try ModuleItem.observer(self.session, moduleItemID: next.id)
             }
         }
@@ -124,6 +125,7 @@ class ModuleItemViewModel: NSObject {
                 guard let previous = self.previousModuleItem.value else {
                     fatalError("This action should only be enabled if there is a previous item")
                 }
+                CanvasAnalytics.logEvent("module_item_content_selected_previous")
                 self.observer = try ModuleItem.observer(self.session, moduleItemID: previous.id)
             }
         }

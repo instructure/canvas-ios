@@ -73,7 +73,7 @@ var enableAllFeatureFlags = false
 // CanvasCore/CanvasCore/FeatureFlags/FeatureFlags.swift as the logic
 // is duplicated there for native
 export function featureFlagEnabled (flagName: FeatureFlagName): boolean {
-  if (global.__DEV__ || enableAllFeatureFlags) {
+  if (enableAllFeatureFlags) {
     return true
   }
 
@@ -106,4 +106,12 @@ export async function featureFlagSetup (): Promise<*> {
   }
 
   return FeatureFlagsManager.syncFeatureFlags(featureFlags, exemptDomains)
+}
+
+export function enableAllFeaturesFlagsForTesting () {
+  enableAllFeatureFlags = true
+}
+
+export function disableAllFeatureFlagsForTesting () {
+  enableAllFeatureFlags = false
 }

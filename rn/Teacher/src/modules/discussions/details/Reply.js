@@ -40,6 +40,7 @@ import httpClient from '../../../canvas-api/httpClient'
 import isEqual from 'lodash/isEqual'
 import RichContent from '../../../common/components/RichContent'
 import { featureFlagEnabled } from '@common/feature-flags'
+import { logEvent } from '@common/CanvasAnalytics'
 
 type ReadState = 'read' | 'unread'
 
@@ -64,6 +65,7 @@ export type Props = {
   discussionLockedForUser?: boolean,
   rateEntry: Function,
   isLastReply: boolean,
+  isAnnouncement: boolean,
 }
 
 type State = {
@@ -379,10 +381,20 @@ export default class Reply extends Component<Props, State> {
   }
 
   _actionReply = () => {
+    if (this.props.isAnnouncement) {
+      logEvent('announcement_replied', { nested: true })
+    } else {
+      logEvent('discussion_topic_replied', { nested: true })
+    }
     this.props.replyToEntry(this.props.reply.id, this.props.myPath)
   }
 
   _actionEdit = () => {
+    if (this.props.isAnnouncement) {
+      logEvent('announcement_reply_edited')
+    } else {
+      logEvent('discussion_topic_reply_edited')
+    }
     const { context, contextID, discussionID } = this.props
     let options = []
     options.push(i18n('Edit'))

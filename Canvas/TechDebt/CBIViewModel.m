@@ -34,6 +34,8 @@
     };
 }
 
+- (void)viewControllerViewDidLoad:(UIViewController *)viewController {}
+
 - (NSString *)description {
     return [NSString stringWithFormat:@"{%@ modelClass=%@, modelID=%@}", NSStringFromClass(self.class), NSStringFromClass(self.model.class), self.model.id];
 }

@@ -316,6 +316,7 @@ typedef enum CBISubmissionState : NSUInteger {
 }
 
 - (IBAction)tappedTurnIn:(id)sender {
+    [CanvasAnalytics logEvent:@"assignment_turned_in_selected"];
     SubmissionWorkflowController *controller = [[SubmissionWorkflowController alloc] initWithViewController:self];
     controller.allowsMediaSubmission = CKCanvasAPI.currentAPI.mediaServer.enabled;
     controller.legacyAssignment = self.legacyAssignment;
@@ -358,6 +359,7 @@ typedef enum CBISubmissionState : NSUInteger {
                     [progressView removeFromSuperview];
                     progressView = nil;
                     [AppStoreReview handleSuccessfulSubmit];
+                    [CanvasAnalytics logEvent:@"assignment_turned_in_successful"];
                 }];
             }];
         }
@@ -493,6 +495,7 @@ typedef enum CBISubmissionState : NSUInteger {
 }
 
 - (void)submitComment:(NSString *)commentText onSuccess:(void (^)(void))success onFailure:(void (^)(void))failure {
+    [CanvasAnalytics logEvent:@"submission_comment_posted"];
     CKISubmissionComment *comment = [CKISubmissionComment new];
     comment.context = self.viewModel.record;
     comment.comment = commentText;

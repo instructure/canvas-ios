@@ -196,7 +196,7 @@ open class CalendarDayDetailViewController: UIViewController, CalendarDayPageVie
     
     @IBAction func prevDayPressed(_ sender: UIButton) {
         dayPageViewController.transitionToPreviousDay()
-        date = dayPageViewController.date as Date!
+        date = dayPageViewController.date as Date
         self.weekPageViewController.setDay(date, animated: true)
     }
     

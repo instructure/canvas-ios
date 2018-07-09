@@ -19,7 +19,7 @@
 // are in the enum but that's ok cause we need to test some logic here
 
 import { setSession } from '../../canvas-api'
-import { featureFlagEnabled, featureFlags } from '../feature-flags'
+import { featureFlagEnabled, featureFlags, enableAllFeaturesFlagsForTesting, disableAllFeatureFlagsForTesting } from '../feature-flags'
 import app from '../../modules/app'
 
 const templates = {
@@ -28,9 +28,14 @@ const templates = {
 
 describe('Feature Flags', () => {
   beforeAll(() => {
+    disableAllFeatureFlagsForTesting()
     featureFlags['aNewFlag'] = {
       exempt: { domains: ['https://www.google.com/'] },
     }
+  })
+
+  afterAll(() => {
+    enableAllFeaturesFlagsForTesting()
   })
 
   beforeEach(() => {

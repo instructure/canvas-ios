@@ -53,6 +53,7 @@ import { type TraitCollection } from '../../../routing/Navigator'
 import { isRegularDisplayMode } from '../../../routing/utils'
 import { isTeacher } from '../../app'
 import { alertError } from '../../../redux/middleware/error-handler'
+import { logEvent } from '../../../common/CanvasAnalytics'
 
 type OwnProps = {
   announcementID: string,
@@ -394,6 +395,7 @@ export class DiscussionDetails extends Component<Props, any> {
           canRate={this.props.canRate}
           showRating={discussion.allow_rating}
           isLastReply={this.state.flatReplies.length - 1 === index}
+          isAnnouncement={Boolean(this.props.isAnnouncement)}
         />
       </View>
     )
@@ -592,6 +594,11 @@ export class DiscussionDetails extends Component<Props, any> {
   _onPressReply = () => {
     let lastReplyAt = this.props.discussion && this.props.discussion.last_reply_at
     let permissions = this.props.discussion && this.props.discussion.permissions
+    if (this.props.isAnnouncement) {
+      logEvent('announcement_replied', { nested: false })
+    } else {
+      logEvent('discussion_topic_replied', { nested: false })
+    }
     this.props.navigator.show(`/${this.props.context}/${this.props.contextID}/discussion_topics/${this.props.discussionID}/reply`, { modal: true }, { indexPath: [], lastReplyAt, permissions })
   }
 

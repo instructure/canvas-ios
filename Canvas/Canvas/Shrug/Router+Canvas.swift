@@ -155,8 +155,8 @@ extension Router {
             return fileVC
         }
 
-        addRoute("groups/:groupID/files/:fileIdent", handler: downloadFile)
-        addRoute("groups/:groupID/files/:fileIdent/download", handler: downloadFile)
+        addRoute("/groups/:groupID/files/:fileIdent", handler: downloadFile)
+        addRoute("/groups/:groupID/files/:fileIdent/download", handler: downloadFile)
         addRoute("/courses/:courseID/files/:fileIdent") { parameters, sender in
             // This route might have a module_item_id param
             // If so, it needs to be embedded in ModuleItemDetailViewController

@@ -34,6 +34,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface CanvasAnalytics : NSObject <RCTBridgeModule>
 
 + (void)setHandler:(id<CanvasAnalyticsHandler>)handler;
++ (void)logEvent:(NSString *)name parameters:(nullable NSDictionary<NSString *, id>*)parameters;
++ (void)logEvent:(NSString *)name;
+
+// Instance version needed for React Native
 - (void)logEvent:(NSString *)name parameters:(nullable NSDictionary<NSString *, id>*)parameters;
 
 @end

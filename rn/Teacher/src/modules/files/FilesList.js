@@ -49,6 +49,7 @@ import { isTeacher } from '../app'
 import color from '../../common/colors'
 import { isRegularDisplayMode } from '../../routing/utils'
 import type { TraitCollection } from '../../routing/Navigator'
+import { logEvent } from '@common/CanvasAnalytics'
 
 type FilesListProps = {
   data: any[], // The folders and files that are currently being shown
@@ -182,6 +183,7 @@ export class FilesList extends Component<Props, State> {
     } = this.props
 
     if (item.type === 'file') {
+      logEvent('file_viewed')
       this.setState({ selectedRowID: item.id })
 
       if (onSelectFile) {

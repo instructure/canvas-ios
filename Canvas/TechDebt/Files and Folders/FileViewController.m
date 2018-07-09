@@ -21,7 +21,6 @@
 #import <CanvasKit1/CKURLPreviewViewController.h>
 #import <CanvasKit1/CKUploadProgressToolbar.h>
 #import "FileViewController.h"
-#import "WebBrowserViewController.h"
 #import "NoPreviewAvailableController.h"
 #import "Router.h"
 #import "ContentLockViewController.h"

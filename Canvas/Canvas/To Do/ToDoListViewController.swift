@@ -128,6 +128,7 @@ class ToDoListViewController: FetchedTableViewController<Todo>, PageViewEventVie
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let todo = collection[indexPath]
+        CanvasAnalytics.logEvent("todo_selected")
         if let url = URL(string: todo.routingURL) {
             route(self, url)
         }

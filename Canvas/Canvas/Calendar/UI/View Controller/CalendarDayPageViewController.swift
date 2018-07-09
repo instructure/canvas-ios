@@ -165,7 +165,7 @@ open class CalendarDayPageViewController: UIViewController, UIPageViewController
         }
         
         if let visibleDayViewController = pageViewController.viewControllers?.first as? CalendarDayListViewController, let day = visibleDayViewController.day {
-            self.date = day as Date!
+            self.date = day as Date
             if let delegate = delegate {
                 delegate.dayPageViewController(self, didFinishAnimating: finished, toDay: day as Date, transitionCompleted: completed)
             }

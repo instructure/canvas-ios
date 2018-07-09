@@ -84,6 +84,7 @@ class ActivityStreamTableViewController: FetchedTableViewController<Activity> {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        CanvasAnalytics.logEvent("notification_selected")
         let activity = collection[indexPath]
         route(self, activity.url)
     }

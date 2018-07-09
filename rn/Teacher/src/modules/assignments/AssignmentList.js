@@ -47,6 +47,7 @@ import { isRegularDisplayMode } from '../../routing/utils'
 import ActivityIndicatorView from '../../common/components/ActivityIndicatorView'
 import ListEmptyComponent from '../../common/components/ListEmptyComponent'
 import { getGradesForGradingPeriod } from '../../canvas-api'
+import { logEvent } from '../../common/CanvasAnalytics'
 
 type State = {
   currentFilter: {
@@ -191,6 +192,7 @@ export class AssignmentList extends Component<AssignmentListProps, State> {
   }
 
   selectedAssignment = (assignment: Assignment) => {
+    logEvent('assignment_selected')
     this.props.updateCourseDetailsSelectedTabSelectedRow(assignment.id)
     this.setState({ selectedRowID: assignment.id })
     if (assignment.quiz_id) {

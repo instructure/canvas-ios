@@ -81,12 +81,15 @@ class ModuleDetailsViewController: CanvasCore.TableViewController, PageViewEvent
         guard let dataSource = dataSource as? ModuleDetailDataSource<ModuleViewModel, ModuleItemViewModel> else { fatalError("unexpected data source") }
         switch indexPath.section {
         case 0:
+            CanvasAnalytics.logEvent("module_item_selected")
             let module = dataSource.prerequisiteModulesCollection[IndexPath(row: indexPath.row, section: 0)]
             let url = URL(string: ContextID.course(withID: courseID).htmlPath / "modules" / module.id)!
             route(self, url)
         case 1:
             let moduleItem = dataSource.itemsCollection[IndexPath(row: indexPath.row, section: 0)]
             guard let content = moduleItem.content, content != .subHeader else { return }
+            let analyticsParams = ["contentType": moduleItem.contentType.rawValue]
+            CanvasAnalytics.logEvent("module_item_content_selected", parameters: analyticsParams)
             let url = URL(string: ContextID(id: courseID, context: .course).htmlPath/"modules"/moduleItem.moduleID/"items"/moduleItem.id)!
             route(self, url)
         default:

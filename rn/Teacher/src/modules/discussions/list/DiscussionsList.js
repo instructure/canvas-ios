@@ -41,6 +41,7 @@ import ActivityIndicatorView from '@common/components/ActivityIndicatorView'
 import ListEmptyComponent from '@common/components/ListEmptyComponent'
 import { isRegularDisplayMode } from '../../../routing/utils'
 import type { TraitCollection } from '../../../routing/Navigator'
+import { logEvent } from '@common/CanvasAnalytics'
 
 const { refreshCourse } = CourseActions
 const { refreshDiscussions } = ListActions
@@ -236,6 +237,7 @@ export class DiscussionsList extends Component<Props, any> {
   }
 
   addDiscussion = () => {
+    logEvent('discussion_topic_posted')
     this.props.navigator.show(`/${this.props.context}/${this.props.contextID}/discussion_topics/new`, { modal: true, modalPresentationStyle: 'formsheet' })
   }
 

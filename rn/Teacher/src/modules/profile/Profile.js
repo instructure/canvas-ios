@@ -49,6 +49,7 @@ import Actions from '@modules/userInfo/actions'
 import StatusBar from '@common/components/StatusBar'
 import * as LTITools from '@common/LTITools'
 import SFSafariViewController from 'react-native-sfsafariviewcontroller'
+import { logEvent } from '@common/CanvasAnalytics'
 
 const developerMenuStorageKey = 'teacher.profile.developermenu'
 
@@ -113,6 +114,7 @@ export class Profile extends Component<Object, State> {
   }
 
   switchUser = () => {
+    logEvent('change_user_selected')
     NativeModules.NativeLogin.switchUser()
   }
 

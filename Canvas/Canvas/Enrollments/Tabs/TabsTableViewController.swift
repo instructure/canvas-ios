@@ -66,13 +66,14 @@ class TabsTableViewController: FetchedTableViewController<Tab>, PageViewEventVie
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let routingURL = collection[indexPath].routingURL(session) {
+        let tab = collection[indexPath]
+        CanvasAnalytics.logEvent("group_tab_selected", parameters: ["tabId": tab.id])
+        if let routingURL = tab.routingURL(session) {
             route(self, routingURL)
         }
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         super.viewWillAppear(animated)
         if let selectedTabURL = selectedTabURL, let tab = collection.filter({ $0.routingURL(session) == selectedTabURL }).first, let indexPath = collection.indexPath(forObject: tab), self.splitViewController?.isCollapsed == false {
             tableView.selectRow(at: indexPath, animated: true, scrollPosition: .top)

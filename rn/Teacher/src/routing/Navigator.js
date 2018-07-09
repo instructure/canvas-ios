@@ -20,6 +20,7 @@ import { route } from './index'
 import SFSafariViewController from 'react-native-sfsafariviewcontroller'
 import { getAuthenticatedSessionURL } from '../canvas-api'
 import { recordRoute } from '../modules/developer-menu/DeveloperMenu'
+import { logEvent } from '@common/CanvasAnalytics'
 
 type ShowOptions = {
   modal: boolean,
@@ -71,6 +72,7 @@ export default class Navigator {
   async showWebView (url: string) {
     url = url.replace(/^canvas-[^:]*:/i, 'https:')
     if (url.startsWith('http') || url.startsWith('https')) {
+      logEvent('webview_content_selected', { url })
       try {
         let { data: { session_url: authenticatedURL } } = await getAuthenticatedSessionURL(url)
         SFSafariViewController.open(authenticatedURL)

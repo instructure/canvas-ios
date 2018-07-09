@@ -231,6 +231,7 @@ open class QuizIntroViewController: UIViewController, PageViewEventViewControlle
     // MARK: Actions
     
     func takeTheQuiz(_ button: UIButton?) {
+        CanvasAnalytics.logEvent("quiz_taken")
         if let takeabilityController = self.takeabilityController {
             if takeabilityController.takeableNatively() {
                 let controller = takeabilityController.submissionControllerForTakingQuiz(quizController.quiz!)

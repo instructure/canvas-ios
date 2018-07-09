@@ -54,6 +54,7 @@ describe('DiscussionReplies', () => {
       canRate: false,
       rateEntry: jest.fn(),
       isLastReply: false,
+      isAnnouncement: false,
     }
     jest.clearAllMocks()
   })

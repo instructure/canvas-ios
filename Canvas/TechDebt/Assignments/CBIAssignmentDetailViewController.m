@@ -277,6 +277,7 @@ NSInteger const GRADE_TAB_INDEX = 2;
         [self.rubricController.rubricTableView setAccessibilityElementsHidden:NO];
         [self.detailsController.view setAccessibilityElementsHidden:YES];
         [self.submissionController.tableView setAccessibilityElementsHidden:YES];
+        [CanvasAnalytics logEvent:@"rubric_viewed"];
     } else if (index == SUBMISSION_TAB_INDEX) {
         newController = self.submissionController;
         UIScrollView *scrollView = (UIScrollView *)newController.view;

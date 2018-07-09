@@ -54,6 +54,7 @@ class ModulesTableViewController: FetchedTableViewController<Module>, PageViewEv
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        CanvasAnalytics.logEvent("module_item_selected")
         let module = collection[indexPath]
         let url = URL(string: ContextID(id: courseID, context: .course).htmlPath / "modules" / module.id)!
         route(self, url)

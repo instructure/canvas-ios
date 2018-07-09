@@ -77,7 +77,6 @@ CGFloat tableViewHeightForRowAtIndexPath(MLVCTableViewController *self, SEL _cmd
         self.tableView.estimatedRowHeight = 44.f;
     }
 
-    
     if ([self.viewModel respondsToSelector:@selector(viewControllerViewDidLoad:)]) {
         [self.viewModel viewControllerViewDidLoad:self];
     }

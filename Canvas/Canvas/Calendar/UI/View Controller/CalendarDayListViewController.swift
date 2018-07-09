@@ -223,6 +223,7 @@ open class CalendarDayListViewController: UITableViewController {
     open override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
+        CanvasAnalytics.logEvent("calendar_event_selected")
         let calEvent = eventsCollection[indexPath]
         if let routeToURL = routeToURL, let url = calEvent.routingURL {
             routeToURL(url)

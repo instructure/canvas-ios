@@ -38,6 +38,7 @@ import { isTeacher, isStudent } from '../app'
 import * as LTITools from '../../common/LTITools'
 import TabsList from '../tabs/TabsList'
 import { featureFlagEnabled } from '@common/feature-flags'
+import { logEvent } from '@common/CanvasAnalytics'
 
 type RoutingParams = {
   +courseID: string,
@@ -90,6 +91,7 @@ export class CourseNavigation extends Component<CourseNavigationProps, any> {
   }
 
   selectTab = (tab: Tab) => {
+    logEvent('course_tab_selected', { tabId: tab.id })
     if (tab.id === this.props.attendanceTabID && tab.url && this.props.course) {
       this.props.navigator.show('/attendance', {}, {
         launchURL: tab.url,
