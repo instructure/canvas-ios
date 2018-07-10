@@ -105,11 +105,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 // MARK: Push notifications
 extension AppDelegate: UNUserNotificationCenterDelegate {
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        NotificationKitController.didRegisterForRemoteNotifications(deviceToken, errorHandler: handleError)
+        NotificationKitController.didRegisterForRemoteNotifications(deviceToken, errorHandler: handlePushNotificationRegistrationError)
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        handleError((error as NSError).addingInfo())
+        handlePushNotificationRegistrationError((error as NSError).addingInfo())
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
@@ -131,6 +131,10 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.alert, .sound])
+    }
+
+    func handlePushNotificationRegistrationError(_ error: NSError) {
+        Crashlytics.sharedInstance().recordError(error, withAdditionalUserInfo: ["source": "push_notification_registration"])
     }
 }
 
@@ -214,7 +218,9 @@ extension AppDelegate {
     }
     
     func handleError(_ error: NSError) {
-        ErrorReporter.reportError(error, from: window?.rootViewController)
+        DispatchQueue.main.async {
+            ErrorReporter.reportError(error, from: self.window?.rootViewController)
+        }
     }
 }
 

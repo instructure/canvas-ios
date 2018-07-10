@@ -34,7 +34,7 @@ extension NSError {
         if let s = sessionID        { userInfo[ErrorSessionIDKey] = s }
         if let f = failureReason    { userInfo[NSLocalizedFailureReasonErrorKey] = f }
         if let a = apiURL           { userInfo[ErrorURLKey] = a }
-        if let d = data             { userInfo[ErrorDataKey] = d }
+        if let d = data             { userInfo[ErrorDataKey] = String(data: d, encoding: .utf8) }
 
         self.init(domain: "com.instructure." + subdomain, code: code, userInfo: userInfo)
     }
@@ -59,8 +59,14 @@ extension NSError {
         return (userInfo[ErrorSessionIDKey] as? String) ?? "Unknown"
     }
 
-    public var data: Data? {
-        return (userInfo[ErrorDataKey] as? Data) ?? nil
+    public var data: String? {
+        if let string = userInfo[ErrorDataKey] as? String {
+            return string
+        }
+        if let data = userInfo[ErrorDataKey] as? Data {
+            return String(data: data, encoding: .utf8)
+        }
+        return nil
     }
     
     public var url: String {
