@@ -34,14 +34,8 @@ private enum SupportTicketCellTag: String {
 
 open class StudentSettingsViewController : FormViewController {
 
-    // UI Elements
-    fileprivate var cancelButton: UIBarButtonItem!
-    fileprivate var doneButton: UIBarButtonItem!
-    fileprivate var removeButton: UIBarButtonItem!
-    var removeToolbarItems: [UIBarButtonItem] = []
-    fileprivate var removeActivityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-    var activityToolbarItems: [UIBarButtonItem] = []
-
+    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
+    
     // Injected Vars
     fileprivate var session: Session!
     fileprivate var studentID: String = ""
@@ -84,9 +78,6 @@ open class StudentSettingsViewController : FormViewController {
     // ---------------------------------------------
     open override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.navigationItem.leftBarButtonItem = cancelButton
-        self.navigationItem.rightBarButtonItem = doneButton
 
         setupNavigationBar()
 
@@ -241,7 +232,7 @@ open class StudentSettingsViewController : FormViewController {
                 return
             }
 
-            view.nameLabel.text = student.sortableName
+            view.nameLabel.text = student.name
             if let url = student.avatarURL {
                 view.imageView.kf.setImage(with: url, placeholder: DefaultAvatarCoordinator.defaultAvatarForStudentID(me.studentID))
             }
@@ -262,11 +253,26 @@ open class StudentSettingsViewController : FormViewController {
 
         let scheme = ColorCoordinator.colorSchemeForStudentID(studentID)
         navBar.backgroundColor = scheme.mainColor
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: activityIndicator)
+        activityIndicator.hidesWhenStopped = true
     }
 
     func updateThreshold(_ type: AlertThresholdType) {
         guard let row = form.rowBy(tag: type.rawValue) else { return }
+        
+        let onComplete = { (event: ReactiveSwift.Event<Bool, NSError>) -> Void in
+            switch(event) {
+            case .failed(let error):
+                self.displayError(error: error)
+                self.activityIndicator.stopAnimating()
+                break
+            default:
+                self.activityIndicator.stopAnimating()
+            }
+        }
 
+        activityIndicator.startAnimating()
+        
         switch type {
         case .courseAnnouncement, .assignmentMissing, .institutionAnnouncement:
             guard let switchRow = row as? SwitchRow else {
@@ -278,6 +284,7 @@ open class StudentSettingsViewController : FormViewController {
 
             guard let threshold = thresholdForType(type) else {
                 AlertThreshold.createThreshold(session, type: type, observerID: session.user.id, observeeID: studentID).observe(on: UIScheduler()).start { event in
+                    onComplete(event)
                     switch event {
                     case .completed, .failed:
                         switchRow.disabled = false
@@ -290,6 +297,7 @@ open class StudentSettingsViewController : FormViewController {
             }
 
             threshold.remove(session).observe(on: UIScheduler()).start { event in
+                onComplete(event)
                 switch event {
                 case .completed, .failed:
                     switchRow.disabled = false
@@ -310,16 +318,21 @@ open class StudentSettingsViewController : FormViewController {
 
             guard let threshold = thresholdForType(type) else {
                 if let value = thresholdValue {
-                    AlertThreshold.createThreshold(session, type: type, observerID: session.user.id, observeeID: studentID, threshold: value).start()
+                    AlertThreshold.createThreshold(session, type: type, observerID: session.user.id, observeeID: studentID, threshold: value).start(onComplete)
+                } else {
+                    activityIndicator.stopAnimating()
                 }
                 return
             }
-
+            
+            let signal: SignalProducer<Bool, NSError>
             if let value = thresholdValue {
-                threshold.update(session, newThreshold: value).start()
+                signal = threshold.update(session, newThreshold: value)
             } else {
-                threshold.remove(session).start()
+                signal = threshold.remove(session)
             }
+            
+            signal.start(onComplete)
         }
     }
 
@@ -384,5 +397,12 @@ open class StudentSettingsViewController : FormViewController {
         case .unknown:
             return NSLocalizedString("Unknown", comment: "Unknown T`hreshold Description")
         }
+    }
+    
+    func displayError(error: NSError) {
+        let title = NSLocalizedString("An Error Occurred", comment: "")
+        let alert = UIAlertController(title: title, message: error.localizedDescription, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+        present(alert, animated: true)
     }
 }

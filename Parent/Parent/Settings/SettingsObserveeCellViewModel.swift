@@ -29,7 +29,7 @@ struct SettingsObserveeCellViewModel: TableViewCellViewModel {
     let highlightColor: UIColor
 
     init(student: Student, highlightColor: UIColor) {
-        name = student.sortableName
+        name = student.name
         avatarURL = student.avatarURL
         studentID = student.id
         self.highlightColor = highlightColor
