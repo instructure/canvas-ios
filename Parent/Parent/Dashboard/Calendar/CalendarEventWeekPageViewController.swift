@@ -37,6 +37,7 @@ class CalendarEventWeekPageViewController: UIViewController {
     var session: Session!
     var studentID: String!
     var initialReferenceDate: Date!
+    var currentStartDate: Date?
     var contextCodes: [String]!
 
     var selectCalendarEventAction: EventWeekPageSelectCalendarEventAction? = nil {
@@ -65,6 +66,7 @@ class CalendarEventWeekPageViewController: UIViewController {
         controller.session = session
         controller.studentID = studentID
         controller.initialReferenceDate = initialReferenceDate.dateOnSundayAtTheBeginningOfTheWeek
+        controller.currentStartDate = controller.initialReferenceDate
         controller.contextCodes = contextCodes
         
         return controller
@@ -110,6 +112,7 @@ class CalendarEventWeekPageViewController: UIViewController {
             initialViewController.selectCalendarEventAction = selectCalendarEventAction
             pageVC.setViewControllers([initialViewController], direction: .forward, animated: false, completion: nil)
 
+            currentStartDate = startDate
             pageViewController = pageVC
         }
     }
@@ -171,6 +174,7 @@ class CalendarEventWeekPageViewController: UIViewController {
     // MARK: - Helper Functions
     // ---------------------------------------------
     func eventListController(_ startDate: Date) -> CalendarEventListViewController {
+        currentStartDate = startDate
         let endDate = startDate + Calendar.current.numberOfDaysInWeek.daysComponents
 
         // Failing on purpose here.  If this is broken it's programmer error

@@ -306,8 +306,13 @@ class DashboardViewController: UIViewController {
     // MARK: - Data Methods
     // ---------------------------------------------
     func reloadObserveeData() {
+        var calendarStartDate: Date = Date()
+        if let calendarVC = calendarViewController as? CalendarEventWeekPageViewController, let currentStart = calendarVC.currentStartDate {
+            calendarStartDate = currentStart
+        }
+        
         coursesViewController = coursesViewController(session)
-        calendarViewController = calendarViewController(session)
+        calendarViewController = calendarViewController(session, startDate: calendarStartDate)
         alertsViewController = alertsViewController(session)
 
         guard let coursesViewController = coursesViewController, let calendarViewController = calendarViewController, let alertsViewController = alertsViewController else {
@@ -316,7 +321,18 @@ class DashboardViewController: UIViewController {
         
         viewControllers = [coursesViewController, calendarViewController, alertsViewController]
         
-        selectCoursesTab()
+        // MBL-10849: Re-select the same view when switching between students
+        if let selected = tabBar.selectedItem {
+            if selected == calendarTabItem {
+                selectCalendarTab()
+            } else if selected == alertsTabItem {
+                selectAlertsTab()
+            } else {
+                selectCoursesTab()
+            }
+        } else {
+            selectCoursesTab()
+        }
 
         if let observeeID = currentStudent?.id {
             alertsTabItem.badgeValue = nil
@@ -349,12 +365,12 @@ class DashboardViewController: UIViewController {
         return coursesViewController
     }
     
-    func calendarViewController(_ session: Session) -> UIViewController? {
+    func calendarViewController(_ session: Session, startDate: Date = Date()) -> UIViewController? {
         guard let currentStudent = currentStudent else {
             return nil
         }
 
-        let calendarWeekPageVC = CalendarEventWeekPageViewController.new(session: session, studentID: currentStudent.id)
+        let calendarWeekPageVC = CalendarEventWeekPageViewController.new(session: session, studentID: currentStudent.id, contextCodes: [], initialReferenceDate: startDate)
         calendarWeekPageVC.selectCalendarEventAction = { [weak self] in
             self?.selectCalendarEventAction?($0, $1, $2)
         }
