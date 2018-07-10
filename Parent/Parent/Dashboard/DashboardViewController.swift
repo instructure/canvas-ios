@@ -232,7 +232,6 @@ class DashboardViewController: UIViewController {
         coursesTabItem.title = coursesTitle
         coursesTabItem.image = UIImage.icon(.courses)
         coursesTabItem.selectedImage = UIImage.icon(.courses)
-        coursesTabItem.accessibilityLabel = "\(coursesTitle) 1 of 3"
         coursesTabItem.accessibilityLabel = String.localizedStringWithFormat(tabViewFormatString, coursesTitle, 1, 3)
         
         let calendarTitle = NSLocalizedString("Week", comment: "Calendar Tab")
@@ -267,6 +266,7 @@ class DashboardViewController: UIViewController {
     
     func showSiteAdminViews() {
         studentInfoName.text = NSLocalizedString("Admin", comment: "Label displayed when logged in as an admin")
+        studentInfoContainer.accessibilityLabel = studentInfoName.text
         studentInfoAvatar.isHidden = true
         let storyboard = UIStoryboard(name: "AdminViewController", bundle: nil)
         adminViewController = storyboard.instantiateViewController(withIdentifier: "vc") as! AdminViewController
@@ -371,7 +371,8 @@ class DashboardViewController: UIViewController {
         guard let collection = studentCollection else { return }
         guard collection.numberOfItemsInSection(0) > 0 else { return }
         
-        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let alertControllerTitle = NSLocalizedString("Choose a student", comment: "")
+        let alertController = UIAlertController(title: alertControllerTitle, message: nil, preferredStyle: .actionSheet)
         if let popover = alertController.popoverPresentationController {
             popover.permittedArrowDirections = [.up]
             popover.sourceView = view
@@ -448,6 +449,7 @@ class DashboardViewController: UIViewController {
         guard let student = currentStudent else { return }
         
         studentInfoName.text = student.name
+        studentInfoContainer.accessibilityLabel = student.name
         studentInfoAvatar.isHidden = false
         
         if let url = student.avatarURL {

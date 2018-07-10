@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="RfP-iM-Wap">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="RfP-iM-Wap">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -52,11 +52,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LhY-UH-BvJ" userLabel="Hamburger Button">
-                                        <rect key="frame" x="20" y="54" width="22" height="22"/>
+                                        <rect key="frame" x="8" y="38" width="44" height="50"/>
                                         <accessibility key="accessibilityConfiguration" identifier="parent-drawer-button" label="Settings"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="22" id="WBI-uc-NFt"/>
-                                            <constraint firstAttribute="height" constant="22" id="kJQ-s7-bEz"/>
+                                            <constraint firstAttribute="width" constant="44" id="WBI-uc-NFt"/>
                                         </constraints>
                                         <state key="normal" image="hamburger"/>
                                         <connections>
@@ -79,6 +78,9 @@
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="right" verticalHuggingPriority="251" horizontalCompressionResistancePriority="999" insetsLayoutMarginsFromSafeArea="NO" text="Peter" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JVX-Up-gUl">
                                                         <rect key="frame" x="39" y="6.9999999999999982" width="50.666666666666657" height="20.333333333333329"/>
                                                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <accessibility key="accessibilityConfiguration">
+                                                            <bool key="isElement" value="NO"/>
+                                                        </accessibility>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -98,7 +100,10 @@
                                             </stackView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <accessibility key="accessibilityConfiguration" identifier="user_selection_carousel"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="user_selection_carousel">
+                                            <accessibilityTraits key="traits" button="YES"/>
+                                            <bool key="isElement" value="YES"/>
+                                        </accessibility>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="dqt-sV-zAy" secondAttribute="bottom" constant="5" id="AWT-FL-hDQ"/>
                                             <constraint firstAttribute="height" constant="50" id="F0K-PW-vOh">
@@ -111,9 +116,10 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.27890285725982999" green="1" blue="0.70971178099419863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="LhY-UH-BvJ" secondAttribute="bottom" constant="12" id="2Ep-QX-SUP"/>
+                                    <constraint firstItem="LhY-UH-BvJ" firstAttribute="height" secondItem="k8J-bS-THt" secondAttribute="height" id="97B-R3-1gU"/>
                                     <constraint firstAttribute="height" constant="88" id="FgR-qC-FR0"/>
-                                    <constraint firstItem="LhY-UH-BvJ" firstAttribute="leading" secondItem="yv8-k3-kWU" secondAttribute="leading" constant="20" id="SQB-il-QLQ"/>
+                                    <constraint firstItem="LhY-UH-BvJ" firstAttribute="centerY" secondItem="k8J-bS-THt" secondAttribute="centerY" id="GX7-Bm-nPX"/>
+                                    <constraint firstItem="LhY-UH-BvJ" firstAttribute="leading" secondItem="yv8-k3-kWU" secondAttribute="leading" constant="8" id="SQB-il-QLQ"/>
                                     <constraint firstItem="k8J-bS-THt" firstAttribute="leading" secondItem="yv8-k3-kWU" secondAttribute="leading" constant="60" id="YFr-Ke-5yl"/>
                                     <constraint firstAttribute="bottom" secondItem="k8J-bS-THt" secondAttribute="bottom" id="nxb-o1-WGA"/>
                                     <constraint firstAttribute="trailing" secondItem="k8J-bS-THt" secondAttribute="trailing" constant="60" id="z6s-GG-2de"/>
