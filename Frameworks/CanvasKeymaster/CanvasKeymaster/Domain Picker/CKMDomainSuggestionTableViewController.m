@@ -122,7 +122,7 @@
             cell.textLabel.text = fullText;
         }
     } else if (school.type == CKIAccountDomainTypeHowDoIFindMySchool) {
-        NSString *text = NSLocalizedString(@"How do I find my school?", "Help label when domain search has started");
+        NSString *text = NSLocalizedStringFromTableInBundle(@"How do I find my school?", nil, [NSBundle bundleForClass:[self class]], "Help label when domain search has started");
         NSDictionary *attributes = @{NSForegroundColorAttributeName: [UIColor colorWithRed:11./255. green:146./255. blue:227./255. alpha:1.0]};
         NSAttributedString *attributedText = [[NSAttributedString alloc] initWithString:text attributes:attributes];
         cell.textLabel.attributedText = attributedText;
