@@ -31,7 +31,8 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
     let loginConfig = LoginConfiguration(mobileVerifyName: "iosParent",
                                          logo: UIImage(named: "parent-logomark")!,
                                          fullLogo: UIImage(named: "parent-logo")!,
-                                         supportsCanvasNetworkLogin: false)
+                                         supportsCanvasNetworkLogin: false,
+                                         whatsNewURL: "https://s3.amazonaws.com/tr-learncanvas/docs/WhatsNewCanvasParent.pdf")
     
     var visibleController: UIViewController {
         guard var vc = window?.rootViewController else { ❨╯°□°❩╯⌢"No root view controller?!" }

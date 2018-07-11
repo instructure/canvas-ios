@@ -19,17 +19,19 @@ import CanvasKeymaster
 
 public class LoginConfiguration: NSObject, CanvasKeymasterDelegate {
     
-  public init(mobileVerifyName: String, logo: UIImage, fullLogo: UIImage, supportsCanvasNetworkLogin: Bool = true) {
+  public init(mobileVerifyName: String, logo: UIImage, fullLogo: UIImage, supportsCanvasNetworkLogin: Bool = true, whatsNewURL: String? = nil) {
     self.appNameForMobileVerify = mobileVerifyName
     self.logoForDomainPicker = logo
     self.fullLogoForDomainPicker = fullLogo
     self.supportsCanvasNetworkLogin = supportsCanvasNetworkLogin
+    self.whatsNewURL = whatsNewURL
   }
 
   public var appNameForMobileVerify: String
   public let logoForDomainPicker: UIImage
   public let fullLogoForDomainPicker: UIImage
   public let supportsCanvasNetworkLogin: Bool
+  public let whatsNewURL: String?
     
   public var backgroundViewForDomainPicker: UIView {
     let view = UIView()

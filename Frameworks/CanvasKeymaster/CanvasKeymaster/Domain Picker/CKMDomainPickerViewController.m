@@ -39,6 +39,7 @@ static BOOL PerformedStartupAnimation = NO;
 @property (nonatomic, weak) IBOutlet UIImageView *fullLogoImageView;
 @property (nonatomic, weak) IBOutlet UIButton *findSchoolButton;
 @property (nonatomic, weak) IBOutlet UIButton *canvasNetworkButton;
+@property (nonatomic, weak) IBOutlet UIStackView *whatsNewContainer;
 @property (nonatomic, weak) IBOutlet UILabel *forceCanvasLoginLabel;
 @property (nonatomic, weak) IBOutlet UIView *bottomContainer;
 @property (nonatomic, weak) IBOutlet UIButton *customLoginButton;
@@ -75,10 +76,12 @@ static BOOL PerformedStartupAnimation = NO;
     self.fullLogoImageView.alpha = 0.0;
     self.findSchoolButton.alpha = 0.0;
     self.canvasNetworkButton.alpha = 0.0;
+    self.whatsNewContainer.alpha = 0.0;
     self.logoImageStageTwoConstraint.active = false;
     self.findSchoolButton.layer.cornerRadius = 5.0;
     self.findSchoolButton.clipsToBounds = YES;
     self.canvasNetworkButton.hidden = !TheKeymaster.delegate.supportsCanvasNetworkLogin;
+    self.whatsNewContainer.hidden = !TheKeymaster.delegate.whatsNewURL;
     
     self.bottomContainerHiddenConstraint = [self.view.bottomAnchor constraintEqualToAnchor:self.bottomContainer.topAnchor];
     self.bottomContainerHiddenConstraint.active = true;
@@ -263,6 +266,7 @@ static BOOL PerformedStartupAnimation = NO;
     self.fullLogoImageView.alpha = 1.0;
     self.findSchoolButton.alpha = 1.0;
     self.canvasNetworkButton.alpha = 1.0;
+    self.whatsNewContainer.alpha = 1.0;
 }
 
 - (void)animationStepThree {
@@ -289,6 +293,15 @@ static NSString *const CanvasNetworkDomain = @"learn.canvas.net";
 
 - (IBAction)customLoginAction:(id)sender {
     [[CanvasKeymaster theKeymaster] loginWithMobileVerifyDetails:self.preloadedAccountInfo];
+}
+
+- (IBAction)openWhatsNew:(id)sender {
+    if (TheKeymaster.delegate.whatsNewURL) {
+        NSURL *url = [NSURL URLWithString:TheKeymaster.delegate.whatsNewURL];
+        if (url) {
+            [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+        }
+    }
 }
 
 #pragma mark - UITextFieldDelegate

@@ -39,6 +39,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) UIImage *logoForDomainPicker;
 @property (nonatomic, readonly) UIImage *fullLogoForDomainPicker;
 @property (nonatomic, readonly) BOOL supportsCanvasNetworkLogin;
+// A optional url that links to a web page to explain that there is new stuff in the app
+@property (nonatomic, readonly, nullable) NSString *whatsNewURL;
 @end
 
 @protocol CKMAnalyticsProvider
