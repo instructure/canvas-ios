@@ -403,7 +403,7 @@ class DashboardViewController: UIViewController {
                 self?.currentStudent = student
             })
         }
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
         
         present(alertController, animated: true, completion: nil)
     }
