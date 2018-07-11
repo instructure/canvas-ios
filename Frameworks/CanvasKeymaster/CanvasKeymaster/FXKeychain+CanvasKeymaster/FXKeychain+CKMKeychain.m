@@ -77,8 +77,12 @@ static const NSString *CBIKeychainClients = @"CBIKeychainClients";
 + (instancetype)sharedKeychain
 {
     NSString *bundleID = [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleIdentifierKey];
-    if ([bundleID isEqualToString:@"com.instructure.ios.teacher"] || [bundleID isEqualToString:@"com.instructure.parentapp"]) {
+    if ([bundleID isEqualToString:@"com.instructure.ios.teacher"]) {
         return [FXKeychain defaultKeychain];
+    }
+    
+    if ([bundleID isEqualToString:@"com.instructure.parentapp"]) {
+        return [[FXKeychain alloc] initWithService:@"com.instructure.parentapp2" accessGroup:nil];
     }
     
     return [[FXKeychain alloc] initWithService:CBIKeychainServiceID accessGroup:CBIKeychainAccessGroup accessibility:FXKeychainAccessibleAfterFirstUnlock];
