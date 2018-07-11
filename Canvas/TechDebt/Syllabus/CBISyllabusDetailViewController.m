@@ -50,9 +50,11 @@
     
     self.webView = [[CanvasWebView alloc] init];
     self.webView.presentingViewController = self;
+    self.webView.margin = 16;
     [self.view addSubview:self.webView];
     
     [self.webView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    self.automaticallyAdjustsScrollViewInsets = NO;
     UIView *innerView = self.webView;
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[innerView]|" options:0 metrics:NULL views:NSDictionaryOfVariableBindings(innerView)]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[innerView]|" options:0 metrics:NULL views:NSDictionaryOfVariableBindings(innerView)]];
@@ -63,8 +65,6 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self.webView setFrame:self.view.frame];
-    self.edgesForExtendedLayout = UIRectEdgeNone;
 }
 
 - (void)updateWebView
