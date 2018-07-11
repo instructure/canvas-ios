@@ -32,10 +32,15 @@ import i18n from 'format-message'
 import { Text, Paragraph } from '../../common/text'
 import Images from '../../images'
 import Screen from '../../routing/Screen'
+import colors from '../../common/colors'
 
 export class NotAParent extends PureComponent<{}> {
   logout = () => {
     NativeModules.NativeLogin.logout()
+  }
+
+  canvasGuides = () => {
+    Linking.openURL('https://community.canvaslms.com/docs/DOC-9919')
   }
 
   openStudent = () => {
@@ -47,16 +52,18 @@ export class NotAParent extends PureComponent<{}> {
   }
 
   render () {
-    let title = i18n('Not a Parent?')
-    let subtitle = i18n('One of our other apps might be a better fit. Tap one to visit the App Store.')
-    let buttonText = i18n('Try logging in again')
+    let title = i18n('No Enrollments')
+    let subtitleOne = i18n('You need at least one active observer enrollment to use Canvas Parent.')
+    let subtitleTwo = i18n("If you're a student or teacher, try one of our other apps below.")
 
     return (
       <Screen navBarHidden>
         <View style={style.container}>
           <View style={style.subContainer}>
-            <Text style={{ fontSize: 30 }} testID='no-parent.title'>{title}</Text>
-            <Paragraph style={style.paragraph} testID='no-parent.title'>{subtitle}</Paragraph>
+            <Text style={style.title} testID='no-parent.title'>{title}</Text>
+            <Paragraph style={style.paragraph} testID='no-parent.subtitleOne'>{subtitleOne}</Paragraph>
+            <View style={style.separator} />
+            <Paragraph style={style.paragraph} testID='no-parent.subtitleTwo'>{subtitleTwo}</Paragraph>
           </View>
           <View style={style.subContainer}>
             <TouchableOpacity onPress={this.openStudent}
@@ -72,8 +79,11 @@ export class NotAParent extends PureComponent<{}> {
               <Image source={Images.noTeacher.teacher} />
             </TouchableOpacity>
           </View>
+          <View style={[style.subContainer, { marginTop: 50 }]}>
+            <Button title={i18n('Log In Again')} testID='no-parent.logout' onPress={this.logout} />
+          </View>
           <View style={style.subContainer}>
-            <Button title={buttonText} testID='no-parent.logout' onPress={this.logout} />
+            <Button title={i18n('Canvas Guides')} testID='no-parent.canvas-guides' onPress={this.canvasGuides} />
           </View>
         </View>
       </Screen>
@@ -90,14 +100,23 @@ const style = StyleSheet.create({
     justifyContent: 'center',
   },
   subContainer: {
-    alignItems: 'center',
     margin: 8,
+  },
+  title: {
+    fontSize: 30,
+    textAlign: 'center',
   },
   paragraph: {
     fontSize: 16,
     textAlign: 'center',
     padding: 8,
     maxWidth: 320,
+  },
+  separator: {
+    backgroundColor: colors.seperatorColor,
+    height: StyleSheet.hairlineWidth,
+    marginTop: 20,
+    marginBottom: 20,
   },
 })
 

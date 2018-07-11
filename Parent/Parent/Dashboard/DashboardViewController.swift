@@ -147,6 +147,7 @@ class DashboardViewController: UIViewController {
             tabBar.tintColor = colorScheme.mainColor
         }
         
+        self.studentInfoContainer.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -201,12 +202,15 @@ class DashboardViewController: UIViewController {
     }
     
     func retrieveStudentsCompleted() {
+        guard viewState.isValidObserver else {
+            return showNotAParentView()
+        }
+        
+        self.studentInfoContainer.isHidden = false
         setupTabs()
         
         if(viewState.isSiteAdmin && viewState.studentCount == 0) {
             showSiteAdminViews()
-        } else if(!viewState.isValidObserver) {
-            showNotAParentView()
         } else if(viewState.studentCount == 0) {
             showNoStudentsViewController()
         } else if (noStudentsViewController != nil && viewState.studentCount > 0){
