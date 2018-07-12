@@ -36,7 +36,7 @@ public struct PageViewEvent: Codable {
     let timestamp: String
     let userID: String
     
-    init(eventName: String, attributes: PageViewEventDictionary? = nil, userID: String, timestamp: String = PageViewEvent.UTCTimeStamp(), eventDuration: TimeInterval = 0) {
+    init(eventName: String, attributes: PageViewEventDictionary? = nil, userID: String, timestamp: String = PageViewEvent.ISOTimeStamp(), eventDuration: TimeInterval = 0) {
         self.eventName = eventName
         self.eventDuration = eventDuration
         self.timestamp = timestamp
@@ -47,14 +47,12 @@ public struct PageViewEvent: Codable {
         }
     }
     
-    static let dateFormatter: DateFormatter = {
-        var df = DateFormatter()
-        df.locale = Locale(identifier: "en_US")
-        df.dateFormat = "yyyy:MM:dd HH:mm:ss.SSSZZZZZ"
+    static let dateFormatter: ISO8601DateFormatter = {
+        var df = ISO8601DateFormatter()
         return df
     }()
     
-    private static func UTCTimeStamp(_ date: Date = Date()) -> String {
+    private static func ISOTimeStamp(_ date: Date = Date()) -> String {
         return dateFormatter.string(from: date)
     }
 }
