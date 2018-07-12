@@ -30,7 +30,6 @@ import ImagePicker from 'react-native-image-picker'
 import AudioRecorder from '../../common/components/AudioRecorder'
 import i18n from 'format-message'
 import Permissions from '../../common/permissions'
-import { featureFlagEnabled } from '@common/feature-flags'
 
 export type FileType = 'all' | 'image' | 'video' | 'audio'
 
@@ -123,7 +122,7 @@ export default class AttachmentPicker extends Component<Props, any> {
     this.props.fileTypes.forEach((fileType) => {
       possibleSources(fileType).forEach(t => sources.add(t))
     })
-    if (!featureFlagEnabled('rceUserFiles') || !this.props.userFiles) {
+    if (!this.props.userFiles) {
       sources.delete('userFiles')
     }
     return Array.from(sources).sort()

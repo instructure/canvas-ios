@@ -27,7 +27,6 @@ class PageViewEventRequestManager {
     fileprivate let maxBatchCount = 300
     
     func sendEvents(handler: ErrorHandler?) {
-        guard FeatureFlags.featureFlagEnabled(.pageViewLogging) else { handler?(nil); return }
         guard let reachability = Reachability(hostName: "www.google.com"), reachability.isReachable() else { handler?(nil); return }
         
         retrievePandataEndpointInfo { [weak self] (endpointInfo) in

@@ -90,9 +90,8 @@ open class PageViewEventController: NSObject {
     
     fileprivate func appCanLogEvents() -> Bool {
         let isNotTest = NSClassFromString("EarlGreyImpl") == nil
-        let enabled = FeatureFlags.featureFlagEnabled(.pageViewLogging)
         let isStudent = NativeLoginManager.shared().app == CanvasApp.student
-        return isNotTest && enabled && isStudent
+        return isNotTest && isStudent
     }
     
     fileprivate func enableAppLifeCycleNotifications(_ enable: Bool) {

@@ -39,10 +39,8 @@ const { FeatureFlagsManager } = NativeModules
 // from here and see where flow tells us we are still trying to use it
 // This should be an enum so when adding more feature flags it should look like
 // type FeatureFlagName = 'someFeatureFlag' | 'otherFeatureFlag'
-export type FeatureFlagName = 'pageViewLogging' |
-                              'favoriteGroups' |
+export type FeatureFlagName = 'favoriteGroups' |
                               'newGroupNavigation' |
-                              'rceUserFiles' |
                               'simpleDiscussionRenderer' |
                               'newStudentAssignmentView' |
                               'conferences'
@@ -52,10 +50,8 @@ export type FeatureFlagName = 'pageViewLogging' |
 // that should always have every feature flag turned on
 // or the domain has been added as an exceptions
 export const featureFlags: { [FeatureFlagName]: FeatureFlag } = {
-  pageViewLogging: {},
   favoriteGroups: {},
   newGroupNavigation: {},
-  rceUserFiles: { exempt: { apps: ['teacher'] } },
   simpleDiscussionRenderer: {},
   newStudentAssignmentView: {},
   conferences: {},
