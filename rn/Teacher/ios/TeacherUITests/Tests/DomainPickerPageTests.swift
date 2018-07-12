@@ -17,7 +17,11 @@
 import SoSeedySwift
 import XCTest
 
-class LoginPageTests: TeacherTest {
+class DomainPickerPageTests: TeacherTest {
+
+    func testDomainPickerPage_findMySchoolButtonExists() {
+      loginPage.assertPageObjects()
+    }
 
     func testGrpc_serverIsOnline() {
         let result = SoSeedySwift.healthCheck()

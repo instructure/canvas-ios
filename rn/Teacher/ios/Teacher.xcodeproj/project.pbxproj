@@ -42,7 +42,7 @@
 		497CA7331F82AE8D00501613 /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 497CA7321F82ACF400501613 /* CanvasCore.framework */; };
 		497CA7341F82AE8D00501613 /* CanvasCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 497CA7321F82ACF400501613 /* CanvasCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49B274C21E8437D700828E42 /* CanvasLoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B274C01E8437D700828E42 /* CanvasLoginPage.swift */; };
-		61B5372F1E786A51000FEABB /* DomainPickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B536DD1E784946000FEABB /* DomainPickerTests.swift */; };
+		61B5372F1E786A51000FEABB /* DomainPickerPageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B536DD1E784946000FEABB /* DomainPickerPageTests.swift */; };
 		61B537301E786A54000FEABB /* Pages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B536DF1E784A4B000FEABB /* Pages.swift */; };
 		61B537311E786A58000FEABB /* DomainPickerPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B536E31E78599D000FEABB /* DomainPickerPage.swift */; };
 		61BD85FC1EB2933C005A09A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BD85FB1EB2933C005A09A5 /* AppDelegate.swift */; };
@@ -220,7 +220,7 @@
 		5BF38602203179E900CA3A83 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = Teacher/da.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		5BFC7C90203179F000E64F79 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = Teacher/de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		61B5365C1E7749F5000FEABB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		61B536DD1E784946000FEABB /* DomainPickerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DomainPickerTests.swift; sourceTree = "<group>"; };
+		61B536DD1E784946000FEABB /* DomainPickerPageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DomainPickerPageTests.swift; sourceTree = "<group>"; };
 		61B536DF1E784A4B000FEABB /* Pages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pages.swift; sourceTree = "<group>"; };
 		61B536E31E78599D000FEABB /* DomainPickerPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DomainPickerPage.swift; sourceTree = "<group>"; };
 		61B537201E786969000FEABB /* TeacherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeacherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -397,7 +397,7 @@
 				2F08790F1EC3C04F0042C03E /* CourseBrowserPageTest.swift */,
 				2C62DC7A1E8BF532006638F3 /* CourseListPageTest.swift */,
 				2F087B321EC508BB0042C03E /* CourseSettingsPageTest.swift */,
-				61B536DD1E784946000FEABB /* DomainPickerTests.swift */,
+				61B536DD1E784946000FEABB /* DomainPickerPageTests.swift */,
 				F9D224681EB7C51000BB0990 /* EditCoursesPageTest.swift */,
 				DF02A1E21EFC26BE00B17B8D /* InboxPageTest.swift */,
 			);
@@ -894,7 +894,7 @@
 				49B274C21E8437D700828E42 /* CanvasLoginPage.swift in Sources */,
 				2C62DC7B1E8BF532006638F3 /* CourseListPageTest.swift in Sources */,
 				2F087B331EC508BB0042C03E /* CourseSettingsPageTest.swift in Sources */,
-				61B5372F1E786A51000FEABB /* DomainPickerTests.swift in Sources */,
+				61B5372F1E786A51000FEABB /* DomainPickerPageTests.swift in Sources */,
 				F79F609F1EFDA57200ED594E /* TeacherTest+FormattedString.swift in Sources */,
 				2F087B541EC509190042C03E /* CourseSettingsPage.swift in Sources */,
 				F756F7761EEF07FA007C1417 /* AssignmentListPage.swift in Sources */,

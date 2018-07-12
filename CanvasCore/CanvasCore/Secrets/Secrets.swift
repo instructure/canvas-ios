@@ -21,6 +21,7 @@ import Foundation
 // I wish that I could make this a string enum, but to keep compatible with obj-c it's not. 
 // It has a toString() function instead
 @objc public enum SecretKey: Int {
+    case gRPCSoSeedyAPIKey
     case canvasPSPDFKit
     case speedGraderPSPDFKit
     case canvasGoogleAnalytics
@@ -33,6 +34,8 @@ import Foundation
     
     func toString() -> String {
         switch self {
+        case .gRPCSoSeedyAPIKey:
+            return "gRPCSoSeedyAPIKey"
         case .canvasPSPDFKit:
             return "CanvasPSPDFKitLicenseKey"
         case .speedGraderPSPDFKit:

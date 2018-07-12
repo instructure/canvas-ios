@@ -16,9 +16,11 @@
 
 import Foundation
 import SwiftGRPC
+import CanvasCore
 
 let hostname = "soseedy.endpoints.delta-essence-114723.cloud.goog"
 let address = "\(hostname):80"
+let apiKey = Secrets.fetch(.gRPCSoSeedyAPIKey)!
 
 func makeClient<T: ServiceClientBase >(_ client: T.Type) -> T {
   let client = client.init(address: address,
@@ -26,6 +28,7 @@ func makeClient<T: ServiceClientBase >(_ client: T.Type) -> T {
                      clientCertificates: Certs.clientCert,
                      clientKey: Certs.clientPrivateKey,
                      arguments: [.sslTargetNameOverride("example.com")])
+  try! client.metadata.add(key: "x-api-key", value: apiKey)
   client.host = hostname
   client.timeout = 5 * 60
   return client
