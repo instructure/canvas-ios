@@ -32,7 +32,7 @@ export const tabs: Reducer<TabsState, any> = handleActions({
     resolved: (state, { result }) => {
       return {
         ...state,
-        tabs: result.data,
+        tabs: result.data.map(normalizeTab),
         pending: state.pending - 1,
         error: undefined,
       }
@@ -46,3 +46,16 @@ export const tabs: Reducer<TabsState, any> = handleActions({
     },
   }),
 }, defaultState)
+
+export const normalizeTab = (tab: Tab) => ({
+  ...tab,
+  html_url: normalizeUrl(tab.html_url),
+})
+
+export const normalizeUrl = (url: string) =>
+  url.replace(/\/\d+~\d+/, id => {
+    const [ shardID, contextID ] = id.slice(1).split('~')
+    // shardID * 10**13 + contextID
+    // 10**13 > Number.MAX_SAFE_INTEGER 😞
+    return `/${shardID}${contextID.padStart(13, '0')}`
+  })
