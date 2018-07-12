@@ -30,8 +30,8 @@ open class CalendarEventAPI {
         let path = "/api/v1/calendar_events"
         let nillableParams: [String: Any?] = [
             "type": type.rawValue,
-            "start_date": CalendarEvent.dayDateFormatter.string(from: startDate),
-            "end_date": CalendarEvent.dayDateFormatter.string(from: endDate),
+            "start_date": ISO8601DateFormatter.string(from: startDate, timeZone: TimeZone(abbreviation: "UTC")!, formatOptions: .withInternetDateTime),
+            "end_date": ISO8601DateFormatter.string(from: endDate, timeZone: TimeZone(abbreviation: "UTC")!, formatOptions: .withInternetDateTime),
             "context_codes": contextCodes,
             "include": ["submission"]
         ]
