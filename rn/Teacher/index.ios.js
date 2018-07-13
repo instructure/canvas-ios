@@ -153,6 +153,7 @@ const loginHandler = async ({
 }
 
 if (NativeLogin.isTesting) {
+  require('./test/helpers/xhr-recorder')
   const loginInfo = NativeLogin.loginInformation()
   if (loginInfo) {
     loginHandler(loginInfo)

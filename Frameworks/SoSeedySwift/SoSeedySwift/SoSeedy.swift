@@ -16,6 +16,7 @@
 
 import Foundation
 import SwiftGRPC
+import SwiftProtobuf
 import CanvasCore
 
 let hostname = "soseedy.endpoints.delta-essence-114723.cloud.goog"
@@ -31,6 +32,7 @@ func makeClient<T: ServiceClientBase >(_ client: T.Type) -> T {
   try! client.metadata.add(key: "x-api-key", value: apiKey)
   client.host = hostname
   client.timeout = 5 * 60
+
   return client
 }
 
@@ -48,6 +50,22 @@ let quizzesClient = makeClient(Soseedy_SeedyQuizzesServiceClient.self)
 let sectionsClient = makeClient(Soseedy_SeedySectionsServiceClient.self)
 let usersClient = makeClient(Soseedy_SeedyUsersServiceClient.self)
 
+// This function should wrap any calls made to data seeding methods on the above clients
+// It will use the request that is passed into it as the key for storing/finding recorded
+// data seeding responses.
+public func recorded<T: SwiftProtobuf.Message>(request: SwiftProtobuf.Message, block: () -> T) -> T {
+    let requestKey = try! request.jsonString()
+    let response: String? = VCR.shared().response(for: requestKey)
+    if let response = response {
+        return try! T(jsonString: response)
+    }
+    let blockResponse = block()
+    let blockResponseString = try! blockResponse.jsonString()
+    VCR.shared().recordResponse(blockResponseString, for: requestKey)
+    return blockResponse
+}
+
+
 // MARK: - Enrollments
 
 public enum EnrollmentType: String {
@@ -60,7 +78,7 @@ public enum EnrollmentType: String {
     enrollRequest.courseID = course.id
     enrollRequest.userID = user.id
     enrollRequest.enrollmentType = type.rawValue
-    return try! enrollmentsClient.enrollUserInCourse(enrollRequest)
+    return recorded(request: enrollRequest) { try! enrollmentsClient.enrollUserInCourse(enrollRequest) }
 }
 
 public func enroll(_ user: Soseedy_CanvasUser, as type: EnrollmentType, inAll courses: [Soseedy_Course]) -> [Soseedy_Enrollment] {
@@ -68,7 +86,8 @@ public func enroll(_ user: Soseedy_CanvasUser, as type: EnrollmentType, inAll co
 }
 
 public func createUser() -> Soseedy_CanvasUser {
-    return try! usersClient.createCanvasUser(Soseedy_CreateCanvasUserRequest())
+    let createUserRequest = Soseedy_CreateCanvasUserRequest()
+    return recorded(request: createUserRequest) { try! usersClient.createCanvasUser(createUserRequest) }
 }
 
 public func createStudent(in course: Soseedy_Course = createCourse()) -> Soseedy_CanvasUser {
@@ -123,14 +142,15 @@ public func getNativeLoginInfo(_ canvasUser:Soseedy_CanvasUser) -> [String: Any]
 // MARK: - Courses
 
 @discardableResult public func createCourse() -> Soseedy_Course {
-    return try! coursesClient.createCourse(Soseedy_CreateCourseRequest())
+    let createCourseRequest = Soseedy_CreateCourseRequest()
+    return recorded(request: createCourseRequest) { try! coursesClient.createCourse(createCourseRequest) }
 }
 
 @discardableResult public func favorite(_ course: Soseedy_Course, as user: Soseedy_CanvasUser) -> Soseedy_Favorite {
     var request = Soseedy_AddFavoriteCourseRequest()
     request.courseID = course.id
     request.token = user.token
-    return try! coursesClient.addFavoriteCourse(request)
+    return recorded(request: request) { try! coursesClient.addFavoriteCourse(request) }
 }
 
 // MARK: - Assignments
@@ -149,5 +169,5 @@ public func createAssignment(for course: Soseedy_Course = createCourse(), as tea
     request.teacherToken = teacher.token
     request.withDescription = withDescription
     request.submissionTypes = submissionTypes
-    return try! assignmentsClient.createAssignment(request)
+    return recorded(request: request) { try! assignmentsClient.createAssignment(request) }
 }

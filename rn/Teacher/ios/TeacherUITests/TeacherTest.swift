@@ -19,6 +19,7 @@ import XCTest
 import CanvasKeymaster
 import EarlGrey
 import SoSeedySwift
+import React
 @testable import CanvasCore // for NativeLoginManager
 
 class TeacherTestUtils {
@@ -51,6 +52,7 @@ class TeacherTest: XCTestCase {
 
     override func setUp() {
         super.setUp()
+        self.loadCassette()
         BuddyBuildSDK.startUITests()
         CanvasKeymaster.the().resetKeymasterForTesting()
         NativeLoginManager.shared().injectLoginInformation(nil)
@@ -61,6 +63,7 @@ class TeacherTest: XCTestCase {
     override func tearDown() {
         BuddyBuildSDK.stopUITests()
         HelmManager.shared.cleanup { _ in }
+        self.recordCassette()
         super.tearDown()
     }
 
@@ -77,5 +80,23 @@ class TeacherTest: XCTestCase {
             return
         }
         RCTLinkingManager.application(.shared, open: url)
+    }
+    
+    func loadCassette() {
+        let expectation = XCTestExpectation(description: "Load cassette")
+        VCR.shared().loadCassette(self.name!) { error in
+            XCTAssertNil(error)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 10.0)
+    }
+    
+    func recordCassette() {
+        let expectation = XCTestExpectation(description: "Record cassette")
+        VCR.shared().recordCassette(self.name!) { error in
+            XCTAssertNil(error)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 10.0)
     }
 }

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		89FE55DDB246505CC9530ADE /* Pods_defaults_SoSeedySwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DEFCAB2504D00C252B680F /* Pods_defaults_SoSeedySwift.framework */; };
+		9F711BBE20F518F3009A2C70 /* VCR.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F711BBD20F518F3009A2C70 /* VCR.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9F711BC020F518FA009A2C70 /* VCR.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F711BBF20F518FA009A2C70 /* VCR.m */; };
 		F9B03FAC20D8688B00DF764C /* assignments.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B03F8C20D8688900DF764C /* assignments.grpc.swift */; };
 		F9B03FAD20D8688B00DF764C /* discussions.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B03F8D20D8688900DF764C /* discussions.pb.swift */; };
 		F9B03FAE20D8688B00DF764C /* sections.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B03F8E20D8688900DF764C /* sections.grpc.swift */; };
@@ -64,6 +66,8 @@
 /* Begin PBXFileReference section */
 		04DEFCAB2504D00C252B680F /* Pods_defaults_SoSeedySwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_SoSeedySwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		965B6F817B4FF5E0F9105AAB /* Pods-defaults-SoSeedySwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-SoSeedySwift.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-SoSeedySwift/Pods-defaults-SoSeedySwift.debug.xcconfig"; sourceTree = "<group>"; };
+		9F711BBD20F518F3009A2C70 /* VCR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCR.h; sourceTree = "<group>"; };
+		9F711BBF20F518FA009A2C70 /* VCR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCR.m; sourceTree = "<group>"; };
 		A09DBF17EC444D398BF7D91A /* Pods-defaults-SoSeedySwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-SoSeedySwift.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-SoSeedySwift/Pods-defaults-SoSeedySwift.release.xcconfig"; sourceTree = "<group>"; };
 		F9B03F8C20D8688900DF764C /* assignments.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = assignments.grpc.swift; sourceTree = "<group>"; };
 		F9B03F8D20D8688900DF764C /* discussions.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = discussions.pb.swift; sourceTree = "<group>"; };
@@ -128,6 +132,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		9F711BB820F51652009A2C70 /* VCR */ = {
+			isa = PBXGroup;
+			children = (
+				9F711BBF20F518FA009A2C70 /* VCR.m */,
+				9F711BBD20F518F3009A2C70 /* VCR.h */,
+			);
+			path = VCR;
+			sourceTree = "<group>";
+		};
 		F4F96AB353827FC4D5E38F1E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +170,7 @@
 		F9F700DC207E53F3002EB2BE /* SoSeedySwift */ = {
 			isa = PBXGroup;
 			children = (
+				9F711BB820F51652009A2C70 /* VCR */,
 				F9F700E5207E5480002EB2BE /* soseedy */,
 				F9F700DD207E53F3002EB2BE /* SoSeedySwift.h */,
 				F9B03FCC20D89B1200DF764C /* Certs.swift */,
@@ -215,6 +229,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F711BBE20F518F3009A2C70 /* VCR.h in Headers */,
 				F9F700DF207E53F3002EB2BE /* SoSeedySwift.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -253,7 +268,7 @@
 				TargetAttributes = {
 					F9F700D9207E53F3002EB2BE = {
 						CreatedOnToolsVersion = 9.2;
-						LastSwiftMigration = 0920;
+						LastSwiftMigration = 0930;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -317,6 +332,7 @@
 				F9B03FC020D8688B00DF764C /* grading_periods.grpc.swift in Sources */,
 				F9B03FC420D8688B00DF764C /* general.grpc.swift in Sources */,
 				F9B03FB820D8688B00DF764C /* quizzes.grpc.swift in Sources */,
+				9F711BC020F518FA009A2C70 /* VCR.m in Sources */,
 				F9B03FB920D8688B00DF764C /* conversations.grpc.swift in Sources */,
 				F9B03FCA20D8688B00DF764C /* modules.pb.swift in Sources */,
 				F9B03FC320D8688B00DF764C /* user.grpc.swift in Sources */,
@@ -471,6 +487,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 965B6F817B4FF5E0F9105AAB /* Pods-defaults-SoSeedySwift.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
@@ -490,6 +507,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.SoSeedySwift;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_INCLUDE_PATHS = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -500,6 +519,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A09DBF17EC444D398BF7D91A /* Pods-defaults-SoSeedySwift.release.xcconfig */;
 			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
@@ -519,6 +539,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.SoSeedySwift;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_INCLUDE_PATHS = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
