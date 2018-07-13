@@ -91,7 +91,6 @@ class DashboardViewController: UIViewController {
     var alertTabBadgeCountCoordinator: AlertCountCoordinator?
 
     var studentCountObserver: ManagedObjectCountObserver<Student>!
-    var noStudentsViewController: NoStudentsViewController!
     var adminViewController: AdminViewController!
     var viewState = DashboardViewState()
     
@@ -182,7 +181,23 @@ class DashboardViewController: UIViewController {
         viewState.isSiteAdmin = session.isSiteAdmin
         studentCollection = try Student.observedStudentsCollection(session)
         studentCountObserver = try Student.countOfObservedStudentsObserver(session) { [weak self] count in
+            
+            // Check to see if all students were all removed during
+            // the current user session
+            var noMoreLinkedStudents = false
+            if count == 0,
+               let state = self?.viewState,
+               state.studentCount > 0,
+               state.isValidObserver
+            {
+                noMoreLinkedStudents = true
+            }
+            
             self?.viewState.studentCount = count
+            
+            if (noMoreLinkedStudents) {
+                self?.retrieveStudentsCompleted()
+            }
         }
         
         try retrieveStudents()
@@ -202,7 +217,7 @@ class DashboardViewController: UIViewController {
     }
     
     func retrieveStudentsCompleted() {
-        guard viewState.isValidObserver else {
+        guard viewState.isValidObserver && viewState.studentCount > 0 else {
             return showNotAParentView()
         }
         
@@ -211,10 +226,6 @@ class DashboardViewController: UIViewController {
         
         if(viewState.isSiteAdmin && viewState.studentCount == 0) {
             showSiteAdminViews()
-        } else if(viewState.studentCount == 0) {
-            showNoStudentsViewController()
-        } else if (noStudentsViewController != nil && viewState.studentCount > 0){
-            hideNoStudentsViewController()
         }
         
         displayDefaultStudent()
@@ -252,21 +263,6 @@ class DashboardViewController: UIViewController {
         
         selectCoursesTab()
     }
-
-    func showNoStudentsViewController() {
-        if(noStudentsViewController == nil) {
-            setupNoStudentsViewController()
-        }
-        tabBar.isHidden = true
-    }
-    
-    func hideNoStudentsViewController() {
-        if(noStudentsViewController != nil) {
-            noStudentsViewController.removeFromParentViewController()
-            noStudentsViewController.view.removeFromSuperview()
-        }
-        tabBar.isHidden = false
-    }
     
     func showSiteAdminViews() {
         studentInfoName.text = NSLocalizedString("Admin", comment: "Label displayed when logged in as an admin")
@@ -283,21 +279,12 @@ class DashboardViewController: UIViewController {
         pageViewController?.setViewControllers([adminViewController], direction: .reverse, animated: false, completion: { _ in })
     }
     
-    func setupNoStudentsViewController() {
-        noStudentsViewController = NoStudentsViewController()
-        noStudentsViewController.logoutAction = { [weak self] in self?.logoutAction?() }
-        noStudentsViewController.proceedAction = { [weak self] in try? self?.retrieveStudents() }
-        
-        showViewController(noStudentsViewController)
-    }
-    
     func showNotAParentView() {
         let vc =  HelmViewController( moduleName: "/parent/notAParent", props: [:] )
         showViewController(vc)
     }
     
     //  MARK: - Helpers
-    
     func showViewController(_ viewController: UIViewController) {
         viewController.willMove(toParentViewController: self)
         addChildViewController(viewController)
