@@ -73,6 +73,7 @@ type Props = {
   rejectEnrollment?: (string, string) => any,
   hideInvite?: (string) => any,
   showGrades?: boolean,
+  pending: number,
 }
 type State = {
   width?: number,
@@ -424,7 +425,7 @@ export class Dashboard extends React.Component<Props, State> {
           title: i18n('Edit'),
           testID: 'dashboard.edit-btn',
           action: this.showFavoritesList,
-          disabled: !this.props.totalCourseCount,
+          disabled: !this.props.totalCourseCount || Boolean(this.props.pending),
         }],
         leftBarButtons: [
           {

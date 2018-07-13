@@ -18,7 +18,7 @@
 
 import 'react-native'
 import React from 'react'
-import { Refreshed, FavoritesList } from '../EditFavorites'
+import { FavoritesList } from '../EditFavorites'
 import setProps from '../../../../../test/helpers/setProps'
 import App from '../../../app'
 import renderer from 'react-test-renderer'
@@ -65,49 +65,6 @@ test('renders correctly as student', () => {
   ).toJSON()
   expect(tree).toMatchSnapshot()
   App.setCurrentApp(currentApp.appId)
-})
-
-it('refresh courses when empty', () => {
-  const refreshCourses = jest.fn()
-  const refreshProps = {
-    courses: [],
-    refreshCourses,
-  }
-
-  const tree = shallow(<Refreshed {...refreshProps} />)
-  expect(tree).toMatchSnapshot()
-  expect(refreshCourses).toHaveBeenCalled()
-})
-
-it('no refresh when at least one course exists', () => {
-  const refreshCourses = jest.fn()
-  const refreshProps = {
-    courses: [],
-    refreshCourses,
-  }
-
-  const tree = shallow(<Refreshed {...refreshProps} />)
-  expect(tree).toMatchSnapshot()
-  expect(refreshCourses).toHaveBeenCalledTimes(1)
-  expect(tree.refreshing).toBeFalsy()
-  refreshProps.courses[0] = courses[0]
-  tree.setProps(refreshProps)
-  expect(refreshCourses).toHaveBeenCalledTimes(1)
-})
-
-it('refreshes with new props', () => {
-  const refreshCourses = jest.fn()
-  const refreshProps = {
-    courses: [],
-    groups: [],
-    refreshCourses,
-  }
-
-  let tree = shallow(<Refreshed {...refreshProps} />)
-  expect(tree).toMatchSnapshot()
-  tree.instance().refresh()
-  tree.setProps(refreshProps)
-  expect(refreshCourses).toHaveBeenCalledTimes(2)
 })
 
 it('updates when courses prop changes', () => {

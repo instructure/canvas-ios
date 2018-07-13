@@ -26,7 +26,6 @@ import FavoritesActions from './actions'
 import CoursesActions from '../actions'
 import GroupFavoriteActions from '../../groups/favorites/actions'
 import mapStateToProps from './map-state-to-props'
-import refresh from '../../../utils/refresh'
 import Screen from '../../../routing/Screen'
 import Navigator from '../../../routing/Navigator'
 import colors from '../../../common/colors'
@@ -167,10 +166,5 @@ export class FavoritesList extends Component<Props> {
   }
 }
 
-export let Refreshed = refresh(
-  props => props.refreshCourses(),
-  props => props.courses.length === 0,
-  props => Boolean(props.pending)
-)(FavoritesList)
-let Connected = connect(mapStateToProps, { ...CoursesActions, ...FavoritesActions, ...GroupFavoriteActions })(Refreshed)
+let Connected = connect(mapStateToProps, { ...CoursesActions, ...FavoritesActions, ...GroupFavoriteActions })(FavoritesList)
 export default (Connected: FavoritesList)

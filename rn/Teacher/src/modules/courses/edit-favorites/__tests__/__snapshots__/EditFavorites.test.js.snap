@@ -1,33 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`no refresh when at least one course exists 1`] = `
-<FavoritesList
-  courses={Array []}
-  refresh={[Function]}
-  refreshCourses={[Function]}
-  refreshing={false}
-/>
-`;
-
-exports[`refresh courses when empty 1`] = `
-<FavoritesList
-  courses={Array []}
-  refresh={[Function]}
-  refreshCourses={[Function]}
-  refreshing={false}
-/>
-`;
-
-exports[`refreshes with new props 1`] = `
-<FavoritesList
-  courses={Array []}
-  groups={Array []}
-  refresh={[Function]}
-  refreshCourses={[Function]}
-  refreshing={false}
-/>
-`;
-
 exports[`renders correctly 1`] = `
 <RCTSafeAreaView
   style={

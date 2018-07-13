@@ -2210,7 +2210,7 @@ exports[`Dashboard render while pending 1`] = `
     Array [
       Object {
         "action": [Function],
-        "disabled": false,
+        "disabled": true,
         "testID": "dashboard.edit-btn",
         "title": "Edit",
       },
