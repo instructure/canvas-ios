@@ -47,7 +47,19 @@ class AccountNotificationViewController: UITableViewController {
                         .message(session.baseURL, notification.message)
                     ]
                 case .failed(let error):
-                    ErrorReporter.reportError(error, from: self)
+                    if error.code == 401 {
+                        let message = NSLocalizedString("This announcement has expired.", comment: "")
+                        let markup = """
+                        <div style='display:flex;align-items:center;justify-content:center;'>
+                            <p>\(message)</p>
+                        </div>
+                        """
+                        self.details = [
+                            .message(session.baseURL, markup)
+                        ]
+                    } else {
+                        ErrorReporter.reportError(error, from: self)
+                    }
                 case .completed, .interrupted:
                     break
                 }
