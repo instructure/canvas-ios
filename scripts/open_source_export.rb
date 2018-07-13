@@ -140,7 +140,7 @@ remove_secrets_from_plist File.join(destination, 'Parent', 'Parent', 'Info.plist
 
 remove_fabric_from_app_delegate File.join(destination, 'Canvas/Canvas/CanvasAppDelegate.swift')
 remove_fabric_from_app_delegate File.join(destination, 'rn/Teacher/ios/Teacher/AppDelegate.swift')
-remove_fabric_from_app_delegate File.join(destination, 'Parent/Parent/AppDelegate.swift')
+remove_fabric_from_app_delegate File.join(destination, 'Parent/Parent/ParentAppDelegate.swift')
 
 # Strip out all of the keys from our stuff, making an empty template file
 prune_plist File.join(destination, 'secrets.plist')
