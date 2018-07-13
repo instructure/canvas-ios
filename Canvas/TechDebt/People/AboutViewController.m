@@ -265,10 +265,10 @@ typedef NS_ENUM(NSInteger, LegalRows) {
         }
         
         if (indexPath.row == EULARow) {
-            urlAddress = @"http://www.canvaslms.com/policies/end-user-license-agreement";
+            urlAddress = @"https://www.canvaslms.com/policies/end-user-license-agreement";
         }
         if (indexPath.row == PrivacyRow) {
-            urlAddress = @"http://www.canvaslms.com/policies/privacy-policy";
+            urlAddress = @"https://www.instructure.com/policies/privacy/";
         }
         
         NSURL *url = [NSURL URLWithString:urlAddress];
