@@ -71,7 +71,7 @@ extension Course {
         let producer = SignalProducer.concat([courses, students])
         
         let key = cacheKey(context, [studentID])
-        return SignalProducerRefresher(refreshSignalProducer: producer, scope: session.refreshScope, cacheKey: key)
+        return SignalProducerRefresher(refreshSignalProducer: producer, scope: session.refreshScope, cacheKey: key, ttl: ParentAppRefresherTTL)
     }
     
     public static func airwolfRefresher(_ session: Session, studentID: String, courseID: String) throws -> Refresher {
@@ -82,7 +82,7 @@ extension Course {
         let sync = Course.syncSignalProducer(predicate, inContext: context, fetchRemote: remote)
         
         let key = cacheKey(context, [studentID])
-        return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
+        return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key, ttl: ParentAppRefresherTTL)
     }
 }
 

@@ -51,6 +51,6 @@ extension AlertThreshold {
         })
 
         let key = cacheKey(context)
-        return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
+        return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key, ttl: ParentAppRefresherTTL)
     }
 }

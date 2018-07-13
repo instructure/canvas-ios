@@ -39,7 +39,7 @@ extension CalendarEvent {
         let sync = CalendarEvent.syncSignalProducer(predicate, inContext: context, fetchRemote: remote)
 
         let key = cacheKey(context, [studentID, startDate.yyyyMMdd, endDate.yyyyMMdd] + contextCodes.sorted())
-        return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
+        return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key, ttl: ParentAppRefresherTTL)
     }
 
     // MARK: - Details
@@ -55,7 +55,7 @@ extension CalendarEvent {
         let sync = CalendarEvent.syncSignalProducer(predicate, inContext: context, fetchRemote: remote)
 
         let key = cacheKey(context, [studentID, calendarEventID])
-        return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
+        return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key, ttl: ParentAppRefresherTTL)
     }
 
     public static func observer(_ session: Session, studentID: String, calendarEventID: String) throws -> ManagedObjectObserver<CalendarEvent> {

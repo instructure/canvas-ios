@@ -22,6 +22,7 @@ import Crashlytics
 import BugsnagReactNative
 
 let TheKeymaster = CanvasKeymaster.the()
+let ParentAppRefresherTTL: TimeInterval = 5.minutes
 
 @UIApplicationMain
 class ParentAppDelegate: UIResponder, UIApplicationDelegate {

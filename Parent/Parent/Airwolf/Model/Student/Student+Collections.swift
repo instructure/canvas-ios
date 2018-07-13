@@ -54,6 +54,6 @@ extension Student {
         let sync = try observedStudentsSyncProducer(session)
         let context = try session.airwolfManagedObjectContext()
         let key = self.cacheKey(context)
-        return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
+        return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key, ttl: ParentAppRefresherTTL)
     }
 }
