@@ -72,6 +72,7 @@ async function postFile (uri: string, target: UploadTarget, options: UploadOptio
   formdata.append('file', {
     uri,
     type: 'multipart/form-data',
+    name: upload_params['filename'] || '',
   })
 
   const uploading = httpClient.post(upload_url, formdata, {
