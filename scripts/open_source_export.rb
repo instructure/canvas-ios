@@ -178,6 +178,14 @@ raise "Prod license not removed! Check gsub pattern" if podfile_contents.include
 # Remove deep links, exempt domains, & dev domains
 File.write(File.join(destination, 'rn', 'CanvasPlayground', 'deep-links.json'), "[]")
 
+# Rewrite the CanvasPlayground/json/Accounts.js
+canvas_playground_accounts = File.join(destination, 'rn', 'CanvasPlayground', 'json', 'Accounts.js')
+File.write(canvas_playground_accounts, File.read(canvas_playground_accounts).sub(/import .+json\'/m, ""))
+File.write(canvas_playground_accounts, File.read(canvas_playground_accounts).sub(/accounts = \[[^\]]*\]/, "accounts = [{ domain: \"example.instructure.com\", urls: [{\"url\": \"example.instructure.com\", \"title\": \"Dashboard\"}]}]"))
+
+# Remove all CanvasPlayground/json/*.json files with routes
+FileUtils.rm Dir.glob(File.join(destination, 'rn', 'CanvasPlayground', 'json', '*.json'))
+
 feature_flags_path = File.join(destination, 'rn', 'Teacher', 'src', 'common', 'feature-flags.js')
 File.write(feature_flags_path, File.read(feature_flags_path).sub(/exemptDomains = \[[^\]]*\]/, "exemptDomains = []"))
 
