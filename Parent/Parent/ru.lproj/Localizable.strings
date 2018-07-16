@@ -25,9 +25,6 @@
 /* Generic Network Error Message */
 "An unexpected error occurred.  Please try again." = "Произошла непредвиденная ошибка. Пожалуйста, попробуйте еще раз.";
 
-/* Logout Confirmation */
-"Are you sure you want to logout?" = "Вы действительно хотите выйти?";
-
 /* Assignment Grade High On Description */
 "Assignment grade above" = "Оценка за задание выше";
 
@@ -138,9 +135,6 @@
 
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "С опозданием: %1$@ (%2$@/%3$@)";
-
-/* Logout Confirm Button */
-"Logout" = "Выйти";
 
 /* Low Assignment Grade too High */
 "Low assignment grade cannot be higher than high assignment grade" = "Низкая оценка за задание не может быть выше высокой оценки за задание";

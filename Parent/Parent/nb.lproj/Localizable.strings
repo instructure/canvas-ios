@@ -25,9 +25,6 @@
 /* Generic Network Error Message */
 "An unexpected error occurred.  Please try again." = "Det oppsto en uventet feil. Vennligst forsøk igjen.";
 
-/* Logout Confirmation */
-"Are you sure you want to logout?" = "Er du sikker på at du ønsker å logge av?";
-
 /* Assignment Grade High On Description */
 "Assignment grade above" = "Oppgavevurdering over";
 
@@ -138,9 +135,6 @@
 
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "Seint: %1$@ (%2$@/%3$@)";
-
-/* Logout Confirm Button */
-"Logout" = "Logg ut";
 
 /* Low Assignment Grade too High */
 "Low assignment grade cannot be higher than high assignment grade" = "Lav oppgavevurdering kan ikke være høyere enn høy oppgavevudering";

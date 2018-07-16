@@ -25,9 +25,6 @@
 /* Generic Network Error Message */
 "An unexpected error occurred.  Please try again." = "An unexpected error occurred.  Please try again.";
 
-/* Logout Confirmation */
-"Are you sure you want to logout?" = "Are you sure you want to logout?";
-
 /* Assignment Grade High On Description */
 "Assignment grade above" = "Assignment grade above";
 
@@ -138,9 +135,6 @@
 
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "Late: %1$@ (%2$@/%3$@)";
-
-/* Logout Confirm Button */
-"Logout" = "Logout";
 
 /* Low Assignment Grade too High */
 "Low assignment grade cannot be higher than high assignment grade" = "Low assignment grade cannot be higher than high assignment grade";

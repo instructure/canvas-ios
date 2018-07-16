@@ -25,9 +25,6 @@
 /* Generic Network Error Message */
 "An unexpected error occurred.  Please try again." = "出現意外故障。請重試。";
 
-/* Logout Confirmation */
-"Are you sure you want to logout?" = "你是否確定要登出？";
-
 /* Assignment Grade High On Description */
 "Assignment grade above" = "上方任務評分";
 
@@ -138,9 +135,6 @@
 
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "遲交： %1$@ (%2$@/%3$@)";
-
-/* Logout Confirm Button */
-"Logout" = "登出";
 
 /* Low Assignment Grade too High */
 "Low assignment grade cannot be higher than high assignment grade" = "低的任務評分不可高於高的任務評分";

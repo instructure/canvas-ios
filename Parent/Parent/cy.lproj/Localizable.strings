@@ -25,9 +25,6 @@
 /* Generic Network Error Message */
 "An unexpected error occurred.  Please try again." = "Gwall Annisgwyl.  Rhowch gynnig arall arni.";
 
-/* Logout Confirmation */
-"Are you sure you want to logout?" = "Ydych chi’n siŵr eich bod am allgofnodi?";
-
 /* Assignment Grade High On Description */
 "Assignment grade above" = "Gradd yr aseiniad yn uwch na";
 
@@ -138,9 +135,6 @@
 
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "Yn Hwyr: %1$@ (%2$@/%3$@)";
-
-/* Logout Confirm Button */
-"Logout" = "Allgofnodi";
 
 /* Low Assignment Grade too High */
 "Low assignment grade cannot be higher than high assignment grade" = "Ni all gradd aseiniad isel fod yn uwch na gradd aseiniad uchel";

@@ -25,9 +25,6 @@
 /* Generic Network Error Message */
 "An unexpected error occurred.  Please try again." = "En uventet fejl opstod. Prøve venligst igen.";
 
-/* Logout Confirmation */
-"Are you sure you want to logout?" = "Er du sikker på, at du ønsker at logge ud?";
-
 /* Assignment Grade High On Description */
 "Assignment grade above" = "Opgavekarakter over";
 
@@ -138,9 +135,6 @@
 
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "Sen: %1$@ (%2$@/%3$@)";
-
-/* Logout Confirm Button */
-"Logout" = "Log ud";
 
 /* Low Assignment Grade too High */
 "Low assignment grade cannot be higher than high assignment grade" = "Lav opgavekarakter kan ikke være højere end høj opgavekarakter";

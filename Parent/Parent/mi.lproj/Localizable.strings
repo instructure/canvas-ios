@@ -25,9 +25,6 @@
 /* Generic Network Error Message */
 "An unexpected error occurred.  Please try again." = "He hapa ohorere. Koa ngana anō.";
 
-/* Logout Confirmation */
-"Are you sure you want to logout?" = "Kei te tino hiahia ki te takiuru atu koutou a koutou?";
-
 /* Assignment Grade High On Description */
 "Assignment grade above" = "kōeke Taumahi runga";
 
@@ -138,9 +135,6 @@
 
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "Late: %1$@ (%2$@/%3$@)";
-
-/* Logout Confirm Button */
-"Logout" = "Takiuru Out";
 
 /* Low Assignment Grade too High */
 "Low assignment grade cannot be higher than high assignment grade" = "e kore e taea e Nana taumahi kōeke e tiketike ake kōeke taumahi teitei";

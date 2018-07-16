@@ -25,9 +25,6 @@
 /* Generic Network Error Message */
 "An unexpected error occurred.  Please try again." = "予期しないエラーが発生しました。再度お試しください。";
 
-/* Logout Confirmation */
-"Are you sure you want to logout?" = "ログアウトしますか？";
-
 /* Assignment Grade High On Description */
 "Assignment grade above" = "より上の課題成績";
 
@@ -138,9 +135,6 @@
 
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "遅滞: %1$@ (%2$@/%3$@)";
-
-/* Logout Confirm Button */
-"Logout" = "ログアウト";
 
 /* Low Assignment Grade too High */
 "Low assignment grade cannot be higher than high assignment grade" = "低い課題成績は、高い課題成績より高くしないでください";

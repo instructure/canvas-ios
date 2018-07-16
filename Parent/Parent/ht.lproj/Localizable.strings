@@ -25,9 +25,6 @@
 /* Generic Network Error Message */
 "An unexpected error occurred.  Please try again." = "Yon erè ki fèt sanzatann. Tanpri eseye ankò.";
 
-/* Logout Confirmation */
-"Are you sure you want to logout?" = "Èske vrèman ou vle dekonekte?";
-
 /* Assignment Grade High On Description */
 "Assignment grade above" = "Nòt sesyon pi wo a";
 
@@ -138,9 +135,6 @@
 
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "Ta: %1$@ (%2$@/%3$@)";
-
-/* Logout Confirm Button */
-"Logout" = "Dekoneksyon";
 
 /* Low Assignment Grade too High */
 "Low assignment grade cannot be higher than high assignment grade" = "Klas sesyon fèb pa kapab siperyè a klas sesyon elve";

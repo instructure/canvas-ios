@@ -25,9 +25,6 @@
 /* Generic Network Error Message */
 "An unexpected error occurred.  Please try again." = "Ocorreu um erro inesperável. Por favor tente novamente.";
 
-/* Logout Confirmation */
-"Are you sure you want to logout?" = "Você tem certeza de que quer fazer logout?";
-
 /* Assignment Grade High On Description */
 "Assignment grade above" = "Nota da tarefa acima";
 
@@ -138,9 +135,6 @@
 
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "Atrasado: %1$@ (%2$@/%3$@)";
-
-/* Logout Confirm Button */
-"Logout" = "Logout";
 
 /* Low Assignment Grade too High */
 "Low assignment grade cannot be higher than high assignment grade" = "A menor nota de tarefa não pode ser maior que a maior nota de tarefa";

@@ -25,9 +25,6 @@
 /* Generic Network Error Message */
 "An unexpected error occurred.  Please try again." = "Er heeft zich een onverwachte fout voorgedaan. Probeer het nogmaals.";
 
-/* Logout Confirmation */
-"Are you sure you want to logout?" = "Weet je zeker dat je je wilt afmelden?";
-
 /* Assignment Grade High On Description */
 "Assignment grade above" = "Opdrachtcijfer hoger dan";
 
@@ -138,9 +135,6 @@
 
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "Laat: %1$@ (%2$@/%3$@)";
-
-/* Logout Confirm Button */
-"Logout" = "Afmelden";
 
 /* Low Assignment Grade too High */
 "Low assignment grade cannot be higher than high assignment grade" = "Laag opdrachtcijfer kan niet hoger zijn dan hoog beoordelingscijfer";
