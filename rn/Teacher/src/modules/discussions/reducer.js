@@ -50,7 +50,7 @@ const {
 
 const list: Reducer<AsyncRefs, any> = asyncRefsReducer(
   refreshDiscussions.toString(),
-  i18n('There was a problem loading discussions.'),
+  () => i18n('There was a problem loading discussions.'),
   ({ result }) => result.data.map(discussion => discussion.id)
 )
 

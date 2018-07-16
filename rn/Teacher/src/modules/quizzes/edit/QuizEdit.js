@@ -200,11 +200,11 @@ export class QuizEdit extends Component<Props, any> {
                 selectedValue={quiz.quiz_type}
                 onValueChange={this._updateQuiz('quiz_type', null, false)}
                 testID='quizzes.edit.quiz-type-picker'>
-                {Object.keys(QUIZ_TYPES).map((type) => (
+                {Object.keys(QUIZ_TYPES()).map((type) => (
                   <PickerItem
                     key={type}
                     value={type}
-                    label={QUIZ_TYPES[type]}
+                    label={QUIZ_TYPES()[type]}
                   />
                 ))}
               </PickerIOS>
@@ -295,11 +295,11 @@ export class QuizEdit extends Component<Props, any> {
                     selectedValue={quiz.scoring_policy}
                     onValueChange={this._updateQuiz('scoring_policy', null, false)}
                     testID='quizzes.edit.scoring-policy-picker'>
-                    {Object.keys(SCORING_POLICIES).map((key) => (
+                    {Object.keys(SCORING_POLICIES()).map((key) => (
                       <PickerItem
                         key={key}
                         value={key}
-                        label={SCORING_POLICIES[key]}
+                        label={SCORING_POLICIES()[key]}
                       />
                     ))}
                   </PickerIOS>

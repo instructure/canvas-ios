@@ -28,7 +28,7 @@ function refsForResponse ({ result }: Response): EntityRefs {
 
 export const gradeableStudentsRefs: Reducer<AsyncRefs, any> = asyncRefsReducer(
   refreshGradeableStudents.toString(),
-  i18n('There was a problem loading the assignment submissions.'),
+  () => i18n('There was a problem loading the assignment submissions.'),
   refsForResponse
 )
 

@@ -27,7 +27,7 @@ export function asyncRefsReducer (
   // the name of action to reduce
   actionName: string,
   // localized descriptive error message for failures
-  errorMessage: string,
+  errorMessage: () => string,
   // list of entity ids
   updatedRefs: (any) => ?Array<string>
 ): Reducer<AsyncRefs, Action> {
@@ -51,7 +51,7 @@ export function asyncRefsReducer (
       },
       rejected: (state, { error }) => {
         const pending = Math.max(state.pending - 1, 0)
-        let message = errorMessage
+        let message = errorMessage()
         let reason = parseErrorMessage(error)
         if (reason) {
           message =

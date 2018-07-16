@@ -59,18 +59,6 @@ function item (image: string, action: string, accessibilityLabel: string): Item 
   return { image, action, accessibilityLabel }
 }
 
-const ITEMS = [
-  item('undo', 'undo', i18n('Undo')),
-  item('redo', 'redo', i18n('Redo')),
-  item('bold', 'setBold', i18n('Bold')),
-  item('italic', 'setItalic', i18n('Italic')),
-  item('textColor', 'setTextColor', i18n('Text Color')),
-  item('unorderedList', 'setUnorderedList', i18n('Unordered List')),
-  item('orderedList', 'setOrderedList', i18n('Ordered List')),
-  item('link', 'insertLink', i18n('Insert Link')),
-  item('embedImage', 'insertImage', i18n('Insert Image')),
-]
-
 const ColorPickerAnimation = {
   duration: 200,
   create: {
@@ -92,6 +80,18 @@ export default class RichTextToolbar extends Component<Props, State> {
   }
 
   render () {
+    const ITEMS = [
+      item('undo', 'undo', i18n('Undo')),
+      item('redo', 'redo', i18n('Redo')),
+      item('bold', 'setBold', i18n('Bold')),
+      item('italic', 'setItalic', i18n('Italic')),
+      item('textColor', 'setTextColor', i18n('Text Color')),
+      item('unorderedList', 'setUnorderedList', i18n('Unordered List')),
+      item('orderedList', 'setOrderedList', i18n('Ordered List')),
+      item('link', 'insertLink', i18n('Insert Link')),
+      item('embedImage', 'insertImage', i18n('Insert Image')),
+    ]
+
     return (
       <View style={styles.container}>
         { this.state.colorPickerVisible && this.props.setTextColor &&

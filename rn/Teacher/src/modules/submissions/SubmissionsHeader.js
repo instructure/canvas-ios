@@ -35,10 +35,6 @@ export type SubmissionsHeaderProps = {
   navigator: Navigator,
 }
 
-const anonymousSubtitle = i18n('Anonymous grading')
-const mutedSubtitle = i18n('Grades muted')
-const bothSubtitle = i18n('Grades muted, Anonymous grading')
-
 export default class SubmissionsHeader extends Component<SubmissionsHeaderProps, any> {
   navigateToFilter = () => {
     this.props.navigator.show('/filter', {
@@ -51,11 +47,11 @@ export default class SubmissionsHeader extends Component<SubmissionsHeaderProps,
 
     let subTitle = ''
     if (this.props.muted && this.props.anonymous) {
-      subTitle = bothSubtitle
+      subTitle = i18n('Grades muted, Anonymous grading')
     } else if (this.props.muted) {
-      subTitle = mutedSubtitle
+      subTitle = i18n('Grades muted')
     } else if (this.props.anonymous) {
-      subTitle = anonymousSubtitle
+      subTitle = i18n('Anonymous grading')
     }
 
     return (<View style={styles.headerWrapper}>

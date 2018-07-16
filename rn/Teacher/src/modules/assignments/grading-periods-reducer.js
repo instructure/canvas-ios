@@ -31,7 +31,7 @@ const { refreshAssignmentList } = AssignmentActions
 
 export const refs: Reducer<AsyncRefs, any> = asyncRefsReducer(
   refreshGradingPeriods.toString(),
-  i18n('There was a problem loading the grading periods.'),
+  () => i18n('There was a problem loading the grading periods.'),
   ({ result }) => result.data.grading_periods.map(gp => gp.id)
 )
 

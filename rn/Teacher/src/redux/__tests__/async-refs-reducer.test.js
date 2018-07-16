@@ -21,7 +21,7 @@ import { asyncRefsReducer } from '../async-refs-reducer'
 describe('refs reducer', () => {
   const refs = asyncRefsReducer(
     'foobar.baz',
-    'The quick brown fox fails to jump over the lazy dog',
+    () => 'The quick brown fox fails to jump over the lazy dog',
     payload => payload.things.map(thing => thing.id)
   )
 

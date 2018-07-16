@@ -38,13 +38,6 @@ import DrawerState, {
 
 let { height, width } = Dimensions.get('window')
 
-const cycleText = i18n('Open Drawer')
-const snapPointStates = [
-  i18n('Full screen'),
-  i18n('Half screen'),
-  i18n('Closed'),
-]
-
 const DrawerHandle = requireNativeComponent('DrawerHandleView')
 
 export type Snap = 0 | 1 | 2
@@ -134,6 +127,13 @@ export default class BottomDrawer extends Component<Props, State> {
   }
 
   render () {
+    const cycleText = i18n('Open Drawer')
+    const snapPointStates = [
+      i18n('Full screen'),
+      i18n('Half screen'),
+      i18n('Closed'),
+    ]
+
     let width = Math.min(700, this.state.width)
     let position = (this.state.width - width) / 2
 

@@ -42,7 +42,7 @@
     "no-multi-str": [0, "never"],
     "camelcase": 0,
 
-    "format-message/no-top-scope": "warn",
+    "format-message/no-top-scope": "error",
     "format-message/no-identical-translation": "off",
     "format-message/no-missing-plural-keyword": "off",
 

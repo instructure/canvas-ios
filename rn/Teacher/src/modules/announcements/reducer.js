@@ -30,7 +30,7 @@ const { createDiscussion, deleteDiscussion } = EditActions
 
 const list: Reducer<AsyncRefs, any> = asyncRefsReducer(
   refreshAnnouncements.toString(),
-  i18n('There was a problem loading the announcements.'),
+  () => i18n('There was a problem loading the announcements.'),
   ({ result }) => result.data.map(announcement => announcement.id)
 )
 

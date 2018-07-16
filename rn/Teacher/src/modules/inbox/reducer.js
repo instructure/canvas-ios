@@ -43,7 +43,7 @@ const {
 export function createScopeHandler (action: string): Function {
   return asyncRefsReducer(
     action,
-    i18n('There was an problem loading your messages.'),
+    () => i18n('There was an problem loading your messages.'),
     ({ result }) => {
       return result.data.map(c => c.id)
     }
