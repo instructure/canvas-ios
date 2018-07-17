@@ -505,10 +505,7 @@ extension HelmManager {
         guard let view = titleView else { return nil }
 
         view.contentMode = .scaleAspectFit
-        let container = UIView(frame: CGRect(x: 0, y: 0, width: 32, height: 32))
-        view.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
-        container.addSubview(view)
-
-        return container
+        view.frame = CGRect(x: 0, y: 0, width: 44, height: 44)
+        return view
     }
 }
