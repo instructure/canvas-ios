@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CommentInput renders 1`] = `
+exports[`CommentInput CommentInput renders 1`] = `
 <View>
   <View
     style={
@@ -75,7 +75,7 @@ exports[`CommentInput renders 1`] = `
 </View>
 `;
 
-exports[`Wont render the media buttons when allowMediaInputs is set to false 1`] = `
+exports[`CommentInput Wont render the media buttons when allowMediaInputs is set to false 1`] = `
 <View>
   <View
     style={
@@ -150,7 +150,7 @@ exports[`Wont render the media buttons when allowMediaInputs is set to false 1`]
 </View>
 `;
 
-exports[`disables the send button with a prop 1`] = `
+exports[`CommentInput disables the send button with a prop 1`] = `
 <View>
   <View
     style={

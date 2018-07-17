@@ -24,59 +24,66 @@ import explore from '../../../../../test/helpers/explore'
 
 jest.mock('TouchableOpacity', () => 'TouchableOpacity')
 
-test('CommentInput renders', () => {
-  const tree = renderer.create(
-    <CommentInput makeComment={jest.fn()} />
-  ).toJSON()
-  expect(tree).toMatchSnapshot()
-})
+describe('CommentInput', () => {
+  beforeEach(() => {
+    jest.clearAllMocks()
+    CommentInput.persistentComment.text = ''
+  })
 
-test('Wont render the media buttons when allowMediaInputs is set to false', () => {
-  let tree = renderer.create(
-    <CommentInput allowMediaComments={false} />
-  ).toJSON()
-  expect(tree).toMatchSnapshot()
-})
+  test('CommentInput renders', () => {
+    const tree = renderer.create(
+      <CommentInput makeComment={jest.fn()} />
+    ).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
 
-test('makeComment sends the comment', () => {
-  const makeComment = jest.fn()
-  const component = renderer.create(
-    <CommentInput makeComment={makeComment} />
-  )
-  const tree = component.toJSON()
+  test('Wont render the media buttons when allowMediaInputs is set to false', () => {
+    let tree = renderer.create(
+      <CommentInput allowMediaComments={false} />
+    ).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
 
-  // mock _textInput stuff
-  const blur = jest.fn()
-  component.getInstance()._textInput.blur = blur
+  test('makeComment sends the comment', () => {
+    const makeComment = jest.fn()
+    const component = renderer.create(
+      <CommentInput makeComment={makeComment} />
+    )
+    const tree = component.toJSON()
 
-  const input = explore(tree)
-    .selectByID('comment-input.comment') || {}
-  input.props.onChangeText('Hello!')
+    // mock _textInput stuff
+    const blur = jest.fn()
+    component.getInstance()._textInput.blur = blur
 
-  const noSend = explore(tree)
-    .selectByID('comment-input.send')
-  expect(noSend).toBeNull()
+    const input = explore(tree)
+      .selectByID('comment-input.comment') || {}
+    input.props.onChangeText('Hello!')
 
-  const send = explore(component.toJSON())
-    .selectByID('comment-input.send') || {}
-  send.props.onPress()
+    const noSend = explore(tree)
+      .selectByID('comment-input.send')
+    expect(noSend).toBeNull()
 
-  expect(makeComment).toHaveBeenCalledWith({ type: 'text', message: 'Hello!' })
-  expect(blur).toHaveBeenCalled()
-})
+    const send = explore(component.toJSON())
+      .selectByID('comment-input.send') || {}
+    send.props.onPress()
 
-test('Allows for an initialValue', () => {
-  let tree = renderer.create(
-    <CommentInput initialValue='Comment' />
-  )
+    expect(makeComment).toHaveBeenCalledWith({ type: 'text', message: 'Hello!' })
+    expect(blur).toHaveBeenCalled()
+  })
 
-  expect(tree.getInstance().state.textComment).toEqual('Comment')
-})
+  test('Allows for an initialValue', () => {
+    let tree = renderer.create(
+      <CommentInput initialValue='Comment' />
+    ); tree // need this to avoid unused var lint error
 
-test('disables the send button with a prop', () => {
-  let tree = renderer.create(
-    <CommentInput disabled={true} />
-  ).toJSON()
+    expect(CommentInput.persistentComment.text).toEqual('Comment')
+  })
 
-  expect(tree).toMatchSnapshot()
+  test('disables the send button with a prop', () => {
+    let tree = renderer.create(
+      <CommentInput disabled={true} />
+    ).toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
 })

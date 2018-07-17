@@ -53,6 +53,7 @@ import i18n from 'format-message'
 import Images from '../../images'
 import shuffle from 'knuth-shuffle-seeded'
 import { Title } from '../../common/text'
+import CommentInput from './comments/CommentInput'
 
 const { NativeAccessibility } = NativeModules
 
@@ -228,6 +229,9 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
 
   scrollEnded = (event: Object) => {
     const index = event.nativeEvent.contentOffset.x / this.state.size.width
+    if (index !== this.state.currentPageIndex) {
+      CommentInput.persistentComment.text = ''
+    }
     this.setState({ currentPageIndex: index })
     const submission = (this.state.submissions || [])[index]
     if (submission) {

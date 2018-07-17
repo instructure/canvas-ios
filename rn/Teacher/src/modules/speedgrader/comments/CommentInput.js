@@ -43,28 +43,34 @@ type CommentInputProps = {
   onBlur?: () => void,
 }
 
-type State = {
-  textComment: string,
-}
+type State = {}
+type PersistentComment = { text: string }
 
 export default class CommentInput extends Component<CommentInputProps, State> {
   static defaultProps = {
     disabled: false,
   }
-
-  state: State = { textComment: this.props.initialValue || '' }
+  static persistentComment: PersistentComment = { text: '' }
   _textInput: TextInput
+
+  constructor (props: any) {
+    super(props)
+    if (this.props.initialValue && this.props.initialValue.length > 0) {
+      CommentInput.persistentComment.text = this.props.initialValue
+    }
+  }
 
   addMedia = () => {
     console.log('Add some media!')
   }
 
   makeComment = () => {
-    let text = this.state.textComment
+    let text = CommentInput.persistentComment.text
     if (!text || text.length === 0) {
       return
     }
-    this.setState({ textComment: '' })
+    CommentInput.persistentComment.text = ''
+    this.forceUpdate()
     this._textInput.blur()
 
     this.props.makeComment({
@@ -80,7 +86,8 @@ export default class CommentInput extends Component<CommentInputProps, State> {
   }
 
   textChanged = (text: string) => {
-    this.setState({ textComment: text })
+    CommentInput.persistentComment.text = text
+    this.forceUpdate()
   }
 
   onBlur = () => {
@@ -98,7 +105,7 @@ export default class CommentInput extends Component<CommentInputProps, State> {
 
     const send = i18n('Send')
 
-    const disableSend = !this.state.textComment || this.state.textComment.length === 0 || this.props.disabled
+    const disableSend = !CommentInput.persistentComment.text || CommentInput.persistentComment.text.length === 0 || this.props.disabled
 
     return (
       <View>
@@ -135,12 +142,12 @@ export default class CommentInput extends Component<CommentInputProps, State> {
               maxHeight={76}
               onChangeText={this.textChanged}
               ref={this.captureTextInput}
-              value={this.state.textComment}
+              value={CommentInput.persistentComment.text}
               onBlur={this.onBlur}
             />
             {
-              this.state.textComment != null &&
-              this.state.textComment.length > 0 &&
+              CommentInput.persistentComment.text != null &&
+              CommentInput.persistentComment.text.length > 0 &&
               <TouchableOpacity
                 style={styles.sendButton}
                 testID='comment-input.send'
