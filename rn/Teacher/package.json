@@ -109,7 +109,8 @@
     "redux-logger": "^3.0.6",
     "redux-mock-store": "^1.2.3",
     "timezone-mock": "^0.0.4",
-    "trace": "^3.1.0"
+    "trace": "^3.1.0",
+    "prompt": "1.0"
   },
   "jest": {
     "preset": "react-native",

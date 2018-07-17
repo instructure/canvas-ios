@@ -24,6 +24,7 @@
 .*/node_modules/react-native-sfsafariviewcontroller/.*
 .*/node_modules/react-native-keyboard-aware-scroll-view/.*
 .*/node_modules/react-native-image-picker/.*
+./generate-release-notes.js
 
 [libs]
 node_modules/react-native/Libraries/react-native/react-native-interface.js
