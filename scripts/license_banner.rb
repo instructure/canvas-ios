@@ -16,13 +16,17 @@ OptionParser.new do |opts|
 end.parse!
 
 # The folders which to recursively check for source files
-folders = %w[Frameworks Canvas Parent Teacher rn]
+folders = %w[CanvasCore Frameworks Canvas Parent Teacher rn]
 files = []
 
 # Returns the correct banner based on the file
-def appropriate_banner(file)
+# Tests and Frameworks are Apache;
+# App code and everything else is GPL.
+# CanvasCore is considered app code and not framework.
+def appropriate_banner(file, year)
+
     gpl_header = %q(//
-// Copyright (C) 2016-present Instructure, Inc.
+// Copyright (C) %d-present Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -38,7 +42,7 @@ def appropriate_banner(file)
 //)
 
     apache_header = %q(//
-// Copyright (C) 2016-present Instructure, Inc.
+// Copyright (C) %d-present Instructure, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -52,6 +56,9 @@ def appropriate_banner(file)
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //)
+
+    gpl_header = gpl_header % year
+    apache_header = apache_header % year
 
     return apache_header if file.start_with? "Frameworks"
     return apache_header if file.include? "Tests"
@@ -105,7 +112,9 @@ files.each do |file|
     copyright_matches = text.match(copyright_regex)
     banner_matches = text.match(license_banner_regex)
     instructure_matches = text.match(instructure_regex)
-    banner = appropriate_banner(file)
+    git_authored_year_command = "git log --format=%ad --date=format:'%Y' \"" + file + "\" | tail -1"
+    authored_year = `#{git_authored_year_command}`
+    banner = appropriate_banner(file, authored_year)
 
     unless copyright_matches
         text.prepend("#{banner}\n\n")
