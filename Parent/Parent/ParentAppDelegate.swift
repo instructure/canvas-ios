@@ -20,6 +20,7 @@ import CanvasKeymaster
 import Fabric
 import Crashlytics
 import BugsnagReactNative
+import UserNotifications
 
 let TheKeymaster = CanvasKeymaster.the()
 let ParentAppRefresherTTL: TimeInterval = 5.minutes
@@ -64,6 +65,8 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         DispatchQueue.main.async {
             self.postLaunchSetup()
         }
+
+        UNUserNotificationCenter.current().delegate = self
         
         return true
     }
@@ -74,36 +77,8 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         AppStoreReview.handleLaunch()
+    }
 
-        // TODO
-        //        if let session = Keymaster.sharedInstance.currentSession {
-        //            AirwolfAPI.validateSessionAndLogout(session, parentID: session.user.id)
-        //        }
-    }
-    
-    func application(_ application: UIApplication, handleActionWithIdentifier identifier: String?, for notification: UILocalNotification, withResponseInfo responseInfo: [AnyHashable: Any], completionHandler: @escaping () -> Void) {
-        // On, iOS 10.0b1 application:didReceiveLocalNotification is not being called when opening the app from a local notification and making it transistion from the background. Instead, this is being called. Not
-        // sure if this is a bug or some change in API behavior.
-        //
-        // This api exists as of 9.0, but the odd behavior only exists as of 10.0, so...
-        if #available(iOS 10.0, *) {
-            routeToRemindable(from: notification)
-        }
-    }
-    
-    func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
-        if application.applicationState == .active {
-            let alert = UIAlertController(title: notification.alertTitle, message: notification.alertBody, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: NSLocalizedString("View", comment: ""), style: .cancel, handler: { [unowned self] _ in
-                self.routeToRemindable(from: notification)
-            }))
-            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: { _ in }))
-            visibleController.present(alert, animated: true, completion: nil)
-        } else if application.applicationState == .inactive {
-            routeToRemindable(from: notification)
-        }
-    }
-    
     func showLoadingState() {
         guard let window = self.window else { return }
         if let root = window.rootViewController, let tag = root.tag, tag == "LaunchScreenPlaceholder" { return }
@@ -150,8 +125,9 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         return false
     }
     
-    func routeToRemindable(from notification: UILocalNotification) {
-        if let urlString = notification.userInfo?[RemindableActionURLKey] as? String, let url = URL(string: urlString) {
+    func routeToRemindable(from response: UNNotificationResponse) {
+        let userInfo = response.notification.request.content.userInfo
+        if let urlString = userInfo[RemindableActionURLKey] as? String, let url = URL(string: urlString) {
             Router.sharedInstance.route(visibleController, toURL: url, modal: true)
         }
     }
@@ -250,5 +226,18 @@ extension ParentAppDelegate: NativeLoginManagerDelegate {
         UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: {
             window.rootViewController = controller
         }, completion:nil)
+    }
+}
+
+// MARK: UNUserNotificationCenterDelegate
+extension ParentAppDelegate: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        StartupManager.shared.enqueueTask { [weak self] in
+            self?.routeToRemindable(from: response)
+        }
+    }
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .sound])
     }
 }

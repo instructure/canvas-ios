@@ -21,9 +21,12 @@ import ReactiveSwift
 extension EventDetailsViewModel {
     static func detailsForAssignment(_ baseURL: URL, observeeID: String, context: UIViewController) -> (Assignment) -> [EventDetailsViewModel] {
         return { assignment in
+            // Pass along a `Reminder` struct because it's unsafe to pass around the managed object
+            // due to notification calls happening on different threads
+            let remindable = Reminder(id: assignment.id, title: assignment.reminderTitle, body: assignment.reminderBody, date: assignment.defaultReminderDate)
             var deets: [EventDetailsViewModel] = [
                 .info(name: assignment.name, submissionInfo: assignment.submittedVerboseText, submissionColor: assignment.submittedColor),
-                .reminder(date: assignment.scheduledReminder()?.fireDate, remindable: assignment, actionURL: Router.sharedInstance.assignmentDetailsRoute(studentID: observeeID, courseID: assignment.courseID, assignmentID: assignment.id), context: context),
+                .reminder(remindable: remindable, actionURL: Router.sharedInstance.assignmentDetailsRoute(studentID: observeeID, courseID: assignment.courseID, assignmentID: assignment.id), context: context),
             ]
 
             if let dueDate = assignment.due {

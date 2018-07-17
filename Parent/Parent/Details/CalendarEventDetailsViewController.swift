@@ -30,9 +30,12 @@ extension EventDetailsViewModel {
             actionURL = Router.sharedInstance.calendarEventDetailsRoute(studentID: studentID, courseID: courseID, calendarEventID: calendarEvent.id)
         }
 
+        // Pass along a `Reminder` struct because it's unsafe to pass around the managed object
+        // due to notification calls happening on different threads
+        let remindable = Reminder(id: calendarEvent.id, title: calendarEvent.reminderTitle, body: calendarEvent.reminderBody, date: calendarEvent.defaultReminderDate)
         var vms: [EventDetailsViewModel] = [
             .info(name: calendarEvent.title ?? "", submissionInfo: calendarEvent.submittedVerboseText, submissionColor: calendarEvent.submittedColor),
-            .reminder(date: calendarEvent.scheduledReminder()?.fireDate, remindable: calendarEvent, actionURL: actionURL, context: context),
+            .reminder(remindable: remindable, actionURL: actionURL, context: context),
         ]
 
         if let startAt = calendarEvent.startAt, let endAt = calendarEvent.endAt {
@@ -40,12 +43,12 @@ extension EventDetailsViewModel {
             vms.insert(dateVM, at: 1)
         }
 
-        if calendarEvent.locationName != nil || calendarEvent.locationAddress != nil {
+        if calendarEvent.locationName?.isEmpty == false || calendarEvent.locationAddress?.isEmpty == false {
             let locationVM: EventDetailsViewModel = .location(locationName: calendarEvent.locationName, address: calendarEvent.locationAddress)
             vms.append(locationVM)
         }
 
-        if let htmlDescription = calendarEvent.htmlDescription {
+        if let htmlDescription = calendarEvent.htmlDescription, !htmlDescription.isEmpty {
             vms.append(.details(baseURL: baseURL, deets: htmlDescription))
         }
 

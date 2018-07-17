@@ -18,6 +18,7 @@
 
 import UIKit
 import CanvasCore
+import UserNotifications
 
 let RemindableIDKey = "RemindableID"
 let RemindableActionURLKey = "RemindableActionURL"
@@ -29,46 +30,71 @@ let RemindableActionURLKey = "RemindableActionURL"
 protocol Remindable {
     var id: String { get }
     var reminderBody: String { get }
+    var reminderTitle: String { get }
     var defaultReminderDate: Date { get }
 
-    func scheduleReminder(atTime date: Date, actionURL: URL)
-    func scheduledReminder() -> UILocalNotification?
+    func scheduleReminder(atTime date: Date, actionURL: URL, completionHandler: @escaping (Error?) -> Void)
+    func getScheduledReminder(completionHandler: @escaping (UNNotificationRequest?) -> Void)
     func cancelReminder()
 }
 
 extension Remindable {
-    func scheduleReminder(atTime date: Date, actionURL: URL) {
-        if let _ = scheduledReminder() {
-            cancelReminder()
+    func scheduleReminder(atTime date: Date, actionURL: URL, completionHandler: @escaping (Error?) -> Void) {
+        getScheduledReminder { pending in
+            if pending != nil {
+                self.cancelReminder()
+            }
+            self.scheduleNotificationRequest(forDate: date, actionURL: actionURL, completionHandler: completionHandler)
         }
-
-        let notification = UILocalNotification()
-        notification.alertBody = reminderBody
-        notification.alertAction = NSLocalizedString("View", comment: "Name of action when viewing a reminder")
-        notification.fireDate = date
-        notification.timeZone = TimeZone.autoupdatingCurrent
-        notification.userInfo = [RemindableIDKey: id, RemindableActionURLKey: actionURL.absoluteString]
-        UIApplication.shared.scheduleLocalNotification(notification)
     }
 
-    func scheduledReminder() -> UILocalNotification? {
-        let application = UIApplication.shared
+    private func scheduleNotificationRequest(forDate date: Date, actionURL: URL, completionHandler: @escaping (Error?) -> Void) {
+        let content = UNMutableNotificationContent()
+        content.title = reminderTitle
+        content.body = reminderBody
+        content.userInfo = [RemindableIDKey: id, RemindableActionURLKey: actionURL.absoluteString]
+        let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: date)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+        let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: completionHandler)
+    }
 
-        let notes = application.scheduledLocalNotifications?.filter {
-            guard let id = $0.userInfo?[RemindableIDKey] as? String, id == self.id else { return false}
-            return true
+    func getScheduledReminder(completionHandler: @escaping (UNNotificationRequest?) -> Void) {
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.getPendingNotificationRequests { requests in
+            let request = requests.findFirst { $0.identifier == self.id }
+            completionHandler(request)
         }
-        return notes?.first
     }
 
     func cancelReminder() {
-        if let reminder = self.scheduledReminder() {
-            UIApplication.shared.cancelLocalNotification(reminder)
+        getScheduledReminder { request in
+            if let request = request {
+                UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [request.identifier])
+            }
         }
     }
 }
 
-import CanvasCore
+struct Reminder: Remindable {
+    let id: String
+    let title: String
+    let body: String
+    let date: Date
+
+    // Remindable
+    var reminderTitle: String {
+        return title
+    }
+
+    var reminderBody: String {
+        return body
+    }
+
+    var defaultReminderDate: Date {
+        return date
+    }
+}
 
 extension Assignment: Remindable {
     fileprivate static var dueDateFormatter: DateFormatter = {
@@ -78,11 +104,15 @@ extension Assignment: Remindable {
         return dateFormatter
     }()
 
+    var reminderTitle: String {
+        return NSLocalizedString("Assignment reminder", comment: "")
+    }
+
     var reminderBody: String {
         if let dueDate = due {
-            return String(format: NSLocalizedString("Assignment reminder: %@ is due at %@", comment: ""), name, Assignment.dueDateFormatter.string(from: dueDate))
+            return String(format: NSLocalizedString("%@ is due at %@", comment: ""), name, Assignment.dueDateFormatter.string(from: dueDate))
         } else {
-            return String(format: NSLocalizedString("Assignment reminder: %@", comment: ""), name)
+            return name
         }
     }
 
@@ -95,8 +125,6 @@ extension Assignment: Remindable {
     }
 }
 
-import CanvasCore
-
 extension CalendarEvent: Remindable {
     fileprivate static var startAtDateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -104,6 +132,17 @@ extension CalendarEvent: Remindable {
         dateFormatter.timeStyle = .short
         return dateFormatter
     }()
+
+    var reminderTitle: String {
+        switch type {
+        case .assignment where endAt != nil,
+             .quiz where endAt != nil,
+             .discussion where endAt != nil:
+            return NSLocalizedString("Assignment reminder", comment: "")
+        default:
+            return NSLocalizedString("Event reminder", comment: "")
+        }
+    }
 
     var reminderBody: String {
         guard let title = title else {
@@ -113,11 +152,11 @@ extension CalendarEvent: Remindable {
         case .assignment where endAt != nil,
              .quiz where endAt != nil,
              .discussion where endAt != nil:
-            return String(format: NSLocalizedString("Assignment reminder: %@ is due at %@", comment: ""), title, Assignment.dueDateFormatter.string(from: endAt!))
+            return String(format: NSLocalizedString("%@ is due at %@", comment: ""), title, Assignment.dueDateFormatter.string(from: endAt!))
         case .calendarEvent where startAt != nil:
-            return String(format: NSLocalizedString("Event reminder: %@ will begin at %@", comment: ""), title, CalendarEvent.startAtDateFormatter.string(from: startAt!))
-        case .assignment, .quiz, .discussion, .calendarEvent: // "Case will never be executed" my BUTT! It has one less statement than the other two!
-            return String(format: NSLocalizedString("Event reminder: %@", comment: ""), title)
+            return String(format: NSLocalizedString("%@ will begin at %@", comment: ""), title, CalendarEvent.startAtDateFormatter.string(from: startAt!))
+        case .assignment, .quiz, .discussion, .calendarEvent:
+            return title
         default:
             return "" // For our purposes, there should always be a time and title attached
         }

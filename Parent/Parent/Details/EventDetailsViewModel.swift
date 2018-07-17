@@ -30,7 +30,7 @@ private let DetailsCellReuseIdentifier = "DetailsCell"
 enum EventDetailsViewModel: TableViewCellViewModel {
 
     case info(name: String, submissionInfo: String?, submissionColor: UIColor?)
-    case reminder(date: Date?, remindable: Remindable, actionURL: URL, context: UIViewController)
+    case reminder(remindable: Remindable, actionURL: URL, context: UIViewController)
     case date(start: Date, end: Date, allDay: Bool)
     case location(locationName: String?, address: String?)
     case details(baseURL: URL, deets: String)
@@ -83,45 +83,44 @@ enum EventDetailsViewModel: TableViewCellViewModel {
 
             return cell
 
-        case .reminder(let date, let remindable, let actionURL, let context):
+        case .reminder(let remindable, let actionURL, let context):
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ReminderCellReuseIdentifier, for: indexPath) as? DetailsReminderCell else { fatalError() }
-            cell.toggle.isOn = (date != nil)
-            cell.setExpanded((date != nil))
-            if let date = date {
-                cell.dateLabel.text = DetailsReminderCell.dateFormatter.string(from: date)
-            } else {
-                cell.dateLabel.text = ""
+            remindable.getScheduledReminder { request in
+                DispatchQueue.main.async {
+                    let trigger = request?.trigger as? UNCalendarNotificationTrigger
+                    var dateComponents = trigger?.dateComponents
+                    dateComponents?.calendar = Calendar.current
+                    let date = dateComponents?.date
+
+                    cell.toggle.isOn = (date != nil)
+                    cell.setExpanded((date != nil))
+                    if let date = date {
+                        cell.dateLabel.text = DetailsReminderCell.dateFormatter.string(from: date)
+                    } else {
+                        cell.dateLabel.text = ""
+                    }
+                }
             }
 
             cell.cellSizeUpdated = { [weak tableView] in
-                tableView?.beginUpdates()
-                tableView?.endUpdates()
+                tableView?.reloadData()
             }
-            cell.toggleAction = { [weak tableView] on in
+            cell.toggleAction = { on in
                 if on {
-                    let vc = DatePickerViewController()
-                    vc.cancelAction = {
-                        cell.toggle.setOn(false, animated: true)
+                    self.requestNotifications { success in
+                        DispatchQueue.main.async {
+                            if success {
+                                self.scheduleRemindable(remindable, url: actionURL, forCell: cell, inTableView: tableView, inContext: context)
+                            } else {
+                                cell.toggle.isOn = false
+                                self.resetReminderCell(cell, inTableView: tableView)
+                                self.presentNotificationPermissionAlert(from: context)
+                            }
+                        }
                     }
-                    vc.doneAction = { date in
-                        remindable.scheduleReminder(atTime: date, actionURL: actionURL)
-                        cell.dateLabel.text = DetailsReminderCell.dateFormatter.string(from: date)
-                        cell.setExpanded(true)
-                        tableView?.beginUpdates()
-                        tableView?.endUpdates()
-                    }
-                    vc.datePicker.date = max(Date(), remindable.defaultReminderDate) // never let it go into the past
-                    vc.datePicker.minimumDate = Date()
-                    let nav = SmallModalNavigationController(rootViewController: vc)
-                    nav.navigationBar.barStyle = .black
-                    nav.navigationBar.barTintColor = .white
-                    context.present(nav, animated: true, completion: nil)
                 } else {
                     remindable.cancelReminder()
-                    cell.dateLabel.text = ""
-                    cell.setExpanded(false)
-                    tableView?.beginUpdates()
-                    tableView?.endUpdates()
+                    self.resetReminderCell(cell, inTableView: tableView)
                 }
             }
             return cell
@@ -136,12 +135,64 @@ enum EventDetailsViewModel: TableViewCellViewModel {
             cell.whizzyWigView.useAPISafeLinks = false
             cell.whizzyWigView.loadHTMLString(deets, baseURL: baseURL)
             cell.cellSizeUpdated = { [weak tableView] _ in
-                tableView?.beginUpdates()
-                tableView?.endUpdates()
+                tableView?.reloadData()
             }
             cell.whizzyWigView.accessibilityIdentifier = "event_details"
             return cell
         }
+    }
+
+    func resetReminderCell(_ cell: DetailsReminderCell, inTableView tableView: UITableView) {
+        cell.dateLabel.text = ""
+        cell.setExpanded(false)
+        tableView.reloadData()
+    }
+
+    func scheduleRemindable(_ remindable: Remindable, url: URL, forCell cell: DetailsReminderCell, inTableView tableView: UITableView, inContext context: UIViewController) {
+        let vc = DatePickerViewController()
+        vc.cancelAction = {
+            cell.toggle.setOn(false, animated: true)
+        }
+        vc.doneAction = { date in
+            remindable.scheduleReminder(atTime: date, actionURL: url) { error in
+                DispatchQueue.main.async {
+                    if let error = error {
+                        ErrorReporter.reportError(error as NSError, from: context)
+                        cell.toggle.setOn(false, animated: true)
+                        self.resetReminderCell(cell, inTableView: tableView)
+                        return
+                    }
+                    cell.dateLabel.text = DetailsReminderCell.dateFormatter.string(from: date)
+                    cell.setExpanded(true)
+                    tableView.reloadData()
+                }
+            }
+        }
+        vc.datePicker.date = max(Date(), remindable.defaultReminderDate) // never let it go into the past
+        vc.datePicker.minimumDate = Date()
+        let nav = SmallModalNavigationController(rootViewController: vc)
+        nav.navigationBar.barStyle = .black
+        nav.navigationBar.barTintColor = .white
+        context.present(nav, animated: true, completion: nil)
+    }
+
+    func requestNotifications(completionHandler: @escaping (Bool) -> Void) {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { success, error in
+            completionHandler(error == nil && success)
+        }
+    }
+
+    func presentNotificationPermissionAlert(from viewController: UIViewController) {
+        let title = NSLocalizedString("Permission Needed", comment: "")
+        let message = NSLocalizedString("You must allow notifications in Settings to set reminders.", comment: "")
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        if let url = URL(string: UIApplicationOpenSettingsURLString) {
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Settings", comment: ""), style: .default) { _ in
+                UIApplication.shared.open(url)
+            })
+        }
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+        viewController.present(alert, animated: true, completion: nil)
     }
 }
 
@@ -152,8 +203,8 @@ func ==(lhs: EventDetailsViewModel, rhs: EventDetailsViewModel) -> Bool {
         return leftName == rightName && leftSubmissionInfo == rightSubmissionInfo
     case let (.date(leftStartDate, leftEndDate, leftAllDay), .date(rightStartDate, rightEndDate, rightAllDay)):
         return (leftStartDate == rightStartDate) && (leftEndDate == rightEndDate) && (leftAllDay == rightAllDay)
-    case let (.reminder(leftDate, _, _, _), .reminder(rightDate, _, _, _)):
-        return leftDate == rightDate
+    case let (.reminder(_, leftURL, _), .reminder(_, rightURL, _)):
+        return leftURL == rightURL
     case let (.location(leftName, leftAddress), .location(rightName, rightAddress)):
         return (leftName == rightName) && (leftAddress == rightAddress)
     case let (.details(leftURL, leftDeets), .details(rightURL, rightDeets)):

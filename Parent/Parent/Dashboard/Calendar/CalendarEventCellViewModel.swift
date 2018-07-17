@@ -75,6 +75,7 @@ struct CalendarEventCellViewModel: TableViewCellViewModel {
         cell.typeImageView.contentMode = .center
         cell.typeImageView.image = smallImage?.withRenderingMode(.alwaysTemplate)
 
+        cell.accessibilityLabel = [calendarEvent.type.accessibilityLabel, name, subtitle].flatMap { $0 }.joined(separator: ",")
         cell.titleLabel.accessibilityIdentifier = "event_title_\(indexPath.section)_\(indexPath.row)"
         cell.courseNameLabel.accessibilityIdentifier = "event_course_\(indexPath.section)_\(indexPath.row)"
         cell.typeImageView.accessibilityIdentifier = "event_icon_\(indexPath.section)_\(indexPath.row)"
@@ -98,6 +99,21 @@ extension EventType {
             return UIImage(named: "icon_calendar_event_fill")
         case .error:
             return UIImage(named: "icon_assignment_fill")
+        }
+    }
+
+    var accessibilityLabel: String? {
+        switch self {
+        case .assignment:
+            return NSLocalizedString("Assignment", comment: "")
+        case .quiz:
+            return NSLocalizedString("Quiz", comment: "")
+        case .discussion:
+            return NSLocalizedString("Discussion", comment: "")
+        case .calendarEvent:
+            return NSLocalizedString("Event", comment: "")
+        case .error:
+            return nil
         }
     }
 }
