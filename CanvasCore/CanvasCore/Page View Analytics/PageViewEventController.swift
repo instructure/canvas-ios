@@ -41,8 +41,11 @@ open class PageViewEventController: NSObject {
     //  MARK: - Public
     func logPageView(_ eventNameOrPath: String, attributes: [String: Any]? = nil, eventDurationInSeconds: TimeInterval = 0) {
         if(!appCanLogEvents()) { return }
-        guard let userID = CanvasKeymaster.the().currentClient?.currentUser.id else { return }
-        
+        guard let authSession = CanvasKeymaster.the().currentClient?.authSession else {
+            return
+        }
+
+        let userID = authSession.user.id
         var mutableAttributes = attributes?.convertToPageViewEventDictionary() ?? PageViewEventDictionary()
         mutableAttributes["session_id"] = try? CodableValue(session.ID)
         mutableAttributes["app_name"] = try? CodableValue("Canvas Student for iOS")
@@ -55,7 +58,7 @@ open class PageViewEventController: NSObject {
         if let url = cleanupUrl(url: eventNameOrPath, attributes: mutableAttributes), let codableUrl = try? CodableValue(url) {
             mutableAttributes["url"] = codableUrl
             if let parsedUrlPieces = parsePageViewParts(url) {
-                mutableAttributes["domain"] = try? CodableValue(parsedUrlPieces.domain)
+                mutableAttributes["domain"] = try? CodableValue(parsedUrlPieces.domain ?? authSession.baseURL.host)
                 mutableAttributes["context_type"] = try? CodableValue(parsedUrlPieces.context)
                 mutableAttributes["context_id"] = try? CodableValue(parsedUrlPieces.contextID)
             }
