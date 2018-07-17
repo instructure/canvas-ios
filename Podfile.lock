@@ -80,9 +80,9 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
-  - PSPDFKit (7.5.0):
-    - PSPDFKit/Core (= 7.5.0)
-  - PSPDFKit/Core (7.5.0)
+  - PSPDFKit (7.6.2):
+    - PSPDFKit/Core (= 7.6.2)
+  - PSPDFKit/Core (7.6.2)
   - RCTSFSafariViewController (0.2.4):
     - React
   - Reachability (3.2)
@@ -193,7 +193,7 @@ DEPENDENCIES:
   - Mantle (~> 1.5.5)
   - Marshal (~> 1.1)
   - Masonry (~> 1.0)
-  - PSPDFKit (from `https://customers.pspdfkit.com/cocoapods/8YzxfVzsGsqs4HKYsejmoeD6WEJ9ma/pspdfkit/7.5.0.podspec`)
+  - PSPDFKit (from `https://customers.pspdfkit.com/cocoapods/8YzxfVzsGsqs4HKYsejmoeD6WEJ9ma/pspdfkit/7.6.2.podspec`)
   - RCTSFSafariViewController (from `./rn/Teacher/node_modules/react-native-sfsafariviewcontroller`)
   - Reachability (~> 3.2)
   - react-native-blur (from `./rn/Teacher/node_modules/react-native-blur`)
@@ -282,7 +282,7 @@ EXTERNAL SOURCES:
   Interactable:
     :path: "./rn/Teacher/node_modules/react-native-interactable"
   PSPDFKit:
-    :podspec: https://customers.pspdfkit.com/cocoapods/8YzxfVzsGsqs4HKYsejmoeD6WEJ9ma/pspdfkit/7.5.0.podspec
+    :podspec: https://customers.pspdfkit.com/cocoapods/8YzxfVzsGsqs4HKYsejmoeD6WEJ9ma/pspdfkit/7.6.2.podspec
   RCTSFSafariViewController:
     :path: "./rn/Teacher/node_modules/react-native-sfsafariviewcontroller"
   React:
@@ -352,7 +352,7 @@ SPEC CHECKSUMS:
   Marshal: 8e04e6624e506921db7143b0bfd83caee03f32d6
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
-  PSPDFKit: a4788124e38a8dfede59a3da3981d1e7a5329575
+  PSPDFKit: e25886c778c089c39d3ef14b4e8703c92592af3e
   RCTSFSafariViewController: b0753f1bd08fa489fc54c4bed1bbc13e213c2b88
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   React: 541ba768b9855e10cdc76f55427a5cd0653ca806
@@ -381,6 +381,6 @@ SPEC CHECKSUMS:
   TPKeyboardAvoiding: cb69d5ddbe90ce0170e4bc2db1e5e41d4a3ad9a4
   yoga: 17521bbb0dd54a47c0b3ac43253e78cdac7488e0
 
-PODFILE CHECKSUM: 7ed1edc39cc636603be4740b47ebab3758c2f316
+PODFILE CHECKSUM: 412a365e24541db8f4246bceff42ae536b3d8cdc
 
 COCOAPODS: 1.5.3

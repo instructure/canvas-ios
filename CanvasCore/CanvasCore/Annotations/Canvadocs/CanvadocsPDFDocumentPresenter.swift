@@ -136,14 +136,14 @@ open class CanvadocsPDFDocumentPresenter: NSObject {
         let highlightPresets = highlightCanvadocsColors.map { return PSPDFColorPreset(color: $0) }
         let inkPresets = standardCanvadocsColors.map { return PSPDFColorPreset(color: $0) }
         let textPresets = standardCanvadocsColors.map { return PSPDFColorPreset(color: $0, fill: .white, alpha: 1) }
-        styleManager.setPresets(highlightPresets, forKey: .highlight, type: PSPDFStyleManagerColorPresetKey)
-        styleManager.setPresets(inkPresets, forKey: PSPDFAnnotationStateVariantIdentifier(.ink, .inkVariantPen), type: PSPDFStyleManagerColorPresetKey)
-        styleManager.setPresets(inkPresets, forKey: .square, type: PSPDFStyleManagerColorPresetKey)
-        styleManager.setPresets(inkPresets, forKey: .circle, type: PSPDFStyleManagerColorPresetKey)
-        styleManager.setPresets(inkPresets, forKey: .line, type: PSPDFStyleManagerColorPresetKey)
-        styleManager.setPresets(inkPresets, forKey: .strikeOut, type: PSPDFStyleManagerColorPresetKey)
-        styleManager.setPresets(inkPresets, forKey: .stamp, type: PSPDFStyleManagerColorPresetKey)
-        styleManager.setPresets(textPresets, forKey: .freeText, type: PSPDFStyleManagerColorPresetKey)
+        styleManager.setPresets(highlightPresets, forKey: .highlight, type: .colorPreset)
+        styleManager.setPresets(inkPresets, forKey: PSPDFAnnotationStateVariantIdentifier(.ink, .inkVariantPen), type: .colorPreset)
+        styleManager.setPresets(inkPresets, forKey: .square, type: .colorPreset)
+        styleManager.setPresets(inkPresets, forKey: .circle, type: .colorPreset)
+        styleManager.setPresets(inkPresets, forKey: .line, type: .colorPreset)
+        styleManager.setPresets(inkPresets, forKey: .strikeOut, type: .colorPreset)
+        styleManager.setPresets(inkPresets, forKey: .stamp, type: .colorPreset)
+        styleManager.setPresets(textPresets, forKey: .freeText, type: .colorPreset)
 
         styleManager.setLastUsedValue(CanvadocsHighlightColor.yellow.color, forProperty: "color", forKey: .highlight)
         styleManager.setLastUsedValue(CanvadocsAnnotationColor.red.color, forProperty: "color", forKey: PSPDFAnnotationStateVariantIdentifier(.ink, .inkVariantPen))
