@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
+exports[`grades list row renders correctly 1`] = `
 <Row
   border="bottom"
   disclosureIndicator={true}

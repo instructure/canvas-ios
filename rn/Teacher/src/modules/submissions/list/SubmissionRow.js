@@ -127,7 +127,7 @@ class SubmissionRow extends Component<SubmissionRowProps, any> {
             style={styles.title}
             ellipsizeMode='tail'
             numberOfLines={2}>{name}</Text>
-          {status &&
+          {status && gradingType !== 'not_graded' &&
             <SubmissionStatusLabel status={status} />
           }
           {grade === 'ungraded' && gradingType !== 'not_graded' &&

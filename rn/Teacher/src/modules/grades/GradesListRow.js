@@ -14,9 +14,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-/**
-* @flow
-*/
+// @flow
 
 import React, { PureComponent } from 'react'
 import {
@@ -34,16 +32,16 @@ import { submissionTypeIsOnline } from '@common/submissionTypes'
 
 type Props = {
   assignment: Assignment,
-  tintColor: string,
-  onPress: (Assignment) => void,
-  selected: boolean,
-  user: SessionUser,
+  tintColor?: string,
+  onPress?: (Assignment) => void,
+  selected?: boolean,
+  user?: SessionUser,
 }
 
 export default class GradesListRow extends PureComponent<Props> {
   onPress = () => {
-    const assignment = this.props.assignment
-    this.props.onPress(assignment)
+    const { assignment, onPress } = this.props
+    onPress && onPress(assignment)
   }
 
   render () {
@@ -65,7 +63,7 @@ export default class GradesListRow extends PureComponent<Props> {
         height='auto'
         accessories={submission ? <Grade grade={grade} gradingType={assignment.grading_type} /> : undefined}
       >
-        {status &&
+        {status && assignment.grading_type !== 'not_graded' &&
           <SubmissionStatusLabel status={status} onlineSubmissionType={onlineSubmissionType} />
         }
       </Row>

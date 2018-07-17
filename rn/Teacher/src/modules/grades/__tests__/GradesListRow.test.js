@@ -14,68 +14,94 @@
 // limitations under the License.
 //
 
-/* eslint-disable flowtype/require-valid-file-annotation */
+// @flow
 
-import 'react-native'
 import React from 'react'
 import GradesListRow from '../GradesListRow'
-import * as templates from '../../../__templates__/index'
+import * as templates from '../../../__templates__'
 import { shallow } from 'enzyme'
 
-test('renders correctly', () => {
-  let assignment = templates.assignment({ due_at: null })
-  assignment.needs_grading_count = 0
-  let tree = shallow(
-    <GradesListRow assignment={assignment} tintColor='#fff' />
-  )
-  expect(tree).toMatchSnapshot()
-})
-
-test('renders correctly with selected props', () => {
-  let assignment = templates.assignment({ due_at: null })
-  assignment.needs_grading_count = 0
-  let tree = shallow(
-    <GradesListRow assignment={assignment} tintColor='#fff' underlayColor='#eee' selected />
-  )
-  expect(tree.find('Row').props().selected).toEqual(true)
-})
-
-test('renders the gradeProp when there is a submission', () => {
-  let assignment = templates.assignment({
-    submission: templates.submission(),
+describe('grades list row', () => {
+  it('renders correctly', () => {
+    let assignment = templates.assignment({ due_at: null })
+    assignment.needs_grading_count = 0
+    let tree = shallow(
+      <GradesListRow assignment={assignment} tintColor='#fff' />
+    )
+    expect(tree).toMatchSnapshot()
   })
-  let tree = shallow(<GradesListRow assignment={assignment} />)
-  expect(tree.find('Row').props().accessories).not.toBeUndefined()
-})
 
-test('renders the submission status label', () => {
-  let assignment = templates.assignment({
-    submission: templates.submission(),
+  it('renders correctly with selected props', () => {
+    let assignment = templates.assignment({ due_at: null })
+    assignment.needs_grading_count = 0
+    let tree = shallow(
+      <GradesListRow assignment={assignment} tintColor='#fff' underlayColor='#eee' selected />
+    )
+    expect(tree.find('Row').props().selected).toEqual(true)
   })
-  let tree = shallow(<GradesListRow assignment={assignment} />)
-  expect(tree.find('SubmissionStatusLabel').length).toEqual(1)
-})
 
-test('renders correctly assignment icon', () => {
-  let assignment = templates.assignment({ submission_types: ['on_paper'] })
-  let tree = shallow(new GradesListRow({ assignment })._renderIcon())
-  expect(
-    tree.find(`[testID="grades-list-row-assignment-icon-published-${assignment.id}.icon-img"]`).length
-  ).toEqual(1)
-})
+  it('renders the gradeProp when there is a submission', () => {
+    let assignment = templates.assignment({
+      submission: templates.submission(),
+    })
+    let tree = shallow(<GradesListRow assignment={assignment} />)
+    expect(tree.find('Row').props().accessories).not.toBeUndefined()
+  })
 
-test('renders correctly quiz icon', () => {
-  let assignment = templates.assignment({ submission_types: ['online_quiz'] })
-  let tree = shallow(new GradesListRow({ assignment })._renderIcon())
-  expect(
-    tree.find(`[testID="grades-list-row-quiz-icon-published-${assignment.id}.icon-img"]`).length
-  ).toEqual(1)
-})
+  it('renders the submission status label', () => {
+    let assignment = templates.assignment({
+      submission: templates.submission(),
+    })
+    let tree = shallow(<GradesListRow assignment={assignment} />)
+    expect(tree.find('SubmissionStatusLabel').length).toEqual(1)
+  })
 
-test('renders correctly discussion icon', () => {
-  let assignment = templates.assignment({ submission_types: ['discussion_topic'] })
-  let tree = shallow(new GradesListRow({ assignment })._renderIcon())
-  expect(
-    tree.find(`[testID="grades-list-row-discussion-icon-published-${assignment.id}.icon-img"]`).length
-  ).toEqual(1)
+  it('hides the submission status label if not_graded', () => {
+    let assignment = templates.assignment({
+      submission: templates.submission(),
+      grading_type: 'not_graded',
+    })
+    let tree = shallow(<GradesListRow assignment={assignment} />)
+    expect(tree.find('SubmissionStatusLabel').length).toEqual(0)
+  })
+
+  it('renders correctly assignment icon', () => {
+    let assignment = templates.assignment({ submission_types: ['on_paper'] })
+    let tree = shallow(<GradesListRow assignment={assignment} />).dive()
+    expect(
+      tree.find(`[testID="grades-list-row-assignment-icon-published-${assignment.id}.icon-img"]`).length
+    ).toEqual(1)
+  })
+
+  it('renders correctly quiz icon', () => {
+    let assignment = templates.assignment({ submission_types: ['online_quiz'] })
+    let tree = shallow(<GradesListRow assignment={assignment} />).dive()
+    expect(
+      tree.find(`[testID="grades-list-row-quiz-icon-published-${assignment.id}.icon-img"]`).length
+    ).toEqual(1)
+  })
+
+  it('renders correctly discussion icon', () => {
+    let assignment = templates.assignment({ submission_types: ['discussion_topic'] })
+    let tree = shallow(<GradesListRow assignment={assignment} />).dive()
+    expect(
+      tree.find(`[testID="grades-list-row-discussion-icon-published-${assignment.id}.icon-img"]`).length
+    ).toEqual(1)
+  })
+
+  it('renders correctly unpublished quiz icon', () => {
+    let assignment = templates.assignment({ submission_types: ['online_quiz'], published: false })
+    let tree = shallow(<GradesListRow assignment={assignment} />).dive()
+    expect(
+      tree.find(`[testID="grades-list-row-quiz-icon-not-published-${assignment.id}.icon-img"]`).length
+    ).toEqual(1)
+  })
+
+  it('passes assignment to onPress handler', () => {
+    const assignment = templates.assignment()
+    const onPress = jest.fn()
+    const tree = shallow(<GradesListRow assignment={assignment} onPress={onPress} />)
+    tree.find('[onPress]').simulate('Press')
+    expect(onPress).toHaveBeenCalledWith(assignment)
+  })
 })
