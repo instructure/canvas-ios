@@ -19,6 +19,9 @@
 /* Class = "UIButton"; accessibilityLabel = "cancel"; ObjectID = "aHi-ya-AL9"; */
 "aHi-ya-AL9.accessibilityLabel" = "キャンセル";
 
+/* Class = "UIButton"; normalTitle = "See what's new."; ObjectID = "bLU-B4-k2x"; */
+"bLU-B4-k2x.normalTitle" = "最新情報を見る。";
+
 /* Class = "UIButton"; normalTitle = "Canvas Network"; ObjectID = "eln-Wg-hVk"; */
 "eln-Wg-hVk.normalTitle" = "Canvas Network";
 
@@ -33,6 +36,9 @@
 
 /* Class = "UITextField"; placeholder = "Find your school or district"; ObjectID = "xzj-lX-iaI"; */
 "xzj-lX-iaI.placeholder" = "あなたの学校または地域を見つける";
+
+/* Class = "UILabel"; text = "We've made a few changes."; ObjectID = "zAy-eY-MLr"; */
+"zAy-eY-MLr.text" = "2、3変更がありました。";
 
 /* Class = "UIButton"; normalTitle = "Find my school"; ObjectID = "zQQ-hy-gpK"; */
 "zQQ-hy-gpK.normalTitle" = "私の学校を探す";

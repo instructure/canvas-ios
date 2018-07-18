@@ -19,6 +19,9 @@
 /* Class = "UIButton"; accessibilityLabel = "cancel"; ObjectID = "aHi-ya-AL9"; */
 "aHi-ya-AL9.accessibilityLabel" = "anile";
 
+/* Class = "UIButton"; normalTitle = "See what's new."; ObjectID = "bLU-B4-k2x"; */
+"bLU-B4-k2x.normalTitle" = "Gade kisa ki nouvo.";
+
 /* Class = "UIButton"; normalTitle = "Canvas Network"; ObjectID = "eln-Wg-hVk"; */
 "eln-Wg-hVk.normalTitle" = "Canvas Network";
 
@@ -33,6 +36,9 @@
 
 /* Class = "UITextField"; placeholder = "Find your school or district"; ObjectID = "xzj-lX-iaI"; */
 "xzj-lX-iaI.placeholder" = "Jwenn lekòl oswa distri ou a";
+
+/* Class = "UILabel"; text = "We've made a few changes."; ObjectID = "zAy-eY-MLr"; */
+"zAy-eY-MLr.text" = "Nou te fè kèk chanjman.";
 
 /* Class = "UIButton"; normalTitle = "Find my school"; ObjectID = "zQQ-hy-gpK"; */
 "zQQ-hy-gpK.normalTitle" = "Jwenn lekòl mwen an";

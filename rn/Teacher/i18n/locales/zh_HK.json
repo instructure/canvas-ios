@@ -254,6 +254,9 @@
   "cancel_caeb1e68": {
     "message": "取消"
   },
+  "canvas_guides_d65431": {
+    "message": "Canvas 指南"
+  },
   "canvas_parent_app_f9236a3a": {
     "message": "Canvas Parent 應用程式"
   },
@@ -322,6 +325,9 @@
   },
   "compose_message_8abd180a": {
     "message": "編輯訊息"
+  },
+  "conferences_a0a8984b": {
+    "message": "會議"
   },
   "conversation_options_8be926f3": {
     "message": "交談選項"
@@ -734,6 +740,9 @@
   "i_hold_the_copyright_71ee91b1": {
     "message": "我持有該版權"
   },
+  "if_you_re_a_student_or_teacher_try_one_of_our_othe_f0ae9b33": {
+    "message": "如果您是學生或教師，可以試試使用以下其中一個應用程式。"
+  },
   "in_progress_9d1ce8b9": {
     "message": "進行中"
   },
@@ -805,6 +814,9 @@
   },
   "lock_questions_after_answering_e0f61d7c": {
     "message": "回答後鎖定問題"
+  },
+  "log_in_again_ec2b1f46": {
+    "message": "重新登入"
   },
   "log_out_379ba28a": {
     "message": "登出"
@@ -920,6 +932,9 @@
   "no_e16d9132": {
     "message": "否"
   },
+  "no_enrollments_6369cd31": {
+    "message": "無登記入學"
+  },
   "no_grade_3b4d7f3e": {
     "message": "無評分"
   },
@@ -955,9 +970,6 @@
   },
   "none_9b6c9bec": {
     "message": "無"
-  },
-  "not_a_parent_697e87e1": {
-    "message": "不是父母？"
   },
   "not_a_teacher_b0d0fc55": {
     "message": "不是教師？"
@@ -1409,6 +1421,9 @@
   "there_are_no_comments_to_display_bde58f70": {
     "message": "沒有可顯示的評論。"
   },
+  "there_are_no_conferences_to_display_400a0413": {
+    "message": "沒有可顯示的會議。"
+  },
   "there_are_no_discussions_to_display_37bc437f": {
     "message": "沒有可顯示的討論。"
   },
@@ -1688,6 +1703,9 @@
   },
   "you_must_enter_an_access_code_8c2c7ae0": {
     "message": "您必須輸入訪問碼"
+  },
+  "you_need_at_least_one_active_observer_enrollment_t_9c78bb6e": {
+    "message": "您需要至少一個有效的觀察者註冊，方可使用 Canvas Parent。"
   },
   "your_submission_comment_failed_to_send_5c8d2809": {
     "message": "您提交的評論並未發出。"

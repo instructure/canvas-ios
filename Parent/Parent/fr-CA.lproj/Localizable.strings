@@ -22,8 +22,14 @@
 /* Alerts Tab */
 "Alerts" = "Alertes";
 
+/* No comment provided by engineer. */
+"An Error Occurred" = "Une erreur est survenue";
+
 /* Generic Network Error Message */
 "An unexpected error occurred.  Please try again." = "Une erreur inattendue s'est produite. Veuillez réessayer.";
+
+/* No comment provided by engineer. */
+"Announcement" = "Annonce";
 
 /* Assignment Grade High On Description */
 "Assignment grade above" = "Note de la tâche supérieure à";
@@ -33,12 +39,6 @@
 
 /* Assignment Missing Description */
 "Assignment missing" = "Tâche manquant";
-
-/* No comment provided by engineer. */
-"Assignment reminder: %@" = "Rappel de tâche : %@";
-
-/* No comment provided by engineer. */
-"Assignment reminder: %@ is due at %@" = "Rappel de tâche : %1$@ est dû à %2$@";
 
 /* No comment provided by engineer. */
 "Cache cleared" = "Mémoire cache vidée";
@@ -60,6 +60,9 @@
 
 /* title for status selection field */
 "Choose One" = "En choisir un";
+
+/* No comment provided by engineer. */
+"Choose a student" = "Choisissez un étudiant";
 
 /* Close Button Title */
 "Close" = "Fermer";
@@ -84,12 +87,6 @@
 
 /* No comment provided by engineer. */
 "Error" = "Erreur";
-
-/* No comment provided by engineer. */
-"Event reminder: %@" = "Rappel d'événement : %@";
-
-/* No comment provided by engineer. */
-"Event reminder: %@ will begin at %@" = "Rappel d'événement : %1$@ commencera à %2$@";
 
 /* No comment provided by engineer. */
 "Excused" = "Exempté";
@@ -243,9 +240,6 @@
 
 /* Default user name, the computer-friendly version of their name, until we find their real user name */
 "Unknown User Name" = "Nom d'utilisateur inconnu";
-
-/* Name of action when viewing a reminder */
-"View" = "Voir";
 
 /* Calendar Tab */
 "Week" = "Semaine";

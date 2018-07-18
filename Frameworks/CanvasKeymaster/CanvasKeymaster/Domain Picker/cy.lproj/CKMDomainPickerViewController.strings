@@ -19,6 +19,9 @@
 /* Class = "UIButton"; accessibilityLabel = "cancel"; ObjectID = "aHi-ya-AL9"; */
 "aHi-ya-AL9.accessibilityLabel" = "canslo";
 
+/* Class = "UIButton"; normalTitle = "See what's new."; ObjectID = "bLU-B4-k2x"; */
+"bLU-B4-k2x.normalTitle" = "Dewch i weld beth sy’n newydd.";
+
 /* Class = "UIButton"; normalTitle = "Canvas Network"; ObjectID = "eln-Wg-hVk"; */
 "eln-Wg-hVk.normalTitle" = "Rhwydwaith Canvas";
 
@@ -33,6 +36,9 @@
 
 /* Class = "UITextField"; placeholder = "Find your school or district"; ObjectID = "xzj-lX-iaI"; */
 "xzj-lX-iaI.placeholder" = "Chwilio am eich ysgol neu'ch ardal";
+
+/* Class = "UILabel"; text = "We've made a few changes."; ObjectID = "zAy-eY-MLr"; */
+"zAy-eY-MLr.text" = "Rydyn ni wedi gwneud ychydig o newidiadau.";
 
 /* Class = "UIButton"; normalTitle = "Find my school"; ObjectID = "zQQ-hy-gpK"; */
 "zQQ-hy-gpK.normalTitle" = "Dod o hyd i fy ysgol";

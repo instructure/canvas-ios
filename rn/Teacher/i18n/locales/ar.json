@@ -254,6 +254,9 @@
   "cancel_caeb1e68": {
     "message": "إلغاء"
   },
+  "canvas_guides_d65431": {
+    "message": "Canvas Guides"
+  },
   "canvas_parent_app_f9236a3a": {
     "message": "تطبيق Canvas Parent"
   },
@@ -322,6 +325,9 @@
   },
   "compose_message_8abd180a": {
     "message": "إنشاء رسالة"
+  },
+  "conferences_a0a8984b": {
+    "message": "المؤتمرات"
   },
   "conversation_options_8be926f3": {
     "message": "خيارات المحادثة"
@@ -734,6 +740,9 @@
   "i_hold_the_copyright_71ee91b1": {
     "message": "أمتلك حقوق النشر"
   },
+  "if_you_re_a_student_or_teacher_try_one_of_our_othe_f0ae9b33": {
+    "message": "إذا كنت طالبًا أو معلمًا، جرب إحدى تطبيقاتنا الأخرى أدناه."
+  },
   "in_progress_9d1ce8b9": {
     "message": "قيد التقدم"
   },
@@ -805,6 +814,9 @@
   },
   "lock_questions_after_answering_e0f61d7c": {
     "message": "تأمين الأسئلة بعد الإجابة"
+  },
+  "log_in_again_ec2b1f46": {
+    "message": "تسجيل الدخول مجددًا"
   },
   "log_out_379ba28a": {
     "message": "تسجيل الخروج"
@@ -920,6 +932,9 @@
   "no_e16d9132": {
     "message": "لا"
   },
+  "no_enrollments_6369cd31": {
+    "message": "لا توجد تسجيلات"
+  },
   "no_grade_3b4d7f3e": {
     "message": "لا توجد أي درجة"
   },
@@ -955,9 +970,6 @@
   },
   "none_9b6c9bec": {
     "message": "بلا"
-  },
-  "not_a_parent_697e87e1": {
-    "message": "لست ولي أمر؟"
   },
   "not_a_teacher_b0d0fc55": {
     "message": "لست معلمًا؟"
@@ -1409,6 +1421,9 @@
   "there_are_no_comments_to_display_bde58f70": {
     "message": "لا توجد أي تعليقات للعرض."
   },
+  "there_are_no_conferences_to_display_400a0413": {
+    "message": "لا توجد أي مؤتمرات للعرض."
+  },
   "there_are_no_discussions_to_display_37bc437f": {
     "message": "لا توجد أي نقاشات للعرض."
   },
@@ -1688,6 +1703,9 @@
   },
   "you_must_enter_an_access_code_8c2c7ae0": {
     "message": "يجب إدخال رمز وصول"
+  },
+  "you_need_at_least_one_active_observer_enrollment_t_9c78bb6e": {
+    "message": "تحتاج لتسجيل مراقب نشط واحد على الأقل لاستخدام Canvas Parent."
   },
   "your_submission_comment_failed_to_send_5c8d2809": {
     "message": "فشل إرسال تعليق الإرسال الخاص بك."

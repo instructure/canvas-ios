@@ -22,8 +22,14 @@
 /* Alerts Tab */
 "Alerts" = "アラート";
 
+/* No comment provided by engineer. */
+"An Error Occurred" = "エラーが発生しました。";
+
 /* Generic Network Error Message */
 "An unexpected error occurred.  Please try again." = "予期しないエラーが発生しました。再度お試しください。";
+
+/* No comment provided by engineer. */
+"Announcement" = "発表";
 
 /* Assignment Grade High On Description */
 "Assignment grade above" = "より上の課題成績";
@@ -33,12 +39,6 @@
 
 /* Assignment Missing Description */
 "Assignment missing" = "未提出の課題";
-
-/* No comment provided by engineer. */
-"Assignment reminder: %@" = "課題のリマインダー: %@";
-
-/* No comment provided by engineer. */
-"Assignment reminder: %@ is due at %@" = "課題のリマインダー: %1$@の期限は%2$@です";
 
 /* No comment provided by engineer. */
 "Cache cleared" = "キャッシュがクリアされました";
@@ -60,6 +60,9 @@
 
 /* title for status selection field */
 "Choose One" = "ひとつ選んでください";
+
+/* No comment provided by engineer. */
+"Choose a student" = "受講生を選択";
 
 /* Close Button Title */
 "Close" = "閉じる";
@@ -84,12 +87,6 @@
 
 /* No comment provided by engineer. */
 "Error" = "エラー";
-
-/* No comment provided by engineer. */
-"Event reminder: %@" = "イベントのリマインダー: %@";
-
-/* No comment provided by engineer. */
-"Event reminder: %@ will begin at %@" = "イベントのリマインダー: %1$@は%2$@に始まります";
 
 /* No comment provided by engineer. */
 "Excused" = "免除";
@@ -243,9 +240,6 @@
 
 /* Default user name, the computer-friendly version of their name, until we find their real user name */
 "Unknown User Name" = "存在しないユーザーネームです";
-
-/* Name of action when viewing a reminder */
-"View" = "表示";
 
 /* Calendar Tab */
 "Week" = "週";

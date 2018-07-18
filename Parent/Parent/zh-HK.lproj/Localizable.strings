@@ -22,8 +22,14 @@
 /* Alerts Tab */
 "Alerts" = "警示";
 
+/* No comment provided by engineer. */
+"An Error Occurred" = "出現了一個錯誤";
+
 /* Generic Network Error Message */
 "An unexpected error occurred.  Please try again." = "出現意外故障。請重試。";
+
+/* No comment provided by engineer. */
+"Announcement" = "通告";
 
 /* Assignment Grade High On Description */
 "Assignment grade above" = "上方任務評分";
@@ -33,12 +39,6 @@
 
 /* Assignment Missing Description */
 "Assignment missing" = "缺少任務";
-
-/* No comment provided by engineer. */
-"Assignment reminder: %@" = "任務提醒：%@";
-
-/* No comment provided by engineer. */
-"Assignment reminder: %@ is due at %@" = "任務提醒：%1$@  的截止到期日在 %2$@";
 
 /* No comment provided by engineer. */
 "Cache cleared" = "緩存已清空";
@@ -60,6 +60,9 @@
 
 /* title for status selection field */
 "Choose One" = "選擇一個";
+
+/* No comment provided by engineer. */
+"Choose a student" = "選取一個學生";
 
 /* Close Button Title */
 "Close" = "關閉";
@@ -84,12 +87,6 @@
 
 /* No comment provided by engineer. */
 "Error" = "錯誤";
-
-/* No comment provided by engineer. */
-"Event reminder: %@" = "事件提醒：%@";
-
-/* No comment provided by engineer. */
-"Event reminder: %@ will begin at %@" = "事件提醒：%1$@ 將開始於 %2$@";
 
 /* No comment provided by engineer. */
 "Excused" = "已豁免";
@@ -243,9 +240,6 @@
 
 /* Default user name, the computer-friendly version of their name, until we find their real user name */
 "Unknown User Name" = "未知使用者名稱";
-
-/* Name of action when viewing a reminder */
-"View" = "檢視";
 
 /* Calendar Tab */
 "Week" = "週";

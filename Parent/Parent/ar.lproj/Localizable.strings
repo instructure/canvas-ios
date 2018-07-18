@@ -22,8 +22,14 @@
 /* Alerts Tab */
 "Alerts" = "تنبيهات";
 
+/* No comment provided by engineer. */
+"An Error Occurred" = "حدث خطأ";
+
 /* Generic Network Error Message */
 "An unexpected error occurred.  Please try again." = "حدث خطأ غير متوقع. يرجى إعادة المحاولة.";
+
+/* No comment provided by engineer. */
+"Announcement" = "الإعلان";
 
 /* Assignment Grade High On Description */
 "Assignment grade above" = "درجة المهمة أكبر من";
@@ -33,12 +39,6 @@
 
 /* Assignment Missing Description */
 "Assignment missing" = "مهمة مفقودة";
-
-/* No comment provided by engineer. */
-"Assignment reminder: %@" = "تذكير بالمهمة: %@";
-
-/* No comment provided by engineer. */
-"Assignment reminder: %@ is due at %@" = "تذكير بالمهمة: موعد استحقاق %1$@ هو %2$@";
 
 /* No comment provided by engineer. */
 "Cache cleared" = "تم مسح ذاكرة التخزين المؤقت";
@@ -60,6 +60,9 @@
 
 /* title for status selection field */
 "Choose One" = "اختيار واحد";
+
+/* No comment provided by engineer. */
+"Choose a student" = "اختر طالبًا";
 
 /* Close Button Title */
 "Close" = "إغلاق";
@@ -84,12 +87,6 @@
 
 /* No comment provided by engineer. */
 "Error" = "خطأ";
-
-/* No comment provided by engineer. */
-"Event reminder: %@" = "تذكير بالحدث: %@";
-
-/* No comment provided by engineer. */
-"Event reminder: %@ will begin at %@" = "تذكير بالحدث: سيبدأ %1$@ على الساعة %2$@";
 
 /* No comment provided by engineer. */
 "Excused" = "غير إجباري";
@@ -243,9 +240,6 @@
 
 /* Default user name, the computer-friendly version of their name, until we find their real user name */
 "Unknown User Name" = "اسم المستخدم غير معروف";
-
-/* Name of action when viewing a reminder */
-"View" = "عرض";
 
 /* Calendar Tab */
 "Week" = "الأسبوع";

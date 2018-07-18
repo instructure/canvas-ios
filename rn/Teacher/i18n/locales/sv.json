@@ -254,6 +254,9 @@
   "cancel_caeb1e68": {
     "message": "Avbryt"
   },
+  "canvas_guides_d65431": {
+    "message": "Canvas Guides"
+  },
   "canvas_parent_app_f9236a3a": {
     "message": "Canvas förälder app"
   },
@@ -322,6 +325,9 @@
   },
   "compose_message_8abd180a": {
     "message": "Skapa ett meddelande"
+  },
+  "conferences_a0a8984b": {
+    "message": "Konferenser"
   },
   "conversation_options_8be926f3": {
     "message": "Konversationsalternativ"
@@ -734,6 +740,9 @@
   "i_hold_the_copyright_71ee91b1": {
     "message": "Jag är upprättshavare"
   },
+  "if_you_re_a_student_or_teacher_try_one_of_our_othe_f0ae9b33": {
+    "message": "Om du är en elev eller lärare, testa en av våra andra appar nedan."
+  },
   "in_progress_9d1ce8b9": {
     "message": "Pågår"
   },
@@ -805,6 +814,9 @@
   },
   "lock_questions_after_answering_e0f61d7c": {
     "message": "Lås frågor efter svar har getts"
+  },
+  "log_in_again_ec2b1f46": {
+    "message": "Logga in igen"
   },
   "log_out_379ba28a": {
     "message": "Logga ut"
@@ -920,6 +932,9 @@
   "no_e16d9132": {
     "message": "Nej"
   },
+  "no_enrollments_6369cd31": {
+    "message": "Inga anmälningar"
+  },
   "no_grade_3b4d7f3e": {
     "message": "Inget omdöme"
   },
@@ -955,9 +970,6 @@
   },
   "none_9b6c9bec": {
     "message": "ingen"
-  },
-  "not_a_parent_697e87e1": {
-    "message": "Är du inte en förälder?"
   },
   "not_a_teacher_b0d0fc55": {
     "message": "Inte en lärare?"
@@ -1409,6 +1421,9 @@
   "there_are_no_comments_to_display_bde58f70": {
     "message": "Det finns inga kommentarer att visa."
   },
+  "there_are_no_conferences_to_display_400a0413": {
+    "message": "Det finns inga konferenser att visa.Det finns inga filer att visa."
+  },
   "there_are_no_discussions_to_display_37bc437f": {
     "message": "Det finns inga diskussioner att visa."
   },
@@ -1688,6 +1703,9 @@
   },
   "you_must_enter_an_access_code_8c2c7ae0": {
     "message": "Du måste ange en tillgångskod"
+  },
+  "you_need_at_least_one_active_observer_enrollment_t_9c78bb6e": {
+    "message": "Du behöver minst en aktiv observerar-registrering för att använda Canvas Parent."
   },
   "your_submission_comment_failed_to_send_5c8d2809": {
     "message": "Din inlämningskommentar kunde inte skickas."

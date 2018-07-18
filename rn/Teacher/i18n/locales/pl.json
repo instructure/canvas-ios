@@ -254,6 +254,9 @@
   "cancel_caeb1e68": {
     "message": "Anuluj"
   },
+  "canvas_guides_d65431": {
+    "message": "Przewodniki Canvas"
+  },
   "canvas_parent_app_f9236a3a": {
     "message": "Aplikacja nadrzędna Canvas"
   },
@@ -322,6 +325,9 @@
   },
   "compose_message_8abd180a": {
     "message": "Utwórz wiadomość"
+  },
+  "conferences_a0a8984b": {
+    "message": "Konferencje"
   },
   "conversation_options_8be926f3": {
     "message": "Opcje rozmowy"
@@ -734,6 +740,9 @@
   "i_hold_the_copyright_71ee91b1": {
     "message": "Posiadam prawa autorskie"
   },
+  "if_you_re_a_student_or_teacher_try_one_of_our_othe_f0ae9b33": {
+    "message": "Jeśli jesteś uczniem lub nauczycielem, wypróbuj nasze inne aplikacje poniżej."
+  },
   "in_progress_9d1ce8b9": {
     "message": "W toku"
   },
@@ -805,6 +814,9 @@
   },
   "lock_questions_after_answering_e0f61d7c": {
     "message": "Zablokuj pytania po udzieleniu odpowiedzi"
+  },
+  "log_in_again_ec2b1f46": {
+    "message": "Zaloguj się ponownie"
   },
   "log_out_379ba28a": {
     "message": "Wyloguj"
@@ -920,6 +932,9 @@
   "no_e16d9132": {
     "message": "Nie"
   },
+  "no_enrollments_6369cd31": {
+    "message": "Brak rejestracji"
+  },
   "no_grade_3b4d7f3e": {
     "message": "Brak oceny"
   },
@@ -955,9 +970,6 @@
   },
   "none_9b6c9bec": {
     "message": "brak"
-  },
-  "not_a_parent_697e87e1": {
-    "message": "Nie jesteś rodzicem?"
   },
   "not_a_teacher_b0d0fc55": {
     "message": "Nie jesteś nauczycielem?"
@@ -1409,6 +1421,9 @@
   "there_are_no_comments_to_display_bde58f70": {
     "message": "Brak komentarzy do wyświetlenia."
   },
+  "there_are_no_conferences_to_display_400a0413": {
+    "message": "Brak konferencji do wyświetlenia."
+  },
   "there_are_no_discussions_to_display_37bc437f": {
     "message": "Brak dyskusji do wyświetlenia."
   },
@@ -1688,6 +1703,9 @@
   },
   "you_must_enter_an_access_code_8c2c7ae0": {
     "message": "Należy wpisać kod dostępu"
+  },
+  "you_need_at_least_one_active_observer_enrollment_t_9c78bb6e": {
+    "message": "Potrzebujesz co najmniej jednego aktywnego obserwatora, aby użyć Canvas Parent."
   },
   "your_submission_comment_failed_to_send_5c8d2809": {
     "message": "Nie udało się wysłać komentarza do przesyłki."

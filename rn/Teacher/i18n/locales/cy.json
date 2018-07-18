@@ -254,6 +254,9 @@
   "cancel_caeb1e68": {
     "message": "Canslo"
   },
+  "canvas_guides_d65431": {
+    "message": "Canllawiau Canvas"
+  },
   "canvas_parent_app_f9236a3a": {
     "message": "Ap Canvas Parent"
   },
@@ -322,6 +325,9 @@
   },
   "compose_message_8abd180a": {
     "message": "Creu Neges"
+  },
+  "conferences_a0a8984b": {
+    "message": "Cynadleddau"
   },
   "conversation_options_8be926f3": {
     "message": "Opsiynau trafodaethau"
@@ -737,6 +743,9 @@
   "i_hold_the_copyright_71ee91b1": {
     "message": "Fi sydd biau’r hawlfraint"
   },
+  "if_you_re_a_student_or_teacher_try_one_of_our_othe_f0ae9b33": {
+    "message": "Os ydych chi’n fyfyriwr neu’n athro, rhowch gynnig ar un o’n apiau eraill isod."
+  },
   "in_progress_9d1ce8b9": {
     "message": "Ar y Gweill"
   },
@@ -808,6 +817,9 @@
   },
   "lock_questions_after_answering_e0f61d7c": {
     "message": "Cloi atebion ar ôl ateb"
+  },
+  "log_in_again_ec2b1f46": {
+    "message": "Mewngofnodi Eto"
   },
   "log_out_379ba28a": {
     "message": "Allgofnodi"
@@ -923,6 +935,9 @@
   "no_e16d9132": {
     "message": "Na"
   },
+  "no_enrollments_6369cd31": {
+    "message": "Dim Ymrestriadau"
+  },
   "no_grade_3b4d7f3e": {
     "message": "Dim Gradd"
   },
@@ -958,9 +973,6 @@
   },
   "none_9b6c9bec": {
     "message": "dim"
-  },
-  "not_a_parent_697e87e1": {
-    "message": "Ddim yn rhiant?"
   },
   "not_a_teacher_b0d0fc55": {
     "message": "Ddim yn athro?"
@@ -1412,6 +1424,9 @@
   "there_are_no_comments_to_display_bde58f70": {
     "message": "Does dim sylwadau i’w dangos."
   },
+  "there_are_no_conferences_to_display_400a0413": {
+    "message": "Does dim cynadleddau i’w dangos."
+  },
   "there_are_no_discussions_to_display_37bc437f": {
     "message": "Does dim trafodaethau i’w dangos."
   },
@@ -1691,6 +1706,9 @@
   },
   "you_must_enter_an_access_code_8c2c7ae0": {
     "message": "Mae’n rhaid i chi roi cod mynediad"
+  },
+  "you_need_at_least_one_active_observer_enrollment_t_9c78bb6e": {
+    "message": "Mae angen o leiaf un ymrestriad arsyllwr gweithredol arnoch er mwyn gallu defnyddio Canvas Parent."
   },
   "your_submission_comment_failed_to_send_5c8d2809": {
     "message": "Wedi methu anfon eich sylw ar y cyflwyniad."

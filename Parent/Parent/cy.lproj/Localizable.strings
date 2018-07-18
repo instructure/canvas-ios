@@ -22,8 +22,14 @@
 /* Alerts Tab */
 "Alerts" = "Negeseuon Hysbysu";
 
+/* No comment provided by engineer. */
+"An Error Occurred" = "Gwall";
+
 /* Generic Network Error Message */
 "An unexpected error occurred.  Please try again." = "Gwall Annisgwyl.  Rhowch gynnig arall arni.";
+
+/* No comment provided by engineer. */
+"Announcement" = "Cyhoeddiad";
 
 /* Assignment Grade High On Description */
 "Assignment grade above" = "Gradd yr aseiniad yn uwch na";
@@ -33,12 +39,6 @@
 
 /* Assignment Missing Description */
 "Assignment missing" = "Aseiniad ar goll";
-
-/* No comment provided by engineer. */
-"Assignment reminder: %@" = "Nodyn atgoffa ar gyfer aseiniad: %@";
-
-/* No comment provided by engineer. */
-"Assignment reminder: %@ is due at %@" = "Nodyn atgoffa ar gyfer aseiniad: %1$@ erbyn %2$@";
 
 /* No comment provided by engineer. */
 "Cache cleared" = "Storfa wedi’i chlirio";
@@ -60,6 +60,9 @@
 
 /* title for status selection field */
 "Choose One" = "Dewiswch Un";
+
+/* No comment provided by engineer. */
+"Choose a student" = "Dewiswch fyfyriwr";
 
 /* Close Button Title */
 "Close" = "Cau";
@@ -84,12 +87,6 @@
 
 /* No comment provided by engineer. */
 "Error" = "Gwall";
-
-/* No comment provided by engineer. */
-"Event reminder: %@" = "Nodyn atgoffa ar gyfer digwyddiad: %@";
-
-/* No comment provided by engineer. */
-"Event reminder: %@ will begin at %@" = "Nodyn atgoffa ar gyfer digwyddiad: %1$@ yn dechrau am %2$@";
 
 /* No comment provided by engineer. */
 "Excused" = "Wedi esgusodi";
@@ -243,9 +240,6 @@
 
 /* Default user name, the computer-friendly version of their name, until we find their real user name */
 "Unknown User Name" = "Enw Defnyddiwr Dieithr";
-
-/* Name of action when viewing a reminder */
-"View" = "Gweld";
 
 /* Calendar Tab */
 "Week" = "Wythnos";

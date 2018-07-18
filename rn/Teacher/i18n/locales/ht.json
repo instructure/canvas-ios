@@ -254,6 +254,9 @@
   "cancel_caeb1e68": {
     "message": "Anile"
   },
+  "canvas_guides_d65431": {
+    "message": "Gid Canvas"
+  },
   "canvas_parent_app_f9236a3a": {
     "message": "App Canvas Parent"
   },
@@ -322,6 +325,9 @@
   },
   "compose_message_8abd180a": {
     "message": "Konpoze yon Mesaj"
+  },
+  "conferences_a0a8984b": {
+    "message": "Konferans"
   },
   "conversation_options_8be926f3": {
     "message": "Opsyon konvèsasyon"
@@ -734,6 +740,9 @@
   "i_hold_the_copyright_71ee91b1": {
     "message": "Mwen gen dwa dotè a"
   },
+  "if_you_re_a_student_or_teacher_try_one_of_our_othe_f0ae9b33": {
+    "message": "Si w se yon elèv oswa yon pwofesè, eseye yon nan lòt app nou yo ki pi ba a."
+  },
   "in_progress_9d1ce8b9": {
     "message": "Ap Avanse"
   },
@@ -805,6 +814,9 @@
   },
   "lock_questions_after_answering_e0f61d7c": {
     "message": "Bloke Kesyon Aprè Repons"
+  },
+  "log_in_again_ec2b1f46": {
+    "message": "Konekte Ankò"
   },
   "log_out_379ba28a": {
     "message": "Dekonekte"
@@ -920,6 +932,9 @@
   "no_e16d9132": {
     "message": "Non"
   },
+  "no_enrollments_6369cd31": {
+    "message": "Pa gen Enskripsyon"
+  },
   "no_grade_3b4d7f3e": {
     "message": "Pa gen Klas"
   },
@@ -955,9 +970,6 @@
   },
   "none_9b6c9bec": {
     "message": "okenn"
-  },
-  "not_a_parent_697e87e1": {
-    "message": "Ou pa yon Paran?"
   },
   "not_a_teacher_b0d0fc55": {
     "message": "Se pa yon pofesè?"
@@ -1409,6 +1421,9 @@
   "there_are_no_comments_to_display_bde58f70": {
     "message": "Pa gen kòmantè pou afiche."
   },
+  "there_are_no_conferences_to_display_400a0413": {
+    "message": "Pa gen konferans pou afiche."
+  },
   "there_are_no_discussions_to_display_37bc437f": {
     "message": "Pa gen diskisyon pou afiche."
   },
@@ -1688,6 +1703,9 @@
   },
   "you_must_enter_an_access_code_8c2c7ae0": {
     "message": "Ou dwe ekri yon kòd aksè"
+  },
+  "you_need_at_least_one_active_observer_enrollment_t_9c78bb6e": {
+    "message": "Ou bezwen omwen enskripsyon yon obsèvatè aktif pou ka itilize Canvas Parent."
   },
   "your_submission_comment_failed_to_send_5c8d2809": {
     "message": "Kòmantè soumisyon ou an pa ale."

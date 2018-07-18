@@ -22,8 +22,14 @@
 /* Alerts Tab */
 "Alerts" = "Larm";
 
+/* No comment provided by engineer. */
+"An Error Occurred" = "Ett fel uppstod";
+
 /* Generic Network Error Message */
 "An unexpected error occurred.  Please try again." = "Ett oväntat fel inträffade. Försök igen.";
+
+/* No comment provided by engineer. */
+"Announcement" = "Meddelande";
 
 /* Assignment Grade High On Description */
 "Assignment grade above" = "Uppgiftsbetyg över";
@@ -33,12 +39,6 @@
 
 /* Assignment Missing Description */
 "Assignment missing" = "Uppgiften saknas";
-
-/* No comment provided by engineer. */
-"Assignment reminder: %@" = "Uppgiftspåminnelse: %@";
-
-/* No comment provided by engineer. */
-"Assignment reminder: %@ is due at %@" = "Uppgiftspåminnelse: %1$@ ska vara klar %2$@";
 
 /* No comment provided by engineer. */
 "Cache cleared" = "Cacheminnet har rensats";
@@ -60,6 +60,9 @@
 
 /* title for status selection field */
 "Choose One" = "Välj en";
+
+/* No comment provided by engineer. */
+"Choose a student" = "Välj en elev";
 
 /* Close Button Title */
 "Close" = "Stäng";
@@ -84,12 +87,6 @@
 
 /* No comment provided by engineer. */
 "Error" = "Fel";
-
-/* No comment provided by engineer. */
-"Event reminder: %@" = "Händelsepåminnelse: %@";
-
-/* No comment provided by engineer. */
-"Event reminder: %@ will begin at %@" = "Händelsepåminnelse: %1$@ kommer att börja %2$@";
 
 /* No comment provided by engineer. */
 "Excused" = "Befriad";
@@ -243,9 +240,6 @@
 
 /* Default user name, the computer-friendly version of their name, until we find their real user name */
 "Unknown User Name" = "Okänt användarnamn";
-
-/* Name of action when viewing a reminder */
-"View" = "Visa";
 
 /* Calendar Tab */
 "Week" = "Vecka";

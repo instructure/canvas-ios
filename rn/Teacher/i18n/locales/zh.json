@@ -254,6 +254,9 @@
   "cancel_caeb1e68": {
     "message": "取消"
   },
+  "canvas_guides_d65431": {
+    "message": "Canvas 指南"
+  },
   "canvas_parent_app_f9236a3a": {
     "message": "Canvas 家长应用"
   },
@@ -322,6 +325,9 @@
   },
   "compose_message_8abd180a": {
     "message": "撰写消息"
+  },
+  "conferences_a0a8984b": {
+    "message": "会议"
   },
   "conversation_options_8be926f3": {
     "message": "对话选项"
@@ -734,6 +740,9 @@
   "i_hold_the_copyright_71ee91b1": {
     "message": "我持有版权"
   },
+  "if_you_re_a_student_or_teacher_try_one_of_our_othe_f0ae9b33": {
+    "message": "如果您是学生或老师，请尝试我们在下方列出的其他应用程序。"
+  },
   "in_progress_9d1ce8b9": {
     "message": "进行中"
   },
@@ -805,6 +814,9 @@
   },
   "lock_questions_after_answering_e0f61d7c": {
     "message": "回答后锁定问题"
+  },
+  "log_in_again_ec2b1f46": {
+    "message": "再次登录"
   },
   "log_out_379ba28a": {
     "message": "退出"
@@ -920,6 +932,9 @@
   "no_e16d9132": {
     "message": "不、非"
   },
+  "no_enrollments_6369cd31": {
+    "message": "无注册学员"
+  },
   "no_grade_3b4d7f3e": {
     "message": "没有评分"
   },
@@ -955,9 +970,6 @@
   },
   "none_9b6c9bec": {
     "message": "无"
-  },
-  "not_a_parent_697e87e1": {
-    "message": "不是家长？"
   },
   "not_a_teacher_b0d0fc55": {
     "message": "不是教师？"
@@ -1409,6 +1421,9 @@
   "there_are_no_comments_to_display_bde58f70": {
     "message": "没有评论可显示。"
   },
+  "there_are_no_conferences_to_display_400a0413": {
+    "message": "没有要显示的会议。"
+  },
   "there_are_no_discussions_to_display_37bc437f": {
     "message": "没有要显示的讨论。"
   },
@@ -1688,6 +1703,9 @@
   },
   "you_must_enter_an_access_code_8c2c7ae0": {
     "message": "您必须输入访问代码"
+  },
+  "you_need_at_least_one_active_observer_enrollment_t_9c78bb6e": {
+    "message": "您需要有至少一个活跃的观察者注册学员才能使用 Canvas Parent。"
   },
   "your_submission_comment_failed_to_send_5c8d2809": {
     "message": "您的提交评论发送失败。"

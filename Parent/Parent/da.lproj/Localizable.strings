@@ -22,8 +22,14 @@
 /* Alerts Tab */
 "Alerts" = "Varslinger";
 
+/* No comment provided by engineer. */
+"An Error Occurred" = "Der opstod en fejl";
+
 /* Generic Network Error Message */
 "An unexpected error occurred.  Please try again." = "En uventet fejl opstod. Prøve venligst igen.";
+
+/* No comment provided by engineer. */
+"Announcement" = "Besked";
 
 /* Assignment Grade High On Description */
 "Assignment grade above" = "Opgavekarakter over";
@@ -33,12 +39,6 @@
 
 /* Assignment Missing Description */
 "Assignment missing" = "Manglende opgave";
-
-/* No comment provided by engineer. */
-"Assignment reminder: %@" = "Opgavepåmindelse: %@";
-
-/* No comment provided by engineer. */
-"Assignment reminder: %@ is due at %@" = "Opgavepåmindelse: %1$@ er fofalden den %2$@";
 
 /* No comment provided by engineer. */
 "Cache cleared" = "Cache slettet";
@@ -60,6 +60,9 @@
 
 /* title for status selection field */
 "Choose One" = "Vælg en";
+
+/* No comment provided by engineer. */
+"Choose a student" = "Vælg en studerende";
 
 /* Close Button Title */
 "Close" = "Luk";
@@ -84,12 +87,6 @@
 
 /* No comment provided by engineer. */
 "Error" = "Fejl";
-
-/* No comment provided by engineer. */
-"Event reminder: %@" = "Begivenhedspåmindelse: %@";
-
-/* No comment provided by engineer. */
-"Event reminder: %@ will begin at %@" = "Begivenhedspåmindelse: %1$@ vil begynde den %2$@";
 
 /* No comment provided by engineer. */
 "Excused" = "Undskyldt";
@@ -243,9 +240,6 @@
 
 /* Default user name, the computer-friendly version of their name, until we find their real user name */
 "Unknown User Name" = "Ukendt brugernavn";
-
-/* Name of action when viewing a reminder */
-"View" = "Se";
 
 /* Calendar Tab */
 "Week" = "Uge";

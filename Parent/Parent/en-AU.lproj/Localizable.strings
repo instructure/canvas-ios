@@ -22,8 +22,14 @@
 /* Alerts Tab */
 "Alerts" = "Alerts";
 
+/* No comment provided by engineer. */
+"An Error Occurred" = "An Error Occurred";
+
 /* Generic Network Error Message */
 "An unexpected error occurred.  Please try again." = "An unexpected error occurred.  Please try again.";
+
+/* No comment provided by engineer. */
+"Announcement" = "Announcement";
 
 /* Assignment Grade High On Description */
 "Assignment grade above" = "Assignment grade above";
@@ -33,12 +39,6 @@
 
 /* Assignment Missing Description */
 "Assignment missing" = "Assignment missing";
-
-/* No comment provided by engineer. */
-"Assignment reminder: %@" = "Assignment reminder: %@";
-
-/* No comment provided by engineer. */
-"Assignment reminder: %@ is due at %@" = "Assignment reminder: %1$@ is due at %2$@";
 
 /* No comment provided by engineer. */
 "Cache cleared" = "Cache cleared";
@@ -60,6 +60,9 @@
 
 /* title for status selection field */
 "Choose One" = "Choose One";
+
+/* No comment provided by engineer. */
+"Choose a student" = "Choose a student";
 
 /* Close Button Title */
 "Close" = "Close";
@@ -84,12 +87,6 @@
 
 /* No comment provided by engineer. */
 "Error" = "Error";
-
-/* No comment provided by engineer. */
-"Event reminder: %@" = "Event reminder: %@";
-
-/* No comment provided by engineer. */
-"Event reminder: %@ will begin at %@" = "Event reminder: %1$@ will begin at %2$@";
 
 /* No comment provided by engineer. */
 "Excused" = "Excused";
@@ -243,9 +240,6 @@
 
 /* Default user name, the computer-friendly version of their name, until we find their real user name */
 "Unknown User Name" = "Unknown User Name";
-
-/* Name of action when viewing a reminder */
-"View" = "View";
 
 /* Calendar Tab */
 "Week" = "Week";

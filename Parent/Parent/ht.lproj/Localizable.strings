@@ -22,8 +22,14 @@
 /* Alerts Tab */
 "Alerts" = "Alèt";
 
+/* No comment provided by engineer. */
+"An Error Occurred" = "Gen yon Erè ki Fèt";
+
 /* Generic Network Error Message */
 "An unexpected error occurred.  Please try again." = "Yon erè ki fèt sanzatann. Tanpri eseye ankò.";
+
+/* No comment provided by engineer. */
+"Announcement" = "Anons";
 
 /* Assignment Grade High On Description */
 "Assignment grade above" = "Nòt sesyon pi wo a";
@@ -33,12 +39,6 @@
 
 /* Assignment Missing Description */
 "Assignment missing" = "Sesyon ki manke";
-
-/* No comment provided by engineer. */
-"Assignment reminder: %@" = "Rapèl sesyon: %@";
-
-/* No comment provided by engineer. */
-"Assignment reminder: %@ is due at %@" = "Rapèl Sesyon: %1$@ gen delè %2$@";
 
 /* No comment provided by engineer. */
 "Cache cleared" = "Kache netwaye";
@@ -60,6 +60,9 @@
 
 /* title for status selection field */
 "Choose One" = "Chwazi Yonn";
+
+/* No comment provided by engineer. */
+"Choose a student" = "Chwazi yon elèv";
 
 /* Close Button Title */
 "Close" = "Fèmen";
@@ -84,12 +87,6 @@
 
 /* No comment provided by engineer. */
 "Error" = "Erè";
-
-/* No comment provided by engineer. */
-"Event reminder: %@" = "Rapèl evènman: %@";
-
-/* No comment provided by engineer. */
-"Event reminder: %@ will begin at %@" = "Rapèl evènman: %1$@ ap kòmanse a %2$@";
 
 /* No comment provided by engineer. */
 "Excused" = "Eskize";
@@ -243,9 +240,6 @@
 
 /* Default user name, the computer-friendly version of their name, until we find their real user name */
 "Unknown User Name" = "Non Itilizatè Enkoni";
-
-/* Name of action when viewing a reminder */
-"View" = "Gade";
 
 /* Calendar Tab */
 "Week" = "Semenn";

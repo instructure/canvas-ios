@@ -254,6 +254,9 @@
   "cancel_caeb1e68": {
     "message": "Cancelar"
   },
+  "canvas_guides_d65431": {
+    "message": "Canvas Guides"
+  },
   "canvas_parent_app_f9236a3a": {
     "message": "Aplicativo Canvas Parent"
   },
@@ -322,6 +325,9 @@
   },
   "compose_message_8abd180a": {
     "message": "Compor mensagem"
+  },
+  "conferences_a0a8984b": {
+    "message": "Conferences"
   },
   "conversation_options_8be926f3": {
     "message": "Opções de conversa"
@@ -734,6 +740,9 @@
   "i_hold_the_copyright_71ee91b1": {
     "message": "Eu posso o copyright"
   },
+  "if_you_re_a_student_or_teacher_try_one_of_our_othe_f0ae9b33": {
+    "message": "Se for um aluno ou professor, tente um dos nossos outros apps abaixo."
+  },
   "in_progress_9d1ce8b9": {
     "message": "Em progresso"
   },
@@ -805,6 +814,9 @@
   },
   "lock_questions_after_answering_e0f61d7c": {
     "message": "Bloquear perguntas após responder"
+  },
+  "log_in_again_ec2b1f46": {
+    "message": "Entrar novamente"
   },
   "log_out_379ba28a": {
     "message": "Sair"
@@ -920,6 +932,9 @@
   "no_e16d9132": {
     "message": "Não"
   },
+  "no_enrollments_6369cd31": {
+    "message": "Sem matrículas"
+  },
   "no_grade_3b4d7f3e": {
     "message": "Sem Nota"
   },
@@ -955,9 +970,6 @@
   },
   "none_9b6c9bec": {
     "message": "nenhum"
-  },
-  "not_a_parent_697e87e1": {
-    "message": "Não é um pai?"
   },
   "not_a_teacher_b0d0fc55": {
     "message": "Não é professor?"
@@ -1409,6 +1421,9 @@
   "there_are_no_comments_to_display_bde58f70": {
     "message": "Não há comentários para mostrar."
   },
+  "there_are_no_conferences_to_display_400a0413": {
+    "message": "Não há conferências para mostrar."
+  },
   "there_are_no_discussions_to_display_37bc437f": {
     "message": "Não há discussões para mostrar."
   },
@@ -1688,6 +1703,9 @@
   },
   "you_must_enter_an_access_code_8c2c7ae0": {
     "message": "Você deve inserir um código de acesso"
+  },
+  "you_need_at_least_one_active_observer_enrollment_t_9c78bb6e": {
+    "message": "Você precisa de pelo menos uma matrícula do observador ativo para usar o Canvas Parent."
   },
   "your_submission_comment_failed_to_send_5c8d2809": {
     "message": "Falha de envio do seu comentário de envio."

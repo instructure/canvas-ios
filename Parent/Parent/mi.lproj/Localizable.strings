@@ -22,8 +22,14 @@
 /* Alerts Tab */
 "Alerts" = "Ngā Matohi";
 
+/* No comment provided by engineer. */
+"An Error Occurred" = "I puta tetahi Hapa";
+
 /* Generic Network Error Message */
 "An unexpected error occurred.  Please try again." = "He hapa ohorere. Koa ngana anō.";
+
+/* No comment provided by engineer. */
+"Announcement" = "Pānui";
 
 /* Assignment Grade High On Description */
 "Assignment grade above" = "kōeke Taumahi runga";
@@ -33,12 +39,6 @@
 
 /* Assignment Missing Description */
 "Assignment missing" = "e ngaro ana Taumahi";
-
-/* No comment provided by engineer. */
-"Assignment reminder: %@" = "Taumahi whakamaumahara: %@";
-
-/* No comment provided by engineer. */
-"Assignment reminder: %@ is due at %@" = "Taumahi whakamaumahara: %1$@ he tika i %2$@";
 
 /* No comment provided by engineer. */
 "Cache cleared" = "whakawāteatia Keteroki";
@@ -60,6 +60,9 @@
 
 /* title for status selection field */
 "Choose One" = "Kowhiri kotahi";
+
+/* No comment provided by engineer. */
+"Choose a student" = "Tīpako he ākonga";
 
 /* Close Button Title */
 "Close" = "Katia";
@@ -84,12 +87,6 @@
 
 /* No comment provided by engineer. */
 "Error" = "Hapa";
-
-/* No comment provided by engineer. */
-"Event reminder: %@" = "Takahanga whakamaumahara: %@ ";
-
-/* No comment provided by engineer. */
-"Event reminder: %@ will begin at %@" = "Takahanga whakamaumahara: %1$@ ka timata i %2$@";
 
 /* No comment provided by engineer. */
 "Excused" = "Tukua";
@@ -243,9 +240,6 @@
 
 /* Default user name, the computer-friendly version of their name, until we find their real user name */
 "Unknown User Name" = "Ingoa Kaiwhakamahi tē mōhiotia";
-
-/* Name of action when viewing a reminder */
-"View" = "Tirohia";
 
 /* Calendar Tab */
 "Week" = "Wiki";

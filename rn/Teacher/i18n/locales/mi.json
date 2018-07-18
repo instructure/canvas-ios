@@ -254,6 +254,9 @@
   "cancel_caeb1e68": {
     "message": "Whakakore"
   },
+  "canvas_guides_d65431": {
+    "message": "Canvas Kaiārahi"
+  },
   "canvas_parent_app_f9236a3a": {
     "message": "Canvas Matua Taupanga"
   },
@@ -322,6 +325,9 @@
   },
   "compose_message_8abd180a": {
     "message": "Tito Karere"
+  },
+  "conferences_a0a8984b": {
+    "message": "Ngā hui"
   },
   "conversation_options_8be926f3": {
     "message": "Ngā kōwhiringa kōrero"
@@ -737,6 +743,9 @@
   "i_hold_the_copyright_71ee91b1": {
     "message": "Ka mau ahau i te manatārua"
   },
+  "if_you_re_a_student_or_teacher_try_one_of_our_othe_f0ae9b33": {
+    "message": "Mehemea he ākonga koe, he kaiako rānei, ngana tētahi ō mātau atu taupānga i raro."
+  },
   "in_progress_9d1ce8b9": {
     "message": "Kei roto i te ahunga whakamua"
   },
@@ -808,6 +817,9 @@
   },
   "lock_questions_after_answering_e0f61d7c": {
     "message": "Maukati Pātai i muri i te whakautu"
+  },
+  "log_in_again_ec2b1f46": {
+    "message": "Takiuru Anō"
   },
   "log_out_379ba28a": {
     "message": "Takiuru atu"
@@ -923,6 +935,9 @@
   "no_e16d9132": {
     "message": "Kahore"
   },
+  "no_enrollments_6369cd31": {
+    "message": "Kāore he whakaurunga"
+  },
   "no_grade_3b4d7f3e": {
     "message": "Kaore he Kōeke"
   },
@@ -958,9 +973,6 @@
   },
   "none_9b6c9bec": {
     "message": "kore"
-  },
-  "not_a_parent_697e87e1": {
-    "message": "Kaore i te matua?"
   },
   "not_a_teacher_b0d0fc55": {
     "message": "Kaore i te kaiako?"
@@ -1412,6 +1424,9 @@
   "there_are_no_comments_to_display_bde58f70": {
     "message": "Kaore he kōrero hei whakātu"
   },
+  "there_are_no_conferences_to_display_400a0413": {
+    "message": "Kaore ngā hui hei whakātu atu"
+  },
   "there_are_no_discussions_to_display_37bc437f": {
     "message": "Kaore nga kōreroreo hei whakaatu."
   },
@@ -1691,6 +1706,9 @@
   },
   "you_must_enter_an_access_code_8c2c7ae0": {
     "message": "Me whakauru te waehere uru"
+  },
+  "you_need_at_least_one_active_observer_enrollment_t_9c78bb6e": {
+    "message": "E hiahia ana koe kia iti rawa te whakaurunga o ngā kaititiro kaitohu ki te whakamahi i te Canvas Parent."
   },
   "your_submission_comment_failed_to_send_5c8d2809": {
     "message": "I rāhua tō kōrero tāpaetanga ki te tuku."

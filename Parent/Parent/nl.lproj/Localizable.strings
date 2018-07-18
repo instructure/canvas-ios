@@ -22,8 +22,14 @@
 /* Alerts Tab */
 "Alerts" = "Waarschuwingen";
 
+/* No comment provided by engineer. */
+"An Error Occurred" = "Er is een fout opgetreden";
+
 /* Generic Network Error Message */
 "An unexpected error occurred.  Please try again." = "Er heeft zich een onverwachte fout voorgedaan. Probeer het nogmaals.";
+
+/* No comment provided by engineer. */
+"Announcement" = "Aankondiging";
 
 /* Assignment Grade High On Description */
 "Assignment grade above" = "Opdrachtcijfer hoger dan";
@@ -33,12 +39,6 @@
 
 /* Assignment Missing Description */
 "Assignment missing" = "Opdracht ontbreekt";
-
-/* No comment provided by engineer. */
-"Assignment reminder: %@" = "Opdracht herinnering: %@";
-
-/* No comment provided by engineer. */
-"Assignment reminder: %@ is due at %@" = "Opdracht herinnering: %1$@ moet ingeleverd zijn op  %2$@";
 
 /* No comment provided by engineer. */
 "Cache cleared" = "Cache gewist";
@@ -60,6 +60,9 @@
 
 /* title for status selection field */
 "Choose One" = "Kies er een";
+
+/* No comment provided by engineer. */
+"Choose a student" = "Kies een cursist";
 
 /* Close Button Title */
 "Close" = "Sluiten";
@@ -84,12 +87,6 @@
 
 /* No comment provided by engineer. */
 "Error" = "Fout";
-
-/* No comment provided by engineer. */
-"Event reminder: %@" = "Evenement herinnering: %@";
-
-/* No comment provided by engineer. */
-"Event reminder: %@ will begin at %@" = "Evenement herinnering: %1$@ begint om %2$@";
 
 /* No comment provided by engineer. */
 "Excused" = "Verontschuldigd";
@@ -243,9 +240,6 @@
 
 /* Default user name, the computer-friendly version of their name, until we find their real user name */
 "Unknown User Name" = "Onbekende gebruikersnaam";
-
-/* Name of action when viewing a reminder */
-"View" = "Bekijken";
 
 /* Calendar Tab */
 "Week" = "Week";

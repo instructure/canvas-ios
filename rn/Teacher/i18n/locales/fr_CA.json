@@ -254,6 +254,9 @@
   "cancel_caeb1e68": {
     "message": "Annuler"
   },
+  "canvas_guides_d65431": {
+    "message": "Guides de Canvas"
+  },
   "canvas_parent_app_f9236a3a": {
     "message": "Appl. Canvas Parent"
   },
@@ -322,6 +325,9 @@
   },
   "compose_message_8abd180a": {
     "message": "Composer un message"
+  },
+  "conferences_a0a8984b": {
+    "message": "Conférences"
   },
   "conversation_options_8be926f3": {
     "message": "Options de conversation"
@@ -734,6 +740,9 @@
   "i_hold_the_copyright_71ee91b1": {
     "message": "Je détiens les droits d’auteur"
   },
+  "if_you_re_a_student_or_teacher_try_one_of_our_othe_f0ae9b33": {
+    "message": "Si vous êtes un étudiant ou un enseignant, essayez l'une de nos autres applications ci-dessous."
+  },
   "in_progress_9d1ce8b9": {
     "message": "En cours"
   },
@@ -805,6 +814,9 @@
   },
   "lock_questions_after_answering_e0f61d7c": {
     "message": "Verrouiller les questions après les réponses"
+  },
+  "log_in_again_ec2b1f46": {
+    "message": "Connectez-vous à nouveau"
   },
   "log_out_379ba28a": {
     "message": "Déconnexion"
@@ -920,6 +932,9 @@
   "no_e16d9132": {
     "message": "Non"
   },
+  "no_enrollments_6369cd31": {
+    "message": "Aucune inscription"
+  },
   "no_grade_3b4d7f3e": {
     "message": "Non noté"
   },
@@ -955,9 +970,6 @@
   },
   "none_9b6c9bec": {
     "message": "aucun"
-  },
-  "not_a_parent_697e87e1": {
-    "message": "Pas un parent?"
   },
   "not_a_teacher_b0d0fc55": {
     "message": "Pas un enseignant?"
@@ -1409,6 +1421,9 @@
   "there_are_no_comments_to_display_bde58f70": {
     "message": "Il n'existe aucun commentaire à afficher."
   },
+  "there_are_no_conferences_to_display_400a0413": {
+    "message": "Aucune conférence à afficher."
+  },
   "there_are_no_discussions_to_display_37bc437f": {
     "message": "Il n'existe aucune discussion à afficher."
   },
@@ -1688,6 +1703,9 @@
   },
   "you_must_enter_an_access_code_8c2c7ae0": {
     "message": "Vous devez saisir un code d’accès"
+  },
+  "you_need_at_least_one_active_observer_enrollment_t_9c78bb6e": {
+    "message": "Vous devez avoir au moins une inscription d'observateur active pour utiliser Canvas Parent."
   },
   "your_submission_comment_failed_to_send_5c8d2809": {
     "message": "Un problème est survenu lors de l’envoi de votre commentaire."
