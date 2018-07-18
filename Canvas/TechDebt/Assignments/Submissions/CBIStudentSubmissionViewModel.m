@@ -72,7 +72,10 @@
     return [submissionRecords map:^id(CKISubmissionRecord *record) {
         @strongify(self)
         self.record = record;
-        RACSequence *submissions = [[[record.submissionHistory.rac_sequence filter:^BOOL(CKISubmission *submission) {
+        RACSequence *submissions = [[[[record.submissionHistory.rac_sequence filter:^BOOL(id submission) {
+            // filters out NSNull
+            return [submission isKindOfClass:[CKISubmission class]];
+        }] filter:^BOOL(CKISubmission *submission) {
             return submission.attempt != 0;
         }] map:[CBISubmissionViewModel modelMappingBlockObservingTintColor:tintColor]] map:^id(CBISubmissionViewModel *viewModel) {
             // attach the assignment... we'll need it later
