@@ -112,8 +112,11 @@ files.each do |file|
     copyright_matches = text.match(copyright_regex)
     banner_matches = text.match(license_banner_regex)
     instructure_matches = text.match(instructure_regex)
-    git_authored_year_command = "git log --format=%ad --date=format:'%Y' \"" + file + "\" | tail -1"
+    
+    # Call git log for a file and only return when the commit was an Add (--diff-filter=A) and take the oldest one
+    git_authored_year_command = "git log --diff-filter=A --follow --format=%ad --date=format:'%Y' -- \"" + file + "\" | tail -1"
     authored_year = `#{git_authored_year_command}`
+    
     banner = appropriate_banner(file, authored_year)
 
     unless copyright_matches
