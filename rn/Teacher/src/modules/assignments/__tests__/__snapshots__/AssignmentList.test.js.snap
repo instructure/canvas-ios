@@ -79,6 +79,7 @@ exports[`renders correctly 1`] = `
           Object {
             "assignments": Array [
               Object {
+                "anonymize_students": false,
                 "assignment_group_id": "1",
                 "automatic_peer_reviews": false,
                 "course_id": "987654321",
@@ -116,6 +117,7 @@ exports[`renders correctly 1`] = `
             ],
             "data": Array [
               Object {
+                "anonymize_students": false,
                 "assignment_group_id": "1",
                 "automatic_peer_reviews": false,
                 "course_id": "987654321",

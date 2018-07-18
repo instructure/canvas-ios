@@ -28,6 +28,7 @@ exports[`AnnouncementsList refreshes when there are no permissions 1`] = `
       Object {
         "allow_rating": false,
         "assignment": Object {
+          "anonymize_students": false,
           "assignment_group_id": "1376",
           "automatic_peer_reviews": false,
           "course_id": "987654321",

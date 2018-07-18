@@ -43,7 +43,8 @@ export type FeatureFlagName = 'favoriteGroups' |
                               'newGroupNavigation' |
                               'simpleDiscussionRenderer' |
                               'newStudentAssignmentView' |
-                              'conferences'
+                              'conferences' |
+                              'assignmentLevelAnonymousGrading'
 
 // if a feature is listed here it will be turned off
 // unless in development, the current user is on a domain
@@ -55,6 +56,7 @@ export const featureFlags: { [FeatureFlagName]: FeatureFlag } = {
   simpleDiscussionRenderer: {},
   newStudentAssignmentView: {},
   conferences: {},
+  assignmentLevelAnonymousGrading: {},
 }
 
 export const exemptDomains = [

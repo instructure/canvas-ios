@@ -114,7 +114,6 @@ export type AssignmentContentState = {
 
 export type AssignmentDetailState = AsyncState & {
   data: Assignment,
-  anonymousGradingOn: boolean,
 }
 
 export type SubmissionState = AsyncState & {

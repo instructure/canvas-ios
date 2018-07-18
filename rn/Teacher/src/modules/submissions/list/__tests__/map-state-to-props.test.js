@@ -142,7 +142,6 @@ function createHappyPathTestState () {
         muted: true,
         name: "Trump's Tweets",
       }),
-      anonymousGradingOn: false,
     },
   }
 
@@ -192,16 +191,7 @@ test('submissions with missing data', () => {
 
 test('anonymous grading on shuffles the data', () => {
   let state = createHappyPathTestState()
-  state.entities.assignments['1000'].anonymousGradingOn = true
-
-  let props = mapStateToProps(state, { courseID: '100', assignmentID: '1000' })
-  expect(props.anonymous).toEqual(true)
-  expect(shuffle).toHaveBeenCalled()
-})
-
-test('course level anonymous grading shuffles the data', () => {
-  let state = createHappyPathTestState()
-  state.entities.courses['100'].enabledFeatures = ['anonymous_grading']
+  state.entities.assignments['1000'].data.anonymize_students = true
 
   let props = mapStateToProps(state, { courseID: '100', assignmentID: '1000' })
   expect(props.anonymous).toEqual(true)

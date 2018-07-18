@@ -37,7 +37,7 @@ const { refreshAssignmentList,
   refreshAssignment,
   refreshAssignmentDetails,
   cancelAssignmentUpdate,
-  anonymousGrading } = Actions
+} = Actions
 const { refreshQuiz } = QuizDetailsActions
 const { refreshDiscussionEntries } = DiscussionDetailsActions
 const { refreshSubmissionSummary, getUserSubmissions } = SubmissionActions
@@ -45,7 +45,6 @@ const { refreshSubmissionSummary, getUserSubmissions } = SubmissionActions
 const assignment = assignment => assignment || {}
 const pending = pending => pending || 0
 const error = error => error || null
-const anonymousGradingOn = anonymous => anonymous || false
 const submissionSummaryReducer = data => data || { error: null, pending: 0, data: { graded: 0, ungraded: 0, not_submitted: 0 } }
 
 const assignmentContent = combineReducers({
@@ -56,7 +55,6 @@ const assignmentContent = combineReducers({
   pending,
   error,
   pendingComments,
-  anonymousGradingOn,
 })
 
 const defaultAssignmentContents: AssignmentContentState = {
@@ -233,16 +231,6 @@ const assignmentsData: Reducer<AssignmentsState, any> = handleActions({
       }
     },
   }),
-  [anonymousGrading.toString()]: (state, { payload }) => {
-    let { assignmentID, anonymous } = payload
-    return {
-      ...state,
-      [assignmentID]: {
-        ...state[assignmentID],
-        anonymousGradingOn: anonymous,
-      },
-    }
-  },
 }, defaultState)
 
 const submissionsData: Reducer<AssignmentsState, any> = handleActions({
@@ -273,7 +261,6 @@ export function assignments (state: AssignmentsState = {}, action: any): Assignm
     const currentAssignmentState: AssignmentDetailState = state[assignmentID] || {
       pending: 0,
       data: {},
-      anonymousGradingOn: false,
     }
     const assignmentState = assignmentContent(currentAssignmentState, action)
     newState = {

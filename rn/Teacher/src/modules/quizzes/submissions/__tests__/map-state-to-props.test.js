@@ -116,8 +116,7 @@ describe('QuizSubmissionList mapStateToProps', () => {
         },
         assignments: {
           '1': {
-            data: template.assignment({ muted: true }),
-            anonymousGradingOn: true,
+            data: template.assignment({ muted: true, anonymize_students: true }),
           },
         },
         enrollments: {
@@ -230,8 +229,7 @@ describe('QuizSubmissionList mapStateToProps', () => {
         },
         assignments: {
           '1': {
-            data: template.assignment({ muted: true }),
-            anonymousGradingOn: true,
+            data: template.assignment({ muted: true, anonymize_students: true }),
           },
         },
         enrollments: {
@@ -295,7 +293,6 @@ describe('QuizSubmissionList mapStateToProps', () => {
     const quiz = template.quiz({
       anonymous_submissions: true,
     })
-
     const appState = template.appState({
       entities: {
         courses: {
@@ -314,24 +311,24 @@ describe('QuizSubmissionList mapStateToProps', () => {
         sections: [template.section({ course_id: course.id })],
       },
     })
-
     const result = mapStateToProps(appState, { courseID: course.id, quizID: quiz.id })
-    expect(result.anonymous).toEqual(true)
+    expect(result).toMatchObject({
+      anonymous: true,
+    })
     expect(shuffle).toHaveBeenCalled()
   })
 
-  it('will set anonymous to true if the course has anonymous grading turned on', () => {
+  it('will set muted to false if the assignment does not exist', () => {
     const course = template.course()
-    const quiz = template.quiz()
-
+    const quiz = template.quiz({
+      assignment_id: '1',
+    })
     const appState = template.appState({
       entities: {
         courses: {
-          [course.id]: {
-            enrollments: { refs: [] },
-            enabledFeatures: ['anonymous_grading'],
-          },
+          [course.id]: { enrollments: { refs: [] } },
         },
+        assignments: {},
         enrollments: {},
         quizzes: {
           [quiz.id]: {
@@ -345,9 +342,9 @@ describe('QuizSubmissionList mapStateToProps', () => {
         sections: [template.section({ course_id: course.id })],
       },
     })
-
     const result = mapStateToProps(appState, { courseID: course.id, quizID: quiz.id })
-    expect(result.anonymous).toEqual(true)
-    expect(shuffle).toHaveBeenCalled()
+    expect(result).toMatchObject({
+      muted: false,
+    })
   })
 })

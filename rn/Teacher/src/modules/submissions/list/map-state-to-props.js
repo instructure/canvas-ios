@@ -21,13 +21,15 @@ import shuffle from 'knuth-shuffle-seeded'
 import {
   getGroupSubmissionProps,
 } from '../../groups/submissions/get-group-submission-props'
+import { isAssignmentAnonymous } from '../../../common/anonymous-grading'
 
 type RoutingProps = {
   courseID: string,
   assignmentID: string,
 }
 
-export function mapStateToProps ({ entities }: AppState, { courseID, assignmentID }: RoutingProps) {
+export function mapStateToProps (state: AppState, { courseID, assignmentID }: RoutingProps) {
+  const { entities } = state
   // submissions
   const assignmentContent = entities.assignments[assignmentID]
   const courseContent = entities.courses[courseID]
@@ -61,8 +63,7 @@ export function mapStateToProps ({ entities }: AppState, { courseID, assignmentI
     courseName = courseContent.course.name
   }
 
-  let anonymous = !!assignmentContent && assignmentContent.anonymousGradingOn ||
-                  courseContent && courseContent.enabledFeatures.includes('anonymous_grading')
+  let anonymous = isAssignmentAnonymous(state, courseID, assignmentID)
   let muted = !!assignmentContent && assignmentContent.data.muted
 
   let assignmentName = ''

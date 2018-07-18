@@ -72,6 +72,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
             <DueDates
               assignment={
                 Object {
+                  "anonymize_students": false,
                   "assignment_group_id": "1376",
                   "automatic_peer_reviews": false,
                   "course_id": "987654321",
@@ -3569,6 +3570,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
             <DueDates
               assignment={
                 Object {
+                  "anonymize_students": false,
                   "assignment_group_id": "1376",
                   "automatic_peer_reviews": false,
                   "course_id": "987654321",
@@ -4868,6 +4870,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
             <DueDates
               assignment={
                 Object {
+                  "anonymize_students": false,
                   "assignment_group_id": "1376",
                   "automatic_peer_reviews": false,
                   "course_id": "987654321",
@@ -7167,6 +7170,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
             <DueDates
               assignment={
                 Object {
+                  "anonymize_students": false,
                   "assignment_group_id": "1376",
                   "automatic_peer_reviews": false,
                   "course_id": "987654321",

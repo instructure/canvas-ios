@@ -51,6 +51,7 @@ export const assignment: Template<Assignment> = template({
   rubric_assessment: {},
   rubric_settings: null,
   rubric: null,
+  anonymize_students: false,
 })
 
 export const assignmentGroup: Template<AssignmentGroup> = template({

@@ -181,9 +181,7 @@ describe('mapStateToProps', () => {
     let state = templates.appState({
       entities: {
         assignments: {
-          '2': {
-            anonymousGradingOn: true,
-          },
+          '2': {},
         },
         submissions: {
           '1': {
@@ -206,9 +204,7 @@ describe('mapStateToProps', () => {
     let state = templates.appState({
       entities: {
         assignments: {
-          '2': {
-            anonymousGradingOn: true,
-          },
+          '2': {},
         },
         submissions: {
           '1': {

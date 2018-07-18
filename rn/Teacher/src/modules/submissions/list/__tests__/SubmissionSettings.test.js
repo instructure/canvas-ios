@@ -32,9 +32,7 @@ let defaultProps = {
   courseID: '1',
   assignmentID: '2',
   navigator: template.navigator(),
-  anonymousGrading: jest.fn(),
   updateAssignment: jest.fn(),
-  anonymous: false,
   muted: false,
   assignment: template.assignment({ id: '2' }),
 }
@@ -47,26 +45,6 @@ describe('SubmissionSettings', () => {
       <SubmissionSettings {...defaultProps} />
     ).toJSON()
     expect(tree).toMatchSnapshot()
-  })
-
-  it('renders the anonymous grading toggle as disabled when disableAnonymous is true', () => {
-    let tree = renderer.create(
-      <SubmissionSettings {...defaultProps} disableAnonymous={true} />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
-  })
-
-  it('calls anonymousGrading when the toggle is pressed', () => {
-    let tree = renderer.create(
-      <SubmissionSettings {...defaultProps} />
-    )
-
-    let toggle = explore(tree.toJSON()).selectByID('submission-settings.anonymous') || {}
-    toggle.props.onValueChange(true)
-
-    expect(defaultProps.anonymousGrading).toHaveBeenCalledWith(
-      '1', '2', true
-    )
   })
 
   it('calls updateAssignment when mute toggle is pressed', () => {
@@ -91,94 +69,12 @@ describe('mapStateToProps', () => {
     assignmentID: '1',
   }
 
-  it('disables anonymous and anonymous is true when the course is anonymous', () => {
-    let state = template.appState({
-      entities: {
-        courses: {
-          '1': {
-            enabledFeatures: ['anonymous_grading'],
-          },
-        },
-        assignments: {
-          '1': {
-            data: template.assignment(),
-          },
-        },
-      },
-    })
-
-    let props = mapStateToProps(state, ownProps)
-    expect(props).toMatchObject({
-      anonymous: true,
-      disableAnonymous: true,
-    })
-  })
-
-  it('disables anonymous and anonymous is truen when the assignment is associated to a quiz and it has anonymous_submissions turned on', () => {
-    let state = template.appState({
-      entities: {
-        courses: {
-          '1': {
-            enabledFeatures: [],
-          },
-        },
-        assignments: {
-          '1': {
-            data: template.assignment({ id: '1', quiz_id: '1' }),
-            anonymousGradingOn: false,
-          },
-        },
-        quizzes: {
-          '1': {
-            data: template.quiz({ id: '1', anonymous_submissions: true }),
-          },
-        },
-      },
-    })
-
-    let props = mapStateToProps(state, ownProps)
-    expect(props).toMatchObject({
-      anonymous: true,
-      disableAnonymous: true,
-    })
-  })
-
-  it('doesnt disable anonymous and anonymous is true when the assignment has anonymous grading turned on', () => {
-    let state = template.appState({
-      entities: {
-        courses: {
-          '1': {
-            enabledFeatures: [],
-          },
-        },
-        assignments: {
-          '1': {
-            data: template.assignment(),
-            anonymousGradingOn: true,
-          },
-        },
-      },
-    })
-
-    let props = mapStateToProps(state, ownProps)
-    expect(props).toMatchObject({
-      anonymous: true,
-      disableAnonymous: false,
-    })
-  })
-
   it('returns the muted value of the assignment', () => {
     let state = template.appState({
       entities: {
-        courses: {
-          '1': {
-            enabledFeatures: [],
-          },
-        },
         assignments: {
           '1': {
             data: template.assignment({ muted: true }),
-            anonymousGradingOn: false,
           },
         },
       },
@@ -191,15 +87,9 @@ describe('mapStateToProps', () => {
   it('returns the assignment', () => {
     let state = template.appState({
       entities: {
-        courses: {
-          '1': {
-            enabledFeatures: [],
-          },
-        },
         assignments: {
           '1': {
             data: template.assignment(),
-            anonymousGradingOn: false,
           },
         },
       },

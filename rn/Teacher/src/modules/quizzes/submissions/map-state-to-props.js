@@ -20,6 +20,10 @@ import { type SubmissionRowDataProps } from '../../submissions/list/SubmissionRo
 import { gradeProp, statusProp } from '../../submissions/list/get-submissions-props'
 import { type QuizSubmissionListDataProps } from './QuizSubmissionList'
 import shuffle from 'knuth-shuffle-seeded'
+import {
+  isQuizAnonymous,
+  isAssignmentAnonymous,
+} from '../../../common/anonymous-grading'
 
 export function buildRows (enrollments: Enrollment[],
   quizSubmissions: { [string]: QuizSubmissionState },
@@ -80,7 +84,8 @@ export function buildRows (enrollments: Enrollment[],
   })
 }
 
-export default function mapStateToProps ({ entities }: AppState, { courseID, quizID }: any): QuizSubmissionListDataProps {
+export default function mapStateToProps (state: AppState, { courseID, quizID }: any): QuizSubmissionListDataProps {
+  const { entities } = state
   let quiz = entities.quizzes[quizID]
   let quizSubmissions: { [string]: QuizSubmissionState } = {}
   let submissions: { [string]: SubmissionState } = {}
@@ -109,11 +114,13 @@ export default function mapStateToProps ({ entities }: AppState, { courseID, qui
       .filter((s) => s)
       .forEach((s) => { submissions[s.submission.user_id] = s })
 
-    if (quiz.data.assignment_id && entities.assignments && entities.assignments[quiz.data.assignment_id]) {
-      anonymous = entities.assignments[quiz.data.assignment_id].anonymousGradingOn
-      muted = entities.assignments[quiz.data.assignment_id].data.muted
+    anonymous = isQuizAnonymous(state, quizID)
+    if (quiz.data.assignment_id) {
+      anonymous = anonymous || isAssignmentAnonymous(state, courseID, quiz.data.assignment_id)
+      if (entities.assignments[quiz.data.assignment_id] && entities.assignments[quiz.data.assignment_id].data) {
+        muted = entities.assignments[quiz.data.assignment_id].data.muted
+      }
     }
-    anonymous = anonymous || quiz.data && quiz.data.anonymous_submissions || entities.courses[courseID].enabledFeatures.includes('anonymous_grading')
   }
 
   const course = entities.courses[courseID]
@@ -154,7 +161,7 @@ export default function mapStateToProps ({ entities }: AppState, { courseID, qui
     return s.course_id === courseID
   })
 
-  const rows = buildRows(enrollments, quizSubmissions, submissions, sectionIDs, anonymous)
+  const rows = buildRows(enrollments, quizSubmissions, submissions, sectionIDs)
 
   return {
     courseColor,

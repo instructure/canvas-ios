@@ -326,7 +326,6 @@ test('mapStateToProps returns no comments for no submissionID', () => {
   state.entities.assignments = {
     '245': {
       data: {},
-      anonymousGradingOn: false,
       pendingComments: {},
       submissions: { refs: [], pending: 0 },
       submissionSummary: { data: {}, pending: 0, error: null },
@@ -429,7 +428,6 @@ test('mapStateToProps returns comment and submission rows', () => {
   appState.entities.assignments = {
     '200': {
       data: {},
-      anonymousGradingOn: true,
       pendingComments: {},
       submissions: { refs: [], pending: 0 },
       submissionSummary: { error: null, pending: 0, data: { graded: 0, ungraded: 0, not_submitted: 0 } },
@@ -460,34 +458,6 @@ test('mapStateToProps returns comment and submission rows', () => {
     .toMatchSnapshot()
 })
 
-test('mapStateToProps returns anonymous true when anonymous grading is turned on', () => {
-  const props = {
-    courseID: '123',
-    assignmentID: '245',
-    userID: '55',
-    submissionID: undefined,
-    drawerState: new DrawerState(),
-    gradeIndividually: true,
-    navigator: {},
-  }
-
-  let state = templates.appState()
-  state.entities.assignments = {
-    '245': {
-      data: {},
-      anonymousGradingOn: true,
-      pendingComments: {},
-      submissions: { refs: [], pending: 0 },
-      submissionSummary: { data: {}, pending: 0, error: null },
-      gradeableStudents: { refs: [], pending: 0 },
-      pending: 0,
-      groups: { refs: [], pending: 0 },
-    },
-  }
-
-  expect(mapStateToProps(state, props).anonymous).toEqual(true)
-})
-
 test('mapStateToProps returns true when the assignment is a quiz that is an anonymous survey', () => {
   const props = {
     courseID: '123',
@@ -503,7 +473,6 @@ test('mapStateToProps returns true when the assignment is a quiz that is an anon
   state.entities.assignments = {
     '245': {
       data: templates.assignment({ id: '245', quiz_id: '678' }),
-      anonymousGradingOn: false,
       pendingComments: {},
       submissions: { refs: [], pending: 0 },
       submissionSummary: { data: {}, pending: 0, error: null },
@@ -521,7 +490,7 @@ test('mapStateToProps returns true when the assignment is a quiz that is an anon
   expect(mapStateToProps(state, props).anonymous).toEqual(true)
 })
 
-test('mapSTateToProps returns true when the course has anonymous grading turned on', () => {
+test('mapStateToProps returns true when the assignment has anonymous grading turned on', () => {
   const props = {
     courseID: '123',
     assignmentID: '245',
@@ -534,14 +503,11 @@ test('mapSTateToProps returns true when the course has anonymous grading turned 
 
   let state = templates.appState()
   state.entities.courses = {
-    '123': {
-      enabledFeatures: ['anonymous_grading'],
-    },
+    '123': {},
   }
   state.entities.assignments = {
     '245': {
-      data: {},
-      anonymousGradingOn: false,
+      data: { anonymize_students: true },
       pendingComments: {},
       submissions: { refs: [], pending: 0 },
       submissionSummary: { data: {}, pending: 0, error: null },

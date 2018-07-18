@@ -305,39 +305,15 @@ describe('refresh functions', () => {
   })
 })
 
-test('mapStateToProps shuffles when anonymous grading is on', () => {
-  const assignment = templates.assignment()
-  const appState = templates.appState({
-    entities: {
-      submissions: {},
-      assignments: {
-        [assignment.id]: {
-          data: assignment,
-          anonymousGradingOn: true,
-        },
-      },
-      courses: {},
-    },
-  })
-  mapStateToProps(appState, {
-    assignmentID: assignment.id,
-    courseID: '2',
-    userID: '3',
-    studentIndex: 1,
-  })
-  expect(shuffle).toHaveBeenCalled()
-})
-
 test('mapStateToProps shuffles when the assignment is an anonymous quiz', () => {
-  const assignment = templates.assignment({ quiz_id: '1' })
-  const quiz = templates.quiz({ id: '1', anonymous_submissions: true })
+  const quiz = templates.quiz({ anonymous_submissions: true })
+  const assignment = templates.assignment({ quiz_id: quiz.id })
   const appState = templates.appState({
     entities: {
       submissions: {},
       assignments: {
         [assignment.id]: {
           data: assignment,
-          anonymousGradingOn: true,
         },
       },
       quizzes: {
@@ -357,21 +333,18 @@ test('mapStateToProps shuffles when the assignment is an anonymous quiz', () => 
   expect(shuffle).toHaveBeenCalled()
 })
 
-test('mapStateToProps shuffles when the course has anonymous_grading turned on', () => {
-  const assignment = templates.assignment()
+test('mapStateToProps shuffles when the assignment has anonymize_students turned on', () => {
+  const assignment = templates.assignment({ anonymize_students: true })
   const appState = templates.appState({
     entities: {
       submissions: {},
       assignments: {
         [assignment.id]: {
           data: assignment,
-          anonymousGradingOn: false,
         },
       },
       courses: {
-        '2': {
-          enabledFeatures: ['anonymous_grading'],
-        },
+        '2': {},
       },
     },
   })

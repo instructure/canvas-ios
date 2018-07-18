@@ -54,6 +54,7 @@ import Images from '../../images'
 import shuffle from 'knuth-shuffle-seeded'
 import { Title } from '../../common/text'
 import CommentInput from './comments/CommentInput'
+import { isAssignmentAnonymous } from '../../common/anonymous-grading'
 
 const { NativeAccessibility } = NativeModules
 
@@ -368,11 +369,7 @@ export function mapStateToProps (state: AppState, ownProps: RoutingProps): Speed
   const assignmentData = assignmentContent && assignmentContent.data
   const quiz = assignmentData && assignmentData.quiz_id && entities.quizzes[assignmentData.quiz_id] && entities.quizzes[assignmentData.quiz_id].data
   const courseContent = state.entities.courses[courseID]
-  let anonymous = (
-    assignmentContent && assignmentContent.anonymousGradingOn ||
-    quiz && quiz.anonymous_submissions ||
-    courseContent && courseContent.enabledFeatures.includes('anonymous_grading')
-  )
+  let anonymous = isAssignmentAnonymous(state, courseID, assignmentID)
 
   let groupAssignment = null
   if (assignmentContent && assignmentContent.data) {

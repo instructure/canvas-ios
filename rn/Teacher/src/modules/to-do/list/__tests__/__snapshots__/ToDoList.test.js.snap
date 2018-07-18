@@ -80,6 +80,7 @@ exports[`ToDoList renders items 1`] = `
         Array [
           ToDoModel {
             "assignment": Object {
+              "anonymize_students": false,
               "assignment_group_id": "1376",
               "automatic_peer_reviews": false,
               "course_id": "987654321",
@@ -124,6 +125,7 @@ exports[`ToDoList renders items 1`] = `
             "quiz": undefined,
             "raw": Object {
               "assignment": Object {
+                "anonymize_students": false,
                 "assignment_group_id": "1376",
                 "automatic_peer_reviews": false,
                 "course_id": "987654321",

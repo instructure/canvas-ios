@@ -1304,7 +1304,7 @@ exports[`comments render properly 1`] = `
 
 exports[`mapStateToProps returns comment and submission rows 1`] = `
 Object {
-  "anonymous": true,
+  "anonymous": false,
   "commentRows": Array [
     Object {
       "avatarURL": "http://www.fillmurray.com/100/100",

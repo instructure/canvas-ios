@@ -40,6 +40,7 @@ import i18n from 'format-message'
 import bytes from '@utils/locale-bytes'
 import striptags from 'striptags'
 import ListEmptyComponent from '../../../common/components/ListEmptyComponent'
+import { isAssignmentAnonymous } from '../../../common/anonymous-grading'
 
 const Actions = {
   ...SubmissionCommentActions,
@@ -429,7 +430,8 @@ function extractPendingComments (assignments: ?AssignmentContentState, userID): 
   }))
 }
 
-export function mapStateToProps ({ entities }: AppState, ownProps: RoutingProps): CommentRows {
+export function mapStateToProps (appState: AppState, ownProps: RoutingProps): CommentRows {
+  const { entities } = appState
   const { submissionID, userID, assignmentID, courseID } = ownProps
 
   const submission = submissionID &&
@@ -437,22 +439,13 @@ export function mapStateToProps ({ entities }: AppState, ownProps: RoutingProps)
     ? entities.submissions[submissionID].submission
     : undefined
 
-  const assignments = entities.assignments[assignmentID]
+  const entity = entities.assignments[assignmentID]
 
-  const assignmentData = assignments && assignments.data
-  const quiz = assignmentData && assignmentData.quiz_id && entities.quizzes[assignmentData.quiz_id].data
-
-  const courseContent = entities.courses[courseID]
-
-  const pendingComments = extractPendingComments(assignments, userID)
+  const pendingComments = extractPendingComments(entity, userID)
   const comments = submission && submission.submission_comments ? extractComments(submission.submission_comments) : []
-  const attempts = submission ? extractAttempts(submission, assignments.data) : []
+  const attempts = submission ? extractAttempts(submission, entity.data) : []
 
-  let anonymous = (
-    assignments && assignments.anonymousGradingOn ||
-    quiz && quiz.anonymous_submissions ||
-    courseContent && courseContent.enabledFeatures.includes('anonymous_grading')
-  )
+  let anonymous = isAssignmentAnonymous(appState, courseID, assignmentID)
 
   const commentRows = [
     ...comments,
