@@ -23,6 +23,7 @@ class CanvadocsPointAnnotation: PSPDFStampAnnotation {
     override var shouldMaintainAspectRatio: Bool { get { return true } }
 
     override func draw(in context: CGContext, withOptions options: [String : Any]? = nil) {
+        context.saveGState()
         let cgColor = color?.cgColor ?? CanvadocsAnnotationColor.blue.color.cgColor
         context.setFillColor(cgColor)
 
@@ -57,6 +58,7 @@ class CanvadocsPointAnnotation: PSPDFStampAnnotation {
         context.addCurve(to: CGPoint(x: 16.501, y: 8.211), control1: CGPoint(x: 15.498, y: 12.56), control2: CGPoint(x: 16.501, y: 10.469))
         context.addCurve(to: CGPoint(x: 8.21, y: 0), control1: CGPoint(x: 16.5, y: 3.683), control2: CGPoint(x: 12.816, y: 0))
         context.fillPath()
+        context.restoreGState()
     }
 }
 
