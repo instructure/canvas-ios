@@ -131,9 +131,6 @@
   "anonymous_grading_3083dc0": {
     "message": "Anonymous grading"
   },
-  "anonymous_grading_ccb5045c": {
-    "message": "Anonymous Grading"
-  },
   "anyone_5b8fdf9f": {
     "message": "Anyone"
   },
@@ -1531,9 +1528,6 @@
   },
   "this_submission_is_a_url_to_an_external_page_we_ve_9993d2fd": {
     "message": "This submission is a URL to an external page. We''ve included a snapshot of what the page looked like when it was submitted."
-  },
-  "this_will_anonymize_each_student_and_shuffle_the_s_127956c7": {
-    "message": "This will anonymize each student and shuffle the submission list."
   },
   "this_will_remove_the_due_date_and_all_of_the_assoc_56d1ea8": {
     "message": "This will remove the due date and all of the associated assignees."
