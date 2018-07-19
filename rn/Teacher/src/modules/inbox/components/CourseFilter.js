@@ -42,7 +42,6 @@ export default class CourseFilter extends Component<CourseFilterProps, any> {
     ActionSheetIOS.showActionSheetWithOptions({
       options,
       cancelButtonIndex: options.length - 1,
-      title: i18n('Filter by:'),
     }, this.updateFilter)
   }
 
@@ -117,9 +116,6 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     flex: 1,
-    fontSize: 20,
-    fontWeight: '600',
-    color: '#2d3b44',
   },
   filterButton: {
     marginBottom: 1,

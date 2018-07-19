@@ -38,10 +38,7 @@ exports[`CourseFilter renders correctly 1`] = `
             "fontSize": 24,
           },
           Object {
-            "color": "#2d3b44",
             "flex": 1,
-            "fontSize": 20,
-            "fontWeight": "600",
           },
         ]
       }

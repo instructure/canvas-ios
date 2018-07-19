@@ -380,10 +380,7 @@ exports[`filters conversations based on course 1`] = `
                 "fontSize": 24,
               },
               Object {
-                "color": "#2d3b44",
                 "flex": 1,
-                "fontSize": 20,
-                "fontWeight": "600",
               },
             ]
           }
@@ -1056,10 +1053,7 @@ exports[`refreshed component 1`] = `
                 "fontSize": 24,
               },
               Object {
-                "color": "#2d3b44",
                 "flex": 1,
-                "fontSize": 20,
-                "fontWeight": "600",
               },
             ]
           }
@@ -1598,10 +1592,7 @@ exports[`renders correctly 1`] = `
                 "fontSize": 24,
               },
               Object {
-                "color": "#2d3b44",
                 "flex": 1,
-                "fontSize": 20,
-                "fontWeight": "600",
               },
             ]
           }
@@ -2485,10 +2476,7 @@ exports[`renders the activity indicator when loading conversations 1`] = `
                 "fontSize": 24,
               },
               Object {
-                "color": "#2d3b44",
                 "flex": 1,
-                "fontSize": 20,
-                "fontWeight": "600",
               },
             ]
           }
@@ -2964,10 +2952,7 @@ exports[`renders the starred empty state 1`] = `
                 "fontSize": 24,
               },
               Object {
-                "color": "#2d3b44",
                 "flex": 1,
-                "fontSize": 20,
-                "fontWeight": "600",
               },
             ]
           }
@@ -3506,10 +3491,7 @@ exports[`renders with an empty state 1`] = `
                 "fontSize": 24,
               },
               Object {
-                "color": "#2d3b44",
                 "flex": 1,
-                "fontSize": 20,
-                "fontWeight": "600",
               },
             ]
           }
