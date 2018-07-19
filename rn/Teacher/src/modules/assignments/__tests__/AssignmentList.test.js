@@ -227,7 +227,9 @@ test('applyFilter will apply a new filter', () => {
   tree.update()
 
   expect(tree.find('Heading1').props().children).toEqual(gradingPeriod.title)
-  expect(tree.find('SectionList').props().sections[0].data).toEqual(groupOne.assignments)
+  const sections = tree.find('SectionList').props().sections
+  expect(sections.length).toEqual(1)
+  expect(sections[0].data).toEqual(groupOne.assignments)
 })
 
 test('applyFilter will call refreshlist with the grading period id when it has no assignmentRefs', async () => {

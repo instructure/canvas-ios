@@ -16,33 +16,105 @@
 
 // @flow
 
-import { AssignmentListActions } from '../actions'
+import Actions, {
+  AssignmentListActions,
+} from '../actions'
 import { apiResponse } from '../../../../test/helpers/apiMock'
 import { testAsyncAction } from '../../../../test/helpers/async'
 import { UPDATE_COURSE_DETAILS_SELECTED_TAB_SELECTED_ROW_ACTION } from '../../courses/actions'
 import * as template from '../../../__templates__'
 
-test('refresh assignment list', async () => {
-  const course = template.course()
-  const groups = [template.assignmentGroup()]
-  let actions = AssignmentListActions({ getAssignmentGroups: apiResponse(groups), getAssignments: apiResponse(groups[0].assignments) })
-  const result = await testAsyncAction(actions.refreshAssignmentList(course.id), {})
+const { refreshAssignmentList } = Actions
 
-  expect(result).toMatchObject([{
-    type: actions.refreshAssignmentList.toString(),
-    pending: true,
-    payload: {
-      courseID: course.id,
+describe('refreshAssignmentList', () => {
+  it('gets assignments by assignment group', async () => {
+    const course = template.course()
+    const groups = [template.assignmentGroup()]
+    let actions = AssignmentListActions({ getAssignmentGroups: apiResponse(groups), getAssignments: apiResponse(groups[0].assignments) })
+    const result = await testAsyncAction(actions.refreshAssignmentList(course.id), {})
+
+    expect(result).toMatchObject([{
+      type: actions.refreshAssignmentList.toString(),
+      pending: true,
+      payload: {
+        courseID: course.id,
+      },
     },
-  },
-  {
-    type: actions.refreshAssignmentList.toString(),
-    payload: {
-      result: { data: groups },
-      courseID: course.id,
+    {
+      type: actions.refreshAssignmentList.toString(),
+      payload: {
+        result: { data: groups },
+        courseID: course.id,
+      },
     },
-  },
-  ])
+    ])
+  })
+
+  it('can include a gradingPeriodID', () => {
+    const action = refreshAssignmentList('', '2')
+    expect(action).toMatchObject({
+      payload: { gradingPeriodID: '2' },
+    })
+  })
+
+  // TODO: this won't be necessary once CNVS-29053 is done
+  // Makes sure we replace the group assignments with the assignments from the
+  // assignments api
+  it('filters by group assignments', async () => {
+    const assignment = template.assignment({
+      id: '1',
+      name: 'Assignment 1',
+      submission: null,
+    })
+    const lecture = template.assignment({
+      id: '2',
+      name: 'Lecture 1',
+      submission: null,
+    })
+
+    const group1 = template.assignmentGroup({
+      id: '1',
+      name: 'Assignments',
+      assignments: [assignment],
+    })
+    const group2 = template.assignmentGroup({
+      id: '2',
+      name: 'Lectures',
+      assignments: [lecture],
+    })
+    const groups = [group1, group2]
+
+    // getAssignments will have more correct assignment data then groups
+    // but will not be filtered by grading period id
+    const expectedAssignment = { ...assignment, submission: template.submission() }
+    const expectedLecture = { ...lecture, submission: template.submission() }
+    const otherAssignment = template.assignment({ id: '3', name: 'Not in the grading period' })
+    const assignments = [
+      expectedAssignment,
+      expectedLecture,
+      otherAssignment,
+    ]
+
+    const getAssignments = jest.fn(() => Promise.resolve({ data: assignments }))
+    const getAssignmentGroups = jest.fn(() => Promise.resolve({ data: groups }))
+    let actions = AssignmentListActions({
+      getAssignmentGroups,
+      getAssignments,
+    })
+    let action = actions.refreshAssignmentList('1', '2')
+    const result = await action.payload.promise
+
+    expect(result.data.length).toEqual(2)
+    expect(result.data[0].name).toEqual('Assignments')
+    expect(result.data[0].assignments.length).toEqual(1)
+    expect(result.data[0].assignments[0]).toMatchObject(expectedAssignment)
+
+    expect(result.data[1].name).toEqual('Lectures')
+    expect(result.data[1].assignments.length).toEqual(1)
+    expect(result.data[1].assignments[0]).toMatchObject(expectedLecture)
+
+    expect(getAssignmentGroups).toHaveBeenCalledWith('1', '2', ['assignments'])
+  })
 })
 
 test('refresh single assignment', async () => {
@@ -68,29 +140,6 @@ test('refresh single assignment', async () => {
     },
   },
   ])
-})
-
-test('refresh assignment list can take an optional grading period id', async () => {
-  const course = template.course()
-  const groups = [template.assignmentGroup()]
-  let actions = AssignmentListActions({ getAssignmentGroups: apiResponse(groups), getAssignments: apiResponse(groups[0].assignments) })
-  const result = await testAsyncAction(actions.refreshAssignmentList(course.id, 1), {})
-
-  expect(result).toMatchObject([{
-    type: actions.refreshAssignmentList.toString(),
-    pending: true,
-    payload: {
-      courseID: course.id,
-      gradingPeriodID: 1,
-    },
-  }, {
-    type: actions.refreshAssignmentList.toString(),
-    payload: {
-      result: { data: groups },
-      courseID: course.id,
-      gradingPeriodID: 1,
-    },
-  }])
 })
 
 test('cancel update assignment action', () => {

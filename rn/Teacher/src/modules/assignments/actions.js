@@ -27,18 +27,24 @@ export let AssignmentListActions = (api: CanvasApi): * => ({
       include.push('submission')
     }
     const promise = Promise.all([
-      api.getAssignmentGroups(courseID, gradingPeriodID),
+      // TODO: don't include assignments once CNVS-29053 is done
+      // must include assignments in order to filter by gradingPeriodID
+      api.getAssignmentGroups(courseID, gradingPeriodID, ['assignments']),
       api.getAssignments(courseID, include),
     ]).then(([ groupsResponse, { data: assignments } ]) => {
       for (const group of groupsResponse.data) {
-        group.assignments = assignments.filter(({ assignment_group_id }) =>
-          group.id === assignment_group_id
-        )
-      }
-      for (const assignment of assignments) {
-        if (Array.isArray(assignment.submission)) {
-          assignment.submission = assignment.submission[0]
-        }
+        // TODO: simplify once CNVS-29053 is done
+        // Take assignments intersected with group.assignments
+        group.assignments = group.assignments.reduce((accum, current) => {
+          const assignment = assignments.find(({ id }) => id === current.id)
+          if (assignment) {
+            if (Array.isArray(assignment.submission)) {
+              assignment.submission = assignment.submission[0]
+            }
+            accum.push(assignment)
+          }
+          return accum
+        }, [])
       }
       return groupsResponse
     })
