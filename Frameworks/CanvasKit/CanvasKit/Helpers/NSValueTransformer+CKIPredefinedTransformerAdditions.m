@@ -16,7 +16,6 @@
 
 #import "NSValueTransformer+CKIPredefinedTransformerAdditions.h"
 @import Mantle;
-#import "CKISO8601DateFormatter.h"
 
 #import "CKIRubricAssessment.h"
 #import "CKIRubricCriterionRating.h"
@@ -78,11 +77,10 @@ static NSString *const CKIRubricCriterionRatingPointsKey = @"points";
 
 + (MTLValueTransformer *)ISODateTransformer;
 {
-    static CKISO8601DateFormatter *dateFormatter;
+    static NSISO8601DateFormatter *dateFormatter;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        dateFormatter = [CKISO8601DateFormatter new];
-        dateFormatter.includeTime = YES;
+        dateFormatter = [NSISO8601DateFormatter new];
     });
     
     return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSString *dateString) {

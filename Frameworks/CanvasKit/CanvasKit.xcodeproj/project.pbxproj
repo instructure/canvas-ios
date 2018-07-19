@@ -404,8 +404,6 @@
 		9FE0B52C1FBB7710003826AA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9FE0B52E1FBB7710003826AA /* InfoPlist.strings */; };
 		9FE0B5311FBB7710003826AA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9FE0B5331FBB7710003826AA /* Localizable.strings */; };
 		AAB2E0F233951223AF3F6CFC /* Pods_defaults_CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73FDCB1E035EF6A93E758F42 /* Pods_defaults_CanvasKit.framework */; };
-		B1CF2FC51C90B8780035612B /* CKISO8601DateFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = B1CF2FC31C90B8780035612B /* CKISO8601DateFormatter.h */; };
-		B1CF2FC61C90B8780035612B /* CKISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = B1CF2FC41C90B8780035612B /* CKISO8601DateFormatter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -910,8 +908,6 @@
 		9FE0B5281FBB7710003826AA /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9FE0B52D1FBB7710003826AA /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9FE0B5321FBB7710003826AA /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B1CF2FC31C90B8780035612B /* CKISO8601DateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKISO8601DateFormatter.h; sourceTree = "<group>"; };
-		B1CF2FC41C90B8780035612B /* CKISO8601DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKISO8601DateFormatter.m; sourceTree = "<group>"; };
 		DFC0045B1D1838536E5DC07E /* Pods-defaults-CanvasKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasKit.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-CanvasKit/Pods-defaults-CanvasKit.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -974,7 +970,6 @@
 			children = (
 				9FE0B5331FBB7710003826AA /* Localizable.strings */,
 				9FE0B52E1FBB7710003826AA /* InfoPlist.strings */,
-				B1CF2FC21C90B8430035612B /* ISO8601DateFormatter */,
 				499D1BB71C86481C005A86D2 /* extobjc */,
 				499D18A11C8644A3005A86D2 /* Constants.h */,
 				499D18A21C8644A3005A86D2 /* Helpers */,
@@ -1514,15 +1509,6 @@
 			path = extobjc;
 			sourceTree = "<group>";
 		};
-		B1CF2FC21C90B8430035612B /* ISO8601DateFormatter */ = {
-			isa = PBXGroup;
-			children = (
-				B1CF2FC31C90B8780035612B /* CKISO8601DateFormatter.h */,
-				B1CF2FC41C90B8780035612B /* CKISO8601DateFormatter.m */,
-			);
-			path = ISO8601DateFormatter;
-			sourceTree = "<group>";
-		};
 		B6AEC89685AD381FE7396715 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1643,7 +1629,6 @@
 				496FC3B11F3A592900054359 /* CKIClient+CKIEnrollment.h in Headers */,
 				499D19B61C8644A3005A86D2 /* CKIDiscussionTopic.h in Headers */,
 				499D1A1E1C8644A3005A86D2 /* CKIClient+CKIFavorite.h in Headers */,
-				B1CF2FC51C90B8780035612B /* CKISO8601DateFormatter.h in Headers */,
 				499D1A3C1C8644A3005A86D2 /* CKIClient+CKIPollSubmission.h in Headers */,
 				499D1BBA1C864835005A86D2 /* EXTScope.h in Headers */,
 				499D1BBB1C864835005A86D2 /* metamacros.h in Headers */,
@@ -1876,7 +1861,6 @@
 				499D1A151C8644A3005A86D2 /* CKIClient+CKIConversation.m in Sources */,
 				499D19AA1C8644A3005A86D2 /* CKICalendarEvent.m in Sources */,
 				499D1A271C8644A3005A86D2 /* CKIClient+CKIGroupCategory.m in Sources */,
-				B1CF2FC61C90B8780035612B /* CKISO8601DateFormatter.m in Sources */,
 				499D198A1C8644A3005A86D2 /* NSHTTPURLResponse+Pagination.m in Sources */,
 				499D19CB1C8644A3005A86D2 /* CKIModel.m in Sources */,
 				499D19B71C8644A3005A86D2 /* CKIDiscussionTopic.m in Sources */,
