@@ -128,9 +128,26 @@ end
 # To fix this, the AppDelegate is rewritten to comment out Fabric.
 def remove_fabric_from_app_delegate(app_delegate_path)
   raise "File doesn't exist: #{app_delegate_path}" unless File.exist?(app_delegate_path)
+  fabric_import = 'import Fabric'
   fabric_init = 'Fabric.with('
   app_delegate = File.read(app_delegate_path)
+  app_delegate.sub!(fabric_import, "//#{fabric_import}")
   app_delegate.sub!(fabric_init, "//#{fabric_init}")
+  File.write(app_delegate_path, app_delegate)
+end
+
+# Comment out Firebase Analytics from the AppDelegates so it doesn't crash
+def remove_firebase_analytics_from_app_delegate(app_delegate_path)
+  raise "File doesn't exist: #{app_delegate_path}" unless File.exist?(app_delegate_path)
+  firebase_import = 'import Firebase'
+  firebase_app = 'FirebaseApp'
+  analytics_init = ' Analytics' # Prefix with a space to avoid matching CanvasAnalytics
+
+  app_delegate = File.read(app_delegate_path)
+  app_delegate.sub!(firebase_import, "//#{firebase_import}")
+  app_delegate.gsub!(firebase_app, "//#{firebase_app}")
+  app_delegate.gsub!(analytics_init, "//#{analytics_init}")
+
   File.write(app_delegate_path, app_delegate)
 end
 
@@ -141,6 +158,10 @@ remove_secrets_from_plist File.join(destination, 'Parent', 'Parent', 'Info.plist
 remove_fabric_from_app_delegate File.join(destination, 'Canvas/Canvas/CanvasAppDelegate.swift')
 remove_fabric_from_app_delegate File.join(destination, 'rn/Teacher/ios/Teacher/AppDelegate.swift')
 remove_fabric_from_app_delegate File.join(destination, 'Parent/Parent/ParentAppDelegate.swift')
+
+remove_firebase_analytics_from_app_delegate File.join(destination, 'Canvas/Canvas/CanvasAppDelegate.swift')
+remove_firebase_analytics_from_app_delegate File.join(destination, 'rn/Teacher/ios/Teacher/AppDelegate.swift')
+remove_firebase_analytics_from_app_delegate File.join(destination, 'Parent/Parent/ParentAppDelegate.swift')
 
 # Strip out all of the keys from our stuff, making an empty template file
 prune_plist File.join(destination, 'secrets.plist')
