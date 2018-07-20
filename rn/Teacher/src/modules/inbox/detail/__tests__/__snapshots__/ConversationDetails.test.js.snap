@@ -464,12 +464,14 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
                 <Image
                   source={
                     Object {
-                      "testUri": "../../../src/images/attachment.png",
+                      "testUri": "../../../src/images/paperclip-icon.png",
                     }
                   }
                   style={
                     Object {
+                      "height": 14,
                       "tintColor": "#008EE2",
+                      "width": 14,
                     }
                   }
                 />
@@ -490,7 +492,7 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
                         "color": "#008EE2",
                         "fontFamily": ".SFUIDisplay-bold",
                         "fontSize": 14,
-                        "marginLeft": 6,
+                        "marginLeft": 4,
                       },
                       Object {
                         "fontFamily": ".SFUIDisplay",

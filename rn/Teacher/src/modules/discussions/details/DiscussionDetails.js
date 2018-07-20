@@ -299,7 +299,7 @@ export class DiscussionDetails extends Component<Props, any> {
                 // should only ever have 1, blocked by UI, but API returns array of 1 :facepalm:
                 <TouchableHighlight testID={`discussion.${discussion.id}.attachment`} onPress={this.showAttachment}>
                   <View style={style.attachment}>
-                    <Image source={Images.attachment} style={style.attachmentIcon} />
+                    <Image source={Images.paperclip} style={style.attachmentIcon} />
                     <Text style={style.attachmentText}>
                       {discussion.attachments[0].display_name}
                     </Text>
@@ -728,11 +728,13 @@ const style = StyleSheet.create({
   },
   attachmentIcon: {
     tintColor: colors.link,
+    height: 14,
+    width: 14,
   },
   attachmentText: {
     color: colors.link,
     fontFamily: BOLD_FONT,
-    marginLeft: 6,
+    marginLeft: 4,
     fontSize: 14,
   },
   popReplyStackContainer: {

@@ -251,7 +251,7 @@ export class Compose extends PureComponent<ComposeProps & OwnProps, ComposeState
             style: 'done',
           },
           {
-            image: Images.attachmentLarge,
+            image: Images.paperclip,
             testID: 'compose-message.attach',
             action: this.editAttachments,
             accessibilityLabel: i18n('Edit attachments ({count})', { count: this.state.attachments.length }),

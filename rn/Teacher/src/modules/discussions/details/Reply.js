@@ -201,7 +201,7 @@ export default class Reply extends Component<Props, State> {
             {reply.attachment &&
               <TouchableHighlight testID={`discussion-reply.${reply.id}.attachment`} onPress={this.showAttachment}>
                 <View style={style.attachment}>
-                  <Image source={Images.attachment} style={style.attachmentIcon} />
+                  <Image source={Images.paperclip} style={style.attachmentIcon} />
                   <Text style={style.attachmentText}>
                     {reply.attachment.display_name}
                   </Text>
@@ -543,11 +543,13 @@ const style = StyleSheet.create({
   },
   attachmentIcon: {
     tintColor: colors.link,
+    height: 14,
+    width: 14,
   },
   attachmentText: {
     color: colors.link,
     fontFamily: BOLD_FONT,
-    marginLeft: 6,
+    marginLeft: 4,
     fontSize: 14,
   },
 })

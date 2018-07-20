@@ -259,12 +259,14 @@ exports[`renders correctly 1`] = `
         <Image
           source={
             Object {
-              "testUri": "../../../src/images/attachment.png",
+              "testUri": "../../../src/images/paperclip-icon.png",
             }
           }
           style={
             Object {
+              "height": 14,
               "tintColor": "#008EE2",
+              "width": 14,
             }
           }
         />
@@ -285,7 +287,7 @@ exports[`renders correctly 1`] = `
                 "color": "#008EE2",
                 "fontFamily": ".SFUIDisplay-bold",
                 "fontSize": 14,
-                "marginLeft": 6,
+                "marginLeft": 4,
               },
               Object {
                 "fontFamily": ".SFUIDisplay",
@@ -474,12 +476,14 @@ exports[`renders correctly when there is only one author (current user) and one 
         <Image
           source={
             Object {
-              "testUri": "../../../src/images/attachment.png",
+              "testUri": "../../../src/images/paperclip-icon.png",
             }
           }
           style={
             Object {
+              "height": 14,
               "tintColor": "#008EE2",
+              "width": 14,
             }
           }
         />
@@ -489,7 +493,7 @@ exports[`renders correctly when there is only one author (current user) and one 
               "color": "#008EE2",
               "fontFamily": ".SFUIDisplay-bold",
               "fontSize": 14,
-              "marginLeft": 6,
+              "marginLeft": 4,
             }
           }
         >
@@ -674,12 +678,14 @@ exports[`renders correctly when there is only one author (not current user) and 
         <Image
           source={
             Object {
-              "testUri": "../../../src/images/attachment.png",
+              "testUri": "../../../src/images/paperclip-icon.png",
             }
           }
           style={
             Object {
+              "height": 14,
               "tintColor": "#008EE2",
+              "width": 14,
             }
           }
         />
@@ -689,7 +695,7 @@ exports[`renders correctly when there is only one author (not current user) and 
               "color": "#008EE2",
               "fontFamily": ".SFUIDisplay-bold",
               "fontSize": 14,
-              "marginLeft": 6,
+              "marginLeft": 4,
             }
           }
         >
@@ -960,12 +966,14 @@ exports[`renders correctly with author being the logged in user 1`] = `
         <Image
           source={
             Object {
-              "testUri": "../../../src/images/attachment.png",
+              "testUri": "../../../src/images/paperclip-icon.png",
             }
           }
           style={
             Object {
+              "height": 14,
               "tintColor": "#008EE2",
+              "width": 14,
             }
           }
         />
@@ -986,7 +994,7 @@ exports[`renders correctly with author being the logged in user 1`] = `
                 "color": "#008EE2",
                 "fontFamily": ".SFUIDisplay-bold",
                 "fontSize": 14,
-                "marginLeft": 6,
+                "marginLeft": 4,
               },
               Object {
                 "fontFamily": ".SFUIDisplay",
@@ -1261,12 +1269,14 @@ exports[`renders correctly with author lots of participants 1`] = `
         <Image
           source={
             Object {
-              "testUri": "../../../src/images/attachment.png",
+              "testUri": "../../../src/images/paperclip-icon.png",
             }
           }
           style={
             Object {
+              "height": 14,
               "tintColor": "#008EE2",
+              "width": 14,
             }
           }
         />
@@ -1287,7 +1297,7 @@ exports[`renders correctly with author lots of participants 1`] = `
                 "color": "#008EE2",
                 "fontFamily": ".SFUIDisplay-bold",
                 "fontSize": 14,
-                "marginLeft": 6,
+                "marginLeft": 4,
               },
               Object {
                 "fontFamily": ".SFUIDisplay",

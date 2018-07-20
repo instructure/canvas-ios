@@ -145,7 +145,7 @@ export class AnnouncementEdit extends Component<Props, any> {
             action: this._donePressed,
           },
           {
-            image: images.attachmentLarge,
+            image: images.paperclip,
             testID: 'announcements.edit.attachment-btn',
             action: this.addAttachment,
             accessibilityLabel: i18n('Add attachment'),

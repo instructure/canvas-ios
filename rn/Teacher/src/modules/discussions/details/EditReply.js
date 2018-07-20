@@ -77,7 +77,7 @@ export class EditReply extends React.Component<Props, any> {
             action: this._actionDonePressed,
           },
           permissions && permissions.attach && {
-            image: Images.attachmentLarge,
+            image: Images.paperclip,
             testID: 'edit-discussion-reply.attachment-btn',
             action: this.addAttachment,
             accessibilityLabel: i18n('Edit attachment ({count})', { count: this.state.attachment ? '1' : i18n('none') }),

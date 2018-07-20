@@ -18,7 +18,7 @@ exports[`EditReply dismisses modal activity upon save error 1`] = `
         "action": [Function],
         "badge": null,
         "image": Object {
-          "testUri": "../../../src/images/attachment-large.png",
+          "testUri": "../../../src/images/paperclip-icon.png",
         },
         "testID": "edit-discussion-reply.attachment-btn",
       },
@@ -180,7 +180,7 @@ exports[`EditReply renders 1`] = `
         "action": [Function],
         "badge": null,
         "image": Object {
-          "testUri": "../../../src/images/attachment-large.png",
+          "testUri": "../../../src/images/paperclip-icon.png",
         },
         "testID": "edit-discussion-reply.attachment-btn",
       },
@@ -342,7 +342,7 @@ exports[`EditReply renders title correctly when editing 1`] = `
         "action": [Function],
         "badge": null,
         "image": Object {
-          "testUri": "../../../src/images/attachment-large.png",
+          "testUri": "../../../src/images/paperclip-icon.png",
         },
         "testID": "edit-discussion-reply.attachment-btn",
       },

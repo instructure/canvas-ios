@@ -17,7 +17,7 @@ exports[`DiscussionEdit renders 1`] = `
         "action": [Function],
         "badge": null,
         "image": Object {
-          "testUri": "../../../src/images/attachment-large.png",
+          "testUri": "../../../src/images/paperclip-icon.png",
         },
         "testID": "discussions.edit.attachment-btn",
       },
@@ -198,7 +198,7 @@ exports[`DiscussionEdit renders new form 1`] = `
         "action": [Function],
         "badge": null,
         "image": Object {
-          "testUri": "../../../src/images/attachment-large.png",
+          "testUri": "../../../src/images/paperclip-icon.png",
         },
         "testID": "discussions.edit.attachment-btn",
       },
@@ -372,7 +372,7 @@ exports[`DiscussionEdit updates from props 1`] = `
         "action": [Function],
         "badge": null,
         "image": Object {
-          "testUri": "../../../src/images/attachment-large.png",
+          "testUri": "../../../src/images/paperclip-icon.png",
         },
         "testID": "discussions.edit.attachment-btn",
       },
@@ -553,7 +553,7 @@ exports[`DiscussionEdit updates with new props 1`] = `
         "action": [Function],
         "badge": null,
         "image": Object {
-          "testUri": "../../../src/images/attachment-large.png",
+          "testUri": "../../../src/images/paperclip-icon.png",
         },
         "testID": "discussions.edit.attachment-btn",
       },

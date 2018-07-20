@@ -193,7 +193,7 @@ export class DiscussionEdit extends Component<Props, any> {
             action: this._donePressed,
           },
           {
-            image: Images.attachmentLarge,
+            image: Images.paperclip,
             testID: 'discussions.edit.attachment-btn',
             action: this.addAttachment,
             accessibilityLabel: i18n('Edit attachment ({count})', { count: this.state.attachment ? '1' : i18n('none') }),

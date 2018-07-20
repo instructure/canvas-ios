@@ -189,7 +189,7 @@ export default class ConversationMessageRow extends Component<ConversationMessag
                 this._showAttachment(attachment)
               }}>
                 <View style={styles.attachment}>
-                  <Image source={Images.attachment} style={styles.attachmentIcon} />
+                  <Image source={Images.paperclip} style={styles.attachmentIcon} />
                   <Text style={styles.attachmentText}>
                     {attachment.display_name}
                   </Text>
@@ -307,11 +307,13 @@ const styles = StyleSheet.create({
   },
   attachmentIcon: {
     tintColor: color.link,
+    height: 14,
+    width: 14,
   },
   attachmentText: {
     color: color.link,
     fontFamily: BOLD_FONT,
-    marginLeft: 6,
+    marginLeft: 4,
     fontSize: 14,
   },
 })
