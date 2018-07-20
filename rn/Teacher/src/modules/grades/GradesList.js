@@ -77,14 +77,14 @@ export function mapStateToProps ({ entities }: AppState, { courseID, navigator }
   let selectedRowID = entities.courseDetailsTabSelectedRow.rowID || ''
   let currentGradingPeriodID
   let currentScore
-  for (const enroll of course.course.enrollments) {
-    if (enroll.type === 'student') {
-      if (enroll.current_grading_period_id) {
-        currentGradingPeriodID = enroll.current_grading_period_id
-      }
-      currentScore = enroll.computed_current_score
-      break
+  const enrollment = course.course.enrollments.find(e => e.type === 'student')
+  if (enrollment) {
+    if (enrollment.current_grading_period_id) {
+      currentGradingPeriodID = enrollment.current_grading_period_id
     }
+    const hideTotalGrade = course.course.hide_final_grades ||
+      (enrollment.has_grading_periods && enrollment.totals_for_all_grading_periods_option === false)
+    currentScore = hideTotalGrade ? null : enrollment.computed_current_score
   }
 
   return {

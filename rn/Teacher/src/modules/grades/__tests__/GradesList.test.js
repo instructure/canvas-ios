@@ -22,61 +22,71 @@ import { setSession } from '../../../canvas-api'
 import GradesListRow from '../GradesListRow'
 
 describe('mapStateToProps', () => {
-  let assignmentGroup = templates.assignmentGroup()
-  let assignment = assignmentGroup.assignments[0]
-  let gradingPeriod = templates.gradingPeriod({ id: 1 })
-  let gradingPeriodTwo = templates.gradingPeriod({ id: 2 })
-  let course = templates.course({
-    enrollments: [
-      { type: 'teacher', current_grading_period_id: gradingPeriod.id },
-      { type: 'student', current_grading_period_id: gradingPeriodTwo.id, computed_current_score: 92 },
-    ],
-  })
-  let enrollment = templates.enrollment({ course_id: course.id, user_id: '10' })
+  const userID = '10'
 
-  const defaultState = templates.appState({
-    entities: {
-      courses: {
-        [course.id]: {
-          assignmentGroups: { refs: [assignmentGroup.id] },
-          gradingPeriods: { refs: [gradingPeriod.id, gradingPeriodTwo.id] },
-          course: course,
-          color: 'blueish',
-        },
-      },
-      assignmentGroups: {
-        [assignmentGroup.id]: { group: assignmentGroup, assignmentRefs: [assignment.id] },
-      },
-      assignments: {
-        [assignment.id]: { data: assignment },
-      },
-      gradingPeriods: {
-        [gradingPeriod.id]: {
-          gradingPeriod,
-          assignmentRefs: [assignment.id],
-        },
-        [gradingPeriodTwo.id]: {
-          gradingPeriod: gradingPeriodTwo,
-          assignmentRefs: [],
-        },
-      },
-      courseDetailsTabSelectedRow: { rowID: '' },
-      enrollments: {
-        '1': enrollment,
-      },
-    },
-    favoriteCourses: [],
-  })
-
-  const defaultProps = {
-    navigator: templates.navigator(),
-    courseID: '1',
-  }
-
+  let assignmentGroup
+  let assignment
+  let gradingPeriod
+  let gradingPeriodTwo
+  let course
+  let enrollment
+  let defaultState
+  let defaultProps
   beforeEach(() => {
     let session = templates.session()
-    session.user.id = '10'
+    session.user.id = userID
     setSession(session)
+
+    assignmentGroup = templates.assignmentGroup()
+    assignment = assignmentGroup.assignments[0]
+    gradingPeriod = templates.gradingPeriod({ id: 1 })
+    gradingPeriodTwo = templates.gradingPeriod({ id: 2 })
+    course = templates.course({
+      enrollments: [
+        { type: 'teacher', current_grading_period_id: gradingPeriod.id },
+        { type: 'student', current_grading_period_id: gradingPeriodTwo.id, computed_current_score: 92 },
+      ],
+    })
+    enrollment = templates.enrollment({ course_id: course.id, user_id: userID })
+
+    defaultState = templates.appState({
+      entities: {
+        courses: {
+          [course.id]: {
+            assignmentGroups: { refs: [assignmentGroup.id] },
+            gradingPeriods: { refs: [gradingPeriod.id, gradingPeriodTwo.id] },
+            course: course,
+            color: 'blueish',
+          },
+        },
+        assignmentGroups: {
+          [assignmentGroup.id]: { group: assignmentGroup, assignmentRefs: [assignment.id] },
+        },
+        assignments: {
+          [assignment.id]: { data: assignment },
+        },
+        gradingPeriods: {
+          [gradingPeriod.id]: {
+            gradingPeriod,
+            assignmentRefs: [assignment.id],
+          },
+          [gradingPeriodTwo.id]: {
+            gradingPeriod: gradingPeriodTwo,
+            assignmentRefs: [],
+          },
+        },
+        courseDetailsTabSelectedRow: { rowID: '' },
+        enrollments: {
+          '1': enrollment,
+        },
+      },
+      favoriteCourses: [],
+    })
+
+    defaultProps = {
+      navigator: templates.navigator(),
+      courseID: '1',
+    }
   })
 
   it('map state to props should work', async () => {
@@ -132,6 +142,8 @@ describe('mapStateToProps', () => {
   })
 
   it('returns the user from the session', () => {
+    const result = mapStateToProps(defaultState, defaultProps)
+    expect(result.user).toMatchObject({ id: '10' })
     expect(mapStateToProps(defaultState, defaultProps).user).toMatchObject({ id: '10' })
   })
 
@@ -146,5 +158,38 @@ describe('mapStateToProps', () => {
       showTotalScore: true,
       ListRow: GradesListRow,
     })
+  })
+
+  it('does not include currentScore if hide_final_grades is true', () => {
+    defaultState.entities.courses[course.id].course.hide_final_grades = true
+    const result = mapStateToProps(defaultState, defaultProps)
+    expect(result).toMatchObject({ currentScore: null })
+  })
+
+  it('does not include currentScore if mgp enabled and totals_for_all_grading_periods_option is false', () => {
+    const enrollment = templates.enrollment({
+      course_id: course.id,
+      user_id: userID,
+      has_grading_periods: true,
+      totals_for_all_grading_periods_option: false,
+      type: 'student',
+    })
+    defaultState.entities.courses[course.id].course.enrollments = [enrollment]
+    const result = mapStateToProps(defaultState, defaultProps)
+    expect(result).toMatchObject({ currentScore: null })
+  })
+
+  it('includes currentScore if mgp enabled and totals_for_all_grading_periods_option is true', () => {
+    const enrollment = templates.enrollment({
+      course_id: course.id,
+      user_id: userID,
+      has_grading_periods: true,
+      totals_for_all_grading_periods_option: true,
+      computed_current_score: 13,
+      type: 'student',
+    })
+    defaultState.entities.courses[course.id].course.enrollments = [enrollment]
+    const result = mapStateToProps(defaultState, defaultProps)
+    expect(result).toMatchObject({ currentScore: 13 })
   })
 })
