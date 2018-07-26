@@ -203,11 +203,38 @@ class DashboardViewController: UIViewController {
             self?.viewState.studentCount = count
             
             if (noMoreLinkedStudents) {
-                self?.retrieveStudentsCompleted()
+                DispatchQueue.main.async {
+                    self?.updateMainView()
+                }
             }
         }
         
+        canUserMasquerade()
         try retrieveStudents()
+    }
+    
+    func canUserMasquerade() {
+        if viewState.isSiteAdmin {
+            return
+        }
+        
+        var backgroundTask: UIBackgroundTaskIdentifier = UIBackgroundTaskInvalid
+        backgroundTask = UIApplication.shared.beginBackgroundTask(withName: "become user permissions") { backgroundTask = UIBackgroundTaskInvalid }
+        
+        APIBridge.shared().call("becomeUserPermissions", args: ["self"]) { [weak self] response, _ in
+            guard let data = response as? [String: Any], let canBecomeUser = data["become_user"] as? Bool, canBecomeUser == true else {
+                UIApplication.shared.endBackgroundTask(backgroundTask)
+                return
+            }
+            
+            self?.viewState.isSiteAdmin = true
+            
+            DispatchQueue.main.async {
+                self?.updateMainView()
+            }
+            
+            UIApplication.shared.endBackgroundTask(backgroundTask)
+        }
     }
     
     func retrieveStudents() throws {
@@ -217,14 +244,15 @@ class DashboardViewController: UIViewController {
                 if let error = event.error, error.code == Student.Error.NoObserverEnrollments {
                     self?.viewState.isValidObserver = false
                 }
-                self?.retrieveStudentsCompleted()
+                self?.updateMainView()
                 disposable.dispose()
             })
         }
     }
     
-    func retrieveStudentsCompleted() {
-        guard viewState.isValidObserver && viewState.studentCount > 0 else {
+    
+    func updateMainView() {
+        guard viewState.isSiteAdmin || (viewState.isValidObserver && viewState.studentCount > 0) else {
             return showNotAParentView()
         }
         
@@ -278,9 +306,9 @@ class DashboardViewController: UIViewController {
         let storyboard = UIStoryboard(name: "AdminViewController", bundle: nil)
         adminViewController = storyboard.instantiateViewController(withIdentifier: "vc") as! AdminViewController
         
-        adminViewController.actAsUserHandler = { [weak self] in
-            let masquerade = HelmViewController(moduleName: "/masquerade", props: [:])
-            self?.present(masquerade, animated: true, completion: nil)
+        adminViewController.actAsUserHandler = {
+            let navigatorOptions: [String: Any] = ["modal": true, "modalPresentationStyle": "formsheet", "showDismissButton": true, "embedInNavigationController": true]
+            HelmManager.shared.present("/masquerade", withProps: [:], options: navigatorOptions)
         }
         
         pageViewController?.setViewControllers([adminViewController], direction: .reverse, animated: false, completion: { _ in })
