@@ -260,13 +260,15 @@ describe('all courses mapStateToProps', () => {
 describe('groups', () => {
   const a = templates.course({ id: 1, name: 'a', sections: [templates.section()] })
   const b = templates.course({ id: 2, name: 'b', sections: [templates.section()] })
-  const courseTemplates = [a, b]
+  const c = templates.course({ id: 3, name: 'c', access_restricted_by_date: true })
+  const courseTemplates = [a, b, c]
   const courseFavorites = ['1', '2']
 
   const groupA = templates.group({ id: '1', name: 'a', course_id: '1' })
   const groupB = templates.group({ id: '2', name: 'b', account_id: '1' })
   const groupC = templates.group({ id: '3', name: 'c', account_id: '1' })
-  const groupFavorites = ['1', '2', '3']
+  const groupD = templates.group({ id: '4', name: 'd', course_id: '3' })
+  const groupFavorites = ['1', '2', '3', '4']
 
   const courses = courseStates(courseTemplates)
   const state = templates.appState({
@@ -285,6 +287,7 @@ describe('groups', () => {
           color: '#eee',
         },
         '3': { group: groupC },
+        '4': { group: groupD },
       },
       enrollments: {},
     },

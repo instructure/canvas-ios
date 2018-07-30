@@ -557,8 +557,10 @@ export function mapStateToProps (isFullDashboard: boolean) {
     let groups = Object.keys(state.entities.groups)
       .filter(id => {
         if (state.entities.groups[id] && state.entities.groups[id].group) {
-          let group = state.entities.groups[id].group
-          return !group.concluded && (!group.course_id || (group.course_id && state.entities.courses[group.course_id]))
+          const group = state.entities.groups[id].group
+          const course = group.course_id && state.entities.courses[group.course_id]
+          const courseAvailable = course && !course.course.access_restricted_by_date
+          return !group.concluded && (!group.course_id || courseAvailable)
         } else {
           return false
         }
