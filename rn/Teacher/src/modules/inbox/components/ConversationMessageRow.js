@@ -16,62 +16,51 @@
 
 // @flow
 
-import React, { Component } from 'react'
-import {
-  View,
-  StyleSheet,
-  TouchableWithoutFeedback,
-  TouchableOpacity,
-  LayoutAnimation,
-  Image,
-} from 'react-native'
-
-import {
-  Text,
-  BOLD_FONT,
-} from '../../../common/text'
-import Avatar from '../../../common/components/Avatar'
-import color from '../../../common/colors'
-import { getSession } from '../../../canvas-api'
 import i18n from 'format-message'
-import find from 'lodash/find'
-import Images from '../../../images'
-import Video from '../../../common/components/Video'
-import { LinkButton } from '../../../common/buttons'
+import * as React from 'react'
+import {
+  Image,
+  LayoutAnimation,
+  StyleSheet,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native'
 import Hyperlink from 'react-native-hyperlink'
-import { logEvent } from '@common/CanvasAnalytics'
 
-export type ConversationMessageProps = {
+import { getSession } from '../../../canvas-api'
+import { LinkButton } from '../../../common/buttons'
+import { logEvent } from '../../../common/CanvasAnalytics'
+import color from '../../../common/colors'
+import { Text, BOLD_FONT } from '../../../common/text'
+import Avatar from '../../../common/components/Avatar'
+import Video from '../../../common/components/Video'
+import Images from '../../../images'
+
+type Props = {
   conversation: Conversation,
   message: ConversationMessage,
   firstMessage: boolean,
-  onReplyButtonPressed: Function,
-  showOptionsActionSheet: Function,
+  showOptionsActionSheet: (string) => any,
   navigator: Navigator,
+  onReply: (string) => any,
 }
 
-export default class ConversationMessageRow extends Component<ConversationMessageProps, any> {
-  constructor (props: ConversationMessageProps) {
-    super(props)
-    this.state = {
-      expanded: this.props.firstMessage,
-    }
+type State = {
+  expanded: boolean,
+}
+
+export default class ConversationMessageRow extends React.Component<Props, State> {
+  state = {
+    expanded: this.props.firstMessage,
   }
 
-  _replyButtonPressed = () => {
+  handleReplyPress = () => {
     logEvent('inbox_message_replied')
-    this.props.navigator.show(`/conversations/${this.props.conversation.id}/add_message`, { modal: true }, {
-      recipients: this.props.conversation.participants.filter(p => this.props.conversation.audience.includes(p.id)),
-      contextName: this.props.conversation.context_name,
-      contextCode: this.props.conversation.context_code,
-      subject: this.props.conversation.subject,
-      canSelectCourse: false,
-      canEditSubject: false,
-      navBarTitle: i18n('Reply'),
-    })
+    this.props.onReply(this.props.message.id)
   }
 
-  onAvatarPress = () => {
+  handleAvatarPress = () => {
     let courseID = this.props.conversation.context_code.split('_')[1]
     this.props.navigator.show(
       `/courses/${courseID}/users/${this.props.message.author_id}`,
@@ -83,64 +72,62 @@ export default class ConversationMessageRow extends Component<ConversationMessag
     this.props.navigator.show(link, { deepLink: true })
   }
 
-  _showAttachment = (attachment: Attachment) => {
+  showAttachment = (attachment: Attachment) => {
     this.props.navigator.show('/attachment', { modal: true }, { attachment })
   }
 
-  _showActionSheet = () => {
+  showActionSheet = () => {
     this.props.showOptionsActionSheet(this.props.message.id)
   }
 
-  _toggleExpanded = () => {
+  toggleExpanded = () => {
     LayoutAnimation.easeInEaseOut()
     this.setState({
       expanded: !this.state.expanded,
     })
   }
 
-  _author = (): ConversationParticipant => {
+  author (): ConversationParticipant {
     const convo = this.props.conversation
     const message = this.props.message
-    return find(convo.participants, { id: message.author_id })
+    // $FlowFixMe we know the author will always be in participants
+    return convo.participants.find(({ id }) => id === message.author_id)
   }
 
-  _audience = (): ConversationParticipant[] => {
-    const participants = this.props.conversation.participants
-    const audience = this.props.message.participating_user_ids || this.props.conversation.audience
-    const me = getSession().user
-    return audience.map((id) => find(participants, { id })).filter((a) => {
-      if (!a) return false
-      return me.id !== a.id
-    })
+  audience (): ConversationParticipant[] {
+    const me = getSession().user.id
+    const { audience, participants } = this.props.conversation
+    const to = this.props.message.participating_user_ids || audience
+    return participants.filter(p => p.id !== me && to.includes(p.id))
   }
 
   // The count of participants minus the author and me
-  _extraParicipipantCount = (): number => {
-    const me = getSession().user
-    const author = this._author()
-    const participants = this.props.conversation.participants
-    return participants.filter((p) => {
-      return p.id !== me.id && p.id !== author.id
-    }).length
+  extraParicipipantCount (): number {
+    const me = getSession().user.id
+    const author = this.author().id
+    return (
+      this.props.message.participating_user_ids ||
+      this.props.conversation.participants.map(p => p.id)
+    ).filter(id => id !== me && id !== author).length
   }
 
-  _renderHeader = () => {
+  renderHeader () {
     const me = getSession().user
     const message = this.props.message
-    const author = this._author()
+    const author = this.author()
     let authorName = author.name
     let recipientName = ''
     if (me.id === author.id) {
       authorName = i18n('me')
 
-      const audience = this._audience()
+      const audience = this.audience()
       if (audience.length === 1) {
         recipientName = i18n('to {name}', { name: audience[0].name })
       } else if (audience.length > 1) {
         recipientName = i18n('to {count} others', { count: audience.length })
       }
     } else {
-      const extras = this._extraParicipipantCount()
+      const extras = this.extraParicipipantCount()
       if (extras > 0) {
         authorName = i18n('{name} + {count, plural, one {# other} other {# others}}', { name: authorName, count: extras })
       }
@@ -148,26 +135,28 @@ export default class ConversationMessageRow extends Component<ConversationMessag
     }
     const date = i18n("{ date, date, 'MMM d' } at { date, time, short }", { date: new Date(message.created_at) })
 
-    return (<View style={styles.header}>
-      <View style={{ flexDirection: 'row' }} accessible={true} accessibilityLabel={`${authorName} ${recipientName} ${date}`}>
-        <View style={styles.avatar}>
-          <Avatar
-            height={32}
-            avatarURL={author.avatar_url}
-            userName={author.name}
-            onPress={this.props.conversation.context_code ? this.onAvatarPress : undefined}
-          />
+    return (
+      <View style={styles.header}>
+        <View style={{ flexDirection: 'row' }} accessible={true} accessibilityLabel={`${authorName} ${recipientName} ${date}`}>
+          <View style={styles.avatar}>
+            <Avatar
+              height={32}
+              avatarURL={author.avatar_url}
+              userName={author.name}
+              onPress={this.props.conversation.context_code ? this.handleAvatarPress : undefined}
+            />
+          </View>
+          <View>
+            <Text>
+              <Text style={styles.author}>{`${authorName} `}</Text>
+              <Text style={styles.recipient}>{recipientName}</Text>
+            </Text>
+            <Text style={styles.dateText}>{date}</Text>
+          </View>
         </View>
-        <View>
-          <Text>
-            <Text style={styles.author}>{`${authorName} `}</Text>
-            <Text style={styles.recipient}>{recipientName}</Text>
-          </Text>
-          <Text style={styles.dateText}>{date}</Text>
-        </View>
+        { this.renderKabob() }
       </View>
-      { this._renderKabob() }
-    </View>)
+    )
   }
 
   render () {
@@ -175,8 +164,8 @@ export default class ConversationMessageRow extends Component<ConversationMessag
     return (
       <View testID={`inbox.conversation-message-${message.id}`}>
         <View style={styles.container}>
-          { this._renderHeader() }
-          <TouchableWithoutFeedback onPress={this._toggleExpanded}>
+          { this.renderHeader() }
+          <TouchableWithoutFeedback onPress={this.toggleExpanded}>
             <View style={styles.body}>
               <Hyperlink linkStyle={ { color: '#2980b9' } } onPress={this.handleLink}>
                 <Text style={styles.bodyText} numberOfLines={this.state.expanded ? 0 : 2}>{message.body}</Text>
@@ -185,8 +174,8 @@ export default class ConversationMessageRow extends Component<ConversationMessag
           </TouchableWithoutFeedback>
           { this.props.message.attachments &&
             this.props.message.attachments.map((attachment, index) => {
-              return (<TouchableOpacity testID={`inbox.conversation-message-${message.id}.attachment-${attachment.id}`} key={`inbox.conversation-message-${message.id}.attachment-${attachment.id}`} onPress={() => {
-                this._showAttachment(attachment)
+              return (<TouchableOpacity testID={`inbox.conversation-message-${message.id}.attachment-${attachment.id}`} key={attachment.id} onPress={() => {
+                this.showAttachment(attachment)
               }}>
                 <View style={styles.attachment}>
                   <Image source={Images.paperclip} style={styles.attachmentIcon} />
@@ -204,21 +193,19 @@ export default class ConversationMessageRow extends Component<ConversationMessag
                   style={{ flex: 1 }}
                 />
               </View>}
-          { this.props.firstMessage &&
-            <LinkButton
-              testID='inbox.conversation-message-row.reply-button'
-              onPress={this._replyButtonPressed}
-              style={styles.replyButton}
-            >
-              {i18n('Reply')}
-            </LinkButton>
-          }
+          <LinkButton
+            testID='inbox.conversation-message-row.reply-button'
+            onPress={this.handleReplyPress}
+            style={styles.replyButton}
+          >
+            {i18n('Reply')}
+          </LinkButton>
         </View>
       </View>
     )
   }
 
-  _renderKabob = () => {
+  renderKabob () {
     return (
       <TouchableOpacity
         style={styles.kabobButton}
@@ -227,7 +214,7 @@ export default class ConversationMessageRow extends Component<ConversationMessag
         accessibilityLabel={i18n('Message options')}
         underlayColor='#ffffff00'
         testID={`conversation-message.kabob-${this.props.message.id}`}
-        onPress={this._showActionSheet}
+        onPress={this.showActionSheet}
       >
         <Image style={styles.kabob} source={Images.kabob}/>
       </TouchableOpacity>

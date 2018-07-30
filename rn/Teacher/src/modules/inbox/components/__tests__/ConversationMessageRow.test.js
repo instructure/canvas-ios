@@ -14,209 +14,145 @@
 // limitations under the License.
 //
 
-/* eslint-disable flowtype/require-valid-file-annotation */
-import 'react-native'
-import React from 'react'
-import ConversationMessage from '../ConversationMessageRow'
-import { getSession, setSession } from '../../../../canvas-api'
-import explore from '../../../../../test/helpers/explore'
+// @flow
+
 import { shallow } from 'enzyme'
+import * as React from 'react'
+import Hyperlink from 'react-native-hyperlink'
+import ConversationMessage from '../ConversationMessageRow'
+import { getSession } from '../../../../canvas-api'
+import * as template from '../../../../__templates__'
 
-const template = {
-  ...require('../../../../__templates__/conversations'),
-  ...require('../../../../__templates__/users'),
-  ...require('../../../../__templates__/helm'),
-  ...require('../../../../__templates__/session'),
-}
-
-jest
-  .mock('TouchableHighlight', () => 'TouchableHighlight')
-  .mock('TouchableOpacity', () => 'TouchableOpacity')
-  .mock('../../../../common/components/Avatar', () => 'Avatar')
-
-// Note: test renderer must be required after react-native.
-import renderer from 'react-test-renderer'
-
-it('renders correctly', () => {
-  const convo = template.conversation({
-    id: '1',
-  })
-  const message = template.conversationMessage()
-
-  const tree = renderer.create(
-    <ConversationMessage conversation={convo} message={message} />
-  ).toJSON()
-  expect(tree).toMatchSnapshot()
-})
-
-it('renders correctly with author being the logged in user', () => {
-  const session = getSession()
-  const convo = template.conversation({
-    id: '1',
-    participants: [
-      { id: session.user.id, name: 'hey there i am bob' },
-      { id: '99999999', name: 'hey there i am jane' },
-    ],
-    audience: ['99999999'],
-  })
-  const message = template.conversationMessage({
-    author_id: session.user.id,
+describe('ConversationMessageRow', () => {
+  let props
+  beforeEach(() => {
+    props = {
+      conversation: template.conversation(),
+      message: template.conversationMessage(),
+      firstMessage: false,
+      showOptionsActionSheet: jest.fn(),
+      navigator: template.navigator(),
+      onReply: jest.fn(),
+    }
   })
 
-  const tree = renderer.create(
-    <ConversationMessage conversation={convo} message={message} />
-  ).toJSON()
-  expect(tree).toMatchSnapshot()
-})
-
-it('renders correctly with author lots of participants', () => {
-  const session = getSession()
-
-  const convo = template.conversation({
-    id: '1',
-    participants: [
-      { id: session.user.id, name: 'hey there i am bob' },
-      { id: '1', name: 'hey there i am jane' },
-      { id: '2', name: 'hey there i am joe' },
-      { id: '3', name: 'hey there i am jim' },
-    ],
-    audience: ['1', '2', '3'],
-  })
-  const message = template.conversationMessage({
-    author_id: session.user.id,
+  it('renders the message text', () => {
+    const tree = shallow(<ConversationMessage {...props} />)
+    expect(tree.find(`[children="${props.message.body}"]`).exists()).toBe(true)
   })
 
-  const tree = renderer.create(
-    <ConversationMessage conversation={convo} message={message} />
-  ).toJSON()
-  expect(tree).toMatchSnapshot()
-})
-
-it('renders correctly when there is only one author (current user) and one receiver', () => {
-  const session = getSession()
-
-  const convo = template.conversation({
-    id: '1',
-    participants: [
-      { id: session.user.id, name: 'hey there i am bob' },
-      { id: '1', name: 'hey there i am jane' },
-    ],
-    audience: ['1', '2'], // This covers a tiny edge case where there is a item in the audience array that doesn't exist in the participants array
-  })
-  const message = template.conversationMessage({
-    author_id: session.user.id,
+  it('renders attachments', () => {
+    const attachment = template.attachment()
+    props.message = template.conversationMessage({
+      attachments: [ attachment ],
+    })
+    const tree = shallow(<ConversationMessage {...props} />)
+    tree.find(`[testID="inbox.conversation-message-${props.message.id}.attachment-${attachment.id}"]`)
+      .simulate('Press')
+    expect(props.navigator.show).toHaveBeenCalledWith(
+      '/attachment', { modal: true }, { attachment }
+    )
   })
 
-  const tree = shallow(
-    <ConversationMessage conversation={convo} message={message} />
-  )
-  expect(tree).toMatchSnapshot()
-})
-
-it('renders correctly when there is only one author (not current user) and one receiver', () => {
-  const session = getSession()
-
-  const convo = template.conversation({
-    id: '1',
-    participants: [
-      { id: session.user.id, name: 'hey there i am bob' },
-      { id: '1', name: 'hey there i am jane' },
-    ],
-    audience: [session.user.id],
-  })
-  const message = template.conversationMessage({
-    author_id: '1',
-  })
-
-  const tree = shallow(
-    <ConversationMessage conversation={convo} message={message} />
-  )
-  expect(tree).toMatchSnapshot()
-})
-
-it('navigates to compose when reply to first message button pressed', () => {
-  const session = template.session({
-    user: {
-      ...template.session().user,
+  it('renders correctly with author being the logged in user', () => {
+    const session = getSession()
+    props.conversation = template.conversation({
       id: '1',
-    },
+      participants: [
+        { id: session.user.id, name: session.user.name },
+        { id: '99999999', name: 'hey there i am jane' },
+      ],
+      audience: ['99999999'],
+    })
+    props.message = template.conversationMessage({
+      author_id: session.user.id,
+    })
+
+    const tree = shallow(<ConversationMessage {...props} />)
+    expect(tree.find('Avatar').props()).toMatchObject({
+      userName: session.user.name,
+    })
+    expect(tree.find('[children="me "]').exists()).toBe(true)
   })
-  setSession(session)
-  const conversation = template.conversation({
-    id: '1',
-    participants: [
-      { id: '1', name: 'hey there i am bob' },
-      { id: '2', name: 'hey there i am joe' },
-      { id: '3', name: 'hey there i am jim' },
-    ],
-    audience: ['2', '3'],
-    context_name: 'Course 1',
-    context_code: 'course_1',
-    subject: 'Subject 1',
-  })
-  const navigator = template.navigator({ show: jest.fn() })
-  const message = template.conversationMessage({
-    author_id: session.user.id,
-  })
-  const props = {
-    conversation,
-    navigator,
-    message,
-    firstMessage: true,
-  }
-  const tree = renderer.create(
-    <ConversationMessage {...props} />
-  ).toJSON()
-  const replyButton: any = explore(tree).selectByID('inbox.conversation-message-row.reply-button')
-  replyButton.props.onPress()
-  expect(navigator.show).toHaveBeenCalledWith(
-    '/conversations/1/add_message',
-    { modal: true },
-    {
-      recipients: [
+
+  it('renders correctly with author lots of participants', () => {
+    const session = getSession()
+    props.conversation = template.conversation({
+      id: '1',
+      participants: [
+        { id: session.user.id, name: 'hey there i am bob' },
+        { id: '1', name: 'hey there i am jane' },
         { id: '2', name: 'hey there i am joe' },
         { id: '3', name: 'hey there i am jim' },
       ],
-      contextName: 'Course 1',
-      contextCode: 'course_1',
-      subject: 'Subject 1',
-      canSelectCourse: false,
-      canEditSubject: false,
-      navBarTitle: 'Reply',
-    },
-  )
-})
+      audience: ['1', '2', '3'],
+    })
+    props.message = template.conversationMessage({
+      author_id: session.user.id,
+    })
 
-it('navigates to context card when the avatar is pressed', () => {
-  const convo = template.conversation({
-    id: '1',
+    const tree = shallow(<ConversationMessage {...props} />)
+    expect(tree.find('[children="to 2 others"]').exists()).toBe(true)
   })
-  const message = template.conversationMessage()
-  const navigator = template.navigator()
 
-  let view = renderer.create(
-    <ConversationMessage navigator={navigator} conversation={convo} message={message} />
-  ).toJSON()
-  let avatar = explore(view).selectByType('Avatar')
-  avatar.props.onPress()
+  it('renders correctly when there is only one author (current user) and one receiver', () => {
+    const session = getSession()
+    props.conversation = template.conversation({
+      id: '1',
+      participants: [
+        { id: session.user.id, name: 'hey there i am bob' },
+        { id: '5', name: 'hey there i am jane' },
+      ],
+      audience: ['5', '7'], // This covers a tiny edge case where there is a item in the audience array that doesn't exist in the participants array
+    })
+    props.message = template.conversationMessage({
+      author_id: session.user.id,
+    })
 
-  expect(navigator.show).toHaveBeenCalledWith(
-    `/courses/1/users/1234`,
-    { modal: true, modalPresentationStyle: 'currentContext' },
-  )
-})
+    const tree = shallow(<ConversationMessage {...props} />)
+    expect(tree.find('[children="me "]').exists()).toBe(true)
+    expect(tree.find('[children="to hey there i am jane"]').exists()).toBe(true)
+  })
 
-it('navigates to a link when pressed', () => {
-  const convo = template.conversation({})
-  const message = template.conversationMessage()
-  const navigator = template.navigator()
+  it('renders correctly when there is only one author (not current user) and one receiver', () => {
+    const session = getSession()
+    props.conversation = template.conversation({
+      id: '1',
+      participants: [
+        { id: session.user.id, name: 'hey there i am bob' },
+        { id: '5', name: 'hey there i am jane' },
+      ],
+      audience: [session.user.id],
+    })
+    props.message = template.conversationMessage({
+      author_id: '5',
+    })
 
-  let instance = renderer.create(
-    <ConversationMessage navigator={navigator} conversation={convo} message={message} />
-  ).getInstance()
+    const tree = shallow(<ConversationMessage {...props} />)
+    expect(tree.find('[children="hey there i am jane "]').exists()).toBe(true)
+    expect(tree.find('[children="to me"]').exists()).toBe(true)
+  })
 
-  const link = 'http://www.google.com'
-  instance.handleLink(link)
+  it('can be replied to', () => {
+    const tree = shallow(<ConversationMessage {...props} />)
+    tree.find('[testID="inbox.conversation-message-row.reply-button"]')
+      .simulate('Press')
+    expect(props.onReply).toHaveBeenCalledWith(props.message.id)
+  })
 
-  expect(navigator.show).toHaveBeenCalledWith(link, { deepLink: true })
+  it('navigates to context card when the avatar is pressed', () => {
+    const tree = shallow(<ConversationMessage {...props} />)
+    tree.find('Avatar').simulate('Press')
+    expect(props.navigator.show).toHaveBeenCalledWith(
+      `/courses/1/users/1234`,
+      { modal: true, modalPresentationStyle: 'currentContext' },
+    )
+  })
+
+  it('navigates to a link when pressed', () => {
+    const tree = shallow(<ConversationMessage {...props} />)
+    const link = 'http://www.google.com'
+    tree.find(Hyperlink).simulate('Press', link)
+    expect(props.navigator.show).toHaveBeenCalledWith(link, { deepLink: true })
+  })
 })

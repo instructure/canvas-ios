@@ -16,7 +16,7 @@
 
 // @flow
 
-import React, { Component } from 'react'
+import * as React from 'react'
 import {
   View,
   FlatList,
@@ -37,7 +37,6 @@ import { Heading1 } from '../../../common/text'
 import color from '../../../common/colors'
 import Images from '../../../images'
 import RowSeparator from '../../../common/components/rows/RowSeparator'
-import find from 'lodash/find'
 import { getSession } from '../../../canvas-api'
 
 export type ConversationOwnProps = {
@@ -57,15 +56,19 @@ export type RefreshProps = {
   markAsRead: Function,
 }
 
-export type ConversationDetailsProps = ConversationOwnProps & RefreshProps & NavigationProps & PushNotificationProps
+type Props =
+  ConversationOwnProps &
+  RefreshProps &
+  NavigationProps &
+  typeof InboxActions
 
-export class ConversationDetails extends Component <ConversationDetailsProps, any> {
-  constructor (props: ConversationDetailsProps) {
-    super(props)
+type State = {
+  deletePending: boolean,
+}
 
-    this.state = {
-      deletePending: false,
-    }
+export class ConversationDetails extends React.Component <Props, State> {
+  state = {
+    deletePending: false,
   }
 
   componentDidMount () {
@@ -74,7 +77,7 @@ export class ConversationDetails extends Component <ConversationDetailsProps, an
     }
   }
 
-  componentWillReceiveProps (nextProps: ConversationDetailsProps) {
+  componentWillReceiveProps (nextProps: Props) {
     if (this.state.deletePending && !nextProps.pending && !nextProps.conversation) {
       this.setState({ deletePending: false })
       this.props.navigator.pop()
@@ -89,18 +92,21 @@ export class ConversationDetails extends Component <ConversationDetailsProps, an
     return item.id
   }
 
-  _renderItem = ({ item, index }) => {
+  renderItem = ({ item, index }: { item: ConversationMessage, index: number }) => {
     if (!this.props.conversation) return <View />
-    return <ConversationMessageRow
-      navigator={this.props.navigator}
-      message={item}
-      conversation={this.props.conversation}
-      onReplyButtonPressed={ () => {} }
-      firstMessage={index === 0}
-      showOptionsActionSheet={this.showOptionsActionSheet} />
+    return (
+      <ConversationMessageRow
+        navigator={this.props.navigator}
+        message={item}
+        conversation={this.props.conversation}
+        firstMessage={index === 0}
+        showOptionsActionSheet={this.showOptionsActionSheet}
+        onReply={this.reply}
+      />
+    )
   }
 
-  _toggleStarred = () => {
+  toggleStarred = () => {
     if (!this.props.conversation) return
     if (this.props.conversation.starred) {
       this.props.unstarConversation(this.props.conversationID)
@@ -109,44 +115,27 @@ export class ConversationDetails extends Component <ConversationDetailsProps, an
     }
   }
 
-  _renderHeader = () => {
+  renderHeader () {
     if (!this.props.conversation) return <View />
 
     const starred = this.props.conversation.starred
     const star = starred ? Images.starFilled : Images.starLined
 
-    return (<View style={styles.header}>
-      <Heading1>{this.props.conversation.subject || i18n('No Subject')}</Heading1>
-      <TouchableOpacity
-        accessibilityLabel={starred ? i18n('Starred') : i18n('Un-starred')}
-        accessibilityTraits='button'
-        testID={`inbox.detail.${starred ? 'starred' : 'not-starred'}`}
-        focusedOpacity={0.7}
-        onPress={this._toggleStarred}
-        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-      >
-        <View style={{ backgroundColor: 'white' }}>
-          <Image source={star} style={{ tintColor: branding.primaryBrandColor, height: 24, width: 24 }}/>
-        </View>
-      </TouchableOpacity>
-    </View>)
-  }
-
-  _renderComponent = () => {
-    const header = this._renderHeader()
     return (
-      <View style={styles.container}>
-        <FlatList
-          style={styles.list}
-          // $FlowFixMe
-          data={this.props.messages.filter(message => !message.pendingDelete)}
-          renderItem={this._renderItem}
-          ListHeaderComponent={header}
-          refreshing={this.props.refreshing}
-          onRefresh={this.props.refresh}
-          ItemSeparatorComponent={RowSeparator}
-          keyExtractor={this.keyExtractor}
-        />
+      <View style={styles.header}>
+        <Heading1>{this.props.conversation.subject || i18n('No Subject')}</Heading1>
+        <TouchableOpacity
+          accessibilityLabel={starred ? i18n('Starred') : i18n('Un-starred')}
+          accessibilityTraits='button'
+          testID={`inbox.detail.${starred ? 'starred' : 'not-starred'}`}
+          focusedOpacity={0.7}
+          onPress={this.toggleStarred}
+          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+        >
+          <View style={{ backgroundColor: 'white' }}>
+            <Image source={star} style={{ tintColor: branding.primaryBrandColor, height: 24, width: 24 }}/>
+          </View>
+        </TouchableOpacity>
       </View>
     )
   }
@@ -158,7 +147,7 @@ export class ConversationDetails extends Component <ConversationDetailsProps, an
         navBarButtonColor={color.navBarTextColor}
         statusBarStyle={color.statusBarStyle}
         drawUnderNavBar
-        customPageViewPath={'/conversations'}
+        customPageViewPath='/conversations'
         title={i18n('Message Details')}
         rightBarButtons={[
           {
@@ -169,15 +158,27 @@ export class ConversationDetails extends Component <ConversationDetailsProps, an
           },
         ]}
       >
-        { this._renderComponent() }
+        <View style={styles.container}>
+          <FlatList
+            style={styles.list}
+            data={this.props.messages.filter(message => !message.pendingDelete)}
+            renderItem={this.renderItem}
+            ListHeaderComponent={this.renderHeader()}
+            refreshing={this.props.refreshing}
+            onRefresh={this.props.refresh}
+            ItemSeparatorComponent={RowSeparator}
+            keyExtractor={this.keyExtractor}
+          />
+        </View>
       </Screen>
     )
   }
 
-  showOptionsActionSheet = (id: string) => {
+  showOptionsActionSheet = (id?: string) => {
     const options = [
-      i18n('Forward'),
       i18n('Reply'),
+      i18n('Reply All'),
+      i18n('Forward'),
       i18n('Delete'),
       i18n('Cancel'),
     ]
@@ -187,42 +188,77 @@ export class ConversationDetails extends Component <ConversationDetailsProps, an
         destructiveButtonIndex: options.length - 2,
         cancelButtonIndex: options.length - 1,
       },
-      (index: number) => {
-        this.handleOptionsActionSheet(id, index)
+      this.handleOptionsActionSheet.bind(this, id)
+    )
+  }
+
+  handleOptionsActionSheet (id: ?string, index: number) {
+    switch (index) {
+      case 0: return this.reply(id)
+      case 1: return this.replyAll(id)
+      case 2: return this.forwardMessage(id)
+      case 3: return id
+        ? this.deleteConversationMessage(id)
+        : this.deleteConversation(this.props.conversationID)
+    }
+  }
+
+  getReplyRecipients (id: ?string) {
+    if (!this.props.conversation) return []
+    const { participants } = this.props.conversation
+    const message = this.props.messages.find(m => m.id === id) || this.props.messages[0]
+    const author = message && message.author_id
+    return author !== getSession().user.id
+      ? participants.filter(p => p.id === author)
+      : this.getReplyAllRecipients()
+  }
+
+  reply = (id: ?string) => {
+    const { conversation } = this.props
+    if (!conversation) return
+    this.props.navigator.show(
+      `/conversations/${this.props.conversationID}/add_message`,
+      { modal: true },
+      {
+        recipients: this.getReplyRecipients(id),
+        contextName: conversation.context_name,
+        contextCode: conversation.context_code,
+        subject: conversation.subject,
+        canSelectCourse: false,
+        canEditSubject: false,
+        navBarTitle: i18n('Reply'),
       }
     )
   }
 
-  handleOptionsActionSheet = (id: string, index: number) => {
-    switch (index) {
-      case 0:
-        this.forwardMessage(id || this.props.conversationID)
-        break
-      case 1:
-        this.reply(id)
-        break
-      case 2:
-        if (id) {
-          this.deleteConversationMessage(id)
-        } else {
-          this.deleteConversation(this.props.conversationID)
-        }
-        break
-    }
+  getReplyAllRecipients (id: ?string) {
+    if (!this.props.conversation) return []
+    const { audience, participants } = this.props.conversation
+    const message = this.props.messages.find(m => m.id === id)
+    const to = (message && message.participating_user_ids) || audience
+    const me = getSession().user.id
+    return participants.filter(p => p.id !== me && to.includes(p.id))
   }
 
-  deleteConversation (id: string) {
-    this.setState({ deletePending: true })
-    // $FlowFixMe
-    this.props.deleteConversation(id)
+  replyAll (id: ?string) {
+    const { conversation } = this.props
+    if (!conversation) return
+    this.props.navigator.show(
+      `/conversations/${this.props.conversationID}/add_message`,
+      { modal: true },
+      {
+        recipients: this.getReplyAllRecipients(id),
+        contextName: conversation.context_name,
+        contextCode: conversation.context_code,
+        subject: conversation.subject,
+        canSelectCourse: false,
+        canEditSubject: false,
+        navBarTitle: i18n('Reply'),
+      }
+    )
   }
 
-  deleteConversationMessage (id: string) {
-    // $FlowFixMe
-    this.props.deleteConversationMessage(this.props.conversationID, id)
-  }
-
-  forwardMessage (id: string) {
+  forwardMessage (id: ?string) {
     let conversation = this.props.conversation || {}
     if (!conversation.context_code) {
       return AlertIOS.alert(
@@ -231,12 +267,6 @@ export class ConversationDetails extends Component <ConversationDetailsProps, an
       )
     }
 
-    let includedMessages = []
-    if (id === this.props.conversationID) {
-      includedMessages = this.props.messages
-    } else {
-      includedMessages = this.props.messages.filter(message => message.id === id)
-    }
     this.props.navigator.show(`/conversations/${conversation.id}/add_message`, {
       modal: true,
     }, {
@@ -247,36 +277,21 @@ export class ConversationDetails extends Component <ConversationDetailsProps, an
       }),
       canEditSubject: false,
       showCourseSelect: false,
-      includedMessages,
+      includedMessages: id
+        ? this.props.messages.filter(message => message.id === id)
+        : this.props.messages,
       navBarTitle: i18n('Forward'),
       requireMessageBody: false,
     })
   }
 
-  reply (id: ?string) {
-    const convo = this.props.conversation || {}
-    const participants = convo.participants || []
-    const messages = convo.messages || []
-    const options = {
-      recipients: participants.filter(p => convo.audience.includes(p.id)),
-      contextName: convo.context_name,
-      contextCode: convo.context_code,
-      subject: convo.subject,
-      canSelectCourse: false,
-      canEditSubject: false,
-    }
+  deleteConversation (id: string) {
+    this.setState({ deletePending: true })
+    this.props.deleteConversation(id)
+  }
 
-    if (id) {
-      const message = find(messages, { id })
-      const me = getSession().user
-      if (message) {
-        if (me && message.author_id !== me.id) {
-          options.recipients = participants.filter(p => p.id === message.author_id)
-        }
-      }
-    }
-
-    this.props.navigator.show(`/conversations/${this.props.conversationID}/add_message`, { modal: true }, options)
+  deleteConversationMessage (id: string) {
+    this.props.deleteConversationMessage(this.props.conversationID, id)
   }
 }
 
@@ -326,7 +341,7 @@ export function mapStateToProps (state: AppState, props: any) {
   }
 }
 
-export function handleRefresh (props: ConversationDetailsProps): void {
+export function handleRefresh (props: $Shape<Props>) {
   props.refreshConversationDetails(props.conversationID)
 }
 

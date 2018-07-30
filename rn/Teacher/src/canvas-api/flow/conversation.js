@@ -55,6 +55,7 @@ export type ConversationMessage = {
   forwarded_messages?: any,
   attachments: ?Attachment[],
   participating_user_ids?: string[],
+  pendingDelete?: true,
 }
 
 export type CreateConversationParameters = {
