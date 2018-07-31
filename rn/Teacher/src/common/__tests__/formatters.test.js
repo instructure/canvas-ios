@@ -20,14 +20,15 @@ import {
   formattedDueDateWithStatus,
   formattedDueDate,
   formatGradeText,
+  formatGrade,
+  formatStudentGrade,
 } from '../formatters'
-
 import { extractDateFromString } from '../../utils/dateUtils'
-
 import i18n from 'format-message'
+import * as template from '../../__templates__/'
 
-describe('assignment due date with status', () => {
-  test('due date in future', () => {
+describe('formattedDueDateWithStatus', () => {
+  it('formats due date in future', () => {
     const dueAt = '2117-03-28T15:07:56.312Z'
     const date = extractDateFromString(dueAt)
     const dueDate = formattedDueDateWithStatus(date)
@@ -36,7 +37,7 @@ describe('assignment due date with status', () => {
     expect(dueDate).toEqual([`Due ${dateString} at ${timeString}`])
   })
 
-  test('due date in past', () => {
+  it('formats due date in past', () => {
     const dueAt = '1986-03-28T15:07:56.312Z'
     const lockAt = '1986-03-28T15:07:56.312Z'
     const dueDate = formattedDueDateWithStatus(extractDateFromString(dueAt), extractDateFromString(lockAt))
@@ -45,19 +46,19 @@ describe('assignment due date with status', () => {
     expect(dueDate).toEqual(['Closed', `${dateString} at ${timeString}`])
   })
 
-  test('due date that is missing', () => {
+  it('formats due date that is missing', () => {
     const garbage = formattedDueDateWithStatus(null)
     expect(garbage).toEqual(['No Due Date'])
   })
 
-  test('due date that is garbage', () => {
+  it('formats due date that is garbage', () => {
     const garbage = formattedDueDateWithStatus(new Date('lkjaklsjdfljaslkdfjads'))
     expect(garbage).toEqual(['No Due Date'])
   })
 })
 
-describe('due date with status', () => {
-  test('due date', () => {
+describe('formattedDueDate', () => {
+  test('it formats correctly', () => {
     const dueAt = '2117-03-28T15:07:56.312Z'
     const date = extractDateFromString(dueAt)
     const dueDate = formattedDueDate(date)
@@ -66,9 +67,25 @@ describe('due date with status', () => {
     expect(dueDate).toEqual(`${dateString} at ${timeString}`)
   })
 
-  test('test assignment due date that is garbage', () => {
+  it('formats garbage', () => {
     const garbage = formattedDueDate(new Date('klaljsdflkjs'))
     expect(garbage).toEqual('No Due Date')
+  })
+
+  it('should handle bad data', () => {
+    let result = formattedDueDate(null)
+    expect(result).toEqual('No Due Date')
+  })
+})
+
+describe('formatGrade', () => {
+  it('truncates to 2 decimals', () => {
+    expect(formatGrade(1.1234)).toEqual('1.12')
+    expect(formatGrade(1.789)).toEqual('1.78')
+  })
+
+  it('does not round up to next integer', () => {
+    expect(formatGrade(9.999)).toEqual('9.99')
   })
 })
 
@@ -97,14 +114,143 @@ describe('formatGradeText', () => {
   it('gives back points', () => {
     expect(formatGradeText('1000', 'points')).toEqual('1,000')
   })
-  it('rounds points to 2 decimals', () => {
-    expect(formatGradeText('1000.985', 'points')).toEqual('1,000.99')
+  it('truncates points to 2 decimals', () => {
+    expect(formatGradeText('1000.985', 'points')).toEqual('1,000.98')
   })
 })
 
-describe('edge cases', () => {
-  it('should handle bad data', () => {
-    let result = formattedDueDate(null)
-    expect(result).toEqual('No Due Date')
+describe('formatStudentGrade', () => {
+  it('formats no submission', () => {
+    const assignment = template.assignment({
+      submission: null,
+      points_possible: 10,
+    })
+    const result = formatStudentGrade(assignment)
+    expect(result).toEqual('- / 10')
+  })
+
+  it('formats excused', () => {
+    const assignment = template.assignment({
+      points_possible: 10,
+      submission: {
+        excused: true,
+      },
+    })
+    const result = formatStudentGrade(assignment)
+    expect(result).toEqual('Excused / 10')
+  })
+
+  it('formats no score', () => {
+    const assignment = template.assignment({
+      points_possible: 10,
+      submission: {
+        score: null,
+      },
+    })
+    const result = formatStudentGrade(assignment)
+    expect(result).toEqual('- / 10')
+  })
+
+  it('formats pass_fail with complete', () => {
+    const assignment = template.assignment({
+      grading_type: 'pass_fail',
+      points_possible: 10,
+      submission: {
+        score: 1,
+        grade: 'complete',
+      },
+    })
+    const result = formatStudentGrade(assignment)
+    expect(result).toEqual('Complete / 10')
+  })
+
+  it('formats pass_fail with incomplete', () => {
+    const assignment = template.assignment({
+      grading_type: 'pass_fail',
+      points_possible: 10,
+      submission: {
+        score: 0,
+        grade: 'incomplete',
+      },
+    })
+    const result = formatStudentGrade(assignment)
+    expect(result).toEqual('Incomplete / 10')
+  })
+
+  it('formats points', () => {
+    const assignment = template.assignment({
+      grading_type: 'points',
+      points_possible: 10,
+      submission: {
+        score: 10,
+        grade: '10',
+      },
+    })
+    const result = formatStudentGrade(assignment)
+    expect(result).toEqual('10 / 10')
+  })
+
+  it('formats points with decimals', () => {
+    const assignment = template.assignment({
+      grading_type: 'points',
+      points_possible: 10,
+      submission: {
+        score: 8.14,
+        grade: '8.1422349823049823',
+      },
+    })
+    const result = formatStudentGrade(assignment)
+    expect(result).toEqual('8.14 / 10')
+  })
+
+  it('formats percent', () => {
+    const assignment = template.assignment({
+      grading_type: 'percent',
+      points_possible: 10,
+      submission: {
+        score: 10,
+        grade: '100%',
+      },
+    })
+    const result = formatStudentGrade(assignment)
+    expect(result).toEqual('10 / 10 (100%)')
+  })
+
+  it('formats letter_grade', () => {
+    const assignment = template.assignment({
+      grading_type: 'letter_grade',
+      points_possible: 10,
+      submission: {
+        score: 10,
+        grade: 'A',
+      },
+    })
+    const result = formatStudentGrade(assignment)
+    expect(result).toEqual('10 / 10 (A)')
+  })
+
+  it('formats gpa_scale', () => {
+    const assignment = template.assignment({
+      grading_type: 'gpa_scale',
+      points_possible: 10,
+      submission: {
+        score: 9.999,
+        grade: 'A-',
+      },
+    })
+    const result = formatStudentGrade(assignment)
+    expect(result).toEqual('9.99 / 10 (A-)')
+  })
+
+  it('formats not_graded', () => {
+    const assignment = template.assignment({
+      grading_type: 'not_graded',
+      submission: {
+        score: 1,
+        grade: '1',
+      },
+    })
+    const result = formatStudentGrade(assignment)
+    expect(result).toEqual('')
   })
 })

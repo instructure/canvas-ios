@@ -34,6 +34,14 @@ export function formattedDueDateWithStatus (dueAt: ?Date, lockAt: ?Date): string
   return [i18n('Due {dateString}', { dateString })]
 }
 
+export function formatGrade (grade: number) {
+  // Truncates to 2 decimal places
+  // We truncate instead of round because we don't want to round to next integer
+  const truncated = Math.trunc(grade * 100) / 100
+  return i18n.number(truncated, 'grade')
+}
+
+// This is for Teacher
 export function formatGradeText (grade: ?string, gradingType?: GradingType, pointsPossible?: number): ?string {
   if (!['points', 'percent'].includes(gradingType)) {
     switch (grade) {
@@ -51,18 +59,65 @@ export function formatGradeText (grade: ?string, gradingType?: GradingType, poin
       return grade
     }
 
-    return String(Math.round(Number(grade) * Math.pow(10, 2)) / Math.pow(10, 2))
+    return formatGrade(Number(grade))
   }
 
   if (gradingType === 'percent') {
     const percent = +(grade || '').split('%')[0]
     return i18n.number(percent / 100, 'percent')
   }
-  const gradeNum = Math.round(Number(grade) * Math.pow(10, 2)) / Math.pow(10, 2)
+  const gradeNum = formatGrade(Number(grade))
 
   if (gradingType === 'points' && pointsPossible) {
-    return `${i18n.number(gradeNum)}/${i18n.number(pointsPossible)}`
+    return `${gradeNum}/${formatGrade(pointsPossible)}`
   }
 
-  return i18n.number(gradeNum)
+  return gradeNum
+}
+
+// This is for Student
+export function formatStudentGrade (assignment: Assignment) {
+  const { grading_type, submission } = assignment
+  const pointsPossible = formatGrade(assignment.points_possible)
+
+  if (!submission) {
+    return `- / ${pointsPossible}`
+  }
+
+  const { excused, grade } = submission
+
+  if (excused) {
+    return `${i18n('Excused')} / ${pointsPossible}`
+  }
+
+  if (submission.score == null) {
+    return `- / ${pointsPossible}`
+  }
+
+  const score = formatGrade(submission.score)
+
+  switch (grading_type) {
+    case 'pass_fail':
+      let status = '-'
+      switch (submission.grade) {
+        case 'complete':
+          status = i18n('Complete')
+          break
+        case 'incomplete':
+          status = i18n('Incomplete')
+          break
+      }
+      return `${status} / ${pointsPossible}`
+    case 'points':
+      return `${formatGrade(Number(grade))} / ${pointsPossible}`
+    case 'percent':
+    case 'letter_grade':
+    case 'gpa_scale':
+      return `${score} / ${pointsPossible} (${grade})`
+    case 'not_graded':
+      // These types should be getting filtered out of the grades list
+      // so this case should never be called
+      // but we'll return an empty string to keep this return type non-optional
+      return ''
+  }
 }

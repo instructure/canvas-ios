@@ -52,6 +52,11 @@ export default function (locale: ?string): void {
           minimumFractionDigits: 0,
           maximumFractionDigits: 2,
         },
+        grade: {
+          style: 'decimal',
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 2,
+        },
       },
       date: {
         'MMMM d': { month: 'long', day: 'numeric' },

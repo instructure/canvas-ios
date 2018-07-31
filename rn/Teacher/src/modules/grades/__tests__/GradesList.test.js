@@ -160,6 +160,35 @@ describe('mapStateToProps', () => {
     })
   })
 
+  it('filters out not_graded assignments', () => {
+    const notGraded = templates.assignment({ id: '1', grading_type: 'not_graded' })
+    const points = templates.assignment({ id: '2', grading_type: 'points' })
+    const state = {
+      ...defaultState,
+      entities: {
+        ...defaultState.entities,
+        assignmentGroups: {
+          [assignmentGroup.id]: {
+            group: assignmentGroup,
+            assignmentRefs: [notGraded.id, points.id],
+          },
+        },
+        assignments: {
+          [notGraded.id]: {
+            data: notGraded,
+          },
+          [points.id]: {
+            data: points,
+          },
+        },
+      },
+    }
+
+    const result = mapStateToProps(state, defaultProps)
+    expect(result.assignmentGroups[0].assignments.length).toEqual(1)
+    expect(result.assignmentGroups[0].assignments[0].grading_type).toEqual('points')
+  })
+
   it('does not include currentScore if hide_final_grades is true', () => {
     defaultState.entities.courses[course.id].course.hide_final_grades = true
     const result = mapStateToProps(defaultState, defaultProps)

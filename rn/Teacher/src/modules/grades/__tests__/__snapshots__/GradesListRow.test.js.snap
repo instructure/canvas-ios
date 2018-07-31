@@ -2,6 +2,19 @@
 
 exports[`grades list row renders correctly 1`] = `
 <Row
+  accessories={
+    <Text
+      style={
+        Object {
+          "alignSelf": "center",
+          "fontSize": 14,
+          "fontWeight": "600",
+        }
+      }
+    >
+      - / 20
+    </Text>
+  }
   border="bottom"
   disclosureIndicator={true}
   height="auto"

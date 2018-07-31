@@ -25,10 +25,11 @@ import {
 import AccessIcon from '../../common/components/AccessIcon'
 import Row from '../../common/components/rows/Row'
 import Images from '../../images'
-import { gradeProp, statusProp, dueDate } from '../submissions/list/get-submissions-props'
-import { Grade } from '../submissions/list/SubmissionRow'
+import { statusProp, dueDate } from '../submissions/list/get-submissions-props'
 import SubmissionStatusLabel from '../submissions/list/SubmissionStatusLabel'
 import { submissionTypeIsOnline } from '@common/submissionTypes'
+import { Text } from '@common/text'
+import { formatStudentGrade } from '@common/formatters'
 
 type Props = {
   assignment: Assignment,
@@ -48,7 +49,7 @@ export default class GradesListRow extends PureComponent<Props> {
     const { assignment, selected, user } = this.props
     const { submission } = assignment
     const onlineSubmissionType = assignment.submission_types.every(submissionTypeIsOnline)
-    const grade = gradeProp(submission)
+    const grade = formatStudentGrade(assignment)
     const status = statusProp(submission, dueDate(assignment, user))
     return (
       <Row
@@ -61,7 +62,9 @@ export default class GradesListRow extends PureComponent<Props> {
         onPress={this.onPress}
         selected={selected}
         height='auto'
-        accessories={submission ? <Grade grade={grade} gradingType={assignment.grading_type} /> : undefined}
+        accessories={
+          <Text style={styles.gradeText}>{grade}</Text>
+        }
       >
         {status && assignment.grading_type !== 'not_graded' &&
           <SubmissionStatusLabel status={status} onlineSubmissionType={onlineSubmissionType} />
@@ -107,6 +110,11 @@ const styles = StyleSheet.create({
     paddingRight: 6,
     marginTop: 4,
     overflow: 'hidden',
+  },
+  gradeText: {
+    fontSize: 14,
+    fontWeight: '600',
+    alignSelf: 'center',
   },
   icon: {
     alignSelf: 'flex-start',
