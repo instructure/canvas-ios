@@ -47,7 +47,9 @@
 + (void)loadAnnotationPreviewForFile:(CKIFile *)file fromViewController:(UIViewController *)presentingViewController {
     NSString *previewURLPath = [file.previewURLPath substringFromIndex:1];
     if ([self filePreviewableWithAnnotations:file]) {
-        [SVProgressHUD show];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [SVProgressHUD show];
+        });
         
         // redirect hackyness
         CKIClient *baseClient = [[TheKeymaster currentClient] copy];
@@ -70,10 +72,12 @@
                 if (goodURL != nil) {
                     // NEW ANNOTATIONS FTW!
                     [CanvadocsPDFDocumentPresenter loadPDFViewController:goodURL with:[AppAnnotationsConfiguration canvasAndSpeedgraderConfig] completed:^(UIViewController *pdfViewController, NSArray *errors) {
-                        [SVProgressHUD dismiss];
-                        if (pdfViewController != nil) {
-                            [presentingViewController presentViewController:[[UINavigationController alloc] initWithRootViewController:pdfViewController] animated:YES completion:nil];
-                        }
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [SVProgressHUD dismiss];
+                            if (pdfViewController != nil) {
+                                [presentingViewController presentViewController:[[UINavigationController alloc] initWithRootViewController:pdfViewController] animated:YES completion:nil];
+                            }
+                        });
                     }];
                 } else {
                     // WTF Happened!
@@ -84,9 +88,11 @@
                 UINavigationController *controller = (UINavigationController *)[[UIStoryboard storyboardWithName:@"Storyboard-WebBrowser" bundle:[NSBundle bundleForClass:[self class]]] instantiateInitialViewController];
                 WebBrowserViewController *browser = controller.viewControllers[0];
                 browser.request = request;
-                [presentingViewController presentViewController:controller animated:YES completion:^{
-                    [SVProgressHUD dismiss];
-                }];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [presentingViewController presentViewController:controller animated:YES completion:^{
+                        [SVProgressHUD dismiss];
+                    }];
+                });
                 return nil;
             }
         }];
