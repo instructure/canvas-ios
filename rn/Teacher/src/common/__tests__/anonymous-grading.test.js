@@ -21,10 +21,6 @@ import {
   isAssignmentAnonymous,
 } from '../anonymous-grading'
 import * as template from '../../__templates__'
-import {
-  enableAllFeaturesFlagsForTesting,
-  disableAllFeatureFlagsForTesting,
-} from '../feature-flags'
 
 describe('isQuizAnonymous', () => {
   it('is true if anonymous_submissions is true', () => {
@@ -103,57 +99,6 @@ describe('isAssignmentAnonymous', () => {
     })
     const result = isAssignmentAnonymous(state, '', assignment.id)
     expect(result).toEqual(true)
-  })
-
-  // TODO: Remove this with assignmentLevelAnonymousGrading feature flag
-  describe('using deprecated course setting', () => {
-    beforeEach(() => {
-      disableAllFeatureFlagsForTesting()
-    })
-
-    afterEach(() => {
-      enableAllFeaturesFlagsForTesting()
-    })
-
-    it('is true if feature enabled', () => {
-      const assignment = template.assignment()
-      const state = template.appState({
-        entities: {
-          courses: {
-            '1': {
-              enabledFeatures: ['anonymous_marking'],
-            },
-          },
-          assignments: {
-            [assignment.id]: {
-              data: assignment,
-            },
-          },
-        },
-      })
-      const result = isAssignmentAnonymous(state, '1', assignment.id)
-      expect(result).toEqual(true)
-    })
-
-    it('is false if feature is not enabled', () => {
-      const assignment = template.assignment()
-      const state = template.appState({
-        entities: {
-          courses: {
-            '1': {
-              enabledFeatures: [],
-            },
-          },
-          assignments: {
-            [assignment.id]: {
-              data: assignment,
-            },
-          },
-        },
-      })
-      const result = isAssignmentAnonymous(state, '1', assignment.id)
-      expect(result).toEqual(false)
-    })
   })
 
   it('is false if the assignment does not exist', () => {
