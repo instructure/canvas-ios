@@ -35,7 +35,7 @@ extension ModuleItem {
         let searchPosition = ascending ? higherPosition : lowerPosition
         let sameModule = ModuleItem.predicate(forItemsIn: moduleID)
         let notASubHeader = NSPredicate(format: "%K != %@", "contentType", ModuleItem.ContentType.subHeader.rawValue)
-        let unLocked = NSPredicate(format: "%K != %@ || %K == %@", "lockedForUser", NSNumber(value: true), "contentType", ContentType.assignment.rawValue)
+        let unLocked = NSPredicate(format: "%K != %@ || %K == %@ || %K == %@", "lockedForUser", NSNumber(value: true), "contentType", ContentType.assignment.rawValue, "contentType", ContentType.discussion.rawValue)
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [sameModule, searchPosition, notASubHeader, unLocked])
 
         let sort = ascending ? "position".ascending : "position".descending
