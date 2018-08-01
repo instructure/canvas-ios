@@ -94,6 +94,7 @@ class ToDoListViewController: FetchedTableViewController<Todo>, PageViewEventVie
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 50.0
 
+        self.emptyView = Bundle.main.loadNibNamed("ToDoEmptyView", owner: self, options: nil)?.first as? UIView
         prepare(try Todo.allTodos(session), refresher: try Todo.refresher(session)) { todo in colorfulToDoViewModel(session: session, toDoItem: todo) }
     }
 

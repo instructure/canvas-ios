@@ -601,6 +601,7 @@
 		61F438E61DD667D900552D14 /* MLVCCollectionController+CBIRefresh.h in Headers */ = {isa = PBXBuildFile; fileRef = 61F438E41DD667D900552D14 /* MLVCCollectionController+CBIRefresh.h */; };
 		61F438E71DD667D900552D14 /* MLVCCollectionController+CBIRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F438E51DD667D900552D14 /* MLVCCollectionController+CBIRefresh.m */; };
 		629213C6A49D3799BCBAE7F2 /* Pods_defaults_common_ui_tests_StudentUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1617CAD552082AC99A178C4E /* Pods_defaults_common_ui_tests_StudentUITests.framework */; };
+		7DAEE5872111019600BF5C43 /* ToDoEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEE5862111019600BF5C43 /* ToDoEmptyView.xib */; };
 		7DC912E61FE1CC9200A76B14 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7DC912E81FE1CC9200A76B14 /* Localizable.strings */; };
 		7DC912EB1FE1CC9200A76B14 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7DC912ED1FE1CC9200A76B14 /* InfoPlist.strings */; };
 		8F363586CEA2A05378002836 /* Pods_GradesWidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 651295DCB22A2B02F381D94B /* Pods_GradesWidget.framework */; };
@@ -1379,6 +1380,7 @@
 		7DABA7451FE1CCFB004E903E /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7DABA7461FE1CCFB004E903E /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/MainInterface.strings; sourceTree = "<group>"; };
 		7DABA7471FE1CCFB004E903E /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7DAEE5862111019600BF5C43 /* ToDoEmptyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToDoEmptyView.xib; sourceTree = "<group>"; };
 		7DBF0F0F1FE1CD0600B7C242 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/MainInterface.strings; sourceTree = "<group>"; };
 		7DBF0F101FE1CD0600B7C242 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7DBF0F111FE1CD0600B7C242 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -2397,6 +2399,7 @@
 			children = (
 				6181F12E1DFF41AD00B94488 /* ToDoTab.swift */,
 				49A04E761CF6504D0051E1E7 /* ToDoListViewController.swift */,
+				7DAEE5862111019600BF5C43 /* ToDoEmptyView.xib */,
 			);
 			path = "To Do";
 			sourceTree = "<group>";
@@ -3403,6 +3406,7 @@
 				B5E212D31D88856B009D8C07 /* Localizable.strings in Resources */,
 				B177E6FD1E2EC8BA00D7477D /* Settings.storyboard in Resources */,
 				49F9FA4B1CF7B73100654758 /* Canvas.xcassets in Resources */,
+				7DAEE5872111019600BF5C43 /* ToDoEmptyView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
