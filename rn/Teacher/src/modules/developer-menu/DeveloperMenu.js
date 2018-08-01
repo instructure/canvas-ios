@@ -188,7 +188,8 @@ export default class DeveloperMenu extends Component<DeveloperMenuProps, any> {
 
   route = async (route: any) => {
     await this.props.navigator.dismiss()
-    this.props.navigator.show(route.url, route.options, route.props)
+    const modal = this.state.selectedRouteMethod === 'Modal'
+    this.props.navigator.show(route.url, { ...route.options, modal }, route.props)
   }
 
   render () {

@@ -258,6 +258,13 @@ describe('ConversationDetails', () => {
     expect(props.navigator.pop).toHaveBeenCalled()
   })
 
+  it('calls navigator.dismiss when there is no conversation and is modal', () => {
+    props.navigator.isModal = true
+    const tree = shallow(<ConversationDetails {...props} />)
+    tree.setProps({ conversation: undefined })
+    expect(props.navigator.dismiss).toHaveBeenCalled()
+  })
+
   it('calls pop after delete finishes', () => {
     // $FlowFixMe
     ActionSheetIOS.showActionSheetWithOptions = jest.fn((config, callback) => callback(config.options.length - 2))
@@ -268,6 +275,19 @@ describe('ConversationDetails', () => {
     const tree = shallow(<ConversationDetails {...props} />)
     tree.find('Screen').prop('rightBarButtons')[0].action()
     expect(props.navigator.pop).toHaveBeenCalled()
+  })
+
+  it('calls dismiss after delete finishes if modal', () => {
+    // $FlowFixMe
+    ActionSheetIOS.showActionSheetWithOptions = jest.fn((config, callback) => callback(config.options.length - 2))
+    props.navigator.isModal = true
+    props.deleteConversation = jest.fn(() => {
+      tree.setProps({ pending: 1 })
+      tree.setProps({ pending: 0, conversation: null })
+    })
+    const tree = shallow(<ConversationDetails {...props} />)
+    tree.find('Screen').prop('rightBarButtons')[0].action()
+    expect(props.navigator.dismiss).toHaveBeenCalled()
   })
 
   it('calls markAsRead on componentDidMount when the conversation has workflow state of unread', () => {

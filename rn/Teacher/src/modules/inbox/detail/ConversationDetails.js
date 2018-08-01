@@ -80,10 +80,18 @@ export class ConversationDetails extends React.Component <Props, State> {
   componentWillReceiveProps (nextProps: Props) {
     if (this.state.deletePending && !nextProps.pending && !nextProps.conversation) {
       this.setState({ deletePending: false })
-      this.props.navigator.pop()
+      this.close()
     }
 
     if (this.props.conversation && !nextProps.conversation) {
+      this.close()
+    }
+  }
+
+  close () {
+    if (this.props.navigator.isModal) {
+      this.props.navigator.dismiss()
+    } else {
       this.props.navigator.pop()
     }
   }
