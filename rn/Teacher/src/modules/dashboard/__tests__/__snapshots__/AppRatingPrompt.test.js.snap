@@ -1,0 +1,438 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppRatingPrompt can hide 1`] = `
+<Component
+  contentStyle={
+    Array [
+      Object {
+        "borderColor": "transparent",
+        "borderWidth": 0,
+      },
+    ]
+  }
+  hideShadow={true}
+  style={
+    Array [
+      Object {
+        "padding": 8,
+        "width": 320,
+      },
+      Object {
+        "height": 0,
+        "overflow": "hidden",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "padding": 8,
+      }
+    }
+  >
+    <TouchableHighlight
+      accessibilityLabel="Dismiss prompt to rate"
+      accessibilityTraits="button"
+      activeOpacity={0.85}
+      onPress={[Function]}
+      style={
+        Object {
+          "padding": 12,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        }
+      }
+      testID="prompt-to-rate.butotn.dismiss"
+      underlayColor="transparent"
+    >
+      <Image
+        source={
+          Object {
+            "testUri": "../../../src/images/x-icon.png",
+          }
+        }
+        style={
+          Object {
+            "tintColor": "#8B969E",
+            "width": 16,
+          }
+        }
+      />
+    </TouchableHighlight>
+    <Heading2
+      style={
+        Object {
+          "fontWeight": "600",
+          "textAlign": "center",
+        }
+      }
+    >
+       
+      Are you enjoying Canvas?
+       
+    </Heading2>
+  </View>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "flexDirection": "row",
+        "flexWrap": "wrap",
+        "justifyContent": "flex-start",
+        "margin": 8,
+      }
+    }
+  >
+    <Button
+      accessibilityTraits="button"
+      containerStyle={
+        Array [
+          Object {
+            "backgroundColor": "white",
+            "borderColor": "#8B969E",
+            "borderRadius": 4,
+            "borderWidth": 0.5,
+            "flex": 1,
+            "height": 40,
+            "margin": 4,
+          },
+        ]
+      }
+      onPress={[Function]}
+      style={
+        Array [
+          Object {
+            "color": "#008EE2",
+            "fontSize": 16,
+            "fontWeight": "600",
+          },
+        ]
+      }
+      testID="prompt-to-rate.button.no"
+    >
+      No
+    </Button>
+    <Button
+      accessibilityTraits="button"
+      containerStyle={
+        Object {
+          "backgroundColor": "white",
+          "borderColor": "#8B969E",
+          "borderRadius": 4,
+          "borderWidth": 0.5,
+          "flex": 1,
+          "height": 40,
+          "margin": 4,
+        }
+      }
+      onPress={[Function]}
+      style={
+        Object {
+          "color": "#008EE2",
+          "fontSize": 16,
+          "fontWeight": "600",
+        }
+      }
+      testID="prompt-to-rate.button.yes"
+    >
+      Yes
+    </Button>
+  </View>
+</Component>
+`;
+
+exports[`AppRatingPrompt renders 1`] = `
+<Component
+  contentStyle={
+    Array [
+      Object {
+        "borderColor": "transparent",
+        "borderWidth": 0,
+      },
+    ]
+  }
+  hideShadow={true}
+  style={
+    Array [
+      Object {
+        "padding": 8,
+        "width": 320,
+      },
+      Object {
+        "overflow": "hidden",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "padding": 8,
+      }
+    }
+  >
+    <TouchableHighlight
+      accessibilityLabel="Dismiss prompt to rate"
+      accessibilityTraits="button"
+      activeOpacity={0.85}
+      onPress={[Function]}
+      style={
+        Object {
+          "padding": 12,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        }
+      }
+      testID="prompt-to-rate.butotn.dismiss"
+      underlayColor="transparent"
+    >
+      <Image
+        source={
+          Object {
+            "testUri": "../../../src/images/x-icon.png",
+          }
+        }
+        style={
+          Object {
+            "tintColor": "#8B969E",
+            "width": 16,
+          }
+        }
+      />
+    </TouchableHighlight>
+    <Heading2
+      style={
+        Object {
+          "fontWeight": "600",
+          "textAlign": "center",
+        }
+      }
+    >
+       
+      Are you enjoying Canvas?
+       
+    </Heading2>
+  </View>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "flexDirection": "row",
+        "flexWrap": "wrap",
+        "justifyContent": "flex-start",
+        "margin": 8,
+      }
+    }
+  >
+    <Button
+      accessibilityTraits="button"
+      containerStyle={
+        Array [
+          Object {
+            "backgroundColor": "white",
+            "borderColor": "#8B969E",
+            "borderRadius": 4,
+            "borderWidth": 0.5,
+            "flex": 1,
+            "height": 40,
+            "margin": 4,
+          },
+        ]
+      }
+      onPress={[Function]}
+      style={
+        Array [
+          Object {
+            "color": "#008EE2",
+            "fontSize": 16,
+            "fontWeight": "600",
+          },
+        ]
+      }
+      testID="prompt-to-rate.button.no"
+    >
+      No
+    </Button>
+    <Button
+      accessibilityTraits="button"
+      containerStyle={
+        Object {
+          "backgroundColor": "white",
+          "borderColor": "#8B969E",
+          "borderRadius": 4,
+          "borderWidth": 0.5,
+          "flex": 1,
+          "height": 40,
+          "margin": 4,
+        }
+      }
+      onPress={[Function]}
+      style={
+        Object {
+          "color": "#008EE2",
+          "fontSize": 16,
+          "fontWeight": "600",
+        }
+      }
+      testID="prompt-to-rate.button.yes"
+    >
+      Yes
+    </Button>
+  </View>
+</Component>
+`;
+
+exports[`AppRatingPrompt renders hidden 1`] = `
+<Component
+  contentStyle={
+    Array [
+      Object {
+        "borderColor": "transparent",
+        "borderWidth": 0,
+      },
+    ]
+  }
+  hideShadow={true}
+  style={
+    Array [
+      Object {
+        "padding": 8,
+        "width": 320,
+      },
+      Object {
+        "height": 0,
+        "overflow": "hidden",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "padding": 8,
+      }
+    }
+  >
+    <TouchableHighlight
+      accessibilityLabel="Dismiss prompt to rate"
+      accessibilityTraits="button"
+      activeOpacity={0.85}
+      onPress={[Function]}
+      style={
+        Object {
+          "padding": 12,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        }
+      }
+      testID="prompt-to-rate.butotn.dismiss"
+      underlayColor="transparent"
+    >
+      <Image
+        source={
+          Object {
+            "testUri": "../../../src/images/x-icon.png",
+          }
+        }
+        style={
+          Object {
+            "tintColor": "#8B969E",
+            "width": 16,
+          }
+        }
+      />
+    </TouchableHighlight>
+    <Heading2
+      style={
+        Object {
+          "fontWeight": "600",
+          "textAlign": "center",
+        }
+      }
+    >
+       
+      Are you enjoying Canvas?
+       
+    </Heading2>
+  </View>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "flexDirection": "row",
+        "flexWrap": "wrap",
+        "justifyContent": "flex-start",
+        "margin": 8,
+      }
+    }
+  >
+    <Button
+      accessibilityTraits="button"
+      containerStyle={
+        Array [
+          Object {
+            "backgroundColor": "white",
+            "borderColor": "#8B969E",
+            "borderRadius": 4,
+            "borderWidth": 0.5,
+            "flex": 1,
+            "height": 40,
+            "margin": 4,
+          },
+        ]
+      }
+      onPress={[Function]}
+      style={
+        Array [
+          Object {
+            "color": "#008EE2",
+            "fontSize": 16,
+            "fontWeight": "600",
+          },
+        ]
+      }
+      testID="prompt-to-rate.button.no"
+    >
+      No
+    </Button>
+    <Button
+      accessibilityTraits="button"
+      containerStyle={
+        Object {
+          "backgroundColor": "white",
+          "borderColor": "#8B969E",
+          "borderRadius": 4,
+          "borderWidth": 0.5,
+          "flex": 1,
+          "height": 40,
+          "margin": 4,
+        }
+      }
+      onPress={[Function]}
+      style={
+        Object {
+          "color": "#008EE2",
+          "fontSize": 16,
+          "fontWeight": "600",
+        }
+      }
+      testID="prompt-to-rate.button.yes"
+    >
+      Yes
+    </Button>
+  </View>
+</Component>
+`;

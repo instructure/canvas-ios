@@ -39,6 +39,8 @@ type State = {
   fakeRequest: number,
   lastRequestDate: number,
   lastRequestDateShown: boolean,
+  lastDashboardRequestDate: number,
+  lastDashboardRequestDateShown: boolean,
   launchCount: number,
   viewAssignmentDate: number,
   viewAssignmentDateShown: boolean,
@@ -50,6 +52,8 @@ export default class RatingRequest extends React.PureComponent<Props, State> {
     fakeRequest: 0,
     lastRequestDate: 0,
     lastRequestDateShown: false,
+    lastDashboardRequestDate: 0,
+    lastDashboardRequestDateShown: false,
     launchCount: 0,
     viewAssignmentDate: 0,
     viewAssignmentDateShown: false,
@@ -60,8 +64,9 @@ export default class RatingRequest extends React.PureComponent<Props, State> {
 
   componentDidMount () {
     const update = () => {
-      NativeModules.AppStoreReview.getState().then(values =>
+      NativeModules.AppStoreReview.getState().then(values => {
         this.setState(values)
+      }
       )
     }
     update()
@@ -96,6 +101,20 @@ export default class RatingRequest extends React.PureComponent<Props, State> {
     this.setBothStates('lastRequestDate', 0)
   }
 
+  toggleLastDashboardRequestDate = () => {
+    this.setState(({ lastDashboardRequestDateShown }) => ({
+      lastDashboardRequestDateShown: !lastDashboardRequestDateShown,
+    }))
+  }
+
+  setLastDashboardRequestDate = (value: Date) => {
+    this.setBothStates('lastDashboardRequestDate', +value || 0)
+  }
+
+  removeLastDashboardRequestDate = () => {
+    this.setBothStates('lastDashboardRequestDate', 0)
+  }
+
   setLaunchCount = (text: string) => {
     this.setBothStates('launchCount', parseInt(text.trim(), 10) || 0)
   }
@@ -123,6 +142,8 @@ export default class RatingRequest extends React.PureComponent<Props, State> {
       fakeRequest,
       lastRequestDate,
       lastRequestDateShown,
+      lastDashboardRequestDate,
+      lastDashboardRequestDateShown,
       launchCount,
       viewAssignmentDate,
       viewAssignmentDateShown,
@@ -157,6 +178,27 @@ export default class RatingRequest extends React.PureComponent<Props, State> {
             <DatePickerIOS
               date={new Date(lastRequestDate || Date.now())}
               onDateChange={this.setLastRequestDate}
+            />
+          }
+          <RowSeparator />
+          <Text style={styles.paragraph}>
+            Dashboard prompt for App Store rating are only prompted when it has been at
+            least 120 days since the last request. Clearing this, or setting it
+            to long ago is prerequisite to seeing a prompt.
+          </Text>
+          <RowSeparator />
+          <RowWithDateInput
+            title='Dashboard Last Request'
+            date={lastDashboardRequestDate ? new Date(lastDashboardRequestDate).toISOString() : null}
+            selected={lastDashboardRequestDateShown}
+            onPress={this.toggleLastDashboardRequestDate}
+            showRemoveButton
+            onRemoveDatePress={this.removeLastDashboardRequestDate}
+          />
+          { lastDashboardRequestDateShown &&
+            <DatePickerIOS
+              date={new Date(lastDashboardRequestDate || Date.now())}
+              onDateChange={this.setLastDashboardRequestDate}
             />
           }
           <RowSeparator />

@@ -21,6 +21,7 @@ import {
   View,
   SectionList,
   StyleSheet,
+  NativeModules,
 } from 'react-native'
 import Screen from '@routing/Screen'
 import { connect } from 'react-redux'
@@ -53,6 +54,7 @@ import { extractGradeInfo } from '@utils/course-grades'
 import { extractDateFromString } from '@utils/dateUtils'
 import { featureFlagEnabled } from '@common/feature-flags'
 import { logEvent } from '@common/CanvasAnalytics'
+import AppRatingPrompt from './AppRatingPrompt'
 
 type ColorfulCourse = { color: string } & Course
 type Props = {
@@ -83,6 +85,7 @@ type State = {
   showingModal: boolean,
   fetchingEnrollments: boolean,
   noCoursesLayout: ?{ y: number },
+  showAppRatingPrompt: boolean,
 }
 type SectionListSection = {
   sectionID: string,
@@ -117,9 +120,10 @@ export class Dashboard extends React.Component<Props, State> {
     showingModal: false,
     fetchingEnrollments: false,
     noCoursesLayout: null,
+    showAppRatingPrompt: false,
   }
 
-  componentWillReceiveProps (newProps: Props) {
+  async componentWillReceiveProps (newProps: Props) {
     if (newProps.isFullDashboard &&
         !newProps.pending &&
         !newProps.error &&
@@ -132,6 +136,11 @@ export class Dashboard extends React.Component<Props, State> {
         showingModal: true,
       })
     }
+
+    try {
+      const showAppRatingPrompt = await NativeModules.AppStoreReview.showRatePromptOnDashboard()
+      this.setState({ showAppRatingPrompt })
+    } catch (e) {}
   }
 
   calculateLayout = (width: number, height: number) => {
@@ -209,6 +218,18 @@ export class Dashboard extends React.Component<Props, State> {
         invite={item}
         handleInvite={this.handleInvite}
         hideInvite={this.props.hideInvite}
+      />
+    )
+  }
+
+  renderAppRatingPrompt = ({ item }: { item: {[string]: any} }) => {
+    const collapsed = !this.state.showAppRatingPrompt
+    return (
+      <AppRatingPrompt
+        style={{ width: this.state.contentWidth, padding }}
+        key={`app-rating-prompt-1`}
+        collapsed={collapsed}
+        navigator={this.props.navigator}
       />
     )
   }
@@ -311,6 +332,16 @@ export class Dashboard extends React.Component<Props, State> {
     }
 
     let sections = []
+
+    // App rating prompt
+    if (isStudent() && this.props.courses.length > 0) {
+      sections.push({
+        sectionID: 'dashboard.app-rating-prompt',
+        data: [{}],
+        renderItem: this.renderAppRatingPrompt,
+        keyExtractor: () => '1',
+      })
+    }
 
     // Announcements
     sections.push({

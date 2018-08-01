@@ -141,6 +141,8 @@ NativeModules.AppStoreReview = {
   handleSuccessfulSubmit: jest.fn(),
   handleNavigateToAssignment: jest.fn(),
   handleNavigateFromAssignment: jest.fn(),
+  handleUserFeedbackOnDashboard: jest.fn(),
+  setState: jest.fn(),
 }
 
 NativeModules.CanvasAnalytics = {

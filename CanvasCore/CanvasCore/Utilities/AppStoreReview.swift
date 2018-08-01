@@ -19,11 +19,13 @@ import StoreKit
 
 public class AppStoreReview: NSObject {
     static let lastRequestDateKey = "InstLastReviewRequestKey"
+    static let lastDashboardRequestDateKey = "InstLastDashboardReviewRequestKey"
     static let viewAssignmentDateKey = "InstViewAssignmentDateKey"
     static let viewAssignmentCountKey = "InstViewAssignmentCountKey"
     static let launchCountKey = "InstLaunchCount"
     static let fakeRequestKey = "InstFakeReviewRequestKey"
-
+    static let dashboardRatePromptFrequencyThreshold = 120
+    
     class func immediatelyRequestReview () {
         if #available(iOS 10.3, *) {
             if UserDefaults.standard.bool(forKey: fakeRequestKey) {
@@ -91,7 +93,7 @@ public class AppStoreReview: NSObject {
             immediatelyRequestReview()
         }
     }
-
+    
     @objc
     public class func getState () -> Dictionary<String, Int> {
         func getTime (forKey: String) -> Int {
@@ -102,6 +104,7 @@ public class AppStoreReview: NSObject {
         }
         return [
             "lastRequestDate": getTime(forKey: lastRequestDateKey),
+            "lastDashboardRequestDate": getTime(forKey: lastDashboardRequestDateKey),
             "viewAssignmentDate": getTime(forKey: viewAssignmentDateKey),
             "viewAssignmentCount": UserDefaults.standard.integer(forKey: viewAssignmentCountKey),
             "launchCount": UserDefaults.standard.integer(forKey: launchCountKey),
@@ -114,6 +117,8 @@ public class AppStoreReview: NSObject {
         switch (key) {
             case "lastRequestDate":
                 UserDefaults.standard.set(Date(timeIntervalSince1970: Double(value) / 1000), forKey: lastRequestDateKey)
+            case "lastDashboardRequestDate":
+                UserDefaults.standard.set(Date(timeIntervalSince1970: Double(value) / 1000), forKey: lastDashboardRequestDateKey)
             case "viewAssignmentDate":
                 UserDefaults.standard.set(Date(timeIntervalSince1970: Double(value) / 1000), forKey: viewAssignmentDateKey)
             case "viewAssignmentCount":
@@ -125,5 +130,55 @@ public class AppStoreReview: NSObject {
             default:
                 break
         }
+        UserDefaults.standard.synchronize()
+    }
+}
+
+//  MARK: - Dashboard Prompt
+extension AppStoreReview {
+    @objc
+    public class func handleUserFeedbackOnDashboard(acceptedToRateApp: Bool) {
+        if(acceptedToRateApp) {
+            immediatelyRequestReview()
+        }
+        markDashboardPromptAsViewed()
+    }
+    
+    @objc
+    public static func isAppropriateToShowDashboardRatingPrompt() -> Bool {
+        if #available(iOS 10.3, *) {
+            return lastPromptDateAboveThreshold()
+        }
+        return false
+    }
+    
+    static func lastPromptDateAboveThreshold() -> Bool {
+        var lastPromptDate: Date
+        if let date = UserDefaults.standard.value(forKey: lastDashboardRequestDateKey) as? Date {
+            //  existing install, last time prompt for rating was made
+            lastPromptDate = date
+        }
+        else {
+            //  first install
+            var dateComponents = DateComponents()
+            dateComponents.day = -(dashboardRatePromptFrequencyThreshold - 15)  //  show 15 days after install
+            lastPromptDate = Calendar.current.date(byAdding: dateComponents, to: Date()) ?? Date.distantPast
+            UserDefaults.standard.set(lastPromptDate, forKey: lastDashboardRequestDateKey)
+            UserDefaults.standard.synchronize()
+        }
+        
+        let comps = Calendar.current.dateComponents([Calendar.Component.day], from: lastPromptDate, to: Date())
+        if let daysSince = comps.day, daysSince <= dashboardRatePromptFrequencyThreshold {
+            return false
+        }
+        return true
+    }
+    
+    static func markDashboardPromptAsViewed() {
+        var dateComponents = DateComponents()
+        dateComponents.day = dashboardRatePromptFrequencyThreshold
+        guard let lastDashboardRequestDate = Calendar.current.date(byAdding: dateComponents, to: Date()) else { return }
+        UserDefaults.standard.set(lastDashboardRequestDate, forKey: lastDashboardRequestDateKey)
+        UserDefaults.standard.synchronize()
     }
 }

@@ -36,6 +36,15 @@ RCT_EXPORT_METHOD(handleNavigateFromAssignment) {
     [AppStoreReview handleNavigateFromAssignment];
 }
 
+RCT_REMAP_METHOD(showRatePromptOnDashboard, showRatePromptOnDashboardResolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
+    Boolean show = [AppStoreReview isAppropriateToShowDashboardRatingPrompt];
+    resolve([NSNumber numberWithBool:show]);
+}
+
+RCT_EXPORT_METHOD(handleUserFeedbackOnDashboard:(NSNumber * _Nonnull)acceptedToRateApp) {
+    [AppStoreReview handleUserFeedbackOnDashboardWithAcceptedToRateApp:acceptedToRateApp.boolValue];
+}
+
 RCT_REMAP_METHOD(getState, getStateResolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
     resolve([AppStoreReview getState]);
 }

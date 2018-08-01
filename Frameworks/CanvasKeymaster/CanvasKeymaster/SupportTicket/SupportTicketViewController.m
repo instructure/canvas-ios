@@ -140,6 +140,8 @@
 {
     [super viewWillAppear:animated];
     [self.impactButton setTitle:self.ticket.impactString forState:UIControlStateNormal];
+    [self.impactButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+    [self.impactButton setContentEdgeInsets:UIEdgeInsetsMake(0, -7, 0, 0)];
     [self enableSendIfValidates];
 }
 

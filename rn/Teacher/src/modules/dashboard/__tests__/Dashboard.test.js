@@ -18,7 +18,7 @@
 
 import { shallow } from 'enzyme'
 import React from 'react'
-import 'react-native'
+import { NativeModules } from 'react-native'
 import renderer from 'react-test-renderer'
 import {
   Dashboard,
@@ -394,6 +394,25 @@ describe('Dashboard', () => {
     const courseInvite = explore(tree).selectByID('course-invite.1.reject-button') || {}
     courseInvite.props.onPress()
     expect(props.rejectEnrollment).toHaveBeenCalledWith('4', '1')
+    App.setCurrentApp(currentApp)
+  })
+
+  it('renders prompt to rate app', () => {
+    let currentApp = App.current().appId
+    let mock = jest.fn()
+    mock.mockReturnValue(true)
+    NativeModules.AppStoreReview.showRatePromptOnDashboard = mock
+    App.setCurrentApp('student')
+    let props = {
+      ...defaultProps,
+      enrollments,
+      allCourses,
+      sections,
+    }
+
+    const tree = renderer.create(<Dashboard {...props} />)
+    tree.getInstance().setState({ width: 375, contentWidth: 359, cardWidth: 179, showAppRatingPrompt: true })
+    expect(tree).toMatchSnapshot()
     App.setCurrentApp(currentApp)
   })
 
