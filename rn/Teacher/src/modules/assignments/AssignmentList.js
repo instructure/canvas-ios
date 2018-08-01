@@ -138,7 +138,7 @@ export class AssignmentList extends Component<AssignmentListProps, State> {
   selectFirstListItemIfNecessary () {
     let assignment = null
     const isModal = this.props.navigator.isModal
-    if (!this.didSelectFirstItem && this.isRegularScreenDisplayMode && !isModal && (assignment = this.firstAssignmentInList())) {
+    if (!this.props.doNotSelectFirstItem && !this.didSelectFirstItem && this.isRegularScreenDisplayMode && !isModal && (assignment = this.firstAssignmentInList())) {
       this.selectedAssignment(assignment)
       this.didSelectFirstItem = true
     }

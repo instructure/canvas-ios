@@ -319,6 +319,37 @@ test('does not select first item on empty data', () => {
   expect(instance.didSelectFirstItem).toBe(false)
 })
 
+test('does not select first item when doNotSelectFirstItem is set to  true', () => {
+  defaultProps.doNotSelectFirstItem = true
+  let tree = shallow(
+    <AssignmentList {...defaultProps} />
+  )
+
+  let instance = tree.instance()
+  instance.didSelectFirstItem = false
+  instance.isRegularScreenDisplayMode = true
+  instance.selectedAssignment = jest.fn()
+  instance.selectFirstListItemIfNecessary()
+
+  expect(instance.selectedAssignment).toHaveBeenCalledTimes(0)
+  expect(instance.didSelectFirstItem).toBe(false)
+})
+
+test('select first item when doNotSelectFirstItem is not set', () => {
+  let tree = shallow(
+    <AssignmentList {...defaultProps} />
+  )
+
+  let instance = tree.instance()
+  instance.didSelectFirstItem = false
+  instance.isRegularScreenDisplayMode = true
+  instance.selectedAssignment = jest.fn()
+  instance.selectFirstListItemIfNecessary()
+
+  expect(instance.selectedAssignment).toHaveBeenCalledTimes(1)
+  expect(instance.didSelectFirstItem).toBe(true)
+})
+
 test('onTraitCollectionChange calls trait collection properties', () => {
   defaultProps.navigator.traitCollection = jest.fn()
   let tree = shallow(

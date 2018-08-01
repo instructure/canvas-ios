@@ -78,7 +78,14 @@ extension Router {
         addContextRoute([.course], subPath: "assignments") { contextID, _ in
             return HelmViewController(
                 moduleName: "/courses/:courseID/assignments",
-                props: ["courseID": contextID.id]
+                props: ["courseID": contextID.id, "doNotSelectFirstItem": false]
+            )
+        }
+        
+        addContextRoute([.course], subPath: "assignments-fromHomeTab") { contextID, _ in
+            return HelmViewController(
+                moduleName: "/courses/:courseID/assignments",
+                props: ["courseID": contextID.id, "doNotSelectFirstItem": true]
             )
         }
         

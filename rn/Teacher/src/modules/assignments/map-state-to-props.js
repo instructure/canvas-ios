@@ -35,6 +35,7 @@ export type AssignmentListDataProps = {
   user?: SessionUser,
   currentScore?: ?number,
   showTotalScore: boolean,
+  doNotSelectFirstItem?: boolean,
 }
 
 export type AssignmentListProps = AssignmentListDataProps
