@@ -355,7 +355,6 @@
 		49CE966F1F8FF41B00121A43 /* SubmissionConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE96231F8FF41A00121A43 /* SubmissionConfirmationViewController.swift */; };
 		49CE96701F8FF41B00121A43 /* NonNativeQuizTakingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE96241F8FF41A00121A43 /* NonNativeQuizTakingViewController.swift */; };
 		49CE96711F8FF41B00121A43 /* LoadingQuestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE96261F8FF41A00121A43 /* LoadingQuestionsView.swift */; };
-		49CE96721F8FF41B00121A43 /* DropdownAnswersPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49CE96271F8FF41A00121A43 /* DropdownAnswersPickerView.xib */; };
 		49CE96731F8FF41B00121A43 /* TextAnswerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49CE96281F8FF41A00121A43 /* TextAnswerCell.xib */; };
 		49CE96741F8FF41B00121A43 /* TextAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE96291F8FF41A00121A43 /* TextAnswerCell.swift */; };
 		49CE96751F8FF41B00121A43 /* ShortAnswerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49CE962A1F8FF41A00121A43 /* ShortAnswerCell.xib */; };
@@ -363,15 +362,12 @@
 		49CE96771F8FF41B00121A43 /* ShortAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE962C1F8FF41A00121A43 /* ShortAnswerCell.swift */; };
 		49CE96781F8FF41B00121A43 /* MatchAnswerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49CE962D1F8FF41A00121A43 /* MatchAnswerCell.xib */; };
 		49CE96791F8FF41B00121A43 /* MatchAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE962E1F8FF41A00121A43 /* MatchAnswerCell.swift */; };
-		49CE967A1F8FF41B00121A43 /* DropdownAnswersPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE962F1F8FF41A00121A43 /* DropdownAnswersPickerView.swift */; };
 		49CE967B1F8FF41B00121A43 /* FileUploadAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE96301F8FF41A00121A43 /* FileUploadAnswerCell.swift */; };
 		49CE967C1F8FF41B00121A43 /* NextOrSubmitView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49CE96311F8FF41A00121A43 /* NextOrSubmitView.xib */; };
 		49CE967D1F8FF41B00121A43 /* NextOrSubmitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE96321F8FF41A00121A43 /* NextOrSubmitView.swift */; };
 		49CE967E1F8FF41B00121A43 /* SelectableAnswerCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE96331F8FF41A00121A43 /* SelectableAnswerCellProtocol.swift */; };
-		49CE967F1F8FF41B00121A43 /* DropdownAnswerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49CE96341F8FF41A00121A43 /* DropdownAnswerCell.xib */; };
 		49CE96801F8FF41B00121A43 /* EssayAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE96351F8FF41A00121A43 /* EssayAnswerCell.swift */; };
 		49CE96811F8FF41B00121A43 /* LoadingQuestionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49CE96361F8FF41A00121A43 /* LoadingQuestionsView.xib */; };
-		49CE96821F8FF41B00121A43 /* DropdownAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE96371F8FF41A00121A43 /* DropdownAnswerCell.swift */; };
 		49CE96831F8FF41B00121A43 /* HTMLAnswerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49CE96381F8FF41A00121A43 /* HTMLAnswerCell.xib */; };
 		49CE96841F8FF41B00121A43 /* QuestionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49CE963A1F8FF41A00121A43 /* QuestionHeaderView.xib */; };
 		49CE96851F8FF41B00121A43 /* QuestionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE963B1F8FF41A00121A43 /* QuestionHeaderView.swift */; };
@@ -396,7 +392,6 @@
 		49CE96981F8FF41B00121A43 /* SubmissionAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE96521F8FF41A00121A43 /* SubmissionAnswer.swift */; };
 		49CE96991F8FF41B00121A43 /* NSError+QuizKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE96541F8FF41A00121A43 /* NSError+QuizKit.swift */; };
 		49CE969A1F8FF41B00121A43 /* UIWebView+Quizzes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE96551F8FF41A00121A43 /* UIWebView+Quizzes.swift */; };
-		49CE969B1F8FF41B00121A43 /* MultipleDropdownColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE96561F8FF41A00121A43 /* MultipleDropdownColors.swift */; };
 		49CE96A11F8FF4A700121A43 /* ProgressDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE969D1F8FF4A700121A43 /* ProgressDispatcher.swift */; };
 		49CE96A21F8FF4A700121A43 /* Dispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE969E1F8FF4A700121A43 /* Dispatcher.swift */; };
 		49CE96A31F8FF4A700121A43 /* Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE969F1F8FF4A700121A43 /* Progress.swift */; };
@@ -932,7 +927,6 @@
 		49CE96231F8FF41A00121A43 /* SubmissionConfirmationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmissionConfirmationViewController.swift; sourceTree = "<group>"; };
 		49CE96241F8FF41A00121A43 /* NonNativeQuizTakingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NonNativeQuizTakingViewController.swift; sourceTree = "<group>"; };
 		49CE96261F8FF41A00121A43 /* LoadingQuestionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingQuestionsView.swift; sourceTree = "<group>"; };
-		49CE96271F8FF41A00121A43 /* DropdownAnswersPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DropdownAnswersPickerView.xib; sourceTree = "<group>"; };
 		49CE96281F8FF41A00121A43 /* TextAnswerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextAnswerCell.xib; sourceTree = "<group>"; };
 		49CE96291F8FF41A00121A43 /* TextAnswerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAnswerCell.swift; sourceTree = "<group>"; };
 		49CE962A1F8FF41A00121A43 /* ShortAnswerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShortAnswerCell.xib; sourceTree = "<group>"; };
@@ -940,15 +934,12 @@
 		49CE962C1F8FF41A00121A43 /* ShortAnswerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortAnswerCell.swift; sourceTree = "<group>"; };
 		49CE962D1F8FF41A00121A43 /* MatchAnswerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchAnswerCell.xib; sourceTree = "<group>"; };
 		49CE962E1F8FF41A00121A43 /* MatchAnswerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchAnswerCell.swift; sourceTree = "<group>"; };
-		49CE962F1F8FF41A00121A43 /* DropdownAnswersPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropdownAnswersPickerView.swift; sourceTree = "<group>"; };
 		49CE96301F8FF41A00121A43 /* FileUploadAnswerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileUploadAnswerCell.swift; sourceTree = "<group>"; };
 		49CE96311F8FF41A00121A43 /* NextOrSubmitView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NextOrSubmitView.xib; sourceTree = "<group>"; };
 		49CE96321F8FF41A00121A43 /* NextOrSubmitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextOrSubmitView.swift; sourceTree = "<group>"; };
 		49CE96331F8FF41A00121A43 /* SelectableAnswerCellProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectableAnswerCellProtocol.swift; sourceTree = "<group>"; };
-		49CE96341F8FF41A00121A43 /* DropdownAnswerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DropdownAnswerCell.xib; sourceTree = "<group>"; };
 		49CE96351F8FF41A00121A43 /* EssayAnswerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EssayAnswerCell.swift; sourceTree = "<group>"; };
 		49CE96361F8FF41A00121A43 /* LoadingQuestionsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingQuestionsView.xib; sourceTree = "<group>"; };
-		49CE96371F8FF41A00121A43 /* DropdownAnswerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropdownAnswerCell.swift; sourceTree = "<group>"; };
 		49CE96381F8FF41A00121A43 /* HTMLAnswerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HTMLAnswerCell.xib; sourceTree = "<group>"; };
 		49CE963A1F8FF41A00121A43 /* QuestionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionHeaderView.xib; sourceTree = "<group>"; };
 		49CE963B1F8FF41A00121A43 /* QuestionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionHeaderView.swift; sourceTree = "<group>"; };
@@ -973,7 +964,6 @@
 		49CE96521F8FF41A00121A43 /* SubmissionAnswer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmissionAnswer.swift; sourceTree = "<group>"; };
 		49CE96541F8FF41A00121A43 /* NSError+QuizKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSError+QuizKit.swift"; sourceTree = "<group>"; };
 		49CE96551F8FF41A00121A43 /* UIWebView+Quizzes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIWebView+Quizzes.swift"; sourceTree = "<group>"; };
-		49CE96561F8FF41A00121A43 /* MultipleDropdownColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleDropdownColors.swift; sourceTree = "<group>"; };
 		49CE969D1F8FF4A700121A43 /* ProgressDispatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressDispatcher.swift; sourceTree = "<group>"; };
 		49CE969E1F8FF4A700121A43 /* Dispatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dispatcher.swift; sourceTree = "<group>"; };
 		49CE969F1F8FF4A700121A43 /* Progress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Progress.swift; sourceTree = "<group>"; };
@@ -2409,7 +2399,6 @@
 			isa = PBXGroup;
 			children = (
 				49CE96261F8FF41A00121A43 /* LoadingQuestionsView.swift */,
-				49CE96271F8FF41A00121A43 /* DropdownAnswersPickerView.xib */,
 				49CE96281F8FF41A00121A43 /* TextAnswerCell.xib */,
 				49CE96291F8FF41A00121A43 /* TextAnswerCell.swift */,
 				49CE962A1F8FF41A00121A43 /* ShortAnswerCell.xib */,
@@ -2417,16 +2406,13 @@
 				49CE962C1F8FF41A00121A43 /* ShortAnswerCell.swift */,
 				49CE962D1F8FF41A00121A43 /* MatchAnswerCell.xib */,
 				49CE962E1F8FF41A00121A43 /* MatchAnswerCell.swift */,
-				49CE962F1F8FF41A00121A43 /* DropdownAnswersPickerView.swift */,
 				2C68DCF22086786E00A1EBFA /* UIPickerView+Quiz.swift */,
 				49CE96301F8FF41A00121A43 /* FileUploadAnswerCell.swift */,
 				49CE96311F8FF41A00121A43 /* NextOrSubmitView.xib */,
 				49CE96321F8FF41A00121A43 /* NextOrSubmitView.swift */,
 				49CE96331F8FF41A00121A43 /* SelectableAnswerCellProtocol.swift */,
-				49CE96341F8FF41A00121A43 /* DropdownAnswerCell.xib */,
 				49CE96351F8FF41A00121A43 /* EssayAnswerCell.swift */,
 				49CE96361F8FF41A00121A43 /* LoadingQuestionsView.xib */,
-				49CE96371F8FF41A00121A43 /* DropdownAnswerCell.swift */,
 				49CE96381F8FF41A00121A43 /* HTMLAnswerCell.xib */,
 			);
 			path = "Answer Cells";
@@ -2493,7 +2479,6 @@
 			children = (
 				49CE96541F8FF41A00121A43 /* NSError+QuizKit.swift */,
 				49CE96551F8FF41A00121A43 /* UIWebView+Quizzes.swift */,
-				49CE96561F8FF41A00121A43 /* MultipleDropdownColors.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -3008,7 +2993,6 @@
 				4961F5551F8FAF280093EC86 /* AudioRecorderViewController.storyboard in Resources */,
 				49CE97431F8FFEA600121A43 /* rewrite-api-links.js in Resources */,
 				49CE97A01F900D0000121A43 /* PandatarBuilderViewController.xib in Resources */,
-				49CE96721F8FF41B00121A43 /* DropdownAnswersPickerView.xib in Resources */,
 				49CE967C1F8FF41B00121A43 /* NextOrSubmitView.xib in Resources */,
 				4930200D1F901CF5006BD777 /* Assets.xcassets in Resources */,
 				493020141F901CF5006BD777 /* CommentReplyView.xib in Resources */,
@@ -3030,7 +3014,6 @@
 				49CE97AB1F900D0000121A43 /* PandaImages.xcassets in Resources */,
 				49CE96831F8FF41B00121A43 /* HTMLAnswerCell.xib in Resources */,
 				49CE96731F8FF41B00121A43 /* TextAnswerCell.xib in Resources */,
-				49CE967F1F8FF41B00121A43 /* DropdownAnswerCell.xib in Resources */,
 				4961F6251F8FB7010093EC86 /* CustomizeEnrollmentViewController.xib in Resources */,
 				4961F5411F8FAD9A0093EC86 /* WhizzyWigTemplate.html in Resources */,
 				49301FEC1F901854006BD777 /* Main.storyboard in Resources */,
@@ -3212,7 +3195,6 @@
 				497CA7751F82D19600501613 /* NoAnimatedTransitioning.swift in Sources */,
 				2C4FAD3220487DD6000551EB /* UINavigationController+Core.swift in Sources */,
 				4961F62E1F8FB7070093EC86 /* Enrollment+Favorites.swift in Sources */,
-				49CE96821F8FF41B00121A43 /* DropdownAnswerCell.swift in Sources */,
 				49698D791F8FA2D000E38B78 /* RollCallSession.swift in Sources */,
 				49301FD41F9014C6006BD777 /* CalendarKit.xcdatamodeld in Sources */,
 				49CE96891F8FF41B00121A43 /* CanvasSubmissionAuditLoggingService.swift in Sources */,
@@ -3297,7 +3279,6 @@
 				497CA7721F82D19600501613 /* HelmNavigationController.swift in Sources */,
 				4961F5921F8FB2230093EC86 /* PagedViewController.swift in Sources */,
 				49CE96E11F8FFC4400121A43 /* MasteryPathAssignment+Collections.swift in Sources */,
-				49CE967A1F8FF41B00121A43 /* DropdownAnswersPickerView.swift in Sources */,
 				497815311FCE14B800D57BBB /* Tab+Details.swift in Sources */,
 				49CE968F1F8FF41B00121A43 /* JSONDecodable.swift in Sources */,
 				49CE96901F8FF41B00121A43 /* CanvasRequest.swift in Sources */,
@@ -3306,7 +3287,6 @@
 				2CD7769C200977EC00589D4F /* UIApplicationDelegate+Core.swift in Sources */,
 				49CE966B1F8FF41B00121A43 /* QuestionDrawerViewController.swift in Sources */,
 				4930201B1F901CF5006BD777 /* CanvadocsPDFDocumentPresenter.swift in Sources */,
-				49CE969B1F8FF41B00121A43 /* MultipleDropdownColors.swift in Sources */,
 				49CE96861F8FF41B00121A43 /* SubmissionController.swift in Sources */,
 				49CE96651F8FF41B00121A43 /* CanvasQuizService.swift in Sources */,
 				4961F6331F8FB70D0093EC86 /* GradingPeriod.swift in Sources */,

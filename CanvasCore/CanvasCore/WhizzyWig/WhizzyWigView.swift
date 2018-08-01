@@ -44,6 +44,7 @@ private func renderHTML(_ html: String, width: Float, fontColor: UIColor, backgr
 
 open class WhizzyWigView: UIWebView, UIWebViewDelegate {
     open var contentFinishedLoading: ()->() = {}
+    open var didRecieveMessage: (String)->() = {_ in }
     open var contentHeight: CGFloat {
         let heightString = stringByEvaluatingJavaScript(from: "document.getElementById('whizzy_content').scrollHeight") ?? "43.0"
         return CGFloat((heightString as NSString).doubleValue)
@@ -88,6 +89,10 @@ open class WhizzyWigView: UIWebView, UIWebViewDelegate {
         
         if request.url?.scheme == "whizzywig" {
             contentFinishedLoading()
+            return false
+        }
+        if request.url?.scheme == "canvas-message", let path = request.url?.path {
+            didRecieveMessage(path)
             return false
         }
         

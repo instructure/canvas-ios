@@ -22,6 +22,7 @@ open class WhizzyWigTableViewCell: UITableViewCell {
     
     open var indexPath = IndexPath(row: 0, section: 0)
     open var cellSizeUpdated: (IndexPath)->() = {_ in }
+    open var didRecieveMessage: (IndexPath, String)->() = {_ in }
     open var readMore: ((WhizzyWigViewController)->())? {
         didSet {
             readMoreButton.isHidden = readMore == nil || whizzyWigView.contentHeight <= maxHeight
@@ -57,6 +58,11 @@ open class WhizzyWigTableViewCell: UITableViewCell {
         whizzyWigView.contentFinishedLoading = { [weak self] in
             if let me = self {
                 me.contentSizeDidChange()
+            }
+        }
+        whizzyWigView.didRecieveMessage = { [weak self] message in
+            if let me = self {
+                me.didRecieveMessage(me.indexPath, message)
             }
         }
 

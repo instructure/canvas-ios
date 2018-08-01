@@ -26,10 +26,6 @@ import ReactiveSwift
 import Result
 import MobileCoreServices
 
-
-let UnansweredDropdownAnswer = "[ Select ]"
-let DropdownPickerHeight: CGFloat = 150
-
 protocol SubmissionInteractor: class {
     var submission: QuizSubmission { get }
     func selectAnswer(_ answer: SubmissionAnswer, forQuestionAtIndex questionIndex: Int, completed: @escaping ()->())
@@ -53,17 +49,6 @@ class SubmissionViewController: UITableViewController, PageViewEventViewControll
     fileprivate var cellHeightCache: [Index: CGFloat] = [:]
     fileprivate var currentInputIndexPath: IndexPath? = nil
     fileprivate var currentFileUploadIndexPath: IndexPath?
-    fileprivate var currentDropdownIndexPath: IndexPath?
-
-    fileprivate let dropdownToolbarTitleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 40, height: 20))
-    fileprivate let invisibleTextFieldForDropdowns = UITextField()
-    lazy var dropdownsPicker: UIPickerView = {
-        let picker = UIPickerView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        picker.backgroundColor = .white
-        picker.delegate = self
-        picker.dataSource = self
-        return picker
-    }()
 
     var isLoading: Bool = true {
         didSet {
@@ -101,10 +86,6 @@ class SubmissionViewController: UITableViewController, PageViewEventViewControll
         updateLoadingStatus()
         bindDocumentMenuViewModel()
         documentMenuViewModel.inputs.configureWith(fileTypes: [kUTTypeItem as String])
-
-        invisibleTextFieldForDropdowns.inputView = dropdownsPicker
-        invisibleTextFieldForDropdowns.inputAccessoryView = dropdownToolbar
-        view.addSubview(invisibleTextFieldForDropdowns)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -301,183 +282,42 @@ extension SubmissionViewController: DocumentMenuController, UIDocumentPickerDele
 }
 
 // MARK: - Multiple Dropdowns
-extension SubmissionViewController: UIPickerViewDelegate, UIPickerViewDataSource {
-    class DropdownPopoverPickerViewController: UIViewController {
-        let toolbar: UIToolbar
-        let picker: UIPickerView
-
-        init(toolbar: UIToolbar, picker: UIPickerView) {
-            self.toolbar = toolbar
-            self.picker = picker
-
-            super.init(nibName: nil, bundle: nil)
-        }
-
-        required init?(coder aDecoder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
-        }
-
-        override func viewDidLoad() {
-            super.viewDidLoad()
-
-            toolbar.translatesAutoresizingMaskIntoConstraints = false
-            toolbar.setContentCompressionResistancePriority(1000, for: .vertical)
-            view.addSubview(toolbar)
-            NSLayoutConstraint.activate([
-                toolbar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                toolbar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                toolbar.topAnchor.constraint(equalTo: view.topAnchor)
-            ])
-
-            picker.translatesAutoresizingMaskIntoConstraints = false
-            picker.setContentCompressionResistancePriority(251, for: .vertical)
-            view.addSubview(picker)
-            NSLayoutConstraint.activate([
-                picker.topAnchor.constraint(equalTo: toolbar.bottomAnchor),
-                picker.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                picker.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                picker.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            ])
-        }
-    }
-
-    struct DropdownBlank {
-        let number: String
-        let key: String
-        let color: UIColor
-    }
-
-    fileprivate func multipleDropdownQuestionHTML(question: Question, html: String) -> String {
-        guard question.kind == .MultipleDropdowns else {
-            return html
-        }
-
-        return colorsForMultipleDropdownQuestion(question).reduce(html) { coloredHTML, colors in
-            return coloredHTML.replacingOccurrences(of: "[\(colors.key)]", with: "<span style=\"color: \(colors.color.hex)\">[ \(colors.number) ]</span>")
-        }
-    }
-
-    fileprivate func colorsForMultipleDropdownQuestion(_ question: Question) -> [DropdownBlank] {
-        let colors = question.position % 2 == 0 ? multipleDropdownColors : multipleDropdownColors.reversed()
-        return multipleDropdownBlanks(question: question)
-            .enumerated()
-            .map { index, key in
-                DropdownBlank(number: NumberFormatter.localizedString(from: NSNumber(value: index + 1), number: .none), key: key, color: colors[index % colors.count])
-            }
-    }
-
+extension SubmissionViewController {
     fileprivate func multipleDropdownBlanks(question: Question) -> [String] {
         return NSOrderedSet(array: question.answers.map { $0.blankID }.flatMap { $0 }).array as! [String]
     }
 
-    fileprivate func showDropdownOptions(dropdownButton: DropdownButton, indexPath: IndexPath) {
-        guard let questionIndex = Index(indexPath: indexPath).questionIndex, let blank = dropdownBlank(at: indexPath) else {
-            return
+    fileprivate func multipleDropdownQuestionHTML(question: SubmissionQuestion, html: String) -> String {
+        guard question.question.kind == .MultipleDropdowns else {
+            return html
         }
 
-        currentDropdownIndexPath = indexPath
-        dropdownsPicker.reloadComponent(0)
-
-        if traitCollection.horizontalSizeClass == .compact {
-            if !invisibleTextFieldForDropdowns.isFirstResponder {
-                invisibleTextFieldForDropdowns.becomeFirstResponder()
-            }
-        } else {
-            if presentedViewController is DropdownPopoverPickerViewController {
-                return
-            }
-            let popover = DropdownPopoverPickerViewController(toolbar: dropdownToolbar, picker: dropdownsPicker)
-            popover.modalPresentationStyle = .popover
-            popover.popoverPresentationController?.sourceView = dropdownButton.topArrow
-            popover.popoverPresentationController?.permittedArrowDirections = [.left]
-            popover.preferredContentSize = CGSize(width: 350, height: DropdownPickerHeight + dropdownToolbar.frame.size.height)
-            present(popover, animated: true, completion: nil)
-        }
-
-        dropdownToolbarTitleLabel.text = blank.key
-
-        // select the current answer in the picker
-        let question = questions[questionIndex]
+        var markup = html
         if case let .idsHash(hash) = question.answer {
-            if let answeredID = hash[blank.key] {
-                if let selectedRow = pickerAnswers(at: indexPath).index(where: { $0.id == answeredID }) {
-                    dropdownsPicker.selectRow(selectedRow, inComponent: 0, animated: false)
-                }
+            for (_, answerID) in hash {
+                markup = markup.replacingOccurrences(of: "value=\"\(answerID)\"", with: "value=\"\(answerID)\" selected")
             }
         }
+
+        let javascript = """
+        <script>
+          document.querySelectorAll('select').forEach(select => {
+            select.onchange = () => {
+              const iframe = document.createElement('iframe')
+              iframe.src = `canvas-message://domain/quiz-answer/${encodeURIComponent(select.value)}`
+              document.documentElement.appendChild(iframe)
+              iframe.parentNode.removeChild(iframe);
+            }
+          })
+        </script>
+        """
+
+        return markup + javascript
     }
-
-    fileprivate var dropdownToolbar: UIToolbar {
-        let font = UIFont.systemFont(ofSize: 13, weight: UIFontWeightMedium)
-        let cancel = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dropdownToolbarCancelAction))
-        cancel.setTitleTextAttributes([NSFontAttributeName: font], for: .normal)
-        let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        dropdownToolbarTitleLabel.font = font
-        dropdownToolbarTitleLabel.textAlignment = .center
-        let title = UIBarButtonItem(customView: dropdownToolbarTitleLabel)
-        let spacer1 = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let done = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dropdownToolbarDoneAction))
-        done.setTitleTextAttributes([NSFontAttributeName: font], for: .normal)
-
-        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 0, height: 37))
-        toolbar.items = [cancel, spacer, title, spacer1, done]
-        return toolbar
-    }
-
-    private func dropdownBlank(at indexPath: IndexPath) -> DropdownBlank? {
-        guard let questionIndex = Index(indexPath: indexPath).questionIndex else {
-            return nil
-        }
-
-        let answerIndex = indexPath.row - 1
-        let question = questions[questionIndex]
-        let blanks = colorsForMultipleDropdownQuestion(question.question)
-        return blanks[answerIndex]
-    }
-
-    fileprivate func pickerAnswers(at indexPath: IndexPath) -> [Answer]  {
-        guard let questionIndex = Index(indexPath: indexPath).questionIndex, let blank = dropdownBlank(at: indexPath) else {
-            return []
-        }
-
-        let question = questions[questionIndex]
-        return question.question.answers
-            .filter { $0.blankID == blank.key }
-    }
-
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        guard let indexPath = currentDropdownIndexPath else {
-            return 0
-        }
-
-        return pickerAnswers(at: indexPath).count
-    }
-
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        guard let indexPath = currentDropdownIndexPath else {
-            return nil
-        }
-        return pickerAnswers(at: indexPath)
-            .map { answer -> String in
-                switch answer.content {
-                case .text(let text): return text
-                case .html(let html): return html
-                }
-            }[row]
-    }
-
-    func dropdownToolbarDoneAction() {
-        guard let _ = currentDropdownIndexPath else {
-            return
-        }
-
-        let selectedRow = dropdownsPicker.selectedRow(inComponent: 0)
-        hideDropdownPicker()
-        if let indexPath = currentDropdownIndexPath, let questionIndex = Index(indexPath: indexPath).questionIndex, let blank = dropdownBlank(at: indexPath) {
+    
+    fileprivate func handleMultipleDropdownMessage(_ message: String, forIndex indexPath: IndexPath) {
+        let pieces = message.split(separator: "/", omittingEmptySubsequences: true)
+        if let questionIndex = Index(indexPath: indexPath).questionIndex, pieces.count == 2, pieces[0] == "quiz-answer" {
             let question = questions[questionIndex]
             var answerHash: [String: String]
             if case let .idsHash(hash) = question.answer {
@@ -485,21 +325,11 @@ extension SubmissionViewController: UIPickerViewDelegate, UIPickerViewDataSource
             } else {
                 answerHash = [:]
             }
-            answerHash[blank.key] = pickerAnswers(at: indexPath)[selectedRow].id
+            let answerID = pieces[1]
+            if let answer = question.question.answers.findFirst({ $0.id == answerID }), let blankID = answer.blankID {
+                answerHash[blankID] = answer.id
+            }
             submissionInteractor?.selectAnswer(.idsHash(answerHash), forQuestionAtIndex: questionIndex, completed: {})
-            tableView.reloadRows(at: [indexPath], with: .automatic)
-        }
-    }
-
-    func dropdownToolbarCancelAction() {
-        hideDropdownPicker()
-    }
-
-    private func hideDropdownPicker() {
-        if traitCollection.horizontalSizeClass == .compact {
-            invisibleTextFieldForDropdowns.resignFirstResponder()
-        } else {
-            presentedViewController?.dismiss(animated: true, completion: nil)
         }
     }
 }
@@ -598,7 +428,6 @@ extension SubmissionViewController {
         tableView.register(HTMLAnswerCell.Nib, forCellReuseIdentifier: HTMLAnswerCell.ReuseID)
         tableView.register(ShortAnswerCell.Nib, forCellReuseIdentifier: ShortAnswerCell.ReuseID)
         tableView.register(MatchAnswerCell.Nib, forCellReuseIdentifier: MatchAnswerCell.ReuseID)
-        tableView.register(DropdownAnswerCell.Nib, forCellReuseIdentifier: DropdownAnswerCell.ReuseID)
         tableView.register(FileUploadAnswerCell.self, forCellReuseIdentifier: FileUploadAnswerCell.ReuseID)
         tableView.register(QuestionHeaderView.Nib, forHeaderFooterViewReuseIdentifier: QuestionHeaderView.ReuseID)
     }
@@ -617,7 +446,7 @@ extension SubmissionViewController {
         }
 
         if question.question.kind == .MultipleDropdowns {
-            return 1 + multipleDropdownBlanks(question: question.question).count
+            return 1
         }
 
         return 1 + question.question.answers.count
@@ -684,8 +513,6 @@ extension SubmissionViewController {
                 }
             case .ShortAnswer, .Numerical, .FileUpload:
                 return 44.0
-            case .MultipleDropdowns:
-                return 55.0
             default: break
             }
 
@@ -852,13 +679,6 @@ extension SubmissionViewController {
         case .ShortAnswer, .Numerical:
             let answerCell = tableView.dequeueReusableCell(withIdentifier: ShortAnswerCell.ReuseID) as! ShortAnswerCell
             return answerCell
-
-        case .MultipleDropdowns:
-            let cell = tableView.dequeueReusableCell(withIdentifier: DropdownAnswerCell.ReuseID) as! DropdownAnswerCell
-            cell.dropdownButtonTapped = { [weak self] in
-                self?.showDropdownOptions(dropdownButton: cell.dropdownButton, indexPath: indexPath)
-            }
-            return cell
 
         default:
             return UITableViewCell()
@@ -1033,10 +853,10 @@ extension SubmissionViewController {
                 html = html + multipleAnswerIndicator
             }
             if question.question.kind == .MultipleDropdowns {
-                html = multipleDropdownQuestionHTML(question: question.question, html: html)
-                let chooseAnswersString = NSLocalizedString("Choose your answers below", tableName: "Localizable", bundle: .core, value: "", comment: "Label indicating that the question is a multiple dropdown answer question and answer must be chosen.")
-                let dropdownIndicator = String(format: "<p style=\"color: #999999;\"><small>%@</small></p>", chooseAnswersString)
-                html = html + dropdownIndicator
+                html = multipleDropdownQuestionHTML(question: question, html: html)
+                whizzyCell.didRecieveMessage = { [weak self] indexPath, message in
+                    self?.handleMultipleDropdownMessage(message, forIndex: indexPath)
+                }
             }
             whizzyCell.whizzyWigView.loadHTMLString(html, baseURL: whizzyBaseURL)
         case .answer(question: let questionIndex, answer: let answerIndex):
@@ -1108,31 +928,7 @@ extension SubmissionViewController {
                     cell.fileName = question.answer.answerID.flatMap(self.quizService.findFile(withID:))?.name
                 }
             case .MultipleDropdowns:
-                if let cell = cell as? DropdownAnswerCell {
-                    let answerIndex = indexPath.row - 1
-                    let blanks = colorsForMultipleDropdownQuestion(question.question)
-                    let blank = blanks[answerIndex]
-                    cell.dropdownLabel.text = blank.number
-                    cell.dropdownLabel.textColor = blank.color
-                    switch question.answer {
-                    case .idsHash(let hash):
-                        let answer = hash[blank.key].flatMap { answerID in
-                            question.question.answers
-                                .first { $0.id == answerID }
-                                .flatMap { answer -> String in
-                                    switch answer.content {
-                                    case .text(let text):
-                                        return text
-                                    case .html(let html):
-                                        return html
-                                    }
-                                }
-                        }
-                        cell.dropdownButton.valueLabel.text = answer ?? UnansweredDropdownAnswer
-                    default:
-                        cell.dropdownButton.valueLabel.text = UnansweredDropdownAnswer
-                    }
-                }
+                return
             default:
                 return
             }
