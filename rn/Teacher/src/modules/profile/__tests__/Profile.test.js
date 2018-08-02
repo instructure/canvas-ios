@@ -170,7 +170,7 @@ describe('Profile Tests', () => {
       <Profile { ...defaultProps } />
     ).getInstance()
     await instance.userFiles()
-    expect(defaultProps.navigator.show).toHaveBeenCalledWith('/users/self/files', { modal: true }, { 'customPageViewPath': '/files' })
+    expect(defaultProps.navigator.show).toHaveBeenCalledWith('/users/self/files', { modal: false }, { 'customPageViewPath': '/files' })
   })
 
   it('shows the action sheet', () => {

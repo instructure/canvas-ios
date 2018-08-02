@@ -431,7 +431,7 @@ export class FilesList extends Component<Props, State> {
         customPageViewPath={this.props.customPageViewPath ? this.props.customPageViewPath : null}
         title={title}
         navBarColor={this.props.courseColor}
-        navBarStyle={this.props.courseColor ? 'dark' : 'light'}
+        navBarStyle='dark'
         rightBarButtons={rightBarButtons}
         onTraitCollectionChange={this.onTraitCollectionChange.bind(this)}
       >

@@ -4,7 +4,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
 <Screen
   customPageViewPath={null}
   navBarColor={undefined}
-  navBarStyle="light"
+  navBarStyle="dark"
   onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
@@ -778,7 +778,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
 <Screen
   customPageViewPath={null}
   navBarColor={undefined}
-  navBarStyle="light"
+  navBarStyle="dark"
   onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
@@ -1552,7 +1552,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
 <Screen
   customPageViewPath={null}
   navBarColor={undefined}
-  navBarStyle="light"
+  navBarStyle="dark"
   onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
@@ -2326,7 +2326,7 @@ exports[`FilesList sending weird data into the progress update function should n
 <Screen
   customPageViewPath={null}
   navBarColor={undefined}
-  navBarStyle="light"
+  navBarStyle="dark"
   onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
@@ -3100,7 +3100,7 @@ exports[`FilesList should render 1`] = `
 <Screen
   customPageViewPath={null}
   navBarColor={undefined}
-  navBarStyle="light"
+  navBarStyle="dark"
   onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
@@ -4648,7 +4648,7 @@ exports[`FilesList should render for user files 1`] = `
 <Screen
   customPageViewPath={null}
   navBarColor={undefined}
-  navBarStyle="light"
+  navBarStyle="dark"
   onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
@@ -5422,7 +5422,7 @@ exports[`FilesList should render with folders 1`] = `
 <Screen
   customPageViewPath={null}
   navBarColor={undefined}
-  navBarStyle="light"
+  navBarStyle="dark"
   onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
@@ -6196,7 +6196,7 @@ exports[`FilesList should render with no data at all 1`] = `
 <Screen
   customPageViewPath={null}
   navBarColor={undefined}
-  navBarStyle="light"
+  navBarStyle="dark"
   onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
