@@ -50,7 +50,6 @@
     
     self.webView = [[CanvasWebView alloc] init];
     self.webView.presentingViewController = self;
-    self.webView.margin = 16;
     [self.view addSubview:self.webView];
     
     [self.webView setTranslatesAutoresizingMaskIntoConstraints:NO];

@@ -9,7 +9,7 @@
       -webkit-overflow-scrolling: touch;
       font-size: 16px;
       height: auto;
-      margin: 0;
+      margin: 16px;
     }
     a {
       color: #0081bd;
@@ -135,7 +135,8 @@
         if (target) target.scrollIntoView()
       }
       const sendHeight = () => {
-        window.webkit.messageHandlers.height.postMessage({ height: document.getElementById('_end_').offsetTop })
+        const height = document.getElementById('_end_').offsetTop + parseFloat(getComputedStyle(document.body).marginBottom)
+        window.webkit.messageHandlers.height.postMessage({ height })
       }
       sendHeight()
       // re-send height every time a new style, script, img, or iframe loads

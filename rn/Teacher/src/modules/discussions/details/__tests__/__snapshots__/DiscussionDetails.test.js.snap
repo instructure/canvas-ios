@@ -201,14 +201,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                 </Text>
               </View>
             </View>
-            <View
-              style={
-                Object {
-                  "paddingBottom": 16,
-                  "paddingTop": 16,
-                }
-              }
-            >
+            <View>
               <CanvasWebView
                 automaticallySetHeight={true}
                 html="<p>And why?</p>"
@@ -227,6 +220,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                 style={
                   Object {
                     "flex": 1,
+                    "marginHorizontal": -16,
                   }
                 }
               />
@@ -1152,18 +1146,12 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                   </Text>
                 </View>
               </View>
-              <View
-                style={
-                  Object {
-                    "paddingBottom": 16,
-                    "paddingTop": 16,
-                  }
-                }
-              >
+              <View>
                 <View
                   style={
                     Object {
                       "flex": 1,
+                      "marginHorizontal": -16,
                     }
                   }
                   testID="web-container.view"
@@ -1844,14 +1832,7 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                 </Text>
               </View>
             </View>
-            <View
-              style={
-                Object {
-                  "paddingBottom": 16,
-                  "paddingTop": 16,
-                }
-              }
-            >
+            <View>
               <CanvasWebView
                 automaticallySetHeight={true}
                 html="<p>And why?</p>"
@@ -1870,6 +1851,7 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                 style={
                   Object {
                     "flex": 1,
+                    "marginHorizontal": -16,
                   }
                 }
               />
@@ -2180,18 +2162,12 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                   </Text>
                 </View>
               </View>
-              <View
-                style={
-                  Object {
-                    "paddingBottom": 16,
-                    "paddingTop": 16,
-                  }
-                }
-              >
+              <View>
                 <View
                   style={
                     Object {
                       "flex": 1,
+                      "marginHorizontal": -16,
                     }
                   }
                   testID="web-container.view"
@@ -2613,14 +2589,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
                 </Text>
               </View>
             </View>
-            <View
-              style={
-                Object {
-                  "paddingBottom": 16,
-                  "paddingTop": 16,
-                }
-              }
-            >
+            <View>
               <CanvasWebView
                 automaticallySetHeight={true}
                 html="<p>And why?</p>"
@@ -2639,6 +2608,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
                 style={
                   Object {
                     "flex": 1,
+                    "marginHorizontal": -16,
                   }
                 }
               />
@@ -3017,18 +2987,12 @@ exports[`DiscussionDetails renders in student app 1`] = `
                   </Text>
                 </View>
               </View>
-              <View
-                style={
-                  Object {
-                    "paddingBottom": 16,
-                    "paddingTop": 16,
-                  }
-                }
-              >
+              <View>
                 <View
                   style={
                     Object {
                       "flex": 1,
+                      "marginHorizontal": -16,
                     }
                   }
                   testID="web-container.view"
@@ -3699,14 +3663,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                 </Text>
               </View>
             </View>
-            <View
-              style={
-                Object {
-                  "paddingBottom": 16,
-                  "paddingTop": 16,
-                }
-              }
-            >
+            <View>
               <CanvasWebView
                 automaticallySetHeight={true}
                 html="<p>And why?</p>"
@@ -3725,6 +3682,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                 style={
                   Object {
                     "flex": 1,
+                    "marginHorizontal": -16,
                   }
                 }
               />
@@ -4644,18 +4602,12 @@ exports[`DiscussionDetails renders no replies 1`] = `
                   </Text>
                 </View>
               </View>
-              <View
-                style={
-                  Object {
-                    "paddingBottom": 16,
-                    "paddingTop": 16,
-                  }
-                }
-              >
+              <View>
                 <View
                   style={
                     Object {
                       "flex": 1,
+                      "marginHorizontal": -16,
                     }
                   }
                   testID="web-container.view"
@@ -4999,14 +4951,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                 </Text>
               </View>
             </View>
-            <View
-              style={
-                Object {
-                  "paddingBottom": 16,
-                  "paddingTop": 16,
-                }
-              }
-            >
+            <View>
               <CanvasWebView
                 automaticallySetHeight={true}
                 html="<p>And why?</p>"
@@ -5025,6 +4970,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                 style={
                   Object {
                     "flex": 1,
+                    "marginHorizontal": -16,
                   }
                 }
               />
@@ -6048,18 +5994,12 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                   </Text>
                 </View>
               </View>
-              <View
-                style={
-                  Object {
-                    "paddingBottom": 16,
-                    "paddingTop": 16,
-                  }
-                }
-              >
+              <View>
                 <View
                   style={
                     Object {
                       "flex": 1,
+                      "marginHorizontal": -16,
                     }
                   }
                   testID="web-container.view"
@@ -7299,14 +7239,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                 </Text>
               </View>
             </View>
-            <View
-              style={
-                Object {
-                  "paddingBottom": 16,
-                  "paddingTop": 16,
-                }
-              }
-            >
+            <View>
               <CanvasWebView
                 automaticallySetHeight={true}
                 html="<p>And why?</p>"
@@ -7325,6 +7258,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                 style={
                   Object {
                     "flex": 1,
+                    "marginHorizontal": -16,
                   }
                 }
               />
@@ -8276,18 +8210,12 @@ exports[`DiscussionDetails renders with replies 1`] = `
                   </Text>
                 </View>
               </View>
-              <View
-                style={
-                  Object {
-                    "paddingBottom": 16,
-                    "paddingTop": 16,
-                  }
-                }
-              >
+              <View>
                 <View
                   style={
                     Object {
                       "flex": 1,
+                      "marginHorizontal": -16,
                     }
                   }
                   testID="web-container.view"

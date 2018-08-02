@@ -59,7 +59,7 @@
     };
     
     [self.view addSubview:self.webView];
-    self.webView.frame = CGRectInset(self.view.bounds, 16, 0);
+    self.webView.frame = CGRectInset(self.view.bounds, 0, 0);
     self.webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
     [self loadDetailsForAssignment];

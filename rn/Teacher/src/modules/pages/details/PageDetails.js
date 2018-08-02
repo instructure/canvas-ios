@@ -19,7 +19,6 @@
 import i18n from 'format-message'
 import React, { Component } from 'react'
 import {
-  StyleSheet,
   ActionSheetIOS,
   Alert,
 } from 'react-native'
@@ -31,10 +30,8 @@ import {
   CourseModel,
 } from '../../../canvas-api/model-api'
 import CanvasWebView from '../../../common/components/CanvasWebView'
-import { RefreshableScrollView } from '../../../common/components/RefreshableList'
 import Screen from '../../../routing/Screen'
 import Images from '../../../images'
-import { Heading1 } from '../../../common/text'
 import { isTeacher } from '../../app'
 
 type Props = {
@@ -75,22 +72,14 @@ export class PageDetails extends Component<Props> {
           },
         ]}
       >
-        <RefreshableScrollView
-          style={styles.container}
-          onRefresh={this.props.refresh}
-          refreshing={this.props.isLoading}
-        >
-          <Heading1 style={styles.header}>{page ? page.title : ''}</Heading1>
-          <CanvasWebView
-            automaticallySetHeight
-            style={{ flex: 1 }}
-            source={{
-              html: page ? page.body : '',
-              baseURL: page ? page.htmlUrl + location.hash : '',
-            }}
-            navigator={this.props.navigator}
-          />
-        </RefreshableScrollView>
+        <CanvasWebView
+          style={{ flex: 1 }}
+          source={{
+            html: page ? page.body : '',
+            baseURL: page ? page.htmlUrl + location.hash : '',
+          }}
+          navigator={this.props.navigator}
+        />
       </Screen>
     )
   }
@@ -163,16 +152,6 @@ export class PageDetails extends Component<Props> {
     }
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: global.style.defaultPadding,
-  },
-  header: {
-    paddingBottom: 17,
-  },
-})
 
 export default fetchPropsFor(PageDetails, ({ courseID, url }, api) => {
   let pageApi

@@ -147,8 +147,8 @@ class CalendarEventDetailViewController: UIViewController {
         scrollView.bottomAnchor.constraint(equalTo: details.bottomAnchor).isActive = true
 
         details.topAnchor.constraint(equalTo: stack.bottomAnchor).isActive = true
-        details.leadingAnchor.constraint(equalTo: stack.leadingAnchor).isActive = true
-        details.trailingAnchor.constraint(equalTo: stack.trailingAnchor).isActive = true
+        details.leadingAnchor.constraint(equalTo: stack.leadingAnchor, constant: -16).isActive = true
+        details.trailingAnchor.constraint(equalTo: stack.trailingAnchor, constant: 16).isActive = true
         detailsHeightConstraint = NSLayoutConstraint.constraints(withVisualFormat: "V:[view(0)]", options: [], metrics: nil, views: ["view": self.details]).first
         if let detailsHeightConstraint = detailsHeightConstraint {
             details.addConstraint(detailsHeightConstraint)
@@ -160,7 +160,7 @@ class CalendarEventDetailViewController: UIViewController {
             }
         }
     }
-    
+
     override func loadView() {
         let spacing = CGFloat(16)
         

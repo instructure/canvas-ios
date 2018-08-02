@@ -291,9 +291,13 @@ export class DiscussionDetails extends Component<Props, any> {
           </View>
 
           { (Boolean(discussion.message) || Boolean(discussion.attachments)) &&
-            <View style={style.message}>
+            <View>
               { Boolean(discussion.message) &&
-                <CanvasWebView style={{ flex: 1 }} automaticallySetHeight html={discussion.message} navigator={this.props.navigator} />
+                <CanvasWebView
+                  style={{ flex: 1, marginHorizontal: -global.style.defaultPadding }}
+                  automaticallySetHeight html={discussion.message}
+                  navigator={this.props.navigator}
+                />
               }
               { Boolean(discussion.attachments) && discussion.attachments && discussion.attachments.length === 1 &&
                 // should only ever have 1, blocked by UI, but API returns array of 1 :facepalm:
@@ -745,10 +749,6 @@ const style = StyleSheet.create({
   },
   popReplyStackIcon: {
     tintColor: colors.link,
-  },
-  message: {
-    paddingTop: global.style.defaultPadding,
-    paddingBottom: global.style.defaultPadding,
   },
   section: {
     flex: 1,

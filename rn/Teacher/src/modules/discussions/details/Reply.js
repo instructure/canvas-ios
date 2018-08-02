@@ -189,7 +189,7 @@ export default class Reply extends Component<Props, State> {
               ? <RichContent html={message} navigator={this.props.navigator} />
               : <CanvasWebView
                 automaticallySetHeight
-                style={{ flex: 1 }}
+                style={{ flex: 1, margin: -global.style.defaultPadding }}
                 html={message}
                 navigator={this.props.navigator}
                 ref={(ref) => { this.webView = ref }}

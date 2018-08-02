@@ -21,52 +21,31 @@ exports[`PageDetails renders 1`] = `
   subtitle="Course 1"
   title="Page Details"
 >
-  <RefreshableScrollView
-    onRefresh={[Function]}
-    refreshing={false}
+  <CanvasWebView
+    navigator={
+      Object {
+        "dismiss": [Function],
+        "dismissAllModals": [Function],
+        "isModal": false,
+        "pop": [Function],
+        "replace": [Function],
+        "show": [Function],
+        "traitCollection": [Function],
+      }
+    }
+    scrollEnabled={true}
+    source={
+      Object {
+        "baseURL": "/pages/page-1#jumpto",
+        "html": "<p>Hello, World!</p>",
+      }
+    }
     style={
       Object {
         "flex": 1,
-        "padding": 16,
       }
     }
-  >
-    <Heading1
-      style={
-        Object {
-          "paddingBottom": 17,
-        }
-      }
-    >
-      Page 1
-    </Heading1>
-    <CanvasWebView
-      automaticallySetHeight={true}
-      navigator={
-        Object {
-          "dismiss": [Function],
-          "dismissAllModals": [Function],
-          "isModal": false,
-          "pop": [Function],
-          "replace": [Function],
-          "show": [Function],
-          "traitCollection": [Function],
-        }
-      }
-      scrollEnabled={true}
-      source={
-        Object {
-          "baseURL": "/pages/page-1#jumpto",
-          "html": "<p>Hello, World!</p>",
-        }
-      }
-      style={
-        Object {
-          "flex": 1,
-        }
-      }
-    />
-  </RefreshableScrollView>
+  />
 </Screen>
 `;
 
@@ -90,49 +69,30 @@ exports[`PageDetails renders while loading 1`] = `
   statusBarStyle="default"
   title="Page Details"
 >
-  <RefreshableScrollView
-    onRefresh={[Function]}
-    refreshing={true}
+  <CanvasWebView
+    navigator={
+      Object {
+        "dismiss": [Function],
+        "dismissAllModals": [Function],
+        "isModal": false,
+        "pop": [Function],
+        "replace": [Function],
+        "show": [Function],
+        "traitCollection": [Function],
+      }
+    }
+    scrollEnabled={true}
+    source={
+      Object {
+        "baseURL": "",
+        "html": "",
+      }
+    }
     style={
       Object {
         "flex": 1,
-        "padding": 16,
       }
     }
-  >
-    <Heading1
-      style={
-        Object {
-          "paddingBottom": 17,
-        }
-      }
-    />
-    <CanvasWebView
-      automaticallySetHeight={true}
-      navigator={
-        Object {
-          "dismiss": [Function],
-          "dismissAllModals": [Function],
-          "isModal": false,
-          "pop": [Function],
-          "replace": [Function],
-          "show": [Function],
-          "traitCollection": [Function],
-        }
-      }
-      scrollEnabled={true}
-      source={
-        Object {
-          "baseURL": "",
-          "html": "",
-        }
-      }
-      style={
-        Object {
-          "flex": 1,
-        }
-      }
-    />
-  </RefreshableScrollView>
+  />
 </Screen>
 `;
