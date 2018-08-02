@@ -308,9 +308,13 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
                     navigationItem.titleView = twoLineTitleView
                     navigationItem.title = nil
                 }
-                twoLineTitleView?.titleLabel.text = title
-                twoLineTitleView?.subtitleLabel.text = subtitle
-                twoLineTitleView?.accessibilityLabel = "\(title), \(subtitle)"
+                
+                if let titleView = twoLineTitleView {
+                    styleTitleViewLabels(titleLabel: titleView.titleLabel, subtitleLabel: titleView.subtitleLabel)
+                    titleView.titleLabel.text = title
+                    titleView.subtitleLabel.text = subtitle
+                    titleView.accessibilityLabel = "\(title), \(subtitle)"
+                }
             }
             self.title = title
         }
@@ -543,7 +547,6 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
         if let testID = screenConfig["testID"] as? String {
             titleView.accessibilityIdentifier = testID + ".nav-bar-title-view"
         }
-        styleTitleViewLabels(titleLabel: titleView.titleLabel, subtitleLabel: titleView.subtitleLabel)
         return titleView
     }
     
