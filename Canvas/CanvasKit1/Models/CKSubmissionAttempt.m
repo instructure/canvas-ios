@@ -238,10 +238,10 @@ NSString *CKDiscussionAttemptFilename = @"SGDiscussionAttemptFilename-v3";
     
     NSNumber *theScore = [info objectForKeyCheckingNull:@"score"];
     if (theScore) {
-        self.score = [theScore floatValue];
+        self.score = @([theScore floatValue]);
     }
     else {
-        self.score = -1;
+        self.score = nil;
     }
 }
 

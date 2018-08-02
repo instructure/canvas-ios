@@ -33,7 +33,7 @@
 @property (weak, nonatomic, readonly) CKSubmissionAttempt *lastAttempt;
 @property (nonatomic, strong) NSArray *comments;
 @property (nonatomic, readonly) BOOL isPlaceholder;
-@property (nonatomic, assign) float score;
+@property (nonatomic, strong) NSNumber *score;
 @property (nonatomic, strong) NSString *grade;
 @property (nonatomic, strong) CKRubricAssessment *rubricAssessment;
 @property (weak, nonatomic, readonly) NSString *displayGrade;
@@ -41,9 +41,10 @@
 @property (nonatomic, readonly) BOOL isGraded;
 @property (nonatomic, readonly) BOOL needsGrading;
 @property (nonatomic, strong) NSNumber *turnitinScore;
-@property (nonatomic, assign) float enteredScore;
+@property (nonatomic, strong) NSNumber *enteredScore;
 @property (nonatomic, strong) NSString *enteredGrade;
 @property (nonatomic, strong) NSNumber *pointsDeducted;
+@property (nonatomic, assign) NSNumber *excused;
 
 - (id)initPlaceholderForStudent:(CKStudent *)student andAssignment:(CKAssignment *)assignment;
 - (id)initWithInfo:(NSDictionary *)info andAssignment:(CKAssignment *)anAssignment;

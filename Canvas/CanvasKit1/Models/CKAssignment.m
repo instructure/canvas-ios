@@ -203,6 +203,10 @@
 
 - (NSString *)gradeStringForSubmission:(CKSubmission *)submission usingEnteredGrade:(BOOL)useEnteredGrade
 {
+    if ([submission.excused boolValue]) {
+        return NSLocalizedString(@"Excused", nil);
+    }
+
     NSString *submissionGrade = useEnteredGrade ? submission.enteredGrade : submission.grade ?: @"—";
     
     switch (self.scoringType) {

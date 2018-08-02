@@ -51,31 +51,40 @@
             self.finalScoreLabel.textColor = [UIColor contextRed];
         }
 
+        NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+        [numberFormatter setMaximumFractionDigits:2];
+        numberFormatter.numberStyle = NSNumberFormatterDecimalStyle;
+
         NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-        BOOL latePolicy = [submission hasLatePolicyApplied] && assignment.scoringType != CKAssignmentScoringTypePassFail;
+        BOOL latePolicy = assignment &&
+            submission &&
+            [submission hasLatePolicyApplied] &&
+            assignment.scoringType != CKAssignmentScoringTypePassFail &&
+            submission.pointsDeducted &&
+        [submission.pointsDeducted floatValue] > 0;
         if (!latePolicy) {
             [self.latePolicyConstraint setActive:NO];
             self.pointsDeductedLabel.hidden = YES;
             self.finalScoreLabel.hidden = YES;
             self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, self.frame.size.height - 70);
         } else {
-            if (assignment && submission) {
-                self.pointsDeductedLabel.text = [NSString stringWithFormat:@"%@ (-%@)", NSLocalizedStringFromTableInBundle(@"Late Penalty", nil, bundle, nil), [submission.pointsDeducted stringValue]];
-                self.finalScoreLabel.text = [NSString stringWithFormat:@"%@ %@", NSLocalizedStringFromTableInBundle(@"Final Grade", nil, bundle, nil), [assignment gradeStringForSubmission:submission usingEnteredGrade:NO]];
-            }
+            self.pointsDeductedLabel.text = [NSString stringWithFormat:@"%@ (-%@)", NSLocalizedStringFromTableInBundle(@"Late Penalty", nil, bundle, nil), [numberFormatter stringFromNumber:submission.pointsDeducted]];
+            self.finalScoreLabel.text = [NSString stringWithFormat:@"%@ %@", NSLocalizedStringFromTableInBundle(@"Final Grade", nil, bundle, nil), [assignment gradeStringForSubmission:submission usingEnteredGrade:NO]];
         }
 
-        if (assignment.pointsPossible){
-            if (submission.score != submission.score) {
-                // Rare case where score is null
-                self.pointsGrade.text = [NSString stringWithFormat:@"—/%g", assignment.pointsPossible];
-                [self.pointsGrade setAccessibilityLabel:[NSString stringWithFormat:@"%@ %g", NSLocalizedStringFromTableInBundle(@"out of", nil, bundle, nil), assignment.pointsPossible]];
+        NSNumber *pointsPossible = [NSNumber numberWithDouble:assignment.pointsPossible];
+        if (pointsPossible != nil) {
+            NSString *formattedPointsPossible = [numberFormatter stringFromNumber:pointsPossible];
+            if (submission.score == nil) {
+                self.pointsGrade.text = [NSString stringWithFormat:@"—/%@", formattedPointsPossible];
+                [self.pointsGrade setAccessibilityLabel:[NSString stringWithFormat:@"%@ %@", NSLocalizedStringFromTableInBundle(@"out of", nil, bundle, nil), formattedPointsPossible]];
             } else {
-                float score = latePolicy ? submission.enteredScore : submission.score;
-                self.pointsGrade.text = [NSString stringWithFormat:@"%g/%g", score, assignment.pointsPossible];
-                [self.pointsGrade setAccessibilityLabel:[NSString stringWithFormat:@"%g %@ %g", score, NSLocalizedStringFromTableInBundle(@"out of", nil, bundle, nil), assignment.pointsPossible]];
+                NSNumber *score = latePolicy ? submission.enteredScore : submission.score;
+                NSString *formattedScore = [numberFormatter stringFromNumber:score];
+                self.pointsGrade.text = [NSString stringWithFormat:@"%@/%@", formattedScore, formattedPointsPossible];
+                [self.pointsGrade setAccessibilityLabel:[NSString stringWithFormat:@"%@ %@ %@", formattedScore, NSLocalizedStringFromTableInBundle(@"out of", nil, bundle, nil), formattedPointsPossible]];
             }
-        } else{
+        } else {
             self.pointsGrade.text = @"—/—";
             [self.pointsGrade setAccessibilityLabel:NSLocalizedStringFromTableInBundle(@"Not available", nil, bundle, nil)];
         }

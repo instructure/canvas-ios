@@ -33,7 +33,7 @@ extern NSString *CKDiscussionAttemptFilename;
 @property (nonatomic, weak) CKSubmission *submission;
 @property (nonatomic, strong) NSDate *submittedAt;
 @property BOOL unsupportedFormat;
-@property (nonatomic, assign) float score;
+@property (nonatomic, strong) NSNumber *score;
 @property (nonatomic, strong) NSString *grade;
 @property (strong, nonatomic, readonly) NSMutableArray *attachments;
 @property (strong, nonatomic, readonly) NSArray *discussionEntries;

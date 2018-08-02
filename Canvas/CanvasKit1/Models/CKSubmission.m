@@ -95,6 +95,12 @@
     // NOTE: the rest api uses user_id when getting submissions, so that's what we use here as well
     self.ident = [info[@"user_id"] unsignedLongLongValue];
     self.internalIdent = [CKSubmission internalIdentForInfo:info andAssignment:self.assignment];
+    NSNumber *excused = info[@"excused"];
+    if (excused && (id)excused != [NSNull null]) {
+        self.excused = excused;
+    } else {
+        self.excused = [NSNumber numberWithBool:NO];
+    }
     
     // find student
     self.student = [CKSubmission studentForInfo:info andAssignment:self.assignment];
@@ -155,7 +161,7 @@
 {
     NSNumber *scoreNum = info[@"score"];
     if (scoreNum && (id)scoreNum != [NSNull null]) {
-        self.score = [scoreNum floatValue];
+        self.score = @([scoreNum floatValue]);
     }
     
     self.grade = [self extractGradeStringFromObject:info forKey:@"grade"];
@@ -163,7 +169,7 @@
 
     NSNumber *enteredScore = info[@"entered_score"];
     if (enteredScore && (id)enteredScore != [NSNull null]) {
-        self.enteredScore = [enteredScore floatValue];
+        self.enteredScore = @([enteredScore floatValue]);
     }
     NSNumber *pointsDeducted = info[@"points_deducted"];
     if (pointsDeducted && (id)pointsDeducted != [NSNull null]) {
@@ -292,7 +298,7 @@
 }
 
 
-+ (NSString *)gradeStringForAssignment:(CKAssignment *)assignment grade:(NSString *)grade points:(float)score hasSubmission:(BOOL)hasSubmission isGraded:(BOOL)graded
++ (NSString *)gradeStringForAssignment:(CKAssignment *)assignment grade:(NSString *)grade points:(NSNumber *)score hasSubmission:(BOOL)hasSubmission isGraded:(BOOL)graded
 {
     NSString *gradeString = @"";
     NSString *pointsPossible = [NSString stringWithFormat:@"%g", assignment.pointsPossible];
@@ -351,7 +357,7 @@
 
 + (NSString *)gradeStringForAssignment:(CKAssignment *)assignment andAttempt:(CKSubmissionAttempt *)attempt
 {
-    return [self gradeStringForAssignment:assignment grade:attempt.grade points:attempt.score hasSubmission:attempt != nil isGraded:attempt && attempt.score != -1];
+    return [self gradeStringForAssignment:assignment grade:attempt.grade points:attempt.score hasSubmission:attempt != nil isGraded:attempt && attempt.score != nil];
 }
 
 + (NSArray *)propertiesToExcludeFromEqualityComparison {
