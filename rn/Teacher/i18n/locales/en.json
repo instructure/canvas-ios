@@ -137,6 +137,9 @@
   "archived_de543437": {
     "message": "Archived"
   },
+  "are_you_enjoying_canvas_922624ff": {
+    "message": "Are you enjoying Canvas?"
+  },
   "are_you_sure_you_want_to_delete_name_908230d3": {
     "message": "Are you sure you want to delete { name }?"
   },
@@ -481,6 +484,9 @@
   },
   "dismiss_name_8646b9fd": {
     "message": "Dismiss { name }"
+  },
+  "dismiss_prompt_to_rate_8fdc85b6": {
+    "message": "Dismiss prompt to rate"
   },
   "display_grade_as_7b5376a6": {
     "message": "Display Grade As"
