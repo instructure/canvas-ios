@@ -215,6 +215,7 @@ export default class ConversationMessageRow extends React.Component<Props, State
         underlayColor='#ffffff00'
         testID={`conversation-message.kabob-${this.props.message.id}`}
         onPress={this.showActionSheet}
+        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
       >
         <Image style={styles.kabob} source={Images.kabob}/>
       </TouchableOpacity>
@@ -278,12 +279,13 @@ const styles = StyleSheet.create({
   kabobButton: {
     justifyContent: 'center',
     alignItems: 'flex-end',
-    width: 32,
-    height: 32,
+    width: 24,
+    height: 24,
   },
   kabob: {
     width: 18,
     height: 18,
+    margin: 3,
     tintColor: color.grey4,
     transform: [{ rotate: '180deg' }],
   },

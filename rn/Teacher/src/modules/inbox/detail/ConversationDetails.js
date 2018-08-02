@@ -30,7 +30,7 @@ import { connect } from 'react-redux'
 import refresh from '../../../utils/refresh'
 import InboxActions from '../actions'
 import Screen from '../../../routing/Screen'
-import branding from '../../../common/branding'
+import { createStyleSheet } from '../../../common/branding'
 import i18n from 'format-message'
 import ConversationMessageRow from '../components/ConversationMessageRow'
 import { Heading1 } from '../../../common/text'
@@ -138,11 +138,9 @@ export class ConversationDetails extends React.Component <Props, State> {
           testID={`inbox.detail.${starred ? 'starred' : 'not-starred'}`}
           focusedOpacity={0.7}
           onPress={this.toggleStarred}
-          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+          hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
         >
-          <View style={{ backgroundColor: 'white' }}>
-            <Image source={star} style={{ tintColor: branding.primaryBrandColor, height: 24, width: 24 }}/>
-          </View>
+          <Image source={star} style={styles.star} />
         </TouchableOpacity>
       </View>
     )
@@ -151,7 +149,7 @@ export class ConversationDetails extends React.Component <Props, State> {
   render () {
     return (
       <Screen
-        navBarColor={branding.navBarColor}
+        navBarColor={color.navBarColor}
         navBarButtonColor={color.navBarTextColor}
         statusBarStyle={color.statusBarStyle}
         drawUnderNavBar
@@ -303,10 +301,10 @@ export class ConversationDetails extends React.Component <Props, State> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet(color => ({
   container: {
     flex: 1,
-    backgroundColor: '#F5F5F5',
+    backgroundColor: color.grey1,
   },
   loading: {
     flex: 1,
@@ -314,7 +312,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   list: {
-    backgroundColor: '#F5F5F5',
+    backgroundColor: color.grey1,
   },
   header: {
     flexDirection: 'row',
@@ -326,7 +324,12 @@ const styles = StyleSheet.create({
     borderTopWidth: StyleSheet.hairlineWidth,
     borderTopColor: color.seperatorColor,
   },
-})
+  star: {
+    tintColor: color.primaryBrandColor,
+    height: 24,
+    width: 24,
+  },
+}))
 
 export function mapStateToProps (state: AppState, props: any) {
   const inbox = state.inbox
