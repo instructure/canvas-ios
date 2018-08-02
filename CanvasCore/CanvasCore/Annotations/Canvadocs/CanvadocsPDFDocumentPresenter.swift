@@ -232,7 +232,7 @@ extension CanvadocsPDFDocumentPresenter: PSPDFViewControllerDelegate {
             pointAnnotation.user = metadata.userID
             pointAnnotation.userName = metadata.userName
             pointAnnotation.color = state.drawColor
-            pointAnnotation.boundingBox = CGRect(x: 0, y: 0, width: 17 * 2 / 3, height: 24 * 2 / 3)
+            pointAnnotation.boundingBox = CGRect(x: 0, y: 0, width: 9.33, height: 13.33)
             pointAnnotation.pageIndex = pageView.pageIndex
             pageView.center(pointAnnotation, aroundPDFPoint: pageView.convertPoint(toPDFPoint: viewPoint))
             pdfDocument.add([ pointAnnotation ], options: nil)
