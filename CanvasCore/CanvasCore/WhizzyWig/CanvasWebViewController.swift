@@ -24,6 +24,7 @@ open class CanvasWebViewController: UIViewController, PageViewEventViewControlle
     public var pageViewName: String?
     private let showDoneButton: Bool
     private let showShareButton: Bool
+    public var showReloadButton: Bool = true
     
     let canBack: DynamicProperty<Bool>
     let canForward: DynamicProperty<Bool>
@@ -44,7 +45,6 @@ open class CanvasWebViewController: UIViewController, PageViewEventViewControlle
 
         webView.requestClose = { [weak self] in self?.done() }
         webView.presentingViewController = self
-        buildUI()
     }
     
     public required init?(coder aDecoder: NSCoder) {
@@ -63,6 +63,7 @@ open class CanvasWebViewController: UIViewController, PageViewEventViewControlle
             webView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             webView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
+        buildUI()
     }
     
     open override func viewWillAppear(_ animated: Bool) {
@@ -104,8 +105,11 @@ open class CanvasWebViewController: UIViewController, PageViewEventViewControlle
         let space: () -> UIBarButtonItem = {
             return UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         }
-        
-        let reload = UIBarButtonItem(barButtonSystemItem: .refresh, target: webView, action: #selector(WKWebView.reload))
+
+        var reload: UIBarButtonItem?
+        if showReloadButton {
+            reload = UIBarButtonItem(barButtonSystemItem: .refresh, target: webView, action: #selector(WKWebView.reload))
+        }
 
         var share: UIBarButtonItem?
         if showShareButton {
