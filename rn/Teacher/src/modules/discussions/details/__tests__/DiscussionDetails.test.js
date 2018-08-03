@@ -797,7 +797,6 @@ describe('mapStateToProps', () => {
       courseName: 'Course',
       courseColor: '#fff',
       assignment,
-      isAnnouncement: false,
       entryRatings: { '4': 1 },
     })
   })
@@ -868,6 +867,46 @@ describe('mapStateToProps', () => {
 
     expect(
       mapStateToProps(state, { context: 'courses', contextID: '1', announcementID: '1' })
+    ).toMatchObject({
+      discussion,
+      pending: 1,
+      error: null,
+      context: 'courses',
+      contextID: '1',
+      discussionID: '1',
+      isAnnouncement: true,
+    })
+  })
+
+  it('handles isAnnouncement appState prop', () => {
+    const discussion = template.discussion({ id: '1', assignment_id: '1' })
+    const course = template.course({ id: '1' })
+    const state: AppState = template.appState({
+      entities: {
+        ...template.appState().entities,
+        discussions: {
+          '1': {
+            data: discussion,
+            pending: 1,
+            error: null,
+            isAnnouncement: true,
+          },
+        },
+        courses: {
+          '1': {
+            course: course,
+          },
+        },
+        assignments: {
+          '2': {
+            data: null,
+          },
+        },
+      },
+    })
+
+    expect(
+      mapStateToProps(state, { context: 'courses', contextID: '1', discussionID: '1' })
     ).toMatchObject({
       discussion,
       pending: 1,

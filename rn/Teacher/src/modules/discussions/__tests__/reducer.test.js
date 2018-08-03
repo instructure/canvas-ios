@@ -585,6 +585,62 @@ describe('refreshSingleDiscussion', () => {
       },
     })
   })
+
+  it('detects and sets isAnnouncement flag', () => {
+    let discussion = template.discussion()
+    let state = {
+      [discussion.id]: {
+        data: discussion,
+      },
+    }
+
+    let actionRefresh = {
+      type: refreshSingleDiscussion.toString(),
+      payload: {
+        courseID: '1',
+        result: {
+          data: template.discussion({ subscription_hold: 'topic_is_announcement' }),
+        },
+        discussionID: discussion.id,
+      },
+    }
+    expect(discussions(state, actionRefresh)).toEqual({
+      [discussion.id]: {
+        isAnnouncement: true,
+        data: {
+          ...template.discussion({ subscription_hold: 'topic_is_announcement' }),
+        },
+      },
+    })
+  })
+
+  it('sets isAnnouncement flag to false if subscription_hold is the wrong value', () => {
+    let discussion = template.discussion()
+    let state = {
+      [discussion.id]: {
+        data: discussion,
+      },
+    }
+
+    let actionRefresh = {
+      type: refreshSingleDiscussion.toString(),
+      payload: {
+        courseID: '1',
+        result: {
+          data: template.discussion({ subscription_hold: 'not_in_group' }),
+        },
+        discussionID: discussion.id,
+      },
+    }
+    expect(discussions(state, actionRefresh)).toEqual({
+      [discussion.id]: {
+        isAnnouncement: false,
+        data: {
+          ...template.discussion({ subscription_hold: 'not_in_group' }),
+        },
+      },
+    })
+  })
 })
 
 describe('refreshDiscussionEntries', () => {

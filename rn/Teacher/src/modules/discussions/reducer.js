@@ -269,16 +269,20 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
     },
   }),
   [refreshSingleDiscussion.toString()]: handleAsync({
-    resolved: (state, { result, discussionID }) => ({
-      ...state,
-      [discussionID]: {
-        ...state[discussionID],
-        data: {
-          ...(state[discussionID] && state[discussionID].data),
-          ...result.data,
+    resolved: (state, { result, discussionID }) => {
+      const isAnnouncement = result.data['subscription_hold'] && result.data['subscription_hold'] === 'topic_is_announcement'
+      return {
+        ...state,
+        [discussionID]: {
+          ...state[discussionID],
+          isAnnouncement,
+          data: {
+            ...(state[discussionID] && state[discussionID].data),
+            ...result.data,
+          },
         },
-      },
-    }),
+      }
+    },
   }),
   [deleteDiscussionEntry.toString()]: handleAsync({
     rejected: (state, { error, discussionID, entryID }) => {

@@ -774,7 +774,7 @@ export function mapStateToProps ({ entities }: AppState, ownProps: OwnProps): St
   const contextID = ownProps.contextID
   const context = ownProps.context
   const discussionID = ownProps.announcementID || ownProps.discussionID
-  const isAnnouncement = ownProps.isAnnouncement || ownProps.announcementID != null
+  let isAnnouncement = ownProps.isAnnouncement || ownProps.announcementID != null
   let discussion: ?Discussion
   let pending = 0
   let error = null
@@ -808,6 +808,9 @@ export function mapStateToProps ({ entities }: AppState, ownProps: OwnProps): St
     pending = state.pending
     error = state.error
     initialPostRequired = state.initialPostRequired ? discussion.require_initial_post : false
+    if (!isAnnouncement) {
+      isAnnouncement = state.isAnnouncement
+    }
   }
 
   let assignment = null
