@@ -18,6 +18,7 @@
 import mapStateToProps from '../map-state-to-props'
 import { appState } from '../../../../redux/__templates__/app-state'
 import app from '../../../app'
+import * as template from '../../../../__templates__'
 
 test('returns the correct props with no groups', () => {
   app.setCurrentApp('student')
@@ -27,11 +28,13 @@ test('returns the correct props with no groups', () => {
         '1': {
           course: {
             name: 'trump university',
+            enrollments: [template.enrollment()],
           },
         },
         '2': {
           course: {
             name: 'harvard',
+            enrollments: [template.enrollment()],
           },
         },
       },
@@ -47,6 +50,36 @@ test('returns the correct props with no groups', () => {
   expect(props.courseFavorites).toEqual(state.favoriteCourses.courseRefs)
 })
 
+test('returns the correct props with no invited enrollments', () => {
+  app.setCurrentApp('student')
+  let state = appState({
+    entities: {
+      courses: {
+        '1': {
+          course: {
+            name: 'trump university',
+            enrollments: [template.enrollment({ enrollment_state: 'invited' })],
+          },
+        },
+        '2': {
+          course: {
+            name: 'harvard',
+            enrollments: [template.enrollment()],
+          },
+        },
+      },
+      assignmentGroups: {},
+      gradingPeriods: {},
+    },
+    favoriteCourses: {
+      courseRefs: ['1', '2'],
+    },
+  })
+  let props = mapStateToProps(state)
+  expect(props.courses).toEqual([state.entities.courses['2'].course])
+  expect(props.courseFavorites).toEqual(state.favoriteCourses.courseRefs)
+})
+
 test('returns the correct props', () => {
   app.setCurrentApp('student')
   let state = appState({
@@ -55,11 +88,13 @@ test('returns the correct props', () => {
         '1': {
           course: {
             name: 'trump university',
+            enrollments: [template.enrollment()],
           },
         },
         '2': {
           course: {
             name: 'harvard',
+            enrollments: [template.enrollment()],
           },
         },
       },

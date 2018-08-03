@@ -21,10 +21,17 @@ import localeSort from '../../../utils/locale-sort'
 import App from '../../app'
 
 export default function mapStateToProps (state: AppState): EditFavoritesProps {
+  let filterActiveEnrollmentState = (course: Course): boolean => {
+    const enrollments = course.enrollments
+    if (!enrollments) return false
+    return enrollments.some((e) => (e.enrollment_state !== 'invited'))
+  }
+
   let courses = Object.keys(state.entities.courses)
     .map(id => state.entities.courses[id])
     .map(({ course }) => course)
     .filter(App.current().filterCourse)
+    .filter(filterActiveEnrollmentState)
     .sort((c1, c2) => localeSort(c1.name, c2.name))
 
   let groups = Object.keys(state.entities.groups || {})
