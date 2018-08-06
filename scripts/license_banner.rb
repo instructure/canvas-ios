@@ -24,6 +24,9 @@ files = []
 # App code and everything else is GPL.
 # CanvasCore is considered app code and not framework.
 def appropriate_banner(file, year)
+    if year == "" 
+        year = Time.new.year
+    end
 
     gpl_header = %q(//
 // Copyright (C) %d-present Instructure, Inc.
