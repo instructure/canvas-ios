@@ -71,7 +71,7 @@
                 NSURL *goodURL = components.URL;
                 if (goodURL != nil) {
                     // NEW ANNOTATIONS FTW!
-                    [CanvadocsPDFDocumentPresenter loadPDFViewController:goodURL with:[AppAnnotationsConfiguration canvasAndSpeedgraderConfig] completed:^(UIViewController *pdfViewController, NSArray *errors) {
+                    [CanvadocsPDFDocumentPresenter loadPDFViewController:goodURL with:[AppAnnotationsConfiguration canvasAndSpeedgraderConfig] showAnnotationBarButton:false completed:^(UIViewController *pdfViewController, NSArray *errors) {
                         dispatch_async(dispatch_get_main_queue(), ^{
                             [SVProgressHUD dismiss];
                             if (pdfViewController != nil) {

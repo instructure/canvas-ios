@@ -197,7 +197,7 @@ public class CanvadocView: UIView {
             components.path = (components.path as NSString).deletingLastPathComponent
             
             if let goodURL = components.url {
-                CanvadocsPDFDocumentPresenter.loadPDFViewController(goodURL, with: teacherAppConfiguration(bottomInset: me.bottomInset)) { [weak self] (pdfViewController, errors) in
+                CanvadocsPDFDocumentPresenter.loadPDFViewController(goodURL, with: teacherAppConfiguration(bottomInset: me.bottomInset), showAnnotationBarButton: true) { [weak self] (pdfViewController, errors) in
                     if let pdfViewController = pdfViewController as? PSPDFViewController {
                         self?.activityIndicator.stopAnimating()
                         self?.embed(pdfViewController: pdfViewController)

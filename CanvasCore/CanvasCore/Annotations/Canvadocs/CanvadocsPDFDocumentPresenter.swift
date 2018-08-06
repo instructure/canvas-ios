@@ -44,7 +44,7 @@ open class CanvadocsPDFDocumentPresenter: NSObject {
     var annotationProvider: CanvadocsAnnotationProvider?
     weak var pdfViewController: PSPDFViewController?
 
-    open static func loadPDFViewController(_ sessionURL: URL, with configuration: PSPDFConfiguration, completed: @escaping (UIViewController?, [NSError]?)->()) {
+    open static func loadPDFViewController(_ sessionURL: URL, with configuration: PSPDFConfiguration, showAnnotationBarButton: Bool, completed: @escaping (UIViewController?, [NSError]?)->()) {
         var metadata: CanvadocsFileMetadata? = nil
         var localPDFURL: URL? = nil
         var canvadocsAnnotations: [CanvadocsAnnotation]? = nil
@@ -103,7 +103,7 @@ open class CanvadocsPDFDocumentPresenter: NSObject {
             if let localPDFURL = localPDFURL, let annotations = canvadocsAnnotations, let metadata = metadata {
                 canvadocsAnnotationService.metadata = metadata
                 let documentPresenter = CanvadocsPDFDocumentPresenter(localPDFURL: localPDFURL, annotations: annotations, metadata: metadata, service: canvadocsAnnotationService, configuration: configuration)
-                let pdfViewController = documentPresenter.getPDFViewController()
+                let pdfViewController = documentPresenter.getPDFViewController(showAnnotationBarButton: showAnnotationBarButton)
                 completed(pdfViewController, nil)
             }
         }
@@ -160,12 +160,20 @@ open class CanvadocsPDFDocumentPresenter: NSObject {
         styleManager.setLastUsedValue(2.0, forProperty: "lineWidth", forKey: .line)
     }
 
-    open func getPDFViewController() -> UIViewController {
+    open func getPDFViewController(showAnnotationBarButton: Bool = true) -> UIViewController {
         stylePSPDFKit()
 
         let pdfViewController = PSPDFViewController(document: pdfDocument, configuration: configuration)
         pdfViewController.delegate = self
-        pdfViewController.navigationItem.rightBarButtonItems = [pdfViewController.activityButtonItem, pdfViewController.searchButtonItem, pdfViewController.annotationButtonItem]
+        
+        var buttonItems = [UIBarButtonItem] ()
+        buttonItems.append(pdfViewController.activityButtonItem)
+        buttonItems.append(pdfViewController.searchButtonItem)
+        if showAnnotationBarButton {
+            buttonItems.append(pdfViewController.annotationButtonItem)
+        }
+        
+        pdfViewController.navigationItem.rightBarButtonItems = buttonItems
         self.pdfViewController = pdfViewController
 
         return pdfViewController
