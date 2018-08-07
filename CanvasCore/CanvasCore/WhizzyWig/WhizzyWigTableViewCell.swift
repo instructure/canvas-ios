@@ -23,6 +23,7 @@ open class WhizzyWigTableViewCell: UITableViewCell {
     open var indexPath = IndexPath(row: 0, section: 0)
     open var cellSizeUpdated: (IndexPath)->() = {_ in }
     open var didRecieveMessage: (IndexPath, String)->() = {_ in }
+    private var lastContentHeight: CGFloat?
     open var readMore: ((WhizzyWigViewController)->())? {
         didSet {
             readMoreButton.isHidden = readMore == nil || whizzyWigView.contentHeight <= maxHeight
@@ -87,6 +88,10 @@ open class WhizzyWigTableViewCell: UITableViewCell {
     
     fileprivate func contentSizeDidChange() {
         let contentHeight = whizzyWigView.contentHeight
+        if contentHeight == lastContentHeight {
+            return
+        }
+        lastContentHeight = contentHeight
         heightConstraint.constant = min(maxHeight, max(minHeight, contentHeight))
         cellSizeUpdated(indexPath)
         if contentHeight > maxHeight && readMore != nil {
