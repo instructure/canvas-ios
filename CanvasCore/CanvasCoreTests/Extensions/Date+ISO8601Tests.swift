@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2016-present Instructure, Inc.
+// Copyright (C) 2017-present Instructure, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,22 +14,15 @@
 // limitations under the License.
 //
 
-@testable 
-
 import XCTest
 
-class SecretsTests: XCTestCase {
-    
-    func testFetch() {
-        let secret = Secrets.fetch(.canvasPSPDFKit)
-        XCTAssertNotNil(secret)
+class DateISO8601Tests: XCTestCase {
+    func testIsoString() {
+        XCTAssertEqual(Date(timeIntervalSince1970: 0).isoString(), "1970-01-01T00:00:00Z")
     }
-    
-    func testFeatureToggles() {
-        let trueToggle = Secrets.featureEnabled(.protectedUserInformation, domain: "mobiledev.instructure.com")
-        XCTAssert(trueToggle)
-        
-        let falseToggle = Secrets.featureEnabled(.protectedUserInformation, domain: "hogwarts.instructure.com")
-        XCTAssertFalse(falseToggle)
+
+    func testFromISOString() {
+        XCTAssertEqual(Date(fromISOString: "bad wolf"), nil)
+        XCTAssertEqual(Date(fromISOString: "1970-01-01T00:00:00Z"), Date(timeIntervalSince1970: 0))
     }
 }

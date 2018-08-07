@@ -18,12 +18,10 @@
 		2C5649E820111E0400C0D1BB /* EnrollmentSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD7769D201111F700589D4F /* EnrollmentSplitViewController.swift */; };
 		2C6796C01FD9E36B00BE7BC0 /* DrawerTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6796BF1FD9E36B00BE7BC0 /* DrawerTransition.swift */; };
 		2C68DCF32086786E00A1EBFA /* UIPickerView+Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C68DCF22086786E00A1EBFA /* UIPickerView+Quiz.swift */; };
-		2C6D608A1F72F85F009C3707 /* SecretsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6D60891F72F85F009C3707 /* SecretsTests.swift */; };
 		2C7CBD2B1F79A42600E5EC02 /* CGRect+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7CBD2A1F79A42600E5EC02 /* CGRect+Core.swift */; };
 		2C8E35702093A0340071ED94 /* AppReset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8E356F2093A0340071ED94 /* AppReset.swift */; };
 		2CAF17801F7AF61100EA2742 /* UIFont+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAF177F1F7AF61100EA2742 /* UIFont+Core.swift */; };
 		2CAF1B1E1F72AEDB007225DF /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CAF1B141F72AEDB007225DF /* CanvasCore.framework */; };
-		2CAF1B231F72AEDB007225DF /* CanvasCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAF1B221F72AEDB007225DF /* CanvasCoreTests.swift */; };
 		2CAF1B251F72AEDB007225DF /* CanvasCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CAF1B171F72AEDB007225DF /* CanvasCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2CAF1B361F72B173007225DF /* secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CAF1B341F72B036007225DF /* secrets.plist */; };
 		2CAF1B3A1F72B1B7007225DF /* Bundle+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAF1B391F72B1B7007225DF /* Bundle+Core.swift */; };
@@ -62,7 +60,6 @@
 		3BF2B3D7204F058800B5E5E5 /* PageViewEventLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF2B3D5204F058800B5E5E5 /* PageViewEventLogger.m */; };
 		4902ADBE1FB26E860004837D /* LTIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4902ADBD1FB26E860004837D /* LTIViewController.swift */; };
 		490F91F11FB0F94A00A7DA38 /* CanvasWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490F91F01FB0F94A00A7DA38 /* CanvasWebViewController.swift */; };
-		49295B501F86D3B2001DAB1F /* HelmTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49295B4F1F86D3B2001DAB1F /* HelmTests.swift */; };
 		49301FBD1F901260006BD777 /* Activity+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49301FB61F90125E006BD777 /* Activity+Network.swift */; };
 		49301FBE1F901260006BD777 /* Activity+Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49301FB71F90125E006BD777 /* Activity+Collections.swift */; };
 		49301FBF1F901260006BD777 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49301FB81F90125E006BD777 /* Activity.swift */; };
@@ -492,8 +489,23 @@
 		49DD239C1F8F9EBE004727F7 /* DiscussionTopicAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491718441F8EE798008B4599 /* DiscussionTopicAPI.swift */; };
 		49DD239D1F8F9EBE004727F7 /* Session+DiscussionKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4917183E1F8EE797008B4599 /* Session+DiscussionKit.swift */; };
 		49F0F9301F9E50E400DD1512 /* AttendanceStatusController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F0F92F1F9E50E300DD1512 /* AttendanceStatusController.swift */; };
-		5C7007265DCAB575C9739092 /* Pods_defaults_CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C6B70EE92D795277E0861B4 /* Pods_defaults_CanvasCore.framework */; };
+		630085E9F4EBC97E435FFE64 /* Pods_defaults_CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 801BC15BB71585F55A4CD6C8 /* Pods_defaults_CanvasCore.framework */; };
+		7D06401921138CF000D23D78 /* QuizListController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D06401821138CF000D23D78 /* QuizListController.storyboard */; };
+		7D06401D2113917700D23D78 /* QuizListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D06401C2113917700D23D78 /* QuizListController.swift */; };
+		7D06401F21139E0C00D23D78 /* QuizListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D06401E21139E0C00D23D78 /* QuizListCell.swift */; };
+		7D0640212113B47A00D23D78 /* TitleSubtitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0640202113B47A00D23D78 /* TitleSubtitleView.swift */; };
+		7D0640232113BC2700D23D78 /* TitleSubtitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D0640222113BC2700D23D78 /* TitleSubtitleView.xib */; };
+		7D0640262114BF8000D23D78 /* QuizListEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D0640282114BF8000D23D78 /* QuizListEmptyView.xib */; };
+		7D06402A2114EE4A00D23D78 /* QuizModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0640292114EE4A00D23D78 /* QuizModel.swift */; };
+		7D73ACD72119F38D001FAB47 /* SecretsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6D60891F72F85F009C3707 /* SecretsTests.swift */; };
+		7D73ACDB211A010C001FAB47 /* Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D73ACDA211A010C001FAB47 /* Fixture.swift */; };
+		7D73ACDD211A0163001FAB47 /* QuizModel+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D73ACDC211A0163001FAB47 /* QuizModel+Fixture.swift */; };
+		7DD30624211A28C400A4A3D0 /* Date+ISO8601Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD30623211A28C400A4A3D0 /* Date+ISO8601Tests.swift */; };
+		7DD30628211A2D7200A4A3D0 /* TitleSubtitleViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD30627211A2D7200A4A3D0 /* TitleSubtitleViewTests.swift */; };
 		7DD89E8B20AB626600650227 /* AppStoreReview.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DD89E8A20AB626600650227 /* AppStoreReview.m */; };
+		7DF3FFEE2118B1C400DF969B /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 7DF3FFF02118B1C400DF969B /* Localizable.stringsdict */; };
+		7DF3FFF32118CBA600DF969B /* Date+ISO8601.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF3FFF22118CBA600DF969B /* Date+ISO8601.swift */; };
+		7DF3FFF721194B0E00DF969B /* QuizModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF3FFF621194B0E00DF969B /* QuizModelTests.swift */; };
 		7DF5A776208AAB8000419AB9 /* CanvadocsAnnotationStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF5A775208AAB8000419AB9 /* CanvadocsAnnotationStateManager.swift */; };
 		9F068D64207C082B0040EFFA /* registerSharedNativeViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F068D63207C082B0040EFFA /* registerSharedNativeViewControllers.swift */; };
 		9F2E363520507F3500A2B031 /* FeatureFlags.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F2E363420507F3500A2B031 /* FeatureFlags.m */; };
@@ -504,6 +516,7 @@
 		9FB85499208677DB007499DA /* AdjustableManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB85498208677DB007499DA /* AdjustableManager.m */; };
 		9FCA1A11205AC2FC00ECB5E9 /* AlertControls.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FCA1A10205AC2FC00ECB5E9 /* AlertControls.m */; };
 		9FD18B6B2052DE6800119927 /* LTITools.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD18B6A2052DE6800119927 /* LTITools.m */; };
+		A96EAEEFD11718956BFC2544 /* Pods_defaults_CanvasCoreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C6ED514BCD5F05D551BC00B /* Pods_defaults_CanvasCoreTests.framework */; };
 		B1411D5A1FE825ED00CD4967 /* CoreDataSyncHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1411D591FE825ED00CD4967 /* CoreDataSyncHelper.swift */; };
 		B196F79B206AB60400DE640F /* CoreDataSync.m in Sources */ = {isa = PBXBuildFile; fileRef = B196F79A206AB60400DE640F /* CoreDataSync.m */; };
 		B1BE249720AB13FE00C521C3 /* SafariActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BE249620AB13FE00C521C3 /* SafariActivity.swift */; };
@@ -531,6 +544,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C6ED514BCD5F05D551BC00B /* Pods_defaults_CanvasCoreTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_CanvasCoreTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		210CE9F7FA304793F1B02F7C /* Pods-defaults-CanvasCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasCore.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasCore/Pods-defaults-CanvasCore.debug.xcconfig"; sourceTree = "<group>"; };
 		2C195F51201948DB003B0D7D /* HelmScreenConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelmScreenConfig.swift; sourceTree = "<group>"; };
 		2C3283B32009651B00810C1B /* MasqueradableWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasqueradableWindow.swift; sourceTree = "<group>"; };
 		2C34211A1F74099400D8E158 /* components.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = components.plist; sourceTree = "<group>"; };
@@ -548,7 +563,6 @@
 		2CAF1B171F72AEDB007225DF /* CanvasCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CanvasCore.h; sourceTree = "<group>"; };
 		2CAF1B181F72AEDB007225DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2CAF1B1D1F72AEDB007225DF /* CanvasCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CanvasCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2CAF1B221F72AEDB007225DF /* CanvasCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasCoreTests.swift; sourceTree = "<group>"; };
 		2CAF1B241F72AEDB007225DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2CAF1B341F72B036007225DF /* secrets.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = secrets.plist; path = ../../../secrets.plist; sourceTree = "<group>"; };
 		2CAF1B391F72B1B7007225DF /* Bundle+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Core.swift"; sourceTree = "<group>"; };
@@ -568,6 +582,7 @@
 		2CE2059020EAC5BD002A6A64 /* CanvasAnalytics.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CanvasAnalytics.m; sourceTree = "<group>"; };
 		2CF6DEB52006A039007A5591 /* UIViewController+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Core.swift"; sourceTree = "<group>"; };
 		2CFAFBD01FD21B3800F22C7F /* WindowTraits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowTraits.swift; sourceTree = "<group>"; };
+		356FC2F2919ECEF83CA044BA /* Pods-defaults-CanvasCoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasCoreTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasCoreTests/Pods-defaults-CanvasCoreTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3B05B14B20D81C7A00D156E9 /* PageViewSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewSession.swift; sourceTree = "<group>"; };
 		3B10AC0A206D8838007EFC2F /* Array+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Core.swift"; sourceTree = "<group>"; };
 		3B1B0455205090F800CB256A /* String+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Core.swift"; sourceTree = "<group>"; };
@@ -611,7 +626,6 @@
 		491718421F8EE798008B4599 /* DiscussionTopic+Details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DiscussionTopic+Details.swift"; sourceTree = "<group>"; };
 		491718441F8EE798008B4599 /* DiscussionTopicAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionTopicAPI.swift; sourceTree = "<group>"; };
 		491718471F8EE799008B4599 /* DiscussionKit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DiscussionKit.xcdatamodel; sourceTree = "<group>"; };
-		49295B4F1F86D3B2001DAB1F /* HelmTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelmTests.swift; sourceTree = "<group>"; };
 		49301FB61F90125E006BD777 /* Activity+Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Activity+Network.swift"; sourceTree = "<group>"; };
 		49301FB71F90125E006BD777 /* Activity+Collections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Activity+Collections.swift"; sourceTree = "<group>"; };
 		49301FB81F90125E006BD777 /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
@@ -1062,9 +1076,23 @@
 		5B85C9F520DF8096007AFAFC /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5B85C9F620DF8096007AFAFC /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/SubmissionConfirmationViewController.strings; sourceTree = "<group>"; };
 		5B85C9F720DF8096007AFAFC /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/Localizable.strings; sourceTree = "<group>"; };
-		7C6B70EE92D795277E0861B4 /* Pods_defaults_CanvasCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D06401821138CF000D23D78 /* QuizListController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = QuizListController.storyboard; sourceTree = "<group>"; };
+		7D06401C2113917700D23D78 /* QuizListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizListController.swift; sourceTree = "<group>"; };
+		7D06401E21139E0C00D23D78 /* QuizListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizListCell.swift; sourceTree = "<group>"; };
+		7D0640202113B47A00D23D78 /* TitleSubtitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSubtitleView.swift; sourceTree = "<group>"; };
+		7D0640222113BC2700D23D78 /* TitleSubtitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleSubtitleView.xib; sourceTree = "<group>"; };
+		7D0640272114BF8000D23D78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/QuizListEmptyView.xib; sourceTree = "<group>"; };
+		7D0640292114EE4A00D23D78 /* QuizModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizModel.swift; sourceTree = "<group>"; };
+		7D73ACDA211A010C001FAB47 /* Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fixture.swift; sourceTree = "<group>"; };
+		7D73ACDC211A0163001FAB47 /* QuizModel+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuizModel+Fixture.swift"; sourceTree = "<group>"; };
+		7DD30623211A28C400A4A3D0 /* Date+ISO8601Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+ISO8601Tests.swift"; sourceTree = "<group>"; };
+		7DD30627211A2D7200A4A3D0 /* TitleSubtitleViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSubtitleViewTests.swift; sourceTree = "<group>"; };
 		7DD89E8A20AB626600650227 /* AppStoreReview.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppStoreReview.m; sourceTree = "<group>"; };
+		7DF3FFEF2118B1C400DF969B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		7DF3FFF22118CBA600DF969B /* Date+ISO8601.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+ISO8601.swift"; sourceTree = "<group>"; };
+		7DF3FFF621194B0E00DF969B /* QuizModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizModelTests.swift; sourceTree = "<group>"; };
 		7DF5A775208AAB8000419AB9 /* CanvadocsAnnotationStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvadocsAnnotationStateManager.swift; sourceTree = "<group>"; };
+		801BC15BB71585F55A4CD6C8 /* Pods_defaults_CanvasCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F068D63207C082B0040EFFA /* registerSharedNativeViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = registerSharedNativeViewControllers.swift; sourceTree = "<group>"; };
 		9F0A6C871FBB768A009CA750 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9F0A6C881FBB768A009CA750 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1132,7 +1160,6 @@
 		9FFBF1B01FBB7687005AC85C /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9FFBF1B11FBB7687005AC85C /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9FFBF1B21FBB7687005AC85C /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/TimedQuizViewController.strings; sourceTree = "<group>"; };
-		A42B8DF2C9F8BDD47BDCBF67 /* Pods-defaults-CanvasCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasCore.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasCore/Pods-defaults-CanvasCore.release.xcconfig"; sourceTree = "<group>"; };
 		B1411D591FE825ED00CD4967 /* CoreDataSyncHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataSyncHelper.swift; sourceTree = "<group>"; };
 		B196F79A206AB60400DE640F /* CoreDataSync.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataSync.m; sourceTree = "<group>"; };
 		B1BE249620AB13FE00C521C3 /* SafariActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariActivity.swift; sourceTree = "<group>"; };
@@ -1147,7 +1174,8 @@
 		B1F4E8CB206179CC0056074A /* NativeFileSystem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NativeFileSystem.m; sourceTree = "<group>"; };
 		B1F4E8CE206189010056074A /* video-preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video-preview.png"; sourceTree = "<group>"; };
 		B1F4E8D02061950C0056074A /* zss-rich-text-editor.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "zss-rich-text-editor.html"; path = "../../../rn/Teacher/lib/zss-rich-text-editor.html"; sourceTree = "<group>"; };
-		B6F5EAC7A3F6A1CB04CF9E40 /* Pods-defaults-CanvasCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasCore.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasCore/Pods-defaults-CanvasCore.debug.xcconfig"; sourceTree = "<group>"; };
+		B2DEC606EFF5FA548C530DCD /* Pods-defaults-CanvasCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasCore.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasCore/Pods-defaults-CanvasCore.release.xcconfig"; sourceTree = "<group>"; };
+		D7D0C4CF2FDEC11C263CE767 /* Pods-defaults-CanvasCoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasCoreTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasCoreTests/Pods-defaults-CanvasCoreTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1157,7 +1185,7 @@
 			files = (
 				49383CE61F848652009C8F8E /* CanvasKit.framework in Frameworks */,
 				49383CE51F848652009C8F8E /* CanvasKeymaster.framework in Frameworks */,
-				5C7007265DCAB575C9739092 /* Pods_defaults_CanvasCore.framework in Frameworks */,
+				630085E9F4EBC97E435FFE64 /* Pods_defaults_CanvasCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1166,6 +1194,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CAF1B1E1F72AEDB007225DF /* CanvasCore.framework in Frameworks */,
+				A96EAEEFD11718956BFC2544 /* Pods_defaults_CanvasCoreTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1194,7 +1223,8 @@
 			children = (
 				49383CDF1F846FCC009C8F8E /* CanvasKeymaster.framework */,
 				49383CDE1F846FCB009C8F8E /* CanvasKit.framework */,
-				7C6B70EE92D795277E0861B4 /* Pods_defaults_CanvasCore.framework */,
+				801BC15BB71585F55A4CD6C8 /* Pods_defaults_CanvasCore.framework */,
+				0C6ED514BCD5F05D551BC00B /* Pods_defaults_CanvasCoreTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1207,14 +1237,6 @@
 			path = Drawer;
 			sourceTree = "<group>";
 		};
-		2C6D60881F72F818009C3707 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				2C6D60891F72F85F009C3707 /* SecretsTests.swift */,
-			);
-			path = Tests;
-			sourceTree = "<group>";
-		};
 		2CAF1B0A1F72AEDB007225DF = {
 			isa = PBXGroup;
 			children = (
@@ -1222,7 +1244,7 @@
 				2CAF1B211F72AEDB007225DF /* CanvasCoreTests */,
 				2CAF1B151F72AEDB007225DF /* Products */,
 				2C60495C1F72B9CE00252BC5 /* Frameworks */,
-				BC05497B6B1077BCF72B5B87 /* Pods */,
+				46CE7459FE1EBD655A3B2214 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1262,9 +1284,11 @@
 				2CAF1B181F72AEDB007225DF /* Info.plist */,
 				4988D47B1F82DC450006D18C /* Login */,
 				9F544E0C1FBB766E00BB2D84 /* Localizable.strings */,
+				7DF3FFF02118B1C400DF969B /* Localizable.stringsdict */,
 				493BEFA81FB14560006E8EFC /* LTI */,
 				2C3283B22009650A00810C1B /* Masquerade */,
 				4961F5441F8FAEE70093EC86 /* Media */,
+				7DD30625211A2B4D00A4A3D0 /* Models */,
 				49CE96C11F8FFC0B00121A43 /* Modules */,
 				2C3421191F74093000D8E158 /* OSSAttribution */,
 				49CE96A61F8FF8FE00121A43 /* Pages */,
@@ -1289,9 +1313,12 @@
 		2CAF1B211F72AEDB007225DF /* CanvasCoreTests */ = {
 			isa = PBXGroup;
 			children = (
-				49295B4F1F86D3B2001DAB1F /* HelmTests.swift */,
-				2CAF1B221F72AEDB007225DF /* CanvasCoreTests.swift */,
+				7DD30626211A2D4C00A4A3D0 /* Views */,
+				7DD30622211A289900A4A3D0 /* Extensions */,
+				7D73ACD82119F3A6001FAB47 /* Secrets */,
+				7DF3FFF521194AEE00DF969B /* Models */,
 				2CAF1B241F72AEDB007225DF /* Info.plist */,
+				7D73ACDA211A010C001FAB47 /* Fixture.swift */,
 			);
 			path = CanvasCoreTests;
 			sourceTree = "<group>";
@@ -1299,7 +1326,6 @@
 		2CAF1B311F72AFCF007225DF /* Secrets */ = {
 			isa = PBXGroup;
 			children = (
-				2C6D60881F72F818009C3707 /* Tests */,
 				2CAF1B3B1F72B294007225DF /* feature_toggles.plist */,
 				2CAF1B3C1F72B295007225DF /* Secrets.swift */,
 				2CAF1B341F72B036007225DF /* secrets.plist */,
@@ -1323,6 +1349,7 @@
 				3B1B0455205090F800CB256A /* String+Core.swift */,
 				3B10AC0A206D8838007EFC2F /* Array+Core.swift */,
 				2CCBD44620C0943B0082E616 /* URL+Core.swift */,
+				7DF3FFF22118CBA600DF969B /* Date+ISO8601.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1355,6 +1382,17 @@
 				3B05B14B20D81C7A00D156E9 /* PageViewSession.swift */,
 			);
 			path = "Page View Analytics";
+			sourceTree = "<group>";
+		};
+		46CE7459FE1EBD655A3B2214 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				210CE9F7FA304793F1B02F7C /* Pods-defaults-CanvasCore.debug.xcconfig */,
+				B2DEC606EFF5FA548C530DCD /* Pods-defaults-CanvasCore.release.xcconfig */,
+				356FC2F2919ECEF83CA044BA /* Pods-defaults-CanvasCoreTests.debug.xcconfig */,
+				D7D0C4CF2FDEC11C263CE767 /* Pods-defaults-CanvasCoreTests.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		4917182B1F8EE68D008B4599 /* Discussions */ = {
@@ -1858,6 +1896,8 @@
 				4961F5651F8FB20F0093EC86 /* PrettyImages.xcassets */,
 				4961F5761F8FB2110093EC86 /* So Colorful */,
 				4961F58B1F8FB2140093EC86 /* SplitViewController.swift */,
+				7D0640202113B47A00D23D78 /* TitleSubtitleView.swift */,
+				7D0640222113BC2700D23D78 /* TitleSubtitleView.xib */,
 				4961F5881F8FB2130093EC86 /* Toast */,
 				4961F5661F8FB2100093EC86 /* TokenLabelView.swift */,
 				4961F57D1F8FB2120093EC86 /* UIKit+SoPretty */,
@@ -2310,6 +2350,10 @@
 		49CE95EF1F8FF3C800121A43 /* Quizzes */ = {
 			isa = PBXGroup;
 			children = (
+				7D06401E21139E0C00D23D78 /* QuizListCell.swift */,
+				7D06401821138CF000D23D78 /* QuizListController.storyboard */,
+				7D06401C2113917700D23D78 /* QuizListController.swift */,
+				7D0640282114BF8000D23D78 /* QuizListEmptyView.xib */,
 				49CE96471F8FF41A00121A43 /* Legacy */,
 				49CE964B1F8FF41A00121A43 /* Model */,
 				49CE95F31F8FF41900121A43 /* Quiz Details */,
@@ -2811,6 +2855,47 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		7D73ACD82119F3A6001FAB47 /* Secrets */ = {
+			isa = PBXGroup;
+			children = (
+				2C6D60891F72F85F009C3707 /* SecretsTests.swift */,
+			);
+			path = Secrets;
+			sourceTree = "<group>";
+		};
+		7DD30622211A289900A4A3D0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7DD30623211A28C400A4A3D0 /* Date+ISO8601Tests.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		7DD30625211A2B4D00A4A3D0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7D0640292114EE4A00D23D78 /* QuizModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		7DD30626211A2D4C00A4A3D0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7DD30627211A2D7200A4A3D0 /* TitleSubtitleViewTests.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		7DF3FFF521194AEE00DF969B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7DF3FFF621194B0E00DF969B /* QuizModelTests.swift */,
+				7D73ACDC211A0163001FAB47 /* QuizModel+Fixture.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		9F2E363320507F0B00A2B031 /* FeatureFlags */ = {
 			isa = PBXGroup;
 			children = (
@@ -2836,15 +2921,6 @@
 				B1F4E8D02061950C0056074A /* zss-rich-text-editor.html */,
 			);
 			path = RCE;
-			sourceTree = "<group>";
-		};
-		BC05497B6B1077BCF72B5B87 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				B6F5EAC7A3F6A1CB04CF9E40 /* Pods-defaults-CanvasCore.debug.xcconfig */,
-				A42B8DF2C9F8BDD47BDCBF67 /* Pods-defaults-CanvasCore.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2880,7 +2956,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2CAF1B281F72AEDB007225DF /* Build configuration list for PBXNativeTarget "CanvasCore" */;
 			buildPhases = (
-				2FFA491C502A6AEFE02D7438 /* [CP] Check Pods Manifest.lock */,
+				270E0B49471036954CD69F92 /* [CP] Check Pods Manifest.lock */,
 				2CAF1B0F1F72AEDB007225DF /* Sources */,
 				2CAF1B101F72AEDB007225DF /* Frameworks */,
 				2CAF1B111F72AEDB007225DF /* Headers */,
@@ -2899,9 +2975,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2CAF1B2B1F72AEDB007225DF /* Build configuration list for PBXNativeTarget "CanvasCoreTests" */;
 			buildPhases = (
+				474F23A4492924229326A4F0 /* [CP] Check Pods Manifest.lock */,
 				2CAF1B191F72AEDB007225DF /* Sources */,
 				2CAF1B1A1F72AEDB007225DF /* Frameworks */,
 				2CAF1B1B1F72AEDB007225DF /* Resources */,
+				2186485C22A6FC88470DFA83 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2980,6 +3058,7 @@
 			files = (
 				49383CF31F8498DA009C8F8E /* CanvasCore.xcassets in Resources */,
 				9F544E051FBB766E00BB2D84 /* InfoPlist.strings in Resources */,
+				7D0640232113BC2700D23D78 /* TitleSubtitleView.xib in Resources */,
 				3BA8BE9B1FE2ED85003EC4FD /* SubmissionConfirmationViewController.xib in Resources */,
 				49CE96641F8FF41B00121A43 /* AnswersFinalViewController.xib in Resources */,
 				2CAF1B361F72B173007225DF /* secrets.plist in Resources */,
@@ -3013,13 +3092,16 @@
 				49CE96BA1F8FF94B00121A43 /* PageTemplate.html in Resources */,
 				49CE97AB1F900D0000121A43 /* PandaImages.xcassets in Resources */,
 				49CE96831F8FF41B00121A43 /* HTMLAnswerCell.xib in Resources */,
+				7D06401921138CF000D23D78 /* QuizListController.storyboard in Resources */,
 				49CE96731F8FF41B00121A43 /* TextAnswerCell.xib in Resources */,
 				4961F6251F8FB7010093EC86 /* CustomizeEnrollmentViewController.xib in Resources */,
 				4961F5411F8FAD9A0093EC86 /* WhizzyWigTemplate.html in Resources */,
 				49301FEC1F901854006BD777 /* Main.storyboard in Resources */,
+				7D0640262114BF8000D23D78 /* QuizListEmptyView.xib in Resources */,
 				49CE96671F8FF41B00121A43 /* QuizDetailCell.xib in Resources */,
 				49698D771F8FA2D000E38B78 /* Assets.xcassets in Resources */,
 				49CE97441F8FFEA600121A43 /* ScheduleItemDetails.js in Resources */,
+				7DF3FFEE2118B1C400DF969B /* Localizable.stringsdict in Resources */,
 				49CE96571F8FF41B00121A43 /* Quizzes.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3034,7 +3116,105 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2FFA491C502A6AEFE02D7438 /* [CP] Check Pods Manifest.lock */ = {
+		2186485C22A6FC88470DFA83 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/../Pods/Target Support Files/Pods-defaults-CanvasCoreTests/Pods-defaults-CanvasCoreTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/FXKeychain/FXKeychain.framework",
+				"${BUILT_PRODUCTS_DIR}/Mantle/Mantle.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveObjC/ReactiveObjC.framework",
+				"${BUILT_PRODUCTS_DIR}/BVLinearGradient/BVLinearGradient.framework",
+				"${BUILT_PRODUCTS_DIR}/BugsnagReactNative/BugsnagReactNative.framework",
+				"${BUILT_PRODUCTS_DIR}/Cartography/Cartography.framework",
+				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
+				"${BUILT_PRODUCTS_DIR}/DeviceKit/DeviceKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Interactable/Interactable.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/Marshal/Marshal.framework",
+				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${PODS_ROOT}/PSPDFKit/PSPDFKit.framework",
+				"${PODS_ROOT}/PSPDFKit/PSPDFKit.framework.dSYM",
+				"${PODS_ROOT}/PSPDFKit/PSPDFKitUI.framework",
+				"${PODS_ROOT}/PSPDFKit/PSPDFKitUI.framework.dSYM",
+				"${BUILT_PRODUCTS_DIR}/RCTSFSafariViewController/RCTSFSafariViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/RNAudio/RNAudio.framework",
+				"${BUILT_PRODUCTS_DIR}/RNDeviceInfo/RNDeviceInfo.framework",
+				"${BUILT_PRODUCTS_DIR}/RNFS/RNFS.framework",
+				"${BUILT_PRODUCTS_DIR}/RNSound/RNSound.framework",
+				"${BUILT_PRODUCTS_DIR}/Reachability/Reachability.framework",
+				"${BUILT_PRODUCTS_DIR}/React/React.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactNativeSearchBar/ReactNativeSearchBar.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveObjCBridge/ReactiveObjCBridge.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SVGKit/SVGKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftSimplify/SwiftSimplify.framework",
+				"${BUILT_PRODUCTS_DIR}/TBBModal/TBBModal.framework",
+				"${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-blur/react_native_blur.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-camera/react_native_camera.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-document-picker/react_native_document_picker.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-image-picker/react_native_image_picker.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-mail/react_native_mail.framework",
+				"${BUILT_PRODUCTS_DIR}/yoga/yoga.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FXKeychain.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mantle.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveObjC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BVLinearGradient.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BugsnagReactNative.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cartography.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DeviceKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Interactable.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSPDFKit.framework",
+				"${DWARF_DSYM_FOLDER_PATH}/PSPDFKit.framework.dSYM",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSPDFKitUI.framework",
+				"${DWARF_DSYM_FOLDER_PATH}/PSPDFKitUI.framework.dSYM",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RCTSFSafariViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNAudio.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNDeviceInfo.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNFS.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNSound.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/React.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactNativeSearchBar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveObjCBridge.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVGKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSimplify.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TBBModal.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPKeyboardAvoiding.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_blur.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_camera.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_document_picker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_image_picker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_mail.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/yoga.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-defaults-CanvasCoreTests/Pods-defaults-CanvasCoreTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		270E0B49471036954CD69F92 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -3046,6 +3226,24 @@
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-defaults-CanvasCore-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		474F23A4492924229326A4F0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-defaults-CanvasCoreTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3123,6 +3321,7 @@
 				49301FF11F901854006BD777 /* CommunicationChannel.swift in Sources */,
 				494AE09E1F843A09001A8F31 /* NativeAccessibility.m in Sources */,
 				3B10AC0B206D8838007EFC2F /* Array+Core.swift in Sources */,
+				7DF3FFF32118CBA600DF969B /* Date+ISO8601.swift in Sources */,
 				49CE97331F8FFEA600121A43 /* NewSubmission.swift in Sources */,
 				4961F62B1F8FB7070093EC86 /* EnrollmentsDataSource.swift in Sources */,
 				4961F67A1F8FB9620093EC86 /* DocumentOption.swift in Sources */,
@@ -3134,6 +3333,7 @@
 				9F068D64207C082B0040EFFA /* registerSharedNativeViewControllers.swift in Sources */,
 				4961F6771F8FB9620093EC86 /* FileUploadViewModel.swift in Sources */,
 				494AE0A01F843A09001A8F31 /* PushNotifications.m in Sources */,
+				7D06401F21139E0C00D23D78 /* QuizListCell.swift in Sources */,
 				4930201A1F901CF5006BD777 /* CanvadocsConstants.swift in Sources */,
 				49CE97361F8FFEA600121A43 /* NewSubmissionViewModel.swift in Sources */,
 				494AE0A41F843A09001A8F31 /* WebViewHacker.m in Sources */,
@@ -3269,6 +3469,7 @@
 				49CE96DA1F8FFC4400121A43 /* ModuleItem+Edits.swift in Sources */,
 				4961F5E81F8FB3FF0093EC86 /* SoRefreshing.xcdatamodeld in Sources */,
 				B1ED11982044803400C3C580 /* CanvasWebViewContainer.m in Sources */,
+				7D06401D2113917700D23D78 /* QuizListController.swift in Sources */,
 				4961F5D61F8FB3EB0093EC86 /* FetchedCollection.swift in Sources */,
 				4961F6341F8FB70D0093EC86 /* GradingPeriod+Network.swift in Sources */,
 				4961F63E1F8FB71B0093EC86 /* Tab+Collections.swift in Sources */,
@@ -3276,6 +3477,7 @@
 				49CE967D1F8FF41B00121A43 /* NextOrSubmitView.swift in Sources */,
 				3BD43DE91FD20597001A6B34 /* EmptyViewController.swift in Sources */,
 				493020791F902462006BD777 /* ContextID.swift in Sources */,
+				7D0640212113B47A00D23D78 /* TitleSubtitleView.swift in Sources */,
 				497CA7721F82D19600501613 /* HelmNavigationController.swift in Sources */,
 				4961F5921F8FB2230093EC86 /* PagedViewController.swift in Sources */,
 				49CE96E11F8FFC4400121A43 /* MasteryPathAssignment+Collections.swift in Sources */,
@@ -3439,6 +3641,7 @@
 				4961F5D91F8FB3EF0093EC86 /* ManagedObjectContextScheduler.swift in Sources */,
 				B1C3407820D1AD3B00D0554D /* ModuleItemsProgress.m in Sources */,
 				497CA7731F82D19600501613 /* HelmSplitViewController.swift in Sources */,
+				7D06402A2114EE4A00D23D78 /* QuizModel.swift in Sources */,
 				49CE96EC1F8FFC4500121A43 /* Session+SoEdventurous.swift in Sources */,
 				493020521F902364006BD777 /* GCD+SoLazy.swift in Sources */,
 				4961F5DF1F8FB3EF0093EC86 /* ManagedObjectCountObserver.swift in Sources */,
@@ -3511,9 +3714,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2CAF1B231F72AEDB007225DF /* CanvasCoreTests.swift in Sources */,
-				2C6D608A1F72F85F009C3707 /* SecretsTests.swift in Sources */,
-				49295B501F86D3B2001DAB1F /* HelmTests.swift in Sources */,
+				7DF3FFF721194B0E00DF969B /* QuizModelTests.swift in Sources */,
+				7DD30624211A28C400A4A3D0 /* Date+ISO8601Tests.swift in Sources */,
+				7D73ACD72119F38D001FAB47 /* SecretsTests.swift in Sources */,
+				7D73ACDD211A0163001FAB47 /* QuizModel+Fixture.swift in Sources */,
+				7D73ACDB211A010C001FAB47 /* Fixture.swift in Sources */,
+				7DD30628211A2D7200A4A3D0 /* TitleSubtitleViewTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3611,6 +3817,22 @@
 				5B85C9F420DF8096007AFAFC /* cy */,
 			);
 			name = TimedQuizViewController.xib;
+			sourceTree = "<group>";
+		};
+		7D0640282114BF8000D23D78 /* QuizListEmptyView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7D0640272114BF8000D23D78 /* Base */,
+			);
+			name = QuizListEmptyView.xib;
+			sourceTree = "<group>";
+		};
+		7DF3FFF02118B1C400DF969B /* Localizable.stringsdict */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7DF3FFEF2118B1C400DF969B /* en */,
+			);
+			name = Localizable.stringsdict;
 			sourceTree = "<group>";
 		};
 		9F544E071FBB766E00BB2D84 /* InfoPlist.strings */ = {
@@ -3789,7 +4011,7 @@
 		};
 		2CAF1B291F72AEDB007225DF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B6F5EAC7A3F6A1CB04CF9E40 /* Pods-defaults-CanvasCore.debug.xcconfig */;
+			baseConfigurationReference = 210CE9F7FA304793F1B02F7C /* Pods-defaults-CanvasCore.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -3819,7 +4041,7 @@
 		};
 		2CAF1B2A1F72AEDB007225DF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A42B8DF2C9F8BDD47BDCBF67 /* Pods-defaults-CanvasCore.release.xcconfig */;
+			baseConfigurationReference = B2DEC606EFF5FA548C530DCD /* Pods-defaults-CanvasCore.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -3850,6 +4072,7 @@
 		};
 		2CAF1B2C1F72AEDB007225DF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 356FC2F2919ECEF83CA044BA /* Pods-defaults-CanvasCoreTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -3858,13 +4081,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.CanvasCoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		2CAF1B2D1F72AEDB007225DF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D7D0C4CF2FDEC11C263CE767 /* Pods-defaults-CanvasCoreTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -3873,7 +4097,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.CanvasCoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

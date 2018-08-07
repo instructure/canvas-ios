@@ -96,6 +96,10 @@ abstract_target 'defaults' do
     project 'CanvasCore/CanvasCore.xcodeproj'
   end
 
+  target 'CanvasCoreTests' do
+    project 'CanvasCore/CanvasCore.xcodeproj'
+  end
+
   target 'CanvasKit1' do
     project 'Canvas/Canvas.xcodeproj'
   end

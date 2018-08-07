@@ -264,6 +264,10 @@ extension Router {
             return try PagesHomeViewController(session: currentSession, contextID: contextID, listViewModelFactory: pagesListViewModelFactory, route: route)
         }
 
+        // addContextRoute([.course], subPath: "quizzes") { contextID, _ in
+        //      return QuizListController.create(contextID: contextID, route: route)
+        // }
+
         addContextRoute([.course], subPath: "external_tools/:toolID") { contextID, params in
             guard let url = params["url"] as? URL,
                     let session = currentSession,
