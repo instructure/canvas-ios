@@ -27,7 +27,7 @@ extension Student {
     public static func getStudents(_ session: Session, parentID: String) throws -> SignalProducer<[JSONObject], NSError> {
         return try getEnrollments(session: session)
             .flatMap(.concat, transform: { (enrollments) -> SignalProducer<[JSONObject], NSError> in
-                if(!enrollments.any(hasObserverEnrollment)) {
+                if (!enrollments.any(hasObserverEnrollment)) {
                     let error = NSError(domain: "com.instructure.Enrollments", code: Error.NoObserverEnrollments, userInfo: [NSLocalizedDescriptionKey: "User has no observer enrollments"])
                     return SignalProducer<[JSONObject], NSError>(error: error)
                 }
@@ -41,7 +41,7 @@ extension Student {
     }
 
     private static func getEnrollments(session: Session) throws -> SignalProducer<[JSONObject], NSError> {
-        let request = try session.GET("/api/v1/users/self/enrollments", parameters: ["include": ["observed_users", "avatar_url"]])
+        let request = try session.GET("/api/v1/users/self/enrollments", parameters: ["state": ["creation_pending", "active", "invited"], "include": ["observed_users", "avatar_url"]])
         return session.paginatedJSONSignalProducer(request)
     }
 
@@ -55,11 +55,7 @@ extension Student {
             return nil
         }
 
-        // Make sure observed user is a student
-        guard var observedUser: JSONObject = try? enrollment <| "observed_user",
-            let enrollments: [JSONObject] = try? observedUser <| "enrollments",
-            enrollments.map(extractRole).any({ $0 == .student })
-        else {
+        guard var observedUser: JSONObject = try? enrollment <| "observed_user" else {
             return nil
         }
 

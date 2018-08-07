@@ -81,7 +81,7 @@ class DashboardViewController: UIViewController {
                 }
             }
 
-            if oldValue?.id != currentStudent?.id {
+            if currentStudent == nil || oldValue?.id != currentStudent?.id {
                 self.updateStudentInfoView()
                 self.reloadObserveeData()
             }
@@ -252,14 +252,14 @@ class DashboardViewController: UIViewController {
     
     
     func updateMainView() {
-        guard viewState.isSiteAdmin || (viewState.isValidObserver && viewState.studentCount > 0) else {
+        guard viewState.isSiteAdmin || viewState.isValidObserver else {
             return showNotAParentView()
         }
         
         self.studentInfoContainer.isHidden = false
         setupTabs()
-        
-        if(viewState.isSiteAdmin && viewState.studentCount == 0) {
+
+        if viewState.isSiteAdmin && viewState.studentCount == 0 {
             showSiteAdminViews()
         }
         
@@ -488,16 +488,15 @@ class DashboardViewController: UIViewController {
     }
     
     func updateStudentInfoView() {
-        guard let student = currentStudent else { return }
-        
-        studentInfoName.text = student.name
-        studentInfoContainer.accessibilityLabel = student.name
-        studentInfoAvatar.isHidden = false
-        
-        if let url = student.avatarURL {
-            studentInfoAvatar.accessibilityLabel = student.name
+        studentInfoName.text = currentStudent?.name
+        studentInfoContainer.accessibilityLabel = currentStudent?.name
+        studentInfoAvatar.accessibilityLabel = currentStudent?.name
+        studentInfoAvatar.isHidden = currentStudent == nil
+        studentInfoDownArrow.isHidden = currentStudent == nil
+        if let student = currentStudent, let url = student.avatarURL {
             studentInfoAvatar.kf.setImage(with: url,
-                                 placeholder: DefaultAvatarCoordinator.defaultAvatarForStudent(student))
+                                          placeholder: DefaultAvatarCoordinator.defaultAvatarForStudent(student))
+
         }
     }
 }

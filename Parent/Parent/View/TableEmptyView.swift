@@ -23,6 +23,41 @@ class TableEmptyView: UIView {
 
     @IBOutlet weak var imageView: UIImageView?
     @IBOutlet weak var textLabel: UILabel!
+    @IBOutlet weak var subtextLabel: UILabel!
+
+    @IBOutlet weak var imageWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var imageHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var imageCenterXConstraint: NSLayoutConstraint!
+
+    var imageWidth: CGFloat {
+        set {
+            imageWidthConstraint.constant = newValue
+            imageView?.setNeedsLayout()
+        }
+        get {
+            return imageWidthConstraint.constant
+        }
+    }
+
+    var imageHeight: CGFloat {
+        set {
+            imageHeightConstraint.constant = newValue
+            imageView?.setNeedsLayout()
+        }
+        get {
+            return imageHeightConstraint.constant
+        }
+    }
+
+    var subtext: String? {
+        get {
+            return subtextLabel.text
+        }
+        set {
+            subtextLabel.isHidden = false
+            subtextLabel.text = newValue
+        }
+    }
 
     static func nibView() -> TableEmptyView {
         guard let view = Bundle(for: TableEmptyView.self).loadNibNamed("TableEmptyView", owner: self, options: nil)!.first as? TableEmptyView else {

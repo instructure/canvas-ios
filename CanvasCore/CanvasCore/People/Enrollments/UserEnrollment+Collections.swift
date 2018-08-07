@@ -25,22 +25,4 @@ extension UserEnrollment {
         let key = cacheKey(moc, [courseID])
         return SignalProducerRefresher(refreshSignalProducer: refreshProducer, scope: session.refreshScope, cacheKey: key)
     }
-    
-    public static func collectionByRole(enrolledInCourseWithID courseID: String, as roles: [UserEnrollmentRole] = [], for session: Session) throws -> FetchedCollection<UserEnrollment> {
-        
-        let predicate: NSPredicate
-        if !roles.isEmpty {
-            predicate = NSPredicate(format: "%K == %@ && %@ CONTAINS %K ", "courseID", courseID, roles.map { $0.rawValue }, "role")
-        } else {
-            predicate = NSPredicate(format: "%K == %@", "courseID", courseID)
-        }
-        
-        let context = try session.peepsManagedObjectContext()
-        let frc: NSFetchedResultsController<UserEnrollment> = context.fetchedResults(predicate, sortDescriptors: ["roleOrder".ascending, "user.sortableName".ascending], sectionNameKeypath: "role", propertiesToFetch: ["user"])
-        return try FetchedCollection(frc: frc) { role in
-            return role
-                .flatMap { UserEnrollmentRole(rawValue: $0) }
-                .map { $0.title }
-        }
-    }
 }

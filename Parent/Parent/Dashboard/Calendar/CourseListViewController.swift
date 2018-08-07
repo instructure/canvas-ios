@@ -40,14 +40,18 @@ class CourseListViewController: FetchedTableViewController<Course> {
 
         let emptyView = TableEmptyView.nibView()
         emptyView.textLabel.text = NSLocalizedString("No Courses", comment: "Empty Courses Text")
+        emptyView.textLabel.textColor = .black
+        emptyView.subtext = NSLocalizedString("This student's courses may not be published yet.", comment: "")
         emptyView.imageView?.image = UIImage(named: "empty_courses")
         emptyView.accessibilityLabel = emptyView.textLabel.text
         emptyView.accessibilityIdentifier = "courses_empty_view"
+        emptyView.imageCenterXConstraint.constant = -24
+        emptyView.imageWidth = 267
+        emptyView.imageHeight = 232
 
         self.emptyView = emptyView
 
         let scheme = ColorCoordinator.colorSchemeForStudentID(studentID)
-
         let collection = try! Course.collectionByStudent(session, studentID: studentID)
         let refresher = try! Course.airwolfCollectionRefresher(session, studentID: studentID)
         prepare(collection, refresher: refresher, viewModelFactory: { course in
@@ -63,7 +67,7 @@ class CourseListViewController: FetchedTableViewController<Course> {
         super.viewDidLoad()
 
         tableView.tableFooterView = UIView()
-        tableView.backgroundColor = UIColor.defaultTableViewBackgroundColor()
+        tableView.backgroundColor = UIColor.white
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
