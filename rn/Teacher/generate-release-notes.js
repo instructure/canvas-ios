@@ -60,7 +60,7 @@ async function generateReleaseNotes () {
     }
 
     let tag = result['Previous release tag']
-    let app = result['Name of app to release']
+    let app = result['Name of app to release'].toLowerCase()
 
     await finalizeReleaseNotes(tag, app)
   })
@@ -167,7 +167,7 @@ function getAppsAffected (commit) {
     return []
   }
 
-  return apps.split(',').map(item => item.trim()).filter(item => item.toLowerCase() !== 'none')
+  return apps.split(',').map(item => item.trim().toLowerCase()).filter(item => item !== 'none')
 }
 
 // Parses the release note out of the commit message
