@@ -129,7 +129,7 @@
         
         
         NSDictionary *data = turnitinData[key];
-        if ([data isKindOfClass:[NSDictionary class]] && data[@"similarity_score"]) {
+        if ([data isKindOfClass:[NSDictionary class]] && [data[@"similarity_score"] isKindOfClass:[NSNumber class]]) {
             self.turnitinScore = @([data[@"similarity_score"] floatValue]);
         }
     }
