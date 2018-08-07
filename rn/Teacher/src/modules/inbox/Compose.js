@@ -77,7 +77,7 @@ type ComposeState = {
 }
 
 export class Compose extends PureComponent<ComposeProps & OwnProps, ComposeState> {
-  scrollView: KeyboardAwareScrollView
+  scrollView: ?KeyboardAwareScrollView
 
   static defaultProps = {
     canAddRecipients: true,
@@ -198,7 +198,7 @@ export class Compose extends PureComponent<ComposeProps & OwnProps, ComposeState
 
   adjust = throttle((e: any) => {
     const element = ReactNative.findNodeHandle(e.target)
-    this.scrollView.scrollToFocusedInput(element)
+    this.scrollView && this.scrollView.scrollToFocusedInput(element)
   }, 250)
 
   scrollToEnd = (e: any) => {
