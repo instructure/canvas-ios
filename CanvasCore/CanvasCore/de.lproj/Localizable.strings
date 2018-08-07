@@ -122,9 +122,6 @@
 /* Pick a video from library */
 "Choose a Video" = "Ein Video wählen";
 
-/* Label indicating that the question is a multiple dropdown answer question and answer must be chosen. */
-"Choose your answers below" = "Wählen Sie Ihre Antworten unten";
-
 /* No comment provided by engineer. */
 "Collapse" = "Ausblenden";
 

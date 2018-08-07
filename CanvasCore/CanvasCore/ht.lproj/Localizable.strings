@@ -122,9 +122,6 @@
 /* Pick a video from library */
 "Choose a Video" = "Chwazi yon Videyo";
 
-/* Label indicating that the question is a multiple dropdown answer question and answer must be chosen. */
-"Choose your answers below" = "Chwazi repons ou yo pi ba a";
-
 /* No comment provided by engineer. */
 "Collapse" = "Redwi";
 

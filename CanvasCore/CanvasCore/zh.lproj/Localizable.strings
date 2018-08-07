@@ -122,9 +122,6 @@
 /* Pick a video from library */
 "Choose a Video" = "选择视频";
 
-/* Label indicating that the question is a multiple dropdown answer question and answer must be chosen. */
-"Choose your answers below" = "在下方选择您的答案";
-
 /* No comment provided by engineer. */
 "Collapse" = "折叠";
 

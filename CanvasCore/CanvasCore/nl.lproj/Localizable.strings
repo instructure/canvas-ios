@@ -122,9 +122,6 @@
 /* Pick a video from library */
 "Choose a Video" = "Kies een video";
 
-/* Label indicating that the question is a multiple dropdown answer question and answer must be chosen. */
-"Choose your answers below" = "Kies je antwoorden hieronder";
-
 /* No comment provided by engineer. */
 "Collapse" = "Invouwen";
 

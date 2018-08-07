@@ -122,9 +122,6 @@
 /* Pick a video from library */
 "Choose a Video" = "Velg en video";
 
-/* Label indicating that the question is a multiple dropdown answer question and answer must be chosen. */
-"Choose your answers below" = "Velg svarene dine nedenfor";
-
 /* No comment provided by engineer. */
 "Collapse" = "Skjul";
 

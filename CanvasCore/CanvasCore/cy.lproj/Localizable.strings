@@ -122,9 +122,6 @@
 /* Pick a video from library */
 "Choose a Video" = "Dewiswch Fideo";
 
-/* Label indicating that the question is a multiple dropdown answer question and answer must be chosen. */
-"Choose your answers below" = "Dewiswch eich atebion isod";
-
 /* No comment provided by engineer. */
 "Collapse" = "Crebachu";
 
