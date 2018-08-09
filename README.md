@@ -1,59 +1,51 @@
-## Canvas App by Instructure
+## Guiding Principles
 
-### Apps
-- Student
-- Parent
-- Teacher
+### Simple
 
-### Commit Message Format
-We use a standard commit message format.
+Writing an app is complex. Decisions made from the beginning have a big impact on the end result.
 
-The first commit for any pull request must have the following:
+We strive to maintain a simple architecture that is easy to understand and pick up. Someone familiar with the platform should be productive within a single day.
 
-- Title
-- Reference to a Jira ticket, or multiple Jira tickets
-- List of apps that are affected by the change
-- Release note
-- Test plan
-
-Example:
+Code should be self-documenting and easy to follow.
 
 ```
-This is the commit title
-
-refs: MBL-10000
-affects: Student, Teacher
-release note: Fixed an issue that prevented users from launching the app.
-test plan:
-- Launch app
-- It should not crash
+Ugly code is easy to recognize and its cost is easy to estimate. Neither is true for a wrong abstraction.
+- Dan Abramov
 ```
 
-You can add subseqent commits that will be squashed upon merge. However, if any of the required fields are missing from the first commit, you will need to amend it. Otherwise, Danger will reject the pull request and you will feel sad.
+### Easy to Debug
 
-If some of the required fields don't apply, you can use the token `none`.
+Surprise! Apps have bugs. Industry average is 15-50 defects per 1000 lines of code.
 
-For example:
+We build our apps in a way that makes finding and fixing issues is as easy as possible.
 
-```
-This is the commit title
+### Testable
 
-refs: none
-affects: none
-release note: none
-test plan:
-- The added script will output all the names of the presidents of the united states
-```
+Writing code in a testable way is paramount for long term success. These apps are built in a way that makes our unit testing surface as large as possible.
 
-In rare cases, you can skip commit linting entirely. Don't do this.
+### Conventions
 
-Example:
+We make and keep strong conventions in order to reduce mental overhead.
 
-```
-This is my commit title
+[Conventions](./CONVENTIONS.md) and [Architecture](./ARCHITECTURE.md).
 
-[ignore-commit-lint]
-```
+### No Tricky Stuff
+
+We do things the Apple prescribed way because it offers the best long term predictability with minimal maintenance.
+
+### Fat Model, Thin Controller
+
+Models handle as much of the business logic as possible. This allows a wide unit testing surface. View Controllers should be as small as possible.
+
+### Predictable
+
+By scrutinizing each dependency we bring in, the code we write is our responsibilty. Unit tests are a key portion of the code we write, so as time passes, the code that worked 2 years ago still works today.
+
+### Automation
+
+We don't do any manual QA of our products. We write code that tests our apps for us.
+
+## Using the Canvas Apps
 
 ### How to connect to a local canvas instance
 - Modify the contents of preload-account-info.plist (it's at the root of the repo)
