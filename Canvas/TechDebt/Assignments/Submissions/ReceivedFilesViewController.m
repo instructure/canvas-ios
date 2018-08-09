@@ -23,8 +23,8 @@
 #import "UIAlertController+TechDebt.h"
 #import "ReceivedFilesViewController.h"
 #import "DocumentLibraryView.h"
-
 #import "CBIDropbox.h"
+@import CanvasCore;
 
 @interface ReceivedFilesViewController () <DocumentLibraryViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *libraryContainer;
@@ -450,6 +450,7 @@ static NSURL *receivedFilesFolder() {
         if (!image) {
             image = info[UIImagePickerControllerOriginalImage];
         }
+        image = [UIImage fixOrientation:image];
         NSData *imageData = UIImageJPEGRepresentation(image, 0.7);
         
         NSURL *tempDir = [NSURL fileURLWithPath:NSTemporaryDirectory()];

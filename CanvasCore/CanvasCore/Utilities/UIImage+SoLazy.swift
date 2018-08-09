@@ -44,6 +44,65 @@ public extension UIImage {
         
         return newImage
     }
+
+    // https://stackoverflow.com/a/5427890
+    public static func fixOrientation(_ image: UIImage) -> UIImage {
+        if image.imageOrientation == .up {
+            return image
+        }
+
+        var transform = CGAffineTransform.identity
+        switch image.imageOrientation {
+        case .down, .downMirrored:
+            transform = transform.translatedBy(x: image.size.width, y: image.size.height)
+            transform = transform.rotated(by: .pi)
+        case .left, .leftMirrored:
+            transform = transform.translatedBy(x: image.size.width, y: 0)
+            transform = transform.rotated(by: .pi / 2)
+        case .right, .rightMirrored:
+            transform = transform.translatedBy(x: 0, y: image.size.height)
+            transform = transform.rotated(by: .pi / 2 * -1)
+        case .up, .upMirrored:
+            break
+        }
+
+        switch image.imageOrientation {
+        case .upMirrored, .downMirrored:
+            transform = transform.translatedBy(x: image.size.width, y: 0)
+            transform = transform.scaledBy(x: -1, y: 1)
+        case .leftMirrored, .rightMirrored:
+            transform = transform.translatedBy(x: image.size.height, y: 0)
+            transform = transform.scaledBy(x: -1, y: 1)
+        case .up, .down, .left, .right:
+            break
+        }
+
+        guard let cgImage = image.cgImage, let colorSpace = cgImage.colorSpace else {
+            return image
+        }
+
+        let context = CGContext(data: nil,
+                                width: Int(image.size.width),
+                                height: Int(image.size.height),
+                                bitsPerComponent: cgImage.bitsPerComponent,
+                                bytesPerRow: 0,
+                                space:  colorSpace,
+                                bitmapInfo: cgImage.bitmapInfo.rawValue)
+        context?.concatenate(transform)
+
+        switch image.imageOrientation {
+        case .left, .leftMirrored, .right, .rightMirrored:
+            context?.draw(cgImage, in: CGRect(x: 0, y: 0, width: image.size.height, height: image.size.width))
+        default:
+            context?.draw(cgImage, in: CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height))
+        }
+
+        if let result = context?.makeImage() {
+            return UIImage(cgImage: result)
+        }
+
+        return image
+    }
     
     /// Creates an image that has RTL support if available
     public static func RTLImage(_ named: String, renderingMode: UIImageRenderingMode? = nil) -> UIImage? {
