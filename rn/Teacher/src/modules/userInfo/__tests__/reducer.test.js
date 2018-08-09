@@ -16,16 +16,16 @@
 
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-import { userInfo } from '../reducer'
+import { userInfo, defaultHelpLinks } from '../reducer'
 import Actions from '../actions'
 
-const { refreshCanMasquerade, refreshAccountExternalTools } = Actions
+const {
+  refreshCanMasquerade,
+  refreshAccountExternalTools,
+  refreshHelpLinks,
+} = Actions
 
-const template = {
-  ...require('../../../__templates__/role'),
-  ...require('../../../__templates__/error'),
-  ...require('../../../__templates__/launch-definitions'),
-}
+import * as template from '../../../__templates__/'
 
 describe('userInfo', () => {
   describe('refresh lti apps', () => {
@@ -140,6 +140,32 @@ describe('userInfo', () => {
       expect(userInfo({ canMasquerade: true }, rejected)).toMatchObject({
         canMasquerade: false,
       })
+    })
+  })
+
+  describe('refreshHelpLinks', () => {
+    it('updates helpLinks on resolved', () => {
+      const data = template.helpLinks()
+      const action = {
+        type: refreshHelpLinks.toString(),
+        payload: { result: { data } },
+      }
+      const defaultState = { helpLinks: null }
+      const result = userInfo(defaultState, action)
+      expect(result.helpLinks).toMatchObject(data)
+    })
+
+    it('provides default help links on rejected', () => {
+      const action = {
+        type: refreshHelpLinks.toString(),
+        error: true,
+        payload: { error: template.error() },
+      }
+      const defaultState = {
+        helpLinks: template.helpLinks({ id: 'link1' }),
+      }
+      const result = userInfo(defaultState, action)
+      expect(result.helpLinks).toMatchObject(defaultHelpLinks())
     })
   })
 })

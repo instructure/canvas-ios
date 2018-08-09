@@ -34,3 +34,17 @@ describe('UserInfo Actions', () => {
     }])
   })
 })
+
+describe('refreshHelpLinks', () => {
+  it('sets the payload', () => {
+    const actions = UserInfoActions({ getHelpLinks: jest.fn(() => 'help links') })
+    const action = actions.refreshHelpLinks()
+    expect(action).toMatchObject({
+      type: 'userInfo.refreshHelpLinks',
+      payload: {
+        promise: 'help links',
+        handlesError: true,
+      },
+    })
+  })
+})

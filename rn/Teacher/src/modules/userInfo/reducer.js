@@ -21,8 +21,9 @@ import { handleActions } from 'redux-actions'
 import Actions from './actions'
 import handleAsync from '@utils/handleAsync'
 import { getSession } from '@canvas-api/session'
+import i18n from 'format-message'
 
-const { refreshCanMasquerade, updateShowGradesOnDashboard, refreshAccountExternalTools } = Actions
+const { refreshCanMasquerade, updateShowGradesOnDashboard, refreshAccountExternalTools, refreshHelpLinks } = Actions
 const defaultState: UserInfo = {
   canMasquerade: false,
   showsGradesOnCourseCards: false,
@@ -46,6 +47,27 @@ const isArc = (tool: ExternalToolLaunchDefinition) => {
   return /arc-\w+(\.inseng\.net|-prod\.instructure\.com)/.test(url)
 }
 
+export function defaultHelpLinks () {
+  const reportAProblem = {
+    id: 'report_a_problem',
+    type: 'default',
+    available_to: [
+      'user',
+      'student',
+      'teacher',
+    ],
+    text: i18n('Report a Problem'),
+    url: '#create_ticket',
+  }
+
+  return {
+    help_link_name: i18n('Help'),
+    help_link_icon: 'help',
+    default_help_links: [reportAProblem],
+    custom_help_links: [],
+  }
+}
+
 export const userInfo: Reducer<UserInfo, any> = handleActions({
   [refreshAccountExternalTools.toString()]: handleAsync({
     resolved: (state, { result }) => {
@@ -56,6 +78,19 @@ export const userInfo: Reducer<UserInfo, any> = handleActions({
       return {
         ...state,
         externalTools,
+      }
+    },
+  }),
+  [refreshHelpLinks.toString()]: handleAsync({
+    resolved: (state, { result: { data } }) => ({
+      ...state,
+      helpLinks: data,
+    }),
+    rejected: (state) => {
+      // In case this request fails, fallback to default help links
+      return {
+        ...state,
+        helpLinks: defaultHelpLinks(),
       }
     },
   }),

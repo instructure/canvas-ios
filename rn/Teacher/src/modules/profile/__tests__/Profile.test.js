@@ -52,6 +52,7 @@ describe('Profile Tests', () => {
       navigator: navigator,
       refreshCanMasquerade: jest.fn(),
       refreshAccountExternalTools: jest.fn(),
+      refreshHelpLinks: jest.fn(),
       canMasquerade: true,
       externalTools: [],
       getUserProfile: jest.fn(() => Promise.resolve({ data: template.user() })),
@@ -204,54 +205,6 @@ describe('Profile Tests', () => {
     )
   })
 
-  it('opens an action sheet when Help is tapped', () => {
-    const instance = renderer.create(
-      <Profile {...defaultProps} />
-    ).getInstance()
-
-    instance.showHelpMenu()
-    expect(ActionSheetIOS.showActionSheetWithOptions).toHaveBeenCalled()
-  })
-
-  it('shows /support/problem when Report a problem is tapped', async () => {
-    const instance = renderer.create(
-      <Profile {...defaultProps} />
-    ).getInstance()
-
-    instance.showHelpMenu()
-    await ActionSheetIOS.showActionSheetWithOptions.mock.calls[0][1](0)
-
-    expect(defaultProps.navigator.show).toHaveBeenCalledWith(
-      '/support/problem',
-      { modal: true }
-    )
-  })
-
-  it('shows /support/feature when Request a feature is tapped', async () => {
-    const instance = renderer.create(
-      <Profile {...defaultProps} />
-    ).getInstance()
-
-    instance.showHelpMenu()
-    await ActionSheetIOS.showActionSheetWithOptions.mock.calls[0][1](1)
-
-    expect(defaultProps.navigator.show).toHaveBeenCalledWith(
-      '/support/feature',
-      { modal: true }
-    )
-  })
-
-  it('doesnt navigate when Cancel is pressed', async () => {
-    const instance = renderer.create(
-      <Profile {...defaultProps} />
-    ).getInstance()
-
-    instance.showHelpMenu()
-    await ActionSheetIOS.showActionSheetWithOptions.mock.calls[0][1](2)
-
-    expect(defaultProps.navigator.show).not.toHaveBeenCalled()
-  })
-
   it('secret tap! enables developer menu', async () => {
     AsyncStorage.getItem = jest.fn()
     AsyncStorage.setItem = jest.fn()
@@ -306,6 +259,193 @@ describe('Profile Tests', () => {
     expect(getUserProfile).toHaveBeenCalledWith('self')
     const avatar = tree.find('Avatar').first()
     expect(avatar.props().avatarURL).toEqual(url)
+  })
+
+  it('refreshes help links on mount', async () => {
+    const promise = Promise.resolve({ data: template.helpLinks() })
+    const props = {
+      ...defaultProps,
+      refreshHelpLinks: jest.fn(() => promise),
+    }
+    shallow(<Profile {...props} />)
+    await promise
+    expect(props.refreshHelpLinks).toHaveBeenCalled()
+  })
+
+  it('shows custom help link', async () => {
+    let selectedActionSheet = jest.fn()
+    const showActionSheet = jest.fn((options, callback) => {
+      selectedActionSheet = callback
+    })
+    ActionSheetIOS.showActionSheetWithOptions = showActionSheet
+    const helpLink = template.helpLink({ id: 'link1', url: 'https://google.com' })
+    const helpLinks = template.helpLinks({
+      custom_help_links: [helpLink],
+    })
+    const props = {
+      ...defaultProps,
+      helpLinks,
+      navigator: template.navigator({
+        showWebView: jest.fn(),
+      }),
+    }
+    const view = shallow(<Profile {...props} />)
+    await view.update()
+    const helpBtn = view.find('[testID="profile.help-menu-btn"]')
+    helpBtn.simulate('Press')
+    await selectedActionSheet(0)
+    expect(props.navigator.showWebView).toHaveBeenCalledWith('https://google.com')
+  })
+
+  it('handles instructor question', async () => {
+    let selectedActionSheet = jest.fn()
+    const showActionSheet = jest.fn((options, callback) => {
+      selectedActionSheet = callback
+    })
+    ActionSheetIOS.showActionSheetWithOptions = showActionSheet
+    const helpLink = template.helpLink({ id: 'instructor_question' })
+    const helpLinks = template.helpLinks({
+      custom_help_links: [helpLink],
+    })
+    const props = {
+      ...defaultProps,
+      helpLinks,
+      navigator: template.navigator({
+        show: jest.fn(),
+      }),
+    }
+    const view = shallow(<Profile {...props} />)
+    const helpBtn = view.find('[testID="profile.help-menu-btn"]')
+    helpBtn.simulate('Press')
+    await selectedActionSheet(0)
+    expect(props.navigator.show).toHaveBeenCalledWith('/conversations/compose', { modal: true }, {
+      instructorQuestion: true,
+      canAddRecipients: false,
+    })
+  })
+
+  it('handles report a problem', async () => {
+    let selectedActionSheet = jest.fn()
+    const showActionSheet = jest.fn((options, callback) => {
+      selectedActionSheet = callback
+    })
+    ActionSheetIOS.showActionSheetWithOptions = showActionSheet
+    const helpLink = template.helpLink({ id: 'report_a_problem' })
+    const helpLinks = template.helpLinks({
+      custom_help_links: [helpLink],
+    })
+    const props = {
+      ...defaultProps,
+      helpLinks,
+      navigator: template.navigator({
+        show: jest.fn(),
+      }),
+    }
+    const view = shallow(<Profile {...props} />)
+    const helpBtn = view.find('[testID="profile.help-menu-btn"]')
+    helpBtn.simulate('Press')
+    await selectedActionSheet(0)
+    expect(props.navigator.show).toHaveBeenCalledWith('/support/problem', { modal: true })
+  })
+
+  it('handles cancel from help menu', async () => {
+    let selectedActionSheet = jest.fn()
+    const showActionSheet = jest.fn((options, callback) => {
+      selectedActionSheet = callback
+    })
+    ActionSheetIOS.showActionSheetWithOptions = showActionSheet
+    const helpLink = template.helpLink({ id: 'report_a_problem' })
+    const helpLinks = template.helpLinks({
+      custom_help_links: [helpLink],
+    })
+    const props = {
+      ...defaultProps,
+      helpLinks,
+      navigator: template.navigator({
+        show: jest.fn(),
+        dismiss: jest.fn(),
+        showWebView: jest.fn(),
+      }),
+    }
+    const view = shallow(<Profile {...props} />)
+    const helpBtn = view.find('[testID="profile.help-menu-btn"]')
+    helpBtn.simulate('Press')
+    await selectedActionSheet(1) // cancel index is 1
+    expect(props.navigator.dismiss).not.toHaveBeenCalled()
+    expect(props.navigator.show).not.toHaveBeenCalled()
+    expect(props.navigator.showWebView).not.toHaveBeenCalled()
+  })
+
+  it('only shows student help menu links for students', () => {
+    app.setCurrentApp('student')
+    let actionSheet
+    const helpLinks = template.helpLinks({
+      default_help_links: [],
+      custom_help_links: [
+        template.helpLink({ text: 'Student', available_to: ['student'] }),
+        template.helpLink({ text: 'Teacher', available_to: ['teacher'] }),
+      ],
+    })
+    const showActionSheet = jest.fn((options, callback) => {
+      actionSheet = options
+    })
+    ActionSheetIOS.showActionSheetWithOptions = showActionSheet
+    const props = {
+      ...defaultProps,
+      helpLinks,
+    }
+    const view = shallow(<Profile {...props} />)
+    const helpBtn = view.find('[testID="profile.help-menu-btn"]')
+    helpBtn.simulate('Press')
+    expect(actionSheet.options.length).toEqual(2)
+    expect(actionSheet.options[0]).toEqual('Student')
+    expect(actionSheet.options[1]).toEqual('Cancel')
+  })
+
+  it('only shows teacher help menu links for teachers', () => {
+    app.setCurrentApp('teacher')
+    let actionSheet
+    const helpLinks = template.helpLinks({
+      default_help_links: [],
+      custom_help_links: [
+        template.helpLink({ text: 'Student', available_to: ['student'] }),
+        template.helpLink({ text: 'Teacher', available_to: ['teacher'] }),
+      ],
+    })
+    const showActionSheet = jest.fn((options, callback) => {
+      actionSheet = options
+    })
+    ActionSheetIOS.showActionSheetWithOptions = showActionSheet
+    const props = {
+      ...defaultProps,
+      helpLinks,
+    }
+    const view = shallow(<Profile {...props} />)
+    const helpBtn = view.find('[testID="profile.help-menu-btn"]')
+    helpBtn.simulate('Press')
+    expect(actionSheet.options.length).toEqual(2)
+    expect(actionSheet.options[0]).toEqual('Teacher')
+    expect(actionSheet.options[1]).toEqual('Cancel')
+  })
+
+  it('uses default help links if there are no custom ones', () => {
+    let actionSheet
+    const helpLinks = template.helpLinks({
+      default_help_links: [template.helpLink()],
+      custom_help_links: [],
+    })
+    const showActionSheet = jest.fn((options, callback) => {
+      actionSheet = options
+    })
+    ActionSheetIOS.showActionSheetWithOptions = showActionSheet
+    const props = {
+      ...defaultProps,
+      helpLinks,
+    }
+    const view = shallow(<Profile {...props} />)
+    const helpBtn = view.find('[testID="profile.help-menu-btn"]')
+    helpBtn.simulate('Press')
+    expect(actionSheet.options.length).toEqual(2)
   })
 })
 

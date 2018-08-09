@@ -107,6 +107,61 @@ describe('Compose', () => {
     expect(instance.state.sendDisabled).toEqual(false)
   })
 
+  it('sets recipients to teacher after selecting course if instructorQuestion', async () => {
+    const course = template.course({ id: '1' })
+    const props = {
+      ...defaultProps,
+      instructorQuestion: true,
+      navigator: template.navigator({
+        show: jest.fn((path, options, passthrough) => {
+          passthrough.onSelect(course)
+        }),
+      }),
+    }
+    const view = shallow(<Compose {...props} />)
+    const courseSelect = view.find('[testID="compose.course-select"]')
+    courseSelect.simulate('Press')
+    await view.update()
+    const token = view.find('AddressBookToken')
+    expect(token.length).toEqual(1)
+    expect(token.prop('item').id).toEqual('course_1_teachers')
+    expect(token.prop('item').name).toEqual('Teachers')
+    expect(token.prop('canDelete')).toEqual(false)
+  })
+
+  it('can delete receipients if !instructorQuestion', () => {
+    const props = {
+      ...defaultProps,
+      contextCode: 'course_1',
+      instructorQuestion: false,
+      recipients: [template.addressBookResult()],
+    }
+    const view = shallow(<Compose {...props} />)
+    const token = view.find('AddressBookToken')
+    expect(token.length).toEqual(1)
+    expect(token.prop('canDelete')).toEqual(true)
+  })
+
+  it('hides option to send individual messages when instructorQuestion', () => {
+    const props = {
+      ...defaultProps,
+      instructorQuestion: true,
+    }
+    const view = shallow(<Compose {...props} />)
+    const option = view.find('[identifier="compose-message.send-all-toggle"]')
+    expect(option.exists()).toEqual(false)
+  })
+
+  it('shows option to send individual messages if !instructorQuestion', () => {
+    const props = {
+      ...defaultProps,
+      instructorQuestion: false,
+    }
+    const view = shallow(<Compose {...props} />)
+    const option = view.find('[identifier="compose-message.send-all-toggle"]')
+    expect(option.exists()).toEqual(true)
+  })
+
   it('gets and sets recipients', () => {
     const recipient = template.addressBookResult()
     let onSelect = jest.fn()

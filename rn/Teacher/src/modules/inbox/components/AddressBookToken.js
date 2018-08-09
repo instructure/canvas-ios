@@ -33,9 +33,14 @@ import Avatar from '../../../common/components/Avatar'
 type Props = {
   item: AddressBookResult,
   delete: (id: string) => void,
+  canDelete: boolean,
 }
 
 export default class AddressBookToken extends Component<Props, any> {
+  static defaultProps = {
+    canDelete: true,
+  }
+
   _delete = () => {
     this.props.delete(this.props.item.id)
   }
@@ -54,15 +59,17 @@ export default class AddressBookToken extends Component<Props, any> {
           <Avatar avatarURL={this.props.item.avatar_url} userName={this.props.item.name} height={TOKEN_HEIGHT - 6}/>
         }
         <Text key={this.props.item.id} style={{ marginLeft: leftTextPadding }}>{this.props.item.name}</Text>
-        <TouchableOpacity
-          onPress={this._delete}
-          accessible={true}
-          accessibilityLabel={deleteButtonAccessibilityLabel}
-          accessibilityTraits={['button']}
-          testID={`message-recipient.${this.props.item.id}.delete-btn`}
-        >
-          <Image source={Images.x} style={styles.deleteIcon} />
-        </TouchableOpacity>
+        {this.props.canDelete &&
+          <TouchableOpacity
+            onPress={this._delete}
+            accessible={true}
+            accessibilityLabel={deleteButtonAccessibilityLabel}
+            accessibilityTraits={['button']}
+            testID={`message-recipient.${this.props.item.id}.delete-btn`}
+          >
+            <Image source={Images.x} style={styles.deleteIcon} />
+          </TouchableOpacity>
+        }
       </View>
     )
   }

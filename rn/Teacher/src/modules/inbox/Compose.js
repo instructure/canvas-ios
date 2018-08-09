@@ -62,6 +62,7 @@ type ComposeProps = {
   onlySendIndividualMessages: boolean,
   includedMessages?: Array<ConversationMessage>,
   navBarTitle?: string,
+  instructorQuestion?: boolean,
 }
 
 type ComposeState = {
@@ -112,7 +113,12 @@ export class Compose extends PureComponent<ComposeProps & OwnProps, ComposeState
           this.props.navigator.pop()
           const contextName = course.name
           const contextCode = `course_${course.id}`
-          this.setStateAndUpdate({ contextName, contextCode, recipients: [] })
+          let recipients = []
+          if (this.props.instructorQuestion) {
+            const teachers = { id: `course_${course.id}_teachers`, name: i18n('Teachers') }
+            recipients = [teachers]
+          }
+          this.setStateAndUpdate({ contextName, contextCode, recipients })
         },
       }
     )
@@ -291,7 +297,14 @@ export class Compose extends PureComponent<ComposeProps & OwnProps, ComposeState
                 }
                 <View style={styles.tokenContainer}>
                   {this.state.recipients.map((r) => {
-                    return (<AddressBookToken key={r.id} item={r} delete={this._deleteRecipient} />)
+                    return (
+                      <AddressBookToken
+                        key={r.id}
+                        item={r}
+                        delete={this._deleteRecipient}
+                        canDelete={!this.props.instructorQuestion}
+                      />
+                    )
                   })}
                 </View>
                 { this.props.canAddRecipients &&
@@ -311,7 +324,7 @@ export class Compose extends PureComponent<ComposeProps & OwnProps, ComposeState
                 editable={this.props.canEditSubject}
               />
             </View>
-            { !this.props.onlySendIndividualMessages && !this.props.conversationID &&
+            { !this.props.onlySendIndividualMessages && !this.props.conversationID && !this.props.instructorQuestion &&
               <RowWithSwitch
                 border='bottom'
                 title={i18n('Send individual message to each recipient')}

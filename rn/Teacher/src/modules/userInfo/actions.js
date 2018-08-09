@@ -25,6 +25,10 @@ export let UserInfoActions = (api: CanvasApi): * => ({
       promise: api.refreshAccountExternalTools(),
     }
   }),
+  refreshHelpLinks: createAction('userInfo.refreshHelpLinks', () => ({
+    promise: api.getHelpLinks(),
+    handlesError: true,
+  })),
   refreshCanMasquerade: createAction('userInfo.canMasquerade', () => {
     return {
       promise: api.becomeUserPermissions('self'),

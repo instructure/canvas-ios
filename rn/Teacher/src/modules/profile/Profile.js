@@ -89,6 +89,7 @@ export class Profile extends Component<Object, State> {
   componentDidMount () {
     this.props.refreshCanMasquerade()
     this.props.refreshAccountExternalTools()
+    this.props.refreshHelpLinks()
     this.refreshAvatarURL()
     this.enableDeveloperMenu()
   }
@@ -204,23 +205,38 @@ export class Profile extends Component<Object, State> {
   }
 
   showHelpMenu = () => {
-    let options = [i18n('Report a Problem'), i18n('Request a Feature'), i18n('Cancel')]
+    const { helpLinks } = this.props
+    if (!helpLinks) return
+    const { custom_help_links, default_help_links, help_link_name } = helpLinks
+    let links = custom_help_links.length ? custom_help_links : default_help_links
+    links = links.filter((link) => {
+      const role = isStudent() ? 'student' : 'teacher' // parent has their own help menu
+      return link.available_to.includes('user') || link.available_to.includes(role)
+    })
+    const options = [...links.map(l => l.text), i18n('Cancel')]
     ActionSheetIOS.showActionSheetWithOptions({
-      title: i18n('Help'),
+      title: help_link_name,
       options,
-      cancelButtonIndex: 2,
+      cancelButtonIndex: options.length - 1,
     }, async (pressedIndex: number) => {
       if (pressedIndex === (options.length - 1)) return
       // the profile itself is presented modally
       // must dismiss before showing another modal
       await this.props.navigator.dismiss()
 
-      switch (pressedIndex) {
-        case 0:
+      const link = links[pressedIndex]
+      switch (link.id) {
+        case 'instructor_question':
+          this.props.navigator.show('/conversations/compose', { modal: true }, {
+            instructorQuestion: true,
+            canAddRecipients: false,
+          })
+          break
+        case 'report_a_problem':
           this.props.navigator.show('/support/problem', { modal: true })
           break
-        case 1:
-          this.props.navigator.show('/support/feature', { modal: true })
+        default:
+          this.props.navigator.showWebView(link.url)
           break
       }
     })
@@ -302,7 +318,7 @@ export class Profile extends Component<Object, State> {
       { tools }
       { (this.props.canMasquerade || masquerading) && buildRow(masqueradeTitle, this.toggleMasquerade) }
       { isStudent() && buildRow(i18n('Show Grades'), null, { onValueChange: this.toggleShowGrades, value: this.props.showsGradesOnCourseCards }) }
-      { buildRow(i18n('Help'), this.showHelpMenu) }
+      { this.props.helpLinks && buildRow(this.props.helpLinks.help_link_name, this.showHelpMenu, null, { testID: 'profile.help-menu-btn' }) }
       { this.state.showsDeveloperMenu && buildRow(i18n('Developer Menu'), this.showDeveloperMenu) }
       { !masquerading && buildRow(i18n('Change User'), this.switchUser) }
       { !masquerading && buildRow(i18n('Log Out'), this.logout) }

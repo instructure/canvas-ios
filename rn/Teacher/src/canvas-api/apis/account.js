@@ -35,3 +35,7 @@ export function deleteAccountNotification (id: string): ApiPromise<null> {
 export function getTermsOfService (): ApiPromise<TermsOfService> {
   return httpClient.get(`accounts/self/terms_of_service`)
 }
+
+export function getHelpLinks (): ApiResponse<HelpLink[]> {
+  return httpClient.get('accounts/self/help_links')
+}

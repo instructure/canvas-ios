@@ -16,6 +16,7 @@
 
 // @flow
 
+import { shallow } from 'enzyme'
 import React from 'react'
 import renderer from 'react-test-renderer'
 
@@ -62,5 +63,17 @@ describe('AddressBookToken', () => {
     button.props.onPress()
 
     expect(tree.getInstance().props.delete).toHaveBeenCalledWith(defaultProps.item.id)
+  })
+
+  it('renders delete button if canDelete', () => {
+    const view = shallow(<AddressBookToken {...defaultProps} canDelete={true} />)
+    const button = view.find('[testID="message-recipient.1.delete-btn"]')
+    expect(button.exists()).toEqual(true)
+  })
+
+  it('does not render delete button if canDelete', () => {
+    const view = shallow(<AddressBookToken {...defaultProps} canDelete={false} />)
+    const button = view.find('[testID="message-recipient.1.delete-btn"]')
+    expect(button.exists()).toEqual(false)
   })
 })
