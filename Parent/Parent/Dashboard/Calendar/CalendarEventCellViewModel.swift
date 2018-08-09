@@ -75,7 +75,7 @@ struct CalendarEventCellViewModel: TableViewCellViewModel {
         cell.typeImageView.contentMode = .center
         cell.typeImageView.image = smallImage?.withRenderingMode(.alwaysTemplate)
 
-        cell.accessibilityLabel = [calendarEvent.type.accessibilityLabel, name, subtitle].flatMap { $0 }.joined(separator: ",")
+        cell.accessibilityLabel = [calendarEvent.type.accessibilityLabel, name, subtitle, submittedText].flatMap { $0 }.joined(separator: ",")
         cell.titleLabel.accessibilityIdentifier = "event_title_\(indexPath.section)_\(indexPath.row)"
         cell.courseNameLabel.accessibilityIdentifier = "event_course_\(indexPath.section)_\(indexPath.row)"
         cell.typeImageView.accessibilityIdentifier = "event_icon_\(indexPath.section)_\(indexPath.row)"

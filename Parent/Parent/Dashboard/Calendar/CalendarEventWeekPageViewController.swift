@@ -126,11 +126,13 @@ class CalendarEventWeekPageViewController: UIViewController {
         }
 
         let formatter = CalendarEventWeekPageViewController.headerDateFormatter
-        headerLabel.text = "\(formatter.string(from: viewController.startDate)) - \(formatter.string(from: viewController.endDate - 1.secondsComponents))"
+        let startFormatted = formatter.string(from: viewController.startDate)
+        let endFormatted = formatter.string(from: viewController.endDate - 1.secondsComponents)
+        headerLabel.text = "\(startFormatted) - \(endFormatted)"
         headerLabel.accessibilityIdentifier = "week_header_label"
-        headerLabel.accessibilityLabel = String(format: NSLocalizedString("%@ to %@", comment: "Something to Something"), formatter.string(from: viewController.startDate), formatter.string(from: viewController.endDate))
+        headerLabel.accessibilityLabel = String(format: NSLocalizedString("%@ to %@", comment: ""), startFormatted, endFormatted)
+        headerLabel.accessibilityTraits = UIAccessibilityTraitHeader
         headerLabel.textColor = UIColor.white
-
     }
 
     // ---------------------------------------------

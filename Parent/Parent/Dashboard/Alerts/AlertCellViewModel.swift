@@ -54,6 +54,8 @@ struct AlertCellViewModel: TableViewCellViewModel {
 
         cell.highlightColor = highlightColor
         cell.titleLabel.text = alert.title
+        let unreadLabel = NSLocalizedString("Unread", comment: "")
+        cell.titleLabel.accessibilityLabel = alert.read ? alert.title : "\(unreadLabel), \(alert.title)"
         cell.dateLabel.text = AlertCellViewModel.dateFormatter.string(from: alert.actionDate)
         cell.alert = alert
         cell.session = session

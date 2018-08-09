@@ -168,6 +168,7 @@ class CalendarEventListViewController: UITableViewController {
         let date = startDate + section.daysComponents
         view.text = CalendarEventListViewController.dateFormatter.string(from: date).uppercased()
         view.accessibilityIdentifier = "event_list_header_\(section)"
+        view.accessibilityTraits = UIAccessibilityTraitHeader
         return view
     }
 

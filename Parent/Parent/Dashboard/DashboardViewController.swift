@@ -489,14 +489,17 @@ class DashboardViewController: UIViewController {
     
     func updateStudentInfoView() {
         studentInfoName.text = currentStudent?.name
-        studentInfoContainer.accessibilityLabel = currentStudent?.name
-        studentInfoAvatar.accessibilityLabel = currentStudent?.name
         studentInfoAvatar.isHidden = currentStudent == nil
         studentInfoDownArrow.isHidden = currentStudent == nil
-        if let student = currentStudent, let url = student.avatarURL {
-            studentInfoAvatar.kf.setImage(with: url,
-                                          placeholder: DefaultAvatarCoordinator.defaultAvatarForStudent(student))
-
+        if let student = currentStudent {
+            if let url = student.avatarURL {
+                studentInfoAvatar.kf.setImage(with: url,
+                                              placeholder: DefaultAvatarCoordinator.defaultAvatarForStudent(student))
+            }
+            studentInfoContainer.accessibilityLabel = String.localizedStringWithFormat(NSLocalizedString("Current student: %@, tap to switch students", comment: ""), student.name)
+            studentInfoContainer.accessibilityTraits = UIAccessibilityTraitHeader
+        } else {
+            studentInfoContainer.isAccessibilityElement = false
         }
     }
 }
