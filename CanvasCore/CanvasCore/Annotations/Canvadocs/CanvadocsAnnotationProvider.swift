@@ -21,6 +21,8 @@ import PSPDFKit
 
 protocol CanvadocsAnnotationProviderDelegate: class {
     func annotationDidExceedLimit(annotation: CanvadocsAnnotation)
+    func annotationDidFailToSave(error: NSError)
+    func annotationSaveStateChanges(saving: Bool)
 }
 
 class CanvadocsAnnotationProvider: PSPDFContainerAnnotationProvider {
@@ -29,7 +31,14 @@ class CanvadocsAnnotationProvider: PSPDFContainerAnnotationProvider {
 
     private var canvadocsAnnotations: [CanvadocsAnnotation] = []
 
-    weak var limitDelegate: CanvadocsAnnotationProviderDelegate?
+    weak var canvasDelegate: CanvadocsAnnotationProviderDelegate?
+    
+    var requestsInFlight = 0 {
+        didSet {
+            let saving = requestsInFlight != 0
+            self.canvasDelegate?.annotationSaveStateChanges(saving: saving)
+        }
+    }
     
     init(documentProvider: PSPDFDocumentProvider!, annotations: [CanvadocsAnnotation], service: CanvadocsAnnotationService) {
         self.service = service
@@ -69,6 +78,14 @@ class CanvadocsAnnotationProvider: PSPDFContainerAnnotationProvider {
         }
     }
     
+    func incrementRequestsInFlight() {
+        requestsInFlight += 1
+    }
+    
+    func decrementRequestsInFlight() {
+        requestsInFlight -= 1
+    }
+    
     override func add(_ annotations: [PSPDFAnnotation], options: [String : Any]? = nil) -> [PSPDFAnnotation]? {
         super.add(annotations, options: options)
         guard let doc = self.documentProvider?.document else { return nil }
@@ -81,15 +98,16 @@ class CanvadocsAnnotationProvider: PSPDFContainerAnnotationProvider {
                 if canvadocsAnnotation.isEmpty {
                     continue // don't save to network if empty comment reply or free text
                 }
+                self.incrementRequestsInFlight()
                 self.service.upsertAnnotation(canvadocsAnnotation) { [weak self] result in
+                    self?.decrementRequestsInFlight()
                     switch result {
                     case .success(let updated):
                         if let index = self?.canvadocsAnnotations.index(where: { $0.id == updated.id }) {
                             self?.canvadocsAnnotations[index] = updated
                         }
                     case .failure(let error):
-                        _ = self?.remove([annotation])
-                        print(error)
+                        self?.canvasDelegate?.annotationDidFailToSave(error: error as NSError)
                     }
                 }
             }
@@ -110,10 +128,11 @@ class CanvadocsAnnotationProvider: PSPDFContainerAnnotationProvider {
                     if canvadocsAnnotation.id == annotationID {
                         removed.append(annotation)
                         self.canvadocsAnnotations.remove(at: index)
+                        self.incrementRequestsInFlight()
                         self.service.deleteAnnotation(canvadocsAnnotation) { [weak self] result in
-                            if result.error != nil {
-                                // Let's go back and reset so the user can try deleting again
-                                self?.canvadocsAnnotations.append(canvadocsAnnotation)
+                            self?.decrementRequestsInFlight()
+                            if let e = result.error {
+                                self?.canvasDelegate?.annotationDidFailToSave(error: e)
                             }
                         }
                     }
@@ -124,25 +143,31 @@ class CanvadocsAnnotationProvider: PSPDFContainerAnnotationProvider {
     }
     
     override func didChange(_ annotation: PSPDFAnnotation, keyPaths: [String], options: [String : Any]? = nil) {
+        syncAnnotation(annotation)
+    }
+    
+    func syncAnnotation(_ annotation: PSPDFAnnotation) {
         guard
             let doc = documentProvider?.document,
             let pspdfAnnotationID = annotation.name,
             let index = canvadocsAnnotations.index(where: { $0.id == pspdfAnnotationID }),
             let canvadocsAnnotation = CanvadocsAnnotation(pspdfAnnotation: annotation, onDocument: doc)
-        else { return }
-
+            else { return }
+        
         if let inkAnnotation = annotation as? PSPDFInkAnnotation, inkAnnotation.lines.count > 120 {
             doc.undoController?.undo()
-            limitDelegate?.annotationDidExceedLimit(annotation: canvadocsAnnotation)
+            canvasDelegate?.annotationDidExceedLimit(annotation: canvadocsAnnotation)
             return
         }
-
+        
         canvadocsAnnotations[index] = canvadocsAnnotation // update internal list with changes
         
         if canvadocsAnnotation.isEmpty {
             return // don't save to network if empty comment reply or free text
         }
+        self.incrementRequestsInFlight()
         service.upsertAnnotation(canvadocsAnnotation) { [weak self] result in
+            self?.decrementRequestsInFlight()
             switch result {
             case .success(let annotation):
                 if let id = annotation.id {
@@ -151,15 +176,20 @@ class CanvadocsAnnotationProvider: PSPDFContainerAnnotationProvider {
                     }
                 }
             case .failure(let error):
-                doc.undoController?.undo()
                 switch error {
                 case .tooBig:
-                    self?.limitDelegate?.annotationDidExceedLimit(annotation: canvadocsAnnotation)
+                    self?.canvasDelegate?.annotationDidExceedLimit(annotation: canvadocsAnnotation)
                 case .nsError(let e):
-                    print(e)
+                    self?.canvasDelegate?.annotationDidFailToSave(error: e)
                 }
             }
         }
     }
-
+    
+    func syncAllAnnotations() {
+        if self.allAnnotations.count == 0 {
+            self.requestsInFlight = 0
+        }
+        self.allAnnotations.forEach { syncAnnotation($0) }
+    }
 }

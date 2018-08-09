@@ -123,11 +123,11 @@ export class Header extends Component<HeaderProps, State> {
 const styles = StyleSheet.create({
   header: {
     backgroundColor: 'white',
+    marginTop: 16,
   },
   profileContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 16,
   },
   innerRowContainer: {
     backgroundColor: 'white',

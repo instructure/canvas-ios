@@ -27,6 +27,7 @@ import color from '../../colors'
 type Props = {
   title: string,
   top?: boolean, // Draw a line at the top of the section header. Usually used if the section header is the topmost of the list
+  centered?: boolean,
 }
 
 export default class SectionHeader extends PureComponent<Props> {
@@ -36,9 +37,15 @@ export default class SectionHeader extends PureComponent<Props> {
       styles.bottomHairline,
       this.props.top ? styles.topHairline : undefined,
     ]
+
+    const titleStyles = [
+      styles.title,
+      this.props.centered ? { textAlign: 'center' } : undefined,
+    ]
+
     return (
       <View style={containerStyle} accessibilityTraits='header'>
-        <Text style={styles.title}>{this.props.title}</Text>
+        <Text style={titleStyles}>{this.props.title}</Text>
       </View>
     )
   }

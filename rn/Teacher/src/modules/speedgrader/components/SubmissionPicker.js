@@ -121,7 +121,7 @@ export class SubmissionPicker extends Component<SubmissionPickerProps, State> {
 const styles = StyleSheet.create({
   container: {
     marginTop: 16,
-    marginHorizontal: 16,
+    paddingHorizontal: 16,
     borderBottomColor: '#D8D8D8',
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderStyle: 'solid',

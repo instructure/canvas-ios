@@ -17,8 +17,8 @@
 // @flow
 
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { requireNativeComponent } from 'react-native'
+import { requireNativeComponent, NativeModules, findNodeHandle } from 'react-native'
+const { CanvadocViewManager } = NativeModules
 
 type Props = {
   config: {
@@ -39,13 +39,14 @@ export default class CanvadocViewer extends Component<Props> {
   render () {
     return <CanvadocView {...this.props} />
   }
+
+  getHandle = () => {
+    return findNodeHandle(this)
+  }
+
+  syncAllAnnotations () {
+    CanvadocViewManager.syncAllAnnotations(this.getHandle())
+  }
 }
 
-CanvadocViewer.propTypes = {
-  config: PropTypes.shape({
-    drawerInset: PropTypes.number.isRequired,
-    previewPath: PropTypes.string.isRequired,
-  }).isRequired,
-}
-
-const CanvadocView = requireNativeComponent('CanvadocView', CanvadocViewer)
+const CanvadocView = requireNativeComponent('CanvadocView', null)

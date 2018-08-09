@@ -43,12 +43,15 @@ exports[`CourseSelect renders 1`] = `
                 "color": "#2D3B45",
                 "fontSize": 16,
               },
-              Object {
-                "backgroundColor": "#f5f5f5",
-                "color": "#73818C",
-                "fontSize": 14,
-                "fontWeight": "600",
-              },
+              Array [
+                Object {
+                  "backgroundColor": "#f5f5f5",
+                  "color": "#73818C",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
+                undefined,
+              ],
               Object {
                 "fontFamily": ".SFUIDisplay-semibold",
               },
@@ -181,12 +184,15 @@ exports[`CourseSelect renders 1`] = `
                 "color": "#2D3B45",
                 "fontSize": 16,
               },
-              Object {
-                "backgroundColor": "#f5f5f5",
-                "color": "#73818C",
-                "fontSize": 14,
-                "fontWeight": "600",
-              },
+              Array [
+                Object {
+                  "backgroundColor": "#f5f5f5",
+                  "color": "#73818C",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
+                undefined,
+              ],
               Object {
                 "fontFamily": ".SFUIDisplay-semibold",
               },
@@ -417,12 +423,15 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
                 "color": "#2D3B45",
                 "fontSize": 16,
               },
-              Object {
-                "backgroundColor": "#f5f5f5",
-                "color": "#73818C",
-                "fontSize": 14,
-                "fontWeight": "600",
-              },
+              Array [
+                Object {
+                  "backgroundColor": "#f5f5f5",
+                  "color": "#73818C",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
+                undefined,
+              ],
               Object {
                 "fontFamily": ".SFUIDisplay-semibold",
               },
@@ -555,12 +564,15 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
                 "color": "#2D3B45",
                 "fontSize": 16,
               },
-              Object {
-                "backgroundColor": "#f5f5f5",
-                "color": "#73818C",
-                "fontSize": 14,
-                "fontWeight": "600",
-              },
+              Array [
+                Object {
+                  "backgroundColor": "#f5f5f5",
+                  "color": "#73818C",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
+                undefined,
+              ],
               Object {
                 "fontFamily": ".SFUIDisplay-semibold",
               },

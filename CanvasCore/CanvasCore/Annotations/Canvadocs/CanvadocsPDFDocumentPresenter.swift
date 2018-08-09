@@ -36,7 +36,8 @@ let DisabledMenuItems: [String] = [
 open class CanvadocsPDFDocumentPresenter: NSObject {
     var pdfDocument: PSPDFDocument
     let configuration: PSPDFConfiguration
-
+    var onSaveStateChange: RCTDirectEventBlock?
+    
     var localPDFURL: URL
     var annotations: [CanvadocsAnnotation]
     var metadata: CanvadocsFileMetadata?
@@ -44,7 +45,7 @@ open class CanvadocsPDFDocumentPresenter: NSObject {
     var annotationProvider: CanvadocsAnnotationProvider?
     weak var pdfViewController: PSPDFViewController?
 
-    open static func loadPDFViewController(_ sessionURL: URL, with configuration: PSPDFConfiguration, showAnnotationBarButton: Bool, completed: @escaping (UIViewController?, [NSError]?)->()) {
+    open static func loadPDFViewController(_ sessionURL: URL, with configuration: PSPDFConfiguration, showAnnotationBarButton: Bool, onSaveStateChange: RCTDirectEventBlock? = nil, completed: @escaping (UIViewController?, [NSError]?)->()) {
         var metadata: CanvadocsFileMetadata? = nil
         var localPDFURL: URL? = nil
         var canvadocsAnnotations: [CanvadocsAnnotation]? = nil
@@ -103,6 +104,7 @@ open class CanvadocsPDFDocumentPresenter: NSObject {
             if let localPDFURL = localPDFURL, let annotations = canvadocsAnnotations, let metadata = metadata {
                 canvadocsAnnotationService.metadata = metadata
                 let documentPresenter = CanvadocsPDFDocumentPresenter(localPDFURL: localPDFURL, annotations: annotations, metadata: metadata, service: canvadocsAnnotationService, configuration: configuration)
+                documentPresenter.onSaveStateChange = onSaveStateChange
                 let pdfViewController = documentPresenter.getPDFViewController(showAnnotationBarButton: showAnnotationBarButton)
                 completed(pdfViewController, nil)
             }
@@ -123,7 +125,7 @@ open class CanvadocsPDFDocumentPresenter: NSObject {
         }
         pdfDocument.didCreateDocumentProviderBlock = { documentProvider in
             let canvadocsAnnotationProvider = CanvadocsAnnotationProvider(documentProvider: documentProvider, annotations: annotations, service: service)
-            canvadocsAnnotationProvider.limitDelegate = self
+            canvadocsAnnotationProvider.canvasDelegate = self
             documentProvider.annotationManager.annotationProviders.insert(canvadocsAnnotationProvider, at: 0)
             self.annotationProvider = canvadocsAnnotationProvider
         }
@@ -266,5 +268,13 @@ extension CanvadocsPDFDocumentPresenter: CanvadocsAnnotationProviderDelegate {
         default:
             break
         }
+    }
+    
+    func annotationDidFailToSave(error: NSError) {
+        self.onSaveStateChange?(["error": error.localizedDescription])
+    }
+    
+    func annotationSaveStateChanges(saving: Bool) {
+        self.onSaveStateChange?(["saving": saving])
     }
 }

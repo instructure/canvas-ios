@@ -7,9 +7,9 @@ exports[`SubmissionPicker closes the picker 1`] = `
       "borderBottomColor": "#D8D8D8",
       "borderBottomWidth": 0.5,
       "borderStyle": "solid",
-      "marginHorizontal": 16,
       "marginTop": 16,
       "paddingBottom": 4,
+      "paddingHorizontal": 16,
     }
   }
 >
@@ -84,9 +84,9 @@ exports[`SubmissionPicker opens the picker 1`] = `
       "borderBottomColor": "#D8D8D8",
       "borderBottomWidth": 0.5,
       "borderStyle": "solid",
-      "marginHorizontal": 16,
       "marginTop": 16,
       "paddingBottom": 4,
+      "paddingHorizontal": 16,
     }
   }
 >
@@ -161,9 +161,9 @@ exports[`SubmissionPicker renders the picker with a 0 index 1`] = `
       "borderBottomColor": "#D8D8D8",
       "borderBottomWidth": 0.5,
       "borderStyle": "solid",
-      "marginHorizontal": 16,
       "marginTop": 16,
       "paddingBottom": 4,
+      "paddingHorizontal": 16,
     }
   }
 >
@@ -260,9 +260,9 @@ exports[`SubmissionPicker renders the picker with a non-zero index 1`] = `
       "borderBottomColor": "#D8D8D8",
       "borderBottomWidth": 0.5,
       "borderStyle": "solid",
-      "marginHorizontal": 16,
       "marginTop": 16,
       "paddingBottom": 4,
+      "paddingHorizontal": 16,
     }
   }
 >
@@ -359,9 +359,9 @@ exports[`SubmissionPicker renders with a submission 1`] = `
       "borderBottomColor": "#D8D8D8",
       "borderBottomWidth": 0.5,
       "borderStyle": "solid",
-      "marginHorizontal": 16,
       "marginTop": 16,
       "paddingBottom": 4,
+      "paddingHorizontal": 16,
     }
   }
 >
@@ -437,9 +437,9 @@ exports[`SubmissionPicker renders with no submission 1`] = `
         "borderBottomColor": "#D8D8D8",
         "borderBottomWidth": 0.5,
         "borderStyle": "solid",
-        "marginHorizontal": 16,
         "marginTop": 16,
         "paddingBottom": 4,
+        "paddingHorizontal": 16,
       },
       Object {
         "paddingBottom": 21,
@@ -456,9 +456,9 @@ exports[`SubmissionPicker renders with only one submission history 1`] = `
       "borderBottomColor": "#D8D8D8",
       "borderBottomWidth": 0.5,
       "borderStyle": "solid",
-      "marginHorizontal": 16,
       "marginTop": 16,
       "paddingBottom": 4,
+      "paddingHorizontal": 16,
     }
   }
 >

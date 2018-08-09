@@ -19,6 +19,7 @@
 import React, { Component } from 'react'
 import {
   View,
+  TouchableOpacity,
   StyleSheet,
 } from 'react-native'
 import i18n from 'format-message'
@@ -32,6 +33,12 @@ import AuthenticatedWebView from '../../common/components/AuthenticatedWebView'
 import URLSubmissionViewer from './submission-viewers/URLSubmissionViewer'
 import CanvadocViewer from './components/CanvadocViewer'
 import ImageSubmissionViewer from './submission-viewers/ImageSubmissionViewer'
+import debounce from 'lodash/debounce'
+
+type State = {
+  saving: boolean,
+  saveError: ?string,
+}
 
 type SubmissionViewerProps = {
   isCurrentStudent: boolean,
@@ -45,8 +52,31 @@ type SubmissionViewerProps = {
   navigator: Navigator,
 }
 
-export default class SubmissionViewer extends Component<SubmissionViewerProps> {
+export default class SubmissionViewer extends Component<SubmissionViewerProps, State> {
   videoPlayer: ?Video
+  canvadocViewer: ?CanvadocViewer
+  state: State
+
+  // This is tricky, because i want this to be updated all the time,
+  // But I don't want the state of the component to be up to date all the time, because it needs to be debounced 😱
+  saveState: { saving: boolean, error?: string }
+  debouncedUpdateSaveState: Function
+
+  constructor (props: any) {
+    super(props)
+
+    // $FlowFixMe
+    this.state = {
+      saving: false,
+      saveError: undefined,
+    }
+
+    this.saveState = {
+      saving: false,
+    }
+
+    this.debouncedUpdateSaveState = debounce(this.updateSaveState, 2000, { 'leading': true })
+  }
 
   componentWillReceiveProps (newProps: SubmissionViewerProps) {
     if (this.videoPlayer && !newProps.isCurrentStudent) {
@@ -56,6 +86,39 @@ export default class SubmissionViewer extends Component<SubmissionViewerProps> {
 
   captureVideoPlayer = (video: ?Video) => {
     this.videoPlayer = video
+  }
+
+  captureCanvadocViewer = (viewer: ?CanvadocViewer) => {
+    this.canvadocViewer = viewer
+  }
+
+  updateSaveState = (newSaveState: any) => {
+    this.setState({
+      saving: this.saveState.saving,
+      saveError: this.saveState.error ? i18n('Error Saving. Tap to retry.') : undefined,
+    })
+  }
+
+  saveStateChanged = (event: any) => {
+    // If an error happened, keep it around forever
+    // until the user taps retry
+    const error = this.saveState.error || event.nativeEvent.error
+    this.saveState = {
+      saving: event.nativeEvent.saving,
+      error,
+    }
+    this.debouncedUpdateSaveState()
+  }
+
+  saveAllAnnotations = () => {
+    if (this.canvadocViewer) {
+      this.canvadocViewer.syncAllAnnotations()
+      this.saveState = {
+        saving: true,
+        error: undefined,
+      }
+      this.updateSaveState()
+    }
   }
 
   currentSubmission (): ?Submission {
@@ -86,21 +149,41 @@ export default class SubmissionViewer extends Component<SubmissionViewerProps> {
     </View>
   }
 
+  renderSavingHeader = () => {
+    if (this.state.saveError) {
+      return <TouchableOpacity style={styles.errorBanner} onPress={this.saveAllAnnotations}>
+        <View>
+          <Text style={styles.errorBannerText}>{i18n('Error Saving. Tap to retry.')}</Text>
+        </View>
+      </TouchableOpacity>
+    }
+
+    return <View style={styles.savingBanner}>
+      { this.state.saving && <Text style={styles.savingBannerText}>{i18n('Saving...')}</Text> }
+      { !this.state.saving && <Text style={styles.savingBannerText}>{i18n('All annotations saved.')}</Text> }
+    </View>
+  }
+
   renderFile (submission: Submission) {
     if (submission.attachments) {
       let attachment = submission.attachments[this.props.selectedAttachmentIndex]
       if (attachment.mime_class === 'image') {
         return <ImageSubmissionViewer attachment={attachment} {...this.props.size} />
       } else {
-        return <CanvadocViewer
-          config={{
-            previewPath: attachment.preview_url,
-            fallbackURL: attachment.url,
-            filename: attachment.filename,
-            drawerInset: this.props.drawerInset,
-          }}
-          style={styles.pdfContainer}
-        />
+        return <View style={{ flex: 1 }}>
+          { this.renderSavingHeader() }
+          <CanvadocViewer
+            config={{
+              previewPath: attachment.preview_url,
+              fallbackURL: attachment.url,
+              filename: attachment.filename,
+              drawerInset: this.props.drawerInset,
+            }}
+            onSaveStateChange={this.saveStateChanged}
+            ref={this.captureCanvadocViewer}
+            style={styles.pdfContainer}
+          />
+        </View>
       }
     }
 
@@ -204,5 +287,32 @@ const styles = StyleSheet.create({
   noSubText: {
     textAlign: 'center',
     fontFamily: MEDIUM_FONT,
+  },
+  savingBanner: {
+    height: 24,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#FAFAFA',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: '#D8D8D8',
+    borderStyle: 'solid',
+  },
+  savingBannerText: {
+    color: '#73818C',
+    textAlign: 'center',
+    fontFamily: MEDIUM_FONT,
+    fontSize: 14,
+  },
+  errorBanner: {
+    height: 24,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#EE0612',
+  },
+  errorBannerText: {
+    color: 'white',
+    textAlign: 'center',
+    fontFamily: MEDIUM_FONT,
+    fontSize: 14,
   },
 })

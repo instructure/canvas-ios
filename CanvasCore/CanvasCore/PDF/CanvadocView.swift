@@ -74,6 +74,8 @@ public class CanvadocView: UIView {
         }
     }
     
+    var onSaveStateChange: RCTDirectEventBlock?
+    
     var previewPath: String {
         if let path = config["previewPath"] as? String {
             return path.substring(from: path.index(path.startIndex, offsetBy: 1)) // lop off beginning forward slash to avoid dupes
@@ -197,7 +199,7 @@ public class CanvadocView: UIView {
             components.path = (components.path as NSString).deletingLastPathComponent
             
             if let goodURL = components.url {
-                CanvadocsPDFDocumentPresenter.loadPDFViewController(goodURL, with: teacherAppConfiguration(bottomInset: me.bottomInset), showAnnotationBarButton: true) { [weak self] (pdfViewController, errors) in
+                CanvadocsPDFDocumentPresenter.loadPDFViewController(goodURL, with: teacherAppConfiguration(bottomInset: me.bottomInset), showAnnotationBarButton: true, onSaveStateChange: self?.onSaveStateChange) { [weak self] (pdfViewController, errors) in
                     if let pdfViewController = pdfViewController as? PSPDFViewController {
                         self?.activityIndicator.stopAnimating()
                         self?.embed(pdfViewController: pdfViewController)
@@ -261,6 +263,11 @@ public class CanvadocView: UIView {
         docInteractionController = UIDocumentInteractionController(url: fallbackLocalURL)
         docInteractionController?.delegate = self
         docInteractionController?.presentOpenInMenu(from: openInButton.frame, in: self, animated: true)
+    }
+    
+    public func syncAnnotations() {
+        guard let presenter = pdfViewController?.delegate as? CanvadocsPDFDocumentPresenter else { return }
+        presenter.annotationProvider?.syncAllAnnotations()
     }
 }
 

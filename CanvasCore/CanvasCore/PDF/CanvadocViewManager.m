@@ -30,5 +30,18 @@ RCT_EXPORT_MODULE()
 }
 
 RCT_EXPORT_VIEW_PROPERTY(config, NSDictionary *)
+RCT_EXPORT_VIEW_PROPERTY(onSaveStateChange, RCTDirectEventBlock)
+
+RCT_EXPORT_METHOD(syncAllAnnotations:(nonnull NSNumber *)reactTag)
+{
+    [self.bridge.uiManager addUIBlock:^(__unused RCTUIManager *uiManager, NSDictionary<NSNumber *, CanvadocView *> *viewRegistry) {
+        CanvadocView *view = viewRegistry[reactTag];
+        if (![view isKindOfClass:[CanvadocView class]]) {
+            RCTLogError(@"Invalid view returned from registry, expecting CanvadocView, got: %@", view);
+        } else {
+            [view syncAnnotations];
+        }
+    }];
+}
 
 @end
