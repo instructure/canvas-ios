@@ -10,6 +10,7 @@
 		89FE55DDB246505CC9530ADE /* Pods_defaults_SoSeedySwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DEFCAB2504D00C252B680F /* Pods_defaults_SoSeedySwift.framework */; };
 		9F711BBE20F518F3009A2C70 /* VCR.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F711BBD20F518F3009A2C70 /* VCR.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9F711BC020F518FA009A2C70 /* VCR.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F711BBF20F518FA009A2C70 /* VCR.m */; };
+		9FB5FACB211CD6FE00681C20 /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FB5FACA211CD6FE00681C20 /* CanvasCore.framework */; };
 		F9B03FAC20D8688B00DF764C /* assignments.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B03F8C20D8688900DF764C /* assignments.grpc.swift */; };
 		F9B03FAD20D8688B00DF764C /* discussions.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B03F8D20D8688900DF764C /* discussions.pb.swift */; };
 		F9B03FAE20D8688B00DF764C /* sections.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B03F8E20D8688900DF764C /* sections.grpc.swift */; };
@@ -68,6 +69,7 @@
 		965B6F817B4FF5E0F9105AAB /* Pods-defaults-SoSeedySwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-SoSeedySwift.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-SoSeedySwift/Pods-defaults-SoSeedySwift.debug.xcconfig"; sourceTree = "<group>"; };
 		9F711BBD20F518F3009A2C70 /* VCR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCR.h; sourceTree = "<group>"; };
 		9F711BBF20F518FA009A2C70 /* VCR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCR.m; sourceTree = "<group>"; };
+		9FB5FACA211CD6FE00681C20 /* CanvasCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A09DBF17EC444D398BF7D91A /* Pods-defaults-SoSeedySwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-SoSeedySwift.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-SoSeedySwift/Pods-defaults-SoSeedySwift.release.xcconfig"; sourceTree = "<group>"; };
 		F9B03F8C20D8688900DF764C /* assignments.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = assignments.grpc.swift; sourceTree = "<group>"; };
 		F9B03F8D20D8688900DF764C /* discussions.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = discussions.pb.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FB5FACB211CD6FE00681C20 /* CanvasCore.framework in Frameworks */,
 				89FE55DDB246505CC9530ADE /* Pods_defaults_SoSeedySwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -144,6 +147,7 @@
 		F4F96AB353827FC4D5E38F1E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9FB5FACA211CD6FE00681C20 /* CanvasCore.framework */,
 				04DEFCAB2504D00C252B680F /* Pods_defaults_SoSeedySwift.framework */,
 			);
 			name = Frameworks;
