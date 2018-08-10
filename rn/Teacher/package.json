@@ -22,6 +22,9 @@
     "postinstall": "./rn-mods.sh",
     "prepush": "yarn test --coverage && yarn lint:fix && yarn flow"
   },
+  "optionalDependencies": {
+    "fsevents": "^1.2.4"
+  },
   "dependencies": {
     "apollo-client-preset": "^1.0.8",
     "bugsnag-react-native": "^2.9.1",
@@ -102,6 +105,7 @@
     "jest": "^20.0.4",
     "jest-cli": "^20.0.4",
     "jest-fetch-mock": "^1.4.1",
+    "prompt": "1.0",
     "react-dom": "^16.1.1",
     "react-native-kill-packager": "^1.0.0",
     "react-test-renderer": "^16.1.1",
@@ -109,8 +113,7 @@
     "redux-logger": "^3.0.6",
     "redux-mock-store": "^1.2.3",
     "timezone-mock": "^0.0.4",
-    "trace": "^3.1.0",
-    "prompt": "1.0"
+    "trace": "^3.1.0"
   },
   "jest": {
     "preset": "react-native",
