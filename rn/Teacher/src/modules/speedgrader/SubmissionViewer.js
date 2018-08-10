@@ -289,7 +289,7 @@ const styles = StyleSheet.create({
     fontFamily: MEDIUM_FONT,
   },
   savingBanner: {
-    height: 24,
+    height: 22,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#FAFAFA',
@@ -301,10 +301,10 @@ const styles = StyleSheet.create({
     color: '#73818C',
     textAlign: 'center',
     fontFamily: MEDIUM_FONT,
-    fontSize: 14,
+    fontSize: 12,
   },
   errorBanner: {
-    height: 24,
+    height: 22,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#EE0612',
@@ -313,6 +313,6 @@ const styles = StyleSheet.create({
     color: 'white',
     textAlign: 'center',
     fontFamily: MEDIUM_FONT,
-    fontSize: 14,
+    fontSize: 12,
   },
 })
