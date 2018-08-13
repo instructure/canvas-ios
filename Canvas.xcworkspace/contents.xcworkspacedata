@@ -4,4 +4,7 @@
    <FileRef
       location = "group:Student/Student.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:Core/Core.xcodeproj">
+   </FileRef>
 </Workspace>
