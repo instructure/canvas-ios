@@ -1,0 +1,3 @@
+[submodule "ios-frameworks"]
+	path = ios-frameworks
+	url = git@github.com:instructure/ios-frameworks.git

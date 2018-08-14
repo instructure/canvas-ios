@@ -17,6 +17,9 @@
 		2C964871211E4319002C3255 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C964870211E4319002C3255 /* MainViewController.swift */; };
 		F97304A02122268100AA2557 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C964867211E38B0002C3255 /* Core.framework */; };
 		F97304A12122268500AA2557 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C964867211E38B0002C3255 /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F97304A4212287C500AA2557 /* EarlGrey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F97304A3212287C400AA2557 /* EarlGrey.framework */; };
+		F97304A7212287F400AA2557 /* EarlGrey.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97304A6212287F400AA2557 /* EarlGrey.swift */; };
+		F97304A921228B7A00AA2557 /* EarlGrey.framework in Embed EarlGrey */ = {isa = PBXBuildFile; fileRef = F97304A3212287C400AA2557 /* EarlGrey.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +44,17 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F97304A821228B6600AA2557 /* Embed EarlGrey */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(TEST_HOST)/..";
+			dstSubfolderSpec = 0;
+			files = (
+				F97304A921228B7A00AA2557 /* EarlGrey.framework in Embed EarlGrey */,
+			);
+			name = "Embed EarlGrey";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +72,8 @@
 		2C96486C211E4276002C3255 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		2C96486E211E428B002C3255 /* DetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailViewController.storyboard; sourceTree = "<group>"; };
 		2C964870211E4319002C3255 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		F97304A3212287C400AA2557 /* EarlGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EarlGrey.framework; path = "../../ios-frameworks/EarlGrey.framework"; sourceTree = "<group>"; };
+		F97304A6212287F400AA2557 /* EarlGrey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarlGrey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F97304A4212287C500AA2557 /* EarlGrey.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +136,7 @@
 				2C96486B211E3AA9002C3255 /* Core.framework */,
 				2C5C69A3211DFFAE00D9AD15 /* StudentTests.swift */,
 				2C5C69A5211DFFAE00D9AD15 /* Info.plist */,
+				F97304A6212287F400AA2557 /* EarlGrey.swift */,
 			);
 			path = StudentTests;
 			sourceTree = "<group>";
@@ -126,6 +144,7 @@
 		2C964862211E37EC002C3255 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F97304A3212287C400AA2557 /* EarlGrey.framework */,
 				2C964867211E38B0002C3255 /* Core.framework */,
 			);
 			path = Frameworks;
@@ -159,6 +178,7 @@
 				2C5C699B211DFFAE00D9AD15 /* Sources */,
 				2C5C699C211DFFAE00D9AD15 /* Frameworks */,
 				2C5C699D211DFFAE00D9AD15 /* Resources */,
+				F97304A821228B6600AA2557 /* Embed EarlGrey */,
 			);
 			buildRules = (
 			);
@@ -244,6 +264,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F97304A7212287F400AA2557 /* EarlGrey.swift in Sources */,
 				2C5C69A4211DFFAE00D9AD15 /* StudentTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -399,6 +420,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				INFOPLIST_FILE = Student/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -417,6 +439,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				INFOPLIST_FILE = Student/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -435,6 +458,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B6333T4PXQ;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../ios-frameworks";
 				INFOPLIST_FILE = StudentTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -456,6 +480,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B6333T4PXQ;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../ios-frameworks";
 				INFOPLIST_FILE = StudentTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
