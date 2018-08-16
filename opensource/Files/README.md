@@ -15,14 +15,15 @@
 - Add required license keys in the secrets.plist
 - If you want to use PSPDFKit, you will need to modify the Podfile to include your own PSPDFKit podspec url in addition to adding the license to secrets.plist.
 - If you wish to use Google Analytics in Canvas, follow [these directions](http://bit.ly/2dPsV9D) to add a GoogleService-Info.plist to Canvas/Canvas/Shrug/GoogleService-Info.plist
+- Install [react-native-cli](https://www.npmjs.com/package/react-native-cli) `npm install -g react-native-cli`
 
 ## Apps
 
 App | Description
 --- | ---
 [Student][student] | Used by Students all over the world to be smarter, go faster, and do more.
-[Teacher][teacher] | Used by Students all over the world to be smarter, go faster, and do more.
-[Parent][parent] | Used by Students all over the world to be smarter, go faster, and do more.
+[Teacher][teacher] | Used by Teachers all over the world to be smarter, go faster, and do more.
+[Parent][parent] | Used by Parents all over the world to be smarter, go faster, and do more.
 
 ## Open Source Licenses Used
 
