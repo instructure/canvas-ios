@@ -8,11 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		2C964838211E2F1A002C3255 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C96482E211E2F1A002C3255 /* Core.framework */; };
-		2C96483D211E2F1A002C3255 /* CoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C96483C211E2F1A002C3255 /* CoreTests.swift */; };
 		2C96483F211E2F1A002C3255 /* Core.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C964831211E2F1A002C3255 /* Core.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2C964857211E303E002C3255 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C964856211E303E002C3255 /* Router.swift */; };
 		2C96485B211E30B3002C3255 /* Router+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C96485A211E30B3002C3255 /* Router+Tests.swift */; };
 		2C96485E211E3723002C3255 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C96485D211E3723002C3255 /* AppState.swift */; };
+		7D062AF4212496E600677F66 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D062AF3212496E600677F66 /* Context.swift */; };
+		7D062AF721249E7700677F66 /* ContextModel+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D062AF621249E7700677F66 /* ContextModel+Tests.swift */; };
+		7D062AF92124A0F400677F66 /* ContextModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D062AF82124A0F400677F66 /* ContextModel.swift */; };
+		7D062AFB2124A14700677F66 /* Context+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D062AFA2124A14700677F66 /* Context+Tests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,11 +33,14 @@
 		2C964831211E2F1A002C3255 /* Core.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Core.h; sourceTree = "<group>"; };
 		2C964832211E2F1A002C3255 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C964837211E2F1A002C3255 /* CoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2C96483C211E2F1A002C3255 /* CoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreTests.swift; sourceTree = "<group>"; };
 		2C96483E211E2F1A002C3255 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C964856211E303E002C3255 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		2C96485A211E30B3002C3255 /* Router+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Router+Tests.swift"; sourceTree = "<group>"; };
 		2C96485D211E3723002C3255 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		7D062AF3212496E600677F66 /* Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
+		7D062AF621249E7700677F66 /* ContextModel+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContextModel+Tests.swift"; sourceTree = "<group>"; };
+		7D062AF82124A0F400677F66 /* ContextModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextModel.swift; sourceTree = "<group>"; };
+		7D062AFA2124A14700677F66 /* Context+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Context+Tests.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				2C96485C211E36FF002C3255 /* App State */,
+				7D062AF02124968200677F66 /* Models */,
 				2C964858211E3049002C3255 /* Router */,
 				2C964831211E2F1A002C3255 /* Core.h */,
 				2C964832211E2F1A002C3255 /* Info.plist */,
@@ -88,8 +95,8 @@
 		2C96483B211E2F1A002C3255 /* CoreTests */ = {
 			isa = PBXGroup;
 			children = (
+				7D062AF521249E5800677F66 /* Models */,
 				2C964859211E30A0002C3255 /* Router */,
-				2C96483C211E2F1A002C3255 /* CoreTests.swift */,
 				2C96483E211E2F1A002C3255 /* Info.plist */,
 			);
 			path = CoreTests;
@@ -117,6 +124,24 @@
 				2C96485D211E3723002C3255 /* AppState.swift */,
 			);
 			path = "App State";
+			sourceTree = "<group>";
+		};
+		7D062AF02124968200677F66 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7D062AF3212496E600677F66 /* Context.swift */,
+				7D062AF82124A0F400677F66 /* ContextModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		7D062AF521249E5800677F66 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7D062AFA2124A14700677F66 /* Context+Tests.swift */,
+				7D062AF621249E7700677F66 /* ContextModel+Tests.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,8 +253,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D062AF4212496E600677F66 /* Context.swift in Sources */,
 				2C964857211E303E002C3255 /* Router.swift in Sources */,
 				2C96485E211E3723002C3255 /* AppState.swift in Sources */,
+				7D062AF92124A0F400677F66 /* ContextModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,7 +265,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C96485B211E30B3002C3255 /* Router+Tests.swift in Sources */,
-				2C96483D211E2F1A002C3255 /* CoreTests.swift in Sources */,
+				7D062AF721249E7700677F66 /* ContextModel+Tests.swift in Sources */,
+				7D062AFB2124A14700677F66 /* Context+Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

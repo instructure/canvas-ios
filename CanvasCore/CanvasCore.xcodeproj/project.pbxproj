@@ -490,6 +490,8 @@
 		49DD239D1F8F9EBE004727F7 /* Session+DiscussionKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4917183E1F8EE797008B4599 /* Session+DiscussionKit.swift */; };
 		49F0F9301F9E50E400DD1512 /* AttendanceStatusController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F0F92F1F9E50E300DD1512 /* AttendanceStatusController.swift */; };
 		630085E9F4EBC97E435FFE64 /* Pods_defaults_CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 801BC15BB71585F55A4CD6C8 /* Pods_defaults_CanvasCore.framework */; };
+		7D062B042124A64C00677F66 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D062B022124A64C00677F66 /* Context.swift */; };
+		7D062B052124A64C00677F66 /* ContextModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D062B032124A64C00677F66 /* ContextModel.swift */; };
 		7D06401921138CF000D23D78 /* QuizListController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D06401821138CF000D23D78 /* QuizListController.storyboard */; };
 		7D06401D2113917700D23D78 /* QuizListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D06401C2113917700D23D78 /* QuizListController.swift */; };
 		7D06401F21139E0C00D23D78 /* QuizListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D06401E21139E0C00D23D78 /* QuizListCell.swift */; };
@@ -1076,6 +1078,8 @@
 		5B85C9F520DF8096007AFAFC /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5B85C9F620DF8096007AFAFC /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/SubmissionConfirmationViewController.strings; sourceTree = "<group>"; };
 		5B85C9F720DF8096007AFAFC /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7D062B022124A64C00677F66 /* Context.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
+		7D062B032124A64C00677F66 /* ContextModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextModel.swift; sourceTree = "<group>"; };
 		7D06401821138CF000D23D78 /* QuizListController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = QuizListController.storyboard; sourceTree = "<group>"; };
 		7D06401C2113917700D23D78 /* QuizListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizListController.swift; sourceTree = "<group>"; };
 		7D06401E21139E0C00D23D78 /* QuizListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizListCell.swift; sourceTree = "<group>"; };
@@ -1240,6 +1244,7 @@
 		2CAF1B0A1F72AEDB007225DF = {
 			isa = PBXGroup;
 			children = (
+				7D062B002124A62B00677F66 /* Core */,
 				2CAF1B161F72AEDB007225DF /* CanvasCore */,
 				2CAF1B211F72AEDB007225DF /* CanvasCoreTests */,
 				2CAF1B151F72AEDB007225DF /* Products */,
@@ -2855,6 +2860,24 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		7D062B002124A62B00677F66 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				7D062B012124A64C00677F66 /* Models */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		7D062B012124A64C00677F66 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7D062B022124A64C00677F66 /* Context.swift */,
+				7D062B032124A64C00677F66 /* ContextModel.swift */,
+			);
+			name = Models;
+			path = ../Core/Core/Models;
+			sourceTree = "<group>";
+		};
 		7D73ACD82119F3A6001FAB47 /* Secrets */ = {
 			isa = PBXGroup;
 			children = (
@@ -3382,6 +3405,7 @@
 				49CE96A11F8FF4A700121A43 /* ProgressDispatcher.swift in Sources */,
 				4961F5D71F8FB3EB0093EC86 /* FetchedDetailsCollection.swift in Sources */,
 				49CE972E1F8FFEA600121A43 /* Assignment+Collections.swift in Sources */,
+				7D062B042124A64C00677F66 /* Context.swift in Sources */,
 				490F91F11FB0F94A00A7DA38 /* CanvasWebViewController.swift in Sources */,
 				49CE96611F8FF41B00121A43 /* TimedQuizViewController.swift in Sources */,
 				9FB85499208677DB007499DA /* AdjustableManager.m in Sources */,
@@ -3655,6 +3679,7 @@
 				2CD6B5711FD20A9800C7DE15 /* WindowTraitsManager.m in Sources */,
 				4961F5EB1F8FB4070093EC86 /* TableViewDataSource.swift in Sources */,
 				497CA7701F82D19600501613 /* HelmConstants.swift in Sources */,
+				7D062B052124A64C00677F66 /* ContextModel.swift in Sources */,
 				4961F55A1F8FAF310093EC86 /* NSTimeInterval+MediaKit.swift in Sources */,
 				49CE96C01F8FF94B00121A43 /* Page.swift in Sources */,
 				49CE96791F8FF41B00121A43 /* MatchAnswerCell.swift in Sources */,
