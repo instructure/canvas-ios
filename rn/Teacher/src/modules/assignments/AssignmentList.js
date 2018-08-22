@@ -237,7 +237,7 @@ export class AssignmentList extends Component<AssignmentListProps, State> {
     if (index === this.props.gradingPeriods.length) return
 
     // always get assignment info for grading period, since it might be shared
-    this.props.refreshAssignmentList(this.props.courseID, this.props.gradingPeriods[index].id)
+    this.props.refreshAssignmentList(this.props.courseID, this.props.gradingPeriods[index].id, true)
 
     // get the grade for the current grading period
     if (this.props.showTotalScore) {

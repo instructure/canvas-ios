@@ -241,7 +241,7 @@ test('applyFilter will call refreshlist with the grading period id when it has n
 
   tree.instance().updateFilter(0)
 
-  expect(defaultProps.refreshAssignmentList).toHaveBeenCalledWith(course.id, gradingPeriod.id)
+  expect(defaultProps.refreshAssignmentList).toHaveBeenCalledWith(course.id, gradingPeriod.id, true)
 })
 
 test('applyFilter doesnt apply any filter when the cancel button is pressed', () => {
@@ -418,7 +418,7 @@ test('calls getGradesForGradingPeriod when a filter is updated', async () => {
 test('calls refreshAssignmentList when a filter is updated', () => {
   const tree = shallow(<AssignmentList {...defaultProps} />)
   tree.instance().updateFilter(0)
-  expect(defaultProps.refreshAssignmentList).toHaveBeenCalledWith(defaultProps.courseID, gradingPeriod.id)
+  expect(defaultProps.refreshAssignmentList).toHaveBeenCalledWith(defaultProps.courseID, gradingPeriod.id, true)
 })
 
 test('tries to request app store review when closing', () => {
