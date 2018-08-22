@@ -1,3 +1,11 @@
+## Cloning the repo
+
+- `git clone --recursive git@github.com:instructure/ios.git`
+
+Update the submodules with
+
+- `git submodule update --recursive --init`
+
 ## Guiding Principles
 
 ### Simple
