@@ -23,7 +23,7 @@ class MockAPI: API {
 
     var mocks: [URLRequest: (Data?, URLResponse?, Error?)] = [:]
 
-    func mock<R: APIRequestable>(_ requestable: R, value: R.Response?, response: URLResponse?, error: Error?) {
+    func mock<R: APIRequestable>(_ requestable: R, value: R.Response? = nil, response: URLResponse? = nil, error: Error? = nil) {
         let request = try! requestable.urlRequest(relativeTo: baseURL, accessToken: accessToken)
         var data: Data? = nil
         if let value = value {
@@ -41,6 +41,7 @@ class MockAPI: API {
                 value = try! JSONDecoder().decode(R.Response.self, from: data)
             }
             callback(value, response, error)
+            return nil
         }
         callback(nil, nil, nil)
         return nil

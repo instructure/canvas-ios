@@ -22,7 +22,7 @@ protocol Fixture {
 }
 
 extension Fixture where Self: Decodable {
-    static func make(_ template: Template) -> Self {
+    static func make(_ template: Template = [:]) -> Self {
         var t = self.template
         for (key, _) in template {
             t[key] = template[key]

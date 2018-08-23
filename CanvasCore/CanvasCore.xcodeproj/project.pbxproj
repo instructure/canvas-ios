@@ -1087,7 +1087,7 @@
 		7D0640222113BC2700D23D78 /* TitleSubtitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleSubtitleView.xib; sourceTree = "<group>"; };
 		7D0640272114BF8000D23D78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/QuizListEmptyView.xib; sourceTree = "<group>"; };
 		7D0640292114EE4A00D23D78 /* QuizModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizModel.swift; sourceTree = "<group>"; };
-		7D73ACDA211A010C001FAB47 /* Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fixture.swift; sourceTree = "<group>"; };
+		7D73ACDA211A010C001FAB47 /* Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Fixture.swift; path = ../../Core/CoreTests/API/Fixture.swift; sourceTree = "<group>"; };
 		7D73ACDC211A0163001FAB47 /* QuizModel+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuizModel+Fixture.swift"; sourceTree = "<group>"; };
 		7DD30623211A28C400A4A3D0 /* Date+ISO8601Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+ISO8601Tests.swift"; sourceTree = "<group>"; };
 		7DD30627211A2D7200A4A3D0 /* TitleSubtitleViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSubtitleViewTests.swift; sourceTree = "<group>"; };
