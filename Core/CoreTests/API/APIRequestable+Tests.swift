@@ -17,7 +17,7 @@
 import XCTest
 @testable import Core
 
-class APIQueryItem_Tests: XCTestCase {
+class APIQueryItemTests: XCTestCase {
     func testToQueryItems() {
         XCTAssertEqual(APIQueryItem.name("param").toURLQueryItems(), [URLQueryItem(name: "param", value: nil)])
         XCTAssertEqual(APIQueryItem.value("a", "b").toURLQueryItems(), [URLQueryItem(name: "a", value: "b")])
@@ -25,7 +25,7 @@ class APIQueryItem_Tests: XCTestCase {
     }
 }
 
-class APIRequestable_Tests: XCTestCase {
+class APIRequestableTests: XCTestCase {
     let baseURL = URL(string: "https://cgnuonline-eniversity.edu")!
     let accessToken = "fhwdgads"
 
@@ -91,11 +91,34 @@ class APIRequestable_Tests: XCTestCase {
         XCTAssertEqual(try GetQueryItems().urlRequest(relativeTo: baseURL, accessToken: accessToken), expected)
     }
 
-    func testUrlRequestNoResolve() {
+    func testUrlRequest() {
         var expected = expectedUrlRequest(path: "api/v1/post")
         expected.httpMethod = "POST"
         expected.setValue("application/json", forHTTPHeaderField: "Content-Type")
         expected.httpBody = "{\"date\":\"1970-01-01T00:00:00Z\"}".data(using: .utf8)
         XCTAssertEqual(try PostBody().urlRequest(relativeTo: baseURL, accessToken: accessToken), expected)
+    }
+
+    func testGetNext() {
+        let prev = "https://cgnuonline-eniversity.edu/api/v1/date"
+        let curr = "https://cgnuonline-eniversity.edu/api/v1/date?page=2"
+        let next = "https://cgnuonline-eniversity.edu/api/v1/date?page=3"
+        let headers = [
+            "Link": "<\(curr)>; rel=\"current\",<>;, <\(prev)>; rel=\"prev\", <\(next)>; rel=\"next\"; count=1",
+        ]
+        let response = HTTPURLResponse(url: URL(string: curr)!, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: headers)!
+        XCTAssertEqual(GetDate().getNext(from: response)?.path, next)
+        XCTAssertEqual(GetNextRequest<DateHaver>(path: next).path, next)
+    }
+
+    func testGetNextNone() {
+        let curr = "https://cgnuonline-eniversity.edu/api/v1/date"
+        let headers = [
+            "Link": "<\(curr)>; rel=\"current\"",
+        ]
+        let response = HTTPURLResponse(url: URL(string: curr)!, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: headers)!
+        XCTAssertNil(GetDate().getNext(from: response))
+        let response2 = HTTPURLResponse(url: URL(string: curr)!, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: nil)!
+        XCTAssertNil(GetDate().getNext(from: response2))
     }
 }

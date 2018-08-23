@@ -111,4 +111,16 @@ extension APIRequestable {
 
         return request
     }
+
+    func getNext(from response: URLResponse) -> GetNextRequest<Response>? {
+        if let next = response.links?["next"] {
+            return GetNextRequest<Response>(path: next.absoluteString)
+        }
+        return nil
+    }
+}
+
+struct GetNextRequest<T: Codable>: APIRequestable {
+    typealias Response = T
+    let path: String
 }

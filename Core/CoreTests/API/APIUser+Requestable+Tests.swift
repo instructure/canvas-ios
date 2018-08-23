@@ -17,12 +17,12 @@
 import XCTest
 @testable import Core
 
-class APIUser_Requestable_Tests: XCTestCase {
-    func testGetCustomColors() {
-        XCTAssertEqual(GetCustomColors().path, "users/self/colors")
+class APIUserRequestableTests: XCTestCase {
+    func testGetCustomColorsRequest() {
+        XCTAssertEqual(GetCustomColorsRequest().path, "users/self/colors")
     }
 
-    func testGetUser() {
-        XCTAssertEqual(GetUser(userID: "2").path, "users/2")
+    func testGetUserRequest() {
+        XCTAssertEqual(GetUserRequest(userID: "2").path, "users/2")
     }
 }

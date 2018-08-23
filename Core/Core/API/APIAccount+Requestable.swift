@@ -17,8 +17,11 @@
 import Foundation
 
 // Not documented in canvas rest api
-struct GetAccountsSearch: APIRequestable {
+struct GetAccountsSearchRequest: APIRequestable {
     typealias Response = [APIAccountResults]
 
     let path = "https://canvas.instructure.com/api/v1/accounts/search"
+    let headers: [String : String?] = [
+        "Authorization": nil,
+    ]
 }

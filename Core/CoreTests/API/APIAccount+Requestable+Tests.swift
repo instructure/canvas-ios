@@ -17,8 +17,8 @@
 import XCTest
 @testable import Core
 
-class APIAccount_Requestable_Tests: XCTestCase {
-    func testGetAccountsSearch() {
-        XCTAssertEqual(GetAccountsSearch().path, "https://canvas.instructure.com/api/v1/accounts/search")
+class APIAccountRequestableTests: XCTestCase {
+    func testGetAccountsSearchRequest() {
+        XCTAssertEqual(GetAccountsSearchRequest().path, "https://canvas.instructure.com/api/v1/accounts/search")
     }
 }

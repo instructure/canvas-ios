@@ -17,10 +17,10 @@
 import XCTest
 @testable import Core
 
-class APICourse_Requestable_Tests: XCTestCase {
-    func testGetCourses() {
-        XCTAssertEqual(GetCourses(includeUnpublished: false).path, "courses")
-        XCTAssertEqual(GetCourses(includeUnpublished: false).queryItems, [
+class APICourseRequestableTests: XCTestCase {
+    func testGetCoursesRequest() {
+        XCTAssertEqual(GetCoursesRequest(includeUnpublished: false).path, "courses")
+        XCTAssertEqual(GetCoursesRequest(includeUnpublished: false).queryItems, [
             URLQueryItem(name: "include[]", value: "course_image"),
             URLQueryItem(name: "include[]", value: "current_grading_period_scores"),
             URLQueryItem(name: "include[]", value: "favorites"),
@@ -31,7 +31,7 @@ class APICourse_Requestable_Tests: XCTestCase {
             URLQueryItem(name: "state[]", value: "available"),
             URLQueryItem(name: "state[]", value: "completed"),
         ])
-        XCTAssertEqual(GetCourses(includeUnpublished: true).queryItems, [
+        XCTAssertEqual(GetCoursesRequest(includeUnpublished: true).queryItems, [
             URLQueryItem(name: "include[]", value: "course_image"),
             URLQueryItem(name: "include[]", value: "current_grading_period_scores"),
             URLQueryItem(name: "include[]", value: "favorites"),
@@ -45,9 +45,9 @@ class APICourse_Requestable_Tests: XCTestCase {
         ])
     }
 
-    func testGetCourse() {
-        XCTAssertEqual(GetCourse(courseID: "2").path, "courses/2")
-        XCTAssertEqual(GetCourse(courseID: "2").queryItems, [
+    func testGetCourseRequest() {
+        XCTAssertEqual(GetCourseRequest(courseID: "2").path, "courses/2")
+        XCTAssertEqual(GetCourseRequest(courseID: "2").queryItems, [
             URLQueryItem(name: "include[]", value: "course_image"),
             URLQueryItem(name: "include[]", value: "current_grading_period_scores"),
             URLQueryItem(name: "include[]", value: "favorites"),
@@ -58,10 +58,10 @@ class APICourse_Requestable_Tests: XCTestCase {
         ])
     }
 
-    func testPutCourse() {
-        let body = PutCourse.Body(name: "Cracking Wise", default_view: .wiki)
-        XCTAssertEqual(PutCourse(courseID: "2", body: body).method, .put)
-        XCTAssertEqual(PutCourse(courseID: "2", body: body).path, "courses/2")
-        XCTAssertEqual(PutCourse(courseID: "2", body: body).body, body)
+    func testPutCourseRequest() {
+        let body = PutCourseRequest.Body(name: "Cracking Wise", default_view: .wiki)
+        XCTAssertEqual(PutCourseRequest(courseID: "2", body: body).method, .put)
+        XCTAssertEqual(PutCourseRequest(courseID: "2", body: body).path, "courses/2")
+        XCTAssertEqual(PutCourseRequest(courseID: "2", body: body).body, body)
     }
 }

@@ -17,7 +17,7 @@
 import Foundation
 
 // Not documented in canvas rest api
-struct GetMobileVerify: APIRequestable {
+struct GetMobileVerifyRequest: APIRequestable {
     typealias Response = APIVerifyClient
 
     let domain: String
@@ -33,7 +33,7 @@ struct GetMobileVerify: APIRequestable {
 }
 
 // https://canvas.instructure.com/doc/api/file.oauth_endpoints.html#post-login-oauth2-token
-struct PostLoginOAuth: APIRequestable {
+struct PostLoginOAuthRequest: APIRequestable {
     typealias Response = APIOAuthToken
 
     let client: APIVerifyClient

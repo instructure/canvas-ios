@@ -18,7 +18,7 @@ import Foundation
 
 // https://canvas.instructure.com/doc/api/groups.html#method.groups.index
 // https://canvas.instructure.com/doc/api/groups.html#method.groups.context_index
-struct GetGroups: APIRequestable {
+struct GetGroupsRequest: APIRequestable {
     typealias Response = [APIGroup]
 
     let context: Context
@@ -29,7 +29,7 @@ struct GetGroups: APIRequestable {
 }
 
 // https://canvas.instructure.com/doc/api/groups.html#method.groups.users
-struct GetGroupUsers: APIRequestable {
+struct GetGroupUsersRequest: APIRequestable {
     typealias Response = [APIUser]
 
     let groupID: String

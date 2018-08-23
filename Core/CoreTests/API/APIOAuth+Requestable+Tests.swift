@@ -17,19 +17,19 @@
 import XCTest
 @testable import Core
 
-class APIOAuth_Requestable_Tests: XCTestCase {
-    func testGetMobileVerify() {
-        XCTAssertEqual(GetMobileVerify(domain: "cgnu").path, "https://canvas.instructure.com/api/v1/mobile_verify.json")
-        XCTAssertEqual(GetMobileVerify(domain: "cgnu").queryItems, [
+class APIOAuthRequestableTests: XCTestCase {
+    func testGetMobileVerifyRequest() {
+        XCTAssertEqual(GetMobileVerifyRequest(domain: "cgnu").path, "https://canvas.instructure.com/api/v1/mobile_verify.json")
+        XCTAssertEqual(GetMobileVerifyRequest(domain: "cgnu").queryItems, [
             URLQueryItem(name: "domain", value: "cgnu"),
         ])
     }
 
-    func testPostLoginOAuth() {
+    func testPostLoginOAuthRequest() {
         let client = APIVerifyClient(authorized: true, base_url: URL(string: "https://cgnuonline-eniversity.edu"), client_id: "cgnu", client_secret: "dna evidence")
-        XCTAssertEqual(PostLoginOAuth(client: client, code: "1234").method, .post)
-        XCTAssertEqual(PostLoginOAuth(client: client, code: "1234").path, "https://cgnuonline-eniversity.edu/login/oauth2/token")
-        XCTAssertEqual(PostLoginOAuth(client: client, code: "1234").queryItems, [
+        XCTAssertEqual(PostLoginOAuthRequest(client: client, code: "1234").method, .post)
+        XCTAssertEqual(PostLoginOAuthRequest(client: client, code: "1234").path, "https://cgnuonline-eniversity.edu/login/oauth2/token")
+        XCTAssertEqual(PostLoginOAuthRequest(client: client, code: "1234").queryItems, [
             URLQueryItem(name: "client_id", value: "cgnu"),
             URLQueryItem(name: "client_secret", value: "dna evidence"),
             URLQueryItem(name: "code", value: "1234"),
@@ -38,8 +38,8 @@ class APIOAuth_Requestable_Tests: XCTestCase {
 
     func testPostLoginOAuthUnauthorized() {
         let client = APIVerifyClient(authorized: false, base_url: nil, client_id: nil, client_secret: nil)
-        XCTAssertEqual(PostLoginOAuth(client: client, code: "1234").path, "login/oauth2/token")
-        XCTAssertEqual(PostLoginOAuth(client: client, code: "1234").queryItems, [
+        XCTAssertEqual(PostLoginOAuthRequest(client: client, code: "1234").path, "login/oauth2/token")
+        XCTAssertEqual(PostLoginOAuthRequest(client: client, code: "1234").queryItems, [
             URLQueryItem(name: "client_id", value: ""),
             URLQueryItem(name: "client_secret", value: ""),
             URLQueryItem(name: "code", value: "1234"),

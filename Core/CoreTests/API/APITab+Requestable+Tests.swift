@@ -17,8 +17,8 @@
 import XCTest
 @testable import Core
 
-class APITab_Requestable_Tests: XCTestCase {
-    func testGetTabs() {
-        XCTAssertEqual(GetTabs(context: ContextModel(.course, id: "2")).path, "courses/2/tabs?per_page=100")
+class APITabRequestableTests: XCTestCase {
+    func testGetTabsRequest() {
+        XCTAssertEqual(GetTabsRequest(context: ContextModel(.course, id: "2")).path, "courses/2/tabs?per_page=100")
     }
 }

@@ -17,7 +17,7 @@
 import Foundation
 
 // https://canvas.instructure.com/doc/api/tabs.html#method.tabs.index
-struct GetTabs: APIRequestable {
+struct GetTabsRequest: APIRequestable {
     typealias Response = [APITab]
 
     let context: Context

@@ -17,12 +17,12 @@
 import XCTest
 @testable import Core
 
-class APIGroup_Requestable_Tests: XCTestCase {
-    func testGetGroups() {
-        XCTAssertEqual(GetGroups(context: ContextModel(.course, id: "2")).path, "courses/2/groups?include[]=users")
+class APIGroupRequestableTests: XCTestCase {
+    func testGetGroupsRequest() {
+        XCTAssertEqual(GetGroupsRequest(context: ContextModel(.course, id: "2")).path, "courses/2/groups?include[]=users")
     }
 
-    func testGetGroupUsers() {
-        XCTAssertEqual(GetGroupUsers(groupID: "2").path, "groups/2/users?include[]=avatar_url")
+    func testGetGroupUsersRequest() {
+        XCTAssertEqual(GetGroupUsersRequest(groupID: "2").path, "groups/2/users?include[]=avatar_url")
     }
 }

@@ -17,7 +17,7 @@
 import XCTest
 @testable import Core
 
-class API_Tests: XCTestCase {
+class APITests: XCTestCase {
     struct DateHaver: Codable, Equatable {
         let date: Date
     }
@@ -44,45 +44,49 @@ class API_Tests: XCTestCase {
 
     func testMakeRequestInvalidPath() {
         let expectation = XCTestExpectation(description: "request callback runs")
-        URLSessionAPI().makeRequest(InvalidPath()) { value, response, error in
+        let task = URLSessionAPI().makeRequest(InvalidPath()) { value, response, error in
             XCTAssertNil(value)
             XCTAssertNil(response)
             XCTAssertNotNil(error)
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 1.0)
+        XCTAssertNil(task)
     }
 
     func testMakeRequestUnsupported() {
         let expectation = XCTestExpectation(description: "request callback runs")
-        URLSessionAPI().makeRequest(InvalidScheme()) { value, response, error in
+        let task = URLSessionAPI().makeRequest(InvalidScheme()) { value, response, error in
             XCTAssertNil(value)
             XCTAssertNil(response)
             XCTAssertNotNil(error)
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 1.0)
+        XCTAssertNotNil(task)
     }
 
     func testMakeRequestWrongResponse() {
         let expectation = XCTestExpectation(description: "request callback runs")
-        URLSessionAPI().makeRequest(WrongResponse()) { value, response, error in
+        let task = URLSessionAPI().makeRequest(WrongResponse()) { value, response, error in
             XCTAssertNil(value)
             XCTAssertNotNil(response)
             XCTAssertNotNil(error)
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 10.0)
+        XCTAssertNotNil(task)
     }
 
     func testNoCredsNeeded() {
         let expectation = XCTestExpectation(description: "request callback runs")
-        URLSessionAPI().makeRequest(GetAccountsSearch()) { value, response, error in
+        let task = URLSessionAPI().makeRequest(GetAccountsSearchRequest()) { value, response, error in
             XCTAssertNotNil(value)
             XCTAssertNotNil(response)
             XCTAssertNil(error)
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 10.0)
+        XCTAssertNotNil(task)
     }
 }

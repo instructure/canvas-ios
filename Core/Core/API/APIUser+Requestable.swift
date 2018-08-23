@@ -17,14 +17,14 @@
 import Foundation
 
 // https://canvas.instructure.com/doc/api/users.html#method.users.get_custom_color
-struct GetCustomColors: APIRequestable {
+struct GetCustomColorsRequest: APIRequestable {
     typealias Response = APICustomColors
 
     let path = "users/self/colors"
 }
 
 // https://canvas.instructure.com/doc/api/users.html#method.users.api_show
-struct GetUser: APIRequestable {
+struct GetUserRequest: APIRequestable {
     typealias Response = APIUser
 
     let userID: String

@@ -17,14 +17,14 @@
 import XCTest
 @testable import Core
 
-class APIFavorite_Requestable_Tests: XCTestCase {
-    func testPostFavorite() {
-        XCTAssertEqual(PostFavorite(context: ContextModel(.course, id: "2")).method, .post)
-        XCTAssertEqual(PostFavorite(context: ContextModel(.course, id: "2")).path, "users/self/favorites/courses/2")
+class APIFavoriteRequestableTests: XCTestCase {
+    func testPostFavoriteRequest() {
+        XCTAssertEqual(PostFavoriteRequest(context: ContextModel(.course, id: "2")).method, .post)
+        XCTAssertEqual(PostFavoriteRequest(context: ContextModel(.course, id: "2")).path, "users/self/favorites/courses/2")
     }
 
-    func testDeleteFavorite() {
-        XCTAssertEqual(DeleteFavorite(context: ContextModel(.course, id: "2")).method, .delete)
-        XCTAssertEqual(DeleteFavorite(context: ContextModel(.course, id: "2")).path, "users/self/favorites/courses/2")
+    func testDeleteFavoriteRequest() {
+        XCTAssertEqual(DeleteFavoriteRequest(context: ContextModel(.course, id: "2")).method, .delete)
+        XCTAssertEqual(DeleteFavoriteRequest(context: ContextModel(.course, id: "2")).path, "users/self/favorites/courses/2")
     }
 }

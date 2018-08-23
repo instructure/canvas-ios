@@ -17,7 +17,7 @@
 import Foundation
 
 // https://canvas.instructure.com/doc/api/courses.html#method.courses.index
-struct GetCourses: APIRequestable {
+struct GetCoursesRequest: APIRequestable {
     typealias Response = [APICourse]
 
     let includeUnpublished: Bool
@@ -44,7 +44,7 @@ struct GetCourses: APIRequestable {
 }
 
 // https://canvas.instructure.com/doc/api/courses.html#method.courses.show
-struct GetCourse: APIRequestable {
+struct GetCourseRequest: APIRequestable {
     typealias Response = APICourse
 
     let courseID: String
@@ -66,7 +66,7 @@ struct GetCourse: APIRequestable {
 }
 
 // https://canvas.instructure.com/doc/api/courses.html#method.courses.update
-struct PutCourse: APIRequestable {
+struct PutCourseRequest: APIRequestable {
     typealias Response = APICourse
     struct Body: Encodable, Equatable {
         let name: String

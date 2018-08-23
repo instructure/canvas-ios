@@ -34,12 +34,12 @@ struct APICourse: Codable, Equatable {
     let end_at: Date?
     let locale: String?
     let enrollments: [APIEnrollment]?
-    // let total_students: Int?
+    // let total_students: Int? // include[]=total_students
     // let calendar: ?
     let default_view: DefaultView?
-    // let syllabus_body: String?
-    // let needs_grading_count: Int?
-    let term: Term?
+    // let syllabus_body: String? // include[]=syllabus_body
+    // let needs_grading_count: Int? // include[]=needs_grading_count
+    let term: Term? // include[]=term
     // let course_progress: ?
     // let apply_assignment_group_weights: Bool?
     let permissions: Permissions?
@@ -49,7 +49,7 @@ struct APICourse: Codable, Equatable {
     // let public_syllabus_to_auth: Bool?
     // let public_description: String?
     // let storage_quota_mb: Double?
-    // let storage_quota_used_mb: Double?
+    // let storage_quota_used_mb: Double? // include[]=storage_quota_used_mb
     // let hide_final_grades: Bool?
     // let license: String?
     // let allow_student_assignment_edits: Bool?
@@ -59,18 +59,14 @@ struct APICourse: Codable, Equatable {
     // let self_enrollment: Bool?
     // let restrict_enrollments_to_course_dates: Bool?
     // let course_format: String?
-    let access_restricted_by_date: Bool
+    let access_restricted_by_date: Bool?
     // let time_zone: TimeZone?
     // let blueprint: Bool?
     // let blueprint_restrictions: ?
     // let blueprint_restrictions_by_object_type: ?
-
-    // not listed in api docs
-    let original_name: String?
-    let short_name: String?
-    let image_download_url: String?
-    let is_favorite: Bool?
-    let sections: [APISection]?
+    let image_download_url: String? // include[]=course_image
+    let is_favorite: Bool? // include[]=favorites
+    let sections: [APISection]? // include[]=sections
 
     enum WorkflowState: String, Codable {
         case available, completed, deleted, unpublished
