@@ -17,7 +17,7 @@
 import UIKit
 
 open class QuizListController: UITableViewController, PageViewEventViewControllerLoggingProtocol {
-    static open func create(context: Context, route: @escaping (UIViewController, URL) -> ()) -> QuizListController {
+    static open func create(context: ContextID, route: @escaping (UIViewController, URL) -> ()) -> QuizListController {
         let viewController = UIStoryboard(name: "QuizListController", bundle: .core).instantiateInitialViewController() as! QuizListController
         viewController.emptyView = Bundle.core.loadNibNamed("QuizListEmptyView", owner: self, options: nil)?.first as? UIView
         viewController.context = context
@@ -26,7 +26,7 @@ open class QuizListController: UITableViewController, PageViewEventViewControlle
     }
 
     // MARK: - Properties
-    var context: Context!
+    var context: ContextID!
     var data: QuizListData = QuizListData()
     var emptyView: UIView?
     var route: ((UIViewController, URL) -> ())?
@@ -48,7 +48,7 @@ open class QuizListController: UITableViewController, PageViewEventViewControlle
 
     open override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        stopTrackingTimeOnViewController(eventName: "\(context.pathComponent)/quizzes")
+        stopTrackingTimeOnViewController(eventName: "\(context.htmlPath)/quizzes")
     }
 
     // MARK: - Table view data source

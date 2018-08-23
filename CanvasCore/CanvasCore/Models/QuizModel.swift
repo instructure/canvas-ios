@@ -117,7 +117,7 @@ public struct QuizModel: Codable {
             text_only_question
     }
 
-    public struct Permissions: Codable, Equatable {
+    public struct Permissions: Codable {
         let read: Bool
         let submit: Bool
         let create: Bool
@@ -127,7 +127,7 @@ public struct QuizModel: Codable {
         let update: Bool
     }
 
-    public struct TimeLimit: Codable, Equatable {
+    public struct TimeLimit: Codable {
         let measurement: Measurement<UnitDuration>
 
         public init(minutes: Double) {

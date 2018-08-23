@@ -31,7 +31,6 @@ class QuizModelTests: XCTestCase {
 
     func testDecodableTimeLimit() {
         let time = try! decoder.decode([QuizModel.TimeLimit].self, from: "[10]".data(using: .utf8)!)
-        XCTAssertEqual(time, [QuizModel.TimeLimit(minutes: 10)])
         XCTAssertEqual(time.first?.to(.seconds), 10 * 60)
     }
 
