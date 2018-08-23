@@ -3700,7 +3700,6 @@ exports[`Dashboard renders course invites 1`] = `
         </View>
       </item>
     </section>
-    <section />
     <section>
       <item>
         <View
@@ -4249,6 +4248,7 @@ exports[`Dashboard renders course invites 1`] = `
         </View>
       </item>
     </section>
+    <section />
     <section>
       <View
         accessibitilityTraits="heading"
@@ -5493,7 +5493,6 @@ exports[`Dashboard renders prompt to rate app 1`] = `
         </View>
       </item>
     </section>
-    <section />
     <section>
       <item>
         <View
@@ -6042,6 +6041,7 @@ exports[`Dashboard renders prompt to rate app 1`] = `
         </View>
       </item>
     </section>
+    <section />
     <section>
       <View
         accessibitilityTraits="heading"

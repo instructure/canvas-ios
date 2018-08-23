@@ -343,14 +343,6 @@ export class Dashboard extends React.Component<Props, State> {
       })
     }
 
-    // Announcements
-    sections.push({
-      sectionID: 'dashboard.announcements',
-      data: this.props.announcements,
-      renderItem: this.renderGlobalAnnouncement,
-      keyExtractor: ({ id }: AccountNotification) => id,
-    })
-
     // Course Invites
     if (this.props.enrollments.length > 0) {
       let courseInvites = this.props.enrollments.filter(en => {
@@ -363,6 +355,14 @@ export class Dashboard extends React.Component<Props, State> {
         keyExtractor: ({ id }: Invite) => `enrollment-${id}`,
       })
     }
+
+    // Announcements
+    sections.push({
+      sectionID: 'dashboard.announcements',
+      data: this.props.announcements,
+      renderItem: this.renderGlobalAnnouncement,
+      keyExtractor: ({ id }: AccountNotification) => id,
+    })
 
     // Courses
     if (this.props.courses.length > 0) {
