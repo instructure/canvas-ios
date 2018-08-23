@@ -17,7 +17,7 @@
 import XCTest
 @testable import Core
 
-class Context_Tests: XCTestCase {
+class ContextTests: XCTestCase {
     func testTypePathComponent() {
         XCTAssertEqual(ContextType.account.pathComponent, "accounts")
         XCTAssertEqual(ContextType.course.pathComponent, "courses")

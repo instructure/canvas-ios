@@ -14,7 +14,7 @@ public protocol AppStateDelegate {
 
 public class AppState {
     public let router: Router
-    
+
     public init(router: Router) {
         self.router = router
     }

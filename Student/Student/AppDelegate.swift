@@ -14,11 +14,11 @@ let router = Router()
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate, AppStateDelegate {
     lazy var appState: AppState = {
-        
+
         router.addRoute("/detail") {
             return DetailViewController.create()
         }
-        
+
         let appState = AppState(router: router)
         return appState
     }()

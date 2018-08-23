@@ -9,7 +9,7 @@
 import UIKit
 
 class MainViewController: UIViewController {
-    
+
     @IBAction func goToDetail() {
         router.route(to: "/detail", from: self)
     }

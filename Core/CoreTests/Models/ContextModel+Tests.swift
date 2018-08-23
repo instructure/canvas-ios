@@ -17,7 +17,7 @@
 import XCTest
 @testable import Core
 
-class ContextModel_Tests: XCTestCase {
+class ContextModelTests: XCTestCase {
     func testExpandTildeID() {
         XCTAssertEqual(ContextModel.expandTildeID("1~1"), "10000000000001")
         XCTAssertEqual(ContextModel.expandTildeID("123456789~123456789"), "1234567890000123456789")

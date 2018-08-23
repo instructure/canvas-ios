@@ -10,7 +10,9 @@ import UIKit
 
 class DetailViewController: UIViewController {
     static func create() -> DetailViewController {
+        // swiftlint:disable force_cast
         let controller = UIStoryboard(name: "DetailViewController", bundle: nil).instantiateInitialViewController() as! DetailViewController
+        // swiftlint:enable force_cast
         return controller
     }
 }
