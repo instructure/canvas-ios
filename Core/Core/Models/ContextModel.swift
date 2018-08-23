@@ -23,7 +23,8 @@ public struct ContextModel: Context, Equatable, Hashable {
     public static func expandTildeID(_ id: String) -> String {
         let parts = id.components(separatedBy: "~")
         if parts.count == 2, let shardID = Int64(parts[0]), let resourceID = Int64(parts[1]) {
-            return "\(Decimal(shardID) * 10_000_000_000_000 + Decimal(resourceID))"
+            let shardFactor: Int64 = 10_000_000_000_000
+            return "\(Decimal(shardID) * Decimal(shardFactor) + Decimal(resourceID))"
         }
         return id
     }
