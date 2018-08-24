@@ -11,6 +11,6 @@ import UIKit
 class MainViewController: UIViewController {
 
     @IBAction func goToDetail() {
-        router.route(to: "/detail", from: self)
+        router.route(to: "/courses/4/users/3?include[]=yo", from: self)
     }
 }

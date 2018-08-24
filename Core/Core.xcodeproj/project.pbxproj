@@ -12,6 +12,8 @@
 		2C964857211E303E002C3255 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C964856211E303E002C3255 /* Router.swift */; };
 		2C96485B211E30B3002C3255 /* Router+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C96485A211E30B3002C3255 /* Router+Tests.swift */; };
 		2C96485E211E3723002C3255 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C96485D211E3723002C3255 /* AppState.swift */; };
+		9F0C3D6121233398005B7A6F /* PathToRegexp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0C3D6021233398005B7A6F /* PathToRegexp.swift */; };
+		9F0C3D6321246C92005B7A6F /* PathToRegexp+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0C3D6221246C92005B7A6F /* PathToRegexp+Tests.swift */; };
 		7D062AF4212496E600677F66 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D062AF3212496E600677F66 /* Context.swift */; };
 		7D062AF721249E7700677F66 /* ContextModel+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D062AF621249E7700677F66 /* ContextModel+Tests.swift */; };
 		7D062AF92124A0F400677F66 /* ContextModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D062AF82124A0F400677F66 /* ContextModel.swift */; };
@@ -97,6 +99,8 @@
 		2C964856211E303E002C3255 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		2C96485A211E30B3002C3255 /* Router+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Router+Tests.swift"; sourceTree = "<group>"; };
 		2C96485D211E3723002C3255 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		9F0C3D6021233398005B7A6F /* PathToRegexp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathToRegexp.swift; sourceTree = "<group>"; };
+		9F0C3D6221246C92005B7A6F /* PathToRegexp+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PathToRegexp+Tests.swift"; sourceTree = "<group>"; };
 		7D062AF3212496E600677F66 /* Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
 		7D062AF621249E7700677F66 /* ContextModel+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContextModel+Tests.swift"; sourceTree = "<group>"; };
 		7D062AF82124A0F400677F66 /* ContextModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextModel.swift; sourceTree = "<group>"; };
@@ -241,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				2C964856211E303E002C3255 /* Router.swift */,
+				9F0C3D6021233398005B7A6F /* PathToRegexp.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -249,6 +254,7 @@
 			isa = PBXGroup;
 			children = (
 				2C96485A211E30B3002C3255 /* Router+Tests.swift */,
+				9F0C3D6221246C92005B7A6F /* PathToRegexp+Tests.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -626,6 +632,7 @@
 				B1445306212E5B6E0009D848 /* Database.xcdatamodeld in Sources */,
 				B1EA5AFD212E7C1D00DABC5F /* DependencyOperation.swift in Sources */,
 				2C964857211E303E002C3255 /* Router.swift in Sources */,
+				9F0C3D6121233398005B7A6F /* PathToRegexp.swift in Sources */,
 				2C96485E211E3723002C3255 /* AppState.swift in Sources */,
 				B1EA5AEB212E641900DABC5F /* GetCourses.swift in Sources */,
 				7D8262EF212B228F00BD268D /* APICourse+Requestable.swift in Sources */,
@@ -643,6 +650,8 @@
 				B1EA5AEE212E656100DABC5F /* GetCoursesTest.swift in Sources */,
 				7D80AC19212B697600C40ECE /* APIGroup+Requestable+Tests.swift in Sources */,
 				2C96485B211E30B3002C3255 /* Router+Tests.swift in Sources */,
+				2C96483D211E2F1A002C3255 /* CoreTests.swift in Sources */,
+				9F0C3D6321246C92005B7A6F /* PathToRegexp+Tests.swift in Sources */,
 				7D80AC1B212B6A7700C40ECE /* APIFavorite+Requestable+Tests.swift in Sources */,
 				7D80AC15212B67E100C40ECE /* APIUser+Requestable+Tests.swift in Sources */,
 				7D80AC54212CF01E00C40ECE /* MockAPI.swift in Sources */,

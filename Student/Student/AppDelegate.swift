@@ -14,8 +14,7 @@ let router = Router()
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate, AppStateDelegate {
     lazy var appState: AppState = {
-
-        router.addRoute("/detail") {
+        router.addRoute("/courses/:courseID/users/:userID") { routeInfo in
             return DetailViewController.create()
         }
 
