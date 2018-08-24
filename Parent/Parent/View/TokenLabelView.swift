@@ -40,6 +40,7 @@ class TokenLabelView: UIView {
             label.text = text
             updateViewConstraints()
             sizeToFit()
+            label.sizeToFit()
         }
     }
 

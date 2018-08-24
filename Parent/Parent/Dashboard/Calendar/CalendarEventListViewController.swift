@@ -49,6 +49,9 @@ class CalendarEventListViewController: UITableViewController {
 
     var viewModelFactory: ((CalendarEvent) -> CalendarEventCellViewModel)!
 
+    // Remove once MBL-11071 is fixed
+    var showingStatusLabels = true
+
     var refresher: Refresher? {
         didSet {
             oldValue?.refreshControl.endRefreshing()
@@ -57,11 +60,25 @@ class CalendarEventListViewController: UITableViewController {
             _ = self.refresher?.refreshingCompleted.observeValues { [weak self] err in
                 self?.updateEmptyView()
                 if let s = self, let e = err {
+                    // Canvas is bugged for manually added observers on this endpoint
+                    // So ignore 401s for now.
+                    // TODO: remove this check once MBL-11071 is fixed.
+                    if e.code == 401 {
+                        self?.showingStatusLabels = false
+                        DispatchQueue.main.async {
+                            self?.tableView.reloadData()
+                        }
+                        self?.withoutSubmissionsRefresher?.refresh(true)
+                        return
+                    }
                     Router.sharedInstance.defaultErrorHandler()(s, e)
                 }
             }
         }
     }
+
+    // TODO: remove when MBL-11071 is fixed
+    var withoutSubmissionsRefresher: Refresher?
 
     init(session: Session, studentID: String, startDate: Date, endDate: Date, contextCodes: [String]) throws {
         self.session = session
@@ -79,7 +96,7 @@ class CalendarEventListViewController: UITableViewController {
 
         let scheme = ColorCoordinator.colorSchemeForStudentID(studentID)
         self.viewModelFactory = { [unowned self] calendarEvent in
-            CalendarEventCellViewModel.init(calendarEvent: calendarEvent, courseName: self.courseNamesDictionary[calendarEvent.contextCode], highlightColor: scheme.highlightCellColor)
+            CalendarEventCellViewModel.init(calendarEvent: calendarEvent, courseName: self.courseNamesDictionary[calendarEvent.contextCode], highlightColor: scheme.highlightCellColor, showSubmissionStatus: self.showingStatusLabels)
         }
         self.courseCollection = try Course.collectionByStudent(session, studentID: studentID)
     }
@@ -128,9 +145,11 @@ class CalendarEventListViewController: UITableViewController {
         }
 
         self.collection = try! CalendarEvent.collectionByDueDate(session, studentID: studentID, startDate: startDate, endDate: endDate, contextCodes: contextCodes)
-        self.refresher = try! CalendarEvent.calendarEventsAirwolfCollectionRefresher(session, studentID: studentID, startDate: startDate, endDate: endDate, contextCodes: contextCodes)
+        self.refresher = try! CalendarEvent.refresher(session, studentID: studentID, startDate: startDate, endDate: endDate, contextCodes: contextCodes)
+        self.withoutSubmissionsRefresher = try? CalendarEvent.withoutSubmissionsRefresher(session, studentID: studentID, startDate: startDate, endDate: endDate, contextCodes: contextCodes)
         
         self.refresher?.refresh(false)
+
         self.updateEmptyView()
         eventUpdatesDisposable = collection.collectionUpdates
             .observe(on: UIScheduler())

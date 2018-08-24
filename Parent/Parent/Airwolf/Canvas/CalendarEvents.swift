@@ -26,13 +26,26 @@ import CanvasCore
 extension CalendarEvent {
     
     // MARK: - Collection
-    public static func getCalendarEvents(_ session: Session, studentID: String, startDate: Date, endDate: Date, contextCodes: [String]) throws -> SignalProducer<[JSONObject], NSError> {
-        let getEvents = try getCalendarEvents(session, type: .event, startDate: startDate, endDate: endDate, contextCodes: contextCodes)
-        let getAssignments = try getCalendarEvents(session, type: .assignment, startDate: startDate, endDate: endDate, contextCodes: contextCodes)
+
+    // TODO: Make studentID non-optional once MBL-11071 is fixed
+    public static func getCalendarEvents(_ session: Session, studentID: String?, startDate: Date, endDate: Date, contextCodes: [String]) throws -> SignalProducer<[JSONObject], NSError> {
+        let getEvents = try getCalendarEvents(session, type: .event, startDate: startDate, endDate: endDate, contextCodes: contextCodes, userID: studentID)
+        let getAssignments = try getCalendarEvents(session, type: .assignment, startDate: startDate, endDate: endDate, contextCodes: contextCodes, userID: studentID)
         return getEvents.concat(getAssignments)
     }
 
-    public static func calendarEventsAirwolfCollectionRefresher(_ session: Session, studentID: String, startDate: Date, endDate: Date, contextCodes: [String]) throws -> Refresher {
+    // TODO: Remove once MBL-11071 is fixed
+    public static func withoutSubmissionsRefresher(_ session: Session, studentID: String, startDate: Date, endDate: Date, contextCodes: [String]) throws -> Refresher {
+        let predicate = CalendarEvent.predicate(startDate, endDate: endDate, contextCodes: contextCodes)
+        let remote = try CalendarEvent.getCalendarEvents(session, studentID: nil, startDate: startDate, endDate: endDate, contextCodes: contextCodes)
+        let context = try session.calendarEventsManagedObjectContext(studentID)
+        let sync = CalendarEvent.syncSignalProducer(predicate, inContext: context, fetchRemote: remote)
+
+        let key = cacheKey(context, [studentID, startDate.yyyyMMdd, endDate.yyyyMMdd, "without-submissions"] + contextCodes.sorted())
+        return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key, ttl: ParentAppRefresherTTL)
+    }
+
+    public static func refresher(_ session: Session, studentID: String, startDate: Date, endDate: Date, contextCodes: [String]) throws -> Refresher {
         let predicate = CalendarEvent.predicate(startDate, endDate: endDate, contextCodes: contextCodes)
         let remote = try CalendarEvent.getCalendarEvents(session, studentID: studentID, startDate: startDate, endDate: endDate, contextCodes: contextCodes)
         let context = try session.calendarEventsManagedObjectContext(studentID)

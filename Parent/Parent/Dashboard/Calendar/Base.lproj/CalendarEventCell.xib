@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,53 +19,56 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="75.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ktY-K3-qBP">
-                        <rect key="frame" x="8" y="10" width="40" height="40"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="40" id="4Fk-Pj-N7U"/>
-                            <constraint firstAttribute="width" constant="40" id="Nhi-hg-VUN"/>
-                        </constraints>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Calendar Event Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DH0-b5-Ks1">
-                        <rect key="frame" x="56" y="10" width="251" height="19.5"/>
-                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Course Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u7R-j8-SLT">
-                        <rect key="frame" x="56" y="33" width="251" height="17"/>
-                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8An-OP-4x5" customClass="TokenLabelView" customModule="Parent" customModuleProvider="target">
-                        <rect key="frame" x="56" y="54" width="0.0" height="12"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="height" priority="100" constant="15" id="L4o-SW-FYL"/>
-                            <constraint firstAttribute="width" priority="100" id="Lsl-lE-2rQ"/>
-                        </constraints>
-                    </view>
+                    <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="3ol-oH-Iiz">
+                        <rect key="frame" x="16" y="11" width="288" height="54"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ktY-K3-qBP">
+                                <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="4Fk-Pj-N7U"/>
+                                    <constraint firstAttribute="width" constant="40" id="Nhi-hg-VUN"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="ZyM-xW-Cp2">
+                                <rect key="frame" x="48" y="0.0" width="240" height="54"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calendar Event Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DH0-b5-Ks1">
+                                        <rect key="frame" x="0.0" y="0.0" width="153.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="rhd-Yl-JmC">
+                                        <rect key="frame" x="0.0" y="20.5" width="93.5" height="33.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u7R-j8-SLT">
+                                                <rect key="frame" x="0.0" y="0.0" width="93.5" height="18"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8An-OP-4x5" customClass="TokenLabelView" customModule="Parent" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="24" width="50" height="9.5"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                    </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="ktY-K3-qBP" firstAttribute="top" secondItem="BpC-gX-WP8" secondAttribute="topMargin" id="1Fe-YV-HhJ"/>
-                    <constraint firstItem="8An-OP-4x5" firstAttribute="leading" secondItem="u7R-j8-SLT" secondAttribute="leading" id="2j8-dv-tdV"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="8An-OP-4x5" secondAttribute="bottom" id="3Ei-wj-4Pq"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="DH0-b5-Ks1" secondAttribute="trailing" constant="5" id="5c6-FR-Md6"/>
-                    <constraint firstItem="8An-OP-4x5" firstAttribute="top" secondItem="u7R-j8-SLT" secondAttribute="bottom" constant="4" id="MpK-VZ-Oib"/>
-                    <constraint firstItem="DH0-b5-Ks1" firstAttribute="top" secondItem="ktY-K3-qBP" secondAttribute="top" id="VkT-Zo-BUO"/>
-                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="u7R-j8-SLT" secondAttribute="bottom" constant="8" id="X8H-RU-bvN"/>
-                    <constraint firstItem="DH0-b5-Ks1" firstAttribute="leading" secondItem="ktY-K3-qBP" secondAttribute="trailing" constant="8" id="apD-yh-cgS"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="u7R-j8-SLT" secondAttribute="trailing" constant="5" id="d10-Dt-nF0"/>
-                    <constraint firstItem="ktY-K3-qBP" firstAttribute="leading" secondItem="BpC-gX-WP8" secondAttribute="leadingMargin" id="f1D-md-zsW"/>
-                    <constraint firstItem="u7R-j8-SLT" firstAttribute="top" secondItem="DH0-b5-Ks1" secondAttribute="bottom" constant="3.5" id="wxR-U7-R7B"/>
-                    <constraint firstItem="u7R-j8-SLT" firstAttribute="leading" secondItem="DH0-b5-Ks1" secondAttribute="leading" id="zeK-mG-2G4"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="3ol-oH-Iiz" secondAttribute="bottom" id="5Db-SR-Vet"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="3ol-oH-Iiz" secondAttribute="trailing" id="BgJ-Ks-KlZ"/>
+                    <constraint firstItem="3ol-oH-Iiz" firstAttribute="top" secondItem="BpC-gX-WP8" secondAttribute="topMargin" id="Dxv-Nl-siq"/>
+                    <constraint firstItem="3ol-oH-Iiz" firstAttribute="leading" secondItem="BpC-gX-WP8" secondAttribute="leadingMargin" id="f84-rd-rsE"/>
                 </constraints>
             </tableViewCellContentView>
             <inset key="separatorInset" minX="56" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
                 <outlet property="courseNameLabel" destination="u7R-j8-SLT" id="b9u-Bk-geJ"/>
-                <outlet property="statusLabel" destination="8An-OP-4x5" id="904-Cn-4n8"/>
+                <outlet property="statusLabel" destination="8An-OP-4x5" id="REg-wF-92m"/>
                 <outlet property="titleLabel" destination="DH0-b5-Ks1" id="cUS-pE-l0n"/>
                 <outlet property="typeImageView" destination="ktY-K3-qBP" id="824-vv-KM2"/>
             </connections>
