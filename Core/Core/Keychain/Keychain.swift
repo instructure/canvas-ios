@@ -41,10 +41,10 @@ public struct KeychainEntry: Codable, Hashable {
 }
 
 open class Keychain {
-    
+
     // If not config is set, will use the default access group for the canvas apps
     open static var config: KeychainConfig?
-    
+
     open static var entries: Set<KeychainEntry> {
         guard let data = getData() else { return [] }
         do {
@@ -54,36 +54,36 @@ open class Keychain {
             return []
         }
     }
-    
+
     @discardableResult
     open static func addEntry(_ entry: KeychainEntry) -> Bool {
         var current = entries
         current.insert(entry)
         return updateEntries(current)
     }
-    
+
     @discardableResult
     open static func removeEntry(_ entry: KeychainEntry) -> Bool {
         var current = entries
         current.remove(entry)
         return updateEntries(current)
     }
-    
+
     @discardableResult
     open static func clearEntries() -> Bool {
         return delete()
     }
-    
+
     private static var serviceID: String {
         if let c = config { return c.service }
         guard let bundleID = Bundle.main.object(forInfoDictionaryKey: kCFBundleIdentifierKey as String) as? String else {
             // I highly, highly doubt that this will ever hit this case ;)
             return "unknown-service"
         }
-        
+
         return bundleID
     }
-    
+
     private static func updateEntries(_ entries: Set<KeychainEntry>) -> Bool {
         do {
             let data = try JSONEncoder().encode(entries)
@@ -93,56 +93,56 @@ open class Keychain {
             return false
         }
     }
-    
+
     @discardableResult
     private static func set(_ value: Data) -> Bool {
 
         delete()
-        
-        var query: [String : Any] = [
-            kSecClass as String : kSecClassGenericPassword,
+
+        var query: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
             kSecAttrService as String: serviceID,
-            kSecAttrAccount as String : key,
-            kSecValueData as String   : value,
-            kSecAttrAccessible as String : kSecAttrAccessibleAfterFirstUnlock
+            kSecAttrAccount as String: key,
+            kSecValueData as String: value,
+            kSecAttrAccessible as String: kSecAttrAccessibleAfterFirstUnlock,
         ]
-        
+
         if let group = config?.accessGroup {
             query[kSecAttrAccessGroup as String] = group
         }
-        
+
         return SecItemAdd(query as CFDictionary, nil) == noErr
     }
-    
+
     @discardableResult
     private static func delete() -> Bool {
         var query: [String: Any] = [
-            kSecClass as String : kSecClassGenericPassword,
+            kSecClass as String: kSecClassGenericPassword,
             kSecAttrService as String: serviceID,
-            kSecAttrAccount as String : key,
+            kSecAttrAccount as String: key,
         ]
-        
+
         if let group = config?.accessGroup {
             query[kSecAttrAccessGroup as String] = group
         }
-        
+
         return SecItemDelete(query as CFDictionary) == noErr
     }
-    
+
     private static func getData() -> Data? {
 
         var query: [String: Any] = [
-            kSecClass as String : kSecClassGenericPassword,
+            kSecClass as String: kSecClassGenericPassword,
             kSecAttrService as String: serviceID,
-            kSecAttrAccount as String : key,
-            kSecReturnData as String  : kCFBooleanTrue,
-            kSecMatchLimit as String  : kSecMatchLimitOne
+            kSecAttrAccount as String: key,
+            kSecReturnData as String: kCFBooleanTrue,
+            kSecMatchLimit as String: kSecMatchLimitOne,
         ]
 
         if let group = config?.accessGroup {
             query[kSecAttrAccessGroup as String] = group
         }
-        
+
         var result: AnyObject?
 
         let resultCode = withUnsafeMutablePointer(to: &result) {

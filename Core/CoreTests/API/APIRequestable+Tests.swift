@@ -55,8 +55,8 @@ class APIRequestableTests: XCTestCase {
         let body: Body? = DateHaver()
         let method: APIMethod = .post
         let path = "post"
-        let headers: [String : String?] = [
-            "Content-Type": "application/json"
+        let headers: [String: String?] = [
+            "Content-Type": "application/json",
         ]
     }
 
@@ -74,7 +74,7 @@ class APIRequestableTests: XCTestCase {
         XCTAssert(APIUserAgent.contains(UIDevice.current.systemName))
         XCTAssert(APIUserAgent.contains(UIDevice.current.systemVersion))
     }
-    
+
     func testUrlRequestPath() {
         let expected = expectedUrlRequest(path: "api/v1/date")
         XCTAssertEqual(try GetDate().urlRequest(relativeTo: baseURL, accessToken: accessToken), expected)

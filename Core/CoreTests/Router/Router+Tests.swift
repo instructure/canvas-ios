@@ -21,14 +21,14 @@ class RouterTests: XCTestCase {
 
     func testRouter() {
         let router = Router()
-        
-        router.addRoute("/courses") { info in
+
+        router.addRoute("/courses") { _ in
             return UIViewController()
         }
-        router.addRoute("/inbox") { info in
+        router.addRoute("/inbox") { _ in
             return UIViewController()
         }
-        
+
         XCTAssert(router.count == 2)
 
         let routeExists = router.routeForPath("/courses")

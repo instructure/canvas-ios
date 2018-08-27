@@ -21,11 +21,13 @@ class MockAPI: API {
     let baseURL = URL(string: "https://cgnuonline-eniversity.edu")!
     let accessToken = "fhwdgads"
 
+    //  swiftlint:disable large_tuple
     var mocks: [URLRequest: (Data?, URLResponse?, Error?)] = [:]
+    //  swiftlint:enable large_tuple
 
     func mock<R: APIRequestable>(_ requestable: R, value: R.Response? = nil, response: URLResponse? = nil, error: Error? = nil) {
         let request = try! requestable.urlRequest(relativeTo: baseURL, accessToken: accessToken)
-        var data: Data? = nil
+        var data: Data?
         if let value = value {
             data = try! JSONEncoder().encode(value)
         }
@@ -36,7 +38,7 @@ class MockAPI: API {
     func makeRequest<R: APIRequestable>(_ requestable: R, callback: @escaping (R.Response?, URLResponse?, Error?) -> Void) -> URLSessionTask? {
         let request = try! requestable.urlRequest(relativeTo: baseURL, accessToken: accessToken)
         if let (data, response, error) = mocks[request] {
-            var value: R.Response? = nil
+            var value: R.Response?
             if let data = data {
                 value = try! JSONDecoder().decode(R.Response.self, from: data)
             }

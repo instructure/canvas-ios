@@ -18,19 +18,19 @@ import XCTest
 @testable import Core
 
 class KeychainTests: XCTestCase {
-    
+
     override func setUp() {
         super.setUp()
         Keychain.clearEntries()
         Keychain.config = KeychainConfig(service: "com.instructure.service", accessGroup: nil)
     }
-    
+
     func testAddEntry() {
         let entry = KeychainEntry(token: "token", baseURL: "baseurl")
         Keychain.addEntry(entry)
         XCTAssertTrue(Keychain.entries.contains(entry))
     }
-    
+
     func testAddMultipleEntries() {
         let entry1 = KeychainEntry(token: "token1", baseURL: "baseurl")
         let entry2 = KeychainEntry(token: "token2", baseURL: "baseurl")
@@ -40,7 +40,7 @@ class KeychainTests: XCTestCase {
         Keychain.addEntry(entry3)
         XCTAssertTrue(Keychain.entries.count == 3)
     }
-    
+
     func testAddingSameEntryMultipleTimes() {
         let entry1 = KeychainEntry(token: "token", baseURL: "baseurl")
         let entry2 = KeychainEntry(token: "token", baseURL: "baseurl")
@@ -48,7 +48,7 @@ class KeychainTests: XCTestCase {
         Keychain.addEntry(entry2)
         XCTAssertTrue(Keychain.entries.count == 1)
     }
-    
+
     func testRemoveEntry() {
         let entry = KeychainEntry(token: "token", baseURL: "baseurl")
         Keychain.addEntry(entry)
@@ -56,7 +56,7 @@ class KeychainTests: XCTestCase {
         Keychain.removeEntry(entry)
         XCTAssertFalse(Keychain.entries.contains(entry))
     }
-    
+
     func testClearEntries() {
         let entry = KeychainEntry(token: "token", baseURL: "baseurl")
         Keychain.addEntry(entry)
@@ -64,7 +64,7 @@ class KeychainTests: XCTestCase {
         Keychain.clearEntries()
         XCTAssertTrue(Keychain.entries.count == 0)
     }
-    
+
     func testAccessGroup() {
         Keychain.config = KeychainConfig(service: "com.instructure.shared-credentials", accessGroup: "8MKNFMCD9M.com.instructure.shared-credentials")
         let entry = KeychainEntry(token: "token", baseURL: "baseurl")
@@ -73,22 +73,22 @@ class KeychainTests: XCTestCase {
         // I think I'll revisit later
         // XCTAssertTrue(Keychain.entries.contains(entry))
     }
-    
+
     func testAddGarbageIntoKeychain() {
-        
+
         Keychain.clearEntries()
-        
-        let query: [String : Any] = [
-            kSecClass as String : kSecClassGenericPassword,
+
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
             kSecAttrService as String: "com.instructure.service",
-            kSecAttrAccount as String : "CanvasUsers",
-            kSecValueData as String   : Data(),
-            kSecAttrAccessible as String : kSecAttrAccessibleAfterFirstUnlock
+            kSecAttrAccount as String: "CanvasUsers",
+            kSecValueData as String: Data(),
+            kSecAttrAccessible as String: kSecAttrAccessibleAfterFirstUnlock,
         ]
-        
+
         let result = SecItemAdd(query as CFDictionary, nil) == noErr
         XCTAssertTrue(result)
-        
+
         // Should not explode if there are weird entries in the keychain
         XCTAssertTrue(Keychain.entries.count == 0)
     }

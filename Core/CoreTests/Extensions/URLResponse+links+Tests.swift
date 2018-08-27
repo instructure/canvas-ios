@@ -17,7 +17,7 @@
 import XCTest
 @testable import Core
 
-class URLResponse_links_Tests: XCTestCase {
+class URLResponseLinksTests: XCTestCase {
     func testHTTPURLResponseLinks() {
         let prev = "https://cgnuonline-eniversity.edu/api/v1/courses?page=1"
         let curr = "https://cgnuonline-eniversity.edu/api/v1/courses?page=2"
@@ -29,7 +29,7 @@ class URLResponse_links_Tests: XCTestCase {
         XCTAssertEqual(response?.links, [
             "current": URL(string: curr)!,
             "prev": URL(string: prev)!,
-            "next": URL(string: next)!
+            "next": URL(string: next)!,
         ])
     }
 

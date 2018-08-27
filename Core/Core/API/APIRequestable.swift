@@ -27,12 +27,12 @@ enum APIQueryItem {
 
     func toURLQueryItems() -> [URLQueryItem] {
         switch self {
-            case .name(let name):
-                return [URLQueryItem(name: name, value: nil)]
-            case .value(let name, let value):
-                return [URLQueryItem(name: name, value: value)]
-            case .array(let name, let array):
-                return array.map({ value in URLQueryItem(name: "\(name)[]", value: value) })
+        case .name(let name):
+            return [URLQueryItem(name: name, value: nil)]
+        case .value(let name, let value):
+            return [URLQueryItem(name: name, value: value)]
+        case .array(let name, let array):
+            return array.map({ value in URLQueryItem(name: "\(name)[]", value: value) })
         }
     }
 }

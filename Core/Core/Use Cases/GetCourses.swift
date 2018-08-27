@@ -25,7 +25,7 @@ public class GetCourses: GroupOperation {
         super.init()
         let request = GetCoursesRequest(includeUnpublished: true)
         let fetch = APIOperation(api: api, request: request)
-        let persist = DependencyOperation(fetch) { [weak self] fetch in
+        let persist = dependencyOperation(fetch) { [weak self] fetch in
             if let error = fetch.error {
                 self?.errors.append(error)
                 return

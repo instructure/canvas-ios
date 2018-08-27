@@ -11,8 +11,8 @@ import UIKit
 public typealias RouteFactory = (RouteInfo) -> UIViewController?
 
 public struct RouteInfo {
-    public let params: [String:String]
-    public let query: [String:String]
+    public let params: [String: String]
+    public let query: [String: String]
 }
 
 // A route is a place you can go in the app
@@ -54,14 +54,14 @@ public class Router {
 
     public func addRoute(_ path: String, factory: @escaping RouteFactory) {
         guard let regexp = pathToRegexp(path) else { return }
-        let route = Route(path, pathRegExp:regexp, factory: factory)
+        let route = Route(path, pathRegExp: regexp, factory: factory)
         addRoute(route)
     }
-    
+
     public func routeForPath(_ path: String) -> (Route, RouteInfo)? {
         for (regexp, route) in routes {
-            guard let match = regexp.firstMatch(in: path, range: NSMakeRange(0, path.count)) else { continue }
-            let params = extractParamsFromPath(path, match:match, routePath: route.path)
+            guard let match = regexp.firstMatch(in: path, range: NSRange(location: 0, length: path.count)) else { continue }
+            let params = extractParamsFromPath(path, match: match, routePath: route.path)
             let query = extractQueryParamsFromPath(path)
             return (route, RouteInfo(params: params, query: query))
         }

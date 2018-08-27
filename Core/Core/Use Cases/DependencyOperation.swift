@@ -16,7 +16,7 @@
 
 import Foundation
 
-public func DependencyOperation<T: Operation>(_ dependency: T, block: @escaping (T) -> Void) -> Operation {
+public func dependencyOperation<T: Operation>(_ dependency: T, block: @escaping (T) -> Void) -> Operation {
     let operation = BlockOperation { [unowned dependency] in
         block(dependency)
     }

@@ -40,8 +40,8 @@ class CoreDataFetchedResultsController<ResultType>: FetchedResultsController<Res
         try frc.performFetch()
     }
 
-    override func object(at indexPath: IndexPath) -> ResultType {
-        return frc.object(at: indexPath) as! ResultType
+    override func object(at indexPath: IndexPath) -> ResultType? {
+        return frc.object(at: indexPath) as? ResultType
     }
 
     public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {

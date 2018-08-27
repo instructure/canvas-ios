@@ -33,7 +33,11 @@ extension NSManagedObjectContext: DatabaseClient {
 
     public func insert<T>() -> T {
         let name = String(describing: T.self)
-        return NSEntityDescription.insertNewObject(forEntityName: name, into: self) as! T
+        if let result = NSEntityDescription.insertNewObject(forEntityName: name, into: self) as? T {
+            return result
+        } else {
+            fatalError()
+        }
     }
 
     public func fetch<T>(_ predicate: NSPredicate) -> [T] {

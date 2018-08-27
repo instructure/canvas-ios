@@ -27,7 +27,7 @@ class TestOperationQueue: OperationQueue {
 
 class GetCoursesTest: XCTestCase {
     let api = MockAPI()
-    let database = MockDatabase()
+    let database = mockDatabase()
     let queue = TestOperationQueue()
 
     override func setUp() {

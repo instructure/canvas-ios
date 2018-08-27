@@ -2,6 +2,7 @@ disabled_rules: # rule identifiers to exclude from running
   - control_statement
   - class_delegate_protocol
 opt_in_rules: # some rules are only opt-in
+  - yoda_condition
 included: # paths to include during linting. `--path` is ignored if present.
 excluded: # paths to ignore during linting. Takes precedence over `included`.
   - Pods
@@ -12,3 +13,5 @@ identifier_name:
   min_length: 1 # only min_length
   excluded: # excluded via string array
     - access_token
+trailing_comma:
+  mandatory_comma: true

@@ -42,6 +42,6 @@ extension NSPersistentContainer {
     }
 }
 
-func MockDatabase() -> Database {
+func mockDatabase() -> Database {
     return NSPersistentContainer.test
 }

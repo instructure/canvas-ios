@@ -26,7 +26,7 @@ struct GetMobileVerifyRequest: APIRequestable {
     var query: [APIQueryItem] {
         return [.value("domain", domain)]
     }
-    let headers: [String : String?] = [
+    let headers: [String: String?] = [
         "Accept": "application/json",
         "Authorization": nil,
     ]
@@ -50,7 +50,7 @@ struct PostLoginOAuthRequest: APIRequestable {
             .value("code", code),
         ]
     }
-    let headers: [String : String?] = [
+    let headers: [String: String?] = [
         "Accept": "application/json",
         "Authorization": nil,
     ]

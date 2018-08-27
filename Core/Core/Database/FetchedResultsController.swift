@@ -40,7 +40,7 @@ public class FetchedResultsController<T>: NSObject {
         fatalError("subclass must implement \(#function)")
     }
 
-    public func object(at indexPath: IndexPath) -> T {
+    public func object(at indexPath: IndexPath) -> T? {
         fatalError("subclass must implement \(#function)")
     }
 }

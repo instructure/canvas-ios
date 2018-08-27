@@ -1,0 +1,7 @@
+disabled_rules: # rule identifiers to exclude from running
+  - identifier_name
+  - force_try
+  - nesting
+  - force_cast
+  - xctfail_message
+opt_in_rules: # some rules are only opt-in
