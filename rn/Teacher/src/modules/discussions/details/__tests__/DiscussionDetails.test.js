@@ -45,9 +45,6 @@ jest
   .mock('LayoutAnimation', () => ({
     easeInEaseOut: jest.fn(),
   }))
-  .mock('../../../app', () => ({
-    isTeacher: jest.fn(),
-  }))
   .mock('../../../../redux/middleware/error-handler', () => {
     return { alertError: jest.fn() }
   })
@@ -59,7 +56,7 @@ describe('DiscussionDetails', () => {
   let props: Props
   beforeEach(() => {
     jest.clearAllMocks()
-    app.isTeacher = jest.fn(() => true)
+    app.setCurrentApp('teacher')
     let discussion = template.discussion({ id: '1', replies: [template.discussionReply()], participants: { [template.userDisplay().id]: template.userDisplay() } })
     props = {
       refresh: jest.fn(),
@@ -94,7 +91,7 @@ describe('DiscussionDetails', () => {
   })
 
   it('renders in student app', () => {
-    app.isTeacher = jest.fn(() => false)
+    app.setCurrentApp('student')
     testRender(props)
   })
 
@@ -119,7 +116,7 @@ describe('DiscussionDetails', () => {
   })
 
   it('renders closed discussion as student', () => {
-    app.isTeacher = jest.fn(() => false)
+    app.setCurrentApp('student')
     props.discussion.locked_for_user = true
     testRender(props)
   })
@@ -708,17 +705,13 @@ describe('DiscussionDetails', () => {
   })
 
   it('marks discussion as viewed', () => {
+    app.setCurrentApp('student')
     const spy = jest.fn()
     NativeModules.ModuleItemsProgress.viewedDiscussion = spy
-    props.discussion = null
     props.context = 'courses'
     props.contextID = '1'
     props.discussionID = '2'
-    const screen = shallow(<DiscussionDetails {...props} />)
-    const discussion = template.discussion({ id: '2' })
-
-    screen.setProps({ discussion })
-
+    shallow(<DiscussionDetails {...props} />)
     expect(spy).toHaveBeenCalledWith('1', '2')
   })
 

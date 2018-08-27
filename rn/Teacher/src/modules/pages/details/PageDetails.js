@@ -21,6 +21,7 @@ import React, { Component } from 'react'
 import {
   ActionSheetIOS,
   Alert,
+  NativeModules,
 } from 'react-native'
 import { alertError } from '../../../redux/middleware/error-handler'
 import {
@@ -32,7 +33,9 @@ import {
 import CanvasWebView from '../../../common/components/CanvasWebView'
 import Screen from '../../../routing/Screen'
 import Images from '../../../images'
-import { isTeacher } from '../../app'
+import { isTeacher, isStudent } from '../../app'
+
+const { ModuleItemsProgress } = NativeModules
 
 type Props = {
   location: URL,
@@ -49,6 +52,14 @@ type Props = {
 }
 
 export class PageDetails extends Component<Props> {
+  constructor (props: Props) {
+    super(props)
+
+    if (isStudent) {
+      ModuleItemsProgress.viewedPage(props.courseID, props.url)
+    }
+  }
+
   componentWillReceiveProps ({ loadError }: Props) {
     if (loadError && loadError !== this.props.loadError) alertError(loadError)
   }

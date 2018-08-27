@@ -51,7 +51,7 @@ import Reply from './Reply'
 import { replyFromLocalIndexPath } from '../reducer'
 import { type TraitCollection } from '../../../routing/Navigator'
 import { isRegularDisplayMode } from '../../../routing/utils'
-import { isTeacher } from '../../app'
+import { isTeacher, isStudent } from '../../app'
 import { alertError } from '../../../redux/middleware/error-handler'
 import { logEvent } from '../../../common/CanvasAnalytics'
 
@@ -135,6 +135,9 @@ export class DiscussionDetails extends Component<Props, any> {
     } else {
       this.state.flatReplies = this.rootRepliesData(props.discussion, [], this.state.maxReplyNodeDepth)
       NativeModules.AppStoreReview.handleNavigateToAssignment()
+      if (isStudent) {
+        ModuleItemsProgress.viewedDiscussion(props.contextID, props.discussionID)
+      }
     }
   }
 
@@ -157,12 +160,6 @@ export class DiscussionDetails extends Component<Props, any> {
 
     if (nextProps.error && nextProps.error !== this.props.error) {
       alertError(nextProps.error)
-    }
-
-    const { discussion } = nextProps
-    if (discussion) {
-      // Mark this discussion as viewed
-      ModuleItemsProgress.viewedDiscussion(nextProps.contextID, nextProps.discussionID)
     }
 
     if (this.state.deletePending && !nextProps.pending && !nextProps.error && !nextProps.discussion) {

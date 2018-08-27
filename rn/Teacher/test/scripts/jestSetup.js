@@ -261,6 +261,7 @@ NativeModules.NativeFileSystem = {
 
 NativeModules.ModuleItemsProgress = {
   viewedDiscussion: jest.fn(),
+  viewedPage: jest.fn(),
 }
 
 import './../../src/common/global-style'

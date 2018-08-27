@@ -18,7 +18,7 @@
 
 import { shallow } from 'enzyme'
 import React from 'react'
-import { Alert, ActionSheetIOS } from 'react-native'
+import { NativeModules, Alert, ActionSheetIOS } from 'react-native'
 import URL from 'url-parse'
 import { alertError } from '../../../../redux/middleware/error-handler'
 import { API, httpCache } from '../../../../canvas-api/model-api'
@@ -49,6 +49,16 @@ describe('PageDetails', () => {
       loadError: null,
       refresh: jest.fn(),
     }
+  })
+
+  it('marks page as viewed', () => {
+    app.setCurrentApp('student')
+    const spy = jest.fn()
+    NativeModules.ModuleItemsProgress.viewedPage = spy
+    props.courseID = '33'
+    props.url = 'view-this'
+    shallow(<PageDetails {...props} />)
+    expect(spy).toHaveBeenCalledWith('33', 'view-this')
   })
 
   it('gets courseColor, course, and page from the model api', () => {
