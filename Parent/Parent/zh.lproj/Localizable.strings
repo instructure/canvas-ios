@@ -1,8 +1,14 @@
 /* <String> <Int> of <Int> */
 "%@ %d of %d" = "%3$d 的 %1$@ %2$d ";
 
-/* Something to Something */
+/* No comment provided by engineer. */
+"%@ is due at %@" = "%1$@截止日期%2$@";
+
+/* No comment provided by engineer. */
 "%@ to %@" = "%1$@ 到 %2$@";
+
+/* No comment provided by engineer. */
+"%@ will begin at %@" = "%1$@开始日期%2$@";
 
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
@@ -31,6 +37,9 @@
 /* No comment provided by engineer. */
 "Announcement" = "公告";
 
+/* No comment provided by engineer. */
+"Assignment" = "作业";
+
 /* Assignment Grade High On Description */
 "Assignment grade above" = "以上作业成绩";
 
@@ -39,6 +48,9 @@
 
 /* Assignment Missing Description */
 "Assignment missing" = "没交作业";
+
+/* No comment provided by engineer. */
+"Assignment reminder" = "作业提醒";
 
 /* No comment provided by engineer. */
 "Cache cleared" = "清除缓存";
@@ -83,10 +95,19 @@
 "Describe your problem" = "描述您的问题";
 
 /* No comment provided by engineer. */
+"Discussion" = "讨论";
+
+/* No comment provided by engineer. */
 "Dismiss" = "解散";
 
 /* No comment provided by engineer. */
 "Error" = "错误";
+
+/* No comment provided by engineer. */
+"Event" = "活动";
+
+/* No comment provided by engineer. */
+"Event reminder" = "活动提醒";
 
 /* No comment provided by engineer. */
 "Excused" = "免除";
@@ -184,6 +205,12 @@
 /* Open file in another application */
 "Open in..." = "在...打开";
 
+/* No comment provided by engineer. */
+"Permission Needed" = "需要权限";
+
+/* No comment provided by engineer. */
+"Quiz" = "测验";
+
 /* Support Ticket Creation Failed */
 "Request Failed!  Check network and try again!" = "请求失败！请检查网络，并重试！";
 
@@ -195,6 +222,9 @@
 
 /* Server Error Title */
 "Server Error" = "服务器错误";
+
+/* No comment provided by engineer. */
+"Settings" = "设置";
 
 /* Status level for issue being reported */
 "Something is broken but I can work around it" = "某东西坏了，但我可以修复它";
@@ -232,6 +262,12 @@
 /* No comment provided by engineer. */
 "There was an error loading your content. If it  is an audio or video upload it may still be processing." = "加载您的内容时出现错误。如果上传音频或视频，可能还正在处理中。";
 
+/* No comment provided by engineer. */
+"This announcement has expired." = "此公告已过期。";
+
+/* No comment provided by engineer. */
+"This student's courses may not be published yet." = "此学生的课程可能尚未发布。";
+
 /* Unknown T`hreshold Description */
 "Unknown" = "未知";
 
@@ -252,6 +288,9 @@
 
 /* Not Authorized Error Message */
 "You are unauthorized to access this information.  Check your user permissions and try again." = "您没有访问此信息的权限。 检查您的用户权限并再次尝试。";
+
+/* No comment provided by engineer. */
+"You must allow notifications in Settings to set reminders." = "您必须允许“设置”中的通知设置提醒。";
 
 /* Title for the email field */
 "Your Email" = "您的电子邮件";

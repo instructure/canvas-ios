@@ -131,14 +131,14 @@
   "anonymous_grading_3083dc0": {
     "message": "Anonimowa klasyfikacja"
   },
-  "anonymous_grading_ccb5045c": {
-    "message": "Anonimowa klasyfikacja"
-  },
   "anyone_5b8fdf9f": {
     "message": "Wszyscy"
   },
   "archived_de543437": {
     "message": "Zarchiwizowano"
+  },
+  "are_you_enjoying_canvas_922624ff": {
+    "message": "Lubisz korzystać z Canvas?"
   },
   "are_you_sure_you_want_to_delete_name_908230d3": {
     "message": "Czy na pewno chcesz usunąć { name }?"
@@ -481,6 +481,9 @@
   },
   "dismiss_name_8646b9fd": {
     "message": "Odrzuć { name }"
+  },
+  "dismiss_prompt_to_rate_8fdc85b6": {
+    "message": "Odrzuć prośbę o ocenę"
   },
   "display_grade_as_7b5376a6": {
     "message": "Wyświetl ocenę jako"
@@ -1184,6 +1187,9 @@
   "reply_389d6fb9": {
     "message": "Odpowiedz"
   },
+  "reply_all_b864cd0e": {
+    "message": "Odpowiedz wszystkim"
+  },
   "report_a_problem_4d48624a": {
     "message": "Zgłoś problem"
   },
@@ -1528,9 +1534,6 @@
   },
   "this_submission_is_a_url_to_an_external_page_we_ve_9993d2fd": {
     "message": "Ta przesyłka ma adres URL strony zewnętrznej. Zamieściliśmy migawkę przedstawiająca stronę w momencie przesłania zadania."
-  },
-  "this_will_anonymize_each_student_and_shuffle_the_s_127956c7": {
-    "message": "To spowoduje anonimizację każdego uczestnika i wymieszanie listy przesyłek."
   },
   "this_will_remove_the_due_date_and_all_of_the_assoc_56d1ea8": {
     "message": "Czynność ta spowoduje usunięcie terminu i wszystkich uczestników, którym został przypisany."

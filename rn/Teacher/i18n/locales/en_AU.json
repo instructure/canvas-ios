@@ -131,14 +131,14 @@
   "anonymous_grading_3083dc0": {
     "message": "Anonymous grading"
   },
-  "anonymous_grading_ccb5045c": {
-    "message": "Anonymous Grading"
-  },
   "anyone_5b8fdf9f": {
     "message": "Anyone"
   },
   "archived_de543437": {
     "message": "Archived"
+  },
+  "are_you_enjoying_canvas_922624ff": {
+    "message": "Are you enjoying Canvas?"
   },
   "are_you_sure_you_want_to_delete_name_908230d3": {
     "message": "Are you sure you want to delete { name }?"
@@ -481,6 +481,9 @@
   },
   "dismiss_name_8646b9fd": {
     "message": "Dismiss { name }"
+  },
+  "dismiss_prompt_to_rate_8fdc85b6": {
+    "message": "Dismiss prompt to rate"
   },
   "display_grade_as_7b5376a6": {
     "message": "Display Grade As"
@@ -1184,6 +1187,9 @@
   "reply_389d6fb9": {
     "message": "Reply"
   },
+  "reply_all_b864cd0e": {
+    "message": "Reply All"
+  },
   "report_a_problem_4d48624a": {
     "message": "Report a Problem"
   },
@@ -1528,9 +1534,6 @@
   },
   "this_submission_is_a_url_to_an_external_page_we_ve_9993d2fd": {
     "message": "This submission is a URL to an external page. We''ve included a snapshot of what the page looked like when it was submitted."
-  },
-  "this_will_anonymize_each_student_and_shuffle_the_s_127956c7": {
-    "message": "This will anonymise each student and shuffle the submission list."
   },
   "this_will_remove_the_due_date_and_all_of_the_assoc_56d1ea8": {
     "message": "This will remove the due date and all of the associated assignees."

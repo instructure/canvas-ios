@@ -1,8 +1,14 @@
 /* <String> <Int> of <Int> */
 "%@ %d of %d" = "%1$@ %2$d من %3$d";
 
-/* Something to Something */
+/* No comment provided by engineer. */
+"%@ is due at %@" = "%1$@ مستحق في %2$@";
+
+/* No comment provided by engineer. */
 "%@ to %@" = "%1$@ على %2$@";
+
+/* No comment provided by engineer. */
+"%@ will begin at %@" = "%1$@ سيبدأ في %2$@";
 
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
@@ -31,6 +37,9 @@
 /* No comment provided by engineer. */
 "Announcement" = "الإعلان";
 
+/* No comment provided by engineer. */
+"Assignment" = "المهمة";
+
 /* Assignment Grade High On Description */
 "Assignment grade above" = "درجة المهمة أكبر من";
 
@@ -39,6 +48,9 @@
 
 /* Assignment Missing Description */
 "Assignment missing" = "مهمة مفقودة";
+
+/* No comment provided by engineer. */
+"Assignment reminder" = "التذكير بالمهمة";
 
 /* No comment provided by engineer. */
 "Cache cleared" = "تم مسح ذاكرة التخزين المؤقت";
@@ -83,10 +95,19 @@
 "Describe your problem" = "قم بوصف مشكلتك";
 
 /* No comment provided by engineer. */
+"Discussion" = "النقاش";
+
+/* No comment provided by engineer. */
 "Dismiss" = "رفض";
 
 /* No comment provided by engineer. */
 "Error" = "خطأ";
+
+/* No comment provided by engineer. */
+"Event" = "الحدث";
+
+/* No comment provided by engineer. */
+"Event reminder" = "التذكير بالحدث";
 
 /* No comment provided by engineer. */
 "Excused" = "غير إجباري";
@@ -184,6 +205,12 @@
 /* Open file in another application */
 "Open in..." = "الفتح في...";
 
+/* No comment provided by engineer. */
+"Permission Needed" = "مطلوب إذن";
+
+/* No comment provided by engineer. */
+"Quiz" = "الاختبار الموجز";
+
 /* Support Ticket Creation Failed */
 "Request Failed!  Check network and try again!" = "فشل الطلب!  تحقق من الشبكة وحاول مرة أخرى!";
 
@@ -195,6 +222,9 @@
 
 /* Server Error Title */
 "Server Error" = "خطأ في الخادم";
+
+/* No comment provided by engineer. */
+"Settings" = "إعدادات";
 
 /* Status level for issue being reported */
 "Something is broken but I can work around it" = "شيء ما معطل لكن أستطيع تدبير أموري";
@@ -232,6 +262,12 @@
 /* No comment provided by engineer. */
 "There was an error loading your content. If it  is an audio or video upload it may still be processing." = "حدث خطأ أثناء تحميل محتوياتك. إذا كان ملف صوت أو فيديو فقد يزال قيد المعالجة.";
 
+/* No comment provided by engineer. */
+"This announcement has expired." = "انتهت صلاحية هذا الإعلان.";
+
+/* No comment provided by engineer. */
+"This student's courses may not be published yet." = "مساقات هذا الطالب قد لا تكون قد نشرت بعد.";
+
 /* Unknown T`hreshold Description */
 "Unknown" = "غير معروف";
 
@@ -252,6 +288,9 @@
 
 /* Not Authorized Error Message */
 "You are unauthorized to access this information.  Check your user permissions and try again." = "غير مخول لك بالوصول إلى هذه المعلومات. تحقق من أذونات المستخدم وأعد المحاولة.";
+
+/* No comment provided by engineer. */
+"You must allow notifications in Settings to set reminders." = "يجب السماح بالإعلامات في الإعدادات لتعيين التذكيرات.";
 
 /* Title for the email field */
 "Your Email" = "بريدك الإلكتروني";

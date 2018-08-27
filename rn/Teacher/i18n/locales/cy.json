@@ -131,14 +131,14 @@
   "anonymous_grading_3083dc0": {
     "message": "Graddio’n ddienw"
   },
-  "anonymous_grading_ccb5045c": {
-    "message": "Graddio’n Ddienw"
-  },
   "anyone_5b8fdf9f": {
     "message": "Unrhyw un"
   },
   "archived_de543437": {
     "message": "Archifwyd"
+  },
+  "are_you_enjoying_canvas_922624ff": {
+    "message": "Ydych chi’n mwynhau Canvas?"
   },
   "are_you_sure_you_want_to_delete_name_908230d3": {
     "message": "Ydych chi’n siŵr eich bod am ddileu { name }?"
@@ -484,6 +484,9 @@
   },
   "dismiss_name_8646b9fd": {
     "message": "Gwrthod { name }"
+  },
+  "dismiss_prompt_to_rate_8fdc85b6": {
+    "message": "Diystyru’r awgrym i raddio"
   },
   "display_grade_as_7b5376a6": {
     "message": "Dangos Gradd fel"
@@ -1187,6 +1190,9 @@
   "reply_389d6fb9": {
     "message": "Ateb"
   },
+  "reply_all_b864cd0e": {
+    "message": "Ateb Pawb"
+  },
   "report_a_problem_4d48624a": {
     "message": "Rhoi gwybod am broblem"
   },
@@ -1531,9 +1537,6 @@
   },
   "this_submission_is_a_url_to_an_external_page_we_ve_9993d2fd": {
     "message": "Mae'r cyflwyniad hwn yn URL i dudalen allanol. Rydyn ni wedi cynnwys ciplun o’r dudalen pan gafodd hyn ei gyflwyno."
-  },
-  "this_will_anonymize_each_student_and_shuffle_the_s_127956c7": {
-    "message": "Bydd hyn yn gwneud pob myfyriwr yn ddienw ac yn cymysgu'r rhestr cyflwyniadau."
   },
   "this_will_remove_the_due_date_and_all_of_the_assoc_56d1ea8": {
     "message": "Bydd hyn yn tynnu'r dyddiad erbyn a phob aseinî cysylltiedig."

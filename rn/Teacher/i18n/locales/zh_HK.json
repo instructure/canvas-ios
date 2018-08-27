@@ -131,14 +131,14 @@
   "anonymous_grading_3083dc0": {
     "message": "匿名評分"
   },
-  "anonymous_grading_ccb5045c": {
-    "message": "匿名評分"
-  },
   "anyone_5b8fdf9f": {
     "message": "任何人"
   },
   "archived_de543437": {
     "message": "已存檔"
+  },
+  "are_you_enjoying_canvas_922624ff": {
+    "message": "您喜歡 Canvas 嗎？"
   },
   "are_you_sure_you_want_to_delete_name_908230d3": {
     "message": "是否確定要刪除 { name }？"
@@ -481,6 +481,9 @@
   },
   "dismiss_name_8646b9fd": {
     "message": "解除 { name }"
+  },
+  "dismiss_prompt_to_rate_8fdc85b6": {
+    "message": "忽略評分提示"
   },
   "display_grade_as_7b5376a6": {
     "message": "將評分顯示為"
@@ -1184,6 +1187,9 @@
   "reply_389d6fb9": {
     "message": "回覆"
   },
+  "reply_all_b864cd0e": {
+    "message": "全部回覆"
+  },
   "report_a_problem_4d48624a": {
     "message": "報告問題"
   },
@@ -1528,9 +1534,6 @@
   },
   "this_submission_is_a_url_to_an_external_page_we_ve_9993d2fd": {
     "message": "本提交項目是連結至外部頁面的 URL。在提交時，我們已保存了頁面概況快照。"
-  },
-  "this_will_anonymize_each_student_and_shuffle_the_s_127956c7": {
-    "message": "每位學生的提交項目將作匿名處理，有關列表會經隨機清洗。"
   },
   "this_will_remove_the_due_date_and_all_of_the_assoc_56d1ea8": {
     "message": "這會移除截止日期和所有相關獲配人。"

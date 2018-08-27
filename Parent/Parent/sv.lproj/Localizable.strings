@@ -1,8 +1,14 @@
 /* <String> <Int> of <Int> */
 "%@ %d of %d" = "%1$@ %2$d av %3$d";
 
-/* Something to Something */
+/* No comment provided by engineer. */
+"%@ is due at %@" = "%1$@ ska vara klar %2$@";
+
+/* No comment provided by engineer. */
 "%@ to %@" = "%1$@ till %2$@";
+
+/* No comment provided by engineer. */
+"%@ will begin at %@" = "%1$@ börjar %2$@";
 
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
@@ -31,6 +37,9 @@
 /* No comment provided by engineer. */
 "Announcement" = "Meddelande";
 
+/* No comment provided by engineer. */
+"Assignment" = "Uppgift";
+
 /* Assignment Grade High On Description */
 "Assignment grade above" = "Uppgiftsbetyg över";
 
@@ -39,6 +48,9 @@
 
 /* Assignment Missing Description */
 "Assignment missing" = "Uppgiften saknas";
+
+/* No comment provided by engineer. */
+"Assignment reminder" = "Påminnelse om uppgift";
 
 /* No comment provided by engineer. */
 "Cache cleared" = "Cacheminnet har rensats";
@@ -83,10 +95,19 @@
 "Describe your problem" = "Beskriv ditt problem";
 
 /* No comment provided by engineer. */
+"Discussion" = "Diskussion";
+
+/* No comment provided by engineer. */
 "Dismiss" = "Avfärda";
 
 /* No comment provided by engineer. */
 "Error" = "Fel";
+
+/* No comment provided by engineer. */
+"Event" = "Händelse";
+
+/* No comment provided by engineer. */
+"Event reminder" = "Påminnelse om händelse";
 
 /* No comment provided by engineer. */
 "Excused" = "Befriad";
@@ -184,6 +205,12 @@
 /* Open file in another application */
 "Open in..." = "Öppna i...";
 
+/* No comment provided by engineer. */
+"Permission Needed" = "Tillstånd behövs";
+
+/* No comment provided by engineer. */
+"Quiz" = "Quiz";
+
 /* Support Ticket Creation Failed */
 "Request Failed!  Check network and try again!" = "Begäran misslyckades!  Kontrollera nätverket och försök igen!";
 
@@ -195,6 +222,9 @@
 
 /* Server Error Title */
 "Server Error" = "Serverfel";
+
+/* No comment provided by engineer. */
+"Settings" = "Inställningar";
 
 /* Status level for issue being reported */
 "Something is broken but I can work around it" = "Något är trasigt och jag kan inte hitta en alternativ lösning";
@@ -232,6 +262,12 @@
 /* No comment provided by engineer. */
 "There was an error loading your content. If it  is an audio or video upload it may still be processing." = "Ett fel inträffade när innehållet laddades. Om det var ljud eller video kanske innehållet fortfarande bearbetas.";
 
+/* No comment provided by engineer. */
+"This announcement has expired." = "Detta meddelande har löpt ut.";
+
+/* No comment provided by engineer. */
+"This student's courses may not be published yet." = "Den här studentens kurser får ännu inte publiceras.";
+
 /* Unknown T`hreshold Description */
 "Unknown" = "Okänd";
 
@@ -252,6 +288,9 @@
 
 /* Not Authorized Error Message */
 "You are unauthorized to access this information.  Check your user permissions and try again." = "Du har inte behörighet att komma åt den här informationen. Kontrollera din behörighet och försök igen.";
+
+/* No comment provided by engineer. */
+"You must allow notifications in Settings to set reminders." = "Du måste tillåta notifikationer i Inställningar för att ställa in påminnelser.";
 
 /* Title for the email field */
 "Your Email" = "Din e-post";

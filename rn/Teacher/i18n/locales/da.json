@@ -131,14 +131,14 @@
   "anonymous_grading_3083dc0": {
     "message": "Anonym bedømmelse"
   },
-  "anonymous_grading_ccb5045c": {
-    "message": "Anonym bedømmelse"
-  },
   "anyone_5b8fdf9f": {
     "message": "Alle"
   },
   "archived_de543437": {
     "message": "Arkieret"
+  },
+  "are_you_enjoying_canvas_922624ff": {
+    "message": "Kan du lide Canvas?"
   },
   "are_you_sure_you_want_to_delete_name_908230d3": {
     "message": "Er du sikker på, at du vil slette { name }?"
@@ -481,6 +481,9 @@
   },
   "dismiss_name_8646b9fd": {
     "message": "Afvis { name }"
+  },
+  "dismiss_prompt_to_rate_8fdc85b6": {
+    "message": "Afvis besked for at bedømme"
   },
   "display_grade_as_7b5376a6": {
     "message": "Vis karakter som"
@@ -1184,6 +1187,9 @@
   "reply_389d6fb9": {
     "message": "Svar"
   },
+  "reply_all_b864cd0e": {
+    "message": "Svar til alle"
+  },
   "report_a_problem_4d48624a": {
     "message": "Rapporter et problem"
   },
@@ -1528,9 +1534,6 @@
   },
   "this_submission_is_a_url_to_an_external_page_we_ve_9993d2fd": {
     "message": "Denne aflevering er en URL til en ekstern side. Vi har inkluderet et snapshot af, hvordan siden så ud, da den blev afleveret."
-  },
-  "this_will_anonymize_each_student_and_shuffle_the_s_127956c7": {
-    "message": "Dette anonymiserer hver studerende og blander afleveringslisten."
   },
   "this_will_remove_the_due_date_and_all_of_the_assoc_56d1ea8": {
     "message": "Dette fjerner afleveringsdatoen og alle af de tilknyttede assignatarer."

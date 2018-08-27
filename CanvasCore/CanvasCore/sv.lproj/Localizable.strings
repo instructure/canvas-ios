@@ -123,6 +123,9 @@
 "Choose a Video" = "Välj en video";
 
 /* No comment provided by engineer. */
+"Closed" = "Stängda";
+
+/* No comment provided by engineer. */
 "Collapse" = "Minska";
 
 /* No comment provided by engineer. */
@@ -183,9 +186,6 @@
 /* message for delete dialog of audio recorder */
 "Delete recording?" = "Ta bort inspelning?";
 
-/* Designer role */
-"Designer" = "Designer";
-
 /* Notification display name for discussions group */
 "Discussions" = "Diskussioner";
 
@@ -201,6 +201,9 @@
 /* Done button
    Done recording button */
 "Done" = "Färdig";
+
+/* No comment provided by engineer. */
+"Due %@" = "Ska vara klar %@";
 
 /* due date label for quiz due date */
 "Due Date" = "Inlämningsdatum";
@@ -390,9 +393,6 @@
 /* OK Button Title */
 "OK" = "OK";
 
-/* Observer role */
-"Observer" = "Observatör";
-
 /* No comment provided by engineer. */
 "Open in Safari" = "Öppna i Safari";
 
@@ -480,6 +480,9 @@
 
 /* Label for indication that the quiz submission failed */
 "QuizSubmission Failure" = "QuizSubmission Fel";
+
+/* No comment provided by engineer. */
+"Quizzes" = "Frågor/frågesporter";
 
 /* tile for error reading cache */
 "Read Error" = "Läsfel";
@@ -574,9 +577,6 @@
 /* File upload was stopped */
 "Stopped" = "Stoppades";
 
-/* Student role */
-"Student" = "Student";
-
 /* No comment provided by engineer. */
 "Style" = "Stil";
 
@@ -597,9 +597,6 @@
 /* Label for indication of submitting quiz */
 "Submitting Quiz" = "Skickar in quiz";
 
-/* TA role */
-"TA" = "Lärarassistent";
-
 /* Take a photo or video submission choice */
 "Take Photo or Video" = "Ta foto eller video";
 
@@ -611,9 +608,6 @@
 
 /* Take a video submission choice */
 "Take a Video" = "Spela in video";
-
-/* Teacher role */
-"Teacher" = "Lärare";
 
 /* Teal course color button */
 "Teal" = "Teal";
@@ -815,6 +809,12 @@
 
 /* label to be read for visually impaired users with external tool assignment types */
 "external tool" = "externt verktyg";
+
+/* No comment provided by engineer. */
+"plural_pts" = "plural_pts";
+
+/* No comment provided by engineer. */
+"plural_questions" = "plural_questions";
 
 /* label to be read for visually impaired users with quiz assignment types */
 "quiz" = "quiz";

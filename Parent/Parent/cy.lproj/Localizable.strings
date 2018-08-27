@@ -1,8 +1,14 @@
 /* <String> <Int> of <Int> */
 "%@ %d of %d" = "%1$@ %2$d o %3$d";
 
-/* Something to Something */
+/* No comment provided by engineer. */
+"%@ is due at %@" = "%1$@ erbyn %2$@";
+
+/* No comment provided by engineer. */
 "%@ to %@" = "%1$@ i %2$@";
+
+/* No comment provided by engineer. */
+"%@ will begin at %@" = "%1$@ yn dechrau am %2$@";
 
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
@@ -31,6 +37,9 @@
 /* No comment provided by engineer. */
 "Announcement" = "Cyhoeddiad";
 
+/* No comment provided by engineer. */
+"Assignment" = "Aseiniad";
+
 /* Assignment Grade High On Description */
 "Assignment grade above" = "Gradd yr aseiniad yn uwch na";
 
@@ -39,6 +48,9 @@
 
 /* Assignment Missing Description */
 "Assignment missing" = "Aseiniad ar goll";
+
+/* No comment provided by engineer. */
+"Assignment reminder" = "Nodyn atgoffa ar gyfer aseiniad";
 
 /* No comment provided by engineer. */
 "Cache cleared" = "Storfa wedi’i chlirio";
@@ -83,10 +95,19 @@
 "Describe your problem" = "Disgrifiwch eich problem";
 
 /* No comment provided by engineer. */
+"Discussion" = "Trafodaeth";
+
+/* No comment provided by engineer. */
 "Dismiss" = "Diystyru";
 
 /* No comment provided by engineer. */
 "Error" = "Gwall";
+
+/* No comment provided by engineer. */
+"Event" = "Digwyddiad";
+
+/* No comment provided by engineer. */
+"Event reminder" = "Nodyn atgoffa ar gyfer digwyddiad";
 
 /* No comment provided by engineer. */
 "Excused" = "Wedi esgusodi";
@@ -184,6 +205,12 @@
 /* Open file in another application */
 "Open in..." = "Agor yn...";
 
+/* No comment provided by engineer. */
+"Permission Needed" = "Angen Caniatâd";
+
+/* No comment provided by engineer. */
+"Quiz" = "Cwis";
+
 /* Support Ticket Creation Failed */
 "Request Failed!  Check network and try again!" = "Mae'r cais wedi methu!  Gwiriwch y rhwydwaith a rhoi cynnig arall arni!";
 
@@ -195,6 +222,9 @@
 
 /* Server Error Title */
 "Server Error" = "Gwall ar y Gweinydd";
+
+/* No comment provided by engineer. */
+"Settings" = "Gosodiadau";
 
 /* Status level for issue being reported */
 "Something is broken but I can work around it" = "Mae rhywbeth wedi mynd o’i le, ond fe alla i ddal ati";
@@ -232,6 +262,12 @@
 /* No comment provided by engineer. */
 "There was an error loading your content. If it  is an audio or video upload it may still be processing." = "Gwall wrth lwytho’ch cynnwys. Os ydych chi'n llwytho sain neu fideo i fyny, gall fod wrthi'n prosesu o hyd.";
 
+/* No comment provided by engineer. */
+"This announcement has expired." = "Mae cyhoeddiad hwn wedi dod i ben.";
+
+/* No comment provided by engineer. */
+"This student's courses may not be published yet." = "Mae’n bosib nad yw cyrsiau’r myfyriwr hwn wedi’u cyhoeddi eto.";
+
 /* Unknown T`hreshold Description */
 "Unknown" = "Dieithr";
 
@@ -252,6 +288,9 @@
 
 /* Not Authorized Error Message */
 "You are unauthorized to access this information.  Check your user permissions and try again." = "Does gennych chi ddim hawl i gael mynediad at yr wybodaeth hon.  Gwiriwch eich hawliau defnyddiwr a rhoi cynnig arall arni.";
+
+/* No comment provided by engineer. */
+"You must allow notifications in Settings to set reminders." = "Rhaid i chi ganiatáu hysbysiadau yn y Gosodiadau er mwyn gosod nodiadau atgoffa.";
 
 /* Title for the email field */
 "Your Email" = "Eich E-bost";

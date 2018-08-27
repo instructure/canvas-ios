@@ -49,6 +49,9 @@
 /* No comment provided by engineer. */
 "Done" = "完成";
 
+/* No comment provided by engineer. */
+"Excused" = "已请假";
+
 /* The file extension for a submission is not acceptable */
 "File extension not allowed: %@" = "文件扩展名不允许： %@";
 

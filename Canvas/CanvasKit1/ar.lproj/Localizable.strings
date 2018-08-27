@@ -49,6 +49,9 @@
 /* No comment provided by engineer. */
 "Done" = "تم";
 
+/* No comment provided by engineer. */
+"Excused" = "غير إجباري";
+
 /* The file extension for a submission is not acceptable */
 "File extension not allowed: %@" = "ملحق الملف غير مسموح به: %@";
 

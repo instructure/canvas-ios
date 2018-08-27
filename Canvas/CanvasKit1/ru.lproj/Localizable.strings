@@ -49,6 +49,9 @@
 /* No comment provided by engineer. */
 "Done" = "Готово";
 
+/* No comment provided by engineer. */
+"Excused" = "По уважительной причине";
+
 /* The file extension for a submission is not acceptable */
 "File extension not allowed: %@" = "Расширение файла не допускается: %@";
 

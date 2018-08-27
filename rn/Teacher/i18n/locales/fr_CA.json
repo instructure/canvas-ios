@@ -131,14 +131,14 @@
   "anonymous_grading_3083dc0": {
     "message": "Notation anonyme"
   },
-  "anonymous_grading_ccb5045c": {
-    "message": "Notation anonyme"
-  },
   "anyone_5b8fdf9f": {
     "message": "Tous"
   },
   "archived_de543437": {
     "message": "Archiver"
+  },
+  "are_you_enjoying_canvas_922624ff": {
+    "message": "Aimez-vous Canvas?"
   },
   "are_you_sure_you_want_to_delete_name_908230d3": {
     "message": "Voulez-vous vraiment supprimer { name }?"
@@ -481,6 +481,9 @@
   },
   "dismiss_name_8646b9fd": {
     "message": "Ignorer { name }"
+  },
+  "dismiss_prompt_to_rate_8fdc85b6": {
+    "message": "Rejeter l’invite pour effectuer une notation"
   },
   "display_grade_as_7b5376a6": {
     "message": "Afficher la note comme"
@@ -1184,6 +1187,9 @@
   "reply_389d6fb9": {
     "message": "Répondre"
   },
+  "reply_all_b864cd0e": {
+    "message": "Répondre à tous"
+  },
   "report_a_problem_4d48624a": {
     "message": "Signaler un problème"
   },
@@ -1528,9 +1534,6 @@
   },
   "this_submission_is_a_url_to_an_external_page_we_ve_9993d2fd": {
     "message": "Cet envoi est une URL vers une page externe. Nous avons inclus une capture d''écran de la page au moment où elle a été envoyée."
-  },
-  "this_will_anonymize_each_student_and_shuffle_the_s_127956c7": {
-    "message": "Cela permettra de rendre anonyme chaque étudiant et de mélanger la liste d’envoi."
   },
   "this_will_remove_the_due_date_and_all_of_the_assoc_56d1ea8": {
     "message": "Cela va supprimer la date d'échéance et tous les assignés associés."

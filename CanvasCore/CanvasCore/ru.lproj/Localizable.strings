@@ -123,6 +123,9 @@
 "Choose a Video" = "Выбрать видео";
 
 /* No comment provided by engineer. */
+"Closed" = "Закрыто";
+
+/* No comment provided by engineer. */
 "Collapse" = "Свернуть";
 
 /* No comment provided by engineer. */
@@ -183,9 +186,6 @@
 /* message for delete dialog of audio recorder */
 "Delete recording?" = "Удалить запись?";
 
-/* Designer role */
-"Designer" = "Дизайнер";
-
 /* Notification display name for discussions group */
 "Discussions" = "Дискуссии";
 
@@ -201,6 +201,9 @@
 /* Done button
    Done recording button */
 "Done" = "Готово";
+
+/* No comment provided by engineer. */
+"Due %@" = "Срок %@";
 
 /* due date label for quiz due date */
 "Due Date" = "Срок выполнения";
@@ -390,9 +393,6 @@
 /* OK Button Title */
 "OK" = "OK";
 
-/* Observer role */
-"Observer" = "Наблюдатель";
-
 /* No comment provided by engineer. */
 "Open in Safari" = "Открыть в Safari";
 
@@ -480,6 +480,9 @@
 
 /* Label for indication that the quiz submission failed */
 "QuizSubmission Failure" = "QuizSubmission Неудача";
+
+/* No comment provided by engineer. */
+"Quizzes" = "Тесты";
 
 /* tile for error reading cache */
 "Read Error" = "Ошибка при чтении";
@@ -574,9 +577,6 @@
 /* File upload was stopped */
 "Stopped" = "Процесс остановлен";
 
-/* Student role */
-"Student" = "Студент";
-
 /* No comment provided by engineer. */
 "Style" = "Стиль";
 
@@ -597,9 +597,6 @@
 /* Label for indication of submitting quiz */
 "Submitting Quiz" = "Отправка теста";
 
-/* TA role */
-"TA" = "TA";
-
 /* Take a photo or video submission choice */
 "Take Photo or Video" = "Сделать фото или видео";
 
@@ -611,9 +608,6 @@
 
 /* Take a video submission choice */
 "Take a Video" = "Снять видео";
-
-/* Teacher role */
-"Teacher" = "Преподаватель";
 
 /* Teal course color button */
 "Teal" = "Бирюзовый";
@@ -815,6 +809,12 @@
 
 /* label to be read for visually impaired users with external tool assignment types */
 "external tool" = "внешний инструмент";
+
+/* No comment provided by engineer. */
+"plural_pts" = "plural_pts";
+
+/* No comment provided by engineer. */
+"plural_questions" = "plural_questions";
 
 /* label to be read for visually impaired users with quiz assignment types */
 "quiz" = "тест";

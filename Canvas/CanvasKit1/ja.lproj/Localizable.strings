@@ -49,6 +49,9 @@
 /* No comment provided by engineer. */
 "Done" = "完了";
 
+/* No comment provided by engineer. */
+"Excused" = "免除";
+
 /* The file extension for a submission is not acceptable */
 "File extension not allowed: %@" = "使用が許可されていないファイル拡張子: %@";
 

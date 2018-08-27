@@ -123,6 +123,9 @@
 "Choose a Video" = "选择视频";
 
 /* No comment provided by engineer. */
+"Closed" = "已关闭";
+
+/* No comment provided by engineer. */
 "Collapse" = "折叠";
 
 /* No comment provided by engineer. */
@@ -183,9 +186,6 @@
 /* message for delete dialog of audio recorder */
 "Delete recording?" = "删除录制？";
 
-/* Designer role */
-"Designer" = "设计者";
-
 /* Notification display name for discussions group */
 "Discussions" = "讨论";
 
@@ -201,6 +201,9 @@
 /* Done button
    Done recording button */
 "Done" = "完成";
+
+/* No comment provided by engineer. */
+"Due %@" = "截止%@";
 
 /* due date label for quiz due date */
 "Due Date" = "截止日期";
@@ -390,9 +393,6 @@
 /* OK Button Title */
 "OK" = "确定";
 
-/* Observer role */
-"Observer" = "观察员";
-
 /* No comment provided by engineer. */
 "Open in Safari" = "在Safari中打开";
 
@@ -480,6 +480,9 @@
 
 /* Label for indication that the quiz submission failed */
 "QuizSubmission Failure" = "QuizSubmission 失败";
+
+/* No comment provided by engineer. */
+"Quizzes" = "测验";
 
 /* tile for error reading cache */
 "Read Error" = "阅读错误";
@@ -574,9 +577,6 @@
 /* File upload was stopped */
 "Stopped" = "已阻止";
 
-/* Student role */
-"Student" = "学生";
-
 /* No comment provided by engineer. */
 "Style" = "样式";
 
@@ -597,9 +597,6 @@
 /* Label for indication of submitting quiz */
 "Submitting Quiz" = "提交测验";
 
-/* TA role */
-"TA" = "助教";
-
 /* Take a photo or video submission choice */
 "Take Photo or Video" = "拍摄相片或视频";
 
@@ -611,9 +608,6 @@
 
 /* Take a video submission choice */
 "Take a Video" = "拍摄视频";
-
-/* Teacher role */
-"Teacher" = "教师";
 
 /* Teal course color button */
 "Teal" = "青色";
@@ -815,6 +809,12 @@
 
 /* label to be read for visually impaired users with external tool assignment types */
 "external tool" = "外部工具";
+
+/* No comment provided by engineer. */
+"plural_pts" = "plural_pts";
+
+/* No comment provided by engineer. */
+"plural_questions" = "plural_questions";
 
 /* label to be read for visually impaired users with quiz assignment types */
 "quiz" = "测验";

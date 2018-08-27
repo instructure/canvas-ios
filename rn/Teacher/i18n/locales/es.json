@@ -131,14 +131,14 @@
   "anonymous_grading_3083dc0": {
     "message": "Calificación anónima"
   },
-  "anonymous_grading_ccb5045c": {
-    "message": "Calificación anónima"
-  },
   "anyone_5b8fdf9f": {
     "message": "Cualquiera"
   },
   "archived_de543437": {
     "message": "Archivado"
+  },
+  "are_you_enjoying_canvas_922624ff": {
+    "message": "¿Está disfrutando Canvas?"
   },
   "are_you_sure_you_want_to_delete_name_908230d3": {
     "message": "¿Está seguro de que desea eliminar { name }?"
@@ -481,6 +481,9 @@
   },
   "dismiss_name_8646b9fd": {
     "message": "Descartar { name }"
+  },
+  "dismiss_prompt_to_rate_8fdc85b6": {
+    "message": "Descartar solicitud de calificación"
   },
   "display_grade_as_7b5376a6": {
     "message": "Mostrar calificación como"
@@ -1184,6 +1187,9 @@
   "reply_389d6fb9": {
     "message": "Respuesta"
   },
+  "reply_all_b864cd0e": {
+    "message": "Responder a todos"
+  },
   "report_a_problem_4d48624a": {
     "message": "Reportar un problema"
   },
@@ -1528,9 +1534,6 @@
   },
   "this_submission_is_a_url_to_an_external_page_we_ve_9993d2fd": {
     "message": "Esta presentación es una URL hacia una página externa. Hemos incluido una foto de cómo lucía la página cuando fue presentada."
-  },
-  "this_will_anonymize_each_student_and_shuffle_the_s_127956c7": {
-    "message": "Esto les dará anonimato a los estudiantes y mezclará la lista de presentaciones."
   },
   "this_will_remove_the_due_date_and_all_of_the_assoc_56d1ea8": {
     "message": "Esto eliminará la fecha límite y todas las personas asignadas."

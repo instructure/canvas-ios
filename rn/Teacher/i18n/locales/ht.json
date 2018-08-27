@@ -131,14 +131,14 @@
   "anonymous_grading_3083dc0": {
     "message": "Klasman anomin"
   },
-  "anonymous_grading_ccb5045c": {
-    "message": "Klasman Anomin"
-  },
   "anyone_5b8fdf9f": {
     "message": "Nenpòt"
   },
   "archived_de543437": {
     "message": "Stoke"
+  },
+  "are_you_enjoying_canvas_922624ff": {
+    "message": "Èske w renmen Canvas?"
   },
   "are_you_sure_you_want_to_delete_name_908230d3": {
     "message": "Èske se vre ou vle efase { name }?"
@@ -481,6 +481,9 @@
   },
   "dismiss_name_8646b9fd": {
     "message": "Rejte { name }"
+  },
+  "dismiss_prompt_to_rate_8fdc85b6": {
+    "message": "Rejte mesaj pou evalye a"
   },
   "display_grade_as_7b5376a6": {
     "message": "Afiche Nòt Tankou"
@@ -1184,6 +1187,9 @@
   "reply_389d6fb9": {
     "message": "Reponn"
   },
+  "reply_all_b864cd0e": {
+    "message": "Reponn Tout"
+  },
   "report_a_problem_4d48624a": {
     "message": "Rapòte yon Pwoblèm"
   },
@@ -1528,9 +1534,6 @@
   },
   "this_submission_is_a_url_to_an_external_page_we_ve_9993d2fd": {
     "message": "Soumisyon sa a se yon URL ki mennen nan yon paj ekstèn Nou mete yon apèsi sou a kisa paj la te sanble lè yo te soumèt li a."
-  },
-  "this_will_anonymize_each_student_and_shuffle_the_s_127956c7": {
-    "message": "Sa ap kache non chak elèv epi melanje lis soumisyon an."
   },
   "this_will_remove_the_due_date_and_all_of_the_assoc_56d1ea8": {
     "message": "Sa ap elimine delè a ak tout sesyonè ki asosye yo."

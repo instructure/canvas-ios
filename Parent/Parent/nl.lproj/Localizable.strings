@@ -1,8 +1,14 @@
 /* <String> <Int> of <Int> */
 "%@ %d of %d" = "%1$@ %2$d van %3$d";
 
-/* Something to Something */
+/* No comment provided by engineer. */
+"%@ is due at %@" = "%1$@ vervalt op %2$@";
+
+/* No comment provided by engineer. */
 "%@ to %@" = "%1$@ tot %2$@";
+
+/* No comment provided by engineer. */
+"%@ will begin at %@" = "%1$@ begint op %2$@";
 
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
@@ -31,6 +37,9 @@
 /* No comment provided by engineer. */
 "Announcement" = "Aankondiging";
 
+/* No comment provided by engineer. */
+"Assignment" = "Opdracht";
+
 /* Assignment Grade High On Description */
 "Assignment grade above" = "Opdrachtcijfer hoger dan";
 
@@ -39,6 +48,9 @@
 
 /* Assignment Missing Description */
 "Assignment missing" = "Opdracht ontbreekt";
+
+/* No comment provided by engineer. */
+"Assignment reminder" = "Opdrachtherinnering";
 
 /* No comment provided by engineer. */
 "Cache cleared" = "Cache gewist";
@@ -83,10 +95,19 @@
 "Describe your problem" = "Beschrijf je probleem";
 
 /* No comment provided by engineer. */
+"Discussion" = "Discussie";
+
+/* No comment provided by engineer. */
 "Dismiss" = "Verwijderen";
 
 /* No comment provided by engineer. */
 "Error" = "Fout";
+
+/* No comment provided by engineer. */
+"Event" = "Gebeurtenis";
+
+/* No comment provided by engineer. */
+"Event reminder" = "Evenementherinnering";
 
 /* No comment provided by engineer. */
 "Excused" = "Verontschuldigd";
@@ -184,6 +205,12 @@
 /* Open file in another application */
 "Open in..." = "Openen in...";
 
+/* No comment provided by engineer. */
+"Permission Needed" = "Toestemming vereist";
+
+/* No comment provided by engineer. */
+"Quiz" = "Toets";
+
 /* Support Ticket Creation Failed */
 "Request Failed!  Check network and try again!" = "Verzoek mislukt!  Controleer het netwerk en probeer het nogmaals!";
 
@@ -195,6 +222,9 @@
 
 /* Server Error Title */
 "Server Error" = "Serverfout";
+
+/* No comment provided by engineer. */
+"Settings" = "Instellingen";
 
 /* Status level for issue being reported */
 "Something is broken but I can work around it" = "Er is iets kapot maar ik kan er wel omheen werken";
@@ -232,6 +262,12 @@
 /* No comment provided by engineer. */
 "There was an error loading your content. If it  is an audio or video upload it may still be processing." = "Er was een probleem bij het laden van je content. Als het een audio of video upload is, wordt het misschien nog verwerkt.";
 
+/* No comment provided by engineer. */
+"This announcement has expired." = "Deze aankondiging is vervallen.";
+
+/* No comment provided by engineer. */
+"This student's courses may not be published yet." = "De cursussen voor deze cursist zijn mogelijk nog niet gepubliceerd.";
+
 /* Unknown T`hreshold Description */
 "Unknown" = "Onbekend";
 
@@ -252,6 +288,9 @@
 
 /* Not Authorized Error Message */
 "You are unauthorized to access this information.  Check your user permissions and try again." = "Je hebt geen toestemming voor toegang tot deze informatie. Controleer je gebruikersvergunningen en probeer het nogmaals.";
+
+/* No comment provided by engineer. */
+"You must allow notifications in Settings to set reminders." = "Je moet in Instellingen meldingen activeren om herinneringen in te stellen.";
 
 /* Title for the email field */
 "Your Email" = "Jouw E-mail";

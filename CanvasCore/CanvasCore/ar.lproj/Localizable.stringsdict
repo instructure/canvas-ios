@@ -1,0 +1,28 @@
+{
+    "plural_pts" =     {
+        NSStringLocalizedFormatKey = "%#@points@";
+        points =         {
+            NSStringFormatSpecTypeKey = NSStringPluralRuleType;
+            NSStringFormatValueTypeKey = d;
+            few = "";
+            many = "";
+            one = "%d \U0646\U0642\U0637\U0629";
+            other = "%d \U0646\U0642\U0627\U0637";
+            two = "";
+            zero = "%d \U0646\U0642\U0627\U0637";
+        };
+    };
+    "plural_questions" =     {
+        NSStringLocalizedFormatKey = "%#@questions@";
+        questions =         {
+            NSStringFormatSpecTypeKey = NSStringPluralRuleType;
+            NSStringFormatValueTypeKey = d;
+            few = "";
+            many = "";
+            one = "%d \U0627\U0644\U0633\U0624\U0627\U0644";
+            other = "%d \U0627\U0644\U0623\U0633\U0626\U0644\U0629";
+            two = "";
+            zero = "%d \U0627\U0644\U0623\U0633\U0626\U0644\U0629";
+        };
+    };
+}

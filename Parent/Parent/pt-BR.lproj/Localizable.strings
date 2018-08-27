@@ -1,8 +1,14 @@
 /* <String> <Int> of <Int> */
 "%@ %d of %d" = "%1$@ %2$d of %3$d";
 
-/* Something to Something */
+/* No comment provided by engineer. */
+"%@ is due at %@" = "%1$@ vence às %2$@";
+
+/* No comment provided by engineer. */
 "%@ to %@" = "%1$@ para %2$@";
+
+/* No comment provided by engineer. */
+"%@ will begin at %@" = "%1$@ começará às %2$@";
 
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
@@ -31,6 +37,9 @@
 /* No comment provided by engineer. */
 "Announcement" = "Anúncio";
 
+/* No comment provided by engineer. */
+"Assignment" = "Tarefa";
+
 /* Assignment Grade High On Description */
 "Assignment grade above" = "Nota da tarefa acima";
 
@@ -39,6 +48,9 @@
 
 /* Assignment Missing Description */
 "Assignment missing" = "Faltando tarefa";
+
+/* No comment provided by engineer. */
+"Assignment reminder" = "Lembrete da tarefa";
 
 /* No comment provided by engineer. */
 "Cache cleared" = "Cache limpo";
@@ -83,10 +95,19 @@
 "Describe your problem" = "Descreva seu problema";
 
 /* No comment provided by engineer. */
+"Discussion" = "Discussão";
+
+/* No comment provided by engineer. */
 "Dismiss" = "Recusar";
 
 /* No comment provided by engineer. */
 "Error" = "Erro";
+
+/* No comment provided by engineer. */
+"Event" = "Evento";
+
+/* No comment provided by engineer. */
+"Event reminder" = "Lembrete do evento";
 
 /* No comment provided by engineer. */
 "Excused" = "Dispensado";
@@ -184,6 +205,12 @@
 /* Open file in another application */
 "Open in..." = "Abrir em...";
 
+/* No comment provided by engineer. */
+"Permission Needed" = "Permissão necessária";
+
+/* No comment provided by engineer. */
+"Quiz" = "Questionário";
+
 /* Support Ticket Creation Failed */
 "Request Failed!  Check network and try again!" = "Solicitação falhou!  Verifique a rede e tente novamente!";
 
@@ -195,6 +222,9 @@
 
 /* Server Error Title */
 "Server Error" = "Erro de Servidor";
+
+/* No comment provided by engineer. */
+"Settings" = "Configurações";
 
 /* Status level for issue being reported */
 "Something is broken but I can work around it" = "Algo não está funcionando, mas eu posso contornar isto";
@@ -232,6 +262,12 @@
 /* No comment provided by engineer. */
 "There was an error loading your content. If it  is an audio or video upload it may still be processing." = "Houve um erro ao carregar o seu conteúdo. Se for um upload de áudio ou vídeo pode ainda estar processando.";
 
+/* No comment provided by engineer. */
+"This announcement has expired." = "Este anúncio expirou.";
+
+/* No comment provided by engineer. */
+"This student's courses may not be published yet." = "Os cursos desse aluno podem ainda não ter sido publicados.";
+
 /* Unknown T`hreshold Description */
 "Unknown" = "Desconhecido";
 
@@ -252,6 +288,9 @@
 
 /* Not Authorized Error Message */
 "You are unauthorized to access this information.  Check your user permissions and try again." = "Você está sem autorização para acessar esta informação. Verifique suas permissões de usuário e tente novamente.";
+
+/* No comment provided by engineer. */
+"You must allow notifications in Settings to set reminders." = "Você deve permitir notificações nas Configurações para definir lembretes.";
 
 /* Title for the email field */
 "Your Email" = "Seu E-mail";

@@ -131,14 +131,14 @@
   "anonymous_grading_3083dc0": {
     "message": "Anoniem beoordelen"
   },
-  "anonymous_grading_ccb5045c": {
-    "message": "Anoniem beoordelen"
-  },
   "anyone_5b8fdf9f": {
     "message": "Iedereen"
   },
   "archived_de543437": {
     "message": "Gearchiveerd"
+  },
+  "are_you_enjoying_canvas_922624ff": {
+    "message": "Werk je prettig met Canvas?"
   },
   "are_you_sure_you_want_to_delete_name_908230d3": {
     "message": "Weet je zeker dat je { name } wilt verwijderen?"
@@ -481,6 +481,9 @@
   },
   "dismiss_name_8646b9fd": {
     "message": "{ name } afwijzen"
+  },
+  "dismiss_prompt_to_rate_8fdc85b6": {
+    "message": "Aanwijzing voor beoordeling verwijderen"
   },
   "display_grade_as_7b5376a6": {
     "message": "Beoordeling weergeven als"
@@ -1184,6 +1187,9 @@
   "reply_389d6fb9": {
     "message": "Antwoorden"
   },
+  "reply_all_b864cd0e": {
+    "message": "Allen beantwoorden"
+  },
   "report_a_problem_4d48624a": {
     "message": "Een probleem melden"
   },
@@ -1528,9 +1534,6 @@
   },
   "this_submission_is_a_url_to_an_external_page_we_ve_9993d2fd": {
     "message": "Deze inzending is een URL naar een externe pagina. We hebben een snapshot ingevoegd van hoe de pagina eruit zag toen deze werd ingezonden."
-  },
-  "this_will_anonymize_each_student_and_shuffle_the_s_127956c7": {
-    "message": "Hiermee worden alle cursisten anoniem gemaakt en wordt de lijst met inzendingen door elkaar gehaald."
   },
   "this_will_remove_the_due_date_and_all_of_the_assoc_56d1ea8": {
     "message": "Hiermee wordt de inleverdatum en alle daaraan gekoppelde ontvangers verwijderd."

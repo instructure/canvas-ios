@@ -123,6 +123,9 @@
 "Choose a Video" = "Choisir une vidéo";
 
 /* No comment provided by engineer. */
+"Closed" = "Fermé";
+
+/* No comment provided by engineer. */
 "Collapse" = "Réduire";
 
 /* No comment provided by engineer. */
@@ -183,9 +186,6 @@
 /* message for delete dialog of audio recorder */
 "Delete recording?" = "Supprimer l'enregistrement ?";
 
-/* Designer role */
-"Designer" = "Concepteur";
-
 /* Notification display name for discussions group */
 "Discussions" = "Discussions";
 
@@ -201,6 +201,9 @@
 /* Done button
    Done recording button */
 "Done" = "Terminé";
+
+/* No comment provided by engineer. */
+"Due %@" = "Dû %@";
 
 /* due date label for quiz due date */
 "Due Date" = "Date limite de rendu";
@@ -390,9 +393,6 @@
 /* OK Button Title */
 "OK" = "OK";
 
-/* Observer role */
-"Observer" = "Observateur";
-
 /* No comment provided by engineer. */
 "Open in Safari" = "Ouvrir avec Safari";
 
@@ -480,6 +480,9 @@
 
 /* Label for indication that the quiz submission failed */
 "QuizSubmission Failure" = "QuizSubmission Échec";
+
+/* No comment provided by engineer. */
+"Quizzes" = "Questionnaires";
 
 /* tile for error reading cache */
 "Read Error" = "Erreur de lecture";
@@ -574,9 +577,6 @@
 /* File upload was stopped */
 "Stopped" = "Arrêté";
 
-/* Student role */
-"Student" = "Élève";
-
 /* No comment provided by engineer. */
 "Style" = "Style";
 
@@ -597,9 +597,6 @@
 /* Label for indication of submitting quiz */
 "Submitting Quiz" = "Soumission du questionnaire";
 
-/* TA role */
-"TA" = "TA";
-
 /* Take a photo or video submission choice */
 "Take Photo or Video" = "Prendre une photo ou une vidéo";
 
@@ -611,9 +608,6 @@
 
 /* Take a video submission choice */
 "Take a Video" = "Enregistrer une vidéo";
-
-/* Teacher role */
-"Teacher" = "Enseignant";
 
 /* Teal course color button */
 "Teal" = "Sarcelle";
@@ -815,6 +809,12 @@
 
 /* label to be read for visually impaired users with external tool assignment types */
 "external tool" = "outil externe";
+
+/* No comment provided by engineer. */
+"plural_pts" = "plural_pts";
+
+/* No comment provided by engineer. */
+"plural_questions" = "plural_questions";
 
 /* label to be read for visually impaired users with quiz assignment types */
 "quiz" = "questionnaire";

@@ -1,0 +1,20 @@
+{
+    "plural_pts" =     {
+        NSStringLocalizedFormatKey = "%#@points@";
+        points =         {
+            NSStringFormatSpecTypeKey = NSStringPluralRuleType;
+            NSStringFormatValueTypeKey = d;
+            other = "%d\U30dd\U30a4\U30f3\U30c8";
+            zero = "%d\U30dd\U30a4\U30f3\U30c8";
+        };
+    };
+    "plural_questions" =     {
+        NSStringLocalizedFormatKey = "%#@questions@";
+        questions =         {
+            NSStringFormatSpecTypeKey = NSStringPluralRuleType;
+            NSStringFormatValueTypeKey = d;
+            other = "%d\U8cea\U554f";
+            zero = "%d\U8cea\U554f";
+        };
+    };
+}

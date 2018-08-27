@@ -131,14 +131,14 @@
   "anonymous_grading_3083dc0": {
     "message": "匿名での採点"
   },
-  "anonymous_grading_ccb5045c": {
-    "message": "匿名での採点"
-  },
   "anyone_5b8fdf9f": {
     "message": "全員"
   },
   "archived_de543437": {
     "message": "アーカイブに保存されました"
+  },
+  "are_you_enjoying_canvas_922624ff": {
+    "message": "Canvas を楽しんでいらっしゃいますか？"
   },
   "are_you_sure_you_want_to_delete_name_908230d3": {
     "message": "{ name }をほんとうに削除しますか?"
@@ -481,6 +481,9 @@
   },
   "dismiss_name_8646b9fd": {
     "message": "却下する { name }"
+  },
+  "dismiss_prompt_to_rate_8fdc85b6": {
+    "message": "評価のプロンプトを閉じる"
   },
   "display_grade_as_7b5376a6": {
     "message": "グレードを～として表示する"
@@ -1184,6 +1187,9 @@
   "reply_389d6fb9": {
     "message": "返信"
   },
+  "reply_all_b864cd0e": {
+    "message": "すべてに返信"
+  },
   "report_a_problem_4d48624a": {
     "message": "問題を報告する"
   },
@@ -1528,9 +1534,6 @@
   },
   "this_submission_is_a_url_to_an_external_page_we_ve_9993d2fd": {
     "message": "この提出は、外部ページへのURLです。提出された時点のページの内容をスナップショットにして含めてあります。"
-  },
-  "this_will_anonymize_each_student_and_shuffle_the_s_127956c7": {
-    "message": "これは、各受講者を匿名化し、提出リストをシャッフルします。"
   },
   "this_will_remove_the_due_date_and_all_of_the_assoc_56d1ea8": {
     "message": "これにより、期日と関連するすべての課題対象者が削除されます。"

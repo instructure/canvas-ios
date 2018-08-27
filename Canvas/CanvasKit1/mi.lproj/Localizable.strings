@@ -49,6 +49,9 @@
 /* No comment provided by engineer. */
 "Done" = "Mahia";
 
+/* No comment provided by engineer. */
+"Excused" = "Kua Whakawāteatia";
+
 /* The file extension for a submission is not acceptable */
 "File extension not allowed: %@" = "toronga Kōnae kore whakaaetia: %@";
 

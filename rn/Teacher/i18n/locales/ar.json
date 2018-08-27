@@ -131,14 +131,14 @@
   "anonymous_grading_3083dc0": {
     "message": "منح الدرجات دون الكشف عن الهوية"
   },
-  "anonymous_grading_ccb5045c": {
-    "message": "منح الدرجات دون الكشف عن الهوية"
-  },
   "anyone_5b8fdf9f": {
     "message": "أي شخص"
   },
   "archived_de543437": {
     "message": "تمت الأرشفة"
+  },
+  "are_you_enjoying_canvas_922624ff": {
+    "message": "هل تستمتع وأنت تستخدم Canvas؟"
   },
   "are_you_sure_you_want_to_delete_name_908230d3": {
     "message": "هل تريد بالتأكيد حذف { name }؟"
@@ -481,6 +481,9 @@
   },
   "dismiss_name_8646b9fd": {
     "message": "تجاهل { name }"
+  },
+  "dismiss_prompt_to_rate_8fdc85b6": {
+    "message": "تجاهل المطالبة بالتقييم"
   },
   "display_grade_as_7b5376a6": {
     "message": "عرض التقدير في صورة"
@@ -1184,6 +1187,9 @@
   "reply_389d6fb9": {
     "message": "رد"
   },
+  "reply_all_b864cd0e": {
+    "message": "رد على الكل"
+  },
   "report_a_problem_4d48624a": {
     "message": "الإبلاغ عن مشكلة"
   },
@@ -1528,9 +1534,6 @@
   },
   "this_submission_is_a_url_to_an_external_page_we_ve_9993d2fd": {
     "message": "هذا الإرسال هو عنوان URL المؤدي إلى صفحة خارجية. لقد قمنا بتضمين لقطة توضح كيف كانت تبدو الصفحة عندما تم إرسالها."
-  },
-  "this_will_anonymize_each_student_and_shuffle_the_s_127956c7": {
-    "message": "سيؤدي هذا إلى إخفاء تفاصيل جميع الطلاب وتبديل قائمة الإرسال."
   },
   "this_will_remove_the_due_date_and_all_of_the_assoc_56d1ea8": {
     "message": "سيؤدي هذا إلى إزالة تاريخ الاستحقاق وجميع المعين لهم المقترنين."

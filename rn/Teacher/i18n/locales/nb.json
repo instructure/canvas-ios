@@ -131,14 +131,14 @@
   "anonymous_grading_3083dc0": {
     "message": "Anonym karaktersetting"
   },
-  "anonymous_grading_ccb5045c": {
-    "message": "Anonym karaktersetting"
-  },
   "anyone_5b8fdf9f": {
     "message": "Hvem som helst"
   },
   "archived_de543437": {
     "message": "Arkivert"
+  },
+  "are_you_enjoying_canvas_922624ff": {
+    "message": "Liker du Canvas?"
   },
   "are_you_sure_you_want_to_delete_name_908230d3": {
     "message": "Er du sikker på at du vil slette { name }?"
@@ -481,6 +481,9 @@
   },
   "dismiss_name_8646b9fd": {
     "message": "Avvise { name }"
+  },
+  "dismiss_prompt_to_rate_8fdc85b6": {
+    "message": "Avvis varsel om tilbakemelding"
   },
   "display_grade_as_7b5376a6": {
     "message": "Vis karakter som"
@@ -1184,6 +1187,9 @@
   "reply_389d6fb9": {
     "message": "Svar"
   },
+  "reply_all_b864cd0e": {
+    "message": "Svar alle"
+  },
   "report_a_problem_4d48624a": {
     "message": "Rapporter et problem"
   },
@@ -1528,9 +1534,6 @@
   },
   "this_submission_is_a_url_to_an_external_page_we_ve_9993d2fd": {
     "message": "Denne innleveringen er en URL-adresse til en ekstern side. Vi har tatt et skjermbilde av hvordan siden så ut da den ble sendt inn."
-  },
-  "this_will_anonymize_each_student_and_shuffle_the_s_127956c7": {
-    "message": "Dette anonymiserer studentene og setter innleveringslisten i tilfeldig rekkefølge."
   },
   "this_will_remove_the_due_date_and_all_of_the_assoc_56d1ea8": {
     "message": "Dette vil fjerne forfallsdatoen og alle tilknyttede stedfortredere."

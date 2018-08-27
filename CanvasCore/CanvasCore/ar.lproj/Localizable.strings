@@ -123,6 +123,9 @@
 "Choose a Video" = "اختيار فيديو";
 
 /* No comment provided by engineer. */
+"Closed" = "مغلق";
+
+/* No comment provided by engineer. */
 "Collapse" = "طي";
 
 /* No comment provided by engineer. */
@@ -183,9 +186,6 @@
 /* message for delete dialog of audio recorder */
 "Delete recording?" = "حذف التسجيل؟";
 
-/* Designer role */
-"Designer" = "مصمم";
-
 /* Notification display name for discussions group */
 "Discussions" = "النقاشات";
 
@@ -201,6 +201,9 @@
 /* Done button
    Done recording button */
 "Done" = "تم";
+
+/* No comment provided by engineer. */
+"Due %@" = "الاستحقاق %@";
 
 /* due date label for quiz due date */
 "Due Date" = "تاريخ الاستحقاق";
@@ -390,9 +393,6 @@
 /* OK Button Title */
 "OK" = "موافق";
 
-/* Observer role */
-"Observer" = "المراقب";
-
 /* No comment provided by engineer. */
 "Open in Safari" = "الفتح في Safari";
 
@@ -480,6 +480,9 @@
 
 /* Label for indication that the quiz submission failed */
 "QuizSubmission Failure" = "QuizSubmission فشل";
+
+/* No comment provided by engineer. */
+"Quizzes" = "اختبارات موجزة";
 
 /* tile for error reading cache */
 "Read Error" = "خطأ في القراءة";
@@ -574,9 +577,6 @@
 /* File upload was stopped */
 "Stopped" = "تم الإيقاف";
 
-/* Student role */
-"Student" = "طالب";
-
 /* No comment provided by engineer. */
 "Style" = "نمط";
 
@@ -597,9 +597,6 @@
 /* Label for indication of submitting quiz */
 "Submitting Quiz" = "جارٍ إرسال الاختبار الموجز";
 
-/* TA role */
-"TA" = "مساعد المعلم";
-
 /* Take a photo or video submission choice */
 "Take Photo or Video" = "التقاط صورة أو فيديو";
 
@@ -611,9 +608,6 @@
 
 /* Take a video submission choice */
 "Take a Video" = "التقاط فيديو";
-
-/* Teacher role */
-"Teacher" = "المعلم";
 
 /* Teal course color button */
 "Teal" = "أزرق مخضر";
@@ -815,6 +809,12 @@
 
 /* label to be read for visually impaired users with external tool assignment types */
 "external tool" = "أداة خارجية";
+
+/* No comment provided by engineer. */
+"plural_pts" = "plural_pts";
+
+/* No comment provided by engineer. */
+"plural_questions" = "plural_questions";
 
 /* label to be read for visually impaired users with quiz assignment types */
 "quiz" = "الاختبار";

@@ -49,6 +49,9 @@
 /* No comment provided by engineer. */
 "Done" = "Wedi gorffen";
 
+/* No comment provided by engineer. */
+"Excused" = "Wedi esgusodi";
+
 /* The file extension for a submission is not acceptable */
 "File extension not allowed: %@" = "Dyma'r estyniad ffeil a ganiateir: %@";
 

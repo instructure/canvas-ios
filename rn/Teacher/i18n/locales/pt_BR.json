@@ -131,14 +131,14 @@
   "anonymous_grading_3083dc0": {
     "message": "Classificação anônima"
   },
-  "anonymous_grading_ccb5045c": {
-    "message": "Classificação Anônima"
-  },
   "anyone_5b8fdf9f": {
     "message": "Qualquer pessoa"
   },
   "archived_de543437": {
     "message": "Arquivado"
+  },
+  "are_you_enjoying_canvas_922624ff": {
+    "message": "Está gostando do Canvas?"
   },
   "are_you_sure_you_want_to_delete_name_908230d3": {
     "message": "Tem certeza que deseja excluir { name }?"
@@ -481,6 +481,9 @@
   },
   "dismiss_name_8646b9fd": {
     "message": "Descartar { name }"
+  },
+  "dismiss_prompt_to_rate_8fdc85b6": {
+    "message": "Descartar solicitação para avaliar"
   },
   "display_grade_as_7b5376a6": {
     "message": "Exibir nota como"
@@ -1184,6 +1187,9 @@
   "reply_389d6fb9": {
     "message": "Responder"
   },
+  "reply_all_b864cd0e": {
+    "message": "Responder a todos"
+  },
   "report_a_problem_4d48624a": {
     "message": "Reportar um problema"
   },
@@ -1528,9 +1534,6 @@
   },
   "this_submission_is_a_url_to_an_external_page_we_ve_9993d2fd": {
     "message": "Este envio era uma URL para uma página externa. Incluímos um snapshot de como a página aparecia quando foi enviada."
-  },
-  "this_will_anonymize_each_student_and_shuffle_the_s_127956c7": {
-    "message": "Isso tornará cada aluno anônimo e embaralhará a lista de envios."
   },
   "this_will_remove_the_due_date_and_all_of_the_assoc_56d1ea8": {
     "message": "Isso removerá a data de vencimento e todos os cessionários associados."

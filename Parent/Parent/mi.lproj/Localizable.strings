@@ -1,8 +1,14 @@
 /* <String> <Int> of <Int> */
 "%@ %d of %d" = "%1$@ %2$d o %3$d";
 
-/* Something to Something */
+/* No comment provided by engineer. */
+"%@ is due at %@" = "%1$@ ka tae i te wā ī %2$@";
+
+/* No comment provided by engineer. */
 "%@ to %@" = "%1$@ ki %2$@";
+
+/* No comment provided by engineer. */
+"%@ will begin at %@" = "%1$@ ka timata ī %2$@";
 
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
@@ -31,6 +37,9 @@
 /* No comment provided by engineer. */
 "Announcement" = "Pānui";
 
+/* No comment provided by engineer. */
+"Assignment" = "Whakataunga";
+
 /* Assignment Grade High On Description */
 "Assignment grade above" = "kōeke Taumahi runga";
 
@@ -39,6 +48,9 @@
 
 /* Assignment Missing Description */
 "Assignment missing" = "e ngaro ana Taumahi";
+
+/* No comment provided by engineer. */
+"Assignment reminder" = "Whakataunga whakamaharatanga";
 
 /* No comment provided by engineer. */
 "Cache cleared" = "whakawāteatia Keteroki";
@@ -83,10 +95,19 @@
 "Describe your problem" = "Whakaahuatia koutou raruraru";
 
 /* No comment provided by engineer. */
+"Discussion" = "Kōrerorero";
+
+/* No comment provided by engineer. */
 "Dismiss" = "Tonoa";
 
 /* No comment provided by engineer. */
 "Error" = "Hapa";
+
+/* No comment provided by engineer. */
+"Event" = "Tauwhāinga";
+
+/* No comment provided by engineer. */
+"Event reminder" = "Tauwhāinga whakamaharatanga";
 
 /* No comment provided by engineer. */
 "Excused" = "Tukua";
@@ -184,6 +205,12 @@
 /* Open file in another application */
 "Open in..." = "Tuwhera i roto i ...";
 
+/* No comment provided by engineer. */
+"Permission Needed" = "E hiahiatia ana he whakāetanga";
+
+/* No comment provided by engineer. */
+"Quiz" = "Quiz";
+
 /* Support Ticket Creation Failed */
 "Request Failed!  Check network and try again!" = "I rāhua te tono!  Tirohia te whatunga ka ngana anō!";
 
@@ -195,6 +222,9 @@
 
 /* Server Error Title */
 "Server Error" = "Hapa Tūmau";
+
+/* No comment provided by engineer. */
+"Settings" = "Ngā Tautuhinga";
 
 /* Status level for issue being reported */
 "Something is broken but I can work around it" = "pakaru te tahi mea te engari ka taea e ahau te mahi a tawhio noa te reira";
@@ -232,6 +262,12 @@
 /* No comment provided by engineer. */
 "There was an error loading your content. If it  is an audio or video upload it may still be processing." = "He ko he hapa uta koutou ihirangi. Ki te mea he ororongo ataata ranei tukuake ai tonu te tukatuka i te reira.";
 
+/* No comment provided by engineer. */
+"This announcement has expired." = "Kua pau te wā o tēnei pānuitanga";
+
+/* No comment provided by engineer. */
+"This student's courses may not be published yet." = "Kaore e pānuitia ngā akoranga a tēnei ākonga i tēnei wā..";
+
 /* Unknown T`hreshold Description */
 "Unknown" = "unknown";
 
@@ -252,6 +288,9 @@
 
 /* Not Authorized Error Message */
 "You are unauthorized to access this information.  Check your user permissions and try again." = "He kāore i ki te uru i tēnei mōhiohio e koe. Tirohia koutou whakaaetanga kaiwhakamahi, me te ngana anō.";
+
+/* No comment provided by engineer. */
+"You must allow notifications in Settings to set reminders." = "Me tukua e koe ngā whakamōhiotanga i roto i ngā Tautuhinga ki te whakatau ngā whakamaharatanga.";
 
 /* Title for the email field */
 "Your Email" = "Tō īmēra";

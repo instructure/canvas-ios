@@ -131,14 +131,14 @@
   "anonymous_grading_3083dc0": {
     "message": "Ingoamuna māka"
   },
-  "anonymous_grading_ccb5045c": {
-    "message": "Ingoamuna māka"
-  },
   "anyone_5b8fdf9f": {
     "message": "Tētahi"
   },
   "archived_de543437": {
     "message": "Pūrangatia"
+  },
+  "are_you_enjoying_canvas_922624ff": {
+    "message": "Kei te pārekareka koe ki ā Canvas?"
   },
   "are_you_sure_you_want_to_delete_name_908230d3": {
     "message": "Kei te tino hiahia koe ki te ki te muku { name }?"
@@ -484,6 +484,9 @@
   },
   "dismiss_name_8646b9fd": {
     "message": "Pana { name }"
+  },
+  "dismiss_prompt_to_rate_8fdc85b6": {
+    "message": "Pana te kipa ki te tere"
   },
   "display_grade_as_7b5376a6": {
     "message": "Whakaatu kōeke ī"
@@ -1187,6 +1190,9 @@
   "reply_389d6fb9": {
     "message": "Whakautu"
   },
+  "reply_all_b864cd0e": {
+    "message": "Whakautu ki te katoa"
+  },
   "report_a_problem_4d48624a": {
     "message": "Pūrongo i te Raruraru"
   },
@@ -1531,9 +1537,6 @@
   },
   "this_submission_is_a_url_to_an_external_page_we_ve_9993d2fd": {
     "message": "Ko tēnei tukunga he URL  ki tētahi whārangi o waho Kua whakaurua e mātou he hopuāhua o te āhua o  te whārangi, i te wā o te tukunga"
-  },
-  "this_will_anonymize_each_student_and_shuffle_the_s_127956c7": {
-    "message": "Ka ingoahunatia tēnei ia ākonga me te pikarikari te rārangi tukunga."
   },
   "this_will_remove_the_due_date_and_all_of_the_assoc_56d1ea8": {
     "message": "Ko tēnei ka tango i te rā tika me ngā rīwhi hoapā katoa."

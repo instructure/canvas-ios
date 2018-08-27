@@ -1,8 +1,14 @@
 /* <String> <Int> of <Int> */
 "%@ %d of %d" = "%1$@ %2$d of %3$d";
 
-/* Something to Something */
+/* No comment provided by engineer. */
+"%@ is due at %@" = "%1$@ mija %2$@";
+
+/* No comment provided by engineer. */
 "%@ to %@" = "%1$@ do %2$@";
+
+/* No comment provided by engineer. */
+"%@ will begin at %@" = "%1$@ rozpocznie się o %2$@";
 
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
@@ -31,6 +37,9 @@
 /* No comment provided by engineer. */
 "Announcement" = "Ogłoszenie";
 
+/* No comment provided by engineer. */
+"Assignment" = "Zadanie";
+
 /* Assignment Grade High On Description */
 "Assignment grade above" = "Ocena za zadanie powyżej";
 
@@ -39,6 +48,9 @@
 
 /* Assignment Missing Description */
 "Assignment missing" = "Brak zadania";
+
+/* No comment provided by engineer. */
+"Assignment reminder" = "Przypomnienie o zadaniu";
 
 /* No comment provided by engineer. */
 "Cache cleared" = "Pamięć podręczna wyczyszczona";
@@ -83,10 +95,19 @@
 "Describe your problem" = "Opisz problem";
 
 /* No comment provided by engineer. */
+"Discussion" = "Dyskusja";
+
+/* No comment provided by engineer. */
 "Dismiss" = "Odwołaj";
 
 /* No comment provided by engineer. */
 "Error" = "Błąd";
+
+/* No comment provided by engineer. */
+"Event" = "Wydarzenie";
+
+/* No comment provided by engineer. */
+"Event reminder" = "Przypomnienie o zdarzeniu";
 
 /* No comment provided by engineer. */
 "Excused" = "Usprawiedliwiony";
@@ -184,6 +205,12 @@
 /* Open file in another application */
 "Open in..." = "Otwórz w...";
 
+/* No comment provided by engineer. */
+"Permission Needed" = "Wymagane uprawnienia";
+
+/* No comment provided by engineer. */
+"Quiz" = "Quiz";
+
 /* Support Ticket Creation Failed */
 "Request Failed!  Check network and try again!" = "Niepowodzenie żądania!  Sprawdź sieć i spróbuj ponownie!";
 
@@ -195,6 +222,9 @@
 
 /* Server Error Title */
 "Server Error" = "Błąd serwera";
+
+/* No comment provided by engineer. */
+"Settings" = "Ustawienia";
 
 /* Status level for issue being reported */
 "Something is broken but I can work around it" = "Coś się zepsuło, ale poradzę sobie bez tego";
@@ -232,6 +262,12 @@
 /* No comment provided by engineer. */
 "There was an error loading your content. If it  is an audio or video upload it may still be processing." = "Wystąpił błąd podczas ładowania Twojej zawartości. Jeżeli jest to nagranie dźwiękowe lub wideo możliwe, że jest wciąż przetwarzane.";
 
+/* No comment provided by engineer. */
+"This announcement has expired." = "To ogłoszenie wygasło.";
+
+/* No comment provided by engineer. */
+"This student's courses may not be published yet." = "Nie można jeszcze opublikować kursów tego studenta.";
+
 /* Unknown T`hreshold Description */
 "Unknown" = "Nieznany";
 
@@ -252,6 +288,9 @@
 
 /* Not Authorized Error Message */
 "You are unauthorized to access this information.  Check your user permissions and try again." = "Brak autoryzacji dostępu do danych informacji. Sprawdź pozwolenia użytkownika i spróbuj ponownie.";
+
+/* No comment provided by engineer. */
+"You must allow notifications in Settings to set reminders." = "Aby ustawić przypomnienia, musisz zezwolić na powiadomienia w Ustawieniach.";
 
 /* Title for the email field */
 "Your Email" = "Twój adres e-mail";

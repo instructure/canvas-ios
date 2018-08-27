@@ -49,6 +49,9 @@
 /* No comment provided by engineer. */
 "Done" = "Feito";
 
+/* No comment provided by engineer. */
+"Excused" = "Dispensado";
+
 /* The file extension for a submission is not acceptable */
 "File extension not allowed: %@" = "Extensão de arquivo não permitida: %@";
 

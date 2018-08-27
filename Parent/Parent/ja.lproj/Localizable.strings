@@ -1,8 +1,14 @@
 /* <String> <Int> of <Int> */
 "%@ %d of %d" = "%3$d 中 %1$@ %2$d";
 
-/* Something to Something */
+/* No comment provided by engineer. */
+"%@ is due at %@" = "%1$@の期日は（）です%2$@";
+
+/* No comment provided by engineer. */
 "%@ to %@" = "%1$@から%2$@へ";
+
+/* No comment provided by engineer. */
+"%@ will begin at %@" = "%1$@（）に開始します%2$@";
 
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
@@ -31,6 +37,9 @@
 /* No comment provided by engineer. */
 "Announcement" = "発表";
 
+/* No comment provided by engineer. */
+"Assignment" = "課題";
+
 /* Assignment Grade High On Description */
 "Assignment grade above" = "より上の課題成績";
 
@@ -39,6 +48,9 @@
 
 /* Assignment Missing Description */
 "Assignment missing" = "未提出の課題";
+
+/* No comment provided by engineer. */
+"Assignment reminder" = "課題のリマインダ";
 
 /* No comment provided by engineer. */
 "Cache cleared" = "キャッシュがクリアされました";
@@ -83,10 +95,19 @@
 "Describe your problem" = "問題についてお聞かせください";
 
 /* No comment provided by engineer. */
+"Discussion" = "ディスカッション";
+
+/* No comment provided by engineer. */
 "Dismiss" = "棄却する";
 
 /* No comment provided by engineer. */
 "Error" = "エラー";
+
+/* No comment provided by engineer. */
+"Event" = "イベント";
+
+/* No comment provided by engineer. */
+"Event reminder" = "イベントのリマインダ";
 
 /* No comment provided by engineer. */
 "Excused" = "免除";
@@ -184,6 +205,12 @@
 /* Open file in another application */
 "Open in..." = "...で開く";
 
+/* No comment provided by engineer. */
+"Permission Needed" = "許可が必要";
+
+/* No comment provided by engineer. */
+"Quiz" = "クイズ";
+
 /* Support Ticket Creation Failed */
 "Request Failed!  Check network and try again!" = "リクエストに失敗しました！ネットワークをチェックして、もういちど試してください。";
 
@@ -195,6 +222,9 @@
 
 /* Server Error Title */
 "Server Error" = "サーバーエラー";
+
+/* No comment provided by engineer. */
+"Settings" = "設定";
 
 /* Status level for issue being reported */
 "Something is broken but I can work around it" = "何かが壊れていますが、それを避けて作業ができます";
@@ -232,6 +262,12 @@
 /* No comment provided by engineer. */
 "There was an error loading your content. If it  is an audio or video upload it may still be processing." = "コンテンツのロード中にエラーが発生しました。コンテンツがオーディオまたは動画のアップロードの場合、処理が継続中の可能性があります。";
 
+/* No comment provided by engineer. */
+"This announcement has expired." = "この発表は終了しました。";
+
+/* No comment provided by engineer. */
+"This student's courses may not be published yet." = "この受講生のコースはまだ公開されていないかもしれません。";
+
 /* Unknown T`hreshold Description */
 "Unknown" = "未知の";
 
@@ -252,6 +288,9 @@
 
 /* Not Authorized Error Message */
 "You are unauthorized to access this information.  Check your user permissions and try again." = "この情報にアクセスする権限がありません。ユーザー承認をご確認のうえ、再度お試しください。";
+
+/* No comment provided by engineer. */
+"You must allow notifications in Settings to set reminders." = "[設定]で通知を許可して、リマインダを設定しなければなりません。";
 
 /* Title for the email field */
 "Your Email" = "あなたのメールアドレス";
