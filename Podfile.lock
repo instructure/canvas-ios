@@ -28,12 +28,6 @@ PODS:
   - BVLinearGradient (2.4.0):
     - React
   - Cartography (1.1.0)
-  - CocoaLumberjack (3.4.2):
-    - CocoaLumberjack/Default (= 3.4.2)
-    - CocoaLumberjack/Extensions (= 3.4.2)
-  - CocoaLumberjack/Default (3.4.2)
-  - CocoaLumberjack/Extensions (3.4.2):
-    - CocoaLumberjack/Default
   - Crashlytics (3.10.2):
     - Fabric (~> 1.7.7)
   - DeviceKit (1.7.0)
@@ -162,8 +156,6 @@ PODS:
   - SDWebImage (4.4.1):
     - SDWebImage/Core (= 4.4.1)
   - SDWebImage/Core (4.4.1)
-  - SVGKit (2.0.1):
-    - CocoaLumberjack (~> 3.x)
   - SVProgressHUD (2.2.5)
   - SwiftGRPC (0.5.0):
     - BoringSSL (~> 10.0)
@@ -227,7 +219,6 @@ DEPENDENCIES:
   - RNFS (from `./rn/Teacher/node_modules/react-native-fs`)
   - RNSound (from `./rn/Teacher/node_modules/react-native-sound`)
   - SDWebImage (~> 4.1)
-  - SVGKit (from `https://github.com/SVGKit/SVGKit.git`, branch `2.x`)
   - SVProgressHUD (~> 2.0)
   - SwiftGRPC (from `https://github.com/grpc/grpc-swift.git`)
   - SwiftSimplify
@@ -240,7 +231,6 @@ SPEC REPOS:
     - AFNetworking
     - BoringSSL
     - Cartography
-    - CocoaLumberjack
     - Crashlytics
     - DeviceKit
     - EarlGrey
@@ -307,9 +297,6 @@ EXTERNAL SOURCES:
     :path: "./rn/Teacher/node_modules/react-native-fs"
   RNSound:
     :path: "./rn/Teacher/node_modules/react-native-sound"
-  SVGKit:
-    :branch: 2.x
-    :git: https://github.com/SVGKit/SVGKit.git
   SwiftGRPC:
     :git: https://github.com/grpc/grpc-swift.git
   yoga:
@@ -319,9 +306,6 @@ CHECKOUT OPTIONS:
   Eureka:
     :commit: 8fcc11477411b1ac96339d3d9d0973956ed05151
     :git: https://github.com/xmartlabs/Eureka
-  SVGKit:
-    :commit: d239c2b1b1476667e0470fc7d794649f70cff5a1
-    :git: https://github.com/SVGKit/SVGKit.git
   SwiftGRPC:
     :commit: b2084686f01625f581d19773cc508b8040375ad6
     :git: https://github.com/grpc/grpc-swift.git
@@ -332,7 +316,6 @@ SPEC CHECKSUMS:
   BugsnagReactNative: 0b7626917d3612281d07aea84e5041f123290fee
   BVLinearGradient: 4b3f3bdf1ac1a52a5ef5e65c9585d793a7c3f825
   Cartography: 0538ccb4044acbbda2266335fc58cb4228794d90
-  CocoaLumberjack: db7cc9e464771f12054c22ff6947c5a58d43a0fd
   Crashlytics: 0360624eea1c978a743feddb2fb1ef8b37fb7a0d
   DeviceKit: 6a5bdeb103c03757bb94aef1ccb01e08bc8ef4ee
   EarlGrey: 289a16cc7d08a54b962d72881b21e36d5103b549
@@ -372,7 +355,6 @@ SPEC CHECKSUMS:
   RNFS: fefeffc4f25a76144c1b53dc0a3258cf64c99962
   RNSound: d0818fe2435254fe30540fae48a429c5ffb72e09
   SDWebImage: 47e9b5b925cbce75946c23f0c42dd19464189af4
-  SVGKit: 4055d9e809b5db8633755979cfb3b02dc5a8c20d
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftGRPC: f0c79f81e90b1006a83f73f802ba1d01851d5def
   SwiftProtobuf: 5ccc0e4054e37c75800e5744acb2aa80bb72b39c
@@ -381,6 +363,6 @@ SPEC CHECKSUMS:
   TPKeyboardAvoiding: cb69d5ddbe90ce0170e4bc2db1e5e41d4a3ad9a4
   yoga: 17521bbb0dd54a47c0b3ac43253e78cdac7488e0
 
-PODFILE CHECKSUM: 0f6157a10e6a15bc9bcef7afcf2508f2fcebafc9
+PODFILE CHECKSUM: 1bba1b0b5d3b571cc03272de59e73cc23d6f635f
 
 COCOAPODS: 1.5.3

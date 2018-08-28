@@ -46,7 +46,6 @@ abstract_target 'defaults' do
   pod 'BugsnagReactNative', :path => nm_path + 'bugsnag-react-native'
 
   pod 'SDWebImage', '~> 4.1'
-  pod 'SVGKit', :git => 'https://github.com/SVGKit/SVGKit.git', :branch => '2.x'
   pod 'ReactiveCocoa', '~> 5.0'
   pod 'Marshal', '~> 1.1'
   pod 'Result', '~> 3.2'

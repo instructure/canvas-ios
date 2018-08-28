@@ -17,7 +17,6 @@
 import UIKit
 import CanvasKeymaster
 import React
-import SVGKit
 
 public typealias ModuleName = String
 
@@ -480,14 +479,15 @@ extension UIViewController {
 }
 
 extension HelmManager {
-
     static func narBarTitleViewFromImagePath(_ imagePath: Any) -> UIView? {
         var titleView: UIView? = nil
         switch (imagePath) {
         case is String:
             if let path = imagePath as? String {
-                if let url = URL(string: path), (path as NSString).pathExtension == "svg" {
-                    titleView = SVGImageView(url: url)
+                if let url = URL(string: path), url.pathExtension == "svg" {
+                    let view = SVGImageView(frame: CGRect(x: 0, y: 0, width: 44, height: 44), url: url)
+                    view.heightAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+                    titleView = view
                 } else {
                     let imageView = UIImageView()
                     imageView.kf.setImage(with: URL(string: path))
