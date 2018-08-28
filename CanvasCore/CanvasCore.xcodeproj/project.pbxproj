@@ -4154,7 +4154,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 356FC2F2919ECEF83CA044BA /* Pods-defaults-CanvasCoreTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				INFOPLIST_FILE = CanvasCoreTests/Info.plist;
@@ -4170,7 +4170,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D7D0C4CF2FDEC11C263CE767 /* Pods-defaults-CanvasCoreTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				INFOPLIST_FILE = CanvasCoreTests/Info.plist;
