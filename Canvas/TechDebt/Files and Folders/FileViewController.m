@@ -199,7 +199,10 @@
 
 - (NSURL *)temporaryURLForURL:(NSURL *)url error:(NSError * _Nullable *)error {
     NSError *copyError;
-    NSURL *copyURL = [url URLByAppendingPathExtension:@"tmp"];
+    NSString *extension = [url pathExtension];
+    NSString *name = [[url lastPathComponent] stringByDeletingPathExtension];
+    NSString *newName = [[name stringByAppendingString:@"-tmp"] stringByAppendingPathExtension:extension];
+    NSURL *copyURL = [[url URLByDeletingLastPathComponent] URLByAppendingPathComponent:newName];
     NSFileManager *manager = NSFileManager.defaultManager;
     if ([manager fileExistsAtPath:copyURL.path]) {
         [manager removeItemAtURL:copyURL error:&copyError];
