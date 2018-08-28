@@ -15,23 +15,15 @@
 //
 
 import Foundation
+@testable import Core
 
-public class GetCourses: CollectionUseCase<GetCoursesRequest, Course> {
-    public init(api: API = URLSessionAPI(), database: DatabaseStore, force: Bool = false) {
-        let request = GetCoursesRequest(includeUnpublished: true)
-        super.init(api: api, database: database, request: request)
-    }
-
-    override var predicate: NSPredicate {
-        return .all
-    }
-
-    override func predicate(forItem item: APICourse) -> NSPredicate {
-        return .id(item.id)
-    }
-
-    override func updateModel(_ model: Course, using item: APICourse, in client: DatabaseClient) throws {
-        model.id = item.id
-        model.name = item.name
+extension APIGroup: Fixture {
+    static var template: Template {
+        return [
+            "id": "1",
+            "name": "Group One",
+            "members_count": 1,
+            "group_category_id": "1",
+        ]
     }
 }

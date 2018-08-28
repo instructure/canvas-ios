@@ -49,3 +49,13 @@ class MockAPI: API {
         return nil
     }
 }
+
+struct MockRequest: APIRequestable {
+    typealias Response = [String]
+
+    let path: String
+
+    init(path: String) {
+        self.path = path
+    }
+}

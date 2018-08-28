@@ -16,34 +16,28 @@
 
 import Foundation
 
-class APIOperation<Request: APIRequestable>: AsyncOperation {
-    let api: API
-    let request: Request
-    var task: URLSessionTask?
-
-    var response: Request.Response?
-    var urlResponse: URLResponse?
+class DatabaseOperation: AsyncOperation {
+    let database: DatabaseStore
+    let block: (DatabaseClient) throws -> Void
     var error: Error?
 
-    init(api: API, request: Request) {
-        self.api = api
-        self.request = request
+    init(database: DatabaseStore, block: @escaping (DatabaseClient) throws -> Void) {
+        self.database = database
+        self.block = block
     }
 
     override func execute() {
-        guard !isCancelled else {
+        if isCancelled {
             return
         }
-        task = api.makeRequest(request) { [weak self] response, urlResponse, error in
-            self?.response = response
-            self?.urlResponse = urlResponse
-            self?.error = error
+
+        database.performBackgroundTask { [weak self] client in
+            do {
+                try self?.block(client)
+            } catch {
+                self?.error = error
+            }
             self?.finish()
         }
-    }
-
-    override func cancel() {
-        super.cancel()
-        task?.cancel()
     }
 }

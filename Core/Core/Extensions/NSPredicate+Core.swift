@@ -16,22 +16,12 @@
 
 import Foundation
 
-public class GetCourses: CollectionUseCase<GetCoursesRequest, Course> {
-    public init(api: API = URLSessionAPI(), database: DatabaseStore, force: Bool = false) {
-        let request = GetCoursesRequest(includeUnpublished: true)
-        super.init(api: api, database: database, request: request)
+extension NSPredicate {
+    static var all: NSPredicate {
+        return NSPredicate(value: true)
     }
 
-    override var predicate: NSPredicate {
-        return .all
-    }
-
-    override func predicate(forItem item: APICourse) -> NSPredicate {
-        return .id(item.id)
-    }
-
-    override func updateModel(_ model: Course, using item: APICourse, in client: DatabaseClient) throws {
-        model.id = item.id
-        model.name = item.name
+    static func id(_ id: String) -> NSPredicate {
+        return NSPredicate(format: "%K == %@", "id", id)
     }
 }

@@ -27,6 +27,10 @@ class ContextModelTests: XCTestCase {
         XCTAssertEqual(ContextModel.expandTildeID("self"), "self")
     }
 
+    func testCurrentUser() {
+        XCTAssertEqual(ContextModel.currentUser, ContextModel(.user, id: "self"))
+    }
+
     func testInitContextTypeId() {
         let context = ContextModel(.course, id: "5")
         XCTAssertEqual(context.contextType, .course)

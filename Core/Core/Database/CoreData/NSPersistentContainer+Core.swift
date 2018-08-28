@@ -37,7 +37,7 @@ extension NSPersistentContainer {
     }
 }
 
-extension NSPersistentContainer: Database {
+extension NSPersistentContainer: DatabaseStore {
     public func perform(block: @escaping (DatabaseClient) -> Void) {
         DispatchQueue.main.async {
             block(self.viewContext)

@@ -29,6 +29,10 @@ public struct ContextModel: Context, Equatable, Hashable {
         return id
     }
 
+    public static var currentUser: ContextModel {
+        return ContextModel(.user, id: "self")
+    }
+
     public init(_ contextType: ContextType, id: String) {
         self.contextType = contextType
         self.id = ContextModel.expandTildeID(id)

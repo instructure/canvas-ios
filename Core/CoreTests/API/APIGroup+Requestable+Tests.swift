@@ -19,10 +19,16 @@ import XCTest
 
 class APIGroupRequestableTests: XCTestCase {
     func testGetGroupsRequest() {
-        XCTAssertEqual(GetGroupsRequest(context: ContextModel(.course, id: "2")).path, "courses/2/groups?include[]=users")
+        XCTAssertEqual(GetGroupsRequest(context: ContextModel(.course, id: "2")).path, "courses/2/groups")
+        XCTAssertEqual(GetGroupsRequest(context: ContextModel(.course, id: "2")).queryItems, [
+            URLQueryItem(name: "include[]", value: "users"),
+        ])
     }
 
     func testGetGroupUsersRequest() {
-        XCTAssertEqual(GetGroupUsersRequest(groupID: "2").path, "groups/2/users?include[]=avatar_url")
+        XCTAssertEqual(GetGroupUsersRequest(groupID: "2").path, "groups/2/users")
+        XCTAssertEqual(GetGroupUsersRequest(groupID: "2").queryItems, [
+            URLQueryItem(name: "include[]", value: "avatar_url"),
+        ])
     }
 }

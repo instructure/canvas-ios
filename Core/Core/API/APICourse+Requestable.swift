@@ -17,13 +17,13 @@
 import Foundation
 
 // https://canvas.instructure.com/doc/api/courses.html#method.courses.index
-struct GetCoursesRequest: APIRequestable {
-    typealias Response = [APICourse]
+public struct GetCoursesRequest: APIRequestable {
+    public typealias Response = [APICourse]
 
     let includeUnpublished: Bool
 
-    let path = "courses"
-    var query: [APIQueryItem] {
+    public let path = "courses"
+    public var query: [APIQueryItem] {
         var state = [ "available", "completed" ]
         if includeUnpublished {
             state.append("unpublished")
@@ -44,15 +44,15 @@ struct GetCoursesRequest: APIRequestable {
 }
 
 // https://canvas.instructure.com/doc/api/courses.html#method.courses.show
-struct GetCourseRequest: APIRequestable {
-    typealias Response = APICourse
+public struct GetCourseRequest: APIRequestable {
+    public typealias Response = APICourse
 
     let courseID: String
 
-    var path: String {
+    public var path: String {
         return ContextModel(.course, id: courseID).pathComponent
     }
-    let query: [APIQueryItem] = [
+    public let query: [APIQueryItem] = [
         .array("include", [
             "course_image",
             "current_grading_period_scores",

@@ -16,22 +16,21 @@
 
 import Foundation
 
-public class GetCourses: CollectionUseCase<GetCoursesRequest, Course> {
-    public init(api: API = URLSessionAPI(), database: DatabaseStore, force: Bool = false) {
-        let request = GetCoursesRequest(includeUnpublished: true)
-        super.init(api: api, database: database, request: request)
+public class DetailUseCase<Request, Model>: RequestUseCase<Request> where Request: APIRequestable {
+    var predicate: NSPredicate {
+        fatalError("unimplemented \(#function)")
     }
 
-    override var predicate: NSPredicate {
-        return .all
+    func updateModel(_ model: Model, using item: Request.Response, in client: DatabaseClient) throws {
+        fatalError("unimplemented \(#function)")
     }
 
-    override func predicate(forItem item: APICourse) -> NSPredicate {
-        return .id(item.id)
-    }
-
-    override func updateModel(_ model: Course, using item: APICourse, in client: DatabaseClient) throws {
-        model.id = item.id
-        model.name = item.name
+    override func save(client: DatabaseClient) throws {
+        guard let response = fetch.response else {
+            return
+        }
+        let model: Model = client.fetch(predicate).first ?? client.insert()
+        try updateModel(model, using: response, in: client)
+        try client.save()
     }
 }

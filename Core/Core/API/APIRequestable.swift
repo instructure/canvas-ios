@@ -16,11 +16,11 @@
 
 import Foundation
 
-enum APIMethod: String {
+public enum APIMethod: String {
     case delete, get, post, put
 }
 
-enum APIQueryItem {
+public enum APIQueryItem {
     case name(String)
     case value(String, String)
     case array(String, [String])
@@ -49,7 +49,7 @@ let APIUserAgent: String = {
     return "iCanvas/\(shortVersion) (\(bundleVersion)) \(UIDevice.current.model)/\(UIDevice.current.systemName) \(UIDevice.current.systemVersion)"
 }()
 
-protocol APIRequestable {
+public protocol APIRequestable {
     associatedtype Response: Codable
     associatedtype Body: Encodable = String
 
@@ -63,23 +63,23 @@ protocol APIRequestable {
 }
 
 extension APIRequestable {
-    var method: APIMethod {
+    public var method: APIMethod {
         return .get
     }
-    var headers: [String: String?] {
+    public var headers: [String: String?] {
         return [:]
     }
-    var query: [APIQueryItem] {
+    public var query: [APIQueryItem] {
         return []
     }
-    var queryItems: [URLQueryItem] {
+    public var queryItems: [URLQueryItem] {
         return query.flatMap({ q in q.toURLQueryItems() })
     }
-    var body: Body? {
+    public var body: Body? {
         return nil
     }
 
-    func urlRequest(relativeTo baseURL: URL, accessToken: String) throws -> URLRequest {
+    public func urlRequest(relativeTo baseURL: URL, accessToken: String) throws -> URLRequest {
         guard var components = URLComponents(string: path) else { throw APIRequestableError.invalidPath(path) }
 
         if components.host == nil {
@@ -112,7 +112,7 @@ extension APIRequestable {
         return request
     }
 
-    func getNext(from response: URLResponse) -> GetNextRequest<Response>? {
+    public func getNext(from response: URLResponse) -> GetNextRequest<Response>? {
         if let next = response.links?["next"] {
             return GetNextRequest<Response>(path: next.absoluteString)
         }
@@ -120,7 +120,7 @@ extension APIRequestable {
     }
 }
 
-struct GetNextRequest<T: Codable>: APIRequestable {
-    typealias Response = T
-    let path: String
+public struct GetNextRequest<T: Codable>: APIRequestable {
+    public typealias Response = T
+    public let path: String
 }

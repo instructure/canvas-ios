@@ -15,6 +15,7 @@
 //
 
 import Foundation
+
 typealias Template = [String: Any?]
 
 protocol Fixture {

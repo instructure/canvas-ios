@@ -16,11 +16,11 @@
 
 import Foundation
 
-protocol API {
+public protocol API {
     func makeRequest<R: APIRequestable>(_ requestable: R, callback: @escaping (R.Response?, URLResponse?, Error?) -> Void) -> URLSessionTask?
 }
 
-struct URLSessionAPI: API {
+public struct URLSessionAPI: API {
     var baseURL: URL {
         return /* Keychain.currentSession?.baseURL ?? */ URL(string: "https://canvas.instructure.com/")!
     }
@@ -34,8 +34,10 @@ struct URLSessionAPI: API {
         return URLSession(configuration: configuration)
     }
 
+    public init() {}
+
     @discardableResult
-    func makeRequest<R: APIRequestable>(_ requestable: R, callback: @escaping (R.Response?, URLResponse?, Error?) -> Void) -> URLSessionTask? {
+    public func makeRequest<R: APIRequestable>(_ requestable: R, callback: @escaping (R.Response?, URLResponse?, Error?) -> Void) -> URLSessionTask? {
         do {
             let request = try requestable.urlRequest(relativeTo: baseURL, accessToken: accessToken)
             let task = urlSession.dataTask(with: request) { data, response, error in

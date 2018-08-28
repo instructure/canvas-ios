@@ -18,50 +18,41 @@ import Foundation
 import XCTest
 @testable import Core
 
-class TestOperationQueue: OperationQueue {
-    override init() {
-        super.init()
-        maxConcurrentOperationCount = 1
-    }
-}
+class GetCoursesTest: CoreTestCase {
+    let request = GetCoursesRequest(includeUnpublished: true)
 
-class GetCoursesTest: XCTestCase {
-    let api = MockAPI()
-    let database = mockDatabase()
-    let queue = TestOperationQueue()
-
-    override func setUp() {
-        super.setUp()
-    }
-
-    func testItStoresCourses() {
-        let request = GetCoursesRequest(includeUnpublished: true)
-        let one = APICourse.make(["id": "1"])
-        let two = APICourse.make(["id": "2"])
-        api.mock(request, value: [one, two], response: nil, error: nil)
+    func testItCreatesCourses() {
+        let course = APICourse.make(["id": "1", "name": "Course 1"])
+        api.mock(request, value: [course], response: nil, error: nil)
 
         let getCourses = GetCourses(api: api, database: database)
-        queue.addOperation(getCourses)
-        queue.waitUntilAllOperationsAreFinished()
+        addOperationAndWait(getCourses)
 
-        let courses: [Course] = database.mainClient.fetch()
-        XCTAssertEqual(courses.count, 2)
+        let courses: [Course] = dbClient.fetch()
+        XCTAssertEqual(courses.count, 1)
+        XCTAssertEqual(courses.first?.id, "1")
+        XCTAssertEqual(courses.first?.name, "Course 1")
+    }
+
+    func testItUpdatesCourses() {
+        let stale = course(["id": "1", "name": "Old Name"])
+        let new = APICourse.make(["id": "1", "name": "New Name"])
+        api.mock(request, value: [new])
+
+        let getCourses = GetCourses(api: api, database: database)
+        addOperationAndWait(getCourses)
+
+        XCTAssertEqual(stale.reload().name, "New Name")
     }
 
     func testItDeletesCoursesThatNoLongerExist() {
-        let course: Course = database.mainClient.insert()
-        course.id = "1"
-        course.name = "Course One"
-        try! database.mainClient.save()
-
-        let request = GetCoursesRequest(includeUnpublished: true)
+        let course = self.course()
         api.mock(request, value: [], response: nil, error: nil)
 
         let getCourses = GetCourses(api: api, database: database)
-        queue.addOperation(getCourses)
-        queue.waitUntilAllOperationsAreFinished()
+        addOperationAndWait(getCourses)
 
-        let courses: [Course] = database.mainClient.fetch()
-        XCTAssertEqual(courses.count, 0)
+        let courses: [Course] = dbClient.fetch()
+        XCTAssertFalse(courses.contains(course))
     }
 }

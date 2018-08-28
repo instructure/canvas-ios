@@ -15,23 +15,27 @@
 //
 
 import Foundation
+import CoreData
+@testable import Core
 
-public class GetCourses: CollectionUseCase<GetCoursesRequest, Course> {
-    public init(api: API = URLSessionAPI(), database: DatabaseStore, force: Bool = false) {
-        let request = GetCoursesRequest(includeUnpublished: true)
-        super.init(api: api, database: database, request: request)
+extension Fixture where Self: NSManagedObject {
+    static func make(_ template: Template = [:], in client: DatabaseClient) -> Self {
+        var t = self.template
+        for (key, _) in template {
+            t[key] = template[key]
+        }
+        let fixture: Self = client.insert()
+        for (key, value) in t {
+            fixture.setValue(value, forKey: key)
+        }
+        return fixture
     }
+}
 
-    override var predicate: NSPredicate {
-        return .all
-    }
-
-    override func predicate(forItem item: APICourse) -> NSPredicate {
-        return .id(item.id)
-    }
-
-    override func updateModel(_ model: Course, using item: APICourse, in client: DatabaseClient) throws {
-        model.id = item.id
-        model.name = item.name
+extension DatabaseClient {
+    func make<T>(_ template: Template = [:]) -> T where T: Fixture, T: NSManagedObject {
+        let fixture: T = T.make(template, in: self)
+        try! save()
+        return fixture
     }
 }

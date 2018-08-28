@@ -17,7 +17,7 @@
 import Foundation
 
 // https://canvas.instructure.com/doc/api/groups.html#Group
-struct APIGroup: Codable, Equatable {
+public struct APIGroup: Codable, Equatable {
     let id: String
     let name: String
     // let description: String?

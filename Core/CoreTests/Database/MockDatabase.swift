@@ -42,6 +42,13 @@ extension NSPersistentContainer {
     }
 }
 
-func mockDatabase() -> Database {
+func mockDatabase() -> DatabaseStore {
     return NSPersistentContainer.test
+}
+
+extension NSManagedObject {
+    func reload() -> Self {
+        managedObjectContext!.refresh(self, mergeChanges: false)
+        return self
+    }
 }

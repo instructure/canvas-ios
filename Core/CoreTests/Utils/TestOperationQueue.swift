@@ -16,10 +16,9 @@
 
 import Foundation
 
-public func dependencyOperation<T: Operation>(_ dependency: T, block: @escaping (T) -> Void) -> Operation {
-    let operation = BlockOperation { [unowned dependency] in
-        block(dependency)
+class TestOperationQueue: OperationQueue {
+    override init() {
+        super.init()
+        maxConcurrentOperationCount = 1
     }
-    operation.addDependency(dependency)
-    return operation
 }

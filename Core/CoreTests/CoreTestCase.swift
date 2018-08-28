@@ -15,23 +15,28 @@
 //
 
 import Foundation
+import XCTest
+@testable import Core
 
-public class GetCourses: CollectionUseCase<GetCoursesRequest, Course> {
-    public init(api: API = URLSessionAPI(), database: DatabaseStore, force: Bool = false) {
-        let request = GetCoursesRequest(includeUnpublished: true)
-        super.init(api: api, database: database, request: request)
+class CoreTestCase: XCTestCase {
+    let api = MockAPI()
+    let database = mockDatabase()
+    let queue = TestOperationQueue()
+
+    var dbClient: DatabaseClient {
+        return database.mainClient
     }
 
-    override var predicate: NSPredicate {
-        return .all
+    func course(_ template: Template = [:]) -> Course {
+        return dbClient.make(template)
     }
 
-    override func predicate(forItem item: APICourse) -> NSPredicate {
-        return .id(item.id)
+    func group(_ template: Template = [:]) -> Group {
+        return dbClient.make(template)
     }
 
-    override func updateModel(_ model: Course, using item: APICourse, in client: DatabaseClient) throws {
-        model.id = item.id
-        model.name = item.name
+    func addOperationAndWait(_ operation: Operation) {
+        queue.addOperation(operation)
+        queue.waitUntilAllOperationsAreFinished()
     }
 }

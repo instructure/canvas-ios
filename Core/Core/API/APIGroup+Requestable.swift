@@ -18,14 +18,20 @@ import Foundation
 
 // https://canvas.instructure.com/doc/api/groups.html#method.groups.index
 // https://canvas.instructure.com/doc/api/groups.html#method.groups.context_index
-struct GetGroupsRequest: APIRequestable {
-    typealias Response = [APIGroup]
+public struct GetGroupsRequest: APIRequestable {
+    public typealias Response = [APIGroup]
 
     let context: Context
 
-    var path: String {
-        return "\(context.pathComponent)/groups?include[]=users"
+    public var path: String {
+        return "\(context.pathComponent)/groups"
     }
+
+    public let query: [APIQueryItem] = [
+        .array("include", [
+            "users",
+        ]),
+    ]
 }
 
 // https://canvas.instructure.com/doc/api/groups.html#method.groups.users
@@ -36,6 +42,12 @@ struct GetGroupUsersRequest: APIRequestable {
 
     var path: String {
         let context = ContextModel(.group, id: groupID)
-        return "\(context.pathComponent)/users?include[]=avatar_url"
+        return "\(context.pathComponent)/users"
     }
+
+    public let query: [APIQueryItem] = [
+        .array("include", [
+            "avatar_url",
+        ]),
+    ]
 }

@@ -16,22 +16,23 @@
 
 import Foundation
 
-public class GetCourses: CollectionUseCase<GetCoursesRequest, Course> {
-    public init(api: API = URLSessionAPI(), database: DatabaseStore, force: Bool = false) {
-        let request = GetCoursesRequest(includeUnpublished: true)
+class GetUserGroups: CollectionUseCase<GetGroupsRequest, Group> {
+    init(api: API, database: DatabaseStore, force: Bool = false) {
+        let request = GetGroupsRequest(context: ContextModel.currentUser)
         super.init(api: api, database: database, request: request)
     }
 
     override var predicate: NSPredicate {
-        return .all
+        return NSPredicate(format: "%K == YES", "member")
     }
 
-    override func predicate(forItem item: APICourse) -> NSPredicate {
+    override func predicate(forItem item: APIGroup) -> NSPredicate {
         return .id(item.id)
     }
 
-    override func updateModel(_ model: Course, using item: APICourse, in client: DatabaseClient) throws {
-        model.id = item.id
-        model.name = item.name
+    override func updateModel(_ model: Group, using object: APIGroup, in client: DatabaseClient) {
+        model.id = object.id
+        model.name = object.name
+        model.member = true
     }
 }
