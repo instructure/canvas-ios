@@ -746,6 +746,7 @@
 				B14FE5D92134F68800328CD7 /* CoreTestCase.swift in Sources */,
 				B195DC5C213255CF00797FE4 /* Course+Fixture.swift in Sources */,
 				2C96485B211E30B3002C3255 /* Router+Tests.swift in Sources */,
+				2C96483D211E2F1A002C3255 /* CoreTests.swift in Sources */,
 				B195DC5721324E5600797FE4 /* APIGroup+Fixture.swift in Sources */,
 				9F0C3D6321246C92005B7A6F /* PathToRegexp+Tests.swift in Sources */,
 				7D80AC1B212B6A7700C40ECE /* APIFavorite+Requestable+Tests.swift in Sources */,

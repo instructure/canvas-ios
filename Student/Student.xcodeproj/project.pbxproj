@@ -15,6 +15,20 @@
 		2C96486D211E4276002C3255 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C96486C211E4276002C3255 /* DetailViewController.swift */; };
 		2C96486F211E428B002C3255 /* DetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C96486E211E428B002C3255 /* DetailViewController.storyboard */; };
 		2C964871211E4319002C3255 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C964870211E4319002C3255 /* MainViewController.swift */; };
+		788152DB212B3470005BA428 /* DashboardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152DA212B3470005BA428 /* DashboardPresenter.swift */; };
+		788152DD212B34F2005BA428 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152DC212B34F2005BA428 /* DashboardViewController.swift */; };
+		788152DF212B35F8005BA428 /* DashboardViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 788152DE212B35F8005BA428 /* DashboardViewController.storyboard */; };
+		788152E4212B3957005BA428 /* DashboardIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152E3212B3957005BA428 /* DashboardIntegrationTests.swift */; };
+		788152E6212B3987005BA428 /* DashboardMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152E5212B3987005BA428 /* DashboardMocks.swift */; };
+		788152ED212B4FA4005BA428 /* DashboardCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152EC212B4FA4005BA428 /* DashboardCourseCell.swift */; };
+		788152F5212B7482005BA428 /* DashboardGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152F4212B7482005BA428 /* DashboardGroupCell.swift */; };
+		788152FC212B83D0005BA428 /* DashboardSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152FA212B83D0005BA428 /* DashboardSectionHeaderView.swift */; };
+		78815309212BD19F005BA428 /* AllCoursesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78815307212BD19F005BA428 /* AllCoursesViewController.swift */; };
+		7881530A212BD19F005BA428 /* AllCoursesViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78815308212BD19F005BA428 /* AllCoursesViewController.storyboard */; };
+		78815310212BD307005BA428 /* AllCoursesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7881530F212BD307005BA428 /* AllCoursesPresenter.swift */; };
+		78815317212F56E1005BA428 /* AllCoursesCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78815313212F56E1005BA428 /* AllCoursesCourseCell.swift */; };
+		78815318212F56E1005BA428 /* AllCoursesSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78815314212F56E1005BA428 /* AllCoursesSectionHeaderView.swift */; };
+		7881531F212FC5F7005BA428 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C964867211E38B0002C3255 /* Core.framework */; };
 		F97304A02122268100AA2557 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C964867211E38B0002C3255 /* Core.framework */; };
 		F97304A12122268500AA2557 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C964867211E38B0002C3255 /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F97304A4212287C500AA2557 /* EarlGrey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F97304A3212287C400AA2557 /* EarlGrey.framework */; };
@@ -72,6 +86,19 @@
 		2C96486C211E4276002C3255 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		2C96486E211E428B002C3255 /* DetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailViewController.storyboard; sourceTree = "<group>"; };
 		2C964870211E4319002C3255 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		788152DA212B3470005BA428 /* DashboardPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardPresenter.swift; sourceTree = "<group>"; };
+		788152DC212B34F2005BA428 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		788152DE212B35F8005BA428 /* DashboardViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DashboardViewController.storyboard; sourceTree = "<group>"; };
+		788152E3212B3957005BA428 /* DashboardIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardIntegrationTests.swift; sourceTree = "<group>"; };
+		788152E5212B3987005BA428 /* DashboardMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardMocks.swift; sourceTree = "<group>"; };
+		788152EC212B4FA4005BA428 /* DashboardCourseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCourseCell.swift; sourceTree = "<group>"; };
+		788152F4212B7482005BA428 /* DashboardGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardGroupCell.swift; sourceTree = "<group>"; };
+		788152FA212B83D0005BA428 /* DashboardSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardSectionHeaderView.swift; sourceTree = "<group>"; };
+		78815307212BD19F005BA428 /* AllCoursesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllCoursesViewController.swift; sourceTree = "<group>"; };
+		78815308212BD19F005BA428 /* AllCoursesViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AllCoursesViewController.storyboard; sourceTree = "<group>"; };
+		7881530F212BD307005BA428 /* AllCoursesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCoursesPresenter.swift; sourceTree = "<group>"; };
+		78815313212F56E1005BA428 /* AllCoursesCourseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllCoursesCourseCell.swift; sourceTree = "<group>"; };
+		78815314212F56E1005BA428 /* AllCoursesSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllCoursesSectionHeaderView.swift; sourceTree = "<group>"; };
 		F97304A3212287C400AA2557 /* EarlGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EarlGrey.framework; path = "../../ios-frameworks/EarlGrey.framework"; sourceTree = "<group>"; };
 		F97304A6212287F400AA2557 /* EarlGrey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarlGrey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -90,6 +117,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F97304A4212287C500AA2557 /* EarlGrey.framework in Frameworks */,
+				7881531F212FC5F7005BA428 /* Core.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,6 +146,8 @@
 		2C5C698B211DFFAD00D9AD15 /* Student */ = {
 			isa = PBXGroup;
 			children = (
+				78815306212BD175005BA428 /* AllCourses */,
+				788152D5212B330C005BA428 /* Dashboard */,
 				2C5C698C211DFFAD00D9AD15 /* AppDelegate.swift */,
 				2C964870211E4319002C3255 /* MainViewController.swift */,
 				2C96486C211E4276002C3255 /* DetailViewController.swift */,
@@ -133,6 +163,7 @@
 		2C5C69A2211DFFAE00D9AD15 /* StudentTests */ = {
 			isa = PBXGroup;
 			children = (
+				788152E0212B38C5005BA428 /* Dashboard */,
 				2C96486B211E3AA9002C3255 /* Core.framework */,
 				2C5C69A3211DFFAE00D9AD15 /* StudentTests.swift */,
 				2C5C69A5211DFFAE00D9AD15 /* Info.plist */,
@@ -148,6 +179,40 @@
 				2C964867211E38B0002C3255 /* Core.framework */,
 			);
 			path = Frameworks;
+			sourceTree = "<group>";
+		};
+		788152D5212B330C005BA428 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				788152EC212B4FA4005BA428 /* DashboardCourseCell.swift */,
+				788152F4212B7482005BA428 /* DashboardGroupCell.swift */,
+				788152FA212B83D0005BA428 /* DashboardSectionHeaderView.swift */,
+				788152DA212B3470005BA428 /* DashboardPresenter.swift */,
+				788152DC212B34F2005BA428 /* DashboardViewController.swift */,
+				788152DE212B35F8005BA428 /* DashboardViewController.storyboard */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		788152E0212B38C5005BA428 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				788152E3212B3957005BA428 /* DashboardIntegrationTests.swift */,
+				788152E5212B3987005BA428 /* DashboardMocks.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		78815306212BD175005BA428 /* AllCourses */ = {
+			isa = PBXGroup;
+			children = (
+				78815313212F56E1005BA428 /* AllCoursesCourseCell.swift */,
+				78815314212F56E1005BA428 /* AllCoursesSectionHeaderView.swift */,
+				78815308212BD19F005BA428 /* AllCoursesViewController.storyboard */,
+				78815307212BD19F005BA428 /* AllCoursesViewController.swift */,
+				7881530F212BD307005BA428 /* AllCoursesPresenter.swift */,
+			);
+			path = AllCourses;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -238,6 +303,8 @@
 				2C5C6999211DFFAE00D9AD15 /* LaunchScreen.storyboard in Resources */,
 				2C5C6996211DFFAE00D9AD15 /* Assets.xcassets in Resources */,
 				2C5C6994211DFFAD00D9AD15 /* Main.storyboard in Resources */,
+				788152DF212B35F8005BA428 /* DashboardViewController.storyboard in Resources */,
+				7881530A212BD19F005BA428 /* AllCoursesViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,9 +339,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				788152FC212B83D0005BA428 /* DashboardSectionHeaderView.swift in Sources */,
 				2C964871211E4319002C3255 /* MainViewController.swift in Sources */,
+				788152DB212B3470005BA428 /* DashboardPresenter.swift in Sources */,
+				788152ED212B4FA4005BA428 /* DashboardCourseCell.swift in Sources */,
 				2C5C698D211DFFAD00D9AD15 /* AppDelegate.swift in Sources */,
+				788152F5212B7482005BA428 /* DashboardGroupCell.swift in Sources */,
+				78815318212F56E1005BA428 /* AllCoursesSectionHeaderView.swift in Sources */,
 				2C96486D211E4276002C3255 /* DetailViewController.swift in Sources */,
+				78815310212BD307005BA428 /* AllCoursesPresenter.swift in Sources */,
+				78815309212BD19F005BA428 /* AllCoursesViewController.swift in Sources */,
+				788152DD212B34F2005BA428 /* DashboardViewController.swift in Sources */,
+				78815317212F56E1005BA428 /* AllCoursesCourseCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,6 +360,8 @@
 			files = (
 				F97304A7212287F400AA2557 /* EarlGrey.swift in Sources */,
 				2C5C69A4211DFFAE00D9AD15 /* StudentTests.swift in Sources */,
+				788152E6212B3987005BA428 /* DashboardMocks.swift in Sources */,
+				788152E4212B3957005BA428 /* DashboardIntegrationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

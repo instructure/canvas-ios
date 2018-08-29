@@ -12,8 +12,27 @@ import EarlGrey
 
 class StudentTests: XCTestCase {
 
-    func testExample() {
-      EarlGrey.selectElement(with: grey_text("Navigate"))
-        .assert(grey_notNil())
+    func testSectionHeaders() {
+        EarlGrey.selectElement(with: grey_text("Courses"))
+            .assert(grey_notNil())
+        
+        EarlGrey.selectElement(with: grey_text("Groups"))
+            .assert(grey_notNil())
+        
+        // Navigate to All Courses
+        EarlGrey.selectElement(with: grey_accessibilityLabel("see_all_courses"))
+            .assert(grey_notNil())
+            .perform(grey_tap())
+        
+        EarlGrey.selectElement(with: grey_text("All Courses"))
+            .assert(grey_notNil())
+        
+//        // Navigate back to Dashboard
+//        EarlGrey.selectElement(with: grey_text("Back"))
+//            .assert(grey_notNil())
+//            .perform(grey_tap())
+//
+//        EarlGrey.selectElement(with: grey_text("Courses"))
+//            .assert(grey_notNil())
     }
 }
