@@ -42,6 +42,7 @@ static NSString *WebViewKeyPath = @"webView.scrollView.contentSize";
 @property (nonatomic, copy) RCTDirectEventBlock onMessage;
 @property (nonatomic, copy) RCTDirectEventBlock onError;
 @property (nonatomic, copy) RCTDirectEventBlock onHeightChange;
+@property (nonatomic, copy) RCTDirectEventBlock onRefresh;
 
 @property (nonatomic, assign) CGSize contentSize;
 
@@ -88,6 +89,13 @@ static NSString *WebViewKeyPath = @"webView.scrollView.contentSize";
             @strongify(self);
             if (self.onError) {
                 self.onError(@{@"error": error.localizedDescription});
+            }
+        };
+
+        _webView.onRefresh = ^{
+            @strongify(self);
+            if (self.onRefresh) {
+                self.onRefresh(@{});
             }
         };
         
@@ -176,6 +184,11 @@ static NSString *WebViewKeyPath = @"webView.scrollView.contentSize";
 - (void)evaluateJavaScript:(NSString *)javaScriptString completionHandler:(void (^)(id, NSError *error))completionHandler
 {
     [_webView evaluateJavaScript:javaScriptString completionHandler:completionHandler];
+}
+
+- (void)stopRefreshing
+{
+    [_webView stopRefreshing];
 }
 
 -(void)setHideKeyboardAccessoryView:(BOOL)hideKeyboardAccessoryView

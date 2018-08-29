@@ -126,6 +126,7 @@ NativeModules.TabBarBadgeCounts = {
 
 NativeModules.CanvasWebViewManager = {
   evaluateJavaScript: jest.fn(() => Promise.resolve()),
+  stopRefreshing: jest.fn(),
 }
 
 NativeModules.WebViewHacker = {

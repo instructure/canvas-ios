@@ -213,4 +213,21 @@ describe('PageDetails', () => {
       '/courses/1/pages/updated-3'
     )
   })
+
+  it('refreshes when webview refreshes', () => {
+    props.refresh = jest.fn()
+    const screen = shallow(<PageDetails {...props} />)
+    expect(props.refresh).not.toHaveBeenCalled()
+    const webView = screen.find('CanvasWebView')
+    webView.simulate('Refresh')
+    expect(props.refresh).toHaveBeenCalled()
+  })
+
+  it('calls stops refreshing webview if not loading', () => {
+    const stopRefreshing = jest.fn()
+    const screen = shallow(<PageDetails {...props} />)
+    screen.find('CanvasWebView').getElement().ref({ stopRefreshing })
+    screen.setProps({ isLoading: false })
+    expect(stopRefreshing).toHaveBeenCalled()
+  })
 })

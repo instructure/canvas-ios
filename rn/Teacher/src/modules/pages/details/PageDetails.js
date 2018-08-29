@@ -52,6 +52,8 @@ type Props = {
 }
 
 export class PageDetails extends Component<Props> {
+  webView: ?CanvasWebView
+
   constructor (props: Props) {
     super(props)
 
@@ -60,8 +62,12 @@ export class PageDetails extends Component<Props> {
     }
   }
 
-  componentWillReceiveProps ({ loadError }: Props) {
+  componentWillReceiveProps (nextProps: Props) {
+    const { loadError, isLoading } = nextProps
     if (loadError && loadError !== this.props.loadError) alertError(loadError)
+    if (!isLoading) {
+      this.webView && this.webView.stopRefreshing()
+    }
   }
 
   render () {
@@ -72,7 +78,7 @@ export class PageDetails extends Component<Props> {
         {...customPageViewPath}
         navBarColor={courseColor}
         navBarStyle='dark'
-        title={i18n('Page Details')}
+        title={this.props.page ? this.props.page.title : i18n('Page Details')}
         subtitle={course && course.name || undefined}
         rightBarButtons={isTeacher() && [
           {
@@ -84,12 +90,14 @@ export class PageDetails extends Component<Props> {
         ]}
       >
         <CanvasWebView
+          ref={this.captureWebView}
           style={{ flex: 1 }}
           source={{
             html: page ? page.body : '',
             baseURL: page ? page.htmlUrl + location.hash : '',
           }}
           navigator={this.props.navigator}
+          onRefresh={this.props.refresh}
         />
       </Screen>
     )
@@ -105,6 +113,10 @@ export class PageDetails extends Component<Props> {
     }, {
       onChange: this.handleChanged,
     })
+  }
+
+  captureWebView = (ref: ?CanvasWebView) => {
+    this.webView = ref
   }
 
   handleChanged = (changed: PageModel) => {

@@ -157,5 +157,9 @@ export default class CanvasWebView extends Component<Props, State> {
     return CanvasWebViewManager.evaluateJavaScript(this.getWebViewHandle(), js)
   }
 
+  stopRefreshing = () => {
+    return CanvasWebViewManager.stopRefreshing(this.getWebViewHandle())
+  }
+
   getWebViewHandle = () => findNodeHandle(this.webView)
 }

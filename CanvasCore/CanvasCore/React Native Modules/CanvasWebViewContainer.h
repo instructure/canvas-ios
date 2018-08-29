@@ -25,5 +25,6 @@
 @property (nonatomic, assign) BOOL isOpaque;
 
 - (void)evaluateJavaScript:(NSString *)javaScriptString completionHandler:(void (^)(id, NSError *error))completionHandler;
+- (void)stopRefreshing;
 
 @end

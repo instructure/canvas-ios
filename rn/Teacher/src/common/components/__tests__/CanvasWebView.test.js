@@ -100,6 +100,12 @@ describe('CanvasWebView', () => {
     )
   })
 
+  it('stops refreshing', () => {
+    const tree = shallow(<CanvasWebView {...props} />)
+    tree.instance().stopRefreshing()
+    expect(NativeModules.CanvasWebViewManager.stopRefreshing).toHaveBeenCalled()
+  })
+
   it('updates height to fit content if scroll disabled', async () => {
     const height = 42
     const tree = shallow(<CanvasWebView {...props} scrollEnabled={false} />)

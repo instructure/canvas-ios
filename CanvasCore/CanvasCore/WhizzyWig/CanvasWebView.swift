@@ -66,6 +66,18 @@ public class CanvasWebView: WKWebView {
     
     @objc
     public var onHeightChange: (([String: Any]) -> Void)?
+
+    @objc
+    public var onRefresh: (() -> Void)? {
+        didSet {
+            if onRefresh != nil {
+                let refreshControl = UIRefreshControl()
+                refreshControl.addTarget(self, action: #selector(handleRefresh(_:)), for: .valueChanged)
+                self.refreshControl = refreshControl
+                scrollView.addSubview(refreshControl)
+            }
+        }
+    }
     
     @objc
     public var onError: ((Error) -> Void)?
@@ -76,6 +88,8 @@ public class CanvasWebView: WKWebView {
     public weak var presentingViewController: UIViewController?
 
     fileprivate var externalToolLaunchDisposable: Disposable?
+
+    fileprivate var refreshControl: UIRefreshControl?
     
     @objc
     public func setNavigationHandler(routeToURL: @escaping (URL) -> Void) {
@@ -177,6 +191,7 @@ public class CanvasWebView: WKWebView {
     }
 
     fileprivate func handle(error: Error) {
+        stopRefreshing()
         (error as NSError).userInfo.forEach { key, value in print("\(key) => \(value)") }
         
         let e = error as NSError
@@ -197,6 +212,11 @@ public class CanvasWebView: WKWebView {
         } else {
             self.onError?(error)
         }
+    }
+
+    @objc
+    fileprivate func handleRefresh(_ control: UIRefreshControl) {
+        onRefresh?()
     }
 }
 
@@ -251,7 +271,13 @@ extension CanvasWebView: WKNavigationDelegate {
         }
     }
 
+    @objc
+    public func stopRefreshing() {
+        refreshControl?.endRefreshing()
+    }
+
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        stopRefreshing()
         finishedLoading?()
     }
 

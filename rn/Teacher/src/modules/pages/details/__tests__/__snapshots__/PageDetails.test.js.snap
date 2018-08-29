@@ -19,7 +19,7 @@ exports[`PageDetails renders 1`] = `
   showDismissButton={true}
   statusBarStyle="default"
   subtitle="Course 1"
-  title="Page Details"
+  title="Page 1"
 >
   <CanvasWebView
     navigator={
@@ -33,6 +33,7 @@ exports[`PageDetails renders 1`] = `
         "traitCollection": [Function],
       }
     }
+    onRefresh={[Function]}
     scrollEnabled={true}
     source={
       Object {
@@ -81,6 +82,7 @@ exports[`PageDetails renders while loading 1`] = `
         "traitCollection": [Function],
       }
     }
+    onRefresh={[Function]}
     scrollEnabled={true}
     source={
       Object {
