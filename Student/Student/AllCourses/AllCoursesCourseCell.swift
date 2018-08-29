@@ -23,12 +23,12 @@ class AllCoursesCourseCell: UICollectionViewCell {
     @IBOutlet var bottomView: UIView!
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var abbrevationLabel: UILabel!
-    
+
     var optionsCallback: (() -> Void)?
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
-        
+
         // Round the corners and drop shadow here so
         // that it will adjust as the cell size changes
         roundCornersAndDropShadow()
@@ -41,7 +41,7 @@ class AllCoursesCourseCell: UICollectionViewCell {
         contentView.layer.borderWidth = 1.0
         contentView.layer.borderColor = UIColor.clear.cgColor
         contentView.clipsToBounds = true
-        
+
         layer.shadowColor = UIColor.lightGray.cgColor
         layer.shadowOffset = CGSize(width: 0, height: 2.0)
         layer.shadowRadius = 2.0
@@ -50,21 +50,21 @@ class AllCoursesCourseCell: UICollectionViewCell {
         layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: contentView.layer.cornerRadius).cgPath
         layer.backgroundColor = UIColor.clear.cgColor
     }
-    
+
     override func prepareForReuse() {
         super.prepareForReuse()
         titleLabel.text = ""
         titleLabel.textColor = UIColor.black
         abbrevationLabel.text = ""
     }
-    
+
     func configure(with model: AllCoursesViewModel.Course) {
         titleLabel.text = model.title
         titleLabel.textColor = model.color
         abbrevationLabel.text = model.abbreviation
         topView.backgroundColor = model.color
     }
-    
+
     @IBAction func optionsButtonTapped(_ sender: Any) {
         optionsCallback?()
     }

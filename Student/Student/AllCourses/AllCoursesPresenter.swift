@@ -25,7 +25,7 @@ struct AllCoursesViewModel {
         let color: UIColor
         let imageUrl: String?
     }
-    
+
     var current: [Course]
     var past: [Course]
 }
@@ -41,39 +41,39 @@ protocol AllCoursesPresenterProtocol {
 
 class AllCoursesPresenter: AllCoursesPresenterProtocol {
     weak var view: AllCoursesViewProtocol?
-    
+
     init(view: AllCoursesViewProtocol?) {
         self.view = view
     }
-    
+
     func loadData() {
         let vm = mockViewModel()
         view?.updateDisplay(vm)
 
         // GetCourses(api: <#T##API#>, database: <#T##DatabaseStore#>, force: <#T##Bool#>)
-        
+
     }
-    
+
     func courseWasSelected(_ courseID: String) {
         // route to details screen
     }
-    
+
     func viewIsReady() {
         loadData()
     }
-    
+
     func pageViewStarted() {
         // log page view
     }
-    
+
     func pageViewEnded() {
         // log page view
     }
-    
+
     func courseOptionsWasSelected(_ courseID: String) {
         // route/modal
     }
-    
+
     func mockViewModel() -> AllCoursesViewModel {
         var courses = [AllCoursesViewModel.Course]()
         courses.append(AllCoursesViewModel.Course(courseID: "1", title: "A Navigation Test", abbreviation: "ANT", color: .darkGray, imageUrl: nil))

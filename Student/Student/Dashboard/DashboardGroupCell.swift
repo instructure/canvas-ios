@@ -21,12 +21,12 @@ class DashboardGroupCell: UICollectionViewCell {
     @IBOutlet weak var groupNameLabel: UILabel!
     @IBOutlet weak var courseNameLabel: UILabel!
     @IBOutlet weak var termLabel: UILabel!
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         roundCornersAndDropShadow()
     }
-    
+
     override func prepareForReuse() {
         super.prepareForReuse()
         groupNameLabel.text = ""
@@ -34,7 +34,7 @@ class DashboardGroupCell: UICollectionViewCell {
         termLabel.text = ""
         leftColorView.backgroundColor = .clear
     }
-    
+
     // TODO: Switch to using a "bubble" image with rounded corners
     // and drop shadow so that is is more efficient
     func roundCornersAndDropShadow() {
@@ -42,7 +42,7 @@ class DashboardGroupCell: UICollectionViewCell {
         contentView.layer.borderWidth = 1.0
         contentView.layer.borderColor = UIColor.clear.cgColor
         contentView.layer.masksToBounds = true
-        
+
         layer.shadowColor = UIColor.lightGray.cgColor
         layer.shadowOffset = CGSize(width: 0, height: 1.0)
         layer.shadowRadius = 1.0
@@ -51,7 +51,7 @@ class DashboardGroupCell: UICollectionViewCell {
         layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: contentView.layer.cornerRadius).cgPath
         layer.backgroundColor = UIColor.clear.cgColor
     }
-    
+
     func configure(with model: DashboardViewModel.Group) {
         groupNameLabel.text = model.groupName
         courseNameLabel.text = model.courseName ?? ""
@@ -59,5 +59,5 @@ class DashboardGroupCell: UICollectionViewCell {
         termLabel.text = model.term ?? ""
         leftColorView.backgroundColor = model.color ?? .black
     }
-    
+
 }

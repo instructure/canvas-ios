@@ -19,13 +19,13 @@ import Foundation
 
 class MockDashboardView: DashboardViewProtocol {
     var updateDisplayMethodCalledCount = 0
-    
+
     var presenter: DashboardPresenterProtocol?
     var viewModel: DashboardViewModel?
-    
+
     func updateDisplay(_ viewModel: DashboardViewModel) {
         updateDisplayMethodCalledCount += 1
-        
+
         self.viewModel = viewModel
     }
 }
@@ -41,29 +41,29 @@ class MockDashboardPresenter: DashboardPresenterProtocol {
     var vcWillAppearMethodCalledCount = 0
     var vcWillDisappearMethodCalledCount = 0
     var refreshMethodCalledCount = 0
-    
+
     weak var view: DashboardViewProtocol?
-    
+
     func courseWasSelected(_ courseID: String) {
         courseWasSelectedMethodCalledCount += 1
     }
-    
+
     func editButtonWasTapped() {
         editButtonWasTappedMethodCalledCount += 1
     }
-    
+
     func viewIsReady() {
         vcDidLoadMethodCalledCount += 1
     }
-    
+
     func loadData() {
         loadDataMethodCalledCount += 1
     }
-    
+
     func pageViewStarted() {
         vcWillAppearMethodCalledCount += 1
     }
-    
+
     func pageViewEnded() {
         vcWillDisappearMethodCalledCount += 1
     }
@@ -71,15 +71,15 @@ class MockDashboardPresenter: DashboardPresenterProtocol {
     func courseOptionsWasSelected(_ courseID: String) {
         courseOptionsWasSelectedMethodCalledCount += 1
     }
-    
+
     func groupWasSelected(_ groupID: String) {
         groupWasSelectedMethodCalledCount += 1
     }
-    
+
     func seeAllWasTapped() {
         seellAllWasTappedMethodCalledCount += 1
     }
-    
+
     func refreshRequested() {
         refreshMethodCalledCount += 1
     }

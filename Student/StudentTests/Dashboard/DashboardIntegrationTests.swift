@@ -18,29 +18,29 @@ import XCTest
 @testable import Student
 
 class DashboardIntegrationTests: XCTestCase {
-    
+
     func testView() {
         let view = DashboardViewController.create()
         let mockPresenter = MockDashboardPresenter()
         view.presenter = mockPresenter
-        
+
         XCTAssertNotNil(view.presenter)
         //XCTAssert(view.presenter! === mockPresenter)
         XCTAssert(view.viewModel == nil)
-        
+
         view.loadViewIfNeeded()
         XCTAssert(mockPresenter.vcDidLoadMethodCalledCount == 1)
     }
-    
+
     func testPresenter() {
         let mockView = MockDashboardView()
         let presenter = DashboardPresenter(view: mockView)
-        
+
         XCTAssert(presenter.view === mockView)
-        
+
         presenter.viewIsReady()
         XCTAssert(mockView.updateDisplayMethodCalledCount == 1)
-        
+
         presenter.refreshRequested()
         XCTAssert(mockView.updateDisplayMethodCalledCount == 2)
     }

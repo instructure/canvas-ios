@@ -25,7 +25,7 @@ struct DashboardViewModel {
         let color: UIColor
         let imageUrl: String?
     }
-    
+
     struct Group {
         let groupID: String
         let groupName: String
@@ -33,11 +33,10 @@ struct DashboardViewModel {
         let term: String?
         let color: UIColor?
     }
-    
+
     var favorites: [Course]
     var groups: [Group]
 }
-
 
 protocol DashboardPresenterProtocol {
     func viewIsReady()
@@ -54,55 +53,55 @@ protocol DashboardPresenterProtocol {
 
 class DashboardPresenter: DashboardPresenterProtocol {
     weak var view: DashboardViewProtocol?
-    
+
     init(view: DashboardViewProtocol?) {
         self.view = view
     }
-    
+
     func courseWasSelected(_ courseID: String) {
         // route to details screen
     }
-    
+
     func editButtonWasTapped() {
         // route to edit screen
     }
-    
+
     func viewIsReady() {
         loadData()
     }
-    
+
     func pageViewStarted() {
         // log page view
     }
-    
+
     func pageViewEnded() {
         // log page view
     }
-    
+
     func courseOptionsWasSelected(_ courseID: String) {
         // route/modal
     }
-    
+
     func groupWasSelected(_ groupID: String) {
         // route
     }
-    
+
     func seeAllWasTapped() {
         // route
         if let vc = view as? UIViewController {
             router.route(to: "/allcourses", from: vc)
         }
     }
-    
+
     func refreshRequested() {
         loadData()
     }
-    
+
     func loadData() {
         let vm = mockViewModel()
         view?.updateDisplay(vm)
     }
-    
+
     func mockViewModel() -> DashboardViewModel {
         var courses = [DashboardViewModel.Course]()
         courses.append(DashboardViewModel.Course(courseID: "1", title: "A Navigation Test", abbreviation: "ANT", color: .darkGray, imageUrl: nil))
@@ -111,14 +110,13 @@ class DashboardPresenter: DashboardPresenterProtocol {
         courses.append(DashboardViewModel.Course(courseID: "4", title: "Assignment Grades", abbreviation: "AG", color: .red, imageUrl: nil))
         //        courses.append(DashboardCourseModel(courseID: "5", title: "Quiz Questions", abbreviation: "QQ", color: .green, imageUrl: nil))
         //        courses.append(DashboardCourseModel(courseID: "6", title: "Quizzes NEXT", abbreviation: "QN", color: .cyan, imageUrl: nil))
-        
-        
+
         var groups = [DashboardViewModel.Group]()
         groups.append(DashboardViewModel.Group(groupID: "1", groupName: "Team 1", courseName: "Course Groups", term: "DEFAULT TERM", color: .blue))
         groups.append(DashboardViewModel.Group(groupID: "2", groupName: "Team 1", courseName: "Assignment Grades", term: "DEFAULT TERM", color: .red))
         groups.append(DashboardViewModel.Group(groupID: "3", groupName: "Mighty Pulp Wannabees", courseName: "Course Groups", term: "DEFAULT TERM", color: .green))
         groups.append(DashboardViewModel.Group(groupID: "4", groupName: "Bitter Water Assassins", courseName: "Course Groups", term: "DEFAULT TERM", color: .orange))
-        
+
         return DashboardViewModel(favorites: courses, groups: groups)
     }
 }

@@ -20,25 +20,25 @@ class DashboardSectionHeaderView: UICollectionReusableView {
 
     @IBOutlet weak var rightButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
-    
+
     var rightActionCallback: (() -> Void)?
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         setup()
     }
-    
+
     func setup() {
         backgroundColor = .clear
         reset()
     }
-    
+
     override func prepareForReuse() {
         super.prepareForReuse()
         reset()
     }
-    
+
     func reset() {
         titleLabel.text = ""
         rightButton.isEnabled = false
@@ -46,7 +46,7 @@ class DashboardSectionHeaderView: UICollectionReusableView {
         rightActionCallback = nil
         rightButton.accessibilityLabel = nil
     }
-    
+
     func configure(title: String, rightButtonText: String?, rightAction: (() -> Void)?) {
         titleLabel.text = title
         rightButton.setTitle(rightButtonText, for: .normal)
@@ -57,7 +57,7 @@ class DashboardSectionHeaderView: UICollectionReusableView {
             rightButton.accessibilityLabel = "see_all_courses"
         }
     }
-    
+
     @IBAction func rightButtonTapped(_ sender: Any) {
         rightActionCallback?()
     }

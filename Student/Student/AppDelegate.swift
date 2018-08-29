@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         print(appState)
-        
+
         window = UIWindow(frame: UIScreen.main.bounds)
 //        let presenter = DashboardPresenter.create()
 //        let nav = UINavigationController(rootViewController: presenter)
@@ -43,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 //        nav.navigationBar.barTintColor = .black
 //        nav.navigationBar.tintColor = .white
 //        window?.rootViewController = nav
-        
+
         let vc1 = DashboardViewController.create()
         vc1.title = "Dashboard"
         vc1.tabBarItem = UITabBarItem(title: "Dashboard", image: nil, selectedImage: nil)
@@ -85,7 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         }
 
         window?.rootViewController = tabController
-        
+
         return true
     }
 }
