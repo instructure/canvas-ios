@@ -19,6 +19,7 @@
 import Foundation
 import PSPDFKit
 import PSPDFKitUI
+
 open class PreSubmissionPDFDocumentPresenter: NSObject {
     var pdfDocument: PSPDFDocument
     let session: Session?
@@ -37,38 +38,29 @@ open class PreSubmissionPDFDocumentPresenter: NSObject {
         pdfDocument.delegate = self
     }
 
-    func configuration(forSession session: Session?, defaultCourseID: String? = nil, defaultAssignmentID: String? = nil) -> PSPDFConfiguration {
+    func configuration(forSession session: Session?) -> PSPDFConfiguration {
         return PSPDFConfiguration { (builder) -> Void in
-            builder.shouldAskForAnnotationUsername = false
-            builder.pageTransition = PSPDFPageTransition.scrollContinuous
-            builder.scrollDirection = PSPDFScrollDirection.vertical
-            builder.thumbnailBarMode = PSPDFThumbnailBarMode.none
-            builder.spreadFitting = .fill
-            builder.additionalScrollViewFrameInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-            builder.pageMode = .single
-            builder.documentLabelEnabled = .NO
-            builder.isRenderAnimationEnabled = false
-            builder.shouldHideNavigationBarWithUserInterface = false
-            builder.shouldHideStatusBarWithUserInterface = false
-            builder.naturalDrawingAnnotationEnabled = true
-            builder.applicationActivities = [PSPDFActivityTypeOpenIn, PSPDFActivityTypeGoToPage, PSPDFActivityTypeSearch]
-            builder.editableAnnotationTypes = [
-                .link,
-                .highlight,
-                .underline,
-                .strikeOut,
-                .squiggly,
-                .freeText,
-                .ink,
-                .square,
-                .circle,
-                .line,
-                .polygon,
-                .eraser
-            ]
-
+            applySharedAppConfiguration(to: builder)
             if let session = session {
-                builder.applicationActivities = [SubmitAssignmentActivity(session: session, defaultCourseID: self.defaultCourseID, defaultAssignmentID: self.defaultAssignmentID, assignmentSubmitted: self.didSubmitAssignment)] + builder.applicationActivities
+                let submitActivity = SubmitAssignmentActivity(session: session,
+                                                              defaultCourseID: self.defaultCourseID,
+                                                              defaultAssignmentID: self.defaultAssignmentID,
+                                                              assignmentSubmitted: self.didSubmitAssignment)
+                builder.applicationActivities += [submitActivity]
+                builder.editableAnnotationTypes = [
+                    .link,
+                    .highlight,
+                    .underline,
+                    .strikeOut,
+                    .squiggly,
+                    .freeText,
+                    .ink,
+                    .square,
+                    .circle,
+                    .line,
+                    .polygon,
+                    .eraser
+                ]
             }
         }
     }
@@ -95,7 +87,43 @@ open class PreSubmissionPDFDocumentPresenter: NSObject {
 }
 
 extension PreSubmissionPDFDocumentPresenter: PSPDFViewControllerDelegate {
+    public func pdfViewController(_ pdfController: PSPDFViewController, shouldShow menuItems: [PSPDFMenuItem], atSuggestedTargetRect rect: CGRect, forSelectedText selectedText: String, in textRect: CGRect, on pageView: PSPDFPageView) -> [PSPDFMenuItem] {
+        return menuItems
+    }
+
+    public func pdfViewController(_ pdfController: PSPDFViewController, shouldShow menuItems: [PSPDFMenuItem], atSuggestedTargetRect rect: CGRect, for annotations: [PSPDFAnnotation]?, in annotationRect: CGRect, on pageView: PSPDFPageView) -> [PSPDFMenuItem] {
+        if annotations?.count == 1, let annotation = annotations?.first {
+            var realMenuItems = [PSPDFMenuItem]()
+            let filteredMenuItems = menuItems.filter {
+                guard let identifier = $0.identifier else { return true }
+                if identifier == PSPDFAnnotationMenuInspector {
+                    $0.title = NSLocalizedString("Style", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: "")
+                }
+                return (
+                    identifier != PSPDFAnnotationMenuRemove &&
+                    identifier != PSPDFAnnotationMenuCopy &&
+                    identifier != PSPDFAnnotationMenuNote &&
+                    !DisabledMenuItems.contains(identifier)
+                )
+            }
+            realMenuItems.append(contentsOf: filteredMenuItems)
+            realMenuItems.append(PSPDFMenuItem(title: NSLocalizedString("Remove", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: ""), image: .icon(.trash), block: {
+                pdfController.document?.remove([annotation], options: nil)
+            }, identifier: PSPDFAnnotationMenuRemove))
+            return realMenuItems
+        }
+
+        return menuItems.filter {
+            guard let identifier = $0.identifier else { return true }
+            return !DisabledMenuItems.contains(identifier)
+        }
+    }
+
     public func pdfViewController(_ pdfController: PSPDFViewController, shouldShow controller: UIViewController, options: [String : Any]? = nil, animated: Bool) -> Bool {
+        if controller is PSPDFStampViewController {
+            return false
+        }
+
         if controller is UIActivityViewController {
             // If presenting the share sheet, save the annotations!
             // PSPDFKit was not doing this @ version 5.5
@@ -106,7 +134,6 @@ extension PreSubmissionPDFDocumentPresenter: PSPDFViewControllerDelegate {
         if let sharingController = controller as? PSPDFDocumentSharingViewController {
             sharingController.selectedOptions = [.allPages, .embedAnnotations]
         }
-
         return true
     }
 }
