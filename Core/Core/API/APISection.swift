@@ -23,7 +23,7 @@ struct APISection: Codable, Equatable {
     // let sis_section_id: String?
     // let integration_id: String?
     // let sis_import_id: String?
-    let course_id: String
+    let course_id: String?
     // let sis_course_id: String?
     let start_at: Date?
     let end_at: Date?
