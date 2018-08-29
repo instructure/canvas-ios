@@ -10,8 +10,13 @@
         <attribute name="member" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="TTL" representedClassName="Core.TTL" syncable="YES" codeGenerationType="class">
+        <attribute name="key" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastRefresh" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+    </entity>
     <elements>
         <element name="Course" positionX="-63" positionY="-18" width="128" height="90"/>
         <element name="Group" positionX="18" positionY="9" width="128" height="90"/>
+        <element name="TTL" positionX="-18" positionY="18" width="128" height="75"/>
     </elements>
 </model>

@@ -17,7 +17,7 @@
 import Foundation
 
 public class GetCourses: CollectionUseCase<GetCoursesRequest, Course> {
-    public init(api: API = URLSessionAPI(), database: DatabaseStore, force: Bool = false) {
+    init(api: API, database: DatabaseStore) {
         let request = GetCoursesRequest(includeUnpublished: true)
         super.init(api: api, database: database, request: request)
     }

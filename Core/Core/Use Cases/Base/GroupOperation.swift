@@ -38,6 +38,17 @@ public class GroupOperation: AsyncOperation {
     func addOperation(_ operation: Operation) {
         finishOperation.addDependency(operation)
         internalQueue.addOperation(operation)
+        if let async = operation as? AsyncOperation {
+            let trackErrors = BlockOperation { [weak self, weak async] in
+                if let errors = async?.errors {
+                    for error in errors {
+                        self?.addError(error)
+                    }
+                }
+            }
+            trackErrors.addDependency(operation)
+            internalQueue.addOperation(trackErrors)
+        }
     }
 
     func addOperations(_ operations: [Operation]) {

@@ -17,6 +17,8 @@
 import Foundation
 
 public class AsyncOperation: Operation {
+    var errors: [Error] = []
+
     enum State: String {
         case ready = "isReady"
         case executing = "isExecuting"
@@ -68,5 +70,9 @@ public class AsyncOperation: Operation {
 
     public func finish() {
         state = .finished
+    }
+
+    func addError(_ error: Error) {
+        errors.append(error)
     }
 }

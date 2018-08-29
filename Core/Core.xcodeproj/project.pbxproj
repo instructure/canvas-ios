@@ -100,7 +100,6 @@
 		B1EA5AF6212E67CE00DABC5F /* Date+ISO8601.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EA5AF5212E67CE00DABC5F /* Date+ISO8601.swift */; };
 		B1EA5AF8212E6A6D00DABC5F /* GroupOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EA5AF7212E6A6D00DABC5F /* GroupOperation.swift */; };
 		B1EA5AFB212E6E5800DABC5F /* MockDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EA5AFA212E6E5800DABC5F /* MockDatabase.swift */; };
-		B1EA5AFF212FB37200DABC5F /* UseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EA5AFE212FB37200DABC5F /* UseCase.swift */; };
 		DFE1FF1D212F5E1A003F27AA /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE1FF1C212F5E1A003F27AA /* Keychain.swift */; };
 		DFE1FF20212F5E41003F27AA /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE1FF1F212F5E41003F27AA /* Keychain.swift */; };
 		DFE1FF28212F69B3003F27AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE1FF27212F69B3003F27AA /* AppDelegate.swift */; };
@@ -224,7 +223,6 @@
 		B1EA5AF5212E67CE00DABC5F /* Date+ISO8601.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Date+ISO8601.swift"; path = "../../../CanvasCore/CanvasCore/Extensions/Date+ISO8601.swift"; sourceTree = "<group>"; };
 		B1EA5AF7212E6A6D00DABC5F /* GroupOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupOperation.swift; sourceTree = "<group>"; };
 		B1EA5AFA212E6E5800DABC5F /* MockDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDatabase.swift; sourceTree = "<group>"; };
-		B1EA5AFE212FB37200DABC5F /* UseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCase.swift; sourceTree = "<group>"; };
 		DFE1FF1C212F5E1A003F27AA /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		DFE1FF1F212F5E41003F27AA /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		DFE1FF25212F69B3003F27AA /* CoreTester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreTester.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -536,7 +534,6 @@
 				B195DC462132127200797FE4 /* CollectionUseCase.swift */,
 				B195DC4E2132232F00797FE4 /* DetailUseCase.swift */,
 				B1EA5AF7212E6A6D00DABC5F /* GroupOperation.swift */,
-				B1EA5AFE212FB37200DABC5F /* UseCase.swift */,
 				B14FE5D02134E9D200328CD7 /* DatabaseOperation.swift */,
 				B14FE5D62134F63C00328CD7 /* RequestUseCase.swift */,
 				3B3467E32137172900F9BC2E /* DepenedencyOperation.swift */,
@@ -820,7 +817,6 @@
 				B14FE5D12134E9D200328CD7 /* DatabaseOperation.swift in Sources */,
 				7D80AC0C212B4C6F00C40ECE /* APITab.swift in Sources */,
 				7D80AC23212B8A2100C40ECE /* APIAccount.swift in Sources */,
-				B1EA5AFF212FB37200DABC5F /* UseCase.swift in Sources */,
 				7D80AC03212B445200C40ECE /* APIUser.swift in Sources */,
 				7D8262F9212B3B2000BD268D /* APISection.swift in Sources */,
 				B195DC512132257500797FE4 /* GetCourse.swift in Sources */,

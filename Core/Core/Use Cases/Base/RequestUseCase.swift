@@ -16,11 +16,10 @@
 
 import Foundation
 
-public class RequestUseCase<Request>: GroupOperation, UseCase where Request: APIRequestable {
+public class RequestUseCase<Request>: GroupOperation where Request: APIRequestable {
     let api: API
     let database: DatabaseStore
     let request: Request
-    var errors: [Error] = []
     var next: GetNextRequest<Request.Response>? {
         return fetch.next
     }
@@ -29,30 +28,19 @@ public class RequestUseCase<Request>: GroupOperation, UseCase where Request: API
         return APIOperation(api: api, request: request)
     }()
 
-    lazy var persist: DatabaseOperation = {
-        return DatabaseOperation(database: database) { [weak self] client in
-            try self?.save(client: client)
-        }
-    }()
-
-    lazy var finish: Operation = {
-        return BlockOperation { [weak self] in
-            self?.addError(self?.fetch.error)
-            self?.addError(self?.persist.error)
-        }
-    }()
-
     init(api: API, database: DatabaseStore, request: Request) {
         self.api = api
         self.database = database
         self.request = request
         super.init()
-        persist.addDependency(fetch)
-        finish.addDependency(persist)
-        addOperations([fetch, persist, finish])
+        addOperation(fetch)
     }
 
-    func save(client: DatabaseClient) throws {
-        fatalError("unimplemented")
+    func addSaveOperation(block: @escaping (Request.Response?, URLResponse?, DatabaseClient) throws -> Void) {
+        let save = DatabaseOperation(database: database) { [weak self] client in
+            try block(self?.fetch.response, self?.fetch.urlResponse, client)
+        }
+        save.addDependency(fetch)
+        addOperation(save)
     }
 }

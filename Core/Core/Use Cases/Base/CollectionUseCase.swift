@@ -17,6 +17,13 @@
 import Foundation
 
 public class CollectionUseCase<Request, Model>: RequestUseCase<Request> where Request: APIRequestable, Request.Response: Collection, Model: Hashable {
+    override init(api: API, database: DatabaseStore, request: Request) {
+        super.init(api: api, database: database, request: request)
+
+        addSaveOperation { [weak self] response, urlResponse, client in
+            try self?.save(response: response, urlResponse: urlResponse, client: client)
+        }
+    }
     var predicate: NSPredicate {
         fatalError("unimplemented \(#function)")
     }
@@ -29,8 +36,8 @@ public class CollectionUseCase<Request, Model>: RequestUseCase<Request> where Re
         fatalError("unimplemented \(#function)")
     }
 
-    override func save(client: DatabaseClient) throws {
-        guard let response = fetch.response else {
+    func save(response: Request.Response?, urlResponse: URLResponse?, client: DatabaseClient) throws {
+        guard let response = response else {
             return
         }
 

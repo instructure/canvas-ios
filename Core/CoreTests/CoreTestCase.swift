@@ -27,11 +27,11 @@ class CoreTestCase: XCTestCase {
         return database.mainClient
     }
 
-    func course(_ template: Template = [:]) -> Course {
+    @discardableResult func course(_ template: Template = [:]) -> Course {
         return dbClient.make(template)
     }
 
-    func group(_ template: Template = [:]) -> Group {
+    @discardableResult func group(_ template: Template = [:]) -> Group {
         return dbClient.make(template)
     }
 
