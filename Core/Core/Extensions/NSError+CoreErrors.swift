@@ -16,23 +16,17 @@
 
 import Foundation
 
-// Not documented in canvas rest api
-struct APIVerifyClient: Codable, Equatable {
-    let authorized: Bool
-    let base_url: URL?
-    let client_id: String?
-    let client_secret: String?
-}
+extension NSError {
+    struct Constants {
+        static let domain = "com.instructure"
+        static let internalError = "Internal Error"
+    }
 
-// https://canvas.instructure.com/doc/api/file.oauth_endpoints.html#post-login-oauth2-token
-public struct APIOAuthToken: Codable, Equatable {
-    let access_token: String
-    let token_type: String
-    let user: User
-    let expires_in: TimeInterval?
+    static func internalError(code: Int = 0) -> NSError {
+        return instructureError(Constants.internalError)
+    }
 
-    struct User: Codable, Equatable {
-        let id: ID
-        let name: String
+    static func instructureError(_ errorMsg: String, code: Int = 0) -> NSError {
+        return NSError(domain: Constants.domain, code: code, userInfo: [NSLocalizedDescriptionKey: errorMsg])
     }
 }

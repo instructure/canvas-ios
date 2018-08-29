@@ -53,7 +53,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="zV2-jD-I0P">
-                                <rect key="frame" x="105" y="308.5" width="165" height="50.5"/>
+                                <rect key="frame" x="105" y="293.5" width="165" height="80.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi, I'm the Dashboard" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W5x-Ap-7wg">
                                         <rect key="frame" x="0.0" y="0.0" width="165" height="20.5"/>
@@ -66,6 +66,13 @@
                                         <state key="normal" title="Navigate"/>
                                         <connections>
                                             <action selector="goToDetail" destination="4dF-GI-hLo" eventType="touchUpInside" id="hOm-Vj-0cb"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gWz-RL-PwV">
+                                        <rect key="frame" x="0.0" y="50.5" width="165" height="30"/>
+                                        <state key="normal" title="Login"/>
+                                        <connections>
+                                            <action selector="goLogin" destination="4dF-GI-hLo" eventType="touchUpInside" id="qOy-gg-kgr"/>
                                         </connections>
                                     </button>
                                 </subviews>

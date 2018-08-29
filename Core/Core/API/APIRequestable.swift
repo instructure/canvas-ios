@@ -43,12 +43,6 @@ enum APIRequestableError: Error, Equatable {
     case cannotResolve(URLComponents, URL) // our components can't be resolved against baseURL
 }
 
-let APIUserAgent: String = {
-    let shortVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? ""
-    let bundleVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") ?? ""
-    return "iCanvas/\(shortVersion) (\(bundleVersion)) \(UIDevice.current.model)/\(UIDevice.current.systemName) \(UIDevice.current.systemVersion)"
-}()
-
 public protocol APIRequestable {
     associatedtype Response: Codable
     associatedtype Body: Encodable = String
@@ -82,7 +76,7 @@ extension APIRequestable {
     public func urlRequest(relativeTo baseURL: URL, accessToken: String) throws -> URLRequest {
         guard var components = URLComponents(string: path) else { throw APIRequestableError.invalidPath(path) }
 
-        if components.host == nil {
+        if !path.hasPrefix("/") && components.host == nil {
             components.path = "/api/v1/" + components.path.trimmingCharacters(in: CharacterSet(charactersIn: "/"))
         }
 
@@ -102,9 +96,11 @@ extension APIRequestable {
             request.httpBody = try encoder.encode(body)
         }
 
-        request.setValue("application/json+canvas-string-ids", forHTTPHeaderField: "Accept")
-        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
-        request.setValue(APIUserAgent, forHTTPHeaderField: "User-Agent")
+        request.setValue("application/json+canvas-string-ids", forHTTPHeaderField: HttpHeader.accept)
+        if(!accessToken.isEmpty) {
+            request.setValue("Bearer \(accessToken)", forHTTPHeaderField: HttpHeader.authorization)
+        }
+        request.setValue(UserAgent.default.description, forHTTPHeaderField: HttpHeader.userAgent)
         for (key, value) in headers {
             request.setValue(value, forHTTPHeaderField: key)
         }

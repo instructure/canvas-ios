@@ -28,13 +28,20 @@ public struct URLSessionAPI: API {
         return /* Keychain.currentSession?.accessToken ?? */ ""
     }
 
-    var urlSession: URLSession {
+    private static var defaultUrlSessionConfiguration: URLSessionConfiguration {
         let configuration = URLSessionConfiguration.ephemeral
         configuration.urlCache = nil
-        return URLSession(configuration: configuration)
+        return configuration
     }
 
-    public init() {}
+    var urlSession: URLSession = URLSession(configuration: URLSessionAPI.defaultUrlSessionConfiguration)
+
+    public init(urlSession: URLSession? = nil) {
+        if let session = urlSession {
+            self.urlSession = session
+        }
+
+    }
 
     @discardableResult
     public func makeRequest<R: APIRequestable>(_ requestable: R, callback: @escaping (R.Response?, URLResponse?, Error?) -> Void) -> URLSessionTask? {

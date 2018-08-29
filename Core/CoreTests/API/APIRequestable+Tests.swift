@@ -63,16 +63,16 @@ class APIRequestableTests: XCTestCase {
     func expectedUrlRequest(path: String) -> URLRequest {
         var expected = URLRequest(url: URL(string: path, relativeTo: baseURL)!)
         expected.httpMethod = "GET"
-        expected.setValue("application/json+canvas-string-ids", forHTTPHeaderField: "Accept")
-        expected.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
-        expected.setValue(APIUserAgent, forHTTPHeaderField: "User-Agent")
+        expected.setValue("application/json+canvas-string-ids", forHTTPHeaderField: HttpHeader.accept)
+        expected.setValue("Bearer \(accessToken)", forHTTPHeaderField: HttpHeader.authorization)
+        expected.setValue(UserAgent.default.description, forHTTPHeaderField: HttpHeader.userAgent)
         return expected
     }
 
     func testAPIUserAgent() {
-        XCTAssert(APIUserAgent.contains(UIDevice.current.model))
-        XCTAssert(APIUserAgent.contains(UIDevice.current.systemName))
-        XCTAssert(APIUserAgent.contains(UIDevice.current.systemVersion))
+        XCTAssert(UserAgent.default.description.contains(UIDevice.current.model))
+        XCTAssert(UserAgent.default.description.contains(UIDevice.current.systemName))
+        XCTAssert(UserAgent.default.description.contains(UIDevice.current.systemVersion))
     }
 
     func testUrlRequestPath() {

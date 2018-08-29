@@ -17,11 +17,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         router.addRoute("/courses/:courseID/users/:userID") {_ in
             return DetailViewController.create()
         }
-        
+
+        router.addRoute("/login") { _ in
+            return LoginViewController(host: "twilson.instructure.com")
+        }
+
         router.addRoute("/allcourses") { _ in
             return AllCoursesViewController.create()
         }
-        
+
         let appState = AppState(router: router)
         return appState
     }()

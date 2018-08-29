@@ -22,6 +22,6 @@ struct GetAccountsSearchRequest: APIRequestable {
 
     let path = "https://canvas.instructure.com/api/v1/accounts/search"
     let headers: [String: String?] = [
-        "Authorization": nil,
+        HttpHeader.authorization: nil,
     ]
 }

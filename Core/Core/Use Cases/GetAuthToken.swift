@@ -16,23 +16,9 @@
 
 import Foundation
 
-// Not documented in canvas rest api
-struct APIVerifyClient: Codable, Equatable {
-    let authorized: Bool
-    let base_url: URL?
-    let client_id: String?
-    let client_secret: String?
-}
-
-// https://canvas.instructure.com/doc/api/file.oauth_endpoints.html#post-login-oauth2-token
-public struct APIOAuthToken: Codable, Equatable {
-    let access_token: String
-    let token_type: String
-    let user: User
-    let expires_in: TimeInterval?
-
-    struct User: Codable, Equatable {
-        let id: ID
-        let name: String
+class GetAuthToken: APIOperation<PostLoginOAuthRequest> {
+    init(api: API = URLSessionAPI(), mobileVerify: APIVerifyClient, code: String) {
+        let request = PostLoginOAuthRequest(client: mobileVerify, code: code)
+        super.init(api: api, request: request)
     }
 }
