@@ -18,11 +18,16 @@ import Foundation
 
 public class GroupOperation: AsyncOperation {
     private let internalQueue = OperationQueue()
+    private lazy var finishOperation = {
+        return BlockOperation { [weak self] in
+            self?.finish()
+        }
+    }()
 
     public init(operations: [Operation] = []) {
         super.init()
-
         internalQueue.isSuspended = true
+        internalQueue.addOperation(finishOperation)
         addOperations(operations)
     }
 
@@ -30,11 +35,12 @@ public class GroupOperation: AsyncOperation {
         internalQueue.isSuspended = false
     }
 
-    public func addOperation(_ operation: Operation) {
+    func addOperation(_ operation: Operation) {
+        finishOperation.addDependency(operation)
         internalQueue.addOperation(operation)
     }
 
-    public func addOperations(_ operations: [Operation]) {
+    func addOperations(_ operations: [Operation]) {
         for operation in operations {
             addOperation(operation)
         }

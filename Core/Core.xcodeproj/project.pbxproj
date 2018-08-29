@@ -48,6 +48,7 @@
 		7D8262FB212B3B3000BD268D /* APIEnrollment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8262FA212B3B3000BD268D /* APIEnrollment.swift */; };
 		9F0C3D6121233398005B7A6F /* PathToRegexp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0C3D6021233398005B7A6F /* PathToRegexp.swift */; };
 		9F0C3D6321246C92005B7A6F /* PathToRegexp+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0C3D6221246C92005B7A6F /* PathToRegexp+Tests.swift */; };
+		9F7DF8172136EEE400966382 /* GroupOperationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7DF8162136EEE400966382 /* GroupOperationTest.swift */; };
 		B1381F15212E5E4A001F908C /* APIOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1381F14212E5E4A001F908C /* APIOperation.swift */; };
 		B1445303212E5B6E0009D848 /* CoreDataFetchedResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14452FC212E5B6E0009D848 /* CoreDataFetchedResultsController.swift */; };
 		B1445304212E5B6E0009D848 /* NSManagedObjectContext+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14452FD212E5B6E0009D848 /* NSManagedObjectContext+Core.swift */; };
@@ -152,6 +153,7 @@
 		7D8262FA212B3B3000BD268D /* APIEnrollment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnrollment.swift; sourceTree = "<group>"; };
 		9F0C3D6021233398005B7A6F /* PathToRegexp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathToRegexp.swift; sourceTree = "<group>"; };
 		9F0C3D6221246C92005B7A6F /* PathToRegexp+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PathToRegexp+Tests.swift"; sourceTree = "<group>"; };
+		9F7DF8162136EEE400966382 /* GroupOperationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupOperationTest.swift; sourceTree = "<group>"; };
 		B1381F14212E5E4A001F908C /* APIOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIOperation.swift; sourceTree = "<group>"; };
 		B14452FC212E5B6E0009D848 /* CoreDataFetchedResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataFetchedResultsController.swift; sourceTree = "<group>"; };
 		B14452FD212E5B6E0009D848 /* NSManagedObjectContext+Core.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Core.swift"; sourceTree = "<group>"; };
@@ -452,6 +454,7 @@
 			children = (
 				B14D555D213056DD0066D275 /* APIOperationTest.swift */,
 				B14FE5D22134E9ED00328CD7 /* DatabaseOperationTest.swift */,
+				9F7DF8162136EEE400966382 /* GroupOperationTest.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -757,6 +760,7 @@
 				7D80AC17212B689E00C40ECE /* APITab+Requestable+Tests.swift in Sources */,
 				7D062AF721249E7700677F66 /* ContextModel+Tests.swift in Sources */,
 				B14D55612130B6740066D275 /* TestOperationQueue.swift in Sources */,
+				9F7DF8172136EEE400966382 /* GroupOperationTest.swift in Sources */,
 				B195DC5521324DA600797FE4 /* GetUserGroupsTest.swift in Sources */,
 				B195DC592132554B00797FE4 /* NSManagedObject+Fixture.swift in Sources */,
 				7D80AC1F212B738500C40ECE /* API+Tests.swift in Sources */,

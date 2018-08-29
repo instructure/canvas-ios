@@ -39,7 +39,6 @@ public class RequestUseCase<Request>: GroupOperation, UseCase where Request: API
         return BlockOperation { [weak self] in
             self?.addError(self?.fetch.error)
             self?.addError(self?.persist.error)
-            self?.finish()
         }
     }()
 
