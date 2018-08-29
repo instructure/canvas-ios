@@ -39,7 +39,6 @@
 		2C75AB9F1DDF62E600650856 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C75AB9E1DDF62E600650856 /* CoreVideo.framework */; };
 		2C75ABA11DDF62ED00650856 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C75ABA01DDF62ED00650856 /* QuartzCore.framework */; };
 		2C75ABA31DDF62F200650856 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C75ABA21DDF62F200650856 /* SystemConfiguration.framework */; };
-		2C75ABA51DDF630700650856 /* BuddyBuildSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C75ABA41DDF630700650856 /* BuddyBuildSDK.framework */; };
 		2CB69BA81D91CDE00059C5A5 /* CourseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CB69BAA1D91CDE00059C5A5 /* CourseCell.xib */; };
 		2CB69BAB1D91CDE50059C5A5 /* EmptyCalendarEventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CB69BAD1D91CDE50059C5A5 /* EmptyCalendarEventCell.xib */; };
 		2CB69BAE1D91CDE90059C5A5 /* CalendarEventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CB69BB01D91CDE90059C5A5 /* CalendarEventCell.xib */; };
@@ -620,7 +619,6 @@
 		2C75AB9E1DDF62E600650856 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		2C75ABA01DDF62ED00650856 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		2C75ABA21DDF62F200650856 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		2C75ABA41DDF630700650856 /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BuddyBuildSDK.framework; path = ../ExternalFrameworks/BuddyBuildSDK.framework; sourceTree = "<group>"; };
 		2CB69BA91D91CDE00059C5A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CourseCell.xib; sourceTree = "<group>"; };
 		2CB69BAC1D91CDE50059C5A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/EmptyCalendarEventCell.xib; sourceTree = "<group>"; };
 		2CB69BAF1D91CDE90059C5A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CalendarEventCell.xib; sourceTree = "<group>"; };
@@ -901,7 +899,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C75ABA51DDF630700650856 /* BuddyBuildSDK.framework in Frameworks */,
 				2C75ABA31DDF62F200650856 /* SystemConfiguration.framework in Frameworks */,
 				2C75ABA11DDF62ED00650856 /* QuartzCore.framework in Frameworks */,
 				2C75AB9F1DDF62E600650856 /* CoreVideo.framework in Frameworks */,
@@ -1297,7 +1294,6 @@
 				49A36ECC1FA90BD0005F5905 /* CanvasKeymaster.framework */,
 				49A36ECB1FA90BD0005F5905 /* CanvasKit.framework */,
 				49952C3B1F7477C300A11404 /* CanvasCore.framework */,
-				2C75ABA41DDF630700650856 /* BuddyBuildSDK.framework */,
 				2C75ABA21DDF62F200650856 /* SystemConfiguration.framework */,
 				2C75ABA01DDF62ED00650856 /* QuartzCore.framework */,
 				2C75AB9E1DDF62E600650856 /* CoreVideo.framework */,

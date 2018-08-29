@@ -33,9 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var session: Session?
     var window: UIWindow?
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        if (uiTesting) {
-            BuddyBuildSDK.setup()
-        } else {
+        if !uiTesting {
             configureBugSnag()
             setupCrashlytics()
         }

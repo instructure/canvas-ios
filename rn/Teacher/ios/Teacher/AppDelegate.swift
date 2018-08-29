@@ -37,14 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
 
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
-        BuddyBuildSDK.uiTestsDidReceiveRemoteNotification(userInfo)
-    }
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        if (uiTesting) {
-            BuddyBuildSDK.setup()
-        } else {
+        if !uiTesting {
             BugsnagReactNative.start()
             Fabric.with([Crashlytics.self, Answers.self])
         }

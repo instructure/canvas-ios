@@ -24,7 +24,6 @@
 		2C67B0CE1E01F07200DDD191 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C67B0CD1E01F07200DDD191 /* CoreVideo.framework */; };
 		2C67B0D01E01F07800DDD191 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C67B0CF1E01F07800DDD191 /* QuartzCore.framework */; };
 		2C67B0D21E01F07C00DDD191 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C67B0D11E01F07C00DDD191 /* SystemConfiguration.framework */; };
-		2C67B0D41E01F08A00DDD191 /* BuddyBuildSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C67B0D31E01F08A00DDD191 /* BuddyBuildSDK.framework */; };
 		2C7041AE203CDDB700745253 /* UIAlertController+TechDebt.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C7041AC203CDDB600745253 /* UIAlertController+TechDebt.h */; };
 		2C7041AF203CDDB700745253 /* UIAlertController+TechDebt.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7041AD203CDDB600745253 /* UIAlertController+TechDebt.m */; };
 		2C8E356E20939C2D0071ED94 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2C8E356D20939C2D0071ED94 /* Settings.bundle */; };
@@ -739,9 +738,7 @@
 		2C67B0CD1E01F07200DDD191 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		2C67B0CF1E01F07800DDD191 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		2C67B0D11E01F07C00DDD191 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		2C67B0D31E01F08A00DDD191 /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BuddyBuildSDK.framework; path = ../ExternalFrameworks/BuddyBuildSDK.framework; sourceTree = "<group>"; };
 		2C67B0D51E01F11A00DDD191 /* Canvas-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Canvas-Bridging-Header.h"; sourceTree = "<group>"; };
-		2C67B0D81E01F25800DDD191 /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BuddyBuildSDK.framework; path = ../ExternalFrameworks/BuddyBuildSDK.framework; sourceTree = "<group>"; };
 		2C7041AC203CDDB600745253 /* UIAlertController+TechDebt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+TechDebt.h"; sourceTree = "<group>"; };
 		2C7041AD203CDDB600745253 /* UIAlertController+TechDebt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+TechDebt.m"; sourceTree = "<group>"; };
 		2C8E356D20939C2D0071ED94 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
@@ -1619,7 +1616,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C67B0D41E01F08A00DDD191 /* BuddyBuildSDK.framework in Frameworks */,
 				2C67B0D21E01F07C00DDD191 /* SystemConfiguration.framework in Frameworks */,
 				2C67B0D01E01F07800DDD191 /* QuartzCore.framework in Frameworks */,
 				2C67B0CE1E01F07200DDD191 /* CoreVideo.framework in Frameworks */,
@@ -2212,7 +2208,6 @@
 		4927085D1CF4C33700C631C6 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
-				2C67B0D81E01F25800DDD191 /* BuddyBuildSDK.framework */,
 				49642BC21CF4C4CD00238B3F /* CanvasKeymaster.framework */,
 				49642BC31CF4C4CD00238B3F /* CanvasKit.framework */,
 				49E80A301CFF93DC002AF45E /* Tests */,
@@ -2788,7 +2783,6 @@
 				3B1642C41FBA0426006C55D2 /* CanvasCore.framework */,
 				3B1642C51FBA0426006C55D2 /* CanvasKeymaster.framework */,
 				2C6049621F72BB6900252BC5 /* CanvasCore.framework */,
-				2C67B0D31E01F08A00DDD191 /* BuddyBuildSDK.framework */,
 				2C67B0D11E01F07C00DDD191 /* SystemConfiguration.framework */,
 				2C67B0CF1E01F07800DDD191 /* QuartzCore.framework */,
 				2C67B0CD1E01F07200DDD191 /* CoreVideo.framework */,

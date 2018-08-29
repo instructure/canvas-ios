@@ -17,6 +17,7 @@
     
 
 import Foundation
+import UIKit
 
 extension UIImage {
     func imageScaledToSize(_ size: CGSize) -> UIImage {

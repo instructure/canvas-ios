@@ -15,6 +15,7 @@
 //
 
 import Foundation
+import UIKit
 
 class AdminViewController : UIViewController {
     @IBOutlet weak var actAsUserButton: UIButton!

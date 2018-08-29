@@ -53,7 +53,6 @@ class TeacherTest: XCTestCase {
     override func setUp() {
         super.setUp()
         self.loadCassette()
-        BuddyBuildSDK.startUITests()
         CanvasKeymaster.the().resetKeymasterForTesting()
         NativeLoginManager.shared().injectLoginInformation(nil)
         GREYTestHelper.enableFastAnimation()
@@ -61,7 +60,6 @@ class TeacherTest: XCTestCase {
     }
 
     override func tearDown() {
-        BuddyBuildSDK.stopUITests()
         HelmManager.shared.cleanup { _ in }
         self.recordCassette()
         super.tearDown()
