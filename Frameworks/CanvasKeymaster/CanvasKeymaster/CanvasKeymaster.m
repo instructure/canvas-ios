@@ -333,7 +333,9 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
 
 - (void)logout
 {
-    self.willLogout();
+    if (self.willLogout) {
+        self.willLogout();
+    }
     [self logoutWithCompletionBlock:^{
         [self completeLogout];
     }];
@@ -366,7 +368,9 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
 
 - (void)switchUser
 {
-    self.willLogout();
+    if (self.willLogout) {
+        self.willLogout();
+    }
     [self completeLogout];
 }
 
