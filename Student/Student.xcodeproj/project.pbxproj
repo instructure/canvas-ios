@@ -15,6 +15,7 @@
 		2C96486D211E4276002C3255 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C96486C211E4276002C3255 /* DetailViewController.swift */; };
 		2C96486F211E428B002C3255 /* DetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C96486E211E428B002C3255 /* DetailViewController.storyboard */; };
 		2C964871211E4319002C3255 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C964870211E4319002C3255 /* MainViewController.swift */; };
+		2CB3261D21387C99009496AF /* RouterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB3261C21387C99009496AF /* RouterViewController.swift */; };
 		788152DB212B3470005BA428 /* DashboardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152DA212B3470005BA428 /* DashboardPresenter.swift */; };
 		788152DD212B34F2005BA428 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152DC212B34F2005BA428 /* DashboardViewController.swift */; };
 		788152DF212B35F8005BA428 /* DashboardViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 788152DE212B35F8005BA428 /* DashboardViewController.storyboard */; };
@@ -86,6 +87,7 @@
 		2C96486C211E4276002C3255 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		2C96486E211E428B002C3255 /* DetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailViewController.storyboard; sourceTree = "<group>"; };
 		2C964870211E4319002C3255 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		2CB3261C21387C99009496AF /* RouterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterViewController.swift; sourceTree = "<group>"; };
 		788152DA212B3470005BA428 /* DashboardPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardPresenter.swift; sourceTree = "<group>"; };
 		788152DC212B34F2005BA428 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		788152DE212B35F8005BA428 /* DashboardViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DashboardViewController.storyboard; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				2C5C698C211DFFAD00D9AD15 /* AppDelegate.swift */,
 				2C964870211E4319002C3255 /* MainViewController.swift */,
 				2C96486C211E4276002C3255 /* DetailViewController.swift */,
+				2CB3261C21387C99009496AF /* RouterViewController.swift */,
 				2C96486E211E428B002C3255 /* DetailViewController.storyboard */,
 				2C5C6992211DFFAD00D9AD15 /* Main.storyboard */,
 				2C5C6995211DFFAE00D9AD15 /* Assets.xcassets */,
@@ -349,6 +352,7 @@
 				2C96486D211E4276002C3255 /* DetailViewController.swift in Sources */,
 				78815310212BD307005BA428 /* AllCoursesPresenter.swift in Sources */,
 				78815309212BD19F005BA428 /* AllCoursesViewController.swift in Sources */,
+				2CB3261D21387C99009496AF /* RouterViewController.swift in Sources */,
 				788152DD212B34F2005BA428 /* DashboardViewController.swift in Sources */,
 				78815317212F56E1005BA428 /* AllCoursesCourseCell.swift in Sources */,
 			);
