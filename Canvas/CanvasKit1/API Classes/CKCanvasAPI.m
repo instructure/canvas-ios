@@ -1237,14 +1237,13 @@ NSString *CKDownloadsInProgressDirectory(void);
                 if (error3) {
                     NSLog(@"Error finalizing file upload: %@", error3);
                     block(error3, isFinalValue3, nil);
+                    return;
                 }
                 
                 block(nil, isFinalValue3, attachedFile);
-                return;
             }];
         }];
     }];
-    
 }
 
 /**
