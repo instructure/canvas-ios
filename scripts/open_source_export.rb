@@ -42,6 +42,7 @@ targets = [workspace_name,
            'preload-account-info.plist',
            'ExternalFrameworks',
            'secrets.plist',
+           'Secrets',
            '.gitignore',
            'setup.sh']
 
@@ -165,6 +166,7 @@ remove_firebase_analytics_from_app_delegate File.join(destination, 'Parent/Paren
 
 # Strip out all of the keys from our stuff, making an empty template file
 prune_plist File.join(destination, 'secrets.plist')
+prune_plist File.join(destination, 'Secrets', 'Secrets', 'secrets.plist')
 prune_plist File.join(canvas_core_path, 'CanvasCore', 'Secrets', 'feature_toggles.plist')
 
 opensource_files_dir    = File.join('opensource', 'files')

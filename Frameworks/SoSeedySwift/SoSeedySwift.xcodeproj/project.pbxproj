@@ -102,9 +102,9 @@
 		F9B03FAA20D8688B00DF764C /* modules.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = modules.pb.swift; sourceTree = "<group>"; };
 		F9B03FAB20D8688B00DF764C /* enrollments.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = enrollments.grpc.swift; sourceTree = "<group>"; };
 		F9B03FCC20D89B1200DF764C /* Certs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Certs.swift; sourceTree = "<group>"; };
-		F9B03FCE20D89C8F00DF764C /* client.crt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = client.crt; path = ../../../secrets/client.crt; sourceTree = "<group>"; };
-		F9B03FCF20D89C8F00DF764C /* client.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = client.pem; path = ../../../secrets/client.pem; sourceTree = "<group>"; };
-		F9B03FD020D89C8F00DF764C /* ca.crt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ca.crt; path = ../../../secrets/ca.crt; sourceTree = "<group>"; };
+		F9B03FCE20D89C8F00DF764C /* client.crt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = client.crt; path = ../../../certs/client.crt; sourceTree = "<group>"; };
+		F9B03FCF20D89C8F00DF764C /* client.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = client.pem; path = ../../../certs/client.pem; sourceTree = "<group>"; };
+		F9B03FD020D89C8F00DF764C /* ca.crt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ca.crt; path = ../../../certs/ca.crt; sourceTree = "<group>"; };
 		F9F700DA207E53F3002EB2BE /* SoSeedySwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SoSeedySwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9F700DD207E53F3002EB2BE /* SoSeedySwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SoSeedySwift.h; sourceTree = "<group>"; };
 		F9F700DE207E53F3002EB2BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
