@@ -197,23 +197,6 @@
     return path;
 }
 
-- (NSURL *)temporaryURLForURL:(NSURL *)url error:(NSError * _Nullable *)error {
-    NSError *copyError;
-    NSString *extension = [url pathExtension];
-    NSString *name = [[url lastPathComponent] stringByDeletingPathExtension];
-    NSString *newName = [[name stringByAppendingString:@"-tmp"] stringByAppendingPathExtension:extension];
-    NSURL *copyURL = [[url URLByDeletingLastPathComponent] URLByAppendingPathComponent:newName];
-    NSFileManager *manager = NSFileManager.defaultManager;
-    if ([manager fileExistsAtPath:copyURL.path]) {
-        [manager removeItemAtURL:copyURL error:&copyError];
-    }
-    if (copyError == nil) {
-        [manager copyItemAtURL:url toURL:copyURL error:&copyError];
-    }
-    *error = copyError;
-    return copyURL;
-}
-
 - (void)setFile:(CKAttachment *)file {
     if (file == _file) {
         return;
@@ -233,14 +216,8 @@
     UIViewController *controller = nil;
     
     if ([_file.contentType isEqualToString:@"application/pdf"]) {
-        // Copy the file to a new path so that annotations are not written to the original
-        NSError *copyError;
-        NSURL *copyURL = [self temporaryURLForURL:url error:&copyError];
-        if (copyError != nil) {
-            // Copy failed, fallback to original url
-            copyURL = url;
-        }
-        pdfDocPresenter = [[PreSubmissionPDFDocumentPresenter alloc] initWithDocumentURL:copyURL session:TheKeymaster.currentClient.authSession defaultCourseID:[self hackishlyGetDefaultCourseIfPossible] defaultAssignmentID:[self hackishlyGetDefaultAssignmentIfPossible]];
+
+        pdfDocPresenter = [[PreSubmissionPDFDocumentPresenter alloc] initWithDocumentURL:url session:TheKeymaster.currentClient.authSession defaultCourseID:[self hackishlyGetDefaultCourseIfPossible] defaultAssignmentID:[self hackishlyGetDefaultAssignmentIfPossible]];
         @weakify(self);
         pdfDocPresenter.didSubmitAssignment = ^{
             @strongify(self);
