@@ -2760,7 +2760,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/../ExternalFrameworks/",
 				);
 				INFOPLIST_FILE = Parent/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -2791,7 +2790,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/../ExternalFrameworks/",
 				);
 				INFOPLIST_FILE = Parent/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
