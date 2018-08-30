@@ -81,56 +81,56 @@ extension Session {
     
     // MARK: Pages
     @available(*, deprecated: 1.0)
-    public func postProgressPageViewed(courseID: String, pageURL: NSURL) {
-        postProgress(.viewed, type: .page, context: .course, contextID: courseID, itemID: pageURL.absoluteString!)
+    public func postProgressPageViewed(courseID: String, pageURL: String) {
+        postProgress(.viewed, type: .page, context: .course, contextID: courseID, itemID: pageURL)
     }
     
     @available(*, deprecated: 1.0)
-    public func postProgressPageViewed(groupID: String, pageURL: NSURL) {
-        postProgress(.viewed, type: .page, context: .group, contextID: groupID, itemID: pageURL.absoluteString!)
+    public func postProgressPageViewed(groupID: String, pageURL: String) {
+        postProgress(.viewed, type: .page, context: .group, contextID: groupID, itemID: pageURL)
     }
     
     @available(*, deprecated: 1.0)
-    public func postProgressPageMarkedDone(courseID: String, pageURL: NSURL) {
-        postProgress(.markedDone, type: .page, context: .course, contextID: courseID, itemID: pageURL.absoluteString!)
+    public func postProgressPageMarkedDone(courseID: String, pageURL: String) {
+        postProgress(.markedDone, type: .page, context: .course, contextID: courseID, itemID: pageURL)
     }
     
     @available(*, deprecated: 1.0)
-    public func postProgressPageViewedMarkedDone(groupID: String, pageURL: NSURL) {
-        postProgress(.markedDone, type: .page, context: .group, contextID: groupID, itemID: pageURL.absoluteString!)
+    public func postProgressPageViewedMarkedDone(groupID: String, pageURL: String) {
+        postProgress(.markedDone, type: .page, context: .group, contextID: groupID, itemID: pageURL)
     }
     
     
     
     // MARK: LTI
     @available(*, deprecated: 1.0)
-    public func postProgressLTIViewed(courseID: String, toolURL: NSURL) {
-        postProgress(.viewed, type: .externalTool, context: .course, contextID: courseID, itemID: toolURL.absoluteString!)
+    public func postProgressLTIViewed(courseID: String, toolURL: String) {
+        postProgress(.viewed, type: .externalTool, context: .course, contextID: courseID, itemID: toolURL)
     }
     
     @available(*, deprecated: 1.0)
-    public func postProgressLTIViewed(groupID: String, toolURL: NSURL) {
-        postProgress(.viewed, type: .externalTool, context: .group, contextID: groupID, itemID: toolURL.absoluteString!)
+    public func postProgressLTIViewed(groupID: String, toolURL: String) {
+        postProgress(.viewed, type: .externalTool, context: .group, contextID: groupID, itemID: toolURL)
     }
     
     @available(*, deprecated: 1.0)
-    public func postProgressLTISubmitted(courseID: String, toolURL: NSURL) {
-        postProgress(.submitted, type: .externalTool, context: .course, contextID: courseID, itemID: toolURL.absoluteString!)
+    public func postProgressLTISubmitted(courseID: String, toolURL: String) {
+        postProgress(.submitted, type: .externalTool, context: .course, contextID: courseID, itemID: toolURL)
     }
     
     @available(*, deprecated: 1.0)
-    public func postProgressLTISubmitted(groupID: String, toolURL: NSURL) {
-        postProgress(.submitted, type: .externalTool, context: .group, contextID: groupID, itemID: toolURL.absoluteString!)
+    public func postProgressLTISubmitted(groupID: String, toolURL: String) {
+        postProgress(.submitted, type: .externalTool, context: .group, contextID: groupID, itemID: toolURL)
     }
     
     @available(*, deprecated: 1.0)
-    public func postProgressLTIMarkedDone(courseID: String, toolURL: NSURL) {
-        postProgress(.markedDone, type: .externalTool, context: .course, contextID: courseID, itemID: toolURL.absoluteString!)
+    public func postProgressLTIMarkedDone(courseID: String, toolURL: String) {
+        postProgress(.markedDone, type: .externalTool, context: .course, contextID: courseID, itemID: toolURL)
     }
     
     @available(*, deprecated: 1.0)
-    public func postProgressLTIMarkedDone(groupID: String, toolURL: NSURL) {
-        postProgress(.markedDone, type: .externalTool, context: .group, contextID: groupID, itemID: toolURL.absoluteString!)
+    public func postProgressLTIMarkedDone(groupID: String, toolURL: String) {
+        postProgress(.markedDone, type: .externalTool, context: .group, contextID: groupID, itemID: toolURL)
     }
     
     
@@ -161,23 +161,23 @@ extension Session {
     
     // MARK: External URLs
     @available(*, deprecated: 1.0)
-    public func postProgressURLViewed(courseID: String, url: NSURL) {
-        postProgress(.viewed, type: .url, context: .course, contextID: courseID, itemID: url.absoluteString!)
+    public func postProgressURLViewed(courseID: String, url: String) {
+        postProgress(.viewed, type: .url, context: .course, contextID: courseID, itemID: url)
     }
     
     @available(*, deprecated: 1.0)
-    public func postProgressURLViewed(groupID: String, url: NSURL) {
-        postProgress(.viewed, type: .url, context: .group, contextID: groupID, itemID: url.absoluteString!)
+    public func postProgressURLViewed(groupID: String, url: String) {
+        postProgress(.viewed, type: .url, context: .group, contextID: groupID, itemID: url)
     }
     
     @available(*, deprecated: 1.0)
-    public func postProgressURLMarkedDone(courseID: String, url: NSURL) {
-        postProgress(.markedDone, type: .url, context: .course, contextID: courseID, itemID: url.absoluteString!)
+    public func postProgressURLMarkedDone(courseID: String, url: String) {
+        postProgress(.markedDone, type: .url, context: .course, contextID: courseID, itemID: url)
     }
     
     @available(*, deprecated: 1.0)
-    public func postProgressURLViewedMarkedDone(groupID: String, url: NSURL) {
-        postProgress(.markedDone, type: .url, context: .group, contextID: groupID, itemID: url.absoluteString!)
+    public func postProgressURLViewedMarkedDone(groupID: String, url: String) {
+        postProgress(.markedDone, type: .url, context: .group, contextID: groupID, itemID: url)
     }
     
 }

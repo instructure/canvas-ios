@@ -35,8 +35,7 @@ RCT_EXPORT_METHOD(viewedDiscussion:(NSString *)courseID discussionID:(NSString *
 RCT_EXPORT_METHOD(viewedPage:(NSString *)courseID pageURL:(NSString *)pageURL)
 {
     Session *session = TheKeymaster.currentClient.authSession;
-    NSURL *url = [NSURL URLWithString:pageURL];
-    [session postProgressPageViewedWithCourseID:courseID pageURL:url];
+    [session postProgressPageViewedWithCourseID:courseID pageURL:pageURL];
 }
 
 - (dispatch_queue_t)methodQueue {
