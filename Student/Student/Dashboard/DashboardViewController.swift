@@ -32,7 +32,9 @@ class DashboardViewController: UIViewController, DashboardViewProtocol {
 
     static func create() -> DashboardViewController {
         let storyboard = UIStoryboard(name: "DashboardViewController", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "vc") as! DashboardViewController
+        guard let vc = storyboard.instantiateViewController(withIdentifier: "vc") as? DashboardViewController else {
+            fatalError("Must create DashboardViewController from a storyboard in \(#function)")
+        }
         let presenter = DashboardPresenter(view: vc)
         vc.presenter = presenter
         return vc
@@ -114,7 +116,9 @@ extension DashboardViewController: UICollectionViewDataSource {
         }
 
         if indexPath.section == DashboardViewSection.courses.rawValue {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "courseCard", for: indexPath) as! DashboardCourseCell
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "courseCard", for: indexPath) as? DashboardCourseCell else {
+                fatalError("dequeueReusableCell for courseCard must return DashboardCourseCell in \(#function)")
+            }
             let model = viewModel.favorites[indexPath.row]
             cell.configure(with: model)
             cell.optionsCallback = { [unowned self, model] in
@@ -129,7 +133,9 @@ extension DashboardViewController: UICollectionViewDataSource {
             return cell
         }
 
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "groupCard", for: indexPath) as! DashboardGroupCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "groupCard", for: indexPath) as? DashboardGroupCell else {
+            fatalError("dequeueReusableCell for courseCard must return DashboardCourseCell in \(#function)")
+        }
         let group = viewModel.groups[indexPath.row]
         cell.configure(with: group)
         return cell
@@ -137,7 +143,11 @@ extension DashboardViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionElementKindSectionHeader {
-            let v = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "header", for: indexPath) as! DashboardSectionHeaderView
+            guard let v = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader,
+                                                                          withReuseIdentifier: "header",
+                                                                          for: indexPath) as? DashboardSectionHeaderView else {
+                fatalError("dequeueReusableSupplementaryView for header must return DashboardSectionHeaderView in \(#function)")
+            }
 
             var title: String
             var rightButtonText: String?
@@ -187,7 +197,9 @@ extension DashboardViewController: UICollectionViewDataSource {
         }
 
         // REMOVE
-        let alert = UIAlertController(title: "\(alertTitle) Selected", message: "\(alertTitle) Id => \(itemId) and title => \(itemTitle) was selected. See line: \(#line) in \(#file)", preferredStyle: .alert)
+        let alert = UIAlertController(title: "\(alertTitle) Selected",
+                                      message: "\(alertTitle) Id => \(itemId) and title => \(itemTitle) was selected. See line: \(#line) in \(#file)",
+                                      preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }

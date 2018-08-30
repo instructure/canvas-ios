@@ -32,7 +32,9 @@ class AllCoursesViewController: UIViewController, AllCoursesViewProtocol {
 
     static func create() -> AllCoursesViewController {
         let storyboard = UIStoryboard(name: "AllCoursesViewController", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "vc") as! AllCoursesViewController
+        guard let vc = storyboard.instantiateViewController(withIdentifier: "vc") as? AllCoursesViewController else {
+            fatalError("AllCoursesViewController should come from the storyboard in: \(#function)")
+        }
         vc.presenter = AllCoursesPresenter(view: vc)
         return vc
     }
@@ -101,7 +103,9 @@ extension AllCoursesViewController: UICollectionViewDataSource {
         }
 
         if indexPath.section == AllCoursesViewSection.current.rawValue {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "courseCard", for: indexPath) as! AllCoursesCourseCell
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "courseCard", for: indexPath) as? AllCoursesCourseCell else {
+                fatalError("dequeueReusableCell for courseCard must return AllCoursesCourseCell")
+            }
             let model = viewModel.current[indexPath.row]
             cell.configure(with: model)
             cell.optionsCallback = { [unowned self, model] in
@@ -116,7 +120,9 @@ extension AllCoursesViewController: UICollectionViewDataSource {
             return cell
         }
 
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "courseCard", for: indexPath) as! AllCoursesCourseCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "courseCard", for: indexPath) as? AllCoursesCourseCell else {
+            fatalError("dequeueReusableCell for courseCard should return AllCoursesCourseCell in \(#function)")
+        }
         let past = viewModel.past[indexPath.row]
         cell.configure(with: past)
         return cell
@@ -124,7 +130,11 @@ extension AllCoursesViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionElementKindSectionHeader {
-            let v = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "header", for: indexPath) as! AllCoursesSectionHeaderView
+            guard let v = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader,
+                                                                          withReuseIdentifier: "header",
+                                                                          for: indexPath) as? AllCoursesSectionHeaderView else {
+                fatalError("dequeueReusableSupplementaryView for header must return AllCoursesSectionHeaderView in \(#function)")
+            }
 
             var title: String
             if indexPath.section == AllCoursesViewSection.current.rawValue {
@@ -166,7 +176,9 @@ extension AllCoursesViewController: UICollectionViewDataSource {
         }
 
         // REMOVE
-        let alert = UIAlertController(title: "\(alertTitle) Selected", message: "\(alertTitle) Id => \(itemId) and title => \(itemTitle) was selected. See line: \(#line) in \(#file)", preferredStyle: .alert)
+        let alert = UIAlertController(title: "\(alertTitle) Selected",
+                                      message: "\(alertTitle) Id => \(itemId) and title => \(itemTitle) was selected. See line: \(#line) in \(#file)",
+                                      preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
