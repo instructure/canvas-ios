@@ -82,7 +82,7 @@ class TeacherTest: XCTestCase {
     
     func loadCassette() {
         let expectation = XCTestExpectation(description: "Load cassette")
-        VCR.shared().loadCassette(self.name!) { error in
+        VCR.shared.loadCassette(testCase: self.name!) { error in
             XCTAssertNil(error)
             expectation.fulfill()
         }
@@ -91,7 +91,7 @@ class TeacherTest: XCTestCase {
     
     func recordCassette() {
         let expectation = XCTestExpectation(description: "Record cassette")
-        VCR.shared().recordCassette(self.name!) { error in
+        VCR.shared.recordCassette(testCase: self.name!) { error in
             XCTAssertNil(error)
             expectation.fulfill()
         }

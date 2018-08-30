@@ -55,13 +55,13 @@ let usersClient = makeClient(Soseedy_SeedyUsersServiceClient.self)
 // data seeding responses.
 public func recorded<T: SwiftProtobuf.Message>(request: SwiftProtobuf.Message, block: () -> T) -> T {
     let requestKey = try! request.jsonString()
-    let response: String? = VCR.shared().response(for: requestKey)
+    let response: String? = VCR.shared.response(for: requestKey)
     if let response = response {
         return try! T(jsonString: response)
     }
     let blockResponse = block()
     let blockResponseString = try! blockResponse.jsonString()
-    VCR.shared().recordResponse(blockResponseString, for: requestKey)
+    VCR.shared.recordResponse(blockResponseString, for: requestKey)
     return blockResponse
 }
 
