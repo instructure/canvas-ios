@@ -30,6 +30,7 @@
 		78815317212F56E1005BA428 /* AllCoursesCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78815313212F56E1005BA428 /* AllCoursesCourseCell.swift */; };
 		78815318212F56E1005BA428 /* AllCoursesSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78815314212F56E1005BA428 /* AllCoursesSectionHeaderView.swift */; };
 		7881531F212FC5F7005BA428 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C964867211E38B0002C3255 /* Core.framework */; };
+		7D7110C321389AD90085C2E5 /* Routes+Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7110C221389AD90085C2E5 /* Routes+Student.swift */; };
 		F97304A02122268100AA2557 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C964867211E38B0002C3255 /* Core.framework */; };
 		F97304A12122268500AA2557 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C964867211E38B0002C3255 /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F97304A4212287C500AA2557 /* EarlGrey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F97304A3212287C400AA2557 /* EarlGrey.framework */; };
@@ -101,6 +102,7 @@
 		7881530F212BD307005BA428 /* AllCoursesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCoursesPresenter.swift; sourceTree = "<group>"; };
 		78815313212F56E1005BA428 /* AllCoursesCourseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllCoursesCourseCell.swift; sourceTree = "<group>"; };
 		78815314212F56E1005BA428 /* AllCoursesSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllCoursesSectionHeaderView.swift; sourceTree = "<group>"; };
+		7D7110C221389AD90085C2E5 /* Routes+Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Routes+Student.swift"; sourceTree = "<group>"; };
 		F97304A3212287C400AA2557 /* EarlGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EarlGrey.framework; path = "../../ios-frameworks/EarlGrey.framework"; sourceTree = "<group>"; };
 		F97304A6212287F400AA2557 /* EarlGrey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarlGrey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -159,6 +161,7 @@
 				2C5C6995211DFFAE00D9AD15 /* Assets.xcassets */,
 				2C5C6997211DFFAE00D9AD15 /* LaunchScreen.storyboard */,
 				2C5C699A211DFFAE00D9AD15 /* Info.plist */,
+				7D7110C221389AD90085C2E5 /* Routes+Student.swift */,
 			);
 			path = Student;
 			sourceTree = "<group>";
@@ -345,6 +348,7 @@
 				788152FC212B83D0005BA428 /* DashboardSectionHeaderView.swift in Sources */,
 				2C964871211E4319002C3255 /* MainViewController.swift in Sources */,
 				788152DB212B3470005BA428 /* DashboardPresenter.swift in Sources */,
+				7D7110C321389AD90085C2E5 /* Routes+Student.swift in Sources */,
 				788152ED212B4FA4005BA428 /* DashboardCourseCell.swift in Sources */,
 				2C5C698D211DFFAD00D9AD15 /* AppDelegate.swift in Sources */,
 				788152F5212B7482005BA428 /* DashboardGroupCell.swift in Sources */,

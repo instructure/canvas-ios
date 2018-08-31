@@ -1,76 +1,59 @@
 //
-//  Router.swift
-//  Core
+// Copyright (C) 2018-present Instructure, Inc.
 //
-//  Created by Layne Moseley on 8/10/18.
-//  Copyright © 2018 Instructure, Inc. All rights reserved.
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, version 3 of the License.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
 import UIKit
 
-public typealias RouteFactory = (RouteInfo) -> UIViewController?
-
-public struct RouteInfo {
-    public let params: [String: String]
-    public let query: [String: String]
-}
-
-// A route is a place you can go in the app
-// Each app defines it's own routes by adding Routes to the Router
-public struct Route {
-    public let path: String
-    public let pathRegExp: NSRegularExpression
-    public let factory: RouteFactory
-    public init(_ path: String, pathRegExp: NSRegularExpression, factory: @escaping RouteFactory) {
-        self.path = path
-        self.pathRegExp = pathRegExp
-        self.factory = factory
-    }
-}
-
-public struct RouteOptions: OptionSet {
-    public let rawValue: Int
-
-    public init(rawValue: Int) {
-        self.rawValue = rawValue
-    }
-
-    static let modal = RouteOptions(rawValue: 1)
-}
-
 // The Router stores all routes that can be routed to in the app
 public class Router {
-    private var routes = [NSRegularExpression: Route]()
+    public struct RouteOptions: OptionSet {
+        public let rawValue: Int
 
-    public init() {}
+        public init(rawValue: Int) {
+            self.rawValue = rawValue
+        }
+
+        static let modal = RouteOptions(rawValue: 1)
+    }
+
+    private let routes: [Route]
+
+    public init(routes: [Route]) {
+        self.routes = routes
+    }
 
     public var count: Int {
         return routes.count
     }
 
-    public func addRoute(_ route: Route) {
-        routes[route.pathRegExp] = route
+    public func route(to string: String, from: UIViewController, options: RouteOptions? = nil) {
+        guard let components = URLComponents(string: string) else { return }
+        route(to: components, from: from, options: options)
     }
 
-    public func addRoute(_ path: String, factory: @escaping RouteFactory) {
-        guard let regexp = pathToRegexp(path) else { return }
-        let route = Route(path, pathRegExp: regexp, factory: factory)
-        addRoute(route)
+    public func route(to url: URL, from: UIViewController, options: RouteOptions? = nil) {
+        guard let components = URLComponents(url: url, resolvingAgainstBaseURL: true) else { return }
+        route(to: components, from: from, options: options)
     }
 
-    public func routeForPath(_ path: String) -> (Route, RouteInfo)? {
-        for (regexp, route) in routes {
-            guard let match = regexp.firstMatch(in: path, range: NSRange(location: 0, length: path.count)) else { continue }
-            let params = extractParamsFromPath(path, match: match, routePath: route.path)
-            let query = extractQueryParamsFromPath(path)
-            return (route, RouteInfo(params: params, query: query))
+    public func route(to components: URLComponents, from: UIViewController, options: RouteOptions? = nil) {
+        for route in routes {
+            if let view = route.match(components) {
+                from.show(view, sender: nil)
+                return
+            }
         }
-        return nil
-    }
-
-    public func route(to: String, from: UIViewController) {
-        guard let (route, routeInfo) = routeForPath(to) else { return }
-        guard let destination = route.factory(routeInfo) else { return }
-        from.show(destination, sender: nil)
     }
 }

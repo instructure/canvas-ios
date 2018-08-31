@@ -1,31 +1,25 @@
 //
-//  AppDelegate.swift
-//  Student
+// Copyright (C) 2018-present Instructure, Inc.
 //
-//  Created by Layne Moseley on 8/10/18.
-//  Copyright © 2018 Instructure, Inc. All rights reserved.
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, version 3 of the License.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
 import UIKit
 import Core
 
-let router = Router()
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate, AppStateDelegate {
     lazy var appState: AppState = {
-        router.addRoute("/courses/:courseID/users/:userID") {_ in
-            return DetailViewController.create()
-        }
-
-        router.addRoute("/login") { _ in
-            return LoginViewController(host: "twilson.instructure.com")
-        }
-
-        router.addRoute("/allcourses") { _ in
-            return AllCoursesViewController.create()
-        }
-
         let appState = AppState(router: router)
         return appState
     }()
