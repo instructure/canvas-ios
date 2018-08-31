@@ -82,7 +82,7 @@ open class Secrets: NSObject {
     
     fileprivate lazy var keys: [String: String] = {
         
-        guard let path = bundle?.url(forResource: "secrets", withExtension: "plist") else {
+        guard let path = self.bundle?.url(forResource: "secrets", withExtension: "plist") else {
             fatalError("keys.plist not found")
         }
         
@@ -113,7 +113,7 @@ open class Secrets: NSObject {
     // Support for feature toggles that are based on a domain
     fileprivate lazy var toggles: [String: [String]]? = {
         
-        guard let path = bundle?.url(forResource: "feature_toggles", withExtension: "plist") else {
+        guard let path = self.bundle?.url(forResource: "feature_toggles", withExtension: "plist") else {
             return nil
         }
         

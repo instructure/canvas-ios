@@ -36,8 +36,9 @@ Pods
 *.xccheckout
 
 tidy/build/
-# Scripts
-*.sh
+
+tmp/
+universal/
 
 Canvas.app.dSYM.zip
 Carthage/
