@@ -23,7 +23,7 @@ struct DashboardViewModel {
         let title: String
         let abbreviation: String
         let color: UIColor
-        let imageUrl: String?
+        let imageUrl: URL?
     }
 
     struct Group {
@@ -34,6 +34,8 @@ struct DashboardViewModel {
         let color: UIColor?
     }
 
+    var navBackgroundColor: UIColor
+    var navLogoUrl: URL
     var favorites: [Course]
     var groups: [Group]
 }
@@ -104,10 +106,14 @@ class DashboardPresenter: DashboardPresenterProtocol {
 
     func mockViewModel() -> DashboardViewModel {
         var courses = [DashboardViewModel.Course]()
-        courses.append(DashboardViewModel.Course(courseID: "1", title: "A Navigation Test", abbreviation: "ANT", color: .darkGray, imageUrl: nil))
-        courses.append(DashboardViewModel.Course(courseID: "2", title: "Annotations", abbreviation: "ANN", color: .blue, imageUrl: nil))
-        courses.append(DashboardViewModel.Course(courseID: "3", title: "Announcements", abbreviation: "AN", color: .orange, imageUrl: nil))
-        courses.append(DashboardViewModel.Course(courseID: "4", title: "Assignment Grades", abbreviation: "AG", color: .red, imageUrl: nil))
+        courses.append(DashboardViewModel.Course(courseID: "1", title: "A Navigation Test", abbreviation: "ANT", color: .darkGray,
+            imageUrl: URL(string: "https://upload.wikimedia.org/wikipedia/commons/a/a0/Sunflower_as_gif_websafe.gif")))
+        courses.append(DashboardViewModel.Course(courseID: "2", title: "Annotations", abbreviation: "ANN", color: .blue,
+            imageUrl: URL(string: "https://upload.wikimedia.org/wikipedia/commons/0/02/SVG_logo.svg")))
+        courses.append(DashboardViewModel.Course(courseID: "3", title: "Announcements", abbreviation: "AN", color: .orange,
+            imageUrl: URL(string: "https://media.giphy.com/media/CyNwabts0egVy/giphy.gif")))
+        courses.append(DashboardViewModel.Course(courseID: "4", title: "Assignment Grades", abbreviation: "AG", color: .red,
+            imageUrl: URL(string: "https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png")))
         //        courses.append(DashboardCourseModel(courseID: "5", title: "Quiz Questions", abbreviation: "QQ", color: .green, imageUrl: nil))
         //        courses.append(DashboardCourseModel(courseID: "6", title: "Quizzes NEXT", abbreviation: "QN", color: .cyan, imageUrl: nil))
 
@@ -117,6 +123,9 @@ class DashboardPresenter: DashboardPresenterProtocol {
         groups.append(DashboardViewModel.Group(groupID: "3", groupName: "Mighty Pulp Wannabees", courseName: "Course Groups", term: "DEFAULT TERM", color: .green))
         groups.append(DashboardViewModel.Group(groupID: "4", groupName: "Bitter Water Assassins", courseName: "Course Groups", term: "DEFAULT TERM", color: .orange))
 
-        return DashboardViewModel(favorites: courses, groups: groups)
+        let navBackgroundColor: UIColor = .black
+        let logo = URL(string: "https://emoji.slack-edge.com/T028ZAGUD/laugh/2d2ad81e3d71f12e.gif")!
+
+        return DashboardViewModel(navBackgroundColor: navBackgroundColor, navLogoUrl: logo, favorites: courses, groups: groups)
     }
 }

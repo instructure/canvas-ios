@@ -1,0 +1,47 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="82" height="82">
+  <style>
+    @keyframes blink {
+      0%, 98%, 100% {
+        transform: scaleY(1);
+      }
+      99% {
+        transform: scaleY(0);
+      }
+    }
+    #e {
+      transform-origin: 0 36px;
+      animation: blink 10s ease infinite;
+    }
+  </style>
+  <g transform="translate(0,8)">
+  <path fill="#749DB5" d="
+    M17,65
+    v-16
+    a16,16,0,0,1,-16,-16
+    v-16
+    a16,16,0,0,1,16,-16
+    h16
+    l12,24 -12,24
+    z"
+  />
+  <path fill="#72B483" d="
+    M49,65
+    v-16
+    h-8
+    l12,-24 -12,-24
+    h24
+    a16,16,0,0,1,16,16
+    v16
+    a16,16,0,0,1,-16,16
+    z"
+  />
+  <path fill="#fff" id="e" d="
+    M21,17
+    a8,8,0,0,0,0,16
+    a8,8,0,0,0,0,-16
+    z
+    M69,17 h-8 v16 h8
+    z"
+  />
+  </g>
+</svg>

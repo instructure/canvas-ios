@@ -15,6 +15,7 @@
 //
 
 import UIKit
+import Core
 
 protocol DashboardViewProtocol: class {
     func updateDisplay(_ viewModel: DashboardViewModel)
@@ -24,10 +25,11 @@ class DashboardViewController: UIViewController, DashboardViewProtocol {
     var presenter: DashboardPresenterProtocol?
     var viewModel: DashboardViewModel?
 
-    let gutterWidth: CGFloat = 15
+    let gutterWidth: CGFloat = 16
     let coursesColumns: CGFloat = 2
     let groupsColumns: CGFloat = 1
 
+    var logoView = UIImageView(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
     @IBOutlet weak var collectionView: UICollectionView!
 
     static func create() -> DashboardViewController {
@@ -45,10 +47,14 @@ class DashboardViewController: UIViewController, DashboardViewProtocol {
         super.viewDidLoad()
 
         // Navigation Bar Setup
-        navigationController?.navigationBar.barTintColor = .black
         navigationController?.navigationBar.tintColor = .white
         let editBarButton = UIBarButtonItem(title: NSLocalizedString("Edit", comment: ""), style: .plain, target: self, action: #selector(editBarButtonTapped(object:)))
         navigationItem.rightBarButtonItem = editBarButton
+
+        navigationItem.titleView = logoView
+        logoView.contentMode = .scaleAspectFit
+        logoView.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        logoView.widthAnchor.constraint(equalToConstant: 44).isActive = true
 
         // Collection View Setup
         collectionView.delegate = self
@@ -71,6 +77,12 @@ class DashboardViewController: UIViewController, DashboardViewProtocol {
         self.viewModel = viewModel
 
         // check for empty state
+
+        // update header
+        navigationController?.navigationBar.barTintColor = viewModel.navBackgroundColor
+        ImageLoader.load(url: viewModel.navLogoUrl, frame: logoView.frame) { [weak self] image, _ in
+            self?.logoView.image = image
+        }
 
         // display courses
         collectionView.reloadData()
@@ -165,6 +177,7 @@ extension DashboardViewController: UICollectionViewDataSource {
             }
 
             v.configure(title: title, rightButtonText: rightButtonText, rightAction: action)
+            v.titleLabel.translatesAutoresizingMaskIntoConstraints = false
             return v
         }
 
@@ -209,10 +222,10 @@ extension DashboardViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let section = indexPath.section
         if section == DashboardViewSection.courses.rawValue {
-            return CGSize(width: (collectionView.bounds.width - ((coursesColumns+1) * gutterWidth)) / coursesColumns, height: 150)
+            return CGSize(width: (collectionView.bounds.width - ((coursesColumns+1) * gutterWidth)) / coursesColumns, height: 163)
         }
 
-        return  CGSize(width: (collectionView.bounds.width - ((groupsColumns+1) * gutterWidth)) / groupsColumns, height: 65)
+        return  CGSize(width: (collectionView.bounds.width - ((groupsColumns+1) * gutterWidth)) / groupsColumns, height: 82)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -235,13 +248,5 @@ extension DashboardViewController: UICollectionViewDelegateFlowLayout {
         }
 
         return  0
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.bounds.width, height: 50)
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        return CGSize.zero
     }
 }
