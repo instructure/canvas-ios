@@ -137,7 +137,7 @@ export default class ConversationMessageRow extends React.Component<Props, State
 
     return (
       <View style={styles.header}>
-        <View style={{ flexDirection: 'row' }} accessible={true} accessibilityLabel={`${authorName} ${recipientName} ${date}`}>
+        <View style={{ flexDirection: 'row', flex: 1 }} accessible={true} accessibilityLabel={`${authorName} ${recipientName} ${date}`}>
           <View style={styles.avatar}>
             <Avatar
               height={32}
@@ -146,8 +146,8 @@ export default class ConversationMessageRow extends React.Component<Props, State
               onPress={this.props.conversation.context_code ? this.handleAvatarPress : undefined}
             />
           </View>
-          <View>
-            <Text>
+          <View style={{ flex: 1 }}>
+            <Text numberOfLines={1}>
               <Text style={styles.author}>{`${authorName} `}</Text>
               <Text style={styles.recipient}>{recipientName}</Text>
             </Text>
@@ -162,7 +162,7 @@ export default class ConversationMessageRow extends React.Component<Props, State
   render () {
     const message = this.props.message
     return (
-      <View testID={`inbox.conversation-message-${message.id}`}>
+      <View testID={`inbox.conversation-message-${message.id}`} style={{ flex: 1 }}>
         <View style={styles.container}>
           { this.renderHeader() }
           <TouchableWithoutFeedback onPress={this.toggleExpanded}>
@@ -240,6 +240,7 @@ const styles = StyleSheet.create({
     height: 16,
   },
   header: {
+    flex: 1,
     paddingBottom: 12,
     flexDirection: 'row',
     alignItems: 'center',
