@@ -17,7 +17,7 @@
 import Foundation
 
 public class AsyncOperation: Operation {
-    var errors: [Error] = []
+    public var errors: [Error] = []
 
     enum State: String {
         case ready = "isReady"

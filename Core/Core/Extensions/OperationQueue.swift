@@ -16,20 +16,18 @@
 
 import Foundation
 
-// https://canvas.instructure.com/doc/api/users.html#method.users.get_custom_color
-public struct GetCustomColorsRequest: APIRequestable {
-    public typealias Response = APICustomColors
-
-    public let path = "users/self/colors"
-}
-
-// https://canvas.instructure.com/doc/api/users.html#method.users.api_show
-struct GetUserRequest: APIRequestable {
-    typealias Response = APIUser
-
-    let userID: String
-
-    var path: String {
-        return ContextModel(.user, id: userID).pathComponent
+extension OperationQueue {
+    public func addGroupOperationWithErrorHandling(_ group: GroupOperation, sendErrorsTo view: ErrorViewController?) {
+        if let view = view {
+            let errorHandler = BlockOperation { [weak view, weak group] in
+                if let error = group?.errors.first {
+                    view?.showError(error)
+                }
+            }
+            errorHandler.addDependency(group)
+            addOperations([group, errorHandler], waitUntilFinished: false)
+        } else {
+            addOperation(group)
+        }
     }
 }

@@ -16,8 +16,8 @@
 
 import Foundation
 
-class GetUserGroups: CollectionUseCase<GetGroupsRequest, Group> {
-    init(api: API, database: DatabaseStore, force: Bool = false) {
+public class GetUserGroups: CollectionUseCase<GetGroupsRequest, Group> {
+    public init(api: API, database: DatabaseStore, force: Bool = false) {
         let request = GetGroupsRequest(context: ContextModel.currentUser)
         super.init(api: api, database: database, request: request)
     }
@@ -26,7 +26,7 @@ class GetUserGroups: CollectionUseCase<GetGroupsRequest, Group> {
         return NSPredicate(format: "%K == YES", "member")
     }
 
-    override func predicate(forItem item: APIGroup) -> NSPredicate {
+    public override func predicate(forItem item: APIGroup) -> NSPredicate {
         return .id(item.id)
     }
 
@@ -34,5 +34,6 @@ class GetUserGroups: CollectionUseCase<GetGroupsRequest, Group> {
         model.id = object.id
         model.name = object.name
         model.member = true
+        model.concluded = object.concluded
     }
 }

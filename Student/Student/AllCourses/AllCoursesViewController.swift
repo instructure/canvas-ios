@@ -15,6 +15,7 @@
 //
 
 import UIKit
+import Core
 
 protocol AllCoursesViewProtocol: class {
     func updateDisplay(_ viewModel: AllCoursesViewModel)
@@ -27,6 +28,12 @@ class AllCoursesViewController: UIViewController, AllCoursesViewProtocol {
     let gutterWidth: CGFloat = 15
     let currentColumns: CGFloat = 2
     let pastColumns: CGFloat = 2
+
+    lazy var refreshControl: UIRefreshControl = {
+        let rc = UIRefreshControl()
+        rc.addTarget(self, action: #selector(AllCoursesViewController.refreshView(_:)), for: .valueChanged)
+        return rc
+    }()
 
     @IBOutlet weak var collectionView: UICollectionView!
 
@@ -51,6 +58,7 @@ class AllCoursesViewController: UIViewController, AllCoursesViewProtocol {
         // Collection View Setup
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.refreshControl = refreshControl
 
         presenter?.viewIsReady()
     }
@@ -65,6 +73,11 @@ class AllCoursesViewController: UIViewController, AllCoursesViewProtocol {
         presenter?.pageViewEnded()
     }
 
+    @objc
+    func refreshView(_ sender: Any) {
+        presenter?.refreshRequested()
+    }
+
     func updateDisplay(_ viewModel: AllCoursesViewModel) {
         self.viewModel = viewModel
 
@@ -72,6 +85,13 @@ class AllCoursesViewController: UIViewController, AllCoursesViewProtocol {
 
         // display courses
         collectionView.reloadData()
+        refreshControl.endRefreshing()
+    }
+}
+
+extension AllCoursesViewController: ErrorViewController {
+    func showError(_ error: Error) {
+        print("error:", error.localizedDescription)
     }
 }
 
@@ -82,7 +102,11 @@ enum AllCoursesViewSection: Int {
 
 extension AllCoursesViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
+        guard let vm = viewModel else {
+            return 0
+        }
+
+        return (vm.current.count > 0 || vm.past.count > 0) ? 2 : 0
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

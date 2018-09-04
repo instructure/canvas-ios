@@ -17,22 +17,63 @@
 import UIKit
 import Core
 
+let queue = OperationQueue()
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate, AppStateDelegate {
+    var baseURL: String = "https://twilson.instructure.com/"
+    var window: UIWindow?
+
     lazy var appState: AppState = {
         let appState = AppState(router: router)
         return appState
     }()
 
-    var window: UIWindow?
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         print(appState)
+
         window = UIWindow(frame: UIScreen.main.bounds)
         if CommandLine.arguments.contains("RouterDebug") {
             showRouterDebug()
             return true
         }
+
+        // TODO: Remove this at some point
+        do {
+            try coreDataStore.clearAllRecords()
+            print("Successfully emptied the data store")
+        } catch {
+            print("Error: Unable to clear data store")
+        }
+
+        // TODO: Pull the most recent entry out of the keychain instead
+        // of showing login view every time
+        window?.rootViewController = createLoginViewController()
+
+        return true
+    }
+
+    func showRouterDebug() {
+        let tabController = UITabBarController()
+        let router = RouterViewController()
+        let splitView = UISplitViewController()
+        let navigation = UINavigationController(rootViewController: router)
+        splitView.viewControllers = [navigation]
+        tabController.viewControllers = [splitView]
+        window?.rootViewController = tabController
+    }
+
+    func createLoginViewController() -> LoginViewController {
+        guard let url = URL(string: baseURL), let host = url.host else {
+            fatalError()
+        }
+
+        let vc = LoginViewController(host: host)
+        vc.delegate = self
+        return vc
+    }
+
+    func createTabController() -> UITabBarController {
         let vc1 = DashboardViewController.create()
         vc1.title = "Dashboard"
         vc1.tabBarItem = UITabBarItem(title: "Dashboard", image: nil, selectedImage: nil)
@@ -73,18 +114,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
             return nav
         }
 
-        window?.rootViewController = tabController
-
-        return true
+        return tabController
     }
+}
 
-    func showRouterDebug() {
-        let tabController = UITabBarController()
-        let router = RouterViewController()
-        let splitView = UISplitViewController()
-        let navigation = UINavigationController(rootViewController: router)
-        splitView.viewControllers = [navigation]
-        tabController.viewControllers = [splitView]
-        window?.rootViewController = tabController
+extension AppDelegate: LoginViewControllerDelegate {
+    func userDidLogin(authToken: String) {
+        Keychain.currentSession = KeychainEntry(token: authToken, baseURL: baseURL)
+        // TODO: Persist this keychain entry
+        window?.rootViewController = createTabController()
     }
 }

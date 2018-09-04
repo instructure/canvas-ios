@@ -54,6 +54,7 @@ public protocol APIRequestable {
     var body: Body? { get }
 
     func urlRequest(relativeTo: URL, accessToken: String) throws -> URLRequest
+    func decode(_ data: Data) throws -> Response
 }
 
 extension APIRequestable {
@@ -72,7 +73,6 @@ extension APIRequestable {
     public var body: Body? {
         return nil
     }
-
     public func urlRequest(relativeTo baseURL: URL, accessToken: String) throws -> URLRequest {
         guard var components = URLComponents(string: path) else { throw APIRequestableError.invalidPath(path) }
 
@@ -113,6 +113,13 @@ extension APIRequestable {
             return GetNextRequest<Response>(path: next.absoluteString)
         }
         return nil
+    }
+
+    public func decode(_ data: Data) throws -> Response {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        let result = try decoder.decode(Response.self, from: data)
+        return result
     }
 }
 

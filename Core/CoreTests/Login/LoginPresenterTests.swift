@@ -13,7 +13,7 @@ class LoginPresenterTests: XCTestCase {
     var presenter = LoginPresenter(host: "localhost")
     var resultingAuthToken: String?
     var expectation: XCTestExpectation!
-    var resultingError: NSError?
+    var resultingError: Error?
     var resultingRequest: URLRequest?
 
     override func setUp() {
@@ -183,7 +183,7 @@ extension LoginPresenterTests: LoginViewProtocol, ErrorViewController {
         expectation.fulfill()
     }
 
-    func showError(_ error: NSError) {
+    func showError(_ error: Error) {
         resultingError = error
         expectation.fulfill()
     }

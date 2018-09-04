@@ -33,7 +33,7 @@ class CoreDataFetchedResultsController<ResultType>: FetchedResultsController<Res
     }
 
     override var fetchedObjects: [ResultType]? {
-        return nil
+        return frc.fetchedObjects as? [ResultType]
     }
 
     override func performFetch() throws {

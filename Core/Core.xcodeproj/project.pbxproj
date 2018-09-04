@@ -31,6 +31,9 @@
 		3B3467E021370F6600F9BC2E /* GetMobileVerify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3467DE21370F6600F9BC2E /* GetMobileVerify.swift */; };
 		3B3467E22137170500F9BC2E /* ConstructLoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3467E12137170500F9BC2E /* ConstructLoginRequest.swift */; };
 		3B3467E42137172900F9BC2E /* DepenedencyOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3467E32137172900F9BC2E /* DepenedencyOperation.swift */; };
+		7851D9B32138264800E76EC3 /* GetCustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7851D9B22138264800E76EC3 /* GetCustomColors.swift */; };
+		789C9BC12138516300B37AC4 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789C9BC02138516300B37AC4 /* UIColor.swift */; };
+		789C9BC32138656E00B37AC4 /* OperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789C9BC22138656E00B37AC4 /* OperationQueue.swift */; };
 		7D062AF4212496E600677F66 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D062AF3212496E600677F66 /* Context.swift */; };
 		7D062AF721249E7700677F66 /* ContextModel+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D062AF621249E7700677F66 /* ContextModel+Tests.swift */; };
 		7D062AF92124A0F400677F66 /* ContextModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D062AF82124A0F400677F66 /* ContextModel.swift */; };
@@ -159,6 +162,9 @@
 		3B3467DE21370F6600F9BC2E /* GetMobileVerify.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetMobileVerify.swift; sourceTree = "<group>"; };
 		3B3467E12137170500F9BC2E /* ConstructLoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructLoginRequest.swift; sourceTree = "<group>"; };
 		3B3467E32137172900F9BC2E /* DepenedencyOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepenedencyOperation.swift; sourceTree = "<group>"; };
+		7851D9B22138264800E76EC3 /* GetCustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCustomColors.swift; sourceTree = "<group>"; };
+		789C9BC02138516300B37AC4 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		789C9BC22138656E00B37AC4 /* OperationQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationQueue.swift; sourceTree = "<group>"; };
 		7D062AF3212496E600677F66 /* Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
 		7D062AF621249E7700677F66 /* ContextModel+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContextModel+Tests.swift"; sourceTree = "<group>"; };
 		7D062AF82124A0F400677F66 /* ContextModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextModel.swift; sourceTree = "<group>"; };
@@ -426,6 +432,8 @@
 				B1EA5AF5212E67CE00DABC5F /* Date+ISO8601.swift */,
 				3B346754213052C700F9BC2E /* NSError+CoreErrors.swift */,
 				B195DC48213215A300797FE4 /* NSPredicate+Core.swift */,
+				789C9BC02138516300B37AC4 /* UIColor.swift */,
+				789C9BC22138656E00B37AC4 /* OperationQueue.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -544,6 +552,7 @@
 				B1EA5AEA212E641900DABC5F /* GetCourses.swift */,
 				B195DC44213201DE00797FE4 /* GetUserGroups.swift */,
 				3B3467E12137170500F9BC2E /* ConstructLoginRequest.swift */,
+				7851D9B22138264800E76EC3 /* GetCustomColors.swift */,
 			);
 			path = "Use Cases";
 			sourceTree = "<group>";
@@ -849,6 +858,7 @@
 				3B34674A213051FD00F9BC2E /* LoginPresenter.swift in Sources */,
 				7D8262F7212B34F800BD268D /* APICourse.swift in Sources */,
 				3B3467C72134954A00F9BC2E /* UserAgent.swift in Sources */,
+				789C9BC32138656E00B37AC4 /* OperationQueue.swift in Sources */,
 				3B3467DC2137087100F9BC2E /* HTTPHeaderConstants.swift in Sources */,
 				B195DC472132127200797FE4 /* CollectionUseCase.swift in Sources */,
 				7D80AC58212DAE4C00C40ECE /* URLResponse+links.swift in Sources */,
@@ -873,6 +883,8 @@
 				3B3467D821360A7C00F9BC2E /* APILoginWeb+Requestable.swift in Sources */,
 				7D80AC21212B89C500C40ECE /* APIAccount+Requestable.swift in Sources */,
 				3B3467E22137170500F9BC2E /* ConstructLoginRequest.swift in Sources */,
+				7851D9B32138264800E76EC3 /* GetCustomColors.swift in Sources */,
+				789C9BC12138516300B37AC4 /* UIColor.swift in Sources */,
 				B1445306212E5B6E0009D848 /* Database.xcdatamodeld in Sources */,
 				2C964857211E303E002C3255 /* Router.swift in Sources */,
 				2C96485E211E3723002C3255 /* AppState.swift in Sources */,

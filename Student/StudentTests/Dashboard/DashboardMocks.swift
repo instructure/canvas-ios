@@ -16,9 +16,11 @@
 
 import Foundation
 @testable import Student
+@testable import Core
 
-class MockDashboardView: DashboardViewProtocol {
+class MockDashboardView: DashboardViewProtocol, ErrorViewController {
     var updateDisplayMethodCalledCount = 0
+    var showErrorMethodCalledCount = 0
 
     var presenter: DashboardPresenterProtocol?
     var viewModel: DashboardViewModel?
@@ -27,6 +29,14 @@ class MockDashboardView: DashboardViewProtocol {
         updateDisplayMethodCalledCount += 1
 
         self.viewModel = viewModel
+    }
+
+    func showError(_ error: Error) {
+        showErrorMethodCalledCount += 1
+    }
+
+    func showError(_ error: NSError) {
+        showErrorMethodCalledCount += 1
     }
 }
 

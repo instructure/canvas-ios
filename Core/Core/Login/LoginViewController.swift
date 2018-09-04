@@ -9,7 +9,7 @@
 import UIKit
 import WebKit
 
-protocol LoginViewControllerDelegate {
+public protocol LoginViewControllerDelegate: class {
     func userDidLogin(authToken: String)
 }
 
@@ -18,6 +18,7 @@ public class LoginViewController: UIViewController {
     let method: AuthenticationMethod
     var webView: WKWebView!
     let presenter: LoginPresenter
+    public weak var delegate: LoginViewControllerDelegate?
 
     public init(host: String, method: AuthenticationMethod = .defaultMethod) {
         presenter = LoginPresenter(host: host)
@@ -60,12 +61,12 @@ extension LoginViewController: LoginViewProtocol {
 
     func userDidLogin(auth: APIOAuthToken) {
         print("auth token: \(auth.access_token)")
-        navigationController?.popViewController(animated: true)
+        delegate?.userDidLogin(authToken: auth.access_token)
     }
 }
 
 extension LoginViewController: ErrorViewController {
-    func showError(_ error: NSError) {
+    public func showError(_ error: Error) {
         //  we're not really going to show errors here since it's kind of managed by the web
         print("error: \(error.localizedDescription)")
     }

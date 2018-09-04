@@ -43,6 +43,6 @@ struct APIUser: Codable, Equatable {
     let bio: String?
 }
 
-struct APICustomColors: Codable, Equatable {
+public struct APICustomColors: Codable, Equatable {
     let custom_colors: [String: String]
 }

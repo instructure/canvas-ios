@@ -17,6 +17,8 @@
 import Foundation
 import CoreData
 
+public let coreDataStore = NSPersistentContainer.shared
+
 extension NSPersistentContainer {
     public static var shared: NSPersistentContainer {
         let bundle = Bundle(identifier: "com.instructure.icanvas.Core")!
@@ -52,5 +54,21 @@ extension NSPersistentContainer: DatabaseStore {
 
     public var mainClient: DatabaseClient {
         return viewContext
+    }
+
+    public func clearAllRecords() throws {
+        do {
+            try persistentStoreCoordinator.managedObjectModel.entities.forEach { (entity) in
+                if let name = entity.name {
+                    let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: name)
+                    let request = NSBatchDeleteRequest(fetchRequest: fetch)
+                    try viewContext.execute(request)
+                }
+            }
+
+            try viewContext.save()
+        } catch {
+            throw error
+        }
     }
 }

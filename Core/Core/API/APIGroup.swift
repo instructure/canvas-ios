@@ -20,6 +20,7 @@ import Foundation
 public struct APIGroup: Codable, Equatable {
     let id: String
     let name: String
+    let concluded: Bool
     // let description: String?
     // let is_public: Bool
     // let followed_by_user: Bool

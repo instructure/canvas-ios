@@ -25,6 +25,12 @@ class DashboardViewController: UIViewController, DashboardViewProtocol {
     var presenter: DashboardPresenterProtocol?
     var viewModel: DashboardViewModel?
 
+    lazy var refreshControl: UIRefreshControl = {
+        let rc = UIRefreshControl()
+        rc.addTarget(self, action: #selector(DashboardViewController.refreshControlHandler(_:)), for: .valueChanged)
+        return rc
+    }()
+
     let gutterWidth: CGFloat = 16
     let coursesColumns: CGFloat = 2
     let groupsColumns: CGFloat = 1
@@ -60,6 +66,8 @@ class DashboardViewController: UIViewController, DashboardViewProtocol {
         collectionView.delegate = self
         collectionView.dataSource = self
 
+        collectionView.refreshControl = refreshControl
+
         presenter?.viewIsReady()
     }
 
@@ -71,6 +79,16 @@ class DashboardViewController: UIViewController, DashboardViewProtocol {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         presenter?.pageViewEnded()
+    }
+
+    @objc
+    func refreshControlHandler(_ sender: Any) {
+        navigationItem.rightBarButtonItem?.isEnabled = false
+        refreshView()
+    }
+
+    func refreshView() {
+        presenter?.refreshRequested()
     }
 
     func updateDisplay(_ viewModel: DashboardViewModel) {
@@ -86,6 +104,8 @@ class DashboardViewController: UIViewController, DashboardViewProtocol {
 
         // display courses
         collectionView.reloadData()
+        refreshControl.endRefreshing()
+        navigationItem.rightBarButtonItem?.isEnabled = true
     }
 
     @objc
@@ -100,6 +120,12 @@ class DashboardViewController: UIViewController, DashboardViewProtocol {
     }
 }
 
+extension DashboardViewController: ErrorViewController {
+    func showError(_ error: Error) {
+        print("Dashboard error: \(error.localizedDescription)")
+    }
+}
+
 enum DashboardViewSection: Int {
     case courses = 0
     case groups = 1
@@ -107,7 +133,11 @@ enum DashboardViewSection: Int {
 
 extension DashboardViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
+        guard let vm = viewModel else {
+            return 0
+        }
+
+        return (vm.favorites.count + vm.groups.count) > 0 ? 2 : 0
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

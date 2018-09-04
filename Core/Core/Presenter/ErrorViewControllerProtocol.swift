@@ -16,6 +16,6 @@
 
 import Foundation
 
-protocol ErrorViewController {
-    func showError(_ error: NSError)
+public protocol ErrorViewController: class {
+    func showError(_ error: Error)
 }

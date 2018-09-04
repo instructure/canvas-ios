@@ -34,4 +34,5 @@ public protocol DatabaseStore {
     var mainClient: DatabaseClient { get }
     func perform(block: @escaping (DatabaseClient) -> Void)
     func performBackgroundTask(block: @escaping (DatabaseClient) -> Void)
+    func clearAllRecords() throws
 }

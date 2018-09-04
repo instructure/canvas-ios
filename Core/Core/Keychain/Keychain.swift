@@ -36,14 +36,21 @@ public struct KeychainConfig {
 }
 
 public struct KeychainEntry: Codable, Hashable {
-    let token: String
-    let baseURL: String
+    public var token: String
+    public var baseURL: String
+
+    public init(token: String, baseURL: String) {
+        self.baseURL = baseURL
+        self.token = token
+    }
 }
 
 open class Keychain {
 
     // If not config is set, will use the default access group for the canvas apps
     open static var config: KeychainConfig?
+
+    open static var currentSession: KeychainEntry?
 
     open static var entries: Set<KeychainEntry> {
         guard let data = getData() else { return [] }

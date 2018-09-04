@@ -35,23 +35,28 @@ protocol AllCoursesPresenterProtocol {
     func pageViewStarted()
     func pageViewEnded()
     func loadData()
+    func refreshRequested()
     func courseWasSelected(_ courseID: String)
     func courseOptionsWasSelected(_ courseID: String)
 }
 
 class AllCoursesPresenter: AllCoursesPresenterProtocol {
-    weak var view: AllCoursesViewProtocol?
+    weak var view: (AllCoursesViewProtocol & ErrorViewController)?
+    let api: API
+    let database: DatabaseStore
+    var groupOperation: GroupOperation?
 
-    init(view: AllCoursesViewProtocol?) {
+    lazy var coursesFetch: FetchedResultsController<Course> = {
+        let sort = NSSortDescriptor(key: "name", ascending: true)
+        let fetcher: FetchedResultsController<Course> = database.mainClient.fetchedResultsController(predicate: NSPredicate.all, sortDescriptors: [sort], sectionNameKeyPath: nil)
+        fetcher.delegate = self
+        return fetcher
+    }()
+
+    init(view: (AllCoursesViewProtocol & ErrorViewController)?, api: API = URLSessionAPI(), database: DatabaseStore = coreDataStore) {
         self.view = view
-    }
-
-    func loadData() {
-        let vm = mockViewModel()
-        view?.updateDisplay(vm)
-
-        // GetCourses(api: <#T##API#>, database: <#T##DatabaseStore#>, force: <#T##Bool#>)
-
+        self.api = api
+        self.database = database
     }
 
     func courseWasSelected(_ courseID: String) {
@@ -74,15 +79,72 @@ class AllCoursesPresenter: AllCoursesPresenterProtocol {
         // route/modal
     }
 
-    func mockViewModel() -> AllCoursesViewModel {
-        var courses = [AllCoursesViewModel.Course]()
-        courses.append(AllCoursesViewModel.Course(courseID: "1", title: "A Navigation Test", abbreviation: "ANT", color: .darkGray, imageUrl: nil))
-        courses.append(AllCoursesViewModel.Course(courseID: "2", title: "Annotations", abbreviation: "ANN", color: .blue, imageUrl: nil))
-        courses.append(AllCoursesViewModel.Course(courseID: "3", title: "Announcements", abbreviation: "AN", color: .orange, imageUrl: nil))
-        courses.append(AllCoursesViewModel.Course(courseID: "4", title: "Assignment Grades", abbreviation: "AG", color: .red, imageUrl: nil))
-        courses.append(AllCoursesViewModel.Course(courseID: "5", title: "Quiz Questions", abbreviation: "QQ", color: .green, imageUrl: nil))
-        courses.append(AllCoursesViewModel.Course(courseID: "6", title: "Quizzes NEXT", abbreviation: "QN", color: .cyan, imageUrl: nil))
+    func refreshRequested() {
+        loadDataFromServer()
+    }
 
-        return AllCoursesViewModel(current: courses, past: courses)
+    func loadData() {
+        do {
+            try coursesFetch.performFetch()
+        } catch {
+            view?.showError(error)
+        }
+
+        // Get from cache to start
+        fetchData()
+
+        // Get from server
+        loadDataFromServer()
+    }
+
+    func loadDataFromServer() {
+        if let gop = self.groupOperation, !gop.isFinished {
+            return
+        }
+
+        let getCourses = GetCourses(api: api, database: database)
+        let getColors = GetCustomColors(api: api, database: database)
+        getColors.addDependency(getCourses)
+
+        let groupOperation = GroupOperation(operations: [getCourses, getColors])
+        groupOperation.completionBlock = { [weak self] in
+            // Load data from data store once our big group finishes
+            self?.fetchData()
+        }
+        self.groupOperation = groupOperation
+
+        queue.addGroupOperationWithErrorHandling(groupOperation, sendErrorsTo: view)
+    }
+
+    func fetchData() {
+        let courses = coursesFetch.fetchedObjects ?? []
+        let vm = transformToViewModel(current: courses, past: courses)
+        DispatchQueue.main.async {
+            self.view?.updateDisplay(vm)
+        }
+    }
+
+    func transformToViewModel(current: [Course], past: [Course]) -> AllCoursesViewModel {
+        let vms = current.compactMap { (course: Course) -> AllCoursesViewModel.Course? in
+            guard let id = course.id, let name = course.name else {
+                return nil
+            }
+            return AllCoursesViewModel.Course(courseID: id, title: name, abbreviation: course.courseCode ?? "", color: UIColor(hexString: course.color) ?? .gray, imageUrl: nil)
+        }
+
+        let vm = AllCoursesViewModel(current: vms, past: vms)
+        return vm
+    }
+}
+
+extension AllCoursesPresenter: FetchedResultsControllerDelegate {
+    func controllerDidChangeContent<T>(_ controller: FetchedResultsController<T>) {
+        guard let gop = groupOperation else {
+            return
+        }
+
+        if gop.isFinished {
+            fetchData()
+        }
     }
 }

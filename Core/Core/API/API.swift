@@ -22,10 +22,11 @@ public protocol API {
 
 public struct URLSessionAPI: API {
     var baseURL: URL {
-        return /* Keychain.currentSession?.baseURL ?? */ URL(string: "https://canvas.instructure.com/")!
+        let url = Keychain.currentSession?.baseURL ?? "https://canvas.instructure.com/"
+        return URL(string: url)!
     }
     var accessToken: String {
-        return /* Keychain.currentSession?.accessToken ?? */ ""
+        return Keychain.currentSession?.token ?? ""
     }
 
     private static var defaultUrlSessionConfiguration: URLSessionConfiguration {
@@ -50,9 +51,7 @@ public struct URLSessionAPI: API {
             let task = urlSession.dataTask(with: request) { data, response, error in
                 guard let data = data, error == nil else { return callback(nil, response, error) }
                 do {
-                    let decoder = JSONDecoder()
-                    decoder.dateDecodingStrategy = .iso8601
-                    callback(try decoder.decode(R.Response.self, from: data), response, error)
+                    callback(try requestable.decode(data), response, error)
                 } catch let error {
                     callback(nil, response, error)
                 }

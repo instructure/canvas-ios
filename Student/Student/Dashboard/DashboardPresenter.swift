@@ -54,10 +54,31 @@ protocol DashboardPresenterProtocol {
 }
 
 class DashboardPresenter: DashboardPresenterProtocol {
-    weak var view: DashboardViewProtocol?
+    weak var view: (DashboardViewProtocol & ErrorViewController)?
+    let api: API
+    let database: DatabaseStore
+    var groupOperation: GroupOperation?
 
-    init(view: DashboardViewProtocol?) {
+    lazy var coursesFetch: FetchedResultsController<Course> = {
+        let predicate = NSPredicate(format: "isFavorite == YES")
+        let sort = NSSortDescriptor(key: "name", ascending: true)
+        let fetcher: FetchedResultsController<Course> = database.mainClient.fetchedResultsController(predicate: predicate, sortDescriptors: [sort], sectionNameKeyPath: nil)
+        fetcher.delegate = self
+        return fetcher
+    }()
+
+    lazy var groupsFetch: FetchedResultsController<Group> = {
+        let predicate = NSPredicate(format: "concluded == NO")
+        let sort = NSSortDescriptor(key: "name", ascending: true)
+        let fetcher: FetchedResultsController<Group> = database.mainClient.fetchedResultsController(predicate: predicate, sortDescriptors: [sort], sectionNameKeyPath: nil)
+        fetcher.delegate = self
+        return fetcher
+    }()
+
+    init(view: (DashboardViewProtocol & ErrorViewController)?, api: API = URLSessionAPI(), database: DatabaseStore = coreDataStore) {
         self.view = view
+        self.api = api
+        self.database = database
     }
 
     func courseWasSelected(_ courseID: String) {
@@ -96,36 +117,92 @@ class DashboardPresenter: DashboardPresenterProtocol {
     }
 
     func refreshRequested() {
-        loadData()
+        loadDataFromServer()
     }
 
     func loadData() {
-        let vm = mockViewModel()
-        view?.updateDisplay(vm)
+        do {
+            try coursesFetch.performFetch()
+            try groupsFetch.performFetch()
+        } catch {
+            view?.showError(error)
+        }
+
+        // Load data from cache, if any
+        fetchData()
+
+        // Make requests for updated data
+        loadDataFromServer()
     }
 
-    func mockViewModel() -> DashboardViewModel {
-        var courses = [DashboardViewModel.Course]()
-        courses.append(DashboardViewModel.Course(courseID: "1", title: "A Navigation Test", abbreviation: "ANT", color: .darkGray,
-            imageUrl: URL(string: "https://upload.wikimedia.org/wikipedia/commons/a/a0/Sunflower_as_gif_websafe.gif")))
-        courses.append(DashboardViewModel.Course(courseID: "2", title: "Annotations", abbreviation: "ANN", color: .blue,
-            imageUrl: URL(string: "https://upload.wikimedia.org/wikipedia/commons/0/02/SVG_logo.svg")))
-        courses.append(DashboardViewModel.Course(courseID: "3", title: "Announcements", abbreviation: "AN", color: .orange,
-            imageUrl: URL(string: "https://media.giphy.com/media/CyNwabts0egVy/giphy.gif")))
-        courses.append(DashboardViewModel.Course(courseID: "4", title: "Assignment Grades", abbreviation: "AG", color: .red,
-            imageUrl: URL(string: "https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png")))
-        //        courses.append(DashboardCourseModel(courseID: "5", title: "Quiz Questions", abbreviation: "QQ", color: .green, imageUrl: nil))
-        //        courses.append(DashboardCourseModel(courseID: "6", title: "Quizzes NEXT", abbreviation: "QN", color: .cyan, imageUrl: nil))
+    func loadDataFromServer() {
+        if let gop = self.groupOperation, !gop.isFinished {
+            return
+        }
 
-        var groups = [DashboardViewModel.Group]()
-        groups.append(DashboardViewModel.Group(groupID: "1", groupName: "Team 1", courseName: "Course Groups", term: "DEFAULT TERM", color: .blue))
-        groups.append(DashboardViewModel.Group(groupID: "2", groupName: "Team 1", courseName: "Assignment Grades", term: "DEFAULT TERM", color: .red))
-        groups.append(DashboardViewModel.Group(groupID: "3", groupName: "Mighty Pulp Wannabees", courseName: "Course Groups", term: "DEFAULT TERM", color: .green))
-        groups.append(DashboardViewModel.Group(groupID: "4", groupName: "Bitter Water Assassins", courseName: "Course Groups", term: "DEFAULT TERM", color: .orange))
+        let getColors = GetCustomColors(api: api, database: database)
+        let getCourses = GetCourses(api: api, database: database)
+        let getGroups = GetUserGroups(api: api, database: database)
+
+        let group = GroupOperation(operations: [getCourses, getGroups])
+        getColors.addDependency(group)
+
+        let groupOperation = GroupOperation(operations: [group, getColors])
+        groupOperation.completionBlock = { [weak self] in
+            // Load data from data store once our big group finishes
+            self?.fetchData()
+        }
+        self.groupOperation = groupOperation
+
+        queue.addGroupOperationWithErrorHandling(groupOperation, sendErrorsTo: view)
+    }
+
+    func fetchData() {
+        let courses = coursesFetch.fetchedObjects ?? []
+        let groups = groupsFetch.fetchedObjects ?? []
+
+        let vm = transformToViewModel(courses: courses, groups: groups)
+        DispatchQueue.main.async { [weak self] in
+            self?.view?.updateDisplay(vm)
+        }
+    }
+
+    func transformToViewModel(courses: [Course], groups: [Group]) -> DashboardViewModel {
+        let cs = courses.compactMap { (course: Course) -> DashboardViewModel.Course? in
+            guard let id = course.id, let name = course.name else {
+                return nil
+            }
+
+            var imageUrl: URL?
+            if let urlString = course.imageDownloadUrl {
+                imageUrl = URL(string: urlString)
+            }
+
+            return DashboardViewModel.Course(courseID: id, title: name, abbreviation: course.courseCode ?? "", color: UIColor(hexString: course.color) ?? .gray, imageUrl: imageUrl)
+        }
+
+        let gs = groups.compactMap { (group: Group) -> DashboardViewModel.Group? in
+            guard let id = group.id, let name = group.name else {
+                return nil
+            }
+            return DashboardViewModel.Group(groupID: id, groupName: name, courseName: nil, term: nil, color: UIColor(hexString: group.color) ?? .blue)
+        }
 
         let navBackgroundColor: UIColor = .black
         let logo = URL(string: "https://emoji.slack-edge.com/T028ZAGUD/laugh/2d2ad81e3d71f12e.gif")!
 
-        return DashboardViewModel(navBackgroundColor: navBackgroundColor, navLogoUrl: logo, favorites: courses, groups: groups)
+        return DashboardViewModel(navBackgroundColor: navBackgroundColor, navLogoUrl: logo, favorites: cs, groups: gs)
+    }
+}
+
+extension DashboardPresenter: FetchedResultsControllerDelegate {
+    func controllerDidChangeContent<T>(_ controller: FetchedResultsController<T>) {
+        guard let gop = groupOperation else {
+            return
+        }
+
+        if gop.isFinished {
+            fetchData()
+        }
     }
 }

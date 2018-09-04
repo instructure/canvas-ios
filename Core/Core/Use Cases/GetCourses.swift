@@ -17,7 +17,7 @@
 import Foundation
 
 public class GetCourses: CollectionUseCase<GetCoursesRequest, Course> {
-    init(api: API, database: DatabaseStore) {
+    public init(api: API, database: DatabaseStore) {
         let request = GetCoursesRequest(includeUnpublished: true)
         super.init(api: api, database: database, request: request)
     }
@@ -33,5 +33,8 @@ public class GetCourses: CollectionUseCase<GetCoursesRequest, Course> {
     override func updateModel(_ model: Course, using item: APICourse, in client: DatabaseClient) throws {
         model.id = item.id
         model.name = item.name
+        model.isFavorite = item.is_favorite ?? false
+        model.courseCode = item.course_code
+        model.imageDownloadUrl = item.image_download_url
     }
 }

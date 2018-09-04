@@ -32,5 +32,8 @@ public class GetCourse: DetailUseCase<GetCourseRequest, Course> {
     override public func updateModel(_ model: Course, using item: APICourse, in client: DatabaseClient) throws {
         model.id = item.id
         model.name = item.name
+        model.isFavorite = item.is_favorite ?? false
+        model.courseCode = item.course_code
+        model.imageDownloadUrl = item.image_download_url
     }
 }

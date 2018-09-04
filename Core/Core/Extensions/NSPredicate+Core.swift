@@ -17,11 +17,11 @@
 import Foundation
 
 extension NSPredicate {
-    static var all: NSPredicate {
+    public static var all: NSPredicate {
         return NSPredicate(value: true)
     }
 
-    static func id(_ id: String) -> NSPredicate {
+    public static func id(_ id: String) -> NSPredicate {
         return NSPredicate(format: "%K == %@", "id", id)
     }
 }

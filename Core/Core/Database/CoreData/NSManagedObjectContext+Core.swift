@@ -28,6 +28,7 @@ extension NSManagedObjectContext: DatabaseClient {
         let name = String(describing: T.self)
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: name)
         fetchRequest.sortDescriptors = sortDescriptors
+        fetchRequest.predicate = predicate
         return CoreDataFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self, sectionNameKeyPath: sectionNameKeyPath)
     }
 

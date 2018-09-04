@@ -22,7 +22,7 @@ struct APIEnrollment: Codable, Equatable {
     let course_id: String?
     // let sis_course_id: String?
     // let course_integration_id: String?
-    let course_section_id: String
+    let course_section_id: String?
     // let section_integration_id: String?
     // let sis_account_id: String?
     // let sis_section_id: String?
@@ -45,7 +45,7 @@ struct APIEnrollment: Codable, Equatable {
     // let total_activity_time: TimeInterval
     // let html_url: String
     let grades: Grades?
-    let user: APIUser
+    // let user: APIUser
     // let computed_current_score: Double?
     // let computed_final_score: Double?
     let computed_current_grade: String?
@@ -73,11 +73,12 @@ struct APIEnrollment: Codable, Equatable {
             TeacherEnrollment,
             TaEnrollment,
             DesignerEnrollment,
-            ObserverEnrollment
+            ObserverEnrollment,
+            student
     }
 
     enum State: String, Codable {
-        case active, inactive, invited
+        case active, inactive, invited, completed
     }
 
     // https://canvas.instructure.com/doc/api/enrollments.html#Grade

@@ -24,6 +24,7 @@ extension APIGroup: Fixture {
             "name": "Group One",
             "members_count": 1,
             "group_category_id": "1",
+            "concluded": false,
         ]
     }
 }
