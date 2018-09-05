@@ -18,12 +18,12 @@ import UIKit
 import Core
 
 class DashboardCourseCell: UICollectionViewCell {
-    @IBOutlet var topView: UIView!
-    @IBOutlet var optionsButton: UIButton!
-    @IBOutlet var imageView: UIImageView!
-    @IBOutlet var bottomView: UIView!
-    @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var abbrevationLabel: UILabel!
+    @IBOutlet var topView: UIView?
+    @IBOutlet var optionsButton: UIButton?
+    @IBOutlet var imageView: UIImageView?
+    @IBOutlet var bottomView: UIView?
+    @IBOutlet var titleLabel: UILabel?
+    @IBOutlet var abbrevationLabel: UILabel?
 
     var optionsCallback: (() -> Void)?
 
@@ -54,22 +54,18 @@ class DashboardCourseCell: UICollectionViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
-        titleLabel.text = ""
-        titleLabel.textColor = UIColor.black
-        abbrevationLabel.text = ""
-        imageView.image = nil
+        titleLabel?.text = ""
+        titleLabel?.textColor = UIColor.black
+        abbrevationLabel?.text = ""
+        imageView?.load(url: nil)
     }
 
     func configure(with model: DashboardViewModel.Course) {
-        titleLabel.text = model.title
-        titleLabel.textColor = model.color
-        abbrevationLabel.text = model.abbreviation
-        topView.backgroundColor = model.color
-        if let url = model.imageUrl {
-            ImageLoader.load(url: url, frame: imageView.frame, size: .cover) { [weak self] image, _ in
-                self?.imageView.image = image
-            }
-        }
+        titleLabel?.text = model.title
+        titleLabel?.textColor = model.color
+        abbrevationLabel?.text = model.abbreviation
+        topView?.backgroundColor = model.color
+        imageView?.load(url: model.imageUrl)
     }
 
     @IBAction func optionsButtonTapped(_ sender: Any) {

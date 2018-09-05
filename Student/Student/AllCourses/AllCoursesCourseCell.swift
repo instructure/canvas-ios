@@ -37,15 +37,15 @@ class AllCoursesCourseCell: UICollectionViewCell {
     // TODO: Switch to using a "bubble" image with rounded corners
     // and drop shadow so that is is more efficient
     func roundCornersAndDropShadow() {
-        contentView.layer.cornerRadius = 5.0
-        contentView.layer.borderWidth = 1.0
-        contentView.layer.borderColor = UIColor.clear.cgColor
+        contentView.layer.cornerRadius = 4.0
+        contentView.layer.borderWidth = 1.0 / UIScreen.main.nativeScale
+        contentView.layer.borderColor = UIColor(white: 0.89, alpha: 1.0).cgColor
         contentView.clipsToBounds = true
 
-        layer.shadowColor = UIColor.lightGray.cgColor
-        layer.shadowOffset = CGSize(width: 0, height: 2.0)
-        layer.shadowRadius = 2.0
-        layer.shadowOpacity = 0.75
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOffset = CGSize(width: 0, height: 1.0)
+        layer.shadowRadius = 1.0
+        layer.shadowOpacity = 0.2
         layer.masksToBounds = false
         layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: contentView.layer.cornerRadius).cgPath
         layer.backgroundColor = UIColor.clear.cgColor
@@ -56,6 +56,7 @@ class AllCoursesCourseCell: UICollectionViewCell {
         titleLabel.text = ""
         titleLabel.textColor = UIColor.black
         abbrevationLabel.text = ""
+        imageView?.load(url: nil)
     }
 
     func configure(with model: AllCoursesViewModel.Course) {
@@ -63,6 +64,7 @@ class AllCoursesCourseCell: UICollectionViewCell {
         titleLabel.textColor = model.color
         abbrevationLabel.text = model.abbreviation
         topView.backgroundColor = model.color
+        imageView?.load(url: model.imageUrl)
     }
 
     @IBAction func optionsButtonTapped(_ sender: Any) {

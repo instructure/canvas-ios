@@ -23,7 +23,7 @@ struct AllCoursesViewModel {
         let title: String
         let abbreviation: String
         let color: UIColor
-        let imageUrl: String?
+        let imageUrl: URL?
     }
 
     var current: [Course]
@@ -129,7 +129,11 @@ class AllCoursesPresenter: AllCoursesPresenterProtocol {
             guard let id = course.id, let name = course.name else {
                 return nil
             }
-            return AllCoursesViewModel.Course(courseID: id, title: name, abbreviation: course.courseCode ?? "", color: UIColor(hexString: course.color) ?? .gray, imageUrl: nil)
+            var imageUrl: URL?
+            if let string = course.imageDownloadUrl {
+                imageUrl = URL(string: string)
+            }
+            return AllCoursesViewModel.Course(courseID: id, title: name, abbreviation: course.courseCode ?? "", color: UIColor(hexString: course.color) ?? .gray, imageUrl: imageUrl)
         }
 
         let vm = AllCoursesViewModel(current: vms, past: vms)

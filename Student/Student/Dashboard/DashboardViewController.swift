@@ -98,9 +98,7 @@ class DashboardViewController: UIViewController, DashboardViewProtocol {
 
         // update header
         navigationController?.navigationBar.barTintColor = viewModel.navBackgroundColor
-        ImageLoader.load(url: viewModel.navLogoUrl, frame: logoView.frame) { [weak self] image, _ in
-            self?.logoView.image = image
-        }
+        logoView.load(url: viewModel.navLogoUrl)
 
         // display courses
         collectionView.reloadData()
