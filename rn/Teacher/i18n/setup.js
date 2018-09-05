@@ -16,6 +16,9 @@
 
 /* @flow */
 
+import {
+  NativeModules,
+} from 'react-native'
 import i18n from 'format-message'
 import translations from './locales/index'
 
@@ -33,8 +36,19 @@ export function sanitizeLocale (locale: ?string): string {
   return locale.replace('_', '-')
 }
 
+let currentLocale: string = ''
+export function getLocale (): string {
+  if (!currentLocale) {
+    console.warn('You have accessed the locale before it has been set. Are you positive you want to do this?')
+    return NativeModules.SettingsManager.settings.AppleLocale
+  }
+
+  return currentLocale
+}
+
 export default function (locale: ?string): void {
   const sanitizedLocale = sanitizeLocale(locale)
+  currentLocale = sanitizedLocale
   i18n.setup({
     // generateId underscored_crc32 done via babel transform
     locale: sanitizedLocale,

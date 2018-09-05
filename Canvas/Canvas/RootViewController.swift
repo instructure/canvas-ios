@@ -72,7 +72,7 @@ func EnrollmentsTab(session: Session) throws -> UIViewController {
     dashboardNav.delegate = dashboardSplit
     dashboardNav.applyDefaultBranding()
     dashboardSplit.viewControllers = [dashboardNav, emptyNav]
-    dashboardSplit.tabBarItem.title = NSLocalizedString("Dashboard", comment: "dashboard page title")
+    dashboardSplit.tabBarItem.title = NSLocalizedString("Dashboard", tableName: "Localizable", bundle: LocalizationManager.localizedMainBundle, value: "", comment: "")
     dashboardSplit.tabBarItem.image = .icon(.course)
     dashboardSplit.navigationItem.titleView = Brand.current.navBarTitleView()
     return dashboardSplit

@@ -64,7 +64,6 @@ global.crashReporter = new Client(configuration)
 // Useful for demos when you don't want that annoying yellow box showing up all over the place
 // such as, when demoing
 console.disableYellowBox = true
-setupI18n(NativeModules.SettingsManager.settings.AppleLocale)
 
 const {
   NativeLogin,
@@ -86,6 +85,7 @@ const loginHandler = async ({
   actAsUserID,
   skipHydrate,
   countryCode,
+  locale,
 }: {
   appId: AppId,
   authToken: string,
@@ -95,7 +95,9 @@ const loginHandler = async ({
   actAsUserID: ?string,
   skipHydrate: boolean,
   countryCode: string,
+  locale: string,
 }) => {
+  setupI18n(locale || NativeModules.SettingsManager.settings.AppleLocale)
   App.setCurrentApp(appId)
   stopUpdatingBadgeCounts()
 

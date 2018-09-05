@@ -78,8 +78,10 @@ import FeatureFlags from '../modules/developer-menu/FeatureFlags'
 import RatingRequest from '../modules/developer-menu/RatingRequest'
 import GradesList from '../modules/grades/GradesList'
 import PageViewEvents from '../modules/developer-menu/PageViewEvents'
+import LanguagePicker from '../modules/developer-menu/LanguagePicker'
 import NotAParent from '../modules/parent/NotAParent'
 import ConferenceList from '../modules/courses/conferences/ConferenceList'
+
 import { Store } from 'redux'
 import { registerScreen } from './'
 import { isTeacher, isStudent, isParent } from '../modules/app'
@@ -163,6 +165,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/push-notifications', wrap(PushNotifications), store)
   registerScreen('/page-view-events', wrap(PageViewEvents), store)
   registerScreen('/feature-flags', wrap(FeatureFlags), store)
+  registerScreen('/language-picker', wrap(LanguagePicker), store)
   registerScreen('/rating-request', wrap(RatingRequest), store)
 
   if (isTeacher()) {

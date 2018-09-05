@@ -21,8 +21,6 @@ import TechDebt
 import CanvasCore
 
 public func CalendarTabViewController(session: Session, route: @escaping (UIViewController, URL)->()) throws -> UIViewController {
-    let calendarTitle = NSLocalizedString("Calendar", comment: "Calendar page title")
-
     let calendarVC: UIViewController
     if UIDevice.current.userInterfaceIdiom == .phone {
         let monthVC = CalendarMonthViewController.new(session)
@@ -38,7 +36,7 @@ public func CalendarTabViewController(session: Session, route: @escaping (UIView
         calendarVC = splitVC
     }
     
-    calendarVC.tabBarItem.title = calendarTitle
+    calendarVC.tabBarItem.title = NSLocalizedString("Calendar", tableName: "Localizable", bundle: LocalizationManager.localizedMainBundle, value: "", comment: "Calendar page title")
     calendarVC.tabBarItem.image = .icon(.calendar)
 
     return calendarVC

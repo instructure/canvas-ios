@@ -14,10 +14,12 @@
 		2C4EBB3B204DFC820085D00E /* UITabBarController+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4EBB3A204DFC820085D00E /* UITabBarController+Core.swift */; };
 		2C4FAD3220487DD6000551EB /* UINavigationController+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4FAD3120487DD6000551EB /* UINavigationController+Core.swift */; };
 		2C5649E820111E0400C0D1BB /* EnrollmentSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD7769D201111F700589D4F /* EnrollmentSplitViewController.swift */; };
+		2C5FDC1B2140759700633BB4 /* LocalizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5FDC1A2140759600633BB4 /* LocalizationManager.swift */; };
 		2C6796C01FD9E36B00BE7BC0 /* DrawerTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6796BF1FD9E36B00BE7BC0 /* DrawerTransition.swift */; };
 		2C68DCF32086786E00A1EBFA /* UIPickerView+Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C68DCF22086786E00A1EBFA /* UIPickerView+Quiz.swift */; };
 		2C7CBD2B1F79A42600E5EC02 /* CGRect+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7CBD2A1F79A42600E5EC02 /* CGRect+Core.swift */; };
 		2C8E35702093A0340071ED94 /* AppReset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8E356F2093A0340071ED94 /* AppReset.swift */; };
+		2C932FCF20B36848003DE5DF /* LocalizationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C932FCD20B36848003DE5DF /* LocalizationManager.m */; };
 		2CAF17801F7AF61100EA2742 /* UIFont+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAF177F1F7AF61100EA2742 /* UIFont+Core.swift */; };
 		2CAF1B1E1F72AEDB007225DF /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CAF1B141F72AEDB007225DF /* CanvasCore.framework */; };
 		2CAF1B251F72AEDB007225DF /* CanvasCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CAF1B171F72AEDB007225DF /* CanvasCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -549,10 +551,13 @@
 		2C34211B1F74099400D8E158 /* OSSAttributionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSSAttributionViewController.swift; sourceTree = "<group>"; };
 		2C4EBB3A204DFC820085D00E /* UITabBarController+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBarController+Core.swift"; sourceTree = "<group>"; };
 		2C4FAD3120487DD6000551EB /* UINavigationController+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Core.swift"; sourceTree = "<group>"; };
+		2C5FDC1A2140759600633BB4 /* LocalizationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationManager.swift; sourceTree = "<group>"; };
 		2C6796BF1FD9E36B00BE7BC0 /* DrawerTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerTransition.swift; sourceTree = "<group>"; };
 		2C68DCF22086786E00A1EBFA /* UIPickerView+Quiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIPickerView+Quiz.swift"; sourceTree = "<group>"; };
 		2C7CBD2A1F79A42600E5EC02 /* CGRect+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Core.swift"; sourceTree = "<group>"; };
 		2C8E356F2093A0340071ED94 /* AppReset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReset.swift; sourceTree = "<group>"; };
+		2C932FCA20B36713003DE5DF /* LocalizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationManager.swift; sourceTree = "<group>"; };
+		2C932FCD20B36848003DE5DF /* LocalizationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalizationManager.m; sourceTree = "<group>"; };
 		2CAF177F1F7AF61100EA2742 /* UIFont+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Core.swift"; sourceTree = "<group>"; };
 		2CAF1B141F72AEDB007225DF /* CanvasCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CAF1B171F72AEDB007225DF /* CanvasCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CanvasCore.h; sourceTree = "<group>"; };
@@ -1255,6 +1260,22 @@
 			path = OSSAttribution;
 			sourceTree = "<group>";
 		};
+		2C5FDC14214073CA00633BB4 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				2C932FCA20B36713003DE5DF /* LocalizationManager.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		2C5FDC172140746D00633BB4 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				2C5FDC1A2140759600633BB4 /* LocalizationManager.swift */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
 		2C60495C1F72B9CE00252BC5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1283,6 +1304,7 @@
 				2CAF1B151F72AEDB007225DF /* Products */,
 				2C60495C1F72B9CE00252BC5 /* Frameworks */,
 				46CE7459FE1EBD655A3B2214 /* Pods */,
+				2C5FDC14214073CA00633BB4 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1298,6 +1320,7 @@
 		2CAF1B161F72AEDB007225DF /* CanvasCore */ = {
 			isa = PBXGroup;
 			children = (
+				2C5FDC172140746D00633BB4 /* Localization */,
 				B1F4E8CD206188DC0056074A /* RCE */,
 				9F2E363320507F0B00A2B031 /* FeatureFlags */,
 				3B210C392052F64E0062F6A7 /* Codable */,
@@ -1814,6 +1837,7 @@
 				B1411D591FE825ED00CD4967 /* CoreDataSyncHelper.swift */,
 				9FB85498208677DB007499DA /* AdjustableManager.m */,
 				9FA866962086820D000ECFC9 /* Adjustable.swift */,
+				2C932FCD20B36848003DE5DF /* LocalizationManager.m */,
 				7DD89E8A20AB626600650227 /* AppStoreReview.m */,
 				B1C3407720D1AD3B00D0554D /* ModuleItemsProgress.m */,
 				2CE2058F20EAC5BD002A6A64 /* CanvasAnalytics.h */,
@@ -3346,6 +3370,7 @@
 				4961F6771F8FB9620093EC86 /* FileUploadViewModel.swift in Sources */,
 				494AE0A01F843A09001A8F31 /* PushNotifications.m in Sources */,
 				7D06401F21139E0C00D23D78 /* QuizListCell.swift in Sources */,
+				2C5FDC1B2140759700633BB4 /* LocalizationManager.swift in Sources */,
 				4930201A1F901CF5006BD777 /* CanvadocsConstants.swift in Sources */,
 				49CE97361F8FFEA600121A43 /* NewSubmissionViewModel.swift in Sources */,
 				494AE0A41F843A09001A8F31 /* WebViewHacker.m in Sources */,
@@ -3530,6 +3555,7 @@
 				4961F6851F8FB9620093EC86 /* FileKit.xcdatamodeld in Sources */,
 				4961F5A21F8FB2A10093EC86 /* UIColor+Toast.swift in Sources */,
 				49CE96941F8FF41B00121A43 /* Question.swift in Sources */,
+				2C932FCF20B36848003DE5DF /* LocalizationManager.m in Sources */,
 				3BDE87761FD76BE600912CB3 /* UISplitViewControllerExtensions.swift in Sources */,
 				2C34211C1F7409CD00D8E158 /* OSSAttributionViewController.swift in Sources */,
 				4961F67D1F8FB9620093EC86 /* File+Details.swift in Sources */,

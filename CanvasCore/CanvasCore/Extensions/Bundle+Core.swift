@@ -20,4 +20,8 @@ extension Bundle {
     static var core: Bundle {
         return Bundle(identifier: "com.instructure.CanvasCore")!
     }
+    
+    static var localizedCore: Bundle {
+        return LocalizationManager.localizedBundleForClass(aClass: LocalizationManager.self)
+    }
 }

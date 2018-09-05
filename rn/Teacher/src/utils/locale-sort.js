@@ -15,14 +15,12 @@
 //
 
 // @flow
-import { NativeModules } from 'react-native'
-import { sanitizeLocale } from '../../i18n/setup'
+import { getLocale } from '../../i18n/setup'
 
-export default function localeSort (first: any, second: any, locale?: string): number {
-  locale = sanitizeLocale(locale || NativeModules.SettingsManager.settings.AppleLocale)
+export default function localeSort (first: any, second: any): number {
   let collator
   try {
-    collator = new Intl.Collator(locale)
+    collator = new Intl.Collator(getLocale())
   } catch (e) {
     collator = new Intl.Collator('en')
   }
