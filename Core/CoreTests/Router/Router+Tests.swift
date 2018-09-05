@@ -40,70 +40,18 @@ class RouterTests: XCTestCase {
     func testRouteNoMatch() {
         let mockView = MockViewController()
         let router = Router(routes: [])
-        router.route(to: "/", from: mockView)
+        router.route(to: URLComponents(string: "/")!, from: mockView, options: .modal)
         XCTAssertNil(mockView.shown)
     }
 
-    func testRouteFallback() {
-        let mockView = MockViewController()
-        let router = Router(routes: [
-            Route("/somewhere") { _ in
-                return nil
-            },
-            Route("*path") { _ in
-                return UIViewController()
-            },
-        ])
-        router.route(to: "/somewhere", from: mockView)
-        XCTAssertNotNil(mockView.shown)
-    }
-
-    func testRouteComponents() {
+    func testRouteMatch() {
         let mockView = MockViewController()
         let router = Router(routes: [
             Route("/somewhere") { _ in
                 return UIViewController()
             },
         ])
-        var components = URLComponents()
-        components.path = "/somewhere"
-        router.route(to: components, from: mockView)
-        XCTAssertNotNil(mockView.shown)
-    }
-
-    func testRouteAbsoluteComponents() {
-        let mockView = MockViewController()
-        let router = Router(routes: [
-            Route("/somewhere") { _ in
-                return UIViewController()
-            },
-        ])
-        let components = URLComponents(string: "https://canvas.instructure.com/somewhere")!
-        router.route(to: components, from: mockView)
-        XCTAssertNotNil(mockView.shown)
-    }
-
-    func testRouteURL() {
-        let mockView = MockViewController()
-        let router = Router(routes: [
-            Route("/somewhere") { _ in
-                return UIViewController()
-            },
-        ])
-        let url = URL(string: "/somewhere")!
-        router.route(to: url, from: mockView, options: .modal)
-        XCTAssertNotNil(mockView.shown)
-    }
-
-    func testRouteAbsoluteURL() {
-        let mockView = MockViewController()
-        let router = Router(routes: [
-            Route("/somewhere") { _ in
-                return UIViewController()
-            },
-        ])
-        let url = URL(string: "https://canvas.instructure.com/somewhere")!
-        router.route(to: url, from: mockView, options: .modal)
+        router.route(to: URLComponents(string: "/somewhere")!, from: mockView)
         XCTAssertNotNil(mockView.shown)
     }
 
@@ -114,31 +62,51 @@ class RouterTests: XCTestCase {
                 return UIViewController()
             },
         ])
-        let url = "/somewhere"
-        router.route(to: url, from: mockView, options: .modal)
+        router.route(to: "/somewhere", from: mockView)
         XCTAssertNotNil(mockView.shown)
     }
 
-    func testRouteAbsoluteString() {
+    func testRouteURL() {
         let mockView = MockViewController()
         let router = Router(routes: [
             Route("/somewhere") { _ in
                 return UIViewController()
             },
         ])
-        let url = "https://canvas.instructure.com/somewhere"
-        router.route(to: url, from: mockView, options: .modal)
+        router.route(to: URL(string: "https://canvas.instructure.com/somewhere")!, from: mockView)
         XCTAssertNotNil(mockView.shown)
     }
 
-    func testRouteBadString() {
-        let mockView = MockViewController()
+    func testMatchFallback() {
         let router = Router(routes: [
-            Route("/somewhere ") { _ in
+            Route("/somewhere") { _ in
+                return nil
+            },
+            Route("*path") { _ in
                 return UIViewController()
             },
         ])
-        router.route(to: "/somewhere ", from: mockView)
-        XCTAssertNil(mockView.shown)
+        XCTAssertNotNil(router.match(URLComponents(string: "/somewhere")!))
+    }
+
+    func testMatch() {
+        let router = Router(routes: [
+            Route("/somewhere") { _ in
+                return UIViewController()
+            },
+        ])
+        var components = URLComponents()
+        components.path = "/somewhere"
+        XCTAssertNotNil(router.match(components))
+    }
+
+    func testMatchAbsolute() {
+        let router = Router(routes: [
+            Route("/somewhere") { _ in
+                return UIViewController()
+            },
+        ])
+        let components = URLComponents(string: "https://canvas.instructure.com/somewhere")!
+        XCTAssertNotNil(router.match(components))
     }
 }

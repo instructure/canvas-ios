@@ -38,22 +38,26 @@ public class Router {
         return routes.count
     }
 
-    public func route(to string: String, from: UIViewController, options: RouteOptions? = nil) {
-        guard let components = URLComponents(string: string) else { return }
-        route(to: components, from: from, options: options)
+    public func match(_ url: URLComponents) -> UIViewController? {
+        for route in routes {
+            if let view = route.match(url) {
+                return view
+            }
+        }
+        return nil
+    }
+
+    public func route(to url: String, from: UIViewController, options: RouteOptions? = nil) {
+        return route(to: .parse(url), from: from, options: options)
     }
 
     public func route(to url: URL, from: UIViewController, options: RouteOptions? = nil) {
-        guard let components = URLComponents(url: url, resolvingAgainstBaseURL: true) else { return }
-        route(to: components, from: from, options: options)
+        return route(to: .parse(url), from: from, options: options)
     }
 
-    public func route(to components: URLComponents, from: UIViewController, options: RouteOptions? = nil) {
-        for route in routes {
-            if let view = route.match(components) {
-                from.show(view, sender: nil)
-                return
-            }
-        }
+    public func route(to url: URLComponents, from: UIViewController, options: RouteOptions? = nil) {
+        guard let view = match(url) else { return }
+
+        from.show(view, sender: nil)
     }
 }

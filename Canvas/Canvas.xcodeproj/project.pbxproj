@@ -1753,7 +1753,6 @@
 		4927046A1CF4AF7100C631C6 = {
 			isa = PBXGroup;
 			children = (
-				7D1D7E04213743D300F7CCFE /* Core.framework */,
 				2C8E356D20939C2D0071ED94 /* Settings.bundle */,
 				4927085D1CF4C33700C631C6 /* Dependencies */,
 				492704751CF4AF7100C631C6 /* Canvas */,
@@ -2786,6 +2785,7 @@
 		5B0FCCDFB07A88D993D5871D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7D1D7E04213743D300F7CCFE /* Core.framework */,
 				3B1642C41FBA0426006C55D2 /* CanvasCore.framework */,
 				3B1642C51FBA0426006C55D2 /* CanvasKeymaster.framework */,
 				2C6049621F72BB6900252BC5 /* CanvasCore.framework */,

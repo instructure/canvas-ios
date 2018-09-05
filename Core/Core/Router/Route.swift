@@ -29,10 +29,8 @@ public struct Route {
     }
 
     public struct Match {
-        public let path: String
+        public let url: URLComponents
         public let params: [String: String]
-        public let query: [String: String]
-        public let fragment: String?
     }
 
     public let template: String
@@ -52,8 +50,8 @@ public struct Route {
         }
     }
 
-    public func match(_ components: URLComponents) -> UIViewController? {
-        var parts = components.path.split(separator: "/")
+    public func match(_ url: URLComponents) -> UIViewController? {
+        var parts = url.path.split(separator: "/")
         var params: [String: String] = [:]
         for segment in segments {
             guard !parts.isEmpty else { return nil } // too short
@@ -69,11 +67,10 @@ public struct Route {
         }
         guard parts.isEmpty else { return nil } // too long
 
-        var query: [String: String] = [:]
-        for item in components.queryItems ?? [] {
-            query[item.name] = item.value?.replacingOccurrences(of: "+", with: " ") ?? ""
-        }
+        // URLComponents does all the encoding we care about except we often have + meaning space in query
+        var cleaned = url
+        cleaned.query = url.query?.replacingOccurrences(of: "+", with: " ")
 
-        return factory(Match(path: components.path, params: params, query: query, fragment: components.fragment))
+        return factory(Match(url: cleaned, params: params))
     }
 }

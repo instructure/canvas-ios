@@ -31,17 +31,17 @@ class RouteTests: XCTestCase {
 
     func testMatch() {
         let route = Route("/a//b/:c/d/*e") { match in
-            XCTAssertEqual(match.path, "a/b//c/d/e//f/g")
             XCTAssertEqual(match.params, [
                 "c": "c",
                 "e": "e/f/g",
             ])
-            XCTAssertEqual(match.query, [
-                "h": "i",
-                "j": " k",
-                "l": "",
+            XCTAssertEqual(match.url.path, "a/b//c/d/e//f/g")
+            XCTAssertEqual(match.url.queryItems, [
+                URLQueryItem(name: "h", value: "i"),
+                URLQueryItem(name: "j", value: " k"),
+                URLQueryItem(name: "l", value: nil),
             ])
-            XCTAssertEqual(match.fragment, "mnop")
+            XCTAssertEqual(match.url.fragment, "mnop")
             return UIViewController()
         }
         XCTAssertNotNil(route.match(URLComponents(string: "a/b//c/d/e//f/g?h=%69&j=+k&l#mnop")!))
