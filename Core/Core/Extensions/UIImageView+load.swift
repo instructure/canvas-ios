@@ -75,10 +75,12 @@ extension UIImageView: ImageLoadingView {
             image = cached.image
             if let images = cached.image.images {
                 image = images.last
-                animationDuration = cached.image.duration
-                animationImages = images
-                animationRepeatCount = cached.repeatCount
-                startAnimating()
+                if !UIAccessibilityIsReduceMotionEnabled() {
+                    animationDuration = cached.image.duration
+                    animationImages = images
+                    animationRepeatCount = cached.repeatCount
+                    startAnimating()
+                }
             }
         }
         loader = nil
@@ -128,9 +130,19 @@ public class ImageLoader {
         loading[key] = []
         loading[key]?.append(self)
 
-        task = URLSession.shared.dataTask(with: url) { data, response, error in
+        // Course images and likely others loaded from S3 sometimes come with content-disposition headers
+        // that prevent automatic caching. Manually storing and retrieving gets around that issue.
+        let request = URLRequest(url: url)
+        if let cached = URLCache.shared.cachedResponse(for: request) {
+            imageFrom(data: cached.data, response: cached.response as? HTTPURLResponse)
+            return nil
+        }
+        task = URLSession.shared.dataTask(with: request) { data, response, error in
             self.task = nil
             if let data = data, error == nil {
+                if let response = response {
+                    URLCache.shared.storeCachedResponse(CachedURLResponse(response: response, data: data), for: request)
+                }
                 self.imageFrom(data: data, response: response as? HTTPURLResponse)
             } else {
                 self.handle(nil, 0, error)
