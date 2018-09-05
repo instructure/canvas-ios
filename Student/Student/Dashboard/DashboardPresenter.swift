@@ -117,7 +117,7 @@ class DashboardPresenter: DashboardPresenterProtocol {
     }
 
     func refreshRequested() {
-        loadDataFromServer()
+        loadDataFromServer(force: true)
     }
 
     func loadData() {
@@ -135,13 +135,13 @@ class DashboardPresenter: DashboardPresenterProtocol {
         loadDataFromServer()
     }
 
-    func loadDataFromServer() {
+    func loadDataFromServer(force: Bool = false) {
         if let gop = self.groupOperation, !gop.isFinished {
             return
         }
 
         let getColors = GetCustomColors(api: api, database: database)
-        let getCourses = GetCourses(api: api, database: database)
+        let getCourses = GetCourses(api: api, database: database, force: force)
         let getGroups = GetUserGroups(api: api, database: database)
 
         let group = GroupOperation(operations: [getCourses, getGroups])

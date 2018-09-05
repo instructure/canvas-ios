@@ -34,17 +34,6 @@ class GetCoursesTest: CoreTestCase {
         XCTAssertEqual(courses.first?.name, "Course 1")
     }
 
-    func testItUpdatesCourses() {
-        let stale = course(["id": "1", "name": "Old Name"])
-        let new = APICourse.make(["id": "1", "name": "New Name"])
-        api.mock(request, value: [new])
-
-        let getCourses = GetCourses(api: api, database: database)
-        addOperationAndWait(getCourses)
-
-        XCTAssertEqual(stale.reload().name, "New Name")
-    }
-
     func testItDeletesCoursesThatNoLongerExist() {
         let course = self.course()
         api.mock(request, value: [], response: nil, error: nil)

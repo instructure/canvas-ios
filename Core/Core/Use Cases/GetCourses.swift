@@ -16,8 +16,8 @@
 
 import Foundation
 
-public class GetCourses: CollectionUseCase<GetCoursesRequest, Course> {
-    public init(api: API, database: DatabaseStore) {
+private class GetPaginatedCourses: PaginatedUseCase<GetCoursesRequest, Course> {
+    init(api: API, database: DatabaseStore) {
         let request = GetCoursesRequest(includeUnpublished: true)
         super.init(api: api, database: database, request: request)
     }
@@ -36,5 +36,13 @@ public class GetCourses: CollectionUseCase<GetCoursesRequest, Course> {
         model.isFavorite = item.is_favorite ?? false
         model.courseCode = item.course_code
         model.imageDownloadUrl = item.image_download_url
+    }
+}
+
+public class GetCourses: GroupOperation {
+    public init(api: API = URLSessionAPI(), database: DatabaseStore, force: Bool = false) {
+        let paginated = GetPaginatedCourses(api: api, database: database)
+        let ttl = TTLOperation(key: "get-courses", database: database, operation: paginated, force: force)
+        super.init(operations: [ttl])
     }
 }

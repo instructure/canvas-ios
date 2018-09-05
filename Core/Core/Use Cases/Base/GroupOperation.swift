@@ -56,4 +56,14 @@ public class GroupOperation: AsyncOperation {
             addOperation(operation)
         }
     }
+
+    public func addSequence(_ operations: [Operation]) {
+        var operations = operations
+        addOperations(operations)
+        while operations.count > 1 {
+            if let operation = operations.popLast(), let dependency = operations.last {
+                operation.addDependency(dependency)
+            }
+        }
+    }
 }

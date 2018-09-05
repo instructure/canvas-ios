@@ -45,4 +45,19 @@ class GroupOperationTest: CoreTestCase {
         XCTAssertEqual(groups.first?.name, "Group 2")
         XCTAssertEqual(groups.first?.member, true)
     }
+
+    func testAddSequence() {
+        let one = BlockOperation {}
+        let two = BlockOperation {}
+        let three = BlockOperation {}
+        let group = GroupOperation()
+
+        group.addSequence([one, two, three])
+
+        XCTAssertEqual(one.dependencies.count, 0)
+        XCTAssertEqual(two.dependencies.count, 1)
+        XCTAssertEqual(two.dependencies.first, one)
+        XCTAssertEqual(three.dependencies.count, 1)
+        XCTAssertEqual(three.dependencies.first, two)
+    }
 }
