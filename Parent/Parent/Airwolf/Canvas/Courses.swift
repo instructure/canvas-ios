@@ -35,25 +35,38 @@ extension Course {
         
         let request = try session.GET("/api/v1/courses", parameters: coursesParams)
         return session.paginatedJSONSignalProducer(request)
-            
-            // filter out restricted courses because their json is too sparse and will cause parsing issues
-            .map { coursesJSON in
-                return coursesJSON.filter { json in
+            .map { (coursesJSON: [JSONObject]) -> [JSONObject] in
+                let courses = coursesJSON.map { (courseJSON: JSONObject) -> JSONObject in
+                    var json = courseJSON
+
+                    // only include student enrollments for this studentID
+                    let enrollments: [JSONObject] = (try? json <| "enrollments") ?? []
+                    json["enrollments"] = enrollments.filter { enrollment in
+                        if let type: String = try? enrollment <| "type", let userID: String = try? enrollment.stringID("user_id") {
+                            return ["student", "StudentEnrollment"].contains(type) && userID == studentID
+                        }
+                        return true
+                    }
+
+                    return json
+                }
+
+                return courses.filter { json in
                     // filter out restricted courses because their json is too sparse and will cause parsing issues
                     let restricted: Bool = (try? json <| "access_restricted_by_date") ?? false
                     if restricted {
                         return false
                     }
 
-                    // only include courses for this studentID
+                    // only include courses with enrollments
                     let enrollments: [JSONObject] = (try? json <| "enrollments") ?? []
-                    let observing = enrollments.any { enrollment in
-                        let associated_user_id = try? enrollment.stringID("associated_user_id")
-                        return associated_user_id == studentID
+                    if enrollments.isEmpty {
+                        return false
                     }
-                    return observing
+
+                    return true
                 }
-        }
+            }
     }
     
     public static func getCourse(_ session: Session, studentID: String, courseID: String) throws -> SignalProducer<JSONObject, NSError> {
