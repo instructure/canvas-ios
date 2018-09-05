@@ -39,8 +39,8 @@ open class CalendarMonthViewController: UIViewController, CalendarViewDelegate, 
     // Data Variables
     fileprivate var session: Session!
 
-    var allCoursesCollection: FetchedCollection<Course>!
-    var favCoursesCollection: FetchedCollection<Course>!
+    var allCoursesCollection: FetchedCollection<Course>?
+    var favCoursesCollection: FetchedCollection<Course>?
 
     var refresher: Refresher? {
         didSet {
@@ -120,14 +120,14 @@ open class CalendarMonthViewController: UIViewController, CalendarViewDelegate, 
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[top][view]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["view": calendarView, "top" : topLayoutGuide]))
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[view]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["view": calendarView]))
 
-        favCoursesCollection = try! Course.favoritesCollection(session)
-        favCoursesDisposable = favCoursesCollection.collectionUpdates
+        favCoursesCollection = try? Course.favoritesCollection(session)
+        favCoursesDisposable = favCoursesCollection?.collectionUpdates
             .observe(on: UIScheduler())
             .observeValues { [weak self] _ in
                 self?.updateCalendarEvents()
             }
 
-        allCoursesCollection = try! Course.allCoursesCollection(session)
+        allCoursesCollection = try? Course.allCoursesCollection(session)
         
         if let nav = navigationController?.navigationBar {
             self.toastManager = ToastManager(navigationBar: nav)
@@ -224,7 +224,8 @@ open class CalendarMonthViewController: UIViewController, CalendarViewDelegate, 
             let context = try session.calendarEventsManagedObjectContext()
             let predicate = CalendarEvent.predicate(min, endDate: max, contextCodes: selectedContextCodes())
             let fetch: NSFetchRequest<CalendarEvent> = context.fetch(predicate)
-            return try context.count(for: fetch)
+            let count = try context.count(for: fetch)
+            return count
         } catch {
             return 0
         }
@@ -262,12 +263,15 @@ open class CalendarMonthViewController: UIViewController, CalendarViewDelegate, 
         let startDate = Date() + -365.daysComponents
         let endDate = Date() + 365.daysComponents
 
-        refresher = try! CalendarEvent.refresher(session, startDate: startDate, endDate: endDate, contextCodes: selectedContextCodes())
+        refresher = try? CalendarEvent.refresher(session, startDate: startDate, endDate: endDate, contextCodes: selectedContextCodes())
         refresher?.refresh(false)
     }
 
     open func selectedContextCodes() -> [String] {
-        guard let collection = (!favCoursesCollection.isEmpty ? favCoursesCollection : allCoursesCollection) else { return [] }
+        let anyFavorites = favCoursesCollection?.isEmpty == false
+        guard let collection = (anyFavorites ? favCoursesCollection : allCoursesCollection) else {
+            return []
+        }
         var contextCodes: [String] = []
         for i in 0..<collection.numberOfItemsInSection(0) {
             let indexPath = IndexPath(row: i, section: 0)
