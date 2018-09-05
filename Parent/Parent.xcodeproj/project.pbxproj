@@ -162,6 +162,9 @@
 		9E693792FBC275567A506A7C /* SettingsPageTests_testSettingsPage_displaysOberserveeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD7F519610C042BE02C5793 /* SettingsPageTests_testSettingsPage_displaysOberserveeCell.swift */; };
 		9FA40A151FBB7515004B8564 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9FA40A171FBB7515004B8564 /* Localizable.strings */; };
 		9FC084201FBB752300BE5CA3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9FC084221FBB752300BE5CA3 /* InfoPlist.strings */; };
+		9FDA15F8213EB72E00CC12C7 /* Secrets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FDA15F7213EB72D00CC12C7 /* Secrets.framework */; };
+		9FDA15FD213EBE5800CC12C7 /* Secrets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FDA15F7213EB72D00CC12C7 /* Secrets.framework */; };
+		9FDA15FE213EBE5800CC12C7 /* Secrets.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FDA15F7213EB72D00CC12C7 /* Secrets.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A767CC255CD55BB8451B2F45 /* SettingsPageTests_testSettingsPage_displaysHelpMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DA29CF372AAB2318A6C107 /* SettingsPageTests_testSettingsPage_displaysHelpMenu.swift */; };
 		AA0D8C718E86B4919CDD8DBD /* GettingStartedPageTests_testGettingStartedPage_logoutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA21CFA2DA8BF6852893B43 /* GettingStartedPageTests_testGettingStartedPage_logoutButton.swift */; };
 		ADA375F3E48558FED756C65E /* CanvasUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D717C1344BD77482A213EA6 /* CanvasUser.swift */; };
@@ -204,6 +207,7 @@
 			files = (
 				49A36ED21FA90BEF005F5905 /* CanvasKit.framework in Embed Frameworks */,
 				49A36ED01FA90BEF005F5905 /* CanvasKeymaster.framework in Embed Frameworks */,
+				9FDA15FE213EBE5800CC12C7 /* Secrets.framework in Embed Frameworks */,
 				4948BE6B1F915F4B0035BAFD /* CanvasCore.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -855,6 +859,7 @@
 		9FC084211FBB752300BE5CA3 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9FCA49BA1FBB75AC00D0E108 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9FCA49BB1FBB75AC00D0E108 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9FDA15F7213EB72D00CC12C7 /* Secrets.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Secrets.framework; path = "../ios-frameworks/Secrets.framework"; sourceTree = "<group>"; };
 		9FDD72F71FBB753200AF332E /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		9FDD72F81FBB753200AF332E /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		9FE5BB9B1FBB75BC00A8645E /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -907,10 +912,12 @@
 				2C75AB9B1DDF62DA00650856 /* CoreMedia.framework in Frameworks */,
 				49A36ED11FA90BEF005F5905 /* CanvasKit.framework in Frameworks */,
 				2C75AB991DDF62D500650856 /* CoreText.framework in Frameworks */,
+				9FDA15FD213EBE5800CC12C7 /* Secrets.framework in Frameworks */,
 				2C75AB971DDF62CF00650856 /* CoreTelephony.framework in Frameworks */,
 				2C75AB951DDF62CA00650856 /* AssetsLibrary.framework in Frameworks */,
 				5E75B6001C4D4A8E00A44160 /* CoreData.framework in Frameworks */,
 				5180FB980843FA6B1321EF5E /* Pods_defaults_Parent.framework in Frameworks */,
+				9FDA15F8213EB72E00CC12C7 /* Secrets.framework in Frameworks */,
 				49A36ECF1FA90BEF005F5905 /* CanvasKeymaster.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1291,6 +1298,7 @@
 		5E7790AF1C46CBA100429BF8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9FDA15F7213EB72D00CC12C7 /* Secrets.framework */,
 				49A36ECC1FA90BD0005F5905 /* CanvasKeymaster.framework */,
 				49A36ECB1FA90BD0005F5905 /* CanvasKit.framework */,
 				49952C3B1F7477C300A11404 /* CanvasCore.framework */,
@@ -2760,6 +2768,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/../ios-frameworks",
 				);
 				INFOPLIST_FILE = Parent/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -2790,6 +2799,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/../ios-frameworks",
 				);
 				INFOPLIST_FILE = Parent/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;

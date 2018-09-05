@@ -24,6 +24,7 @@ import Crashlytics
 import CanvasCore
 import React
 import BugsnagReactNative
+import Secrets
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {

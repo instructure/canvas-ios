@@ -18,6 +18,7 @@ import WebKit
 import CanvasKeymaster
 import CanvasKit
 import ReactiveSwift
+import Secrets
 
 public class CanvasWebView: WKWebView {
     

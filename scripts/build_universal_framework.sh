@@ -41,6 +41,7 @@ UNI_DIR="$TMP/../universal"
 mkdir "$UNI_DIR"
 
 cp -RL "$TMP/Release-iphoneos/$SCHEME.framework" "$UNI_DIR"
+cp -RL "$TMP/Release-iphonesimulator/$SCHEME.framework" "$UNI_DIR"
 
 UNI_FRAMEWORK="$UNI_DIR/$SCHEME.framework/$SCHEME"
 

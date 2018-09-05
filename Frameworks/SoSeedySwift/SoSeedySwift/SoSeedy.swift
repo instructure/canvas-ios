@@ -17,13 +17,13 @@
 import Foundation
 import SwiftGRPC
 import SwiftProtobuf
-import CanvasCore
+import Secrets
 
 let hostname = "soseedy.endpoints.delta-essence-114723.cloud.goog"
 let address = "\(hostname):80"
-let apiKey = Secrets.fetch(.gRPCSoSeedyAPIKey)!
+let apiKey = Secrets.fetch(SecretKey.gRPCSoSeedyAPIKey)!
 
-func makeClient<T: ServiceClientBase >(_ client: T.Type) -> T {
+func makeClient<T: ServiceClientBase >(_ client: T.Type) -> T { 
   let client = client.init(address: address,
                      certificates: Certs.caCert,
                      clientCertificates: Certs.clientCert,

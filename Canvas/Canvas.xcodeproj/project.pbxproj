@@ -608,6 +608,9 @@
 		8F363586CEA2A05378002836 /* Pods_GradesWidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 651295DCB22A2B02F381D94B /* Pods_GradesWidget.framework */; };
 		9C50D612DA6414266300170B /* Pods_defaults_CanvasKit1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2AB6A9FA96CE49682022ACB /* Pods_defaults_CanvasKit1.framework */; };
 		9F61B52C205985A5009C0B13 /* CanvasAppDelegate+Helm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F61B52B205985A5009C0B13 /* CanvasAppDelegate+Helm.swift */; };
+		9FDA15F6213EB71100CC12C7 /* Secrets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FDA15F5213EB71100CC12C7 /* Secrets.framework */; };
+		9FDA15FB213EBD6700CC12C7 /* Secrets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FDA15F5213EB71100CC12C7 /* Secrets.framework */; };
+		9FDA15FC213EBD6700CC12C7 /* Secrets.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FDA15F5213EB71100CC12C7 /* Secrets.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		ACC968801D245768006AEAB1 /* Page+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC9687F1D245768006AEAB1 /* Page+ViewModel.swift */; };
 		B15738001D94C38C00ADBB85 /* ModuleItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15737FF1D94C38C00ADBB85 /* ModuleItemDetailViewController.swift */; };
 		B177E6FD1E2EC8BA00D7477D /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B177E6FF1E2EC8BA00D7477D /* Settings.storyboard */; };
@@ -696,6 +699,7 @@
 				492704B31CF4B6D700C631C6 /* TechDebt.framework in Embed Frameworks */,
 				49642BC71CF4C4DC00238B3F /* CanvasKit.framework in Embed Frameworks */,
 				49383CE81F84887A009C8F8E /* CanvasCore.framework in Embed Frameworks */,
+				9FDA15FC213EBD6700CC12C7 /* Secrets.framework in Embed Frameworks */,
 				49AA291F1CF4D1880055862D /* CanvasKit1.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -1408,6 +1412,7 @@
 		962C895A87C658B3F80897FF /* Pods-TechDebt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TechDebt.release.xcconfig"; path = "../Pods/Target Support Files/Pods-TechDebt/Pods-TechDebt.release.xcconfig"; sourceTree = "<group>"; };
 		99747510483FA8853301B9F5 /* Pods-defaults-CanvasTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasTests/Pods-defaults-CanvasTests.release.xcconfig"; sourceTree = "<group>"; };
 		9F61B52B205985A5009C0B13 /* CanvasAppDelegate+Helm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CanvasAppDelegate+Helm.swift"; sourceTree = "<group>"; };
+		9FDA15F5213EB71100CC12C7 /* Secrets.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Secrets.framework; path = "../ios-frameworks/Secrets.framework"; sourceTree = "<group>"; };
 		A025F6634B44F7120D41717E /* Pods_defaults_common_tests_CanvasTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_common_tests_CanvasTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A13903D63AE70A2926A48F10 /* Pods-defaults-common_ui_tests-StudentUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_ui_tests-StudentUITests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-common_ui_tests-StudentUITests/Pods-defaults-common_ui_tests-StudentUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A65BB020C68267C1318E51E7 /* Pods-defaults-Canvas.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Canvas.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-Canvas/Pods-defaults-Canvas.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1626,10 +1631,12 @@
 				2C67B0CE1E01F07200DDD191 /* CoreVideo.framework in Frameworks */,
 				61F438E31DD4E60B00552D14 /* AVFoundation.framework in Frameworks */,
 				2C67B0CC1E01F06800DDD191 /* CoreMedia.framework in Frameworks */,
+				9FDA15F6213EB71100CC12C7 /* Secrets.framework in Frameworks */,
 				2C67B0CA1E01F06300DDD191 /* CoreText.framework in Frameworks */,
 				2C67B0C81E01F05F00DDD191 /* CoreTelephony.framework in Frameworks */,
 				2C67B0C61E01F05A00DDD191 /* AssetsLibrary.framework in Frameworks */,
 				49A04E7D1CF653050051E1E7 /* libc++.tbd in Frameworks */,
+				9FDA15FB213EBD6700CC12C7 /* Secrets.framework in Frameworks */,
 				49642BC61CF4C4DC00238B3F /* CanvasKit.framework in Frameworks */,
 				492704B21CF4B6D700C631C6 /* TechDebt.framework in Frameworks */,
 				49642BC41CF4C4DC00238B3F /* CanvasKeymaster.framework in Frameworks */,
@@ -2785,6 +2792,7 @@
 		5B0FCCDFB07A88D993D5871D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9FDA15F5213EB71100CC12C7 /* Secrets.framework */,
 				7D1D7E04213743D300F7CCFE /* Core.framework */,
 				3B1642C41FBA0426006C55D2 /* CanvasCore.framework */,
 				3B1642C51FBA0426006C55D2 /* CanvasKeymaster.framework */,
@@ -4746,7 +4754,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/../ios-frameworks",
+				);
 				INFOPLIST_FILE = Canvas/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -4771,7 +4782,10 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/../ios-frameworks",
+				);
 				INFOPLIST_FILE = Canvas/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

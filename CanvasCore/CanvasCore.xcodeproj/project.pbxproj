@@ -11,7 +11,6 @@
 		2C3283B42009651B00810C1B /* MasqueradableWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3283B32009651B00810C1B /* MasqueradableWindow.swift */; };
 		2C34211C1F7409CD00D8E158 /* OSSAttributionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C34211B1F74099400D8E158 /* OSSAttributionViewController.swift */; };
 		2C34211D1F7409CF00D8E158 /* components.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C34211A1F74099400D8E158 /* components.plist */; };
-		2C44846F1F72FD83000D1778 /* feature_toggles.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CAF1B3B1F72B294007225DF /* feature_toggles.plist */; };
 		2C4EBB3B204DFC820085D00E /* UITabBarController+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4EBB3A204DFC820085D00E /* UITabBarController+Core.swift */; };
 		2C4FAD3220487DD6000551EB /* UINavigationController+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4FAD3120487DD6000551EB /* UINavigationController+Core.swift */; };
 		2C5649E820111E0400C0D1BB /* EnrollmentSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD7769D201111F700589D4F /* EnrollmentSplitViewController.swift */; };
@@ -22,9 +21,7 @@
 		2CAF17801F7AF61100EA2742 /* UIFont+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAF177F1F7AF61100EA2742 /* UIFont+Core.swift */; };
 		2CAF1B1E1F72AEDB007225DF /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CAF1B141F72AEDB007225DF /* CanvasCore.framework */; };
 		2CAF1B251F72AEDB007225DF /* CanvasCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CAF1B171F72AEDB007225DF /* CanvasCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2CAF1B361F72B173007225DF /* secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CAF1B341F72B036007225DF /* secrets.plist */; };
 		2CAF1B3A1F72B1B7007225DF /* Bundle+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAF1B391F72B1B7007225DF /* Bundle+Core.swift */; };
-		2CAF1B3D1F72B295007225DF /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAF1B3C1F72B295007225DF /* Secrets.swift */; };
 		2CB68A351FED6E0600468313 /* StartupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB68A341FED6E0600468313 /* StartupManager.swift */; };
 		2CCBD44720C0943B0082E616 /* URL+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCBD44620C0943B0082E616 /* URL+Core.swift */; };
 		2CD20D761FA125EC00F339F7 /* DropViewManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CD20D741FA125EC00F339F7 /* DropViewManager.h */; };
@@ -497,7 +494,6 @@
 		7D0640262114BF8000D23D78 /* QuizListEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D0640282114BF8000D23D78 /* QuizListEmptyView.xib */; };
 		7D06402A2114EE4A00D23D78 /* QuizModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0640292114EE4A00D23D78 /* QuizModel.swift */; };
 		7D0F8D8421347CD50092E8F8 /* SVGImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0F8D8321347CD50092E8F8 /* SVGImageView.swift */; };
-		7D73ACD72119F38D001FAB47 /* SecretsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6D60891F72F85F009C3707 /* SecretsTests.swift */; };
 		7D73ACDB211A010C001FAB47 /* Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D73ACDA211A010C001FAB47 /* Fixture.swift */; };
 		7D73ACDD211A0163001FAB47 /* QuizModel+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D73ACDC211A0163001FAB47 /* QuizModel+Fixture.swift */; };
 		7DD30624211A28C400A4A3D0 /* Date+ISO8601Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD30623211A28C400A4A3D0 /* Date+ISO8601Tests.swift */; };
@@ -516,6 +512,7 @@
 		9FB85499208677DB007499DA /* AdjustableManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB85498208677DB007499DA /* AdjustableManager.m */; };
 		9FCA1A11205AC2FC00ECB5E9 /* AlertControls.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FCA1A10205AC2FC00ECB5E9 /* AlertControls.m */; };
 		9FD18B6B2052DE6800119927 /* LTITools.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD18B6A2052DE6800119927 /* LTITools.m */; };
+		9FDA15F4213EB6A600CC12C7 /* Secrets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FDA15F3213EB6A600CC12C7 /* Secrets.framework */; };
 		A96EAEEFD11718956BFC2544 /* Pods_defaults_CanvasCoreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C6ED514BCD5F05D551BC00B /* Pods_defaults_CanvasCoreTests.framework */; };
 		B1411D5A1FE825ED00CD4967 /* CoreDataSyncHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1411D591FE825ED00CD4967 /* CoreDataSyncHelper.swift */; };
 		B196F79B206AB60400DE640F /* CoreDataSync.m in Sources */ = {isa = PBXBuildFile; fileRef = B196F79A206AB60400DE640F /* CoreDataSync.m */; };
@@ -554,7 +551,6 @@
 		2C4FAD3120487DD6000551EB /* UINavigationController+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Core.swift"; sourceTree = "<group>"; };
 		2C6796BF1FD9E36B00BE7BC0 /* DrawerTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerTransition.swift; sourceTree = "<group>"; };
 		2C68DCF22086786E00A1EBFA /* UIPickerView+Quiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIPickerView+Quiz.swift"; sourceTree = "<group>"; };
-		2C6D60891F72F85F009C3707 /* SecretsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretsTests.swift; sourceTree = "<group>"; };
 		2C7CBD2A1F79A42600E5EC02 /* CGRect+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Core.swift"; sourceTree = "<group>"; };
 		2C8E356F2093A0340071ED94 /* AppReset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReset.swift; sourceTree = "<group>"; };
 		2CAF177F1F7AF61100EA2742 /* UIFont+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Core.swift"; sourceTree = "<group>"; };
@@ -563,10 +559,7 @@
 		2CAF1B181F72AEDB007225DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2CAF1B1D1F72AEDB007225DF /* CanvasCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CanvasCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CAF1B241F72AEDB007225DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2CAF1B341F72B036007225DF /* secrets.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = secrets.plist; path = ../../../secrets.plist; sourceTree = "<group>"; };
 		2CAF1B391F72B1B7007225DF /* Bundle+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Core.swift"; sourceTree = "<group>"; };
-		2CAF1B3B1F72B294007225DF /* feature_toggles.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = feature_toggles.plist; sourceTree = "<group>"; };
-		2CAF1B3C1F72B295007225DF /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		2CB68A341FED6E0600468313 /* StartupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartupManager.swift; sourceTree = "<group>"; };
 		2CCBD44620C0943B0082E616 /* URL+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Core.swift"; sourceTree = "<group>"; };
 		2CD20D741FA125EC00F339F7 /* DropViewManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DropViewManager.h; sourceTree = "<group>"; };
@@ -1190,6 +1183,7 @@
 		9FD7859B1FBB767C00A91987 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9FD7859C1FBB767C00A91987 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9FD7859D1FBB767C00A91987 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/TimedQuizViewController.strings; sourceTree = "<group>"; };
+		9FDA15F3213EB6A600CC12C7 /* Secrets.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Secrets.framework; path = "../ios-frameworks/Secrets.framework"; sourceTree = "<group>"; };
 		9FE0103F1FBB767E00E251F7 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9FE010401FBB767F00E251F7 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9FE010411FBB767F00E251F7 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/TimedQuizViewController.strings; sourceTree = "<group>"; };
@@ -1227,6 +1221,7 @@
 			files = (
 				49383CE61F848652009C8F8E /* CanvasKit.framework in Frameworks */,
 				49383CE51F848652009C8F8E /* CanvasKeymaster.framework in Frameworks */,
+				9FDA15F4213EB6A600CC12C7 /* Secrets.framework in Frameworks */,
 				630085E9F4EBC97E435FFE64 /* Pods_defaults_CanvasCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1263,6 +1258,7 @@
 		2C60495C1F72B9CE00252BC5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9FDA15F3213EB6A600CC12C7 /* Secrets.framework */,
 				49383CDF1F846FCC009C8F8E /* CanvasKeymaster.framework */,
 				49383CDE1F846FCB009C8F8E /* CanvasKit.framework */,
 				801BC15BB71585F55A4CD6C8 /* Pods_defaults_CanvasCore.framework */,
@@ -1341,7 +1337,6 @@
 				2CB68A331FED6DF300468313 /* Startup Manager */,
 				49CE95EF1F8FF3C800121A43 /* Quizzes */,
 				494AE08C1F8439A8001A8F31 /* React Native Modules */,
-				2CAF1B311F72AFCF007225DF /* Secrets */,
 				4930205E1F902413006BD777 /* Session */,
 				4938ACDE1F8FD1D60069F43D /* Todo */,
 				493020261F9022FB006BD777 /* Utilities */,
@@ -1357,22 +1352,11 @@
 			children = (
 				7DD30626211A2D4C00A4A3D0 /* Views */,
 				7DD30622211A289900A4A3D0 /* Extensions */,
-				7D73ACD82119F3A6001FAB47 /* Secrets */,
 				7DF3FFF521194AEE00DF969B /* Models */,
 				2CAF1B241F72AEDB007225DF /* Info.plist */,
 				7D73ACDA211A010C001FAB47 /* Fixture.swift */,
 			);
 			path = CanvasCoreTests;
-			sourceTree = "<group>";
-		};
-		2CAF1B311F72AFCF007225DF /* Secrets */ = {
-			isa = PBXGroup;
-			children = (
-				2CAF1B3B1F72B294007225DF /* feature_toggles.plist */,
-				2CAF1B3C1F72B295007225DF /* Secrets.swift */,
-				2CAF1B341F72B036007225DF /* secrets.plist */,
-			);
-			path = Secrets;
 			sourceTree = "<group>";
 		};
 		2CAF1B381F72B18F007225DF /* Extensions */ = {
@@ -2897,14 +2881,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		7D73ACD82119F3A6001FAB47 /* Secrets */ = {
-			isa = PBXGroup;
-			children = (
-				2C6D60891F72F85F009C3707 /* SecretsTests.swift */,
-			);
-			path = Secrets;
-			sourceTree = "<group>";
-		};
 		7DD30622211A289900A4A3D0 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -3103,14 +3079,12 @@
 				7D0640232113BC2700D23D78 /* TitleSubtitleView.xib in Resources */,
 				3BA8BE9B1FE2ED85003EC4FD /* SubmissionConfirmationViewController.xib in Resources */,
 				49CE96641F8FF41B00121A43 /* AnswersFinalViewController.xib in Resources */,
-				2CAF1B361F72B173007225DF /* secrets.plist in Resources */,
 				2C34211D1F7409CF00D8E158 /* components.plist in Resources */,
 				49CE96591F8FF41B00121A43 /* TimedQuizViewController.strings in Resources */,
 				49CE96751F8FF41B00121A43 /* ShortAnswerCell.xib in Resources */,
 				9F544E0A1FBB766E00BB2D84 /* Localizable.strings in Resources */,
 				B1F4E8D12061950C0056074A /* zss-rich-text-editor.html in Resources */,
 				49CE96811F8FF41B00121A43 /* LoadingQuestionsView.xib in Resources */,
-				2C44846F1F72FD83000D1778 /* feature_toggles.plist in Resources */,
 				4961F5551F8FAF280093EC86 /* AudioRecorderViewController.storyboard in Resources */,
 				49CE97431F8FFEA600121A43 /* rewrite-api-links.js in Resources */,
 				49CE97A01F900D0000121A43 /* PandatarBuilderViewController.xib in Resources */,
@@ -3650,7 +3624,6 @@
 				49CE97391F8FFEA600121A43 /* Assignment+AllowedFileSubmissionTypes.swift in Sources */,
 				49CE966E1F8FF41B00121A43 /* SubmissionViewController.swift in Sources */,
 				49CE968D1F8FF41B00121A43 /* SubmissionAuditLoggingService.swift in Sources */,
-				2CAF1B3D1F72B295007225DF /* Secrets.swift in Sources */,
 				B1411D5A1FE825ED00CD4967 /* CoreDataSyncHelper.swift in Sources */,
 				494AE09A1F843A09001A8F31 /* DrawerHandleViewManager.m in Sources */,
 				497CA7791F82D19A00501613 /* UITraitEnvironmentExtensions.swift in Sources */,
@@ -3754,7 +3727,6 @@
 			files = (
 				7DF3FFF721194B0E00DF969B /* QuizModelTests.swift in Sources */,
 				7DD30624211A28C400A4A3D0 /* Date+ISO8601Tests.swift in Sources */,
-				7D73ACD72119F38D001FAB47 /* SecretsTests.swift in Sources */,
 				7D73ACDD211A0163001FAB47 /* QuizModel+Fixture.swift in Sources */,
 				7D73ACDB211A010C001FAB47 /* Fixture.swift in Sources */,
 				7DD30628211A2D7200A4A3D0 /* TitleSubtitleViewTests.swift in Sources */,
@@ -4104,6 +4076,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/../ios-frameworks",
 				);
 				INFOPLIST_FILE = CanvasCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -4135,6 +4108,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/../ios-frameworks",
 				);
 				INFOPLIST_FILE = CanvasCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -4158,7 +4132,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				INFOPLIST_FILE = CanvasCoreTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(PROJECT_DIR)/../ios-frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.CanvasCoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
@@ -4174,7 +4148,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				INFOPLIST_FILE = CanvasCoreTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(PROJECT_DIR)/../ios-frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.CanvasCoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;

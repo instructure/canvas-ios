@@ -75,7 +75,7 @@ import Foundation
     }
 }
 
-open class Secrets: NSObject {
+public class Secrets: NSObject {
     
     fileprivate static let _shared = Secrets()
     fileprivate let bundle = Bundle(identifier: "com.instructure.Secrets")
@@ -106,7 +106,7 @@ open class Secrets: NSObject {
         return value
     }
     
-    open static func fetch(_ key: SecretKey) -> String? {
+    public static func fetch(_ key: SecretKey) -> String? {
         return Secrets._shared.internalFetch(key)
     }
     
@@ -133,7 +133,7 @@ open class Secrets: NSObject {
         return toggleValues.first { domain.contains($0) || $0.contains(domain) } != nil
     }
     
-    open static func featureEnabled(_ toggle: FeatureToggleKey, domain: String?) -> Bool {
+    public static func featureEnabled(_ toggle: FeatureToggleKey, domain: String?) -> Bool {
         return Secrets._shared.internalFeatureEnabled(toggle, domain: domain)
     }
 }
@@ -141,7 +141,7 @@ open class Secrets: NSObject {
 extension Secrets {
     
     // Quick way to check if a url is a external resource from one central place
-    @objc open static func urlIsExternalResource(_ aURL: URL?) -> Bool {
+    @objc public static func urlIsExternalResource(_ aURL: URL?) -> Bool {
         guard let url = aURL?.absoluteString else { return false }
         guard let toggles = Secrets._shared.toggles else { return false }
         guard let externalURLs = toggles[FeatureToggleKey.externalResources.toString()] else { return false }
@@ -150,7 +150,7 @@ extension Secrets {
         }).count > 0
     }
     
-    @objc open static func openExternalResourceIfNecessary(aURL: URL?) -> Bool {
+    @objc public static func openExternalResourceIfNecessary(aURL: URL?) -> Bool {
         guard let url = aURL else { return false }
         guard urlIsExternalResource(url) else { return false }
         if #available(iOS 10.0, *) {

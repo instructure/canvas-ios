@@ -46,6 +46,9 @@
 		61B537311E786A58000FEABB /* DomainPickerPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B536E31E78599D000FEABB /* DomainPickerPage.swift */; };
 		61BD85FC1EB2933C005A09A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BD85FB1EB2933C005A09A5 /* AppDelegate.swift */; };
 		8C2F55972B1A4A3EBFAEEBBD /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D063D27A1B3640208ABF74D4 /* libz.tbd */; };
+		9FDA15FA213EB76400CC12C7 /* Secrets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FDA15F9213EB76400CC12C7 /* Secrets.framework */; };
+		9FDA15FF213EC04200CC12C7 /* Secrets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FDA15F9213EB76400CC12C7 /* Secrets.framework */; };
+		9FDA1600213EC04200CC12C7 /* Secrets.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FDA15F9213EB76400CC12C7 /* Secrets.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B1279FC42087D1B1008BD7A8 /* SoSeedySwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1279FC32087D1B1008BD7A8 /* SoSeedySwift.framework */; };
 		B1279FC52087D1C2008BD7A8 /* SoSeedySwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1279FC32087D1B1008BD7A8 /* SoSeedySwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DF02A1E31EFC26BE00B17B8D /* InboxPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF02A1E21EFC26BE00B17B8D /* InboxPageTest.swift */; };
@@ -89,6 +92,7 @@
 			files = (
 				4943ECB81E5CEFBD001DC5B5 /* CanvasKit.framework in Embed Frameworks */,
 				497CA7341F82AE8D00501613 /* CanvasCore.framework in Embed Frameworks */,
+				9FDA1600213EC04200CC12C7 /* Secrets.framework in Embed Frameworks */,
 				4943ECB61E5CEFBD001DC5B5 /* CanvasKeymaster.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -225,6 +229,7 @@
 		61BD85FB1EB2933C005A09A5 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Teacher/AppDelegate.swift; sourceTree = "<group>"; };
 		7448D73B0E788B7806B47BFC /* Pods-defaults-Teacher.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Teacher.debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-Teacher/Pods-defaults-Teacher.debug.xcconfig"; sourceTree = "<group>"; };
 		9210A7D2CE7CB864C8337310 /* Pods-defaults-Teacher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Teacher.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-Teacher/Pods-defaults-Teacher.release.xcconfig"; sourceTree = "<group>"; };
+		9FDA15F9213EB76400CC12C7 /* Secrets.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Secrets.framework; path = "../../../ios-frameworks/Secrets.framework"; sourceTree = "<group>"; };
 		B1279FC32087D1B1008BD7A8 /* SoSeedySwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoSeedySwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B170B0651F58756E00B92700 /* SoLazy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoLazy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D063D27A1B3640208ABF74D4 /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -256,10 +261,12 @@
 				2C50EE011E735CB50096592C /* CoreMedia.framework in Frameworks */,
 				2C50EDFF1E735CB10096592C /* CoreText.framework in Frameworks */,
 				2C50EDFD1E735CAC0096592C /* CoreTelephony.framework in Frameworks */,
+				9FDA15FF213EC04200CC12C7 /* Secrets.framework in Frameworks */,
 				2C50EDE11E735CA50096592C /* AssetsLibrary.framework in Frameworks */,
 				4943ECB71E5CEFBD001DC5B5 /* CanvasKit.framework in Frameworks */,
 				4943ECB51E5CEFBD001DC5B5 /* CanvasKeymaster.framework in Frameworks */,
 				8C2F55972B1A4A3EBFAEEBBD /* libz.tbd in Frameworks */,
+				9FDA15FA213EB76400CC12C7 /* Secrets.framework in Frameworks */,
 				F9FDB9351C9FB4F9CF7E0F94 /* Pods_defaults_Teacher.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -307,6 +314,7 @@
 		2C50EDDF1E735CA50096592C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9FDA15F9213EB76400CC12C7 /* Secrets.framework */,
 				2C50EE081E735CCB0096592C /* SystemConfiguration.framework */,
 				2C50EE061E735CC60096592C /* QuartzCore.framework */,
 				2C50EE041E735CC00096592C /* CoreVideo.framework */,
@@ -1017,6 +1025,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/../../../ios-frameworks",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1079,6 +1088,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/../../../ios-frameworks",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",

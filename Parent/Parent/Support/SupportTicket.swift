@@ -17,10 +17,9 @@
     
 
 import UIKit
-
 import DeviceKit
-
 import CanvasCore
+import Secrets
 
 public enum ImpactLevel: String {
     case Comment, NotUrgent, WorkaroundPossible, Blocking, Emergency, None
