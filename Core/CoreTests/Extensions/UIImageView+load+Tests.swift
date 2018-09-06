@@ -76,7 +76,7 @@ class UIImageViewLoadTests: XCTestCase {
             expectation.fulfill()
         }
         view.load(url: svgUrl)
-        wait(for: [expectation], timeout: 1.0)
+        wait(for: [expectation], timeout: 2.0)
     }
 
     func testDoubleLoadSvg() {
@@ -94,7 +94,7 @@ class UIImageViewLoadTests: XCTestCase {
         }
         view1.load(url: svgUrl)
         view2.load(url: svgUrl)
-        wait(for: [expectation1, expectation2], timeout: 1.0)
+        wait(for: [expectation1, expectation2], timeout: 5.0)
     }
 
     func testLoadGif() {
@@ -134,5 +134,41 @@ class UIImageViewLoadTests: XCTestCase {
         XCTAssertEqual(greatestCommonFactor(1, 7), 1)
         XCTAssertEqual(greatestCommonFactor(6, 9), 3)
         XCTAssertEqual(greatestCommonFactor(36, 24), 12)
+    }
+
+    func testCssFromContentMode() {
+        XCTAssertEqual(cssFromContentMode(.bottom), "bottom")
+        XCTAssertEqual(cssFromContentMode(.bottomLeft), "bottom left")
+        XCTAssertEqual(cssFromContentMode(.bottomRight), "bottom right")
+        XCTAssertEqual(cssFromContentMode(.center), "center")
+        XCTAssertEqual(cssFromContentMode(.left), "left")
+        XCTAssertEqual(cssFromContentMode(.redraw), "center/100% 100%")
+        XCTAssertEqual(cssFromContentMode(.right), "right")
+        XCTAssertEqual(cssFromContentMode(.scaleAspectFill), "center/cover")
+        XCTAssertEqual(cssFromContentMode(.scaleAspectFit), "center/contain")
+        XCTAssertEqual(cssFromContentMode(.scaleToFill), "center/100% 100%")
+        XCTAssertEqual(cssFromContentMode(.top), "top")
+        XCTAssertEqual(cssFromContentMode(.topLeft), "top left")
+        XCTAssertEqual(cssFromContentMode(.topRight), "top right")
+    }
+
+    func testLoadUrl() {
+        let view = UIImageView()
+        view.load(url: pngUrl)
+        view.load(url: pngUrl) // same url, no-op
+        XCTAssertEqual(view.url, pngUrl)
+        XCTAssertNotNil(view.loader)
+    }
+
+    func testLoadUrlDidCompleteWith() {
+        let view = UIImageView()
+        let image = UIImage.animatedImage(with: [
+            UIImage(data: Data(base64Encoded: "R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7")!)!,
+        ], duration: 3)!
+        view.load(url: pngUrl, didCompleteWith: LoadedImage(image: image, repeatCount: 2), error: nil)
+        XCTAssertNil(view.loader)
+        XCTAssertEqual(view.animationImages?.count, 1)
+        XCTAssertEqual(view.animationRepeatCount, 2)
+        XCTAssertEqual(view.animationDuration, 3)
     }
 }

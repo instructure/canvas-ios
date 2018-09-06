@@ -209,26 +209,6 @@ public class ImageLoader {
         view.loadHTMLString(html, baseURL: url)
     }
 
-    // swiftlint:disable cyclomatic_complexity
-    func cssFromContentMode(_ contentMode: UIViewContentMode) -> String {
-        switch contentMode {
-        case .bottom: return "bottom"
-        case .bottomLeft: return "bottom left"
-        case .bottomRight: return "bottom right"
-        case .center: return "center"
-        case .left: return "left"
-        case .redraw: return "center/100% 100%"
-        case .right: return "right"
-        case .scaleAspectFill: return "center/cover"
-        case .scaleAspectFit: return "center/contain"
-        case .scaleToFill: return "center/100% 100%"
-        case .top: return "top"
-        case .topLeft: return "top left"
-        case .topRight: return "top right"
-        }
-    }
-    // swiftlint:enable cyclomatic_complexity
-
     // MARK: - GIF to UIImage.animatedImage
 
     func gifFrom(data: Data) {
@@ -294,3 +274,27 @@ public func greatestCommonFactor(_ a: Int, _ b: Int) -> Int {
     }
     return a
 }
+
+// swiftlint:disable cyclomatic_complexity
+/// Convert `UIViewContentMode` into a css string for use in `background` that sizes and positions.
+///
+/// - Parameter contentMode: A `UIViewContentMode` to convert.
+/// - Returns: A `String` meant to be embedded in a css `background` value.
+public func cssFromContentMode(_ contentMode: UIViewContentMode) -> String {
+    switch contentMode {
+    case .bottom: return "bottom"
+    case .bottomLeft: return "bottom left"
+    case .bottomRight: return "bottom right"
+    case .center: return "center"
+    case .left: return "left"
+    case .redraw: return "center/100% 100%"
+    case .right: return "right"
+    case .scaleAspectFill: return "center/cover"
+    case .scaleAspectFit: return "center/contain"
+    case .scaleToFill: return "center/100% 100%"
+    case .top: return "top"
+    case .topLeft: return "top left"
+    case .topRight: return "top right"
+    }
+}
+// swiftlint:enable cyclomatic_complexity

@@ -17,7 +17,10 @@
 import XCTest
 @testable import Core
 
+let accountResultsUrl = Bundle(for: APITests.self).url(forResource: "APIAccountResults", withExtension: "json")!
+
 class APITests: XCTestCase {
+
     struct DateHaver: Codable, Equatable {
         let date: Date
     }
@@ -34,7 +37,12 @@ class APITests: XCTestCase {
 
     struct WrongResponse: APIRequestable {
         typealias Response = DateHaver
-        let path = "https://canvas.instructure.com/api/v1/accounts/search"
+        var path = accountResultsUrl.absoluteString
+    }
+
+    struct GetAccountsSearchRequest: APIRequestable {
+        typealias Response = [APIAccountResults]
+        let path = accountResultsUrl.absoluteString
     }
 
     func testUrlSession() {
@@ -74,7 +82,7 @@ class APITests: XCTestCase {
             XCTAssertNotNil(error)
             expectation.fulfill()
         }
-        wait(for: [expectation], timeout: 10.0)
+        wait(for: [expectation], timeout: 1.0)
         XCTAssertNotNil(task)
     }
 
@@ -86,7 +94,7 @@ class APITests: XCTestCase {
             XCTAssertNil(error)
             expectation.fulfill()
         }
-        wait(for: [expectation], timeout: 10.0)
+        wait(for: [expectation], timeout: 1.0)
         XCTAssertNotNil(task)
     }
 }
