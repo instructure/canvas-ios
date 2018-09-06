@@ -17,7 +17,7 @@
 import Foundation
 
 public class GetUserGroups: CollectionUseCase<GetGroupsRequest, Group> {
-    public init(api: API, database: DatabaseStore, force: Bool = false) {
+    public init(api: API, database: Persistence, force: Bool = false) {
         let request = GetGroupsRequest(context: ContextModel.currentUser)
         super.init(api: api, database: database, request: request)
     }
@@ -30,8 +30,8 @@ public class GetUserGroups: CollectionUseCase<GetGroupsRequest, Group> {
         return .id(item.id)
     }
 
-    override func updateModel(_ model: Group, using object: APIGroup, in client: DatabaseClient) {
-        model.id = object.id
+    override func updateModel(_ model: Group, using object: APIGroup, in client: Persistence) {
+        if model.id.isEmpty { model.id = object.id }
         model.name = object.name
         model.member = true
         model.concluded = object.concluded

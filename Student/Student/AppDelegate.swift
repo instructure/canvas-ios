@@ -40,10 +40,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
         // TODO: Remove this at some point
         do {
-            try coreDataStore.clearAllRecords()
+            let store = RealmPersistence()
+            try store.clearAllRecords()
             print("Successfully emptied the data store")
         } catch {
-            print("Error: Unable to clear data store")
+            print("Error: Unable to clear data store", error)
         }
 
         // TODO: Pull the most recent entry out of the keychain instead

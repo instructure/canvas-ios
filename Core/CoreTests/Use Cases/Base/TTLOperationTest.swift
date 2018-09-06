@@ -25,7 +25,7 @@ class TTLOperationTest: CoreTestCase {
             didRun = true
         }
 
-        let ttlOperation = TTLOperation(key: "ttl", database: database, operation: block)
+        let ttlOperation = TTLOperation(key: "ttl", database: db, operation: block)
         addOperationAndWait(ttlOperation)
 
         XCTAssert(didRun)
@@ -38,14 +38,14 @@ class TTLOperationTest: CoreTestCase {
         let block1 = BlockOperation {
             runCount += 1
         }
-        let firstRun = TTLOperation(key: "ttl", database: database, operation: block1)
+        let firstRun = TTLOperation(key: "ttl", database: db, operation: block1)
         addOperationAndWait(firstRun)
 
         // Second run
         let block2 = BlockOperation {
             runCount += 1
         }
-        let secondRun = TTLOperation(key: "ttl", database: database, operation: block2)
+        let secondRun = TTLOperation(key: "ttl", database: db, operation: block2)
         addOperationAndWait(secondRun)
 
         XCTAssertEqual(runCount, 1)
@@ -58,14 +58,14 @@ class TTLOperationTest: CoreTestCase {
         let block1 = BlockOperation {
             runCount += 1
         }
-        let firstRun = TTLOperation(key: "ttl", database: database, operation: block1)
+        let firstRun = TTLOperation(key: "ttl", database: db, operation: block1)
         addOperationAndWait(firstRun)
 
         // Second run
         let block2 = BlockOperation {
             runCount += 1
         }
-        let secondRun = TTLOperation(key: "ttl", database: database, operation: block2)
+        let secondRun = TTLOperation(key: "ttl", database: db, operation: block2)
         let oneDayFromNow = Clock.currentTime() + 60 * 60 * 24
         Clock.timeTravel(to: oneDayFromNow) {
             addOperationAndWait(secondRun)
@@ -81,14 +81,14 @@ class TTLOperationTest: CoreTestCase {
         let block1 = BlockOperation {
             runCount += 1
         }
-        let firstRun = TTLOperation(key: "ttl", database: database, operation: block1)
+        let firstRun = TTLOperation(key: "ttl", database: db, operation: block1)
         addOperationAndWait(firstRun)
 
         // Second run
         let block2 = BlockOperation {
             runCount += 1
         }
-        let secondRun = TTLOperation(key: "ttl", database: database, operation: block2, force: true)
+        let secondRun = TTLOperation(key: "ttl", database: db, operation: block2, force: true)
         addOperationAndWait(secondRun)
 
         XCTAssertEqual(runCount, 2)

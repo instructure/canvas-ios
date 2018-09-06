@@ -16,27 +16,34 @@
 
 import Foundation
 import XCTest
+import RealmSwift
 @testable import Core
 
 class CoreTestCase: XCTestCase {
     let api = MockAPI()
-    let database = mockDatabase()
+    var db: Persistence!
     let queue = TestOperationQueue()
 
-    var dbClient: DatabaseClient {
-        return database.mainClient
+    override func setUp() {
+        super.setUp()
+        let config = RealmPersistence.testingConfig(inMemoryIdentifier: self.name)
+        db = RealmPersistence(configuration: config)
     }
 
     @discardableResult func course(_ template: Template = [:]) -> Course {
-        return dbClient.make(template)
+        return db.make(template)
     }
 
     @discardableResult func group(_ template: Template = [:]) -> Group {
-        return dbClient.make(template)
+        return db.make(template)
     }
 
     func addOperationAndWait(_ operation: Operation) {
+        let expectation = XCTestExpectation(description: "expectation")
+        operation.completionBlock = {
+            expectation.fulfill()
+        }
         queue.addOperation(operation)
-        queue.waitUntilAllOperationsAreFinished()
+        wait(for: [expectation], timeout: 0.1)
     }
 }

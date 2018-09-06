@@ -29,17 +29,17 @@ class GroupOperationTest: CoreTestCase {
         let group = APIGroup.make(["id": "2", "name": "Group 2", "member": true])
         api.mock(groupsRequest, value: [group], response: nil, error: nil)
 
-        let getCourses = GetCourses(api: api, database: database)
-        let getGroups = GetUserGroups(api: api, database: database)
+        let getCourses = GetCourses(api: api, database: db)
+        let getGroups = GetUserGroups(api: api, database: db)
         let grouped = GroupOperation(operations: [getCourses, getGroups])
         addOperationAndWait(grouped)
 
-        let courses: [Course] = dbClient.fetch()
+        let courses: [Course] = db.fetch()
         XCTAssertEqual(courses.count, 1)
         XCTAssertEqual(courses.first?.id, "1")
         XCTAssertEqual(courses.first?.name, "Course 1")
 
-        let groups: [Group] = dbClient.fetch()
+        let groups: [Group] = db.fetch()
         XCTAssertEqual(groups.count, 1)
         XCTAssertEqual(groups.first?.id, "2")
         XCTAssertEqual(groups.first?.name, "Group 2")

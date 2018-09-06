@@ -56,13 +56,13 @@ protocol DashboardPresenterProtocol {
 class DashboardPresenter: DashboardPresenterProtocol {
     weak var view: (DashboardViewProtocol & ErrorViewController)?
     let api: API
-    let database: DatabaseStore
+    let database: Persistence
     var groupOperation: GroupOperation?
 
     lazy var coursesFetch: FetchedResultsController<Course> = {
         let predicate = NSPredicate(format: "isFavorite == YES")
         let sort = NSSortDescriptor(key: "name", ascending: true)
-        let fetcher: FetchedResultsController<Course> = database.mainClient.fetchedResultsController(predicate: predicate, sortDescriptors: [sort], sectionNameKeyPath: nil)
+        let fetcher: FetchedResultsController<Course> = database.fetchedResultsController(predicate: predicate, sortDescriptors: [sort], sectionNameKeyPath: nil)
         fetcher.delegate = self
         return fetcher
     }()
@@ -70,12 +70,12 @@ class DashboardPresenter: DashboardPresenterProtocol {
     lazy var groupsFetch: FetchedResultsController<Group> = {
         let predicate = NSPredicate(format: "concluded == NO")
         let sort = NSSortDescriptor(key: "name", ascending: true)
-        let fetcher: FetchedResultsController<Group> = database.mainClient.fetchedResultsController(predicate: predicate, sortDescriptors: [sort], sectionNameKeyPath: nil)
+        let fetcher: FetchedResultsController<Group> = database.fetchedResultsController(predicate: predicate, sortDescriptors: [sort], sectionNameKeyPath: nil)
         fetcher.delegate = self
         return fetcher
     }()
 
-    init(view: (DashboardViewProtocol & ErrorViewController)?, api: API = URLSessionAPI(), database: DatabaseStore = coreDataStore) {
+    init(view: (DashboardViewProtocol & ErrorViewController)?, api: API = URLSessionAPI(), database: Persistence = RealmPersistence()) {
         self.view = view
         self.api = api
         self.database = database
@@ -169,7 +169,7 @@ class DashboardPresenter: DashboardPresenterProtocol {
 
     func transformToViewModel(courses: [Course], groups: [Group]) -> DashboardViewModel {
         let cs = courses.compactMap { (course: Course) -> DashboardViewModel.Course? in
-            guard let id = course.id, let name = course.name else {
+            guard let name = course.name, !course.id.isEmpty else {
                 return nil
             }
 
@@ -178,14 +178,14 @@ class DashboardPresenter: DashboardPresenterProtocol {
                 imageUrl = URL(string: urlString)
             }
 
-            return DashboardViewModel.Course(courseID: id, title: name, abbreviation: course.courseCode ?? "", color: UIColor(hexString: course.color) ?? .gray, imageUrl: imageUrl)
+            return DashboardViewModel.Course(courseID: course.id, title: name, abbreviation: course.courseCode ?? "", color: UIColor(hexString: course.color) ?? .gray, imageUrl: imageUrl)
         }
 
         let gs = groups.compactMap { (group: Group) -> DashboardViewModel.Group? in
-            guard let id = group.id, let name = group.name else {
+            if group.name.isEmpty || group.id.isEmpty {
                 return nil
             }
-            return DashboardViewModel.Group(groupID: id, groupName: name, courseName: nil, term: nil, color: UIColor(hexString: group.color) ?? .blue)
+            return DashboardViewModel.Group(groupID: group.id, groupName: group.name, courseName: nil, term: nil, color: UIColor(hexString: group.color) ?? .blue)
         }
 
         let navBackgroundColor: UIColor = .black

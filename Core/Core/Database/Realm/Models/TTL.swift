@@ -15,29 +15,13 @@
 //
 
 import Foundation
+import RealmSwift
 
-class DatabaseOperation: AsyncOperation {
-    let database: Persistence
-    let block: (Persistence) throws -> Void
-    var error: Error?
+public class TTL: Object {
+    @objc public dynamic var key: String = ""
+    @objc public dynamic var lastRefresh: Date?
 
-    init(database: Persistence, block: @escaping (Persistence) throws -> Void) {
-        self.database = database
-        self.block = block
-    }
-
-    override func execute() {
-        if isCancelled {
-            return
-        }
-
-        type(of: database).performBackgroundTask { [weak self] client in
-            do {
-                try self?.block(client)
-            } catch {
-                self?.error = error
-            }
-            self?.finish()
-        }
+    override public class func primaryKey() -> String? {
+        return "key"
     }
 }

@@ -15,29 +15,17 @@
 //
 
 import Foundation
+import RealmSwift
 
-class DatabaseOperation: AsyncOperation {
-    let database: Persistence
-    let block: (Persistence) throws -> Void
-    var error: Error?
+public class Course: Object {
+    @objc public dynamic var id: String = ""
+    @objc public dynamic var name: String?
+    @objc public dynamic var isFavorite: Bool = false
+    @objc public dynamic var color: String = ""
+    @objc public dynamic var courseCode: String?
+    @objc public dynamic var imageDownloadUrl: String?
 
-    init(database: Persistence, block: @escaping (Persistence) throws -> Void) {
-        self.database = database
-        self.block = block
-    }
-
-    override func execute() {
-        if isCancelled {
-            return
-        }
-
-        type(of: database).performBackgroundTask { [weak self] client in
-            do {
-                try self?.block(client)
-            } catch {
-                self?.error = error
-            }
-            self?.finish()
-        }
+    override public class func primaryKey() -> String? {
+        return "id"
     }
 }

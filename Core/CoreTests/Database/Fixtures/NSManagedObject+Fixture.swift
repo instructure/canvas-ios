@@ -15,24 +15,28 @@
 //
 
 import Foundation
+import CoreData
+import RealmSwift
+@testable import Core
 
-public protocol DatabaseClient {
-    func insert<T>() -> T
-    func fetch<T>(_ predicate: NSPredicate) -> [T]
-    func delete<T>(_ object: T)
-    func fetchedResultsController<T>(predicate: NSPredicate, sortDescriptors: [NSSortDescriptor]?, sectionNameKeyPath: String?) -> FetchedResultsController<T>
-    func save() throws
-}
-
-extension DatabaseClient {
-    public func fetch<T>() -> [T] {
-        return fetch(NSPredicate(value: true))
+extension Fixture where Self: NSManagedObject {
+    static func make(_ template: Template = [:], in client: Persistence) -> Self {
+        var t = self.template
+        for (key, _) in template {
+            t[key] = template[key]
+        }
+        let fixture: Self = client.insert()
+        for (key, value) in t {
+            fixture.setValue(value, forKey: key)
+        }
+        return fixture
     }
 }
 
-public protocol DatabaseStore {
-    var mainClient: DatabaseClient { get }
-    func perform(block: @escaping (DatabaseClient) -> Void)
-    func performBackgroundTask(block: @escaping (DatabaseClient) -> Void)
-    func clearAllRecords() throws
+extension Persistence {
+    func make<T>(_ template: Template = [:]) -> T where T: Fixture, T: NSManagedObject {
+        let fixture: T = T.make(template, in: self)
+        try! addOrUpdate(fixture)
+        return fixture
+    }
 }

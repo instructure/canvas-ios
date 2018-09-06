@@ -27,8 +27,8 @@ private class TestPaginatedUseCase: PaginatedUseCase<GetCoursesRequest, Course> 
         return NSPredicate(format: "%K == %@", "id", item.id)
     }
 
-    override func updateModel(_ model: Course, using item: APICourse, in client: DatabaseClient) throws {
-        model.id = item.id
+    override func updateModel(_ model: Course, using item: APICourse, in client: Persistence) throws {
+        if(model.id.isEmpty) {model.id = item.id}
     }
 }
 
@@ -39,11 +39,11 @@ class PaginatedUseCaseTest: CoreTestCase {
         let request = GetCoursesRequest(includeUnpublished: true)
         api.mock(request, value: nil, response: nil, error: nil)
 
-        let paginated = TestPaginatedUseCase(api: api, database: database, request: request)
+        let paginated = TestPaginatedUseCase(api: api, database: db, request: request)
         addOperationAndWait(paginated)
 
-        let deleted: [Course] = dbClient.fetch(.id("1"))
-        let kept: [Course] = dbClient.fetch(.id("2"))
+        let deleted: [Course] = db.fetch(.id("1"))
+        let kept: [Course] = db.fetch(.id("2"))
         XCTAssertEqual(deleted.count, 0)
         XCTAssertEqual(kept.count, 1)
     }
@@ -64,10 +64,10 @@ class PaginatedUseCaseTest: CoreTestCase {
         let secondPage = GetNextRequest<[APICourse]>(path: next)
         api.mock(secondPage, value: page2, response: nil, error: nil)
 
-        let paginated = TestPaginatedUseCase(api: api, database: database, request: firstPage)
+        let paginated = TestPaginatedUseCase(api: api, database: db, request: firstPage)
         addOperationAndWait(paginated)
 
-        let courses: [Course] = dbClient.fetch()
+        let courses: [Course] = db.fetch()
         XCTAssertEqual(courses.count, 4)
     }
 }

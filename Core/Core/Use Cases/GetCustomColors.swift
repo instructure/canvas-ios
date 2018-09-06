@@ -17,7 +17,7 @@
 import Foundation
 
 public class GetCustomColors: RequestUseCase<GetCustomColorsRequest> {
-    public init(api: API = URLSessionAPI(), database: DatabaseStore, force: Bool = false) {
+    public init(api: API = URLSessionAPI(), database: Persistence, force: Bool = false) {
         let request = GetCustomColorsRequest()
         super.init(api: api, database: database, request: request)
 
@@ -26,7 +26,7 @@ public class GetCustomColors: RequestUseCase<GetCustomColorsRequest> {
         }
     }
 
-    func save(response: APICustomColors?, urlResponse: URLResponse?, client: DatabaseClient) throws {
+    func save(response: APICustomColors?, urlResponse: URLResponse?, client: Persistence) throws {
         guard let response = response else {
             return
         }
@@ -49,23 +49,21 @@ public class GetCustomColors: RequestUseCase<GetCustomColorsRequest> {
         }
     }
 
-    func saveCourseColor(color: String, id: String, client: DatabaseClient) throws {
-        let predicate = NSPredicate(format: "id == %@", id)
-        guard let model: Course = client.fetch(predicate).first else {
-            return
-        }
+    func saveCourseColor(color: String, id: String, client: Persistence) throws {
+            let predicate = NSPredicate(format: "id == %@", id)
+            guard let model: Course = client.fetch(predicate).first else {
+                return
+            }
 
-        model.color = color
-        try client.save()
+            model.color = color
     }
 
-    func saveGroupColor(color: String, id: String, client: DatabaseClient) throws {
-        let predicate = NSPredicate(format: "id == %@", id)
-        guard let model: Group = client.fetch(predicate).first else {
-            return
-        }
+    func saveGroupColor(color: String, id: String, client: Persistence) throws {
+            let predicate = NSPredicate(format: "id == %@", id)
+            guard let model: Group = client.fetch(predicate).first else {
+                return
+            }
 
-        model.color = color
-        try client.save()
+            model.color = color
     }
 }

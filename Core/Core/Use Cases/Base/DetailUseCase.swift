@@ -17,7 +17,7 @@
 import Foundation
 
 public class DetailUseCase<Request, Model>: RequestUseCase<Request> where Request: APIRequestable {
-    override init(api: API, database: DatabaseStore, request: Request) {
+    override init(api: API, database: Persistence, request: Request) {
         super.init(api: api, database: database, request: request)
         addSaveOperation { [weak self] response, urlResponse, client in
             try self?.save(response: response, urlResponse: urlResponse, client: client)
@@ -28,16 +28,16 @@ public class DetailUseCase<Request, Model>: RequestUseCase<Request> where Reques
         fatalError("unimplemented \(#function)")
     }
 
-    func updateModel(_ model: Model, using item: Request.Response, in client: DatabaseClient) throws {
+    func updateModel(_ model: Model, using item: Request.Response, in client: Persistence) throws {
         fatalError("unimplemented \(#function)")
     }
 
-    func save(response: Request.Response?, urlResponse: URLResponse?, client: DatabaseClient) throws {
+    func save(response: Request.Response?, urlResponse: URLResponse?, client: Persistence) throws {
         guard let response = response else {
             return
         }
-        let model: Model = client.fetch(predicate).first ?? client.insert()
+        let model: Model = client.fetch(predicate: predicate, sortDescriptors: nil).first ?? client.insert()
         try updateModel(model, using: response, in: client)
-        try client.save()
+        try client.addOrUpdate(model)
     }
 }

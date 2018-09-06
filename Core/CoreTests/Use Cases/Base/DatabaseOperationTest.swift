@@ -19,16 +19,13 @@ import XCTest
 @testable import Core
 
 class DatabaseOperationTest: CoreTestCase {
+
     func testItExecutesAndFinishes() {
-        let operation = DatabaseOperation(database: database) { client in
-            _ = Course.make(in: client)
-            try client.save()
+        let operation = DatabaseOperation(database: db) { client in
+            _ = client.make() as Course
         }
-
-        queue.addOperation(operation)
-        queue.waitUntilAllOperationsAreFinished()
-
-        let courses: [Course] = dbClient.fetch()
+        addOperationAndWait(operation)
+        let courses: [Course] = db.fetch()
         XCTAssertEqual(courses.count, 1)
     }
 }

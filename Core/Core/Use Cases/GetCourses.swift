@@ -17,7 +17,7 @@
 import Foundation
 
 private class GetPaginatedCourses: PaginatedUseCase<GetCoursesRequest, Course> {
-    init(api: API, database: DatabaseStore) {
+    init(api: API, database: Persistence) {
         let request = GetCoursesRequest(includeUnpublished: true)
         super.init(api: api, database: database, request: request)
     }
@@ -30,8 +30,8 @@ private class GetPaginatedCourses: PaginatedUseCase<GetCoursesRequest, Course> {
         return .id(item.id)
     }
 
-    override func updateModel(_ model: Course, using item: APICourse, in client: DatabaseClient) throws {
-        model.id = item.id
+    override func updateModel(_ model: Course, using item: APICourse, in client: Persistence) throws {
+        if model.id.isEmpty { model.id = item.id }
         model.name = item.name
         model.isFavorite = item.is_favorite ?? false
         model.courseCode = item.course_code
@@ -40,7 +40,7 @@ private class GetPaginatedCourses: PaginatedUseCase<GetCoursesRequest, Course> {
 }
 
 public class GetCourses: GroupOperation {
-    public init(api: API = URLSessionAPI(), database: DatabaseStore, force: Bool = false) {
+    public init(api: API = URLSessionAPI(), database: Persistence, force: Bool = false) {
         let paginated = GetPaginatedCourses(api: api, database: database)
         let ttl = TTLOperation(key: "get-courses", database: database, operation: paginated, force: force)
         super.init(operations: [ttl])

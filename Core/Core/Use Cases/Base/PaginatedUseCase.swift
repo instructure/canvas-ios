@@ -18,7 +18,7 @@ import Foundation
 
 class PaginatedUseCase<Request, Model>: GroupOperation where Request: APIRequestable, Request.Response: Collection {
     let api: API
-    let database: DatabaseStore
+    let database: Persistence
     let request: Request
 
     var predicate: NSPredicate {
@@ -29,11 +29,11 @@ class PaginatedUseCase<Request, Model>: GroupOperation where Request: APIRequest
         fatalError("unimplemented \(#function)")
     }
 
-    func updateModel(_ model: Model, using item: Request.Response.Element, in client: DatabaseClient) throws {
+    func updateModel(_ model: Model, using item: Request.Response.Element, in client: Persistence) throws {
         fatalError("unimplemented \(#function)")
     }
 
-    init(api: API, database: DatabaseStore, request: Request) {
+    init(api: API, database: Persistence, request: Request) {
         self.api = api
         self.database = database
         self.request = request
@@ -49,9 +49,8 @@ class PaginatedUseCase<Request, Model>: GroupOperation where Request: APIRequest
         return DatabaseOperation(database: database) { [predicate] client in
             let models: [Model] = client.fetch(predicate)
             for model in models {
-                client.delete(model)
+                try client.delete(model)
             }
-            try client.save()
         }
     }
 
@@ -71,13 +70,12 @@ class PaginatedUseCase<Request, Model>: GroupOperation where Request: APIRequest
         addOperation(nextPage)
     }
 
-    private func save(_ response: Request.Response, in client: DatabaseClient) throws {
+    private func save(_ response: Request.Response, in client: Persistence) throws {
         for item in response {
             let predicate = self.predicate(forItem: item)
             let model: Model = client.fetch(predicate).first ?? client.insert()
             try updateModel(model, using: item, in: client)
+            try client.addOrUpdate(model)
         }
-
-        try client.save()
     }
 }

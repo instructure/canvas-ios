@@ -43,17 +43,17 @@ protocol AllCoursesPresenterProtocol {
 class AllCoursesPresenter: AllCoursesPresenterProtocol {
     weak var view: (AllCoursesViewProtocol & ErrorViewController)?
     let api: API
-    let database: DatabaseStore
+    let database: Persistence
     var groupOperation: GroupOperation?
 
     lazy var coursesFetch: FetchedResultsController<Course> = {
         let sort = NSSortDescriptor(key: "name", ascending: true)
-        let fetcher: FetchedResultsController<Course> = database.mainClient.fetchedResultsController(predicate: NSPredicate.all, sortDescriptors: [sort], sectionNameKeyPath: nil)
+        let fetcher: FetchedResultsController<Course> = database.fetchedResultsController(predicate: NSPredicate.all, sortDescriptors: [sort], sectionNameKeyPath: nil)
         fetcher.delegate = self
         return fetcher
     }()
 
-    init(view: (AllCoursesViewProtocol & ErrorViewController)?, api: API = URLSessionAPI(), database: DatabaseStore = coreDataStore) {
+    init(view: (AllCoursesViewProtocol & ErrorViewController)?, api: API = URLSessionAPI(), database: Persistence = RealmPersistence()) {
         self.view = view
         self.api = api
         self.database = database
@@ -126,14 +126,14 @@ class AllCoursesPresenter: AllCoursesPresenterProtocol {
 
     func transformToViewModel(current: [Course], past: [Course]) -> AllCoursesViewModel {
         let vms = current.compactMap { (course: Course) -> AllCoursesViewModel.Course? in
-            guard let id = course.id, let name = course.name else {
+            guard let name = course.name, !course.id.isEmpty else {
                 return nil
             }
             var imageUrl: URL?
             if let string = course.imageDownloadUrl {
                 imageUrl = URL(string: string)
             }
-            return AllCoursesViewModel.Course(courseID: id, title: name, abbreviation: course.courseCode ?? "", color: UIColor(hexString: course.color) ?? .gray, imageUrl: imageUrl)
+            return AllCoursesViewModel.Course(courseID: course.id, title: name, abbreviation: course.courseCode ?? "", color: UIColor(hexString: course.color) ?? .gray, imageUrl: imageUrl)
         }
 
         let vm = AllCoursesViewModel(current: vms, past: vms)

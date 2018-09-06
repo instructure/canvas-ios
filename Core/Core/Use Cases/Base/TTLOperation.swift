@@ -19,7 +19,7 @@ import Foundation
 private let defaultTTL: TimeInterval = 60 * 60 * 2 // 2 hours
 
 public class TTLOperation: GroupOperation {
-    public let database: DatabaseStore
+    public let database: Persistence
     public var ttl: TimeInterval
     private let operation: Operation
     private let key: String
@@ -32,7 +32,7 @@ public class TTLOperation: GroupOperation {
         return NSPredicate(format: "%K == %@", "key", key)
     }
 
-    init(key: String, database: DatabaseStore, operation: Operation, force: Bool = false, ttl: TimeInterval = defaultTTL) {
+    init(key: String, database: Persistence, operation: Operation, force: Bool = false, ttl: TimeInterval = defaultTTL) {
         self.key = key
         self.database = database
         self.force = force
@@ -72,9 +72,9 @@ public class TTLOperation: GroupOperation {
                 return
             }
             let cache: TTL = client.fetch(ttlPredicate).first ?? client.insert()
-            cache.key = key
-            cache.lastRefresh = now
-            try client.save()
+                if cache.key.isEmpty { cache.key = key }
+                cache.lastRefresh = now
+                try client.addOrUpdate(cache)
         }
     }
 }

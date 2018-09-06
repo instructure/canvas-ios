@@ -15,29 +15,27 @@
 //
 
 import Foundation
+import RealmSwift
+import Core
 
-class DatabaseOperation: AsyncOperation {
-    let database: Persistence
-    let block: (Persistence) throws -> Void
-    var error: Error?
-
-    init(database: Persistence, block: @escaping (Persistence) throws -> Void) {
-        self.database = database
-        self.block = block
+extension Fixture where Self: RealmSwift.Object {
+    static func make(_ template: Template = [:], in client: Persistence) -> Self {
+        var t = self.template
+        for (key, _) in template {
+            t[key] = template[key]
+        }
+        let fixture: Self = client.insert()
+        for (key, value) in t {
+            fixture.setValue(value, forKey: key)
+        }
+        return fixture
     }
+}
 
-    override func execute() {
-        if isCancelled {
-            return
-        }
-
-        type(of: database).performBackgroundTask { [weak self] client in
-            do {
-                try self?.block(client)
-            } catch {
-                self?.error = error
-            }
-            self?.finish()
-        }
+extension Persistence {
+    func make<T>(_ template: Template = [:]) -> T where T: Fixture, T: RealmSwift.Object {
+        let fixture: T = T.make(template, in: self)
+        try! addOrUpdate(fixture)
+        return fixture
     }
 }

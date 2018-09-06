@@ -15,27 +15,16 @@
 //
 
 import Foundation
-import CoreData
-@testable import Core
+import RealmSwift
 
-extension Fixture where Self: NSManagedObject {
-    static func make(_ template: Template = [:], in client: DatabaseClient) -> Self {
-        var t = self.template
-        for (key, _) in template {
-            t[key] = template[key]
-        }
-        let fixture: Self = client.insert()
-        for (key, value) in t {
-            fixture.setValue(value, forKey: key)
-        }
-        return fixture
-    }
-}
+public class Group: Object {
+    @objc public dynamic var id: String = ""
+    @objc public dynamic var name: String = ""
+    @objc public dynamic var member: Bool = false
+    @objc public dynamic var color: String = ""
+    @objc public dynamic var concluded: Bool = false
 
-extension DatabaseClient {
-    func make<T>(_ template: Template = [:]) -> T where T: Fixture, T: NSManagedObject {
-        let fixture: T = T.make(template, in: self)
-        try! save()
-        return fixture
+    override public class func primaryKey() -> String? {
+        return "id"
     }
 }

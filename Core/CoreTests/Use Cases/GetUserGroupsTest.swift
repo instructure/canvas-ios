@@ -24,10 +24,10 @@ class GetUserGroupsTest: CoreTestCase {
         let group = APIGroup.make(["id": "1", "name": "Group One", "members_count": 2])
         api.mock(request, value: [group])
 
-        let getUserGroups = GetUserGroups(api: api, database: database)
+        let getUserGroups = GetUserGroups(api: api, database: db)
         addOperationAndWait(getUserGroups)
 
-        let groups: [Group] = dbClient.fetch()
+        let groups: [Group] = db.fetch()
         XCTAssertEqual(groups.count, 1)
         XCTAssertEqual(groups.first?.id, "1")
         XCTAssertEqual(groups.first?.member, true)
@@ -38,10 +38,10 @@ class GetUserGroupsTest: CoreTestCase {
         let request = GetGroupsRequest(context: ContextModel.currentUser)
         api.mock(request, value: [])
 
-        let getUserGroups = GetUserGroups(api: api, database: database)
+        let getUserGroups = GetUserGroups(api: api, database: db)
         addOperationAndWait(getUserGroups)
 
-        let groups: [Group] = dbClient.fetch()
+        let groups: [Group] = db.fetch()
         XCTAssertFalse(groups.contains(old))
     }
 
@@ -50,10 +50,10 @@ class GetUserGroupsTest: CoreTestCase {
         let request = GetGroupsRequest(context: ContextModel.currentUser)
         api.mock(request, value: [])
 
-        let getUserGroups = GetUserGroups(api: api, database: database)
+        let getUserGroups = GetUserGroups(api: api, database: db)
         addOperationAndWait(getUserGroups)
 
-        let groups: [Group] = dbClient.fetch()
+        let groups: [Group] = db.fetch()
         XCTAssert(groups.contains(notMember))
     }
 }

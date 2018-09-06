@@ -24,10 +24,10 @@ class GetCourseTest: CoreTestCase {
         let response = APICourse.make()
         api.mock(request, value: response)
 
-        let getCourse = GetCourse(courseID: "1", api: api, database: database)
+        let getCourse = GetCourse(courseID: "1", api: api, database: db)
         addOperationAndWait(getCourse)
 
-        let courses: [Course] = dbClient.fetch()
+        let courses: [Course] = db.fetch(predicate: nil, sortDescriptors: nil)
         XCTAssertEqual(courses.count, 1)
         XCTAssertEqual(courses.first?.id, response.id)
         XCTAssertEqual(courses.first?.name, response.name)
@@ -39,9 +39,9 @@ class GetCourseTest: CoreTestCase {
         let response = APICourse.make(["id": "1", "name": "New Name"])
         api.mock(request, value: response)
 
-        let getCourse = GetCourse(courseID: "1", api: api, database: database)
+        let getCourse = GetCourse(courseID: "1", api: api, database: db)
         addOperationAndWait(getCourse)
 
-        XCTAssertEqual(course.reload().name, "New Name")
+        XCTAssertEqual(course.name, "New Name")
     }
 }

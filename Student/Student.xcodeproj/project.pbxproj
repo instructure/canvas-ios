@@ -16,6 +16,8 @@
 		2C96486F211E428B002C3255 /* DetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C96486E211E428B002C3255 /* DetailViewController.storyboard */; };
 		2C964871211E4319002C3255 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C964870211E4319002C3255 /* MainViewController.swift */; };
 		2CB3261D21387C99009496AF /* RouterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB3261C21387C99009496AF /* RouterViewController.swift */; };
+		3B412F0121406C410090DE02 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B412EFC21406C000090DE02 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3B412F0321406C410090DE02 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B412EFD21406C000090DE02 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		788152DB212B3470005BA428 /* DashboardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152DA212B3470005BA428 /* DashboardPresenter.swift */; };
 		788152DD212B34F2005BA428 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152DC212B34F2005BA428 /* DashboardViewController.swift */; };
 		788152DF212B35F8005BA428 /* DashboardViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 788152DE212B35F8005BA428 /* DashboardViewController.storyboard */; };
@@ -55,7 +57,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				3B412F0121406C410090DE02 /* Realm.framework in Embed Frameworks */,
 				F97304A12122268500AA2557 /* Core.framework in Embed Frameworks */,
+				3B412F0321406C410090DE02 /* RealmSwift.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -89,6 +93,8 @@
 		2C96486E211E428B002C3255 /* DetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailViewController.storyboard; sourceTree = "<group>"; };
 		2C964870211E4319002C3255 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		2CB3261C21387C99009496AF /* RouterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterViewController.swift; sourceTree = "<group>"; };
+		3B412EFC21406C000090DE02 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../ios-frameworks/Realm.framework"; sourceTree = SOURCE_ROOT; };
+		3B412EFD21406C000090DE02 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "../ios-frameworks/RealmSwift.framework"; sourceTree = SOURCE_ROOT; };
 		788152DA212B3470005BA428 /* DashboardPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardPresenter.swift; sourceTree = "<group>"; };
 		788152DC212B34F2005BA428 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		788152DE212B35F8005BA428 /* DashboardViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DashboardViewController.storyboard; sourceTree = "<group>"; };
@@ -181,6 +187,8 @@
 		2C964862211E37EC002C3255 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3B412EFC21406C000090DE02 /* Realm.framework */,
+				3B412EFD21406C000090DE02 /* RealmSwift.framework */,
 				F97304A3212287C400AA2557 /* EarlGrey.framework */,
 				2C964867211E38B0002C3255 /* Core.framework */,
 			);
@@ -523,6 +531,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B6333T4PXQ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/../ios-frameworks",
+				);
 				INFOPLIST_FILE = Student/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -542,6 +554,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B6333T4PXQ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/../ios-frameworks",
+				);
 				INFOPLIST_FILE = Student/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = (

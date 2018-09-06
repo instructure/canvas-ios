@@ -72,7 +72,9 @@ public class AsyncOperation: Operation {
         state = .finished
     }
 
-    func addError(_ error: Error) {
-        errors.append(error)
+    func addError(_ error: Error?) {
+        if let error = error {
+            errors.append(error)
+        }
     }
 }

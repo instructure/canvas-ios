@@ -17,7 +17,7 @@
 import Foundation
 
 public class CollectionUseCase<Request, Model>: RequestUseCase<Request> where Request: APIRequestable, Request.Response: Collection, Model: Hashable {
-    override init(api: API, database: DatabaseStore, request: Request) {
+    override init(api: API, database: Persistence, request: Request) {
         super.init(api: api, database: database, request: request)
 
         addSaveOperation { [weak self] response, urlResponse, client in
@@ -32,34 +32,30 @@ public class CollectionUseCase<Request, Model>: RequestUseCase<Request> where Re
         fatalError("unimplemented \(#function)")
     }
 
-    func updateModel(_ model: Model, using item: Request.Response.Element, in client: DatabaseClient) throws {
+    func updateModel(_ model: Model, using item: Request.Response.Element, in client: Persistence) throws {
         fatalError("unimplemented \(#function)")
     }
 
-    func save(response: Request.Response?, urlResponse: URLResponse?, client: DatabaseClient) throws {
+    func save(response: Request.Response?, urlResponse: URLResponse?, client: Persistence) throws {
         guard let response = response else {
             return
         }
 
-        var existing: [Model] = client.fetch(predicate)
+        var existing: [Model] = client.fetch(predicate: predicate, sortDescriptors: nil)
 
         for item in response {
             let predicate = self.predicate(forItem: item)
-            let model: Model = client.fetch(predicate).first ?? client.insert()
-            do {
-                try updateModel(model, using: item, in: client)
-                if let index = existing.index(of: model) {
-                    existing.remove(at: index)
-                }
-            } catch {
-                addError(error)
+            let model: Model = client.fetch(predicate: predicate, sortDescriptors: nil).first ?? client.insert()
+            try updateModel(model, using: item, in: client)
+            if let index = existing.index(of: model) {
+                existing.remove(at: index)
             }
+            try client.addOrUpdate(model)
+
         }
 
         for model in existing {
-            client.delete(model)
+            try client.delete(model)
         }
-
-        try client.save()
     }
 }

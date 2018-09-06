@@ -18,7 +18,7 @@ import Foundation
 
 public class RequestUseCase<Request>: GroupOperation where Request: APIRequestable {
     let api: API
-    let database: DatabaseStore
+    let database: Persistence
     let request: Request
     var next: GetNextRequest<Request.Response>? {
         return fetch.next
@@ -28,7 +28,7 @@ public class RequestUseCase<Request>: GroupOperation where Request: APIRequestab
         return APIOperation(api: api, request: request)
     }()
 
-    init(api: API, database: DatabaseStore, request: Request) {
+    init(api: API, database: Persistence, request: Request) {
         self.api = api
         self.database = database
         self.request = request
@@ -36,7 +36,7 @@ public class RequestUseCase<Request>: GroupOperation where Request: APIRequestab
         addOperation(fetch)
     }
 
-    func addSaveOperation(block: @escaping (Request.Response?, URLResponse?, DatabaseClient) throws -> Void) {
+    func addSaveOperation(block: @escaping (Request.Response?, URLResponse?, Persistence) throws -> Void) {
         let save = DatabaseOperation(database: database) { [weak self] client in
             try block(self?.fetch.response, self?.fetch.urlResponse, client)
         }

@@ -19,7 +19,7 @@ import Foundation
 public class GetCourse: DetailUseCase<GetCourseRequest, Course> {
     let courseID: String
 
-    init(courseID: String, api: API = URLSessionAPI(), database: DatabaseStore, force: Bool = false) {
+    init(courseID: String, api: API = URLSessionAPI(), database: Persistence, force: Bool = false) {
         self.courseID = courseID
         let request = GetCourseRequest(courseID: courseID)
         super.init(api: api, database: database, request: request)
@@ -29,8 +29,8 @@ public class GetCourse: DetailUseCase<GetCourseRequest, Course> {
         return .id(courseID)
     }
 
-    override public func updateModel(_ model: Course, using item: APICourse, in client: DatabaseClient) throws {
-        model.id = item.id
+    override public func updateModel(_ model: Course, using item: APICourse, in client: Persistence) throws {
+        if model.id.isEmpty { model.id = item.id }
         model.name = item.name
         model.isFavorite = item.is_favorite ?? false
         model.courseCode = item.course_code
