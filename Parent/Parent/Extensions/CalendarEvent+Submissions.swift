@@ -45,8 +45,16 @@ private struct Submission {
     let currentScore: NSNumber?
     let pointsPossible: NSNumber?
     let pastEndDate: Bool
-    let onPaper: Bool
+    let type: SubmissionTypes
     let muted: Bool
+
+    var onPaper: Bool {
+        return type.contains(.onPaper)
+    }
+
+    var missing: Bool {
+        return pastEndDate && !type.contains(.none)
+    }
 
     var displayText: String {
         if status.contains(.Excused) {
@@ -84,7 +92,7 @@ private struct Submission {
         } else {
             if onPaper {
                 return NSLocalizedString("In-Class", comment: "")
-            } else if pastEndDate {
+            } else if missing {
                 return NSLocalizedString("Missing", comment: "")
             } else {
                 return ""
@@ -107,7 +115,7 @@ private struct Submission {
         } else {
             if onPaper {
                 return NSLocalizedString("In-Class", comment: "")
-            } else if pastEndDate {
+            } else if missing {
                 guard let pointsPossible = pointsPossible else { return self.displayText }
                 return String(format: NSLocalizedString("Missing: (-/%@)", comment: ""), pointsPossible)
             } else {
@@ -125,7 +133,7 @@ private struct Submission {
             return UIImage(named: "icon_checkmark_fill")
         }
 
-        if pastEndDate && !onPaper {
+        if missing {
             return UIImage(named: "icon_alert_fill")
         }
 
@@ -145,7 +153,7 @@ private struct Submission {
             return UIColor.parentGreenColor()
         }
 
-        if pastEndDate {
+        if missing {
             return UIColor.parentRedColor()
         }
 
@@ -157,7 +165,13 @@ extension CalendarEvent {
 
     fileprivate var submission: Submission? {
         guard type != .calendarEvent else { return nil }
-        return Submission(status: Submission.Status(rawValue: rawStatus), currentGrade: currentGrade, currentScore: currentScore, pointsPossible: pointsPossible, pastEndDate: pastEndDate, onPaper: submissionTypes.contains(.onPaper), muted: muted)
+        return Submission(status: Submission.Status(rawValue: rawStatus),
+                          currentGrade: currentGrade,
+                          currentScore: currentScore,
+                          pointsPossible: pointsPossible,
+                          pastEndDate: pastEndDate,
+                          type: submissionTypes,
+                          muted: muted)
     }
 
     var submittedText: String {
@@ -188,7 +202,13 @@ extension Assignment {
     }
 
     fileprivate var submission: Submission {
-        return Submission(status: Submission.Status(rawValue: rawStatus), currentGrade: currentGrade, currentScore: currentScore, pointsPossible: NSNumber(value: pointsPossible), pastEndDate: overdue, onPaper: submissionTypes.contains(.onPaper), muted: muted)
+        return Submission(status: Submission.Status(rawValue: rawStatus),
+                          currentGrade: currentGrade,
+                          currentScore: currentScore,
+                          pointsPossible: NSNumber(value: pointsPossible),
+                          pastEndDate: overdue,
+                          type: submissionTypes,
+                          muted: muted)
     }
 
     var submittedText: String {

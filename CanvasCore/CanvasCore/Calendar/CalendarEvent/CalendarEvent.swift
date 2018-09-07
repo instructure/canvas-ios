@@ -36,49 +36,6 @@ public enum EventType: String {
     case error = "error"
 }
 
-public struct EventSubmissionTypes: OptionSet {
-    public let rawValue: Int
-    public init(rawValue: Int) { self.rawValue = rawValue }
-
-    public static let onPaper           = EventSubmissionTypes(rawValue: 1<<0)
-    public static let discussionTopic   = EventSubmissionTypes(rawValue: 1<<1)
-    public static let quiz              = EventSubmissionTypes(rawValue: 1<<2)
-    public static let externalTool      = EventSubmissionTypes(rawValue: 1<<3)
-    public static let text              = EventSubmissionTypes(rawValue: 1<<4)
-    public static let url               = EventSubmissionTypes(rawValue: 1<<5)
-    public static let upload            = EventSubmissionTypes(rawValue: 1<<6)
-    public static let mediaRecording    = EventSubmissionTypes(rawValue: 1<<7)
-    public static let none              = EventSubmissionTypes(rawValue: 1<<8)
-
-    public static func fromStrings(_ strings: [String]) -> EventSubmissionTypes {
-        return strings.map(EventSubmissionTypes.typeForString).reduce([]) { $0.union($1) }
-    }
-
-    fileprivate static func typeForString(_ typeString: String) -> EventSubmissionTypes {
-        switch typeString.lowercased() {
-        case "discussion_topic":    return .discussionTopic
-        case "online_quiz":         return .quiz
-        case "on_paper":            return .onPaper
-        case "external_tool":       return .externalTool
-        case "online_text_entry":   return .text
-        case "online_url":          return .url
-        case "online_upload":       return .upload
-        case "media_recording":     return .mediaRecording
-        case "none":                return .none
-        default:                    return []
-        }
-    }
-
-    static let OnlineSubmissions: EventSubmissionTypes = [.discussionTopic, .quiz, .text, .url, .upload, .mediaRecording, .externalTool, .none]
-    public var onlineSubmission: Bool {
-        return !intersection(.OnlineSubmissions).isEmpty
-    }
-
-    public var canSubmit: Bool {
-        return !isEmpty
-    }
-}
-
 public struct EventSubmissionStatus: OptionSet {
     public let rawValue: Int64
     public init(rawValue: Int64) { self.rawValue = rawValue}
@@ -165,9 +122,9 @@ public final class CalendarEvent: NSManagedObject {
         }
     }
 
-    internal (set) public var submissionTypes: EventSubmissionTypes {
+    internal (set) public var submissionTypes: SubmissionTypes {
         get {
-            return EventSubmissionTypes(rawValue: Int(rawSubmissionTypes))
+            return SubmissionTypes(rawValue: Int(rawSubmissionTypes))
         } set {
             rawSubmissionTypes = Int32(newValue.rawValue)
         }
@@ -282,7 +239,7 @@ extension CalendarEvent: SynchronizedModel {
             discussionTopicID   = try assignmentJSON.stringID("discussion_topic.id")
             quizID              = try assignmentJSON.stringID("quiz_id")
             let types: [String] = try assignmentJSON <| "submission_types"
-            submissionTypes     = EventSubmissionTypes.fromStrings(types)
+            submissionTypes     = SubmissionTypes.fromStrings(types)
             muted               = (try assignmentJSON <| "muted") ?? false
 
             if let submissionJSON: JSONObject = try assignmentJSON <| "submission" {
