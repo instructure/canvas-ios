@@ -1,0 +1,827 @@
+/* Error message component with the report id */
+" Error report ID: (reportID)" = " Fejlrapport-ID: (reportID)";
+
+/* Failure reason from the JSON payload from canvas */
+" Failure reason: (reason)." = " Fejl grund: (grund).";
+
+/* Shows the number of flagged questions */
+"%@ Flagged" = "%@ Markeret";
+
+/* Accessiblity hint for question drawer button */
+"%@ Questions Answered" = "%@ Spørgsmål svaret";
+
+/* Question number in a quiz */
+"%@." = "%@.";
+
+/* Confirmations alerting user of unanswered questions */
+"%d questions not answered" = "%d spørgsmål ikke besvaret";
+
+/* Accessiblity hint for question drawer button */
+"0 Questions Answered" = "0 spørgsmål besvaret";
+
+/* Notification to alert the user that there is only 5 minutes left in the timed quiz */
+"5 minutes remaining" = "5 minutter tilbage";
+
+/* Notification to alert the user that there is only 30 seconds left in the time quiz */
+"30 seconds remaining" = "30 sekunder tilbage";
+
+/* Mark student absent
+   Student is present in class */
+"Absent" = "Fraværende";
+
+/* URL submission option */
+"Add Website Address" = "Tilføj webadresse";
+
+/* Shows the number questions */
+"All %@ Questions" = "Alle %@ spørgsmål";
+
+/* option to view results for all grading periods */
+"All Grading Periods" = "Alle karakterperioder";
+
+/* all pages segmented control title */
+"All Pages" = "Alle sider";
+
+/* No comment provided by engineer. */
+"All notifications are currently disabled." = "Alle meddelelser er for øjeblikket deaktiveret.";
+
+/* No comment provided by engineer. */
+"All notifications are currently enabled." = "Alle meddelelser er for øjeblikket aktiveret.";
+
+/* No comment provided by engineer. */
+"Allow Notifications in Settings" = "Tillad meddelelser i indstillinger";
+
+/* label for number of attempts that are allowed */
+"Allowed Attempts" = "Tilladte forsøg";
+
+/* Default error message displayed when a file fails to upload */
+"An error occured, please try again." = "Der opstod en fejl, prøv igen.";
+
+/* an unknown error's message */
+"An unknown error has occurred." = "En ukendt fejl er opstået.";
+
+/* Question to confirm user wants to navigate away from a quiz. */
+"Are you sure you want to leave this quiz?" = "Er du sikker på, at du ønsker at forladedene quiz?";
+
+/* Confirmation before submitting a quiz */
+"Are you sure you want to submit your answers?" = "Er du sikker på, at du ønsker at indsende dine svar?";
+
+/* No comment provided by engineer. */
+"Are you sure you would like to delete this comment?" = "Er du sikker på, at du vil slette denne kommentar?";
+
+/* No comment provided by engineer. */
+"Attendance" = "Tilstedeværelse";
+
+/* Error title for attendance app */
+"Attendance Error" = "Fejl ved tilstedeværelse";
+
+/* label for quiz availability date */
+"Available Until" = "Tilgængelig indtil";
+
+/* stop record button a11y hint */
+"Begin recording" = "Begynd optagelse";
+
+/* Blue course color button */
+"Blue" = "Blå";
+
+/* Title for screen to build a panda avatar */
+"Build Your Panda!" = "Byg din Panda!";
+
+/* Alert title when unable to parse JSON for communication channels */
+"Can't Display Communication Channels" = "Kan ikke vise kommunikationskanaler";
+
+/* Alert title when unable to parse JSON for notification preferences */
+"Can't Display Notification Preferences" = "Kan ikke vise notifikationsindstillinger";
+
+/* Cancel Audio recording.
+   Cancel button title
+   Cancel submission option
+   Cancel upload */
+"Cancel" = "Annuller";
+
+/* No comment provided by engineer. */
+"Change Section" = "Skift sektion";
+
+/* Description for Chat communication channel */
+"Chat" = "Chat";
+
+/* No comment provided by engineer. */
+"Choose Date" = "Vælg dato";
+
+/* Choose a file */
+"Choose a File" = "Vælg en fil";
+
+/* Pick a photo from library */
+"Choose a Photo" = "Vælg et foto";
+
+/* Pick a photo or video */
+"Choose a Photo or Video" = "Vælg et foto eller video";
+
+/* No comment provided by engineer. */
+"Choose a Section" = "Vælg en sektion";
+
+/* Pick a video from library */
+"Choose a Video" = "Vælg en video";
+
+/* No comment provided by engineer. */
+"Closed" = "Lukket";
+
+/* No comment provided by engineer. */
+"Collapse" = "Skjul";
+
+/* No comment provided by engineer. */
+"Comments" = "Kommentarer";
+
+/* File upload completed */
+"Complete" = "Færdig";
+
+/* Title of a screen that shows all of our open source components */
+"Components" = "Komponenter";
+
+/* Button for electing to be late on a quiz */
+"Continue Quiz" = "Fortsæt Quiz";
+
+/* Notification display name for conversations group */
+"Conversations" = "Samtale";
+
+/* Alert title when unable to load notification preferences */
+"Could not load notification preferences" = "Kunne ikke indlæse notifikationsindstillinger";
+
+/* Failure reason for why it couldn't associate a tab with a context */
+"Could not parse context id from URL" = "Kunne ikke fortolke kontekst id fra URL";
+
+/* Error title for being unable to update a push notification preference */
+"Could not update" = "Kunne ikke opdatere";
+
+/* Notification display name for course activities group */
+"Course Activities" = "Fagets aktiviteter";
+
+/* Header label for a screen that customizes a course */
+"Customize" = "Tilpas";
+
+/* Cyan course color button */
+"Cyan" = "Cyan";
+
+/* name for upload data */
+"Data" = "Data";
+
+/* Error title for a persistence related data failure */
+"Data Error" = "Datafejl";
+
+/* No comment provided by engineer. */
+"Date picker" = "Datovælger";
+
+/* DeepOrange course color button */
+"DeepOrange" = "DeepOrange";
+
+/* DeepPurple course color button */
+"DeepPurple" = "DeepPurple";
+
+/* Delete button
+   Delete button for file upload */
+"Delete" = "Slet";
+
+/* No comment provided by engineer. */
+"Delete Comment" = "Slet kommentar";
+
+/* message for delete dialog of audio recorder */
+"Delete recording?" = "Slet optagelse?";
+
+/* Notification display name for discussions group */
+"Discussions" = "Diskussioner";
+
+/* Error title to alert user their device is out of storage space */
+"Disk Error" = "Diskfejl";
+
+/* Dismiss an error alert
+   Dismiss an error dialog
+   Dismiss button for error alert
+   Dismiss button for error messages */
+"Dismiss" = "Afvis";
+
+/* Done button
+   Done recording button */
+"Done" = "Udført";
+
+/* No comment provided by engineer. */
+"Due %@" = "Forfalder %@";
+
+/* due date label for quiz due date */
+"Due Date" = "Afleveringsdato";
+
+/* Description for email communication channel */
+"Email" = "E-mail";
+
+/* Data encoding error title */
+"Encoding Error" = "Krypteringsfejl";
+
+/* Text submission option */
+"Enter Text" = "Indtast tekst";
+
+/* Placeholder for URL */
+"Enter URL..." = "Indtast URL...";
+
+/* Default text for essay cell */
+"Enter answer..." = "Indtast svar...";
+
+/* Prompt for text upload */
+"Enter your submission..." = "Indtast din indsendelse ...";
+
+/* Title for quiz loading error */
+"Error Loading Quiz" = "Fejl ved indlæsning af quiz";
+
+/* Error title for parsing assignment data from server */
+"Error Updating Assignment" = "Fejl med opdatering af opgave";
+
+/* error message for when the cache management database fails to load */
+"Error loading cache management database." = "Fejl ved indlæsning af cache management database.";
+
+/* No comment provided by engineer. */
+"Error parsing the Roll Call response. Expected (e), received (a)" = "Der opstod en fejl ved parsing af navneopkald-responsen. Forventet (e), modtaget (a)";
+
+/* No comment provided by engineer. */
+"Error parsing the Roll Call response. Expected (e), received (a) for key (k)" = "Der opstod en fejl ved parsing af navneopkald-responsen. Forventet (e), modtaget (a) for nøgle (k)";
+
+/* No comment provided by engineer. */
+"Error parsing the Roll Call response. Key not found: (k)" = "Der opstod en fejl ved parsing af navneopkald-responsen. Nøgle ikke fundet: (k)";
+
+/* No comment provided by engineer. */
+"Error parsing the Roll Call response. Unexpected null value: (k)" = "Der opstod en fejl ved parsing af navneopkald-responsen. Uventet null-værdi: (k)";
+
+/* No comment provided by engineer. */
+"Error retrieving tool launch URL" = "Der opstod en fejl under hentning af værktøjsstarterens URL";
+
+/* rollcall status error */
+"Error: No data returned from the rollcall api." = "Fejl: Ingen data returneret fra navneopkald-api.";
+
+/* Exit button to leave the quiz */
+"Exit" = "Afslut";
+
+/* No comment provided by engineer. */
+"Expand" = "Udvid";
+
+/* Error message when the server returns a invalid response */
+"Expected a response in the 200-299 range. Got %@" = "Forventet et svar i området 200-299. Fik %@";
+
+/* File upload failed */
+"Failed" = "Mislykkedes";
+
+/* Error when submitting an assignment */
+"Failed to Submit" = "Indsendelsen lykkedes ikke";
+
+/* No comment provided by engineer. */
+"Failed to find image at path" = "Kunne ikke finde billedet på stien";
+
+/* Error Message when the app can't load an object model from the database */
+"Failed to load (discussionKitModelName) NSManagedObjectModel" = "Kunne ikke indlæse (discussionKitModelName) NSManagedObjectModel";
+
+/* No comment provided by engineer. */
+"Failed to write image" = "Kunne ikke skrive billedet";
+
+/* favorite courses or groups */
+"Favorites" = "Favoritter";
+
+/* title for file upload errors */
+"File Upload Error" = "Fil upload fejl";
+
+/* File uploads screen title */
+"File Uploads" = "Filuploads";
+
+/* State of the flagged question */
+"Flagged" = "Markeret";
+
+/* front page segmented control title */
+"Front Page" = "Forside";
+
+/* navigate */
+"Go" = "Gå til";
+
+/* Title for grading periods picker */
+"Grading Periods" = "Karakterperioder";
+
+/* Green course color button */
+"Green" = "Grøn";
+
+/* Notification display name for groups group */
+"Groups" = "Grupper";
+
+/* Non favorite hidden courses or groups */
+"Hidden" = "Skjult";
+
+/* Hides the question list */
+"Hide Question List" = "Skul spørgsmålsliste";
+
+/* Inbox tab title */
+"Inbox" = "Indbakke";
+
+/* Indigo course color button */
+"Indigo" = "Indigo";
+
+/* Mark student late
+   Student is present in class */
+"Late" = "Sen";
+
+/* No comment provided by engineer. */
+"Launch External Tool" = "Start eksternt værktøj";
+
+/* Leave the quiz */
+"Leave" = "Forlad";
+
+/* LightBlue course color button */
+"LightBlue" = "LightBlue";
+
+/* LightGreen course color button */
+"LightGreen" = "LightGreen";
+
+/* LightPink course color button */
+"LightPink" = "LightPink";
+
+/* Label indicating that the quiz lock date was reached and the quiz is auto submitting */
+"Lock Date Reached\nSubmitting" = "Dato for låsning nået \nAfleverer";
+
+/* Title for when another tool called Lockdown Browser is required to take a quiz */
+"Lockdown Browser Required" = "Lockdown Browser påkrævet";
+
+/* Detail label for when a tool called Lockdown Browser is required to take the quiz */
+"Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue." = "Lockdown Browser påkrævet for at se dine resultater. Åbn quizzen i Lockdown Browser for at fortsætte.";
+
+/* No comment provided by engineer. */
+"Mark All as Present" = "Marker alle som tilstedeværende";
+
+/* No comment provided by engineer. */
+"Mark Remaining as Present" = "Marker de resterende som tilstedeværende";
+
+/* Error alert title for network error
+   Title for network errors */
+"Network Error" = "Netværk fejl";
+
+/* Next button for advancing a quiz */
+"Next" = "Næste";
+
+/* Alert title when unable to load communication channels */
+"No Communication Channels Found" = "Ingen kommunikationskanaler fundet";
+
+/* A quiz that has no due date */
+"No Due Date" = "Ingen afleveringsdato";
+
+/* Title for alert when a module item doesn't have mastery paths configured */
+"No Mastery Paths" = "Ingen læringsstier";
+
+/* Error when push channel cannot be found in notificaitons */
+"No push channel found" = "Ingen push-kanal fundet";
+
+/* No comment provided by engineer. */
+"No sections available. Please make sure you are enrolled as a teacher or TA in at least on section of this course." = "Ingen sektioner til rådighed Sørg for, at du er indskrevet som lærer eller undervisningsassistent i mindst en sektion af dette fag.";
+
+/* when a quiz has no time limit */
+"No time limit" = "Ingen tidsbegrænsning";
+
+/* Section header for assignments without an assignment group */
+"None" = "Ingen";
+
+/* can't record because request for mic access was denied title */
+"Not Permitted" = "Ikke tilladt";
+
+/* Title for alert showing when a quiz isn't takeable */
+"Not Takeable" = "Kan ikke tages";
+
+/* Error title for push notification registration error */
+"Notification Error" = "Meddelelsesfejl";
+
+/* Title for the notification preferences page */
+"Notification Preferences" = "Meddelelsespræferencer";
+
+/* OK Button Title */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"Open in Safari" = "Åbn i Safari";
+
+/* No comment provided by engineer. */
+"Open in…" = "Åbn om ...";
+
+/* Accessibility hint for the profile button */
+"Opens profile" = "Åbner profil";
+
+/* Orange course color button */
+"Orange" = "Orange";
+
+/* Overdue assignmnets (not turned in) */
+"Overdue" = "Forsinket";
+
+/* Assignments that have been turned in and are past */
+"Past" = "Tidligere";
+
+/* Pause recording/playback */
+"Pause" = "Pause";
+
+/* record button a11y hint */
+"Pause playback" = "Afbryd afspilning";
+
+/* name for a photo just taken */
+"Photo" = "Foto";
+
+/* Photos backdrops */
+"Photos" = "Fotoer";
+
+/* Pink course color button */
+"Pink" = "Lyserød";
+
+/* Playback button */
+"Play" = "Afspil";
+
+/* play button a11y hint */
+"Play back recording" = "Afspil optagelse";
+
+/* Title for playback error messages */
+"Playback Error" = "Afspliningsfejl";
+
+/* No comment provided by engineer. */
+"Please check your network connection and try again." = "Tjek venligst din netværk forbindelse og prøv igen.";
+
+/* label for number of points in a quiz */
+"Points" = "Point";
+
+/* Mark student present
+   Student is present in class */
+"Present" = "Til stede";
+
+/* Accessibility label for the profile button */
+"Profile" = "Profil";
+
+/* Purple course color button */
+"Purple" = "Lilla";
+
+/* Description for Push Notification channel */
+"Push Notifications" = "Push notifikationer";
+
+/* accessibility label for a quiz question */
+"Question" = "Spørgsmål";
+
+/* Shows question position */
+"Question %@" = "Spørgsmål %@";
+
+/* state for a question that has been flagged */
+"Question (number) Flagged" = "Spørgsmål (nummer) Markeret med flag";
+
+/* state for unflagged question */
+"Question (number) Unflagged" = "Spørgsmål (nummer) Ikke markeret med flag";
+
+/* label for the number of questions */
+"Questions" = "Spørgsmål";
+
+/* Title for alert that shows when a quiz hits the due date */
+"Quiz Due" = "Quiz forfalden";
+
+/* Title for quiz error */
+"Quiz Error" = "Quiz fejl";
+
+/* Label for indication that the quiz submission was successful */
+"Quiz Submitted" = "Quiz indsendt";
+
+/* Label for indication that the quiz submission failed */
+"QuizSubmission Failure" = "QuizSubmission Mislykket forsøg";
+
+/* No comment provided by engineer. */
+"Quizzes" = "Test";
+
+/* tile for error reading cache */
+"Read Error" = "Læsefejl";
+
+/* button to read more of the description */
+"Read More" = "Læs mere";
+
+/* Record button a11y label */
+"Record" = "Optag";
+
+/* Choose record audio submission */
+"Record Audio" = "Optage audio";
+
+/* permission denied button a11y label */
+"Record Permission Help" = "Hjæp til optagelsestilladelse";
+
+/* title for a recording error */
+"Recording Error" = "Optagelsesfejl";
+
+/* red course color button */
+"Red" = "Rød";
+
+/* No comment provided by engineer. */
+"Remove" = "Fjern";
+
+/* Remove the formatting of the essay question text */
+"Remove Formatting" = "Fjern formattering";
+
+/* No comment provided by engineer. */
+"Removed %1$@" = "Fjernet %1$@";
+
+/* No comment provided by engineer. */
+"Removed %1$@ by %2$@" = "fjernet %1$@ af %2$@";
+
+/* No comment provided by engineer. */
+"Reply" = "Svar";
+
+/* Button to report an error */
+"Report" = "Rapport";
+
+/* Record button a11y label */
+"Request Audio Recording Permission" = "Anmod om audio optagelsestilladelse";
+
+/* stop record button a11y hint */
+"Request Permission to record audio" = "Anmod om tilladelse til at optage audio";
+
+/* button for resuming a quiz */
+"Resume Quiz" = "Genoptag quiz";
+
+/* button for retaking quiz */
+"Retake Quiz" = "Tag Quiz igen";
+
+/* Description for SMS communication channel */
+"SMS" = "SMS";
+
+/* Notification display name for scheduling group */
+"Scheduling" = "Planlægning";
+
+/* Indicates that a matching quiz question needs to have an answer selected */
+"Select Answer" = "Vælg svar";
+
+/* Label indicating that the question is a multiple answer question and more than 1 answer can be correct */
+"Select all that apply" = "Vælg alt der gælder";
+
+/* No comment provided by engineer. */
+"Select to change the roll call date" = "Vælg for at ændre dato for navneopkald";
+
+/* when a button is selected */
+"Selected" = "Valgt";
+
+/* Shapes backdrops */
+"Shapes" = "Former";
+
+/* Hides the question list */
+"Show Question List" = "Vis spørgsmålsliste";
+
+/* Text for a button that toggles to show a timer for a timed quiz */
+"Show Timer" = "Vis timer";
+
+/* Error message displayed when the file is unrecognized. */
+"Something went wrong. Check the file format and try again." = "Noget gik galt. Kontroller filformatet og prøv igen.";
+
+/* Text only quiz question label */
+"Spacer" = "Mellemrum";
+
+/* Stay on the quiz view */
+"Stay" = "Bliv";
+
+/* stop recording button a11y label */
+"Stop" = "Stop";
+
+/* File upload was stopped */
+"Stopped" = "Stoppede";
+
+/* No comment provided by engineer. */
+"Style" = "Type";
+
+/* Submit assignment button
+   Submit button title
+   Turn in this url button */
+"Submit" = "Indsend";
+
+/* Title for button to submit assignment */
+"Submit Assignment" = "Indsend opgave";
+
+/* No comment provided by engineer. */
+"Submitted!" = "Indsendt!";
+
+/* No comment provided by engineer. */
+"Submitting" = "Indsender";
+
+/* Label for indication of submitting quiz */
+"Submitting Quiz" = "Indsender Quiz";
+
+/* Take a photo or video submission choice */
+"Take Photo or Video" = "Tag foto eller video";
+
+/* Button for taking the quiz */
+"Take Quiz" = "Tag Quiz";
+
+/* Take a photo submission choice */
+"Take a Photo" = "Tag et foto";
+
+/* Take a video submission choice */
+"Take a Video" = "Tag en video";
+
+/* Teal course color button */
+"Teal" = "Grønblå";
+
+/* This shouldn't ever happen. */
+"The Pages are gone!? Why are the pages always gone?" = "Siderne er væk!? Hvorfor er siderne altid væk?";
+
+/* Error message for a file missing */
+"The file does not exist." = "Denne fil eksisterer ikke.";
+
+/* Description for alert that shows when the quiz hits the due date */
+"The quiz is due in 1 minute. Would you like to submit now and be on time or continue taking the quiz and possibly be late?" = "Testen forfalder om 1 minut. Vil du gerne indsende nu og aflevere til tiden eller fortsætte med at tage testen og muligvis aflevere for sent?";
+
+/* Error message for interrupted requests marking a to do as done */
+"The request to mark a to do as done was interrupted" = "Anmodningen om at markere en To do som udført blev afrudt";
+
+/* bad url message */
+"The text you entered is not a valid URL" = "Teksten du indtastede er ikke et gyldigt URL";
+
+/* Data encoding error message */
+"There was a problem encoding UTF8 Data" = "Der var et problem med kryptering af UTF8 Data";
+
+/* No comment provided by engineer. */
+"There was a problem fetching the list of course sections." = "Der opstod et problem ved hentning af listen over fagsektioner.";
+
+/* JSON Parsing error description */
+"There was a problem interpreting a response from the server." = "Der var et problemmed fortolkningen af et svar fra serveren.";
+
+/* CalendarKit Database Load Failure Message */
+"There was a problem loading the (kitModelName) database file." = "Der opstod et problem ved indlæsning af (kitModelName) database-fil.";
+
+/* AssignmentKit database load failure message */
+"There was a problem loading the AssignmentKit database file." = "Der opstod et problem ved indlæsning af AssignmentKit database-fil.";
+
+/* CalendarKit Database Load Failure Message */
+"There was a problem loading the CalendarKit database file." = "Der opstod et problem ved indlæsning af CalendarKit database-fil.";
+
+/* DiscussionKit Database Load Failure Message */
+"There was a problem loading the DiscussionKit database file." = "Der opstod et problem ved indlæsning af DiscussionKit database-fil.";
+
+/* EnrollmentKit Database Load Failure Message */
+"There was a problem loading the EnrollmentKit database file." = "Der opstod et problem ved indlæsning af EnrollmentKit database-fil.";
+
+/* FileKit Database Load Failure Message */
+"There was a problem loading the FileKit database file." = "Der opstod et problem ved indlæsning af FileKit database-fil.";
+
+/* Page list fails */
+"There was a problem loading the Pages database file." = "Der var et problem med indlæsning af sidens databasefil.";
+
+/* PeepKit Database Load Failure Message */
+"There was a problem loading the PeepKit database file." = "Der opstod et problem ved indlæsning af PeepKit database-fil.";
+
+/* SoEdventurous database load failure message */
+"There was a problem loading the SoEdventurous database file." = "Der opstod et problem ved indlæsning af SoEdventurous database-fil.";
+
+/* File upload error message */
+"There was a problem preparing the file for upload" = "Der var et problem med forberedelsen af filen for upload";
+
+/* Persistence error message */
+"There was a problem reading cached data" = "Der var et problem med læsning af cache data";
+
+/* Error description for Push Notifications registration error. */
+"There was a problem registering your device for push notifications." = "Der opstod et problem ved tilmelding af din enhed til push-meddelelser";
+
+/* Message when fails to submit an assignment */
+"There was a problem submitting your assignment. Please try again later." = "Der var et problem ved indsendelse af din opgave. Prøv igen senere.";
+
+/* Error description for failing to compute the URL to a quiz */
+"There was a problem updating the Quiz URL" = "Der var et problem med at opdatere Quiz URL'et";
+
+/* generic error message */
+"There was a problem with the Canvas request." = "Der var et problem med Canvas anmodningen";
+
+/* Error message when parsing contextID for a course or group tab */
+"There was an error associating a tab with a course or group." = "Der var en fejl med associering af en fane til et kursus eller en gruppe.";
+
+/* An error message shown when the Users cache file fails to load */
+"There was an error loading the Users cache." = "Der opstod en fejl ved indlæsning af brugerens cache.";
+
+/* Error message for a network fail */
+"There was an error while communicating with the server." = "Der opstod en fejl mens der blev kommunikeret med serveren.";
+
+/* No comment provided by engineer. */
+"There was no data!" = "Der var ingen data!";
+
+/* Warning to users editing an essay question that was edited on the web. */
+"This essay question has been edited on the web and may contain formatting, links or images. In order to edit this response on your mobile device we will need to clear the formatting (including links and images). Otherwise you may continue editing the question via a web browser." = "Dette opgavespørgsmål er blevet redigeret på nettet og kan indeholde formatering, links eller billeder. For at redigere dette svar på din mobilenhed skal vi slette formateringen (herunder links og billeder). Ellers kan du fortsætte med at redigere spørgsmålet via en webbrowser.";
+
+/* Body for alert when a module item doesn't have mastery paths configured */
+"This module item does not have mastery paths configured." = "Dette modul har ikke nogen læringsstier konfigureret";
+
+/* The HTML page is currently not viewable by the user because it has been locked by the teacher. */
+"This page is currently locked and not viewable." = "Denne side er for øjeblikket låst og ikke synlig.";
+
+/* Message when telling the user they can't take the quiz because the quiz has an IP address filter set */
+"This quiz has an IP address filter set." = "Denne quiz har et IP adressefilter.";
+
+/* Message when telling the user they can't take the quiz for some weird reason */
+"This quiz is currently unavailable." = "Denne quiz er for øjeblikket ikke tilgængelig.";
+
+/* Message when telling the user they can't take the quiz because the quiz is locked */
+"This quiz is locked." = "Denne quiz er låst.";
+
+/* label for the time limit */
+"Time Limit" = "Tidsbegrænsning";
+
+/* Toggle flag accessiblity action */
+"Toggle Flag" = "Skift markering";
+
+/* Total grade label */
+"Total Grade" = "Total karakter";
+
+/* Description for Twitter communication channel */
+"Twitter" = "Twitter";
+
+/* Alert message when unable to parse JSON for communication channels */
+"Unable to display any Communication Channels returned from the server at this time." = "Er på nuværende tidspunkt ikke i stand til at vise Kommunikations kanaler returneret fra serveren.";
+
+/* Alert message when unable to parse JSON for notification preferences */
+"Unable to display any notification preferences returned from the server at this time." = "Er på nuværende tidspunkt ikke i stand til at vise notifikationsindstillinger returneret fra serveren.";
+
+/* Alert message when unable to load communication channels */
+"Unable to load any Communication Channels at this time." = "Kan ikke indlæse nogen kommunikationskanaler på nuværende tidspunkt.";
+
+/* Alert message when unable to load notification preferences */
+"Unable to load any notification preferences at this time.  Error: %@" = "Kan ikke indlæse nogen meddelelsesindstillinger på nuværende tidspunkt.  Fejl: %@";
+
+/* Error message when parsing communication preferences */
+"Unable to parse JSON for communication channels" = "Kan ikke parse JSON for kommunikationskanaler";
+
+/* Error message when parsing notification preferences */
+"Unable to parse JSON for notification preferences" = "Kan ikke parse JSON for meddelelsesindstillinger";
+
+/* Assignments with no dates */
+"Undated" = "Udateret";
+
+/* Unexpected response type */
+"Unexpected response type" = "Uventet svartype";
+
+/* Ungraded quiz */
+"Ungraded" = "Ikke bedømt";
+
+/* An unknown error title */
+"Unknown Error" = "Ukendt fejl";
+
+/* When a quiz has no limit on the number of attempts */
+"Unlimited" = "Ubegrænset";
+
+/* Remove attendance status */
+"Unmark" = "Fjern markering";
+
+/* Upcoming assignments */
+"Upcoming" = "Kommende";
+
+/* File upload submission option */
+"Upload File" = "Overfør fil";
+
+/* Message displayed while a file is being uploaded */
+"Uploading file..." = "Uploader fil ...";
+
+/* permission denied button a11y hint */
+"User has denied record permission" = "Bruger har nægtet tilladelse til at optage";
+
+/* Error message if we can't pull the avatar image */
+"User has no valid avatar image url" = "Bruger har ikke et gyldigt avatar billed url";
+
+/* button for viewing quiz results */
+"View Results" = "Se resultater";
+
+/* a warning message */
+"Warning" = "Advarsel";
+
+/* Error message for being unable to update a push notification preference */
+"We were not able to update this value with the server" = "Vi var ikke i stand til at opdatere denne værdi på serveren";
+
+/* Yellow course color button */
+"Yellow" = "Gul";
+
+/* Description for Yo communication channel */
+"Yo" = "Yo";
+
+/* Shows time limit on a quiz */
+"You have %d minutes." = "Du har %d minutter.";
+
+/* Message when telling the user they can't take the quiz because they used up all their attempts */
+"You have used all your attempts available on this quiz." = "Du har brugt alle dine tilgængelige forsøg på denne quiz.";
+
+/* permission was rejected */
+"You must grant (appName) Microphone access in the Settings app in order to record audio." = "Du skal give (appName) mikrofonadgang i Indstillinger for at optage lyd.";
+
+/* Error description for file out of space */
+"Your device is out of storage space. Please free up space and try again." = "Din enhed har ikke mere lagerplads. Frigør plads og prøv igen.";
+
+/* label to be read for visually impaired users with assignment types */
+"assignment" = "opgave";
+
+/* label to be read for visually impaired users with discusstion topic assignment types */
+"discussion topic" = "diskussionsemne";
+
+/* label to be read for visually impaired users with external tool assignment types */
+"external tool" = "eksternt værktøj";
+
+/* No comment provided by engineer. */
+"plural_pts" = "plural_pts";
+
+/* No comment provided by engineer. */
+"plural_questions" = "plural_questions";
+
+/* label to be read for visually impaired users with quiz assignment types */
+"quiz" = "quiz";
+
+/* File upload in progress */
+"uploading..." = "overførsel ...";
+
+/* web content failed to load */
+"⚠️ Error Loading Content" = "⚠️ Fejl ved indlæsning af indhold";
+

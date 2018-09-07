@@ -1,0 +1,297 @@
+/* <String> <Int> of <Int> */
+"%@ %d of %d" = "%1$@ %2$d av %3$d";
+
+/* No comment provided by engineer. */
+"%@ is due at %@" = "%1$@ ska vara klar %2$@";
+
+/* No comment provided by engineer. */
+"%@ to %@" = "%1$@ till %2$@";
+
+/* No comment provided by engineer. */
+"%@ will begin at %@" = "%1$@ börjar %2$@";
+
+/* Percentage field placeholder */
+"1-100%" = "1-100%";
+
+/* Server Error Message */
+"A server error has occurred.  Please try again." = "Ett serverfel inträffade. Försök igen.";
+
+/* Label for button that allows admin to Act as User */
+"Act as User" = "Agera som användare";
+
+/* Label displayed when logged in as an admin */
+"Admin" = "Admin";
+
+/* Alert Section Header */
+"Alert me when:" = "Larma mig när:";
+
+/* Alerts Tab */
+"Alerts" = "Larm";
+
+/* No comment provided by engineer. */
+"An Error Occurred" = "Ett fel uppstod";
+
+/* Generic Network Error Message */
+"An unexpected error occurred.  Please try again." = "Ett oväntat fel inträffade. Försök igen.";
+
+/* No comment provided by engineer. */
+"Announcement" = "Meddelande";
+
+/* No comment provided by engineer. */
+"Assignment" = "Uppgift";
+
+/* Assignment Grade High On Description */
+"Assignment grade above" = "Uppgiftsbetyg över";
+
+/* Assignment Grade Low On Description */
+"Assignment grade below" = "Uppgiftsbetyg under";
+
+/* Assignment Missing Description */
+"Assignment missing" = "Uppgiften saknas";
+
+/* No comment provided by engineer. */
+"Assignment reminder" = "Påminnelse om uppgift";
+
+/* No comment provided by engineer. */
+"Cache cleared" = "Cacheminnet har rensats";
+
+/* Cancel button title */
+"Cancel" = "Avbryt";
+
+/* Percent value is over 100 */
+"Cannot use percent that is higher than 100" = "Kan inte använda en procentsats som är högre än 100";
+
+/* Percent value is under 0 */
+"Cannot use percent that is less than 0" = "Kan inte använda en procentsats som är lägre än 0";
+
+/* Cancel the question/suggestion form */
+"Casual question or suggestion" = "Informell fråga eller förslag";
+
+/* Empty Alerts Text */
+"Caught up on Alerts" = "Läst av larmen";
+
+/* title for status selection field */
+"Choose One" = "Välj en";
+
+/* No comment provided by engineer. */
+"Choose a student" = "Välj en elev";
+
+/* Close Button Title */
+"Close" = "Stäng";
+
+/* Course Announcement Description */
+"Course announcements" = "Kursannonseringar";
+
+/* Course Grade High On Description */
+"Course grade above" = "Kursbetyg över";
+
+/* Course Grade Low On Description */
+"Course grade below" = "Kursbetyg under";
+
+/* Courses Tab */
+"Courses" = "Kurser";
+
+/* Title for field */
+"Describe your problem" = "Beskriv ditt problem";
+
+/* No comment provided by engineer. */
+"Discussion" = "Diskussion";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Avfärda";
+
+/* No comment provided by engineer. */
+"Error" = "Fel";
+
+/* No comment provided by engineer. */
+"Event" = "Händelse";
+
+/* No comment provided by engineer. */
+"Event reminder" = "Påminnelse om händelse";
+
+/* No comment provided by engineer. */
+"Excused" = "Befriad";
+
+/* Status level for issue being reported */
+"Extremely critical emergency" = "Extremt kritiskt nödläge";
+
+/* High Assignment Grade too Low */
+"High assignment grade cannot be lower than low assignment grade" = "Högt uppgiftsbetyg kan inte vara lägre än lågt uppgiftsbetyg";
+
+/* High Course Grade too Low */
+"High course grade cannot be lower than low course grade" = "Högt kursbetyg kan inte vara lägre än lågt kursbetyg";
+
+/* Status level for issue being reported */
+"I can't get things done until fixed" = "Jag kan inte göra något fören det är fixat";
+
+/* Status level for issue being reported */
+"I need help but it's not urgent" = "Jag behöver hjälp men det är inte akut";
+
+/* Impact Title */
+"Impact:" = "Påverkan:";
+
+/* No comment provided by engineer. */
+"In-Class" = "I klassen";
+
+/* Institution Announcement Description */
+"Institution announcements" = "Institutionsannonseringar";
+
+/* Title for an alert view */
+"Invalid Input" = "Ogiltig inmatning";
+
+/* Support Ticket Invalid Input Message */
+"Invalid Input.  Check fields and try again." = "Ogiltig inmatning.  Kontrollera fält och försök igen.";
+
+/* Last Week Button Accessibility Label */
+"Last Week" = "Förra veckan";
+
+/* No comment provided by engineer. */
+"Late" = "Sen";
+
+/* No comment provided by engineer. */
+"Late: %@" = "Sen: %@";
+
+/* No comment provided by engineer. */
+"Late: %@ (%@/%@)" = "Sen: %1$@ (%2$@/%3$@)";
+
+/* Low Assignment Grade too High */
+"Low assignment grade cannot be higher than high assignment grade" = "Lågt uppgiftsbetyg kan inte vara högre än högt uppgiftsbetyg";
+
+/* Low Course Grade too High */
+"Low course grade cannot be higher than high course grade" = "Lågt kursbetyg kan inte vara högre än högt kursbetyg";
+
+/* Title of the manage children screen. This screen is used to add/remove children that a parent is observing. */
+"Manage Children" = "Hantera barn";
+
+/* No comment provided by engineer. */
+"Missing" = "Saknas";
+
+/* No comment provided by engineer. */
+"Missing: (-/%@)" = "Saknas: (-/%@)";
+
+/* Generic Network Error Title */
+"Network Error" = "Nätverksfel";
+
+/* Next Week Button Accessibility Label */
+"Next Week" = "Nästa vecka";
+
+/* Empty Courses Text */
+"No Courses" = "Inga kurser";
+
+/* Title for label when no grade has been assigned to the course */
+"No Grade" = "Inget betyg";
+
+/* Empty Students Text */
+"No Students" = "Inga studenter";
+
+/* Error message */
+"No installed apps support opening this file" = "Inga installerade appar stöder öppning av den här filen";
+
+/* Not Authorized Error Title */
+"Not Authorized" = "Du har inte behörighet";
+
+/* Not Found Error Title */
+"Not Found" = "Hittades inte";
+
+/* Empty Calendar Events Text */
+"Nothing this week" = "Inget den här veckan";
+
+/* OK Button Title */
+"OK" = "OK";
+
+/* Open a url in the application Safari */
+"Open in Safari" = "Öppna i Safari";
+
+/* Open file in another application */
+"Open in..." = "Öppna i...";
+
+/* No comment provided by engineer. */
+"Permission Needed" = "Tillstånd behövs";
+
+/* No comment provided by engineer. */
+"Quiz" = "Quiz";
+
+/* Support Ticket Creation Failed */
+"Request Failed!  Check network and try again!" = "Begäran misslyckades!  Kontrollera nätverket och försök igen!";
+
+/* Not Found Error Message */
+"Resource not found.  Please try again." = "Resursen hittades inte. Försök igen.";
+
+/* Select Impact Placeholder */
+"Select Impact" = "Välj påverkan";
+
+/* Server Error Title */
+"Server Error" = "Serverfel";
+
+/* No comment provided by engineer. */
+"Settings" = "Inställningar";
+
+/* Status level for issue being reported */
+"Something is broken but I can work around it" = "Något är trasigt och jag kan inte hitta en alternativ lösning";
+
+/* Title for the subject field */
+"Subject" = "Ämne";
+
+/* No comment provided by engineer. */
+"Submitted" = "Inskickad";
+
+/* No comment provided by engineer. */
+"Submitted: %@" = "Inskickad: %@";
+
+/* No comment provided by engineer. */
+"Submitted: %@ (%@/%@)" = "Inskickad: %1$@ (%2$@/%3$@)";
+
+/* Syllabus Button Title */
+"Syllabus" = "Antura tidsplan";
+
+/* Directions in the admin view */
+"Tap to start viewing Canvas as another person." = "Tryck för att använda Canvas som någon annan.";
+
+/* Support Ticket Created Successfully */
+"Thanks, your request was received!" = "Tack, din förfrågan har tagits emot!";
+
+/* Error message */
+"There are no actions for this item" = "Det finns inga åtgärder för det här objektet";
+
+/* AlertKit Database Load Failure Message */
+"There was a problem loading the AlertKit database file." = "Ett problem uppstod vid laddningen av AlertKit databas filen.";
+
+/* Airwolf database error message */
+"There was a problem loading the database." = "Det uppstod ett problem vid laddning av databasen.";
+
+/* No comment provided by engineer. */
+"There was an error loading your content. If it  is an audio or video upload it may still be processing." = "Ett fel inträffade när innehållet laddades. Om det var ljud eller video kanske innehållet fortfarande bearbetas.";
+
+/* No comment provided by engineer. */
+"This announcement has expired." = "Detta meddelande har löpt ut.";
+
+/* No comment provided by engineer. */
+"This student's courses may not be published yet." = "Den här studentens kurser får ännu inte publiceras.";
+
+/* Unknown T`hreshold Description */
+"Unknown" = "Okänd";
+
+/* Default name given a user until we find their real name */
+"Unknown User" = "Okänd användare";
+
+/* Default user name, the computer-friendly version of their name, until we find their real user name */
+"Unknown User Name" = "Okänt användarnamn";
+
+/* Calendar Tab */
+"Week" = "Vecka";
+
+/* Header title of admin view */
+"Welcome!" = "Välkommen!";
+
+/* Title for field */
+"What can we do better?" = "Vad kan vi förbättra?";
+
+/* Not Authorized Error Message */
+"You are unauthorized to access this information.  Check your user permissions and try again." = "Du har inte behörighet att komma åt den här informationen. Kontrollera din behörighet och försök igen.";
+
+/* No comment provided by engineer. */
+"You must allow notifications in Settings to set reminders." = "Du måste tillåta notifikationer i Inställningar för att ställa in påminnelser.";
+
+/* Title for the email field */
+"Your Email" = "Din e-post";
+

@@ -1,0 +1,1446 @@
+/* prerequisites for unlocking item */
+"\n\nYou must first complete:" = "\n\nYou must first complete:";
+
+/* when locked item will become unlocked */
+" until %@" = "until %@";
+
+/* explanation for locked module item */
+"\"%@\" is locked as part of \"%@\"" = "\"%1$@\" is locked as part of \"%2$@\"";
+
+/* (No Comment) */
+"%0.2f GB" = "%0.2f GB";
+
+/* (No Comment) */
+"%0.2f KB" = "%0.2f KB";
+
+/* (No Comment) */
+"%0.2f MB" = "%0.2f MB";
+
+/* (No Comment) */
+"%1$@ (%2$d)" = "%1$@ (%2$d)";
+
+/* (No Comment) */
+"%1$@ (%2$g out of %3$@)" = "%1$@ (%2$g out of %3$@)";
+
+/* (No Comment) */
+"%1$@ at %2$@" = "%1$@ at %2$@";
+
+/* (No Comment) */
+"%1$@ is due in %2$@" = "%1$@ is due in %2$@";
+
+/* (No Comment) */
+"%1$@ out of %2$@" = "%1$@ out of %2$@";
+
+/* (No Comment) */
+"%1$@%% (%2$g out of %3$@)" = "%1$@%% (%2$g out of %3$@)";
+
+/* (No Comment) */
+"%1$@. %2$@. Type: %3$@." = "%1$@. %2$@. Type: %3$@.";
+
+/* (No Comment) */
+"%1$@. %2$@. Type: %3$@. Status: %4$@" = "%1$@. %2$@. Type: %3$@. Status: %4$@";
+
+/* (No Comment) */
+"%1$d %2$@" = "%1$d %2$@";
+
+/* (No Comment) */
+"%1$g out of %2$@" = "%1$g out of %2$@";
+
+/* Button to submit files to an assignment */
+"%@ (%d)" = "%1$@ (%2$d)";
+
+/* Message for unsupported tab coming soon */
+"%@ is coming soon!" = "%@ is coming soon!";
+
+/* local notification countdown alert */
+"%@ is due in %@" = "%1$@ is due in %2$@";
+
+/* explanation for locked item */
+"%@ is locked" = "%@ is locked";
+
+/* No comment provided by engineer. */
+"%@ is not a valid URL" = "%@ is not a valid URL";
+
+/* (No Comment) */
+"%@ is not a valid host" = "%@ is not a valid host";
+
+/* Message for unsupported tab */
+"%@ is not currently supported." = "%@ is not currently supported.";
+
+/* (No Comment) */
+"%@ likes" = "%@ likes";
+
+/* (No Comment) */
+"%@ need grading" = "%@ need marking";
+
+/* (No Comment) */
+"%@..." = "%@...";
+
+/* A number and a collective noun, like '5 pigs' */
+"%d %@" = "%1$d %2$@";
+
+/* (No Comment) */
+"%d days ago" = "%d days ago";
+
+/* (No Comment) */
+"%d hours ago" = "%d hours ago";
+
+/* (No Comment) */
+"%d items" = "%d items";
+
+/* (No Comment) */
+"%d minutes ago" = "%d minutes ago";
+
+/* (No Comment) */
+"%d months ago" = "%d months ago";
+
+/* In the context 'Joe, Fred, ((25 more))' */
+"%d more" = "%d more";
+
+/* (No Comment) */
+"%d replies" = "%d replies";
+
+/* (No Comment) */
+"%d unread" = "%d unread";
+
+/* (No Comment) */
+"%d years ago" = "%d years ago";
+
+/* (No Comment) */
+"%qu bytes" = "%qu bytes";
+
+/* offset for one day */
+"%tu day" = "%tu day";
+
+/* offset for number of days */
+"%tu days" = "%tu days";
+
+/* offset for an hour */
+"%tu hour" = "%tu hour";
+
+/* offset for number of hours */
+"%tu hours" = "%tu hours";
+
+/* offset for less than one minute */
+"%tu minute" = "%tu minute";
+
+/* offset for under an hour */
+"%tu minutes" = "%tu minutes";
+
+/* (No Comment) */
+"%u Attachments" = "%u attachments";
+
+/* Label indicating multiple files are attached to a single homework submission. %u will be a positive number, and will not be '1' */
+"%u files" = "%u files";
+
+/* (No Comment) */
+"&quot;%1$@&quot; is locked as part of &quot;%2$@&quot;" = "&quot;%1$@&quot; is locked as part of &quot;%2$@&quot;";
+
+/* %@ will be replaced by the filename */
+"'%@' is now ready to submit to assignments" = "'%@' is now ready to submit assignments";
+
+/* (No Comment) */
+"1 Attachment" = "1 attachment";
+
+/* one day */
+"1 day" = "1 day";
+
+/* (No Comment) */
+"1 day ago" = "1 day ago";
+
+/* one hour */
+"1 hour" = "1 hour";
+
+/* (No Comment) */
+"1 hour ago" = "1 hour ago";
+
+/* (No Comment) */
+"1 item" = "1 item";
+
+/* (No Comment) */
+"1 like" = "1 like";
+
+/* (No Comment) */
+"1 minute ago" = "1 minute ago";
+
+/* (No Comment) */
+"1 month ago" = "1 month ago";
+
+/* (No Comment) */
+"1 needs grading" = "1 needs marking";
+
+/* (No Comment) */
+"1 year ago" = "1 year ago";
+
+/* three days */
+"3 days" = "3 days";
+
+/* five minutes */
+"5 minutes" = "5 minutes";
+
+/* Name of a tab displaying Canvas Info including legal info */
+"About" = "About";
+
+/* (No Comment) */
+"Access Denied" = "Access denied";
+
+/* Error handling message when a network request has been denied by a server. Specifically with the HTTP 401 error code. */
+"Access denied. Please check your permissions for the action you're trying to complete." = "Access denied. Please check your permissions for the action you are trying to complete.";
+
+/* (No Comment) */
+"Add Attachment" = "Add attachment";
+
+/* add comment button */
+"Add Comment" = "Add comment";
+
+/* No comment provided by engineer. */
+"Add Cover Photo" = "Add cover photo";
+
+/* No comment provided by engineer. */
+"Add a folder" = "Add a folder";
+
+/* Title for attachment action sheet from rich text view */
+"Add attachment" = "Add attachment";
+
+/* No comment provided by engineer. */
+"Add comment" = "Add comment";
+
+/* (No Comment) */
+"Add folder" = "Add folder";
+
+/* (No Comment) */
+"Add inline media" = "Add inline media";
+
+/* (No Comment) */
+"Add recipients" = "Add recipients";
+
+/* (No Comment) */
+"All members" = "All members";
+
+/* (No Comment) */
+"An unknown error occurred" = "An unknown error occurred";
+
+/* (No Comment) */
+"Announcement" = "Announcement";
+
+/* (No Comment) */
+"Announcements" = "Announcements";
+
+/* Assignment submission type for selecting an Arc video */
+"Arc" = "Arc";
+
+/* (No Comment) */
+"Archive" = "Archive";
+
+/* (No Comment) */
+"Archive Selected Messages Button" = "Archive Selected messages button";
+
+/* (No Comment) */
+"Archive all selected messages" = "Archive all selected messages";
+
+/* (No Comment) */
+"Archived" = "Archived";
+
+/* (No Comment) */
+"Are you ready to logout?" = "Are you ready to log out?";
+
+/* Confirmation alert text for submitting an Arc video for an assignment */
+"Are you sure you want to submit this Arc video for this assignment?" = "Are you sure you want to submit this Arc video for this assignment?";
+
+/* (No Comment) */
+"Ask me later" = "Ask me later";
+
+/* (No Comment) */
+"Assignment" = "Assignment";
+
+/* (No Comment) */
+"Assignments" = "Assignments";
+
+/* An item for attaching to a discussion */
+"Attachment" = "Attachment";
+
+/* label for an attachment */
+"Attachment %d" = "Attachment %d";
+
+/* (No Comment) */
+"Attachment %i" = "Attachment %i";
+
+/* (No Comment) */
+"Attachments" = "Attachments";
+
+/* (No Comment) */
+"Attendance" = "Attendance";
+
+/* Audio file type */
+"Audio" = "Audio";
+
+/* (No Comment) */
+"Audio input hardware not available" = "Audio input hardware not available";
+
+/* Title for an error popup */
+"Authentication error" = "Authentication error";
+
+/* Link to building panda avatar */
+"Build Avatar" = "Build avatar";
+
+/* (No Comment) */
+"Cache cleared" = "Cache cleared";
+
+/* (No Comment) */
+"Calendar" = "Calendar";
+
+/* No comment provided by engineer. */
+"Can't load tool" = "Cannot load tool";
+
+/* Setup only allows media but no Kaltura instance error title */
+"Can't submit media" = "Cannot submit media";
+
+/* Cancel button title
+   Cancel button title to cancel submitting an Arc video as an assignment submission */
+"Cancel" = "Cancel";
+
+/* Cancel button title */
+"Cancel Message" = "Cancel message";
+
+/* No comment provided by engineer. */
+"Canvas appears to be unavailable. Please try again later." = "Canvas appears to be unavailable. Please try again later.";
+
+/* (No Comment) */
+"Canvas failed to find recipients for your current search. Please try again later." = "Canvas failed to find recipients for your current search. Please try again later.";
+
+/* mobile quze warning info */
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices, however some are not. If you attempt to take one of these unsupported quizzes on your phone, you may not be able to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, and others.\n\nIf you believe that a quiz contains unsupported content, please complete it on a desktop or laptop computer. If you know that the quiz contains only supported content, feel free to complete it on your mobile device.";
+
+/* (No Comment) */
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, thus leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads and others.\n\nIf you believe that a quiz contains unsupported content, please take the quiz on a desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device.";
+
+/* button to change user's profile image */
+"Change Profile Image" = "Change profile image";
+
+/* (No Comment) */
+"Change User" = "Change user";
+
+/* Button label for choosing a photo */
+"Choose Photo" = "Choose photo";
+
+/* No comment provided by engineer. */
+"Choose Profile Picture" = "Choose profile picture";
+
+/* Choose a video to send as a comment */
+"Choose Video" = "Choose video";
+
+/* No comment provided by engineer. */
+"Choose a name for the new folder" = "Choose a name for the new folder";
+
+/* (No Comment) */
+"Choose a name for the new folder." = "Choose a name for the new folder.";
+
+/* No comment provided by engineer. */
+"Choose a submission type" = "Choose a submission type";
+
+/* Choose an existing picture or video to use in a comment. */
+"Choose from Library..." = "Choose from library...";
+
+/* action sheet text for picking video from library */
+"Choose video" = "Choose video";
+
+/* Close the window */
+"Close" = "Close";
+
+/* (No Comment) */
+"Closed for Comments" = "Closed for comments";
+
+/* Title for Collaborations tab */
+"Collaborations" = "Collaborations";
+
+/* Add message button for teacher or ta */
+"Comment" = "Comment";
+
+/* title for media comment upload failure */
+"Comment Error" = "Comment error";
+
+/* (No Comment) */
+"Comments" = "Comments";
+
+/* (No Comment) */
+"Comments are disabled" = "Comments are disabled";
+
+/* (No Comment) */
+"Complete" = "Complete";
+
+/* (No Comment) */
+"Completed" = "Completed";
+
+/* (No Comment) */
+"Compose Message Button" = "Compose message button";
+
+/* (No Comment) */
+"Compose a message" = "Compose a message";
+
+/* Title for Conferences tab */
+"Conferences" = "Conferences";
+
+/* Confirm an arc video submission for an assignment */
+"Confirm Submission" = "Confirm submission";
+
+/* (No Comment) */
+"Confirm deletion" = "Confirm deletion";
+
+/* Button title for selecting to continue on to quiz. The will appear in the alert view notfifying the user of mobile quiz limitations. */
+"Continue" = "Continue";
+
+/* No comment provided by engineer. */
+"Could not authenticate with server" = "Could not authenticate with server";
+
+/* error title for failure to load a file submission */
+"Couldn't Load Submission" = "Could not load submission";
+
+/* (No Comment) */
+"Couldn't find recipients" = "Could not find recipients";
+
+/* Title for Course Syllabus view controller */
+"Course Syllabus" = "Course syllabus";
+
+/* (No Comment) */
+"Courses" = "Courses";
+
+/* Cancel button title */
+"Create Folder" = "Create folder";
+
+/* Header for a section showing submitted filenames */
+"Current Submission" = "Current submission";
+
+/* Message telling users that quiz support on mobile is limited */
+"Currently there is limited quiz support on mobile" = "Currently there is limited quiz support on mobile";
+
+/* (No Comment) */
+"Custom Grade" = "Custom mark";
+
+/* (No Comment) */
+"Customize" = "Customise";
+
+/* Default delete button MLVC */
+"Delete" = "Delete";
+
+/* (No Comment) */
+"Delete (%d)" = "Delete (%d)";
+
+/* (No Comment) */
+"Delete this reply?" = "Delete this reply?";
+
+/* delete file confirmation alert */
+"Deleted file: \"%@\"" = "Deleted file: \"%@\"";
+
+/* (No Comment) */
+"Deleted file: &quot;%@&quot;" = "Deleted file: &quot;%@&quot;";
+
+/* No comment provided by engineer. */
+"Detail" = "Detail";
+
+/* (No Comment) */
+"Details" = "Details";
+
+/* (No Comment) */
+"Discard" = "Discard";
+
+/* (No Comment) */
+"Discard this entry?" = "Discard this entry?";
+
+/* (No Comment) */
+"Discussion" = "Discussion";
+
+/* Title for discussion entry submission */
+"Discussion Entry" = "Discussion entry";
+
+/* (No Comment) */
+"Discussion Topics" = "Discussion topics";
+
+/* (No Comment) */
+"Discussions" = "Discussions";
+
+/* Dismiss button title
+   uialertaction button name for dismissing the failed refresh error message */
+"Dismiss" = "Dismiss";
+
+/* Alert title asking if you want to masquerade */
+"Do you want to masquerade as this user?" = "Do you want to masquerade as this user?";
+
+/* The domain for the institution/school that the user is currently using */
+"Domain" = "Domain";
+
+/* (No Comment) */
+"Don't ask me again" = "Don't ask me again";
+
+/* (No Comment) */
+"Don't delete" = "Don't delete";
+
+/* (No Comment) */
+"Done" = "Done";
+
+/* Shown when we cancel a file download */
+"Download Canceled" = "Download cancelled";
+
+/* Shown while downloading a file */
+"Downloading..." = "Downloading...";
+
+/* (No Comment) */
+"Due:" = "Due:";
+
+/* (No Comment) */
+"Due: %1$@ at %2$@" = "Due: %1$@ at %2$@";
+
+/* Due date label indicating when an assignment is due */
+"Due: %@" = "Due: %@";
+
+/* Link to the End User License Agreement document */
+"EULA" = "EULA";
+
+/* (No Comment) */
+"Edit" = "Edit";
+
+/* (No Comment) */
+"Edit Course List" = "Edit course list";
+
+/* (No Comment) */
+"Edit Group List" = "Edit group list";
+
+/* (No Comment) */
+"Edit items" = "Edit items";
+
+/* (No Comment) */
+"Editing reply by %1$@, %2$@" = "Editing reply by %1$@, %2$@";
+
+/* the users email */
+"Email" = "Email";
+
+/* (No Comment) */
+"Enable Push Notifications" = "Enable push notifications";
+
+/* (No Comment) */
+"Enter User ID and Domain." = "Enter user ID and domain.";
+
+/* No comment provided by engineer. */
+"Enter folder name" = "Enter folder name";
+
+/* Submission input view placeholder text */
+"Enter submission" = "Enter submission";
+
+/* (No Comment) */
+"Entry posted" = "Entry posted";
+
+/* Title for an error popup */
+"Error" = "Error";
+
+/* (No Comment) */
+"Error adding recipeints" = "Error adding recipeints";
+
+/* Error deleting file alert view title */
+"Error deleting file \"%@\"" = "Error deleting file \"%@\"";
+
+/* (No Comment) */
+"Error deleting file &quot;%@&quot;" = "Error deleting file &quot;%@&quot;";
+
+/* Error deleting folder alert view title */
+"Error deleting folder" = "Error deleting folder";
+
+/* (No Comment) */
+"Event" = "Event";
+
+/* No comment provided by engineer. */
+"Existing Attachments..." = "Existing attachments...";
+
+/* Title for an external tool submission */
+"External Tool" = "External tool";
+
+/* (No Comment) */
+"External URL" = "External URL";
+
+/* Error title for refresh failing on an MLVC tableview controller */
+"Failed to load" = "Failed to load";
+
+/* (No Comment) */
+"File" = "File";
+
+/* (No Comment) */
+"File extension not allowed: %@" = "File extension not allowed: %@";
+
+/* (No Comment) */
+"File extension(s) permitted for this assignment:" = "File extension(s) permitted for this assignment:";
+
+/* No comment provided by engineer. */
+"File received" = "File received";
+
+/* (No Comment) */
+"File unavailable" = "File unavailable";
+
+/* File upload submission type */
+"File upload" = "File upload";
+
+/* (No Comment) */
+"File upload failed." = "File upload failed.";
+
+/* Title for the files screen */
+"Files" = "Files";
+
+/* No comment provided by engineer. */
+"Final Grade" = "Final Grade";
+
+/* Shown when we finish downloading a file */
+"Finished downloading" = "Finished downloading";
+
+/* (No Comment) */
+"Front Page" = "Front page";
+
+/* No comment provided by engineer. */
+"Future" = "Future";
+
+/* title for discussion assignment submission button */
+"Go To Discussion" = "Go to discussion";
+
+/* (No Comment) */
+"Go to App Store" = "Go to app store";
+
+/* (No Comment) */
+"Go to Quiz" = "Go to quiz";
+
+/* (No Comment) */
+"Go to discussion" = "Go to discussion";
+
+/* No comment provided by engineer. */
+"Grade" = "Mark";
+
+/* (No Comment) */
+"Grade %@" = "Mark %@";
+
+/* (No Comment) */
+"Grade in SpeedGrader" = "Mark in SpeedGrader";
+
+/* (No Comment) */
+"Grade: %1$i / %2$g" = "Mark: %1$i / %2$g";
+
+/* (No Comment) */
+"Grade: %@" = "Mark: %@";
+
+/* (No Comment) */
+"Graded Discussion" = "Marked discussion";
+
+/* (No Comment) */
+"Graded discussion." = "Marked discussion.";
+
+/* (No Comment) */
+"Graded discussion. %g points possible." = "Marked discussion. %g points possible.";
+
+/* (No Comment) */
+"Grades" = "Marks";
+
+/* (No Comment) */
+"Group conversation" = "Group conversation";
+
+/* (No Comment) */
+"Groups" = "Groups";
+
+/* (No Comment) */
+"Help" = "Help";
+
+/* (No Comment) */
+"Hide Grades" = "Hide marks";
+
+/* (No Comment) */
+"How do you like Canvas?" = "How do you like Canvas?";
+
+/* (No Comment) */
+"I give you back your time, use it wisely." = "I give you back your time. Use it wisely.";
+
+/* Image file type */
+"Image" = "Image";
+
+/* No comment provided by engineer. */
+"Import from Dropbox" = "Import from Dropbox";
+
+/* No comment provided by engineer. */
+"Import from camera" = "Import from camera";
+
+/* (No Comment) */
+"Inbox" = "Inbox";
+
+/* (No Comment) */
+"Incomplete" = "Incomplete";
+
+/* (No Comment) */
+"Individual messages" = "Individual messages";
+
+/* (No Comment) */
+"Invalid URL" = "Invalid URL";
+
+/* (No Comment) */
+"It has problems" = "It has problems";
+
+/* (No Comment) */
+"Item %1$d of %2$d" = "Item %1$d of %2$d";
+
+/* No comment provided by engineer. */
+"Item %d of %d" = "Item %1$d of %2$d";
+
+/* (No Comment) */
+"It’s empty, what are you still doing here." = "It’s empty. What are you still doing here?";
+
+/* (No Comment) */
+"Jumps to current day on calendar" = "Jumps to current day on calendar";
+
+/* (No Comment) */
+"Keep" = "Keep";
+
+/* Title for an LTI launch submitted as an assignment */
+"LTI Tool" = "LTI tool";
+
+/* (No Comment) */
+"Landing Page" = "Landing page";
+
+/* (No Comment) */
+"Large file" = "Large file";
+
+/* No comment provided by engineer. */
+"Late Penalty" = "Late Penalty";
+
+/* (No Comment) */
+"Later" = "Later";
+
+/* title for submission button */
+"Launch External Tool" = "Launch external tool";
+
+/* Title for legal section on the about page */
+"Legal" = "Legal";
+
+/* (No Comment) */
+"Loading..." = "Loading...";
+
+/* (No Comment) */
+"Locked" = "Locked";
+
+/* (No Comment) */
+"Locked until %@" = "Locked until %@";
+
+/* Typically the email address correlated to the user */
+"Login ID" = "Login ID";
+
+/* (No Comment) */
+"Login Problem" = "Log-in problem";
+
+/* (No Comment) */
+"Logout" = "Logout";
+
+/* (No Comment) */
+"Love it!" = "Love it!";
+
+/* (No Comment) */
+"Mark as Done" = "Mark as done";
+
+/* Button title for beginning masquerading */
+"Masquerade" = "Masquerade";
+
+/* (No Comment) */
+"Me" = "Me";
+
+/* (No Comment) */
+"Media Comment" = "Media comment";
+
+/* Title for a media submission */
+"Media Submission" = "Media submission";
+
+/* (No Comment) */
+"Media comment" = "Media comment";
+
+/* Media recording submission type */
+"Media recording" = "Media recording";
+
+/* (No Comment) */
+"Media type selector. %@" = "Media type selector. %@";
+
+/* Add message button */
+"Message Instructor" = "Message instructor";
+
+/* (No Comment) */
+"Message Sent." = "Message sent.";
+
+/* (No Comment) */
+"Message everyone separately, or add everyone to a group conversation?" = "Message everyone separately, or add everyone to a group conversation?";
+
+/* (No Comment) */
+"Messages" = "Messages";
+
+/* Warnging for taking quizzes on a mobile device */
+"Mobile Quiz Warning" = "Mobile quiz warning";
+
+/* (No Comment) */
+"Modules" = "Modules";
+
+/* Button title for selecting to view more info about the limitations of mobile quizzes */
+"More Info" = "More info";
+
+/* (No Comment) */
+"Multiple Due Dates" = "Multiple due dates";
+
+/* (No Comment) */
+"Must contribute" = "Must contribute";
+
+/* (No Comment) */
+"Must mark as done" = "Must mark as done";
+
+/* (No Comment) */
+"Must score %@ or higher" = "Must score %@ or higher";
+
+/* (No Comment) */
+"Must submit" = "Must submit";
+
+/* (No Comment) */
+"Must view" = "Must view";
+
+/* (No Comment) */
+"My Files" = "My files";
+
+/* the users name */
+"Name" = "Name";
+
+/* (No Comment) */
+"Need SpeedGrader for iPad" = "Need SpeedGrader for iPad";
+
+/* Network error title */
+"Network Error" = "Network error";
+
+/* No comment provided by engineer. */
+"New Folder" = "New folder";
+
+/* No comment provided by engineer. */
+"Next 7 Days" = "Next 7 days";
+
+/* No comment provided by engineer. */
+"Next item" = "Next item";
+
+/* (No Comment) */
+"No" = "No";
+
+/* No comment provided by engineer. */
+"No Date" = "No date";
+
+/* (No Comment) */
+"No Due Date" = "No due date";
+
+/* Title for attempting submission without a comment */
+"No Recorded Audio" = "No recorded audio";
+
+/* No Submission groupong */
+"No Submission" = "No submission";
+
+/* (No Comment) */
+"No Thanks" = "No, thank you.";
+
+/* Text of alert when attempting to select a file that can't be printed or passed to any other app */
+"No actions available for this file" = "No actions available for this file";
+
+/* Message for attempting submission without a comment */
+"No audio was recorded." = "No audio was recorded.";
+
+/* Indicates an assignment does not have a due date
+   String for when assignment has no due date */
+"No due date" = "No due date";
+
+/* Error message */
+"No installed apps support opening this file" = "No installed apps support opening this file";
+
+/* (No Comment) */
+"No recipients" = "No recipients";
+
+/* (No Comment) */
+"No results found" = "No results found";
+
+/* (No Comment) */
+"Not Authorized" = "Not authorised";
+
+/* (No Comment) */
+"Not Complete" = "Not complete";
+
+/* No comment provided by engineer. */
+"Not available" = "Not available";
+
+/* (No Comment) */
+"Not graded" = "Not marked";
+
+/* (No Comment) */
+"Not graded (0 out of %@)" = "Not marked (0 out of %@)";
+
+/* (No Comment) */
+"Note: Media files are not immediately available for playback while they are processed on the server." = "Note: Media files are not immediately available for playback while they are processed on the server.";
+
+/* (No Comment) */
+"Nothing to do, go play outside!" = "Nothing to do. Go have a cup of tea!";
+
+/* (No Comment) */
+"Nothing to see here." = "Nothing to see here.";
+
+/* (No Comment) */
+"Notification" = "Notification";
+
+/* (No Comment) */
+"Notification Preferences" = "Notification preferences";
+
+/* (No Comment) */
+"Notifications" = "Notifications";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"Observer" = "Observer";
+
+/* (No Comment) */
+"Ok" = "OK";
+
+/* Online URL submission type */
+"Online URL" = "Online URL";
+
+/* Title for an error alert */
+"Oops!" = "Whoops!";
+
+/* Link to Open Source Components */
+"Open Source Components" = "Open source components";
+
+/* Open a document in the application Safari */
+"Open in Safari" = "Open in Safari";
+
+/* (No Comment) */
+"Open in SpeedGrader" = "Open in SpeedGrader";
+
+/* Open file in another application */
+"Open in..." = "Open in...";
+
+/* No comment provided by engineer. */
+"Other" = "Other";
+
+/* (No Comment) */
+"Other replies hidden until you reply" = "Other replies hidden until you reply";
+
+/* Title for Outcomes tab */
+"Outcomes" = "Outcomes";
+
+/* (No Comment) */
+"Page" = "Page";
+
+/* No comment provided by engineer. */
+"Past" = "Past";
+
+/* Title for the people view */
+"People" = "People";
+
+/* (No Comment) */
+"Pinned Discussions" = "Pinned discussions";
+
+/* (No Comment) */
+"Play" = "Play";
+
+/* Network error message */
+"Please check your network connection and try again." = "Please check your network connection and try again";
+
+/* No comment provided by engineer. */
+"Post" = "Post";
+
+/* (No Comment) */
+"Post Comment" = "Post comment";
+
+/* No comment provided by engineer. */
+"Post comment" = "Post comment";
+
+/* (No Comment) */
+"Posting…" = "Posting…";
+
+/* (No Comment) */
+"Posts your comment" = "Posts your comment";
+
+/* No comment provided by engineer. */
+"Previous item" = "Previous item";
+
+/* Link to the privacy policy */
+"Privacy Policy" = "Privacy Policy";
+
+/* Title for profile screen */
+"Profile" = "Profile";
+
+/* A short test taken by students */
+"Quiz" = "Quiz";
+
+/* Title for alert notifying users that support for quizzes on mobile is limited. */
+"Quiz Alert" = "Quiz alert";
+
+/* The title for the list of quizzes for a course */
+"Quizzes" = "Quizzes";
+
+/* (No Comment) */
+"Rate on App Store" = "Rate on app store";
+
+/* (No Comment) */
+"Rating for %1$@, Score: %2$g" = "Rating for %1$@, Score: %2$g";
+
+/* Title for a button allowing user to re-submit files for an assignment */
+"Re-submit Assignment" = "Re-submit assignment";
+
+/* (No Comment) */
+"Recipients" = "Recipients";
+
+/* (No Comment) */
+"Record" = "Record";
+
+/* Record audio submission comment */
+"Record Audio" = "Record audio";
+
+/* Record audio to use in a comment. */
+"Record Audio..." = "Record audio...";
+
+/* Record video submission comment option */
+"Record Video" = "Record video";
+
+/* No comment provided by engineer. */
+"Record audio" = "Record audio";
+
+/* No comment provided by engineer. */
+"Record video" = "Record video";
+
+/* (No Comment) */
+"Refresh Button" = "Refresh button";
+
+/* (No Comment) */
+"Refreshes the calendar content" = "Refreshes the calendar content";
+
+/* (No Comment) */
+"Refreshing Calendar Events" = "Refreshing calendar events";
+
+/* Confirmation for removing a file */
+"Remove" = "Remove";
+
+/* Button title for confirming a file deletion */
+"Remove this file?" = "Remove this file?";
+
+/* (No Comment) */
+"Report a problem" = "Report a problem";
+
+/* (No Comment) */
+"Request a feature" = "Request a feature";
+
+/* (No Comment) */
+"Rubric" = "Rubric";
+
+/* (No Comment) */
+"Save" = "Save";
+
+/* Title for Assignment Notifications Sheet */
+"Schedule Notification" = "Schedule notification";
+
+/* (No Comment) */
+"Search for recipients" = "Search for recipients";
+
+/* Title for a file picker window */
+"Select file(s)" = "Select file(s)";
+
+/* No comment provided by engineer. */
+"Select or deselect" = "Select or deselect";
+
+/* No comment provided by engineer. */
+"Selected" = "Selected";
+
+/* (No Comment) */
+"Send" = "Send";
+
+/* (No Comment) */
+"Send %@ a message" = "Send %@ a message";
+
+/* No comment provided by engineer. */
+"Send Message" = "Send message";
+
+/* (No Comment) */
+"Sent" = "Sent";
+
+/* Title for Settings */
+"Settings" = "Settings";
+
+/* (No Comment) */
+"Show Grades" = "Show marks";
+
+/* title for quiz assignment submission button */
+"Show Quiz" = "Show Quiz";
+
+/* (No Comment) */
+"Show file" = "Show file";
+
+/* (No Comment) */
+"Show recipients" = "Show recipients";
+
+/* (No Comment) */
+"Some items could not be deleted" = "Some items could not be deleted";
+
+/* (No Comment) */
+"Some selected folders are not empty. Are you sure you want to delete them?" = "Some selected folders are not empty. Are you certain you want to delete them?";
+
+/* 404 Error for missing assignment */
+"Sorry, we couldn't find the assignment. This assignment may have been deleted." = "Sorry, we couldn't find the assignment. This assignment might have been deleted.";
+
+/* (No Comment) */
+"Starts playing your recording" = "Starts playing your recording";
+
+/* (No Comment) */
+"Starts recording a media comment" = "Starts recording a media comment";
+
+/* (No Comment) */
+"Stay Logged In" = "Stay logged in";
+
+/* Stop loading button for webview */
+"Stop" = "Stop";
+
+/* (No Comment) */
+"Stop Masquerading" = "Stop masquerading";
+
+/* (No Comment) */
+"Stops playing your recording" = "Stops playing your recording";
+
+/* (No Comment) */
+"Stops recording a media comment" = "Stops recording a media comment";
+
+/* No comment provided by engineer. */
+"Student" = "Student";
+
+/* (No Comment) */
+"Sub Header" = "Sub header";
+
+/* No comment provided by engineer. */
+"Submission" = "Submission";
+
+/* Title for file submission error */
+"Submission Error" = "Submission error";
+
+/* (No Comment) */
+"Submission complete" = "Submission complete";
+
+/* Submit Arc video as assignment button */
+"Submit" = "Submit";
+
+/* Submitted grouping */
+"Submitted" = "Submitted";
+
+/* (No Comment) */
+"Submitting..." = "Submitting...";
+
+/* Subscribe to calendar feed allows the user to export their calendar events to a 3rd party calendar */
+"Subscribe to calendar feed" = "Subscribe to calendar feed";
+
+/* Masquerade success title */
+"Success!" = "Success!";
+
+/* (No Comment) */
+"Sure!" = "Sure!";
+
+/* (No Comment) */
+"Switches media input between audio and video. Currently set to %@" = "Switches media input between audio and video. Currently set to %@";
+
+/* (No Comment) */
+"Switches to media comment mode" = "Switches to media comment mode";
+
+/* (No Comment) */
+"Switches to text comment mode" = "Switches to text comment mode";
+
+/* Title for Syllabus screen */
+"Syllabus" = "Syllabus";
+
+/* (No Comment) */
+"TA" = "TA";
+
+/* No comment provided by engineer. */
+"TAs" = "TAs";
+
+/* Button label for taking a photo */
+"Take Photo" = "Take photo";
+
+/* Take a picture or video to use in a comment. */
+"Take Photo or Video..." = "Take photo or video...";
+
+/* Take a picture to use in a comment. */
+"Take a Photo..." = "Take a photo...";
+
+/* Take a video to use in a comment. */
+"Take a Video..." = "Take a video...";
+
+/* (No Comment) */
+"Tap to try again" = "Tap to try again";
+
+/* (No Comment) */
+"Teacher" = "Teacher";
+
+/* No comment provided by engineer. */
+"Teachers" = "Teachers";
+
+/* (No Comment) */
+"Tell us what's wrong" = "Tell us what's wrong";
+
+/* Link to the Terms of Use */
+"Terms of Use" = "Terms of Use";
+
+/* (No Comment) */
+"Text Comment" = "Text comment";
+
+/* Title for a text submission cell */
+"Text Submission" = "Text submission";
+
+/* Text entry submission type */
+"Text entry" = "Text entry";
+
+/* (No Comment) */
+"The recipients could not be added. Please try again. (%@)" = "The recipients could not be added. Please try again. (%@)";
+
+/* (No Comment) */
+"The server could not be reached" = "The server could not be reached";
+
+/* (No Comment) */
+"The server you entered is not authorized for this app." = "The server you entered is not authorised for this app.";
+
+/* (No Comment) */
+"The user agent for this app is unauthorized." = "The user agent for this app is unauthorised.";
+
+/* Error message */
+"There are no actions for this item" = "There are no actions for this item";
+
+/* (No Comment) */
+"There are no items to display" = "There are no items to display";
+
+/* message for media comment upload failure */
+"There was a network error posting your comment." = "There was a network error posting your comment.";
+
+/* message for failed submission upload */
+"There was a network problem while attempting to upload your submission" = "There was a network problem while attempting to upload your submission";
+
+/* Error message when fetching a file fails */
+"There was a problem accessing the requested file.\n\nError: %@" = "There was a problem accessing the requested file.\n\nError: %@";
+
+/* No comment provided by engineer. */
+"There was a problem launching Safari" = "There was a problem launching Safari";
+
+/* Web browser error handling message */
+"There was an error loading the document." = "There was an error loading the document.";
+
+/* No comment provided by engineer. */
+"There was an error loading your content. If it is an audio or video upload it may still be processing." = "There was an error loading your content. If it is an audio or video upload, it might still be processing.";
+
+/* (No Comment) */
+"This app is not authorized for use." = "This app is not authorised for use.";
+
+/* No comment provided by engineer. */
+"This assignment doesn't appear to be a valid external tool or is misconfigured." = "This assignment doesn't appear to be a valid external tool or is configured incorrectly.";
+
+/* message displayed in the details section if there is no comment. */
+"This assignment has no details." = "This assignment has no details.";
+
+/* Error message for refresh failing with an unauthorized code */
+"This can happen if your course hasn't started yet or you don't have permission to access this page." = "This can happen if your course hasn't started yet or you don't have permission to access this page.";
+
+/* (No Comment) */
+"This entry has been deleted" = "This entry has been deleted";
+
+/* Text indicating a file cannot be previewed */
+"This file cannot be displayed on this device." = "This file cannot be displayed on this device.";
+
+/* (No Comment) */
+"This file is locked" = "This file is locked";
+
+/* (No Comment) */
+"This folder is locked" = "This folder is locked";
+
+/* (No Comment) */
+"This is a media message." = "This is a media message.";
+
+/* (No Comment) */
+"This would be a great time to do some extra credit." = "This would be a great time to do some extra credit.";
+
+/* (No Comment) */
+"To Do" = "To do";
+
+/* (No Comment) */
+"To:" = "To:";
+
+/* No comment provided by engineer. */
+"Today" = "Today";
+
+/* (No Comment) */
+"Today Button" = "Today button";
+
+/* No comment provided by engineer. */
+"Toggles selection of current item" = "Toggles selection of current item";
+
+/* No comment provided by engineer. */
+"Toggles selection of item" = "Toggles selection of item";
+
+/* title for assignment submission button */
+"Turn In" = "Turn in";
+
+/* title for re-submitting an assignment */
+"Turn In Again" = "Turn in again";
+
+/* (No Comment) */
+"Turn in %@" = "Turn in %@";
+
+/* (No Comment) */
+"Uh-oh! No Internet Connection" = "Uh-oh! No Internet connection";
+
+/* (No Comment) */
+"Unable to load" = "Unable to load";
+
+/* (No Comment) */
+"Unable to post. Please try again later" = "Unable to post. Please try again later";
+
+/* message saying that avatar couldn't be loaded to server */
+"Unable to upload to server" = "Unable to upload to server";
+
+/* Error message for refresh failing on an MLVC tableview controller */
+"Unauthorized" = "Unauthorised";
+
+/* (No Comment) */
+"Unavailable" = "Unavailable";
+
+/* (No Comment) */
+"Ungraded" = "Ungraded";
+
+/* Unknown file type */
+"Unknown" = "Unknown";
+
+/* (No Comment) */
+"Unread" = "Unread";
+
+/* (No Comment) */
+"Unsaved Reply" = "Unsaved reply";
+
+/* Button title for uploading a file */
+"Upload" = "Upload";
+
+/* (No Comment) */
+"Upload Error" = "Upload error";
+
+/* No comment provided by engineer. */
+"Upload a file" = "Upload a file";
+
+/* (No Comment) */
+"Upload failed. Reason: (%@)" = "Upload failed. Reason: (%@)";
+
+/* (No Comment) */
+"Upload file" = "Upload file";
+
+/* Error message */
+"Upload to assignment \"%@\" failed" = "Upload to assignment \"%@\" failed";
+
+/* (No Comment) */
+"Upload to assignment &quot;%@&quot; failed" = "Upload to assignment &quot;%@&quot; failed";
+
+/* (No Comment) */
+"Upload to folder &quot;%@&quot; failed" = "Upload to folder &quot;%@&quot; failed";
+
+/* button for using the recorded audio */
+"Use" = "Use";
+
+/* (No Comment) */
+"User ID" = "User ID";
+
+/* Title for User Info section on the about page */
+"User Info" = "User info";
+
+/* Video file type */
+"Video" = "Video";
+
+/* (No Comment) */
+"Video error" = "Video error";
+
+/* (No Comment) */
+"View" = "View";
+
+/* (No Comment) */
+"Warning" = "Warning";
+
+/* error message for failure to load a file submission */
+"We had a problem loading the submission. Please try again later." = "We had a problem loading the submission. Please try again later.";
+
+/* (No Comment) */
+"We were unable to verify the server for use with this app." = "We were unable to verify the server for use with this app.";
+
+/* Error Title */
+"Whoops!" = "Whoops!";
+
+/* (No Comment) */
+"Will unlock %@." = "Will unlock %@.";
+
+/* (No Comment) */
+"Would you like to create a new message?" = "Would you like to create a new message?";
+
+/* (No Comment) */
+"Would you mind giving us a rating on the app store?" = "Would you mind giving us a rating on the app store?";
+
+/* (No Comment) */
+"Would you mind letting us know the problems you have been having with the app?" = "Would you mind letting us know the problems you have been having with the app?";
+
+/* (No Comment) */
+"Yes" = "Yes";
+
+/* (No Comment) */
+"You are now masquerading as %@" = "You are now masquerading as %@";
+
+/* Masquerade success message */
+"You are now masquerading as %@. To Stop Masquerading go to your Profile." = "You are now masquerading as %@. To stop masquerading, go to your profile.";
+
+/* (No Comment) */
+"You do not have SpeedGrader for iPad. You can download it for free from the App Store." = "You do not have SpeedGrader for iPad. You can download it for free from the app store.";
+
+/* (No Comment) */
+"You do not have access to this content. The Course or Group may not have started, or may have been concluded." = "You do not have access to this content. The course or group might not have started, or might have been concluded.";
+
+/* (No Comment) */
+"You do not have permission to delete this reply" = "You do not have permission to delete this reply";
+
+/* Masquerade error message */
+"You don't have permission to masquerade as this user or there is no user with that ID" = "You don't have permission to masquerade as this user, or there is no user with that ID";
+
+/* (No Comment) */
+"You have an unsaved reply. Would you like to discard that reply?" = "You have an unsaved reply. Would you like to discard that reply?";
+
+/* An explanation of how to transfer files to the Canvas app. */
+"You have no files available for upload. To add files from other apps, find a file in another app, then find the \"Open In\" button to open it in Canvas. You can also tap and hold on attachments in the Mail app to open them in Canvas." = "You have no files available for upload. To add files from other apps, find a file in another app, then click the \"Open In\" button to open it in Canvas. You can also click and hold on attachments in the Mail app to open them in Canvas.";
+
+/* (No Comment) */
+"You must first complete:" = "You must first complete:";
+
+/* (No Comment) */
+"You need a title and a description to post" = "You need a title and a description to post";
+
+/* (No Comment) */
+"You should go rate Canvas on the App Store!" = "You should go rate Canvas on the app store!";
+
+/* (No Comment) */
+"Your files could not be found" = "Your files could not be found";
+
+/* Media submission type selected with no Kaltura set up */
+"Your school's configuration does not allow the type of submission selected for this assignment" = "Your school's configuration does not allow the type of submission selected for this assignment";
+
+/* (No Comment) */
+"due on %1$@ at %2$@" = "due on %1$@ at %2$@";
+
+/* (No Comment) */
+"moments ago" = "moments ago";
+
+/* No comment provided by engineer. */
+"out of" = "out of";
+
+/* (No Comment) */
+"out of %@" = "out of %@";
+
+/* (No Comment) */
+"out of %@ points" = "out of %@ points";
+
+/* (No Comment) */
+"photo" = "photo";
+
+/* (No Comment) */
+"unknown" = "unknown";
+
+/* (No Comment) */
+"until %@" = "until %@";
+

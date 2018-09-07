@@ -1,0 +1,15 @@
+
+/* Class = "UITabBarItem"; title = "Dashboard"; ObjectID = "25Y-BM-hY0"; */
+"25Y-BM-hY0.title" = "Dashboard";
+
+/* Class = "UIViewController"; title = "Dashboard"; ObjectID = "4dF-GI-hLo"; */
+"4dF-GI-hLo.title" = "Dashboard";
+
+/* Class = "UIButton"; normalTitle = "Navigate"; ObjectID = "EjN-Ws-jN2"; */
+"EjN-Ws-jN2.normalTitle" = "Navigate";
+
+/* Class = "UILabel"; text = "Hi, I'm the Dashboard"; ObjectID = "W5x-Ap-7wg"; */
+"W5x-Ap-7wg.text" = "Hi, I'm the Dashboard";
+
+/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "gWz-RL-PwV"; */
+"gWz-RL-PwV.normalTitle" = "Login";

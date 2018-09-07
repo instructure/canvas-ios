@@ -1,0 +1,123 @@
+/* The distance in miles that a user is from a school. */
+"%@ miles away" = "%@ miles away";
+
+/* No comment provided by engineer. */
+"Build all the things" = "Build all of the things";
+
+/* Help label when user can't find their school. */
+"Can't find your school? Try typing the full school URL." = "Can't find your school? Try typing the school’s full URL.";
+
+/* No comment provided by engineer. */
+"Cancel" = "Cancel";
+
+/* No comment provided by engineer. */
+"Cancel Request" = "Cancel request";
+
+/* Label displayed when forcing canvas login */
+"Canvas Login" = "Canvas login";
+
+/* No comment provided by engineer. */
+"Casual question or suggestion" = "Casual question or suggestion";
+
+/* No comment provided by engineer. */
+"Check network and try again!" = "Check network and try again!";
+
+/* No comment provided by engineer. */
+"Choose One" = "Choose one";
+
+/* No comment provided by engineer. */
+"Continue Editing" = "Continue editing";
+
+/* No comment provided by engineer. */
+"Describe the feature here" = "Describe the feature here";
+
+/* Dismiss login expired/revoked alert button */
+"Dismiss" = "Dismiss";
+
+/* No comment provided by engineer. */
+"Emergency" = "Emergency";
+
+/* Text view to enter the description of the ticket */
+"Enter ticket description" = "Enter ticket description";
+
+/* Text field to enter subject of the ticket */
+"Enter ticket subject" = "Enter ticket subject";
+
+/* No comment provided by engineer. */
+"Extremely critical emergency" = "Extremely critical emergency";
+
+/* Help View Controller Title */
+"Help" = "Help";
+
+/* Help label when domain search has started */
+"How do I find my school?" = "How do I find my school?";
+
+/* No comment provided by engineer. */
+"I am stuck and can't get things done" = "I am stuck and can't get things done";
+
+/* No comment provided by engineer. */
+"I can't get things done until I hear back from you" = "I can't get things done until I hear back from you";
+
+/* No comment provided by engineer. */
+"I need help but it's not urgent" = "I need help but it's not urgent";
+
+/* No comment provided by engineer. */
+"Invalid Canvas URL." = "Invalid Canvas URL.";
+
+/* No comment provided by engineer. */
+"Invalid User Agent." = "Invalid User Agent.";
+
+/* No comment provided by engineer. */
+"Non-urgent help needed" = "Non-urgent help needed";
+
+/* No comment provided by engineer. */
+"Not authorized." = "Not authorised.";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"Report a Problem" = "Report a problem";
+
+/* No comment provided by engineer. */
+"Request Failed!" = "Request failed";
+
+/* No comment provided by engineer. */
+"Request a Feature" = "Request a feature";
+
+/* Button to select the severity of the ticket */
+"Select ticket impact level" = "Select ticket impact level";
+
+/* No comment provided by engineer. */
+"Send" = "Send";
+
+/* Label displayed when logging in as site admin */
+"Site Admin Login" = "Site admin login";
+
+/* No comment provided by engineer. */
+"Something is broken but I can work around it" = "Something is broken but I can work around it";
+
+/* No comment provided by engineer. */
+"Success!" = "Success!";
+
+/* Subtitle help text describing how to find a school. */
+"Tap here for help." = "Tap here for help.";
+
+/* No comment provided by engineer. */
+"Thanks, your request was received!" = "Thanks, your request was received.";
+
+/* when the access token has been revoked */
+"Your login has expired or has been removed by the server. Please log in again." = "Your login has expired or has been removed by the server. Please log in again.";
+
+/* No comment provided by engineer. */
+"describe your problem" = "Describe your problem";
+
+/* No comment provided by engineer. */
+"enter a subject" = "Enter a subject";
+
+/* Placeholder for delete icon in Multi User Table View Cell */
+"remove user" = "Remove user";
+
+/* No comment provided by engineer. */
+"select the impact" = "Select the impact";
+

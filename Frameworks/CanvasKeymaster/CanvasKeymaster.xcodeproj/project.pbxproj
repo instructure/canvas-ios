@@ -189,6 +189,30 @@
 		5EEEB1761B56C9A7001438C3 /* SupportTicketManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupportTicketManager.m; sourceTree = "<group>"; };
 		5EEEB1771B56C9A7001438C3 /* SupportTicketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupportTicketViewController.h; sourceTree = "<group>"; };
 		5EEEB1781B56C9A7001438C3 /* SupportTicketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupportTicketViewController.m; sourceTree = "<group>"; };
+		7D349C3D214309CB004C1074 /* da-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-x-k12"; path = "da-x-k12.lproj/Main.strings"; sourceTree = "<group>"; };
+		7D349C3E214309CC004C1074 /* da-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-x-k12"; path = "da-x-k12.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		7D349C3F214309CC004C1074 /* da-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-x-k12"; path = "da-x-k12.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		7D349C40214309CD004C1074 /* da-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-x-k12"; path = "da-x-k12.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		7D349C41214309CD004C1074 /* da-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-x-k12"; path = "da-x-k12.lproj/SupportTicket.strings"; sourceTree = "<group>"; };
+		7D349C42214309CE004C1074 /* da-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-x-k12"; path = "da-x-k12.lproj/CKMDomainPickerViewController.strings"; sourceTree = "<group>"; };
+		7D349C4321430A15004C1074 /* en-GB-x-ukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-x-ukhe"; path = "en-GB-x-ukhe.lproj/Main.strings"; sourceTree = "<group>"; };
+		7D349C4421430A16004C1074 /* en-GB-x-ukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-x-ukhe"; path = "en-GB-x-ukhe.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		7D349C4521430A17004C1074 /* en-GB-x-ukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-x-ukhe"; path = "en-GB-x-ukhe.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		7D349C4621430A17004C1074 /* en-GB-x-ukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-x-ukhe"; path = "en-GB-x-ukhe.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		7D349C4721430A18004C1074 /* en-GB-x-ukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-x-ukhe"; path = "en-GB-x-ukhe.lproj/SupportTicket.strings"; sourceTree = "<group>"; };
+		7D349C4821430A18004C1074 /* en-GB-x-ukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-x-ukhe"; path = "en-GB-x-ukhe.lproj/CKMDomainPickerViewController.strings"; sourceTree = "<group>"; };
+		7D349C4921430A45004C1074 /* nb-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-x-k12"; path = "nb-x-k12.lproj/Main.strings"; sourceTree = "<group>"; };
+		7D349C4A21430A45004C1074 /* nb-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-x-k12"; path = "nb-x-k12.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		7D349C4B21430A46004C1074 /* nb-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-x-k12"; path = "nb-x-k12.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		7D349C4C21430A47004C1074 /* nb-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-x-k12"; path = "nb-x-k12.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		7D349C4D21430A47004C1074 /* nb-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-x-k12"; path = "nb-x-k12.lproj/SupportTicket.strings"; sourceTree = "<group>"; };
+		7D349C4E21430A48004C1074 /* nb-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-x-k12"; path = "nb-x-k12.lproj/CKMDomainPickerViewController.strings"; sourceTree = "<group>"; };
+		7D349C4F21430A6A004C1074 /* sv-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-x-k12"; path = "sv-x-k12.lproj/Main.strings"; sourceTree = "<group>"; };
+		7D349C5021430A6A004C1074 /* sv-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-x-k12"; path = "sv-x-k12.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		7D349C5121430A6B004C1074 /* sv-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-x-k12"; path = "sv-x-k12.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		7D349C5221430A6C004C1074 /* sv-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-x-k12"; path = "sv-x-k12.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		7D349C5321430A6C004C1074 /* sv-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-x-k12"; path = "sv-x-k12.lproj/SupportTicket.strings"; sourceTree = "<group>"; };
+		7D349C5421430A6D004C1074 /* sv-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-x-k12"; path = "sv-x-k12.lproj/CKMDomainPickerViewController.strings"; sourceTree = "<group>"; };
 		A2C655512AEE7F55037ED04C /* Pods-CanvasKeymaster.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CanvasKeymaster.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-CanvasKeymaster/Pods-CanvasKeymaster.release.xcconfig"; sourceTree = "<group>"; };
 		B10E9F711E2FDB85000F5D01 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/SupportTicket.strings; sourceTree = "<group>"; };
 		B10E9F721E2FDB85000F5D01 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Main.strings; sourceTree = "<group>"; };
@@ -664,6 +688,10 @@
 			knownRegions = (
 				en,
 				Base,
+				"da-x-k12",
+				"en-GB-x-ukhe",
+				"nb-x-k12",
+				"sv-x-k12",
 			);
 			mainGroup = 49E9585F190967B000A1BFB7;
 			productRefGroup = 49E95869190967B000A1BFB7 /* Products */;
@@ -813,6 +841,10 @@
 				B10E9FFA1E2FDCCF000F5D01 /* zh-HK */,
 				B10EA0011E2FDCDA000F5D01 /* zh */,
 				5B58B4BA20DF818A008B8856 /* cy */,
+				7D349C3E214309CC004C1074 /* da-x-k12 */,
+				7D349C4421430A16004C1074 /* en-GB-x-ukhe */,
+				7D349C4A21430A45004C1074 /* nb-x-k12 */,
+				7D349C5021430A6A004C1074 /* sv-x-k12 */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -842,6 +874,10 @@
 				B10E9FF81E2FDCCD000F5D01 /* zh-HK */,
 				B10E9FFF1E2FDCD9000F5D01 /* zh */,
 				5B58B4B720DF8189008B8856 /* cy */,
+				7D349C3D214309CB004C1074 /* da-x-k12 */,
+				7D349C4321430A15004C1074 /* en-GB-x-ukhe */,
+				7D349C4921430A45004C1074 /* nb-x-k12 */,
+				7D349C4F21430A6A004C1074 /* sv-x-k12 */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -870,6 +906,10 @@
 				B10E9FF91E2FDCCE000F5D01 /* zh-HK */,
 				B10EA0001E2FDCDA000F5D01 /* zh */,
 				5B58B4B820DF818A008B8856 /* cy */,
+				7D349C40214309CD004C1074 /* da-x-k12 */,
+				7D349C4621430A17004C1074 /* en-GB-x-ukhe */,
+				7D349C4C21430A47004C1074 /* nb-x-k12 */,
+				7D349C5221430A6C004C1074 /* sv-x-k12 */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -898,6 +938,10 @@
 				B10E9FFB1E2FDCCF000F5D01 /* zh-HK */,
 				B10EA0021E2FDCDB000F5D01 /* zh */,
 				5B58B4B920DF818A008B8856 /* cy */,
+				7D349C3F214309CC004C1074 /* da-x-k12 */,
+				7D349C4521430A17004C1074 /* en-GB-x-ukhe */,
+				7D349C4B21430A46004C1074 /* nb-x-k12 */,
+				7D349C5121430A6B004C1074 /* sv-x-k12 */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -927,6 +971,10 @@
 				B10E9FFC1E2FDCD0000F5D01 /* zh-HK */,
 				B10EA0031E2FDCDC000F5D01 /* zh */,
 				5B58B4BC20DF818A008B8856 /* cy */,
+				7D349C42214309CE004C1074 /* da-x-k12 */,
+				7D349C4821430A18004C1074 /* en-GB-x-ukhe */,
+				7D349C4E21430A48004C1074 /* nb-x-k12 */,
+				7D349C5421430A6D004C1074 /* sv-x-k12 */,
 			);
 			name = CKMDomainPickerViewController.storyboard;
 			sourceTree = "<group>";
@@ -956,6 +1004,10 @@
 				B10E9FF71E2FDCCD000F5D01 /* zh-HK */,
 				B10E9FFE1E2FDCD9000F5D01 /* zh */,
 				5B58B4BB20DF818A008B8856 /* cy */,
+				7D349C41214309CD004C1074 /* da-x-k12 */,
+				7D349C4721430A18004C1074 /* en-GB-x-ukhe */,
+				7D349C4D21430A47004C1074 /* nb-x-k12 */,
+				7D349C5321430A6C004C1074 /* sv-x-k12 */,
 			);
 			name = SupportTicket.storyboard;
 			sourceTree = "<group>";

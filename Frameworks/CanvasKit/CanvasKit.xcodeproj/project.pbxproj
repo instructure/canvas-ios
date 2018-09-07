@@ -827,6 +827,22 @@
 		5B3DFCF220DF8292004D771E /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5B3DFCF320DF8292004D771E /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		73FDCB1E035EF6A93E758F42 /* Pods_defaults_CanvasKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D349C5521430AF1004C1074 /* da-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-x-k12"; path = "da-x-k12.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		7D349C5621430AF1004C1074 /* da-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-x-k12"; path = "da-x-k12.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		7D349C5721430AF2004C1074 /* da-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-x-k12"; path = "da-x-k12.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		7D349C5821430AF3004C1074 /* da-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-x-k12"; path = "da-x-k12.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		7D349C5921430B15004C1074 /* en-GB-x-ukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-x-ukhe"; path = "en-GB-x-ukhe.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		7D349C5A21430B15004C1074 /* en-GB-x-ukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-x-ukhe"; path = "en-GB-x-ukhe.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		7D349C5B21430B16004C1074 /* en-GB-x-ukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-x-ukhe"; path = "en-GB-x-ukhe.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		7D349C5C21430B16004C1074 /* en-GB-x-ukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-x-ukhe"; path = "en-GB-x-ukhe.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		7D349C5D21430B3C004C1074 /* nb-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-x-k12"; path = "nb-x-k12.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		7D349C5E21430B3C004C1074 /* nb-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-x-k12"; path = "nb-x-k12.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		7D349C5F21430B3D004C1074 /* nb-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-x-k12"; path = "nb-x-k12.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		7D349C6021430B3E004C1074 /* nb-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-x-k12"; path = "nb-x-k12.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		7D349C6121430BB7004C1074 /* sv-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-x-k12"; path = "sv-x-k12.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		7D349C6221430BB8004C1074 /* sv-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-x-k12"; path = "sv-x-k12.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		7D349C6321430BB9004C1074 /* sv-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-x-k12"; path = "sv-x-k12.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		7D349C6421430BB9004C1074 /* sv-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-x-k12"; path = "sv-x-k12.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7DCAC85F1FE1CFAA0069F653 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		89D0BBE2474CFAFFCAB82936 /* Pods-CanvasKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CanvasKit.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-CanvasKit/Pods-CanvasKit.release.xcconfig"; sourceTree = "<group>"; };
 		9F018E471FBB771200C183B3 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1706,6 +1722,10 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				"da-x-k12",
+				"en-GB-x-ukhe",
+				"nb-x-k12",
+				"sv-x-k12",
 			);
 			mainGroup = 499D187D1C8643E6005A86D2;
 			productRefGroup = 499D18881C8643E6005A86D2 /* Products */;
@@ -2086,6 +2106,10 @@
 				9FB1E2BF1FBB773D009807C0 /* es */,
 				7DCAC85F1FE1CFAA0069F653 /* fr */,
 				5B3DFCF220DF8292004D771E /* cy */,
+				7D349C5721430AF2004C1074 /* da-x-k12 */,
+				7D349C5B21430B16004C1074 /* en-GB-x-ukhe */,
+				7D349C5F21430B3D004C1074 /* nb-x-k12 */,
+				7D349C6321430BB9004C1074 /* sv-x-k12 */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2114,6 +2138,10 @@
 				9FA979A21FBB773A005B21D2 /* ht */,
 				9FB1E2BE1FBB773D009807C0 /* es */,
 				5B3DFCF120DF8292004D771E /* cy */,
+				7D349C5821430AF3004C1074 /* da-x-k12 */,
+				7D349C5C21430B16004C1074 /* en-GB-x-ukhe */,
+				7D349C6021430B3E004C1074 /* nb-x-k12 */,
+				7D349C6421430BB9004C1074 /* sv-x-k12 */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -2142,6 +2170,10 @@
 				9FA979A41FBB773A005B21D2 /* ht */,
 				9FB1E2C01FBB773D009807C0 /* es */,
 				5B3DFCF320DF8292004D771E /* cy */,
+				7D349C5621430AF1004C1074 /* da-x-k12 */,
+				7D349C5A21430B15004C1074 /* en-GB-x-ukhe */,
+				7D349C5E21430B3C004C1074 /* nb-x-k12 */,
+				7D349C6221430BB8004C1074 /* sv-x-k12 */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2171,6 +2203,10 @@
 				9FB1E2C11FBB773D009807C0 /* es */,
 				2CD80599201BCF1A001D22CC /* en */,
 				5B3DFCF020DF8291004D771E /* cy */,
+				7D349C5521430AF1004C1074 /* da-x-k12 */,
+				7D349C5921430B15004C1074 /* en-GB-x-ukhe */,
+				7D349C5D21430B3C004C1074 /* nb-x-k12 */,
+				7D349C6121430BB7004C1074 /* sv-x-k12 */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

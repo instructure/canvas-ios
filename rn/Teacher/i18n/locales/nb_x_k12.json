@@ -1,0 +1,1716 @@
+{
+  "_376f89ea": {
+    "message": "--"
+  },
+  "_4927a5f1": {
+    "message": "?"
+  },
+  "a_description_is_required_54b5f1f6": {
+    "message": "En beskrivelse er nødvendig"
+  },
+  "a_title_is_required_71222850": {
+    "message": "Tittel er påkrevd"
+  },
+  "accept_2fdd362e": {
+    "message": "Godta"
+  },
+  "access_9a94f04e": {
+    "message": "Tilgang"
+  },
+  "access_code_74f4864f": {
+    "message": "Tilgangskode"
+  },
+  "account_group_cb00ca73": {
+    "message": "Gruppe konto"
+  },
+  "account_has_no_terms_of_use_1048a785": {
+    "message": "Kontoen har ingen brukervilkår"
+  },
+  "act_as_is_essentially_logging_in_as_this_user_with_7870ece0": {
+    "message": "\"Oppfør deg som\" er i realiteten å logge inn som denne brukeren uten passord. Du kan ta tiltak som om du er denne brukeren, og fra andres synspunkt ser det ut som denne brukeren har utført dem. Overvåkingloggen vil likevel notere at det var du som utførte handlingene på vegne av denne brukeren."
+  },
+  "act_as_user_d7ef0e48": {
+    "message": "Opptre som bruker"
+  },
+  "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
+    "message": "Legg til noen få av favorittkursene dine så dette blir hjemmet ditt"
+  },
+  "add_an_attachment_by_tapping_the_plus_at_the_top_r_f9350b62": {
+    "message": "Legg til et vedlegg ved å trykke på pluss øverst til høyre."
+  },
+  "add_assignee_24ee0b71": {
+    "message": "Legg til mottaker"
+  },
+  "add_attachment_dcdb8bf8": {
+    "message": "Legg til vedlegg"
+  },
+  "add_comment_3205529f": {
+    "message": "Legg til kommentar"
+  },
+  "add_courses_fd45abf": {
+    "message": "Legg til kurs"
+  },
+  "add_description_5321f1d": {
+    "message": "Legg til beskrivelse"
+  },
+  "add_description_required_e222e483": {
+    "message": "Legg til beskrivelse (påkrevd)"
+  },
+  "add_due_date_65b08f6c": {
+    "message": "Legg til forfallsdato"
+  },
+  "add_file_e6326e09": {
+    "message": "Legg til fil"
+  },
+  "add_item_75b67d07": {
+    "message": "Legg til punkt"
+  },
+  "add_media_cfa37b54": {
+    "message": "Legg til medie"
+  },
+  "add_recipient_7de2dc74": {
+    "message": "Legg til mottaker"
+  },
+  "add_title_4f788d37": {
+    "message": "Legg til tittel"
+  },
+  "add_title_required_8d9bdeaa": {
+    "message": "Legg til tittel (påkrevd)"
+  },
+  "after_date_e5d9b0e1": {
+    "message": "Etter { date }"
+  },
+  "after_last_attempt_c9168da2": {
+    "message": "Etter siste forsøk"
+  },
+  "all_4321c3a1": {
+    "message": "Alle"
+  },
+  "all_courses_a7dbb853": {
+    "message": "Alle kurs"
+  },
+  "all_grading_periods_77974940": {
+    "message": "Alle vurderingsperiodene"
+  },
+  "all_in_e5ddaee0": {
+    "message": "Alle i"
+  },
+  "all_people_16d90b41": {
+    "message": "Alle folk"
+  },
+  "all_submissions_3eedfb97": {
+    "message": "Alle innleveringer"
+  },
+  "all_submissions_b8717440": {
+    "message": "Alle innleveringer"
+  },
+  "allow_multiple_attempts_e67a0a37": {
+    "message": "Tillat flere forsøk"
+  },
+  "allow_threaded_replies_43b2311e": {
+    "message": "Tillat svartråder"
+  },
+  "allowed_attempts_4e229caa": {
+    "message": "Tillat forsøk"
+  },
+  "always_3a59e701": {
+    "message": "Alltid"
+  },
+  "an_error_occured_while_fetching_this_conversation_453ca633": {
+    "message": "Det oppstod en feil under henting av denne samtalen."
+  },
+  "an_error_occurred_a4e1cda4": {
+    "message": "Det oppstod en feil"
+  },
+  "announcement_details_81b0bda2": {
+    "message": "Kunngjøringsdetaljer"
+  },
+  "announcements_a4b8ed4a": {
+    "message": "Kunngjøringer"
+  },
+  "anonymous_grading_3083dc0": {
+    "message": "Anonym karaktersetting"
+  },
+  "anyone_5b8fdf9f": {
+    "message": "Hvem som helst"
+  },
+  "archived_de543437": {
+    "message": "Arkivert"
+  },
+  "are_you_enjoying_canvas_922624ff": {
+    "message": "Liker du Canvas?"
+  },
+  "are_you_sure_you_want_to_delete_name_908230d3": {
+    "message": "Er du sikker på at du vil slette { name }?"
+  },
+  "are_you_sure_you_want_to_delete_this_announcement_293d51a8": {
+    "message": "Er du sikker på at du vil slette denne kunngjøringen?"
+  },
+  "are_you_sure_you_want_to_delete_this_discussion_334554e0": {
+    "message": "Er du sikker på at du vil slette denne diskusjonen?"
+  },
+  "are_you_sure_you_want_to_delete_this_page_2185844": {
+    "message": "Er du sikker på at du vil slette denne siden?"
+  },
+  "are_you_sure_you_want_to_delete_this_reply_6a35cccc": {
+    "message": "Er du sikker på at du vil slette dette svaret?"
+  },
+  "assign_to_95404a83": {
+    "message": "Tilordne til"
+  },
+  "assignees_314d5e55": {
+    "message": "Mottakere"
+  },
+  "assignees_required_1b9218fb": {
+    "message": "Stedfortredere kreves"
+  },
+  "assignment_details_bc488179": {
+    "message": "Oppgavedetaljer"
+  },
+  "assignment_group_1a781505": {
+    "message": "Oppgavegruppe"
+  },
+  "assignments_1e02582c": {
+    "message": "Oppgaver"
+  },
+  "assignments_list_fe3e54be": {
+    "message": "Oppgaveliste"
+  },
+  "attachment_deffe5a9": {
+    "message": "Oppgave"
+  },
+  "attachments_694cf227": {
+    "message": "Vedlegg"
+  },
+  "attempt_number_75028cfa": {
+    "message": "Forsøk { number }"
+  },
+  "audio_comment_baf426c7": {
+    "message": "Lydkommentar"
+  },
+  "audio_dd489fcc": {
+    "message": "Lyd"
+  },
+  "audio_playback_failed_912bcb82": {
+    "message": "Lydavspilling mislyktes"
+  },
+  "availability_8942cde6": {
+    "message": "Tilgjengelighet"
+  },
+  "availability_closed_429d1ba5": {
+    "message": "Tilgjengelighet: Lukket"
+  },
+  "availability_e415e857": {
+    "message": "Tilgjengelighet:"
+  },
+  "available_from_3821bccc": {
+    "message": "Tilgjengelig fra:"
+  },
+  "available_from_587ce92f": {
+    "message": "Tilgjengelig fra"
+  },
+  "available_from_date_bb9d5115": {
+    "message": "Tilgjengelig fra: { date }"
+  },
+  "available_from_f84e4611": {
+    "message": "Tilgjengelig fra"
+  },
+  "available_from_must_be_before_available_to_b73ad479": {
+    "message": "Tilgjengelig fra må være før Tilgjengelig til"
+  },
+  "available_from_must_be_before_available_until_38d313cc": {
+    "message": "''Tilgjengelig fra'' må være før ''tilgjengelig til''"
+  },
+  "available_to_b7350e02": {
+    "message": "Tilgjengelig til"
+  },
+  "available_until_20c0cc5c": {
+    "message": "Tilgjengelig til:"
+  },
+  "available_until_date_37684818": {
+    "message": "Tilgjengelig til: { date }"
+  },
+  "available_until_f3b9c4ed": {
+    "message": "Tilgjengelig inntil"
+  },
+  "average_49c63f9b": {
+    "message": "Gjennomsnittlig"
+  },
+  "back_2900f52a": {
+    "message": "Tilbake"
+  },
+  "back_to_replies_94f3c127": {
+    "message": "Tilbake til svar"
+  },
+  "bold_34b9d97e": {
+    "message": "Fet"
+  },
+  "can_edit_5a1e8dbf": {
+    "message": "Kan redigere"
+  },
+  "can_not_forward_message_2a4d4953": {
+    "message": "Kan ikke videresende melding"
+  },
+  "cancel_caeb1e68": {
+    "message": "Avbryt"
+  },
+  "canvas_guides_d65431": {
+    "message": "Canvas-guider"
+  },
+  "canvas_parent_app_f9236a3a": {
+    "message": "Canvas foreldreapplikasjon"
+  },
+  "canvas_student_app_329567f": {
+    "message": "Canvas studentapplikasjon"
+  },
+  "canvas_teacher_app_9dc7d7ed": {
+    "message": "Canvas lærer-app"
+  },
+  "change_discussiontitle_to_different_grouping_9f5ed8c1": {
+    "message": "Endre { discussionTitle } til annen gruppering"
+  },
+  "change_user_1b7c4f23": {
+    "message": "Endre bruker"
+  },
+  "choose_1319ef6b": {
+    "message": "Velg"
+  },
+  "choose_color_11148181": {
+    "message": "Velg { color }"
+  },
+  "choose_from_library_1b9caf95": {
+    "message": "Velg fra bibliotek"
+  },
+  "clear_filter_5b3a182d": {
+    "message": "Slett filter"
+  },
+  "clear_filter_5c961d1b": {
+    "message": "Tøm filter"
+  },
+  "clear_filter_inbox_9465e74c": {
+    "message": "Rydd filter innboks"
+  },
+  "clear_recording_5a97b475": {
+    "message": "Fjern opptak"
+  },
+  "close_d634289d": {
+    "message": "Lukk"
+  },
+  "close_for_comments_ce0e5d00": {
+    "message": "Lukk for kommentarer"
+  },
+  "closed_983a96fe": {
+    "message": "Lukket"
+  },
+  "closed_for_comments_e395b42f": {
+    "message": "Stengt for kommentarer"
+  },
+  "color_a363e1b0": {
+    "message": "Farge"
+  },
+  "comment_7ef1428e": {
+    "message": "Kommentere"
+  },
+  "comment_failed_acf11b54": {
+    "message": "Kommentar mislyktes"
+  },
+  "comments_e07bcbe3": {
+    "message": "Kommentarer"
+  },
+  "complete_fd828dea": {
+    "message": "Fullfør"
+  },
+  "complete_incomplete_15b3a89c": {
+    "message": "Fullfør/ufullstendig"
+  },
+  "compose_message_8abd180a": {
+    "message": "Skriv melding"
+  },
+  "conferences_a0a8984b": {
+    "message": "Konferanser"
+  },
+  "conversation_options_8be926f3": {
+    "message": "Alternativer for samtale"
+  },
+  "copied_880dcb1b": {
+    "message": "Kopiert!"
+  },
+  "copy_link_1ffb11a4": {
+    "message": "Kopiert lenke"
+  },
+  "copyright_holder_386cc8b8": {
+    "message": "Innehaver av opphavsrett"
+  },
+  "could_not_get_list_of_assignments_76aa2c7e": {
+    "message": "Kunne ikke få oppgavelisten"
+  },
+  "could_not_start_recording_8f31c2e4": {
+    "message": "Kunne ikke starte opptaket"
+  },
+  "count_plural_0_0_students_one_student_other_studen_801f8933": {
+    "message": "{ count, plural,     =0 {0 studenter}    one {# student}  other {# studenter}}"
+  },
+  "count_plural_one_like_other_likes_338617e5": {
+    "message": "{ count, plural,\n    one {# liker}\n  other {# liker}\n}"
+  },
+  "count_plural_one_needs_grading_other_need_grading_45cd88a4": {
+    "message": "{ count, plural,    one {Trenger karakter} other {Trenger karaktersetting}}"
+  },
+  "count_plural_one_needs_grading_other_need_grading_7eba188e": {
+    "message": "{ count, plural,    one {# Trenger karaktersetting} other {# Trenger karaktersetting}}"
+  },
+  "count_plural_one_pt_other_pts_c5a3bced": {
+    "message": "{ count, plural,    one {# pt} other {# poeng/p}}"
+  },
+  "count_plural_one_question_other_questions_309aafa": {
+    "message": "{ count, plural,    one {# Spørsmål} other {# Spørsmål}}"
+  },
+  "count_plural_one_reply_other_replies_dbf1832a": {
+    "message": "{ count, plural,    one {# Svar} other {# Svar}}"
+  },
+  "count_plural_one_there_is_assignee_without_a_grade_15facb89": {
+    "message": "{ count, plural,    one {Det er # oppgavetaker uten karakter.} other {Det er # oppgavetakere uten karakterer.}}"
+  },
+  "count_students_4ae780ca": {
+    "message": "{ count } studenter"
+  },
+  "course_activity_stream_40091c17": {
+    "message": "Aktivitetsstrøm for emner"
+  },
+  "course_modules_795cb95e": {
+    "message": "Moduler for emne"
+  },
+  "course_sections_380358a5": {
+    "message": "Emneseksjoner"
+  },
+  "course_settings_f6d0bbf8": {
+    "message": "Innstillinger for emne"
+  },
+  "coursename_sections_faeee6fc": {
+    "message": "{ courseName } Seksjoner"
+  },
+  "courses_43204aae": {
+    "message": "Emne"
+  },
+  "create_folder_6055d558": {
+    "message": "Lag mappe"
+  },
+  "creative_commons_file_f0ace8ca": {
+    "message": "Creative Commons-fil"
+  },
+  "creative_commons_license_ba94fd4d": {
+    "message": "Creative Commons-lisens"
+  },
+  "customize_course_eefa9c21": {
+    "message": "Skreddersy kurs"
+  },
+  "customize_grade_c9d046d": {
+    "message": "Tilpass karakter"
+  },
+  "customize_grade_value_964695a3": {
+    "message": "Tilpass karakter { value }"
+  },
+  "date_date_medium_at_date_time_short_2b9ce48b": {
+    "message": "{ date, date, medium } på { date, time, short }"
+  },
+  "date_date_mmm_d_at_date_time_short_61eeb79b": {
+    "message": "{ date, date, 'MMM d' } på { date, time, short }"
+  },
+  "date_date_mmm_d_date_time_short_e82719d6": {
+    "message": "{ date, date, 'MMM d' } { date, time, short }"
+  },
+  "decline_7eeb5ff4": {
+    "message": "Avslå"
+  },
+  "delay_posting_f45eed7d": {
+    "message": "Utsett publisering"
+  },
+  "delayed_until_8f9c2bb1": {
+    "message": "Forsinket til: "
+  },
+  "delete_a6efa79d": {
+    "message": "Slett"
+  },
+  "delete_file_3ca64c1b": {
+    "message": "Slett fil"
+  },
+  "delete_folder_1700498c": {
+    "message": "Slett mappe"
+  },
+  "delete_folder_7d84f587": {
+    "message": "Slett mappe?"
+  },
+  "delete_recipient_recipient_22a1e3dd": {
+    "message": "Slett mottaker { recipient }"
+  },
+  "deleted_this_reply_8b5b0ddc": {
+    "message": "Slettet dette svaret."
+  },
+  "deleting_this_folder_will_also_delete_all_of_the_f_8017926e": {
+    "message": "Hvis du sletter denne mappen vil det også slette alle filene i mappen."
+  },
+  "description_436c48d7": {
+    "message": "Beskrivelse"
+  },
+  "designer_c458392": {
+    "message": "Designer"
+  },
+  "details_98a31b68": {
+    "message": "Detaljer"
+  },
+  "developer_menu_1e80da35": {
+    "message": "Utviklermeny"
+  },
+  "discussion_details_5728ea3d": {
+    "message": "Diskusjonsdetaljer"
+  },
+  "discussion_submission_781d5d33": {
+    "message": "Diskusjonsinnlevering"
+  },
+  "discussion_topic_dc85ad4c": {
+    "message": "Diskusjonstema"
+  },
+  "discussions_a5f96392": {
+    "message": "Diskusjoner"
+  },
+  "dismiss_dacdb625": {
+    "message": "Avvise"
+  },
+  "dismiss_invitation_to_name_a650b2c4": {
+    "message": "Avslå invitasjon til { name }"
+  },
+  "dismiss_name_8646b9fd": {
+    "message": "Avvise { name }"
+  },
+  "dismiss_prompt_to_rate_8fdc85b6": {
+    "message": "Avvis varsel om tilbakemelding"
+  },
+  "display_grade_as_7b5376a6": {
+    "message": "Vis karakter som"
+  },
+  "display_grade_as_c165e9a6": {
+    "message": "Vis karakter som..."
+  },
+  "domain_3b54c511": {
+    "message": "Domene"
+  },
+  "done_54e3d4b6": {
+    "message": "Utført"
+  },
+  "due_5d7267be": {
+    "message": "Frist:"
+  },
+  "due_a73610f6": {
+    "message": "Leveres innen"
+  },
+  "due_date_822625d8": {
+    "message": "Innleveringsfrist"
+  },
+  "due_date_date_mmm_d_yyyy_at_date_time_short_76c5900f": {
+    "message": "Leveres { date, date, 'MMM d, YYYY' } den { date, time, short }"
+  },
+  "due_date_must_be_between_available_from_and_availa_bc4d7904": {
+    "message": "''Forfallsdatoen'' må være mellom ''tilgjengelig fra'' og ''tilgjengelig til''"
+  },
+  "due_dates_double_tap_for_details_36c5a7a4": {
+    "message": "Forfallsdatoer, dobbeltklikk for detaljer."
+  },
+  "due_datestring_be4410c7": {
+    "message": "Forfall { dateString }"
+  },
+  "edit_assignment_ebf22a72": {
+    "message": "Rediger oppgave"
+  },
+  "edit_attachment_count_ae907c46": {
+    "message": "Rediger vedlegg ({ count })"
+  },
+  "edit_attachments_count_5e9276ea": {
+    "message": "Rediger vedlegg ({ count })"
+  },
+  "edit_c5fbea07": {
+    "message": "Rediger"
+  },
+  "edit_comment_22b23c2f": {
+    "message": "Rediger kommentar"
+  },
+  "edit_course_settings_9736fd1f": {
+    "message": "Rediger emne-innstillinger"
+  },
+  "edit_courses_1f63340f": {
+    "message": "Rediger kurs"
+  },
+  "edit_description_1206e0a8": {
+    "message": "Rediger beskrivelse"
+  },
+  "edit_file_c560115a": {
+    "message": "Endre fil"
+  },
+  "edit_folder_f12b1b3c": {
+    "message": "Endre mappe"
+  },
+  "edit_page_5df5916a": {
+    "message": "Endre side"
+  },
+  "edit_quiz_details_72cd055": {
+    "message": "Rediger testdetaljer"
+  },
+  "email_contact_e095f380": {
+    "message": "E-postkontakt"
+  },
+  "enjoy_your_day_a4cb2c1": {
+    "message": "Ha en fin dag!"
+  },
+  "enter_code_c7ab5104": {
+    "message": "Angi kode"
+  },
+  "error_98e81528": {
+    "message": "Feil"
+  },
+  "error_saving_grade_367dd920": {
+    "message": "Feil under lagring av karakter"
+  },
+  "everyone_854554dd": {
+    "message": "Alle"
+  },
+  "everyone_else_cc5f6888": {
+    "message": "Alle andre"
+  },
+  "excuse_student_1b60e311": {
+    "message": "Unnskylde student"
+  },
+  "excused_cf8792eb": {
+    "message": "Unnskyldt"
+  },
+  "extensions_and_lastextension_f45d68e7": {
+    "message": "{ extensions } og { lastExtension }"
+  },
+  "external_tool_c5a6410a": {
+    "message": "Eksternt verktøy"
+  },
+  "external_tool_submission_c7b1dfa4": {
+    "message": "Eksterne verktøy innlevering"
+  },
+  "fail_c2e91f54": {
+    "message": "fail"
+  },
+  "failed_comment_options_aa19a936": {
+    "message": "Alternativer for mislykket kommentar"
+  },
+  "failed_to_download_audio_23abb7b1": {
+    "message": "Kunne ikke laste ned lyd"
+  },
+  "failed_to_load_audio_46309612": {
+    "message": "Kunne ikke laste inn lyd"
+  },
+  "failed_to_upload_attachment_acb5c28f": {
+    "message": "Kunne ikke laste opp vedlegget"
+  },
+  "failed_to_upload_media_comment_c43f581a": {
+    "message": "Kunne ikke laste opp mediekommentar"
+  },
+  "fair_use_exception_d8683c6f": {
+    "message": "Unntak for rimelig bruk"
+  },
+  "favorite_courses_fbd356f0": {
+    "message": "Favorittemner"
+  },
+  "file_types_6fa69505": {
+    "message": "Filtyper"
+  },
+  "files_c300e900": {
+    "message": "Filer"
+  },
+  "files_numberoffiles_number_410d9eba": {
+    "message": "Filer ({ numberOfFiles, number })"
+  },
+  "filter_by_2f4368a8": {
+    "message": "Filtrer etter"
+  },
+  "filter_by_ffcbd05b": {
+    "message": "Filtrer ut fra:"
+  },
+  "filter_e3398407": {
+    "message": "Filter"
+  },
+  "filter_inbox_dae0ff8f": {
+    "message": "Filtrere innboksen"
+  },
+  "filter_numselected_number_2e4c17e3": {
+    "message": "Filtrer ({ numSelected, number })"
+  },
+  "filter_people_b34b567b": {
+    "message": "Filtrer folk"
+  },
+  "filter_submissions_81bc50de": {
+    "message": "Filtrer innleveringer"
+  },
+  "final_grade_4d7f6545": {
+    "message": "Slutt karakter"
+  },
+  "for_974cbb84": {
+    "message": "Til"
+  },
+  "for_e3490d05": {
+    "message": "Til:"
+  },
+  "forward_d143f64": {
+    "message": "Videresend"
+  },
+  "forwarded_message_3acb578c": {
+    "message": "Videresendt melding:"
+  },
+  "front_page_50cae87e": {
+    "message": "Forside"
+  },
+  "full_screen_712e95f1": {
+    "message": "Fullskjerm"
+  },
+  "fw_subject_ebe04db7": {
+    "message": "FW: { subject }"
+  },
+  "gpa_71809a99": {
+    "message": "GPA"
+  },
+  "gpa_scale_a6d1cdea": {
+    "message": "GPA-skala"
+  },
+  "grade_9c6f076d": {
+    "message": "Karakterer"
+  },
+  "grade_grade_990eb477": {
+    "message": "Vurder { grade }"
+  },
+  "grade_grade_number_percent_cda06b4d": {
+    "message": "Vurder { grade, number, percent }"
+  },
+  "graded_25cd3fcd": {
+    "message": "Karaktersatt"
+  },
+  "graded_quiz_7fabdf1f": {
+    "message": "Karaktersatt test"
+  },
+  "graded_survey_c0f0c395": {
+    "message": "Karaktersatt undersøkelse"
+  },
+  "grades_a61eba0a": {
+    "message": "Karakterer"
+  },
+  "grades_muted_76c70047": {
+    "message": "Karakterer dempet"
+  },
+  "grades_muted_anonymous_grading_9291ea4b": {
+    "message": "Karakterer dempet, anonym karaktersetting"
+  },
+  "group_a8f5ed9c": {
+    "message": "Gruppe"
+  },
+  "groups_6c90e26a": {
+    "message": "Grupper"
+  },
+  "half_screen_9cdd83ad": {
+    "message": "Halv skjerm"
+  },
+  "haven_t_been_graded_1fbfda56": {
+    "message": "Ikke karaktersatt"
+  },
+  "haven_t_submitted_yet_3a127a27": {
+    "message": "Ikke innlevert enda"
+  },
+  "help_4c4968b1": {
+    "message": "Hjelp"
+  },
+  "hidden_14a032a7": {
+    "message": "Skjult"
+  },
+  "hidden_files_inside_will_be_available_with_links_e9e3d233": {
+    "message": "Skjult. Filene inni vil være tilgjengelige med lenker."
+  },
+  "hide_content_for_name_aee1723a": {
+    "message": "Skjul innhold for { name }"
+  },
+  "hide_correct_answers_at_b1a59408": {
+    "message": "Skjul riktige svar på"
+  },
+  "hide_date_cannot_be_before_show_date_cfaa35f0": {
+    "message": "''Skjuledato'' kan ikke være før ''visedato''"
+  },
+  "highest_28ad71e6": {
+    "message": "Høyest"
+  },
+  "i_have_permission_to_use_file_d19a1a29": {
+    "message": "Jeg har rettigheter til å bruke filen"
+  },
+  "i_hold_the_copyright_71ee91b1": {
+    "message": "Jeg har opphavsretten"
+  },
+  "if_you_re_a_student_or_teacher_try_one_of_our_othe_f0ae9b33": {
+    "message": "Prøv en av de andre appene våre nedenfor, hvis du er student eller lærer."
+  },
+  "in_progress_9d1ce8b9": {
+    "message": "Pågår"
+  },
+  "incomplete_da3c2ea2": {
+    "message": "Ufullstendig"
+  },
+  "insert_image_42d30344": {
+    "message": "Sett inn bilde"
+  },
+  "insert_link_6dc23cae": {
+    "message": "Sett inn lenke"
+  },
+  "internet_connection_offline_d7c02b88": {
+    "message": "Internettilkoblingen er frakoblet"
+  },
+  "invalid_field_54480fae": {
+    "message": "Ugyldig felt"
+  },
+  "invite_accepted_290abc90": {
+    "message": "Invitasjonen ble akseptert!"
+  },
+  "invite_declined_d0a9e398": {
+    "message": "Invitasjonen ble avslått!"
+  },
+  "it_looks_like_your_internet_connection_is_offline__cf4003": {
+    "message": "Det ser ut til at du ikke er koblet til Internett. Koble til Internett på nytt og prøv igjen."
+  },
+  "it_seems_there_aren_t_any_valid_submissions_to_gra_f136675": {
+    "message": "Det ser ut til at det ikke er noen gyldige innleveringer å karaktersette."
+  },
+  "italic_ac45200a": {
+    "message": "Kursiv"
+  },
+  "item_count_plural_one_item_other_items_88319c63": {
+    "message": "{ item_count, plural,\n    one {# element}\n  other {# elementer}\n}"
+  },
+  "last_activity_on_lastactivity_date_mmmm_d_at_lasta_1a7e8430": {
+    "message": "Siste aktivitet { lastActivity, date, 'MMMM d' } på { lastActivity, time, short }"
+  },
+  "last_post_lastreplydatestr_55fbe7ce": {
+    "message": "Siste innlegg { lastReplyDateStr }"
+  },
+  "late_2be42b88": {
+    "message": "Seint"
+  },
+  "late_submissions_late_number_baedf6cf": {
+    "message": "Sene innleveringer { late, number }"
+  },
+  "latest_f604a75": {
+    "message": "Senest"
+  },
+  "launch_external_tool_672c0409": {
+    "message": "Åpne eksternt verktøy"
+  },
+  "length_in_minutes_eca69868": {
+    "message": "Lengde i minutter"
+  },
+  "let_students_see_the_correct_answer_a4da886e": {
+    "message": "La studentene se det korrekte svaret"
+  },
+  "let_students_see_their_quiz_responses_fbc07d14": {
+    "message": "La studentene se sine testsvar"
+  },
+  "letter_grade_29ff1938": {
+    "message": "Bokstavkarakter"
+  },
+  "letter_grade_e83e363c": {
+    "message": "Bokstavkarakter"
+  },
+  "lock_questions_after_answering_e0f61d7c": {
+    "message": "Lås spørsmål etter svar er avgitt"
+  },
+  "log_in_again_ec2b1f46": {
+    "message": "Logg inn igjen"
+  },
+  "log_out_379ba28a": {
+    "message": "Logg Ut"
+  },
+  "long_description_7d89285c": {
+    "message": "Lang beskrivelse"
+  },
+  "manage_children_a28d764e": {
+    "message": "Administrere barn"
+  },
+  "mark_all_as_read_8f3bdf57": {
+    "message": "Merk alle som lest"
+  },
+  "me_bf110f4d": {
+    "message": "meg"
+  },
+  "media_recording_77cddc52": {
+    "message": "Medieinnspilling"
+  },
+  "media_submission_464829f0": {
+    "message": "Mediainnsending"
+  },
+  "message_5c38209d": {
+    "message": "Melding"
+  },
+  "message_details_342e931f": {
+    "message": "Meldingsinformasjon"
+  },
+  "message_options_59805b8e": {
+    "message": "Meldingsalternativer"
+  },
+  "message_students_who_778ce759": {
+    "message": "Send melding til studenter som"
+  },
+  "minutes_4aee5a41": {
+    "message": "Minutter"
+  },
+  "minutes_plural_one_minute_other_minutes_e2adacfe": {
+    "message": "{ minutes, plural,    one {# minutt} other {# minutter}}"
+  },
+  "missing_1a256b3b": {
+    "message": "Mangler"
+  },
+  "missing_submissions_missing_number_ea40423d": {
+    "message": "Magnlende innleveringer { missing, number }"
+  },
+  "moderated_grading_unsupported_e3a2bba3": {
+    "message": "Moderert karaktersetting ikke støttet"
+  },
+  "multiple_due_dates_283dd861": {
+    "message": "Flere leveringsfrister"
+  },
+  "mute_grades_b85bece1": {
+    "message": "Demp karakterer"
+  },
+  "my_files_eea33f44": {
+    "message": "Mine filer"
+  },
+  "n_a_d6f6c42f": {
+    "message": "N/A"
+  },
+  "name_1aed4a1b": {
+    "message": "Navn"
+  },
+  "name_count_plural_one_other_other_others_f47e51c3": {
+    "message": "{ name } + { count, plural,    one {# annen}  other {# andre}}"
+  },
+  "names_count_more_643849d3": {
+    "message": "{ names } + { count } mer"
+  },
+  "needs_grading_9143d47c": {
+    "message": "Trenger karakter"
+  },
+  "new_13daf639": {
+    "message": "Ny"
+  },
+  "new_announcement_23af4598": {
+    "message": "Ny kunngjøring"
+  },
+  "new_discussion_dae4fae3": {
+    "message": "Ny diskusjon"
+  },
+  "new_message_f9bbd1c0": {
+    "message": "Ny melding"
+  },
+  "new_page_84b28714": {
+    "message": "Ny side"
+  },
+  "nickname_1e6da3ad": {
+    "message": "Kallenavn"
+  },
+  "no_attachments_e875f6d5": {
+    "message": "Ingen vedlegg"
+  },
+  "no_available_from_date_set_6f659d06": {
+    "message": "Ingen tilgjengelig fra-dato angitt."
+  },
+  "no_available_from_date_set_db356ac3": {
+    "message": "Ingen tilgjengelig fra-dato angitt"
+  },
+  "no_available_until_date_set_ad4b4bbb": {
+    "message": "Ikke tilgjengelig før dato satt"
+  },
+  "no_available_until_date_set_df9e7434": {
+    "message": "Ikke tilgjengelig før dato satt"
+  },
+  "no_due_date_44271c53": {
+    "message": "Ingen innleveringsfrist"
+  },
+  "no_due_date_set_bb3a2bf7": {
+    "message": "Ingen forfallsdato angitt."
+  },
+  "no_e16d9132": {
+    "message": "Nei"
+  },
+  "no_enrollments_6369cd31": {
+    "message": "Ingen påmeldinger"
+  },
+  "no_grade_3b4d7f3e": {
+    "message": "Ingen vurdering"
+  },
+  "no_internet_connection_9df26cf8": {
+    "message": "Ingen Internett-tilkobling"
+  },
+  "no_messages_a2e67ad4": {
+    "message": "Ingen meldinger"
+  },
+  "no_results_f36777ee": {
+    "message": "Ingen resultater"
+  },
+  "no_starred_messages_e1b28bca": {
+    "message": "Ingen stjernemerkede meldinger"
+  },
+  "no_subject_2e2a413c": {
+    "message": "(uten emne)"
+  },
+  "no_subject_58b7941c": {
+    "message": "Intet emne"
+  },
+  "no_submissions_to_display_6f1491cf": {
+    "message": "Ingen innleveringer å vise"
+  },
+  "no_time_limit_2147d9bf": {
+    "message": "Ingen tidsfrist"
+  },
+  "no_title_4921a961": {
+    "message": "Ingen tittel"
+  },
+  "none_3b5e34d2": {
+    "message": "Ingen"
+  },
+  "none_9b6c9bec": {
+    "message": "ingen"
+  },
+  "not_a_teacher_b0d0fc55": {
+    "message": "Ikke lærer?"
+  },
+  "not_graded_e027c866": {
+    "message": "Ikke karaktersatt"
+  },
+  "not_published_73f7079": {
+    "message": "Ikke publisert"
+  },
+  "not_submitted_7d05fdb4": {
+    "message": "Ikke levert"
+  },
+  "nothing_more_to_do_b017e8bb": {
+    "message": "Ingenting mer å gjøre."
+  },
+  "number_plural_one_minute_other_minutes_648ec0e1": {
+    "message": "{ number, plural,    one {# Minutt} other {# Minutter}}"
+  },
+  "observer_248a192e": {
+    "message": "Observatør"
+  },
+  "off_5385ef3f": {
+    "message": "Av"
+  },
+  "ok_c47544a2": {
+    "message": "OK"
+  },
+  "on_8f7190e5": {
+    "message": "På"
+  },
+  "on_paper_46d0ba36": {
+    "message": "På papir"
+  },
+  "one_of_our_other_apps_might_be_a_better_fit_tap_on_a3138a": {
+    "message": "En av våre andre applikasjoner kan være mer tilpasset. Trykk en for å gå til App Store."
+  },
+  "one_question_at_a_time_3161ceeb": {
+    "message": "Ett spørsmål av gangen"
+  },
+  "online_quiz_5beb2ae5": {
+    "message": "Online quiz"
+  },
+  "online_text_entry_1d893ce": {
+    "message": "Skriv inn tekst på nett"
+  },
+  "online_upload_59969592": {
+    "message": "Opplasting på nett"
+  },
+  "online_url_37830a72": {
+    "message": "Tilkoblet URL"
+  },
+  "only_available_to_students_with_link_not_available_c12278d2": {
+    "message": "Kun tilgjengelig for studenter med lenken. Ikke tilgjengelig i studentfilene."
+  },
+  "only_once_after_each_attempt_cc842738": {
+    "message": "Kun én gang etter hvert forsøk"
+  },
+  "only_teachers_1628d9b9": {
+    "message": "Kun faglærer, lærer"
+  },
+  "open_coursename_user_preferences_430b877e": {
+    "message": "Åpne { courseName } brukerinnstillinger"
+  },
+  "open_drawer_f3c8b11": {
+    "message": "Åpne skuff"
+  },
+  "open_for_comments_1810648": {
+    "message": "Åpne for kommentarer"
+  },
+  "options_3ab0ea65": {
+    "message": "Valg"
+  },
+  "ordered_list_5fb1ce41": {
+    "message": "Sortert liste"
+  },
+  "out_of_points_number_42209979": {
+    "message": "Av { points, number }"
+  },
+  "page_details_847e35e6": {
+    "message": "Sidedetaljer"
+  },
+  "pages_e5414c2c": {
+    "message": "Sider"
+  },
+  "pages_front_page_9ce5188": {
+    "message": "Sider forside"
+  },
+  "pass_8abee039": {
+    "message": "Pass"
+  },
+  "past_enrollments_a846da48": {
+    "message": "Tidligere påmeldinger"
+  },
+  "people_b4ebb13c": {
+    "message": "Personer"
+  },
+  "percent_d7ddd35b": {
+    "message": "Prosent (%)"
+  },
+  "percentage_34ab7c2c": {
+    "message": "Prosent"
+  },
+  "permission_needed_7e971495": {
+    "message": "Tillatelse kreves"
+  },
+  "pin_cdbc9f8f": {
+    "message": "Fest"
+  },
+  "pinned_discussions_a55c0cea": {
+    "message": "Merkede diskusjoner"
+  },
+  "points_bb475533": {
+    "message": "Poeng"
+  },
+  "points_number_out_of_totalpoints_number_291efb47": {
+    "message": "{ points, number } Ut av { totalPoints, number }"
+  },
+  "points_possible_must_be_a_number_4a592dc6": {
+    "message": "Oppnåelige poeng må være et tall"
+  },
+  "pointspossible_number_pts_2d9f157d": {
+    "message": "{ pointsPossible, number } poeng"
+  },
+  "post_at_a9e0fecb": {
+    "message": "Publiser på..."
+  },
+  "practice_quiz_19a8505d": {
+    "message": "Test uten vurdering"
+  },
+  "preview_quiz_1ffbf684": {
+    "message": "Forhåndsvis test"
+  },
+  "preview_unavailable_aacd459a": {
+    "message": "Forhåndsvisning ikke tilgjengelig"
+  },
+  "previewing_this_file_type_is_not_supported_7df9231": {
+    "message": "Forhåndsvisning av denne filtypen støttes ikke"
+  },
+  "profile_menu_a688027e": {
+    "message": "Profil meny"
+  },
+  "pts_699bd9aa": {
+    "message": "poeng"
+  },
+  "public_domain_file_eb5a0de": {
+    "message": "Filen er åpent domene"
+  },
+  "publish_5211dca3": {
+    "message": "Publiser"
+  },
+  "published_4bb5209e": {
+    "message": "Publisert"
+  },
+  "quiz_details_6c4473d3": {
+    "message": "Testdetaljer"
+  },
+  "quiz_preview_a7e75769": {
+    "message": "Forhåndsvisning av test"
+  },
+  "quiz_score_to_keep_d1f7c4b1": {
+    "message": "Testpoengsum å beholde"
+  },
+  "quiz_submission_dca0c013": {
+    "message": "Innlevering av test"
+  },
+  "quiz_type_be1633db": {
+    "message": "Test-type"
+  },
+  "quizzes_7e598f57": {
+    "message": "Tester"
+  },
+  "recent_activity_51239235": {
+    "message": "Siste aktiviteter"
+  },
+  "recipient_recipient_394cf528": {
+    "message": "Mottaker: { recipient }"
+  },
+  "record_audio_14666880": {
+    "message": "Lydopptak"
+  },
+  "record_video_70dc8439": {
+    "message": "Ta opp video"
+  },
+  "recording_failed_2e1861b": {
+    "message": "Opptak mislyktes"
+  },
+  "redo_363c58b7": {
+    "message": "Gjør om"
+  },
+  "remove_attachment_81f30aa3": {
+    "message": "Fjern vedlegg"
+  },
+  "remove_date_edf2f565": {
+    "message": "Fjern dato"
+  },
+  "remove_due_date_c1cc8f7": {
+    "message": "Fjerne forfallsdato"
+  },
+  "remove_f47dc62a": {
+    "message": "Fjern"
+  },
+  "remove_this_attachment_90a6665c": {
+    "message": "Fjern dette vedlegget?"
+  },
+  "replies_4a8577c8": {
+    "message": "Svar"
+  },
+  "replies_are_only_visible_to_those_who_have_posted__30e58953": {
+    "message": "Svarene er kun synlige for dem som har postet minst ett svar."
+  },
+  "reply_389d6fb9": {
+    "message": "Svar"
+  },
+  "reply_all_b864cd0e": {
+    "message": "Svar alle"
+  },
+  "report_a_problem_4d48624a": {
+    "message": "Rapporter et problem"
+  },
+  "request_a_feature_3c8e2079": {
+    "message": "Be om en funksjon"
+  },
+  "request_could_not_be_completed_157615ef": {
+    "message": "Kunne ikke fullføre forespørsel."
+  },
+  "require_an_access_code_46a02601": {
+    "message": "Krever en adgangskode"
+  },
+  "reset_95a81614": {
+    "message": "Tilbakestill"
+  },
+  "restricted_606cbc55": {
+    "message": "Begrenset"
+  },
+  "restricted_access_d3e99a39": {
+    "message": "Begrenset tilgang"
+  },
+  "retry_ebd5f8ba": {
+    "message": "Prøv igjen"
+  },
+  "retry_upload_d854b33b": {
+    "message": "Prøv på nytt"
+  },
+  "rubric_fc39da76": {
+    "message": "Rubrikk"
+  },
+  "saving_2521e616": {
+    "message": "Lagrer"
+  },
+  "saving_d55dd90e": {
+    "message": "Lagrer…"
+  },
+  "schedule_student_availability_332154a": {
+    "message": "Planlegg studenttilgjengelighet"
+  },
+  "score_number_pointspossible_number_fd8705b8": {
+    "message": "{ score, number }/{ pointsPossible, number }"
+  },
+  "score_to_keep_48ace09b": {
+    "message": "Resultat å beholde"
+  },
+  "scored_less_than_93cde0d2": {
+    "message": "Skåret mindre enn…"
+  },
+  "scored_less_than_promptvalue_7e5f2b5d": {
+    "message": "Fikk resultat lavere enn { promptValue }"
+  },
+  "scored_more_than_2185a818": {
+    "message": "Skåret mer enn…"
+  },
+  "scored_more_than_promptvalue_9097b1f7": {
+    "message": "Fikk resultat høyere enn { promptValue }"
+  },
+  "search_280d00bd": {
+    "message": "Søk"
+  },
+  "seconds_plural_one_second_other_seconds_d33cf6e3": {
+    "message": "{ seconds, plural,    one {# sekund} other {# sekunder}}"
+  },
+  "section_sectionname_a455be11": {
+    "message": "Avsnitt: { sectionName }"
+  },
+  "sections_94731e51": {
+    "message": "Seksjoner"
+  },
+  "sections_sections_70d64496": {
+    "message": "Seksjoner { sections }"
+  },
+  "see_all_ffa422ef": {
+    "message": "Se alle"
+  },
+  "select_a_course_4710371f": {
+    "message": "Velg et emne"
+  },
+  "send_e3bd0ed0": {
+    "message": "Send"
+  },
+  "send_individual_message_to_each_recipient_4fdfc1e5": {
+    "message": "Send personlig melding til hver mottaker"
+  },
+  "send_recording_82e5a550": {
+    "message": "Send opptak"
+  },
+  "sending_bf324366": {
+    "message": "Sender..."
+  },
+  "sent_fe0a1eb4": {
+    "message": "Sendt"
+  },
+  "set_as_front_page_c851ec5e": {
+    "message": "Sett som forside"
+  },
+  "set_home_to_82ab5119": {
+    "message": "Sett “Hjem” til..."
+  },
+  "settings_5aa0fd0c": {
+    "message": "Innstillinger"
+  },
+  "share_2a333403": {
+    "message": "Dele"
+  },
+  "show_correct_answers_a4b957e4": {
+    "message": "Vis riktige svar"
+  },
+  "show_correct_answers_at_a5475aa3": {
+    "message": "Vis riktige svar på"
+  },
+  "show_grades_8680e38e": {
+    "message": "Vis karakterer"
+  },
+  "show_one_question_at_a_time_52f5b1a0": {
+    "message": "Vis ett spørsmål om gangen"
+  },
+  "show_to_hide_2c0b6d39": {
+    "message": "{ show } til { hide }"
+  },
+  "shuffle_answers_edb602b7": {
+    "message": "Bland svar"
+  },
+  "similarity_score_f4b5c343": {
+    "message": "Likhetsscore"
+  },
+  "something_went_wrong_on_our_end_don_t_worry_we_ve__be005c38": {
+    "message": "Noe gikk galt på vår ende. Ikke bekymre deg, vi har loggført dette og vil ta hånd om det innen kort tid."
+  },
+  "star_messages_by_tapping_the_star_in_the_message_1c3e8a80": {
+    "message": "Sett stjerne på meldinger ved å klikke på stjernen i meldingen."
+  },
+  "starred_5a9efa8a": {
+    "message": "Stjernemerket"
+  },
+  "start_recording_189496b9": {
+    "message": "Start opptak"
+  },
+  "stop_act_as_user_4f2a4f22": {
+    "message": "Avslutt å opptre som bruker"
+  },
+  "stop_playing_audio_96aed3bc": {
+    "message": "Stopp avspilling av lyd"
+  },
+  "stop_recording_6efe2129": {
+    "message": "Stopp opptak"
+  },
+  "student_5da6bfd1": {
+    "message": "Student"
+  },
+  "students_1b8cd07b": {
+    "message": "Studenter"
+  },
+  "students_must_post_before_seeing_replies_1a57eeb2": {
+    "message": "Studenter må poste før de kan se svar"
+  },
+  "subject_114b2e98": {
+    "message": "Emne"
+  },
+  "submission_comment_873e8f1c": {
+    "message": "sendt inn kommentar"
+  },
+  "submission_settings_f57b0cf8": {
+    "message": "Innleveringsinnstillinger"
+  },
+  "submission_types_af57bf0": {
+    "message": "Innleveringstyper"
+  },
+  "submissions_11e96106": {
+    "message": "Innleveringer"
+  },
+  "submitted_318fad53": {
+    "message": "Sendt inn"
+  },
+  "submitted_late_3741af29": {
+    "message": "Levert etter fristen"
+  },
+  "subscribe_4b301fb7": {
+    "message": "Abonner"
+  },
+  "survey_31a240e6": {
+    "message": "Undersøkelse"
+  },
+  "swipe_left_or_right_to_view_other_student_submissi_da37c1c1": {
+    "message": "Dra til venstre eller høyre for å vise andre studentinnleveringer"
+  },
+  "syllabus_f191f65b": {
+    "message": "Emneoversikt"
+  },
+  "ta_8d966626": {
+    "message": "TA"
+  },
+  "tap_and_hold_a_rubric_number_to_see_its_descriptio_8762082a": {
+    "message": "Trykk og hold en rubrikk for å se beskrivelsen"
+  },
+  "tap_the_to_create_a_new_conversation_80f77725": {
+    "message": "Trykk \"+\" for å starte en ny samtale"
+  },
+  "tap_to_view_announcement_6724a5d": {
+    "message": "Trykk for å vise kunngjøring"
+  },
+  "tap_to_view_submissions_list_5bfe32f3": {
+    "message": "Trykk for å vise innleverings liste."
+  },
+  "teacher_5a73b637": {
+    "message": "Lærer"
+  },
+  "teachers_and_students_ba2db3e4": {
+    "message": "Faglærer, lærer og studenter"
+  },
+  "terms_of_use_62ee73ad": {
+    "message": "Brukervilkår"
+  },
+  "terms_of_use_6542769b": {
+    "message": "Brukervilkår"
+  },
+  "text_color_acf75eb6": {
+    "message": "Tekstfargen"
+  },
+  "text_submission_935eeb5": {
+    "message": "Tekstinnsending"
+  },
+  "that_message_can_not_be_forwarded_76cb2b1a": {
+    "message": "Denne meldingen kan ikke videresendes."
+  },
+  "the_value_of_possible_points_must_be_zero_or_great_374e175a": {
+    "message": "Verdien av mulige poeng må være null eller større"
+  },
+  "there_are_no_announcements_to_display_a91880": {
+    "message": "Det er ingen kunngjøringer å vise."
+  },
+  "there_are_no_assignments_to_display_83b52cf3": {
+    "message": "Det er ingen oppgaver å vise."
+  },
+  "there_are_no_comments_to_display_bde58f70": {
+    "message": "Det er ingen kommentarer å vise."
+  },
+  "there_are_no_conferences_to_display_400a0413": {
+    "message": "Det er ingen konferanser å vise."
+  },
+  "there_are_no_discussions_to_display_37bc437f": {
+    "message": "Det er ingen diskusjoner å vise."
+  },
+  "there_are_no_files_to_display_d3eeb317": {
+    "message": "Det er ingen filer å vise."
+  },
+  "there_are_no_pages_to_display_ce6ca4d3": {
+    "message": "Det er ingen sider å vise."
+  },
+  "there_are_no_quizzes_to_display_733b28f2": {
+    "message": "Det er ingen tester å vise."
+  },
+  "there_currently_is_no_long_description_for_this_it_ea943d61": {
+    "message": "Det er for øyeblikket ingen lang beskrivelse for dette elementet."
+  },
+  "there_was_a_problem_dismissing_the_announcement_9c5fb4c": {
+    "message": "Det var et problem å ende kunngjøringen."
+  },
+  "there_was_a_problem_loading_discussions_ce5318af": {
+    "message": "Det oppstod et problem med lasting av diskusjoner."
+  },
+  "there_was_a_problem_loading_the_announcements_4871afc4": {
+    "message": "Det oppstod et problem under innlastingen av kunngjøringene."
+  },
+  "there_was_a_problem_loading_the_assignment_submiss_4ace7374": {
+    "message": "Det oppstod et problem med lasting av oppgaveinnleveringer."
+  },
+  "there_was_a_problem_loading_the_grading_periods_3fb714a0": {
+    "message": "Det oppstod en feil under lasting av vurderingsperiode."
+  },
+  "there_was_a_problem_loading_the_groups_6945e624": {
+    "message": "Det oppstod et problem under innlastingen av gruppene."
+  },
+  "there_was_a_problem_loading_the_quiz_submissions_b4f5503b": {
+    "message": "Det oppstod et problem med lasting av testinnleveringer."
+  },
+  "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
+    "message": "Det oppstod et problem med lasting av testene."
+  },
+  "there_was_a_problem_retrieving_the_terms_of_use_df58f7b9": {
+    "message": "Det oppsto et problem under hentingen av bruksvilkårene"
+  },
+  "there_was_a_problem_saving_the_grade_please_try_ag_e46045bd": {
+    "message": "Kunne ikke lagre karakter Vennligst prøv igjen."
+  },
+  "there_was_an_error_loading_the_attachment_840a55ee": {
+    "message": "Det oppstod et avvik under henting av vedlegget."
+  },
+  "there_was_an_error_loading_the_file_a046378e": {
+    "message": "Det oppstod et avvik under lasting av filen."
+  },
+  "there_was_an_error_loading_the_list_of_enrollments_7dc8bafe": {
+    "message": "Det oppsto en feil under lastingen av påmeldingslisten"
+  },
+  "there_was_an_error_loading_the_quiz_preview_3f3c8104": {
+    "message": "Det oppstod en feil under innlasting av forhåndsvisningen."
+  },
+  "there_was_an_error_loading_this_attachment_408acc12": {
+    "message": "Det oppstod et avvik under henting av dette vedlegget."
+  },
+  "there_was_an_error_with_act_as_user_please_try_aga_d9f9f8f1": {
+    "message": "Det var feil med opptre som bruker. Forsøk igjen senere."
+  },
+  "there_was_an_problem_loading_your_messages_b80423ac": {
+    "message": "Det oppstod et problem under innlastingen av meldinger."
+  },
+  "there_was_an_unexepected_error_fd6f2bf": {
+    "message": "Det oppsto en ukjent feil."
+  },
+  "there_was_an_unexpected_error_please_try_again_5e08774e": {
+    "message": "Det oppstod en uventet feil. Vennligst prøv igjen."
+  },
+  "this_action_can_not_be_undone_eb8a297b": {
+    "message": "Denne handlingen kan ikke endres tilbake."
+  },
+  "this_action_requires_an_internet_connection_81f6688a": {
+    "message": "Denne handlingen krever Internett-tilkobling."
+  },
+  "this_assignment_does_not_allow_submissions_30af1caa": {
+    "message": "Denne oppgaven tillater ikke innleveringer."
+  },
+  "this_assignment_doesn_t_have_a_description_e2f37ec3": {
+    "message": "Denne oppgaven har ikke noen tittel."
+  },
+  "this_assignment_only_allows_on_paper_submissions_f478408a": {
+    "message": "Denne oppgaven tillater kun innlevering på papir."
+  },
+  "this_file_must_have_usage_rights_set_before_it_can_e4bf8bae": {
+    "message": "Denne filen må ha bruksrettigheter satt før den kan publiseres."
+  },
+  "this_folder_is_empty_14af41c": {
+    "message": "Mappen er tom."
+  },
+  "this_group_does_not_have_a_submission_for_this_ass_ca275999": {
+    "message": "Denne gruppen har ikke en innlevering for denne oppgaven."
+  },
+  "this_is_your_personal_color_setting_only_you_will__e47dba70": {
+    "message": "Dette er din personlige fargeinnstilling. Bare du vil se denne fargen for emnet."
+  },
+  "this_student_does_not_have_a_submission_for_this_a_c8c2eafe": {
+    "message": "Denne studenten har ingen innlevering for denne oppgaven."
+  },
+  "this_submission_is_a_url_to_an_external_page_we_ve_9993d2fd": {
+    "message": "Denne innleveringen er en URL-adresse til en ekstern side. Vi har tatt et skjermbilde av hvordan siden så ut da den ble sendt inn."
+  },
+  "this_will_remove_the_due_date_and_all_of_the_assoc_56d1ea8": {
+    "message": "Dette vil fjerne forfallsdatoen og alle tilknyttede stedfortredere."
+  },
+  "time_elapsed_minutes_seconds_f5d82cb": {
+    "message": "Tid brukt: { minutes }, { seconds }."
+  },
+  "time_limit_a6f1a51e": {
+    "message": "Tidsgrense"
+  },
+  "title_announcement_c0cdaa10": {
+    "message": "{ title } Kunngjøring"
+  },
+  "title_discussion_4cff9841": {
+    "message": "{ title } Diskusjon"
+  },
+  "title_ee03d132": {
+    "message": "Tittel"
+  },
+  "to_51406be9": {
+    "message": "Til"
+  },
+  "to_count_others_853f5dc8": {
+    "message": "til { count } andre"
+  },
+  "to_me_780716c7": {
+    "message": "til meg"
+  },
+  "to_name_bb3e415e": {
+    "message": "til { name }"
+  },
+  "total_grade_568e719f": {
+    "message": "Total karakter:"
+  },
+  "try_logging_in_again_7a66111a": {
+    "message": "Prøv å logge på igjen"
+  },
+  "un_starred_8fef021f": {
+    "message": "Stjernemerket fjernet"
+  },
+  "undo_a7be8fef": {
+    "message": "Angre"
+  },
+  "unexpected_error_93991f40": {
+    "message": "Uventet feil"
+  },
+  "ungraded_survey_ad7de790": {
+    "message": "Ikke vurdert undersøkelse"
+  },
+  "unknown_author_40d64455": {
+    "message": "Ukjent forfatter"
+  },
+  "unlimited_ff19e96d": {
+    "message": "Ubegrenset"
+  },
+  "unordered_list_3c1650b3": {
+    "message": "Ikke sortert liste"
+  },
+  "unpin_a318452a": {
+    "message": "Fjern festing"
+  },
+  "unpublish_9f2d730b": {
+    "message": "Avpubliser"
+  },
+  "unpublished_8b6107d6": {
+    "message": "Ikke publisert"
+  },
+  "unread_e9c1b19c": {
+    "message": "Ulest"
+  },
+  "unread_plural_one_unread_other_unread_5d48c74f": {
+    "message": "{ unread, plural,\n    one {# Ulest}\n  other {# Ulest}\n}",
+    "description": "Number of unread discussion posts"
+  },
+  "unrecognized_file_format_def0881c": {
+    "message": "Ukjent filformat"
+  },
+  "until_date_f3b9f367": {
+    "message": "Inntil { date }"
+  },
+  "upload_8b403d05": {
+    "message": "Last opp"
+  },
+  "upload_cancelled_by_user_ca7723be": {
+    "message": "Opplastingen ble kansellert av brukeren"
+  },
+  "upload_complete_46473c7b": {
+    "message": "Opplasting fullført"
+  },
+  "upload_error_38012123": {
+    "message": "Last opp feil"
+  },
+  "upload_file_fd2361b8": {
+    "message": "Last opp fil"
+  },
+  "upload_in_progress_57b96797": {
+    "message": "Opplasting pågår"
+  },
+  "uploading_19e8a4e7": {
+    "message": "Laster opp"
+  },
+  "uploading_amountuploaded_amounttotal_cd97306a": {
+    "message": "Laster opp { amountUploaded }/{ amountTotal }"
+  },
+  "uploading_loaded_of_total_d5c3d555": {
+    "message": "Laster opp { loaded } av { total }"
+  },
+  "url_preview_image_a263a21e": {
+    "message": "URL forhåndsvis bildet"
+  },
+  "url_submission_f76327e3": {
+    "message": "URL-innlevering"
+  },
+  "usage_right_2b398e0b": {
+    "message": "Brukerrettigheter"
+  },
+  "usage_rights_f0960ad6": {
+    "message": "Brukerrettigheter:"
+  },
+  "use_camera_47a0387b": {
+    "message": "Bruk kamera"
+  },
+  "user_id_bcace870": {
+    "message": "Bruker-ID"
+  },
+  "video_b9f27375": {
+    "message": "Video"
+  },
+  "video_recording_90d21249": {
+    "message": "Videoopptak"
+  },
+  "view_all_submissions_915a8b78": {
+    "message": "Vis alle innleveringer"
+  },
+  "view_canvas_guides_a1c62a97": {
+    "message": "Vis veivisning til Canvas"
+  },
+  "view_long_description_2b592c0e": {
+    "message": "Vis lang beskrivelse"
+  },
+  "view_more_replies_9fef9983": {
+    "message": "Vis flere svar"
+  },
+  "view_responses_d2874266": {
+    "message": "Vis svar"
+  },
+  "visit_the_canvas_guides_7328b93f": {
+    "message": "Besøk Canvas-guidene"
+  },
+  "welcome_73d18b4d": {
+    "message": "Velkommen!"
+  },
+  "whoops_de2cf9fc": {
+    "message": "Oisann!"
+  },
+  "yes_dde87d5": {
+    "message": "Ja"
+  },
+  "you_have_been_invited_a724be1a": {
+    "message": "Du har blitt invitert"
+  },
+  "you_must_enable_camera_and_microphone_permissions__bf35451f": {
+    "message": "Du må aktivere kamera- og mikrofontillatelser i Innstillinger for å bruke kameraet."
+  },
+  "you_must_enable_microphone_permissions_in_settings_b0cf8b44": {
+    "message": "Du må aktivere mikrofontillatelser i Innstillinger for å gjøre opptak."
+  },
+  "you_must_enable_photos_permissions_in_settings_26faf052": {
+    "message": "Du må aktivere bildetillatelser i Innstillinger."
+  },
+  "you_must_enter_an_access_code_8c2c7ae0": {
+    "message": "Du må skrive inn en tilgangskode"
+  },
+  "you_need_at_least_one_active_observer_enrollment_t_9c78bb6e": {
+    "message": "Du trenger minst en aktiv observatør-påmelding for å bruke Canvas Parent."
+  },
+  "your_submission_comment_failed_to_send_5c8d2809": {
+    "message": "Din innleveringskommentar ble ikke sendt."
+  }
+}

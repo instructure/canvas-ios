@@ -1,0 +1,1465 @@
+/* (No Comment) */
+"%0.2f GB" = "%0.2f Gb";
+
+/* (No Comment) */
+"%0.2f KB" = "%0.2f Kb";
+
+/* (No Comment) */
+"%0.2f MB" = "%0.2f Mb";
+
+/* (No Comment) */
+"%1$@ (%2$d)" = "%1$@ (%2$d)";
+
+/* (No Comment) */
+"%1$@ (%2$g out of %3$@)" = "%1$@ (%2$g av %3$@)";
+
+/* (No Comment) */
+"%1$@ at %2$@" = "%1$@ vid %2$@";
+
+/* (No Comment) */
+"%1$@ is due in %2$@" = "%1$@ ska vara färdig om %2$@";
+
+/* (No Comment) */
+"%1$@ out of %2$@" = "%1$@ av %2$@";
+
+/* (No Comment) */
+"%1$@%% (%2$g out of %3$@)" = "%1$@%% (%2$g av %3$@)";
+
+/* (No Comment) */
+"%1$@. %2$@. Type: %3$@." = "%1$@. %2$@. Typ: %3$@.";
+
+/* (No Comment) */
+"%1$@. %2$@. Type: %3$@. Status: %4$@" = "%1$@. %2$@. Typ: %3$@. Status: %4$@";
+
+/* (No Comment) */
+"%1$d %2$@" = "%1$d %2$@";
+
+/* (No Comment) */
+"%1$g out of %2$@" = "%1$g av %2$@";
+
+/* (No Comment) */
+"%@ is coming soon!" = "%@ kommer snart!";
+
+/* (No Comment) */
+"%@ is locked" = "%@ är låst";
+
+/* (No Comment) */
+"%@ is not a valid URL" = "%@ är inte en giltig URL";
+
+/* (No Comment) */
+"%@ is not a valid host" = "%@ är inte en giltig värd";
+
+/* (No Comment) */
+"%@ is not currently supported." = "%@ stöds inte för tillfället.";
+
+/* (No Comment) */
+"%@ likes" = "%@ gillar";
+
+/* Label indicating multiple submissions need grading */
+"%@ need grading" = "%@ behöver bedömning";
+
+/* Shows points possible for an assignment */
+"%@ pts" = "%@ poäng";
+
+/* Label to be read for visually impaired users. Name of assingment, then the type of assingment */
+"%@. Type: %@" = "%1$@. Typ: %2$@";
+
+/* (No Comment) */
+"%@..." = "%@...";
+
+/* (No Comment) */
+"%d days ago" = "%d dagar sedan";
+
+/* (No Comment) */
+"%d hours ago" = "%d timmar sedan";
+
+/* (No Comment) */
+"%d items" = "%d objekt";
+
+/* (No Comment) */
+"%d minutes ago" = "%d minuter sedan";
+
+/* (No Comment) */
+"%d months ago" = "%d månader sedan";
+
+/* (No Comment) */
+"%d more" = "%d fler";
+
+/* (No Comment) */
+"%d replies" = "%d svar";
+
+/* (No Comment) */
+"%d unread" = "%d olästa";
+
+/* (No Comment) */
+"%d years ago" = "%d år sedan";
+
+/* (No Comment) */
+"%qu bytes" = "%qu byte";
+
+/* (No Comment) */
+"%tu day" = "%tu dag";
+
+/* (No Comment) */
+"%tu days" = "%tu dagar";
+
+/* (No Comment) */
+"%tu hour" = "%tu timme";
+
+/* (No Comment) */
+"%tu hours" = "%tu timmar";
+
+/* (No Comment) */
+"%tu minute" = "%tu minut";
+
+/* (No Comment) */
+"%tu minutes" = "%tu minuter";
+
+/* (No Comment) */
+"%u Attachments" = "%u Bilagor";
+
+/* (No Comment) */
+"%u files" = "%u filer";
+
+/* (No Comment) */
+"&quot;%1$@&quot; is locked as part of &quot;%2$@&quot;" = "&quot;%1$@&quot; är låst som en del av &quot;%2$@&quot;";
+
+/* (No Comment) */
+"'%@' is now ready to submit to assignments" = "'%@' är nu redo att läggas in i uppgifter";
+
+/* (No Comment) */
+"1 Attachment" = "1 Bilaga";
+
+/* (No Comment) */
+"1 day" = "1 dag";
+
+/* (No Comment) */
+"1 day ago" = "1 dag sedan";
+
+/* (No Comment) */
+"1 hour" = "1 timme";
+
+/* (No Comment) */
+"1 hour ago" = "1 timme sedan";
+
+/* (No Comment) */
+"1 item" = "1 objekt";
+
+/* (No Comment) */
+"1 like" = "1 gillar";
+
+/* (No Comment) */
+"1 minute ago" = "1 minut sedan";
+
+/* (No Comment) */
+"1 month ago" = "1 månad sedan";
+
+/* Label indicating a submission need grading */
+"1 needs grading" = "1 behöver betygsättning";
+
+/* (No Comment) */
+"1 year ago" = "1 år sedan";
+
+/* (No Comment) */
+"3 days" = "3 dagar";
+
+/* (No Comment) */
+"5 minutes" = "5 minuter";
+
+/* Settings entry title for About */
+"About" = "Om";
+
+/* Access Denied from the server */
+"Access Denied" = "Åtkomst nekad";
+
+/* (No Comment) */
+"Access denied. Please check your permissions for the action you're trying to complete." = "Åtkomst nekad. Kontrollera din behörighet för åtgärden du försöker utföra.";
+
+/* (No Comment) */
+"Add Attachment" = "Lägg till bilaga";
+
+/* (No Comment) */
+"Add Comment" = "Lägg till kommentar";
+
+/* (No Comment) */
+"Add Cover Photo" = "Lägg till bakgrundsfoto";
+
+/* (No Comment) */
+"Add a folder" = "Lägg till en mapp";
+
+/* (No Comment) */
+"Add attachment" = "Lägg till bilaga";
+
+/* (No Comment) */
+"Add comment" = "Lägg till kommentar";
+
+/* (No Comment) */
+"Add folder" = "Lägg till mapp";
+
+/* (No Comment) */
+"Add inline media" = "Lägg till inbäddad media";
+
+/* (No Comment) */
+"Add recipients" = "Lägg till mottagare";
+
+/* (No Comment) */
+"All members" = "Alla medlemmar";
+
+/* (No Comment) */
+"An unknown error occurred" = "Ett okänt fel har inträffat.";
+
+/* (No Comment) */
+"Announcement" = "Meddelanden";
+
+/* (No Comment) */
+"Announcements" = "Meddelanden";
+
+/* (No Comment) */
+"Archive" = "Arkiv";
+
+/* (No Comment) */
+"Archive Selected Messages Button" = "Knapp för att arkivera meddelanden";
+
+/* (No Comment) */
+"Archive all selected messages" = "Arkivera alla valda meddelanden";
+
+/* (No Comment) */
+"Archived" = "Arkiverat";
+
+/* (No Comment) */
+"Are you ready to logout?" = "Är du redo att logga ut?";
+
+/* (No Comment) */
+"Ask me later" = "Fråga mig igen senare";
+
+/* Assignment icon a11y label
+   Assignment module item type */
+"Assignment" = "Uppgift";
+
+/* (No Comment) */
+"Assignments" = "Uppgifter";
+
+/* (No Comment) */
+"Attachment" = "Bilaga";
+
+/* (No Comment) */
+"Attachment %d" = "Bilaga %d";
+
+/* (No Comment) */
+"Attachment %i" = "Bilaga %i";
+
+/* (No Comment) */
+"Attachments" = "Bilagor";
+
+/* (No Comment) */
+"Attendance" = "Närvaro";
+
+/* (No Comment) */
+"Audio" = "Ljud";
+
+/* (No Comment) */
+"Audio input hardware not available" = "Ljudingång på hårdvaran är inte tillgänglig";
+
+/* (No Comment) */
+"Authentication error" = "Autentiseringsfel ";
+
+/* (No Comment) */
+"Build Avatar" = "Skapa avatar";
+
+/* No comment provided by engineer. */
+"Cache cleared" = "Cache tömd";
+
+/* Calendar landing page title
+   Calendar page title */
+"Calendar" = "Kalender";
+
+/* No comment provided by engineer. */
+"Calendar Event" = "Kalenderhändelse";
+
+/* (No Comment) */
+"Can't load tool" = "Kan inte ladda verktyg";
+
+/* (No Comment) */
+"Can't submit media" = "Kan inte skicka in media";
+
+/* (No Comment) */
+"Cancel" = "Avbryt";
+
+/* (No Comment) */
+"Cancel Message" = "Ta bort meddelande";
+
+/* (No Comment) */
+"Canvas appears to be unavailable. Please try again later." = "Canvas verkar inte vara tillgängligt. Försök igen senare.";
+
+/* (No Comment) */
+"Canvas failed to find recipients for your current search. Please try again later." = "Canvas hittade inga mottagare för din sökning. Försök igen senare.";
+
+/* (No Comment) */
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas quiz stödjer olika bedömningsmetoder. De flesta av dessa metoder stöds på mobila enheter; men inte alla. Om du försöker att ta ett quiz som inte stöds på din telefon, kan du vara oförmögen att fullfölja hela testet, vilket är till nackdel för dig.\n\nFrågetyper som inte stöds omfattar frågor som innehåller Adobe Flash™ innehåll, filuppladdning, och annat.\n\nOm du tror att ett quiz innefattar innehåll som inte stöds, ta det på stationär eller bärbar dator. Om du vet att testet bara innehåller innehåll som stöds, kan du gärna ta det på din mobila enhet.";
+
+/* (No Comment) */
+"Change User" = "Byt användare";
+
+/* Button to select a landing page */
+"Choose Landing Page" = "Välj landningssida";
+
+/* (No Comment) */
+"Choose Photo" = "Välj foto";
+
+/* (No Comment) */
+"Choose Profile Picture" = "Välj profilbild";
+
+/* (No Comment) */
+"Choose Video" = "Välj en video";
+
+/* (No Comment) */
+"Choose a name for the new folder" = "Välj ett namn på din nya mapp";
+
+/* (No Comment) */
+"Choose a name for the new folder." = "Välj ett namn på din nya mapp.";
+
+/* (No Comment) */
+"Choose a submission type" = "Välj inlämningstyp";
+
+/* (No Comment) */
+"Choose from Library..." = "Välj från bibliotek...";
+
+/* Text for button to allow user to choose a set of assignments to do */
+"Choose option" = "Välj alternativ";
+
+/* (No Comment) */
+"Choose video" = "Välj video";
+
+/* (No Comment) */
+"Close" = "Stäng";
+
+/* (No Comment) */
+"Closed for Comments" = "Stängd för kommentarer";
+
+/* (No Comment) */
+"Collaborations" = "Samarbeten";
+
+/* (No Comment) */
+"Comment" = "Kommentera";
+
+/* (No Comment) */
+"Comment Error" = "Kommentarsfel";
+
+/* (No Comment) */
+"Comments" = "Kommentarer";
+
+/* (No Comment) */
+"Comments are disabled" = "Kommentarer är avstängda";
+
+/* (No Comment) */
+"Complete" = "Färdig";
+
+/* (No Comment) */
+"Completed" = "Färdig";
+
+/* (No Comment) */
+"Compose Message Button" = "Knapp för att skapa meddelande";
+
+/* (No Comment) */
+"Compose a message" = "Skapa meddelande";
+
+/* (No Comment) */
+"Conferences" = "Konferenser";
+
+/* (No Comment) */
+"Confirm deletion" = "Bekräfta borttagning";
+
+/* (No Comment) */
+"Continue" = "Fortsätt";
+
+/* (No Comment) */
+"Could not authenticate with server" = "Kunde inte autentisera med servern";
+
+/* (No Comment) */
+"Couldn't Load Submission" = "Kunde inte läsa in inlämningar";
+
+/* (No Comment) */
+"Couldn't find recipients" = "Kunde inte hitta mottagare";
+
+/* (No Comment) */
+"Course Syllabus" = "Antura tidsplan";
+
+/* Courses landing page title */
+"Courses" = "Kurser";
+
+/* (No Comment) */
+"Create Folder" = "Skapa mapp";
+
+/* (No Comment) */
+"Current Submission" = "Nuvarande inlämning";
+
+/* (No Comment) */
+"Currently there is limited quiz support on mobile" = "För närvarande är stödet för quiz för mobiler begränsat";
+
+/* (No Comment) */
+"Custom Grade" = "Anpassat betyg";
+
+/* (No Comment) */
+"Customize" = "Anpassa";
+
+/* dashboard page title */
+"Dashboard" = "Översikt";
+
+/* (No Comment) */
+"Delete" = "Ta bort";
+
+/* (No Comment) */
+"Delete (%d)" = "Ta bort (%d)";
+
+/* (No Comment) */
+"Delete this reply?" = "Ta bort det här svaret?";
+
+/* (No Comment) */
+"Deleted file: &quot;%@&quot;" = "Raderad fil: &quot;%@&quot;";
+
+/* (No Comment) */
+"Detail" = "Detalj";
+
+/* No comment provided by engineer. */
+"Details" = "Detaljer";
+
+/* (No Comment) */
+"Discard" = "Kasta";
+
+/* (No Comment) */
+"Discard this entry?" = "Kassera det här inlägget?";
+
+/* Discussion module item type */
+"Discussion" = "Diskussion";
+
+/* (No Comment) */
+"Discussion Entry" = "Diskussionsinlägg";
+
+/* (No Comment) */
+"Discussion Topics" = "Diskussionsämne";
+
+/* (No Comment) */
+"Discussions" = "Diskussioner";
+
+/* Dismiss an alert dialog */
+"Dismiss" = "Avfärda";
+
+/* (No Comment) */
+"Do you want to masquerade as this user?" = "Vill du maskera som den här användaren?";
+
+/* (No Comment) */
+"Domain" = "Domän";
+
+/* (No Comment) */
+"Don't ask me again" = "Fråga mig inte igen";
+
+/* (No Comment) */
+"Don't delete" = "Ta inte bort";
+
+/* Button title to mark a to do item as done */
+"Done" = "Klart";
+
+/* (No Comment) */
+"Download Canceled" = "Nedladdningen avbröts";
+
+/* (No Comment) */
+"Downloading..." = "Laddar ner...";
+
+/* Formatted string for showing an assingment due date (date already localized by system) */
+"Due %@" = "Färdig %@";
+
+/* (No Comment) */
+"Due:" = "Förfallodatum:";
+
+/* (No Comment) */
+"Due: %1$@ at %2$@" = "Färdig den: %1$@ vid %2$@";
+
+/* Due date label for to do items, first placeholder is date, second is time */
+"Due: %@ at %@" = "Färdig den: %1$@ vid %2$@";
+
+/* (No Comment) */
+"EULA" = "EULA";
+
+/* (No Comment) */
+"Edit" = "Ändra";
+
+/* (No Comment) */
+"Edit Course List" = "Ändra kurslista";
+
+/* (No Comment) */
+"Edit Group List" = "Ändra grupplista";
+
+/* (No Comment) */
+"Edit items" = "Ändra objekt";
+
+/* (No Comment) */
+"Editing reply by %1$@, %2$@" = "Ändrar svar från %1$@, %2$@";
+
+/* (No Comment) */
+"Email" = "E-post";
+
+/* (No Comment) */
+"Enable Push Notifications" = "Aktivera pushmeddelanden";
+
+/* (No Comment) */
+"Enter User ID and Domain." = "Fyll i användar-ID och domän";
+
+/* (No Comment) */
+"Enter submission" = "Fyll i inlämning";
+
+/* (No Comment) */
+"Entry posted" = "Inlägget postades";
+
+/* (No Comment) */
+"Error" = "Fel";
+
+/* (No Comment) */
+"Error adding recipeints" = "Fel när mottagare lades till";
+
+/* (No Comment) */
+"Error deleting file &quot;%@&quot;" = "Fel vid radering av fil &quot;%@&quot;";
+
+/* (No Comment) */
+"Error deleting folder" = "Fel när mappen togs bort";
+
+/* (No Comment) */
+"Event" = "Händelse";
+
+/* (No Comment) */
+"Existing Attachments..." = "Existerande bilagor...";
+
+/* (No Comment) */
+"External Tool" = "Externt verktyg";
+
+/* External URL module item type */
+"External URL" = "Extern URL";
+
+/* File module item type */
+"File" = "Fil";
+
+/* (No Comment) */
+"File extension not allowed: %@" = "Filtillägg ej tillåtet: %@";
+
+/* (No Comment) */
+"File extension(s) permitted for this assignment:" = "Tillåtna filtillägg för den här uppgiften:";
+
+/* (No Comment) */
+"File received" = "Filen mottagen";
+
+/* (No Comment) */
+"File unavailable" = "Filen inte tillgänglig";
+
+/* (No Comment) */
+"File upload" = "Filuppladdning";
+
+/* (No Comment) */
+"File upload failed." = "Filuppladdning misslyckades.";
+
+/* (No Comment) */
+"Files" = "Filer";
+
+/* (No Comment) */
+"Finished downloading" = "Nedladdning slutförd";
+
+/* badge indicating front page */
+"Front Page" = "Framsida";
+
+/* (No Comment) */
+"Future" = "Framtida";
+
+/* (No Comment) */
+"Go To Discussion" = "Gå till diskussion";
+
+/* (No Comment) */
+"Go to App Store" = "Gå till App Store";
+
+/* (No Comment) */
+"Go to Quiz" = "Gå till quiz";
+
+/* (No Comment) */
+"Go to discussion" = "Gå till diskussion";
+
+/* (No Comment) */
+"Grade" = "Betyg";
+
+/* (No Comment) */
+"Grade %@" = "Betyg %@";
+
+/* (No Comment) */
+"Grade in SpeedGrader" = "Betygsätt med SpeedGrader";
+
+/* (No Comment) */
+"Grade: %1$i / %2$g" = "Betyg: %1$i / %2$g";
+
+/* (No Comment) */
+"Grade: %@" = "Betyg: %@";
+
+/* (No Comment) */
+"Graded Discussion" = "Betygsatt diskussion";
+
+/* (No Comment) */
+"Graded discussion." = "Betygsatt diskussion.";
+
+/* (No Comment) */
+"Graded discussion. %g points possible." = "Betygsatt diskussion. %g poäng möjliga.";
+
+/* (No Comment) */
+"Grades" = "Betyg";
+
+/* (No Comment) */
+"Group conversation" = "Gruppkonversation";
+
+/* (No Comment) */
+"Groups" = "Grupper";
+
+/* (No Comment) */
+"Help" = "Hjälp";
+
+/* (No Comment) */
+"Hide Grades" = "Dölj betyg";
+
+/* (No Comment) */
+"How do you like Canvas?" = "Vad tycker du om Canvas?";
+
+/* I give you back your time, use it wisely. */
+"I give you back your time, use it wisely." = "Jag ger dig tid, använd den klokt.";
+
+/* (No Comment) */
+"Image" = "Bild";
+
+/* (No Comment) */
+"Import from Dropbox" = "Importera från Dropbox";
+
+/* (No Comment) */
+"Import from camera" = "Importera från kamera";
+
+/* (No Comment) */
+"Inbox" = "Inkorg";
+
+/* (No Comment) */
+"Incomplete" = "Ofullständig";
+
+/* (No Comment) */
+"Individual messages" = "Individuella meddelanden";
+
+/* (No Comment) */
+"Invalid URL" = "Ogiltig URL";
+
+/* (No Comment) */
+"It has problems" = "Har problem";
+
+/* (No Comment) */
+"Item %1$d of %2$d" = "Objekt %1$d av %2$d";
+
+/* table header for module items */
+"Items" = "Objekt";
+
+/* It’s empty, what are you still doing here. */
+"It’s empty, what are you still doing here." = "Det är tomt, vad gör du här.";
+
+/* No comment provided by engineer. */
+"Jumps to current day on calendar" = "Hoppar till dagens datum i kalendern";
+
+/* (No Comment) */
+"Keep" = "Behåll";
+
+/* Settings entry title for Choosing a Landing Page */
+"Landing Page" = "Landningssida";
+
+/* (No Comment) */
+"Large file" = "Stor fil";
+
+/* (No Comment) */
+"Later" = "Senare";
+
+/* (No Comment) */
+"Launch External Tool" = "Starta externt verktyg";
+
+/* (No Comment) */
+"Legal" = "Juridik";
+
+/* Web URL link item label */
+"Link" = "Länk";
+
+/* (No Comment) */
+"Loading..." = "Laddar...";
+
+/* (No Comment) */
+"Locked" = "Låst";
+
+/* Displayed when next assignment is locked until current assignment is graded. Placeholder is an assignment's name. */
+"Locked until \"%@\" is graded" = "Låst tills \"%@\" är graderad";
+
+/* locked date */
+"Locked until %@" = "Låst till %@";
+
+/* (No Comment) */
+"Login ID" = "Inloggnings-ID";
+
+/* (No Comment) */
+"Login Problem" = "inloggningsproblem";
+
+/* (No Comment) */
+"Logout" = "Logga ut";
+
+/* (No Comment) */
+"Love it!" = "Älskar det!";
+
+/* Button title for mark as done. */
+"Mark as Done" = "Markera som färdig";
+
+/* (No Comment) */
+"Masquerade" = "Maskera";
+
+/* Master Path module item type */
+"Mastery Path" = "Målväg";
+
+/* (No Comment) */
+"Me" = "Jag";
+
+/* (No Comment) */
+"Media Comment" = "Mediakommentar";
+
+/* (No Comment) */
+"Media Submission" = "Mediainlämning";
+
+/* (No Comment) */
+"Media comment" = "Mediakommentar";
+
+/* (No Comment) */
+"Media recording" = "Mediainspelning";
+
+/* (No Comment) */
+"Media type selector. %@" = "Väljare av mediatyp. %@";
+
+/* (No Comment) */
+"Message Instructor" = "Skicka meddelande till lärare";
+
+/* (No Comment) */
+"Message Sent." = "Meddelandet skickades.";
+
+/* (No Comment) */
+"Message everyone separately, or add everyone to a group conversation?" = "Skicka meddelanden separat, eller lägg till alla i en gruppkonversation?";
+
+/* Messages landing page title */
+"Messages" = "Meddelanden";
+
+/* (No Comment) */
+"Mobile Quiz Warning" = "Varning för mobil-quiz";
+
+/* Modules title */
+"Modules" = "Moduler";
+
+/* (No Comment) */
+"More Info" = "Mer information";
+
+/* (No Comment) */
+"Multiple Due Dates" = "Flera förfallodatum";
+
+/* user must contribute to complete requirement */
+"Must contribute" = "Måste bidra";
+
+/* user must mark item as done to complete requirement */
+"Must mark as done" = "Markera som färdig";
+
+/* format string saying what the minimum score must be */
+"Must score %@ or higher" = "Måste få %@ eller högre";
+
+/* user must submit something to complete */
+"Must submit" = "Måste skickas in";
+
+/* user must view item to complete requirement */
+"Must view" = "Måste visas";
+
+/* (No Comment) */
+"My Files" = "Mina filer";
+
+/* (No Comment) */
+"Name" = "Namn";
+
+/* (No Comment) */
+"Need SpeedGrader for iPad" = "Kräver SpeedGrader för iPad";
+
+/* (No Comment) */
+"Network Error" = "Nätverksfel";
+
+/* (No Comment) */
+"New Folder" = "Ny mapp";
+
+/* No comment provided by engineer. */
+"New Message" = "Nytt meddelande";
+
+/* Button title for next module item. */
+"Next" = "Nästa";
+
+/* (No Comment) */
+"Next 7 Days" = "Kommande 7 dagarna";
+
+/* Button to navigate to the next day on the calendar */
+"Next Day" = "Nästa dag";
+
+/* (No Comment) */
+"Next item" = "Nästa objekt";
+
+/* (No Comment) */
+"No" = "Nej";
+
+/* (No Comment) */
+"No Date" = "Inget datum";
+
+/* Label shown for a to do that doesn't have a due date */
+"No Due Date" = "Inget förfallodatum";
+
+/* Title for alert when a module item hasn't been set up with mastery paths */
+"No Mastery Paths" = "Ingen målväg";
+
+/* (No Comment) */
+"No Recorded Audio" = "Inget inspelat ljud";
+
+/* (No Comment) */
+"No Submission" = "Ingen inlämning";
+
+/* (No Comment) */
+"No Thanks" = "Nej, tack";
+
+/* (No Comment) */
+"No actions available for this file" = "Ingen åtgärd tillgänglig för den här filen";
+
+/* (No Comment) */
+"No audio was recorded." = "Inget ljud spelades in.";
+
+/* (No Comment) */
+"No due date" = "Inget förfallodatum";
+
+/* (No Comment) */
+"No installed apps support opening this file" = "Inga installerade appar stöder öppning av den här filen";
+
+/* (No Comment) */
+"No recipients" = "Inga mottagare";
+
+/* (No Comment) */
+"No results found" = "Inga resultat hittades";
+
+/* (No Comment) */
+"Not Authorized" = "Inte behörig";
+
+/* (No Comment) */
+"Not Complete" = "Ej färdig";
+
+/* (No Comment) */
+"Not available" = "Inte tillgänglig";
+
+/* (No Comment) */
+"Not graded" = "Ej betygsatt";
+
+/* (No Comment) */
+"Not graded (0 out of %@)" = "Ej betygsatt (0 av %@)";
+
+/* (No Comment) */
+"Note: Media files are not immediately available for playback while they are processed on the server." = "Observera: mediafiler är inte tillgängliga för uppspelning omedelbart medan de bearbetas på servern.";
+
+/* Nothing to do, go play outside! */
+"Nothing to do, go play outside!" = "inget att göra, gå ut och lek!";
+
+/* Nothing to see here. */
+"Nothing to see here." = "Finns inget att se här.";
+
+/* (No Comment) */
+"Notification" = "Avisering";
+
+/* Settings entry title for Notification Preferences */
+"Notification Preferences" = "Aviseringsinställningar";
+
+/* Notifications tab title */
+"Notifications" = "Aviseringar";
+
+/* OK Button Title */
+"OK" = "OK";
+
+/* (No Comment) */
+"Observer" = "Observatör";
+
+/* (No Comment) */
+"Ok" = "Ok";
+
+/* (No Comment) */
+"Online URL" = "Online URL";
+
+/* (No Comment) */
+"Oops!" = "Oooj!";
+
+/* (No Comment) */
+"Open in Safari" = "Öppna i Safari";
+
+/* (No Comment) */
+"Open in SpeedGrader" = "Öppna i SpeedGrader";
+
+/* (No Comment) */
+"Open in..." = "Öppna i...";
+
+/* Button title for selecting an option given a number */
+"Option %d" = "Alternativ %d";
+
+/* (No Comment) */
+"Other" = "Annan";
+
+/* (No Comment) */
+"Other replies hidden until you reply" = "Andra svar döljs tills du svarar";
+
+/* (No Comment) */
+"Outcomes" = "Resultat";
+
+/* Page module item type */
+"Page" = "Sida";
+
+/* (No Comment) */
+"Past" = "Tidigare";
+
+/* (No Comment) */
+"People" = "Personer";
+
+/* (No Comment) */
+"Pinned Discussions" = "Fastsatta diskussioner";
+
+/* (No Comment) */
+"Play" = "Spela upp";
+
+/* (No Comment) */
+"Please check your network connection and try again." = "Kontrollera din nätverksanslutning och försök igen.";
+
+/* (No Comment) */
+"Post" = "Posta";
+
+/* (No Comment) */
+"Post Comment" = "Posta kommentar";
+
+/* (No Comment) */
+"Post comment" = "Posta kommentar";
+
+/* (No Comment) */
+"Posting…" = "Postar...";
+
+/* (No Comment) */
+"Posts your comment" = "Posta din kommentar";
+
+/* Table header for prerequisite modules */
+"Prerequisite Modules" = "Förutsättningsmoduler";
+
+/* Button title for previous module item. */
+"Previous" = "Föregående";
+
+/* Button to navigate to the previous day on the calendar */
+"Previous Day" = "Föregående dag";
+
+/* (No Comment) */
+"Previous item" = "Föregående objekt";
+
+/* (No Comment) */
+"Privacy Policy" = "Sekretesspolicy";
+
+/* No comment provided by engineer. */
+"Profile" = "Profil";
+
+/* Quiz module item type */
+"Quiz" = "Quiz";
+
+/* (No Comment) */
+"Quiz Alert" = "Quiz-larm";
+
+/* (No Comment) */
+"Quizzes" = "Quiz";
+
+/* (No Comment) */
+"Rate on App Store" = "Betygsätt i App Store";
+
+/* (No Comment) */
+"Rating for %1$@, Score: %2$g" = "Värdering för %1$@, Poäng: %2$g";
+
+/* (No Comment) */
+"Re-submit Assignment" = "Skicka in uppgift igen";
+
+/* (No Comment) */
+"Recipients" = "Mottagare";
+
+/* (No Comment) */
+"Record" = "Spela in";
+
+/* (No Comment) */
+"Record Audio" = "Spela in ljud";
+
+/* (No Comment) */
+"Record Audio..." = "Inspelat ljud...";
+
+/* (No Comment) */
+"Record Video" = "Spela in video";
+
+/* (No Comment) */
+"Record audio" = "Spela in ljud";
+
+/* (No Comment) */
+"Record video" = "Spela in video";
+
+/* Button to refresh the calendar events */
+"Refresh" = "Uppdatera";
+
+/* No comment provided by engineer. */
+"Refresh Button" = "Uppdateringsknapp";
+
+/* No comment provided by engineer. */
+"Refreshes the calendar content" = "Uppdatera kalenderinnehåll";
+
+/* Refreshing Calendar Events */
+"Refreshing Calendar Events" = "Uppdatera kalenderhändelser";
+
+/* (No Comment) */
+"Remove" = "Ta bort";
+
+/* (No Comment) */
+"Remove this file?" = "Ta bort den här filen?";
+
+/* (No Comment) */
+"Report a problem" = "Rapportera ett problem";
+
+/* (No Comment) */
+"Request a feature" = "Efterfråga en funktion";
+
+/* (No Comment) */
+"Rubric" = "Matris";
+
+/* (No Comment) */
+"Save" = "Spara";
+
+/* (No Comment) */
+"Schedule Notification" = "Schemalägg avisering";
+
+/* (No Comment) */
+"Search for recipients" = "Sök efter mottagare";
+
+/* No comment provided by engineer. */
+"Select Option" = "Välj alternativ";
+
+/* Button title to select a certain assignment set option */
+"Select Option %d" = "Välj alternativ %d";
+
+/* (No Comment) */
+"Select file(s)" = "Välj fil(er)";
+
+/* (No Comment) */
+"Select or deselect" = "Markera eller avmarkera";
+
+/* (No Comment) */
+"Selected" = "Valda";
+
+/* (No Comment) */
+"Send" = "Skicka";
+
+/* (No Comment) */
+"Send %@ a message" = "Skicka %@ ett meddelande";
+
+/* (No Comment) */
+"Send Message" = "Skicka meddelande";
+
+/* (No Comment) */
+"Sent" = "Skickat";
+
+/* (No Comment) */
+"Settings" = "Inställningar";
+
+/* (No Comment) */
+"Show Grades" = "Visa betyg";
+
+/* (No Comment) */
+"Show Quiz" = "Visa quiz";
+
+/* (No Comment) */
+"Show file" = "Visa fil";
+
+/* (No Comment) */
+"Show recipients" = "Visa mottagare";
+
+/* (No Comment) */
+"Some items could not be deleted" = "Visa objekt kunde inte tas bort";
+
+/* (No Comment) */
+"Some selected folders are not empty. Are you sure you want to delete them?" = "Några av de valda mapparna är inte tomma. Är du säker på att du vill ta bort dem?";
+
+/* (No Comment) */
+"Sorry, we couldn't find the assignment. This assignment may have been deleted." = "Ledsen vi kunde inte hitta uppgiften. Den här uppgiften kan ha tagits bort.";
+
+/* (No Comment) */
+"Starts playing your recording" = "Spelar upp din inspelning";
+
+/* (No Comment) */
+"Starts recording a media comment" = "Spelar in en mediakommentar";
+
+/* Label read aloud when item status is completed.
+   Module status label when completed */
+"Status: Completed" = "Status: Färdig";
+
+/* Label read aloud when item status is incomplete. */
+"Status: Incomplete" = "Status: Ofärdig";
+
+/* Label read aloud when item status is locked.
+   Module status label when locked */
+"Status: Locked" = "Status: Låst";
+
+/* Module status label when started */
+"Status: Started" = "Status: Startad";
+
+/* (No Comment) */
+"Stay Logged In" = "Fortsätt vara inloggad";
+
+/* (No Comment) */
+"Stop" = "Stopp";
+
+/* (No Comment) */
+"Stop Masquerading" = "Soppa maskering";
+
+/* (No Comment) */
+"Stops playing your recording" = "Avslutar din inspelning";
+
+/* (No Comment) */
+"Stops recording a media comment" = "Avslutar inspelningen av en mediakommentar";
+
+/* (No Comment) */
+"Student" = "Student";
+
+/* Header item label */
+"Sub Header" = "Underrubrik";
+
+/* (No Comment) */
+"Submission" = "Inlämning";
+
+/* (No Comment) */
+"Submission Error" = "Fel vid inlämning";
+
+/* (No Comment) */
+"Submission complete" = "Inlämning utförd";
+
+/* (No Comment) */
+"Submit" = "Skicka in";
+
+/* (No Comment) */
+"Submitted" = "Inskickad";
+
+/* (No Comment) */
+"Submitting..." = "Skickar in...";
+
+/* (No Comment) */
+"Subscribe to calendar feed" = "Prenumerera på kalenderflödet";
+
+/* (No Comment) */
+"Success!" = "Lyckades!";
+
+/* (No Comment) */
+"Sure!" = "Absolut!";
+
+/* (No Comment) */
+"Switches media input between audio and video. Currently set to %@" = "Växlar mediainmatning mellan ljud och video. För närvarande inställd på %@";
+
+/* (No Comment) */
+"Switches to media comment mode" = "Växlar till läge för mediakommentar";
+
+/* (No Comment) */
+"Switches to text comment mode" = "Växlar till läge för textkommentar";
+
+/* (No Comment) */
+"Syllabus" = "Antura tidsplan";
+
+/* (No Comment) */
+"TA" = "Lärarassistenter";
+
+/* (No Comment) */
+"TAs" = "Lärarassistenter";
+
+/* (No Comment) */
+"Take Photo" = "Ta ett foto";
+
+/* (No Comment) */
+"Take Photo or Video..." = "Ta foto eller video...";
+
+/* (No Comment) */
+"Take a Photo..." = "Ta ett foto...";
+
+/* (No Comment) */
+"Take a Video..." = "Spela in en video...";
+
+/* (No Comment) */
+"Tap to try again" = "Peka för att försöka igen";
+
+/* (No Comment) */
+"Teacher" = "Lärare";
+
+/* (No Comment) */
+"Teachers" = "Lärare";
+
+/* (No Comment) */
+"Tell us what's wrong" = "Berätta vad som är fel";
+
+/* (No Comment) */
+"Terms of Use" = "Användarvillkor";
+
+/* (No Comment) */
+"Text Comment" = "Textkommentar";
+
+/* (No Comment) */
+"Text Submission" = "Textinlämning";
+
+/* (No Comment) */
+"Text entry" = "Textinlägg";
+
+/* No comment provided by engineer. */
+"That page has been disabled for this course" = "Sidan har avaktiverats för den här kursen";
+
+/* (No Comment) */
+"The recipients could not be added. Please try again. (%@)" = "Mottagarna kunde inte läggas till. Försök igen. (%@)";
+
+/* (No Comment) */
+"The server could not be reached" = "Servern kunde inte nås";
+
+/* (No Comment) */
+"The server you entered is not authorized for this app." = "Servern som du fyllt i är inte behörig för den här appen.";
+
+/* (No Comment) */
+"The user agent for this app is unauthorized." = "Användarprogrammet för den här appen är obehörig.";
+
+/* (No Comment) */
+"There are no actions for this item" = "Det finns inga åtgärder för det här objektet";
+
+/* (No Comment) */
+"There are no items to display" = "Det finns inga objekt att visa";
+
+/* (No Comment) */
+"There was a network error posting your comment." = "Det uppstod ett nätverksfel när din kommentar postades.";
+
+/* (No Comment) */
+"There was a network problem while attempting to upload your submission" = "Det uppstod ett nätverksfel när din inlämning laddades upp";
+
+/* (No Comment) */
+"There was a problem accessing the requested file.\n\nError: %@" = "Det går inte att komma åt den begärda filen.\n\nFel: %@";
+
+/* (No Comment) */
+"There was a problem launching Safari" = "Ett fel uppstod när Safari startades";
+
+/* (No Comment) */
+"There was an error loading the document." = "Ett fel inträffade när dokumentet laddades.";
+
+/* (No Comment) */
+"There was an error loading your content. If it is an audio or video upload it may still be processing." = "Ett fel inträffade när innehållet laddades. Om det var en video kanske den fortfarande bearbetas.";
+
+/* (No Comment) */
+"This app is not authorized for use." = "Den här appen är inte tillåten att användas.";
+
+/* (No Comment) */
+"This assignment doesn't appear to be a valid external tool or is misconfigured." = "Den här uppgiften verkar inte vara ett giltigt externt verktyg eller är felkonfigurerad.";
+
+/* (No Comment) */
+"This assignment has no details." = "Den här uppgiften har inga detaljer.";
+
+/* (No Comment) */
+"This entry has been deleted" = "Det här inlägget har tagits bort";
+
+/* (No Comment) */
+"This file cannot be displayed on this device." = "Den här filen kan inte visas på den här enheten.";
+
+/* (No Comment) */
+"This file is locked" = "Den här filen är låst";
+
+/* (No Comment) */
+"This folder is locked" = "Den här mappen är låst";
+
+/* (No Comment) */
+"This is a media message." = "Det här är ett mediameddelande";
+
+/* Description for alert when a module item doesn't have mastery paths configured */
+"This module item doesn't have mastery paths set up." = "Det här föremålet har inte ställt in inställningarna för målväg.";
+
+/* This would be a great time to do some extra credit. */
+"This would be a great time to do some extra credit." = "Det här vore ett bra tillfälle att skapa lite extra kredit.";
+
+/* Title of the Todo screen */
+"To Do" = "Att göra";
+
+/* To-Do List landing page title */
+"To-Do List" = "Att göra lista";
+
+/* (No Comment) */
+"To:" = "Till:";
+
+/* Button to scroll to 'today' on the calendar */
+"Today" = "Idag";
+
+/* No comment provided by engineer. */
+"Today Button" = "Idag-knapp";
+
+/* (No Comment) */
+"Toggles selection of current item" = "Växlar valet för nuvarande objekt";
+
+/* (No Comment) */
+"Toggles selection of item" = "Växlar val av objekt";
+
+/* (No Comment) */
+"Turn In" = "Lämna in";
+
+/* (No Comment) */
+"Turn In Again" = "Lämna in igen";
+
+/* (No Comment) */
+"Turn in %@" = "Lämna in %@";
+
+/* Label read aloud to describe module item type */
+"Type: %@" = "Typ: %@";
+
+/* (No Comment) */
+"Uh-oh! No Internet Connection" = "Oj då! Ingen internetuppkoppling";
+
+/* (No Comment) */
+"Unable to load" = "Kunde inte ladda";
+
+/* (No Comment) */
+"Unable to post. Please try again later" = "Kunde inte posta. Försök igen senare";
+
+/* (No Comment) */
+"Unable to upload to server" = "Kunde inte ladda upp till server";
+
+/* (No Comment) */
+"Unavailable" = "Otillgänglig";
+
+/* (No Comment) */
+"Ungraded" = "Ej betygsatt";
+
+/* (No Comment) */
+"Unknown" = "Okänd";
+
+/* (No Comment) */
+"Unread" = "Oläst";
+
+/* (No Comment) */
+"Unsaved Reply" = "Ej sparat svar";
+
+/* (No Comment) */
+"Upload" = "Ladda upp";
+
+/* (No Comment) */
+"Upload Error" = "Fel vid uppladdning";
+
+/* (No Comment) */
+"Upload a file" = "Ladda upp fil";
+
+/* (No Comment) */
+"Upload failed. Reason: (%@)" = "Uppladdningen misslyckades. Anledning: (%@)";
+
+/* (No Comment) */
+"Upload file" = "Ladda upp fil";
+
+/* (No Comment) */
+"Upload to assignment &quot;%@&quot; failed" = "Uppladdning till uppgift &quot;%@&quot; misslyckades";
+
+/* (No Comment) */
+"Upload to folder &quot;%@&quot; failed" = "Uppladdning till mapp &quot;%@&quot; misslyckades";
+
+/* (No Comment) */
+"Use" = "Använd";
+
+/* (No Comment) */
+"User ID" = "Användar-ID";
+
+/* (No Comment) */
+"User Info" = "Användarinformation";
+
+/* (No Comment) */
+"Video" = "Video";
+
+/* (No Comment) */
+"Video error" = "Video-fel";
+
+/* (No Comment) */
+"View" = "Visa";
+
+/* (No Comment) */
+"Warning" = "Varning";
+
+/* (No Comment) */
+"We had a problem loading the submission. Please try again later." = "Det uppstod ett problem när inlämningen laddades. Försök igen senare.";
+
+/* (No Comment) */
+"We were unable to verify the server for use with this app." = "Vi kunde inte verifiera servern för användning av den här appen.";
+
+/* (No Comment) */
+"Whoops!" = "Oooj!";
+
+/* (No Comment) */
+"Will unlock %@." = "Kommer att låsa upp %@.";
+
+/* (No Comment) */
+"Would you like to create a new message?" = "Vill du skapa ett nytt meddelande?";
+
+/* (No Comment) */
+"Would you mind giving us a rating on the app store?" = "Skulle du vilja betygsätta oss i app store?";
+
+/* (No Comment) */
+"Would you mind letting us know the problems you have been having with the app?" = "Skulle du vilja berätta vilka problem som du upplevt med appen?";
+
+/* (No Comment) */
+"Yes" = "Ja";
+
+/* (No Comment) */
+"You are now masquerading as %@" = "Du är nu maskerad som %@";
+
+/* (No Comment) */
+"You are now masquerading as %@. To Stop Masquerading go to your Profile." = "Du är nu maskerad som %@. Gå till din profil för att avsluta maskeringen.";
+
+/* (No Comment) */
+"You do not have SpeedGrader for iPad. You can download it for free from the App Store." = "Du har inte SpeedGrader för iPad. Du kan ladda ner den gratis från App Store.";
+
+/* Error message for an unauthorized course or group. */
+"You do not have access to this content. The Course or Group may not have started, or may have been concluded." = "Du har inte behörighet att komma åt det här innehållet. Kursen eller gruppen kanske inte har startat, eller så har du avslutat den.";
+
+/* (No Comment) */
+"You do not have permission to delete this reply" = "Du har inte tillstånd att ta bort det här svaret";
+
+/* (No Comment) */
+"You don't have permission to masquerade as this user or there is no user with that ID" = "Du har inte tillåtelse att maskera dig som den här användaren då det inte finns någon användare med det ID:t";
+
+/* (No Comment) */
+"You have an unsaved reply. Would you like to discard that reply?" = "Du har ett svar som inte sparats. Vill du kasta det svaret?";
+
+/* (No Comment) */
+"You must first complete:" = "Du måste först göra färdigt:";
+
+/* (No Comment) */
+"You need a title and a description to post" = "Du behöver en titel och en beskrivning för att posta";
+
+/* You should go rate Canvas on the App Store! */
+"You should go rate Canvas on the App Store!" = "Du borde ge Canvas ett omdöme i App Store!";
+
+/* (No Comment) */
+"Your files could not be found" = "Dina filer kunde inte hittas";
+
+/* (No Comment) */
+"Your school's configuration does not allow the type of submission selected for this assignment" = "Din skolas inställningar tillåter inte den här typen av inlämningar som valts för den här uppgiften.";
+
+/* (No Comment) */
+"due on %1$@ at %2$@" = "Färdig den %1$@ vid %2$@";
+
+/* (No Comment) */
+"moments ago" = "nyss";
+
+/* (No Comment) */
+"out of" = "av";
+
+/* (No Comment) */
+"out of %@" = "av %@";
+
+/* (No Comment) */
+"out of %@ points" = "av %@ poäng";
+
+/* (No Comment) */
+"photo" = "foto";
+
+/* (No Comment) */
+"unknown" = "Okänt";
+
+/* (No Comment) */
+"until %@" = "tills %@";
+

@@ -46,6 +46,10 @@ export default class LanguagePicker extends Component<any, any> {
         languageCode: 'en-GB',
       },
       {
+        name: 'English (U.K.) HE',
+        languageCode: 'en-GB-x-ukhe',
+      },
+      {
         name: 'English (Australian)',
         languageCode: 'en-AU',
       },
@@ -56,6 +60,10 @@ export default class LanguagePicker extends Component<any, any> {
       {
         name: 'Danish',
         languageCode: 'da',
+      },
+      {
+        name: 'Danish K12',
+        languageCode: 'da-x-k12',
       },
       {
         name: 'German',
@@ -80,6 +88,22 @@ export default class LanguagePicker extends Component<any, any> {
       {
         name: 'Arabic',
         languageCode: 'ar',
+      },
+      {
+        name: 'Swedish',
+        languageCode: 'sv',
+      },
+      {
+        name: 'Swedish K12',
+        languageCode: 'sv-x-k12',
+      },
+      {
+        name: 'Norwegian',
+        languageCode: 'nb',
+      },
+      {
+        name: 'Norwegian K12',
+        languageCode: 'nb-x-k12',
       },
     ].sort((a, b) => {
       if (a.name < b.name) return -1

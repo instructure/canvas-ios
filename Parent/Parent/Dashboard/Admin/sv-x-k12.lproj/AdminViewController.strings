@@ -1,0 +1,9 @@
+/* Class = "UIButton"; normalTitle = "Act as User"; ObjectID = "Pur-YX-Y1F"; */
+"Pur-YX-Y1F.normalTitle" = "Agera som användare";
+
+/* Class = "UILabel"; text = "Welcome!"; ObjectID = "b0z-1f-3Pv"; */
+"b0z-1f-3Pv.text" = "Välkommen!";
+
+/* Class = "UILabel"; text = "Tap to start viewing Canvas as another  person."; ObjectID = "chJ-nt-Qcc"; */
+"chJ-nt-Qcc.text" = "Tryck för att använda Canvas som någon annan";
+

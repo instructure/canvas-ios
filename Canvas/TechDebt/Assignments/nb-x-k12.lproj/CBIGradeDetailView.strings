@@ -1,0 +1,18 @@
+/* Class = "UILabel"; text = "Grade"; ObjectID = "6u3-e7-LDl"; */
+"6u3-e7-LDl.text" = "Karakterer";
+
+/* Class = "UILabel"; text = "-/-"; ObjectID = "32x-sq-GvB"; */
+"32x-sq-GvB.text" = "-/-";
+
+/* Class = "UILabel"; text = "Late Penalty (-2)"; ObjectID = "52a-ut-ZPM"; */
+"52a-ut-ZPM.text" = "Forsinkelsesstraff (-2)";
+
+/* Class = "UILabel"; text = "Final Score 18/20"; ObjectID = "NuL-Bk-77H"; */
+"NuL-Bk-77H.text" = "Poengsum 18/20";
+
+/* Class = "UILabel"; text = "Score"; ObjectID = "ZG6-S6-bGJ"; */
+"ZG6-S6-bGJ.text" = "Resultat";
+
+/* Class = "UILabel"; text = "-"; ObjectID = "bZ9-5W-JUE"; */
+"bZ9-5W-JUE.text" = "-";
+

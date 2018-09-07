@@ -1,0 +1,123 @@
+/* The distance in miles that a user is from a school. */
+"%@ miles away" = "%@ långt borta";
+
+/* No comment provided by engineer. */
+"Build all the things" = "Bygg alla saker";
+
+/* Help label when user can't find their school. */
+"Can't find your school? Try typing the full school URL." = "Kan du inte hitta din skola? Försök att skriva in skolans fullständiga URL.";
+
+/* No comment provided by engineer. */
+"Cancel" = "Avbryt";
+
+/* No comment provided by engineer. */
+"Cancel Request" = "Avbryt begäran";
+
+/* Label displayed when forcing canvas login */
+"Canvas Login" = "Canvas lnloggning";
+
+/* No comment provided by engineer. */
+"Casual question or suggestion" = "Informell fråga eller förslag";
+
+/* No comment provided by engineer. */
+"Check network and try again!" = "Kontrollera nätverket och försök igen!";
+
+/* No comment provided by engineer. */
+"Choose One" = "Välj en";
+
+/* No comment provided by engineer. */
+"Continue Editing" = "Fortsätt redigera";
+
+/* No comment provided by engineer. */
+"Describe the feature here" = "Beskriv funktionen här";
+
+/* Dismiss login expired/revoked alert button */
+"Dismiss" = "Avfärda";
+
+/* No comment provided by engineer. */
+"Emergency" = "Nödläge";
+
+/* Text view to enter the description of the ticket */
+"Enter ticket description" = "Skriv in biljettbeskrining";
+
+/* Text field to enter subject of the ticket */
+"Enter ticket subject" = "Skriv in biljettbeskrining";
+
+/* No comment provided by engineer. */
+"Extremely critical emergency" = "Extremt kritiskt nödläge";
+
+/* Help View Controller Title */
+"Help" = "Hjälp";
+
+/* Help label when domain search has started */
+"How do I find my school?" = "Hur hittar jag min skola?";
+
+/* No comment provided by engineer. */
+"I am stuck and can't get things done" = "Jag sitter fast och kan inte få saker gjorda\t";
+
+/* No comment provided by engineer. */
+"I can't get things done until I hear back from you" = "Jag kan inte utföra saker innan jag hör från dig";
+
+/* No comment provided by engineer. */
+"I need help but it's not urgent" = "Jag behöver hjälp men det är inte akut";
+
+/* No comment provided by engineer. */
+"Invalid Canvas URL." = "Ogiltig Canvas webbadress.";
+
+/* No comment provided by engineer. */
+"Invalid User Agent." = "Ogiltig användarombud.";
+
+/* No comment provided by engineer. */
+"Non-urgent help needed" = "Ej brådskande hjälp behövs";
+
+/* No comment provided by engineer. */
+"Not authorized." = "Inte behörig.";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"Report a Problem" = "Rapportera ett problem";
+
+/* No comment provided by engineer. */
+"Request Failed!" = "Begäran misslyckades!";
+
+/* No comment provided by engineer. */
+"Request a Feature" = "Begär en funktion";
+
+/* Button to select the severity of the ticket */
+"Select ticket impact level" = "Välj biljettbetydelse nivå";
+
+/* No comment provided by engineer. */
+"Send" = "Skicka";
+
+/* Label displayed when logging in as site admin */
+"Site Admin Login" = "Sidoadministratörs inloggning";
+
+/* No comment provided by engineer. */
+"Something is broken but I can work around it" = "Något är trasigt och jag kan inte hitta en alternativ lösning";
+
+/* No comment provided by engineer. */
+"Success!" = "Lyckades!";
+
+/* Subtitle help text describing how to find a school. */
+"Tap here for help." = "Tryck här för hjälp.";
+
+/* No comment provided by engineer. */
+"Thanks, your request was received!" = "Tack, din förfrågan har tagits emot!";
+
+/* when the access token has been revoked */
+"Your login has expired or has been removed by the server. Please log in again." = "Din inloggning har utgått eller tagits bort från servern. Vänligen logga in igen ";
+
+/* No comment provided by engineer. */
+"describe your problem" = "beskriv ditt problem";
+
+/* No comment provided by engineer. */
+"enter a subject" = "skriv in ett ämne";
+
+/* Placeholder for delete icon in Multi User Table View Cell */
+"remove user" = "ta bort användare";
+
+/* No comment provided by engineer. */
+"select the impact" = "välj inverkan";
+

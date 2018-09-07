@@ -810,6 +810,102 @@
 		7893BDFC20D1A83F00231DF7 /* AdminViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminViewController.swift; sourceTree = "<group>"; };
 		7BC1640811F36F0B4298AD40 /* Quiz.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
 		7C795587926FED2BF58F7200 /* CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoFirstName.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoFirstName.swift; path = CreateAccountPageTests/CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoFirstName.swift; sourceTree = "<group>"; };
+		7D349C7D21430D98004C1074 /* da-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-x-k12"; path = "da-x-k12.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		7D349C7E21430D98004C1074 /* da-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-x-k12"; path = "da-x-k12.lproj/AdminViewController.strings"; sourceTree = "<group>"; };
+		7D349C7F21430D99004C1074 /* da-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-x-k12"; path = "da-x-k12.lproj/CourseCell.strings"; sourceTree = "<group>"; };
+		7D349C8021430D9A004C1074 /* da-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-x-k12"; path = "da-x-k12.lproj/CalendarEventCell.strings"; sourceTree = "<group>"; };
+		7D349C8121430D9A004C1074 /* da-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-x-k12"; path = "da-x-k12.lproj/CalendarEventWeekPageViewController.strings"; sourceTree = "<group>"; };
+		7D349C8221430D9A004C1074 /* da-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-x-k12"; path = "da-x-k12.lproj/EmptyCalendarEventCell.strings"; sourceTree = "<group>"; };
+		7D349C8321430D9B004C1074 /* da-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-x-k12"; path = "da-x-k12.lproj/AlertCell.strings"; sourceTree = "<group>"; };
+		7D349C8421430D9C004C1074 /* da-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-x-k12"; path = "da-x-k12.lproj/DashboardViewController.strings"; sourceTree = "<group>"; };
+		7D349C8521430D9C004C1074 /* da-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-x-k12"; path = "da-x-k12.lproj/DetailsInfoCell.strings"; sourceTree = "<group>"; };
+		7D349C8621430D9D004C1074 /* da-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-x-k12"; path = "da-x-k12.lproj/DetailsReminderCell.strings"; sourceTree = "<group>"; };
+		7D349C8721430D9D004C1074 /* da-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-x-k12"; path = "da-x-k12.lproj/DetailsDateCell.strings"; sourceTree = "<group>"; };
+		7D349C8821430D9E004C1074 /* da-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-x-k12"; path = "da-x-k12.lproj/DetailsLocationCell.strings"; sourceTree = "<group>"; };
+		7D349C8921430D9E004C1074 /* da-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-x-k12"; path = "da-x-k12.lproj/DetailsAttachmentCell.strings"; sourceTree = "<group>"; };
+		7D349C8A21430D9F004C1074 /* da-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-x-k12"; path = "da-x-k12.lproj/SettingsObserveeCell.strings"; sourceTree = "<group>"; };
+		7D349C8B21430D9F004C1074 /* da-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-x-k12"; path = "da-x-k12.lproj/SettingsViewController.strings"; sourceTree = "<group>"; };
+		7D349C8C21430DA0004C1074 /* da-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-x-k12"; path = "da-x-k12.lproj/UserCell.strings"; sourceTree = "<group>"; };
+		7D349C8D21430DA0004C1074 /* da-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-x-k12"; path = "da-x-k12.lproj/StudentSettingsHeaderView.strings"; sourceTree = "<group>"; };
+		7D349C8E21430DA1004C1074 /* da-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "da-x-k12"; path = "da-x-k12.lproj/TableEmptyView.xib"; sourceTree = "<group>"; };
+		7D349C8F21430DA1004C1074 /* da-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-x-k12"; path = "da-x-k12.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		7D349C9021430DA1004C1074 /* da-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-x-k12"; path = "da-x-k12.lproj/Main.strings"; sourceTree = "<group>"; };
+		7D349C9121430DA2004C1074 /* da-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-x-k12"; path = "da-x-k12.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		7D349C9221430DA2004C1074 /* da-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-x-k12"; path = "da-x-k12.lproj/ArmchairLocalizable.strings"; sourceTree = "<group>"; };
+		7D349C9321430DA3004C1074 /* da-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-x-k12"; path = "da-x-k12.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		7D349C9421430DA3004C1074 /* da-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-x-k12"; path = "da-x-k12.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		7D349C9521430DE1004C1074 /* en-GB-x-ukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-x-ukhe"; path = "en-GB-x-ukhe.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		7D349C9621430DE1004C1074 /* en-GB-x-ukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-x-ukhe"; path = "en-GB-x-ukhe.lproj/AdminViewController.strings"; sourceTree = "<group>"; };
+		7D349C9721430DE2004C1074 /* en-GB-x-ukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-x-ukhe"; path = "en-GB-x-ukhe.lproj/CourseCell.strings"; sourceTree = "<group>"; };
+		7D349C9821430DE3004C1074 /* en-GB-x-ukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-x-ukhe"; path = "en-GB-x-ukhe.lproj/CalendarEventCell.strings"; sourceTree = "<group>"; };
+		7D349C9921430DE3004C1074 /* en-GB-x-ukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-x-ukhe"; path = "en-GB-x-ukhe.lproj/CalendarEventWeekPageViewController.strings"; sourceTree = "<group>"; };
+		7D349C9A21430DE4004C1074 /* en-GB-x-ukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-x-ukhe"; path = "en-GB-x-ukhe.lproj/EmptyCalendarEventCell.strings"; sourceTree = "<group>"; };
+		7D349C9B21430DE5004C1074 /* en-GB-x-ukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-x-ukhe"; path = "en-GB-x-ukhe.lproj/AlertCell.strings"; sourceTree = "<group>"; };
+		7D349C9C21430DE5004C1074 /* en-GB-x-ukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-x-ukhe"; path = "en-GB-x-ukhe.lproj/DashboardViewController.strings"; sourceTree = "<group>"; };
+		7D349C9D21430DE5004C1074 /* en-GB-x-ukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-x-ukhe"; path = "en-GB-x-ukhe.lproj/DetailsInfoCell.strings"; sourceTree = "<group>"; };
+		7D349C9E21430DE6004C1074 /* en-GB-x-ukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-x-ukhe"; path = "en-GB-x-ukhe.lproj/DetailsReminderCell.strings"; sourceTree = "<group>"; };
+		7D349C9F21430DE6004C1074 /* en-GB-x-ukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-x-ukhe"; path = "en-GB-x-ukhe.lproj/DetailsDateCell.strings"; sourceTree = "<group>"; };
+		7D349CA021430DE7004C1074 /* en-GB-x-ukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-x-ukhe"; path = "en-GB-x-ukhe.lproj/DetailsLocationCell.strings"; sourceTree = "<group>"; };
+		7D349CA121430DE7004C1074 /* en-GB-x-ukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-x-ukhe"; path = "en-GB-x-ukhe.lproj/DetailsAttachmentCell.strings"; sourceTree = "<group>"; };
+		7D349CA221430DE7004C1074 /* en-GB-x-ukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-x-ukhe"; path = "en-GB-x-ukhe.lproj/SettingsObserveeCell.strings"; sourceTree = "<group>"; };
+		7D349CA321430DE8004C1074 /* en-GB-x-ukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-x-ukhe"; path = "en-GB-x-ukhe.lproj/SettingsViewController.strings"; sourceTree = "<group>"; };
+		7D349CA421430DE8004C1074 /* en-GB-x-ukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-x-ukhe"; path = "en-GB-x-ukhe.lproj/UserCell.strings"; sourceTree = "<group>"; };
+		7D349CA521430DE8004C1074 /* en-GB-x-ukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-x-ukhe"; path = "en-GB-x-ukhe.lproj/StudentSettingsHeaderView.strings"; sourceTree = "<group>"; };
+		7D349CA621430DE9004C1074 /* en-GB-x-ukhe */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "en-GB-x-ukhe"; path = "en-GB-x-ukhe.lproj/TableEmptyView.xib"; sourceTree = "<group>"; };
+		7D349CA721430DE9004C1074 /* en-GB-x-ukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-x-ukhe"; path = "en-GB-x-ukhe.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		7D349CA821430DE9004C1074 /* en-GB-x-ukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-x-ukhe"; path = "en-GB-x-ukhe.lproj/Main.strings"; sourceTree = "<group>"; };
+		7D349CA921430DEA004C1074 /* en-GB-x-ukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-x-ukhe"; path = "en-GB-x-ukhe.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		7D349CAA21430DEA004C1074 /* en-GB-x-ukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-x-ukhe"; path = "en-GB-x-ukhe.lproj/ArmchairLocalizable.strings"; sourceTree = "<group>"; };
+		7D349CAB21430DEA004C1074 /* en-GB-x-ukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-x-ukhe"; path = "en-GB-x-ukhe.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		7D349CAC21430DEB004C1074 /* en-GB-x-ukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-x-ukhe"; path = "en-GB-x-ukhe.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		7D349CAD21430E20004C1074 /* nb-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-x-k12"; path = "nb-x-k12.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		7D349CAE21430E21004C1074 /* nb-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-x-k12"; path = "nb-x-k12.lproj/AdminViewController.strings"; sourceTree = "<group>"; };
+		7D349CAF21430E22004C1074 /* nb-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-x-k12"; path = "nb-x-k12.lproj/CourseCell.strings"; sourceTree = "<group>"; };
+		7D349CB021430E22004C1074 /* nb-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-x-k12"; path = "nb-x-k12.lproj/CalendarEventCell.strings"; sourceTree = "<group>"; };
+		7D349CB121430E23004C1074 /* nb-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-x-k12"; path = "nb-x-k12.lproj/CalendarEventWeekPageViewController.strings"; sourceTree = "<group>"; };
+		7D349CB221430E23004C1074 /* nb-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-x-k12"; path = "nb-x-k12.lproj/EmptyCalendarEventCell.strings"; sourceTree = "<group>"; };
+		7D349CB321430E24004C1074 /* nb-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-x-k12"; path = "nb-x-k12.lproj/AlertCell.strings"; sourceTree = "<group>"; };
+		7D349CB421430E25004C1074 /* nb-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-x-k12"; path = "nb-x-k12.lproj/DashboardViewController.strings"; sourceTree = "<group>"; };
+		7D349CB521430E25004C1074 /* nb-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-x-k12"; path = "nb-x-k12.lproj/DetailsInfoCell.strings"; sourceTree = "<group>"; };
+		7D349CB621430E25004C1074 /* nb-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-x-k12"; path = "nb-x-k12.lproj/DetailsReminderCell.strings"; sourceTree = "<group>"; };
+		7D349CB721430E26004C1074 /* nb-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-x-k12"; path = "nb-x-k12.lproj/DetailsDateCell.strings"; sourceTree = "<group>"; };
+		7D349CB821430E26004C1074 /* nb-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-x-k12"; path = "nb-x-k12.lproj/DetailsLocationCell.strings"; sourceTree = "<group>"; };
+		7D349CB921430E27004C1074 /* nb-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-x-k12"; path = "nb-x-k12.lproj/DetailsAttachmentCell.strings"; sourceTree = "<group>"; };
+		7D349CBA21430E27004C1074 /* nb-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-x-k12"; path = "nb-x-k12.lproj/SettingsObserveeCell.strings"; sourceTree = "<group>"; };
+		7D349CBB21430E27004C1074 /* nb-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-x-k12"; path = "nb-x-k12.lproj/SettingsViewController.strings"; sourceTree = "<group>"; };
+		7D349CBC21430E28004C1074 /* nb-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-x-k12"; path = "nb-x-k12.lproj/UserCell.strings"; sourceTree = "<group>"; };
+		7D349CBD21430E28004C1074 /* nb-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-x-k12"; path = "nb-x-k12.lproj/StudentSettingsHeaderView.strings"; sourceTree = "<group>"; };
+		7D349CBE21430E28004C1074 /* nb-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "nb-x-k12"; path = "nb-x-k12.lproj/TableEmptyView.xib"; sourceTree = "<group>"; };
+		7D349CBF21430E29004C1074 /* nb-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-x-k12"; path = "nb-x-k12.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		7D349CC021430E29004C1074 /* nb-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-x-k12"; path = "nb-x-k12.lproj/Main.strings"; sourceTree = "<group>"; };
+		7D349CC121430E29004C1074 /* nb-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-x-k12"; path = "nb-x-k12.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		7D349CC221430E29004C1074 /* nb-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-x-k12"; path = "nb-x-k12.lproj/ArmchairLocalizable.strings"; sourceTree = "<group>"; };
+		7D349CC321430E2A004C1074 /* nb-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-x-k12"; path = "nb-x-k12.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		7D349CC421430E2A004C1074 /* nb-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-x-k12"; path = "nb-x-k12.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		7D349CC521430E5C004C1074 /* sv-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-x-k12"; path = "sv-x-k12.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		7D349CC621430E5D004C1074 /* sv-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-x-k12"; path = "sv-x-k12.lproj/AdminViewController.strings"; sourceTree = "<group>"; };
+		7D349CC721430E5D004C1074 /* sv-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-x-k12"; path = "sv-x-k12.lproj/CourseCell.strings"; sourceTree = "<group>"; };
+		7D349CC821430E5E004C1074 /* sv-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-x-k12"; path = "sv-x-k12.lproj/CalendarEventCell.strings"; sourceTree = "<group>"; };
+		7D349CC921430E5E004C1074 /* sv-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-x-k12"; path = "sv-x-k12.lproj/CalendarEventWeekPageViewController.strings"; sourceTree = "<group>"; };
+		7D349CCA21430E5F004C1074 /* sv-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-x-k12"; path = "sv-x-k12.lproj/EmptyCalendarEventCell.strings"; sourceTree = "<group>"; };
+		7D349CCB21430E60004C1074 /* sv-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-x-k12"; path = "sv-x-k12.lproj/AlertCell.strings"; sourceTree = "<group>"; };
+		7D349CCC21430E60004C1074 /* sv-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-x-k12"; path = "sv-x-k12.lproj/DashboardViewController.strings"; sourceTree = "<group>"; };
+		7D349CCD21430E61004C1074 /* sv-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-x-k12"; path = "sv-x-k12.lproj/DetailsInfoCell.strings"; sourceTree = "<group>"; };
+		7D349CCE21430E61004C1074 /* sv-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-x-k12"; path = "sv-x-k12.lproj/DetailsReminderCell.strings"; sourceTree = "<group>"; };
+		7D349CCF21430E62004C1074 /* sv-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-x-k12"; path = "sv-x-k12.lproj/DetailsDateCell.strings"; sourceTree = "<group>"; };
+		7D349CD021430E62004C1074 /* sv-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-x-k12"; path = "sv-x-k12.lproj/DetailsLocationCell.strings"; sourceTree = "<group>"; };
+		7D349CD121430E63004C1074 /* sv-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-x-k12"; path = "sv-x-k12.lproj/DetailsAttachmentCell.strings"; sourceTree = "<group>"; };
+		7D349CD221430E63004C1074 /* sv-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-x-k12"; path = "sv-x-k12.lproj/SettingsObserveeCell.strings"; sourceTree = "<group>"; };
+		7D349CD321430E64004C1074 /* sv-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-x-k12"; path = "sv-x-k12.lproj/SettingsViewController.strings"; sourceTree = "<group>"; };
+		7D349CD421430E65004C1074 /* sv-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-x-k12"; path = "sv-x-k12.lproj/UserCell.strings"; sourceTree = "<group>"; };
+		7D349CD521430E65004C1074 /* sv-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-x-k12"; path = "sv-x-k12.lproj/StudentSettingsHeaderView.strings"; sourceTree = "<group>"; };
+		7D349CD621430E65004C1074 /* sv-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "sv-x-k12"; path = "sv-x-k12.lproj/TableEmptyView.xib"; sourceTree = "<group>"; };
+		7D349CD721430E66004C1074 /* sv-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-x-k12"; path = "sv-x-k12.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		7D349CD821430E67004C1074 /* sv-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-x-k12"; path = "sv-x-k12.lproj/Main.strings"; sourceTree = "<group>"; };
+		7D349CD921430E67004C1074 /* sv-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-x-k12"; path = "sv-x-k12.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		7D349CDA21430E68004C1074 /* sv-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-x-k12"; path = "sv-x-k12.lproj/ArmchairLocalizable.strings"; sourceTree = "<group>"; };
+		7D349CDB21430E68004C1074 /* sv-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-x-k12"; path = "sv-x-k12.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		7D349CDC21430E69004C1074 /* sv-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-x-k12"; path = "sv-x-k12.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7D3B612C1FE1CDCE00A58D84 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		80F09E386EFB5838B74F4000 /* CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoEmail.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoEmail.swift; path = CreateAccountPageTests/CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoEmail.swift; sourceTree = "<group>"; };
 		81DA29CF372AAB2318A6C107 /* SettingsPageTests_testSettingsPage_displaysHelpMenu.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SettingsPageTests_testSettingsPage_displaysHelpMenu.swift; path = SettingsPageTests/SettingsPageTests_testSettingsPage_displaysHelpMenu.swift; sourceTree = "<group>"; };
@@ -1609,6 +1705,10 @@
 				"zh-HK",
 				zh,
 				"fr-CA",
+				"da-x-k12",
+				"en-GB-x-ukhe",
+				"nb-x-k12",
+				"sv-x-k12",
 			);
 			mainGroup = 5E64417E1C3EE2E0003D7397;
 			productRefGroup = 5E6441881C3EE2E0003D7397 /* Products */;
@@ -2006,6 +2106,10 @@
 				2C61CEF01D9314EE00196C03 /* zh */,
 				2C0CAD991DEF6EC9008D90FA /* fr-CA */,
 				5B8461E720DF7C3400EE4100 /* cy */,
+				7D349C9121430DA2004C1074 /* da-x-k12 */,
+				7D349CA921430DEA004C1074 /* en-GB-x-ukhe */,
+				7D349CC121430E29004C1074 /* nb-x-k12 */,
+				7D349CD921430E67004C1074 /* sv-x-k12 */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -2035,6 +2139,10 @@
 				2C61CEE01D9314E800196C03 /* zh */,
 				2C0CAD8A1DEF6EC0008D90FA /* fr-CA */,
 				5B8461D920DF7C3100EE4100 /* cy */,
+				7D349C7F21430D99004C1074 /* da-x-k12 */,
+				7D349C9721430DE2004C1074 /* en-GB-x-ukhe */,
+				7D349CAF21430E22004C1074 /* nb-x-k12 */,
+				7D349CC721430E5D004C1074 /* sv-x-k12 */,
 			);
 			name = CourseCell.xib;
 			sourceTree = "<group>";
@@ -2064,6 +2172,10 @@
 				2C61CEEB1D9314EC00196C03 /* zh */,
 				2C0CAD931DEF6EC5008D90FA /* fr-CA */,
 				5B8461E020DF7C3300EE4100 /* cy */,
+				7D349C8221430D9A004C1074 /* da-x-k12 */,
+				7D349C9A21430DE4004C1074 /* en-GB-x-ukhe */,
+				7D349CB221430E23004C1074 /* nb-x-k12 */,
+				7D349CCA21430E5F004C1074 /* sv-x-k12 */,
 			);
 			name = EmptyCalendarEventCell.xib;
 			sourceTree = "<group>";
@@ -2093,6 +2205,10 @@
 				2C61CEE11D9314E800196C03 /* zh */,
 				2C0CAD8B1DEF6EC1008D90FA /* fr-CA */,
 				5B8461D820DF7C3100EE4100 /* cy */,
+				7D349C8021430D9A004C1074 /* da-x-k12 */,
+				7D349C9821430DE3004C1074 /* en-GB-x-ukhe */,
+				7D349CB021430E22004C1074 /* nb-x-k12 */,
+				7D349CC821430E5E004C1074 /* sv-x-k12 */,
 			);
 			name = CalendarEventCell.xib;
 			sourceTree = "<group>";
@@ -2122,6 +2238,10 @@
 				2C61CEEA1D9314EB00196C03 /* zh */,
 				2C0CAD951DEF6EC7008D90FA /* fr-CA */,
 				5B8461E220DF7C3300EE4100 /* cy */,
+				7D349C8321430D9B004C1074 /* da-x-k12 */,
+				7D349C9B21430DE5004C1074 /* en-GB-x-ukhe */,
+				7D349CB321430E24004C1074 /* nb-x-k12 */,
+				7D349CCB21430E60004C1074 /* sv-x-k12 */,
 			);
 			name = AlertCell.xib;
 			sourceTree = "<group>";
@@ -2151,6 +2271,10 @@
 				2C61CEE81D9314EB00196C03 /* zh */,
 				2C0CAD921DEF6EC5008D90FA /* fr-CA */,
 				5B8461DF20DF7C3300EE4100 /* cy */,
+				7D349C8521430D9C004C1074 /* da-x-k12 */,
+				7D349C9D21430DE5004C1074 /* en-GB-x-ukhe */,
+				7D349CB521430E25004C1074 /* nb-x-k12 */,
+				7D349CCD21430E61004C1074 /* sv-x-k12 */,
 			);
 			name = DetailsInfoCell.xib;
 			sourceTree = "<group>";
@@ -2180,6 +2304,10 @@
 				2C61CEE41D9314E900196C03 /* zh */,
 				2C0CAD8F1DEF6EC3008D90FA /* fr-CA */,
 				5B8461DC20DF7C3200EE4100 /* cy */,
+				7D349C8621430D9D004C1074 /* da-x-k12 */,
+				7D349C9E21430DE6004C1074 /* en-GB-x-ukhe */,
+				7D349CB621430E25004C1074 /* nb-x-k12 */,
+				7D349CCE21430E61004C1074 /* sv-x-k12 */,
 			);
 			name = DetailsReminderCell.xib;
 			sourceTree = "<group>";
@@ -2209,6 +2337,10 @@
 				2C61CEF41D9314EF00196C03 /* zh */,
 				2C0CAD9E1DEF6ECD008D90FA /* fr-CA */,
 				5B8461EB20DF7C3500EE4100 /* cy */,
+				7D349C8721430D9D004C1074 /* da-x-k12 */,
+				7D349C9F21430DE6004C1074 /* en-GB-x-ukhe */,
+				7D349CB721430E26004C1074 /* nb-x-k12 */,
+				7D349CCF21430E62004C1074 /* sv-x-k12 */,
 			);
 			name = DetailsDateCell.xib;
 			sourceTree = "<group>";
@@ -2238,6 +2370,10 @@
 				2C61CEE61D9314EA00196C03 /* zh */,
 				2C0CAD901DEF6EC4008D90FA /* fr-CA */,
 				5B8461DD20DF7C3200EE4100 /* cy */,
+				7D349C8821430D9E004C1074 /* da-x-k12 */,
+				7D349CA021430DE7004C1074 /* en-GB-x-ukhe */,
+				7D349CB821430E26004C1074 /* nb-x-k12 */,
+				7D349CD021430E62004C1074 /* sv-x-k12 */,
 			);
 			name = DetailsLocationCell.xib;
 			sourceTree = "<group>";
@@ -2267,6 +2403,10 @@
 				2C61CEE21D9314E800196C03 /* zh */,
 				2C0CAD8D1DEF6EC2008D90FA /* fr-CA */,
 				5B8461DA20DF7C3200EE4100 /* cy */,
+				7D349C8A21430D9F004C1074 /* da-x-k12 */,
+				7D349CA221430DE7004C1074 /* en-GB-x-ukhe */,
+				7D349CBA21430E27004C1074 /* nb-x-k12 */,
+				7D349CD221430E63004C1074 /* sv-x-k12 */,
 			);
 			name = SettingsObserveeCell.xib;
 			sourceTree = "<group>";
@@ -2296,6 +2436,10 @@
 				2C61CEE31D9314E900196C03 /* zh */,
 				2C0CAD8E1DEF6EC3008D90FA /* fr-CA */,
 				5B8461DB20DF7C3200EE4100 /* cy */,
+				7D349C8C21430DA0004C1074 /* da-x-k12 */,
+				7D349CA421430DE8004C1074 /* en-GB-x-ukhe */,
+				7D349CBC21430E28004C1074 /* nb-x-k12 */,
+				7D349CD421430E65004C1074 /* sv-x-k12 */,
 			);
 			name = UserCell.xib;
 			sourceTree = "<group>";
@@ -2325,6 +2469,10 @@
 				2C61CEF71D9314F000196C03 /* zh */,
 				2C0CADA11DEF6ECE008D90FA /* fr-CA */,
 				5B8461ED20DF7C3600EE4100 /* cy */,
+				7D349C8D21430DA0004C1074 /* da-x-k12 */,
+				7D349CA521430DE8004C1074 /* en-GB-x-ukhe */,
+				7D349CBD21430E28004C1074 /* nb-x-k12 */,
+				7D349CD521430E65004C1074 /* sv-x-k12 */,
 			);
 			name = StudentSettingsHeaderView.xib;
 			sourceTree = "<group>";
@@ -2333,6 +2481,10 @@
 			isa = PBXVariantGroup;
 			children = (
 				2CBD77E81D95938900BB111D /* en */,
+				7D349C8E21430DA1004C1074 /* da-x-k12 */,
+				7D349CA621430DE9004C1074 /* en-GB-x-ukhe */,
+				7D349CBE21430E28004C1074 /* nb-x-k12 */,
+				7D349CD621430E65004C1074 /* sv-x-k12 */,
 			);
 			name = TableEmptyView.xib;
 			sourceTree = "<group>";
@@ -2362,6 +2514,10 @@
 				2C61CEF61D9314F000196C03 /* zh */,
 				2C0CADA01DEF6ECE008D90FA /* fr-CA */,
 				5B8461EC20DF7C3500EE4100 /* cy */,
+				7D349C8B21430D9F004C1074 /* da-x-k12 */,
+				7D349CA321430DE8004C1074 /* en-GB-x-ukhe */,
+				7D349CBB21430E27004C1074 /* nb-x-k12 */,
+				7D349CD321430E64004C1074 /* sv-x-k12 */,
 			);
 			name = SettingsViewController.storyboard;
 			sourceTree = "<group>";
@@ -2391,6 +2547,10 @@
 				2C61CEEF1D9314ED00196C03 /* zh */,
 				2C0CAD9A1DEF6ECA008D90FA /* fr-CA */,
 				5B8461E820DF7C3500EE4100 /* cy */,
+				7D349C8421430D9C004C1074 /* da-x-k12 */,
+				7D349C9C21430DE5004C1074 /* en-GB-x-ukhe */,
+				7D349CB421430E25004C1074 /* nb-x-k12 */,
+				7D349CCC21430E60004C1074 /* sv-x-k12 */,
 			);
 			name = DashboardViewController.storyboard;
 			sourceTree = "<group>";
@@ -2420,6 +2580,10 @@
 				2C61CEEE1D9314ED00196C03 /* zh */,
 				2C0CAD971DEF6EC8008D90FA /* fr-CA */,
 				5B8461E420DF7C3400EE4100 /* cy */,
+				7D349C8121430D9A004C1074 /* da-x-k12 */,
+				7D349C9921430DE3004C1074 /* en-GB-x-ukhe */,
+				7D349CB121430E23004C1074 /* nb-x-k12 */,
+				7D349CC921430E5E004C1074 /* sv-x-k12 */,
 			);
 			name = CalendarEventWeekPageViewController.storyboard;
 			sourceTree = "<group>";
@@ -2449,6 +2613,10 @@
 				2C61CEE51D9314EA00196C03 /* zh */,
 				2C0CAD911DEF6EC4008D90FA /* fr-CA */,
 				5B8461DE20DF7C3300EE4100 /* cy */,
+				7D349C8921430D9E004C1074 /* da-x-k12 */,
+				7D349CA121430DE7004C1074 /* en-GB-x-ukhe */,
+				7D349CB921430E27004C1074 /* nb-x-k12 */,
+				7D349CD121430E63004C1074 /* sv-x-k12 */,
 			);
 			name = DetailsAttachmentCell.xib;
 			sourceTree = "<group>";
@@ -2478,6 +2646,10 @@
 				49ED5A4C1DBFD02E009E2896 /* Base */,
 				2C0CAD981DEF6EC8008D90FA /* fr-CA */,
 				5B8461E520DF7C3400EE4100 /* cy */,
+				7D349C7D21430D98004C1074 /* da-x-k12 */,
+				7D349C9521430DE1004C1074 /* en-GB-x-ukhe */,
+				7D349CAD21430E20004C1074 /* nb-x-k12 */,
+				7D349CC521430E5C004C1074 /* sv-x-k12 */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2507,6 +2679,10 @@
 				2C61CEF11D9314EE00196C03 /* zh */,
 				2C0CAD9B1DEF6ECA008D90FA /* fr-CA */,
 				5B8461E920DF7C3500EE4100 /* cy */,
+				7D349C9021430DA1004C1074 /* da-x-k12 */,
+				7D349CA821430DE9004C1074 /* en-GB-x-ukhe */,
+				7D349CC021430E29004C1074 /* nb-x-k12 */,
+				7D349CD821430E67004C1074 /* sv-x-k12 */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -2536,6 +2712,10 @@
 				2C61CEDF1D9314E700196C03 /* zh */,
 				2C0CAD8C1DEF6EC2008D90FA /* fr-CA */,
 				5B8461D720DF7C3100EE4100 /* cy */,
+				7D349C8F21430DA1004C1074 /* da-x-k12 */,
+				7D349CA721430DE9004C1074 /* en-GB-x-ukhe */,
+				7D349CBF21430E29004C1074 /* nb-x-k12 */,
+				7D349CD721430E66004C1074 /* sv-x-k12 */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -2565,6 +2745,10 @@
 				7893BDF920D1A7EF00231DF7 /* zh */,
 				7893BDFB20D1A7F100231DF7 /* fr-CA */,
 				5B8461E620DF7C3400EE4100 /* cy */,
+				7D349C7E21430D98004C1074 /* da-x-k12 */,
+				7D349C9621430DE1004C1074 /* en-GB-x-ukhe */,
+				7D349CAE21430E21004C1074 /* nb-x-k12 */,
+				7D349CC621430E5D004C1074 /* sv-x-k12 */,
 			);
 			name = AdminViewController.storyboard;
 			sourceTree = "<group>";
@@ -2593,6 +2777,10 @@
 				9F7F7EAF1FBB762700DF7CFA /* ht */,
 				9F9C18C51FBB7636004E0297 /* es */,
 				5B8461E120DF7C3300EE4100 /* cy */,
+				7D349C9421430DA3004C1074 /* da-x-k12 */,
+				7D349CAC21430DEB004C1074 /* en-GB-x-ukhe */,
+				7D349CC421430E2A004C1074 /* nb-x-k12 */,
+				7D349CDC21430E69004C1074 /* sv-x-k12 */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -2621,6 +2809,10 @@
 				9F9C18C61FBB7636004E0297 /* es */,
 				7D3B612C1FE1CDCE00A58D84 /* fr */,
 				5B8461E320DF7C3400EE4100 /* cy */,
+				7D349C9321430DA3004C1074 /* da-x-k12 */,
+				7D349CAB21430DEA004C1074 /* en-GB-x-ukhe */,
+				7D349CC321430E2A004C1074 /* nb-x-k12 */,
+				7D349CDB21430E68004C1074 /* sv-x-k12 */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2646,6 +2838,10 @@
 				B5CB1B741DC15B4700FE9C93 /* sv */,
 				B5CB1B751DC15B4800FE9C93 /* zh-HK */,
 				B5CB1B761DC15B4900FE9C93 /* zh */,
+				7D349C9221430DA2004C1074 /* da-x-k12 */,
+				7D349CAA21430DEA004C1074 /* en-GB-x-ukhe */,
+				7D349CC221430E29004C1074 /* nb-x-k12 */,
+				7D349CDA21430E68004C1074 /* sv-x-k12 */,
 			);
 			name = ArmchairLocalizable.strings;
 			sourceTree = "<group>";

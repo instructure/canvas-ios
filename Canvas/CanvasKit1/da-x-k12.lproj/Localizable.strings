@@ -1,0 +1,171 @@
+/* Description for rubric criterion rating object */
+" Rating for %@, Score: %g" = " Bedømmelse for %1$@, Score: %2$g";
+
+/* Gigabytes */
+"%0.2f GB" = "%0.2f GB";
+
+/* Kilobytes */
+"%0.2f KB" = "%0.2f KB";
+
+/* Megabytes */
+"%0.2f MB" = "%0.2f MB";
+
+/* B- (83 out of 100 points */
+"%@ (%g out of %@)" = "%1$@ (%2$g ud af %3$@)";
+
+/* something at something */
+"%@ at %@" = "%1$@ at %2$@";
+
+/* 88 out of 100 points */
+"%@ out of %@" = "%1$@ ud af %2$@";
+
+/* {point range max} to > {point range min} pts */
+"%@ to > %@ pts" = "%1$@ til > %2$@ point";
+
+/* 83% (83 out of 100 points */
+"%@%% (%g out of %@)" = "%1$@%% (%2$g ud af %3$@)";
+
+/* Word and ellipses */
+"%@..." = "%@...";
+
+/* 88 out of 100 points */
+"%g out of %@" = "%1$g ud af %2$@";
+
+/* As in, '15 bytes' */
+"%qu bytes" = "%qu bytes";
+
+/* Media type is audio */
+"Audio" = "Audio";
+
+/* No comment provided by engineer. */
+"Audio input hardware not available" = "Audio input hardware ikke tilgængelig";
+
+/* Assignment grade: Complete */
+"Complete" = "Fuldført";
+
+/* A custom grade not specified by the rubric. */
+"Custom Grade" = "Brugertilpasset karakter";
+
+/* No comment provided by engineer. */
+"Done" = "Udført";
+
+/* No comment provided by engineer. */
+"Excused" = "Undskyldt";
+
+/* The file extension for a submission is not acceptable */
+"File extension not allowed: %@" = "Fil-endelse er ikke tilladt: %@";
+
+/* Comes before a list of file extensions allowed for an assinment submission */
+"File extension(s) permitted for this assignment: " = "Fil-endelse(r) tilladt for denne opgave:";
+
+/* File upload failed. */
+"File upload failed." = "Fil upload mislykkedes.";
+
+/* Assignment grade: Incomplete */
+"Incomplete" = "Ufuldstændig";
+
+/* No comment provided by engineer. */
+"Me" = "Mig";
+
+/* No comment provided by engineer. */
+"Media Comment" = "Medie kommentar";
+
+/* The name for a video or audio response to something */
+"Media comment" = "Medie kommentar";
+
+/* A slider to choose between media types */
+"Media type selector. %@" = "Medietype vælger. %@";
+
+/* Pass/fail assignment is not complete */
+"Not Complete" = "Ikke fuldført";
+
+/* not graded string. */
+"Not graded" = "Ikke bedømt";
+
+/* not graded with points possible */
+"Not graded (0 out of %@)" = "Ikke bedømt (0 ud af %@)";
+
+/* No comment provided by engineer. */
+"Note: Media files are not immediately available for playback while they are processed on the server." = "Bemærk: Medie filer er ikke umiddelbart tilgængelige for afsplining mens de behandles på serveren.";
+
+/* Short name for observer enrollment */
+"Observer" = "Observatør";
+
+/* A button that plays */
+"Play" = "Afspil";
+
+/* No comment provided by engineer. */
+"Post Comment" = "Poster kommentar";
+
+/* No comment provided by engineer. */
+"Posts your comment" = "Poster din komentar";
+
+/* A button that records */
+"Record" = "Opotag";
+
+/* No comment provided by engineer. */
+"Score" = "Resultat";
+
+/* Hint about the play button */
+"Starts playing your recording" = "Start afspilning af din optagelse";
+
+/* Hint about the record button */
+"Starts recording a media comment" = "Start optagelse af en mediekommentar";
+
+/* A button that stops */
+"Stop" = "Stop";
+
+/* Hint about the play button */
+"Stops playing your recording" = "Stopper afspilning af din optagelse";
+
+/* Hint about the record button */
+"Stops recording a media comment" = "Stop optagelse af mediekommentar";
+
+/* Short name for student enrollment */
+"Student" = "Studerende";
+
+/* Hint about media input selection */
+"Switches media input between audio and video. Currently set to %@" = "Skift medie input mellem audio  og video. For øjeblikket indstillet til  %@";
+
+/* No comment provided by engineer. */
+"Switches to media comment mode" = "Skift til mediekommentar tilstand";
+
+/* No comment provided by engineer. */
+"Switches to text comment mode" = "Skift til tekstkommentar tilstand";
+
+/* Short name for TA enrollment */
+"TA" = "TA";
+
+/* Short name for teacher enrollment */
+"Teacher" = "Lærer";
+
+/* No comment provided by engineer. */
+"Text Comment" = "Tekst kommentar";
+
+/* Generic name for a submission entered online. */
+"Text Submission" = "Tekst indsendelse";
+
+/* Error description when a user tries to upload a file that's too big */
+"The file you are trying to uploading is %@, but the maximum size is %@." = "Filen, du forsøger at uploade, er %1$@, men maks. størrelsen er %2$@.";
+
+/* Media type is video */
+"Video" = "Video";
+
+/* No comment provided by engineer. */
+"Video Error" = "Videofejl";
+
+/* No comment provided by engineer. */
+"Warning" = "Advarsel";
+
+/* Accessibility label for out or grading style */
+"out of" = "ud af";
+
+/* The assignment is out of 100 points */
+"out of %@" = "ud af %@";
+
+/* No comment provided by engineer. */
+"out of %@ points" = "ud af %@ points";
+
+/* When we don't know the name of a file, we display this */
+"unknown" = "ukendt";
+

@@ -210,6 +210,14 @@
 		7D062AF621249E7700677F66 /* ContextModel+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContextModel+Tests.swift"; sourceTree = "<group>"; };
 		7D062AF82124A0F400677F66 /* ContextModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextModel.swift; sourceTree = "<group>"; };
 		7D062AFA2124A14700677F66 /* Context+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Context+Tests.swift"; sourceTree = "<group>"; };
+		7D349C352143090C004C1074 /* da-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-x-k12"; path = "da-x-k12.lproj/Main.strings"; sourceTree = "<group>"; };
+		7D349C362143090C004C1074 /* da-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-x-k12"; path = "da-x-k12.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		7D349C3721430929004C1074 /* en-GB-x-ukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-x-ukhe"; path = "en-GB-x-ukhe.lproj/Main.strings"; sourceTree = "<group>"; };
+		7D349C3821430929004C1074 /* en-GB-x-ukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-x-ukhe"; path = "en-GB-x-ukhe.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		7D349C3921430937004C1074 /* nb-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-x-k12"; path = "nb-x-k12.lproj/Main.strings"; sourceTree = "<group>"; };
+		7D349C3A21430937004C1074 /* nb-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-x-k12"; path = "nb-x-k12.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		7D349C3B21430948004C1074 /* sv-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-x-k12"; path = "sv-x-k12.lproj/Main.strings"; sourceTree = "<group>"; };
+		7D349C3C21430949004C1074 /* sv-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-x-k12"; path = "sv-x-k12.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		7D4D5EB1213F2A200080AC14 /* UIImageView+load.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+load.swift"; sourceTree = "<group>"; };
 		7D4D5EB421402CA90080AC14 /* TestImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TestImage.png; sourceTree = "<group>"; };
 		7D4D5EB521402CA90080AC14 /* TestImage.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TestImage.svg; sourceTree = "<group>"; };
@@ -1069,6 +1077,10 @@
 			isa = PBXVariantGroup;
 			children = (
 				DFE1FF2C212F69B3003F27AA /* Base */,
+				7D349C352143090C004C1074 /* da-x-k12 */,
+				7D349C3721430929004C1074 /* en-GB-x-ukhe */,
+				7D349C3921430937004C1074 /* nb-x-k12 */,
+				7D349C3B21430948004C1074 /* sv-x-k12 */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1077,6 +1089,10 @@
 			isa = PBXVariantGroup;
 			children = (
 				DFE1FF31212F69B4003F27AA /* Base */,
+				7D349C362143090C004C1074 /* da-x-k12 */,
+				7D349C3821430929004C1074 /* en-GB-x-ukhe */,
+				7D349C3A21430937004C1074 /* nb-x-k12 */,
+				7D349C3C21430949004C1074 /* sv-x-k12 */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -1088,6 +1104,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1151,6 +1168,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
