@@ -16,7 +16,7 @@
 
 import Foundation
 
-public class RequestUseCase<Request>: GroupOperation where Request: APIRequestable {
+public class RequestUseCase<Request>: OperationSet where Request: APIRequestable {
     let api: API
     let database: Persistence
     let request: Request

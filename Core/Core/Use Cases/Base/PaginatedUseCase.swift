@@ -16,7 +16,7 @@
 
 import Foundation
 
-class PaginatedUseCase<Request, Model>: GroupOperation where Request: APIRequestable, Request.Response: Collection {
+class PaginatedUseCase<Request, Model>: OperationSet where Request: APIRequestable, Request.Response: Collection {
     let api: API
     let database: Persistence
     let request: Request

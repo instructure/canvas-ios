@@ -44,7 +44,7 @@ class AllCoursesPresenter: AllCoursesPresenterProtocol {
     weak var view: (AllCoursesViewProtocol & ErrorViewController)?
     let api: API
     let database: Persistence
-    var groupOperation: GroupOperation?
+    var groupOperation: OperationSet?
 
     lazy var coursesFetch: FetchedResultsController<Course> = {
         let sort = SortDescriptor(key: "name", ascending: true)
@@ -106,7 +106,7 @@ class AllCoursesPresenter: AllCoursesPresenterProtocol {
         let getColors = GetCustomColors(api: api, database: database)
         getColors.addDependency(getCourses)
 
-        let groupOperation = GroupOperation(operations: [getCourses, getColors])
+        let groupOperation = OperationSet(operations: [getCourses, getColors])
         groupOperation.completionBlock = { [weak self] in
             // Load data from data store once our big group finishes
             self?.fetchData()

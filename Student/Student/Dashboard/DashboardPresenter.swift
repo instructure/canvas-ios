@@ -57,7 +57,7 @@ class DashboardPresenter: DashboardPresenterProtocol {
     weak var view: (DashboardViewProtocol & ErrorViewController)?
     let api: API
     let database: Persistence
-    var groupOperation: GroupOperation?
+    var groupOperation: OperationSet?
 
     lazy var coursesFetch: FetchedResultsController<Course> = {
         let predicate = NSPredicate(format: "isFavorite == YES")
@@ -144,10 +144,10 @@ class DashboardPresenter: DashboardPresenterProtocol {
         let getCourses = GetCourses(api: api, database: database, force: force)
         let getGroups = GetUserGroups(api: api, database: database)
 
-        let group = GroupOperation(operations: [getCourses, getGroups])
+        let group = OperationSet(operations: [getCourses, getGroups])
         getColors.addDependency(group)
 
-        let groupOperation = GroupOperation(operations: [group, getColors])
+        let groupOperation = OperationSet(operations: [group, getColors])
         groupOperation.completionBlock = { [weak self] in
             // Load data from data store once our big group finishes
             self?.fetchData()

@@ -18,7 +18,7 @@ import Foundation
 import XCTest
 @testable import Core
 
-class GroupOperationTest: CoreTestCase {
+class OperationSetTest: CoreTestCase {
     func testItRunsOperations() {
         let coursesRequest = GetCoursesRequest(includeUnpublished: true)
         let groupsRequest = GetGroupsRequest(context: ContextModel.currentUser)
@@ -31,7 +31,7 @@ class GroupOperationTest: CoreTestCase {
 
         let getCourses = GetCourses(api: api, database: db)
         let getGroups = GetUserGroups(api: api, database: db)
-        let grouped = GroupOperation(operations: [getCourses, getGroups])
+        let grouped = OperationSet(operations: [getCourses, getGroups])
         addOperationAndWait(grouped)
 
         let courses: [Course] = db.fetch()
@@ -50,7 +50,7 @@ class GroupOperationTest: CoreTestCase {
         let one = BlockOperation {}
         let two = BlockOperation {}
         let three = BlockOperation {}
-        let group = GroupOperation()
+        let group = OperationSet()
 
         group.addSequence([one, two, three])
 

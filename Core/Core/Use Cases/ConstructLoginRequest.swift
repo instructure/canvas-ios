@@ -16,7 +16,7 @@
 
 import Foundation
 
-class ConstructLoginRequest: GroupOperation {
+class ConstructLoginRequest: OperationSet {
     var request: URLRequest?
     var mobileVerify: APIVerifyClient?
 

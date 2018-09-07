@@ -39,7 +39,7 @@ private class GetPaginatedCourses: PaginatedUseCase<GetCoursesRequest, Course> {
     }
 }
 
-public class GetCourses: GroupOperation {
+public class GetCourses: OperationSet {
     public init(api: API = URLSessionAPI(), database: Persistence, force: Bool = false) {
         let paginated = GetPaginatedCourses(api: api, database: database)
         let ttl = TTLOperation(key: "get-courses", database: database, operation: paginated, force: force)

@@ -16,7 +16,7 @@
 
 import Foundation
 
-public class GroupOperation: AsyncOperation {
+public class OperationSet: AsyncOperation {
     private let internalQueue = OperationQueue()
     private lazy var finishOperation = {
         return BlockOperation { [weak self] in

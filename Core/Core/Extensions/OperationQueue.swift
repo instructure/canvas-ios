@@ -17,7 +17,7 @@
 import Foundation
 
 extension OperationQueue {
-    public func addGroupOperationWithErrorHandling(_ group: GroupOperation, sendErrorsTo view: ErrorViewController?) {
+    public func addGroupOperationWithErrorHandling(_ group: OperationSet, sendErrorsTo view: ErrorViewController?) {
         if let view = view {
             let errorHandler = BlockOperation { [weak view, weak group] in
                 if let error = group?.errors.first {
