@@ -47,7 +47,7 @@ class AllCoursesPresenter: AllCoursesPresenterProtocol {
     var groupOperation: GroupOperation?
 
     lazy var coursesFetch: FetchedResultsController<Course> = {
-        let sort = NSSortDescriptor(key: "name", ascending: true)
+        let sort = SortDescriptor(key: "name", ascending: true)
         let fetcher: FetchedResultsController<Course> = database.fetchedResultsController(predicate: NSPredicate.all, sortDescriptors: [sort], sectionNameKeyPath: nil)
         fetcher.delegate = self
         return fetcher

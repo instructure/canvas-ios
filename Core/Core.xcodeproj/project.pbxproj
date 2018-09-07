@@ -33,6 +33,8 @@
 		3B3467E42137172900F9BC2E /* DepenedencyOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3467E32137172900F9BC2E /* DepenedencyOperation.swift */; };
 		3B412EFB213FA44B0090DE02 /* Realm+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B412EFA213FA44B0090DE02 /* Realm+Fixture.swift */; };
 		3B412F052140808F0090DE02 /* TTL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B412F042140808F0090DE02 /* TTL.swift */; };
+		3B412F092141A80A0090DE02 /* RealmFetchedResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B412F082141A80A0090DE02 /* RealmFetchedResultsController.swift */; };
+		3B412F0B2141A9760090DE02 /* RealmFetchedResultsControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B412F0A2141A9760090DE02 /* RealmFetchedResultsControllerTests.swift */; };
 		3B472271213795AF00BF6FF3 /* RealmPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B47226E213795AE00BF6FF3 /* RealmPersistence.swift */; };
 		3B472274213795E500BF6FF3 /* RealmPersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B472273213795E500BF6FF3 /* RealmPersistenceTests.swift */; };
 		3B4722812137979700BF6FF3 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B47227F2137979700BF6FF3 /* Realm.framework */; };
@@ -193,6 +195,8 @@
 		3B3467E32137172900F9BC2E /* DepenedencyOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepenedencyOperation.swift; sourceTree = "<group>"; };
 		3B412EFA213FA44B0090DE02 /* Realm+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Realm+Fixture.swift"; sourceTree = "<group>"; };
 		3B412F042140808F0090DE02 /* TTL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTL.swift; sourceTree = "<group>"; };
+		3B412F082141A80A0090DE02 /* RealmFetchedResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmFetchedResultsController.swift; sourceTree = "<group>"; };
+		3B412F0A2141A9760090DE02 /* RealmFetchedResultsControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmFetchedResultsControllerTests.swift; sourceTree = "<group>"; };
 		3B47226E213795AE00BF6FF3 /* RealmPersistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmPersistence.swift; sourceTree = "<group>"; };
 		3B472270213795AE00BF6FF3 /* Course.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		3B472273213795E500BF6FF3 /* RealmPersistenceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmPersistenceTests.swift; sourceTree = "<group>"; };
@@ -462,6 +466,7 @@
 			children = (
 				3B47226E213795AE00BF6FF3 /* RealmPersistence.swift */,
 				3B47226F213795AE00BF6FF3 /* Models */,
+				3B412F082141A80A0090DE02 /* RealmFetchedResultsController.swift */,
 			);
 			path = Realm;
 			sourceTree = "<group>";
@@ -709,6 +714,7 @@
 				3B472273213795E500BF6FF3 /* RealmPersistenceTests.swift */,
 				B195DC5A213255C400797FE4 /* Fixtures */,
 				B1EA5AFA212E6E5800DABC5F /* MockDatabase.swift */,
+				3B412F0A2141A9760090DE02 /* RealmFetchedResultsControllerTests.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -973,6 +979,7 @@
 				7851D9B32138264800E76EC3 /* GetCustomColors.swift in Sources */,
 				789C9BC12138516300B37AC4 /* UIColor.swift in Sources */,
 				2C964857211E303E002C3255 /* Router.swift in Sources */,
+				3B412F092141A80A0090DE02 /* RealmFetchedResultsController.swift in Sources */,
 				2C96485E211E3723002C3255 /* AppState.swift in Sources */,
 				B1EA5AEB212E641900DABC5F /* GetCourses.swift in Sources */,
 				3B346755213052C700F9BC2E /* NSError+CoreErrors.swift in Sources */,
@@ -1028,6 +1035,7 @@
 				7D7110CC2139AB310085C2E5 /* URLComponents+parse+Tests.swift in Sources */,
 				3B3467D22135AF5100F9BC2E /* ConstructLoginRequestTests.swift in Sources */,
 				B1EA5AF1212E667000DABC5F /* Fixture.swift in Sources */,
+				3B412F0B2141A9760090DE02 /* RealmFetchedResultsControllerTests.swift in Sources */,
 				B14D555E213056DD0066D275 /* APIOperationTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

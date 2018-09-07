@@ -199,6 +199,24 @@ class RealmPersistenceTests: XCTestCase {
         XCTAssertEqual(models.first!.name, expectedName)
     }
 
+    func testFetchWithMoreThanOneObject() {
+        let a = Course(value: ["id": "1", "name": "a"])
+        let b = Course(value: ["id": "2", "name": "b"])
+
+        try? p.addOrUpdate([a, b])
+
+        let objs = realm.objects(Course.self)
+        XCTAssertEqual(objs.count, 2)
+
+        var models: [Course] = p.fetch()
+
+        XCTAssertEqual(models.count, 2)
+
+        models = p.fetch(predicate: nil, sortDescriptors: nil)
+
+        XCTAssertEqual(models.count, 2)
+    }
+
     func testFetchWithPredicate() {
         let a = Course(value: ["id": "1", "name": "a"])
         let b = Course(value: ["id": "2", "name": "b"])
@@ -228,6 +246,25 @@ class RealmPersistenceTests: XCTestCase {
             XCTAssertEqual(models.first?.name, "c")
             XCTAssertEqual(models.last?.name, "a")
 
+    }
+
+    func testFetchedResultsController() {
+        //  given
+        let a: Course = p.make(["id": "1", "name": "foo"])
+        let _: Course = p.make(["id": "2", "name": "bar"])
+        let c: Course = p.make(["id": "3", "name": "foobar"])
+        let expected = [a, c]
+
+        let pred = NSPredicate(format: "name contains[c] %@", "foo")
+        let sort = [SortDescriptor(key: "name", ascending: true)]
+
+        //  when
+        let frc = p.fetchedResultsController(predicate: pred, sortDescriptors: sort, sectionNameKeyPath: nil) as FetchedResultsController<Course>
+        try! frc.performFetch()
+        let objs = frc.fetchedObjects
+
+        //  then
+        XCTAssertEqual(objs, expected)
     }
 }
 

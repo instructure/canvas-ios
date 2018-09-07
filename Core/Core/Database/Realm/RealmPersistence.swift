@@ -52,8 +52,8 @@ extension RealmPersistence: Persistence {
         return obj
     }
 
-    public func fetchedResultsController<T>(predicate: NSPredicate, sortDescriptors: [NSSortDescriptor]?, sectionNameKeyPath: String?) -> FetchedResultsController<T> {
-        fatalError("\(#function) not implemented")
+    public func fetchedResultsController<T>(predicate: NSPredicate, sortDescriptors: [SortDescriptor]?, sectionNameKeyPath: String?) -> FetchedResultsController<T> {
+        return RealmFetchedResultsController(persistence: self, predicate: predicate, sortDescriptors: sortDescriptors, sectionNameKeyPath: sectionNameKeyPath)
     }
 
     public func fetch<T>(_ predicate: NSPredicate?) -> [T] {
@@ -78,7 +78,7 @@ extension RealmPersistence: Persistence {
             objects = objects.sorted(by: realmDescriptors)
         }
 
-        return Array(objects).compactMap { $0 as? T }
+        return objects.compactMap { $0 as? T }
     }
 
     public func addOrUpdate<T>(_ entity: T) throws {
@@ -170,15 +170,5 @@ extension RealmPersistence: Persistence {
 
     public func refresh() {
         store.refresh()
-    }
-}
-
-public struct SortDescriptor {
-    let key: String
-    let ascending: Bool
-
-    public init(key: String, ascending: Bool = true) {
-        self.key = key
-        self.ascending = ascending
     }
 }

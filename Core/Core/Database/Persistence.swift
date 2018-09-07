@@ -24,7 +24,7 @@ public protocol Persistence {
     func fetch<T>(_ predicate: NSPredicate?) -> [T]
     func fetch<T>(predicate: NSPredicate?, sortDescriptors: [SortDescriptor]?) -> [T]
     func delete<T>(_ entity: T) throws
-    func fetchedResultsController<T>(predicate: NSPredicate, sortDescriptors: [NSSortDescriptor]?, sectionNameKeyPath: String?) -> FetchedResultsController<T>
+    func fetchedResultsController<T>(predicate: NSPredicate, sortDescriptors: [SortDescriptor]?, sectionNameKeyPath: String?) -> FetchedResultsController<T>
     func addOrUpdate<T>(_ entity: T) throws
     func addOrUpdate<T>(_ entities: [T]) throws
     func perform(block: @escaping PersistenceBlockHandler) throws
@@ -37,6 +37,16 @@ public protocol Persistence {
 extension Persistence {
     public func fetch<T>() -> [T] {
         return self.fetch(predicate: nil, sortDescriptors: nil)
+    }
+}
+
+public struct SortDescriptor {
+    let key: String
+    let ascending: Bool
+
+    public init(key: String, ascending: Bool = true) {
+        self.key = key
+        self.ascending = ascending
     }
 }
 

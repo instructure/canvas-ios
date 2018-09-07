@@ -61,7 +61,7 @@ class DashboardPresenter: DashboardPresenterProtocol {
 
     lazy var coursesFetch: FetchedResultsController<Course> = {
         let predicate = NSPredicate(format: "isFavorite == YES")
-        let sort = NSSortDescriptor(key: "name", ascending: true)
+        let sort = SortDescriptor(key: "name", ascending: true)
         let fetcher: FetchedResultsController<Course> = database.fetchedResultsController(predicate: predicate, sortDescriptors: [sort], sectionNameKeyPath: nil)
         fetcher.delegate = self
         return fetcher
@@ -69,7 +69,7 @@ class DashboardPresenter: DashboardPresenterProtocol {
 
     lazy var groupsFetch: FetchedResultsController<Group> = {
         let predicate = NSPredicate(format: "concluded == NO")
-        let sort = NSSortDescriptor(key: "name", ascending: true)
+        let sort = SortDescriptor(key: "name", ascending: true)
         let fetcher: FetchedResultsController<Group> = database.fetchedResultsController(predicate: predicate, sortDescriptors: [sort], sectionNameKeyPath: nil)
         fetcher.delegate = self
         return fetcher

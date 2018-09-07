@@ -16,7 +16,7 @@
 
 import Foundation
 
-public struct FetchedSection {
+public struct FetchedSection: Equatable {
     public let name: String
     public let numberOfObjects: Int
 }
