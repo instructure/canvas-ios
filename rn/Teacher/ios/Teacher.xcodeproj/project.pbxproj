@@ -46,11 +46,18 @@
 		61B537311E786A58000FEABB /* DomainPickerPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B536E31E78599D000FEABB /* DomainPickerPage.swift */; };
 		61BD85FC1EB2933C005A09A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BD85FB1EB2933C005A09A5 /* AppDelegate.swift */; };
 		8C2F55972B1A4A3EBFAEEBBD /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D063D27A1B3640208ABF74D4 /* libz.tbd */; };
-		9FDA15FA213EB76400CC12C7 /* Secrets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FDA15F9213EB76400CC12C7 /* Secrets.framework */; };
-		9FDA15FF213EC04200CC12C7 /* Secrets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FDA15F9213EB76400CC12C7 /* Secrets.framework */; };
+		9FCA66242142CFE000BE0EBB /* SoSeedySwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCA66222142CFDC00BE0EBB /* SoSeedySwift.framework */; };
+		9FCA662D2142CFF400BE0EBB /* BoringSSL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCA66262142CFF100BE0EBB /* BoringSSL.framework */; };
+		9FCA662E2142CFF800BE0EBB /* CgRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCA66272142CFF100BE0EBB /* CgRPC.framework */; };
+		9FCA662F2142CFFD00BE0EBB /* SwiftGRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCA66282142CFF100BE0EBB /* SwiftGRPC.framework */; };
+		9FCA66302142D00500BE0EBB /* SwiftProtobuf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCA66252142CFF100BE0EBB /* SwiftProtobuf.framework */; };
+		9FCA66312142D06500BE0EBB /* Secrets.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FDA15F9213EB76400CC12C7 /* Secrets.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9FCA66322142D06B00BE0EBB /* SoSeedySwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCA66222142CFDC00BE0EBB /* SoSeedySwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9FCA66332142D07400BE0EBB /* SwiftGRPC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCA66282142CFF100BE0EBB /* SwiftGRPC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9FCA66342142D07A00BE0EBB /* BoringSSL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCA66262142CFF100BE0EBB /* BoringSSL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9FCA66352142D08200BE0EBB /* SwiftProtobuf.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCA66252142CFF100BE0EBB /* SwiftProtobuf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9FCA66362142D08900BE0EBB /* CgRPC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCA66272142CFF100BE0EBB /* CgRPC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9FDA1600213EC04200CC12C7 /* Secrets.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FDA15F9213EB76400CC12C7 /* Secrets.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B1279FC42087D1B1008BD7A8 /* SoSeedySwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1279FC32087D1B1008BD7A8 /* SoSeedySwift.framework */; };
-		B1279FC52087D1C2008BD7A8 /* SoSeedySwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1279FC32087D1B1008BD7A8 /* SoSeedySwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DF02A1E31EFC26BE00B17B8D /* InboxPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF02A1E21EFC26BE00B17B8D /* InboxPageTest.swift */; };
 		DF02A2091EFC31C000B17B8D /* InboxPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF02A2081EFC31C000B17B8D /* InboxPage.swift */; };
 		DF02A22F1EFC43A400B17B8D /* TabBarControllerPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF02A22E1EFC43A400B17B8D /* TabBarControllerPage.swift */; };
@@ -104,7 +111,12 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				B1279FC52087D1C2008BD7A8 /* SoSeedySwift.framework in Embed Frameworks */,
+				9FCA66362142D08900BE0EBB /* CgRPC.framework in Embed Frameworks */,
+				9FCA66352142D08200BE0EBB /* SwiftProtobuf.framework in Embed Frameworks */,
+				9FCA66342142D07A00BE0EBB /* BoringSSL.framework in Embed Frameworks */,
+				9FCA66332142D07400BE0EBB /* SwiftGRPC.framework in Embed Frameworks */,
+				9FCA66322142D06B00BE0EBB /* SoSeedySwift.framework in Embed Frameworks */,
+				9FCA66312142D06500BE0EBB /* Secrets.framework in Embed Frameworks */,
 				494BC60B1F954E2900C77257 /* SoGrey.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -229,8 +241,12 @@
 		61BD85FB1EB2933C005A09A5 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Teacher/AppDelegate.swift; sourceTree = "<group>"; };
 		7448D73B0E788B7806B47BFC /* Pods-defaults-Teacher.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Teacher.debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-Teacher/Pods-defaults-Teacher.debug.xcconfig"; sourceTree = "<group>"; };
 		9210A7D2CE7CB864C8337310 /* Pods-defaults-Teacher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Teacher.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-Teacher/Pods-defaults-Teacher.release.xcconfig"; sourceTree = "<group>"; };
+		9FCA66222142CFDC00BE0EBB /* SoSeedySwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoSeedySwift.framework; path = "../../../ios-frameworks/SoSeedySwift.framework"; sourceTree = "<group>"; };
+		9FCA66252142CFF100BE0EBB /* SwiftProtobuf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftProtobuf.framework; path = "../../../ios-frameworks/SwiftGRPC/SwiftProtobuf.framework"; sourceTree = "<group>"; };
+		9FCA66262142CFF100BE0EBB /* BoringSSL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BoringSSL.framework; path = "../../../ios-frameworks/SwiftGRPC/BoringSSL.framework"; sourceTree = "<group>"; };
+		9FCA66272142CFF100BE0EBB /* CgRPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CgRPC.framework; path = "../../../ios-frameworks/SwiftGRPC/CgRPC.framework"; sourceTree = "<group>"; };
+		9FCA66282142CFF100BE0EBB /* SwiftGRPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftGRPC.framework; path = "../../../ios-frameworks/SwiftGRPC/SwiftGRPC.framework"; sourceTree = "<group>"; };
 		9FDA15F9213EB76400CC12C7 /* Secrets.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Secrets.framework; path = "../../../ios-frameworks/Secrets.framework"; sourceTree = "<group>"; };
-		B1279FC32087D1B1008BD7A8 /* SoSeedySwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoSeedySwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B170B0651F58756E00B92700 /* SoLazy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoLazy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D063D27A1B3640208ABF74D4 /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		DF02A1E21EFC26BE00B17B8D /* InboxPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxPageTest.swift; sourceTree = "<group>"; };
@@ -261,12 +277,10 @@
 				2C50EE011E735CB50096592C /* CoreMedia.framework in Frameworks */,
 				2C50EDFF1E735CB10096592C /* CoreText.framework in Frameworks */,
 				2C50EDFD1E735CAC0096592C /* CoreTelephony.framework in Frameworks */,
-				9FDA15FF213EC04200CC12C7 /* Secrets.framework in Frameworks */,
 				2C50EDE11E735CA50096592C /* AssetsLibrary.framework in Frameworks */,
 				4943ECB71E5CEFBD001DC5B5 /* CanvasKit.framework in Frameworks */,
 				4943ECB51E5CEFBD001DC5B5 /* CanvasKeymaster.framework in Frameworks */,
 				8C2F55972B1A4A3EBFAEEBBD /* libz.tbd in Frameworks */,
-				9FDA15FA213EB76400CC12C7 /* Secrets.framework in Frameworks */,
 				F9FDB9351C9FB4F9CF7E0F94 /* Pods_defaults_Teacher.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -280,9 +294,13 @@
 				F99A8E8F1F06C10F0032449B /* QuartzCore.framework in Frameworks */,
 				F99A8E8E1F06C1080032449B /* CoreVideo.framework in Frameworks */,
 				F99A8E8D1F06C1010032449B /* AVFoundation.framework in Frameworks */,
-				B1279FC42087D1B1008BD7A8 /* SoSeedySwift.framework in Frameworks */,
+				9FCA66242142CFE000BE0EBB /* SoSeedySwift.framework in Frameworks */,
+				9FCA662F2142CFFD00BE0EBB /* SwiftGRPC.framework in Frameworks */,
+				9FCA66302142D00500BE0EBB /* SwiftProtobuf.framework in Frameworks */,
+				9FCA662D2142CFF400BE0EBB /* BoringSSL.framework in Frameworks */,
 				F99A8E8C1F06C0FA0032449B /* CoreMedia.framework in Frameworks */,
 				F99A8E8B1F06C0F40032449B /* CoreText.framework in Frameworks */,
+				9FCA662E2142CFF800BE0EBB /* CgRPC.framework in Frameworks */,
 				F99A8E8A1F06C0EC0032449B /* CoreTelephony.framework in Frameworks */,
 				F99A8E671F06C0DA0032449B /* AssetsLibrary.framework in Frameworks */,
 				20A0DB89280A80AFF823848C /* Pods_defaults_common_ui_tests_TeacherUITests.framework in Frameworks */,
@@ -314,6 +332,11 @@
 		2C50EDDF1E735CA50096592C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9FCA66262142CFF100BE0EBB /* BoringSSL.framework */,
+				9FCA66272142CFF100BE0EBB /* CgRPC.framework */,
+				9FCA66282142CFF100BE0EBB /* SwiftGRPC.framework */,
+				9FCA66252142CFF100BE0EBB /* SwiftProtobuf.framework */,
+				9FCA66222142CFDC00BE0EBB /* SoSeedySwift.framework */,
 				9FDA15F9213EB76400CC12C7 /* Secrets.framework */,
 				2C50EE081E735CCB0096592C /* SystemConfiguration.framework */,
 				2C50EE061E735CC60096592C /* QuartzCore.framework */,
@@ -352,7 +375,6 @@
 		4943EC8A1E5CEF93001DC5B5 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
-				B1279FC32087D1B1008BD7A8 /* SoSeedySwift.framework */,
 				494BC60A1F954E1A00C77257 /* SoGrey.framework */,
 				497CA7321F82ACF400501613 /* CanvasCore.framework */,
 				4943ECAB1E5CEFAC001DC5B5 /* CanvasKeymaster.framework */,
@@ -678,13 +700,8 @@
 				"${BUILT_PRODUCTS_DIR}/react-native-image-picker/react_native_image_picker.framework",
 				"${BUILT_PRODUCTS_DIR}/react-native-mail/react_native_mail.framework",
 				"${BUILT_PRODUCTS_DIR}/yoga/yoga.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 				"${PODS_ROOT}/EarlGrey/EarlGrey/EarlGrey.framework",
 				"${BUILT_PRODUCTS_DIR}/fishhook/fishhook.framework",
-				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftGRPC/SwiftGRPC.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftProtobuf/SwiftProtobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -727,13 +744,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_image_picker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_mail.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/yoga.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EarlGrey.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/fishhook.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftGRPC.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftProtobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1025,7 +1037,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/../../../ios-frameworks",
+					"$(PROJECT_DIR)/../../../ios-frameworks/**",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1088,7 +1100,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/../../../ios-frameworks",
+					"$(PROJECT_DIR)/../../../ios-frameworks/**",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1144,7 +1156,10 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = B6333T4PXQ;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/../../../ios-frameworks/**",
+				);
 				INFOPLIST_FILE = TeacherUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1169,7 +1184,10 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = B6333T4PXQ;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/../../../ios-frameworks/**",
+				);
 				INFOPLIST_FILE = TeacherUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

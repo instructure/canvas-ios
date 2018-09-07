@@ -8,6 +8,7 @@
 
 import XCTest
 import EarlGrey
+import SoSeedySwift
 @testable import Student
 
 class StudentTests: XCTestCase {
@@ -35,4 +36,9 @@ class StudentTests: XCTestCase {
 ////        EarlGrey.selectElement(with: grey_text("Courses"))
 ////            .assert(grey_notNil())
 //    }
+
+    func testGrpc_serverIsOnline() {
+        let result = healthCheck()
+        XCTAssertTrue(result.healthy)
+    }
 }

@@ -14,12 +14,6 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
-  - BoringSSL (10.0.6):
-    - BoringSSL/Implementation (= 10.0.6)
-    - BoringSSL/Interface (= 10.0.6)
-  - BoringSSL/Implementation (10.0.6):
-    - BoringSSL/Interface (= 10.0.6)
-  - BoringSSL/Interface (10.0.6)
   - BugsnagReactNative (2.9.1):
     - BugsnagReactNative/Core (= 2.9.1)
     - React
@@ -53,14 +47,6 @@ PODS:
   - GoogleToolboxForMac/Defines (2.1.4)
   - "GoogleToolboxForMac/NSData+zlib (2.1.4)":
     - GoogleToolboxForMac/Defines (= 2.1.4)
-  - gRPC-Core (1.12.0):
-    - gRPC-Core/Implementation (= 1.12.0)
-    - gRPC-Core/Interface (= 1.12.0)
-  - gRPC-Core/Implementation (1.12.0):
-    - BoringSSL (~> 10.0)
-    - gRPC-Core/Interface (= 1.12.0)
-    - nanopb (~> 0.3)
-  - gRPC-Core/Interface (1.12.0)
   - Interactable (0.0.9):
     - React
   - Kingfisher (3.13.1)
@@ -157,11 +143,6 @@ PODS:
     - SDWebImage/Core (= 4.4.1)
   - SDWebImage/Core (4.4.1)
   - SVProgressHUD (2.2.5)
-  - SwiftGRPC (0.5.0):
-    - BoringSSL (~> 10.0)
-    - gRPC-Core (~> 1.12.0)
-    - SwiftProtobuf (~> 1.0.3)
-  - SwiftProtobuf (1.0.3)
   - SwiftSimplify (0.2.0)
   - TBBModal (1.0.2)
   - TPKeyboardAvoiding (1.3.2)
@@ -220,7 +201,6 @@ DEPENDENCIES:
   - RNSound (from `./rn/Teacher/node_modules/react-native-sound`)
   - SDWebImage (~> 4.1)
   - SVProgressHUD (~> 2.0)
-  - SwiftGRPC (from `https://github.com/grpc/grpc-swift.git`)
   - SwiftSimplify
   - TBBModal (~> 1.0)
   - TPKeyboardAvoiding (~> 1.3)
@@ -229,7 +209,6 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetworking
-    - BoringSSL
     - Cartography
     - Crashlytics
     - DeviceKit
@@ -242,7 +221,6 @@ SPEC REPOS:
     - fishhook
     - FXKeychain
     - GoogleToolboxForMac
-    - gRPC-Core
     - Kingfisher
     - Mantle
     - Marshal
@@ -256,7 +234,6 @@ SPEC REPOS:
     - Result
     - SDWebImage
     - SVProgressHUD
-    - SwiftProtobuf
     - SwiftSimplify
     - TBBModal
     - TPKeyboardAvoiding
@@ -297,8 +274,6 @@ EXTERNAL SOURCES:
     :path: "./rn/Teacher/node_modules/react-native-fs"
   RNSound:
     :path: "./rn/Teacher/node_modules/react-native-sound"
-  SwiftGRPC:
-    :git: https://github.com/grpc/grpc-swift.git
   yoga:
     :path: "./rn/Teacher/node_modules/react-native/ReactCommon/yoga"
 
@@ -306,13 +281,9 @@ CHECKOUT OPTIONS:
   Eureka:
     :commit: 8fcc11477411b1ac96339d3d9d0973956ed05151
     :git: https://github.com/xmartlabs/Eureka
-  SwiftGRPC:
-    :commit: b2084686f01625f581d19773cc508b8040375ad6
-    :git: https://github.com/grpc/grpc-swift.git
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
-  BoringSSL: e10f92a27043805c01071fe815a5cd98ae8212e7
   BugsnagReactNative: 0b7626917d3612281d07aea84e5041f123290fee
   BVLinearGradient: 4b3f3bdf1ac1a52a5ef5e65c9585d793a7c3f825
   Cartography: 0538ccb4044acbbda2266335fc58cb4228794d90
@@ -328,7 +299,6 @@ SPEC CHECKSUMS:
   fishhook: ea19933abfe8f2f52c55fd8b6e2718467d3ebc89
   FXKeychain: 2fe54573946ffef634f4e2a2851e6c8f4ea15e76
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
-  gRPC-Core: 9696b220565b283e021cf2722d473a4a74b7622a
   Interactable: b69c171636bec426b3010e0fc3ef59212ce09dd6
   Kingfisher: ed9707a409cc47fddafbcd12a43a9757e3600af5
   Mantle: f03b2b606c3f0cabd80214ad8a2fed6b464a7359
@@ -356,13 +326,11 @@ SPEC CHECKSUMS:
   RNSound: d0818fe2435254fe30540fae48a429c5ffb72e09
   SDWebImage: 47e9b5b925cbce75946c23f0c42dd19464189af4
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
-  SwiftGRPC: f0c79f81e90b1006a83f73f802ba1d01851d5def
-  SwiftProtobuf: 5ccc0e4054e37c75800e5744acb2aa80bb72b39c
   SwiftSimplify: 374ead1c360c6e236539543d6ce5b3abda011080
   TBBModal: 376820c480cac24b262c2e10c0178c67bb288390
   TPKeyboardAvoiding: cb69d5ddbe90ce0170e4bc2db1e5e41d4a3ad9a4
   yoga: 17521bbb0dd54a47c0b3ac43253e78cdac7488e0
 
-PODFILE CHECKSUM: 1bba1b0b5d3b571cc03272de59e73cc23d6f635f
+PODFILE CHECKSUM: af59106ca9fe0b3e14e3d90b98d15c33bd65ac46
 
 COCOAPODS: 1.5.3

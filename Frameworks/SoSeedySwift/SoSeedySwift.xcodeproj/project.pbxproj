@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		89FE55DDB246505CC9530ADE /* Pods_defaults_SoSeedySwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DEFCAB2504D00C252B680F /* Pods_defaults_SoSeedySwift.framework */; };
 		9F7DF819213728CE00966382 /* VCR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7DF818213728CE00966382 /* VCR.swift */; };
+		9FCA661E2142CCC800BE0EBB /* SwiftProtobuf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCA661A2142CCC800BE0EBB /* SwiftProtobuf.framework */; };
+		9FCA661F2142CCC800BE0EBB /* BoringSSL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCA661B2142CCC800BE0EBB /* BoringSSL.framework */; };
+		9FCA66202142CCC800BE0EBB /* CgRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCA661C2142CCC800BE0EBB /* CgRPC.framework */; };
+		9FCA66212142CCC800BE0EBB /* SwiftGRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCA661D2142CCC800BE0EBB /* SwiftGRPC.framework */; };
 		9FDA15F2213EB67200CC12C7 /* Secrets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FDA15F1213EB67200CC12C7 /* Secrets.framework */; };
 		F9B03FAC20D8688B00DF764C /* assignments.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B03F8C20D8688900DF764C /* assignments.grpc.swift */; };
 		F9B03FAD20D8688B00DF764C /* discussions.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B03F8D20D8688900DF764C /* discussions.pb.swift */; };
@@ -64,12 +67,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		04DEFCAB2504D00C252B680F /* Pods_defaults_SoSeedySwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_SoSeedySwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		965B6F817B4FF5E0F9105AAB /* Pods-defaults-SoSeedySwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-SoSeedySwift.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-SoSeedySwift/Pods-defaults-SoSeedySwift.debug.xcconfig"; sourceTree = "<group>"; };
 		9F7DF818213728CE00966382 /* VCR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCR.swift; sourceTree = "<group>"; };
 		9F91463C21397CA6001EEDC5 /* Secrets.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Secrets.framework; path = /work/ios/universal/Secrets.framework; sourceTree = "<absolute>"; };
+		9FCA661A2142CCC800BE0EBB /* SwiftProtobuf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftProtobuf.framework; path = "../../ios-frameworks/SwiftGRPC/SwiftProtobuf.framework"; sourceTree = "<group>"; };
+		9FCA661B2142CCC800BE0EBB /* BoringSSL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BoringSSL.framework; path = "../../ios-frameworks/SwiftGRPC/BoringSSL.framework"; sourceTree = "<group>"; };
+		9FCA661C2142CCC800BE0EBB /* CgRPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CgRPC.framework; path = "../../ios-frameworks/SwiftGRPC/CgRPC.framework"; sourceTree = "<group>"; };
+		9FCA661D2142CCC800BE0EBB /* SwiftGRPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftGRPC.framework; path = "../../ios-frameworks/SwiftGRPC/SwiftGRPC.framework"; sourceTree = "<group>"; };
 		9FDA15F1213EB67200CC12C7 /* Secrets.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Secrets.framework; path = "../../ios-frameworks/Secrets.framework"; sourceTree = "<group>"; };
-		A09DBF17EC444D398BF7D91A /* Pods-defaults-SoSeedySwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-SoSeedySwift.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-SoSeedySwift/Pods-defaults-SoSeedySwift.release.xcconfig"; sourceTree = "<group>"; };
 		F9B03F8C20D8688900DF764C /* assignments.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = assignments.grpc.swift; sourceTree = "<group>"; };
 		F9B03F8D20D8688900DF764C /* discussions.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = discussions.pb.swift; sourceTree = "<group>"; };
 		F9B03F8E20D8688900DF764C /* sections.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sections.grpc.swift; sourceTree = "<group>"; };
@@ -117,23 +121,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FCA661F2142CCC800BE0EBB /* BoringSSL.framework in Frameworks */,
 				9FDA15F2213EB67200CC12C7 /* Secrets.framework in Frameworks */,
-				89FE55DDB246505CC9530ADE /* Pods_defaults_SoSeedySwift.framework in Frameworks */,
+				9FCA66202142CCC800BE0EBB /* CgRPC.framework in Frameworks */,
+				9FCA661E2142CCC800BE0EBB /* SwiftProtobuf.framework in Frameworks */,
+				9FCA66212142CCC800BE0EBB /* SwiftGRPC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3DC1D4A7D7AB42223990F99D /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				965B6F817B4FF5E0F9105AAB /* Pods-defaults-SoSeedySwift.debug.xcconfig */,
-				A09DBF17EC444D398BF7D91A /* Pods-defaults-SoSeedySwift.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		9F91463F21398E41001EEDC5 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,8 +143,11 @@
 		F4F96AB353827FC4D5E38F1E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9FCA661B2142CCC800BE0EBB /* BoringSSL.framework */,
+				9FCA661C2142CCC800BE0EBB /* CgRPC.framework */,
+				9FCA661D2142CCC800BE0EBB /* SwiftGRPC.framework */,
+				9FCA661A2142CCC800BE0EBB /* SwiftProtobuf.framework */,
 				9FDA15F1213EB67200CC12C7 /* Secrets.framework */,
-				04DEFCAB2504D00C252B680F /* Pods_defaults_SoSeedySwift.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -156,7 +157,6 @@
 			children = (
 				F9F700DC207E53F3002EB2BE /* SoSeedySwift */,
 				F9F700DB207E53F3002EB2BE /* Products */,
-				3DC1D4A7D7AB42223990F99D /* Pods */,
 				F4F96AB353827FC4D5E38F1E /* Frameworks */,
 				9F91463F21398E41001EEDC5 /* Recovered References */,
 			);
@@ -243,7 +243,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F9F700E2207E53F3002EB2BE /* Build configuration list for PBXNativeTarget "SoSeedySwift" */;
 			buildPhases = (
-				9DA3BA2F339BC514ED85076B /* [CP] Check Pods Manifest.lock */,
 				F9F700D5207E53F3002EB2BE /* Sources */,
 				F9F700D6207E53F3002EB2BE /* Frameworks */,
 				F9F70126207E555D002EB2BE /* Embed Frameworks */,
@@ -304,27 +303,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		9DA3BA2F339BC514ED85076B /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-defaults-SoSeedySwift-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F9F700D5207E53F3002EB2BE /* Sources */ = {
@@ -487,7 +465,6 @@
 		};
 		F9F700E3207E53F3002EB2BE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 965B6F817B4FF5E0F9105AAB /* Pods-defaults-SoSeedySwift.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ENABLE_MODULES = YES;
@@ -500,7 +477,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/../../ios-frameworks",
+					"$(PROJECT_DIR)/../../ios-frameworks/**",
 				);
 				INFOPLIST_FILE = SoSeedySwift/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -519,7 +496,6 @@
 		};
 		F9F700E4207E53F3002EB2BE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A09DBF17EC444D398BF7D91A /* Pods-defaults-SoSeedySwift.release.xcconfig */;
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ENABLE_MODULES = YES;
@@ -532,7 +508,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/../../ios-frameworks",
+					"$(PROJECT_DIR)/../../ios-frameworks/**",
 				);
 				INFOPLIST_FILE = SoSeedySwift/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
