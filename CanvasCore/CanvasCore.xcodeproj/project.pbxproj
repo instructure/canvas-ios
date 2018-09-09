@@ -517,6 +517,8 @@
 		9FDA15F4213EB6A600CC12C7 /* Secrets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FDA15F3213EB6A600CC12C7 /* Secrets.framework */; };
 		A96EAEEFD11718956BFC2544 /* Pods_defaults_CanvasCoreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C6ED514BCD5F05D551BC00B /* Pods_defaults_CanvasCoreTests.framework */; };
 		B1411D5A1FE825ED00CD4967 /* CoreDataSyncHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1411D591FE825ED00CD4967 /* CoreDataSyncHelper.swift */; };
+		B186F3692144BBDE0026429F /* strip-frameworks.sh in Sources */ = {isa = PBXBuildFile; fileRef = B186F3682144BBDE0026429F /* strip-frameworks.sh */; };
+		B186F36A2144BC230026429F /* strip-frameworks.sh in Resources */ = {isa = PBXBuildFile; fileRef = B186F3682144BBDE0026429F /* strip-frameworks.sh */; };
 		B196F79B206AB60400DE640F /* CoreDataSync.m in Sources */ = {isa = PBXBuildFile; fileRef = B196F79A206AB60400DE640F /* CoreDataSync.m */; };
 		B1BE249720AB13FE00C521C3 /* SafariActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BE249620AB13FE00C521C3 /* SafariActivity.swift */; };
 		B1C3407820D1AD3B00D0554D /* ModuleItemsProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = B1C3407720D1AD3B00D0554D /* ModuleItemsProgress.m */; };
@@ -1226,6 +1228,7 @@
 		9FFBF1B11FBB7687005AC85C /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9FFBF1B21FBB7687005AC85C /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/TimedQuizViewController.strings; sourceTree = "<group>"; };
 		B1411D591FE825ED00CD4967 /* CoreDataSyncHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataSyncHelper.swift; sourceTree = "<group>"; };
+		B186F3682144BBDE0026429F /* strip-frameworks.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "strip-frameworks.sh"; sourceTree = "<group>"; };
 		B196F79A206AB60400DE640F /* CoreDataSync.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataSync.m; sourceTree = "<group>"; };
 		B1BE249620AB13FE00C521C3 /* SafariActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariActivity.swift; sourceTree = "<group>"; };
 		B1C3407720D1AD3B00D0554D /* ModuleItemsProgress.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModuleItemsProgress.m; sourceTree = "<group>"; };
@@ -1367,6 +1370,7 @@
 				49383CF41F849921009C8F8E /* Inbox */,
 				9F544E071FBB766E00BB2D84 /* InfoPlist.strings */,
 				2CAF1B181F72AEDB007225DF /* Info.plist */,
+				B186F3682144BBDE0026429F /* strip-frameworks.sh */,
 				4988D47B1F82DC450006D18C /* Login */,
 				9F544E0C1FBB766E00BB2D84 /* Localizable.strings */,
 				7DF3FFF02118B1C400DF969B /* Localizable.stringsdict */,
@@ -3126,6 +3130,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B186F36A2144BC230026429F /* strip-frameworks.sh in Resources */,
 				49383CF31F8498DA009C8F8E /* CanvasCore.xcassets in Resources */,
 				9F544E051FBB766E00BB2D84 /* InfoPlist.strings in Resources */,
 				7D0640232113BC2700D23D78 /* TitleSubtitleView.xib in Resources */,
@@ -3321,6 +3326,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B186F3692144BBDE0026429F /* strip-frameworks.sh in Sources */,
 				49CE979C1F900D0000121A43 /* UserEnrollment+Collections.swift in Sources */,
 				4961F5591F8FAF2D0093EC86 /* MediaComment.swift in Sources */,
 				4961F5E41F8FB3FC0093EC86 /* RefreshScope.swift in Sources */,
