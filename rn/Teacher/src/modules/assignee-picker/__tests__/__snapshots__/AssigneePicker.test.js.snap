@@ -282,7 +282,7 @@ exports[`render correctly 1`] = `
             }
           >
             <View
-              accessibilityLabel=""
+              accessible={false}
               style={
                 Array [
                   Object {
@@ -302,7 +302,7 @@ exports[`render correctly 1`] = `
               }
             >
               <Text
-                accessible={false}
+                accessible={true}
                 allowFontScaling={true}
                 ellipsizeMode="tail"
                 style={
@@ -486,7 +486,7 @@ exports[`render correctly 1`] = `
             }
           >
             <View
-              accessibilityLabel=""
+              accessible={false}
               style={
                 Array [
                   Object {
@@ -506,7 +506,7 @@ exports[`render correctly 1`] = `
               }
             >
               <Text
-                accessible={false}
+                accessible={true}
                 allowFontScaling={true}
                 ellipsizeMode="tail"
                 style={

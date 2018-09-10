@@ -6,7 +6,7 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
   rightBarButtons={
     Array [
       Object {
-        "accessibilityLabel": "Email Contact",
+        "accessibilityLabel": "Send message",
         "action": [Function],
         "image": Object {
           "testUri": "../../../src/images/mail-small.png",
@@ -215,7 +215,7 @@ exports[`ContextCard renders 1`] = `
   rightBarButtons={
     Array [
       Object {
-        "accessibilityLabel": "Email Contact",
+        "accessibilityLabel": "Send message",
         "action": [Function],
         "image": Object {
           "testUri": "../../../src/images/mail-small.png",
@@ -424,7 +424,7 @@ exports[`ContextCard renders error if an error occured 1`] = `
   rightBarButtons={
     Array [
       Object {
-        "accessibilityLabel": "Email Contact",
+        "accessibilityLabel": "Send message",
         "action": [Function],
         "image": Object {
           "testUri": "../../../src/images/mail-small.png",
@@ -446,7 +446,7 @@ exports[`ContextCard renders for a non student 1`] = `
   rightBarButtons={
     Array [
       Object {
-        "accessibilityLabel": "Email Contact",
+        "accessibilityLabel": "Send message",
         "action": [Function],
         "image": Object {
           "testUri": "../../../src/images/mail-small.png",
@@ -468,7 +468,7 @@ exports[`ContextCard renders for a user that cannot view analytics 1`] = `
   rightBarButtons={
     Array [
       Object {
-        "accessibilityLabel": "Email Contact",
+        "accessibilityLabel": "Send message",
         "action": [Function],
         "image": Object {
           "testUri": "../../../src/images/mail-small.png",
@@ -490,7 +490,7 @@ exports[`ContextCard renders if there is no enrollment 1`] = `
   rightBarButtons={
     Array [
       Object {
-        "accessibilityLabel": "Email Contact",
+        "accessibilityLabel": "Send message",
         "action": [Function],
         "image": Object {
           "testUri": "../../../src/images/mail-small.png",
@@ -699,7 +699,7 @@ exports[`ContextCard renders if there is no section in the enrollment 1`] = `
   rightBarButtons={
     Array [
       Object {
-        "accessibilityLabel": "Email Contact",
+        "accessibilityLabel": "Send message",
         "action": [Function],
         "image": Object {
           "testUri": "../../../src/images/mail-small.png",
@@ -908,7 +908,7 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
   rightBarButtons={
     Array [
       Object {
-        "accessibilityLabel": "Email Contact",
+        "accessibilityLabel": "Send message",
         "action": [Function],
         "image": Object {
           "testUri": "../../../src/images/mail-small.png",
@@ -1117,7 +1117,7 @@ exports[`ContextCard shows the activity indicator when pending 1`] = `
   rightBarButtons={
     Array [
       Object {
-        "accessibilityLabel": "Email Contact",
+        "accessibilityLabel": "Send message",
         "action": [Function],
         "image": Object {
           "testUri": "../../../src/images/mail-small.png",

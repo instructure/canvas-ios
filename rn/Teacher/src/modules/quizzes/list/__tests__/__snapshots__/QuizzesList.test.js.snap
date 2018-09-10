@@ -355,7 +355,7 @@ exports[`QuizzesList renders in correct order 1`] = `
                       20 pts
                     </Text>
                     <Text
-                      accessible={true}
+                      accessible={false}
                       allowFontScaling={true}
                       ellipsizeMode="tail"
                       style={
@@ -688,7 +688,7 @@ exports[`QuizzesList renders in correct order 1`] = `
                       20 pts
                     </Text>
                     <Text
-                      accessible={true}
+                      accessible={false}
                       allowFontScaling={true}
                       ellipsizeMode="tail"
                       style={
@@ -1098,7 +1098,7 @@ exports[`QuizzesList renders quizzes 1`] = `
                       20 pts
                     </Text>
                     <Text
-                      accessible={true}
+                      accessible={false}
                       allowFontScaling={true}
                       ellipsizeMode="tail"
                       style={
@@ -1431,7 +1431,7 @@ exports[`QuizzesList renders quizzes 1`] = `
                       20 pts
                     </Text>
                     <Text
-                      accessible={true}
+                      accessible={false}
                       allowFontScaling={true}
                       ellipsizeMode="tail"
                       style={

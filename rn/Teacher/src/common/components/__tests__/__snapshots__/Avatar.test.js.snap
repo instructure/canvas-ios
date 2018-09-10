@@ -2,7 +2,7 @@
 
 exports[`Avatar renders with border 1`] = `
 <View
-  accessibilityLabel=""
+  accessible={false}
   style={
     Array [
       Object {
@@ -22,7 +22,7 @@ exports[`Avatar renders with border 1`] = `
   }
 >
   <Text
-    accessible={false}
+    accessible={true}
     allowFontScaling={true}
     ellipsizeMode="tail"
     style={
@@ -82,7 +82,7 @@ exports[`Avatar renders with image 1`] = `
 
 exports[`Avatar renders without default canvas avatar 1`] = `
 <View
-  accessibilityLabel=""
+  accessible={false}
   style={
     Array [
       Object {
@@ -102,7 +102,7 @@ exports[`Avatar renders without default canvas avatar 1`] = `
   }
 >
   <Text
-    accessible={false}
+    accessible={true}
     allowFontScaling={true}
     ellipsizeMode="tail"
     style={
@@ -125,7 +125,7 @@ exports[`Avatar renders without default canvas avatar 1`] = `
 
 exports[`Avatar renders without image 1`] = `
 <View
-  accessibilityLabel=""
+  accessible={false}
   style={
     Array [
       Object {
@@ -145,7 +145,7 @@ exports[`Avatar renders without image 1`] = `
   }
 >
   <Text
-    accessible={false}
+    accessible={true}
     allowFontScaling={true}
     ellipsizeMode="tail"
     style={
@@ -168,7 +168,7 @@ exports[`Avatar renders without image 1`] = `
 
 exports[`Avatar renders without image but it has a funky name 1`] = `
 <View
-  accessibilityLabel=""
+  accessible={false}
   style={
     Array [
       Object {
@@ -188,7 +188,7 @@ exports[`Avatar renders without image but it has a funky name 1`] = `
   }
 >
   <Text
-    accessible={false}
+    accessible={true}
     allowFontScaling={true}
     ellipsizeMode="tail"
     style={

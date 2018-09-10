@@ -215,7 +215,7 @@ exports[`render correctly without image url 1`] = `
       }
     >
       <View
-        accessibilityLabel=""
+        accessible={false}
         style={
           Array [
             Object {
@@ -235,7 +235,7 @@ exports[`render correctly without image url 1`] = `
         }
       >
         <Text
-          accessible={false}
+          accessible={true}
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={

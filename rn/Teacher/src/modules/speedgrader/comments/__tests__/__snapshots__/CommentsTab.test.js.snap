@@ -102,8 +102,8 @@ exports[`comments render properly 1`] = `
           </View>
           <View
             accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={undefined}
+            accessibilityLabel="Profile"
+            accessibilityTraits="button"
             accessible={true}
             hasTVPreferredFocus={undefined}
             hitSlop={undefined}
@@ -276,8 +276,8 @@ exports[`comments render properly 1`] = `
         >
           <View
             accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={undefined}
+            accessibilityLabel="Profile"
+            accessibilityTraits="button"
             accessible={true}
             hasTVPreferredFocus={undefined}
             hitSlop={undefined}
@@ -579,8 +579,8 @@ exports[`comments render properly 1`] = `
           </View>
           <View
             accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={undefined}
+            accessibilityLabel="Profile"
+            accessibilityTraits="button"
             accessible={true}
             hasTVPreferredFocus={undefined}
             hitSlop={undefined}
@@ -683,8 +683,8 @@ exports[`comments render properly 1`] = `
         >
           <View
             accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={undefined}
+            accessibilityLabel="Profile"
+            accessibilityTraits="button"
             accessible={true}
             hasTVPreferredFocus={undefined}
             hitSlop={undefined}
@@ -915,8 +915,8 @@ exports[`comments render properly 1`] = `
           </View>
           <View
             accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={undefined}
+            accessibilityLabel="Profile"
+            accessibilityTraits="button"
             accessible={true}
             hasTVPreferredFocus={undefined}
             hitSlop={undefined}
@@ -1023,8 +1023,8 @@ exports[`comments render properly 1`] = `
         >
           <View
             accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={undefined}
+            accessibilityLabel="Profile"
+            accessibilityTraits="button"
             accessible={true}
             hasTVPreferredFocus={undefined}
             hitSlop={undefined}

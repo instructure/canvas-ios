@@ -189,8 +189,8 @@ exports[`SubmissionList loaded 1`] = `
               >
                 <View
                   accessibilityComponentType={undefined}
-                  accessibilityLabel={undefined}
-                  accessibilityTraits={undefined}
+                  accessibilityLabel="Profile"
+                  accessibilityTraits="button"
                   accessible={true}
                   hasTVPreferredFocus={undefined}
                   hitSlop={undefined}
@@ -400,8 +400,8 @@ exports[`SubmissionList loaded 1`] = `
               >
                 <View
                   accessibilityComponentType={undefined}
-                  accessibilityLabel={undefined}
-                  accessibilityTraits={undefined}
+                  accessibilityLabel="Profile"
+                  accessibilityTraits="button"
                   accessible={true}
                   hasTVPreferredFocus={undefined}
                   hitSlop={undefined}
@@ -642,8 +642,8 @@ exports[`SubmissionList loaded 1`] = `
               >
                 <View
                   accessibilityComponentType={undefined}
-                  accessibilityLabel={undefined}
-                  accessibilityTraits={undefined}
+                  accessibilityLabel="Profile"
+                  accessibilityTraits="button"
                   accessible={true}
                   hasTVPreferredFocus={undefined}
                   hitSlop={undefined}
@@ -898,8 +898,8 @@ exports[`SubmissionList loaded 1`] = `
               >
                 <View
                   accessibilityComponentType={undefined}
-                  accessibilityLabel={undefined}
-                  accessibilityTraits={undefined}
+                  accessibilityLabel="Profile"
+                  accessibilityTraits="button"
                   accessible={true}
                   hasTVPreferredFocus={undefined}
                   hitSlop={undefined}
@@ -1439,8 +1439,8 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
               >
                 <View
                   accessibilityComponentType={undefined}
-                  accessibilityLabel={undefined}
-                  accessibilityTraits={undefined}
+                  accessibilityLabel="Profile"
+                  accessibilityTraits="button"
                   accessible={true}
                   hasTVPreferredFocus={undefined}
                   hitSlop={undefined}
@@ -1681,8 +1681,8 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
               >
                 <View
                   accessibilityComponentType={undefined}
-                  accessibilityLabel={undefined}
-                  accessibilityTraits={undefined}
+                  accessibilityLabel="Profile"
+                  accessibilityTraits="button"
                   accessible={true}
                   hasTVPreferredFocus={undefined}
                   hitSlop={undefined}
@@ -1923,8 +1923,8 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
               >
                 <View
                   accessibilityComponentType={undefined}
-                  accessibilityLabel={undefined}
-                  accessibilityTraits={undefined}
+                  accessibilityLabel="Profile"
+                  accessibilityTraits="button"
                   accessible={true}
                   hasTVPreferredFocus={undefined}
                   hitSlop={undefined}
@@ -2299,8 +2299,8 @@ exports[`SubmissionList renders correctly with not_submitted filter 1`] = `
               >
                 <View
                   accessibilityComponentType={undefined}
-                  accessibilityLabel={undefined}
-                  accessibilityTraits={undefined}
+                  accessibilityLabel="Profile"
+                  accessibilityTraits="button"
                   accessible={true}
                   hasTVPreferredFocus={undefined}
                   hitSlop={undefined}
@@ -2644,8 +2644,8 @@ exports[`SubmissionList renders correctly with ungraded filter 1`] = `
               >
                 <View
                   accessibilityComponentType={undefined}
-                  accessibilityLabel={undefined}
-                  accessibilityTraits={undefined}
+                  accessibilityLabel="Profile"
+                  accessibilityTraits="button"
                   accessible={true}
                   hasTVPreferredFocus={undefined}
                   hitSlop={undefined}

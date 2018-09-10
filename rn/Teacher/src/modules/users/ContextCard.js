@@ -152,7 +152,7 @@ export class ContextCard extends Component< ContextCardProps, any> {
         action: this._emailContact,
         image: Images.smallMail,
         testID: 'context-card.email-contact',
-        accessibilityLabel: i18n('Email Contact'),
+        accessibilityLabel: i18n('Send message'),
       }],
       navBarStyle: this.props.navigator.isModal ? undefined : 'dark',
     }

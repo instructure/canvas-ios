@@ -105,6 +105,7 @@ export function Separated (props: Object) {
             color: colors.grey4,
           },
         ]}
+        accessible={false}
       >
         {props.separator}
       </Text>,

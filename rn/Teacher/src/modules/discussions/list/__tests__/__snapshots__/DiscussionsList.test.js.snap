@@ -518,7 +518,7 @@ exports[`DiscussionsList renders discussions 1`] = `
                               2 Replies
                             </Text>
                             <Text
-                              accessible={true}
+                              accessible={false}
                               allowFontScaling={true}
                               ellipsizeMode="tail"
                               style={
@@ -937,7 +937,7 @@ exports[`DiscussionsList renders discussions 1`] = `
                               2 Replies
                             </Text>
                             <Text
-                              accessible={true}
+                              accessible={false}
                               allowFontScaling={true}
                               ellipsizeMode="tail"
                               style={
@@ -1410,7 +1410,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                               2 Replies
                             </Text>
                             <Text
-                              accessible={true}
+                              accessible={false}
                               allowFontScaling={true}
                               ellipsizeMode="tail"
                               style={
@@ -1796,7 +1796,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                               2 Replies
                             </Text>
                             <Text
-                              accessible={true}
+                              accessible={false}
                               allowFontScaling={true}
                               ellipsizeMode="tail"
                               style={
@@ -2302,7 +2302,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
                               2 Replies
                             </Text>
                             <Text
-                              accessible={true}
+                              accessible={false}
                               allowFontScaling={true}
                               ellipsizeMode="tail"
                               style={
@@ -2721,7 +2721,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
                               2 Replies
                             </Text>
                             <Text
-                              accessible={true}
+                              accessible={false}
                               allowFontScaling={true}
                               ellipsizeMode="tail"
                               style={
@@ -3227,7 +3227,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                               2 Replies
                             </Text>
                             <Text
-                              accessible={true}
+                              accessible={false}
                               allowFontScaling={true}
                               ellipsizeMode="tail"
                               style={
@@ -3646,7 +3646,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                               2 Replies
                             </Text>
                             <Text
-                              accessible={true}
+                              accessible={false}
                               allowFontScaling={true}
                               ellipsizeMode="tail"
                               style={
@@ -4118,7 +4118,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                               2 Replies
                             </Text>
                             <Text
-                              accessible={true}
+                              accessible={false}
                               allowFontScaling={true}
                               ellipsizeMode="tail"
                               style={

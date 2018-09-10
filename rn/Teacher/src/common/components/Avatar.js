@@ -26,6 +26,7 @@ import {
 } from 'react-native'
 import colors from '../colors'
 import Images from '../../images'
+import i18n from 'format-message'
 
 type Props = {
   avatarURL?: ?string,
@@ -114,15 +115,20 @@ export default class Avatar extends PureComponent<Props, any> {
           .toUpperCase()
         : ''
       comp = (
-        <View style={[styles.altImage, { height, width, borderRadius }]} accessibilityLabel=''>
-          <Text style={[styles.altImageText, { fontSize }]} accessible={false}>{altText}</Text>
+        <View style={[styles.altImage, { height, width, borderRadius }]} accessible={false}>
+          <Text style={[styles.altImageText, { fontSize }]}>{altText}</Text>
         </View>
       )
     }
 
     if (!this.props.onPress) return comp
     return (
-      <TouchableHighlight underlayColor='transparent' onPress={this.props.onPress}>
+      <TouchableHighlight
+        underlayColor='transparent'
+        onPress={this.props.onPress}
+        accessibilityLabel={i18n('Profile')}
+        accessibilityTraits='button'
+      >
         {comp}
       </TouchableHighlight>
     )
