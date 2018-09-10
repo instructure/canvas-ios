@@ -19,15 +19,17 @@ import RealmSwift
 
 public class RealmFetchedResultsController<ResultType>: FetchedResultsController<ResultType> {
 
-    typealias RealmFRCSections =  [AnyHashable: [RealmSwift.Object]]
+    typealias RealmSections =  [AnyHashable: [ResultType]]
 
     private weak var persistence: RealmPersistence?
-    private var objs: [ResultType]?
     private let predicate: NSPredicate?
     private let sortDescriptors: [SortDescriptor]?
     private let sectionNameKeyPath: String?
-    private var backingSections: RealmFRCSections?
+    private var backingSections: RealmSections?
     private var sectionInfo: [FetchedSection]?
+    private var sortedSectionKeys: [AnyHashable]?
+    private var valuesSortedByKey: [[ResultType]]?
+    private var observationToken: NotificationToken?
 
     init(persistence: RealmPersistence = RealmPersistence(), predicate: NSPredicate? = nil, sortDescriptors: [SortDescriptor]? = nil, sectionNameKeyPath: String? = nil) {
         self.persistence = persistence
@@ -36,58 +38,87 @@ public class RealmFetchedResultsController<ResultType>: FetchedResultsController
         self.sectionNameKeyPath = sectionNameKeyPath
     }
 
+    deinit {
+        observationToken?.invalidate()
+    }
+
     public override var sections: [FetchedSection]? {
         return sectionInfo
     }
 
     public override var fetchedObjects: [ResultType]? {
-        return objs
+        return valuesSortedByKey?.first
     }
 
     public override func performFetch() throws {
-        objs = persistence?.fetch(predicate: predicate, sortDescriptors: sortDescriptors) as [ResultType]?
+        guard let entityToFetch = ResultType.self as? Object.Type else {
+            fatalError("\(#function), \(PersistenceError.wrongEntityType)")
+        }
 
-        sortIntoSections()
+        let realmObjs = persistence?.fetchRealmObjects(type: entityToFetch, predicate: predicate, sortDescriptors: sortDescriptors)
+
+        observeChanges(realmObjs)
+        try sortIntoSections(realmObjs)
         sectionInfo = computeSectionInfos()
     }
 
     public override func object(at indexPath: IndexPath) -> ResultType? {
-        var values: [Object]?
-        if let backingSections = backingSections {
-            let sectionCount = backingSections.keys.count
-            if indexPath.section >= sectionCount {
+        var values: [ResultType]?
+        if let valuesSortedByKey = valuesSortedByKey {
+            if indexPath.section >= valuesSortedByKey.count {
                 return nil
             }
-            let key = Array(backingSections.keys)[indexPath.section]
-            values = backingSections[key]
-        } else {
-            values = objs as? [Object]
+            values = valuesSortedByKey[indexPath.section]
         }
 
         if indexPath.row >= values?.count ?? 0 { return nil }
 
-        return values?[indexPath.row] as? ResultType
+        return values?[indexPath.row]
     }
 
-    private func sortIntoSections() {
-        guard let objs = objs, let sectionNameKeyPath = sectionNameKeyPath else {
-            return
+    private func notifyOfUpdates() {
+        do {
+            try performFetch()
+        } catch {
+            assertionFailure("Error occurred refreshing data after update \(error.localizedDescription)")
         }
-        backingSections = RealmFRCSections()
-        sectionInfo = []
-        objs.lazy.forEach { (obj) in
-            if let o = obj as? Object {
-                if let key = o.value(forKey: sectionNameKeyPath) as? AnyHashable {
-                    setValueInSection(key: key, value: o)
-                } else {
-                    //  collect nil keys into an empty string group
-                    setValueInSection(key: "", value: o)
+        self.delegate?.controllerDidChangeContent(self)
+    }
+
+    private func observeChanges(_ realmObjects: Results<Object>?) {
+        observationToken?.invalidate()
+        observationToken = realmObjects?.observe({ [weak self] (changes: RealmCollectionChange) in
+            switch changes {
+            case .initial: break
+            case .update:
+                self?.notifyOfUpdates()
+            case .error(let error):
+                assertionFailure("\(#function) \(error.localizedDescription)")
+            }
+        })
+    }
+
+    private func sortIntoSections(_ realmObjs: Results<Object>?) throws {
+        guard let objs = realmObjs else { return }
+        let sectionName = sectionNameKeyPath ?? ""
+        backingSections = RealmSections()
+        try objs.lazy.forEach { (obj) in
+            if let o = obj as? ResultType {
+                var key: AnyHashable = ""
+                if obj.responds(to: Selector(sectionName)), let hashableKey = obj.value(forKey: sectionName) as? AnyHashable {
+                    key = hashableKey
+                } else if let name = sectionNameKeyPath, !name.isEmpty {
+                    //  only throw this assertion if a sectionNameKeyPath was passed in
+                    throw PersistenceError.invalidSectionNameKeyPath
                 }
+                setValueInSection(key: key, value: o)
             }
         }
+
+        valuesSortedByKey = backingSections?.lazy.sorted { frcSorter($0.key.description, $1.key.description) }.map { $0.value }
     }
 
-    private func setValueInSection(key: AnyHashable, value: RealmSwift.Object) {
+    private func setValueInSection(key: AnyHashable, value: ResultType) {
         if var arr = backingSections?[key] {
             arr.append(value)
             backingSections?[key] = arr
@@ -98,6 +129,14 @@ public class RealmFetchedResultsController<ResultType>: FetchedResultsController
 
     private func computeSectionInfos() -> [FetchedSection] {
         guard let backingSections = backingSections else { return [] }
-        return backingSections.keys.map { FetchedSection(name: $0.description, numberOfObjects: backingSections[$0]?.count ?? 0) }
+        let sections = backingSections.keys.map { FetchedSection(name: $0.description, numberOfObjects: backingSections[$0]?.count ?? 0) }
+        return sections.sorted { frcSorter($0.name, $1.name) }
+    }
+
+    private func frcSorter(_ a: String, _ b: String) -> Bool {
+        //  sorting in this manner puts the empty string sections at the bottom instead of the top
+        if a.isEmpty { return false }
+        if b.isEmpty { return true }
+        return a < b
     }
 }

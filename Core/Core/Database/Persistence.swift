@@ -20,8 +20,6 @@ public typealias PersistenceBlockHandler = (Persistence) throws -> Void
 
 public protocol Persistence {
     func insert<T>() -> T
-    func fetch<T>() -> [T]
-    func fetch<T>(_ predicate: NSPredicate?) -> [T]
     func fetch<T>(predicate: NSPredicate?, sortDescriptors: [SortDescriptor]?) -> [T]
     func delete<T>(_ entity: T) throws
     func fetchedResultsController<T>(predicate: NSPredicate, sortDescriptors: [SortDescriptor]?, sectionNameKeyPath: String?) -> FetchedResultsController<T>
@@ -38,6 +36,11 @@ extension Persistence {
     public func fetch<T>() -> [T] {
         return self.fetch(predicate: nil, sortDescriptors: nil)
     }
+
+    func fetch<T>(_ predicate: NSPredicate?) -> [T] {
+        return self.fetch(predicate: predicate, sortDescriptors: nil)
+    }
+
 }
 
 public struct SortDescriptor {
@@ -54,6 +57,7 @@ public enum PersistenceError: Error, CustomStringConvertible {
     case wrongEntityType
     case uninitializedPersistence
     case failureToInit
+    case invalidSectionNameKeyPath
 
     public var description: String {
         switch self {
@@ -63,6 +67,8 @@ public enum PersistenceError: Error, CustomStringConvertible {
             return "Persistence uninitialized"
         case .failureToInit:
             return "Failed to init Persistence"
+        case .invalidSectionNameKeyPath:
+            return "Invalid section name key path"
         }
     }
 }

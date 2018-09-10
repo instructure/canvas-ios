@@ -56,16 +56,8 @@ extension RealmPersistence: Persistence {
         return RealmFetchedResultsController(persistence: self, predicate: predicate, sortDescriptors: sortDescriptors, sectionNameKeyPath: sectionNameKeyPath)
     }
 
-    public func fetch<T>(_ predicate: NSPredicate?) -> [T] {
-        return fetch(predicate: predicate, sortDescriptors: nil)
-    }
-
-    public func fetch<T>(predicate: NSPredicate?, sortDescriptors: [SortDescriptor]?) -> [T] {
-        guard let entityToFetch = T.self as? Object.Type else {
-            fatalError("\(#function), \(PersistenceError.wrongEntityType) type: \(T.self)")
-        }
-
-        var objects = store.objects(entityToFetch)
+    func fetchRealmObjects(type: Object.Type, predicate: NSPredicate?, sortDescriptors: [SortDescriptor]?) -> Results<Object> {
+        var objects = store.objects(type)
 
         if let predicate = predicate {
             objects = objects.filter(predicate)
@@ -78,7 +70,16 @@ extension RealmPersistence: Persistence {
             objects = objects.sorted(by: realmDescriptors)
         }
 
-        return objects.compactMap { $0 as? T }
+        return objects
+    }
+
+    public func fetch<T>(predicate: NSPredicate?, sortDescriptors: [SortDescriptor]?) -> [T] {
+        guard let entityToFetch = T.self as? Object.Type else {
+            fatalError("\(#function), \(PersistenceError.wrongEntityType) type: \(T.self)")
+        }
+
+        let result = fetchRealmObjects(type: entityToFetch, predicate: predicate, sortDescriptors: sortDescriptors)
+        return result.compactMap { $0 as? T }
     }
 
     public func addOrUpdate<T>(_ entity: T) throws {

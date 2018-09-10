@@ -109,7 +109,9 @@ class AllCoursesPresenter: AllCoursesPresenterProtocol {
         let groupOperation = OperationSet(operations: [getCourses, getColors])
         groupOperation.completionBlock = { [weak self] in
             // Load data from data store once our big group finishes
-            self?.fetchData()
+            DispatchQueue.main.async {
+                self?.fetchData()
+            }
         }
         self.groupOperation = groupOperation
 
@@ -119,9 +121,9 @@ class AllCoursesPresenter: AllCoursesPresenterProtocol {
     func fetchData() {
         let courses = coursesFetch.fetchedObjects ?? []
         let vm = transformToViewModel(current: courses, past: courses)
-        DispatchQueue.main.async {
-            self.view?.updateDisplay(vm)
-        }
+
+        self.view?.updateDisplay(vm)
+
     }
 
     func transformToViewModel(current: [Course], past: [Course]) -> AllCoursesViewModel {

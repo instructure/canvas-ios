@@ -15,27 +15,13 @@
 //
 
 import Foundation
-import RealmSwift
-import Core
+@testable import Core
 
-extension Fixture where Self: RealmSwift.Object {
-    static func make(_ template: Template = [:]) -> Self {
-        var t = self.template
-        for (key, _) in template {
-            t[key] = template[key]
-        }
-        let fixture: Self = Self.init()
-        for (key, value) in t {
-            fixture.setValue(value, forKey: key)
-        }
-        return fixture
-    }
-}
-
-extension Persistence {
-    func make<T>(_ template: Template = [:]) -> T where T: Fixture, T: RealmSwift.Object {
-        let fixture: T = T.make(template)
-        try! addOrUpdate(fixture)
-        return fixture
+extension TTL: Fixture {
+    static var template: Template {
+        return [
+            "key": "a",
+            "lastRefresh": Date(),
+        ]
     }
 }

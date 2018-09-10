@@ -21,6 +21,9 @@ class RealmFetchedResultsControllerTests: XCTestCase {
 
     var frc: FetchedResultsController<Course>!
     var p: RealmPersistence!
+    var resultsDidChange = false
+    var expectation = XCTestExpectation(description: "delegate was called")
+
     override func setUp() {
         super.setUp()
         let config = RealmPersistence.testingConfig(inMemoryIdentifier: self.name)
@@ -103,8 +106,6 @@ class RealmFetchedResultsControllerTests: XCTestCase {
         try! frc.performFetch()
         let sections = frc.sections!
 
-        let objs = frc.fetchedObjects
-        XCTAssertEqual(objs!.count, 5)
         XCTAssertEqual(sections.count, 3)
         XCTAssertEqual(sections, expected)
     }
@@ -114,12 +115,12 @@ class RealmFetchedResultsControllerTests: XCTestCase {
         let _: Course = p.make(["id": "2", "name": "b", "color": "blue"])
         let _: Course = p.make(["id": "3", "name": "c", "color": "red"])
         let _: Course = p.make(["id": "4", "name": "d", "color": "blue"])
-        let _: Course = p.make(["id": "5", "name": "e"])
+        let e: Course = p.make(["id": "5", "name": "e"])
 
         let expected: [FetchedSection] = [
             FetchedSection(name: "blue", numberOfObjects: 2),
-            FetchedSection(name: "", numberOfObjects: 1),
             FetchedSection(name: "red", numberOfObjects: 2),
+            FetchedSection(name: "", numberOfObjects: 1),
             ]
 
         let sort = SortDescriptor(key: "name", ascending: false)
@@ -127,10 +128,24 @@ class RealmFetchedResultsControllerTests: XCTestCase {
         try! frc.performFetch()
         let sections = frc.sections!
 
-        let objs = frc.fetchedObjects
-        XCTAssertEqual(objs!.count, 5)
         XCTAssertEqual(sections.count, 3)
         XCTAssertEqual(sections, expected)
+
+        let objectAtIndex = frc.object(at: IndexPath(row: 0, section: 2) )
+        XCTAssertEqual(objectAtIndex, e)
+    }
+
+    func testSort2() {
+        let vals = ["z", "n", "", "a"]
+        let r = vals.sorted { (a, b) -> Bool in
+            print("a: \(a)")
+            print("b: \(b)")
+            print(".. \(a < b) ..")
+            if (a.isEmpty) { return false }
+            if (b.isEmpty) { return true }
+            return a < b
+        }
+        XCTAssertEqual(r, ["a", "n", "z", ""])
     }
 
     func testObjectAtKeyPathWithSections() {
@@ -138,24 +153,136 @@ class RealmFetchedResultsControllerTests: XCTestCase {
         let _: Course = p.make(["id": "2", "name": "b", "color": "blue"])
         let c: Course = p.make(["id": "3", "name": "c", "color": "red"])
         let _: Course = p.make(["id": "4", "name": "d", "color": "blue"])
-        let _: Course = p.make(["id": "5", "name": "e"])
+        let e: Course = p.make(["id": "5", "name": "e"])
 
         let expected: [FetchedSection] = [
             FetchedSection(name: "blue", numberOfObjects: 2),
-            FetchedSection(name: "", numberOfObjects: 1),
             FetchedSection(name: "red", numberOfObjects: 2),
+            FetchedSection(name: "", numberOfObjects: 1),
             ]
 
         let sort = SortDescriptor(key: "name", ascending: true)
         frc = RealmFetchedResultsController<Course>(persistence: p, sortDescriptors: [sort], sectionNameKeyPath: "color")
         try! frc.performFetch()
         let sections = frc.sections!
-        let objs = frc.fetchedObjects
-        XCTAssertEqual(objs!.count, 5)
+
         XCTAssertEqual(sections.count, 3)
         XCTAssertEqual(sections, expected)
 
-        let obj = frc.object(at: IndexPath(row: 1, section: 2))
-        XCTAssertEqual(obj, c)
+        var objectAtIndex = frc.object(at: IndexPath(row: 0, section: 2))
+        XCTAssertEqual(objectAtIndex, e)
+
+        objectAtIndex = frc.object(at: IndexPath(row: 1, section: 1))
+        XCTAssertEqual(objectAtIndex, c)
     }
+
+    func testObservingValueChangesInSections() {
+        let a: Course = p.make(["id": "1", "name": "a", "color": "red"])
+        let b: Course = p.make(["id": "2", "name": "b", "color": "blue"])
+
+        var expected: [FetchedSection] = [
+            FetchedSection(name: "blue", numberOfObjects: 1),
+            FetchedSection(name: "red", numberOfObjects: 1),
+            ]
+
+        let sort = SortDescriptor(key: "name", ascending: true)
+        frc = RealmFetchedResultsController<Course>(persistence: p, sortDescriptors: [sort], sectionNameKeyPath: "color")
+        try! frc.performFetch()
+        var sections = frc.sections!
+
+        XCTAssertEqual(sections.count, 2)
+        XCTAssertEqual(sections, expected)
+
+        let obj = frc.object(at: IndexPath(row: 0, section: 1))
+        XCTAssertEqual(obj, a)
+
+        frc.delegate = self
+
+        try! p.perform { (_) in
+            b.color = "red"
+        }
+
+        wait(for: [expectation], timeout: 0.1)
+        XCTAssertTrue(resultsDidChange)
+
+        sections = frc.sections!
+
+        expected = [
+            FetchedSection(name: "red", numberOfObjects: 2),
+            ]
+
+        XCTAssertEqual(sections.count, 1)
+        XCTAssertEqual(sections, expected)
+    }
+
+    func testSortingOfSectionsWithDates() {
+
+        let mockNow = Date(timeIntervalSince1970: 1536597712.04575)
+        let mock100DaysFromMockNow = Calendar.current.date(byAdding: .day, value: 100, to: Date(timeIntervalSince1970: 1545241312.0443602))
+        let _: TTL = p.make(["key": "a", "lastRefresh": mockNow])
+        let _: TTL = p.make(["key": "b", "lastRefresh": mock100DaysFromMockNow])
+
+        let expected: [FetchedSection] = [
+            FetchedSection(name: "2018-09-10 16:41:52 +0000", numberOfObjects: 1),
+            FetchedSection(name: "2019-03-29 16:41:52 +0000", numberOfObjects: 1),
+            ]
+
+        let sort = SortDescriptor(key: "key", ascending: true)
+        let frc: FetchedResultsController<TTL> = RealmFetchedResultsController<TTL>(persistence: p, sortDescriptors: [sort], sectionNameKeyPath: "lastRefresh")
+        try! frc.performFetch()
+        let sections = frc.sections!
+
+        XCTAssertEqual(sections.count, 2)
+        XCTAssertEqual(sections, expected)
+    }
+
+    func testAssertionWhenNoKeyPathExists() {
+        let _: Course = p.make(["id": "1", "name": "a", "color": "red"])
+        let _: Course = p.make(["id": "2", "name": "b", "color": "blue"])
+
+        let sort = SortDescriptor(key: "name", ascending: true)
+        frc = RealmFetchedResultsController<Course>(persistence: p, sortDescriptors: [sort], sectionNameKeyPath: "fooooobar")
+        do {
+            try frc.performFetch()
+            XCTFail("should have thrown an error")
+        } catch {
+            XCTAssertEqual(error as! PersistenceError, PersistenceError.invalidSectionNameKeyPath)
+        }
+    }
+
+    func testObservingValueChangesInRowsOnBackgroundThread() {
+        let a: Course = p.make(["id": "1", "name": "a", "color": "red"])
+        let b: Course = Course.make(["id": "2", "name": "b", "color": "blue"])
+
+        frc = RealmFetchedResultsController<Course>(persistence: p, sortDescriptors: nil, sectionNameKeyPath: nil)
+        try! frc.performFetch()
+
+        XCTAssertEqual(frc.fetchedObjects!.count, 1)
+        XCTAssertEqual(frc.fetchedObjects, [a])
+
+        let obj = frc.object(at: IndexPath(row: 0, section: 0))
+        XCTAssertEqual(obj, a)
+
+        frc.delegate = self
+
+        RealmPersistence.performBackgroundTask { (pp) in
+            try pp.addOrUpdate(b)
+        }
+
+        wait(for: [expectation], timeout: 0.1)
+        XCTAssertTrue(resultsDidChange)
+
+        let objs = frc.fetchedObjects!
+
+        XCTAssertEqual(objs.count, 2)
+        XCTAssertEqual(objs, [a, b])
+    }
+}
+
+extension RealmFetchedResultsControllerTests: FetchedResultsControllerDelegate {
+    func controllerDidChangeContent<T>(_ controller: FetchedResultsController<T>) {
+        resultsDidChange = true
+        expectation.fulfill()
+    }
+
 }

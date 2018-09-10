@@ -150,7 +150,9 @@ class DashboardPresenter: DashboardPresenterProtocol {
         let groupOperation = OperationSet(operations: [group, getColors])
         groupOperation.completionBlock = { [weak self] in
             // Load data from data store once our big group finishes
-            self?.fetchData()
+            DispatchQueue.main.async { [weak self] in
+                self?.fetchData()
+            }
         }
         self.groupOperation = groupOperation
 
@@ -162,9 +164,7 @@ class DashboardPresenter: DashboardPresenterProtocol {
         let groups = groupsFetch.fetchedObjects ?? []
 
         let vm = transformToViewModel(courses: courses, groups: groups)
-        DispatchQueue.main.async { [weak self] in
-            self?.view?.updateDisplay(vm)
-        }
+        view?.updateDisplay(vm)
     }
 
     func transformToViewModel(courses: [Course], groups: [Group]) -> DashboardViewModel {

@@ -35,6 +35,7 @@
 		3B412F052140808F0090DE02 /* TTL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B412F042140808F0090DE02 /* TTL.swift */; };
 		3B412F092141A80A0090DE02 /* RealmFetchedResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B412F082141A80A0090DE02 /* RealmFetchedResultsController.swift */; };
 		3B412F0B2141A9760090DE02 /* RealmFetchedResultsControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B412F0A2141A9760090DE02 /* RealmFetchedResultsControllerTests.swift */; };
+		3B412F0D2146D4A10090DE02 /* TTL+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B412F0C2146D4A10090DE02 /* TTL+Fixture.swift */; };
 		3B472271213795AF00BF6FF3 /* RealmPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B47226E213795AE00BF6FF3 /* RealmPersistence.swift */; };
 		3B472274213795E500BF6FF3 /* RealmPersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B472273213795E500BF6FF3 /* RealmPersistenceTests.swift */; };
 		3B4722812137979700BF6FF3 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B47227F2137979700BF6FF3 /* Realm.framework */; };
@@ -197,6 +198,7 @@
 		3B412F042140808F0090DE02 /* TTL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTL.swift; sourceTree = "<group>"; };
 		3B412F082141A80A0090DE02 /* RealmFetchedResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmFetchedResultsController.swift; sourceTree = "<group>"; };
 		3B412F0A2141A9760090DE02 /* RealmFetchedResultsControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmFetchedResultsControllerTests.swift; sourceTree = "<group>"; };
+		3B412F0C2146D4A10090DE02 /* TTL+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TTL+Fixture.swift"; sourceTree = "<group>"; };
 		3B47226E213795AE00BF6FF3 /* RealmPersistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmPersistence.swift; sourceTree = "<group>"; };
 		3B472270213795AE00BF6FF3 /* Course.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		3B472273213795E500BF6FF3 /* RealmPersistenceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmPersistenceTests.swift; sourceTree = "<group>"; };
@@ -659,6 +661,7 @@
 				B195DC5B213255CF00797FE4 /* Course+Fixture.swift */,
 				B195DC5D2132561700797FE4 /* Group+Fixture.swift */,
 				3B412EFA213FA44B0090DE02 /* Realm+Fixture.swift */,
+				3B412F0C2146D4A10090DE02 /* TTL+Fixture.swift */,
 			);
 			path = Fixtures;
 			sourceTree = "<group>";
@@ -1020,6 +1023,7 @@
 				3B3467CB21349FE300F9BC2E /* GetMobileVerifyTests.swift in Sources */,
 				7D80AC25212C61F100C40ECE /* APIAccount+Requestable+Tests.swift in Sources */,
 				7D80AC2D212C801600C40ECE /* APIOAuth+Requestable+Tests.swift in Sources */,
+				3B412F0D2146D4A10090DE02 /* TTL+Fixture.swift in Sources */,
 				B195DC5E2132561700797FE4 /* Group+Fixture.swift in Sources */,
 				B1EA5AF3212E668900DABC5F /* APICourse+Fixture.swift in Sources */,
 				DFE1FF20212F5E41003F27AA /* Keychain.swift in Sources */,
