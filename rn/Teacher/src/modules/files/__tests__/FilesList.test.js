@@ -38,6 +38,8 @@ jest
     OS: 'ios',
     Version: '11.2',
   }))
+  .mock('../../../common/TypeAheadSearch', () => 'TypeAheadSearch')
+  .mock('../../../common/components/ListEmptyComponent', () => 'ListEmptyComponent')
 
 describe('FilesList', () => {
   it('should render', () => {
@@ -402,6 +404,188 @@ describe('FilesList', () => {
     const image = shallow(row.prop('renderImage')())
     const icon = image.find('AccessIcon')
     expect(icon).toMatchSnapshot()
+  })
+
+  describe('searching', () => {
+    it('should show search results', async () => {
+      const props = {
+        data: [],
+        navigator: template.navigator(),
+      }
+      const file = template.file({
+        display_name: 'Search Result 1',
+      })
+      const view = shallow(<FilesList {...props} />)
+      const searchBar = shallow(view.find('FlatList').prop('ListHeaderComponent')).find('TypeAheadSearch')
+      searchBar.simulate('RequestFinished', [file])
+      await view.update()
+      const result = view.state().searchResults[0]
+      const item = shallow(view.find('FlatList').prop('renderItem')({ item: result, index: 0 }))
+      const row = item.find('Row')
+      expect(row.prop('title')).toEqual('Search Result 1')
+    })
+
+    it('should show paginated search results', async () => {
+      const props = {
+        data: [],
+        navigator: template.navigator(),
+      }
+      const page1 = template.file({
+        display_name: 'Search Result 1',
+      })
+      const page2 = template.file({
+        display_name: 'Search Result 2',
+      })
+      const view = shallow(<FilesList {...props} />)
+      const searchBar = shallow(view.find('FlatList').prop('ListHeaderComponent')).find('TypeAheadSearch')
+      searchBar.simulate('RequestFinished', [page1])
+      searchBar.simulate('NextRequestFinished', [page2])
+      await view.update()
+
+      const result1 = view.state().searchResults[0]
+      const item1 = shallow(view.find('FlatList').prop('renderItem')({ item: result1, index: 0 }))
+      const row1 = item1.find('Row')
+      expect(row1.prop('title')).toEqual('Search Result 1')
+
+      const result2 = view.state().searchResults[1]
+      const item2 = shallow(view.find('FlatList').prop('renderItem')({ item: result2, index: 0 }))
+      const row2 = item2.find('Row')
+      expect(row2.prop('title')).toEqual('Search Result 2')
+    })
+
+    it('should alert errors', () => {
+      Alert.alert = jest.fn()
+      const props = {
+        data: [],
+        navigator: template.navigator(),
+      }
+      const view = shallow(<FilesList {...props} />)
+      const searchBar = shallow(view.find('FlatList').prop('ListHeaderComponent')).find('TypeAheadSearch')
+      searchBar.simulate('RequestFinished', null, 'Network Error')
+      expect(Alert.alert).toHaveBeenCalled()
+    })
+
+    it('uses the correct search endpoint for users', () => {
+      const props = {
+        data: [],
+        navigator: template.navigator(),
+        context: 'users',
+        contextID: '1',
+      }
+      const view = shallow(<FilesList {...props} />)
+      const searchBar = shallow(view.find('FlatList').prop('ListHeaderComponent')).find('TypeAheadSearch')
+      expect(searchBar.prop('endpoint')).toEqual('/users/1/files')
+    })
+
+    it('uses the correct search endpoint for courses', () => {
+      const props = {
+        data: [],
+        navigator: template.navigator(),
+        context: 'courses',
+        contextID: '2',
+      }
+      const view = shallow(<FilesList {...props} />)
+      const searchBar = shallow(view.find('FlatList').prop('ListHeaderComponent')).find('TypeAheadSearch')
+      expect(searchBar.prop('endpoint')).toEqual('/courses/2/files')
+    })
+
+    it('searches next page onEndReached', () => {
+      const spy = jest.fn()
+      const props = {
+        data: [],
+        navigator: template.navigator(),
+      }
+      const view = shallow(<FilesList {...props} />)
+      const searchBar = shallow(view.find('FlatList').prop('ListHeaderComponent')).find('TypeAheadSearch')
+      searchBar.getElement().ref({ next: spy })
+      searchBar.simulate('ChangeText', 'abc')
+      view.find('FlatList').simulate('EndReached')
+      expect(spy).toHaveBeenCalled()
+    })
+
+    it('shows empty message when no search results found', async () => {
+      const props = {
+        data: [],
+        navigator: template.navigator(),
+      }
+      const view = shallow(<FilesList {...props} />)
+      const searchBar = shallow(view.find('FlatList').prop('ListHeaderComponent')).find('TypeAheadSearch')
+      searchBar.simulate('ChangeText', 'abc')
+      searchBar.simulate('RequestFinished', [])
+      await view.update()
+      const empty = shallow(view.find('FlatList').prop('ListEmptyComponent'))
+      expect(empty.prop('title')).toEqual('No Results Found')
+    })
+
+    it('shows message when query too small', async () => {
+      const props = {
+        data: [],
+        navigator: template.navigator(),
+      }
+      const view = shallow(<FilesList {...props} />)
+      const searchBar = shallow(view.find('FlatList').prop('ListHeaderComponent')).find('TypeAheadSearch')
+      searchBar.simulate('ChangeText', 'ab')
+      await view.update()
+      const empty = view.find('FlatList').prop('ListEmptyComponent')
+      expect(empty).toBeNull()
+      const header = shallow(view.find('FlatList').prop('ListHeaderComponent'))
+      const message = header.find('[testID="search-message"]')
+      expect(message.prop('children')).toEqual('Enter a search term with three or more characters.')
+    })
+
+    it('forms the correct search parameters', () => {
+      const props = {
+        data: [],
+        navigator: template.navigator(),
+      }
+      const view = shallow(<FilesList {...props} />)
+      const searchBar = shallow(view.find('FlatList').prop('ListHeaderComponent')).find('TypeAheadSearch')
+      const params = searchBar.prop('parameters')('abc')
+      expect(params).toEqual({ search_term: 'abc' })
+    })
+
+    it('shows search pending message', async () => {
+      const props = {
+        data: [],
+        navigator: template.navigator(),
+      }
+      const view = shallow(<FilesList {...props} />)
+      const searchBar = shallow(view.find('FlatList').prop('ListHeaderComponent')).find('TypeAheadSearch')
+      searchBar.simulate('ChangeText', 'abc')
+      await view.update()
+      const empty = shallow(view.find('FlatList').prop('ListEmptyComponent'))
+      expect(empty.prop('title')).toEqual('Searching...')
+    })
+
+    it('selects search result', async () => {
+      const props = {
+        context: 'users',
+        contextID: 'self',
+        data: [
+          template.file({
+            id: '1',
+            type: 'file',
+            key: 'file-1',
+            mime_class: 'video',
+          }),
+        ],
+        navigator: template.navigator(),
+      }
+      const searchResult = template.file({
+        id: '2',
+        display_name: 'Search Result 1',
+      })
+      const view = shallow(<FilesList {...props} />)
+      const searchBar = shallow(view.find('FlatList').prop('ListHeaderComponent')).find('TypeAheadSearch')
+      searchBar.simulate('ChangeText', 'abc')
+      searchBar.simulate('RequestFinished', [searchResult])
+      await view.update()
+      const result = view.state().searchResults[0]
+      const item = shallow(view.find('FlatList').prop('renderItem')({ item: result, index: 0 }))
+      const row = item.find('Row')
+      row.simulate('Press', 0)
+      expect(props.navigator.show).toHaveBeenCalledWith('/users/self/files/2', expect.anything(), expect.anything())
+    })
   })
 
   describe('map state to props', () => {

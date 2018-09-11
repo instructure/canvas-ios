@@ -42,11 +42,13 @@ import images from '../../images'
 import bytes, { unitFor } from '../../utils/locale-bytes'
 import DropView from '../../common/components/DropView'
 import SavingBanner from '../../common/components/SavingBanner'
+import TypeAheadSearch from '../../common/TypeAheadSearch'
 import AttachmentPicker from '../attachments/AttachmentPicker'
 import uuid from 'uuid/v1'
 import { wait } from '../../utils/async-wait'
 import { isTeacher } from '../app'
 import color from '../../common/colors'
+import { Text } from '../../common/text'
 import { isRegularDisplayMode } from '../../routing/utils'
 import type { TraitCollection } from '../../routing/Navigator'
 import { logEvent } from '@common/CanvasAnalytics'
@@ -90,7 +92,12 @@ type State = {
   uploadMessage: ?string,
   selectedRowID: ?string,
   isRegularScreenDisplayMode: ?boolean,
+  searchResults: Array<File>,
+  searchQuery: string,
+  searchPending: boolean,
 }
+
+const MinimumQueryLength = 3
 
 export class FilesList extends Component<Props, State> {
   static defaultProps = {
@@ -107,6 +114,7 @@ export class FilesList extends Component<Props, State> {
   }
 
   attachmentPicker: AttachmentPicker
+  search: ?TypeAheadSearch
 
   state = {
     pending: false,
@@ -114,6 +122,9 @@ export class FilesList extends Component<Props, State> {
     uploadMessage: null,
     selectedRowID: null,
     isRegularScreenDisplayMode: false,
+    searchResults: [],
+    searchQuery: '',
+    searchPending: false,
   }
 
   componentWillMount () {
@@ -121,8 +132,10 @@ export class FilesList extends Component<Props, State> {
     this.update()
   }
 
-  update = async () => {
-    this.setState({ pending: true })
+  update = async (showSpinner: boolean = false) => {
+    if (showSpinner) {
+      this.setState({ pending: true })
+    }
     try {
       let { contextID, context, folder, subFolder } = this.props
       if (!folder) {
@@ -172,7 +185,7 @@ export class FilesList extends Component<Props, State> {
   }
 
   onSelectRow = (index: number) => {
-    const item = this.props.data[index]
+    const item = this.listData()[index]
     const {
       contextID,
       context,
@@ -403,11 +416,106 @@ export class FilesList extends Component<Props, State> {
     </View>)
   }
 
+  shouldShowMinimumQueryLengthMessage = () => {
+    return this.isSearching() &&
+      this.state.searchQuery &&
+      this.state.searchQuery.length < MinimumQueryLength
+  }
+
+  renderSearchBar = () => {
+    const endpoint = `/${this.props.context}/${this.props.contextID}/files`
+    return (
+      <View>
+        <TypeAheadSearch
+          ref={r => { this.search = r }}
+          endpoint={endpoint}
+          parameters={this.searchParameters}
+          onRequestFinished={this.searchFinished}
+          onNextRequestFinished={this.nextSearchFinished}
+          onChangeText={this.searchQueryChanged}
+          defaultQuery=''
+          minimumQueryLength={MinimumQueryLength}
+          placeholder={i18n('Search files')}
+        />
+        { this.shouldShowMinimumQueryLengthMessage() &&
+          <Text testID='search-message' style={styles.queryLength}>
+            {i18n('Enter a search term with three or more characters.')}
+          </Text>
+        }
+      </View>
+    )
+  }
+
+  searchParameters = (query: string) => ({
+    search_term: query,
+  })
+
+  searchFinished = (results: ?Array<File>, error: ?string) => {
+    if (error) {
+      alertError(error)
+    }
+
+    this.setSearchResults(results || [])
+  }
+
+  searchQueryChanged = (searchQuery: string) => {
+    this.setState({
+      searchResults: [],
+      searchQuery,
+      searchPending: searchQuery.length > 0,
+    })
+  }
+
+  nextSearchFinished = (results: ?Array<File>, error: ?string) => {
+    if (error) {
+      alertError(error)
+    }
+
+    this.setSearchResults(this.state.searchResults.concat(results || []))
+  }
+
+  onEndReached = () => {
+    if (this.state.searchQuery && this.state.searchQuery.length && this.search) {
+      this.search.next()
+    }
+  }
+
+  setSearchResults = (results: Array<File>) => {
+    const files = results.map(result => ({ ...result, type: 'file', key: `file-${result.id}` }))
+    this.setState({
+      searchPending: false,
+      searchResults: files,
+    })
+  }
+
+  isSearching = () => Boolean(this.state.searchQuery && this.state.searchQuery.length > 0)
+
+  shouldShowEmpty = () => {
+    if (this.isSearching()) {
+      return this.state.searchQuery && this.state.searchQuery.length >= MinimumQueryLength
+    }
+    return !this.state.pending
+  }
+
+  emptyMessage () {
+    if (this.isSearching()) {
+      if (this.state.searchPending) {
+        return i18n('Searching...')
+      }
+      return i18n('No Results Found')
+    }
+    return i18n('This folder is empty')
+  }
+
+  listData = (): any[] => {
+    return this.isSearching() ? this.state.searchResults : this.props.data
+  }
+
   render () {
     const title = this.props.subFolder && this.props.folder
       ? this.props.folder.name
       : i18n('Files')
-    const empty = <ListEmptyComponent title={i18n('This folder is empty.')} />
+    const empty = this.shouldShowEmpty() ? <ListEmptyComponent title={this.emptyMessage()} /> : null
 
     const rightBarButtons = []
     if (this.canAdd()) {
@@ -426,6 +534,8 @@ export class FilesList extends Component<Props, State> {
       })
     }
 
+    const data = this.listData()
+
     return (
       <Screen
         customPageViewPath={this.props.customPageViewPath ? this.props.customPageViewPath : null}
@@ -438,14 +548,15 @@ export class FilesList extends Component<Props, State> {
         <DropView style={{ flex: 1 }}>
           { this.state.uploadPending && <SavingBanner title={this.state.uploadMessage || ''} /> }
           <FlatList
-            data={this.props.data}
+            data={data}
             renderItem={this.renderRow}
-            onRefresh={this.update}
+            onRefresh={() => this.update(true)}
+            onEndReached={this.onEndReached}
             refreshing={Boolean(this.state.pending) && !this.state.uploadPending}
             ItemSeparatorComponent={RowSeparator}
-            ListHeaderComponent={this.props.data.length > 0 ? RowSeparator : null}
-            ListFooterComponent={this.props.data.length > 0 ? RowSeparator : null}
-            ListEmptyComponent={this.state.pending ? null : empty} />
+            ListHeaderComponent={this.renderSearchBar()}
+            ListFooterComponent={data.length > 0 ? RowSeparator : null}
+            ListEmptyComponent={empty} />
           <AttachmentPicker
             style={styles.attachmentPicker}
             ref={this.captureAttachmentPicker}
@@ -503,6 +614,12 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     left: 0,
+  },
+  queryLength: {
+    marginHorizontal: global.style.defaultPadding,
+    marginTop: -5,
+    fontSize: 13,
+    color: color.grey5,
   },
 })
 

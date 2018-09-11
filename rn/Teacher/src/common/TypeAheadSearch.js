@@ -32,6 +32,8 @@ export type Props = {
   onRequestStarted?: () => void,
   onChangeText?: (query: string) => void,
   defaultQuery?: string,
+  minimumQueryLength: number,
+  placeholder: string,
 }
 
 export default class TypeAheadSearch extends Component<Props> {
@@ -39,8 +41,16 @@ export default class TypeAheadSearch extends Component<Props> {
   nextURL: ?string
   cancel: ?(() => void)
 
+  static defaultProps = {
+    minimumQueryLength: 0,
+    placeholder: i18n('Search'),
+  }
+
   execute = (query: string) => {
     this.props.onChangeText && this.props.onChangeText(query)
+    if (query.length < this.props.minimumQueryLength) {
+      return
+    }
     this.fetch(this.props.endpoint, this.props.parameters(query), this.props.onRequestFinished)
   }
 
@@ -80,7 +90,9 @@ export default class TypeAheadSearch extends Component<Props> {
         onChangeText={this.execute}
         onSearchButtonPress={() => this.searchBar.unFocus()}
         onCancelButtonPress={() => this.searchBar.unFocus()}
-        placeholder={i18n('Search')}
+        placeholder={this.props.placeholder}
+        hideBackground
+        textFieldBackgroundColor='#F1F1F2'
       />
     )
   }

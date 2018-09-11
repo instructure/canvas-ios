@@ -6219,7 +6219,11 @@ exports[`FilesList should render with no data at all 1`] = `
       }
     }
   >
-    <list />
+    <list>
+      <ListEmptyComponent
+        title="This folder is empty"
+      />
+    </list>
     <AttachmentPicker
       fileTypes={
         Array [

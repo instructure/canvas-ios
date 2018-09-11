@@ -9,7 +9,7 @@ exports[`TypeAheadSearch renders a search bar 1`] = `
   cancelButtonText="Cancel"
   editable={true}
   enablesReturnKeyAutomatically={true}
-  hideBackground={false}
+  hideBackground={true}
   keyboardAppearance="default"
   keyboardType="default"
   onBlur={[Function]}
@@ -26,7 +26,7 @@ exports[`TypeAheadSearch renders a search bar 1`] = `
   spellCheck={false}
   text=""
   textColor={null}
-  textFieldBackgroundColor={null}
+  textFieldBackgroundColor="#F1F1F2"
   tintColor={null}
 />
 `;
