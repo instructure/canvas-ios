@@ -20,7 +20,7 @@ import TechDebt
 import CanvasCore
 
 func NotificationsTab(session: Session) throws -> UIViewController {
-    let title = NSLocalizedString("Notifications", tableName: "Localizable", bundle: LocalizationManager.localizedMainBundle, value: "", comment: "Notifications tab title")
+    let title = NSLocalizedString("Notifications", comment: "Notifications tab title")
     let activityStream = try ActivityStreamTableViewController(session: session, route: { viewController, url in
         Router.shared().route(from: viewController, to: url)
     })

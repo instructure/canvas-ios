@@ -36,7 +36,7 @@ public func CalendarTabViewController(session: Session, route: @escaping (UIView
         calendarVC = splitVC
     }
     
-    calendarVC.tabBarItem.title = NSLocalizedString("Calendar", tableName: "Localizable", bundle: LocalizationManager.localizedMainBundle, value: "", comment: "Calendar page title")
+    calendarVC.tabBarItem.title = NSLocalizedString("Calendar", comment: "Calendar page title")
     calendarVC.tabBarItem.image = .icon(.calendar)
 
     return calendarVC

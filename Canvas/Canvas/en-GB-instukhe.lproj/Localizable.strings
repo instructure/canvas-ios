@@ -271,7 +271,7 @@
 
 /* Calendar landing page title
    Calendar page title */
-"Calendar" = "Calendar";
+"Calendar" = "XCalendar";
 
 /* No comment provided by engineer. */
 "Calendar Event" = "Calendar event";
@@ -403,7 +403,7 @@
 "Customize" = "Customise";
 
 /* dashboard page title */
-"Dashboard" = "Overview";
+"Dashboard" = "XDashboard";
 
 /* (No Comment) */
 "Delete" = "Delete";
@@ -871,7 +871,7 @@
 "Notification Preferences" = "Notification preferences";
 
 /* Notifications tab title */
-"Notifications" = "Notifications";
+"Notifications" = "XNotifications";
 
 /* OK Button Title */
 "OK" = "OK";
@@ -1278,7 +1278,7 @@
 "This would be a great time to do some extra credit." = "This would be a great time to do some extra credit.";
 
 /* Title of the Todo screen */
-"To Do" = "To do";
+"To Do" = "XTo do";
 
 /* To-Do List landing page title */
 "To-Do List" = "To-do list";

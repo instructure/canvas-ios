@@ -77,6 +77,10 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         AppStoreReview.handleLaunch()
     }
 
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        LocalizationManager.closed()
+    }
+
     func showLoadingState() {
         guard let window = self.window else { return }
         if let root = window.rootViewController, let tag = root.tag, tag == "LaunchScreenPlaceholder" { return }
@@ -217,6 +221,8 @@ extension ParentAppDelegate: NativeLoginManagerDelegate {
         // UX requires that students are given color schemes in a specific order.
         // The method call below ensures that we always start with the first color scheme.
         ColorCoordinator.clearColorSchemeDictionary()
+        // TODO: use logged in locale
+        LocalizationManager.setCurrentLocale(LocalizationManager.currentLocale)
     }
     
     func didLogout(_ controller: UIViewController) {

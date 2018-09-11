@@ -212,14 +212,14 @@
 		7D062AF621249E7700677F66 /* ContextModel+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContextModel+Tests.swift"; sourceTree = "<group>"; };
 		7D062AF82124A0F400677F66 /* ContextModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextModel.swift; sourceTree = "<group>"; };
 		7D062AFA2124A14700677F66 /* Context+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Context+Tests.swift"; sourceTree = "<group>"; };
-		7D349C352143090C004C1074 /* da-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-x-k12"; path = "da-x-k12.lproj/Main.strings"; sourceTree = "<group>"; };
-		7D349C362143090C004C1074 /* da-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-x-k12"; path = "da-x-k12.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
-		7D349C3721430929004C1074 /* en-GB-x-ukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-x-ukhe"; path = "en-GB-x-ukhe.lproj/Main.strings"; sourceTree = "<group>"; };
-		7D349C3821430929004C1074 /* en-GB-x-ukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-x-ukhe"; path = "en-GB-x-ukhe.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
-		7D349C3921430937004C1074 /* nb-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-x-k12"; path = "nb-x-k12.lproj/Main.strings"; sourceTree = "<group>"; };
-		7D349C3A21430937004C1074 /* nb-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-x-k12"; path = "nb-x-k12.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
-		7D349C3B21430948004C1074 /* sv-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-x-k12"; path = "sv-x-k12.lproj/Main.strings"; sourceTree = "<group>"; };
-		7D349C3C21430949004C1074 /* sv-x-k12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-x-k12"; path = "sv-x-k12.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		7D349C352143090C004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/Main.strings"; sourceTree = "<group>"; };
+		7D349C362143090C004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		7D349C3721430929004C1074 /* en-GB-instukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-instukhe"; path = "en-GB-instukhe.lproj/Main.strings"; sourceTree = "<group>"; };
+		7D349C3821430929004C1074 /* en-GB-instukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-instukhe"; path = "en-GB-instukhe.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		7D349C3921430937004C1074 /* nb-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-instk12"; path = "nb-instk12.lproj/Main.strings"; sourceTree = "<group>"; };
+		7D349C3A21430937004C1074 /* nb-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-instk12"; path = "nb-instk12.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		7D349C3B21430948004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/Main.strings"; sourceTree = "<group>"; };
+		7D349C3C21430949004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		7D4D5EB1213F2A200080AC14 /* UIImageView+load.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+load.swift"; sourceTree = "<group>"; };
 		7D4D5EB421402CA90080AC14 /* TestImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TestImage.png; sourceTree = "<group>"; };
 		7D4D5EB521402CA90080AC14 /* TestImage.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TestImage.svg; sourceTree = "<group>"; };
@@ -538,14 +538,14 @@
 		7D80AC06212B46D500C40ECE /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				7D80AC57212DAE4C00C40ECE /* URLResponse+links.swift */,
 				B1EA5AF5212E67CE00DABC5F /* Date+ISO8601.swift */,
 				3B346754213052C700F9BC2E /* NSError+CoreErrors.swift */,
 				B195DC48213215A300797FE4 /* NSPredicate+Core.swift */,
 				789C9BC22138656E00B37AC4 /* OperationQueue.swift */,
 				789C9BC02138516300B37AC4 /* UIColor.swift */,
-				7D7110C92139A57A0085C2E5 /* URLComponents+parse.swift */,
 				7D4D5EB1213F2A200080AC14 /* UIImageView+load.swift */,
+				7D7110C92139A57A0085C2E5 /* URLComponents+parse.swift */,
+				7D80AC57212DAE4C00C40ECE /* URLResponse+links.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1081,10 +1081,10 @@
 			isa = PBXVariantGroup;
 			children = (
 				DFE1FF2C212F69B3003F27AA /* Base */,
-				7D349C352143090C004C1074 /* da-x-k12 */,
-				7D349C3721430929004C1074 /* en-GB-x-ukhe */,
-				7D349C3921430937004C1074 /* nb-x-k12 */,
-				7D349C3B21430948004C1074 /* sv-x-k12 */,
+				7D349C352143090C004C1074 /* da-instk12 */,
+				7D349C3721430929004C1074 /* en-GB-instukhe */,
+				7D349C3921430937004C1074 /* nb-instk12 */,
+				7D349C3B21430948004C1074 /* sv-instk12 */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1093,10 +1093,10 @@
 			isa = PBXVariantGroup;
 			children = (
 				DFE1FF31212F69B4003F27AA /* Base */,
-				7D349C362143090C004C1074 /* da-x-k12 */,
-				7D349C3821430929004C1074 /* en-GB-x-ukhe */,
-				7D349C3A21430937004C1074 /* nb-x-k12 */,
-				7D349C3C21430949004C1074 /* sv-x-k12 */,
+				7D349C362143090C004C1074 /* da-instk12 */,
+				7D349C3821430929004C1074 /* en-GB-instukhe */,
+				7D349C3A21430937004C1074 /* nb-instk12 */,
+				7D349C3C21430949004C1074 /* sv-instk12 */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";

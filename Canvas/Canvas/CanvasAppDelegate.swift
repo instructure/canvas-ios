@@ -81,6 +81,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         AppStoreReview.handleLaunch()
     }
+
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        LocalizationManager.closed()
+    }
     
     func configureBugSnag() {
         let configuration = BugsnagConfiguration()
@@ -311,7 +315,9 @@ extension AppDelegate: NativeLoginManagerDelegate {
         CKCanvasAPI.updateCurrentAPI()
         Analytics.setUserID(client.currentUser.id)
         Analytics.setUserProperty(client.baseURL?.absoluteString, forName: "base_url")
-        
+        // TODO: use logged in locale
+        LocalizationManager.setCurrentLocale(LocalizationManager.currentLocale)
+
         if let brandingInfo = client.branding?.jsonDictionary() as? [String: Any] {
             Brand.setCurrent(Brand(webPayload: brandingInfo), applyInWindow: window)
         }

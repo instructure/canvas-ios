@@ -122,6 +122,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             AppStoreReview.handleLaunch()
         }
     }
+
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        LocalizationManager.closed()
+    }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         StartupManager.shared.enqueueTask {
@@ -162,6 +166,8 @@ extension AppDelegate: NativeLoginManagerDelegate {
         if let brandingInfo = client.branding?.jsonDictionary() as? [String: Any] {
             Brand.setCurrent(Brand(webPayload: brandingInfo), applyInWindow: window)
         }
+        // TODO: use logged in locale
+        LocalizationManager.setCurrentLocale(LocalizationManager.currentLocale)
     }
     
     func didLogout(_ controller: UIViewController) {

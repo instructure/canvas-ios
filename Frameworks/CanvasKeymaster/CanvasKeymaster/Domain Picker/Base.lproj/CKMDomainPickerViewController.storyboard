@@ -252,7 +252,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="MultiUserCell" id="kxs-mq-jpv" customClass="CKMMultiUserTableViewCell">
-                                <rect key="frame" x="0.0" y="29" width="375" height="60"/>
+                                <rect key="frame" x="0.0" y="30" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kxs-mq-jpv" id="ZBK-5X-rvS">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>

@@ -24,99 +24,35 @@ import {
 
 import Screen from '../../routing/Screen'
 import Row from '../../common/components/rows/Row'
-const { Helm } = NativeModules
 
 type Language = { name: string, languageCode: string }
+type State = {
+  languages: Language[],
+}
 
-export default class LanguagePicker extends Component<any, any> {
+export default class LanguagePicker extends Component<Object, State> {
+  state = {
+    languages: [],
+  }
+
+  componentDidMount () {
+    NativeModules.LocalizationManager.getLocales().then(languages => {
+      this.setState({ languages })
+    })
+  }
+
   selectLanguage = async (languageCode: string) => {
-    NativeModules.LocalizationManager.setCurrentLocale(languageCode)
     await this.props.navigator.dismiss()
-    Helm.reload()
+    NativeModules.LocalizationManager.setCurrentLocale(languageCode)
   }
 
   render () {
-    const supportedLanguages: Array<Language> = [
-      {
-        name: 'English',
-        languageCode: 'en',
-      },
-      {
-        name: 'English (U.K.)',
-        languageCode: 'en-GB',
-      },
-      {
-        name: 'English (U.K.) HE',
-        languageCode: 'en-GB-x-ukhe',
-      },
-      {
-        name: 'English (Australian)',
-        languageCode: 'en-AU',
-      },
-      {
-        name: 'Spanish',
-        languageCode: 'es',
-      },
-      {
-        name: 'Danish',
-        languageCode: 'da',
-      },
-      {
-        name: 'Danish K12',
-        languageCode: 'da-x-k12',
-      },
-      {
-        name: 'German',
-        languageCode: 'de',
-      },
-      {
-        name: 'Chinese',
-        languageCode: 'zh',
-      },
-      {
-        name: 'Chinese (Hong Kong)',
-        languageCode: 'zh-HK',
-      },
-      {
-        name: 'Portuguese (Brazil)',
-        languageCode: 'pt-BR',
-      },
-      {
-        name: 'Portuguese',
-        languageCode: 'pt',
-      },
-      {
-        name: 'Arabic',
-        languageCode: 'ar',
-      },
-      {
-        name: 'Swedish',
-        languageCode: 'sv',
-      },
-      {
-        name: 'Swedish K12',
-        languageCode: 'sv-x-k12',
-      },
-      {
-        name: 'Norwegian',
-        languageCode: 'nb',
-      },
-      {
-        name: 'Norwegian K12',
-        languageCode: 'nb-x-k12',
-      },
-    ].sort((a, b) => {
-      if (a.name < b.name) return -1
-      if (a.name > b.name) return 1
-      return 0
-    })
-
     return (
       <Screen
         title='Language Picker'
       >
         <ScrollView style={{ flex: 1 }}>
-          {supportedLanguages.map((language) => {
+          {this.state.languages.map((language) => {
             return (
               <Row
                 title={language.name}

@@ -22,6 +22,10 @@ RCT_EXPORT_METHOD(setCurrentLocale:(NSString *)locale) {
     [LocalizationManager setCurrentLocale:locale];
 }
 
+RCT_REMAP_METHOD(getLocales, getLocalesResolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
+    resolve([LocalizationManager getLocales]);
+}
+
 - (dispatch_queue_t)methodQueue {
     return dispatch_get_main_queue();
 }
