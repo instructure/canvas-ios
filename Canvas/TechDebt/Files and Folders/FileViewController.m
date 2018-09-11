@@ -192,9 +192,16 @@
 }
 
 - (NSString *)pathForPersistedFile:(CKAttachment *)file {
+    // Store the file in a directory unique to this file as well as the current user
+    // Structuring this way prevents overriding files across users and folders
+    // example: /canvas.instructure.com-:userID/:fileID/:fileName
+    NSString *sessionID = TheKeymaster.currentClient.authSession.sessionID;
     NSString *documentsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
-    NSString *path = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_%llu_%@", TheKeymaster.currentClient.authSession.user.id, file.ident, file.filename]];
-    return path;
+    NSURL *userDirectory = [[NSURL URLWithString:documentsPath] URLByAppendingPathComponent:sessionID isDirectory:YES];
+    NSURL *fileDirectory = [userDirectory URLByAppendingPathComponent:[NSString stringWithFormat:@"%llu", file.ident] isDirectory:YES];
+    [[NSFileManager defaultManager] createDirectoryAtPath:fileDirectory.path withIntermediateDirectories:YES attributes:nil error:nil];
+    NSURL *url = [fileDirectory URLByAppendingPathComponent:file.filename isDirectory:NO];
+    return url.path;
 }
 
 - (void)setFile:(CKAttachment *)file {
