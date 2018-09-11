@@ -498,7 +498,6 @@
 		7D0F8D8421347CD50092E8F8 /* SVGImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0F8D8321347CD50092E8F8 /* SVGImageView.swift */; };
 		7D73ACDB211A010C001FAB47 /* Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D73ACDA211A010C001FAB47 /* Fixture.swift */; };
 		7D73ACDD211A0163001FAB47 /* QuizModel+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D73ACDC211A0163001FAB47 /* QuizModel+Fixture.swift */; };
-		7DC4D695214363A5007B1C06 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DC4D694214363A5007B1C06 /* Core.framework */; };
 		7DD30624211A28C400A4A3D0 /* Date+ISO8601Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD30623211A28C400A4A3D0 /* Date+ISO8601Tests.swift */; };
 		7DD30628211A2D7200A4A3D0 /* TitleSubtitleViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD30627211A2D7200A4A3D0 /* TitleSubtitleViewTests.swift */; };
 		7DD89E8B20AB626600650227 /* AppStoreReview.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DD89E8A20AB626600650227 /* AppStoreReview.m */; };
@@ -1148,7 +1147,6 @@
 		7D349C7B21430D2C004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/TimedQuizViewController.strings"; sourceTree = "<group>"; };
 		7D73ACDA211A010C001FAB47 /* Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Fixture.swift; path = ../../Core/CoreTests/API/Fixture.swift; sourceTree = "<group>"; };
 		7D73ACDC211A0163001FAB47 /* QuizModel+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuizModel+Fixture.swift"; sourceTree = "<group>"; };
-		7DC4D694214363A5007B1C06 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DC4D69F2146E23D007B1C06 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/TimedQuizViewController.strings"; sourceTree = "<group>"; };
 		7DC4D6A12146E249007B1C06 /* en-GB-instukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-instukhe"; path = "en-GB-instukhe.lproj/TimedQuizViewController.strings"; sourceTree = "<group>"; };
 		7DC4D6A32146E24C007B1C06 /* nb-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-instk12"; path = "nb-instk12.lproj/TimedQuizViewController.strings"; sourceTree = "<group>"; };
@@ -1257,7 +1255,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7DC4D695214363A5007B1C06 /* Core.framework in Frameworks */,
 				49383CE61F848652009C8F8E /* CanvasKit.framework in Frameworks */,
 				49383CE51F848652009C8F8E /* CanvasKeymaster.framework in Frameworks */,
 				9FDA15F4213EB6A600CC12C7 /* Secrets.framework in Frameworks */,
@@ -1313,7 +1310,6 @@
 		2C60495C1F72B9CE00252BC5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7DC4D694214363A5007B1C06 /* Core.framework */,
 				9FDA15F3213EB6A600CC12C7 /* Secrets.framework */,
 				49383CDF1F846FCC009C8F8E /* CanvasKeymaster.framework */,
 				49383CDE1F846FCB009C8F8E /* CanvasKit.framework */,
