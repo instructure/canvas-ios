@@ -61,6 +61,10 @@ open class PreSubmissionPDFDocumentPresenter: NSObject {
                     .polygon,
                     .eraser
                 ]
+                builder.propertiesForAnnotations[.ink] = [["color"], ["lineWidth"]]
+
+                // Override the override
+                builder.overrideClass(PSPDFAnnotationToolbar.self, with: PSPDFAnnotationToolbar.self)
             }
         }
     }
@@ -101,9 +105,7 @@ extension PreSubmissionPDFDocumentPresenter: PSPDFViewControllerDelegate {
                 }
                 return (
                     identifier != PSPDFAnnotationMenuRemove &&
-                    identifier != PSPDFAnnotationMenuCopy &&
-                    identifier != PSPDFAnnotationMenuNote &&
-                    !DisabledMenuItems.contains(identifier)
+                    identifier != PSPDFAnnotationMenuNote
                 )
             }
             realMenuItems.append(contentsOf: filteredMenuItems)
@@ -113,10 +115,7 @@ extension PreSubmissionPDFDocumentPresenter: PSPDFViewControllerDelegate {
             return realMenuItems
         }
 
-        return menuItems.filter {
-            guard let identifier = $0.identifier else { return true }
-            return !DisabledMenuItems.contains(identifier)
-        }
+        return menuItems
     }
 
     public func pdfViewController(_ pdfController: PSPDFViewController, shouldShow controller: UIViewController, options: [String : Any]? = nil, animated: Bool) -> Bool {
