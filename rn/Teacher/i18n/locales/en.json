@@ -560,9 +560,6 @@
   "edit_quiz_details_72cd055": {
     "message": "Edit Quiz Details"
   },
-  "email_contact_e095f380": {
-    "message": "Email Contact"
-  },
   "enjoy_your_day_a4cb2c1": {
     "message": "Enjoy your day!"
   },
@@ -1121,6 +1118,9 @@
   "previewing_this_file_type_is_not_supported_7df9231": {
     "message": "Previewing this file type is not supported"
   },
+  "profile_6bd2baed": {
+    "message": "Profile"
+  },
   "profile_menu_a688027e": {
     "message": "Profile Menu"
   },
@@ -1282,6 +1282,9 @@
   },
   "send_individual_message_to_each_recipient_4fdfc1e5": {
     "message": "Send individual message to each recipient"
+  },
+  "send_message_a371a974": {
+    "message": "Send message"
   },
   "send_recording_82e5a550": {
     "message": "Send recording"
