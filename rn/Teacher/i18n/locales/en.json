@@ -563,6 +563,9 @@
   "enjoy_your_day_a4cb2c1": {
     "message": "Enjoy your day!"
   },
+  "enter_a_search_term_with_three_or_more_characters_1577ec2": {
+    "message": "Enter a search term with three or more characters."
+  },
   "enter_code_c7ab5104": {
     "message": "Enter code"
   },
@@ -956,6 +959,9 @@
   "no_results_f36777ee": {
     "message": "No results"
   },
+  "no_results_found_2ace1494": {
+    "message": "No Results Found"
+  },
   "no_starred_messages_e1b28bca": {
     "message": "No Starred Messages"
   },
@@ -1259,6 +1265,12 @@
   "search_280d00bd": {
     "message": "Search"
   },
+  "search_files_7e8153fd": {
+    "message": "Search files"
+  },
+  "searching_f330d682": {
+    "message": "Searching..."
+  },
   "seconds_plural_one_second_other_seconds_d33cf6e3": {
     "message": "{ seconds, plural,\n    one {# second}\n  other {# seconds}\n}"
   },
@@ -1535,8 +1547,8 @@
   "this_file_must_have_usage_rights_set_before_it_can_e4bf8bae": {
     "message": "This file must have usage rights set before it can be published."
   },
-  "this_folder_is_empty_14af41c": {
-    "message": "This folder is empty."
+  "this_folder_is_empty_89c70e89": {
+    "message": "This folder is empty"
   },
   "this_group_does_not_have_a_submission_for_this_ass_ca275999": {
     "message": "This group does not have a submission for this assignment."
