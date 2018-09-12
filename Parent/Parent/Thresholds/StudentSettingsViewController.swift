@@ -124,6 +124,9 @@ open class StudentSettingsViewController : FormViewController {
         switch type {
         case .courseAnnouncement, .assignmentMissing, .institutionAnnouncement:
             let row = SwitchRow(type.rawValue) {
+                $0.cellSetup { c, _ in
+                    c.isAccessibilityElement = true
+                }
                 $0.title = self.descriptionForType(type)
                 if let _ = thresholdForType(type) {
                     $0.value = true
