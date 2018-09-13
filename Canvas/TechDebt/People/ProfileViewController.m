@@ -278,7 +278,7 @@ CGFloat square(CGFloat x){return x*x;}
     }
     self.emailLabel.text = self.user.primaryEmail;
     [self.nameLabel setText:self.user.displayName];
-    
+
     self.title = NSLocalizedString(@"Profile", @"Title for profile screen");
     BOOL isPersonalProfile = [self isPersonalProfile];
     self.avatarButton.enabled = isPersonalProfile;
@@ -360,19 +360,15 @@ CGFloat square(CGFloat x){return x*x;}
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo {
     NSLog(@"Image Selected");
-    [self dismissViewControllerAnimated:YES completion:nil];
-    [self imagePicker:picker pickedImage:image];
+    [self dismissViewControllerAnimated:YES completion:^{
+        [self imagePicker:picker pickedImage:image];
+    }];
 }
 
 - (void)imagePicker:(UIImagePickerController *)imagePicker pickedImage:(UIImage *)image {
-    [self setImage:image];
     NSURL *imageFileURL = [self saveImageToFile:image];
     
     self.avatarButton.highlighted = YES;
-    
-    if (self.profileImageSelected){
-        self.profileImageSelected(image);
-    }
     
     UIActivityIndicatorView *activityIndicator = [UIActivityIndicatorView new];
     CGFloat x = CGRectGetMidX(self.avatarButton.bounds) - (activityIndicator.frame.size.width / 2.0f);
@@ -383,21 +379,19 @@ CGFloat square(CGFloat x){return x*x;}
     
     __weak CKCanvasAPI *weakAPI = self.canvasAPI;
     __weak ProfileViewController *weakSelf = self;
-    void (^gotPhoto)(UIImage*) = ^void(UIImage *backdropImage) {
-        self.headerImageView.image = nil;
-        if (backdropImage) {
-            self.headerImageView.image = backdropImage;
-        } else {
-            self.headerImageView.image = [image applyLightEffect];
-        }
-    };
     [self.canvasAPI postAvatarNamed:nil fileURL:imageFileURL block:^(NSError *error, BOOL isFinalValue, CKAttachment *attachment) {
-        
         if (isFinalValue) {
-            [weakSelf.avatarButton setImage:image forState:UIControlStateNormal];
+            if (error) {
+                [activityIndicator stopAnimating];
+                [activityIndicator removeFromSuperview];
+                weakSelf.avatarButton.highlighted = NO;
+                NSString *title = NSLocalizedString(@"Error", nil);
+                NSString *message = NSLocalizedString(@"Unable to upload to server", @"message saying that avatar couldn't be loaded to server");
+                [UIAlertController showAlertWithTitle:title message:message];
+                return;
+            }
 
-            Session *session = [CKIClient currentClient].authSession;
-            [session backdropPhoto:gotPhoto];
+            [weakSelf setImage:image];
             weakSelf.canvasAPI.user.avatarURL = attachment.directDownloadURL;
             [weakAPI updateLoggedInUserAvatarWithURL:attachment.directDownloadURL block:^(NSError *error, BOOL isFinalValue, NSDictionary *dictionary) {
                 if (error) {
@@ -409,24 +403,6 @@ CGFloat square(CGFloat x){return x*x;}
             [activityIndicator removeFromSuperview];
             weakSelf.avatarButton.highlighted = NO;
         }
-        if (error) {
-            NSString *title = NSLocalizedString(@"Error", nil);
-            NSString *message = NSLocalizedString(@"Unable to upload to server", @"message saying that avatar couldn't be loaded to server");
-            [UIAlertController showAlertWithTitle:title message:message];
-            return;
-        }
-        
-        [weakSelf.avatarButton setImage:image forState:UIControlStateNormal];
-        Session *session = [CKIClient currentClient].authSession;
-        
-        [session backdropPhoto:gotPhoto];
-        weakSelf.canvasAPI.user.avatarURL = attachment.directDownloadURL;
-        [weakAPI updateLoggedInUserAvatarWithURL:attachment.directDownloadURL block:^(NSError *error, BOOL isFinalValue, NSDictionary *dictionary) {
-            if (error) {
-                NSLog(@"Error setting default avatar: %@", error.localizedDescription);
-            }
-        }];
-        
     }];
 }
 

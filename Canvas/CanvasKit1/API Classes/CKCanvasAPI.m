@@ -1359,10 +1359,7 @@ NSString *CKDownloadsInProgressDirectory(void);
  */
 - (void)confirmFileUploadedToURL:(NSURL *)fileURL block:(CKAttachmentBlock)block {
     
-    NSDictionary *headers = @{@"Content-Length": @"0"};
-    
-    NSDictionary *options = @{CKAPIHTTPMethodKey: @"POST",
-                             CKAPIHTTPHeadersKey: headers};
+    NSDictionary *options = @{CKAPIHTTPMethodKey: @"GET"};
     
     [self runForURL:fileURL
             options:options
