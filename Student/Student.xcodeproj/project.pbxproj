@@ -16,6 +16,9 @@
 		2C96486F211E428B002C3255 /* DetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C96486E211E428B002C3255 /* DetailViewController.storyboard */; };
 		2C964871211E4319002C3255 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C964870211E4319002C3255 /* MainViewController.swift */; };
 		2CB3261D21387C99009496AF /* RouterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB3261C21387C99009496AF /* RouterViewController.swift */; };
+		3B032CA5214C552B00B570F7 /* GroupNavigationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B032CA4214C552B00B570F7 /* GroupNavigationPresenter.swift */; };
+		3B032CA8214C554C00B570F7 /* GroupNavigationPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B032CA7214C554C00B570F7 /* GroupNavigationPresenterTests.swift */; };
+		3B032CAA214C55E400B570F7 /* GroupNavigationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B032CA9214C55E400B570F7 /* GroupNavigationTableViewController.swift */; };
 		3B412F0121406C410090DE02 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B412EFC21406C000090DE02 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3B412F0321406C410090DE02 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B412EFD21406C000090DE02 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		788152DB212B3470005BA428 /* DashboardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152DA212B3470005BA428 /* DashboardPresenter.swift */; };
@@ -121,6 +124,9 @@
 		2C96486E211E428B002C3255 /* DetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailViewController.storyboard; sourceTree = "<group>"; };
 		2C964870211E4319002C3255 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		2CB3261C21387C99009496AF /* RouterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterViewController.swift; sourceTree = "<group>"; };
+		3B032CA4214C552B00B570F7 /* GroupNavigationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupNavigationPresenter.swift; sourceTree = "<group>"; };
+		3B032CA7214C554C00B570F7 /* GroupNavigationPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupNavigationPresenterTests.swift; sourceTree = "<group>"; };
+		3B032CA9214C55E400B570F7 /* GroupNavigationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupNavigationTableViewController.swift; sourceTree = "<group>"; };
 		3B412EFC21406C000090DE02 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../ios-frameworks/Realm.framework"; sourceTree = SOURCE_ROOT; };
 		3B412EFD21406C000090DE02 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "../ios-frameworks/RealmSwift.framework"; sourceTree = SOURCE_ROOT; };
 		788152DA212B3470005BA428 /* DashboardPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardPresenter.swift; sourceTree = "<group>"; };
@@ -204,6 +210,7 @@
 		2C5C698B211DFFAD00D9AD15 /* Student */ = {
 			isa = PBXGroup;
 			children = (
+				3B032CA3214C549D00B570F7 /* Groups */,
 				78815306212BD175005BA428 /* AllCourses */,
 				788152D5212B330C005BA428 /* Dashboard */,
 				2C5C698C211DFFAD00D9AD15 /* AppDelegate.swift */,
@@ -223,6 +230,7 @@
 		2C5C69A2211DFFAE00D9AD15 /* StudentTests */ = {
 			isa = PBXGroup;
 			children = (
+				3B032CA6214C553A00B570F7 /* Groups */,
 				788152E0212B38C5005BA428 /* Dashboard */,
 				2C96486B211E3AA9002C3255 /* Core.framework */,
 				2C5C69A3211DFFAE00D9AD15 /* StudentTests.swift */,
@@ -247,6 +255,39 @@
 				2C964867211E38B0002C3255 /* Core.framework */,
 			);
 			path = Frameworks;
+			sourceTree = "<group>";
+		};
+		3B032CA3214C549D00B570F7 /* Groups */ = {
+			isa = PBXGroup;
+			children = (
+				3B032CAB214C591C00B570F7 /* GroupNavigation */,
+			);
+			path = Groups;
+			sourceTree = "<group>";
+		};
+		3B032CA6214C553A00B570F7 /* Groups */ = {
+			isa = PBXGroup;
+			children = (
+				3B032CAC214C597900B570F7 /* GroupNavigation */,
+			);
+			path = Groups;
+			sourceTree = "<group>";
+		};
+		3B032CAB214C591C00B570F7 /* GroupNavigation */ = {
+			isa = PBXGroup;
+			children = (
+				3B032CA4214C552B00B570F7 /* GroupNavigationPresenter.swift */,
+				3B032CA9214C55E400B570F7 /* GroupNavigationTableViewController.swift */,
+			);
+			path = GroupNavigation;
+			sourceTree = "<group>";
+		};
+		3B032CAC214C597900B570F7 /* GroupNavigation */ = {
+			isa = PBXGroup;
+			children = (
+				3B032CA7214C554C00B570F7 /* GroupNavigationPresenterTests.swift */,
+			);
+			path = GroupNavigation;
 			sourceTree = "<group>";
 		};
 		788152D5212B330C005BA428 /* Dashboard */ = {
@@ -413,6 +454,7 @@
 				788152DB212B3470005BA428 /* DashboardPresenter.swift in Sources */,
 				7D7110C321389AD90085C2E5 /* Routes+Student.swift in Sources */,
 				788152ED212B4FA4005BA428 /* DashboardCourseCell.swift in Sources */,
+				3B032CAA214C55E400B570F7 /* GroupNavigationTableViewController.swift in Sources */,
 				2C5C698D211DFFAD00D9AD15 /* AppDelegate.swift in Sources */,
 				788152F5212B7482005BA428 /* DashboardGroupCell.swift in Sources */,
 				78815318212F56E1005BA428 /* AllCoursesSectionHeaderView.swift in Sources */,
@@ -422,6 +464,7 @@
 				2CB3261D21387C99009496AF /* RouterViewController.swift in Sources */,
 				788152DD212B34F2005BA428 /* DashboardViewController.swift in Sources */,
 				78815317212F56E1005BA428 /* AllCoursesCourseCell.swift in Sources */,
+				3B032CA5214C552B00B570F7 /* GroupNavigationPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,6 +473,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F97304A7212287F400AA2557 /* EarlGrey.swift in Sources */,
+				3B032CA8214C554C00B570F7 /* GroupNavigationPresenterTests.swift in Sources */,
 				2C5C69A4211DFFAE00D9AD15 /* StudentTests.swift in Sources */,
 				788152E6212B3987005BA428 /* DashboardMocks.swift in Sources */,
 				788152E4212B3957005BA428 /* DashboardIntegrationTests.swift in Sources */,
