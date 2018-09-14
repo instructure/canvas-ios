@@ -26,7 +26,7 @@ class CoreTestCase: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        let config = RealmPersistence.testingConfig(inMemoryIdentifier: self.name)
+        let config = RealmPersistence.testingConfig(identifier: self.name)
         db = RealmPersistence(configuration: config)
     }
 

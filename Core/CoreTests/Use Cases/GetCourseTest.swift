@@ -41,7 +41,7 @@ class GetCourseTest: CoreTestCase {
 
         let getCourse = GetCourse(courseID: "1", api: api, database: db)
         addOperationAndWait(getCourse)
-
+        db.refresh()
         XCTAssertEqual(course.name, "New Name")
     }
 }

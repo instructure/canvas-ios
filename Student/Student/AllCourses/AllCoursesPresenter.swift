@@ -53,7 +53,7 @@ class AllCoursesPresenter: AllCoursesPresenterProtocol {
         return fetcher
     }()
 
-    init(view: (AllCoursesViewProtocol & ErrorViewController)?, api: API = URLSessionAPI(), database: Persistence = RealmPersistence()) {
+    init(view: (AllCoursesViewProtocol & ErrorViewController)?, api: API = URLSessionAPI(), database: Persistence = RealmPersistence.main) {
         self.view = view
         self.api = api
         self.database = database

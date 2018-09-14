@@ -31,7 +31,10 @@ public class RealmFetchedResultsController<ResultType>: FetchedResultsController
     private var valuesSortedByKey: [[ResultType]]?
     private var observationToken: NotificationToken?
 
-    init(persistence: RealmPersistence = RealmPersistence(), predicate: NSPredicate? = nil, sortDescriptors: [SortDescriptor]? = nil, sectionNameKeyPath: String? = nil) {
+    init(persistence: RealmPersistence = RealmPersistence(configuration: RealmPersistence.config),
+         predicate: NSPredicate? = nil,
+         sortDescriptors: [SortDescriptor]? = nil,
+         sectionNameKeyPath: String? = nil) {
         self.persistence = persistence
         self.predicate = predicate
         self.sortDescriptors = sortDescriptors
@@ -82,7 +85,7 @@ public class RealmFetchedResultsController<ResultType>: FetchedResultsController
         } catch {
             assertionFailure("Error occurred refreshing data after update \(error.localizedDescription)")
         }
-        self.delegate?.controllerDidChangeContent(self)
+        delegate?.controllerDidChangeContent(self)
     }
 
     private func observeChanges(_ realmObjects: Results<Object>?) {

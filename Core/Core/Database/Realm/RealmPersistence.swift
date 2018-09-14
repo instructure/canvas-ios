@@ -19,20 +19,20 @@ import RealmSwift
 
 public class RealmPersistence {
     var store: Realm
-    static var config: Realm.Configuration = Realm.Configuration.defaultConfiguration
 
-    public convenience init() {
-        let config = Realm.Configuration(
-            schemaVersion: 1,
-            migrationBlock: { _, oldSchemaVersion in
-                if (oldSchemaVersion < 1) {
-                    // Nothing to do!
-                    // Realm will automatically detect new properties and removed properties
-                    // And will update the schema on disk automatically
-                }
-        })
-        self.init(configuration: config)
-    }
+    static var config: Realm.Configuration = Realm.Configuration.defaultConfiguration
+    public static var main: RealmPersistence = {
+        var config = RealmPersistence.config
+        config.schemaVersion = 1
+        config.migrationBlock = { _, oldSchemaVersion in
+            if (oldSchemaVersion < 1) {
+                // Nothing to do!
+                // Realm will automatically detect new properties and removed properties
+                // And will update the schema on disk automatically
+            }
+        }
+        return RealmPersistence(configuration: config)
+    }()
 
     public required init(configuration: Realm.Configuration) {
         do {
@@ -150,14 +150,16 @@ extension RealmPersistence: Persistence {
     }
 
     static public func performBackgroundTask(block: @escaping PersistenceBlockHandler) {
-        autoreleasepool {
-            let instance = RealmPersistence(configuration: RealmPersistence.config)
-            do {
-                try instance.safeWriteAction {
-                    try block(instance)
+        DispatchQueue.global().async {
+            autoreleasepool {
+                let instance = RealmPersistence(configuration: RealmPersistence.config)
+                do {
+                    try instance.safeWriteAction {
+                        try block(instance)
+                    }
+                } catch {
+                    fatalError(error.localizedDescription)
                 }
-            } catch {
-                fatalError(error.localizedDescription)
             }
         }
     }

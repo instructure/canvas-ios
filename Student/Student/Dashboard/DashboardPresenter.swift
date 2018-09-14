@@ -75,7 +75,7 @@ class DashboardPresenter: DashboardPresenterProtocol {
         return fetcher
     }()
 
-    init(view: (DashboardViewProtocol & ErrorViewController)?, api: API = URLSessionAPI(), database: Persistence = RealmPersistence()) {
+    init(view: (DashboardViewProtocol & ErrorViewController)?, api: API = URLSessionAPI(), database: Persistence = RealmPersistence.main) {
         self.view = view
         self.api = api
         self.database = database

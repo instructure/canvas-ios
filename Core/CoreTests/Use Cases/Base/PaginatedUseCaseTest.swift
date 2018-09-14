@@ -42,6 +42,7 @@ class PaginatedUseCaseTest: CoreTestCase {
         let paginated = TestPaginatedUseCase(api: api, database: db, request: request)
         addOperationAndWait(paginated)
 
+        db.refresh()
         let deleted: [Course] = db.fetch(.id("1"))
         let kept: [Course] = db.fetch(.id("2"))
         XCTAssertEqual(deleted.count, 0)

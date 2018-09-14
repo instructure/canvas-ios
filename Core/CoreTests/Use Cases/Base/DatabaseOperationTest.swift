@@ -25,6 +25,7 @@ class DatabaseOperationTest: CoreTestCase {
             _ = client.make() as Course
         }
         addOperationAndWait(operation)
+        db.refresh()
         let courses: [Course] = db.fetch()
         XCTAssertEqual(courses.count, 1)
     }

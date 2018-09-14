@@ -41,6 +41,7 @@ class GetUserGroupsTest: CoreTestCase {
         let getUserGroups = GetUserGroups(api: api, database: db)
         addOperationAndWait(getUserGroups)
 
+        db.refresh()
         let groups: [Group] = db.fetch()
         XCTAssertFalse(groups.contains(old))
     }

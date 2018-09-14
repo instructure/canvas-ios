@@ -26,6 +26,6 @@ public class Course: Object {
     @objc public dynamic var imageDownloadUrl: String?
 
     override public class func primaryKey() -> String? {
-        return "id"
+        return #keyPath(Course.id)
     }
 }

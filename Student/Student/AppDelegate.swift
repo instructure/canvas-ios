@@ -40,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
         // TODO: Remove this at some point
         do {
-            let store = RealmPersistence()
+            let store = RealmPersistence.main
             try store.clearAllRecords()
             print("Successfully emptied the data store")
         } catch {

@@ -22,6 +22,6 @@ public class TTL: Object {
     @objc public dynamic var lastRefresh: Date?
 
     override public class func primaryKey() -> String? {
-        return "key"
+        return #keyPath(TTL.key)
     }
 }

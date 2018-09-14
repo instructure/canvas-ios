@@ -20,51 +20,24 @@ import RealmSwift
 
 class RealmPersistenceTests: XCTestCase {
     var p: RealmPersistence! = nil
-    var realm: Realm! = nil
     var config: Realm.Configuration!
+    var frcExpectation: XCTestExpectation!
 
     override func setUp() {
         super.setUp()
-        do {
-            config = RealmPersistence.testingConfig(inMemoryIdentifier: self.name)
-            try realm = Realm(configuration: config)
-            p = RealmPersistence(configuration: config)
-        } catch {
-            XCTFail(error.localizedDescription)
-        }
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-
-    func testInsert() {
-        var objs = realm.objects(Course.self)
-        XCTAssertEqual(objs.count, 0)
-
-        let name = "test object"
-
-        let model: Course = p.insert()
-        model.name = name
-        model.id = "1"
-        try? p.addOrUpdate(model)
-
-        objs = realm.objects(Course.self)
-        XCTAssertEqual(objs.count, 1)
-        XCTAssertEqual(objs.first?.name, name)
+        frcExpectation = XCTestExpectation(description: "frc expectation")
+        config = RealmPersistence.testingConfig(identifier: self.name)
+        p = RealmPersistence(configuration: config)
+        assertNoCourseObjectsPreExisting()
     }
 
     func testInsertOfExistingObject() {
-        var objs = realm.objects(Course.self)
-        XCTAssertEqual(objs.count, 0)
-
         let a: Course = p.insert()
         a.name = "foo"
         a.id = "1"
 
         try? p.addOrUpdate(a)
-        objs = realm.objects(Course.self)
+        var objs: [Course] = p.fetch()
         XCTAssertEqual(objs.count, 1)
 
         let b: Course = p.insert()
@@ -77,10 +50,8 @@ class RealmPersistenceTests: XCTestCase {
             print(error)
         }
 
-        objs = realm.objects(Course.self)
-        print(objs)
+        objs = p.fetch()
         XCTAssertEqual(objs.count, 1)
-
         XCTAssertEqual(objs.first?.name, "bar")
     }
 
@@ -95,9 +66,9 @@ class RealmPersistenceTests: XCTestCase {
         let bb = Course(value: ["id": "2", "name": "bb"])
         try? p.addOrUpdate([aa, bb])
 
-        let objs = realm.objects(Course.self)
-        XCTAssertEqual(objs.first!.name, "aa")
-        XCTAssertEqual(objs.last!.name, "bb")
+        let objs: [Course] = p.fetch()
+        XCTAssertEqual(objs.first?.name, "aa")
+        XCTAssertEqual(objs.last?.name, "bb")
         XCTAssertEqual(objs.count, 2)
     }
 
@@ -105,34 +76,51 @@ class RealmPersistenceTests: XCTestCase {
         let a = Course(value: ["id": "1", "name": "a"])
         try? p.addOrUpdate(a)
 
-        var objs = realm.objects(Course.self)
+        var objs: [Course] = p.fetch()
         XCTAssertEqual(objs.count, 1)
 
         try? p.delete(a)
 
-        objs = realm.objects(Course.self)
+        objs = p.fetch()
         XCTAssertEqual(objs.count, 0)
     }
 
+    func testInsert() {
+        let name = "test object"
+
+        let model: Course = p.insert()
+        model.name = name
+        model.id = "1"
+        try? p.addOrUpdate(model)
+
+        let objs: [Course] = p.fetch()
+        XCTAssertEqual(objs.count, 1)
+        XCTAssertEqual(objs.first?.name, name)
+    }
+
     func testPerformSaveOnBackground() {
-        let objs = realm.objects(Course.self)
-        XCTAssertEqual(objs.count, 0)
+        let model = Course(value: ["id": "5", "name": "n"])
+        try? p.addOrUpdate(model)
 
         let expectation = XCTestExpectation(description: "expectation")
         RealmPersistence.performBackgroundTask { [weak self] (persistence) in
-
             let a = self!.p!
             let b = persistence as! RealmPersistence
             XCTAssertFalse(a.store === b.store)
 
             let model = Course(value: ["id": "1", "name": "a"])
-            try? persistence.addOrUpdate(model)
+
+            XCTAssertNoThrow(try persistence.addOrUpdate(model))
             expectation.fulfill()
         }
 
-        wait(for: [expectation], timeout: 0.1)
-        let models: [Course] = p.fetch(predicate: nil, sortDescriptors: nil)
-        XCTAssertEqual(models.count, 1)
+        wait(for: [expectation], timeout: 1)
+
+        p.refresh()
+        let models: [Course] = p.fetch()
+
+        print(models)
+        XCTAssertEqual(models.count, 2)
     }
 
     func testPerformSaveOnBackgroundWithExistingObject() {
@@ -147,21 +135,16 @@ class RealmPersistenceTests: XCTestCase {
             let b = persistence as! RealmPersistence
             XCTAssertFalse(a.store === b.store)
 
-            var objs: [Course]!
-            if let persistence = persistence as? RealmPersistence {
-                objs = persistence.fetch(predicate: nil, sortDescriptors: nil)
-                XCTAssertEqual(objs.count, 1)
-            } else {
-                XCTFail()
-            }
+            let objs: [Course] = persistence.fetch(predicate: nil, sortDescriptors: nil)
+            XCTAssertEqual(objs.count, 1)
 
             let model: Course = objs.first!
-
             model.name = expectedName
             expectation.fulfill()
         }
 
         wait(for: [expectation], timeout: 0.1)
+        p.refresh()
         let models: [Course] = p.fetch(predicate: nil, sortDescriptors: nil)
         XCTAssertEqual(models.count, 1)
         XCTAssertEqual(models.first!.name, expectedName)
@@ -205,7 +188,7 @@ class RealmPersistenceTests: XCTestCase {
 
         try? p.addOrUpdate([a, b])
 
-        let objs = realm.objects(Course.self)
+        let objs: [Course] = p.fetch()
         XCTAssertEqual(objs.count, 2)
 
         var models: [Course] = p.fetch()
@@ -223,7 +206,7 @@ class RealmPersistenceTests: XCTestCase {
 
         try? p.addOrUpdate([a, b])
 
-        let objs = realm.objects(Course.self)
+        let objs: [Course] = p.fetch()
         XCTAssertEqual(objs.count, 2)
 
         let pred = NSPredicate(format: "id == %@", "1")
@@ -266,13 +249,40 @@ class RealmPersistenceTests: XCTestCase {
         //  then
         XCTAssertEqual(objs, expected)
     }
+
+    func assertNoCourseObjectsPreExisting() {
+        let objs: [Course] = p.fetch()
+        XCTAssertEqual(objs.count, 0)
+    }
+
+}
+
+extension RealmPersistenceTests: FetchedResultsControllerDelegate {
+    func controllerDidChangeContent<T>(_ controller: FetchedResultsController<T>) {
+        frcExpectation.fulfill()
+    }
 }
 
 extension RealmPersistence {
-    static func testingConfig(inMemoryIdentifier: String) -> Realm.Configuration {
+    static func testingConfig(identifier: String) -> Realm.Configuration {
         var config = Realm.Configuration.defaultConfiguration
-        config.inMemoryIdentifier = inMemoryIdentifier
-        RealmPersistence.config.inMemoryIdentifier = inMemoryIdentifier
+//        var docDir = documentDirectory()
+//        docDir.appendPathComponent("\(identifier).realm")
+//        config.fileURL = docDir
+//        let fileManager = FileManager.default
+//        if let fileUrl = config.fileURL {
+//            try? fileManager.removeItem(at: fileUrl)
+//        }
+//        RealmPersistence.config.fileURL = config.fileURL
+
+        config.inMemoryIdentifier = identifier
+        RealmPersistence.config.inMemoryIdentifier = identifier
         return config
+    }
+
+    static func documentDirectory() -> URL {
+        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
+        let url = URL(fileURLWithPath: path)
+        return url
     }
 }

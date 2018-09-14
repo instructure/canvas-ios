@@ -25,6 +25,6 @@ public class Group: Object {
     @objc public dynamic var concluded: Bool = false
 
     override public class func primaryKey() -> String? {
-        return "id"
+        return #keyPath(Group.id)
     }
 }
