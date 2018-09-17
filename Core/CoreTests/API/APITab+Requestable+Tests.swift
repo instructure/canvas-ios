@@ -21,4 +21,8 @@ class APITabRequestableTests: XCTestCase {
     func testGetTabsRequest() {
         XCTAssertEqual(GetTabsRequest(context: ContextModel(.course, id: "2")).path, "courses/2/tabs?per_page=100")
     }
+
+    func testGetGroupTabsRequest() {
+        XCTAssertEqual(GetTabsRequest(context: ContextModel(.group, id: "3")).path, "groups/3/tabs?per_page=100")
+    }
 }

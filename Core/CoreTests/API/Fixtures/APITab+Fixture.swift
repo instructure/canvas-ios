@@ -15,18 +15,18 @@
 //
 
 import Foundation
+@testable import Core
 
-// https://canvas.instructure.com/doc/api/tabs.html#Tab
-struct APITab: Codable, Equatable {
-    let id: ID
-    let html_url: String
-    let label: String
-    let type: String
-    let hidden: Bool?
-    let visibility: Visibility
-    let position: Int
-
-    enum Visibility: String, Codable {
-        case admins, members, `public`, none
+extension APITab: Fixture {
+    static var template: Template {
+        return [
+            "id": "home",
+            "html_url": "/groups/16",
+            "full_url": "https://twilson.instructure.com/groups/16",
+            "position": 1,
+            "visibility": "public",
+            "label": "Home",
+            "type": "internal",
+        ]
     }
 }

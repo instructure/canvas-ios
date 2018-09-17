@@ -51,4 +51,12 @@ class IDTests: XCTestCase {
         XCTAssertEqual(token?.user.id, "3")
         XCTAssertEqual(token?.user.id, 3)
     }
+
+    func testEncodeAndDecodeTogether() {
+        let group = APIGroup.make(["id": "2"])
+        let encoded = try! JSONEncoder().encode(group)
+        let decoded = try! JSONDecoder().decode(APIGroup.self, from: encoded)
+        XCTAssertEqual(decoded.id, "2")
+        XCTAssertEqual(decoded.id.value, "2")
+    }
 }

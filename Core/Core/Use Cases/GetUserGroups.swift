@@ -27,11 +27,11 @@ public class GetUserGroups: CollectionUseCase<GetGroupsRequest, Group> {
     }
 
     public override func predicate(forItem item: APIGroup) -> NSPredicate {
-        return .id(item.id)
+        return .id(item.id.value)
     }
 
     override func updateModel(_ model: Group, using object: APIGroup, in client: Persistence) {
-        if model.id.isEmpty { model.id = object.id }
+        if model.id.isEmpty { model.id = object.id.value }
         model.name = object.name
         model.member = true
         model.concluded = object.concluded

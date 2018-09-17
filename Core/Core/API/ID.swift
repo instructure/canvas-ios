@@ -20,7 +20,7 @@ import Foundation
 struct ID: Codable, Equatable, CustomStringConvertible {
 //  swiftlint:enable type_name
 
-    var value: String
+    let value: String
     var description: String {
         return value
     }
@@ -36,7 +36,16 @@ struct ID: Codable, Equatable, CustomStringConvertible {
             return
         }
 
-        throw IDError.missingValue
+        value = ""
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        if value.isEmpty {
+            try container.encodeNil()
+        } else {
+            try container.encode(value)
+        }
     }
 
     enum IDError: Error {

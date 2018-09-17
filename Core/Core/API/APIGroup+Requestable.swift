@@ -51,3 +51,14 @@ struct GetGroupUsersRequest: APIRequestable {
         ]),
     ]
 }
+
+// https://canvas.instructure.com/doc/api/groups.html#method.groups.show
+struct GetGroupRequest: APIRequestable {
+    typealias Response = APIGroup
+
+    let id: String
+
+    public var path: String {
+        return ContextModel(.group, id: id).pathComponent
+    }
+}

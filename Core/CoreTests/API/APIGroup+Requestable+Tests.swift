@@ -31,4 +31,8 @@ class APIGroupRequestableTests: XCTestCase {
             URLQueryItem(name: "include[]", value: "avatar_url"),
         ])
     }
+
+    func testGetGroupRequest() {
+        XCTAssertEqual(GetGroupRequest(id: "2").path, "groups/2")
+    }
 }

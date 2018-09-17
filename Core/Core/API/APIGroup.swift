@@ -18,7 +18,7 @@ import Foundation
 
 // https://canvas.instructure.com/doc/api/groups.html#Group
 public struct APIGroup: Codable, Equatable {
-    let id: String
+    let id: ID
     let name: String
     let concluded: Bool
     // let description: String?
@@ -28,9 +28,9 @@ public struct APIGroup: Codable, Equatable {
     let members_count: Int
     let avatar_url: String?
     // let context_type: String
-    let course_id: String?
+    let course_id: ID?
     // let role: String?
-    let group_category_id: String
+    let group_category_id: ID
     // let sis_group_id: String?
     // let sis_import_id: String?
     // let storage_quota_mb: String

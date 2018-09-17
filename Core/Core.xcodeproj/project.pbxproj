@@ -110,6 +110,7 @@
 		B17F23AD21378E3800771F86 /* PaginatedUseCaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17F23AC21378E3800771F86 /* PaginatedUseCaseTest.swift */; };
 		B17F23AF21378F4B00771F86 /* TTLOperationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17F23AE21378F4B00771F86 /* TTLOperationTest.swift */; };
 		B17F23B12137981B00771F86 /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17F23B02137981B00771F86 /* Clock.swift */; };
+		B1812690214C562800E71F63 /* APITab+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B181268F214C562800E71F63 /* APITab+Fixture.swift */; };
 		B195DC45213201DE00797FE4 /* GetUserGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = B195DC44213201DE00797FE4 /* GetUserGroups.swift */; };
 		B195DC472132127200797FE4 /* CollectionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B195DC462132127200797FE4 /* CollectionUseCase.swift */; };
 		B195DC49213215A300797FE4 /* NSPredicate+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = B195DC48213215A300797FE4 /* NSPredicate+Core.swift */; };
@@ -282,6 +283,7 @@
 		B17F23AC21378E3800771F86 /* PaginatedUseCaseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginatedUseCaseTest.swift; sourceTree = "<group>"; };
 		B17F23AE21378F4B00771F86 /* TTLOperationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTLOperationTest.swift; sourceTree = "<group>"; };
 		B17F23B02137981B00771F86 /* Clock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
+		B181268F214C562800E71F63 /* APITab+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APITab+Fixture.swift"; sourceTree = "<group>"; };
 		B195DC44213201DE00797FE4 /* GetUserGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserGroups.swift; sourceTree = "<group>"; };
 		B195DC462132127200797FE4 /* CollectionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionUseCase.swift; sourceTree = "<group>"; };
 		B195DC48213215A300797FE4 /* NSPredicate+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSPredicate+Core.swift"; sourceTree = "<group>"; };
@@ -718,6 +720,7 @@
 				7D58FBC92141B43300705CDF /* APIAccountResults.json */,
 				B1EA5AF2212E668900DABC5F /* APICourse+Fixture.swift */,
 				B195DC5621324E5600797FE4 /* APIGroup+Fixture.swift */,
+				B181268F214C562800E71F63 /* APITab+Fixture.swift */,
 			);
 			path = Fixtures;
 			sourceTree = "<group>";
@@ -1027,6 +1030,7 @@
 				3B3467CB21349FE300F9BC2E /* GetMobileVerifyTests.swift in Sources */,
 				7D80AC25212C61F100C40ECE /* APIAccount+Requestable+Tests.swift in Sources */,
 				7D80AC2D212C801600C40ECE /* APIOAuth+Requestable+Tests.swift in Sources */,
+				B1812690214C562800E71F63 /* APITab+Fixture.swift in Sources */,
 				3B412F0D2146D4A10090DE02 /* TTL+Fixture.swift in Sources */,
 				B195DC5E2132561700797FE4 /* Group+Fixture.swift in Sources */,
 				B1EA5AF3212E668900DABC5F /* APICourse+Fixture.swift in Sources */,
