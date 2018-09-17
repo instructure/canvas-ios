@@ -75,10 +75,10 @@ class DashboardPresenter: DashboardPresenterProtocol {
         return fetcher
     }()
 
-    init(view: (DashboardViewProtocol & ErrorViewController)?, api: API = URLSessionAPI(), database: Persistence = RealmPersistence.main) {
+    init(view: (DashboardViewProtocol & ErrorViewController)?, appState: AppState) {
         self.view = view
-        self.api = api
-        self.database = database
+        self.api = appState.api
+        self.database = appState.database
     }
 
     func courseWasSelected(_ courseID: String) {
@@ -151,6 +151,12 @@ class DashboardPresenter: DashboardPresenterProtocol {
         groupOperation.completionBlock = { [weak self] in
             // Load data from data store once our big group finishes
             DispatchQueue.main.async { [weak self] in
+                do {
+                    try self?.coursesFetch.performFetch()
+                    try self?.groupsFetch.performFetch()
+                } catch {
+                    self?.view?.showError(error)
+                }
                 self?.fetchData()
             }
         }

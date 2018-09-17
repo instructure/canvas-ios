@@ -90,11 +90,7 @@ In order to run the recording/replay locally, there are a few steps you need to 
   - Create a bucket called `cassettes`
   - Click on the kabob next to the cassettes bucket and click `Edit policy`
   - Make the policy `Read and Write` with a prefix of `*`
-- Go into `VCR.m` and comment out the first line in
-  `- (void)recordCassette:(NSString *)testCase completionHandler:(void (^)(NSError *error))completionHandler`
-- Do a test run and you should see recording files show up in `/tmp/data`
-- Change the `record` variable in `VCR.m` in the `init` method to `NO`
-- Do a test run and it should pull from the recorded files
+- To adjust how the tests are run check out `StudentUITest.swift`
 
 There are some recorded requests that show up with a key of `{}`. This is due to some of the data seeding requests not serializing to JSON with parameters. It's possible that the request has no parameters. This is something we will want to determine and fix so that asynchronous data seeding calls don't break.
 

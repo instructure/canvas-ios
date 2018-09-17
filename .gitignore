@@ -22,6 +22,7 @@ fastlane/report.xml
 *.xcscmblueprint
 artifacts
 xctestrun/
+**/IDEWorkspaceChecks.plist
 
 # AppCode
 .idea

@@ -16,11 +16,13 @@
 
 import XCTest
 @testable import Student
+@testable import Core
 
 class DashboardIntegrationTests: XCTestCase {
+    let appState = AppState(router: Router(routes: []), api: URLSessionAPI(), database: RealmPersistence.main)
 
     func testView() {
-        let view = DashboardViewController.create()
+        let view = DashboardViewController.create(appState: appState)
         let mockPresenter = MockDashboardPresenter()
         view.presenter = mockPresenter
 

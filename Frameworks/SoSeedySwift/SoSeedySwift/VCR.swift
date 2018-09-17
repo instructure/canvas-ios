@@ -19,7 +19,7 @@ import Foundation
 var requests: [String : [String]] = [:]
 
 public class VCR {
-    private let record = true
+    public var record = true
     public static let shared = VCR()
     
     init() {}
@@ -43,17 +43,15 @@ public class VCR {
         do {
             let jsonData = try Data(contentsOf: url)
             requests = try JSONSerialization.jsonObject(with: jsonData, options: .mutableContainers) as! [String : [String]]
+            completionHandler(nil)
         } catch let error {
             completionHandler(error)
         }
     }
     
     public func recordCassette(testCase: String, completionHandler:@escaping (Error?) -> Void) {
-        // for now don't record the cassettes
-        completionHandler(nil)
-        return  
-        
-        if !record {    
+        if !record {
+            completionHandler(nil)
             return
         }
         
@@ -98,6 +96,7 @@ public class VCR {
             return nil
         }
         value.remove(at: 0)
+        requests[key] = value
         return response
     }
 }

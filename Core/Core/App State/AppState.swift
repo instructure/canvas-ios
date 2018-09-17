@@ -14,8 +14,12 @@ public protocol AppStateDelegate {
 
 public class AppState {
     public let router: Router
+    public var api: API
+    public let database: Persistence
 
-    public init(router: Router) {
+    public init(router: Router, api: API, database: Persistence) {
         self.router = router
+        self.api = api
+        self.database = database
     }
 }

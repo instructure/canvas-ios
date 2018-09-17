@@ -36,6 +36,8 @@
 		78815318212F56E1005BA428 /* AllCoursesSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78815314212F56E1005BA428 /* AllCoursesSectionHeaderView.swift */; };
 		7881531F212FC5F7005BA428 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C964867211E38B0002C3255 /* Core.framework */; };
 		7D7110C321389AD90085C2E5 /* Routes+Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7110C221389AD90085C2E5 /* Routes+Student.swift */; };
+		9F7F18562148202D007336A0 /* StudentUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7F18552148202D007336A0 /* StudentUITest.swift */; };
+		9F7F18582148222C007336A0 /* DashboardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7F18572148222C007336A0 /* DashboardUITests.swift */; };
 		9FCA66032142C87A00BE0EBB /* SoSeedySwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCA66012142C86C00BE0EBB /* SoSeedySwift.framework */; };
 		9FCA66052142C89300BE0EBB /* SoSeedySwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCA66012142C86C00BE0EBB /* SoSeedySwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9FCA66102142C8D700BE0EBB /* BoringSSL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCA66092142C8D100BE0EBB /* BoringSSL.framework */; };
@@ -48,6 +50,7 @@
 		9FCA66172142C90200BE0EBB /* CgRPC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCA660A2142C8D100BE0EBB /* CgRPC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9FCA66182142C90900BE0EBB /* Secrets.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCA66062142C8C300BE0EBB /* Secrets.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9FCA66192142C91200BE0EBB /* SwiftProtobuf.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCA66082142C8D100BE0EBB /* SwiftProtobuf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9FCED88521497B120015EFFE /* RecordableAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCED88421497B120015EFFE /* RecordableAPI.swift */; };
 		F97304A02122268100AA2557 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C964867211E38B0002C3255 /* Core.framework */; };
 		F97304A12122268500AA2557 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C964867211E38B0002C3255 /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F97304A4212287C500AA2557 /* EarlGrey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F97304A3212287C400AA2557 /* EarlGrey.framework */; };
@@ -151,12 +154,15 @@
 		7D349C33214308C3004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/Main.strings"; sourceTree = "<group>"; };
 		7D349C34214308C3004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		7D7110C221389AD90085C2E5 /* Routes+Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Routes+Student.swift"; sourceTree = "<group>"; };
+		9F7F18552148202D007336A0 /* StudentUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentUITest.swift; sourceTree = "<group>"; };
+		9F7F18572148222C007336A0 /* DashboardUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardUITests.swift; sourceTree = "<group>"; };
 		9FCA66012142C86C00BE0EBB /* SoSeedySwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoSeedySwift.framework; path = "../../ios-frameworks/SoSeedySwift.framework"; sourceTree = "<group>"; };
 		9FCA66062142C8C300BE0EBB /* Secrets.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Secrets.framework; path = "../../ios-frameworks/Secrets.framework"; sourceTree = "<group>"; };
 		9FCA66082142C8D100BE0EBB /* SwiftProtobuf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftProtobuf.framework; path = "../../ios-frameworks/SwiftGRPC/SwiftProtobuf.framework"; sourceTree = "<group>"; };
 		9FCA66092142C8D100BE0EBB /* BoringSSL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BoringSSL.framework; path = "../../ios-frameworks/SwiftGRPC/BoringSSL.framework"; sourceTree = "<group>"; };
 		9FCA660A2142C8D100BE0EBB /* CgRPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CgRPC.framework; path = "../../ios-frameworks/SwiftGRPC/CgRPC.framework"; sourceTree = "<group>"; };
 		9FCA660B2142C8D100BE0EBB /* SwiftGRPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftGRPC.framework; path = "../../ios-frameworks/SwiftGRPC/SwiftGRPC.framework"; sourceTree = "<group>"; };
+		9FCED88421497B120015EFFE /* RecordableAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordableAPI.swift; sourceTree = "<group>"; };
 		F97304A3212287C400AA2557 /* EarlGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EarlGrey.framework; path = "../../ios-frameworks/EarlGrey.framework"; sourceTree = "<group>"; };
 		F97304A6212287F400AA2557 /* EarlGrey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarlGrey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -230,6 +236,7 @@
 		2C5C69A2211DFFAE00D9AD15 /* StudentTests */ = {
 			isa = PBXGroup;
 			children = (
+				9F7F18542148201A007336A0 /* Helpers */,
 				3B032CA6214C553A00B570F7 /* Groups */,
 				788152E0212B38C5005BA428 /* Dashboard */,
 				2C96486B211E3AA9002C3255 /* Core.framework */,
@@ -308,6 +315,7 @@
 			children = (
 				788152E3212B3957005BA428 /* DashboardIntegrationTests.swift */,
 				788152E5212B3987005BA428 /* DashboardMocks.swift */,
+				9F7F18572148222C007336A0 /* DashboardUITests.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -322,6 +330,15 @@
 				7881530F212BD307005BA428 /* AllCoursesPresenter.swift */,
 			);
 			path = AllCourses;
+			sourceTree = "<group>";
+		};
+		9F7F18542148201A007336A0 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				9F7F18552148202D007336A0 /* StudentUITest.swift */,
+				9FCED88421497B120015EFFE /* RecordableAPI.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -473,9 +490,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				F97304A7212287F400AA2557 /* EarlGrey.swift in Sources */,
+				9F7F18562148202D007336A0 /* StudentUITest.swift in Sources */,
 				3B032CA8214C554C00B570F7 /* GroupNavigationPresenterTests.swift in Sources */,
 				2C5C69A4211DFFAE00D9AD15 /* StudentTests.swift in Sources */,
+				9FCED88521497B120015EFFE /* RecordableAPI.swift in Sources */,
 				788152E6212B3987005BA428 /* DashboardMocks.swift in Sources */,
+				9F7F18582148222C007336A0 /* DashboardUITests.swift in Sources */,
 				788152E4212B3957005BA428 /* DashboardIntegrationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

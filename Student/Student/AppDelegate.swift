@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     var window: UIWindow?
 
     lazy var appState: AppState = {
-        let appState = AppState(router: router)
+        let appState = AppState(router: router, api: URLSessionAPI(), database: RealmPersistence.main)
         return appState
     }()
 
@@ -75,7 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     }
 
     func createTabController() -> UITabBarController {
-        let vc1 = DashboardViewController.create()
+        let vc1 = DashboardViewController.create(appState: appState)
         vc1.title = "Dashboard"
         vc1.tabBarItem = UITabBarItem(title: "Dashboard", image: nil, selectedImage: nil)
         vc1.tabBarItem.accessibilityLabel = "Dashboard_tab"
