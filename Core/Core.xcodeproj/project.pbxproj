@@ -95,6 +95,8 @@
 		7D8262FB212B3B3000BD268D /* APIEnrollment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8262FA212B3B3000BD268D /* APIEnrollment.swift */; };
 		7DC23092213D710000318ED0 /* UIImageView+load+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC23091213D710000318ED0 /* UIImageView+load+Tests.swift */; };
 		9F7DF8172136EEE400966382 /* OperationSetTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7DF8162136EEE400966382 /* OperationSetTest.swift */; };
+		9FE84DDA214FE06300B95A68 /* GetGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE84DD9214FE06300B95A68 /* GetGroup.swift */; };
+		9FE84DDC214FE5C500B95A68 /* GetGroupTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE84DDB214FE5C500B95A68 /* GetGroupTest.swift */; };
 		B1381F15212E5E4A001F908C /* APIOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1381F14212E5E4A001F908C /* APIOperation.swift */; };
 		B1445307212E5B6E0009D848 /* FetchedResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1445301212E5B6E0009D848 /* FetchedResultsController.swift */; };
 		B1445308212E5B6E0009D848 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1445302212E5B6E0009D848 /* Persistence.swift */; };
@@ -264,6 +266,8 @@
 		7D8262FA212B3B3000BD268D /* APIEnrollment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnrollment.swift; sourceTree = "<group>"; };
 		7DC23091213D710000318ED0 /* UIImageView+load+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+load+Tests.swift"; sourceTree = "<group>"; };
 		9F7DF8162136EEE400966382 /* OperationSetTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationSetTest.swift; sourceTree = "<group>"; };
+		9FE84DD9214FE06300B95A68 /* GetGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGroup.swift; sourceTree = "<group>"; };
+		9FE84DDB214FE5C500B95A68 /* GetGroupTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGroupTest.swift; sourceTree = "<group>"; };
 		B1381F14212E5E4A001F908C /* APIOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIOperation.swift; sourceTree = "<group>"; };
 		B14452FC212E5B6E0009D848 /* CoreDataFetchedResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataFetchedResultsController.swift; sourceTree = "<group>"; };
 		B14452FD212E5B6E0009D848 /* NSManagedObjectContext+Core.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Core.swift"; sourceTree = "<group>"; };
@@ -647,6 +651,7 @@
 				B195DC44213201DE00797FE4 /* GetUserGroups.swift */,
 				3B3467E12137170500F9BC2E /* ConstructLoginRequest.swift */,
 				7851D9B22138264800E76EC3 /* GetCustomColors.swift */,
+				9FE84DD9214FE06300B95A68 /* GetGroup.swift */,
 			);
 			path = "Use Cases";
 			sourceTree = "<group>";
@@ -710,6 +715,7 @@
 				3B3467D12135AF5100F9BC2E /* ConstructLoginRequestTests.swift */,
 				B195DC5421324DA600797FE4 /* GetUserGroupsTest.swift */,
 				B195DC612133326900797FE4 /* GetCourseTest.swift */,
+				9FE84DDB214FE5C500B95A68 /* GetGroupTest.swift */,
 			);
 			path = "Use Cases";
 			sourceTree = "<group>";
@@ -968,6 +974,7 @@
 				789C9BC32138656E00B37AC4 /* OperationQueue.swift in Sources */,
 				3B3467DC2137087100F9BC2E /* HTTPHeaderConstants.swift in Sources */,
 				B195DC472132127200797FE4 /* CollectionUseCase.swift in Sources */,
+				9FE84DDA214FE06300B95A68 /* GetGroup.swift in Sources */,
 				7D80AC58212DAE4C00C40ECE /* URLResponse+links.swift in Sources */,
 				3B3467D02135024800F9BC2E /* ErrorViewControllerProtocol.swift in Sources */,
 				7D062AF4212496E600677F66 /* Context.swift in Sources */,
@@ -1034,6 +1041,7 @@
 				3B412F0D2146D4A10090DE02 /* TTL+Fixture.swift in Sources */,
 				B195DC5E2132561700797FE4 /* Group+Fixture.swift in Sources */,
 				B1EA5AF3212E668900DABC5F /* APICourse+Fixture.swift in Sources */,
+				9FE84DDC214FE5C500B95A68 /* GetGroupTest.swift in Sources */,
 				DFE1FF20212F5E41003F27AA /* Keychain.swift in Sources */,
 				B17F23AF21378F4B00771F86 /* TTLOperationTest.swift in Sources */,
 				3B3467CD2134A06300F9BC2E /* GetAuthTokenTests.swift in Sources */,
