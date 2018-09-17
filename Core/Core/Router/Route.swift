@@ -15,62 +15,29 @@
 //
 
 import Foundation
-import UIKit
 
-// A route is a place you can go in the app
-// Each app defines it's own routes when creating the Router
 public struct Route {
-    public typealias ViewFactory = (Match) -> UIViewController?
+    let url: URLComponents
 
-    public enum Segment: Equatable {
-        case literal(String)
-        case param(String)
-        case splat(String)
+    init(_ path: String) {
+        url = .parse(path)
     }
 
-    public struct Match {
-        public let url: URLComponents
-        public let params: [String: String]
+    public static let login = Route("/login")
+
+    public static let courses = Route("/courses")
+
+    public static func course(_ courseID: String) -> Route {
+        return Route("/courses/\(courseID)")
     }
 
-    public let template: String
-    public let factory: ViewFactory
-    public let segments: [Segment]
-
-    public init(_ template: String, factory: @escaping ViewFactory) {
-        self.template = template
-        self.factory = factory
-        self.segments = template.split(separator: "/").map { part in
-            if part.hasPrefix("*") {
-                return .splat(String(part.dropFirst()))
-            } else if part.hasPrefix(":") {
-                return .param(String(part.dropFirst()))
-            }
-            return .literal(String(part))
-        }
+    public static func course(_ courseID: String, user userID: String) -> Route {
+        return Route("/courses/\(courseID)/users/\(userID)")
     }
 
-    public func match(_ url: URLComponents) -> UIViewController? {
-        var parts = url.path.split(separator: "/")
-        var params: [String: String] = [:]
-        for segment in segments {
-            guard !parts.isEmpty else { return nil } // too short
-            switch segment {
-            case .literal(let template):
-                guard parts.removeFirst() == template else { return nil }
-            case .param(let name):
-                params[name] = String(parts.removeFirst())
-            case .splat(let name):
-                params[name] = parts.joined(separator: "/")
-                parts = []
-            }
-        }
-        guard parts.isEmpty else { return nil } // too long
+    public static let groups = Route("/groups")
 
-        // URLComponents does all the encoding we care about except we often have + meaning space in query
-        var cleaned = url
-        cleaned.query = url.query?.replacingOccurrences(of: "+", with: " ")
-
-        return factory(Match(url: cleaned, params: params))
+    public static func group(_ groupID: String) -> Route {
+        return Route("/groups/\(groupID)")
     }
 }

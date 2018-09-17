@@ -21,12 +21,13 @@ import TechDebt
 import CanvasCore
 import Marshal
 import CanvasKeymaster
+import Core
 
 var currentSession: Session? {
     return CanvasKeymaster.the().currentClient?.authSession
 }
 
-extension Router {
+extension TechDebt.Router {
     
     func addCanvasRoutes(_ handleError: @escaping (NSError)->()) {
         func addContextRoute(_ contexts: [ContextID.Context], subPath: String, file: String = #file, line: UInt = #line, handler: @escaping (ContextID, [String: Any]) throws -> UIViewController?) {
@@ -153,7 +154,7 @@ extension Router {
             return nil
         }
 
-        let downloadFile: RouteHandler = { parameters, _ in
+        let downloadFile: TechDebt.RouteHandler = { parameters, _ in
             guard let parameters = parameters else {
                 return nil
             }
@@ -399,6 +400,18 @@ extension Router {
                 ]
             )
         }
+
+        addRoute("*path") { parameters, _ in
+            // TODO: return Student.router.match(.parse(parameters["path"]))
+            return nil
+        }
+    }
+}
+
+extension TechDebt.Router: RouterProtocol {
+    public func route(to url: URLComponents, from: UIViewController, options: Core.Router.RouteOptions? = nil) {
+        guard let url = url.url else { return }
+        route(from: from, to: url, withOptions: [ "modal": options?.contains(.modal) ?? false ])
     }
 }
 

@@ -27,10 +27,10 @@ class RouterTests: XCTestCase {
 
     func testRouter() {
         let router = Router(routes: [
-            Route("/courses") { _ in
+            RouteHandler("/courses") { _, _ in
                 return UIViewController()
             },
-            Route("/inbox") { _ in
+            RouteHandler("/inbox") { _, _ in
                 return UIViewController()
             },
         ])
@@ -47,7 +47,7 @@ class RouterTests: XCTestCase {
     func testRouteMatch() {
         let mockView = MockViewController()
         let router = Router(routes: [
-            Route("/somewhere") { _ in
+            RouteHandler("/somewhere") { _, _ in
                 return UIViewController()
             },
         ])
@@ -58,7 +58,7 @@ class RouterTests: XCTestCase {
     func testRouteString() {
         let mockView = MockViewController()
         let router = Router(routes: [
-            Route("/somewhere") { _ in
+            RouteHandler("/somewhere") { _, _ in
                 return UIViewController()
             },
         ])
@@ -69,7 +69,7 @@ class RouterTests: XCTestCase {
     func testRouteURL() {
         let mockView = MockViewController()
         let router = Router(routes: [
-            Route("/somewhere") { _ in
+            RouteHandler("/somewhere") { _, _ in
                 return UIViewController()
             },
         ])
@@ -77,12 +77,23 @@ class RouterTests: XCTestCase {
         XCTAssertNotNil(mockView.shown)
     }
 
+    func testRouteRoute() {
+        let mockView = MockViewController()
+        let router = Router(routes: [
+            RouteHandler(.login) { _, _ in
+                return UIViewController()
+            },
+        ])
+        router.route(to: .login, from: mockView)
+        XCTAssertNotNil(mockView.shown)
+    }
+
     func testMatchFallback() {
         let router = Router(routes: [
-            Route("/somewhere") { _ in
+            RouteHandler("/somewhere") { _, _ in
                 return nil
             },
-            Route("*path") { _ in
+            RouteHandler("*path") { _, _ in
                 return UIViewController()
             },
         ])
@@ -91,7 +102,7 @@ class RouterTests: XCTestCase {
 
     func testMatch() {
         let router = Router(routes: [
-            Route("/somewhere") { _ in
+            RouteHandler("/somewhere") { _, _ in
                 return UIViewController()
             },
         ])
@@ -102,7 +113,7 @@ class RouterTests: XCTestCase {
 
     func testMatchAbsolute() {
         let router = Router(routes: [
-            Route("/somewhere") { _ in
+            RouteHandler("/somewhere") { _, _ in
                 return UIViewController()
             },
         ])

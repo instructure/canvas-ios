@@ -11,10 +11,10 @@ import UIKit
 class MainViewController: UIViewController {
 
     @IBAction func goToDetail() {
-        router.route(to: "/courses/4/users/3?include[]=yo", from: self)
+        router.route(to: .course("4", user: "3"), from: self)
     }
 
     @IBAction func goLogin() {
-        router.route(to: "/login", from: self)
+        router.route(to: .login, from: self)
     }
 }

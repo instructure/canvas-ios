@@ -17,15 +17,15 @@
 import Core
 
 let router = Router(routes: [
-    Route("/courses/:courseID/users/:userID") {_ in
+    RouteHandler(.course(":courseID", user: ":userID")) { _, _ in
         return DetailViewController.create()
     },
 
-    Route("/login") { _ in
+    RouteHandler(.login) { _, _ in
         return LoginViewController(host: "twilson.instructure.com")
     },
 
-    Route("/allcourses") { _ in
+    RouteHandler(.courses) { _, _ in
         return AllCoursesViewController.create()
     },
 ])

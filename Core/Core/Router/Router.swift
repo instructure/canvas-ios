@@ -16,8 +16,29 @@
 
 import UIKit
 
+public protocol RouterProtocol {
+    func route(to: Route, from: UIViewController, options: Router.RouteOptions?)
+    func route(to url: URL, from: UIViewController, options: Router.RouteOptions?)
+    func route(to url: String, from: UIViewController, options: Router.RouteOptions?)
+    func route(to url: URLComponents, from: UIViewController, options: Router.RouteOptions?)
+}
+
+public extension RouterProtocol {
+    public func route(to: Route, from: UIViewController, options: Router.RouteOptions? = nil) {
+        return route(to: to.url, from: from, options: options)
+    }
+
+    public func route(to url: URL, from: UIViewController, options: Router.RouteOptions? = nil) {
+        return route(to: .parse(url), from: from, options: options)
+    }
+
+    public func route(to url: String, from: UIViewController, options: Router.RouteOptions? = nil) {
+        return route(to: .parse(url), from: from, options: options)
+    }
+}
+
 // The Router stores all routes that can be routed to in the app
-public class Router {
+public class Router: RouterProtocol {
     public struct RouteOptions: OptionSet {
         public let rawValue: Int
 
@@ -25,34 +46,26 @@ public class Router {
             self.rawValue = rawValue
         }
 
-        static let modal = RouteOptions(rawValue: 1)
+        public static let modal = RouteOptions(rawValue: 1)
     }
 
-    private let routes: [Route]
+    private let handlers: [RouteHandler]
 
-    public init(routes: [Route]) {
-        self.routes = routes
+    public init(routes: [RouteHandler]) {
+        self.handlers = routes
     }
 
     public var count: Int {
-        return routes.count
+        return handlers.count
     }
 
     public func match(_ url: URLComponents) -> UIViewController? {
-        for route in routes {
+        for route in handlers {
             if let view = route.match(url) {
                 return view
             }
         }
         return nil
-    }
-
-    public func route(to url: String, from: UIViewController, options: RouteOptions? = nil) {
-        return route(to: .parse(url), from: from, options: options)
-    }
-
-    public func route(to url: URL, from: UIViewController, options: RouteOptions? = nil) {
-        return route(to: .parse(url), from: from, options: options)
     }
 
     public func route(to url: URLComponents, from: UIViewController, options: RouteOptions? = nil) {

@@ -112,7 +112,7 @@ class DashboardPresenter: DashboardPresenterProtocol {
     func seeAllWasTapped() {
         // route
         if let vc = view as? UIViewController {
-            router.route(to: "/allcourses", from: vc)
+            router.route(to: .courses, from: vc)
         }
     }
 

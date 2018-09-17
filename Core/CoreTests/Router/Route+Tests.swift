@@ -18,47 +18,15 @@ import XCTest
 @testable import Core
 
 class RouteTests: XCTestCase {
-    func testSegments() {
-        let route = Route("/a//b/:c/d/*e") { _ in return nil }
-        XCTAssertEqual(route.segments, [
-            .literal("a"),
-            .literal("b"),
-            .param("c"),
-            .literal("d"),
-            .splat("e"),
-        ])
+    func testCourse() {
+        XCTAssertEqual(Route.course("7").url.path, "/courses/7")
     }
 
-    func testMatch() {
-        let route = Route("/a//b/:c/d/*e") { match in
-            XCTAssertEqual(match.params, [
-                "c": "c",
-                "e": "e/f/g",
-            ])
-            XCTAssertEqual(match.url.path, "a/b//c/d/e//f/g")
-            XCTAssertEqual(match.url.queryItems, [
-                URLQueryItem(name: "h", value: "i"),
-                URLQueryItem(name: "j", value: " k"),
-                URLQueryItem(name: "l", value: nil),
-            ])
-            XCTAssertEqual(match.url.fragment, "mnop")
-            return UIViewController()
-        }
-        XCTAssertNotNil(route.match(URLComponents(string: "a/b//c/d/e//f/g?h=%69&j=+k&l#mnop")!))
+    func testCourseUser() {
+        XCTAssertEqual(Route.course("4", user: "5").url.path, "/courses/4/users/5")
     }
 
-    func testMatchTooShort() {
-        let route = Route("/a//b/:c/d") { _ in return UIViewController() }
-        XCTAssertNil(route.match(URLComponents(string: "a/b/c")!))
-    }
-
-    func testMatchTooLong() {
-        let route = Route("/a//b/:c/d") { _ in return UIViewController() }
-        XCTAssertNil(route.match(URLComponents(string: "a/b/c/d/e")!))
-    }
-
-    func testMatchNone() {
-        let route = Route("a") { _ in return UIViewController() }
-        XCTAssertNil(route.match(URLComponents(string: "b")!))
+    func testGroup() {
+        XCTAssertEqual(Route.group("2").url.path, "/groups/2")
     }
 }
