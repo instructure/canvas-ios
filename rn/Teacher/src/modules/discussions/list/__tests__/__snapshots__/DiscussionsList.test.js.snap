@@ -238,7 +238,7 @@ exports[`DiscussionsList renders discussions 1`] = `
                     "button",
                   ]
                 }
-                accessible={false}
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Array [
@@ -657,7 +657,7 @@ exports[`DiscussionsList renders discussions 1`] = `
                     "button",
                   ]
                 }
-                accessible={false}
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Array [
@@ -1163,7 +1163,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                     "button",
                   ]
                 }
-                accessible={false}
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Array [
@@ -1549,7 +1549,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                     "button",
                   ]
                 }
-                accessible={false}
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Array [
@@ -2022,7 +2022,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
                     "button",
                   ]
                 }
-                accessible={false}
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Array [
@@ -2441,7 +2441,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
                     "button",
                   ]
                 }
-                accessible={false}
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Array [
@@ -2947,7 +2947,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                     "button",
                   ]
                 }
-                accessible={false}
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Array [
@@ -3366,7 +3366,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                     "button",
                   ]
                 }
-                accessible={false}
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Array [
@@ -3838,7 +3838,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                     "button",
                   ]
                 }
-                accessible={false}
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Array [

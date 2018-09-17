@@ -52,7 +52,7 @@ export default class DiscussionsRow extends PureComponent<Props> {
     return (
       <View accessible={false}>
         <View accessible={false}>
-          <Row accessible={false}
+          <Row accessible={true}
             accessibilityLabel={`${discussion.title}`}
             renderImage={this.renderIcon}
             title={discussion.title}

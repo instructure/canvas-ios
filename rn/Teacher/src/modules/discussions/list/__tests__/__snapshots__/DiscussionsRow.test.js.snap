@@ -9,7 +9,7 @@ exports[`DiscussionsRow renders 1`] = `
   >
     <Row
       accessibilityLabel="Dear Ivy Iversen, your last name cannot start with your first name"
-      accessible={false}
+      accessible={true}
       border="bottom"
       disclosureIndicator={false}
       height="auto"
@@ -169,7 +169,7 @@ exports[`DiscussionsRow renders published 1`] = `
   >
     <Row
       accessibilityLabel="Dear Ivy Iversen, your last name cannot start with your first name"
-      accessible={false}
+      accessible={true}
       border="bottom"
       disclosureIndicator={false}
       height="auto"
@@ -329,7 +329,7 @@ exports[`DiscussionsRow renders unpublished 1`] = `
   >
     <Row
       accessibilityLabel="Dear Ivy Iversen, your last name cannot start with your first name"
-      accessible={false}
+      accessible={true}
       border="bottom"
       disclosureIndicator={false}
       height="auto"
@@ -489,7 +489,7 @@ exports[`DiscussionsRow renders with no assignment 1`] = `
   >
     <Row
       accessibilityLabel="Dear Ivy Iversen, your last name cannot start with your first name"
-      accessible={false}
+      accessible={true}
       border="bottom"
       disclosureIndicator={false}
       height="auto"
@@ -631,7 +631,7 @@ exports[`DiscussionsRow renders with no unread count 1`] = `
   >
     <Row
       accessibilityLabel="Dear Ivy Iversen, your last name cannot start with your first name"
-      accessible={false}
+      accessible={true}
       border="bottom"
       disclosureIndicator={false}
       height="auto"
@@ -779,7 +779,7 @@ exports[`DiscussionsRow renders with points possible 1`] = `
   >
     <Row
       accessibilityLabel="Dear Ivy Iversen, your last name cannot start with your first name"
-      accessible={false}
+      accessible={true}
       border="bottom"
       disclosureIndicator={false}
       height="auto"
@@ -939,7 +939,7 @@ exports[`DiscussionsRow renders without points possible 1`] = `
   >
     <Row
       accessibilityLabel="Dear Ivy Iversen, your last name cannot start with your first name"
-      accessible={false}
+      accessible={true}
       border="bottom"
       disclosureIndicator={false}
       height="auto"
