@@ -91,6 +91,9 @@
 /* Courses Tab */
 "Courses" = "课程";
 
+/* No comment provided by engineer. */
+"Current student: %@, tap to switch students" = "当前学生：%@，点击以切换学生";
+
 /* Title for field */
 "Describe your problem" = "描述您的问题";
 
@@ -276,6 +279,9 @@
 
 /* Default user name, the computer-friendly version of their name, until we find their real user name */
 "Unknown User Name" = "未知用户名";
+
+/* No comment provided by engineer. */
+"Unread" = "未读";
 
 /* Calendar Tab */
 "Week" = "周";

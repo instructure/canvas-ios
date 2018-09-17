@@ -91,6 +91,9 @@
 /* Courses Tab */
 "Courses" = "Emner";
 
+/* No comment provided by engineer. */
+"Current student: %@, tap to switch students" = "Nåværende studenter: %@, trykk for å bytte mellom studenter";
+
 /* Title for field */
 "Describe your problem" = "Beskriv problemet ditt";
 
@@ -276,6 +279,9 @@
 
 /* Default user name, the computer-friendly version of their name, until we find their real user name */
 "Unknown User Name" = "Ukjent brukernavn";
+
+/* No comment provided by engineer. */
+"Unread" = "Ulest";
 
 /* Calendar Tab */
 "Week" = "Uke";

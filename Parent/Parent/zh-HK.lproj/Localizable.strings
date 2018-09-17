@@ -91,6 +91,9 @@
 /* Courses Tab */
 "Courses" = "課程";
 
+/* No comment provided by engineer. */
+"Current student: %@, tap to switch students" = "目前的學生：%@，點選以轉換學生";
+
 /* Title for field */
 "Describe your problem" = "描述您的問題";
 
@@ -276,6 +279,9 @@
 
 /* Default user name, the computer-friendly version of their name, until we find their real user name */
 "Unknown User Name" = "未知使用者名稱";
+
+/* No comment provided by engineer. */
+"Unread" = "未讀";
 
 /* Calendar Tab */
 "Week" = "週";

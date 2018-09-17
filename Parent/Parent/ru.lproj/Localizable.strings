@@ -91,6 +91,9 @@
 /* Courses Tab */
 "Courses" = "Курсы";
 
+/* No comment provided by engineer. */
+"Current student: %@, tap to switch students" = "Текущий студент: %@, нажмите для переключения между студентами";
+
 /* Title for field */
 "Describe your problem" = "Опишите вашу проблему";
 
@@ -276,6 +279,9 @@
 
 /* Default user name, the computer-friendly version of their name, until we find their real user name */
 "Unknown User Name" = "Неизвестное имя пользователя";
+
+/* No comment provided by engineer. */
+"Unread" = "Не прочитано";
 
 /* Calendar Tab */
 "Week" = "Неделя";

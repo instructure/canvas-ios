@@ -91,6 +91,9 @@
 /* Courses Tab */
 "Courses" = "Cyrsiau";
 
+/* No comment provided by engineer. */
+"Current student: %@, tap to switch students" = "Myfyriwr Presennol: %@, tapiwch i newid myfyrwyr";
+
 /* Title for field */
 "Describe your problem" = "Disgrifiwch eich problem";
 
@@ -276,6 +279,9 @@
 
 /* Default user name, the computer-friendly version of their name, until we find their real user name */
 "Unknown User Name" = "Enw Defnyddiwr Dieithr";
+
+/* No comment provided by engineer. */
+"Unread" = "Heb ddarllen";
 
 /* Calendar Tab */
 "Week" = "Wythnos";

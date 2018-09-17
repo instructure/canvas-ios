@@ -91,6 +91,9 @@
 /* Courses Tab */
 "Courses" = "コース";
 
+/* No comment provided by engineer. */
+"Current student: %@, tap to switch students" = "現在の受講生：%@、タップして受講生を切り替える";
+
 /* Title for field */
 "Describe your problem" = "問題についてお聞かせください";
 
@@ -276,6 +279,9 @@
 
 /* Default user name, the computer-friendly version of their name, until we find their real user name */
 "Unknown User Name" = "存在しないユーザーネームです";
+
+/* No comment provided by engineer. */
+"Unread" = "未読";
 
 /* Calendar Tab */
 "Week" = "週";

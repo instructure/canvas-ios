@@ -91,6 +91,9 @@
 /* Courses Tab */
 "Courses" = "Cursussen";
 
+/* No comment provided by engineer. */
+"Current student: %@, tap to switch students" = "Huidige cursist: %@, tik om van cursist te wisselen";
+
 /* Title for field */
 "Describe your problem" = "Beschrijf je probleem";
 
@@ -276,6 +279,9 @@
 
 /* Default user name, the computer-friendly version of their name, until we find their real user name */
 "Unknown User Name" = "Onbekende gebruikersnaam";
+
+/* No comment provided by engineer. */
+"Unread" = "Ongelezen";
 
 /* Calendar Tab */
 "Week" = "Week";

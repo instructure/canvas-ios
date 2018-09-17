@@ -86,6 +86,9 @@
   "all_4321c3a1": {
     "message": "全部"
   },
+  "all_annotations_saved_c0c650ab": {
+    "message": "所有注釋已儲存。"
+  },
   "all_courses_a7dbb853": {
     "message": "所有課程"
   },
@@ -568,6 +571,9 @@
   },
   "error_saving_grade_367dd920": {
     "message": "保存評分時出現錯誤"
+  },
+  "error_saving_tap_to_retry_a66b9c5f": {
+    "message": "儲存錯誤。點選以重試。"
   },
   "everyone_854554dd": {
     "message": "所有人"
@@ -1396,6 +1402,9 @@
   },
   "teacher_5a73b637": {
     "message": "老師"
+  },
+  "teachers_52e2423f": {
+    "message": "教師"
   },
   "teachers_and_students_ba2db3e4": {
     "message": "教師和學生"

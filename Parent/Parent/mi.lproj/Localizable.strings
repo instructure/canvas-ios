@@ -91,6 +91,9 @@
 /* Courses Tab */
 "Courses" = "Ngā akoranga";
 
+/* No comment provided by engineer. */
+"Current student: %@, tap to switch students" = "Ākonga o ināianei: %@, pātō ki tte huri ngā ākonga";
+
 /* Title for field */
 "Describe your problem" = "Whakaahuatia koutou raruraru";
 
@@ -276,6 +279,9 @@
 
 /* Default user name, the computer-friendly version of their name, until we find their real user name */
 "Unknown User Name" = "Ingoa Kaiwhakamahi tē mōhiotia";
+
+/* No comment provided by engineer. */
+"Unread" = "Kaore i pānuihia";
 
 /* Calendar Tab */
 "Week" = "Wiki";
