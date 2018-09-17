@@ -44,6 +44,7 @@ class AllCoursesPresenter: AllCoursesPresenterProtocol {
     weak var view: (AllCoursesViewProtocol & ErrorViewController)?
     let api: API
     let database: Persistence
+    let router: RouterProtocol
     var groupOperation: OperationSet?
 
     lazy var coursesFetch: FetchedResultsController<Course> = {
@@ -53,10 +54,11 @@ class AllCoursesPresenter: AllCoursesPresenterProtocol {
         return fetcher
     }()
 
-    init(view: (AllCoursesViewProtocol & ErrorViewController)?, api: API = URLSessionAPI(), database: Persistence = RealmPersistence.main) {
+    init(env: AppEnvironment, view: (AllCoursesViewProtocol & ErrorViewController)?) {
+        self.api = env.api
+        self.database = env.database
+        self.router = env.router
         self.view = view
-        self.api = api
-        self.database = database
     }
 
     func courseWasSelected(_ courseID: String) {

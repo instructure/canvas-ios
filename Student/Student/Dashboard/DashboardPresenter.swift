@@ -57,6 +57,7 @@ class DashboardPresenter: DashboardPresenterProtocol {
     weak var view: (DashboardViewProtocol & ErrorViewController)?
     let api: API
     let database: Persistence
+    let router: RouterProtocol
     var groupOperation: OperationSet?
 
     lazy var coursesFetch: FetchedResultsController<Course> = {
@@ -75,10 +76,11 @@ class DashboardPresenter: DashboardPresenterProtocol {
         return fetcher
     }()
 
-    init(view: (DashboardViewProtocol & ErrorViewController)?, appState: AppState) {
+    init(env: AppEnvironment, view: (DashboardViewProtocol & ErrorViewController)?) {
+        self.api = env.api
+        self.database = env.database
+        self.router = env.router
         self.view = view
-        self.api = appState.api
-        self.database = appState.database
     }
 
     func courseWasSelected(_ courseID: String) {

@@ -11,7 +11,7 @@
 		2C96483F211E2F1A002C3255 /* Core.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C964831211E2F1A002C3255 /* Core.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2C964857211E303E002C3255 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C964856211E303E002C3255 /* Router.swift */; };
 		2C96485B211E30B3002C3255 /* Router+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C96485A211E30B3002C3255 /* Router+Tests.swift */; };
-		2C96485E211E3723002C3255 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C96485D211E3723002C3255 /* AppState.swift */; };
+		2C96485E211E3723002C3255 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C96485D211E3723002C3255 /* AppEnvironment.swift */; };
 		3B032C9F214C52CE00B570F7 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B032C9E214C52CE00B570F7 /* Tab.swift */; };
 		3B34674A213051FD00F9BC2E /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B346748213051FD00F9BC2E /* LoginPresenter.swift */; };
 		3B34674B213051FD00F9BC2E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B346749213051FD00F9BC2E /* LoginViewController.swift */; };
@@ -180,7 +180,7 @@
 		2C96483E211E2F1A002C3255 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C964856211E303E002C3255 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		2C96485A211E30B3002C3255 /* Router+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Router+Tests.swift"; sourceTree = "<group>"; };
-		2C96485D211E3723002C3255 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		2C96485D211E3723002C3255 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
 		3B032C9E214C52CE00B570F7 /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
 		3B346748213051FD00F9BC2E /* LoginPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		3B346749213051FD00F9BC2E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -376,18 +376,18 @@
 		2C964830211E2F1A002C3255 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				3B47227E2137972200BF6FF3 /* Frameworks */,
-				3B3467CE2135022E00F9BC2E /* Presenter */,
-				3B3467C52134953800F9BC2E /* Constants */,
-				DFE1FF1B212F5E0A003F27AA /* Keychain */,
-				3B346747213051CC00F9BC2E /* Login */,
 				2C964831211E2F1A002C3255 /* Core.h */,
 				2C964832211E2F1A002C3255 /* Info.plist */,
-				B14452FA212E5B6E0009D848 /* Database */,
 				7D8262E9212B1A4F00BD268D /* API */,
-				2C96485C211E36FF002C3255 /* App State */,
+				2C96485C211E36FF002C3255 /* AppEnvironment */,
+				3B3467C52134953800F9BC2E /* Constants */,
+				B14452FA212E5B6E0009D848 /* Database */,
 				7D80AC06212B46D500C40ECE /* Extensions */,
+				3B47227E2137972200BF6FF3 /* Frameworks */,
+				DFE1FF1B212F5E0A003F27AA /* Keychain */,
+				3B346747213051CC00F9BC2E /* Login */,
 				7D062AF02124968200677F66 /* Models */,
+				3B3467CE2135022E00F9BC2E /* Presenter */,
 				2C964858211E3049002C3255 /* Router */,
 				B1445309212E5B8E0009D848 /* Use Cases */,
 			);
@@ -433,13 +433,13 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
-		2C96485C211E36FF002C3255 /* App State */ = {
+		2C96485C211E36FF002C3255 /* AppEnvironment */ = {
 			isa = PBXGroup;
 			children = (
-				2C96485D211E3723002C3255 /* AppState.swift */,
+				2C96485D211E3723002C3255 /* AppEnvironment.swift */,
 				B17F23B02137981B00771F86 /* Clock.swift */,
 			);
-			path = "App State";
+			path = AppEnvironment;
 			sourceTree = "<group>";
 		};
 		3B346747213051CC00F9BC2E /* Login */ = {
@@ -1012,7 +1012,7 @@
 				789C9BC12138516300B37AC4 /* UIColor.swift in Sources */,
 				2C964857211E303E002C3255 /* Router.swift in Sources */,
 				3B412F092141A80A0090DE02 /* RealmFetchedResultsController.swift in Sources */,
-				2C96485E211E3723002C3255 /* AppState.swift in Sources */,
+				2C96485E211E3723002C3255 /* AppEnvironment.swift in Sources */,
 				B1EA5AEB212E641900DABC5F /* GetCourses.swift in Sources */,
 				3B346755213052C700F9BC2E /* NSError+CoreErrors.swift in Sources */,
 				7D8262EF212B228F00BD268D /* APICourse+Requestable.swift in Sources */,

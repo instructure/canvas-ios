@@ -20,18 +20,15 @@ import Core
 let queue = OperationQueue()
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate, AppStateDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate, AppEnvironmentDelegate {
     var baseURL: String = "https://twilson.instructure.com/"
     var window: UIWindow?
 
-    lazy var appState: AppState = {
-        let appState = AppState(router: router, api: URLSessionAPI(), database: RealmPersistence.main)
-        return appState
+    lazy var environment: AppEnvironment = {
+        return AppEnvironment(api: URLSessionAPI(), database: RealmPersistence.main, router: router)
     }()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        print(appState)
-
         window = UIWindow(frame: UIScreen.main.bounds)
         if CommandLine.arguments.contains("RouterDebug") {
             showRouterDebug()
@@ -40,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
         // TODO: Remove this at some point
         do {
-            let store = RealmPersistence.main
+            let store = environment.database
             try store.clearAllRecords()
             print("Successfully emptied the data store")
         } catch {
@@ -75,7 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     }
 
     func createTabController() -> UITabBarController {
-        let vc1 = DashboardViewController.create(appState: appState)
+        let vc1 = DashboardViewController.create()
         vc1.title = "Dashboard"
         vc1.tabBarItem = UITabBarItem(title: "Dashboard", image: nil, selectedImage: nil)
         vc1.tabBarItem.accessibilityLabel = "Dashboard_tab"

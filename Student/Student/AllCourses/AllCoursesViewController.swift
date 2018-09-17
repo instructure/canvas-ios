@@ -37,12 +37,12 @@ class AllCoursesViewController: UIViewController, AllCoursesViewProtocol {
 
     @IBOutlet weak var collectionView: UICollectionView!
 
-    static func create() -> AllCoursesViewController {
+    static func create(env: AppEnvironment = .shared) -> AllCoursesViewController {
         let storyboard = UIStoryboard(name: "AllCoursesViewController", bundle: nil)
         guard let vc = storyboard.instantiateViewController(withIdentifier: "vc") as? AllCoursesViewController else {
             fatalError("AllCoursesViewController should come from the storyboard in: \(#function)")
         }
-        vc.presenter = AllCoursesPresenter(view: vc)
+        vc.presenter = AllCoursesPresenter(env: env, view: vc)
         return vc
     }
 

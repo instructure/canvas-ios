@@ -25,13 +25,18 @@ import ReactiveSwift
 import BugsnagReactNative
 import UserNotifications
 import Firebase
+import Core
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
+class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
     let loginConfig = LoginConfiguration(mobileVerifyName: "iCanvas", logo: UIImage(named: "student-logomark")!, fullLogo: UIImage(named: "student-logo")!)
     var session: Session?
     var window: UIWindow?
+
+    lazy var environment: AppEnvironment = {
+        return AppEnvironment(api: URLSessionAPI(), database: RealmPersistence.main, router: Router.shared())
+    }()
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         if !uiTesting {
             configureBugSnag()

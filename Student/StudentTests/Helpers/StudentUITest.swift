@@ -66,7 +66,7 @@ public class StudentUITest: XCTestCase {
     func login(as user: Soseedy_CanvasUser) {
         Keychain.currentSession = KeychainEntry(token: user.token, baseURL: "https://\(user.domain)")
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        appDelegate.appState.api = RecordableAPI()
+        appDelegate.environment.api = RecordableAPI()
         appDelegate.window?.rootViewController = appDelegate.createTabController()
         GREYCondition(name: "Waiting for dashboard to load", block: {
             var errorOrNil: NSError?

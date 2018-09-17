@@ -38,12 +38,12 @@ class DashboardViewController: UIViewController, DashboardViewProtocol {
     var logoView = UIImageView(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
     @IBOutlet weak var collectionView: UICollectionView!
 
-    static func create(appState: AppState) -> DashboardViewController {
+    static func create(env: AppEnvironment = .shared) -> DashboardViewController {
         let storyboard = UIStoryboard(name: "DashboardViewController", bundle: nil)
         guard let vc = storyboard.instantiateViewController(withIdentifier: "vc") as? DashboardViewController else {
             fatalError("Must create DashboardViewController from a storyboard in \(#function)")
         }
-        let presenter = DashboardPresenter(view: vc, appState: appState)
+        let presenter = DashboardPresenter(env: env, view: vc)
         vc.presenter = presenter
         return vc
     }
