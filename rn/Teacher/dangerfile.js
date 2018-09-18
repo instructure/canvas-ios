@@ -133,10 +133,6 @@ export function commitMessage (): void {
   handleReleaseNotes(message)
   handleAffects(message)
 
-  if (!message.match(/test plan:/gi)) {
-    fail('Please add a test plan. It should be prefixed with `test plan:`.')
-  }
-
   handleJira(message)
 }
 
