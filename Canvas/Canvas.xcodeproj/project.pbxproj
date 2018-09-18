@@ -617,7 +617,6 @@
 		B15738001D94C38C00ADBB85 /* ModuleItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15737FF1D94C38C00ADBB85 /* ModuleItemDetailViewController.swift */; };
 		B177E6FD1E2EC8BA00D7477D /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B177E6FF1E2EC8BA00D7477D /* Settings.storyboard */; };
 		B177E7091E2ECAB900D7477D /* CBIGradeDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B177E70B1E2ECAB900D7477D /* CBIGradeDetailView.xib */; };
-		B177E7801E2F067400D7477D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5A790A61D8C743400ACA9FE /* Localizable.strings */; };
 		B19CE9D1200691460001EB54 /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19CE9D0200691460001EB54 /* CustomColors.swift */; };
 		B1CB84F01D076025004D2265 /* CKRichTextInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1CB84EC1D076025004D2265 /* CKRichTextInputView.xib */; };
 		B1CB84F11D076025004D2265 /* ExpandingComment.css in Resources */ = {isa = PBXBuildFile; fileRef = B1CB84ED1D076025004D2265 /* ExpandingComment.css */; };
@@ -3466,7 +3465,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B177E7801E2F067400D7477D /* Localizable.strings in Resources */,
 				5EB46E051D21A75C00C859A4 /* CalendarSplitMonthViewController.storyboard in Resources */,
 				2C0CAD751DEF6C33008D90FA /* InfoPlist.strings in Resources */,
 				5EB46E001D21A75C00C859A4 /* CalendarDayListViewController.storyboard in Resources */,

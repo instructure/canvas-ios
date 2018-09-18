@@ -101,20 +101,20 @@ public final class ManagedObjectObserver<Object: NSManagedObject> {
 extension SignalProtocol where Value == Notification {
     public func mapChanges<Object>(matching predicate: NSPredicate) -> Signal<(ManagedObjectChange, Object?)?, Error> {
         return self.signal.map { note in
-            if let inserted = note.insertedObjects.map({ $0 as? Object }).first(where: predicate.evaluate) {
-                return (.insert, inserted)
+            if let inserted = note.insertedObjects.map({ $0 as? Object }).first(where: predicate.evaluate) as? Object {
+                return (ManagedObjectChange.insert, inserted)
             }
 
             if note.invalidatedAllObjects {
                 return (.delete, nil)
             }
 
-            if let deleted = note.deletedObjects.union(note.invalidatedObjects).map({ $0 as? Object }).first(where: predicate.evaluate) {
-                return (.delete, deleted)
+            if let deleted = note.deletedObjects.union(note.invalidatedObjects).map({ $0 as? Object }).first(where: predicate.evaluate) as? Object {
+                return (ManagedObjectChange.delete, deleted)
             }
 
-            if let updated = note.updatedObjects.union(note.refreshedObjects).map({ $0 as? Object }).first(where: predicate.evaluate) {
-                return (.update, updated)
+            if let updated = note.updatedObjects.union(note.refreshedObjects).map({ $0 as? Object }).first(where: predicate.evaluate) as? Object  {
+                return (ManagedObjectChange.update, updated)
             }
 
             return nil
