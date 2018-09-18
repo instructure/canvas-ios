@@ -23,11 +23,13 @@ public protocol AppEnvironmentDelegate {
 public class AppEnvironment {
     public var api: API
     public let database: Persistence
+    public let queue: OperationQueue
     public let router: RouterProtocol
 
-    public init(api: API, database: Persistence, router: RouterProtocol) {
+    public init(api: API = URLSessionAPI(), database: Persistence = RealmPersistence.main, queue: OperationQueue = OperationQueue(), router: RouterProtocol) {
         self.api = api
         self.database = database
+        self.queue = queue
         self.router = router
     }
 

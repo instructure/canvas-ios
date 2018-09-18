@@ -57,6 +57,7 @@ class DashboardPresenter: DashboardPresenterProtocol {
     weak var view: (DashboardViewProtocol & ErrorViewController)?
     let api: API
     let database: Persistence
+    let queue: OperationQueue
     let router: RouterProtocol
     var groupOperation: OperationSet?
 
@@ -79,6 +80,7 @@ class DashboardPresenter: DashboardPresenterProtocol {
     init(env: AppEnvironment, view: (DashboardViewProtocol & ErrorViewController)?) {
         self.api = env.api
         self.database = env.database
+        self.queue = env.queue
         self.router = env.router
         self.view = view
     }

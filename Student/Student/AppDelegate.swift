@@ -17,15 +17,13 @@
 import UIKit
 import Core
 
-let queue = OperationQueue()
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate, AppEnvironmentDelegate {
     var baseURL: String = "https://twilson.instructure.com/"
     var window: UIWindow?
 
     lazy var environment: AppEnvironment = {
-        return AppEnvironment(api: URLSessionAPI(), database: RealmPersistence.main, router: router)
+        return AppEnvironment(router: router)
     }()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -47,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         // TODO: Pull the most recent entry out of the keychain instead
         // of showing login view every time
         window?.rootViewController = createLoginViewController()
-
+        window?.makeKeyAndVisible()
         return true
     }
 

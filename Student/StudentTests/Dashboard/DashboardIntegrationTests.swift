@@ -19,7 +19,7 @@ import XCTest
 @testable import Core
 
 class DashboardIntegrationTests: XCTestCase {
-    let env = AppEnvironment(api: URLSessionAPI(), database: RealmPersistence.main, router: Router(routes: []))
+    let env = AppEnvironment(api: URLSessionAPI(), database: RealmPersistence.main, queue: OperationQueue(), router: Router(routes: []))
 
     func testView() {
         let view = DashboardViewController.create(env: env)

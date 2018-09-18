@@ -14,14 +14,14 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-import Core
+#import <UIKit/UIKit.h>
 
-public let router = Router(routes: [
-    RouteHandler(.login) { _, _ in
-        return LoginViewController(host: "twilson.instructure.com")
-    },
+//! Project version number for StudentReborn.
+FOUNDATION_EXPORT double StudentRebornVersionNumber;
 
-    RouteHandler(.courses) { _, _ in
-        return AllCoursesViewController.create()
-    },
-])
+//! Project version string for StudentReborn.
+FOUNDATION_EXPORT const unsigned char StudentRebornVersionString[];
+
+// In this header, you should import all the public headers of your framework using statements like #import <StudentReborn/PublicHeader.h>
+
+

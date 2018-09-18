@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
     var window: UIWindow?
 
     lazy var environment: AppEnvironment = {
-        return AppEnvironment(api: URLSessionAPI(), database: RealmPersistence.main, router: Router.shared())
+        return AppEnvironment(router: Router.shared())
     }()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {

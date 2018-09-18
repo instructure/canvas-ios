@@ -44,6 +44,7 @@ class AllCoursesPresenter: AllCoursesPresenterProtocol {
     weak var view: (AllCoursesViewProtocol & ErrorViewController)?
     let api: API
     let database: Persistence
+    let queue: OperationQueue
     let router: RouterProtocol
     var groupOperation: OperationSet?
 
@@ -57,6 +58,7 @@ class AllCoursesPresenter: AllCoursesPresenterProtocol {
     init(env: AppEnvironment, view: (AllCoursesViewProtocol & ErrorViewController)?) {
         self.api = env.api
         self.database = env.database
+        self.queue = env.queue
         self.router = env.router
         self.view = view
     }

@@ -8,13 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		2C5C698D211DFFAD00D9AD15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5C698C211DFFAD00D9AD15 /* AppDelegate.swift */; };
-		2C5C6994211DFFAD00D9AD15 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C5C6992211DFFAD00D9AD15 /* Main.storyboard */; };
 		2C5C6996211DFFAE00D9AD15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C5C6995211DFFAE00D9AD15 /* Assets.xcassets */; };
 		2C5C6999211DFFAE00D9AD15 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C5C6997211DFFAE00D9AD15 /* LaunchScreen.storyboard */; };
 		2C5C69A4211DFFAE00D9AD15 /* StudentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5C69A3211DFFAE00D9AD15 /* StudentTests.swift */; };
-		2C96486D211E4276002C3255 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C96486C211E4276002C3255 /* DetailViewController.swift */; };
-		2C96486F211E428B002C3255 /* DetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C96486E211E428B002C3255 /* DetailViewController.storyboard */; };
-		2C964871211E4319002C3255 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C964870211E4319002C3255 /* MainViewController.swift */; };
 		2CB3261D21387C99009496AF /* RouterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB3261C21387C99009496AF /* RouterViewController.swift */; };
 		3B032CA5214C552B00B570F7 /* GroupNavigationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B032CA4214C552B00B570F7 /* GroupNavigationPresenter.swift */; };
 		3B032CA8214C554C00B570F7 /* GroupNavigationPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B032CA7214C554C00B570F7 /* GroupNavigationPresenterTests.swift */; };
@@ -35,6 +31,21 @@
 		78815317212F56E1005BA428 /* AllCoursesCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78815313212F56E1005BA428 /* AllCoursesCourseCell.swift */; };
 		78815318212F56E1005BA428 /* AllCoursesSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78815314212F56E1005BA428 /* AllCoursesSectionHeaderView.swift */; };
 		7881531F212FC5F7005BA428 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C964867211E38B0002C3255 /* Core.framework */; };
+		7D067CE021505AF200B78AF2 /* StudentReborn.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D067CDE21505AF200B78AF2 /* StudentReborn.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7D067CE421505B2500B78AF2 /* Routes+Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7110C221389AD90085C2E5 /* Routes+Student.swift */; };
+		7D067CE521505B3500B78AF2 /* DashboardCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152EC212B4FA4005BA428 /* DashboardCourseCell.swift */; };
+		7D067CE621505B3500B78AF2 /* DashboardGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152F4212B7482005BA428 /* DashboardGroupCell.swift */; };
+		7D067CE721505B3500B78AF2 /* DashboardSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152FA212B83D0005BA428 /* DashboardSectionHeaderView.swift */; };
+		7D067CE821505B3500B78AF2 /* DashboardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152DA212B3470005BA428 /* DashboardPresenter.swift */; };
+		7D067CE921505B3500B78AF2 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152DC212B34F2005BA428 /* DashboardViewController.swift */; };
+		7D067CEA21505B3500B78AF2 /* DashboardViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 788152DE212B35F8005BA428 /* DashboardViewController.storyboard */; };
+		7D067CEB21505B3E00B78AF2 /* AllCoursesCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78815313212F56E1005BA428 /* AllCoursesCourseCell.swift */; };
+		7D067CEC21505B3E00B78AF2 /* AllCoursesSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78815314212F56E1005BA428 /* AllCoursesSectionHeaderView.swift */; };
+		7D067CED21505B3E00B78AF2 /* AllCoursesViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78815308212BD19F005BA428 /* AllCoursesViewController.storyboard */; };
+		7D067CEE21505B3E00B78AF2 /* AllCoursesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78815307212BD19F005BA428 /* AllCoursesViewController.swift */; };
+		7D067CEF21505B3E00B78AF2 /* AllCoursesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7881530F212BD307005BA428 /* AllCoursesPresenter.swift */; };
+		7D067CF021505B4600B78AF2 /* GroupNavigationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B032CA4214C552B00B570F7 /* GroupNavigationPresenter.swift */; };
+		7D067CF121505B4600B78AF2 /* GroupNavigationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B032CA9214C55E400B570F7 /* GroupNavigationTableViewController.swift */; };
 		7D7110C321389AD90085C2E5 /* Routes+Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7110C221389AD90085C2E5 /* Routes+Student.swift */; };
 		9F7F18562148202D007336A0 /* StudentUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7F18552148202D007336A0 /* StudentUITest.swift */; };
 		9F7F18582148222C007336A0 /* DashboardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7F18572148222C007336A0 /* DashboardUITests.swift */; };
@@ -114,7 +125,6 @@
 /* Begin PBXFileReference section */
 		2C5C6989211DFFAD00D9AD15 /* Student.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Student.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C5C698C211DFFAD00D9AD15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2C5C6993211DFFAD00D9AD15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2C5C6995211DFFAE00D9AD15 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C5C6998211DFFAE00D9AD15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2C5C699A211DFFAE00D9AD15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -123,9 +133,6 @@
 		2C5C69A5211DFFAE00D9AD15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C964867211E38B0002C3255 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C96486B211E3AA9002C3255 /* Core.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Core.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/Canvas-dpcdjqfmhsqswfeyltwnrxcvwmjb/Build/Products/Debug-iphoneos/Core.framework"; sourceTree = "<group>"; };
-		2C96486C211E4276002C3255 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		2C96486E211E428B002C3255 /* DetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailViewController.storyboard; sourceTree = "<group>"; };
-		2C964870211E4319002C3255 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		2CB3261C21387C99009496AF /* RouterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterViewController.swift; sourceTree = "<group>"; };
 		3B032CA4214C552B00B570F7 /* GroupNavigationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupNavigationPresenter.swift; sourceTree = "<group>"; };
 		3B032CA7214C554C00B570F7 /* GroupNavigationPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupNavigationPresenterTests.swift; sourceTree = "<group>"; };
@@ -145,13 +152,13 @@
 		7881530F212BD307005BA428 /* AllCoursesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCoursesPresenter.swift; sourceTree = "<group>"; };
 		78815313212F56E1005BA428 /* AllCoursesCourseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllCoursesCourseCell.swift; sourceTree = "<group>"; };
 		78815314212F56E1005BA428 /* AllCoursesSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllCoursesSectionHeaderView.swift; sourceTree = "<group>"; };
-		7D349C2D21430887004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/Main.strings"; sourceTree = "<group>"; };
+		7D067CDC21505AF100B78AF2 /* StudentReborn.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StudentReborn.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D067CDE21505AF200B78AF2 /* StudentReborn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StudentReborn.h; sourceTree = "<group>"; };
+		7D067CDF21505AF200B78AF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7D067CF521505E2C00B78AF2 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D349C2E21430887004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
-		7D349C2F214308A1004C1074 /* en-GB-instukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-instukhe"; path = "en-GB-instukhe.lproj/Main.strings"; sourceTree = "<group>"; };
 		7D349C30214308A1004C1074 /* en-GB-instukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-instukhe"; path = "en-GB-instukhe.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
-		7D349C31214308AF004C1074 /* nb-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-instk12"; path = "nb-instk12.lproj/Main.strings"; sourceTree = "<group>"; };
 		7D349C32214308B0004C1074 /* nb-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-instk12"; path = "nb-instk12.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
-		7D349C33214308C3004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/Main.strings"; sourceTree = "<group>"; };
 		7D349C34214308C3004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		7D7110C221389AD90085C2E5 /* Routes+Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Routes+Student.swift"; sourceTree = "<group>"; };
 		9F7F18552148202D007336A0 /* StudentUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentUITest.swift; sourceTree = "<group>"; };
@@ -191,6 +198,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7D067CD821505AF100B78AF2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -199,6 +213,7 @@
 			children = (
 				2C5C698B211DFFAD00D9AD15 /* Student */,
 				2C5C69A2211DFFAE00D9AD15 /* StudentTests */,
+				7D067CDD21505AF200B78AF2 /* StudentReborn */,
 				2C964862211E37EC002C3255 /* Frameworks */,
 				2C5C698A211DFFAD00D9AD15 /* Products */,
 			);
@@ -209,6 +224,7 @@
 			children = (
 				2C5C6989211DFFAD00D9AD15 /* Student.app */,
 				2C5C699F211DFFAE00D9AD15 /* StudentTests.xctest */,
+				7D067CDC21505AF100B78AF2 /* StudentReborn.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -220,11 +236,7 @@
 				78815306212BD175005BA428 /* AllCourses */,
 				788152D5212B330C005BA428 /* Dashboard */,
 				2C5C698C211DFFAD00D9AD15 /* AppDelegate.swift */,
-				2C964870211E4319002C3255 /* MainViewController.swift */,
-				2C96486C211E4276002C3255 /* DetailViewController.swift */,
 				2CB3261C21387C99009496AF /* RouterViewController.swift */,
-				2C96486E211E428B002C3255 /* DetailViewController.storyboard */,
-				2C5C6992211DFFAD00D9AD15 /* Main.storyboard */,
 				2C5C6995211DFFAE00D9AD15 /* Assets.xcassets */,
 				2C5C6997211DFFAE00D9AD15 /* LaunchScreen.storyboard */,
 				2C5C699A211DFFAE00D9AD15 /* Info.plist */,
@@ -250,6 +262,7 @@
 		2C964862211E37EC002C3255 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7D067CF521505E2C00B78AF2 /* Core.framework */,
 				9FCA66092142C8D100BE0EBB /* BoringSSL.framework */,
 				9FCA660A2142C8D100BE0EBB /* CgRPC.framework */,
 				9FCA660B2142C8D100BE0EBB /* SwiftGRPC.framework */,
@@ -332,6 +345,15 @@
 			path = AllCourses;
 			sourceTree = "<group>";
 		};
+		7D067CDD21505AF200B78AF2 /* StudentReborn */ = {
+			isa = PBXGroup;
+			children = (
+				7D067CDE21505AF200B78AF2 /* StudentReborn.h */,
+				7D067CDF21505AF200B78AF2 /* Info.plist */,
+			);
+			path = StudentReborn;
+			sourceTree = "<group>";
+		};
 		9F7F18542148201A007336A0 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -342,6 +364,17 @@
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		7D067CD921505AF100B78AF2 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D067CE021505AF200B78AF2 /* StudentReborn.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		2C5C6988211DFFAD00D9AD15 /* Student */ = {
@@ -383,6 +416,24 @@
 			productReference = 2C5C699F211DFFAE00D9AD15 /* StudentTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		7D067CDB21505AF100B78AF2 /* StudentReborn */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7D067CE321505AF200B78AF2 /* Build configuration list for PBXNativeTarget "StudentReborn" */;
+			buildPhases = (
+				7D067CD721505AF100B78AF2 /* Sources */,
+				7D067CD821505AF100B78AF2 /* Frameworks */,
+				7D067CD921505AF100B78AF2 /* Headers */,
+				7D067CDA21505AF100B78AF2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = StudentReborn;
+			productName = StudentReborn;
+			productReference = 7D067CDC21505AF100B78AF2 /* StudentReborn.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -399,6 +450,9 @@
 					2C5C699E211DFFAE00D9AD15 = {
 						CreatedOnToolsVersion = 9.4.1;
 						TestTargetID = 2C5C6988211DFFAD00D9AD15;
+					};
+					7D067CDB21505AF100B78AF2 = {
+						CreatedOnToolsVersion = 9.4;
 					};
 				};
 			};
@@ -417,6 +471,7 @@
 			targets = (
 				2C5C6988211DFFAD00D9AD15 /* Student */,
 				2C5C699E211DFFAE00D9AD15 /* StudentTests */,
+				7D067CDB21505AF100B78AF2 /* StudentReborn */,
 			);
 		};
 /* End PBXProject section */
@@ -426,10 +481,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C96486F211E428B002C3255 /* DetailViewController.storyboard in Resources */,
 				2C5C6999211DFFAE00D9AD15 /* LaunchScreen.storyboard in Resources */,
 				2C5C6996211DFFAE00D9AD15 /* Assets.xcassets in Resources */,
-				2C5C6994211DFFAD00D9AD15 /* Main.storyboard in Resources */,
 				788152DF212B35F8005BA428 /* DashboardViewController.storyboard in Resources */,
 				7881530A212BD19F005BA428 /* AllCoursesViewController.storyboard in Resources */,
 			);
@@ -439,6 +492,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7D067CDA21505AF100B78AF2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D067CED21505B3E00B78AF2 /* AllCoursesViewController.storyboard in Resources */,
+				7D067CEA21505B3500B78AF2 /* DashboardViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,7 +529,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				788152FC212B83D0005BA428 /* DashboardSectionHeaderView.swift in Sources */,
-				2C964871211E4319002C3255 /* MainViewController.swift in Sources */,
 				788152DB212B3470005BA428 /* DashboardPresenter.swift in Sources */,
 				7D7110C321389AD90085C2E5 /* Routes+Student.swift in Sources */,
 				788152ED212B4FA4005BA428 /* DashboardCourseCell.swift in Sources */,
@@ -475,7 +536,6 @@
 				2C5C698D211DFFAD00D9AD15 /* AppDelegate.swift in Sources */,
 				788152F5212B7482005BA428 /* DashboardGroupCell.swift in Sources */,
 				78815318212F56E1005BA428 /* AllCoursesSectionHeaderView.swift in Sources */,
-				2C96486D211E4276002C3255 /* DetailViewController.swift in Sources */,
 				78815310212BD307005BA428 /* AllCoursesPresenter.swift in Sources */,
 				78815309212BD19F005BA428 /* AllCoursesViewController.swift in Sources */,
 				2CB3261D21387C99009496AF /* RouterViewController.swift in Sources */,
@@ -500,6 +560,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7D067CD721505AF100B78AF2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D067CE721505B3500B78AF2 /* DashboardSectionHeaderView.swift in Sources */,
+				7D067CE921505B3500B78AF2 /* DashboardViewController.swift in Sources */,
+				7D067CE821505B3500B78AF2 /* DashboardPresenter.swift in Sources */,
+				7D067CEF21505B3E00B78AF2 /* AllCoursesPresenter.swift in Sources */,
+				7D067CEB21505B3E00B78AF2 /* AllCoursesCourseCell.swift in Sources */,
+				7D067CF021505B4600B78AF2 /* GroupNavigationPresenter.swift in Sources */,
+				7D067CE421505B2500B78AF2 /* Routes+Student.swift in Sources */,
+				7D067CF121505B4600B78AF2 /* GroupNavigationTableViewController.swift in Sources */,
+				7D067CE521505B3500B78AF2 /* DashboardCourseCell.swift in Sources */,
+				7D067CEC21505B3E00B78AF2 /* AllCoursesSectionHeaderView.swift in Sources */,
+				7D067CE621505B3500B78AF2 /* DashboardGroupCell.swift in Sources */,
+				7D067CEE21505B3E00B78AF2 /* AllCoursesViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -511,18 +590,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		2C5C6992211DFFAD00D9AD15 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2C5C6993211DFFAD00D9AD15 /* Base */,
-				7D349C2D21430887004C1074 /* da-instk12 */,
-				7D349C2F214308A1004C1074 /* en-GB-instukhe */,
-				7D349C31214308AF004C1074 /* nb-instk12 */,
-				7D349C33214308C3004C1074 /* sv-instk12 */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		2C5C6997211DFFAE00D9AD15 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -744,6 +811,64 @@
 			};
 			name = Release;
 		};
+		7D067CE121505AF200B78AF2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = B6333T4PXQ;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = StudentReborn/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.StudentReborn;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		7D067CE221505AF200B78AF2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = B6333T4PXQ;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = StudentReborn/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.StudentReborn;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -770,6 +895,15 @@
 			buildConfigurations = (
 				2C5C69AC211DFFAE00D9AD15 /* Debug */,
 				2C5C69AD211DFFAE00D9AD15 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7D067CE321505AF200B78AF2 /* Build configuration list for PBXNativeTarget "StudentReborn" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7D067CE121505AF200B78AF2 /* Debug */,
+				7D067CE221505AF200B78AF2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

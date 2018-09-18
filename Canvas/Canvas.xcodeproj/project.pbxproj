@@ -600,6 +600,8 @@
 		61F438E61DD667D900552D14 /* MLVCCollectionController+CBIRefresh.h in Headers */ = {isa = PBXBuildFile; fileRef = 61F438E41DD667D900552D14 /* MLVCCollectionController+CBIRefresh.h */; };
 		61F438E71DD667D900552D14 /* MLVCCollectionController+CBIRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F438E51DD667D900552D14 /* MLVCCollectionController+CBIRefresh.m */; };
 		629213C6A49D3799BCBAE7F2 /* Pods_defaults_common_ui_tests_StudentUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1617CAD552082AC99A178C4E /* Pods_defaults_common_ui_tests_StudentUITests.framework */; };
+		7D067CF321505BA000B78AF2 /* StudentReborn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D067CF221505BA000B78AF2 /* StudentReborn.framework */; };
+		7D067CF421505BA000B78AF2 /* StudentReborn.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D067CF221505BA000B78AF2 /* StudentReborn.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7D1D7E05213743D300F7CCFE /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1D7E04213743D300F7CCFE /* Core.framework */; };
 		7D1D7E06213743D300F7CCFE /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1D7E04213743D300F7CCFE /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7DAEE5872111019600BF5C43 /* ToDoEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEE5862111019600BF5C43 /* ToDoEmptyView.xib */; };
@@ -698,6 +700,7 @@
 			files = (
 				B1E568DE21431E8B0025A1F0 /* Realm.framework in Embed Frameworks */,
 				B1E568DF21431E8B0025A1F0 /* RealmSwift.framework in Embed Frameworks */,
+				7D067CF421505BA000B78AF2 /* StudentReborn.framework in Embed Frameworks */,
 				49642BC51CF4C4DC00238B3F /* CanvasKeymaster.framework in Embed Frameworks */,
 				7D1D7E06213743D300F7CCFE /* Core.framework in Embed Frameworks */,
 				492704B31CF4B6D700C631C6 /* TechDebt.framework in Embed Frameworks */,
@@ -1349,6 +1352,7 @@
 		68EB67BC259EAA38000B1E9F /* Pods-defaults-common_ui_tests-StudentUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_ui_tests-StudentUITests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-common_ui_tests-StudentUITests/Pods-defaults-common_ui_tests-StudentUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6A41FB3501A555E20167FCFB /* Pods-defaults-PreSubmissionAnnotations.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-PreSubmissionAnnotations.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-PreSubmissionAnnotations/Pods-defaults-PreSubmissionAnnotations.release.xcconfig"; sourceTree = "<group>"; };
 		6F2A3A50F7E6F5904365BABE /* Pods_defaults_GradesWidget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_GradesWidget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D067CF221505BA000B78AF2 /* StudentReborn.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = StudentReborn.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D0C4EC21FE1CD3100AD3538 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7D0C4EC31FE1CD3100AD3538 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/MainInterface.strings"; sourceTree = "<group>"; };
 		7D0C4EC41FE1CD3100AD3538 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -1679,6 +1683,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D067CF321505BA000B78AF2 /* StudentReborn.framework in Frameworks */,
 				2C67B0D21E01F07C00DDD191 /* SystemConfiguration.framework in Frameworks */,
 				2C67B0D01E01F07800DDD191 /* QuartzCore.framework in Frameworks */,
 				7D1D7E05213743D300F7CCFE /* Core.framework in Frameworks */,
@@ -1814,6 +1819,7 @@
 		4927046A1CF4AF7100C631C6 = {
 			isa = PBXGroup;
 			children = (
+				7D067CF221505BA000B78AF2 /* StudentReborn.framework */,
 				2C8E356D20939C2D0071ED94 /* Settings.bundle */,
 				4927085D1CF4C33700C631C6 /* Dependencies */,
 				492704751CF4AF7100C631C6 /* Canvas */,

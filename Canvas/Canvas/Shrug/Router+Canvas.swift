@@ -22,6 +22,7 @@ import CanvasCore
 import Marshal
 import CanvasKeymaster
 import Core
+import StudentReborn
 
 var currentSession: Session? {
     return CanvasKeymaster.the().currentClient?.authSession
@@ -401,9 +402,9 @@ extension TechDebt.Router {
             )
         }
 
-        addRoute("*path") { parameters, _ in
-            // TODO: return Student.router.match(.parse(parameters["path"]))
-            return nil
+        addRoute("/*path") { parameters, _ in
+            guard let url = parameters?["url"] as? URL else { return nil }
+            return StudentReborn.router.match(.parse(url))
         }
     }
 }
