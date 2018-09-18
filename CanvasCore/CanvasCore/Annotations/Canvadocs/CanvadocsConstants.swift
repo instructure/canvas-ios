@@ -80,7 +80,7 @@ func applySharedAppConfiguration(to builder: PSPDFConfigurationBuilder) {
     builder.shouldHideNavigationBarWithUserInterface = false
     builder.shouldHideStatusBarWithUserInterface = false
     builder.applicationActivities = [PSPDFActivityTypeOpenIn, PSPDFActivityTypeGoToPage, PSPDFActivityTypeSearch]
-    builder.editableAnnotationTypes = [.stamp, .highlight, .freeText, .strikeOut, .ink, .square]
+    builder.editableAnnotationTypes = [.stamp, .highlight, .freeText, .strikeOut, .ink, .eraser, .square]
     builder.naturalDrawingAnnotationEnabled = true
 
     builder.propertiesForAnnotations = [

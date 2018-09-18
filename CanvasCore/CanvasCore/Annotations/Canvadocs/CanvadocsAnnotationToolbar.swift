@@ -58,7 +58,10 @@ public class CanvadocsAnnotationToolbar: PSPDFAnnotationToolbar {
             return UIImage(named: "rectangle", in: Bundle(for: CanvadocsAnnotationToolbar.self), compatibleWith: nil)!.withRenderingMode(.alwaysTemplate)
         }
         let boxGroup = PSPDFAnnotationGroup(items: [boxGroupItem])
+
+        let eraserGroupItem = PSPDFAnnotationGroupItem(type: .eraser, variant: nil)
+        let eraserGroup = PSPDFAnnotationGroup(items: [eraserGroupItem])
         
-        self.configurations = [PSPDFAnnotationToolbarConfiguration(annotationGroups: [commentGroup, highlightGroup, freeTextGroup, strikeoutGroup, inkGroup, boxGroup])]
+        self.configurations = [PSPDFAnnotationToolbarConfiguration(annotationGroups: [commentGroup, highlightGroup, freeTextGroup, strikeoutGroup, boxGroup, inkGroup, eraserGroup])]
     }
 }
