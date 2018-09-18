@@ -48,11 +48,11 @@ public struct KeychainEntry: Codable, Hashable {
 open class Keychain {
 
     // If not config is set, will use the default access group for the canvas apps
-    open static var config: KeychainConfig?
+    public static var config: KeychainConfig?
 
-    open static var currentSession: KeychainEntry?
+    public static var currentSession: KeychainEntry?
 
-    open static var entries: Set<KeychainEntry> {
+    public static var entries: Set<KeychainEntry> {
         guard let data = getData() else { return [] }
         do {
             let entries = try JSONDecoder().decode(Set<KeychainEntry>.self, from: data)
@@ -63,21 +63,21 @@ open class Keychain {
     }
 
     @discardableResult
-    open static func addEntry(_ entry: KeychainEntry) -> Bool {
+    public static func addEntry(_ entry: KeychainEntry) -> Bool {
         var current = entries
         current.insert(entry)
         return updateEntries(current)
     }
 
     @discardableResult
-    open static func removeEntry(_ entry: KeychainEntry) -> Bool {
+    public static func removeEntry(_ entry: KeychainEntry) -> Bool {
         var current = entries
         current.remove(entry)
         return updateEntries(current)
     }
 
     @discardableResult
-    open static func clearEntries() -> Bool {
+    public static func clearEntries() -> Bool {
         return delete()
     }
 
