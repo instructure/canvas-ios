@@ -300,6 +300,29 @@ CGFloat square(CGFloat x){return x*x;}
 
 - (IBAction)pickAvatar:(id)sender
 {
+    [self.loadingIndicator startAnimating];
+    __weak ProfileViewController *weakSelf = self;
+    RACSignal *getUser = [[CKIClient currentClient] fetchResponseAtPath:@"api/v1/users/self" parameters:nil modelClass:[CKIUser class] context:nil];
+    [getUser subscribeNext:^(CKIUser *user) {
+        NSNumber *permission = user.permissions[@"can_update_avatar"];
+        if ([permission isKindOfClass:[NSNumber class]] && [permission boolValue]) {
+            [weakSelf showAvatarOptions:sender];
+        } else {
+            NSString *title = NSLocalizedString(@"Permission Denied", nil);
+            NSString *message = NSLocalizedString(@"You are not allowed to change your avatar at this time.", nil);
+            [UIAlertController showAlertWithTitle:title message:message];
+        }
+    } error:^(NSError * _Nullable error) {
+        NSString *title = NSLocalizedString(@"Network Error", nil);
+        NSString *message = NSLocalizedString(@"Something went wrong. Please try again.", nil);
+        [UIAlertController showAlertWithTitle:title message:message];
+    } completed:^{
+        [weakSelf.loadingIndicator stopAnimating];
+    }];
+}
+
+- (void)showAvatarOptions:(id)sender
+{
     UIButton *avatarButton = (UIButton *)sender;
     CKActionSheetWithBlocks *actionSheet = [[CKActionSheetWithBlocks alloc] initWithTitle:NSLocalizedString(@"Choose Profile Picture", nil)];
     

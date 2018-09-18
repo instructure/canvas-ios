@@ -99,4 +99,11 @@
 */
 @property (nonatomic, copy) NSArray *enrollments;
 
+/**
+ Dictionary of user permissions.
+
+ @note Optional: This field can be requested with certain API calls.
+ */
+@property (nonatomic, strong) NSDictionary *permissions;
+
 @end
