@@ -115,6 +115,8 @@
 		B17F23AF21378F4B00771F86 /* TTLOperationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17F23AE21378F4B00771F86 /* TTLOperationTest.swift */; };
 		B17F23B12137981B00771F86 /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17F23B02137981B00771F86 /* Clock.swift */; };
 		B1812690214C562800E71F63 /* APITab+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B181268F214C562800E71F63 /* APITab+Fixture.swift */; };
+		B18126922150542A00E71F63 /* GetContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18126912150542A00E71F63 /* GetContext.swift */; };
+		B18126942150564900E71F63 /* GetContextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18126932150564900E71F63 /* GetContextTests.swift */; };
 		B195DC45213201DE00797FE4 /* GetUserGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = B195DC44213201DE00797FE4 /* GetUserGroups.swift */; };
 		B195DC472132127200797FE4 /* CollectionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B195DC462132127200797FE4 /* CollectionUseCase.swift */; };
 		B195DC49213215A300797FE4 /* NSPredicate+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = B195DC48213215A300797FE4 /* NSPredicate+Core.swift */; };
@@ -292,6 +294,8 @@
 		B17F23AE21378F4B00771F86 /* TTLOperationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTLOperationTest.swift; sourceTree = "<group>"; };
 		B17F23B02137981B00771F86 /* Clock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
 		B181268F214C562800E71F63 /* APITab+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APITab+Fixture.swift"; sourceTree = "<group>"; };
+		B18126912150542A00E71F63 /* GetContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetContext.swift; sourceTree = "<group>"; };
+		B18126932150564900E71F63 /* GetContextTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetContextTests.swift; sourceTree = "<group>"; };
 		B195DC44213201DE00797FE4 /* GetUserGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserGroups.swift; sourceTree = "<group>"; };
 		B195DC462132127200797FE4 /* CollectionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionUseCase.swift; sourceTree = "<group>"; };
 		B195DC48213215A300797FE4 /* NSPredicate+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSPredicate+Core.swift"; sourceTree = "<group>"; };
@@ -658,6 +662,7 @@
 				3B3467E12137170500F9BC2E /* ConstructLoginRequest.swift */,
 				7851D9B22138264800E76EC3 /* GetCustomColors.swift */,
 				9FE84DD9214FE06300B95A68 /* GetGroup.swift */,
+				B18126912150542A00E71F63 /* GetContext.swift */,
 			);
 			path = "Use Cases";
 			sourceTree = "<group>";
@@ -722,6 +727,7 @@
 				B195DC5421324DA600797FE4 /* GetUserGroupsTest.swift */,
 				B195DC612133326900797FE4 /* GetCourseTest.swift */,
 				9FE84DDB214FE5C500B95A68 /* GetGroupTest.swift */,
+				B18126932150564900E71F63 /* GetContextTests.swift */,
 			);
 			path = "Use Cases";
 			sourceTree = "<group>";
@@ -1000,6 +1006,7 @@
 				7D8262F9212B3B2000BD268D /* APISection.swift in Sources */,
 				B195DC512132257500797FE4 /* GetCourse.swift in Sources */,
 				7D80AC0E212B4D4100C40ECE /* APIFavorite.swift in Sources */,
+				B18126922150542A00E71F63 /* GetContext.swift in Sources */,
 				3B34674B213051FD00F9BC2E /* LoginViewController.swift in Sources */,
 				B17F23A9213788B100771F86 /* PaginatedUseCase.swift in Sources */,
 				B1EA5AF6212E67CE00DABC5F /* Date+ISO8601.swift in Sources */,
@@ -1066,6 +1073,7 @@
 				7D062AFB2124A14700677F66 /* Context+Tests.swift in Sources */,
 				B17F23AD21378E3800771F86 /* PaginatedUseCaseTest.swift in Sources */,
 				B14FE5D32134E9ED00328CD7 /* DatabaseOperationTest.swift in Sources */,
+				B18126942150564900E71F63 /* GetContextTests.swift in Sources */,
 				7D80AC1D212B6B6200C40ECE /* APICourse+Requestable+Tests.swift in Sources */,
 				7D7110CC2139AB310085C2E5 /* URLComponents+parse+Tests.swift in Sources */,
 				3B3467D22135AF5100F9BC2E /* ConstructLoginRequestTests.swift in Sources */,

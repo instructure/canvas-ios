@@ -53,8 +53,8 @@ struct GetGroupUsersRequest: APIRequestable {
 }
 
 // https://canvas.instructure.com/doc/api/groups.html#method.groups.show
-struct GetGroupRequest: APIRequestable {
-    typealias Response = APIGroup
+public struct GetGroupRequest: APIRequestable {
+    public typealias Response = APIGroup
 
     let id: String
 

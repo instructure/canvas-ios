@@ -19,7 +19,7 @@ import Foundation
 public class GetCourse: DetailUseCase<GetCourseRequest, Course> {
     let courseID: String
 
-    init(courseID: String, api: API = URLSessionAPI(), database: Persistence, force: Bool = false) {
+    init(courseID: String, api: API = URLSessionAPI(), database: Persistence) {
         self.courseID = courseID
         let request = GetCourseRequest(courseID: courseID)
         super.init(api: api, database: database, request: request)
