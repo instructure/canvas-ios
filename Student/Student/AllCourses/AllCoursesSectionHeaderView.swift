@@ -17,25 +17,10 @@
 import UIKit
 
 class AllCoursesSectionHeaderView: UICollectionReusableView {
-
-    @IBOutlet weak var titleLabel: UILabel!
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-        setup()
-    }
-
-    func setup() {
-        backgroundColor = .clear
-    }
-
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        titleLabel.text = ""
-    }
+    @IBOutlet weak var titleLabel: UILabel?
 
     func configure(title: String) {
-        titleLabel.text = title
+        titleLabel?.text = title
+        titleLabel?.textColor = .named(.textDarkest)
     }
 }

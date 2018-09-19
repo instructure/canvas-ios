@@ -17,12 +17,12 @@
 import UIKit
 
 class AllCoursesCourseCell: UICollectionViewCell {
-    @IBOutlet var topView: UIView!
-    @IBOutlet var optionsButton: UIButton!
-    @IBOutlet var imageView: UIImageView!
-    @IBOutlet var bottomView: UIView!
-    @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var abbrevationLabel: UILabel!
+    @IBOutlet var topView: UIView?
+    @IBOutlet var optionsButton: UIButton?
+    @IBOutlet var imageView: UIImageView?
+    @IBOutlet var bottomView: UIView?
+    @IBOutlet var titleLabel: UILabel?
+    @IBOutlet var abbrevationLabel: UILabel?
 
     var optionsCallback: (() -> Void)?
 
@@ -51,19 +51,12 @@ class AllCoursesCourseCell: UICollectionViewCell {
         layer.backgroundColor = UIColor.clear.cgColor
     }
 
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        titleLabel.text = ""
-        titleLabel.textColor = UIColor.black
-        abbrevationLabel.text = ""
-        imageView?.load(url: nil)
-    }
-
     func configure(with model: AllCoursesViewModel.Course) {
-        titleLabel.text = model.title
-        titleLabel.textColor = model.color
-        abbrevationLabel.text = model.abbreviation
-        topView.backgroundColor = model.color
+        titleLabel?.text = model.title
+        titleLabel?.textColor = model.color.ensureContrast(against: .white)
+        abbrevationLabel?.text = model.abbreviation
+        abbrevationLabel?.textColor = .named(.textDark)
+        topView?.backgroundColor = model.color
         imageView?.load(url: model.imageUrl)
     }
 

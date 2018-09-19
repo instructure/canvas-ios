@@ -17,44 +17,26 @@
 import UIKit
 
 class DashboardSectionHeaderView: UICollectionReusableView {
-
-    @IBOutlet weak var rightButton: UIButton!
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var rightButton: UIButton?
+    @IBOutlet weak var titleLabel: UILabel?
 
     var rightActionCallback: (() -> Void)?
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-        setup()
-    }
-
-    func setup() {
-        backgroundColor = .clear
-        reset()
-    }
-
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        reset()
-    }
-
-    func reset() {
-        titleLabel.text = ""
-        rightButton.isEnabled = false
-        rightButton.isHidden = true
-        rightActionCallback = nil
-        rightButton.accessibilityLabel = nil
-    }
-
-    func configure(title: String, rightButtonText: String?, rightAction: (() -> Void)?) {
-        titleLabel.text = title
-        rightButton.setTitle(rightButtonText, for: .normal)
+    func configure(title: String, rightText: String?, rightColor: UIColor?, rightAction: (() -> Void)?) {
+        titleLabel?.text = title
+        titleLabel?.textColor = .named(.textDarkest)
+        rightButton?.setTitle(rightText, for: .normal)
+        rightButton?.tintColor = rightColor?.ensureContrast(against: .white)
         if let action = rightAction {
             rightActionCallback = action
-            rightButton.isHidden = false
-            rightButton.isEnabled = true
-            rightButton.accessibilityLabel = "see_all_courses"
+            rightButton?.isHidden = false
+            rightButton?.isEnabled = true
+            rightButton?.accessibilityLabel = NSLocalizedString("See All Courses", comment: "")
+        } else {
+            rightActionCallback = nil
+            rightButton?.isHidden = true
+            rightButton?.isEnabled = false
+            rightButton?.accessibilityLabel = nil
         }
     }
 

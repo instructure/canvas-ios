@@ -51,8 +51,6 @@ class AllCoursesViewController: UIViewController, AllCoursesViewProtocol {
         super.viewDidLoad()
 
         // Navigation Bar Setup
-        navigationController?.navigationBar.barTintColor = .black
-        navigationController?.navigationBar.tintColor = .white
         navigationItem.title = NSLocalizedString("All Courses", comment: "All Courses screen title")
 
         // Collection View Setup
@@ -82,6 +80,11 @@ class AllCoursesViewController: UIViewController, AllCoursesViewProtocol {
         self.viewModel = viewModel
 
         // check for empty state
+
+        // update header
+        navigationController?.navigationBar.barTintColor = viewModel.navBackgroundColor
+        navigationController?.navigationBar.tintColor = viewModel.navTextColor.ensureContrast(against: viewModel.navBackgroundColor)
+        navigationController?.navigationBar.barStyle = viewModel.navBackgroundColor.luminance < 0.5 ? .black : .default
 
         // display courses
         collectionView.reloadData()
@@ -212,10 +215,10 @@ extension AllCoursesViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let section = indexPath.section
         if section == AllCoursesViewSection.current.rawValue {
-            return CGSize(width: (collectionView.bounds.width - ((currentColumns+1) * gutterWidth)) / currentColumns, height: 150)
+            return CGSize(width: (collectionView.bounds.width - ((currentColumns+1) * gutterWidth)) / currentColumns, height: 163)
         }
 
-        return  CGSize(width: (collectionView.bounds.width - ((pastColumns+1) * gutterWidth)) / pastColumns, height: 150)
+        return  CGSize(width: (collectionView.bounds.width - ((pastColumns+1) * gutterWidth)) / pastColumns, height: 163)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

@@ -607,6 +607,7 @@
 		7DAEE5872111019600BF5C43 /* ToDoEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEE5862111019600BF5C43 /* ToDoEmptyView.xib */; };
 		7DC912E61FE1CC9200A76B14 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7DC912E81FE1CC9200A76B14 /* Localizable.strings */; };
 		7DC912EB1FE1CC9200A76B14 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7DC912ED1FE1CC9200A76B14 /* InfoPlist.strings */; };
+		7DF9BF0B2152E52A0099026B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DF9BF0A2152E52A0099026B /* Colors.xcassets */; };
 		8F363586CEA2A05378002836 /* Pods_GradesWidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 651295DCB22A2B02F381D94B /* Pods_GradesWidget.framework */; };
 		9C50D612DA6414266300170B /* Pods_defaults_CanvasKit1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2AB6A9FA96CE49682022ACB /* Pods_defaults_CanvasKit1.framework */; };
 		9F61B52C205985A5009C0B13 /* CanvasAppDelegate+Helm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F61B52B205985A5009C0B13 /* CanvasAppDelegate+Helm.swift */; };
@@ -1459,6 +1460,7 @@
 		7DF813691FE1CCA600006315 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MainInterface.strings; sourceTree = "<group>"; };
 		7DF8136A1FE1CCA600006315 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7DF8136B1FE1CCA600006315 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7DF9BF0A2152E52A0099026B /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Colors.xcassets; path = ../../Core/Core/Colors.xcassets; sourceTree = "<group>"; };
 		7DF9CAFE1FE1CD26007D97AD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7DF9CAFF1FE1CD27007D97AD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/MainInterface.strings; sourceTree = "<group>"; };
 		7DF9CB001FE1CD27007D97AD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -1860,6 +1862,7 @@
 				495D8BBB1CFE17D700D41098 /* LaunchScreen.storyboard */,
 				49642BCA1CF4C66200238B3F /* Canvas.entitlements */,
 				49F9FA4A1CF7B73100654758 /* Canvas.xcassets */,
+				7DF9BF0A2152E52A0099026B /* Colors.xcassets */,
 				496D31221CF7528500A3B11E /* Shrug */,
 				49A04E721CF64ED90051E1E7 /* Calendar */,
 				49A04E5B1CF64D130051E1E7 /* Enrollments */,
@@ -3480,6 +3483,7 @@
 				B5E212D31D88856B009D8C07 /* Localizable.strings in Resources */,
 				B177E6FD1E2EC8BA00D7477D /* Settings.storyboard in Resources */,
 				49F9FA4B1CF7B73100654758 /* Canvas.xcassets in Resources */,
+				7DF9BF0B2152E52A0099026B /* Colors.xcassets in Resources */,
 				7DAEE5872111019600BF5C43 /* ToDoEmptyView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

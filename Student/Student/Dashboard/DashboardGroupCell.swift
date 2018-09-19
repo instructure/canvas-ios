@@ -17,22 +17,14 @@
 import UIKit
 
 class DashboardGroupCell: UICollectionViewCell {
-    @IBOutlet weak var leftColorView: UIView!
-    @IBOutlet weak var groupNameLabel: UILabel!
-    @IBOutlet weak var courseNameLabel: UILabel!
-    @IBOutlet weak var termLabel: UILabel!
+    @IBOutlet weak var leftColorView: UIView?
+    @IBOutlet weak var groupNameLabel: UILabel?
+    @IBOutlet weak var courseNameLabel: UILabel?
+    @IBOutlet weak var termLabel: UILabel?
 
     override func layoutSubviews() {
         super.layoutSubviews()
         roundCornersAndDropShadow()
-    }
-
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        groupNameLabel.text = ""
-        courseNameLabel.text = ""
-        termLabel.text = ""
-        leftColorView.backgroundColor = .clear
     }
 
     // TODO: Switch to using a "bubble" image with rounded corners
@@ -53,11 +45,12 @@ class DashboardGroupCell: UICollectionViewCell {
     }
 
     func configure(with model: DashboardViewModel.Group) {
-        groupNameLabel.text = model.groupName
-        courseNameLabel.text = model.courseName ?? ""
-        courseNameLabel.textColor = model.color ?? .black
-        termLabel.text = model.term ?? ""
-        leftColorView.backgroundColor = model.color ?? .black
+        groupNameLabel?.text = model.groupName
+        groupNameLabel?.textColor = .named(.textDarkest)
+        courseNameLabel?.text = model.courseName ?? ""
+        courseNameLabel?.textColor = model.color?.ensureContrast(against: .white) ?? .black
+        termLabel?.text = model.term ?? ""
+        termLabel?.textColor = .named(.textDark)
+        leftColorView?.backgroundColor = model.color ?? .black
     }
-
 }

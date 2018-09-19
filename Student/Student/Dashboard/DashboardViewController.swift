@@ -22,6 +22,9 @@ protocol DashboardViewProtocol: class {
 }
 
 class DashboardViewController: UIViewController, DashboardViewProtocol {
+    @IBOutlet weak var collectionView: UICollectionView?
+    var logoView = UIImageView(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
+
     var presenter: DashboardPresenterProtocol?
     var viewModel: DashboardViewModel?
 
@@ -34,9 +37,6 @@ class DashboardViewController: UIViewController, DashboardViewProtocol {
     let gutterWidth: CGFloat = 16
     let coursesColumns: CGFloat = 2
     let groupsColumns: CGFloat = 1
-
-    var logoView = UIImageView(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
-    @IBOutlet weak var collectionView: UICollectionView!
 
     static func create(env: AppEnvironment = .shared) -> DashboardViewController {
         let storyboard = UIStoryboard(name: "DashboardViewController", bundle: nil)
@@ -53,7 +53,6 @@ class DashboardViewController: UIViewController, DashboardViewProtocol {
         super.viewDidLoad()
 
         // Navigation Bar Setup
-        navigationController?.navigationBar.tintColor = .white
         let editBarButton = UIBarButtonItem(title: NSLocalizedString("Edit", comment: ""), style: .plain, target: self, action: #selector(editBarButtonTapped(object:)))
         navigationItem.rightBarButtonItem = editBarButton
 
@@ -63,10 +62,9 @@ class DashboardViewController: UIViewController, DashboardViewProtocol {
         logoView.widthAnchor.constraint(equalToConstant: 44).isActive = true
 
         // Collection View Setup
-        collectionView.delegate = self
-        collectionView.dataSource = self
-
-        collectionView.refreshControl = refreshControl
+        collectionView?.delegate = self
+        collectionView?.dataSource = self
+        collectionView?.refreshControl = refreshControl
 
         presenter?.viewIsReady()
     }
@@ -98,10 +96,12 @@ class DashboardViewController: UIViewController, DashboardViewProtocol {
 
         // update header
         navigationController?.navigationBar.barTintColor = viewModel.navBackgroundColor
+        navigationController?.navigationBar.tintColor = viewModel.navTextColor.ensureContrast(against: viewModel.navBackgroundColor)
+        navigationController?.navigationBar.barStyle = viewModel.navBackgroundColor.luminance < 0.5 ? .black : .default
         logoView.load(url: viewModel.navLogoUrl)
 
         // display courses
-        collectionView.reloadData()
+        collectionView?.reloadData()
         refreshControl.endRefreshing()
         navigationItem.rightBarButtonItem?.isEnabled = true
     }
@@ -190,22 +190,22 @@ extension DashboardViewController: UICollectionViewDataSource {
             }
 
             var title: String
-            var rightButtonText: String?
+            var rightText: String?
+            var rightColor: UIColor?
             var action: (() -> Void)?
             if indexPath.section == DashboardViewSection.courses.rawValue {
                 title = NSLocalizedString("Courses", comment: "")
-                rightButtonText = NSLocalizedString("See All", comment: "")
+                rightText = NSLocalizedString("See All", comment: "")
+                rightColor = viewModel?.primaryButtonColor
                 action = { [unowned self] in
                     self.presenter?.seeAllWasTapped()
                 }
             } else {
                 title = NSLocalizedString("Groups", comment: "")
-                rightButtonText = nil
-                action = nil
             }
 
-            v.configure(title: title, rightButtonText: rightButtonText, rightAction: action)
-            v.titleLabel.translatesAutoresizingMaskIntoConstraints = false
+            v.configure(title: title, rightText: rightText, rightColor: rightColor, rightAction: action)
+            v.titleLabel?.translatesAutoresizingMaskIntoConstraints = false
             return v
         }
 

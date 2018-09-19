@@ -52,18 +52,11 @@ class DashboardCourseCell: UICollectionViewCell {
         layer.backgroundColor = UIColor.clear.cgColor
     }
 
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        titleLabel?.text = ""
-        titleLabel?.textColor = UIColor.black
-        abbrevationLabel?.text = ""
-        imageView?.load(url: nil)
-    }
-
     func configure(with model: DashboardViewModel.Course) {
         titleLabel?.text = model.title
-        titleLabel?.textColor = model.color
+        titleLabel?.textColor = model.color.ensureContrast(against: .white)
         abbrevationLabel?.text = model.abbreviation
+        abbrevationLabel?.textColor = .named(.textDark)
         topView?.backgroundColor = model.color
         imageView?.load(url: model.imageUrl)
     }

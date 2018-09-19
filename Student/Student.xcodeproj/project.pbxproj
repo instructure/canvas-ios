@@ -51,6 +51,7 @@
 		7D067CF021505B4600B78AF2 /* GroupNavigationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B032CA4214C552B00B570F7 /* GroupNavigationPresenter.swift */; };
 		7D067CF121505B4600B78AF2 /* GroupNavigationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B032CA9214C55E400B570F7 /* GroupNavigationTableViewController.swift */; };
 		7D7110C321389AD90085C2E5 /* Routes+Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7110C221389AD90085C2E5 /* Routes+Student.swift */; };
+		7DF9BF062151961B0099026B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DF9BF052151961B0099026B /* Colors.xcassets */; };
 		9F7F18582148222C007336A0 /* DashboardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7F18572148222C007336A0 /* DashboardUITests.swift */; };
 		9FCA66032142C87A00BE0EBB /* SoSeedySwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCA66012142C86C00BE0EBB /* SoSeedySwift.framework */; };
 		9FCA66052142C89300BE0EBB /* SoSeedySwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCA66012142C86C00BE0EBB /* SoSeedySwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -167,6 +168,7 @@
 		7D349C32214308B0004C1074 /* nb-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-instk12"; path = "nb-instk12.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		7D349C34214308C3004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		7D7110C221389AD90085C2E5 /* Routes+Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Routes+Student.swift"; sourceTree = "<group>"; };
+		7DF9BF052151961B0099026B /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Colors.xcassets; path = ../../Core/Core/Colors.xcassets; sourceTree = "<group>"; };
 		9F7F18572148222C007336A0 /* DashboardUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardUITests.swift; sourceTree = "<group>"; };
 		9FCA66012142C86C00BE0EBB /* SoSeedySwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoSeedySwift.framework; path = "../../ios-frameworks/SoSeedySwift.framework"; sourceTree = "<group>"; };
 		9FCA66062142C8C300BE0EBB /* Secrets.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Secrets.framework; path = "../../ios-frameworks/Secrets.framework"; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 				2C5C698C211DFFAD00D9AD15 /* AppDelegate.swift */,
 				2CB3261C21387C99009496AF /* RouterViewController.swift */,
 				2C5C6995211DFFAE00D9AD15 /* Assets.xcassets */,
+				7DF9BF052151961B0099026B /* Colors.xcassets */,
 				2C5C6997211DFFAE00D9AD15 /* LaunchScreen.storyboard */,
 				2C5C699A211DFFAE00D9AD15 /* Info.plist */,
 				7D7110C221389AD90085C2E5 /* Routes+Student.swift */,
@@ -488,6 +491,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DF9BF062151961B0099026B /* Colors.xcassets in Resources */,
 				2C5C6999211DFFAE00D9AD15 /* LaunchScreen.storyboard in Resources */,
 				2C5C6996211DFFAE00D9AD15 /* Assets.xcassets in Resources */,
 				788152DF212B35F8005BA428 /* DashboardViewController.storyboard in Resources */,
