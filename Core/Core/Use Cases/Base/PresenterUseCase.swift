@@ -15,13 +15,23 @@
 //
 
 import Foundation
-@testable import Core
 
-extension APICourse: Fixture {
-    static var template: Template {
-        return [
-            "id": "1",
-            "name": "Course One",
-        ]
+public typealias EmptyHandler = () -> Void
+
+open class PresenterUseCase: BlockOperation {
+
+    private var handler: EmptyHandler?
+
+    open override var completionBlock: (() -> Void)? {
+        set {
+            assertionFailure("Cannot set completion block on PresenterUseCase, use startWithBlock()")
+        }
+        get {
+            return handler
+        }
+    }
+
+    public func startWithBlock( _ handler: @escaping EmptyHandler) {
+        self.handler = handler
     }
 }

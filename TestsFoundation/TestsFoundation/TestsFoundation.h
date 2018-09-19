@@ -14,14 +14,14 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-import Foundation
-@testable import Core
+#import <UIKit/UIKit.h>
 
-extension TTL: Fixture {
-    static var template: Template {
-        return [
-            "key": "a",
-            "lastRefresh": Date(),
-        ]
-    }
-}
+//! Project version number for TestsFoundation.
+FOUNDATION_EXPORT double TestsFoundationVersionNumber;
+
+//! Project version string for TestsFoundation.
+FOUNDATION_EXPORT const unsigned char TestsFoundationVersionString[];
+
+// In this header, you should import all the public headers of your framework using statements like #import <TestsFoundation/PublicHeader.h>
+
+

@@ -15,6 +15,10 @@
 		3B032CA5214C552B00B570F7 /* GroupNavigationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B032CA4214C552B00B570F7 /* GroupNavigationPresenter.swift */; };
 		3B032CA8214C554C00B570F7 /* GroupNavigationPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B032CA7214C554C00B570F7 /* GroupNavigationPresenterTests.swift */; };
 		3B032CAA214C55E400B570F7 /* GroupNavigationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B032CA9214C55E400B570F7 /* GroupNavigationTableViewController.swift */; };
+		3B032CAF214C685B00B570F7 /* MockPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B032CAE214C685B00B570F7 /* MockPersistence.swift */; };
+		3B032CB62150069B00B570F7 /* RecordableAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B032CB52150069B00B570F7 /* RecordableAPI.swift */; };
+		3B032CB8215006A100B570F7 /* StudentUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B032CB7215006A100B570F7 /* StudentUITest.swift */; };
+		3B0CEB902150464100D07CFA /* TestsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B0CEB8F2150464100D07CFA /* TestsFoundation.framework */; };
 		3B412F0121406C410090DE02 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B412EFC21406C000090DE02 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3B412F0321406C410090DE02 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B412EFD21406C000090DE02 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		788152DB212B3470005BA428 /* DashboardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152DA212B3470005BA428 /* DashboardPresenter.swift */; };
@@ -47,7 +51,6 @@
 		7D067CF021505B4600B78AF2 /* GroupNavigationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B032CA4214C552B00B570F7 /* GroupNavigationPresenter.swift */; };
 		7D067CF121505B4600B78AF2 /* GroupNavigationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B032CA9214C55E400B570F7 /* GroupNavigationTableViewController.swift */; };
 		7D7110C321389AD90085C2E5 /* Routes+Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7110C221389AD90085C2E5 /* Routes+Student.swift */; };
-		9F7F18562148202D007336A0 /* StudentUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7F18552148202D007336A0 /* StudentUITest.swift */; };
 		9F7F18582148222C007336A0 /* DashboardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7F18572148222C007336A0 /* DashboardUITests.swift */; };
 		9FCA66032142C87A00BE0EBB /* SoSeedySwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCA66012142C86C00BE0EBB /* SoSeedySwift.framework */; };
 		9FCA66052142C89300BE0EBB /* SoSeedySwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCA66012142C86C00BE0EBB /* SoSeedySwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -61,7 +64,6 @@
 		9FCA66172142C90200BE0EBB /* CgRPC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCA660A2142C8D100BE0EBB /* CgRPC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9FCA66182142C90900BE0EBB /* Secrets.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCA66062142C8C300BE0EBB /* Secrets.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9FCA66192142C91200BE0EBB /* SwiftProtobuf.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCA66082142C8D100BE0EBB /* SwiftProtobuf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		9FCED88521497B120015EFFE /* RecordableAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCED88421497B120015EFFE /* RecordableAPI.swift */; };
 		F97304A02122268100AA2557 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C964867211E38B0002C3255 /* Core.framework */; };
 		F97304A12122268500AA2557 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C964867211E38B0002C3255 /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F97304A4212287C500AA2557 /* EarlGrey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F97304A3212287C400AA2557 /* EarlGrey.framework */; };
@@ -137,6 +139,10 @@
 		3B032CA4214C552B00B570F7 /* GroupNavigationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupNavigationPresenter.swift; sourceTree = "<group>"; };
 		3B032CA7214C554C00B570F7 /* GroupNavigationPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupNavigationPresenterTests.swift; sourceTree = "<group>"; };
 		3B032CA9214C55E400B570F7 /* GroupNavigationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupNavigationTableViewController.swift; sourceTree = "<group>"; };
+		3B032CAE214C685B00B570F7 /* MockPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPersistence.swift; sourceTree = "<group>"; };
+		3B032CB52150069B00B570F7 /* RecordableAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordableAPI.swift; sourceTree = "<group>"; };
+		3B032CB7215006A100B570F7 /* StudentUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentUITest.swift; sourceTree = "<group>"; };
+		3B0CEB8F2150464100D07CFA /* TestsFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TestsFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B412EFC21406C000090DE02 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../ios-frameworks/Realm.framework"; sourceTree = SOURCE_ROOT; };
 		3B412EFD21406C000090DE02 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "../ios-frameworks/RealmSwift.framework"; sourceTree = SOURCE_ROOT; };
 		788152DA212B3470005BA428 /* DashboardPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardPresenter.swift; sourceTree = "<group>"; };
@@ -161,7 +167,6 @@
 		7D349C32214308B0004C1074 /* nb-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-instk12"; path = "nb-instk12.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		7D349C34214308C3004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		7D7110C221389AD90085C2E5 /* Routes+Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Routes+Student.swift"; sourceTree = "<group>"; };
-		9F7F18552148202D007336A0 /* StudentUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentUITest.swift; sourceTree = "<group>"; };
 		9F7F18572148222C007336A0 /* DashboardUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardUITests.swift; sourceTree = "<group>"; };
 		9FCA66012142C86C00BE0EBB /* SoSeedySwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoSeedySwift.framework; path = "../../ios-frameworks/SoSeedySwift.framework"; sourceTree = "<group>"; };
 		9FCA66062142C8C300BE0EBB /* Secrets.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Secrets.framework; path = "../../ios-frameworks/Secrets.framework"; sourceTree = "<group>"; };
@@ -169,7 +174,6 @@
 		9FCA66092142C8D100BE0EBB /* BoringSSL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BoringSSL.framework; path = "../../ios-frameworks/SwiftGRPC/BoringSSL.framework"; sourceTree = "<group>"; };
 		9FCA660A2142C8D100BE0EBB /* CgRPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CgRPC.framework; path = "../../ios-frameworks/SwiftGRPC/CgRPC.framework"; sourceTree = "<group>"; };
 		9FCA660B2142C8D100BE0EBB /* SwiftGRPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftGRPC.framework; path = "../../ios-frameworks/SwiftGRPC/SwiftGRPC.framework"; sourceTree = "<group>"; };
-		9FCED88421497B120015EFFE /* RecordableAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordableAPI.swift; sourceTree = "<group>"; };
 		F97304A3212287C400AA2557 /* EarlGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EarlGrey.framework; path = "../../ios-frameworks/EarlGrey.framework"; sourceTree = "<group>"; };
 		F97304A6212287F400AA2557 /* EarlGrey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarlGrey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -187,6 +191,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B0CEB902150464100D07CFA /* TestsFoundation.framework in Frameworks */,
 				F97304A4212287C500AA2557 /* EarlGrey.framework in Frameworks */,
 				7881531F212FC5F7005BA428 /* Core.framework in Frameworks */,
 				9FCA66122142C8E200BE0EBB /* SwiftGRPC.framework in Frameworks */,
@@ -248,7 +253,7 @@
 		2C5C69A2211DFFAE00D9AD15 /* StudentTests */ = {
 			isa = PBXGroup;
 			children = (
-				9F7F18542148201A007336A0 /* Helpers */,
+				3B032CAD214C684800B570F7 /* Helpers */,
 				3B032CA6214C553A00B570F7 /* Groups */,
 				788152E0212B38C5005BA428 /* Dashboard */,
 				2C96486B211E3AA9002C3255 /* Core.framework */,
@@ -263,6 +268,7 @@
 			isa = PBXGroup;
 			children = (
 				7D067CF521505E2C00B78AF2 /* Core.framework */,
+				3B0CEB8F2150464100D07CFA /* TestsFoundation.framework */,
 				9FCA66092142C8D100BE0EBB /* BoringSSL.framework */,
 				9FCA660A2142C8D100BE0EBB /* CgRPC.framework */,
 				9FCA660B2142C8D100BE0EBB /* SwiftGRPC.framework */,
@@ -310,6 +316,16 @@
 			path = GroupNavigation;
 			sourceTree = "<group>";
 		};
+		3B032CAD214C684800B570F7 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				3B032CB7215006A100B570F7 /* StudentUITest.swift */,
+				3B032CB52150069B00B570F7 /* RecordableAPI.swift */,
+				3B032CAE214C685B00B570F7 /* MockPersistence.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		788152D5212B330C005BA428 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -352,15 +368,6 @@
 				7D067CDF21505AF200B78AF2 /* Info.plist */,
 			);
 			path = StudentReborn;
-			sourceTree = "<group>";
-		};
-		9F7F18542148201A007336A0 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				9F7F18552148202D007336A0 /* StudentUITest.swift */,
-				9FCED88421497B120015EFFE /* RecordableAPI.swift */,
-			);
-			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -519,7 +526,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint --config ../.swiftlint.yml\nelse\n  echo \"warning: SwiftLint not installed, download --> `brew install swiftlint`\"\n  exit 1\nfi";
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint autocorrect --config ../.swiftlint.yml\n    swiftlint --config ../.swiftlint.yml\nelse\n  echo \"warning: SwiftLint not installed, download --> `brew install swiftlint`\"\n  exit 1\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -550,10 +557,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F97304A7212287F400AA2557 /* EarlGrey.swift in Sources */,
-				9F7F18562148202D007336A0 /* StudentUITest.swift in Sources */,
+				3B032CAF214C685B00B570F7 /* MockPersistence.swift in Sources */,
 				3B032CA8214C554C00B570F7 /* GroupNavigationPresenterTests.swift in Sources */,
 				2C5C69A4211DFFAE00D9AD15 /* StudentTests.swift in Sources */,
-				9FCED88521497B120015EFFE /* RecordableAPI.swift in Sources */,
+				3B032CB8215006A100B570F7 /* StudentUITest.swift in Sources */,
+				3B032CB62150069B00B570F7 /* RecordableAPI.swift in Sources */,
 				788152E6212B3987005BA428 /* DashboardMocks.swift in Sources */,
 				9F7F18582148222C007336A0 /* DashboardUITests.swift in Sources */,
 				788152E4212B3957005BA428 /* DashboardIntegrationTests.swift in Sources */,
@@ -739,7 +747,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas.Student;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -762,7 +770,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas.Student;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -783,7 +791,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas.StudentTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Student.app/Student";
 			};
@@ -805,7 +813,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas.StudentTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Student.app/Student";
 			};
@@ -833,7 +841,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.StudentReborn;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -862,7 +870,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.StudentReborn;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";

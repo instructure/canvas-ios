@@ -16,13 +16,13 @@
 
 import Foundation
 
-typealias Template = [String: Any?]
+public typealias Template = [String: Any?]
 
-protocol Fixture {
+public protocol Fixture {
     static var template: Template { get }
 }
 
-extension Fixture where Self: Decodable {
+public extension Fixture where Self: Decodable {
     static func make(_ template: Template = [:]) -> Self {
         var t = self.template
         for (key, _) in template {

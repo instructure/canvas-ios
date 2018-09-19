@@ -50,7 +50,7 @@ class AllCoursesPresenter: AllCoursesPresenterProtocol {
 
     lazy var coursesFetch: FetchedResultsController<Course> = {
         let sort = SortDescriptor(key: "name", ascending: true)
-        let fetcher: FetchedResultsController<Course> = database.fetchedResultsController(predicate: NSPredicate.all, sortDescriptors: [sort], sectionNameKeyPath: nil)
+        let fetcher: FetchedResultsController<Course> = self.database.fetchedResultsController(predicate: NSPredicate.all, sortDescriptors: [sort], sectionNameKeyPath: nil)
         fetcher.delegate = self
         return fetcher
     }()

@@ -18,6 +18,7 @@ import Foundation
 import XCTest
 import RealmSwift
 @testable import Core
+import TestsFoundation
 
 class CoreTestCase: XCTestCase {
     let api = MockAPI()

@@ -15,5 +15,31 @@
 //
 
 import Foundation
+import Core
 
-class GroupNavigationPresenter {}
+protocol GroupNavigationViewProtocol: class {
+    func showTabs(_ tabs: [Tab])
+}
+
+typealias GroupNavigationViewCompositeDelegate = GroupNavigationViewProtocol & ErrorViewController
+
+class GroupNavigationPresenter {
+    weak var view: GroupNavigationViewCompositeDelegate?
+    var persistence: Persistence
+    var frc: FetchedResultsController<Tab>?
+
+    init(persistence: Persistence = RealmPersistence.main) {
+        self.persistence = persistence
+        let sort = SortDescriptor(key: #keyPath(Tab.position), ascending: true)
+        frc = persistence.fetchedResultsController(predicate: NSPredicate.all, sortDescriptors: [sort], sectionNameKeyPath: nil)
+    }
+
+    func loadTabs() {
+        do {
+            try frc?.performFetch()
+            view?.showTabs(frc?.fetchedObjects ?? [])
+        } catch {
+            view?.showError(error)
+        }
+    }
+}

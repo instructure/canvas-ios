@@ -15,18 +15,16 @@
 //
 
 import Foundation
+@testable import Core
 
-extension NSError {
-    public struct Constants {
-        static let domain = "com.instructure"
-        static let internalError = "Internal Error"
-    }
-
-    public static func internalError(code: Int = 0) -> NSError {
-        return instructureError(Constants.internalError)
-    }
-
-    public static func instructureError(_ errorMsg: String, code: Int = 0) -> NSError {
-        return NSError(domain: Constants.domain, code: code, userInfo: [NSLocalizedDescriptionKey: errorMsg])
+extension APIGroup: Fixture {
+    public static var template: Template {
+        return [
+            "id": "1",
+            "name": "Group One",
+            "members_count": 1,
+            "group_category_id": "1",
+            "concluded": false,
+        ]
     }
 }

@@ -25,7 +25,7 @@ public class RequestUseCase<Request>: OperationSet where Request: APIRequestable
     }
 
     lazy var fetch: APIOperation = {
-        return APIOperation(api: api, request: request)
+        return APIOperation(api: self.api, request: self.request)
     }()
 
     init(api: API, database: Persistence, request: Request) {

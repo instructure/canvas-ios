@@ -13,6 +13,8 @@
 		2C96485B211E30B3002C3255 /* Router+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C96485A211E30B3002C3255 /* Router+Tests.swift */; };
 		2C96485E211E3723002C3255 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C96485D211E3723002C3255 /* AppEnvironment.swift */; };
 		3B032C9F214C52CE00B570F7 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B032C9E214C52CE00B570F7 /* Tab.swift */; };
+		3B032CBA2150258F00B570F7 /* PresenterUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B032CB92150258F00B570F7 /* PresenterUseCase.swift */; };
+		3B0CEB772150408A00D07CFA /* TestsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B0CEB762150408A00D07CFA /* TestsFoundation.framework */; };
 		3B34674A213051FD00F9BC2E /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B346748213051FD00F9BC2E /* LoginPresenter.swift */; };
 		3B34674B213051FD00F9BC2E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B346749213051FD00F9BC2E /* LoginViewController.swift */; };
 		3B346755213052C700F9BC2E /* NSError+CoreErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B346754213052C700F9BC2E /* NSError+CoreErrors.swift */; };
@@ -32,11 +34,9 @@
 		3B3467E021370F6600F9BC2E /* GetMobileVerify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3467DE21370F6600F9BC2E /* GetMobileVerify.swift */; };
 		3B3467E22137170500F9BC2E /* ConstructLoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3467E12137170500F9BC2E /* ConstructLoginRequest.swift */; };
 		3B3467E42137172900F9BC2E /* DepenedencyOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3467E32137172900F9BC2E /* DepenedencyOperation.swift */; };
-		3B412EFB213FA44B0090DE02 /* Realm+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B412EFA213FA44B0090DE02 /* Realm+Fixture.swift */; };
 		3B412F052140808F0090DE02 /* TTL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B412F042140808F0090DE02 /* TTL.swift */; };
 		3B412F092141A80A0090DE02 /* RealmFetchedResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B412F082141A80A0090DE02 /* RealmFetchedResultsController.swift */; };
 		3B412F0B2141A9760090DE02 /* RealmFetchedResultsControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B412F0A2141A9760090DE02 /* RealmFetchedResultsControllerTests.swift */; };
-		3B412F0D2146D4A10090DE02 /* TTL+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B412F0C2146D4A10090DE02 /* TTL+Fixture.swift */; };
 		3B472271213795AF00BF6FF3 /* RealmPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B47226E213795AE00BF6FF3 /* RealmPersistence.swift */; };
 		3B472274213795E500BF6FF3 /* RealmPersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B472273213795E500BF6FF3 /* RealmPersistenceTests.swift */; };
 		3B4722812137979700BF6FF3 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B47227F2137979700BF6FF3 /* Realm.framework */; };
@@ -96,7 +96,6 @@
 		7D8262F9212B3B2000BD268D /* APISection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8262F8212B3B2000BD268D /* APISection.swift */; };
 		7D8262FB212B3B3000BD268D /* APIEnrollment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8262FA212B3B3000BD268D /* APIEnrollment.swift */; };
 		7DC23092213D710000318ED0 /* UIImageView+load+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC23091213D710000318ED0 /* UIImageView+load+Tests.swift */; };
-		9F6C2BA321504089001A0CEB /* Tab+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6C2BA221504089001A0CEB /* Tab+Fixture.swift */; };
 		9F7DF8172136EEE400966382 /* OperationSetTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7DF8162136EEE400966382 /* OperationSetTest.swift */; };
 		9FE84DDA214FE06300B95A68 /* GetGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE84DD9214FE06300B95A68 /* GetGroup.swift */; };
 		9FE84DDC214FE5C500B95A68 /* GetGroupTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE84DDB214FE5C500B95A68 /* GetGroupTest.swift */; };
@@ -117,7 +116,6 @@
 		B17F23AD21378E3800771F86 /* PaginatedUseCaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17F23AC21378E3800771F86 /* PaginatedUseCaseTest.swift */; };
 		B17F23AF21378F4B00771F86 /* TTLOperationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17F23AE21378F4B00771F86 /* TTLOperationTest.swift */; };
 		B17F23B12137981B00771F86 /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17F23B02137981B00771F86 /* Clock.swift */; };
-		B1812690214C562800E71F63 /* APITab+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B181268F214C562800E71F63 /* APITab+Fixture.swift */; };
 		B18126922150542A00E71F63 /* GetContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18126912150542A00E71F63 /* GetContext.swift */; };
 		B18126942150564900E71F63 /* GetContextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18126932150564900E71F63 /* GetContextTests.swift */; };
 		B195DC45213201DE00797FE4 /* GetUserGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = B195DC44213201DE00797FE4 /* GetUserGroups.swift */; };
@@ -126,14 +124,9 @@
 		B195DC4F2132232F00797FE4 /* DetailUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B195DC4E2132232F00797FE4 /* DetailUseCase.swift */; };
 		B195DC512132257500797FE4 /* GetCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B195DC502132257500797FE4 /* GetCourse.swift */; };
 		B195DC5521324DA600797FE4 /* GetUserGroupsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B195DC5421324DA600797FE4 /* GetUserGroupsTest.swift */; };
-		B195DC5721324E5600797FE4 /* APIGroup+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B195DC5621324E5600797FE4 /* APIGroup+Fixture.swift */; };
-		B195DC5C213255CF00797FE4 /* Course+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B195DC5B213255CF00797FE4 /* Course+Fixture.swift */; };
-		B195DC5E2132561700797FE4 /* Group+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B195DC5D2132561700797FE4 /* Group+Fixture.swift */; };
 		B195DC622133326900797FE4 /* GetCourseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B195DC612133326900797FE4 /* GetCourseTest.swift */; };
 		B1EA5AEB212E641900DABC5F /* GetCourses.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EA5AEA212E641900DABC5F /* GetCourses.swift */; };
 		B1EA5AEE212E656100DABC5F /* GetCoursesTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EA5AED212E656100DABC5F /* GetCoursesTest.swift */; };
-		B1EA5AF1212E667000DABC5F /* Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EA5AF0212E667000DABC5F /* Fixture.swift */; };
-		B1EA5AF3212E668900DABC5F /* APICourse+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EA5AF2212E668900DABC5F /* APICourse+Fixture.swift */; };
 		B1EA5AF6212E67CE00DABC5F /* Date+ISO8601.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EA5AF5212E67CE00DABC5F /* Date+ISO8601.swift */; };
 		B1EA5AF8212E6A6D00DABC5F /* OperationSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EA5AF7212E6A6D00DABC5F /* OperationSet.swift */; };
 		DFE1FF1D212F5E1A003F27AA /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE1FF1C212F5E1A003F27AA /* Keychain.swift */; };
@@ -187,6 +180,8 @@
 		2C96485A211E30B3002C3255 /* Router+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Router+Tests.swift"; sourceTree = "<group>"; };
 		2C96485D211E3723002C3255 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
 		3B032C9E214C52CE00B570F7 /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
+		3B032CB92150258F00B570F7 /* PresenterUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterUseCase.swift; sourceTree = "<group>"; };
+		3B0CEB762150408A00D07CFA /* TestsFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TestsFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B346748213051FD00F9BC2E /* LoginPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		3B346749213051FD00F9BC2E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3B346754213052C700F9BC2E /* NSError+CoreErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSError+CoreErrors.swift"; sourceTree = "<group>"; };
@@ -206,11 +201,9 @@
 		3B3467DE21370F6600F9BC2E /* GetMobileVerify.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetMobileVerify.swift; sourceTree = "<group>"; };
 		3B3467E12137170500F9BC2E /* ConstructLoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructLoginRequest.swift; sourceTree = "<group>"; };
 		3B3467E32137172900F9BC2E /* DepenedencyOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepenedencyOperation.swift; sourceTree = "<group>"; };
-		3B412EFA213FA44B0090DE02 /* Realm+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Realm+Fixture.swift"; sourceTree = "<group>"; };
 		3B412F042140808F0090DE02 /* TTL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTL.swift; sourceTree = "<group>"; };
 		3B412F082141A80A0090DE02 /* RealmFetchedResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmFetchedResultsController.swift; sourceTree = "<group>"; };
 		3B412F0A2141A9760090DE02 /* RealmFetchedResultsControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmFetchedResultsControllerTests.swift; sourceTree = "<group>"; };
-		3B412F0C2146D4A10090DE02 /* TTL+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TTL+Fixture.swift"; sourceTree = "<group>"; };
 		3B47226E213795AE00BF6FF3 /* RealmPersistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmPersistence.swift; sourceTree = "<group>"; };
 		3B472270213795AE00BF6FF3 /* Course.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		3B472273213795E500BF6FF3 /* RealmPersistenceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmPersistenceTests.swift; sourceTree = "<group>"; };
@@ -274,7 +267,6 @@
 		7D8262F8212B3B2000BD268D /* APISection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISection.swift; sourceTree = "<group>"; };
 		7D8262FA212B3B3000BD268D /* APIEnrollment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnrollment.swift; sourceTree = "<group>"; };
 		7DC23091213D710000318ED0 /* UIImageView+load+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+load+Tests.swift"; sourceTree = "<group>"; };
-		9F6C2BA221504089001A0CEB /* Tab+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tab+Fixture.swift"; sourceTree = "<group>"; };
 		9F7DF8162136EEE400966382 /* OperationSetTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationSetTest.swift; sourceTree = "<group>"; };
 		9FE84DD9214FE06300B95A68 /* GetGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGroup.swift; sourceTree = "<group>"; };
 		9FE84DDB214FE5C500B95A68 /* GetGroupTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGroupTest.swift; sourceTree = "<group>"; };
@@ -299,7 +291,6 @@
 		B17F23AC21378E3800771F86 /* PaginatedUseCaseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginatedUseCaseTest.swift; sourceTree = "<group>"; };
 		B17F23AE21378F4B00771F86 /* TTLOperationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTLOperationTest.swift; sourceTree = "<group>"; };
 		B17F23B02137981B00771F86 /* Clock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
-		B181268F214C562800E71F63 /* APITab+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APITab+Fixture.swift"; sourceTree = "<group>"; };
 		B18126912150542A00E71F63 /* GetContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetContext.swift; sourceTree = "<group>"; };
 		B18126932150564900E71F63 /* GetContextTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetContextTests.swift; sourceTree = "<group>"; };
 		B195DC44213201DE00797FE4 /* GetUserGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserGroups.swift; sourceTree = "<group>"; };
@@ -308,15 +299,9 @@
 		B195DC4E2132232F00797FE4 /* DetailUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUseCase.swift; sourceTree = "<group>"; };
 		B195DC502132257500797FE4 /* GetCourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCourse.swift; sourceTree = "<group>"; };
 		B195DC5421324DA600797FE4 /* GetUserGroupsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserGroupsTest.swift; sourceTree = "<group>"; };
-		B195DC5621324E5600797FE4 /* APIGroup+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIGroup+Fixture.swift"; sourceTree = "<group>"; };
-		B195DC582132554B00797FE4 /* NSManagedObject+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Fixture.swift"; sourceTree = "<group>"; };
-		B195DC5B213255CF00797FE4 /* Course+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Course+Fixture.swift"; sourceTree = "<group>"; };
-		B195DC5D2132561700797FE4 /* Group+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Group+Fixture.swift"; sourceTree = "<group>"; };
 		B195DC612133326900797FE4 /* GetCourseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCourseTest.swift; sourceTree = "<group>"; };
 		B1EA5AEA212E641900DABC5F /* GetCourses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCourses.swift; sourceTree = "<group>"; };
 		B1EA5AED212E656100DABC5F /* GetCoursesTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCoursesTest.swift; sourceTree = "<group>"; };
-		B1EA5AF0212E667000DABC5F /* Fixture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fixture.swift; sourceTree = "<group>"; };
-		B1EA5AF2212E668900DABC5F /* APICourse+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APICourse+Fixture.swift"; sourceTree = "<group>"; };
 		B1EA5AF5212E67CE00DABC5F /* Date+ISO8601.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Date+ISO8601.swift"; path = "../../../CanvasCore/CanvasCore/Extensions/Date+ISO8601.swift"; sourceTree = "<group>"; };
 		B1EA5AF7212E6A6D00DABC5F /* OperationSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationSet.swift; sourceTree = "<group>"; };
 		B1EA5AFA212E6E5800DABC5F /* MockDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDatabase.swift; sourceTree = "<group>"; };
@@ -346,6 +331,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B0CEB772150408A00D07CFA /* TestsFoundation.framework in Frameworks */,
 				2C964838211E2F1A002C3255 /* Core.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -528,6 +514,7 @@
 		3B47228F213798CA00BF6FF3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3B0CEB762150408A00D07CFA /* TestsFoundation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -589,7 +576,6 @@
 				7D80AC55212CF41900C40ECE /* APIRequestable+Tests.swift */,
 				7D80AC16212B689E00C40ECE /* APITab+Requestable+Tests.swift */,
 				7D80AC14212B67E100C40ECE /* APIUser+Requestable+Tests.swift */,
-				B1EA5AF0212E667000DABC5F /* Fixture.swift */,
 				3B3467D52135B99700F9BC2E /* IDTests.swift */,
 				7D80AC53212CF01E00C40ECE /* MockAPI.swift */,
 			);
@@ -682,19 +668,6 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		B195DC5A213255C400797FE4 /* Fixtures */ = {
-			isa = PBXGroup;
-			children = (
-				B195DC582132554B00797FE4 /* NSManagedObject+Fixture.swift */,
-				B195DC5B213255CF00797FE4 /* Course+Fixture.swift */,
-				B195DC5D2132561700797FE4 /* Group+Fixture.swift */,
-				3B412EFA213FA44B0090DE02 /* Realm+Fixture.swift */,
-				3B412F0C2146D4A10090DE02 /* TTL+Fixture.swift */,
-				9F6C2BA221504089001A0CEB /* Tab+Fixture.swift */,
-			);
-			path = Fixtures;
-			sourceTree = "<group>";
-		};
 		B195DC5F2132659800797FE4 /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -708,6 +681,7 @@
 				B14FE5D62134F63C00328CD7 /* RequestUseCase.swift */,
 				3B3467E32137172900F9BC2E /* DepenedencyOperation.swift */,
 				B17F23AA213788BC00771F86 /* TTLOperation.swift */,
+				3B032CB92150258F00B570F7 /* PresenterUseCase.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -745,9 +719,6 @@
 			isa = PBXGroup;
 			children = (
 				7D58FBC92141B43300705CDF /* APIAccountResults.json */,
-				B1EA5AF2212E668900DABC5F /* APICourse+Fixture.swift */,
-				B195DC5621324E5600797FE4 /* APIGroup+Fixture.swift */,
-				B181268F214C562800E71F63 /* APITab+Fixture.swift */,
 			);
 			path = Fixtures;
 			sourceTree = "<group>";
@@ -756,7 +727,6 @@
 			isa = PBXGroup;
 			children = (
 				3B472273213795E500BF6FF3 /* RealmPersistenceTests.swift */,
-				B195DC5A213255C400797FE4 /* Fixtures */,
 				B1EA5AFA212E6E5800DABC5F /* MockDatabase.swift */,
 				3B412F0A2141A9760090DE02 /* RealmFetchedResultsControllerTests.swift */,
 			);
@@ -1033,6 +1003,7 @@
 				B1EA5AEB212E641900DABC5F /* GetCourses.swift in Sources */,
 				3B346755213052C700F9BC2E /* NSError+CoreErrors.swift in Sources */,
 				7D8262EF212B228F00BD268D /* APICourse+Requestable.swift in Sources */,
+				3B032CBA2150258F00B570F7 /* PresenterUseCase.swift in Sources */,
 				B1445307212E5B6E0009D848 /* FetchedResultsController.swift in Sources */,
 				B144530B212E5BCC0009D848 /* AsyncOperation.swift in Sources */,
 				7D062AF92124A0F400677F66 /* ContextModel.swift in Sources */,
@@ -1049,10 +1020,7 @@
 				7D80AC19212B697600C40ECE /* APIGroup+Requestable+Tests.swift in Sources */,
 				B195DC622133326900797FE4 /* GetCourseTest.swift in Sources */,
 				B14FE5D92134F68800328CD7 /* CoreTestCase.swift in Sources */,
-				B195DC5C213255CF00797FE4 /* Course+Fixture.swift in Sources */,
 				2C96485B211E30B3002C3255 /* Router+Tests.swift in Sources */,
-				B195DC5721324E5600797FE4 /* APIGroup+Fixture.swift in Sources */,
-				3B412EFB213FA44B0090DE02 /* Realm+Fixture.swift in Sources */,
 				7D80AC1B212B6A7700C40ECE /* APIFavorite+Requestable+Tests.swift in Sources */,
 				7D80AC15212B67E100C40ECE /* APIUser+Requestable+Tests.swift in Sources */,
 				7D80AC54212CF01E00C40ECE /* MockAPI.swift in Sources */,
@@ -1061,11 +1029,7 @@
 				3B3467CB21349FE300F9BC2E /* GetMobileVerifyTests.swift in Sources */,
 				7D80AC25212C61F100C40ECE /* APIAccount+Requestable+Tests.swift in Sources */,
 				7D80AC2D212C801600C40ECE /* APIOAuth+Requestable+Tests.swift in Sources */,
-				B1812690214C562800E71F63 /* APITab+Fixture.swift in Sources */,
-				3B412F0D2146D4A10090DE02 /* TTL+Fixture.swift in Sources */,
-				B195DC5E2132561700797FE4 /* Group+Fixture.swift in Sources */,
 				9FE84DE2215037A000B95A68 /* GetContextTabsTest.swift in Sources */,
-				B1EA5AF3212E668900DABC5F /* APICourse+Fixture.swift in Sources */,
 				9FE84DDC214FE5C500B95A68 /* GetGroupTest.swift in Sources */,
 				DFE1FF20212F5E41003F27AA /* Keychain.swift in Sources */,
 				B17F23AF21378F4B00771F86 /* TTLOperationTest.swift in Sources */,
@@ -1080,7 +1044,6 @@
 				7D7110C12138910D0085C2E5 /* RouteHandler+Tests.swift in Sources */,
 				B195DC5521324DA600797FE4 /* GetUserGroupsTest.swift in Sources */,
 				7D80AC1F212B738500C40ECE /* API+Tests.swift in Sources */,
-				9F6C2BA321504089001A0CEB /* Tab+Fixture.swift in Sources */,
 				7D80AC56212CF41900C40ECE /* APIRequestable+Tests.swift in Sources */,
 				7D062AFB2124A14700677F66 /* Context+Tests.swift in Sources */,
 				B17F23AD21378E3800771F86 /* PaginatedUseCaseTest.swift in Sources */,
@@ -1089,7 +1052,6 @@
 				7D80AC1D212B6B6200C40ECE /* APICourse+Requestable+Tests.swift in Sources */,
 				7D7110CC2139AB310085C2E5 /* URLComponents+parse+Tests.swift in Sources */,
 				3B3467D22135AF5100F9BC2E /* ConstructLoginRequestTests.swift in Sources */,
-				B1EA5AF1212E667000DABC5F /* Fixture.swift in Sources */,
 				7D6A2BE4214C538F00DB15C4 /* Route+Tests.swift in Sources */,
 				3B412F0B2141A9760090DE02 /* RealmFetchedResultsControllerTests.swift in Sources */,
 				B14D555E213056DD0066D275 /* APIOperationTest.swift in Sources */,
@@ -1293,11 +1255,12 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas.Core;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1325,10 +1288,11 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas.Core;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1348,7 +1312,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas.CoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CoreTester.app/CoreTester";
 			};
@@ -1369,7 +1333,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas.CoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CoreTester.app/CoreTester";
 			};
@@ -1393,7 +1357,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.CoreTester;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1416,7 +1380,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.CoreTester;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

@@ -262,27 +262,3 @@ extension RealmPersistenceTests: FetchedResultsControllerDelegate {
         frcExpectation.fulfill()
     }
 }
-
-extension RealmPersistence {
-    static func testingConfig(identifier: String) -> Realm.Configuration {
-        var config = Realm.Configuration.defaultConfiguration
-//        var docDir = documentDirectory()
-//        docDir.appendPathComponent("\(identifier).realm")
-//        config.fileURL = docDir
-//        let fileManager = FileManager.default
-//        if let fileUrl = config.fileURL {
-//            try? fileManager.removeItem(at: fileUrl)
-//        }
-//        RealmPersistence.config.fileURL = config.fileURL
-
-        config.inMemoryIdentifier = identifier
-        RealmPersistence.config.inMemoryIdentifier = identifier
-        return config
-    }
-
-    static func documentDirectory() -> URL {
-        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
-        let url = URL(fileURLWithPath: path)
-        return url
-    }
-}

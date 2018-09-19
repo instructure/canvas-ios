@@ -7,4 +7,7 @@
    <FileRef
       location = "group:Core/Core.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:TestsFoundation/TestsFoundation.xcodeproj">
+   </FileRef>
 </Workspace>

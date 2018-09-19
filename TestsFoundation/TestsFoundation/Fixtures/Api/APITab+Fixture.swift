@@ -17,14 +17,16 @@
 import Foundation
 @testable import Core
 
-extension APIGroup: Fixture {
-    static var template: Template {
+extension APITab: Fixture {
+    public static var template: Template {
         return [
-            "id": "1",
-            "name": "Group One",
-            "members_count": 1,
-            "group_category_id": "1",
-            "concluded": false,
+            "id": "home",
+            "html_url": "/groups/16",
+            "full_url": "https://twilson.instructure.com/groups/16",
+            "position": 1,
+            "visibility": "public",
+            "label": "Home",
+            "type": "internal",
         ]
     }
 }

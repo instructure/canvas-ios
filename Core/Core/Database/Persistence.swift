@@ -43,7 +43,7 @@ extension Persistence {
 
 }
 
-public struct SortDescriptor {
+public struct SortDescriptor: Equatable {
     let key: String
     let ascending: Bool
 

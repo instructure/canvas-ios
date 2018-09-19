@@ -15,18 +15,27 @@
 //
 
 import Foundation
+import RealmSwift
+import Core
 
-extension NSError {
-    public struct Constants {
-        static let domain = "com.instructure"
-        static let internalError = "Internal Error"
+extension Fixture where Self: RealmSwift.Object {
+    public static func make(_ template: Template = [:]) -> Self {
+        var t = self.template
+        for (key, _) in template {
+            t[key] = template[key]
+        }
+        let fixture: Self = Self.init()
+        for (key, value) in t {
+            fixture.setValue(value, forKey: key)
+        }
+        return fixture
     }
+}
 
-    public static func internalError(code: Int = 0) -> NSError {
-        return instructureError(Constants.internalError)
-    }
-
-    public static func instructureError(_ errorMsg: String, code: Int = 0) -> NSError {
-        return NSError(domain: Constants.domain, code: code, userInfo: [NSLocalizedDescriptionKey: errorMsg])
+extension Persistence {
+    public func make<T>(_ template: Template = [:]) -> T where T: Fixture, T: RealmSwift.Object {
+        let fixture: T = T.make(template)
+        try! addOrUpdate(fixture)
+        return fixture
     }
 }

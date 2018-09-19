@@ -17,7 +17,7 @@
 import CanvasCore
 
 extension QuizModel: Fixture {
-    static var template: Template {
+    public static var template: Template {
         return [
             "id": "1",
             "title": "Do you has what it takes?",
@@ -36,7 +36,7 @@ extension QuizModel: Fixture {
 }
 
 extension QuizModel.Permissions: Fixture {
-    static var template: Template {
+    public static var template: Template {
         return [
             "read": false,
             "submit": false,

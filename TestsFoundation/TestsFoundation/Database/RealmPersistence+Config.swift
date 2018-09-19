@@ -16,13 +16,19 @@
 
 import Foundation
 @testable import Core
+import RealmSwift
 
-extension Group: Fixture {
-    static var template: Template {
-        return [
-            "id": "1",
-            "name": "Group One",
-            "member": false,
-        ]
+extension RealmPersistence {
+    public static func testingConfig(identifier: String?) -> Realm.Configuration {
+        var config = Realm.Configuration.defaultConfiguration
+        config.inMemoryIdentifier = identifier
+        RealmPersistence.config.inMemoryIdentifier = identifier
+        return config
+    }
+
+    static func documentDirectory() -> URL {
+        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
+        let url = URL(fileURLWithPath: path)
+        return url
     }
 }

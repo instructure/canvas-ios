@@ -15,18 +15,13 @@
 //
 
 import Foundation
+@testable import Core
 
-extension NSError {
-    public struct Constants {
-        static let domain = "com.instructure"
-        static let internalError = "Internal Error"
-    }
-
-    public static func internalError(code: Int = 0) -> NSError {
-        return instructureError(Constants.internalError)
-    }
-
-    public static func instructureError(_ errorMsg: String, code: Int = 0) -> NSError {
-        return NSError(domain: Constants.domain, code: code, userInfo: [NSLocalizedDescriptionKey: errorMsg])
+extension APICourse: Fixture {
+    public static var template: Template {
+        return [
+            "id": "1",
+            "name": "Course One",
+        ]
     }
 }

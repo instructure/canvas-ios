@@ -15,18 +15,16 @@
 //
 
 import Foundation
+import Core
 
-extension NSError {
-    public struct Constants {
-        static let domain = "com.instructure"
-        static let internalError = "Internal Error"
-    }
-
-    public static func internalError(code: Int = 0) -> NSError {
-        return instructureError(Constants.internalError)
-    }
-
-    public static func instructureError(_ errorMsg: String, code: Int = 0) -> NSError {
-        return NSError(domain: Constants.domain, code: code, userInfo: [NSLocalizedDescriptionKey: errorMsg])
+extension Tab: Fixture {
+    public static var template: Template {
+        return[
+            "id": "home",
+            "htmlUrl": "/groups/16",
+            "fullUrl": "https://twilson.instructure.com/groups/16",
+            "position": 1,
+            "label": "Home",
+        ]
     }
 }

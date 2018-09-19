@@ -17,6 +17,7 @@
 import Foundation
 import XCTest
 @testable import Core
+import TestsFoundation
 
 class GetCoursesTest: CoreTestCase {
     let request = GetCoursesRequest(includeUnpublished: true)
