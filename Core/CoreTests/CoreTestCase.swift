@@ -38,6 +38,10 @@ class CoreTestCase: XCTestCase {
         return db.make(template)
     }
 
+    @discardableResult func tab(_ template: Template = [:]) -> Tab {
+        return db.make(template)
+    }
+
     func addOperationAndWait(_ operation: Operation) {
         let expectation = XCTestExpectation(description: "expectation")
         operation.completionBlock = {

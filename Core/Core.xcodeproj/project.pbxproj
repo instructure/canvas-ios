@@ -96,9 +96,12 @@
 		7D8262F9212B3B2000BD268D /* APISection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8262F8212B3B2000BD268D /* APISection.swift */; };
 		7D8262FB212B3B3000BD268D /* APIEnrollment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8262FA212B3B3000BD268D /* APIEnrollment.swift */; };
 		7DC23092213D710000318ED0 /* UIImageView+load+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC23091213D710000318ED0 /* UIImageView+load+Tests.swift */; };
+		9F6C2BA321504089001A0CEB /* Tab+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6C2BA221504089001A0CEB /* Tab+Fixture.swift */; };
 		9F7DF8172136EEE400966382 /* OperationSetTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7DF8162136EEE400966382 /* OperationSetTest.swift */; };
 		9FE84DDA214FE06300B95A68 /* GetGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE84DD9214FE06300B95A68 /* GetGroup.swift */; };
 		9FE84DDC214FE5C500B95A68 /* GetGroupTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE84DDB214FE5C500B95A68 /* GetGroupTest.swift */; };
+		9FE84DDE2150281300B95A68 /* GetContextTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE84DDD2150281300B95A68 /* GetContextTabs.swift */; };
+		9FE84DE2215037A000B95A68 /* GetContextTabsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE84DE1215037A000B95A68 /* GetContextTabsTest.swift */; };
 		B1381F15212E5E4A001F908C /* APIOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1381F14212E5E4A001F908C /* APIOperation.swift */; };
 		B1445307212E5B6E0009D848 /* FetchedResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1445301212E5B6E0009D848 /* FetchedResultsController.swift */; };
 		B1445308212E5B6E0009D848 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1445302212E5B6E0009D848 /* Persistence.swift */; };
@@ -271,9 +274,12 @@
 		7D8262F8212B3B2000BD268D /* APISection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISection.swift; sourceTree = "<group>"; };
 		7D8262FA212B3B3000BD268D /* APIEnrollment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnrollment.swift; sourceTree = "<group>"; };
 		7DC23091213D710000318ED0 /* UIImageView+load+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+load+Tests.swift"; sourceTree = "<group>"; };
+		9F6C2BA221504089001A0CEB /* Tab+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tab+Fixture.swift"; sourceTree = "<group>"; };
 		9F7DF8162136EEE400966382 /* OperationSetTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationSetTest.swift; sourceTree = "<group>"; };
 		9FE84DD9214FE06300B95A68 /* GetGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGroup.swift; sourceTree = "<group>"; };
 		9FE84DDB214FE5C500B95A68 /* GetGroupTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGroupTest.swift; sourceTree = "<group>"; };
+		9FE84DDD2150281300B95A68 /* GetContextTabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetContextTabs.swift; sourceTree = "<group>"; };
+		9FE84DE1215037A000B95A68 /* GetContextTabsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetContextTabsTest.swift; sourceTree = "<group>"; };
 		B1381F14212E5E4A001F908C /* APIOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIOperation.swift; sourceTree = "<group>"; };
 		B14452FC212E5B6E0009D848 /* CoreDataFetchedResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataFetchedResultsController.swift; sourceTree = "<group>"; };
 		B14452FD212E5B6E0009D848 /* NSManagedObjectContext+Core.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Core.swift"; sourceTree = "<group>"; };
@@ -663,6 +669,7 @@
 				7851D9B22138264800E76EC3 /* GetCustomColors.swift */,
 				9FE84DD9214FE06300B95A68 /* GetGroup.swift */,
 				B18126912150542A00E71F63 /* GetContext.swift */,
+				9FE84DDD2150281300B95A68 /* GetContextTabs.swift */,
 			);
 			path = "Use Cases";
 			sourceTree = "<group>";
@@ -683,6 +690,7 @@
 				B195DC5D2132561700797FE4 /* Group+Fixture.swift */,
 				3B412EFA213FA44B0090DE02 /* Realm+Fixture.swift */,
 				3B412F0C2146D4A10090DE02 /* TTL+Fixture.swift */,
+				9F6C2BA221504089001A0CEB /* Tab+Fixture.swift */,
 			);
 			path = Fixtures;
 			sourceTree = "<group>";
@@ -728,6 +736,7 @@
 				B195DC612133326900797FE4 /* GetCourseTest.swift */,
 				9FE84DDB214FE5C500B95A68 /* GetGroupTest.swift */,
 				B18126932150564900E71F63 /* GetContextTests.swift */,
+				9FE84DE1215037A000B95A68 /* GetContextTabsTest.swift */,
 			);
 			path = "Use Cases";
 			sourceTree = "<group>";
@@ -964,6 +973,7 @@
 				7D80AC12212B4F8E00C40ECE /* API.swift in Sources */,
 				B1EA5AF8212E6A6D00DABC5F /* OperationSet.swift in Sources */,
 				B17F23B12137981B00771F86 /* Clock.swift in Sources */,
+				9FE84DDE2150281300B95A68 /* GetContextTabs.swift in Sources */,
 				3B3467E021370F6600F9BC2E /* GetMobileVerify.swift in Sources */,
 				3B032C9F214C52CE00B570F7 /* Tab.swift in Sources */,
 				B195DC45213201DE00797FE4 /* GetUserGroups.swift in Sources */,
@@ -1054,6 +1064,7 @@
 				B1812690214C562800E71F63 /* APITab+Fixture.swift in Sources */,
 				3B412F0D2146D4A10090DE02 /* TTL+Fixture.swift in Sources */,
 				B195DC5E2132561700797FE4 /* Group+Fixture.swift in Sources */,
+				9FE84DE2215037A000B95A68 /* GetContextTabsTest.swift in Sources */,
 				B1EA5AF3212E668900DABC5F /* APICourse+Fixture.swift in Sources */,
 				9FE84DDC214FE5C500B95A68 /* GetGroupTest.swift in Sources */,
 				DFE1FF20212F5E41003F27AA /* Keychain.swift in Sources */,
@@ -1069,6 +1080,7 @@
 				7D7110C12138910D0085C2E5 /* RouteHandler+Tests.swift in Sources */,
 				B195DC5521324DA600797FE4 /* GetUserGroupsTest.swift in Sources */,
 				7D80AC1F212B738500C40ECE /* API+Tests.swift in Sources */,
+				9F6C2BA321504089001A0CEB /* Tab+Fixture.swift in Sources */,
 				7D80AC56212CF41900C40ECE /* APIRequestable+Tests.swift in Sources */,
 				7D062AFB2124A14700677F66 /* Context+Tests.swift in Sources */,
 				B17F23AD21378E3800771F86 /* PaginatedUseCaseTest.swift in Sources */,

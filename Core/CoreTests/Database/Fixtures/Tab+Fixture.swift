@@ -15,17 +15,17 @@
 //
 
 import Foundation
-import RealmSwift
+@testable import Core
 
-public class Tab: Object {
-    @objc public dynamic var id: String = ""
-    @objc public dynamic var htmlUrl: String?
-    @objc public dynamic var fullUrl: String?
-    @objc public dynamic var label: String = ""
-    @objc public dynamic var position: Int = 0
-    @objc public dynamic var contextID: String = ""
-
-    override public class func primaryKey() -> String? {
-        return #keyPath(Tab.id)
+extension Tab: Fixture {
+    static var template: Template {
+        return [
+            "id": "1",
+            "label": "Home",
+            "htmlUrl": "https://canvas.instructure.com/groups/1",
+            "fullUrl": "https://canvas.instructure.com/groups/1",
+            "position": 1,
+            "contextID": "group_1",
+        ]
     }
 }

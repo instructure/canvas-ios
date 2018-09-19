@@ -24,4 +24,8 @@ extension NSPredicate {
     public static func id(_ id: String) -> NSPredicate {
         return NSPredicate(format: "%K == %@", "id", id)
     }
+
+    public static func context(_ context: Context) -> NSPredicate {
+        return NSPredicate(format: "%K == %@", "contextID", context.canvasContextID)
+    }
 }
