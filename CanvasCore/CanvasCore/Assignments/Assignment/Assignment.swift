@@ -222,7 +222,7 @@ public struct SubmissionTypes: OptionSet {
         case "online_url":          return .url
         case "online_upload":       return .upload
         case "media_recording":     return .mediaRecording
-        case "none":                return .none
+        case "none", "not_graded":  return .none
         default:                    return []
         }
     }
