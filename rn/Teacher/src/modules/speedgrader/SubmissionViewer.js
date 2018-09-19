@@ -32,7 +32,6 @@ import Video from '../../common/components/Video'
 import AuthenticatedWebView from '../../common/components/AuthenticatedWebView'
 import URLSubmissionViewer from './submission-viewers/URLSubmissionViewer'
 import CanvadocViewer from './components/CanvadocViewer'
-import ImageSubmissionViewer from './submission-viewers/ImageSubmissionViewer'
 import debounce from 'lodash/debounce'
 
 type State = {
@@ -167,10 +166,8 @@ export default class SubmissionViewer extends Component<SubmissionViewerProps, S
   renderFile (submission: Submission) {
     if (submission.attachments) {
       let attachment = submission.attachments[this.props.selectedAttachmentIndex]
-      if (attachment.mime_class === 'image') {
-        return <ImageSubmissionViewer attachment={attachment} {...this.props.size} />
-      } else {
-        return <View style={{ flex: 1 }}>
+      return (
+        <View style={{ flex: 1 }}>
           { this.renderSavingHeader() }
           <CanvadocViewer
             config={{
@@ -184,7 +181,7 @@ export default class SubmissionViewer extends Component<SubmissionViewerProps, S
             style={styles.pdfContainer}
           />
         </View>
-      }
+      )
     }
 
     return null

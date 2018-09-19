@@ -144,13 +144,13 @@ public class CanvadocView: UIView {
     private func embed(pdfViewController: PSPDFViewController) {
         guard let parentVC = parentViewController else { return }
         guard self.pdfViewController == nil else { return }
-        
+
+        self.pdfViewController = pdfViewController
         parentVC.addChildViewController(pdfViewController)
         addSubview(pdfViewController.view)
         pdfViewController.view.frame = self.getPDFViewControllerFrame()
         pdfViewController.didMove(toParentViewController: parentVC)
-        self.pdfViewController = pdfViewController
-        
+
         if let presenter = pdfViewController.delegate as? CanvadocsPDFDocumentPresenter, let metadata = presenter.metadata, metadata.annotationMetadata.enabled {
             addSubview(toolbar)
             
@@ -234,7 +234,8 @@ public class CanvadocView: UIView {
         if let vc = pdfViewController, let presenter = vc.delegate as? CanvadocsPDFDocumentPresenter {
             annotationsEnabled = presenter.metadata!.annotationMetadata.enabled
         }
-        return CGRect(x: 0, y: annotationsEnabled ? 33.0 : 0, width: bounds.width, height: annotationsEnabled ? bounds.height-33.0 : bounds.height)
+        let offset: CGFloat = 42
+        return CGRect(x: 0, y: annotationsEnabled ? offset : 0, width: bounds.width, height: annotationsEnabled ? bounds.height-offset : bounds.height)
     }
     
     fileprivate func setScrollEnabled(_ enabled: Bool) {
