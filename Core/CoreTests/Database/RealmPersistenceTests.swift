@@ -143,7 +143,7 @@ class RealmPersistenceTests: XCTestCase {
             expectation.fulfill()
         }
 
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 0.3)
         p.refresh()
         let models: [Course] = p.fetch(predicate: nil, sortDescriptors: nil)
         XCTAssertEqual(models.count, 1)

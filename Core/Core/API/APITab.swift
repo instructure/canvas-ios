@@ -17,7 +17,7 @@
 import Foundation
 
 // https://canvas.instructure.com/doc/api/tabs.html#Tab
-struct APITab: Codable, Equatable {
+public struct APITab: Codable, Equatable {
     let id: ID
     let html_url: String
     let label: String

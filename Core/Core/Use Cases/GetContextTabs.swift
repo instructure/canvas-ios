@@ -16,7 +16,7 @@
 
 import Foundation
 
-public class GetPaginatedContextTabs: PaginatedUseCase<GetTabsRequest, Tab> {
+class GetPaginatedContextTabs: PaginatedUseCase<GetTabsRequest, Tab> {
     let context: Context
 
     init(context: Context, api: API = URLSessionAPI(), database: Persistence, force: Bool = false) {

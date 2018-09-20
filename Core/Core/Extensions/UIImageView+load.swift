@@ -75,7 +75,7 @@ extension UIImageView: ImageLoadingView {
             image = cached.image
             if let images = cached.image.images {
                 image = images.last
-                if !UIAccessibilityIsReduceMotionEnabled() {
+                if !UIAccessibility.isReduceMotionEnabled {
                     animationDuration = cached.image.duration
                     animationImages = images
                     animationRepeatCount = cached.repeatCount
@@ -90,7 +90,7 @@ extension UIImageView: ImageLoadingView {
 public class ImageLoader {
     let url: URL
     let frame: CGRect
-    let contentMode: UIViewContentMode
+    let contentMode: UIView.ContentMode
     let key: String
 
     weak var view: ImageLoadingView?
@@ -99,7 +99,7 @@ public class ImageLoader {
     var observation: NSKeyValueObservation?
     var webView: WKWebView?
 
-    init(url: URL, frame: CGRect, contentMode: UIViewContentMode, view: ImageLoadingView) {
+    init(url: URL, frame: CGRect, contentMode: UIView.ContentMode, view: ImageLoadingView) {
         self.url = url
         self.frame = frame
         self.contentMode = contentMode
@@ -280,7 +280,7 @@ public func greatestCommonFactor(_ a: Int, _ b: Int) -> Int {
 ///
 /// - Parameter contentMode: A `UIViewContentMode` to convert.
 /// - Returns: A `String` meant to be embedded in a css `background` value.
-public func cssFromContentMode(_ contentMode: UIViewContentMode) -> String {
+public func cssFromContentMode(_ contentMode: UIView.ContentMode) -> String {
     switch contentMode {
     case .bottom: return "bottom"
     case .bottomLeft: return "bottom left"

@@ -17,12 +17,12 @@
 import Foundation
 
 // https://canvas.instructure.com/doc/api/tabs.html#method.tabs.index
-struct GetTabsRequest: APIRequestable {
-    typealias Response = [APITab]
+public struct GetTabsRequest: APIRequestable {
+    public typealias Response = [APITab]
 
     let context: Context
 
-    var path: String {
+    public var path: String {
         return "\(context.pathComponent)/tabs?per_page=100"
     }
 }
