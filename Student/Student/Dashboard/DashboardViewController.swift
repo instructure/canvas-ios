@@ -182,8 +182,8 @@ extension DashboardViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if kind == UICollectionElementKindSectionHeader {
-            guard let v = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader,
+        if kind == UICollectionView.elementKindSectionHeader {
+            guard let v = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
                                                                           withReuseIdentifier: "header",
                                                                           for: indexPath) as? DashboardSectionHeaderView else {
                 fatalError("dequeueReusableSupplementaryView for header must return DashboardSectionHeaderView in \(#function)")
