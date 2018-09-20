@@ -39,7 +39,7 @@ class GetContextTabsTest: CoreTestCase {
     }
 
     func testItDeletesTabsThatNoLongerExist() {
-        let tab = self.tab(["contextID": "group_1"])
+        let tab = self.tab()
         api.mock(request, value: [], response: nil, error: nil)
 
         let getContextTabs = GetContextTabs(context: context, api: api, database: db)
