@@ -155,7 +155,7 @@
 		492705F81CF4B76A00C631C6 /* CBIColorfulViewModel+CellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 492705EF1CF4B76A00C631C6 /* CBIColorfulViewModel+CellViewModel.m */; };
 		492706091CF4B79B00C631C6 /* CNVTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 492705FA1CF4B79B00C631C6 /* CNVTableViewCell.h */; };
 		4927060A1CF4B79B00C631C6 /* CNVTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 492705FB1CF4B79B00C631C6 /* CNVTableViewCell.m */; };
-		4927060E1CF4B79B00C631C6 /* InsetTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 492705FF1CF4B79B00C631C6 /* InsetTableViewCell.h */; };
+		4927060E1CF4B79B00C631C6 /* InsetTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 492705FF1CF4B79B00C631C6 /* InsetTableViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4927060F1CF4B79B00C631C6 /* InsetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706001CF4B79B00C631C6 /* InsetTableViewCell.m */; };
 		492706141CF4B79B00C631C6 /* ProgressTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706051CF4B79B00C631C6 /* ProgressTableViewCell.h */; };
 		492706151CF4B79B00C631C6 /* ProgressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706061CF4B79B00C631C6 /* ProgressTableViewCell.m */; };
@@ -600,6 +600,7 @@
 		61F438E61DD667D900552D14 /* MLVCCollectionController+CBIRefresh.h in Headers */ = {isa = PBXBuildFile; fileRef = 61F438E41DD667D900552D14 /* MLVCCollectionController+CBIRefresh.h */; };
 		61F438E71DD667D900552D14 /* MLVCCollectionController+CBIRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F438E51DD667D900552D14 /* MLVCCollectionController+CBIRefresh.m */; };
 		629213C6A49D3799BCBAE7F2 /* Pods_defaults_common_ui_tests_StudentUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1617CAD552082AC99A178C4E /* Pods_defaults_common_ui_tests_StudentUITests.framework */; };
+		787BAAE0215445BB002D0381 /* UserInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787BAADF215445BB002D0381 /* UserInfoTableViewCell.swift */; };
 		7D067CF321505BA000B78AF2 /* StudentReborn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D067CF221505BA000B78AF2 /* StudentReborn.framework */; };
 		7D067CF421505BA000B78AF2 /* StudentReborn.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D067CF221505BA000B78AF2 /* StudentReborn.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7D1D7E05213743D300F7CCFE /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1D7E04213743D300F7CCFE /* Core.framework */; };
@@ -1359,6 +1360,7 @@
 		68EB67BC259EAA38000B1E9F /* Pods-defaults-common_ui_tests-StudentUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_ui_tests-StudentUITests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-common_ui_tests-StudentUITests/Pods-defaults-common_ui_tests-StudentUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6A41FB3501A555E20167FCFB /* Pods-defaults-PreSubmissionAnnotations.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-PreSubmissionAnnotations.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-PreSubmissionAnnotations/Pods-defaults-PreSubmissionAnnotations.release.xcconfig"; sourceTree = "<group>"; };
 		6F2A3A50F7E6F5904365BABE /* Pods_defaults_GradesWidget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_GradesWidget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		787BAADF215445BB002D0381 /* UserInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoTableViewCell.swift; sourceTree = "<group>"; };
 		7D067CF221505BA000B78AF2 /* StudentReborn.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = StudentReborn.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D0C4EC21FE1CD3100AD3538 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7D0C4EC31FE1CD3100AD3538 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/MainInterface.strings"; sourceTree = "<group>"; };
@@ -2792,6 +2794,7 @@
 				49AA2D211CF4DC540055862D /* ProfileViewController.m */,
 				49AA2D221CF4DC540055862D /* RoundedButton.h */,
 				49AA2D231CF4DC540055862D /* RoundedButton.m */,
+				787BAADF215445BB002D0381 /* UserInfoTableViewCell.swift */,
 			);
 			path = People;
 			sourceTree = "<group>";
@@ -3406,7 +3409,7 @@
 					};
 					492704AA1CF4B6D700C631C6 = {
 						CreatedOnToolsVersion = 7.3;
-						LastSwiftMigration = 0910;
+						LastSwiftMigration = 1000;
 					};
 					49AA29161CF4D1880055862D = {
 						CreatedOnToolsVersion = 7.3;
@@ -4166,6 +4169,7 @@
 				49CE97761F900B4700121A43 /* MLVCViewController.m in Sources */,
 				492705D31CF4B73300C631C6 /* UIView+FloatingView.m in Sources */,
 				494E13A01D355C690068279D /* MobileQuizInformationViewController.m in Sources */,
+				787BAAE0215445BB002D0381 /* UserInfoTableViewCell.swift in Sources */,
 				49CE97691F900B4700121A43 /* MLVCCollectionController.m in Sources */,
 				492706C61CF4BA7400C631C6 /* CBILocalNotificationHandler.m in Sources */,
 				492705161CF4B70600C631C6 /* CBIAssignmentViewModel.m in Sources */,
@@ -4890,6 +4894,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A65BB020C68267C1318E51E7 /* Pods-defaults-Canvas.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Canvas/Canvas.entitlements;
@@ -4917,6 +4922,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 09C21F6FBFA63D9B02B28CA3 /* Pods-defaults-Canvas.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Canvas/Canvas.entitlements;
