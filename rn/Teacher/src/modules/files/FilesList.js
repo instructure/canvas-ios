@@ -210,7 +210,8 @@ export class FilesList extends Component<Props, State> {
       let route
       const name = encodeURIComponent(item.name)
       if (this.props.subFolder) {
-        route = `/${context}/${contextID}/files/folder/${this.props.subFolder}/${name}`
+        const subFolder = encodeURIComponent(this.props.subFolder).replace(/%2f/ig, '/')
+        route = `/${context}/${contextID}/files/folder/${subFolder}/${name}`
       } else {
         route = `/${context}/${contextID}/files/folder/${name}`
       }

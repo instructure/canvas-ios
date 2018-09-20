@@ -169,11 +169,11 @@ describe('FilesList', () => {
     const courseID = '1'
     const navigator = template.navigator({ show: jest.fn() })
     let instance = renderer.create(
-      <FilesList data={data} navigator={navigator} contextID={courseID} context={'courses'} subFolder={'something/somewhere/over/the/rainbow'}/>
+      <FilesList data={data} navigator={navigator} contextID={courseID} context={'courses'} subFolder={'something/somewhere?/over#/the/rainbow'}/>
     ).getInstance()
 
     instance.onSelectRow(0)
-    expect(navigator.show).toHaveBeenCalledWith('/courses/1/files/folder/something/somewhere/over/the/rainbow/some%20folder', { modal: false }, {
+    expect(navigator.show).toHaveBeenCalledWith('/courses/1/files/folder/something/somewhere%3F/over%23/the/rainbow/some%20folder', { modal: false }, {
       canAdd: true,
       canEdit: true,
       canSelectFile: expect.any(Function),
