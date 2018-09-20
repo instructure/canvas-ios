@@ -612,7 +612,6 @@
 		9C50D612DA6414266300170B /* Pods_defaults_CanvasKit1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2AB6A9FA96CE49682022ACB /* Pods_defaults_CanvasKit1.framework */; };
 		9F61B52C205985A5009C0B13 /* CanvasAppDelegate+Helm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F61B52B205985A5009C0B13 /* CanvasAppDelegate+Helm.swift */; };
 		9FDA15F6213EB71100CC12C7 /* Secrets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FDA15F5213EB71100CC12C7 /* Secrets.framework */; };
-		9FDA15FB213EBD6700CC12C7 /* Secrets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FDA15F5213EB71100CC12C7 /* Secrets.framework */; };
 		9FDA15FC213EBD6700CC12C7 /* Secrets.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FDA15F5213EB71100CC12C7 /* Secrets.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		ACC968801D245768006AEAB1 /* Page+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC9687F1D245768006AEAB1 /* Page+ViewModel.swift */; };
 		B15738001D94C38C00ADBB85 /* ModuleItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15737FF1D94C38C00ADBB85 /* ModuleItemDetailViewController.swift */; };
@@ -1708,7 +1707,6 @@
 				2C67B0C81E01F05F00DDD191 /* CoreTelephony.framework in Frameworks */,
 				2C67B0C61E01F05A00DDD191 /* AssetsLibrary.framework in Frameworks */,
 				49A04E7D1CF653050051E1E7 /* libc++.tbd in Frameworks */,
-				9FDA15FB213EBD6700CC12C7 /* Secrets.framework in Frameworks */,
 				49642BC61CF4C4DC00238B3F /* CanvasKit.framework in Frameworks */,
 				492704B21CF4B6D700C631C6 /* TechDebt.framework in Frameworks */,
 				49642BC41CF4C4DC00238B3F /* CanvasKeymaster.framework in Frameworks */,
@@ -3367,7 +3365,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = Instructure;
 				TargetAttributes = {
 					3B6DCCA41FB502CD005EE8D2 = {
@@ -4794,12 +4792,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -4849,12 +4849,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

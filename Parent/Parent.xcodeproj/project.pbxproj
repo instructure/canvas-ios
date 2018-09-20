@@ -162,7 +162,6 @@
 		9E693792FBC275567A506A7C /* SettingsPageTests_testSettingsPage_displaysOberserveeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD7F519610C042BE02C5793 /* SettingsPageTests_testSettingsPage_displaysOberserveeCell.swift */; };
 		9FA40A151FBB7515004B8564 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9FA40A171FBB7515004B8564 /* Localizable.strings */; };
 		9FC084201FBB752300BE5CA3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9FC084221FBB752300BE5CA3 /* InfoPlist.strings */; };
-		9FDA15F8213EB72E00CC12C7 /* Secrets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FDA15F7213EB72D00CC12C7 /* Secrets.framework */; };
 		9FDA15FD213EBE5800CC12C7 /* Secrets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FDA15F7213EB72D00CC12C7 /* Secrets.framework */; };
 		9FDA15FE213EBE5800CC12C7 /* Secrets.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FDA15F7213EB72D00CC12C7 /* Secrets.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A767CC255CD55BB8451B2F45 /* SettingsPageTests_testSettingsPage_displaysHelpMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DA29CF372AAB2318A6C107 /* SettingsPageTests_testSettingsPage_displaysHelpMenu.swift */; };
@@ -1013,7 +1012,6 @@
 				2C75AB951DDF62CA00650856 /* AssetsLibrary.framework in Frameworks */,
 				5E75B6001C4D4A8E00A44160 /* CoreData.framework in Frameworks */,
 				5180FB980843FA6B1321EF5E /* Pods_defaults_Parent.framework in Frameworks */,
-				9FDA15F8213EB72E00CC12C7 /* Secrets.framework in Frameworks */,
 				49A36ECF1FA90BEF005F5905 /* CanvasKeymaster.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1652,7 +1650,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = "Instructure Inc";
 				TargetAttributes = {
 					5E6441861C3EE2E0003D7397 = {
@@ -2869,12 +2867,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -2923,12 +2923,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
