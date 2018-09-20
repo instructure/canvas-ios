@@ -1259,6 +1259,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/../ios-frameworks",
 				);
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = Core/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1272,6 +1273,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1292,6 +1294,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/../ios-frameworks",
 				);
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = Core/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1304,6 +1307,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas.Core;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1316,6 +1320,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../ios-frameworks";
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = CoreTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1324,6 +1329,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas.CoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CoreTester.app/CoreTester";
@@ -1337,6 +1343,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../ios-frameworks";
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = CoreTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1345,6 +1352,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas.CoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CoreTester.app/CoreTester";
@@ -1362,6 +1370,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/../ios-frameworks",
 				);
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = CoreTester/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1369,6 +1378,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.CoreTester;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1385,6 +1395,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/../ios-frameworks",
 				);
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = CoreTester/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1392,6 +1403,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.CoreTester;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
