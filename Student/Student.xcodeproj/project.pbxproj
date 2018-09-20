@@ -50,6 +50,7 @@
 		7D067CEF21505B3E00B78AF2 /* AllCoursesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7881530F212BD307005BA428 /* AllCoursesPresenter.swift */; };
 		7D067CF021505B4600B78AF2 /* GroupNavigationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B032CA4214C552B00B570F7 /* GroupNavigationPresenter.swift */; };
 		7D067CF121505B4600B78AF2 /* GroupNavigationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B032CA9214C55E400B570F7 /* GroupNavigationTableViewController.swift */; };
+		7D08F5342153F6D40042E1F4 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D08F5332153F6D40042E1F4 /* Core.framework */; };
 		7D7110C321389AD90085C2E5 /* Routes+Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7110C221389AD90085C2E5 /* Routes+Student.swift */; };
 		7DF9BF062151961B0099026B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DF9BF052151961B0099026B /* Colors.xcassets */; };
 		9F7F18582148222C007336A0 /* DashboardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7F18572148222C007336A0 /* DashboardUITests.swift */; };
@@ -163,6 +164,7 @@
 		7D067CDE21505AF200B78AF2 /* StudentReborn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StudentReborn.h; sourceTree = "<group>"; };
 		7D067CDF21505AF200B78AF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7D067CF521505E2C00B78AF2 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D08F5332153F6D40042E1F4 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D349C2E21430887004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		7D349C30214308A1004C1074 /* en-GB-instukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-instukhe"; path = "en-GB-instukhe.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		7D349C32214308B0004C1074 /* nb-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-instk12"; path = "nb-instk12.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D08F5342153F6D40042E1F4 /* Core.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +273,7 @@
 		2C964862211E37EC002C3255 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7D08F5332153F6D40042E1F4 /* Core.framework */,
 				7D067CF521505E2C00B78AF2 /* Core.framework */,
 				3B0CEB8F2150464100D07CFA /* TestsFoundation.framework */,
 				9FCA66092142C8D100BE0EBB /* BoringSSL.framework */,
