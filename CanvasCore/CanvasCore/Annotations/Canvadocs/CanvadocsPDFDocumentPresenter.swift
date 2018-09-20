@@ -21,9 +21,8 @@ import PSPDFKit
 import PSPDFKitUI
 
 let DisabledMenuItems: [String] = [
-    PSPDFAnnotationMenuOpacity,
-    PSPDFAnnotationStateVariantIdentifier(AnnotationString.ink, AnnotationString.inkVariantPen).rawValue,
-    PSPDFAnnotationStateVariantIdentifier(AnnotationString.ink, AnnotationString.inkVariantHighlighter).rawValue,
+    PSPDFTextMenu.annotationMenuOpacity.rawValue,
+    PSPDFTextMenu.annotationMenuThickness.rawValue,
 ]
 
 // This class will be the manager for the PSPDFViewController. Any app that wants to display this document will have to:
@@ -138,28 +137,28 @@ open class CanvadocsPDFDocumentPresenter: NSObject {
         let highlightPresets = highlightCanvadocsColors.map { return PSPDFColorPreset(color: $0) }
         let inkPresets = standardCanvadocsColors.map { return PSPDFColorPreset(color: $0) }
         let textPresets = standardCanvadocsColors.map { return PSPDFColorPreset(color: $0, fill: .white, alpha: 1) }
-        styleManager.setPresets(highlightPresets, forKey: .highlight, type: .colorPreset)
-        styleManager.setPresets(inkPresets, forKey: PSPDFAnnotationStateVariantIdentifier(.ink, .inkVariantPen), type: .colorPreset)
-        styleManager.setPresets(inkPresets, forKey: .square, type: .colorPreset)
-        styleManager.setPresets(inkPresets, forKey: .circle, type: .colorPreset)
-        styleManager.setPresets(inkPresets, forKey: .line, type: .colorPreset)
-        styleManager.setPresets(inkPresets, forKey: .strikeOut, type: .colorPreset)
-        styleManager.setPresets(inkPresets, forKey: .stamp, type: .colorPreset)
-        styleManager.setPresets(textPresets, forKey: .freeText, type: .colorPreset)
+        styleManager.setPresets(highlightPresets, forKey: AnnotationStateVariantID(rawValue: AnnotationString.highlight.rawValue), type: AnnotationStyleType.colorPreset)
+        styleManager.setPresets(inkPresets, forKey: AnnotationStateVariantID(rawValue: AnnotationString.ink.rawValue), type: .colorPreset)
+        styleManager.setPresets(inkPresets, forKey: AnnotationStateVariantID(rawValue: AnnotationString.square.rawValue), type: .colorPreset)
+        styleManager.setPresets(inkPresets, forKey: AnnotationStateVariantID(rawValue: AnnotationString.circle.rawValue), type: .colorPreset)
+        styleManager.setPresets(inkPresets, forKey: AnnotationStateVariantID(rawValue: AnnotationString.line.rawValue), type: .colorPreset)
+        styleManager.setPresets(inkPresets, forKey: AnnotationStateVariantID(rawValue: AnnotationString.strikeOut.rawValue), type: .colorPreset)
+        styleManager.setPresets(inkPresets, forKey: AnnotationStateVariantID(rawValue: AnnotationString.stamp.rawValue), type: .colorPreset)
+        styleManager.setPresets(textPresets, forKey: AnnotationStateVariantID(rawValue: AnnotationString.freeText.rawValue), type: .colorPreset)
 
-        styleManager.setLastUsedValue(CanvadocsHighlightColor.yellow.color, forProperty: "color", forKey: .highlight)
-        styleManager.setLastUsedValue(CanvadocsAnnotationColor.red.color, forProperty: "color", forKey: PSPDFAnnotationStateVariantIdentifier(.ink, .inkVariantPen))
-        styleManager.setLastUsedValue(CanvadocsAnnotationColor.red.color, forProperty: "color", forKey: .square)
-        styleManager.setLastUsedValue(CanvadocsAnnotationColor.red.color, forProperty: "color", forKey: .circle)
-        styleManager.setLastUsedValue(CanvadocsAnnotationColor.red.color, forProperty: "color", forKey: .line)
-        styleManager.setLastUsedValue(CanvadocsAnnotationColor.red.color, forProperty: "color", forKey: .strikeOut)
-        styleManager.setLastUsedValue(CanvadocsAnnotationColor.blue.color, forProperty: "color", forKey: .stamp)
-        styleManager.setLastUsedValue(UIColor.black, forProperty: "color", forKey: .freeText)
-        styleManager.setLastUsedValue(UIColor.white, forProperty: "fillColor", forKey: .freeText)
-        styleManager.setLastUsedValue(2.0, forProperty: "lineWidth", forKey: PSPDFAnnotationStateVariantIdentifier(.ink, .inkVariantPen))
-        styleManager.setLastUsedValue(2.0, forProperty: "lineWidth", forKey: .square)
-        styleManager.setLastUsedValue(2.0, forProperty: "lineWidth", forKey: .circle)
-        styleManager.setLastUsedValue(2.0, forProperty: "lineWidth", forKey: .line)
+        styleManager.setLastUsedValue(CanvadocsHighlightColor.yellow.color, forProperty: "color", forKey: AnnotationStateVariantID(rawValue: AnnotationString.highlight.rawValue))
+        styleManager.setLastUsedValue(CanvadocsAnnotationColor.red.color, forProperty: "color", forKey: AnnotationStateVariantID(rawValue: AnnotationString.ink.rawValue))
+        styleManager.setLastUsedValue(CanvadocsAnnotationColor.red.color, forProperty: "color", forKey: AnnotationStateVariantID(rawValue: AnnotationString.square.rawValue))
+        styleManager.setLastUsedValue(CanvadocsAnnotationColor.red.color, forProperty: "color", forKey: AnnotationStateVariantID(rawValue: AnnotationString.circle.rawValue))
+        styleManager.setLastUsedValue(CanvadocsAnnotationColor.red.color, forProperty: "color", forKey: AnnotationStateVariantID(rawValue: AnnotationString.line.rawValue))
+        styleManager.setLastUsedValue(CanvadocsAnnotationColor.red.color, forProperty: "color", forKey: AnnotationStateVariantID(rawValue: AnnotationString.strikeOut.rawValue))
+        styleManager.setLastUsedValue(CanvadocsAnnotationColor.blue.color, forProperty: "color", forKey: AnnotationStateVariantID(rawValue: AnnotationString.stamp.rawValue))
+        styleManager.setLastUsedValue(UIColor.black, forProperty: "color", forKey: AnnotationStateVariantID(rawValue: AnnotationString.freeText.rawValue))
+        styleManager.setLastUsedValue(UIColor.white, forProperty: "fillColor", forKey: AnnotationStateVariantID(rawValue: AnnotationString.freeText.rawValue))
+        styleManager.setLastUsedValue(2.0, forProperty: "lineWidth", forKey: AnnotationStateVariantID(rawValue: AnnotationString.ink.rawValue))
+        styleManager.setLastUsedValue(2.0, forProperty: "lineWidth", forKey: AnnotationStateVariantID(rawValue: AnnotationString.square.rawValue))
+        styleManager.setLastUsedValue(2.0, forProperty: "lineWidth", forKey: AnnotationStateVariantID(rawValue: AnnotationString.circle.rawValue))
+        styleManager.setLastUsedValue(2.0, forProperty: "lineWidth", forKey: AnnotationStateVariantID(rawValue: AnnotationString.line.rawValue))
     }
 
     open func getPDFViewController(showAnnotationBarButton: Bool = true) -> UIViewController {
@@ -202,13 +201,13 @@ extension CanvadocsPDFDocumentPresenter: PSPDFViewControllerDelegate {
 
             let filteredMenuItems = menuItems.filter {
                 guard let identifier = $0.identifier else { return true }
-                if identifier == PSPDFAnnotationMenuInspector {
+                if identifier == PSPDFTextMenu.annotationMenuInspector.rawValue {
                     $0.title = NSLocalizedString("Style", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: "")
                 }
                 return (
-                    identifier != PSPDFAnnotationMenuRemove &&
-                    identifier != PSPDFAnnotationMenuCopy &&
-                    identifier != PSPDFAnnotationMenuNote &&
+                    identifier != PSPDFTextMenu.annotationMenuRemove.rawValue &&
+                    identifier != PSPDFTextMenu.annotationMenuCopy.rawValue &&
+                    identifier != PSPDFTextMenu.annotationMenuNote.rawValue &&
                     !DisabledMenuItems.contains(identifier)
                 )
             }
@@ -217,7 +216,7 @@ extension CanvadocsPDFDocumentPresenter: PSPDFViewControllerDelegate {
             if annotation.isEditable || metadata.permissions == .ReadWriteManage {
                 realMenuItems.append(PSPDFMenuItem(title: NSLocalizedString("Remove", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: ""), image: .icon(.trash), block: {
                     pdfController.document?.remove([annotation], options: nil)
-                }, identifier: PSPDFAnnotationMenuRemove))
+                }, identifier: PSPDFTextMenu.annotationMenuRemove.rawValue))
             }
             return realMenuItems
         }

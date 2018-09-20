@@ -616,6 +616,12 @@
 		9FDA15FC213EBD6700CC12C7 /* Secrets.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FDA15F5213EB71100CC12C7 /* Secrets.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		ACC968801D245768006AEAB1 /* Page+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC9687F1D245768006AEAB1 /* Page+ViewModel.swift */; };
 		B15738001D94C38C00ADBB85 /* ModuleItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15737FF1D94C38C00ADBB85 /* ModuleItemDetailViewController.swift */; };
+		B159CA5F2153F0F700DA6044 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B159CA5D2153F0F700DA6044 /* PSPDFKit.framework */; };
+		B159CA602153F0F700DA6044 /* PSPDFKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B159CA5E2153F0F700DA6044 /* PSPDFKitUI.framework */; };
+		B159CA612153F3CE00DA6044 /* PSPDFKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B159CA5D2153F0F700DA6044 /* PSPDFKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B159CA622153F3CE00DA6044 /* PSPDFKitUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B159CA5E2153F0F700DA6044 /* PSPDFKitUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B159CA67215401BD00DA6044 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B159CA5D2153F0F700DA6044 /* PSPDFKit.framework */; };
+		B159CA682154023600DA6044 /* PSPDFKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B159CA5E2153F0F700DA6044 /* PSPDFKitUI.framework */; };
 		B177E6FD1E2EC8BA00D7477D /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B177E6FF1E2EC8BA00D7477D /* Settings.storyboard */; };
 		B177E7091E2ECAB900D7477D /* CBIGradeDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B177E70B1E2ECAB900D7477D /* CBIGradeDetailView.xib */; };
 		B19CE9D1200691460001EB54 /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19CE9D0200691460001EB54 /* CustomColors.swift */; };
@@ -698,6 +704,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				B159CA612153F3CE00DA6044 /* PSPDFKit.framework in Embed Frameworks */,
+				B159CA622153F3CE00DA6044 /* PSPDFKitUI.framework in Embed Frameworks */,
 				B1E568DE21431E8B0025A1F0 /* Realm.framework in Embed Frameworks */,
 				B1E568DF21431E8B0025A1F0 /* RealmSwift.framework in Embed Frameworks */,
 				7D067CF421505BA000B78AF2 /* StudentReborn.framework in Embed Frameworks */,
@@ -1476,6 +1484,8 @@
 		ACC9687F1D245768006AEAB1 /* Page+ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Page+ViewModel.swift"; sourceTree = "<group>"; };
 		B15737FF1D94C38C00ADBB85 /* ModuleItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleItemDetailViewController.swift; sourceTree = "<group>"; };
 		B15738061D95AA7600ADBB85 /* ModuleItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleItemViewModel.swift; sourceTree = "<group>"; };
+		B159CA5D2153F0F700DA6044 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = "../ios-frameworks/PSPDFKit.framework"; sourceTree = "<group>"; };
+		B159CA5E2153F0F700DA6044 /* PSPDFKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKitUI.framework; path = "../ios-frameworks/PSPDFKitUI.framework"; sourceTree = "<group>"; };
 		B16B5A2E1E24534B00DED47B /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B16B5A2F1E24534C00DED47B /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B16B5A301E24534C00DED47B /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -1690,6 +1700,8 @@
 				7D1D7E05213743D300F7CCFE /* Core.framework in Frameworks */,
 				2C67B0CE1E01F07200DDD191 /* CoreVideo.framework in Frameworks */,
 				61F438E31DD4E60B00552D14 /* AVFoundation.framework in Frameworks */,
+				B159CA5F2153F0F700DA6044 /* PSPDFKit.framework in Frameworks */,
+				B159CA602153F0F700DA6044 /* PSPDFKitUI.framework in Frameworks */,
 				2C67B0CC1E01F06800DDD191 /* CoreMedia.framework in Frameworks */,
 				9FDA15F6213EB71100CC12C7 /* Secrets.framework in Frameworks */,
 				2C67B0CA1E01F06300DDD191 /* CoreText.framework in Frameworks */,
@@ -1709,6 +1721,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B159CA67215401BD00DA6044 /* PSPDFKit.framework in Frameworks */,
+				B159CA682154023600DA6044 /* PSPDFKitUI.framework in Frameworks */,
 				2C6049611F72BB6900252BC5 /* CanvasCore.framework in Frameworks */,
 				49642BC81CF4C4DF00238B3F /* CanvasKeymaster.framework in Frameworks */,
 				49AA2D111CF4DBC90055862D /* DBChooser.framework in Frameworks */,
@@ -2854,6 +2868,8 @@
 		5B0FCCDFB07A88D993D5871D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B159CA5D2153F0F700DA6044 /* PSPDFKit.framework */,
+				B159CA5E2153F0F700DA6044 /* PSPDFKitUI.framework */,
 				B1E568DC21431E8A0025A1F0 /* Realm.framework */,
 				B1E568DD21431E8B0025A1F0 /* RealmSwift.framework */,
 				9FDA15F5213EB71100CC12C7 /* Secrets.framework */,
@@ -3786,10 +3802,6 @@
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/Marshal/Marshal.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
-				"${PODS_ROOT}/PSPDFKit/PSPDFKit.framework",
-				"${PODS_ROOT}/PSPDFKit/PSPDFKit.framework.dSYM",
-				"${PODS_ROOT}/PSPDFKit/PSPDFKitUI.framework",
-				"${PODS_ROOT}/PSPDFKit/PSPDFKitUI.framework.dSYM",
 				"${BUILT_PRODUCTS_DIR}/RCTSFSafariViewController/RCTSFSafariViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/RNAudio/RNAudio.framework",
 				"${BUILT_PRODUCTS_DIR}/RNDeviceInfo/RNDeviceInfo.framework",
@@ -3830,10 +3842,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSPDFKit.framework",
-				"${DWARF_DSYM_FOLDER_PATH}/PSPDFKit.framework.dSYM",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSPDFKitUI.framework",
-				"${DWARF_DSYM_FOLDER_PATH}/PSPDFKitUI.framework.dSYM",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RCTSFSafariViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNAudio.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNDeviceInfo.framework",
@@ -3877,7 +3885,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/CanvasCore.framework/strip-frameworks.sh\"";
+			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/CanvasCore.framework/strip-frameworks.sh\"\n";
 		};
 		C73DE1ED4E94F6D1C1DAA30D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3916,10 +3924,6 @@
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/Marshal/Marshal.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
-				"${PODS_ROOT}/PSPDFKit/PSPDFKit.framework",
-				"${PODS_ROOT}/PSPDFKit/PSPDFKit.framework.dSYM",
-				"${PODS_ROOT}/PSPDFKit/PSPDFKitUI.framework",
-				"${PODS_ROOT}/PSPDFKit/PSPDFKitUI.framework.dSYM",
 				"${BUILT_PRODUCTS_DIR}/RCTSFSafariViewController/RCTSFSafariViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/RNAudio/RNAudio.framework",
 				"${BUILT_PRODUCTS_DIR}/RNDeviceInfo/RNDeviceInfo.framework",
@@ -3960,10 +3964,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSPDFKit.framework",
-				"${DWARF_DSYM_FOLDER_PATH}/PSPDFKit.framework.dSYM",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSPDFKitUI.framework",
-				"${DWARF_DSYM_FOLDER_PATH}/PSPDFKitUI.framework.dSYM",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RCTSFSafariViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNAudio.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNDeviceInfo.framework",
@@ -4934,6 +4934,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/TechDebt/Dropbox",
+					"$(PROJECT_DIR)/../ios-frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = TechDebt/Info.plist;
@@ -4965,6 +4966,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/TechDebt/Dropbox",
+					"$(PROJECT_DIR)/../ios-frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = TechDebt/Info.plist;

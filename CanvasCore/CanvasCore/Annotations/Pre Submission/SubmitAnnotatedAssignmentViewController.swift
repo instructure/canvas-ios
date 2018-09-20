@@ -189,14 +189,17 @@ class SubmitAnnotatedAssignmentViewController: UITableViewController {
                 }
             }
 
+            let outputURL = URL(fileURLWithPath: outputPath)
+            let processor = PSPDFProcessor(configuration: configuration, securityOptions: nil)
             do {
-                let outputURL = URL(fileURLWithPath: outputPath)
-                try PSPDFProcessor.generatePDF(from: configuration, securityOptions: nil, outputFileURL: outputURL, progressBlock: nil)
+                try processor.write(toFileURL: outputURL)
                 DispatchQueue.main.async {
                     completion(outputURL)
                 }
             } catch {
-                print("Error generating new file with flattened annotations: \(error)")
+                DispatchQueue.main.async {
+                    self.handleSubmitError(error.localizedDescription)
+                }
             }
         }
     }

@@ -58,6 +58,10 @@
 		9FCA66352142D08200BE0EBB /* SwiftProtobuf.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCA66252142CFF100BE0EBB /* SwiftProtobuf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9FCA66362142D08900BE0EBB /* CgRPC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCA66272142CFF100BE0EBB /* CgRPC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9FDA1600213EC04200CC12C7 /* Secrets.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FDA15F9213EB76400CC12C7 /* Secrets.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B159CA6E21540E0800DA6044 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B159CA6C21540E0800DA6044 /* PSPDFKit.framework */; };
+		B159CA6F21540E0800DA6044 /* PSPDFKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B159CA6D21540E0800DA6044 /* PSPDFKitUI.framework */; };
+		B159CA7021540E1E00DA6044 /* PSPDFKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B159CA6C21540E0800DA6044 /* PSPDFKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B159CA7121540E1E00DA6044 /* PSPDFKitUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B159CA6D21540E0800DA6044 /* PSPDFKitUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DF02A1E31EFC26BE00B17B8D /* InboxPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF02A1E21EFC26BE00B17B8D /* InboxPageTest.swift */; };
 		DF02A2091EFC31C000B17B8D /* InboxPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF02A2081EFC31C000B17B8D /* InboxPage.swift */; };
 		DF02A22F1EFC43A400B17B8D /* TabBarControllerPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF02A22E1EFC43A400B17B8D /* TabBarControllerPage.swift */; };
@@ -97,6 +101,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				B159CA7021540E1E00DA6044 /* PSPDFKit.framework in Embed Frameworks */,
+				B159CA7121540E1E00DA6044 /* PSPDFKitUI.framework in Embed Frameworks */,
 				4943ECB81E5CEFBD001DC5B5 /* CanvasKit.framework in Embed Frameworks */,
 				497CA7341F82AE8D00501613 /* CanvasCore.framework in Embed Frameworks */,
 				9FDA1600213EC04200CC12C7 /* Secrets.framework in Embed Frameworks */,
@@ -259,6 +265,8 @@
 		9FCA66272142CFF100BE0EBB /* CgRPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CgRPC.framework; path = "../../../ios-frameworks/SwiftGRPC/CgRPC.framework"; sourceTree = "<group>"; };
 		9FCA66282142CFF100BE0EBB /* SwiftGRPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftGRPC.framework; path = "../../../ios-frameworks/SwiftGRPC/SwiftGRPC.framework"; sourceTree = "<group>"; };
 		9FDA15F9213EB76400CC12C7 /* Secrets.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Secrets.framework; path = "../../../ios-frameworks/Secrets.framework"; sourceTree = "<group>"; };
+		B159CA6C21540E0800DA6044 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = "../../../ios-frameworks/PSPDFKit.framework"; sourceTree = "<group>"; };
+		B159CA6D21540E0800DA6044 /* PSPDFKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKitUI.framework; path = "../../../ios-frameworks/PSPDFKitUI.framework"; sourceTree = "<group>"; };
 		B170B0651F58756E00B92700 /* SoLazy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoLazy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D063D27A1B3640208ABF74D4 /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		DF02A1E21EFC26BE00B17B8D /* InboxPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxPageTest.swift; sourceTree = "<group>"; };
@@ -283,11 +291,13 @@
 			files = (
 				497CA7331F82AE8D00501613 /* CanvasCore.framework in Frameworks */,
 				2C50EE091E735CCB0096592C /* SystemConfiguration.framework in Frameworks */,
+				B159CA6F21540E0800DA6044 /* PSPDFKitUI.framework in Frameworks */,
 				2C50EE071E735CC60096592C /* QuartzCore.framework in Frameworks */,
 				2C50EE051E735CC00096592C /* CoreVideo.framework in Frameworks */,
 				2C50EE031E735CBB0096592C /* AVFoundation.framework in Frameworks */,
 				2C50EE011E735CB50096592C /* CoreMedia.framework in Frameworks */,
 				2C50EDFF1E735CB10096592C /* CoreText.framework in Frameworks */,
+				B159CA6E21540E0800DA6044 /* PSPDFKit.framework in Frameworks */,
 				2C50EDFD1E735CAC0096592C /* CoreTelephony.framework in Frameworks */,
 				2C50EDE11E735CA50096592C /* AssetsLibrary.framework in Frameworks */,
 				4943ECB71E5CEFBD001DC5B5 /* CanvasKit.framework in Frameworks */,
@@ -344,6 +354,8 @@
 		2C50EDDF1E735CA50096592C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B159CA6C21540E0800DA6044 /* PSPDFKit.framework */,
+				B159CA6D21540E0800DA6044 /* PSPDFKitUI.framework */,
 				9FCA66262142CFF100BE0EBB /* BoringSSL.framework */,
 				9FCA66272142CFF100BE0EBB /* CgRPC.framework */,
 				9FCA66282142CFF100BE0EBB /* SwiftGRPC.framework */,
@@ -690,10 +702,6 @@
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/Marshal/Marshal.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
-				"${PODS_ROOT}/PSPDFKit/PSPDFKit.framework",
-				"${PODS_ROOT}/PSPDFKit/PSPDFKit.framework.dSYM",
-				"${PODS_ROOT}/PSPDFKit/PSPDFKitUI.framework",
-				"${PODS_ROOT}/PSPDFKit/PSPDFKitUI.framework.dSYM",
 				"${BUILT_PRODUCTS_DIR}/RCTSFSafariViewController/RCTSFSafariViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/RNAudio/RNAudio.framework",
 				"${BUILT_PRODUCTS_DIR}/RNDeviceInfo/RNDeviceInfo.framework",
@@ -734,10 +742,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSPDFKit.framework",
-				"${DWARF_DSYM_FOLDER_PATH}/PSPDFKit.framework.dSYM",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSPDFKitUI.framework",
-				"${DWARF_DSYM_FOLDER_PATH}/PSPDFKitUI.framework.dSYM",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RCTSFSafariViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNAudio.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNDeviceInfo.framework",
@@ -819,10 +823,6 @@
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/Marshal/Marshal.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
-				"${PODS_ROOT}/PSPDFKit/PSPDFKit.framework",
-				"${PODS_ROOT}/PSPDFKit/PSPDFKit.framework.dSYM",
-				"${PODS_ROOT}/PSPDFKit/PSPDFKitUI.framework",
-				"${PODS_ROOT}/PSPDFKit/PSPDFKitUI.framework.dSYM",
 				"${BUILT_PRODUCTS_DIR}/RCTSFSafariViewController/RCTSFSafariViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/RNAudio/RNAudio.framework",
 				"${BUILT_PRODUCTS_DIR}/RNDeviceInfo/RNDeviceInfo.framework",
@@ -861,10 +861,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSPDFKit.framework",
-				"${DWARF_DSYM_FOLDER_PATH}/PSPDFKit.framework.dSYM",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSPDFKitUI.framework",
-				"${DWARF_DSYM_FOLDER_PATH}/PSPDFKitUI.framework.dSYM",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RCTSFSafariViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNAudio.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNDeviceInfo.framework",

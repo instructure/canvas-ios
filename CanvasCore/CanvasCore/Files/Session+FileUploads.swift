@@ -114,8 +114,8 @@ extension Session {
             let url = documentsURL.appendingPathComponent(fileName)
 
             return attemptProducer {
-                    try data.write(to: url!, options: .atomic)
-                }.map { url! }
+                try data.write(to: url!, options: .atomic)
+            }.map { url! }
         }
     }
 

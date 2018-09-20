@@ -86,7 +86,7 @@ func applySharedAppConfiguration(to builder: PSPDFConfigurationBuilder) {
     builder.propertiesForAnnotations = [
         .stamp: [["color"]],
         .highlight: [["color"]],
-        PSPDFAnnotationStateVariantIdentifier(.ink, .inkVariantPen): [["color"]],
+        .ink: [["color"]],
         .square: [["color"]],
         .circle: [["color"]],
         .line: [["color"]],

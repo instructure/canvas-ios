@@ -49,7 +49,7 @@ public class CanvadocsAnnotationToolbar: PSPDFAnnotationToolbar {
         })
         let strikeoutGroup = PSPDFAnnotationGroup(items: [strikeoutGroupItem])
         
-        let inkGroupItem = PSPDFAnnotationGroupItem(type: .ink, variant: .inkVariantPen) { (item, container, tintColor) in
+        let inkGroupItem = PSPDFAnnotationGroupItem(type: .ink, variant: nil) { (item, container, tintColor) in
             return UIImage(named: "draw", in: Bundle(for: CanvadocsAnnotationToolbar.self), compatibleWith: nil)!.withRenderingMode(.alwaysTemplate)
         }
         let inkGroup = PSPDFAnnotationGroup(items: [inkGroupItem])

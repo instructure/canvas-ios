@@ -62,6 +62,10 @@ open class PreSubmissionPDFDocumentPresenter: NSObject {
                     .eraser
                 ]
                 builder.propertiesForAnnotations[.ink] = [["color"], ["lineWidth"]]
+                builder.propertiesForAnnotations[.square] = [["color"], ["lineWidth"]]
+                builder.propertiesForAnnotations[.circle] = [["color"], ["lineWidth"]]
+                builder.propertiesForAnnotations[.line] = [["color"], ["lineWidth"]]
+                builder.propertiesForAnnotations[.polygon] = [["color"], ["lineWidth"]]
 
                 // Override the override
                 builder.overrideClass(PSPDFAnnotationToolbar.self, with: PSPDFAnnotationToolbar.self)
@@ -100,18 +104,18 @@ extension PreSubmissionPDFDocumentPresenter: PSPDFViewControllerDelegate {
             var realMenuItems = [PSPDFMenuItem]()
             let filteredMenuItems = menuItems.filter {
                 guard let identifier = $0.identifier else { return true }
-                if identifier == PSPDFAnnotationMenuInspector {
+                if identifier == PSPDFTextMenu.annotationMenuInspector.rawValue {
                     $0.title = NSLocalizedString("Style", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: "")
                 }
                 return (
-                    identifier != PSPDFAnnotationMenuRemove &&
-                    identifier != PSPDFAnnotationMenuNote
+                    identifier != PSPDFTextMenu.annotationMenuRemove.rawValue &&
+                    identifier != PSPDFTextMenu.annotationMenuNote.rawValue
                 )
             }
             realMenuItems.append(contentsOf: filteredMenuItems)
             realMenuItems.append(PSPDFMenuItem(title: NSLocalizedString("Remove", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: ""), image: .icon(.trash), block: {
                 pdfController.document?.remove([annotation], options: nil)
-            }, identifier: PSPDFAnnotationMenuRemove))
+            }, identifier: PSPDFTextMenu.annotationMenuRemove.rawValue))
             return realMenuItems
         }
 

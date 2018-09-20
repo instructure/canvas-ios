@@ -81,8 +81,6 @@
 		49301FF11F901854006BD777 /* CommunicationChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49301FE51F901853006BD777 /* CommunicationChannel.swift */; };
 		49301FF21F901854006BD777 /* PushState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49301FE61F901853006BD777 /* PushState.swift */; };
 		49301FF31F901854006BD777 /* NotificationPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49301FE71F901853006BD777 /* NotificationPreference.swift */; };
-		4930200B1F901CF5006BD777 /* GDataXMLNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 49301FF71F901CF5006BD777 /* GDataXMLNode.h */; };
-		4930200C1F901CF5006BD777 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 49301FF81F901CF5006BD777 /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4930200D1F901CF5006BD777 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49301FF91F901CF5006BD777 /* Assets.xcassets */; };
 		4930200E1F901CF5006BD777 /* CommentReplyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49301FFC1F901CF5006BD777 /* CommentReplyView.swift */; };
 		4930200F1F901CF5006BD777 /* UITextView+Placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 49301FFD1F901CF5006BD777 /* UITextView+Placeholder.m */; };
@@ -517,6 +515,8 @@
 		9FDA15F4213EB6A600CC12C7 /* Secrets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FDA15F3213EB6A600CC12C7 /* Secrets.framework */; };
 		A96EAEEFD11718956BFC2544 /* Pods_defaults_CanvasCoreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C6ED514BCD5F05D551BC00B /* Pods_defaults_CanvasCoreTests.framework */; };
 		B1411D5A1FE825ED00CD4967 /* CoreDataSyncHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1411D591FE825ED00CD4967 /* CoreDataSyncHelper.swift */; };
+		B159CA5B2153F0B500DA6044 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B159CA592153F0B500DA6044 /* PSPDFKit.framework */; };
+		B159CA5C2153F0B500DA6044 /* PSPDFKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B159CA5A2153F0B500DA6044 /* PSPDFKitUI.framework */; };
 		B186F3692144BBDE0026429F /* strip-frameworks.sh in Sources */ = {isa = PBXBuildFile; fileRef = B186F3682144BBDE0026429F /* strip-frameworks.sh */; };
 		B186F36A2144BC230026429F /* strip-frameworks.sh in Resources */ = {isa = PBXBuildFile; fileRef = B186F3682144BBDE0026429F /* strip-frameworks.sh */; };
 		B196F79B206AB60400DE640F /* CoreDataSync.m in Sources */ = {isa = PBXBuildFile; fileRef = B196F79A206AB60400DE640F /* CoreDataSync.m */; };
@@ -648,8 +648,6 @@
 		49301FE51F901853006BD777 /* CommunicationChannel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunicationChannel.swift; sourceTree = "<group>"; };
 		49301FE61F901853006BD777 /* PushState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushState.swift; sourceTree = "<group>"; };
 		49301FE71F901853006BD777 /* NotificationPreference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationPreference.swift; sourceTree = "<group>"; };
-		49301FF71F901CF5006BD777 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
-		49301FF81F901CF5006BD777 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
 		49301FF91F901CF5006BD777 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		49301FFC1F901CF5006BD777 /* CommentReplyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentReplyView.swift; sourceTree = "<group>"; };
 		49301FFD1F901CF5006BD777 /* UITextView+Placeholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+Placeholder.m"; sourceTree = "<group>"; };
@@ -1232,6 +1230,8 @@
 		9FFBF1B11FBB7687005AC85C /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9FFBF1B21FBB7687005AC85C /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/TimedQuizViewController.strings; sourceTree = "<group>"; };
 		B1411D591FE825ED00CD4967 /* CoreDataSyncHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataSyncHelper.swift; sourceTree = "<group>"; };
+		B159CA592153F0B500DA6044 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = "../ios-frameworks/PSPDFKit.framework"; sourceTree = "<group>"; };
+		B159CA5A2153F0B500DA6044 /* PSPDFKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKitUI.framework; path = "../ios-frameworks/PSPDFKitUI.framework"; sourceTree = "<group>"; };
 		B186F3682144BBDE0026429F /* strip-frameworks.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "strip-frameworks.sh"; sourceTree = "<group>"; };
 		B196F79A206AB60400DE640F /* CoreDataSync.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataSync.m; sourceTree = "<group>"; };
 		B1BE249620AB13FE00C521C3 /* SafariActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariActivity.swift; sourceTree = "<group>"; };
@@ -1258,7 +1258,9 @@
 				49383CE61F848652009C8F8E /* CanvasKit.framework in Frameworks */,
 				49383CE51F848652009C8F8E /* CanvasKeymaster.framework in Frameworks */,
 				9FDA15F4213EB6A600CC12C7 /* Secrets.framework in Frameworks */,
+				B159CA5B2153F0B500DA6044 /* PSPDFKit.framework in Frameworks */,
 				630085E9F4EBC97E435FFE64 /* Pods_defaults_CanvasCore.framework in Frameworks */,
+				B159CA5C2153F0B500DA6044 /* PSPDFKitUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1310,6 +1312,8 @@
 		2C60495C1F72B9CE00252BC5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B159CA592153F0B500DA6044 /* PSPDFKit.framework */,
+				B159CA5A2153F0B500DA6044 /* PSPDFKitUI.framework */,
 				9FDA15F3213EB6A600CC12C7 /* Secrets.framework */,
 				49383CDF1F846FCC009C8F8E /* CanvasKeymaster.framework */,
 				49383CDE1F846FCB009C8F8E /* CanvasKit.framework */,
@@ -1628,26 +1632,8 @@
 				494BC5FE1F953CBC00C77257 /* Pre Submission */,
 				49301FF91F901CF5006BD777 /* Assets.xcassets */,
 				49301FFA1F901CF5006BD777 /* Canvadocs */,
-				49301FF51F901CF5006BD777 /* Dependencies */,
 			);
 			path = Annotations;
-			sourceTree = "<group>";
-		};
-		49301FF51F901CF5006BD777 /* Dependencies */ = {
-			isa = PBXGroup;
-			children = (
-				49301FF61F901CF5006BD777 /* GDataXML */,
-			);
-			path = Dependencies;
-			sourceTree = "<group>";
-		};
-		49301FF61F901CF5006BD777 /* GDataXML */ = {
-			isa = PBXGroup;
-			children = (
-				49301FF71F901CF5006BD777 /* GDataXMLNode.h */,
-				49301FF81F901CF5006BD777 /* GDataXMLNode.m */,
-			);
-			path = GDataXML;
 			sourceTree = "<group>";
 		};
 		49301FFA1F901CF5006BD777 /* Canvadocs */ = {
@@ -3016,7 +3002,6 @@
 				494AE09D1F843A09001A8F31 /* NativeAccessibility.h in Headers */,
 				494AE0A11F843A09001A8F31 /* ScrollViewDisablerManager.h in Headers */,
 				2CE2059120EAC5BD002A6A64 /* CanvasAnalytics.h in Headers */,
-				4930200B1F901CF5006BD777 /* GDataXMLNode.h in Headers */,
 				493020151F901CF5006BD777 /* UITextView+Placeholder.h in Headers */,
 				2CD3B49C206AB38E006339D8 /* APIBridge.h in Headers */,
 				494AE08B1F8436E6001A8F31 /* NativeLoginManager.h in Headers */,
@@ -3212,10 +3197,6 @@
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/Marshal/Marshal.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
-				"${PODS_ROOT}/PSPDFKit/PSPDFKit.framework",
-				"${PODS_ROOT}/PSPDFKit/PSPDFKit.framework.dSYM",
-				"${PODS_ROOT}/PSPDFKit/PSPDFKitUI.framework",
-				"${PODS_ROOT}/PSPDFKit/PSPDFKitUI.framework.dSYM",
 				"${BUILT_PRODUCTS_DIR}/RCTSFSafariViewController/RCTSFSafariViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/RNAudio/RNAudio.framework",
 				"${BUILT_PRODUCTS_DIR}/RNDeviceInfo/RNDeviceInfo.framework",
@@ -3254,10 +3235,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSPDFKit.framework",
-				"${DWARF_DSYM_FOLDER_PATH}/PSPDFKit.framework.dSYM",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSPDFKitUI.framework",
-				"${DWARF_DSYM_FOLDER_PATH}/PSPDFKitUI.framework.dSYM",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RCTSFSafariViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNAudio.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNDeviceInfo.framework",
@@ -3476,7 +3453,6 @@
 				49CE96891F8FF41B00121A43 /* CanvasSubmissionAuditLoggingService.swift in Sources */,
 				49CE96B71F8FF94B00121A43 /* PageKit.xcdatamodeld in Sources */,
 				49CE97A51F900D0000121A43 /* Session+Backdrop.swift in Sources */,
-				4930200C1F901CF5006BD777 /* GDataXMLNode.m in Sources */,
 				49301FF31F901854006BD777 /* NotificationPreference.swift in Sources */,
 				4961F5EC1F8FB4070093EC86 /* TableViewController.swift in Sources */,
 				49CE965B1F8FF41B00121A43 /* QuizIntroViewController+Objective-C.swift in Sources */,
