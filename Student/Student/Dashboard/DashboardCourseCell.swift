@@ -27,31 +27,6 @@ class DashboardCourseCell: UICollectionViewCell {
 
     var optionsCallback: (() -> Void)?
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-
-        // Round the corners and drop shadow here so
-        // that it will adjust as the cell size changes
-        roundCornersAndDropShadow()
-    }
-
-    // TODO: Switch to using a "bubble" image with rounded corners
-    // and drop shadow so that is is more efficient
-    func roundCornersAndDropShadow() {
-        contentView.layer.cornerRadius = 4.0
-        contentView.layer.borderWidth = 1.0 / UIScreen.main.nativeScale
-        contentView.layer.borderColor = UIColor(white: 0.89, alpha: 1.0).cgColor
-        contentView.clipsToBounds = true
-
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOffset = CGSize(width: 0, height: 1.0)
-        layer.shadowRadius = 1.0
-        layer.shadowOpacity = 0.2
-        layer.masksToBounds = false
-        layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: contentView.layer.cornerRadius).cgPath
-        layer.backgroundColor = UIColor.clear.cgColor
-    }
-
     func configure(with model: DashboardViewModel.Course) {
         titleLabel?.text = model.title
         titleLabel?.textColor = model.color.ensureContrast(against: .white)

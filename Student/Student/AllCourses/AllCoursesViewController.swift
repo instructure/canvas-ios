@@ -25,9 +25,9 @@ class AllCoursesViewController: UIViewController, AllCoursesViewProtocol {
     var presenter: AllCoursesPresenterProtocol?
     var viewModel: AllCoursesViewModel?
 
-    let gutterWidth: CGFloat = 15
-    let currentColumns: CGFloat = 2
-    let pastColumns: CGFloat = 2
+    let gutterWidth: CGFloat = 16
+    let shadowMargin: CGFloat = 5
+    let cardColumns: CGFloat = 2
 
     lazy var refreshControl: UIRefreshControl = {
         let rc = UIRefreshControl()
@@ -213,42 +213,33 @@ extension AllCoursesViewController: UICollectionViewDataSource {
 
 extension AllCoursesViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let section = indexPath.section
-        if section == AllCoursesViewSection.current.rawValue {
-            return CGSize(width: (collectionView.bounds.width - ((currentColumns+1) * gutterWidth)) / currentColumns, height: 163)
-        }
-
-        return  CGSize(width: (collectionView.bounds.width - ((pastColumns+1) * gutterWidth)) / pastColumns, height: 163)
+        return CGSize(width: (collectionView.bounds.width - ((cardColumns+1) * gutterWidth)) / cardColumns + shadowMargin * 2, height: 173)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        let top: CGFloat = section == AllCoursesViewSection.current.rawValue ? 20 : 0
-        return UIEdgeInsets(top: top, left: gutterWidth, bottom: 10, right: gutterWidth)
+        let margin = gutterWidth - shadowMargin
+        switch AllCoursesViewSection(rawValue: section) ?? .current {
+        case .current:
+            return UIEdgeInsets(top: margin, left: margin, bottom: -shadowMargin, right: margin)
+        case .past:
+            return UIEdgeInsets(top: -shadowMargin, left: margin, bottom: gutterWidth, right: margin)
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-
-        return gutterWidth
+        return gutterWidth - (shadowMargin * 2)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        if section == AllCoursesViewSection.current.rawValue {
-            return gutterWidth
-        }
-
-        return  0
+        return gutterWidth - (shadowMargin * 2)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-
-        if section == AllCoursesViewSection.current.rawValue {
+        switch AllCoursesViewSection(rawValue: section) ?? .past {
+        case .current:
             return CGSize.zero
+        case .past:
+            return CGSize(width: collectionView.bounds.width, height: 50)
         }
-
-        return CGSize(width: collectionView.bounds.width, height: 50)
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        return CGSize.zero
     }
 }

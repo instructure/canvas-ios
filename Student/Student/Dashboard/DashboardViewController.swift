@@ -35,6 +35,7 @@ class DashboardViewController: UIViewController, DashboardViewProtocol {
     }()
 
     let gutterWidth: CGFloat = 16
+    let shadowMargin: CGFloat = 5
     let coursesColumns: CGFloat = 2
     let groupsColumns: CGFloat = 1
 
@@ -248,33 +249,35 @@ extension DashboardViewController: UICollectionViewDataSource {
 
 extension DashboardViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let section = indexPath.section
-        if section == DashboardViewSection.courses.rawValue {
-            return CGSize(width: (collectionView.bounds.width - ((coursesColumns+1) * gutterWidth)) / coursesColumns, height: 163)
+        switch DashboardViewSection(rawValue: indexPath.section) ?? .courses {
+        case .courses:
+            return CGSize(width: (collectionView.bounds.width - ((coursesColumns+1) * gutterWidth)) / coursesColumns + shadowMargin * 2, height: 173)
+        case .groups:
+            return CGSize(width: (collectionView.bounds.width - ((groupsColumns+1) * gutterWidth)) / groupsColumns + shadowMargin * 2, height: 92)
         }
-
-        return  CGSize(width: (collectionView.bounds.width - ((groupsColumns+1) * gutterWidth)) / groupsColumns, height: 82)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: gutterWidth, bottom: 10, right: gutterWidth)
+        let margin = gutterWidth - shadowMargin
+        switch DashboardViewSection(rawValue: section) ?? .courses {
+        case .courses:
+            return UIEdgeInsets(top: -shadowMargin, left: margin, bottom: 0, right: margin)
+        case .groups:
+            return UIEdgeInsets(top: -shadowMargin, left: margin, bottom: gutterWidth, right: margin)
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        if section == DashboardViewSection.courses.rawValue {
-            return gutterWidth
-        } else if section == DashboardViewSection.groups.rawValue {
-            return  gutterWidth
+        switch DashboardViewSection(rawValue: section) ?? .courses {
+        case .courses, .groups:
+            return gutterWidth - (shadowMargin * 2)
         }
-
-        return 0
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        if section == DashboardViewSection.courses.rawValue {
-            return gutterWidth
+        switch DashboardViewSection(rawValue: section) ?? .courses {
+        case .courses, .groups:
+            return gutterWidth - (shadowMargin * 2)
         }
-
-        return  0
     }
 }
