@@ -19,7 +19,7 @@ import React from 'react'
 import renderer from 'react-test-renderer'
 import { ActionSheetIOS, AlertIOS, Alert } from 'react-native'
 import { shallow } from 'enzyme'
-
+import { enableAllFeaturesFlagsForTesting, disableAllFeatureFlagsForTesting } from '../../../common/feature-flags'
 import { FilesList, mapStateToProps } from '../FilesList'
 import images from '../../../images'
 
@@ -404,6 +404,18 @@ describe('FilesList', () => {
     const image = shallow(row.prop('renderImage')())
     const icon = image.find('AccessIcon')
     expect(icon).toMatchSnapshot()
+  })
+
+  it('hides search behind a feature flag', () => {
+    disableAllFeatureFlagsForTesting()
+    const props = {
+      data: [],
+      navigator: template.navigator(),
+    }
+    const view = shallow(<FilesList {...props} />)
+    const header = view.find('FlatList').prop('ListHeaderComponent')
+    expect(header).toBeNull()
+    enableAllFeaturesFlagsForTesting()
   })
 
   describe('searching', () => {

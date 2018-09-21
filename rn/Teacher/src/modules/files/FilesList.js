@@ -52,6 +52,7 @@ import { Text } from '../../common/text'
 import { isRegularDisplayMode } from '../../routing/utils'
 import type { TraitCollection } from '../../routing/Navigator'
 import { logEvent } from '@common/CanvasAnalytics'
+import { featureFlagEnabled } from '@common/feature-flags'
 
 type FilesListProps = {
   data: any[], // The folders and files that are currently being shown
@@ -555,7 +556,7 @@ export class FilesList extends Component<Props, State> {
             onEndReached={this.onEndReached}
             refreshing={Boolean(this.state.pending) && !this.state.uploadPending}
             ItemSeparatorComponent={RowSeparator}
-            ListHeaderComponent={this.renderSearchBar()}
+            ListHeaderComponent={featureFlagEnabled('filesSearch') ? this.renderSearchBar() : null}
             ListFooterComponent={data.length > 0 ? RowSeparator : null}
             ListEmptyComponent={empty} />
           <AttachmentPicker

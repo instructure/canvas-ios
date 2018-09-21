@@ -43,6 +43,7 @@ export type FeatureFlagName = 'favoriteGroups' |
                               'newGroupNavigation' |
                               'simpleDiscussionRenderer' |
                               'newStudentAssignmentView' |
+                              'filesSearch' |
                               'conferences'
 
 // if a feature is listed here it will be turned off
@@ -55,6 +56,7 @@ export const featureFlags: { [FeatureFlagName]: FeatureFlag } = {
   simpleDiscussionRenderer: {},
   newStudentAssignmentView: {},
   conferences: {},
+  filesSearch: {},
 }
 
 export const exemptDomains = [
