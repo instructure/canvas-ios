@@ -168,6 +168,12 @@
 		AA0D8C718E86B4919CDD8DBD /* GettingStartedPageTests_testGettingStartedPage_logoutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA21CFA2DA8BF6852893B43 /* GettingStartedPageTests_testGettingStartedPage_logoutButton.swift */; };
 		ADA375F3E48558FED756C65E /* CanvasUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D717C1344BD77482A213EA6 /* CanvasUser.swift */; };
 		B11A2CF720E42D9500A2DBDD /* AccountNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11A2CF620E42D9500A2DBDD /* AccountNotificationViewController.swift */; };
+		B18020AE21556E7500AB2F03 /* PSPDFKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18020AC21556E7500AB2F03 /* PSPDFKitUI.framework */; };
+		B18020AF21556E7500AB2F03 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18020AD21556E7500AB2F03 /* PSPDFKit.framework */; };
+		B18020B021556E7E00AB2F03 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18020AD21556E7500AB2F03 /* PSPDFKit.framework */; };
+		B18020B121556E7E00AB2F03 /* PSPDFKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B18020AD21556E7500AB2F03 /* PSPDFKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B18020B221556E7E00AB2F03 /* PSPDFKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18020AC21556E7500AB2F03 /* PSPDFKitUI.framework */; };
+		B18020B321556E7E00AB2F03 /* PSPDFKitUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B18020AC21556E7500AB2F03 /* PSPDFKitUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B58A7FC4C9664A1F8A3CC35B /* CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoConfirmPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EAE94AAC29858EE0FADD5D /* CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoConfirmPassword.swift */; };
 		B5CB1B611DC15AD800FE9C93 /* ArmchairLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5CB1B631DC15AD800FE9C93 /* ArmchairLocalizable.strings */; };
 		B823D81C914EED9D04CC1815 /* GettingStartedPageTests_testGettingStartedPage_displaysPageObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77F82EF5D44FFB863B8A0EC /* GettingStartedPageTests_testGettingStartedPage_displaysPageObjects.swift */; };
@@ -207,7 +213,9 @@
 				49A36ED21FA90BEF005F5905 /* CanvasKit.framework in Embed Frameworks */,
 				49A36ED01FA90BEF005F5905 /* CanvasKeymaster.framework in Embed Frameworks */,
 				9FDA15FE213EBE5800CC12C7 /* Secrets.framework in Embed Frameworks */,
+				B18020B121556E7E00AB2F03 /* PSPDFKit.framework in Embed Frameworks */,
 				4948BE6B1F915F4B0035BAFD /* CanvasCore.framework in Embed Frameworks */,
+				B18020B321556E7E00AB2F03 /* PSPDFKitUI.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -963,6 +971,8 @@
 		9FFE47191FBB754100AF2058 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A77F82EF5D44FFB863B8A0EC /* GettingStartedPageTests_testGettingStartedPage_displaysPageObjects.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GettingStartedPageTests_testGettingStartedPage_displaysPageObjects.swift; path = GettingStartedPageTests/GettingStartedPageTests_testGettingStartedPage_displaysPageObjects.swift; sourceTree = "<group>"; };
 		B11A2CF620E42D9500A2DBDD /* AccountNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNotificationViewController.swift; sourceTree = "<group>"; };
+		B18020AC21556E7500AB2F03 /* PSPDFKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKitUI.framework; path = "../ios-frameworks/PSPDFKitUI.framework"; sourceTree = "<group>"; };
+		B18020AD21556E7500AB2F03 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = "../ios-frameworks/PSPDFKit.framework"; sourceTree = "<group>"; };
 		B5CB1B621DC15AD800FE9C93 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/ArmchairLocalizable.strings; sourceTree = "<group>"; };
 		B5CB1B641DC15AE000FE9C93 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/ArmchairLocalizable.strings; sourceTree = "<group>"; };
 		B5CB1B651DC15AE100FE9C93 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/ArmchairLocalizable.strings; sourceTree = "<group>"; };
@@ -1000,13 +1010,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C75ABA31DDF62F200650856 /* SystemConfiguration.framework in Frameworks */,
+				B18020B021556E7E00AB2F03 /* PSPDFKit.framework in Frameworks */,
 				2C75ABA11DDF62ED00650856 /* QuartzCore.framework in Frameworks */,
 				2C75AB9F1DDF62E600650856 /* CoreVideo.framework in Frameworks */,
+				B18020AE21556E7500AB2F03 /* PSPDFKitUI.framework in Frameworks */,
 				2C75AB9D1DDF62E000650856 /* AVFoundation.framework in Frameworks */,
+				B18020AF21556E7500AB2F03 /* PSPDFKit.framework in Frameworks */,
 				4948BE6A1F915F4B0035BAFD /* CanvasCore.framework in Frameworks */,
 				2C75AB9B1DDF62DA00650856 /* CoreMedia.framework in Frameworks */,
 				49A36ED11FA90BEF005F5905 /* CanvasKit.framework in Frameworks */,
 				2C75AB991DDF62D500650856 /* CoreText.framework in Frameworks */,
+				B18020B221556E7E00AB2F03 /* PSPDFKitUI.framework in Frameworks */,
 				9FDA15FD213EBE5800CC12C7 /* Secrets.framework in Frameworks */,
 				2C75AB971DDF62CF00650856 /* CoreTelephony.framework in Frameworks */,
 				2C75AB951DDF62CA00650856 /* AssetsLibrary.framework in Frameworks */,
@@ -1392,6 +1406,8 @@
 		5E7790AF1C46CBA100429BF8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B18020AD21556E7500AB2F03 /* PSPDFKit.framework */,
+				B18020AC21556E7500AB2F03 /* PSPDFKitUI.framework */,
 				9FDA15F7213EB72D00CC12C7 /* Secrets.framework */,
 				49A36ECC1FA90BD0005F5905 /* CanvasKeymaster.framework */,
 				49A36ECB1FA90BD0005F5905 /* CanvasKit.framework */,
