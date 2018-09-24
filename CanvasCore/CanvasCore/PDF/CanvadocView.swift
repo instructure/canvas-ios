@@ -52,6 +52,7 @@ private func != <T>(lhs: T?, rhs: T?) -> Bool where T: Equatable {
 public class CanvadocView: UIView {
     
     weak var pdfViewController: PSPDFViewController?
+
     var bottomInset = CGFloat(0.0)
     
     fileprivate let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
@@ -159,7 +160,7 @@ public class CanvadocView: UIView {
             annotationToolbar.supportedToolbarPositions = [.positionInTopBar]
             annotationToolbar.isDragEnabled = false
             annotationToolbar.showDoneButton = false
-            
+
             flexibleToolbarContainer.flexibleToolbar = annotationToolbar
             flexibleToolbarContainer.overlaidBar = toolbar
             addSubview(flexibleToolbarContainer)
@@ -273,7 +274,7 @@ public class CanvadocView: UIView {
 }
 
 extension CanvadocView: PSPDFAnnotationStateManagerDelegate {
-    public func annotationStateManager(_ manager: PSPDFAnnotationStateManager, didChangeState oldState: AnnotationString?, to newState: AnnotationString?, variant oldVariant: AnnotationString?, to newVariant: AnnotationString?) {
+    public func annotationStateManager(_ manager: PSPDFAnnotationStateManager, didChangeState oldState: AnnotationString?, to newState: AnnotationString?, variant oldVariant: AnnotationVariantString?, to newVariant: AnnotationVariantString?) {
         if let _ = newState {
             setScrollEnabled(false)
         } else {
@@ -306,4 +307,4 @@ extension CanvadocView: URLSessionDownloadDelegate {
     }
 }
 
-extension CanvadocView: UIDocumentInteractionControllerDelegate { }
+extension CanvadocView: UIDocumentInteractionControllerDelegate {}

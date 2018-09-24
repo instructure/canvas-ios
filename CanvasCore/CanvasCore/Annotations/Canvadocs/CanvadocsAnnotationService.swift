@@ -23,6 +23,7 @@ struct CanvadocsFileMetadata {
     let pdfDownloadURL: URL
     let annotationMetadata: CanvadocsAnnotationMetadata
     let pandaPush: PandaPushMetadata?
+    let rotations: [String: UInt]
 }
 
 struct CanvadocsAnnotationMetadata {
@@ -102,7 +103,7 @@ class CanvadocsAnnotationService: NSObject {
         }
         return path
     }
-    
+
     fileprivate func sessionBasedPDFFilename() -> String {
         let url = self.sessionURL.absoluteString
         let endIndex = url.index(url.endIndex, offsetBy: -12)
@@ -157,9 +158,15 @@ class CanvadocsAnnotationService: NSObject {
                         pandaPushMetadata = PandaPushMetadata(host: host, annotationsChannel: annotationsChannel, annotationsToken: annotationsToken)
                     }
                 }
-                
-                if let pdfDownloadURLStr = urls["pdf_download"] as? String, let pdfDownloadURL = URL(string: (self.baseURLString+self.removeLeadingSlash(pdfDownloadURLStr))), let annotationMetadata = annotationMetadata {
-                    let metadata = CanvadocsFileMetadata(pdfDownloadURL: pdfDownloadURL, annotationMetadata: annotationMetadata, pandaPush: pandaPushMetadata)
+
+                let rotations = json["rotations"] as? [String: UInt] ?? [:]
+                if let pdfDownloadURLStr = urls["pdf_download"] as? String,
+                    let pdfDownloadURL = URL(string: (self.baseURLString+self.removeLeadingSlash(pdfDownloadURLStr))),
+                    let annotationMetadata = annotationMetadata {
+                    let metadata = CanvadocsFileMetadata(pdfDownloadURL: pdfDownloadURL,
+                                                         annotationMetadata: annotationMetadata,
+                                                         pandaPush: pandaPushMetadata,
+                                                         rotations: rotations)
                     completed(.success(metadata))
                 } else {
                     completed(.failure(genericError))

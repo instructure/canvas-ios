@@ -44,7 +44,7 @@ open class CanvadocsPDFDocumentPresenter: NSObject {
     var annotationProvider: CanvadocsAnnotationProvider?
     weak var pdfViewController: PSPDFViewController?
 
-    open static func loadPDFViewController(_ sessionURL: URL, with configuration: PSPDFConfiguration, showAnnotationBarButton: Bool, onSaveStateChange: RCTDirectEventBlock? = nil, completed: @escaping (UIViewController?, [NSError]?)->()) {
+    public static func loadPDFViewController(_ sessionURL: URL, with configuration: PSPDFConfiguration, showAnnotationBarButton: Bool, onSaveStateChange: RCTDirectEventBlock? = nil, completed: @escaping (UIViewController?, [NSError]?)->()) {
         var metadata: CanvadocsFileMetadata? = nil
         var localPDFURL: URL? = nil
         var canvadocsAnnotations: [CanvadocsAnnotation]? = nil
@@ -127,6 +127,13 @@ open class CanvadocsPDFDocumentPresenter: NSObject {
             canvadocsAnnotationProvider.canvasDelegate = self
             documentProvider.annotationManager.annotationProviders.insert(canvadocsAnnotationProvider, at: 0)
             self.annotationProvider = canvadocsAnnotationProvider
+            if let metadata = self.metadata {
+                for (pageKey, rawRotation) in metadata.rotations {
+                    if let pageIndex = PageIndex(pageKey), let rotation = Rotation(rawValue: rawRotation) {
+                        documentProvider.setRotation(rotation, for: pageIndex)
+                    }
+                }
+            }
         }
     }
 

@@ -21,7 +21,7 @@ import PSPDFKitUI
 public class CanvadocsAnnotationToolbar: PSPDFAnnotationToolbar {
     
     public var showDoneButton: Bool = true
-    
+
     override public var doneButton: UIButton? {
         return showDoneButton ? super.doneButton : nil
     }
