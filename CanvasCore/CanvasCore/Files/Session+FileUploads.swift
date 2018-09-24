@@ -46,7 +46,7 @@ struct UploadTarget {
 
 private let FileUploadErrorTitle = NSLocalizedString("File Upload Error", tableName: "Localizable", bundle: .core, value: "", comment: "title for file upload errors")
 
-private let MultipartBoundary = try! "---------------------------3klfenalksjflkjoi9auf89eshajsnl3kjnwal".UTF8Data()
+private let MultipartBoundary = "---------------------------3klfenalksjflkjoi9auf89eshajsnl3kjnwal"
 
 extension Session {
 
@@ -95,8 +95,9 @@ extension Session {
                 body += try "Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n\(value)\r\n".UTF8Data()
                 body += delim
             }
-            
-            body += try "Content-Disposition: form-data; name=\"file\"\r\n\r\n".UTF8Data()
+
+            let filename = parameters["filename"] as? String ?? ""
+            body += try "Content-Disposition: form-data; name=\"file\"; filename=\"\(filename)\"\r\n\r\n".UTF8Data()
             body += data
             body += try "\r\n--\(MultipartBoundary)--\r\n".UTF8Data()
             
@@ -126,7 +127,7 @@ extension Session {
             var request = URLRequest(url: target.url, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 60)
             request.httpMethod = "POST"
             
-            let contentType = "multipart/form-data; boundary=\(MultipartBoundary)"
+            let contentType = "multipart/form-data; boundary=\"\(MultipartBoundary)\""
             request.addValue(contentType, forHTTPHeaderField: "Content-Type")
             
             let sessionID = self.sessionID
