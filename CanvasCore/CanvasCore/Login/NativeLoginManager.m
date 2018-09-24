@@ -240,7 +240,7 @@ RCT_EXPORT_METHOD(stopObserving)
                            @"branding": client.branding ? [client.branding JSONDictionary] : @{},
                            @"actAsUserID": client.actAsUserID ?: [NSNull null],
                            @"countryCode": [locale countryCode] ?: @"",
-                           @"locale": [LocalizationManager currentLocale],
+                           @"locale": [LocalizationManager currentLocale] ?: [NSNull null],
                            };
     
     [[NativeLogin sharedInstance] sendEventWithName:@"Login" body:body];

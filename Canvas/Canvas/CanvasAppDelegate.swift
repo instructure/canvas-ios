@@ -321,7 +321,7 @@ extension AppDelegate: NativeLoginManagerDelegate {
         Analytics.setUserID(client.currentUser.id)
         Analytics.setUserProperty(client.baseURL?.absoluteString, forName: "base_url")
         // TODO: use logged in locale
-        LocalizationManager.setCurrentLocale(LocalizationManager.currentLocale)
+        // LocalizationManager.setCurrentLocale(client.locale)
 
         if let brandingInfo = client.branding?.jsonDictionary() as? [String: Any] {
             Brand.setCurrent(Brand(webPayload: brandingInfo), applyInWindow: window)

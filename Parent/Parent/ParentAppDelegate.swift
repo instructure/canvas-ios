@@ -222,7 +222,7 @@ extension ParentAppDelegate: NativeLoginManagerDelegate {
         // The method call below ensures that we always start with the first color scheme.
         ColorCoordinator.clearColorSchemeDictionary()
         // TODO: use logged in locale
-        LocalizationManager.setCurrentLocale(LocalizationManager.currentLocale)
+        // LocalizationManager.setCurrentLocale(client.locale)
     }
     
     func didLogout(_ controller: UIViewController) {

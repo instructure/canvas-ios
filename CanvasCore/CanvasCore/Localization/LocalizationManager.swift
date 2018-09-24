@@ -10,8 +10,12 @@ import Foundation
 
 let InstUserLocale = "InstUserLocale"
 public class LocalizationManager: NSObject {
-    public static var currentLocale: String {
-        return UserDefaults.standard.string(forKey: InstUserLocale) ?? Locale.current.identifier
+    private static var effectiveLocale: String? {
+        return Bundle.main.preferredLocalizations.first
+    }
+
+    public static var currentLocale: String? {
+        return UserDefaults.standard.string(forKey: InstUserLocale) ?? effectiveLocale
     }
 
     @objc
@@ -45,7 +49,7 @@ public class LocalizationManager: NSObject {
     }
 
     public static func closed() {
-        if Bundle.main.preferredLocalizations.first != currentLocale {
+        if currentLocale != effectiveLocale {
             exit(EXIT_SUCCESS)
         }
     }

@@ -167,7 +167,7 @@ extension AppDelegate: NativeLoginManagerDelegate {
             Brand.setCurrent(Brand(webPayload: brandingInfo), applyInWindow: window)
         }
         // TODO: use logged in locale
-        LocalizationManager.setCurrentLocale(LocalizationManager.currentLocale)
+        // LocalizationManager.setCurrentLocale(client.locale)
     }
     
     func didLogout(_ controller: UIViewController) {
