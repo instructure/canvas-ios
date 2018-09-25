@@ -1,5 +1,9 @@
 ## Cloning the repo
 
+First install [https://git-lfs.github.com](https://git-lfs.github.com).
+
+- `brew install git-lfs`
+- `git lfs install`
 - `git clone --recursive git@github.com:instructure/ios.git`
 
 Update the submodules with
