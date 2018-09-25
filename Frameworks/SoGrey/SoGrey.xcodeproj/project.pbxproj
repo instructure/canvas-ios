@@ -12,14 +12,18 @@
 		2C19A66F207E8A30007FD092 /* DashboardPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C19A66E207E8A30007FD092 /* DashboardPage.swift */; };
 		2C734883208010AC00C562BB /* CanvasUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C734882208010AC00C562BB /* CanvasUITest.swift */; };
 		2C7348852080137F00C562BB /* AllCoursesListPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7348842080137F00C562BB /* AllCoursesListPage.swift */; };
-		2C9C44F8207EBBCF008A8DF1 /* SoSeedySwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C9C44F7207EBBCE008A8DF1 /* SoSeedySwift.framework */; };
-		2C9C44FE207EBC24008A8DF1 /* SoSeedySwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C9C44F7207EBBCE008A8DF1 /* SoSeedySwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3696136A1F6140C7404BB529 /* Pods_defaults_SoGrey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB46F2583A3A0958EE74AC43 /* Pods_defaults_SoGrey.framework */; };
 		492246011D1C744A0053766B /* Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492245FE1D1C744A0053766B /* Class.swift */; };
 		492246021D1C744A0053766B /* EarlGrey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492245FF1D1C744A0053766B /* EarlGrey.swift */; };
 		492246031D1C744A0053766B /* EarlGreyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492246001D1C744A0053766B /* EarlGreyUtils.swift */; };
 		49E21B171D1C694D00B7B9B4 /* SoGrey.h in Headers */ = {isa = PBXBuildFile; fileRef = 49E21B161D1C694D00B7B9B4 /* SoGrey.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		61B536E21E784AD5000FEABB /* PageObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B536E11E784AD5000FEABB /* PageObject.swift */; };
+		9FBAB31F215A811C00FDCC7F /* Secrets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FBAB31D215A811C00FDCC7F /* Secrets.framework */; };
+		9FBAB320215A811C00FDCC7F /* SoSeedySwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FBAB31E215A811C00FDCC7F /* SoSeedySwift.framework */; };
+		9FBAB325215A812900FDCC7F /* SwiftProtobuf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FBAB321215A812800FDCC7F /* SwiftProtobuf.framework */; };
+		9FBAB326215A812900FDCC7F /* CgRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FBAB322215A812800FDCC7F /* CgRPC.framework */; };
+		9FBAB327215A812900FDCC7F /* SwiftGRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FBAB323215A812900FDCC7F /* SwiftGRPC.framework */; };
+		9FBAB328215A812900FDCC7F /* BoringSSL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FBAB324215A812900FDCC7F /* BoringSSL.framework */; };
 		A2684C796FE5A7D2E028DD02 /* EarlGrey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08266CCC56596120DB935F98 /* EarlGrey.framework */; };
 		B16E87B72092737A00D35483 /* WXAnimatedDisplayLinkIdlingResource.h in Headers */ = {isa = PBXBuildFile; fileRef = B1414DE32092344D00F3F0DD /* WXAnimatedDisplayLinkIdlingResource.h */; };
 		B16E87B82092737A00D35483 /* WXAnimatedDisplayLinkIdlingResource.m in Sources */ = {isa = PBXBuildFile; fileRef = B1414DE42092344D00F3F0DD /* WXAnimatedDisplayLinkIdlingResource.m */; };
@@ -53,7 +57,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				2C9C44FE207EBC24008A8DF1 /* SoSeedySwift.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -76,6 +79,12 @@
 		49E21B161D1C694D00B7B9B4 /* SoGrey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SoGrey.h; sourceTree = "<group>"; };
 		49E21B181D1C694D00B7B9B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		61B536E11E784AD5000FEABB /* PageObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageObject.swift; sourceTree = "<group>"; };
+		9FBAB31D215A811C00FDCC7F /* Secrets.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Secrets.framework; path = "../../ios-frameworks/Secrets.framework"; sourceTree = "<group>"; };
+		9FBAB31E215A811C00FDCC7F /* SoSeedySwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoSeedySwift.framework; path = "../../ios-frameworks/SoSeedySwift.framework"; sourceTree = "<group>"; };
+		9FBAB321215A812800FDCC7F /* SwiftProtobuf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftProtobuf.framework; path = "../../ios-frameworks/SwiftGRPC/SwiftProtobuf.framework"; sourceTree = "<group>"; };
+		9FBAB322215A812800FDCC7F /* CgRPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CgRPC.framework; path = "../../ios-frameworks/SwiftGRPC/CgRPC.framework"; sourceTree = "<group>"; };
+		9FBAB323215A812900FDCC7F /* SwiftGRPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftGRPC.framework; path = "../../ios-frameworks/SwiftGRPC/SwiftGRPC.framework"; sourceTree = "<group>"; };
+		9FBAB324215A812900FDCC7F /* BoringSSL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BoringSSL.framework; path = "../../ios-frameworks/SwiftGRPC/BoringSSL.framework"; sourceTree = "<group>"; };
 		B1414DD8209233D800F3F0DD /* ReactNativeSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReactNativeSupport.h; sourceTree = "<group>"; };
 		B1414DD9209233D900F3F0DD /* ReactNativeSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReactNativeSupport.m; sourceTree = "<group>"; };
 		B1414DDC209233F100F3F0DD /* ReactNativeHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReactNativeHeaders.h; sourceTree = "<group>"; };
@@ -108,9 +117,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FBAB326215A812900FDCC7F /* CgRPC.framework in Frameworks */,
 				3696136A1F6140C7404BB529 /* Pods_defaults_SoGrey.framework in Frameworks */,
+				9FBAB328215A812900FDCC7F /* BoringSSL.framework in Frameworks */,
 				A2684C796FE5A7D2E028DD02 /* EarlGrey.framework in Frameworks */,
-				2C9C44F8207EBBCF008A8DF1 /* SoSeedySwift.framework in Frameworks */,
+				9FBAB325215A812900FDCC7F /* SwiftProtobuf.framework in Frameworks */,
+				9FBAB31F215A811C00FDCC7F /* Secrets.framework in Frameworks */,
+				9FBAB320215A811C00FDCC7F /* SoSeedySwift.framework in Frameworks */,
+				9FBAB327215A812900FDCC7F /* SwiftGRPC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,6 +213,12 @@
 		C4C3A71E1565878F5DEEDB26 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9FBAB324215A812900FDCC7F /* BoringSSL.framework */,
+				9FBAB322215A812800FDCC7F /* CgRPC.framework */,
+				9FBAB323215A812900FDCC7F /* SwiftGRPC.framework */,
+				9FBAB321215A812800FDCC7F /* SwiftProtobuf.framework */,
+				9FBAB31D215A811C00FDCC7F /* Secrets.framework */,
+				9FBAB31E215A811C00FDCC7F /* SoSeedySwift.framework */,
 				CB46F2583A3A0958EE74AC43 /* Pods_defaults_SoGrey.framework */,
 				08266CCC56596120DB935F98 /* EarlGrey.framework */,
 			);
@@ -518,6 +538,48 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/AFNetworking\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/BVLinearGradient\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/BugsnagReactNative\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Cartography\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/DeviceKit\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FXKeychain\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Interactable\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Kingfisher\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Mantle\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Marshal\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Masonry\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RCTSFSafariViewController\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNAudio\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNDeviceInfo\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNFS\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNSound\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Reachability\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactNativeSearchBar\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactiveCocoa\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactiveObjC\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactiveObjCBridge\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactiveSwift\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Result\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SVProgressHUD\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SwiftSimplify\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/TBBModal\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/TPKeyboardAvoiding\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/fishhook\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-blur\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-camera\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-document-picker\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-image-picker\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-mail\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/yoga\"",
+					"\"$(PLATFORM_DIR)/Developer/Library/Frameworks\"",
+					"\"${PODS_ROOT}/EarlGrey/EarlGrey\"",
+					"$(PROJECT_DIR)/../../ios-frameworks/**",
+				);
 				INFOPLIST_FILE = SoGrey/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -544,6 +606,48 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/AFNetworking\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/BVLinearGradient\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/BugsnagReactNative\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Cartography\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/DeviceKit\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FXKeychain\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Interactable\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Kingfisher\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Mantle\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Marshal\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Masonry\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RCTSFSafariViewController\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNAudio\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNDeviceInfo\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNFS\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNSound\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Reachability\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactNativeSearchBar\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactiveCocoa\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactiveObjC\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactiveObjCBridge\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactiveSwift\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Result\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SVProgressHUD\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SwiftSimplify\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/TBBModal\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/TPKeyboardAvoiding\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/fishhook\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-blur\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-camera\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-document-picker\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-image-picker\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-mail\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/yoga\"",
+					"\"$(PLATFORM_DIR)/Developer/Library/Frameworks\"",
+					"\"${PODS_ROOT}/EarlGrey/EarlGrey\"",
+					"$(PROJECT_DIR)/../../ios-frameworks",
+				);
 				INFOPLIST_FILE = SoGrey/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;

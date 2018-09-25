@@ -32,10 +32,6 @@
       location = "group:Frameworks/SoGrey/SoGrey.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Frameworks/SoSeedySwift/SoSeedySwift.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:TestsFoundation/TestsFoundation.xcodeproj">
    </FileRef>
-   
 </Workspace>
