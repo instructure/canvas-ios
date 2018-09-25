@@ -128,6 +128,10 @@
 		B195DC512132257500797FE4 /* GetCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B195DC502132257500797FE4 /* GetCourse.swift */; };
 		B195DC5521324DA600797FE4 /* GetUserGroupsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B195DC5421324DA600797FE4 /* GetUserGroupsTest.swift */; };
 		B195DC622133326900797FE4 /* GetCourseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B195DC612133326900797FE4 /* GetCourseTest.swift */; };
+		B1A32BD821599C610071B41E /* APIAssignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A32BD721599C610071B41E /* APIAssignment.swift */; };
+		B1A32BDA21599C700071B41E /* APIAssignment+Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A32BD921599C700071B41E /* APIAssignment+Requestable.swift */; };
+		B1A32BDC21599F1C0071B41E /* APISubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A32BDB21599F1C0071B41E /* APISubmission.swift */; };
+		B1A32BE22159A3100071B41E /* APIAssignmentRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A32BE12159A3100071B41E /* APIAssignmentRequestableTests.swift */; };
 		B1EA5AEB212E641900DABC5F /* GetCourses.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EA5AEA212E641900DABC5F /* GetCourses.swift */; };
 		B1EA5AEE212E656100DABC5F /* GetCoursesTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EA5AED212E656100DABC5F /* GetCoursesTest.swift */; };
 		B1EA5AF6212E67CE00DABC5F /* Date+ISO8601.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EA5AF5212E67CE00DABC5F /* Date+ISO8601.swift */; };
@@ -306,6 +310,10 @@
 		B195DC502132257500797FE4 /* GetCourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCourse.swift; sourceTree = "<group>"; };
 		B195DC5421324DA600797FE4 /* GetUserGroupsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserGroupsTest.swift; sourceTree = "<group>"; };
 		B195DC612133326900797FE4 /* GetCourseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCourseTest.swift; sourceTree = "<group>"; };
+		B1A32BD721599C610071B41E /* APIAssignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAssignment.swift; sourceTree = "<group>"; };
+		B1A32BD921599C700071B41E /* APIAssignment+Requestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIAssignment+Requestable.swift"; sourceTree = "<group>"; };
+		B1A32BDB21599F1C0071B41E /* APISubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISubmission.swift; sourceTree = "<group>"; };
+		B1A32BE12159A3100071B41E /* APIAssignmentRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAssignmentRequestableTests.swift; sourceTree = "<group>"; };
 		B1EA5AEA212E641900DABC5F /* GetCourses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCourses.swift; sourceTree = "<group>"; };
 		B1EA5AED212E656100DABC5F /* GetCoursesTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCoursesTest.swift; sourceTree = "<group>"; };
 		B1EA5AF5212E67CE00DABC5F /* Date+ISO8601.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Date+ISO8601.swift"; path = "../../../CanvasCore/CanvasCore/Extensions/Date+ISO8601.swift"; sourceTree = "<group>"; };
@@ -586,6 +594,7 @@
 				7D80AC14212B67E100C40ECE /* APIUser+Requestable+Tests.swift */,
 				3B3467D52135B99700F9BC2E /* IDTests.swift */,
 				7D80AC53212CF01E00C40ECE /* MockAPI.swift */,
+				B1A32BE12159A3100071B41E /* APIAssignmentRequestableTests.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -608,6 +617,8 @@
 				7D80AC11212B4F8E00C40ECE /* API.swift */,
 				7D80AC22212B8A2100C40ECE /* APIAccount.swift */,
 				7D80AC20212B89C500C40ECE /* APIAccount+Requestable.swift */,
+				B1A32BD721599C610071B41E /* APIAssignment.swift */,
+				B1A32BD921599C700071B41E /* APIAssignment+Requestable.swift */,
 				7D8262F6212B34F800BD268D /* APICourse.swift */,
 				7D8262EE212B228F00BD268D /* APICourse+Requestable.swift */,
 				7D8262FA212B3B3000BD268D /* APIEnrollment.swift */,
@@ -619,6 +630,7 @@
 				7D80AC28212C76E600C40ECE /* APIOAuth+Requestable.swift */,
 				7D8262EA212B1A7B00BD268D /* APIRequestable.swift */,
 				7D8262F8212B3B2000BD268D /* APISection.swift */,
+				B1A32BDB21599F1C0071B41E /* APISubmission.swift */,
 				7D80AC0B212B4C6F00C40ECE /* APITab.swift */,
 				7D8262F0212B28FE00BD268D /* APITab+Requestable.swift */,
 				7D80AC02212B445200C40ECE /* APIUser.swift */,
@@ -955,7 +967,9 @@
 				B17F23B12137981B00771F86 /* Clock.swift in Sources */,
 				9FE84DDE2150281300B95A68 /* GetContextTabs.swift in Sources */,
 				3B3467E021370F6600F9BC2E /* GetMobileVerify.swift in Sources */,
+				B1A32BDC21599F1C0071B41E /* APISubmission.swift in Sources */,
 				3B032C9F214C52CE00B570F7 /* Tab.swift in Sources */,
+				B1A32BD821599C610071B41E /* APIAssignment.swift in Sources */,
 				B195DC45213201DE00797FE4 /* GetUserGroups.swift in Sources */,
 				DFE1FF1D212F5E1A003F27AA /* Keychain.swift in Sources */,
 				7D80AC2B212C77C600C40ECE /* APIOAuth.swift in Sources */,
@@ -976,6 +990,7 @@
 				789C9BC32138656E00B37AC4 /* OperationQueue.swift in Sources */,
 				3B3467DC2137087100F9BC2E /* HTTPHeaderConstants.swift in Sources */,
 				B195DC472132127200797FE4 /* CollectionUseCase.swift in Sources */,
+				B1A32BDA21599C700071B41E /* APIAssignment+Requestable.swift in Sources */,
 				9FE84DDA214FE06300B95A68 /* GetGroup.swift in Sources */,
 				7D80AC58212DAE4C00C40ECE /* URLResponse+links.swift in Sources */,
 				3B3467D02135024800F9BC2E /* ErrorViewControllerProtocol.swift in Sources */,
@@ -1043,6 +1058,7 @@
 				7D80AC2D212C801600C40ECE /* APIOAuth+Requestable+Tests.swift in Sources */,
 				9FE84DE2215037A000B95A68 /* GetContextTabsTest.swift in Sources */,
 				9FE84DDC214FE5C500B95A68 /* GetGroupTest.swift in Sources */,
+				B1A32BE22159A3100071B41E /* APIAssignmentRequestableTests.swift in Sources */,
 				DFE1FF20212F5E41003F27AA /* Keychain.swift in Sources */,
 				B17F23AF21378F4B00771F86 /* TTLOperationTest.swift in Sources */,
 				3B3467CD2134A06300F9BC2E /* GetAuthTokenTests.swift in Sources */,

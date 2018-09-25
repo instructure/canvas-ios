@@ -22,6 +22,8 @@
 		3B0CEBA321504C2500D07CFA /* APITab+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0CEBA021504C2500D07CFA /* APITab+Fixture.swift */; };
 		3B0CEBA421504C2500D07CFA /* APIGroup+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0CEBA121504C2500D07CFA /* APIGroup+Fixture.swift */; };
 		3B0CEBA521504C2500D07CFA /* APICourse+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0CEBA221504C2500D07CFA /* APICourse+Fixture.swift */; };
+		B1A32BDE2159A1D70071B41E /* APIAssignment+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A32BDD2159A1D70071B41E /* APIAssignment+Fixture.swift */; };
+		B1A32BE02159A28D0071B41E /* APISubmission+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A32BDF2159A28D0071B41E /* APISubmission+Fixture.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +45,8 @@
 		3B0CEBA021504C2500D07CFA /* APITab+Fixture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APITab+Fixture.swift"; sourceTree = "<group>"; };
 		3B0CEBA121504C2500D07CFA /* APIGroup+Fixture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIGroup+Fixture.swift"; sourceTree = "<group>"; };
 		3B0CEBA221504C2500D07CFA /* APICourse+Fixture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APICourse+Fixture.swift"; sourceTree = "<group>"; };
+		B1A32BDD2159A1D70071B41E /* APIAssignment+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIAssignment+Fixture.swift"; sourceTree = "<group>"; };
+		B1A32BDF2159A28D0071B41E /* APISubmission+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APISubmission+Fixture.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,8 +124,10 @@
 		3B0CEB9121504B6F00D07CFA /* Api */ = {
 			isa = PBXGroup;
 			children = (
+				B1A32BDD2159A1D70071B41E /* APIAssignment+Fixture.swift */,
 				3B0CEBA221504C2500D07CFA /* APICourse+Fixture.swift */,
 				3B0CEBA121504C2500D07CFA /* APIGroup+Fixture.swift */,
+				B1A32BDF2159A28D0071B41E /* APISubmission+Fixture.swift */,
 				3B0CEBA021504C2500D07CFA /* APITab+Fixture.swift */,
 			);
 			path = Api;
@@ -227,9 +233,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1A32BE02159A28D0071B41E /* APISubmission+Fixture.swift in Sources */,
 				3B0CEBA321504C2500D07CFA /* APITab+Fixture.swift in Sources */,
 				3B0CEB722150406400D07CFA /* Course+Fixture.swift in Sources */,
 				3B0CEBA521504C2500D07CFA /* APICourse+Fixture.swift in Sources */,
+				B1A32BDE2159A1D70071B41E /* APIAssignment+Fixture.swift in Sources */,
 				3B0CEB8E215045CD00D07CFA /* Realm+Fixture.swift in Sources */,
 				3B0CEB732150406400D07CFA /* Group+Fixture.swift in Sources */,
 				3B0CEBA421504C2500D07CFA /* APIGroup+Fixture.swift in Sources */,
