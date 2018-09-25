@@ -19,6 +19,8 @@
 		3B032CB62150069B00B570F7 /* RecordableAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B032CB52150069B00B570F7 /* RecordableAPI.swift */; };
 		3B032CB8215006A100B570F7 /* StudentUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B032CB7215006A100B570F7 /* StudentUITest.swift */; };
 		3B0CEB902150464100D07CFA /* TestsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B0CEB8F2150464100D07CFA /* TestsFoundation.framework */; };
+		3B2C4C962159FB5100995F3B /* AssignmentDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2C4C952159FB5100995F3B /* AssignmentDetailsPresenter.swift */; };
+		3B2C4C992159FC9F00995F3B /* AssignmentDetailsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2C4C982159FC9F00995F3B /* AssignmentDetailsPresenterTests.swift */; };
 		3B412F0121406C410090DE02 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B412EFC21406C000090DE02 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3B412F0321406C410090DE02 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B412EFD21406C000090DE02 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		788152DB212B3470005BA428 /* DashboardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152DA212B3470005BA428 /* DashboardPresenter.swift */; };
@@ -146,6 +148,8 @@
 		3B032CB52150069B00B570F7 /* RecordableAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordableAPI.swift; sourceTree = "<group>"; };
 		3B032CB7215006A100B570F7 /* StudentUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentUITest.swift; sourceTree = "<group>"; };
 		3B0CEB8F2150464100D07CFA /* TestsFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TestsFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B2C4C952159FB5100995F3B /* AssignmentDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsPresenter.swift; sourceTree = "<group>"; };
+		3B2C4C982159FC9F00995F3B /* AssignmentDetailsPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsPresenterTests.swift; sourceTree = "<group>"; };
 		3B412EFC21406C000090DE02 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../ios-frameworks/Realm.framework"; sourceTree = SOURCE_ROOT; };
 		3B412EFD21406C000090DE02 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "../ios-frameworks/RealmSwift.framework"; sourceTree = SOURCE_ROOT; };
 		788152DA212B3470005BA428 /* DashboardPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardPresenter.swift; sourceTree = "<group>"; };
@@ -244,6 +248,7 @@
 		2C5C698B211DFFAD00D9AD15 /* Student */ = {
 			isa = PBXGroup;
 			children = (
+				3B2C4C942159FB3200995F3B /* Assignments */,
 				3B032CA3214C549D00B570F7 /* Groups */,
 				78815306212BD175005BA428 /* AllCourses */,
 				788152D5212B330C005BA428 /* Dashboard */,
@@ -261,6 +266,7 @@
 		2C5C69A2211DFFAE00D9AD15 /* StudentTests */ = {
 			isa = PBXGroup;
 			children = (
+				3B2C4C972159FC8700995F3B /* Assignments */,
 				3B032CAD214C684800B570F7 /* Helpers */,
 				3B032CA6214C553A00B570F7 /* Groups */,
 				788152E0212B38C5005BA428 /* Dashboard */,
@@ -333,6 +339,22 @@
 				3B032CAE214C685B00B570F7 /* MockPersistence.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		3B2C4C942159FB3200995F3B /* Assignments */ = {
+			isa = PBXGroup;
+			children = (
+				3B2C4C952159FB5100995F3B /* AssignmentDetailsPresenter.swift */,
+			);
+			path = Assignments;
+			sourceTree = "<group>";
+		};
+		3B2C4C972159FC8700995F3B /* Assignments */ = {
+			isa = PBXGroup;
+			children = (
+				3B2C4C982159FC9F00995F3B /* AssignmentDetailsPresenterTests.swift */,
+			);
+			path = Assignments;
 			sourceTree = "<group>";
 		};
 		788152D5212B330C005BA428 /* Dashboard */ = {
@@ -551,6 +573,7 @@
 				7D7110C321389AD90085C2E5 /* Routes+Student.swift in Sources */,
 				788152ED212B4FA4005BA428 /* DashboardCourseCell.swift in Sources */,
 				7D08F53621541AE80042E1F4 /* CardView.swift in Sources */,
+				3B2C4C962159FB5100995F3B /* AssignmentDetailsPresenter.swift in Sources */,
 				3B032CAA214C55E400B570F7 /* GroupNavigationTableViewController.swift in Sources */,
 				2C5C698D211DFFAD00D9AD15 /* AppDelegate.swift in Sources */,
 				788152F5212B7482005BA428 /* DashboardGroupCell.swift in Sources */,
@@ -576,6 +599,7 @@
 				3B032CB62150069B00B570F7 /* RecordableAPI.swift in Sources */,
 				788152E6212B3987005BA428 /* DashboardMocks.swift in Sources */,
 				9F7F18582148222C007336A0 /* DashboardUITests.swift in Sources */,
+				3B2C4C992159FC9F00995F3B /* AssignmentDetailsPresenterTests.swift in Sources */,
 				788152E4212B3957005BA428 /* DashboardIntegrationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
