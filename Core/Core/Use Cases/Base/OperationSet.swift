@@ -16,7 +16,7 @@
 
 import Foundation
 
-public class OperationSet: AsyncOperation {
+open class OperationSet: AsyncOperation {
     private let internalQueue = OperationQueue()
     private lazy var finishOperation = {
         return BlockOperation { [weak self] in
@@ -51,7 +51,7 @@ public class OperationSet: AsyncOperation {
         }
     }
 
-    func addOperations(_ operations: [Operation]) {
+    public func addOperations(_ operations: [Operation]) {
         for operation in operations {
             addOperation(operation)
         }

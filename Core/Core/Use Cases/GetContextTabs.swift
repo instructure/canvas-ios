@@ -30,13 +30,12 @@ class GetPaginatedContextTabs: PaginatedUseCase<GetTabsRequest, Tab> {
     }
 
     override func predicate(forItem item: APITab) -> NSPredicate {
-        return .id(item.id.value)
+        return NSPredicate(format: "%K == %@", #keyPath(Tab.fullUrl), item.full_url)
     }
 
     override func updateModel(_ model: Tab, using item: APITab, in client: Persistence) throws {
-        if model.id.isEmpty { model.id = item.id.value }
+        if model.fullUrl.isEmpty { model.fullUrl = item.full_url }
         model.htmlUrl = item.html_url
-        model.fullUrl = item.html_url
         model.label = item.label
         model.position = item.position
         model.contextID = self.context.canvasContextID

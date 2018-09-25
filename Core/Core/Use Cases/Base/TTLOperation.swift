@@ -18,7 +18,7 @@ import Foundation
 
 private let defaultTTL: TimeInterval = 60 * 60 * 2 // 2 hours
 
-public class TTLOperation: OperationSet {
+open class TTLOperation: OperationSet {
     public let database: Persistence
     public var ttl: TimeInterval
     private let operation: Operation

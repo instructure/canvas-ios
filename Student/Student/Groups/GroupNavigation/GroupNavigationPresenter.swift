@@ -25,21 +25,38 @@ typealias GroupNavigationViewCompositeDelegate = GroupNavigationViewProtocol & E
 
 class GroupNavigationPresenter {
     weak var view: GroupNavigationViewCompositeDelegate?
-    var persistence: Persistence
     var frc: FetchedResultsController<Tab>?
+    var context: Context
+    var useCase: PresenterUseCase
+    let queue = OperationQueue()
+    lazy var loadDataFromServerOnce: () = {
+        queue.addOperation(useCase)
+    }()
 
-    init(persistence: Persistence = RealmPersistence.main) {
-        self.persistence = persistence
+    init(groupID: String, view: GroupNavigationViewCompositeDelegate, env: AppEnvironment = .shared) {
+        self.context = ContextModel(.group, id: groupID)
+        self.view = view
+        useCase = GroupNavigationUseCase(context: context, env: env)
+
         let sort = SortDescriptor(key: #keyPath(Tab.position), ascending: true)
-        frc = persistence.fetchedResultsController(predicate: NSPredicate.all, sortDescriptors: [sort], sectionNameKeyPath: nil)
+        let pred = NSPredicate.context(context)
+        frc = env.database.fetchedResultsController(predicate: pred, sortDescriptors: [sort], sectionNameKeyPath: nil)
+        frc?.delegate = self
     }
 
     func loadTabs() {
+        _ = loadDataFromServerOnce
         do {
             try frc?.performFetch()
             view?.showTabs(frc?.fetchedObjects ?? [])
         } catch {
             view?.showError(error)
         }
+    }
+}
+
+extension GroupNavigationPresenter: FetchedResultsControllerDelegate {
+    func controllerDidChangeContent<T>(_ controller: FetchedResultsController<T>) {
+        self.loadTabs()
     }
 }

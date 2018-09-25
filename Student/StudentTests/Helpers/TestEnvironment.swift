@@ -15,8 +15,15 @@
 //
 
 import Foundation
+import Core
 
-public typealias EmptyHandler = () -> Void
+struct TestRouter: RouterProtocol {
+    public func route(to url: URLComponents, from: UIViewController, options: Router.RouteOptions? = nil) {
+    }
+}
 
-open class PresenterUseCase: OperationSet {
+func testEnvironment() -> AppEnvironment {
+    let persistence = MockPersistence()
+    let env = AppEnvironment(api: URLSessionAPI(), database: persistence, queue: OperationQueue(), router: TestRouter())
+    return env
 }

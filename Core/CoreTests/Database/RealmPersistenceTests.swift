@@ -119,7 +119,6 @@ class RealmPersistenceTests: XCTestCase {
         p.refresh()
         let models: [Course] = p.fetch()
 
-        print(models)
         XCTAssertEqual(models.count, 2)
     }
 

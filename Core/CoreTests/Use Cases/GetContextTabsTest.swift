@@ -26,7 +26,7 @@ class GetContextTabsTest: CoreTestCase {
     }()
 
     func testItCreatesTabs() {
-        let groupTab = APITab.make(["id": "1", "label": "Home"])
+        let groupTab = APITab.make()
         api.mock(request, value: [groupTab], response: nil, error: nil)
 
         let getContextTabs = GetContextTabs(context: context, api: api, database: db)
@@ -34,8 +34,44 @@ class GetContextTabsTest: CoreTestCase {
 
         let tabs: [Tab] = db.fetch(predicate: nil, sortDescriptors: nil)
         XCTAssertEqual(tabs.count, 1)
-        XCTAssertEqual(tabs.first?.id, "1")
         XCTAssertEqual(tabs.first?.label, "Home")
+        XCTAssertEqual(tabs.first?.fullUrl, "https://twilson.instructure.com/groups/16")
+    }
+
+    func testItCreatesTabsMultipleRequests() {
+        let context1 = ContextModel(.group, id: Group.make(["id": "1"]).id)
+        let context2 = ContextModel(.group, id: Group.make(["id": "2"]).id)
+
+        let groupTab1 = APITab.make(["label": "Home", "full_url": "https://twilson.instructure.com/groups/1", ])
+        let groupTab2 = APITab.make(["label": "Home", "full_url": "https://twilson.instructure.com/groups/2", ])
+
+        let req1 = GetTabsRequest(context: context1)
+        api.mock(req1, value: [groupTab1], response: nil, error: nil)
+
+        let getContextTabs1 = GetContextTabs(context: context1, api: api, database: db)
+        let exA = expectation(description: "a")
+        getContextTabs1.completionBlock = {
+            exA.fulfill()
+        }
+        getContextTabs1.start()
+        wait(for: [exA], timeout: 0.1)
+
+        let req2 = GetTabsRequest(context: context2)
+        api.mock(req2, value: [groupTab2], response: nil, error: nil)
+
+        let getContextTabs2 = GetContextTabs(context: context2, api: api, database: db)
+        let exB = expectation(description: "b")
+        getContextTabs2.completionBlock = {
+            exB.fulfill()
+        }
+        getContextTabs2.start()
+        wait(for: [exB], timeout: 0.1)
+
+        db.refresh()
+        let tabs: [Tab] = db.fetch()
+        XCTAssertEqual(tabs.count, 2)
+        XCTAssertEqual(tabs.first?.fullUrl, "https://twilson.instructure.com/groups/1")
+        XCTAssertEqual(tabs.last?.fullUrl, "https://twilson.instructure.com/groups/2")
     }
 
     func testItDeletesTabsThatNoLongerExist() {
@@ -45,6 +81,7 @@ class GetContextTabsTest: CoreTestCase {
         let getContextTabs = GetContextTabs(context: context, api: api, database: db)
         addOperationAndWait(getContextTabs)
 
+        db.refresh()
         let tabs: [Tab] = db.fetch()
         XCTAssertFalse(tabs.contains(tab))
     }

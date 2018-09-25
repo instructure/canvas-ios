@@ -14,9 +14,15 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import UIKit
+import Core
 
-public typealias EmptyHandler = () -> Void
+class GroupNavigationUseCase: PresenterUseCase {
 
-open class PresenterUseCase: OperationSet {
+    init(context: Context, env: AppEnvironment = .shared) {
+        super.init()
+        let getGroupOp = GetContext(context: context, database: env.database, api: env.api)
+        let tabsOp = GetContextTabs(context: context, api: env.api, database: env.database, force: false)
+        addOperations([getGroupOp, tabsOp])
+    }
 }

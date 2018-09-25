@@ -16,8 +16,8 @@
 
 import Foundation
 
-public class GetContext: TTLOperation {
-    init(context: Context, database: Persistence, api: API, force: Bool = false) {
+open class GetContext: TTLOperation {
+    public init(context: Context, database: Persistence, api: API, force: Bool = false) {
         let operation: Operation
         switch context.contextType {
         case .course:

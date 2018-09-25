@@ -24,4 +24,9 @@ public let router = Router(routes: [
     RouteHandler(.courses) { _, _ in
         return AllCoursesViewController.create()
     },
+
+    RouteHandler("/groups/:groupID") {_, params in
+        guard let groupID = params["groupID"] else { return nil }
+        return GroupNavigationTableViewController(groupID: groupID)
+    },
 ])

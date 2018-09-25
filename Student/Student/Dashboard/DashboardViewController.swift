@@ -125,12 +125,12 @@ extension DashboardViewController: ErrorViewController {
     }
 }
 
-enum DashboardViewSection: Int {
-    case courses = 0
-    case groups = 1
-}
-
 extension DashboardViewController: UICollectionViewDataSource {
+    enum DashboardViewSection: Int {
+        case courses = 0
+        case groups = 1
+    }
+
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         guard let vm = viewModel else {
             return 0
@@ -214,40 +214,22 @@ extension DashboardViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let viewModel = viewModel,
+            let section: DashboardViewSection = DashboardViewSection(rawValue: indexPath.section)
+            else { return }
 
-        guard let viewModel = viewModel else {
-            return
+        switch section {
+        case .courses:
+            break
+        case .groups:
+            let route = Route.group(viewModel.groups[indexPath.item].groupID)
+            router.route(to: route, from: self, options: nil)
         }
-
-        var alertTitle: String
-        var itemId: String
-        var itemTitle: String
-        if indexPath.section == DashboardViewSection.courses.rawValue {
-            let course = viewModel.favorites[indexPath.row]
-            alertTitle = "Course"
-            itemTitle = course.title
-            itemId = course.courseID
-
-            //delegate?.courseWasSelected(itemId)
-        } else {
-            let group = viewModel.groups[indexPath.row]
-            alertTitle = "Group"
-            itemTitle = group.groupName
-            itemId = group.groupID
-
-            //delegate?.groupWasSelected(itemId)
-        }
-
-        // REMOVE
-        let alert = UIAlertController(title: "\(alertTitle) Selected",
-                                      message: "\(alertTitle) Id => \(itemId) and title => \(itemTitle) was selected. See line: \(#line) in \(#file)",
-                                      preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
-        self.present(alert, animated: true, completion: nil)
     }
 }
 
 extension DashboardViewController: UICollectionViewDelegateFlowLayout {
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch DashboardViewSection(rawValue: indexPath.section) ?? .courses {
         case .courses:

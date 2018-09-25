@@ -16,7 +16,7 @@
 
 import Foundation
 
-public class AsyncOperation: Operation {
+open class AsyncOperation: Operation {
     public var errors: [Error] = []
 
     enum State: String {
@@ -43,19 +43,19 @@ public class AsyncOperation: Operation {
         }
     }
 
-    override public var isAsynchronous: Bool {
+    override open var isAsynchronous: Bool {
         return true
     }
 
-    override public var isExecuting: Bool {
+    override open var isExecuting: Bool {
         return state == .executing
     }
 
-    override public var isFinished: Bool {
+    override open var isFinished: Bool {
         return state == .finished || state == .cancelled
     }
 
-    override public func start() {
+    override open func start() {
         guard !isCancelled else {
             state = .cancelled
             return

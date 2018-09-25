@@ -22,21 +22,27 @@ import RealmSwift
 
 class GroupNavigationPresenterTests: XCTestCase {
 
+    class MockUseCase: PresenterUseCase {
+    }
+
     var resultingTabs: [Tab]?
     var presenter: GroupNavigationPresenter!
     var resultingError: NSError?
     var frc: MockFetchedResultsController<Tab>?
+    var env: AppEnvironment = testEnvironment()
+    var mockUseCase: MockUseCase!
+    var expectation = XCTestExpectation(description: "expectation")
+    var frcCallCount = 0
 
     override func setUp() {
         super.setUp()
-
-        setupPresenter(MockPersistence())
+        expectation = XCTestExpectation(description: "expectation")
+        env = testEnvironment()
+        presenter = GroupNavigationPresenter(groupID: Group.make().id, view: self, env: env)
+        mockUseCase = MockUseCase()
+        presenter.useCase = mockUseCase
         frc = presenter.frc as? MockFetchedResultsController<Tab>
-    }
-
-    func setupPresenter(_ persistence: Persistence) {
-        presenter = GroupNavigationPresenter(persistence: persistence)
-        presenter.view = self
+        frc?.delegate = presenter
     }
 
     func testLoadTabs() {
@@ -66,6 +72,39 @@ class GroupNavigationPresenterTests: XCTestCase {
     func testTabsAreOrderedByPosition() {
         let expected = SortDescriptor(key: "position", ascending: true)
         XCTAssertEqual(frc?.sortDescriptors, [expected])
+    }
+
+    func testUseCaseFetchesData() {
+        //  given
+        resultingTabs = nil
+        self.frc?.delegate = self
+        let expectation = XCTestExpectation(description: "expectation")
+        let workOp = BlockOperation { [weak self] in
+            self?.frc?.mockObjects = [Tab.make()]
+            self?.frc?.delegate?.controllerDidChangeContent(self!.frc!)
+            expectation.fulfill()
+        }
+        mockUseCase.addOperations([workOp])
+
+       //   when
+        presenter.loadTabs()
+        wait(for: [expectation], timeout: 0.1)
+
+        //  then
+        XCTAssertEqual(resultingTabs?.first?.fullUrl, Tab.make().fullUrl)
+
+        //  when
+        presenter.loadTabs()
+
+        //  then
+        XCTAssertEqual(frcCallCount, 1) //  this attempts to assure that loadFromServer is only called once
+    }
+}
+
+extension GroupNavigationPresenterTests: FetchedResultsControllerDelegate {
+    func controllerDidChangeContent<T>(_ controller: FetchedResultsController<T>) {
+        frcCallCount += 1
+        presenter.loadTabs()
     }
 }
 

@@ -20,12 +20,12 @@ import RealmSwift
 public class Tab: Object {
     @objc public dynamic var id: String = ""
     @objc public dynamic var htmlUrl: String?
-    @objc public dynamic var fullUrl: String?
+    @objc public dynamic var fullUrl: String = ""
     @objc public dynamic var label: String = ""
     @objc public dynamic var position: Int = 0
     @objc public dynamic var contextID: String = ""
 
     override public class func primaryKey() -> String? {
-        return #keyPath(Tab.id)
+        return #keyPath(Tab.fullUrl)
     }
 }
