@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2017-present Instructure, Inc.
+// Copyright (C) 2018-present Instructure, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,12 +15,11 @@
 //
 
 import XCTest
-@testable import CanvasCore
+@testable import Core
 
-class TitleSubtitleViewTests: XCTestCase {
-    func testCreate() {
-        let view = TitleSubtitleView.create(title: "top", subtitle: "bottom")
-        XCTAssertEqual(view?.titleLabel?.text, "top")
-        XCTAssertEqual(view?.subtitleLabel?.text, "bottom")
+class BundleCoreTests: XCTestCase {
+    func testLoadView() {
+        let view = Bundle.loadView(TitleSubtitleView.self)
+        XCTAssertNotNil(view)
     }
 }

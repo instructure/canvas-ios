@@ -17,10 +17,6 @@
 import Foundation
 import Core
 
-protocol AssignmentDetailsViewProtocol: class {
-//    func showAssignment(_ assignment: AssignmentDetail)
-}
-
 typealias AssignmentDetailsViewCompositeDelegate = AssignmentDetailsViewProtocol & ErrorViewController
 
 class AssignmentDetailsPresenter {
@@ -30,11 +26,10 @@ class AssignmentDetailsPresenter {
     var useCase: PresenterUseCase?
     let queue = OperationQueue()
 
-    init(env: AppEnvironment) {
+    init(env: AppEnvironment = .shared, view: AssignmentDetailsViewCompositeDelegate, courseID: String, assignmentID: String) {
+        self.view = view
 //        frc = env.database.fetchedResultsController(predicate: pred, sortDescriptors: [sort], sectionNameKeyPath: nil)
 //        frc?.delegate = self
-
-        loadDataFromServer()
     }
 
     func loadAssignment() {
@@ -47,7 +42,29 @@ class AssignmentDetailsPresenter {
     }
 
     func loadDataFromServer() {
+        // Mock
+        view?.update(assignment: AssignmentDetailsViewModel(
+            name: "Essay #1: The Rocky Planets",
+            pointsPossible: 10.5,
+            dueAt: Date(),
+            submissionTypes: [ "File Upload", "Text Entry", "Website URL" ]
+        ))
+
         guard let useCase = useCase else { return }
         queue.addOperation(useCase)
+    }
+
+    func viewIsReady() {
+        loadDataFromServer()
+    }
+
+    func pageViewStarted() {
+        // Mock
+        view?.updateNavBar(subtitle: "Course 1234", backgroundColor: .green)
+        // log page view
+    }
+
+    func pageViewEnded() {
+        // log page view
     }
 }

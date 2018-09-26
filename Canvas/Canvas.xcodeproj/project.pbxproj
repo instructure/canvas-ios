@@ -1834,7 +1834,6 @@
 		4927046A1CF4AF7100C631C6 = {
 			isa = PBXGroup;
 			children = (
-				7D067CF221505BA000B78AF2 /* StudentReborn.framework */,
 				2C8E356D20939C2D0071ED94 /* Settings.bundle */,
 				4927085D1CF4C33700C631C6 /* Dependencies */,
 				492704751CF4AF7100C631C6 /* Canvas */,
@@ -2874,6 +2873,7 @@
 				B1E568DC21431E8A0025A1F0 /* Realm.framework */,
 				B1E568DD21431E8B0025A1F0 /* RealmSwift.framework */,
 				9FDA15F5213EB71100CC12C7 /* Secrets.framework */,
+				7D067CF221505BA000B78AF2 /* StudentReborn.framework */,
 				7D1D7E04213743D300F7CCFE /* Core.framework */,
 				3B1642C41FBA0426006C55D2 /* CanvasCore.framework */,
 				3B1642C51FBA0426006C55D2 /* CanvasKeymaster.framework */,

@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2016-present Instructure, Inc.
+// Copyright (C) 2018-present Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -16,15 +16,20 @@
 
 import UIKit
 
-open class TitleSubtitleView: UIView {
-    // MARK: - IBOutlets
-    @IBOutlet weak var titleLabel: UILabel?
-    @IBOutlet weak var subtitleLabel: UILabel?
+@IBDesignable
+class DynamicLabel: UILabel {
+    @IBInspectable
+    var textColorName: String = "textDarkest" {
+        didSet {
+            textColor = .named(UIColor.Name(rawValue: textColorName) ?? .textDarkest)
+        }
+    }
 
-    open static func create(title: String, subtitle: String) -> TitleSubtitleView? {
-        let view = Bundle.core.loadNibNamed("TitleSubtitleView", owner: self, options: nil)?.first as? TitleSubtitleView
-        view?.titleLabel?.text = title
-        view?.subtitleLabel?.text = subtitle
-        return view
+    @IBInspectable
+    var textStyle: String = "body" {
+        didSet {
+            font = UIFont.scaledNamedFont(UIFont.Name(rawValue: textStyle) ?? .body)
+            adjustsFontForContentSizeCategory = true
+        }
     }
 }

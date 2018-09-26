@@ -489,15 +489,12 @@
 		7D06401921138CF000D23D78 /* QuizListController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D06401821138CF000D23D78 /* QuizListController.storyboard */; };
 		7D06401D2113917700D23D78 /* QuizListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D06401C2113917700D23D78 /* QuizListController.swift */; };
 		7D06401F21139E0C00D23D78 /* QuizListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D06401E21139E0C00D23D78 /* QuizListCell.swift */; };
-		7D0640212113B47A00D23D78 /* TitleSubtitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0640202113B47A00D23D78 /* TitleSubtitleView.swift */; };
-		7D0640232113BC2700D23D78 /* TitleSubtitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D0640222113BC2700D23D78 /* TitleSubtitleView.xib */; };
 		7D0640262114BF8000D23D78 /* QuizListEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D0640282114BF8000D23D78 /* QuizListEmptyView.xib */; };
 		7D06402A2114EE4A00D23D78 /* QuizModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0640292114EE4A00D23D78 /* QuizModel.swift */; };
 		7D0F8D8421347CD50092E8F8 /* SVGImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0F8D8321347CD50092E8F8 /* SVGImageView.swift */; };
 		7D73ACDB211A010C001FAB47 /* Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D73ACDA211A010C001FAB47 /* Fixture.swift */; };
 		7D73ACDD211A0163001FAB47 /* QuizModel+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D73ACDC211A0163001FAB47 /* QuizModel+Fixture.swift */; };
 		7DD30624211A28C400A4A3D0 /* Date+ISO8601Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD30623211A28C400A4A3D0 /* Date+ISO8601Tests.swift */; };
-		7DD30628211A2D7200A4A3D0 /* TitleSubtitleViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD30627211A2D7200A4A3D0 /* TitleSubtitleViewTests.swift */; };
 		7DD89E8B20AB626600650227 /* AppStoreReview.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DD89E8A20AB626600650227 /* AppStoreReview.m */; };
 		7DF3FFEE2118B1C400DF969B /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 7DF3FFF02118B1C400DF969B /* Localizable.stringsdict */; };
 		7DF3FFF32118CBA600DF969B /* Date+ISO8601.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF3FFF22118CBA600DF969B /* Date+ISO8601.swift */; };
@@ -1118,8 +1115,6 @@
 		7D06401821138CF000D23D78 /* QuizListController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = QuizListController.storyboard; sourceTree = "<group>"; };
 		7D06401C2113917700D23D78 /* QuizListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizListController.swift; sourceTree = "<group>"; };
 		7D06401E21139E0C00D23D78 /* QuizListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizListCell.swift; sourceTree = "<group>"; };
-		7D0640202113B47A00D23D78 /* TitleSubtitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSubtitleView.swift; sourceTree = "<group>"; };
-		7D0640222113BC2700D23D78 /* TitleSubtitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleSubtitleView.xib; sourceTree = "<group>"; };
 		7D0640272114BF8000D23D78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/QuizListEmptyView.xib; sourceTree = "<group>"; };
 		7D0640292114EE4A00D23D78 /* QuizModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizModel.swift; sourceTree = "<group>"; };
 		7D0F8D8321347CD50092E8F8 /* SVGImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGImageView.swift; sourceTree = "<group>"; };
@@ -1154,7 +1149,6 @@
 		7DC4D6AB2146E2D3007B1C06 /* en-GB-instukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-instukhe"; path = "en-GB-instukhe.lproj/SubmissionConfirmationViewController.strings"; sourceTree = "<group>"; };
 		7DC4D6AD2146E2D6007B1C06 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/SubmissionConfirmationViewController.strings"; sourceTree = "<group>"; };
 		7DD30623211A28C400A4A3D0 /* Date+ISO8601Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+ISO8601Tests.swift"; sourceTree = "<group>"; };
-		7DD30627211A2D7200A4A3D0 /* TitleSubtitleViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSubtitleViewTests.swift; sourceTree = "<group>"; };
 		7DD89E8A20AB626600650227 /* AppStoreReview.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppStoreReview.m; sourceTree = "<group>"; };
 		7DF3FFEF2118B1C400DF969B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		7DF3FFF22118CBA600DF969B /* Date+ISO8601.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+ISO8601.swift"; sourceTree = "<group>"; };
@@ -1409,7 +1403,6 @@
 		2CAF1B211F72AEDB007225DF /* CanvasCoreTests */ = {
 			isa = PBXGroup;
 			children = (
-				7DD30626211A2D4C00A4A3D0 /* Views */,
 				7DD30622211A289900A4A3D0 /* Extensions */,
 				7DF3FFF521194AEE00DF969B /* Models */,
 				2CAF1B241F72AEDB007225DF /* Info.plist */,
@@ -1964,8 +1957,6 @@
 				4961F5651F8FB20F0093EC86 /* PrettyImages.xcassets */,
 				4961F5761F8FB2110093EC86 /* So Colorful */,
 				4961F58B1F8FB2140093EC86 /* SplitViewController.swift */,
-				7D0640202113B47A00D23D78 /* TitleSubtitleView.swift */,
-				7D0640222113BC2700D23D78 /* TitleSubtitleView.xib */,
 				4961F5881F8FB2130093EC86 /* Toast */,
 				4961F5661F8FB2100093EC86 /* TokenLabelView.swift */,
 				4961F57D1F8FB2120093EC86 /* UIKit+SoPretty */,
@@ -2939,14 +2930,6 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		7DD30626211A2D4C00A4A3D0 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				7DD30627211A2D7200A4A3D0 /* TitleSubtitleViewTests.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		7DF3FFF521194AEE00DF969B /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -3122,7 +3105,6 @@
 				B186F36A2144BC230026429F /* strip-frameworks.sh in Resources */,
 				49383CF31F8498DA009C8F8E /* CanvasCore.xcassets in Resources */,
 				9F544E051FBB766E00BB2D84 /* InfoPlist.strings in Resources */,
-				7D0640232113BC2700D23D78 /* TitleSubtitleView.xib in Resources */,
 				3BA8BE9B1FE2ED85003EC4FD /* SubmissionConfirmationViewController.xib in Resources */,
 				49CE96641F8FF41B00121A43 /* AnswersFinalViewController.xib in Resources */,
 				2C34211D1F7409CF00D8E158 /* components.plist in Resources */,
@@ -3529,7 +3511,6 @@
 				49CE967D1F8FF41B00121A43 /* NextOrSubmitView.swift in Sources */,
 				3BD43DE91FD20597001A6B34 /* EmptyViewController.swift in Sources */,
 				493020791F902462006BD777 /* ContextID.swift in Sources */,
-				7D0640212113B47A00D23D78 /* TitleSubtitleView.swift in Sources */,
 				497CA7721F82D19600501613 /* HelmNavigationController.swift in Sources */,
 				4961F5921F8FB2230093EC86 /* PagedViewController.swift in Sources */,
 				49CE96E11F8FFC4400121A43 /* MasteryPathAssignment+Collections.swift in Sources */,
@@ -3769,7 +3750,6 @@
 				7DD30624211A28C400A4A3D0 /* Date+ISO8601Tests.swift in Sources */,
 				7D73ACDD211A0163001FAB47 /* QuizModel+Fixture.swift in Sources */,
 				7D73ACDB211A010C001FAB47 /* Fixture.swift in Sources */,
-				7DD30628211A2D7200A4A3D0 /* TitleSubtitleViewTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

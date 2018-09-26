@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2016-present Instructure, Inc.
+// Copyright (C) 2018-present Instructure, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,20 +17,17 @@
 import XCTest
 @testable import Core
 
-class RouteTests: XCTestCase {
-    func testCourse() {
-        XCTAssertEqual(Route.course("7").url.path, "/courses/7")
-    }
+class DividerViewTests: XCTestCase {
+    func testDraw() {
+        let rect = CGRect(x: 0, y: 0, width: 3, height: 3)
+        let view = DividerView(frame: rect)
+        view.tintColorName = "notARealColor"
 
-    func testCourseUser() {
-        XCTAssertEqual(Route.course("4", user: "5").url.path, "/courses/4/users/5")
-    }
+        UIGraphicsBeginImageContext(view.frame.size)
+        view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
 
-    func testCourseAssignment() {
-        XCTAssertEqual(Route.course("4", assignment: "1").url.path, "/courses/4/assignments/1")
-    }
-
-    func testGroup() {
-        XCTAssertEqual(Route.group("2").url.path, "/groups/2")
+        XCTAssertNotNil(image)
     }
 }

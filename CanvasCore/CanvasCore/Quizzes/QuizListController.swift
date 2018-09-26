@@ -36,7 +36,7 @@ open class QuizListController: UITableViewController, PageViewEventViewControlle
     open override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.titleView = TitleSubtitleView.create(title: NSLocalizedString("Quizzes", comment: ""), subtitle: " ")
+        // navigationItem.titleView = TitleSubtitleView.create(title: NSLocalizedString("Quizzes", comment: ""), subtitle: " ")
         refreshControl?.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         refresh()
     }
@@ -101,9 +101,11 @@ open class QuizListController: UITableViewController, PageViewEventViewControlle
 
     func reloadData() {
         navigationController?.navigationBar.barTintColor = data.courseColor
+        /*
         if let titleView = navigationItem.titleView as? TitleSubtitleView {
             titleView.subtitleLabel?.text = data.courseName
         }
+        */
         tableView.backgroundView = data.list.isEmpty ? emptyView : nil
         tableView.reloadData()
         refreshControl?.endRefreshing()

@@ -73,4 +73,10 @@ extension AssignmentDetailsPresenterTests: AssignmentDetailsViewCompositeDelegat
     func showError(_ error: Error) {
         resultingError = error as NSError
     }
+
+    func updateNavBar(subtitle: String, backgroundColor: UIColor) {
+    }
+
+    func update(assignment: AssignmentDetailsViewModel) {
+    }
 }

@@ -25,6 +25,9 @@ class MockDashboardView: DashboardViewProtocol, ErrorViewController {
     var presenter: DashboardPresenterProtocol?
     var viewModel: DashboardViewModel?
 
+    func updateNavBar(logoUrl: URL, color: UIColor, backgroundColor: UIColor) {
+    }
+
     func updateDisplay(_ viewModel: DashboardViewModel) {
         updateDisplayMethodCalledCount += 1
 

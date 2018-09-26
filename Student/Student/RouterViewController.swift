@@ -20,6 +20,7 @@ let routes = [
     "/login",
     "/allcourses",
     "/courses/1/users/2",
+    "/courses/177/assignments/1933",
 ]
 
 class RouterViewController: UITableViewController {

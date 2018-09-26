@@ -28,10 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
-        if CommandLine.arguments.contains("RouterDebug") {
-            showRouterDebug()
-            return true
-        }
 
         // TODO: Remove this at some point
         do {
@@ -47,16 +43,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         window?.rootViewController = createLoginViewController()
         window?.makeKeyAndVisible()
         return true
-    }
-
-    func showRouterDebug() {
-        let tabController = UITabBarController()
-        let router = RouterViewController()
-        let splitView = UISplitViewController()
-        let navigation = UINavigationController(rootViewController: router)
-        splitView.viewControllers = [navigation]
-        tabController.viewControllers = [splitView]
-        window?.rootViewController = tabController
     }
 
     func createLoginViewController() -> LoginViewController {
@@ -119,5 +105,10 @@ extension AppDelegate: LoginViewControllerDelegate {
         Keychain.currentSession = KeychainEntry(token: authToken, baseURL: baseURL)
         // TODO: Persist this keychain entry
         window?.rootViewController = createTabController()
+        if CommandLine.arguments.contains("RouterDebug") {
+            if let root = window?.rootViewController as? UITabBarController {
+                root.selectedViewController?.show(RouterViewController(), sender: nil)
+            }
+        }
     }
 }

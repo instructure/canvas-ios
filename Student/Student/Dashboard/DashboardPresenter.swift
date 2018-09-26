@@ -34,9 +34,6 @@ struct DashboardViewModel {
         let color: UIColor?
     }
 
-    var navBackgroundColor: UIColor
-    var navTextColor: UIColor
-    var navLogoUrl: URL
     var primaryButtonColor: UIColor
     var favorites: [Course]
     var groups: [Group]
@@ -100,6 +97,10 @@ class DashboardPresenter: DashboardPresenterProtocol {
     }
 
     func pageViewStarted() {
+        let navBackgroundColor: UIColor = .black
+        let navTextColor: UIColor = .blue
+        let logo = URL(string: "https://emoji.slack-edge.com/T028ZAGUD/laugh/2d2ad81e3d71f12e.gif")!
+        view?.updateNavBar(logoUrl: logo, color: navTextColor, backgroundColor: navBackgroundColor)
         // log page view
     }
 
@@ -201,12 +202,9 @@ class DashboardPresenter: DashboardPresenterProtocol {
         }
 
         // TODO: fetch branding
-        let navBackgroundColor: UIColor = .black
-        let navTextColor: UIColor = .blue
-        let logo = URL(string: "https://emoji.slack-edge.com/T028ZAGUD/laugh/2d2ad81e3d71f12e.gif")!
         let primaryButtonColor: UIColor = .blue
 
-        return DashboardViewModel(navBackgroundColor: navBackgroundColor, navTextColor: navTextColor, navLogoUrl: logo, primaryButtonColor: primaryButtonColor, favorites: cs, groups: gs)
+        return DashboardViewModel(primaryButtonColor: primaryButtonColor, favorites: cs, groups: gs)
     }
 }
 

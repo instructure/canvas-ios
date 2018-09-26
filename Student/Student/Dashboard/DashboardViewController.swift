@@ -18,6 +18,7 @@ import UIKit
 import Core
 
 protocol DashboardViewProtocol: class {
+    func updateNavBar(logoUrl: URL, color: UIColor, backgroundColor: UIColor)
     func updateDisplay(_ viewModel: DashboardViewModel)
 }
 
@@ -90,16 +91,17 @@ class DashboardViewController: UIViewController, DashboardViewProtocol {
         presenter?.refreshRequested()
     }
 
+    func updateNavBar(logoUrl: URL, color: UIColor, backgroundColor: UIColor) {
+        navigationController?.navigationBar.barTintColor = backgroundColor
+        navigationController?.navigationBar.tintColor = color.ensureContrast(against: backgroundColor)
+        navigationController?.navigationBar.barStyle = backgroundColor.luminance < 0.5 ? .black : .default
+        logoView.load(url: logoUrl)
+    }
+
     func updateDisplay(_ viewModel: DashboardViewModel) {
         self.viewModel = viewModel
 
         // check for empty state
-
-        // update header
-        navigationController?.navigationBar.barTintColor = viewModel.navBackgroundColor
-        navigationController?.navigationBar.tintColor = viewModel.navTextColor.ensureContrast(against: viewModel.navBackgroundColor)
-        navigationController?.navigationBar.barStyle = viewModel.navBackgroundColor.luminance < 0.5 ? .black : .default
-        logoView.load(url: viewModel.navLogoUrl)
 
         // display courses
         collectionView?.reloadData()

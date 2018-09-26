@@ -25,6 +25,11 @@ public let router = Router(routes: [
         return AllCoursesViewController.create()
     },
 
+    RouteHandler(.course(":courseID", assignment: ":assignmentID")) { _, params in
+        guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
+        return AssignmentDetailsViewController.create(courseID: courseID, assignmentID: assignmentID)
+    },
+
     RouteHandler("/groups/:groupID") {_, params in
         guard let groupID = params["groupID"] else { return nil }
         return GroupNavigationTableViewController(groupID: groupID)

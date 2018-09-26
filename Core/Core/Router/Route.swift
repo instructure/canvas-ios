@@ -35,6 +35,10 @@ public struct Route {
         return Route("/courses/\(courseID)/users/\(userID)")
     }
 
+    public static func course(_ courseID: String, assignment assignmentID: String) -> Route {
+        return Route("/courses/\(courseID)/assignments/\(assignmentID)")
+    }
+
     public static let groups = Route("/groups")
 
     public static func group(_ groupID: String) -> Route {

@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2016-present Instructure, Inc.
+// Copyright (C) 2018-present Instructure, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -127,7 +127,8 @@ class UIImageViewLoadTests: XCTestCase {
         }
         let task = view.load(url: svgUrl)
         view.loader?.cancel()
-        XCTAssertEqual(task?.state, .canceling)
+        XCTAssertNotEqual(task, view.loader?.task)
+        XCTAssertNil(view.loader?.task)
     }
 
     func testGreatestCommonFactor() {

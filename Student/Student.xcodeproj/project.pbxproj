@@ -54,7 +54,24 @@
 		7D067CF121505B4600B78AF2 /* GroupNavigationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B032CA9214C55E400B570F7 /* GroupNavigationTableViewController.swift */; };
 		7D08F5342153F6D40042E1F4 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D08F5332153F6D40042E1F4 /* Core.framework */; };
 		7D08F53621541AE80042E1F4 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D08F53521541AE80042E1F4 /* CardView.swift */; };
+		7D1758AC215985AB00F88613 /* AssignmentDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D1758AB215985AB00F88613 /* AssignmentDetailsViewController.storyboard */; };
+		7D1758AD215985B100F88613 /* AssignmentDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D1758AB215985AB00F88613 /* AssignmentDetailsViewController.storyboard */; };
+		7D1758BE215A8B8E00F88613 /* AssignmentDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1758BD215A8B8E00F88613 /* AssignmentDetailsViewModel.swift */; };
+		7D1758E4215AA06C00F88613 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7D1758E7215AA06C00F88613 /* Localizable.strings */; };
+		7D1758E5215AA06C00F88613 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7D1758E7215AA06C00F88613 /* Localizable.strings */; };
+		7D1758E8215AA07E00F88613 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 7D1758EB215AA07E00F88613 /* Localizable.stringsdict */; };
+		7D1758E9215AA07E00F88613 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 7D1758EB215AA07E00F88613 /* Localizable.stringsdict */; };
 		7D7110C321389AD90085C2E5 /* Routes+Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7110C221389AD90085C2E5 /* Routes+Student.swift */; };
+		7D89FBC22159809400EEE2F6 /* AssignmentDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D89FBC12159809400EEE2F6 /* AssignmentDetailsViewController.swift */; };
+		7D979CD4215BE3E300567627 /* Bundle+Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D979CD3215BE3E300567627 /* Bundle+Student.swift */; };
+		7D979CD5215BE3E600567627 /* Bundle+Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D979CD3215BE3E300567627 /* Bundle+Student.swift */; };
+		7D979CD6215BE61100567627 /* AssignmentDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2C4C952159FB5100995F3B /* AssignmentDetailsPresenter.swift */; };
+		7D979CD7215BE61400567627 /* AssignmentDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D89FBC12159809400EEE2F6 /* AssignmentDetailsViewController.swift */; };
+		7D979CD8215BE61F00567627 /* AssignmentDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1758BD215A8B8E00F88613 /* AssignmentDetailsViewModel.swift */; };
+		7DDC4508215BED34003F3209 /* DividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDC4506215BED34003F3209 /* DividerView.swift */; };
+		7DDC4509215BED34003F3209 /* DividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDC4506215BED34003F3209 /* DividerView.swift */; };
+		7DDC450A215BED34003F3209 /* DynamicLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDC4507215BED34003F3209 /* DynamicLabel.swift */; };
+		7DDC450B215BED34003F3209 /* DynamicLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDC4507215BED34003F3209 /* DynamicLabel.swift */; };
 		7DF9BF062151961B0099026B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DF9BF052151961B0099026B /* Colors.xcassets */; };
 		F97304A02122268100AA2557 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C964867211E38B0002C3255 /* Core.framework */; };
 		F97304A12122268500AA2557 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C964867211E38B0002C3255 /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -166,11 +183,15 @@
 		7D067CF521505E2C00B78AF2 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D08F5332153F6D40042E1F4 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D08F53521541AE80042E1F4 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
-		7D349C2E21430887004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
-		7D349C30214308A1004C1074 /* en-GB-instukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-instukhe"; path = "en-GB-instukhe.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
-		7D349C32214308B0004C1074 /* nb-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-instk12"; path = "nb-instk12.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
-		7D349C34214308C3004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		7D1758AB215985AB00F88613 /* AssignmentDetailsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AssignmentDetailsViewController.storyboard; sourceTree = "<group>"; };
+		7D1758BD215A8B8E00F88613 /* AssignmentDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsViewModel.swift; sourceTree = "<group>"; };
+		7D1758E6215AA06C00F88613 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7D1758EA215AA07E00F88613 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		7D7110C221389AD90085C2E5 /* Routes+Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Routes+Student.swift"; sourceTree = "<group>"; };
+		7D89FBC12159809400EEE2F6 /* AssignmentDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsViewController.swift; sourceTree = "<group>"; };
+		7D979CD3215BE3E300567627 /* Bundle+Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Student.swift"; sourceTree = "<group>"; };
+		7DDC4506215BED34003F3209 /* DividerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DividerView.swift; path = ../../Core/Core/Views/DividerView.swift; sourceTree = "<group>"; };
+		7DDC4507215BED34003F3209 /* DynamicLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DynamicLabel.swift; path = ../../Core/Core/Views/DynamicLabel.swift; sourceTree = "<group>"; };
 		7DF9BF052151961B0099026B /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Colors.xcassets; path = ../../Core/Core/Colors.xcassets; sourceTree = "<group>"; };
 		9F22A0AA215AA9D700383C53 /* DashboardUITesttestViewLoads.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DashboardUITesttestViewLoads.json; sourceTree = "<group>"; };
 		9F7F18572148222C007336A0 /* DashboardUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardUITests.swift; sourceTree = "<group>"; };
@@ -257,9 +278,11 @@
 			isa = PBXGroup;
 			children = (
 				3B2C4C942159FB3200995F3B /* Assignments */,
-				3B032CA3214C549D00B570F7 /* Groups */,
 				78815306212BD175005BA428 /* AllCourses */,
 				788152D5212B330C005BA428 /* Dashboard */,
+				7D979CD2215BE3CC00567627 /* Extensions */,
+				3B032CA3214C549D00B570F7 /* Groups */,
+				7DDC4505215BED16003F3209 /* IBDesignables */,
 				2C5C698C211DFFAD00D9AD15 /* AppDelegate.swift */,
 				2CB3261C21387C99009496AF /* RouterViewController.swift */,
 				2C5C6995211DFFAE00D9AD15 /* Assets.xcassets */,
@@ -267,6 +290,8 @@
 				2C5C6997211DFFAE00D9AD15 /* LaunchScreen.storyboard */,
 				2C5C699A211DFFAE00D9AD15 /* Info.plist */,
 				7D7110C221389AD90085C2E5 /* Routes+Student.swift */,
+				7D1758E7215AA06C00F88613 /* Localizable.strings */,
+				7D1758EB215AA07E00F88613 /* Localizable.stringsdict */,
 			);
 			path = Student;
 			sourceTree = "<group>";
@@ -356,6 +381,9 @@
 			isa = PBXGroup;
 			children = (
 				3B2C4C952159FB5100995F3B /* AssignmentDetailsPresenter.swift */,
+				7D89FBC12159809400EEE2F6 /* AssignmentDetailsViewController.swift */,
+				7D1758AB215985AB00F88613 /* AssignmentDetailsViewController.storyboard */,
+				7D1758BD215A8B8E00F88613 /* AssignmentDetailsViewModel.swift */,
 			);
 			path = Assignments;
 			sourceTree = "<group>";
@@ -449,6 +477,23 @@
 			);
 			name = cassettes;
 			path = "../../ios-private/cassettes";
+            sourceTree = "<group>";
+        };
+		7D979CD2215BE3CC00567627 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7D979CD3215BE3E300567627 /* Bundle+Student.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		7DDC4505215BED16003F3209 /* IBDesignables */ = {
+			isa = PBXGroup;
+			children = (
+				7DDC4506215BED34003F3209 /* DividerView.swift */,
+				7DDC4507215BED34003F3209 /* DynamicLabel.swift */,
+			);
+			name = IBDesignables;
 			sourceTree = "<group>";
 		};
 		F9E7D0D0215BE19F00CDC1A3 /* StudentUITests */ = {
@@ -602,6 +647,9 @@
 				7DF9BF062151961B0099026B /* Colors.xcassets in Resources */,
 				2C5C6999211DFFAE00D9AD15 /* LaunchScreen.storyboard in Resources */,
 				2C5C6996211DFFAE00D9AD15 /* Assets.xcassets in Resources */,
+				7D1758E4215AA06C00F88613 /* Localizable.strings in Resources */,
+				7D1758AC215985AB00F88613 /* AssignmentDetailsViewController.storyboard in Resources */,
+				7D1758E8215AA07E00F88613 /* Localizable.stringsdict in Resources */,
 				788152DF212B35F8005BA428 /* DashboardViewController.storyboard in Resources */,
 				7881530A212BD19F005BA428 /* AllCoursesViewController.storyboard in Resources */,
 			);
@@ -627,6 +675,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D1758AD215985B100F88613 /* AssignmentDetailsViewController.storyboard in Resources */,
+				7D1758E5215AA06C00F88613 /* Localizable.strings in Resources */,
+				7D067CED21505B3E00B78AF2 /* AllCoursesViewController.storyboard in Resources */,
+				7D1758E9215AA07E00F88613 /* Localizable.stringsdict in Resources */,
+				7D067CEA21505B3500B78AF2 /* DashboardViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -654,12 +707,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D89FBC22159809400EEE2F6 /* AssignmentDetailsViewController.swift in Sources */,
 				788152FC212B83D0005BA428 /* DashboardSectionHeaderView.swift in Sources */,
 				788152DB212B3470005BA428 /* DashboardPresenter.swift in Sources */,
+				7D979CD4215BE3E300567627 /* Bundle+Student.swift in Sources */,
+				7DDC450A215BED34003F3209 /* DynamicLabel.swift in Sources */,
 				7D7110C321389AD90085C2E5 /* Routes+Student.swift in Sources */,
 				788152ED212B4FA4005BA428 /* DashboardCourseCell.swift in Sources */,
 				7D08F53621541AE80042E1F4 /* CardView.swift in Sources */,
 				3B2C4C962159FB5100995F3B /* AssignmentDetailsPresenter.swift in Sources */,
+				7D1758BE215A8B8E00F88613 /* AssignmentDetailsViewModel.swift in Sources */,
 				3B032CAA214C55E400B570F7 /* GroupNavigationTableViewController.swift in Sources */,
 				2C5C698D211DFFAD00D9AD15 /* AppDelegate.swift in Sources */,
 				788152F5212B7482005BA428 /* DashboardGroupCell.swift in Sources */,
@@ -667,6 +724,7 @@
 				78815310212BD307005BA428 /* AllCoursesPresenter.swift in Sources */,
 				78815309212BD19F005BA428 /* AllCoursesViewController.swift in Sources */,
 				2CB3261D21387C99009496AF /* RouterViewController.swift in Sources */,
+				7DDC4508215BED34003F3209 /* DividerView.swift in Sources */,
 				788152DD212B34F2005BA428 /* DashboardViewController.swift in Sources */,
 				3B542D0D215ABE630084DA9D /* GroupNavigationUseCase.swift in Sources */,
 				78815317212F56E1005BA428 /* AllCoursesCourseCell.swift in Sources */,
@@ -691,6 +749,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DDC450B215BED34003F3209 /* DynamicLabel.swift in Sources */,
 				7D067CE721505B3500B78AF2 /* DashboardSectionHeaderView.swift in Sources */,
 				7D067CE921505B3500B78AF2 /* DashboardViewController.swift in Sources */,
 				7D067CE821505B3500B78AF2 /* DashboardPresenter.swift in Sources */,
@@ -699,8 +758,13 @@
 				7D067CF021505B4600B78AF2 /* GroupNavigationPresenter.swift in Sources */,
 				7D067CE421505B2500B78AF2 /* Routes+Student.swift in Sources */,
 				7D067CF121505B4600B78AF2 /* GroupNavigationTableViewController.swift in Sources */,
+				7D979CD8215BE61F00567627 /* AssignmentDetailsViewModel.swift in Sources */,
 				7D067CE521505B3500B78AF2 /* DashboardCourseCell.swift in Sources */,
+				7DDC4509215BED34003F3209 /* DividerView.swift in Sources */,
+				7D979CD5215BE3E600567627 /* Bundle+Student.swift in Sources */,
 				3B542D0E215ABE6E0084DA9D /* GroupNavigationUseCase.swift in Sources */,
+				7D979CD6215BE61100567627 /* AssignmentDetailsPresenter.swift in Sources */,
+				7D979CD7215BE61400567627 /* AssignmentDetailsViewController.swift in Sources */,
 				7D067CEC21505B3E00B78AF2 /* AllCoursesSectionHeaderView.swift in Sources */,
 				7D067CE621505B3500B78AF2 /* DashboardGroupCell.swift in Sources */,
 				7D067CEE21505B3E00B78AF2 /* AllCoursesViewController.swift in Sources */,
@@ -736,12 +800,24 @@
 			isa = PBXVariantGroup;
 			children = (
 				2C5C6998211DFFAE00D9AD15 /* Base */,
-				7D349C2E21430887004C1074 /* da-instk12 */,
-				7D349C30214308A1004C1074 /* en-GB-instukhe */,
-				7D349C32214308B0004C1074 /* nb-instk12 */,
-				7D349C34214308C3004C1074 /* sv-instk12 */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		7D1758E7215AA06C00F88613 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7D1758E6215AA06C00F88613 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		7D1758EB215AA07E00F88613 /* Localizable.stringsdict */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7D1758EA215AA07E00F88613 /* en */,
+			);
+			name = Localizable.stringsdict;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
