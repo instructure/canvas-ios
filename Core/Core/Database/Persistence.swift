@@ -26,7 +26,7 @@ public protocol Persistence {
     func addOrUpdate<T>(_ entity: T) throws
     func addOrUpdate<T>(_ entities: [T]) throws
     func perform(block: @escaping PersistenceBlockHandler) throws
-    static func performBackgroundTask(block: @escaping PersistenceBlockHandler)
+    static func performBackgroundTask(block: @escaping PersistenceBlockHandler, completionHandler: EmptyHandler)
 
     func clearAllRecords() throws
     func refresh()

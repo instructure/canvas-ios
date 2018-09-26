@@ -103,7 +103,8 @@ class RealmPersistenceTests: XCTestCase {
         try? p.addOrUpdate(model)
 
         let expectation = XCTestExpectation(description: "expectation")
-        RealmPersistence.performBackgroundTask { [weak self] (persistence) in
+        let op = BlockOperation {
+        RealmPersistence.performBackgroundTask(block: { [weak self] (persistence) in
             let a = self!.p!
             let b = persistence as! RealmPersistence
             XCTAssertFalse(a.store === b.store)
@@ -111,8 +112,13 @@ class RealmPersistenceTests: XCTestCase {
             let model = Course(value: ["id": "1", "name": "a"])
 
             XCTAssertNoThrow(try persistence.addOrUpdate(model))
-            expectation.fulfill()
+            }, completionHandler: {
+        })
         }
+
+        let q = OperationQueue()
+        op.completionBlock = { expectation.fulfill() }
+        q.addOperation(op)
 
         wait(for: [expectation], timeout: 1)
 
@@ -128,19 +134,25 @@ class RealmPersistenceTests: XCTestCase {
         let expectedName = "updated"
 
         let expectation = XCTestExpectation(description: "expectation")
-        RealmPersistence.performBackgroundTask { [weak self] (persistence) in
+        let op = BlockOperation {
+            RealmPersistence.performBackgroundTask(block: { [weak self] (persistence) in
+                let a = self!.p!
+                let b = persistence as! RealmPersistence
+                XCTAssertFalse(a.store === b.store)
 
-            let a = self!.p!
-            let b = persistence as! RealmPersistence
-            XCTAssertFalse(a.store === b.store)
+                let objs: [Course] = persistence.fetch(predicate: nil, sortDescriptors: nil)
+                XCTAssertEqual(objs.count, 1)
 
-            let objs: [Course] = persistence.fetch(predicate: nil, sortDescriptors: nil)
-            XCTAssertEqual(objs.count, 1)
+                let model: Course = objs.first!
+                model.name = expectedName
 
-            let model: Course = objs.first!
-            model.name = expectedName
-            expectation.fulfill()
+                }, completionHandler: {
+            })
         }
+
+        let q = OperationQueue()
+        op.completionBlock = { expectation.fulfill() }
+        q.addOperation(op)
 
         wait(for: [expectation], timeout: 0.3)
         p.refresh()

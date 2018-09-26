@@ -149,18 +149,18 @@ extension RealmPersistence: Persistence {
         }
     }
 
-    static public func performBackgroundTask(block: @escaping PersistenceBlockHandler) {
-        DispatchQueue.global().async {
-            autoreleasepool {
-                let instance = RealmPersistence(configuration: RealmPersistence.config)
-                do {
-                    try instance.safeWriteAction {
-                        try block(instance)
-                    }
-                } catch {
-                    fatalError(error.localizedDescription)
+    public static func performBackgroundTask(block: @escaping PersistenceBlockHandler, completionHandler: EmptyHandler) {
+        assert(!Thread.isMainThread)
+        autoreleasepool {
+            let instance = RealmPersistence(configuration: RealmPersistence.config)
+            do {
+                try instance.safeWriteAction {
+                    try block(instance)
                 }
+            } catch {
+                fatalError(error.localizedDescription)
             }
+            completionHandler()
         }
     }
 

@@ -78,7 +78,7 @@ class MockPersistence: Persistence {
         fatalError("Not Implemented")
     }
 
-    static func performBackgroundTask(block: @escaping PersistenceBlockHandler) {
+    static func performBackgroundTask(block: @escaping PersistenceBlockHandler, completionHandler: () -> Void) {
         fatalError("Not Implemented")
     }
 

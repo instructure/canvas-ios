@@ -31,13 +31,14 @@ class DatabaseOperation: AsyncOperation {
             return
         }
 
-        type(of: database).performBackgroundTask { [weak self] client in
+        type(of: database).performBackgroundTask(block: { [weak self] client in
             do {
                 try self?.block(client)
             } catch {
                 self?.error = error
             }
+        }, completionHandler: { [weak self] in
             self?.finish()
-        }
+        })
     }
 }

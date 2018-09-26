@@ -266,33 +266,34 @@ class RealmFetchedResultsControllerTests: XCTestCase {
         }
     }
 
-    func skip_testObservingValueChangesInRowsOnBackgroundThread() {
+    func testObservingValueChangesInRowsOnBackgroundThread() {
         let _: Course = p.make(["id": "1", "name": "a"])
         frc = RealmFetchedResultsController<Course>(persistence: p, sortDescriptors: nil, sectionNameKeyPath: nil)
         frc.delegate = self
         try! frc.performFetch()
         XCTAssertEqual(frc.fetchedObjects?.count, 1)
 
-        let blockExpectation = XCTestExpectation(description: "expectation")
-
+        let opExpectation = XCTestExpectation(description: "opExpectation")
         let op = BlockOperation {
-            RealmPersistence.performBackgroundTask { (pp) in
+            RealmPersistence.performBackgroundTask(block: { (pp) in
                 let b: Course = Course.make(["id": "2", "name": "b", "color": "blue"])
                 try pp.addOrUpdate(b)
                 let courses: [Course] = pp.fetch()
                 XCTAssertEqual(courses.count, 2)
-                blockExpectation.fulfill()
-            }
+            }, completionHandler: {
+                opExpectation.fulfill()
+            })
         }
-        op.start()
 
-        wait(for: [expectation, blockExpectation], timeout: 0.1)
-        XCTAssertTrue(resultsDidChange)
+        let q = OperationQueue()
+        q.addOperation(op)
+
+        wait(for: [opExpectation], timeout: 0.1)
+
+        p.refresh()
         try! frc.performFetch()
-
-        XCTAssertNotNil(frc.fetchedObjects)
-        let objs = frc.fetchedObjects
-        XCTAssertEqual(objs?.count ?? 0, 2)
+        let objs = frc.fetchedObjects ?? []
+        XCTAssertEqual(objs.count, 2)
     }
 }
 
