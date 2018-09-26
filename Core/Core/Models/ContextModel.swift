@@ -21,10 +21,10 @@ public struct ContextModel: Context, Equatable, Hashable {
     public let id: String
 
     public static func expandTildeID(_ id: String) -> String {
-        let parts = id.components(separatedBy: "~")
+        let parts: [String] = id.components(separatedBy: "~")
         if parts.count == 2, let shardID = Int64(parts[0]), let resourceID = Int64(parts[1]) {
             let shardFactor: Int64 = 10_000_000_000_000
-            return "\(Decimal(shardID) * Decimal(shardFactor) + Decimal(resourceID))"
+            return (Decimal(shardID) * Decimal(shardFactor) + Decimal(resourceID)).description
         }
         return id
     }
@@ -50,7 +50,7 @@ public struct ContextModel: Context, Equatable, Hashable {
     }
 
     public init?(path: String) {
-        self.init(parts: path.split(separator: "/").filter({ s in s != "api" && s != "v1" }))
+        self.init(parts: path.split(separator: "/").filter({ (s: Substring) in s != "api" && s != "v1" }))
     }
 
     public init?(url: URL) {

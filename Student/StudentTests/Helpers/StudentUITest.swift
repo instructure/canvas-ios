@@ -73,7 +73,7 @@ public class StudentUITest: XCTestCase {
             var errorOrNil: NSError?
             EarlGrey.selectElement(with: grey_text("Courses"))
                 .assert(grey_notNil(), error: &errorOrNil)
-            let success = errorOrNil == nil
+            let success: Bool = errorOrNil == nil
             print("Dashboard success \(success)")
             return success
         }).wait(withTimeout: 5.0, pollInterval: 0.5)

@@ -45,8 +45,8 @@ public struct RecordableAPI: API {
     @discardableResult
     public func makeRequest<R: APIRequestable>(_ requestable: R, callback: @escaping (R.Response?, URLResponse?, Error?) -> Void) -> URLSessionTask? {
         do {
-            let request = try requestable.urlRequest(relativeTo: baseURL, accessToken: accessToken)
-            let absoluteURL = request.url!.absoluteString
+            let request: URLRequest = try requestable.urlRequest(relativeTo: baseURL, accessToken: accessToken)
+            let absoluteURL: String = request.url!.absoluteString
             let response = VCR.shared.response(for: absoluteURL)
             if (response != nil) {
                 let data = response!.data(using: .utf8)!
