@@ -401,11 +401,6 @@ extension TechDebt.Router {
                 ]
             )
         }
-
-        addRoute("/*path") { parameters, _ in
-            guard let url = parameters?["url"] as? URL else { return nil }
-            return StudentReborn.router.match(.parse(url))
-        }
     }
 }
 
