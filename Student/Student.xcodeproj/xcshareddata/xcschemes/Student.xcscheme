@@ -20,6 +20,20 @@
                ReferencedContainer = "container:Student.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "3B542D4F215AE79E0084DA9D"
+               BuildableName = "StudentUnitTests.xctest"
+               BlueprintName = "StudentUnitTests"
+               ReferencedContainer = "container:Student.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -43,9 +57,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2C5C699E211DFFAE00D9AD15"
-               BuildableName = "StudentTests.xctest"
-               BlueprintName = "StudentTests"
+               BlueprintIdentifier = "F9E7D0CE215BE19F00CDC1A3"
+               BuildableName = "StudentUITests.xctest"
+               BlueprintName = "StudentUITests"
                ReferencedContainer = "container:Student.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -59,13 +73,6 @@
             ReferencedContainer = "container:Student.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "DYLD_INSERT_LIBRARIES"
-            value = "@executable_path/EarlGrey.framework/EarlGrey"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>

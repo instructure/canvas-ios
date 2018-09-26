@@ -10,13 +10,9 @@
 		2C5C698D211DFFAD00D9AD15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5C698C211DFFAD00D9AD15 /* AppDelegate.swift */; };
 		2C5C6996211DFFAE00D9AD15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C5C6995211DFFAE00D9AD15 /* Assets.xcassets */; };
 		2C5C6999211DFFAE00D9AD15 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C5C6997211DFFAE00D9AD15 /* LaunchScreen.storyboard */; };
-		2C5C69A4211DFFAE00D9AD15 /* StudentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5C69A3211DFFAE00D9AD15 /* StudentTests.swift */; };
 		2CB3261D21387C99009496AF /* RouterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB3261C21387C99009496AF /* RouterViewController.swift */; };
 		3B032CA5214C552B00B570F7 /* GroupNavigationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B032CA4214C552B00B570F7 /* GroupNavigationPresenter.swift */; };
 		3B032CAA214C55E400B570F7 /* GroupNavigationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B032CA9214C55E400B570F7 /* GroupNavigationTableViewController.swift */; };
-		3B032CB62150069B00B570F7 /* RecordableAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B032CB52150069B00B570F7 /* RecordableAPI.swift */; };
-		3B032CB8215006A100B570F7 /* StudentUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B032CB7215006A100B570F7 /* StudentUITest.swift */; };
-		3B0CEB902150464100D07CFA /* TestsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B0CEB8F2150464100D07CFA /* TestsFoundation.framework */; };
 		3B2C4C962159FB5100995F3B /* AssignmentDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2C4C952159FB5100995F3B /* AssignmentDetailsPresenter.swift */; };
 		3B412F0121406C410090DE02 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B412EFC21406C000090DE02 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3B412F0321406C410090DE02 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B412EFD21406C000090DE02 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -30,7 +26,6 @@
 		3B542D5D215AE79E0084DA9D /* DashboardIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152E3212B3957005BA428 /* DashboardIntegrationTests.swift */; };
 		3B542D5F215AE79E0084DA9D /* TestsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B0CEB8F2150464100D07CFA /* TestsFoundation.framework */; };
 		3B542D61215AE79E0084DA9D /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C964867211E38B0002C3255 /* Core.framework */; };
-		3B542D79215AEAC10084DA9D /* DashboardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7F18572148222C007336A0 /* DashboardUITests.swift */; };
 		788152DB212B3470005BA428 /* DashboardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152DA212B3470005BA428 /* DashboardPresenter.swift */; };
 		788152DD212B34F2005BA428 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152DC212B34F2005BA428 /* DashboardViewController.swift */; };
 		788152DF212B35F8005BA428 /* DashboardViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 788152DE212B35F8005BA428 /* DashboardViewController.storyboard */; };
@@ -42,7 +37,6 @@
 		78815310212BD307005BA428 /* AllCoursesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7881530F212BD307005BA428 /* AllCoursesPresenter.swift */; };
 		78815317212F56E1005BA428 /* AllCoursesCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78815313212F56E1005BA428 /* AllCoursesCourseCell.swift */; };
 		78815318212F56E1005BA428 /* AllCoursesSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78815314212F56E1005BA428 /* AllCoursesSectionHeaderView.swift */; };
-		7881531F212FC5F7005BA428 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C964867211E38B0002C3255 /* Core.framework */; };
 		7D067CE021505AF200B78AF2 /* StudentReborn.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D067CDE21505AF200B78AF2 /* StudentReborn.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7D067CE421505B2500B78AF2 /* Routes+Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7110C221389AD90085C2E5 /* Routes+Student.swift */; };
 		7D067CE521505B3500B78AF2 /* DashboardCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152EC212B4FA4005BA428 /* DashboardCourseCell.swift */; };
@@ -62,36 +56,23 @@
 		7D08F53621541AE80042E1F4 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D08F53521541AE80042E1F4 /* CardView.swift */; };
 		7D7110C321389AD90085C2E5 /* Routes+Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7110C221389AD90085C2E5 /* Routes+Student.swift */; };
 		7DF9BF062151961B0099026B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DF9BF052151961B0099026B /* Colors.xcassets */; };
-		9F22A0AB215AA9D700383C53 /* DashboardUITesttestViewLoads.json in Resources */ = {isa = PBXBuildFile; fileRef = 9F22A0AA215AA9D700383C53 /* DashboardUITesttestViewLoads.json */; };
-		9F7F18582148222C007336A0 /* DashboardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7F18572148222C007336A0 /* DashboardUITests.swift */; };
-		9FCA66032142C87A00BE0EBB /* SoSeedySwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCA66012142C86C00BE0EBB /* SoSeedySwift.framework */; };
-		9FCA66052142C89300BE0EBB /* SoSeedySwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCA66012142C86C00BE0EBB /* SoSeedySwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		9FCA66102142C8D700BE0EBB /* BoringSSL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCA66092142C8D100BE0EBB /* BoringSSL.framework */; };
-		9FCA66112142C8DD00BE0EBB /* CgRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCA660A2142C8D100BE0EBB /* CgRPC.framework */; };
-		9FCA66122142C8E200BE0EBB /* SwiftGRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCA660B2142C8D100BE0EBB /* SwiftGRPC.framework */; };
-		9FCA66132142C8E600BE0EBB /* SwiftProtobuf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCA66082142C8D100BE0EBB /* SwiftProtobuf.framework */; };
-		9FCA66142142C8EA00BE0EBB /* Secrets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCA66062142C8C300BE0EBB /* Secrets.framework */; };
-		9FCA66152142C8F800BE0EBB /* SwiftGRPC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCA660B2142C8D100BE0EBB /* SwiftGRPC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		9FCA66162142C8FD00BE0EBB /* BoringSSL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCA66092142C8D100BE0EBB /* BoringSSL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		9FCA66172142C90200BE0EBB /* CgRPC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCA660A2142C8D100BE0EBB /* CgRPC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		9FCA66182142C90900BE0EBB /* Secrets.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCA66062142C8C300BE0EBB /* Secrets.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		9FCA66192142C91200BE0EBB /* SwiftProtobuf.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCA66082142C8D100BE0EBB /* SwiftProtobuf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F97304A02122268100AA2557 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C964867211E38B0002C3255 /* Core.framework */; };
 		F97304A12122268500AA2557 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C964867211E38B0002C3255 /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		F97304A4212287C500AA2557 /* EarlGrey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F97304A3212287C400AA2557 /* EarlGrey.framework */; };
-		F97304A7212287F400AA2557 /* EarlGrey.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97304A6212287F400AA2557 /* EarlGrey.swift */; };
-		F97304A921228B7A00AA2557 /* EarlGrey.framework in Embed EarlGrey */ = {isa = PBXBuildFile; fileRef = F97304A3212287C400AA2557 /* EarlGrey.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		F9E7D0D2215BE19F00CDC1A3 /* StudentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E7D0D1215BE19F00CDC1A3 /* StudentUITests.swift */; };
+		F9E7D0DA215BE20400CDC1A3 /* EarlGrey.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E7D0D9215BE20300CDC1A3 /* EarlGrey.swift */; };
+		F9E7D0DF215BE2C100CDC1A3 /* libTestLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F9E7D0DE215BE2C100CDC1A3 /* libTestLib.a */; };
+		F9E7D0E2215BE33000CDC1A3 /* AppFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F9E7D0E1215BE33000CDC1A3 /* AppFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		2C5C69A0211DFFAE00D9AD15 /* PBXContainerItemProxy */ = {
+		3B542D51215AE79E0084DA9D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2C5C6981211DFFAC00D9AD15 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 2C5C6988211DFFAD00D9AD15;
 			remoteInfo = Student;
 		};
-		3B542D51215AE79E0084DA9D /* PBXContainerItemProxy */ = {
+		F9E7D0D4215BE19F00CDC1A3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2C5C6981211DFFAC00D9AD15 /* Project object */;
 			proxyType = 1;
@@ -124,31 +105,14 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9FCA66042142C88600BE0EBB /* Embed Frameworks */ = {
+		F9E7D0E0215BE30A00CDC1A3 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				9FCA66192142C91200BE0EBB /* SwiftProtobuf.framework in Embed Frameworks */,
-				9FCA66182142C90900BE0EBB /* Secrets.framework in Embed Frameworks */,
-				9FCA66172142C90200BE0EBB /* CgRPC.framework in Embed Frameworks */,
-				9FCA66162142C8FD00BE0EBB /* BoringSSL.framework in Embed Frameworks */,
-				9FCA66152142C8F800BE0EBB /* SwiftGRPC.framework in Embed Frameworks */,
-				9FCA66052142C89300BE0EBB /* SoSeedySwift.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F97304A821228B6600AA2557 /* Embed EarlGrey */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(TEST_HOST)/..";
+			dstPath = "$(TARGET_BUILD_DIR)/../../Student.app/Frameworks";
 			dstSubfolderSpec = 0;
 			files = (
-				F97304A921228B7A00AA2557 /* EarlGrey.framework in Embed EarlGrey */,
+				F9E7D0E2215BE33000CDC1A3 /* AppFramework.framework in CopyFiles */,
 			);
-			name = "Embed EarlGrey";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -159,7 +123,6 @@
 		2C5C6995211DFFAE00D9AD15 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C5C6998211DFFAE00D9AD15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2C5C699A211DFFAE00D9AD15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2C5C699F211DFFAE00D9AD15 /* StudentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StudentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C5C69A3211DFFAE00D9AD15 /* StudentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentTests.swift; sourceTree = "<group>"; };
 		2C5C69A5211DFFAE00D9AD15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C964867211E38B0002C3255 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -219,6 +182,13 @@
 		9FCA660B2142C8D100BE0EBB /* SwiftGRPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftGRPC.framework; path = "../../ios-frameworks/SwiftGRPC/SwiftGRPC.framework"; sourceTree = "<group>"; };
 		F97304A3212287C400AA2557 /* EarlGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EarlGrey.framework; path = "../../ios-frameworks/EarlGrey.framework"; sourceTree = "<group>"; };
 		F97304A6212287F400AA2557 /* EarlGrey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarlGrey.swift; sourceTree = "<group>"; };
+		F9E7D0CF215BE19F00CDC1A3 /* StudentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StudentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9E7D0D1215BE19F00CDC1A3 /* StudentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentUITests.swift; sourceTree = "<group>"; };
+		F9E7D0D3215BE19F00CDC1A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F9E7D0D9215BE20300CDC1A3 /* EarlGrey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EarlGrey.swift; sourceTree = "<group>"; };
+		F9E7D0DC215BE23600CDC1A3 /* bridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bridge.h; sourceTree = "<group>"; };
+		F9E7D0DE215BE2C100CDC1A3 /* libTestLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTestLib.a; path = "../../ios-frameworks/eg2/libTestLib.a"; sourceTree = "<group>"; };
+		F9E7D0E1215BE33000CDC1A3 /* AppFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppFramework.framework; path = "../ios-frameworks/eg2/AppFramework.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,22 +197,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F97304A02122268100AA2557 /* Core.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2C5C699C211DFFAE00D9AD15 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3B0CEB902150464100D07CFA /* TestsFoundation.framework in Frameworks */,
-				F97304A4212287C500AA2557 /* EarlGrey.framework in Frameworks */,
-				7881531F212FC5F7005BA428 /* Core.framework in Frameworks */,
-				9FCA66122142C8E200BE0EBB /* SwiftGRPC.framework in Frameworks */,
-				9FCA66102142C8D700BE0EBB /* BoringSSL.framework in Frameworks */,
-				9FCA66112142C8DD00BE0EBB /* CgRPC.framework in Frameworks */,
-				9FCA66032142C87A00BE0EBB /* SoSeedySwift.framework in Frameworks */,
-				9FCA66142142C8EA00BE0EBB /* Secrets.framework in Frameworks */,
-				9FCA66132142C8E600BE0EBB /* SwiftProtobuf.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,16 +217,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F9E7D0CC215BE19F00CDC1A3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F9E7D0DF215BE2C100CDC1A3 /* libTestLib.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		2C5C6980211DFFAC00D9AD15 = {
 			isa = PBXGroup;
 			children = (
+				F9E7D0E1215BE33000CDC1A3 /* AppFramework.framework */,
 				2C5C698B211DFFAD00D9AD15 /* Student */,
 				2C5C69A2211DFFAE00D9AD15 /* StudentTests */,
 				7D067CDD21505AF200B78AF2 /* StudentReborn */,
 				3B542D3E215AE5E10084DA9D /* StudentUnitTests */,
+				F9E7D0D0215BE19F00CDC1A3 /* StudentUITests */,
 				2C964862211E37EC002C3255 /* Frameworks */,
 				2C5C698A211DFFAD00D9AD15 /* Products */,
 			);
@@ -282,9 +246,9 @@
 			isa = PBXGroup;
 			children = (
 				2C5C6989211DFFAD00D9AD15 /* Student.app */,
-				2C5C699F211DFFAE00D9AD15 /* StudentTests.xctest */,
 				7D067CDC21505AF100B78AF2 /* StudentReborn.framework */,
 				3B542D75215AE79E0084DA9D /* StudentUnitTests.xctest */,
+				F9E7D0CF215BE19F00CDC1A3 /* StudentUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -310,7 +274,6 @@
 		2C5C69A2211DFFAE00D9AD15 /* StudentTests */ = {
 			isa = PBXGroup;
 			children = (
-				3B2C4C972159FC8700995F3B /* Assignments */,
 				9F22A0A9215AA9D700383C53 /* cassettes */,
 				3B542D7A215AEACE0084DA9D /* Dashboard */,
 				3B032CAD214C684800B570F7 /* Helpers */,
@@ -325,6 +288,7 @@
 		2C964862211E37EC002C3255 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F9E7D0DE215BE2C100CDC1A3 /* libTestLib.a */,
 				3B542D4D215AE75E0084DA9D /* TestsFoundation.framework */,
 				3B542D4B215AE75B0084DA9D /* Core.framework */,
 				3B542D48215AE6780084DA9D /* Core.framework */,
@@ -487,6 +451,17 @@
 			path = "../../ios-private/cassettes";
 			sourceTree = "<group>";
 		};
+		F9E7D0D0215BE19F00CDC1A3 /* StudentUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F9E7D0DC215BE23600CDC1A3 /* bridge.h */,
+				F9E7D0D9215BE20300CDC1A3 /* EarlGrey.swift */,
+				F9E7D0D1215BE19F00CDC1A3 /* StudentUITests.swift */,
+				F9E7D0D3215BE19F00CDC1A3 /* Info.plist */,
+			);
+			path = StudentUITests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -519,26 +494,6 @@
 			productName = Student;
 			productReference = 2C5C6989211DFFAD00D9AD15 /* Student.app */;
 			productType = "com.apple.product-type.application";
-		};
-		2C5C699E211DFFAE00D9AD15 /* StudentTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2C5C69AB211DFFAE00D9AD15 /* Build configuration list for PBXNativeTarget "StudentTests" */;
-			buildPhases = (
-				2C5C699B211DFFAE00D9AD15 /* Sources */,
-				2C5C699C211DFFAE00D9AD15 /* Frameworks */,
-				2C5C699D211DFFAE00D9AD15 /* Resources */,
-				F97304A821228B6600AA2557 /* Embed EarlGrey */,
-				9FCA66042142C88600BE0EBB /* Embed Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				2C5C69A1211DFFAE00D9AD15 /* PBXTargetDependency */,
-			);
-			name = StudentTests;
-			productName = StudentTests;
-			productReference = 2C5C699F211DFFAE00D9AD15 /* StudentTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		3B542D4F215AE79E0084DA9D /* StudentUnitTests */ = {
 			isa = PBXNativeTarget;
@@ -577,6 +532,25 @@
 			productReference = 7D067CDC21505AF100B78AF2 /* StudentReborn.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		F9E7D0CE215BE19F00CDC1A3 /* StudentUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F9E7D0D8215BE19F00CDC1A3 /* Build configuration list for PBXNativeTarget "StudentUITests" */;
+			buildPhases = (
+				F9E7D0CB215BE19F00CDC1A3 /* Sources */,
+				F9E7D0CC215BE19F00CDC1A3 /* Frameworks */,
+				F9E7D0CD215BE19F00CDC1A3 /* Resources */,
+				F9E7D0E0215BE30A00CDC1A3 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F9E7D0D5215BE19F00CDC1A3 /* PBXTargetDependency */,
+			);
+			name = StudentUITests;
+			productName = StudentUITests;
+			productReference = F9E7D0CF215BE19F00CDC1A3 /* StudentUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -590,12 +564,12 @@
 					2C5C6988211DFFAD00D9AD15 = {
 						CreatedOnToolsVersion = 9.4.1;
 					};
-					2C5C699E211DFFAE00D9AD15 = {
-						CreatedOnToolsVersion = 9.4.1;
-						TestTargetID = 2C5C6988211DFFAD00D9AD15;
-					};
 					7D067CDB21505AF100B78AF2 = {
 						CreatedOnToolsVersion = 9.4;
+					};
+					F9E7D0CE215BE19F00CDC1A3 = {
+						CreatedOnToolsVersion = 10.0;
+						TestTargetID = 2C5C6988211DFFAD00D9AD15;
 					};
 				};
 			};
@@ -613,9 +587,9 @@
 			projectRoot = "";
 			targets = (
 				2C5C6988211DFFAD00D9AD15 /* Student */,
-				2C5C699E211DFFAE00D9AD15 /* StudentTests */,
 				7D067CDB21505AF100B78AF2 /* StudentReborn */,
 				3B542D4F215AE79E0084DA9D /* StudentUnitTests */,
+				F9E7D0CE215BE19F00CDC1A3 /* StudentUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -633,14 +607,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2C5C699D211DFFAE00D9AD15 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9F22A0AB215AA9D700383C53 /* DashboardUITesttestViewLoads.json in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		3B542D68215AE79E0084DA9D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -654,6 +620,13 @@
 			files = (
 				7D067CED21505B3E00B78AF2 /* AllCoursesViewController.storyboard in Resources */,
 				7D067CEA21505B3500B78AF2 /* DashboardViewController.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F9E7D0CD215BE19F00CDC1A3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -701,18 +674,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2C5C699B211DFFAE00D9AD15 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F97304A7212287F400AA2557 /* EarlGrey.swift in Sources */,
-				2C5C69A4211DFFAE00D9AD15 /* StudentTests.swift in Sources */,
-				3B032CB8215006A100B570F7 /* StudentUITest.swift in Sources */,
-				3B542D79215AEAC10084DA9D /* DashboardUITests.swift in Sources */,
-				3B032CB62150069B00B570F7 /* RecordableAPI.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		3B542D52215AE79E0084DA9D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -746,18 +707,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F9E7D0CB215BE19F00CDC1A3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F9E7D0DA215BE20400CDC1A3 /* EarlGrey.swift in Sources */,
+				F9E7D0D2215BE19F00CDC1A3 /* StudentUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		2C5C69A1211DFFAE00D9AD15 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2C5C6988211DFFAD00D9AD15 /* Student */;
-			targetProxy = 2C5C69A0211DFFAE00D9AD15 /* PBXContainerItemProxy */;
-		};
 		3B542D50215AE79E0084DA9D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 2C5C6988211DFFAD00D9AD15 /* Student */;
 			targetProxy = 3B542D51215AE79E0084DA9D /* PBXContainerItemProxy */;
+		};
+		F9E7D0D5215BE19F00CDC1A3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2C5C6988211DFFAD00D9AD15 /* Student */;
+			targetProxy = F9E7D0D4215BE19F00CDC1A3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -947,58 +917,6 @@
 			};
 			name = Release;
 		};
-		2C5C69AC211DFFAE00D9AD15 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B6333T4PXQ;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../ios-frameworks/**";
-				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
-				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
-				INFOPLIST_FILE = StudentTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				OTHER_SWIFT_FLAGS = "-Xfrontend -warn-long-function-bodies=200";
-				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas.StudentTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Student.app/Student";
-			};
-			name = Debug;
-		};
-		2C5C69AD211DFFAE00D9AD15 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B6333T4PXQ;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../ios-frameworks/**";
-				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
-				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
-				INFOPLIST_FILE = StudentTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				OTHER_SWIFT_FLAGS = "-Xfrontend -warn-long-function-bodies=200";
-				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas.StudentTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Student.app/Student";
-			};
-			name = Release;
-		};
 		3B542D73215AE79E0084DA9D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1113,6 +1031,67 @@
 			};
 			name = Release;
 		};
+		F9E7D0D6215BE19F00CDC1A3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B6333T4PXQ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SRCROOT)/../ios-frameworks/eg2/**",
+					"$(SRCROOT)/../ios-frameworks/",
+				);
+				INFOPLIST_FILE = StudentUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../ios-frameworks/eg2/**";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.StudentUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(TARGET_NAME)/bridge.h";
+				SWIFT_VERSION = 4.2;
+				SYSTEM_FRAMEWORK_SEARCH_PATHS = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Student;
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../ios-frameworks/**";
+			};
+			name = Debug;
+		};
+		F9E7D0D7215BE19F00CDC1A3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B6333T4PXQ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SRCROOT)/../ios-frameworks/eg2/**",
+					"$(SRCROOT)/../ios-frameworks/",
+				);
+				INFOPLIST_FILE = StudentUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../ios-frameworks/eg2/**";
+				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.StudentUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(TARGET_NAME)/bridge.h";
+				SWIFT_VERSION = 4.2;
+				SYSTEM_FRAMEWORK_SEARCH_PATHS = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Student;
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../ios-frameworks/**";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1134,15 +1113,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2C5C69AB211DFFAE00D9AD15 /* Build configuration list for PBXNativeTarget "StudentTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2C5C69AC211DFFAE00D9AD15 /* Debug */,
-				2C5C69AD211DFFAE00D9AD15 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		3B542D72215AE79E0084DA9D /* Build configuration list for PBXNativeTarget "StudentUnitTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1157,6 +1127,15 @@
 			buildConfigurations = (
 				7D067CE121505AF200B78AF2 /* Debug */,
 				7D067CE221505AF200B78AF2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F9E7D0D8215BE19F00CDC1A3 /* Build configuration list for PBXNativeTarget "StudentUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F9E7D0D6215BE19F00CDC1A3 /* Debug */,
+				F9E7D0D7215BE19F00CDC1A3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
