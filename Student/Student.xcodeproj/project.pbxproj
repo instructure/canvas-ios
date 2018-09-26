@@ -13,24 +13,27 @@
 		2C5C69A4211DFFAE00D9AD15 /* StudentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5C69A3211DFFAE00D9AD15 /* StudentTests.swift */; };
 		2CB3261D21387C99009496AF /* RouterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB3261C21387C99009496AF /* RouterViewController.swift */; };
 		3B032CA5214C552B00B570F7 /* GroupNavigationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B032CA4214C552B00B570F7 /* GroupNavigationPresenter.swift */; };
-		3B032CA8214C554C00B570F7 /* GroupNavigationPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B032CA7214C554C00B570F7 /* GroupNavigationPresenterTests.swift */; };
 		3B032CAA214C55E400B570F7 /* GroupNavigationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B032CA9214C55E400B570F7 /* GroupNavigationTableViewController.swift */; };
-		3B032CAF214C685B00B570F7 /* MockPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B032CAE214C685B00B570F7 /* MockPersistence.swift */; };
 		3B032CB62150069B00B570F7 /* RecordableAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B032CB52150069B00B570F7 /* RecordableAPI.swift */; };
 		3B032CB8215006A100B570F7 /* StudentUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B032CB7215006A100B570F7 /* StudentUITest.swift */; };
 		3B0CEB902150464100D07CFA /* TestsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B0CEB8F2150464100D07CFA /* TestsFoundation.framework */; };
 		3B2C4C962159FB5100995F3B /* AssignmentDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2C4C952159FB5100995F3B /* AssignmentDetailsPresenter.swift */; };
-		3B2C4C992159FC9F00995F3B /* AssignmentDetailsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2C4C982159FC9F00995F3B /* AssignmentDetailsPresenterTests.swift */; };
 		3B412F0121406C410090DE02 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B412EFC21406C000090DE02 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3B412F0321406C410090DE02 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B412EFD21406C000090DE02 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3B542D0D215ABE630084DA9D /* GroupNavigationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B542D0C215ABE630084DA9D /* GroupNavigationUseCase.swift */; };
 		3B542D0E215ABE6E0084DA9D /* GroupNavigationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B542D0C215ABE630084DA9D /* GroupNavigationUseCase.swift */; };
-		3B542D10215AC0220084DA9D /* TestEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B542D0F215AC0210084DA9D /* TestEnvironment.swift */; };
+		3B542D54215AE79E0084DA9D /* MockPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B032CAE214C685B00B570F7 /* MockPersistence.swift */; };
+		3B542D55215AE79E0084DA9D /* GroupNavigationPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B032CA7214C554C00B570F7 /* GroupNavigationPresenterTests.swift */; };
+		3B542D56215AE79E0084DA9D /* TestEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B542D0F215AC0210084DA9D /* TestEnvironment.swift */; };
+		3B542D5A215AE79E0084DA9D /* DashboardMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152E5212B3987005BA428 /* DashboardMocks.swift */; };
+		3B542D5C215AE79E0084DA9D /* AssignmentDetailsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2C4C982159FC9F00995F3B /* AssignmentDetailsPresenterTests.swift */; };
+		3B542D5D215AE79E0084DA9D /* DashboardIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152E3212B3957005BA428 /* DashboardIntegrationTests.swift */; };
+		3B542D5F215AE79E0084DA9D /* TestsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B0CEB8F2150464100D07CFA /* TestsFoundation.framework */; };
+		3B542D61215AE79E0084DA9D /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C964867211E38B0002C3255 /* Core.framework */; };
+		3B542D79215AEAC10084DA9D /* DashboardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7F18572148222C007336A0 /* DashboardUITests.swift */; };
 		788152DB212B3470005BA428 /* DashboardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152DA212B3470005BA428 /* DashboardPresenter.swift */; };
 		788152DD212B34F2005BA428 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152DC212B34F2005BA428 /* DashboardViewController.swift */; };
 		788152DF212B35F8005BA428 /* DashboardViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 788152DE212B35F8005BA428 /* DashboardViewController.storyboard */; };
-		788152E4212B3957005BA428 /* DashboardIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152E3212B3957005BA428 /* DashboardIntegrationTests.swift */; };
-		788152E6212B3987005BA428 /* DashboardMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152E5212B3987005BA428 /* DashboardMocks.swift */; };
 		788152ED212B4FA4005BA428 /* DashboardCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152EC212B4FA4005BA428 /* DashboardCourseCell.swift */; };
 		788152F5212B7482005BA428 /* DashboardGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152F4212B7482005BA428 /* DashboardGroupCell.swift */; };
 		788152FC212B83D0005BA428 /* DashboardSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152FA212B83D0005BA428 /* DashboardSectionHeaderView.swift */; };
@@ -59,7 +62,6 @@
 		7D08F53621541AE80042E1F4 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D08F53521541AE80042E1F4 /* CardView.swift */; };
 		7D7110C321389AD90085C2E5 /* Routes+Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7110C221389AD90085C2E5 /* Routes+Student.swift */; };
 		7DF9BF062151961B0099026B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DF9BF052151961B0099026B /* Colors.xcassets */; };
-		9F7F18582148222C007336A0 /* DashboardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7F18572148222C007336A0 /* DashboardUITests.swift */; };
 		9FCA66032142C87A00BE0EBB /* SoSeedySwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCA66012142C86C00BE0EBB /* SoSeedySwift.framework */; };
 		9FCA66052142C89300BE0EBB /* SoSeedySwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCA66012142C86C00BE0EBB /* SoSeedySwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9FCA66102142C8D700BE0EBB /* BoringSSL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCA66092142C8D100BE0EBB /* BoringSSL.framework */; };
@@ -87,6 +89,13 @@
 			remoteGlobalIDString = 2C5C6988211DFFAD00D9AD15;
 			remoteInfo = Student;
 		};
+		3B542D51215AE79E0084DA9D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2C5C6981211DFFAC00D9AD15 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2C5C6988211DFFAD00D9AD15;
+			remoteInfo = Student;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -99,6 +108,16 @@
 				3B412F0121406C410090DE02 /* Realm.framework in Embed Frameworks */,
 				F97304A12122268500AA2557 /* Core.framework in Embed Frameworks */,
 				3B412F0321406C410090DE02 /* RealmSwift.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B542D6B215AE79E0084DA9D /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -157,6 +176,12 @@
 		3B412EFD21406C000090DE02 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "../ios-frameworks/RealmSwift.framework"; sourceTree = SOURCE_ROOT; };
 		3B542D0C215ABE630084DA9D /* GroupNavigationUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupNavigationUseCase.swift; sourceTree = "<group>"; };
 		3B542D0F215AC0210084DA9D /* TestEnvironment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestEnvironment.swift; sourceTree = "<group>"; };
+		3B542D38215AE5770084DA9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = /Users/grichards/src/inst.backup/Student/Info.plist; sourceTree = "<absolute>"; };
+		3B542D41215AE5E10084DA9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3B542D48215AE6780084DA9D /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B542D4B215AE75B0084DA9D /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B542D4D215AE75E0084DA9D /* TestsFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TestsFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B542D75215AE79E0084DA9D /* StudentUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StudentUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		788152DA212B3470005BA428 /* DashboardPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardPresenter.swift; sourceTree = "<group>"; };
 		788152DC212B34F2005BA428 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		788152DE212B35F8005BA428 /* DashboardViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DashboardViewController.storyboard; sourceTree = "<group>"; };
@@ -218,6 +243,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3B542D5E215AE79E0084DA9D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B542D5F215AE79E0084DA9D /* TestsFoundation.framework in Frameworks */,
+				3B542D61215AE79E0084DA9D /* Core.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7D067CD821505AF100B78AF2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -235,6 +269,7 @@
 				2C5C698B211DFFAD00D9AD15 /* Student */,
 				2C5C69A2211DFFAE00D9AD15 /* StudentTests */,
 				7D067CDD21505AF200B78AF2 /* StudentReborn */,
+				3B542D3E215AE5E10084DA9D /* StudentUnitTests */,
 				2C964862211E37EC002C3255 /* Frameworks */,
 				2C5C698A211DFFAD00D9AD15 /* Products */,
 			);
@@ -246,6 +281,7 @@
 				2C5C6989211DFFAD00D9AD15 /* Student.app */,
 				2C5C699F211DFFAE00D9AD15 /* StudentTests.xctest */,
 				7D067CDC21505AF100B78AF2 /* StudentReborn.framework */,
+				3B542D75215AE79E0084DA9D /* StudentUnitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -271,10 +307,8 @@
 		2C5C69A2211DFFAE00D9AD15 /* StudentTests */ = {
 			isa = PBXGroup;
 			children = (
-				3B2C4C972159FC8700995F3B /* Assignments */,
+				3B542D7A215AEACE0084DA9D /* Dashboard */,
 				3B032CAD214C684800B570F7 /* Helpers */,
-				3B032CA6214C553A00B570F7 /* Groups */,
-				788152E0212B38C5005BA428 /* Dashboard */,
 				2C96486B211E3AA9002C3255 /* Core.framework */,
 				2C5C69A3211DFFAE00D9AD15 /* StudentTests.swift */,
 				2C5C69A5211DFFAE00D9AD15 /* Info.plist */,
@@ -286,6 +320,9 @@
 		2C964862211E37EC002C3255 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3B542D4D215AE75E0084DA9D /* TestsFoundation.framework */,
+				3B542D4B215AE75B0084DA9D /* Core.framework */,
+				3B542D48215AE6780084DA9D /* Core.framework */,
 				7D08F5332153F6D40042E1F4 /* Core.framework */,
 				7D067CF521505E2C00B78AF2 /* Core.framework */,
 				3B0CEB8F2150464100D07CFA /* TestsFoundation.framework */,
@@ -340,10 +377,8 @@
 		3B032CAD214C684800B570F7 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				3B542D0F215AC0210084DA9D /* TestEnvironment.swift */,
 				3B032CB7215006A100B570F7 /* StudentUITest.swift */,
 				3B032CB52150069B00B570F7 /* RecordableAPI.swift */,
-				3B032CAE214C685B00B570F7 /* MockPersistence.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -362,6 +397,36 @@
 				3B2C4C982159FC9F00995F3B /* AssignmentDetailsPresenterTests.swift */,
 			);
 			path = Assignments;
+			sourceTree = "<group>";
+		};
+		3B542D3E215AE5E10084DA9D /* StudentUnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				3B542D38215AE5770084DA9D /* Info.plist */,
+				788152E0212B38C5005BA428 /* Dashboard */,
+				3B032CA6214C553A00B570F7 /* Groups */,
+				3B542D77215AEA450084DA9D /* Helpers */,
+				3B2C4C972159FC8700995F3B /* Assignments */,
+				3B542D41215AE5E10084DA9D /* Info.plist */,
+			);
+			path = StudentUnitTests;
+			sourceTree = "<group>";
+		};
+		3B542D77215AEA450084DA9D /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				3B542D0F215AC0210084DA9D /* TestEnvironment.swift */,
+				3B032CAE214C685B00B570F7 /* MockPersistence.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		3B542D7A215AEACE0084DA9D /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				9F7F18572148222C007336A0 /* DashboardUITests.swift */,
+			);
+			path = Dashboard;
 			sourceTree = "<group>";
 		};
 		788152D5212B330C005BA428 /* Dashboard */ = {
@@ -383,7 +448,6 @@
 			children = (
 				788152E3212B3957005BA428 /* DashboardIntegrationTests.swift */,
 				788152E5212B3987005BA428 /* DashboardMocks.swift */,
-				9F7F18572148222C007336A0 /* DashboardUITests.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -462,6 +526,25 @@
 			productReference = 2C5C699F211DFFAE00D9AD15 /* StudentTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		3B542D4F215AE79E0084DA9D /* StudentUnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3B542D72215AE79E0084DA9D /* Build configuration list for PBXNativeTarget "StudentUnitTests" */;
+			buildPhases = (
+				3B542D52215AE79E0084DA9D /* Sources */,
+				3B542D5E215AE79E0084DA9D /* Frameworks */,
+				3B542D68215AE79E0084DA9D /* Resources */,
+				3B542D6B215AE79E0084DA9D /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3B542D50215AE79E0084DA9D /* PBXTargetDependency */,
+			);
+			name = StudentUnitTests;
+			productName = StudentTests;
+			productReference = 3B542D75215AE79E0084DA9D /* StudentUnitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		7D067CDB21505AF100B78AF2 /* StudentReborn */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7D067CE321505AF200B78AF2 /* Build configuration list for PBXNativeTarget "StudentReborn" */;
@@ -486,7 +569,7 @@
 		2C5C6981211DFFAC00D9AD15 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0940;
+				LastSwiftUpdateCheck = 1000;
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Instructure, Inc";
 				TargetAttributes = {
@@ -518,6 +601,7 @@
 				2C5C6988211DFFAD00D9AD15 /* Student */,
 				2C5C699E211DFFAE00D9AD15 /* StudentTests */,
 				7D067CDB21505AF100B78AF2 /* StudentReborn */,
+				3B542D4F215AE79E0084DA9D /* StudentUnitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -536,6 +620,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		2C5C699D211DFFAE00D9AD15 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B542D68215AE79E0084DA9D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -600,16 +691,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				F97304A7212287F400AA2557 /* EarlGrey.swift in Sources */,
-				3B032CAF214C685B00B570F7 /* MockPersistence.swift in Sources */,
-				3B032CA8214C554C00B570F7 /* GroupNavigationPresenterTests.swift in Sources */,
-				3B542D10215AC0220084DA9D /* TestEnvironment.swift in Sources */,
 				2C5C69A4211DFFAE00D9AD15 /* StudentTests.swift in Sources */,
 				3B032CB8215006A100B570F7 /* StudentUITest.swift in Sources */,
+				3B542D79215AEAC10084DA9D /* DashboardUITests.swift in Sources */,
 				3B032CB62150069B00B570F7 /* RecordableAPI.swift in Sources */,
-				788152E6212B3987005BA428 /* DashboardMocks.swift in Sources */,
-				9F7F18582148222C007336A0 /* DashboardUITests.swift in Sources */,
-				3B2C4C992159FC9F00995F3B /* AssignmentDetailsPresenterTests.swift in Sources */,
-				788152E4212B3957005BA428 /* DashboardIntegrationTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B542D52215AE79E0084DA9D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B542D54215AE79E0084DA9D /* MockPersistence.swift in Sources */,
+				3B542D55215AE79E0084DA9D /* GroupNavigationPresenterTests.swift in Sources */,
+				3B542D56215AE79E0084DA9D /* TestEnvironment.swift in Sources */,
+				3B542D5A215AE79E0084DA9D /* DashboardMocks.swift in Sources */,
+				3B542D5C215AE79E0084DA9D /* AssignmentDetailsPresenterTests.swift in Sources */,
+				3B542D5D215AE79E0084DA9D /* DashboardIntegrationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -640,6 +738,11 @@
 			isa = PBXTargetDependency;
 			target = 2C5C6988211DFFAD00D9AD15 /* Student */;
 			targetProxy = 2C5C69A0211DFFAE00D9AD15 /* PBXContainerItemProxy */;
+		};
+		3B542D50215AE79E0084DA9D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2C5C6988211DFFAD00D9AD15 /* Student */;
+			targetProxy = 3B542D51215AE79E0084DA9D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -877,6 +980,56 @@
 			};
 			name = Release;
 		};
+		3B542D73215AE79E0084DA9D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B6333T4PXQ;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../ios-frameworks/**";
+				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				INFOPLIST_FILE = Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas.StudentTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Student.app/Student";
+			};
+			name = Debug;
+		};
+		3B542D74215AE79E0084DA9D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B6333T4PXQ;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../ios-frameworks/**";
+				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				INFOPLIST_FILE = Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas.StudentTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Student.app/Student";
+			};
+			name = Release;
+		};
 		7D067CE121505AF200B78AF2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -967,6 +1120,15 @@
 			buildConfigurations = (
 				2C5C69AC211DFFAE00D9AD15 /* Debug */,
 				2C5C69AD211DFFAE00D9AD15 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3B542D72215AE79E0084DA9D /* Build configuration list for PBXNativeTarget "StudentUnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B542D73215AE79E0084DA9D /* Debug */,
+				3B542D74215AE79E0084DA9D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
