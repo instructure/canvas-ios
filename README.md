@@ -82,19 +82,13 @@ with your local instance
 ### Network request recording/replay in UI automation
 For UI automation we record network requests as well as data seeding calls. This will help make our tests run faster as well as be more stable as we are less likely to break due to changes in canvas.
 
-The way recording and replay works is through `VCR.m` in the `SoSeedy` framework. When tests are run, part of the setup process for the test case is to go out to a storage service (tbd) and retrieve a file that contains all of the network and data seeding requests that are made during that test.
-
-On the JS side of react native, we stub out XMLHttpRequest and when we perform a network request we ask `VCR.m` for the recorded response for the request. on data seeding we have a function in `SoSeedy.swift` called `recorded` that is used to wrap a call to the data seeding api.
+The way recording and replay works is through `VCR.swift` in the `SoSeedySwift` framework. When tests are run, part of the setup process for the test case is to find the coorresponding cassette file, stored in `ios-private` that has all of the request/responses made for that test case.
 
 In order to run the recording/replay locally, there are a few steps you need to take.
-- Download minio
-  - `brew install minio/stable/minio`
-  - `minio server /tmp/data`
-  - Log in to the minio UI using `minio` `miniostorage` as the access key and secret key
-  - Create a bucket called `cassettes`
-  - Click on the kabob next to the cassettes bucket and click `Edit policy`
-  - Make the policy `Read and Write` with a prefix of `*`
-- To adjust how the tests are run check out `StudentUITest.swift`
+- Go into StudentUITest.swift and set find the `shouldUseVCR` variable and set it to true.
+- If you want to record new mocks update `VCR.shared.record` to be true
+ - After the test run, you can look for a log output prefixed by `Cassette Directory`. You will then need to copy all of the json files in that directory to `ios-private/cassettes`
+- If you want to use mocks update `VCR.shared.record` to be false and ensure that you have the ios-private submodule checked out.
 
 There are some recorded requests that show up with a key of `{}`. This is due to some of the data seeding requests not serializing to JSON with parameters. It's possible that the request has no parameters. This is something we will want to determine and fix so that asynchronous data seeding calls don't break.
 

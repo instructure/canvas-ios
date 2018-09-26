@@ -62,6 +62,8 @@
 		7D08F53621541AE80042E1F4 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D08F53521541AE80042E1F4 /* CardView.swift */; };
 		7D7110C321389AD90085C2E5 /* Routes+Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7110C221389AD90085C2E5 /* Routes+Student.swift */; };
 		7DF9BF062151961B0099026B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DF9BF052151961B0099026B /* Colors.xcassets */; };
+		9F22A0AB215AA9D700383C53 /* DashboardUITesttestViewLoads.json in Resources */ = {isa = PBXBuildFile; fileRef = 9F22A0AA215AA9D700383C53 /* DashboardUITesttestViewLoads.json */; };
+		9F7F18582148222C007336A0 /* DashboardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7F18572148222C007336A0 /* DashboardUITests.swift */; };
 		9FCA66032142C87A00BE0EBB /* SoSeedySwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCA66012142C86C00BE0EBB /* SoSeedySwift.framework */; };
 		9FCA66052142C89300BE0EBB /* SoSeedySwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCA66012142C86C00BE0EBB /* SoSeedySwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9FCA66102142C8D700BE0EBB /* BoringSSL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCA66092142C8D100BE0EBB /* BoringSSL.framework */; };
@@ -207,6 +209,7 @@
 		7D349C34214308C3004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		7D7110C221389AD90085C2E5 /* Routes+Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Routes+Student.swift"; sourceTree = "<group>"; };
 		7DF9BF052151961B0099026B /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Colors.xcassets; path = ../../Core/Core/Colors.xcassets; sourceTree = "<group>"; };
+		9F22A0AA215AA9D700383C53 /* DashboardUITesttestViewLoads.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DashboardUITesttestViewLoads.json; sourceTree = "<group>"; };
 		9F7F18572148222C007336A0 /* DashboardUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardUITests.swift; sourceTree = "<group>"; };
 		9FCA66012142C86C00BE0EBB /* SoSeedySwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoSeedySwift.framework; path = "../../ios-frameworks/SoSeedySwift.framework"; sourceTree = "<group>"; };
 		9FCA66062142C8C300BE0EBB /* Secrets.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Secrets.framework; path = "../../ios-frameworks/Secrets.framework"; sourceTree = "<group>"; };
@@ -307,6 +310,8 @@
 		2C5C69A2211DFFAE00D9AD15 /* StudentTests */ = {
 			isa = PBXGroup;
 			children = (
+				3B2C4C972159FC8700995F3B /* Assignments */,
+				9F22A0A9215AA9D700383C53 /* cassettes */,
 				3B542D7A215AEACE0084DA9D /* Dashboard */,
 				3B032CAD214C684800B570F7 /* Helpers */,
 				2C96486B211E3AA9002C3255 /* Core.framework */,
@@ -473,6 +478,15 @@
 			path = StudentReborn;
 			sourceTree = "<group>";
 		};
+		9F22A0A9215AA9D700383C53 /* cassettes */ = {
+			isa = PBXGroup;
+			children = (
+				9F22A0AA215AA9D700383C53 /* DashboardUITesttestViewLoads.json */,
+			);
+			name = cassettes;
+			path = "../../ios-private/cassettes";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -623,6 +637,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F22A0AB215AA9D700383C53 /* DashboardUITesttestViewLoads.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

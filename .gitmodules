@@ -1,3 +1,6 @@
 [submodule "ios-frameworks"]
 	path = ios-frameworks
 	url = git@github.com:instructure/ios-frameworks.git
+[submodule "ios-private"]
+	path = ios-private
+	url = git@github.com:instructure/ios-private.git

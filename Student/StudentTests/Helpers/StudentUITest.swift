@@ -23,10 +23,10 @@ import WebKit
 @testable import Student
 
 public class StudentUITest: XCTestCase {
-    let shouldUseVCR = false
+    let shouldUseVCR = true
     override public func setUp() {
         super.setUp()
-        VCR.shared.record = false
+        VCR.shared.record = true
         if shouldUseVCR {
             self.loadCassette()
         }
@@ -41,26 +41,27 @@ public class StudentUITest: XCTestCase {
     override public func tearDown() {
         super.tearDown()
         if shouldUseVCR {
-            self.recordCassette()
+            do {
+                try VCR.shared.recordCassette(testCase: self.name)
+            } catch {
+                XCTFail(error.localizedDescription)
+            }
         }
     }
 
     func loadCassette() {
-        let expectation = XCTestExpectation(description: "Load cassette")
-        VCR.shared.loadCassette(testCase: self.name) { error in
-            XCTAssertNil(error)
-            expectation.fulfill()
-        }
-        wait(for: [expectation], timeout: 10.0)
-    }
+        do {
+            let bundle = Bundle(for: type(of: self))
+            guard let cassettePath = bundle.path(forResource: VCR.shared.stripTestCase(self.name), ofType: "json") else {
+                return
+            }
 
-    func recordCassette() {
-        let expectation = XCTestExpectation(description: "Record cassette")
-        VCR.shared.recordCassette(testCase: self.name) { error in
-            XCTAssertNil(error)
-            expectation.fulfill()
+            let cassetteURL = URL(fileURLWithPath: cassettePath)
+            let data = try Data(contentsOf: cassetteURL)
+            try VCR.shared.loadCassette(cassetteFileContents: data)
+        } catch {
+            XCTFail(error.localizedDescription)
         }
-        wait(for: [expectation], timeout: 10.0)
     }
 
     func login(as user: Soseedy_CanvasUser) {

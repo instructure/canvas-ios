@@ -19,7 +19,7 @@ import EarlGrey
 import SoSeedySwift
 @testable import Student
 
-class DashboardUITtest: StudentUITest {
+class DashboardUITest: StudentUITest {
     func testViewLoads() {
         let course = createCourse()
         let student = createStudent(in: course)
