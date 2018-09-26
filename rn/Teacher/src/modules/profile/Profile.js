@@ -360,8 +360,8 @@ export class Profile extends Component<Object, State> {
           <SafeAreaView style={{ flex: 1 }}>
             { this.renderHeader(user) }
             <View style={styles.infoHeader}>
-              { !!name && <Heavy style={styles.name}>{name}</Heavy> }
-              { !!user.primary_email && <Paragraph style={styles.email}>{user.primary_email}</Paragraph> }
+              { !!name && <Heavy style={styles.name} allowFontScaling={false}>{name}</Heavy> }
+              { !!user.primary_email && <Paragraph style={styles.email} allowFontScaling={false}>{user.primary_email}</Paragraph> }
             </View>
             <ScrollView>
               { this.renderList() }
