@@ -26,7 +26,65 @@ class AllCoursesCourseCell: UICollectionViewCell {
 
     var optionsCallback: (() -> Void)?
 
+    var course: AllCoursesViewModel.Course? = nil {
+        didSet {
+            _accessibilityElements = nil
+        }
+    }
+
+    private var _accessibilityElements: [Any]?
+    override var accessibilityElements: [Any]? {
+        set {
+            _accessibilityElements = newValue
+        }
+
+        get {
+            guard let course = course else {
+                return nil
+            }
+
+            // Return the accessibility elements if we've already created them.
+            if let elements = _accessibilityElements {
+                return elements
+            }
+
+            var elements = [UIAccessibilityElement]()
+            let cardElement = UIAccessibilityElement(accessibilityContainer: self)
+            cardElement.accessibilityLabel = course.title
+            cardElement.accessibilityFrameInContainerSpace = bounds
+            elements.append(cardElement)
+
+            _accessibilityElements = elements
+
+            return _accessibilityElements
+        }
+
+    }
+
+    override var accessibilityCustomActions: [UIAccessibilityCustomAction]? {
+        set {
+        }
+
+        get {
+            return [
+                UIAccessibilityCustomAction(
+                    name: NSLocalizedString("Edit Course", comment: ""),
+                    target: self,
+                    selector: #selector(activateEditCourse)
+                ),
+            ]
+        }
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+
+        course = nil
+        optionsCallback = nil
+    }
+
     func configure(with model: AllCoursesViewModel.Course) {
+        course = model
         titleLabel?.text = model.title
         titleLabel?.textColor = model.color.ensureContrast(against: .white)
         abbrevationLabel?.text = model.abbreviation
@@ -36,6 +94,11 @@ class AllCoursesCourseCell: UICollectionViewCell {
     }
 
     @IBAction func optionsButtonTapped(_ sender: Any) {
+        optionsCallback?()
+    }
+
+    @objc
+    func activateEditCourse() {
         optionsCallback?()
     }
 }

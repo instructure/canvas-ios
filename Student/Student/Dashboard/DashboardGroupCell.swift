@@ -22,7 +22,43 @@ class DashboardGroupCell: UICollectionViewCell {
     @IBOutlet weak var courseNameLabel: UILabel?
     @IBOutlet weak var termLabel: UILabel?
 
+    var group: DashboardViewModel.Group? = nil {
+        didSet {
+            _accessibilityElements = nil
+        }
+    }
+
+    private var _accessibilityElements: [Any]?
+    override var accessibilityElements: [Any]? {
+        set {
+            _accessibilityElements = newValue
+        }
+
+        get {
+            guard let group = group else {
+                return nil
+            }
+
+            // Return the accessibility elements if we've already created them.
+            if let elements = _accessibilityElements {
+                return elements
+            }
+
+            var elements = [UIAccessibilityElement]()
+            let cardElement = UIAccessibilityElement(accessibilityContainer: self)
+            cardElement.accessibilityLabel = group.groupName
+            cardElement.accessibilityFrameInContainerSpace = bounds
+            elements.append(cardElement)
+
+            _accessibilityElements = elements
+
+            return _accessibilityElements
+        }
+
+    }
+
     func configure(with model: DashboardViewModel.Group) {
+        group = model
         groupNameLabel?.text = model.groupName
         groupNameLabel?.textColor = .named(.textDarkest)
         courseNameLabel?.text = model.courseName ?? ""

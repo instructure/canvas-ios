@@ -90,6 +90,38 @@ class AllCoursesViewController: UIViewController, AllCoursesViewProtocol {
         collectionView.reloadData()
         refreshControl.endRefreshing()
     }
+
+    func itemWasSelected(at indexPath: IndexPath) {
+        guard let viewModel = viewModel else {
+            return
+        }
+
+        var alertTitle: String
+        var itemId: String
+        var itemTitle: String
+        if indexPath.section == AllCoursesViewSection.current.rawValue {
+            let course = viewModel.current[indexPath.row]
+            alertTitle = "Course"
+            itemTitle = course.title
+            itemId = course.courseID
+
+            //delegate?.courseWasSelected(itemId)
+        } else {
+            let past = viewModel.past[indexPath.row]
+            alertTitle = "Past Course"
+            itemTitle = past.title
+            itemId = past.courseID
+
+            //delegate?.courseWasSelected(itemId)
+        }
+
+        // REMOVE
+        let alert = UIAlertController(title: "\(alertTitle) Selected",
+            message: "\(alertTitle) Id => \(itemId) and title => \(itemTitle) was selected. See line: \(#line) in \(#file)",
+            preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
 }
 
 extension AllCoursesViewController: ErrorViewController {
@@ -135,6 +167,7 @@ extension AllCoursesViewController: UICollectionViewDataSource {
             }
             let model = viewModel.current[indexPath.row]
             cell.configure(with: model)
+
             cell.optionsCallback = { [unowned self, model] in
                 // TODO:
                 //self.delegate?.courseWasSelected(model.courseID)
@@ -178,36 +211,7 @@ extension AllCoursesViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
-        guard let viewModel = viewModel else {
-            return
-        }
-
-        var alertTitle: String
-        var itemId: String
-        var itemTitle: String
-        if indexPath.section == AllCoursesViewSection.current.rawValue {
-            let course = viewModel.current[indexPath.row]
-            alertTitle = "Course"
-            itemTitle = course.title
-            itemId = course.courseID
-
-            //delegate?.courseWasSelected(itemId)
-        } else {
-            let past = viewModel.past[indexPath.row]
-            alertTitle = "Past Course"
-            itemTitle = past.title
-            itemId = past.courseID
-
-            //delegate?.groupWasSelected(itemId)
-        }
-
-        // REMOVE
-        let alert = UIAlertController(title: "\(alertTitle) Selected",
-                                      message: "\(alertTitle) Id => \(itemId) and title => \(itemTitle) was selected. See line: \(#line) in \(#file)",
-                                      preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+        itemWasSelected(at: indexPath)
     }
 }
 

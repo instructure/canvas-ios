@@ -117,6 +117,20 @@ class DashboardViewController: UIViewController, DashboardViewProtocol {
         alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
+
+    func itemWasSelected(at indexPath: IndexPath) {
+        guard let viewModel = viewModel,
+            let section: DashboardViewSection = DashboardViewSection(rawValue: indexPath.section)
+            else { return }
+
+        switch section {
+        case .courses:
+            break
+        case .groups:
+            let route = Route.group(viewModel.groups[indexPath.item].groupID)
+            router.route(to: route, from: self, options: nil)
+        }
+    }
 }
 
 extension DashboardViewController: ErrorViewController {
@@ -162,6 +176,7 @@ extension DashboardViewController: UICollectionViewDataSource {
             }
             let model = viewModel.favorites[indexPath.row]
             cell.configure(with: model)
+
             cell.optionsCallback = { [unowned self, model] in
                 // TODO:
                 //self.delegate?.courseWasSelected(model.courseID)
@@ -171,6 +186,7 @@ extension DashboardViewController: UICollectionViewDataSource {
                 alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }
+
             return cell
         }
 
@@ -214,17 +230,7 @@ extension DashboardViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let viewModel = viewModel,
-            let section: DashboardViewSection = DashboardViewSection(rawValue: indexPath.section)
-            else { return }
-
-        switch section {
-        case .courses:
-            break
-        case .groups:
-            let route = Route.group(viewModel.groups[indexPath.item].groupID)
-            router.route(to: route, from: self, options: nil)
-        }
+        itemWasSelected(at: indexPath)
     }
 }
 
