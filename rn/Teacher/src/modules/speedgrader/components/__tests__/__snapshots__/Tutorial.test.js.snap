@@ -2,6 +2,7 @@
 
 exports[`Tutorial will render the tutorial after data from async storage has been retrieved 1`] = `
 <View
+  accessibilityViewIsModal={true}
   collapsable={undefined}
   style={
     Object {

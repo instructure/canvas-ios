@@ -126,6 +126,7 @@ export default class Tutorial extends PureComponent<Props, State> {
 
     return (
       <Animated.View
+        accessibilityViewIsModal={true}
         style={[
           styles.tutorial,
           {
