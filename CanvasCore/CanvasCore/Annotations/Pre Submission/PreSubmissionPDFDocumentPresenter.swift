@@ -83,6 +83,8 @@ open class PreSubmissionPDFDocumentPresenter: NSObject {
 
         let pdfViewController = PSPDFViewController(document: pdfDocument, configuration: configuration(forSession: session))
         pdfViewController.navigationItem.rightBarButtonItems = [pdfViewController.activityButtonItem, pdfViewController.annotationButtonItem]
+        pdfViewController.annotationToolbarController?.toolbar.supportedToolbarPositions = [.positionLeft, .positionInTopBar, .positionsVertical,  .positionRight]
+        pdfViewController.annotationToolbarController?.toolbar.toolbarPosition = .positionLeft
         pdfViewController.delegate = self
 
         return pdfViewController

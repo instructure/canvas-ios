@@ -179,6 +179,7 @@ extension TechDebt.Router {
         addRoute("/users/:userID/files/:fileIdent/download", handler: downloadFile)
         addRoute("/files/:fileIdent/download", handler: downloadFile)
         addRoute("/files/:fileIdent", handler: downloadFile)
+        addRoute("/files/:fileIdent/old", handler: downloadFile)
 
         // The :ignored part is usually users_{id}, but canvas ignores it, it can be anything and
         // you will still see your files, and the actual folder path doesn't start until after it.

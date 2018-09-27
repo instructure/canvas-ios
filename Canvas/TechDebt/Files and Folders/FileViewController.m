@@ -29,6 +29,7 @@
 #import "CKIClient+CBIClient.h"
 #import "CBIAssignmentDetailViewController.h"
 #import "UIAlertController+TechDebt.h"
+#import "UIImage+TechDebt.h"
 
 @import PSPDFKit;
 @import PSPDFKitUI;
@@ -36,6 +37,9 @@
 
 @interface FileViewController () < UIDocumentInteractionControllerDelegate>
 @property (nonatomic, strong) UIActivityIndicatorView *activityView;
+@property (nonatomic, strong) UIView *legacyFileMessageView;
+@property (nonatomic, strong) NSLayoutConstraint *legacyFileMessageViewHeightConstraint;
+@property(nonatomic,assign) BOOL showingOldVersion;
 @end
 
 @implementation FileViewController {
@@ -54,6 +58,7 @@
     if (self) {
         self.definesPresentationContext = YES;
         self.activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        self.showingOldVersion = NO;
     }
     return self;
 }
@@ -97,6 +102,15 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self setEdgesForExtendedLayout:UIRectEdgeNone];
     self.pageViewEventLog = [PageViewEventLoggerLegacySupport new];
+
+    // Legacy file message https://instructure.atlassian.net/browse/MBL-11288
+
+    self.legacyFileMessageView.hidden = YES;
+    [self.view addSubview:self.legacyFileMessageView];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[legacyMessage]|" options:0 metrics:nil views:@{@"legacyMessage":self.legacyFileMessageView}]];
+    [self.legacyFileMessageView.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor].active = YES;
+    self.legacyFileMessageViewHeightConstraint = [self.legacyFileMessageView.heightAnchor constraintEqualToConstant:0];
+    self.legacyFileMessageViewHeightConstraint.active = YES;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -132,6 +146,10 @@
     if (assignmentID) {
         self.assignmentID = [assignmentID intValue];
     }
+    NSString *url = params[@"url"];
+    if (url && [url.lastPathComponent isEqualToString:@"old"]) {
+        self.showingOldVersion = YES;
+    }
     [self fetchFile];
 }
 
@@ -156,7 +174,12 @@
         self.file = file;
 
         NSFileManager *fileManager = [NSFileManager defaultManager];
-        NSString *path = [self pathForPersistedFile:file];
+        NSString *path = self.showingOldVersion ? [self legacyPathForPersistedFile:file] : [self pathForPersistedFile:file];
+        if (!self.showingOldVersion && [fileManager fileExistsAtPath:[self legacyPathForPersistedFile:file]]) {
+            self.legacyFileMessageViewHeightConstraint.constant = 25;
+            self.legacyFileMessageView.hidden = NO;
+            [self.view setNeedsLayout];
+        }
         
         if ([fileManager fileExistsAtPath:path]) {
             [self.activityView stopAnimating];
@@ -202,6 +225,51 @@
     [[NSFileManager defaultManager] createDirectoryAtPath:fileDirectory.path withIntermediateDirectories:YES attributes:nil error:nil];
     NSURL *url = [fileDirectory URLByAppendingPathComponent:file.filename isDirectory:NO];
     return url.path;
+}
+
+- (NSString *)legacyPathForPersistedFile:(CKAttachment *)file {
+    NSString *documentsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
+    NSString *path = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_%llu_%@", TheKeymaster.currentClient.authSession.user.id, file.ident, file.filename]];
+    return path;
+}
+
+- (UIView *)legacyFileMessageView {
+    if (!_legacyFileMessageView) {
+        _legacyFileMessageView = [UIView new];
+        _legacyFileMessageView.backgroundColor = Brand.current.primaryButtonColor;
+        _legacyFileMessageView.translatesAutoresizingMaskIntoConstraints = NO;
+
+        UILabel *label = [UILabel new];
+        label.text = NSLocalizedString(@"Tap to view previous version", nil);
+        label.textColor = Brand.current.primaryButtonTextColor;
+        label.font = [UIFont systemFontOfSize:12 weight:UIFontWeightMedium];
+        label.adjustsFontForContentSizeCategory = NO;
+        label.translatesAutoresizingMaskIntoConstraints = NO;
+        [_legacyFileMessageView addSubview:label];
+        [label.centerXAnchor constraintEqualToAnchor:_legacyFileMessageView.centerXAnchor].active = YES;
+        [label.centerYAnchor constraintEqualToAnchor:_legacyFileMessageView.centerYAnchor].active = YES;
+
+        UIImage *disclosureImage = [[UIImage techDebtImageNamed:@"icon_arrow_right"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        UIImageView *disclosure = [[UIImageView alloc] initWithImage:disclosureImage];
+        disclosure.tintColor = Brand.current.primaryButtonTextColor;
+        disclosure.translatesAutoresizingMaskIntoConstraints = NO;
+        [_legacyFileMessageView addSubview:disclosure];
+        [disclosure.centerYAnchor constraintEqualToAnchor:_legacyFileMessageView.centerYAnchor].active = YES;
+        [disclosure.trailingAnchor constraintEqualToAnchor:_legacyFileMessageView.layoutMarginsGuide.trailingAnchor].active = YES;
+        [disclosure.widthAnchor constraintEqualToConstant:20].active = YES;
+        [disclosure.heightAnchor constraintEqualToConstant:20].active = YES;
+
+        UIGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedViewOldVersion)];
+        [_legacyFileMessageView addGestureRecognizer:tap];
+    }
+
+    return _legacyFileMessageView;
+}
+
+- (void)tappedViewOldVersion {
+    NSString *path = [NSString stringWithFormat:@"/files/%llu/old", self.fileIdent];
+    NSURL *url = [NSURL URLWithString:path];
+    [[Router sharedRouter] routeFromController:self toURL:url withOptions:nil];
 }
 
 - (void)setFile:(CKAttachment *)file {
@@ -323,14 +391,18 @@
         childView.translatesAutoresizingMaskIntoConstraints = NO;
         childView.frame = container.bounds;
         [childView setClipsToBounds:NO];
-        [self.view addSubview:childView];
+        [self.view insertSubview:childView belowSubview:self.legacyFileMessageView];
         [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[childView]|" options:0 metrics:nil views:@{@"childView":childView}]];
-        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[childView]|" options:0 metrics:nil views:@{@"childView":childView}]];
+        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[legacyMessage][childView]|" options:0 metrics:nil views:@{@"childView":childView, @"legacyMessage": self.legacyFileMessageView}]];
 
         actionButton.enabled = YES;
 
         if ([contentChildController isKindOfClass:[PSPDFViewController class]]) {
             self.navigationItem.rightBarButtonItems = contentChildController.navigationItem.rightBarButtonItems;
+            PSPDFViewController *pdfViewController = (PSPDFViewController *)contentChildController;
+            if ([pdfViewController.annotationToolbarController.annotationToolbar isKindOfClass:[PSPDFFlexibleToolbar class]]) {
+                ((PSPDFFlexibleToolbar *)pdfViewController.annotationToolbarController.annotationToolbar).toolbarPosition = PSPDFFlexibleToolbarPositionLeft;
+            }
             [[NSNotificationCenter defaultCenter] postNotificationName: @"FileViewControllerBarButtonItemsDidChange" object:nil];
         }
 
