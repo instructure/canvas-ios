@@ -24,6 +24,11 @@ class CoreTestCase: XCTestCase {
     let api = MockAPI()
     var db: Persistence!
     let queue = TestOperationQueue()
+    let router = TestRouter()
+
+    lazy var environment: AppEnvironment = {
+        return AppEnvironment(api: api, database: db, queue: queue, router: router)
+    }()
 
     override func setUp() {
         super.setUp()
@@ -40,6 +45,14 @@ class CoreTestCase: XCTestCase {
     }
 
     @discardableResult func tab(_ template: Template = [:]) -> Tab {
+        return db.make(template)
+    }
+
+    @discardableResult func assignment(_ template: Template = [:]) -> Assignment {
+        return db.make(template)
+    }
+
+    @discardableResult func submission(_ template: Template = [:]) -> Submission {
         return db.make(template)
     }
 

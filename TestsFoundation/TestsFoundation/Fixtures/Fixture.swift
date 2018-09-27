@@ -24,18 +24,22 @@ public protocol Fixture {
 
 public extension Fixture where Self: Decodable {
     static func make(_ template: Template = [:]) -> Self {
-        var t = self.template
-        for (key, _) in template {
-            t[key] = template[key]
-        }
-        for (key, value) in t {
-            if let date = value as? Date {
-                t[key] = date.isoString()
-            }
-        }
-        let data = try! JSONSerialization.data(withJSONObject: t, options: [])
+        let fixture = self.fixture(template)
+        let data = try! JSONSerialization.data(withJSONObject: fixture, options: [])
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
         return try! decoder.decode(Self.self, from: data)
+    }
+
+    public static func fixture(_ template: Template = [:]) -> Template {
+        var t = self.template
+        for (key, _) in template {
+            var value = template[key]
+            if let date = value as? Date {
+                value = date.isoString()
+            }
+            t[key] = value
+        }
+        return t
     }
 }

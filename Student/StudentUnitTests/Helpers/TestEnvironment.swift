@@ -16,11 +16,7 @@
 
 import Foundation
 import Core
-
-struct TestRouter: RouterProtocol {
-    public func route(to url: URLComponents, from: UIViewController, options: Router.RouteOptions? = nil) {
-    }
-}
+import TestsFoundation
 
 func testEnvironment() -> AppEnvironment {
     let persistence = MockPersistence()

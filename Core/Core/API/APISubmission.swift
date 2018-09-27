@@ -17,8 +17,9 @@
 import Foundation
 
 // https://canvas.instructure.com/doc/api/submissions.html#Submission
-struct APISubmission: Codable, Equatable {
-    let assignment_id: String
+public struct APISubmission: Codable, Equatable {
+    let id: ID
+    let assignment_id: ID
     let grade: String?
     let score: Double?
     let submitted_at: Date?
@@ -31,11 +32,11 @@ struct APISubmission: Codable, Equatable {
     let late_policy_status: LatePolicyStatus?
     let points_deducted: Double?
 
-    enum LatePolicyStatus: String, Codable {
+    public enum LatePolicyStatus: String, Codable {
         case late, missing, none
     }
 
-    enum WorkflowState: String, Codable {
+    public enum WorkflowState: String, Codable {
         case submitted, unsubmitted, graded, pending_review
     }
 }

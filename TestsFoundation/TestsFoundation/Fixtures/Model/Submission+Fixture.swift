@@ -17,15 +17,11 @@
 import Foundation
 @testable import Core
 
-extension APISubmission: Fixture {
+extension Submission: Fixture {
     public static var template: Template {
         return [
             "id": "1",
-            "assignment_id": "1",
-            "late": false,
-            "excused": false,
-            "missing": false,
-            "workflow_state": "unsubmitted",
+            "assignmentID": "1",
         ]
     }
 }

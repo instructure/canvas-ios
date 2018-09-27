@@ -17,15 +17,16 @@
 import Foundation
 @testable import Core
 
-extension APISubmission: Fixture {
+extension Assignment: Fixture {
     public static var template: Template {
         return [
             "id": "1",
-            "assignment_id": "1",
-            "late": false,
-            "excused": false,
-            "missing": false,
-            "workflow_state": "unsubmitted",
+            "courseID": "1",
+            "name": "Assignment One",
+            "pointsPossible": 10,
+            "htmlUrl": "https://canvas.instructure.com/courses/1/assignments/2",
+            "rawGradingType": APIAssignment.GradingType.not_graded.rawValue,
+            "rawSubmissionTypes": [APIAssignment.SubmissionType.none.rawValue],
         ]
     }
 }

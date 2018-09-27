@@ -15,17 +15,11 @@
 //
 
 import Foundation
-@testable import Core
+import Core
 
-extension APISubmission: Fixture {
-    public static var template: Template {
-        return [
-            "id": "1",
-            "assignment_id": "1",
-            "late": false,
-            "excused": false,
-            "missing": false,
-            "workflow_state": "unsubmitted",
-        ]
+public struct TestRouter: RouterProtocol {
+    public init() {}
+
+    public func route(to url: URLComponents, from: UIViewController, options: Router.RouteOptions? = nil) {
     }
 }

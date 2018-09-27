@@ -29,11 +29,11 @@ public struct APIAssignment: Codable, Equatable {
     let grading_type: GradingType
     let submission_types: [SubmissionType]
 
-    enum GradingType: String, Codable {
+    public enum GradingType: String, Codable {
         case pass_fail, percent, letter_grade, gpa_scale, points, not_graded
     }
 
-    enum SubmissionType: String, Codable {
+    public enum SubmissionType: String, Codable {
         case discussion_topic
         case online_quiz
         case on_paper

@@ -126,6 +126,7 @@
 		B14FE5D32134E9ED00328CD7 /* DatabaseOperationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14FE5D22134E9ED00328CD7 /* DatabaseOperationTest.swift */; };
 		B14FE5D72134F63C00328CD7 /* RequestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14FE5D62134F63C00328CD7 /* RequestUseCase.swift */; };
 		B14FE5D92134F68800328CD7 /* CoreTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14FE5D82134F68800328CD7 /* CoreTestCase.swift */; };
+		B16F036E215AE6210011E952 /* GetAssignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A32BE5215A81350071B41E /* GetAssignment.swift */; };
 		B17F23A9213788B100771F86 /* PaginatedUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17F23A8213788B100771F86 /* PaginatedUseCase.swift */; };
 		B17F23AB213788BC00771F86 /* TTLOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17F23AA213788BC00771F86 /* TTLOperation.swift */; };
 		B17F23AD21378E3800771F86 /* PaginatedUseCaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17F23AC21378E3800771F86 /* PaginatedUseCaseTest.swift */; };
@@ -144,6 +145,9 @@
 		B1A32BDA21599C700071B41E /* APIAssignment+Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A32BD921599C700071B41E /* APIAssignment+Requestable.swift */; };
 		B1A32BDC21599F1C0071B41E /* APISubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A32BDB21599F1C0071B41E /* APISubmission.swift */; };
 		B1A32BE22159A3100071B41E /* APIAssignmentRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A32BE12159A3100071B41E /* APIAssignmentRequestableTests.swift */; };
+		B1A32BE4215A80990071B41E /* GetAssignmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A32BE3215A80990071B41E /* GetAssignmentTests.swift */; };
+		B1A32BE8215A81780071B41E /* Assignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A32BE7215A81780071B41E /* Assignment.swift */; };
+		B1A32BEA215A87060071B41E /* Submission.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A32BE9215A87060071B41E /* Submission.swift */; };
 		B1EA5AEB212E641900DABC5F /* GetCourses.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EA5AEA212E641900DABC5F /* GetCourses.swift */; };
 		B1EA5AEE212E656100DABC5F /* GetCoursesTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EA5AED212E656100DABC5F /* GetCoursesTest.swift */; };
 		B1EA5AF6212E67CE00DABC5F /* Date+ISO8601.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EA5AF5212E67CE00DABC5F /* Date+ISO8601.swift */; };
@@ -338,6 +342,10 @@
 		B1A32BD921599C700071B41E /* APIAssignment+Requestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIAssignment+Requestable.swift"; sourceTree = "<group>"; };
 		B1A32BDB21599F1C0071B41E /* APISubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISubmission.swift; sourceTree = "<group>"; };
 		B1A32BE12159A3100071B41E /* APIAssignmentRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAssignmentRequestableTests.swift; sourceTree = "<group>"; };
+		B1A32BE3215A80990071B41E /* GetAssignmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAssignmentTests.swift; sourceTree = "<group>"; };
+		B1A32BE5215A81350071B41E /* GetAssignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAssignment.swift; sourceTree = "<group>"; };
+		B1A32BE7215A81780071B41E /* Assignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assignment.swift; sourceTree = "<group>"; };
+		B1A32BE9215A87060071B41E /* Submission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Submission.swift; sourceTree = "<group>"; };
 		B1EA5AEA212E641900DABC5F /* GetCourses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCourses.swift; sourceTree = "<group>"; };
 		B1EA5AED212E656100DABC5F /* GetCoursesTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCoursesTest.swift; sourceTree = "<group>"; };
 		B1EA5AF5212E67CE00DABC5F /* Date+ISO8601.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Date+ISO8601.swift"; path = "../../../CanvasCore/CanvasCore/Extensions/Date+ISO8601.swift"; sourceTree = "<group>"; };
@@ -539,6 +547,8 @@
 				3B47229521385CEA00BF6FF3 /* Group.swift */,
 				3B412F042140808F0090DE02 /* TTL.swift */,
 				3B032C9E214C52CE00B570F7 /* Tab.swift */,
+				B1A32BE7215A81780071B41E /* Assignment.swift */,
+				B1A32BE9215A87060071B41E /* Submission.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -729,6 +739,7 @@
 				9FE84DD9214FE06300B95A68 /* GetGroup.swift */,
 				B18126912150542A00E71F63 /* GetContext.swift */,
 				9FE84DDD2150281300B95A68 /* GetContextTabs.swift */,
+				B1A32BE5215A81350071B41E /* GetAssignment.swift */,
 			);
 			path = "Use Cases";
 			sourceTree = "<group>";
@@ -784,6 +795,7 @@
 				9FE84DDB214FE5C500B95A68 /* GetGroupTest.swift */,
 				B18126932150564900E71F63 /* GetContextTests.swift */,
 				9FE84DE1215037A000B95A68 /* GetContextTabsTest.swift */,
+				B1A32BE3215A80990071B41E /* GetAssignmentTests.swift */,
 			);
 			path = "Use Cases";
 			sourceTree = "<group>";
@@ -1019,6 +1031,7 @@
 				B1EA5AF8212E6A6D00DABC5F /* OperationSet.swift in Sources */,
 				B17F23B12137981B00771F86 /* Clock.swift in Sources */,
 				9FE84DDE2150281300B95A68 /* GetContextTabs.swift in Sources */,
+				B1A32BE8215A81780071B41E /* Assignment.swift in Sources */,
 				3B3467E021370F6600F9BC2E /* GetMobileVerify.swift in Sources */,
 				B1A32BDC21599F1C0071B41E /* APISubmission.swift in Sources */,
 				3B032C9F214C52CE00B570F7 /* Tab.swift in Sources */,
@@ -1059,6 +1072,7 @@
 				B14FE5D12134E9D200328CD7 /* DatabaseOperation.swift in Sources */,
 				7D4D5EB2213F2A200080AC14 /* UIImageView+load.swift in Sources */,
 				7D80AC0C212B4C6F00C40ECE /* APITab.swift in Sources */,
+				B16F036E215AE6210011E952 /* GetAssignment.swift in Sources */,
 				3B472271213795AF00BF6FF3 /* RealmPersistence.swift in Sources */,
 				7DD7F890215ADFA5006E1715 /* UIFont+Core.swift in Sources */,
 				7D80AC23212B8A2100C40ECE /* APIAccount.swift in Sources */,
@@ -1087,6 +1101,7 @@
 				3B346755213052C700F9BC2E /* NSError+CoreErrors.swift in Sources */,
 				7D8262EF212B228F00BD268D /* APICourse+Requestable.swift in Sources */,
 				3B032CBA2150258F00B570F7 /* PresenterUseCase.swift in Sources */,
+				B1A32BEA215A87060071B41E /* Submission.swift in Sources */,
 				B1445307212E5B6E0009D848 /* FetchedResultsController.swift in Sources */,
 				7D1758B42159898D00F88613 /* TitleSubtitleView.swift in Sources */,
 				B144530B212E5BCC0009D848 /* AsyncOperation.swift in Sources */,
@@ -1128,6 +1143,7 @@
 				7D062AF721249E7700677F66 /* ContextModel+Tests.swift in Sources */,
 				B14D55612130B6740066D275 /* TestOperationQueue.swift in Sources */,
 				7DC23092213D710000318ED0 /* UIImageView+load+Tests.swift in Sources */,
+				B1A32BE4215A80990071B41E /* GetAssignmentTests.swift in Sources */,
 				3B472274213795E500BF6FF3 /* RealmPersistenceTests.swift in Sources */,
 				7D979CCA215BDFD500567627 /* DividerViewTests.swift in Sources */,
 				9F7DF8172136EEE400966382 /* OperationSetTest.swift in Sources */,
