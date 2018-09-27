@@ -17,8 +17,9 @@
 import UIKit
 import Core
 
-protocol AllCoursesViewProtocol: class {
-    func updateDisplay(_ viewModel: AllCoursesViewModel)
+protocol AllCoursesViewProtocol: ErrorViewController {
+    func updateNavBar(color: UIColor, backgroundColor: UIColor)
+    func update(courses: AllCoursesViewModel)
 }
 
 class AllCoursesViewController: UIViewController, AllCoursesViewProtocol {
@@ -38,12 +39,9 @@ class AllCoursesViewController: UIViewController, AllCoursesViewProtocol {
     @IBOutlet weak var collectionView: UICollectionView!
 
     static func create(env: AppEnvironment = .shared) -> AllCoursesViewController {
-        let storyboard = UIStoryboard(name: "AllCoursesViewController", bundle: nil)
-        guard let vc = storyboard.instantiateViewController(withIdentifier: "vc") as? AllCoursesViewController else {
-            fatalError("AllCoursesViewController should come from the storyboard in: \(#function)")
-        }
-        vc.presenter = AllCoursesPresenter(env: env, view: vc)
-        return vc
+        let view = Bundle.loadController(self)
+        view.presenter = AllCoursesPresenter(env: env, view: view)
+        return view
     }
 
     // MARK: Lifecycle methods
@@ -51,7 +49,7 @@ class AllCoursesViewController: UIViewController, AllCoursesViewProtocol {
         super.viewDidLoad()
 
         // Navigation Bar Setup
-        navigationItem.title = NSLocalizedString("All Courses", comment: "All Courses screen title")
+        navigationItem.title = NSLocalizedString("All Courses", bundle: .student, comment: "All Courses screen title")
 
         // Collection View Setup
         collectionView.delegate = self
@@ -76,15 +74,16 @@ class AllCoursesViewController: UIViewController, AllCoursesViewProtocol {
         presenter?.refreshRequested()
     }
 
-    func updateDisplay(_ viewModel: AllCoursesViewModel) {
-        self.viewModel = viewModel
+    func updateNavBar(color: UIColor, backgroundColor: UIColor) {
+        navigationController?.navigationBar.barTintColor = backgroundColor
+        navigationController?.navigationBar.tintColor = color.ensureContrast(against: backgroundColor)
+        navigationController?.navigationBar.barStyle = backgroundColor.luminance < 0.5 ? .black : .default
+    }
+
+    func update(courses: AllCoursesViewModel) {
+        self.viewModel = courses
 
         // check for empty state
-
-        // update header
-        navigationController?.navigationBar.barTintColor = viewModel.navBackgroundColor
-        navigationController?.navigationBar.tintColor = viewModel.navTextColor.ensureContrast(against: viewModel.navBackgroundColor)
-        navigationController?.navigationBar.barStyle = viewModel.navBackgroundColor.luminance < 0.5 ? .black : .default
 
         // display courses
         collectionView.reloadData()

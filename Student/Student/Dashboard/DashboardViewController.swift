@@ -17,7 +17,7 @@
 import UIKit
 import Core
 
-protocol DashboardViewProtocol: class {
+protocol DashboardViewProtocol: ErrorViewController {
     func updateNavBar(logoUrl: URL, color: UIColor, backgroundColor: UIColor)
     func updateDisplay(_ viewModel: DashboardViewModel)
 }
@@ -41,13 +41,9 @@ class DashboardViewController: UIViewController, DashboardViewProtocol {
     let groupsColumns: CGFloat = 1
 
     static func create(env: AppEnvironment = .shared) -> DashboardViewController {
-        let storyboard = UIStoryboard(name: "DashboardViewController", bundle: nil)
-        guard let vc = storyboard.instantiateViewController(withIdentifier: "vc") as? DashboardViewController else {
-            fatalError("Must create DashboardViewController from a storyboard in \(#function)")
-        }
-        let presenter = DashboardPresenter(env: env, view: vc)
-        vc.presenter = presenter
-        return vc
+        let view = Bundle.loadController(self)
+        view.presenter = DashboardPresenter(env: env, view: view)
+        return view
     }
 
     // MARK: Lifecycle methods
@@ -55,7 +51,7 @@ class DashboardViewController: UIViewController, DashboardViewProtocol {
         super.viewDidLoad()
 
         // Navigation Bar Setup
-        let editBarButton = UIBarButtonItem(title: NSLocalizedString("Edit", comment: ""), style: .plain, target: self, action: #selector(editBarButtonTapped(object:)))
+        let editBarButton = UIBarButtonItem(title: NSLocalizedString("Edit", bundle: .student, comment: ""), style: .plain, target: self, action: #selector(editBarButtonTapped(object:)))
         navigationItem.rightBarButtonItem = editBarButton
 
         navigationItem.titleView = logoView
@@ -213,14 +209,14 @@ extension DashboardViewController: UICollectionViewDataSource {
             var rightColor: UIColor?
             var action: (() -> Void)?
             if indexPath.section == DashboardViewSection.courses.rawValue {
-                title = NSLocalizedString("Courses", comment: "")
-                rightText = NSLocalizedString("See All", comment: "")
+                title = NSLocalizedString("Courses", bundle: .student, comment: "")
+                rightText = NSLocalizedString("See All", bundle: .student, comment: "")
                 rightColor = viewModel?.primaryButtonColor
                 action = { [unowned self] in
                     self.presenter?.seeAllWasTapped()
                 }
             } else {
-                title = NSLocalizedString("Groups", comment: "")
+                title = NSLocalizedString("Groups", bundle: .student, comment: "")
             }
 
             v.configure(title: title, rightText: rightText, rightColor: rightColor, rightAction: action)

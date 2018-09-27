@@ -31,7 +31,7 @@ struct DashboardViewModel {
         let groupName: String
         let courseName: String?
         let term: String?
-        let color: UIColor?
+        let color: UIColor
     }
 
     var primaryButtonColor: UIColor
@@ -53,7 +53,7 @@ protocol DashboardPresenterProtocol {
 }
 
 class DashboardPresenter: DashboardPresenterProtocol {
-    weak var view: (DashboardViewProtocol & ErrorViewController)?
+    weak var view: DashboardViewProtocol?
     let api: API
     let database: Persistence
     let queue: OperationQueue
@@ -76,7 +76,7 @@ class DashboardPresenter: DashboardPresenterProtocol {
         return fetcher
     }()
 
-    init(env: AppEnvironment, view: (DashboardViewProtocol & ErrorViewController)?) {
+    init(env: AppEnvironment = .shared, view: DashboardViewProtocol?) {
         self.api = env.api
         self.database = env.database
         self.queue = env.queue
@@ -198,11 +198,11 @@ class DashboardPresenter: DashboardPresenterProtocol {
             if group.name.isEmpty || group.id.isEmpty {
                 return nil
             }
-            return DashboardViewModel.Group(groupID: group.id, groupName: group.name, courseName: nil, term: nil, color: UIColor(hexString: group.color) ?? .blue)
+            return DashboardViewModel.Group(groupID: group.id, groupName: group.name, courseName: nil, term: nil, color: UIColor(hexString: group.color) ?? .named(.electric))
         }
 
         // TODO: fetch branding
-        let primaryButtonColor: UIColor = .blue
+        let primaryButtonColor: UIColor = .named(.electric)
 
         return DashboardViewModel(primaryButtonColor: primaryButtonColor, favorites: cs, groups: gs)
     }

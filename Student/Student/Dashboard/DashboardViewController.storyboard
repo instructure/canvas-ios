@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -14,7 +13,7 @@
         <!--Dashboard View Controller-->
         <scene sceneID="nGz-cP-lCo">
             <objects>
-                <viewController storyboardIdentifier="vc" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Mnz-qV-poC" customClass="DashboardViewController" customModule="Student" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DashboardViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Mnz-qV-poC" customClass="DashboardViewController" customModule="Student" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1tL-HS-6c7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -45,21 +44,30 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nra-CP-Czg">
                                                             <rect key="frame" x="0.0" y="81" width="125" height="82"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A Course Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H8P-5N-Szi">
-                                                                    <rect key="frame" x="8" y="8" width="109" height="43"/>
-                                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
-                                                                    <color key="textColor" name="textDarkest"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="700" text="A Course Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H8P-5N-Szi" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
+                                                                    <rect key="frame" x="8" y="8" width="109" height="19.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="cardTitle"/>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                                                    </userDefinedRuntimeAttributes>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ABR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AvR-vH-Vjt">
-                                                                    <rect key="frame" x="8" y="53" width="109" height="15"/>
-                                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
-                                                                    <color key="textColor" name="textDark"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ABR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AvR-vH-Vjt" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
+                                                                    <rect key="frame" x="8" y="29.5" width="109" height="15"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="caption"/>
+                                                                    </userDefinedRuntimeAttributes>
                                                                 </label>
                                                             </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
+                                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="AvR-vH-Vjt" secondAttribute="bottom" constant="8" id="2im-pr-XpN"/>
                                                                 <constraint firstItem="H8P-5N-Szi" firstAttribute="leading" secondItem="nra-CP-Czg" secondAttribute="leading" constant="8" id="4Ai-A6-Jez"/>
                                                                 <constraint firstItem="AvR-vH-Vjt" firstAttribute="top" secondItem="H8P-5N-Szi" secondAttribute="bottom" constant="2" id="HvK-Va-4KQ"/>
                                                                 <constraint firstAttribute="trailing" secondItem="H8P-5N-Szi" secondAttribute="trailing" constant="8" id="IcM-p9-yju"/>
@@ -150,35 +158,48 @@
                                                                 <constraint firstAttribute="width" constant="4" id="eSN-yH-KfY"/>
                                                             </constraints>
                                                         </view>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6pm-ya-ch0">
-                                                            <rect key="frame" x="12" y="8" width="130" height="21.5"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
-                                                            <color key="textColor" name="textDarkest"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6pm-ya-ch0" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
+                                                            <rect key="frame" x="12" y="12" width="130" height="19.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="cardTitle"/>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                                            </userDefinedRuntimeAttributes>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Baq-Qg-psf">
-                                                            <rect key="frame" x="12" y="32.5" width="130" height="19.5"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                                            <color key="textColor" name="electric"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Baq-Qg-psf" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
+                                                            <rect key="frame" x="12" y="33.5" width="130" height="17"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="cardSubtitle"/>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="electric"/>
+                                                            </userDefinedRuntimeAttributes>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TERM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fxG-6r-7ml">
-                                                            <rect key="frame" x="12" y="51" width="130" height="14.5"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
-                                                            <color key="textColor" name="textDark"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TERM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fxG-6r-7ml" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
+                                                            <rect key="frame" x="12" y="52.5" width="130" height="14.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="caption"/>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
+                                                            </userDefinedRuntimeAttributes>
                                                         </label>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="bottom" secondItem="fHj-wj-FF6" secondAttribute="bottom" id="6KL-sS-fgj"/>
                                                         <constraint firstAttribute="trailing" secondItem="6pm-ya-ch0" secondAttribute="trailing" constant="8" id="IR9-5F-RGY"/>
-                                                        <constraint firstItem="fxG-6r-7ml" firstAttribute="top" secondItem="Baq-Qg-psf" secondAttribute="bottom" constant="-1" id="Jaq-gl-6to"/>
-                                                        <constraint firstItem="Baq-Qg-psf" firstAttribute="top" secondItem="6pm-ya-ch0" secondAttribute="bottom" constant="3" id="WvZ-6z-yAF"/>
-                                                        <constraint firstItem="6pm-ya-ch0" firstAttribute="top" secondItem="L6h-eU-15p" secondAttribute="top" constant="8" id="XL0-1E-UT9"/>
+                                                        <constraint firstItem="fxG-6r-7ml" firstAttribute="top" secondItem="Baq-Qg-psf" secondAttribute="bottom" constant="2" id="Jaq-gl-6to"/>
+                                                        <constraint firstItem="Baq-Qg-psf" firstAttribute="top" secondItem="6pm-ya-ch0" secondAttribute="bottom" constant="2" id="WvZ-6z-yAF"/>
+                                                        <constraint firstItem="6pm-ya-ch0" firstAttribute="top" secondItem="L6h-eU-15p" secondAttribute="top" constant="12" id="XL0-1E-UT9"/>
                                                         <constraint firstAttribute="trailing" secondItem="fxG-6r-7ml" secondAttribute="trailing" constant="8" id="ZCq-o0-dcb"/>
                                                         <constraint firstItem="fHj-wj-FF6" firstAttribute="leading" secondItem="L6h-eU-15p" secondAttribute="leading" id="ZKR-xd-qLT"/>
                                                         <constraint firstAttribute="trailing" secondItem="Baq-Qg-psf" secondAttribute="trailing" constant="8" id="doY-yZ-ziH"/>
+                                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="fxG-6r-7ml" secondAttribute="bottom" constant="12" id="ebd-f3-US7"/>
                                                         <constraint firstItem="6pm-ya-ch0" firstAttribute="leading" secondItem="fHj-wj-FF6" secondAttribute="trailing" constant="8" id="gtX-En-4nx"/>
                                                         <constraint firstItem="fxG-6r-7ml" firstAttribute="leading" secondItem="fHj-wj-FF6" secondAttribute="trailing" constant="8" id="oZL-F0-Bc1"/>
                                                         <constraint firstItem="Baq-Qg-psf" firstAttribute="leading" secondItem="fHj-wj-FF6" secondAttribute="trailing" constant="8" id="rbE-cl-YQQ"/>
@@ -210,18 +231,24 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Section Header Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cdF-Fi-o6d">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Section Header Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cdF-Fi-o6d" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
                                             <rect key="frame" x="16" y="14" width="237" height="29"/>
-                                            <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="24"/>
-                                            <color key="textColor" name="textDarkest"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="heading"/>
+                                            </userDefinedRuntimeAttributes>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="bottom" buttonType="roundedRect" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RLb-JR-jec">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="bottom" buttonType="roundedRect" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RLb-JR-jec" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
                                             <rect key="frame" x="308" y="15.5" width="51" height="32"/>
-                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
-                                            <state key="normal" title="See All">
-                                                <color key="titleColor" name="electric"/>
-                                            </state>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <state key="normal" title="See All"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="electric"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="button"/>
+                                            </userDefinedRuntimeAttributes>
                                             <connections>
                                                 <action selector="rightButtonTapped:" destination="orm-17-Sxi" eventType="touchUpInside" id="V1e-it-79b"/>
                                             </connections>
@@ -265,12 +292,6 @@
         <image name="shadow" width="21" height="21"/>
         <namedColor name="electric">
             <color red="0.0" green="0.55686274509803924" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="textDark">
-            <color red="0.54509803921568623" green="0.58823529411764708" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="textDarkest">
-            <color red="0.17647058823529413" green="0.23137254901960785" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

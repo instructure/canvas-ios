@@ -16,10 +16,20 @@
 
 import UIKit
 
-class AllCoursesSectionHeaderView: UICollectionReusableView {
-    @IBOutlet weak var titleLabel: UILabel?
+@IBDesignable
+class DynamicButton: UIButton {
+    @IBInspectable
+    var textColorName: String = "electric" {
+        didSet {
+            tintColor = .named(UIColor.Name(rawValue: textColorName) ?? .electric)
+        }
+    }
 
-    func configure(title: String) {
-        titleLabel?.text = title
+    @IBInspectable
+    var textStyle: String = "button" {
+        didSet {
+            titleLabel?.font = UIFont.scaledNamedFont(UIFont.Name(rawValue: textStyle) ?? .button)
+            titleLabel?.adjustsFontForContentSizeCategory = true
+        }
     }
 }

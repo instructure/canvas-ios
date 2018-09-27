@@ -58,13 +58,12 @@ class DashboardGroupCell: UICollectionViewCell {
     }
 
     func configure(with model: DashboardViewModel.Group) {
+        let color = model.color.ensureContrast(against: .named(.white))
         group = model
         groupNameLabel?.text = model.groupName
-        groupNameLabel?.textColor = .named(.textDarkest)
-        courseNameLabel?.text = model.courseName ?? ""
-        courseNameLabel?.textColor = model.color?.ensureContrast(against: .white) ?? .black
-        termLabel?.text = model.term ?? ""
-        termLabel?.textColor = .named(.textDark)
-        leftColorView?.backgroundColor = model.color ?? .black
+        courseNameLabel?.text = model.courseName
+        courseNameLabel?.textColor = color
+        termLabel?.text = model.term
+        leftColorView?.backgroundColor = color
     }
 }

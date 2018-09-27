@@ -17,12 +17,12 @@
 import Core
 import UIKit
 
-protocol AssignmentDetailsViewProtocol {
+protocol AssignmentDetailsViewProtocol: ErrorViewController {
     func updateNavBar(subtitle: String, backgroundColor: UIColor)
     func update(assignment: AssignmentDetailsViewModel)
 }
 
-class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewProtocol, ErrorViewController {
+class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewProtocol {
     @IBOutlet weak var nameLabel: UILabel?
     @IBOutlet weak var pointsLabel: UILabel?
     @IBOutlet weak var dueHeadingLabel: UILabel?

@@ -17,16 +17,14 @@
 import Foundation
 import Core
 
-typealias AssignmentDetailsViewCompositeDelegate = AssignmentDetailsViewProtocol & ErrorViewController
-
 class AssignmentDetailsPresenter {
-    weak var view: AssignmentDetailsViewCompositeDelegate?
+    weak var view: AssignmentDetailsViewProtocol?
 //    var frc: FetchedResultsController<Assignment>?
 
     var useCase: PresenterUseCase?
     let queue = OperationQueue()
 
-    init(env: AppEnvironment = .shared, view: AssignmentDetailsViewCompositeDelegate, courseID: String, assignmentID: String) {
+    init(env: AppEnvironment = .shared, view: AssignmentDetailsViewProtocol, courseID: String, assignmentID: String) {
         self.view = view
 //        frc = env.database.fetchedResultsController(predicate: pred, sortDescriptors: [sort], sectionNameKeyPath: nil)
 //        frc?.delegate = self

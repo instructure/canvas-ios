@@ -61,6 +61,12 @@
 		7D1758E5215AA06C00F88613 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7D1758E7215AA06C00F88613 /* Localizable.strings */; };
 		7D1758E8215AA07E00F88613 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 7D1758EB215AA07E00F88613 /* Localizable.stringsdict */; };
 		7D1758E9215AA07E00F88613 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 7D1758EB215AA07E00F88613 /* Localizable.stringsdict */; };
+		7D63F77A215C253A00151E49 /* AllCoursesViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78815308212BD19F005BA428 /* AllCoursesViewController.storyboard */; };
+		7D63F77B215C253A00151E49 /* DashboardViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 788152DE212B35F8005BA428 /* DashboardViewController.storyboard */; };
+		7D63F77F215D327300151E49 /* DynamicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D63F77E215D327200151E49 /* DynamicButton.swift */; };
+		7D63F780215D327300151E49 /* DynamicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D63F77E215D327200151E49 /* DynamicButton.swift */; };
+		7D63F781215D37B100151E49 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D08F53521541AE80042E1F4 /* CardView.swift */; };
+		7D63F782215D37C200151E49 /* AssignmentDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D1758AB215985AB00F88613 /* AssignmentDetailsViewController.storyboard */; };
 		7D7110C321389AD90085C2E5 /* Routes+Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7110C221389AD90085C2E5 /* Routes+Student.swift */; };
 		7D89FBC22159809400EEE2F6 /* AssignmentDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D89FBC12159809400EEE2F6 /* AssignmentDetailsViewController.swift */; };
 		7D979CD4215BE3E300567627 /* Bundle+Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D979CD3215BE3E300567627 /* Bundle+Student.swift */; };
@@ -187,6 +193,7 @@
 		7D1758BD215A8B8E00F88613 /* AssignmentDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsViewModel.swift; sourceTree = "<group>"; };
 		7D1758E6215AA06C00F88613 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7D1758EA215AA07E00F88613 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		7D63F77E215D327200151E49 /* DynamicButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DynamicButton.swift; path = ../../Core/Core/Views/DynamicButton.swift; sourceTree = "<group>"; };
 		7D7110C221389AD90085C2E5 /* Routes+Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Routes+Student.swift"; sourceTree = "<group>"; };
 		7D89FBC12159809400EEE2F6 /* AssignmentDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsViewController.swift; sourceTree = "<group>"; };
 		7D979CD3215BE3E300567627 /* Bundle+Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Student.swift"; sourceTree = "<group>"; };
@@ -470,15 +477,6 @@
 			path = StudentReborn;
 			sourceTree = "<group>";
 		};
-		9F22A0A9215AA9D700383C53 /* cassettes */ = {
-			isa = PBXGroup;
-			children = (
-				9F22A0AA215AA9D700383C53 /* DashboardUITesttestViewLoads.json */,
-			);
-			name = cassettes;
-			path = "../../ios-private/cassettes";
-            sourceTree = "<group>";
-        };
 		7D979CD2215BE3CC00567627 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -491,9 +489,19 @@
 			isa = PBXGroup;
 			children = (
 				7DDC4506215BED34003F3209 /* DividerView.swift */,
+				7D63F77E215D327200151E49 /* DynamicButton.swift */,
 				7DDC4507215BED34003F3209 /* DynamicLabel.swift */,
 			);
 			name = IBDesignables;
+			sourceTree = "<group>";
+		};
+		9F22A0A9215AA9D700383C53 /* cassettes */ = {
+			isa = PBXGroup;
+			children = (
+				9F22A0AA215AA9D700383C53 /* DashboardUITesttestViewLoads.json */,
+			);
+			name = cassettes;
+			path = "../../ios-private/cassettes";
 			sourceTree = "<group>";
 		};
 		F9E7D0D0215BE19F00CDC1A3 /* StudentUITests */ = {
@@ -666,6 +674,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D63F782215D37C200151E49 /* AssignmentDetailsViewController.storyboard in Resources */,
 				7D067CED21505B3E00B78AF2 /* AllCoursesViewController.storyboard in Resources */,
 				7D067CEA21505B3500B78AF2 /* DashboardViewController.storyboard in Resources */,
 			);
@@ -677,9 +686,9 @@
 			files = (
 				7D1758AD215985B100F88613 /* AssignmentDetailsViewController.storyboard in Resources */,
 				7D1758E5215AA06C00F88613 /* Localizable.strings in Resources */,
-				7D067CED21505B3E00B78AF2 /* AllCoursesViewController.storyboard in Resources */,
+				7D63F77A215C253A00151E49 /* AllCoursesViewController.storyboard in Resources */,
 				7D1758E9215AA07E00F88613 /* Localizable.stringsdict in Resources */,
-				7D067CEA21505B3500B78AF2 /* DashboardViewController.storyboard in Resources */,
+				7D63F77B215C253A00151E49 /* DashboardViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -709,6 +718,7 @@
 			files = (
 				7D89FBC22159809400EEE2F6 /* AssignmentDetailsViewController.swift in Sources */,
 				788152FC212B83D0005BA428 /* DashboardSectionHeaderView.swift in Sources */,
+				7D63F77F215D327300151E49 /* DynamicButton.swift in Sources */,
 				788152DB212B3470005BA428 /* DashboardPresenter.swift in Sources */,
 				7D979CD4215BE3E300567627 /* Bundle+Student.swift in Sources */,
 				7DDC450A215BED34003F3209 /* DynamicLabel.swift in Sources */,
@@ -756,6 +766,7 @@
 				7D067CEF21505B3E00B78AF2 /* AllCoursesPresenter.swift in Sources */,
 				7D067CEB21505B3E00B78AF2 /* AllCoursesCourseCell.swift in Sources */,
 				7D067CF021505B4600B78AF2 /* GroupNavigationPresenter.swift in Sources */,
+				7D63F781215D37B100151E49 /* CardView.swift in Sources */,
 				7D067CE421505B2500B78AF2 /* Routes+Student.swift in Sources */,
 				7D067CF121505B4600B78AF2 /* GroupNavigationTableViewController.swift in Sources */,
 				7D979CD8215BE61F00567627 /* AssignmentDetailsViewModel.swift in Sources */,
@@ -768,6 +779,7 @@
 				7D067CEC21505B3E00B78AF2 /* AllCoursesSectionHeaderView.swift in Sources */,
 				7D067CE621505B3500B78AF2 /* DashboardGroupCell.swift in Sources */,
 				7D067CEE21505B3E00B78AF2 /* AllCoursesViewController.swift in Sources */,
+				7D63F780215D327300151E49 /* DynamicButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

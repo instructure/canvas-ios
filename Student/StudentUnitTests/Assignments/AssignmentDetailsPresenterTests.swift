@@ -65,7 +65,7 @@ class AssignmentDetailsPresenterTests: XCTestCase {
     }
 }
 
-extension AssignmentDetailsPresenterTests: AssignmentDetailsViewCompositeDelegate {
+extension AssignmentDetailsPresenterTests: AssignmentDetailsViewProtocol {
 //    func showAssignment(_ assignment: Assignment) {
 //        resultingAssignment = assignment
 //    }

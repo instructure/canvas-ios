@@ -18,7 +18,7 @@ import Foundation
 
 public extension UIFont {
     public enum Name: String {
-        case body, label, title
+        case body, button, caption, cardTitle, cardSubtitle, heading, label, title
     }
 
     /// Get a named font style, that is dynamically scaled.
@@ -28,7 +28,15 @@ public extension UIFont {
         switch name {
         case .body:
             return UIFontMetrics(forTextStyle: .body).scaledFont(for: .systemFont(ofSize: 16, weight: .regular))
-        case .label:
+        case .caption:
+            return UIFontMetrics(forTextStyle: .caption1).scaledFont(for: .systemFont(ofSize: 12, weight: .semibold))
+        case .cardTitle:
+            return UIFontMetrics(forTextStyle: .callout).scaledFont(for: .systemFont(ofSize: 16, weight: .semibold))
+        case .cardSubtitle:
+            return UIFontMetrics(forTextStyle: .callout).scaledFont(for: .systemFont(ofSize: 14, weight: .semibold))
+        case .heading:
+            return UIFontMetrics(forTextStyle: .title1).scaledFont(for: .systemFont(ofSize: 24, weight: .heavy))
+        case .label, .button:
             return UIFontMetrics(forTextStyle: .callout).scaledFont(for: .systemFont(ofSize: 16, weight: .medium))
         case .title:
             return UIFontMetrics(forTextStyle: .title3).scaledFont(for: .systemFont(ofSize: 20, weight: .semibold))

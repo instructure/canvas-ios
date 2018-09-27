@@ -26,8 +26,6 @@ struct AllCoursesViewModel {
         let imageUrl: URL?
     }
 
-    var navBackgroundColor: UIColor
-    var navTextColor: UIColor
     var current: [Course]
     var past: [Course]
 }
@@ -43,7 +41,7 @@ protocol AllCoursesPresenterProtocol {
 }
 
 class AllCoursesPresenter: AllCoursesPresenterProtocol {
-    weak var view: (AllCoursesViewProtocol & ErrorViewController)?
+    weak var view: AllCoursesViewProtocol?
     let api: API
     let database: Persistence
     let queue: OperationQueue
@@ -57,7 +55,7 @@ class AllCoursesPresenter: AllCoursesPresenterProtocol {
         return fetcher
     }()
 
-    init(env: AppEnvironment, view: (AllCoursesViewProtocol & ErrorViewController)?) {
+    init(env: AppEnvironment = .shared, view: AllCoursesViewProtocol?) {
         self.api = env.api
         self.database = env.database
         self.queue = env.queue
@@ -74,6 +72,11 @@ class AllCoursesPresenter: AllCoursesPresenterProtocol {
     }
 
     func pageViewStarted() {
+        // TODO: fetch branding
+        let navBackgroundColor: UIColor = .white
+        let navTextColor: UIColor = .blue
+        view?.updateNavBar(color: navTextColor, backgroundColor: navBackgroundColor)
+
         // log page view
     }
 
@@ -128,8 +131,7 @@ class AllCoursesPresenter: AllCoursesPresenterProtocol {
         let courses = coursesFetch.fetchedObjects ?? []
         let vm = transformToViewModel(current: courses, past: courses)
 
-        self.view?.updateDisplay(vm)
-
+        view?.update(courses: vm)
     }
 
     func transformToViewModel(current: [Course], past: [Course]) -> AllCoursesViewModel {
@@ -144,11 +146,7 @@ class AllCoursesPresenter: AllCoursesPresenterProtocol {
             return AllCoursesViewModel.Course(courseID: course.id, title: name, abbreviation: course.courseCode ?? "", color: UIColor(hexString: course.color) ?? .gray, imageUrl: imageUrl)
         }
 
-        // TODO: fetch branding
-        let navBackgroundColor: UIColor = .white
-        let navTextColor: UIColor = .blue
-
-        let vm = AllCoursesViewModel(navBackgroundColor: navBackgroundColor, navTextColor: navTextColor, current: vms, past: vms)
+        let vm = AllCoursesViewModel(current: vms, past: vms)
         return vm
     }
 }

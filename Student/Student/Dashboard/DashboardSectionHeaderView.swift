@@ -24,14 +24,13 @@ class DashboardSectionHeaderView: UICollectionReusableView {
 
     func configure(title: String, rightText: String?, rightColor: UIColor?, rightAction: (() -> Void)?) {
         titleLabel?.text = title
-        titleLabel?.textColor = .named(.textDarkest)
         rightButton?.setTitle(rightText, for: .normal)
-        rightButton?.tintColor = rightColor?.ensureContrast(against: .white)
+        rightButton?.tintColor = rightColor?.ensureContrast(against: .named(.white))
         if let action = rightAction {
             rightActionCallback = action
             rightButton?.isHidden = false
             rightButton?.isEnabled = true
-            rightButton?.accessibilityLabel = NSLocalizedString("See All Courses", comment: "")
+            rightButton?.accessibilityLabel = NSLocalizedString("See All Courses", bundle: .student, comment: "")
         } else {
             rightActionCallback = nil
             rightButton?.isHidden = true

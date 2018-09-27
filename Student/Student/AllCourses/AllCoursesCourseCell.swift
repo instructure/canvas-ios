@@ -68,7 +68,7 @@ class AllCoursesCourseCell: UICollectionViewCell {
         get {
             return [
                 UIAccessibilityCustomAction(
-                    name: NSLocalizedString("Edit Course", comment: ""),
+                    name: NSLocalizedString("Edit Course", bundle: .student, comment: ""),
                     target: self,
                     selector: #selector(activateEditCourse)
                 ),
@@ -84,12 +84,12 @@ class AllCoursesCourseCell: UICollectionViewCell {
     }
 
     func configure(with model: AllCoursesViewModel.Course) {
+        let color = model.color.ensureContrast(against: .named(.white))
         course = model
         titleLabel?.text = model.title
-        titleLabel?.textColor = model.color.ensureContrast(against: .white)
+        titleLabel?.textColor = color
         abbrevationLabel?.text = model.abbreviation
-        abbrevationLabel?.textColor = .named(.textDark)
-        topView?.backgroundColor = model.color
+        topView?.backgroundColor = color
         imageView?.load(url: model.imageUrl)
     }
 
