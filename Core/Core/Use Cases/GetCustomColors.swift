@@ -17,9 +17,9 @@
 import Foundation
 
 public class GetCustomColors: RequestUseCase<GetCustomColorsRequest> {
-    public init(api: API = URLSessionAPI(), database: Persistence, force: Bool = false) {
+    public init(env: AppEnvironment, force: Bool = false) {
         let request = GetCustomColorsRequest()
-        super.init(api: api, database: database, request: request)
+        super.init(api: env.api, database: env.database, request: request)
 
         addSaveOperation { [weak self] response, urlResponse, client in
             try self?.save(response: response, urlResponse: urlResponse, client: client)

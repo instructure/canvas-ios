@@ -19,10 +19,10 @@ import Foundation
 public class GetCourse: DetailUseCase<GetCourseRequest, Course> {
     let courseID: String
 
-    init(courseID: String, api: API = URLSessionAPI(), database: Persistence) {
+    public init(courseID: String, env: AppEnvironment = .shared) {
         self.courseID = courseID
         let request = GetCourseRequest(courseID: courseID)
-        super.init(api: api, database: database, request: request)
+        super.init(api: env.api, database: env.database, request: request)
     }
 
     override public var predicate: NSPredicate {

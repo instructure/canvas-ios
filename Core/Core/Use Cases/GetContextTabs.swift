@@ -19,10 +19,10 @@ import Foundation
 class GetPaginatedContextTabs: PaginatedUseCase<GetTabsRequest, Tab> {
     let context: Context
 
-    init(context: Context, api: API = URLSessionAPI(), database: Persistence, force: Bool = false) {
+    init(context: Context, env: AppEnvironment, force: Bool = false) {
         self.context = context
         let request = GetTabsRequest(context: context)
-        super.init(api: api, database: database, request: request)
+        super.init(api: env.api, database: env.database, request: request)
     }
 
     override var predicate: NSPredicate {
@@ -43,9 +43,9 @@ class GetPaginatedContextTabs: PaginatedUseCase<GetTabsRequest, Tab> {
 }
 
 public class GetContextTabs: OperationSet {
-    public init(context: Context, api: API = URLSessionAPI(), database: Persistence, force: Bool = false) {
-        let paginated = GetPaginatedContextTabs(context: context, api: api, database: database)
-        let ttl = TTLOperation(key: "get-\(context.canvasContextID)-tabs", database: database, operation: paginated, force: force)
+    public init(context: Context, env: AppEnvironment, force: Bool = false) {
+        let paginated = GetPaginatedContextTabs(context: context, env: env)
+        let ttl = TTLOperation(key: "get-\(context.canvasContextID)-tabs", database: env.database, operation: paginated, force: force)
         super.init(operations: [ttl])
     }
 }

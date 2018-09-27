@@ -17,16 +17,16 @@
 import Foundation
 
 open class GetContext: TTLOperation {
-    public init(context: Context, database: Persistence, api: API, force: Bool = false) {
+    public init(context: Context, env: AppEnvironment, force: Bool = false) {
         let operation: Operation
         switch context.contextType {
         case .course:
-            operation = GetCourse(courseID: context.id, api: api, database: database)
+            operation = GetCourse(courseID: context.id, env: env)
         case .group:
-            operation = GetGroup(groupID: context.id, api: api, database: database)
+            operation = GetGroup(groupID: context.id, env: env)
         default:
             fatalError("context not supported")
         }
-        super.init(key: context.canvasContextID, database: database, operation: operation, force: force)
+        super.init(key: context.canvasContextID, database: env.database, operation: operation, force: force)
     }
 }

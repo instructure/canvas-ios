@@ -42,22 +42,20 @@ protocol AllCoursesPresenterProtocol {
 
 class AllCoursesPresenter: AllCoursesPresenterProtocol {
     weak var view: AllCoursesViewProtocol?
-    let api: API
-    let database: Persistence
+    let environment: AppEnvironment
     let queue: OperationQueue
     let router: RouterProtocol
     var groupOperation: OperationSet?
 
     lazy var coursesFetch: FetchedResultsController<Course> = {
         let sort = SortDescriptor(key: "name", ascending: true)
-        let fetcher: FetchedResultsController<Course> = self.database.fetchedResultsController(predicate: NSPredicate.all, sortDescriptors: [sort], sectionNameKeyPath: nil)
+        let fetcher: FetchedResultsController<Course> = self.environment.database.fetchedResultsController(predicate: NSPredicate.all, sortDescriptors: [sort], sectionNameKeyPath: nil)
         fetcher.delegate = self
         return fetcher
     }()
 
     init(env: AppEnvironment = .shared, view: AllCoursesViewProtocol?) {
-        self.api = env.api
-        self.database = env.database
+        self.environment = env
         self.queue = env.queue
         self.router = env.router
         self.view = view
@@ -111,8 +109,8 @@ class AllCoursesPresenter: AllCoursesPresenterProtocol {
             return
         }
 
-        let getCourses = GetCourses(api: api, database: database)
-        let getColors = GetCustomColors(api: api, database: database)
+        let getCourses = GetCourses(env: environment)
+        let getColors = GetCustomColors(env: environment)
         getColors.addDependency(getCourses)
 
         let groupOperation = OperationSet(operations: [getCourses, getColors])

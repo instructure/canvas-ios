@@ -19,10 +19,10 @@ import Foundation
 public class GetGroup: DetailUseCase<GetGroupRequest, Group> {
     let groupID: String
 
-    init(groupID: String, api: API = URLSessionAPI(), database: Persistence) {
+    public init(groupID: String, env: AppEnvironment = .shared) {
         self.groupID = groupID
         let request = GetGroupRequest(id: groupID)
-        super.init(api: api, database: database, request: request)
+        super.init(api: env.api, database: env.database, request: request)
     }
 
     override public var predicate: NSPredicate {

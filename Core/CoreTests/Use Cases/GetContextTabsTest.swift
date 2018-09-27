@@ -29,7 +29,7 @@ class GetContextTabsTest: CoreTestCase {
         let groupTab = APITab.make()
         api.mock(request, value: [groupTab], response: nil, error: nil)
 
-        let getContextTabs = GetContextTabs(context: context, api: api, database: db)
+        let getContextTabs = GetContextTabs(context: context, env: environment)
         addOperationAndWait(getContextTabs)
 
         let tabs: [Tab] = db.fetch(predicate: nil, sortDescriptors: nil)
@@ -48,7 +48,7 @@ class GetContextTabsTest: CoreTestCase {
         let req1 = GetTabsRequest(context: context1)
         api.mock(req1, value: [groupTab1], response: nil, error: nil)
 
-        let getContextTabs1 = GetContextTabs(context: context1, api: api, database: db)
+        let getContextTabs1 = GetContextTabs(context: context1, env: environment)
         let exA = expectation(description: "a")
         getContextTabs1.completionBlock = {
             exA.fulfill()
@@ -59,7 +59,7 @@ class GetContextTabsTest: CoreTestCase {
         let req2 = GetTabsRequest(context: context2)
         api.mock(req2, value: [groupTab2], response: nil, error: nil)
 
-        let getContextTabs2 = GetContextTabs(context: context2, api: api, database: db)
+        let getContextTabs2 = GetContextTabs(context: context2, env: environment)
         let exB = expectation(description: "b")
         getContextTabs2.completionBlock = {
             exB.fulfill()
@@ -78,7 +78,7 @@ class GetContextTabsTest: CoreTestCase {
         let tab = self.tab()
         api.mock(request, value: [], response: nil, error: nil)
 
-        let getContextTabs = GetContextTabs(context: context, api: api, database: db)
+        let getContextTabs = GetContextTabs(context: context, env: environment)
         addOperationAndWait(getContextTabs)
 
         db.refresh()

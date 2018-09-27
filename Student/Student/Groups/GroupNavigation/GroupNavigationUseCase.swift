@@ -21,8 +21,8 @@ class GroupNavigationUseCase: PresenterUseCase {
 
     init(context: Context, env: AppEnvironment = .shared) {
         super.init()
-        let getGroupOp = GetContext(context: context, database: env.database, api: env.api)
-        let tabsOp = GetContextTabs(context: context, api: env.api, database: env.database, force: false)
+        let getGroupOp = GetContext(context: context, env: env)
+        let tabsOp = GetContextTabs(context: context, env: env, force: false)
         addOperations([getGroupOp, tabsOp])
     }
 }

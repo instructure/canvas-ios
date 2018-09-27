@@ -24,7 +24,7 @@ class GetGroupTest: CoreTestCase {
         let response = APIGroup.make()
         api.mock(request, value: response)
 
-        let getGroup = GetGroup(groupID: "1", api: api, database: db)
+        let getGroup = GetGroup(groupID: "1", env: environment)
         addOperationAndWait(getGroup)
 
         let groups: [Group] = db.fetch(predicate: nil, sortDescriptors: nil)
@@ -39,7 +39,7 @@ class GetGroupTest: CoreTestCase {
         let response = APIGroup.make(["id": "1", "name": "New Name"])
         api.mock(request, value: response)
 
-        let getGroup = GetGroup(groupID: "1", api: api, database: db)
+        let getGroup = GetGroup(groupID: "1", env: environment)
         addOperationAndWait(getGroup)
         db.refresh()
         XCTAssertEqual(group.name, "New Name")

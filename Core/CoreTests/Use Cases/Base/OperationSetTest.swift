@@ -29,8 +29,8 @@ class OperationSetTest: CoreTestCase {
         let group = APIGroup.make(["id": "2", "name": "Group 2", "member": true])
         api.mock(groupsRequest, value: [group], response: nil, error: nil)
 
-        let getCourses = GetCourses(api: api, database: db)
-        let getGroups = GetUserGroups(api: api, database: db)
+        let getCourses = GetCourses(env: environment)
+        let getGroups = GetUserGroups(env: environment)
         let grouped = OperationSet(operations: [getCourses, getGroups])
         addOperationAndWait(grouped)
 

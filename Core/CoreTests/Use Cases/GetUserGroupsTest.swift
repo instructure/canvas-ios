@@ -24,7 +24,7 @@ class GetUserGroupsTest: CoreTestCase {
         let group = APIGroup.make(["id": "1", "name": "Group One", "members_count": 2])
         api.mock(request, value: [group])
 
-        let getUserGroups = GetUserGroups(api: api, database: db)
+        let getUserGroups = GetUserGroups(env: environment)
         addOperationAndWait(getUserGroups)
 
         let groups: [Group] = db.fetch()
@@ -38,7 +38,7 @@ class GetUserGroupsTest: CoreTestCase {
         let request = GetGroupsRequest(context: ContextModel.currentUser)
         api.mock(request, value: [])
 
-        let getUserGroups = GetUserGroups(api: api, database: db)
+        let getUserGroups = GetUserGroups(env: environment)
         addOperationAndWait(getUserGroups)
 
         db.refresh()
@@ -51,7 +51,7 @@ class GetUserGroupsTest: CoreTestCase {
         let request = GetGroupsRequest(context: ContextModel.currentUser)
         api.mock(request, value: [])
 
-        let getUserGroups = GetUserGroups(api: api, database: db)
+        let getUserGroups = GetUserGroups(env: environment)
         addOperationAndWait(getUserGroups)
 
         let groups: [Group] = db.fetch()

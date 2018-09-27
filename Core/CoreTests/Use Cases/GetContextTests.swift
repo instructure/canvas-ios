@@ -27,7 +27,7 @@ class GetContextTests: CoreTestCase {
 
         // when
         let context = ContextModel(.course, id: "1")
-        let getContext = GetContext(context: context, database: db, api: api)
+        let getContext = GetContext(context: context, env: environment)
         addOperationAndWait(getContext)
 
         // then
@@ -43,7 +43,7 @@ class GetContextTests: CoreTestCase {
 
         // when
         let context = ContextModel(.group, id: "1")
-        let getContext = GetContext(context: context, database: db, api: api)
+        let getContext = GetContext(context: context, env: environment)
         addOperationAndWait(getContext)
 
         // then
@@ -58,14 +58,14 @@ class GetContextTests: CoreTestCase {
         let response = APICourse.make(["id": course.id, "name": "Old Name"])
         api.mock(request, value: response)
         let context = ContextModel(.course, id: course.id)
-        let getContext1 = GetContext(context: context, database: db, api: api)
+        let getContext1 = GetContext(context: context, env: environment)
         // refresh once to set TTL
         addOperationAndWait(getContext1)
 
         // when
         let updatedResponse = APICourse.make(["id": course.id, "name": "New Name"])
         api.mock(request, value: updatedResponse)
-        let getContext2 = GetContext(context: context, database: db, api: api)
+        let getContext2 = GetContext(context: context, env: environment)
         addOperationAndWait(getContext2)
 
         // then
@@ -80,14 +80,14 @@ class GetContextTests: CoreTestCase {
         let response = APICourse.make(["id": course.id, "name": "Old Name"])
         api.mock(request, value: response)
         let context = ContextModel(.course, id: course.id)
-        let getContext1 = GetContext(context: context, database: db, api: api)
+        let getContext1 = GetContext(context: context, env: environment)
         // refresh once to set TTL
         addOperationAndWait(getContext1)
 
         // when
         let updatedResponse = APICourse.make(["id": course.id, "name": "New Name"])
         api.mock(request, value: updatedResponse)
-        let getContext2 = GetContext(context: context, database: db, api: api, force: true)
+        let getContext2 = GetContext(context: context, env: environment, force: true)
         addOperationAndWait(getContext2)
 
         // then

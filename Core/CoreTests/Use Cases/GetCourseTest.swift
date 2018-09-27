@@ -24,7 +24,7 @@ class GetCourseTest: CoreTestCase {
         let response = APICourse.make()
         api.mock(request, value: response)
 
-        let getCourse = GetCourse(courseID: "1", api: api, database: db)
+        let getCourse = GetCourse(courseID: "1", env: environment)
         addOperationAndWait(getCourse)
 
         let courses: [Course] = db.fetch(predicate: nil, sortDescriptors: nil)
@@ -39,7 +39,7 @@ class GetCourseTest: CoreTestCase {
         let response = APICourse.make(["id": "1", "name": "New Name"])
         api.mock(request, value: response)
 
-        let getCourse = GetCourse(courseID: "1", api: api, database: db)
+        let getCourse = GetCourse(courseID: "1", env: environment)
         addOperationAndWait(getCourse)
         db.refresh()
         XCTAssertEqual(course.name, "New Name")

@@ -17,9 +17,9 @@
 import Foundation
 
 private class GetPaginatedCourses: PaginatedUseCase<GetCoursesRequest, Course> {
-    init(api: API, database: Persistence) {
+    init(env: AppEnvironment) {
         let request = GetCoursesRequest(includeUnpublished: true)
-        super.init(api: api, database: database, request: request)
+        super.init(api: env.api, database: env.database, request: request)
     }
 
     override var predicate: NSPredicate {
@@ -40,9 +40,9 @@ private class GetPaginatedCourses: PaginatedUseCase<GetCoursesRequest, Course> {
 }
 
 public class GetCourses: OperationSet {
-    public init(api: API = URLSessionAPI(), database: Persistence, force: Bool = false) {
-        let paginated = GetPaginatedCourses(api: api, database: database)
-        let ttl = TTLOperation(key: "get-courses", database: database, operation: paginated, force: force)
+    public init(env: AppEnvironment, force: Bool = false) {
+        let paginated = GetPaginatedCourses(env: env)
+        let ttl = TTLOperation(key: "get-courses", database: env.database, operation: paginated, force: force)
         super.init(operations: [ttl])
     }
 }

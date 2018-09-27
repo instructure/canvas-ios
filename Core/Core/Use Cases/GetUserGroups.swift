@@ -17,9 +17,9 @@
 import Foundation
 
 public class GetUserGroups: CollectionUseCase<GetGroupsRequest, Group> {
-    public init(api: API, database: Persistence, force: Bool = false) {
+    public init(env: AppEnvironment, force: Bool = false) {
         let request = GetGroupsRequest(context: ContextModel.currentUser)
-        super.init(api: api, database: database, request: request)
+        super.init(api: env.api, database: env.database, request: request)
     }
 
     override var predicate: NSPredicate {

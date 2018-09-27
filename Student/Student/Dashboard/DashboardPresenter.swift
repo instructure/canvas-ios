@@ -54,8 +54,7 @@ protocol DashboardPresenterProtocol {
 
 class DashboardPresenter: DashboardPresenterProtocol {
     weak var view: DashboardViewProtocol?
-    let api: API
-    let database: Persistence
+    let environment: AppEnvironment
     let queue: OperationQueue
     let router: RouterProtocol
     var groupOperation: OperationSet?
@@ -63,7 +62,7 @@ class DashboardPresenter: DashboardPresenterProtocol {
     lazy var coursesFetch: FetchedResultsController<Course> = {
         let predicate = NSPredicate(format: "isFavorite == YES")
         let sort = SortDescriptor(key: "name", ascending: true)
-        let fetcher: FetchedResultsController<Course> = self.database.fetchedResultsController(predicate: predicate, sortDescriptors: [sort], sectionNameKeyPath: nil)
+        let fetcher: FetchedResultsController<Course> = self.environment.database.fetchedResultsController(predicate: predicate, sortDescriptors: [sort], sectionNameKeyPath: nil)
         fetcher.delegate = self
         return fetcher
     }()
@@ -71,14 +70,13 @@ class DashboardPresenter: DashboardPresenterProtocol {
     lazy var groupsFetch: FetchedResultsController<Group> = {
         let predicate = NSPredicate(format: "concluded == NO")
         let sort = SortDescriptor(key: "name", ascending: true)
-        let fetcher: FetchedResultsController<Group> = self.database.fetchedResultsController(predicate: predicate, sortDescriptors: [sort], sectionNameKeyPath: nil)
+        let fetcher: FetchedResultsController<Group> = self.environment.database.fetchedResultsController(predicate: predicate, sortDescriptors: [sort], sectionNameKeyPath: nil)
         fetcher.delegate = self
         return fetcher
     }()
 
     init(env: AppEnvironment = .shared, view: DashboardViewProtocol?) {
-        self.api = env.api
-        self.database = env.database
+        self.environment = env
         self.queue = env.queue
         self.router = env.router
         self.view = view
@@ -147,9 +145,9 @@ class DashboardPresenter: DashboardPresenterProtocol {
             return
         }
 
-        let getColors = GetCustomColors(api: api, database: database)
-        let getCourses = GetCourses(api: api, database: database, force: force)
-        let getGroups = GetUserGroups(api: api, database: database)
+        let getColors = GetCustomColors(env: environment)
+        let getCourses = GetCourses(env: environment)
+        let getGroups = GetUserGroups(env: environment)
 
         let group = OperationSet(operations: [getCourses, getGroups])
         getColors.addDependency(group)

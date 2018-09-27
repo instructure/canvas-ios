@@ -26,7 +26,7 @@ class GetCoursesTest: CoreTestCase {
         let course = APICourse.make(["id": "1", "name": "Course 1"])
         api.mock(request, value: [course], response: nil, error: nil)
 
-        let getCourses = GetCourses(api: api, database: db)
+        let getCourses = GetCourses(env: environment)
         addOperationAndWait(getCourses)
 
         let courses: [Course] = db.fetch(predicate: nil, sortDescriptors: nil)
@@ -39,7 +39,7 @@ class GetCoursesTest: CoreTestCase {
         let course = self.course()
         api.mock(request, value: [], response: nil, error: nil)
 
-        let getCourses = GetCourses(api: api, database: db)
+        let getCourses = GetCourses(env: environment)
         addOperationAndWait(getCourses)
 
         let courses: [Course] = db.fetch()
