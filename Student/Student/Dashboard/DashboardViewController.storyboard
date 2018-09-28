@@ -55,7 +55,7 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ABR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AvR-vH-Vjt" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                                    <rect key="frame" x="8" y="29.5" width="109" height="15"/>
+                                                                    <rect key="frame" x="8" y="29.5" width="109" height="14.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -82,12 +82,17 @@
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zHC-JW-eK5">
                                                                     <rect key="frame" x="0.0" y="0.0" width="125" height="81"/>
                                                                 </imageView>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H9J-za-Hgj">
-                                                                    <rect key="frame" x="95" y="0.0" width="30" height="32"/>
-                                                                    <fontDescription key="fontDescription" type="system" weight="black" pointSize="16"/>
-                                                                    <state key="normal" title="⋮">
-                                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    </state>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H9J-za-Hgj" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
+                                                                    <rect key="frame" x="91" y="0.0" width="34" height="34"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="34" id="Jxh-Gh-2Yz"/>
+                                                                        <constraint firstAttribute="width" constant="34" id="chN-4J-ykV"/>
+                                                                    </constraints>
+                                                                    <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="white"/>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="more"/>
+                                                                    </userDefinedRuntimeAttributes>
                                                                     <connections>
                                                                         <action selector="optionsButtonTapped:" destination="r0G-B4-kih" eventType="touchUpInside" id="24t-fs-XaV"/>
                                                                     </connections>

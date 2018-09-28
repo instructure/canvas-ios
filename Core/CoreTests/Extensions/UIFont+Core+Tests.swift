@@ -20,8 +20,12 @@ import XCTest
 class UIFontCoreTests: XCTestCase {
     func testScaledNamedFont() {
         XCTAssertNoThrow(UIFont.scaledNamedFont(.body))
+        XCTAssertNoThrow(UIFont.scaledNamedFont(.button))
+        XCTAssertNoThrow(UIFont.scaledNamedFont(.caption))
+        XCTAssertNoThrow(UIFont.scaledNamedFont(.cardTitle))
+        XCTAssertNoThrow(UIFont.scaledNamedFont(.cardSubtitle))
+        XCTAssertNoThrow(UIFont.scaledNamedFont(.heading))
         XCTAssertNoThrow(UIFont.scaledNamedFont(.label))
         XCTAssertNoThrow(UIFont.scaledNamedFont(.title))
-        XCTAssertNoThrow(UIFont.scaledNamedFont(.body))
     }
 }

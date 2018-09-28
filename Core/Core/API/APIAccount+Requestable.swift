@@ -16,7 +16,7 @@
 
 import Foundation
 
-// Not documented in canvas rest api
+// https://canvas.instructure.com/doc/api/account_domain_lookups.html#method.account_domain_lookups.search
 struct GetAccountsSearchRequest: APIRequestable {
     typealias Response = [APIAccountResults]
 

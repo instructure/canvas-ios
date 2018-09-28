@@ -17,20 +17,41 @@
 import UIKit
 import Core
 
+protocol GroupNavigationViewProtocol: ErrorViewController {
+    func updateNavBar(title: String, backgroundColor: UIColor)
+    func showTabs(_ tabs: [Tab])
+}
+
 class GroupNavigationTableViewController: UITableViewController {
     var presenter: GroupNavigationPresenter!
     var tabs: [Tab]?
 
-    convenience init(groupID: String, env: AppEnvironment = .shared) {
+    convenience init(env: AppEnvironment = .shared, groupID: String) {
         self.init(nibName: nil, bundle: nil)
-        presenter = GroupNavigationPresenter(groupID: groupID, view: self)
+        presenter = GroupNavigationPresenter(view: self, groupID: groupID)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
         presenter.loadTabs()
+    }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter.pageViewStarted()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        presenter.pageViewEnded()
+    }
+
+    func updateNavBar(title: String, backgroundColor: UIColor) {
+        navigationItem.title = title
+        navigationController?.navigationBar.tintColor = .named(.white)
+        navigationController?.navigationBar.barTintColor = backgroundColor.ensureContrast(against: .named(.white))
+        navigationController?.navigationBar.barStyle = .black
     }
 
     func configureTableView() {
@@ -38,7 +59,7 @@ class GroupNavigationTableViewController: UITableViewController {
     }
 }
 
-extension GroupNavigationTableViewController: GroupNavigationViewCompositeDelegate {
+extension GroupNavigationTableViewController: GroupNavigationViewProtocol {
     func showError(_ error: Error) {
         print(error)
     }

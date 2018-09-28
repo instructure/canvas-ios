@@ -34,7 +34,6 @@ struct DashboardViewModel {
         let color: UIColor
     }
 
-    var primaryButtonColor: UIColor
     var favorites: [Course]
     var groups: [Group]
 }
@@ -95,10 +94,6 @@ class DashboardPresenter: DashboardPresenterProtocol {
     }
 
     func pageViewStarted() {
-        let navBackgroundColor: UIColor = .black
-        let navTextColor: UIColor = .blue
-        let logo = URL(string: "https://emoji.slack-edge.com/T028ZAGUD/laugh/2d2ad81e3d71f12e.gif")!
-        view?.updateNavBar(logoUrl: logo, color: navTextColor, backgroundColor: navBackgroundColor)
         // log page view
     }
 
@@ -199,10 +194,7 @@ class DashboardPresenter: DashboardPresenterProtocol {
             return DashboardViewModel.Group(groupID: group.id, groupName: group.name, courseName: nil, term: nil, color: UIColor(hexString: group.color) ?? .named(.electric))
         }
 
-        // TODO: fetch branding
-        let primaryButtonColor: UIColor = .named(.electric)
-
-        return DashboardViewModel(primaryButtonColor: primaryButtonColor, favorites: cs, groups: gs)
+        return DashboardViewModel(favorites: cs, groups: gs)
     }
 }
 

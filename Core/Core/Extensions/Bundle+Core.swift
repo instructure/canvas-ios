@@ -18,11 +18,9 @@ import UIKit
 
 private class Placeholder {}
 
-internal extension Bundle {
-    static let core = Bundle(for: Placeholder.self)
-}
-
 public extension Bundle {
+    static let core = Bundle(for: Placeholder.self)
+
     public static func loadView<T: UIView>(_ type: T.Type) -> T {
         let name = String(describing: T.self)
         guard let view = Bundle(for: T.self).loadNibNamed(name, owner: T.self, options: nil)?.first as? T else {

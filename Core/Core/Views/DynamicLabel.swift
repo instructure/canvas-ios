@@ -17,16 +17,16 @@
 import UIKit
 
 @IBDesignable
-class DynamicLabel: UILabel {
+open class DynamicLabel: UILabel {
     @IBInspectable
-    var textColorName: String = "textDarkest" {
+    public var textColorName: String = "textDarkest" {
         didSet {
             textColor = .named(UIColor.Name(rawValue: textColorName) ?? .textDarkest)
         }
     }
 
     @IBInspectable
-    var textStyle: String = "body" {
+    public var textStyle: String = "body" {
         didSet {
             font = UIFont.scaledNamedFont(UIFont.Name(rawValue: textStyle) ?? .body)
             adjustsFontForContentSizeCategory = true

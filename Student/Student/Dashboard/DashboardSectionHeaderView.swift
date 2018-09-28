@@ -22,10 +22,10 @@ class DashboardSectionHeaderView: UICollectionReusableView {
 
     var rightActionCallback: (() -> Void)?
 
-    func configure(title: String, rightText: String?, rightColor: UIColor?, rightAction: (() -> Void)?) {
+    func configure(title: String, rightText: String?, rightAction: (() -> Void)?) {
         titleLabel?.text = title
         rightButton?.setTitle(rightText, for: .normal)
-        rightButton?.tintColor = rightColor?.ensureContrast(against: .named(.white))
+        rightButton?.tintColor = UIColor.named(.brand).ensureContrast(against: .named(.white))
         if let action = rightAction {
             rightActionCallback = action
             rightButton?.isHidden = false

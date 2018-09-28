@@ -70,11 +70,6 @@ class AllCoursesPresenter: AllCoursesPresenterProtocol {
     }
 
     func pageViewStarted() {
-        // TODO: fetch branding
-        let navBackgroundColor: UIColor = .white
-        let navTextColor: UIColor = .blue
-        view?.updateNavBar(color: navTextColor, backgroundColor: navBackgroundColor)
-
         // log page view
     }
 

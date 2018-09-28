@@ -20,12 +20,13 @@ import XCTest
 class DynamicButtonTests: XCTestCase {
     func testTextColorName() {
         let view = DynamicButton()
-        var prev = view.tintColor // tint adjusting means we can't directly compare the colors
+        let tinter = UIView() // tintColor gets adjusted, so apply same with this
         view.textColorName = "not a color name"
-        XCTAssertNotEqual(view.tintColor, prev)
-        prev = view.tintColor
+        tinter.tintColor = .named(.electric)
+        XCTAssertEqual(view.tintColor, tinter.tintColor)
         view.textColorName = "ash"
-        XCTAssertNotEqual(view.tintColor, prev)
+        tinter.tintColor = .named(.ash)
+        XCTAssertEqual(view.tintColor, tinter.tintColor)
     }
 
     func testTextStyle() {

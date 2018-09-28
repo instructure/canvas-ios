@@ -18,7 +18,6 @@ import UIKit
 import Core
 
 protocol DashboardViewProtocol: ErrorViewController {
-    func updateNavBar(logoUrl: URL, color: UIColor, backgroundColor: UIColor)
     func updateDisplay(_ viewModel: DashboardViewModel)
 }
 
@@ -70,6 +69,9 @@ class DashboardViewController: UIViewController, DashboardViewProtocol {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         presenter?.pageViewStarted()
+
+        Brand.shared.apply(to: navigationController?.navigationBar)
+        logoView.load(url: Brand.shared.headerImageUrl)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -85,13 +87,6 @@ class DashboardViewController: UIViewController, DashboardViewProtocol {
 
     func refreshView() {
         presenter?.refreshRequested()
-    }
-
-    func updateNavBar(logoUrl: URL, color: UIColor, backgroundColor: UIColor) {
-        navigationController?.navigationBar.barTintColor = backgroundColor
-        navigationController?.navigationBar.tintColor = color.ensureContrast(against: backgroundColor)
-        navigationController?.navigationBar.barStyle = backgroundColor.luminance < 0.5 ? .black : .default
-        logoView.load(url: logoUrl)
     }
 
     func updateDisplay(_ viewModel: DashboardViewModel) {
@@ -206,12 +201,10 @@ extension DashboardViewController: UICollectionViewDataSource {
 
             var title: String
             var rightText: String?
-            var rightColor: UIColor?
             var action: (() -> Void)?
             if indexPath.section == DashboardViewSection.courses.rawValue {
                 title = NSLocalizedString("Courses", bundle: .student, comment: "")
                 rightText = NSLocalizedString("See All", bundle: .student, comment: "")
-                rightColor = viewModel?.primaryButtonColor
                 action = { [unowned self] in
                     self.presenter?.seeAllWasTapped()
                 }
@@ -219,7 +212,7 @@ extension DashboardViewController: UICollectionViewDataSource {
                 title = NSLocalizedString("Groups", bundle: .student, comment: "")
             }
 
-            v.configure(title: title, rightText: rightText, rightColor: rightColor, rightAction: action)
+            v.configure(title: title, rightText: rightText, rightAction: action)
             v.titleLabel?.translatesAutoresizingMaskIntoConstraints = false
             return v
         }

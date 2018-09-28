@@ -47,12 +47,21 @@
                                                                 <imageView userInteractionEnabled="NO" alpha="0.40000000596046448" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HAi-cz-jPw">
                                                                     <rect key="frame" x="0.0" y="0.0" width="125" height="81"/>
                                                                 </imageView>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LGd-kz-c5b">
-                                                                    <rect key="frame" x="95" y="0.0" width="30" height="32"/>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LGd-kz-c5b" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
+                                                                    <rect key="frame" x="91" y="0.0" width="34" height="34"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="34" id="Ryy-d6-RdQ"/>
+                                                                        <constraint firstAttribute="height" constant="34" id="ToJ-mD-e7x"/>
+                                                                    </constraints>
                                                                     <fontDescription key="fontDescription" type="system" weight="black" pointSize="16"/>
-                                                                    <state key="normal" title="⋮">
+                                                                    <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                                                                    <state key="normal">
                                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </state>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="white"/>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="more"/>
+                                                                    </userDefinedRuntimeAttributes>
                                                                     <connections>
                                                                         <action selector="optionsButtonTapped:" destination="ccs-YY-IsY" eventType="touchUpInside" id="7oP-EX-CFm"/>
                                                                     </connections>
@@ -145,7 +154,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Section Header Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cdF-Fi-o6d" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                            <rect key="frame" x="15" y="22" width="359" height="19.5"/>
+                                            <rect key="frame" x="15" y="21" width="359" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>

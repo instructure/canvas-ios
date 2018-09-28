@@ -34,6 +34,9 @@ class UIColorCoreTests: XCTestCase {
     func testNamed() {
         XCTAssertEqual(UIColor.named(.electric, inHighContrast: false), UIColor(named: "electric", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIColor.named(.electric, inHighContrast: true), UIColor(named: "electricHighContrast", in: .core, compatibleWith: nil))
+        XCTAssertEqual(UIColor.named(.backgroundBrand), Brand.shared.buttonPrimaryBackground)
+        XCTAssertEqual(UIColor.named(.backgroundBrandSecondary), Brand.shared.buttonSecondaryBackground)
+        XCTAssertEqual(UIColor.named(.brand), Brand.shared.primary)
     }
 
     func testLuminance() {

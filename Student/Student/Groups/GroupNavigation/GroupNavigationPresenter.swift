@@ -17,14 +17,8 @@
 import Foundation
 import Core
 
-protocol GroupNavigationViewProtocol: class {
-    func showTabs(_ tabs: [Tab])
-}
-
-typealias GroupNavigationViewCompositeDelegate = GroupNavigationViewProtocol & ErrorViewController
-
 class GroupNavigationPresenter {
-    weak var view: GroupNavigationViewCompositeDelegate?
+    weak var view: GroupNavigationViewProtocol?
     var frc: FetchedResultsController<Tab>?
     var context: Context
     var useCase: PresenterUseCase
@@ -33,7 +27,7 @@ class GroupNavigationPresenter {
         queue.addOperation(useCase)
     }()
 
-    init(groupID: String, view: GroupNavigationViewCompositeDelegate, env: AppEnvironment = .shared) {
+    init(env: AppEnvironment = .shared, view: GroupNavigationViewProtocol, groupID: String) {
         self.context = ContextModel(.group, id: groupID)
         self.view = view
         useCase = GroupNavigationUseCase(context: context, env: env)
@@ -42,6 +36,14 @@ class GroupNavigationPresenter {
         let pred = NSPredicate.context(context)
         frc = env.database.fetchedResultsController(predicate: pred, sortDescriptors: [sort], sectionNameKeyPath: nil)
         frc?.delegate = self
+    }
+
+    func pageViewStarted() {
+        // log page view
+    }
+
+    func pageViewEnded() {
+        // log page view
     }
 
     func loadTabs() {

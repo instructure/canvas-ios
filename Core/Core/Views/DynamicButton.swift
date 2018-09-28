@@ -17,19 +17,28 @@
 import UIKit
 
 @IBDesignable
-class DynamicButton: UIButton {
+open class DynamicButton: UIButton {
     @IBInspectable
-    var textColorName: String = "electric" {
+    public var textColorName: String = "electric" {
         didSet {
             tintColor = .named(UIColor.Name(rawValue: textColorName) ?? .electric)
         }
     }
 
     @IBInspectable
-    var textStyle: String = "button" {
+    public var textStyle: String = "button" {
         didSet {
             titleLabel?.font = UIFont.scaledNamedFont(UIFont.Name(rawValue: textStyle) ?? .button)
             titleLabel?.adjustsFontForContentSizeCategory = true
+        }
+    }
+
+    @IBInspectable
+    public var iconName: String = "" {
+        didSet {
+            if let name = UIImage.IconName(rawValue: iconName) {
+                setImage(.icon(name), for: .normal)
+            }
         }
     }
 }

@@ -55,14 +55,27 @@ extension UIColor {
 
     /// Loads the named Canvas styleguide color from assets, accounting for contrast
     public static func named(_ name: Name, inHighContrast: Bool = UIAccessibility.isDarkerSystemColorsEnabled) -> UIColor {
-        let named = inHighContrast ? "\(name)HighContrast" : "\(name)"
-        return UIColor(named: named, in: .core, compatibleWith: nil) ?? .black
+        switch name {
+        case .backgroundBrand:
+            return Brand.shared.buttonPrimaryBackground
+        case .backgroundBrandSecondary:
+            return Brand.shared.buttonSecondaryBackground
+        case .borderBrand, .brand, .textBrand:
+            return Brand.shared.primary
+        default:
+            let named = inHighContrast ? "\(name.rawValue)HighContrast" : name.rawValue
+            guard let color = UIColor(named: named, in: .core, compatibleWith: nil) else {
+                fatalError("Could not find color \"\(named)\" in Core/Colors.xcassets")
+            }
+            return color
+        }
     }
 
     public enum Name: String {
-        case ash, barney, crimson, electric, fire, shamrock, licorice, oxford, porcelain, tiara, white
+        case ash, barney, crimson, electric, fire, licorice, oxford, porcelain, shamrock, tiara, white
         case backgroundAlert, backgroundDanger, backgroundDark, backgroundDarkest, backgroundInfo, backgroundLight, backgroundLightest, backgroundMedium, backgroundSuccess, backgroundWarning
         case borderAlert, borderDanger, borderDark, borderDarkest, borderDebug, borderInfo, borderLight, borderLightest, borderMedium, borderSuccess, borderWarning
+        case backgroundBrand, backgroundBrandSecondary, borderBrand, brand, textBrand
         case textAlert, textDanger, textDark, textDarkest, textInfo, textLight, textLightest, textSuccess, textWarning
     }
 

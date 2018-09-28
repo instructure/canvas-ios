@@ -18,7 +18,6 @@ import UIKit
 import Core
 
 protocol AllCoursesViewProtocol: ErrorViewController {
-    func updateNavBar(color: UIColor, backgroundColor: UIColor)
     func update(courses: AllCoursesViewModel)
 }
 
@@ -62,6 +61,8 @@ class AllCoursesViewController: UIViewController, AllCoursesViewProtocol {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         presenter?.pageViewStarted()
+
+        Brand.shared.apply(to: navigationController?.navigationBar)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -72,12 +73,6 @@ class AllCoursesViewController: UIViewController, AllCoursesViewProtocol {
     @objc
     func refreshView(_ sender: Any) {
         presenter?.refreshRequested()
-    }
-
-    func updateNavBar(color: UIColor, backgroundColor: UIColor) {
-        navigationController?.navigationBar.barTintColor = backgroundColor
-        navigationController?.navigationBar.tintColor = color.ensureContrast(against: backgroundColor)
-        navigationController?.navigationBar.barStyle = backgroundColor.luminance < 0.5 ? .black : .default
     }
 
     func update(courses: AllCoursesViewModel) {

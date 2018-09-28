@@ -38,7 +38,7 @@ class GroupNavigationPresenterTests: XCTestCase {
         super.setUp()
         expectation = XCTestExpectation(description: "expectation")
         env = testEnvironment()
-        presenter = GroupNavigationPresenter(groupID: Group.make().id, view: self, env: env)
+        presenter = GroupNavigationPresenter(env: env, view: self, groupID: Group.make().id)
         mockUseCase = MockUseCase()
         presenter.useCase = mockUseCase
         frc = presenter.frc as? MockFetchedResultsController<Tab>
@@ -108,7 +108,10 @@ extension GroupNavigationPresenterTests: FetchedResultsControllerDelegate {
     }
 }
 
-extension GroupNavigationPresenterTests: GroupNavigationViewCompositeDelegate {
+extension GroupNavigationPresenterTests: GroupNavigationViewProtocol {
+    func updateNavBar(title: String, backgroundColor: UIColor) {
+    }
+
     func showTabs(_ tabs: [Tab]) {
         resultingTabs = tabs
     }

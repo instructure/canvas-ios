@@ -60,30 +60,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         vc1.title = "Dashboard"
         vc1.tabBarItem = UITabBarItem(title: "Dashboard", image: nil, selectedImage: nil)
         vc1.tabBarItem.accessibilityLabel = "Dashboard_tab"
+        vc1.tabBarItem.image = .icon(.dashboard)
 
         let vc2 = UIViewController()
         vc2.view.backgroundColor = .green
         vc2.title = "Calendar"
         vc2.tabBarItem = UITabBarItem(title: "Calendar", image: nil, selectedImage: nil)
         vc2.tabBarItem.accessibilityLabel = "Calendar_tab"
+        vc2.tabBarItem.image = .icon(.calendarMonth)
 
         let vc3 = UIViewController()
         vc3.view.backgroundColor = .blue
         vc3.title = "To Do"
         vc3.tabBarItem = UITabBarItem(title: "To Do", image: nil, selectedImage: nil)
         vc3.tabBarItem.accessibilityLabel = "To Do_tab"
+        vc3.tabBarItem.image = .icon(.todo)
 
         let vc4 = UIViewController()
         vc4.view.backgroundColor = .yellow
         vc4.title = "Notifications"
         vc4.tabBarItem = UITabBarItem(title: "Notifications", image: nil, selectedImage: nil)
         vc4.tabBarItem.accessibilityLabel = "Notifications_tab"
+        vc4.tabBarItem.image = .icon(.alerts)
 
         let vc5 = UIViewController()
         vc5.view.backgroundColor = .red
         vc5.title = "Inbox"
         vc5.tabBarItem = UITabBarItem(title: "Inbox", image: nil, selectedImage: nil)
         vc5.tabBarItem.accessibilityLabel = "Inbox_tab"
+        vc5.tabBarItem.image = .icon(.email)
 
         let tabController = UITabBarController()
         tabController.tabBar.tintColor = .red
@@ -104,11 +109,22 @@ extension AppDelegate: LoginViewControllerDelegate {
     func userDidLogin(authToken: String) {
         Keychain.currentSession = KeychainEntry(token: authToken, baseURL: baseURL)
         // TODO: Persist this keychain entry
-        window?.rootViewController = createTabController()
-        if CommandLine.arguments.contains("RouterDebug") {
-            if let root = window?.rootViewController as? UITabBarController {
-                root.selectedViewController?.show(RouterViewController(), sender: nil)
+
+        let getBrand = GetBrandVariables(env: environment, force: true)
+        let initView = BlockOperation {
+            DispatchQueue.main.async {
+                guard let window = self.window else { return }
+                Brand.shared.apply(to: window)
+                window.rootViewController = self.createTabController()
+                if CommandLine.arguments.contains("RouterDebug") {
+                    if let root = window.rootViewController as? UITabBarController {
+                        root.selectedViewController?.show(RouterViewController(), sender: nil)
+                    }
+                }
+
             }
         }
+        initView.addDependency(getBrand)
+        environment.queue.addOperations([ getBrand, initView ], waitUntilFinished: false)
     }
 }

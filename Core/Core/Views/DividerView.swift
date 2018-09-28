@@ -17,15 +17,15 @@
 import UIKit
 
 @IBDesignable
-class DividerView: UIView {
+open class DividerView: UIView {
     @IBInspectable
-    var tintColorName: String = "borderMedium" {
+    public var tintColorName: String = "borderMedium" {
         didSet {
             tintColor = .named(UIColor.Name(rawValue: tintColorName) ?? .borderMedium)
         }
     }
 
-    override func draw(_ rect: CGRect) {
+    open override func draw(_ rect: CGRect) {
         guard let context = UIGraphicsGetCurrentContext() else { return }
         context.setStrokeColor(tintColor.cgColor)
         context.setLineWidth(1 / UIScreen.main.scale)
