@@ -175,7 +175,10 @@
 
         NSFileManager *fileManager = [NSFileManager defaultManager];
         NSString *path = self.showingOldVersion ? [self legacyPathForPersistedFile:file] : [self pathForPersistedFile:file];
-        if (!self.showingOldVersion && [fileManager fileExistsAtPath:[self legacyPathForPersistedFile:file]]) {
+        NSString *legacyPath = [self legacyPathForPersistedFile:file];
+
+        // Only show old version banner if the old file exists and it has annotations
+        if (!self.showingOldVersion && [fileManager fileExistsAtPath:legacyPath] && [self fileAtPathContainsAnnotations:legacyPath]) {
             self.legacyFileMessageViewHeightConstraint.constant = 25;
             self.legacyFileMessageView.hidden = NO;
             [self.view setNeedsLayout];
@@ -231,6 +234,15 @@
     NSString *documentsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
     NSString *path = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_%llu_%@", TheKeymaster.currentClient.authSession.user.id, file.ident, file.filename]];
     return path;
+}
+
+- (BOOL)fileAtPathContainsAnnotations:(NSString *)path {
+    NSURL *url = [NSURL fileURLWithPath:path];
+    if (!url) {
+        return NO;
+    }
+    PSPDFDocument *document = [[PSPDFDocument alloc] initWithURL:url];
+    return [document containsAnnotations];
 }
 
 - (UIView *)legacyFileMessageView {
