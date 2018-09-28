@@ -26,6 +26,7 @@
 		3B542D5D215AE79E0084DA9D /* DashboardIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152E3212B3957005BA428 /* DashboardIntegrationTests.swift */; };
 		3B542D5F215AE79E0084DA9D /* TestsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B0CEB8F2150464100D07CFA /* TestsFoundation.framework */; };
 		3B542D61215AE79E0084DA9D /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C964867211E38B0002C3255 /* Core.framework */; };
+		3B756928215E924700F2E8B5 /* AppFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3B756926215E921300F2E8B5 /* AppFramework.framework */; };
 		788152DB212B3470005BA428 /* DashboardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152DA212B3470005BA428 /* DashboardPresenter.swift */; };
 		788152DD212B34F2005BA428 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152DC212B34F2005BA428 /* DashboardViewController.swift */; };
 		788152DF212B35F8005BA428 /* DashboardViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 788152DE212B35F8005BA428 /* DashboardViewController.storyboard */; };
@@ -84,7 +85,6 @@
 		F9E7D0D2215BE19F00CDC1A3 /* StudentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E7D0D1215BE19F00CDC1A3 /* StudentUITests.swift */; };
 		F9E7D0DA215BE20400CDC1A3 /* EarlGrey.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E7D0D9215BE20300CDC1A3 /* EarlGrey.swift */; };
 		F9E7D0DF215BE2C100CDC1A3 /* libTestLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F9E7D0DE215BE2C100CDC1A3 /* libTestLib.a */; };
-		F9E7D0E2215BE33000CDC1A3 /* AppFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F9E7D0E1215BE33000CDC1A3 /* AppFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,7 +134,7 @@
 			dstPath = "$(TARGET_BUILD_DIR)/../../Student.app/Frameworks";
 			dstSubfolderSpec = 0;
 			files = (
-				F9E7D0E2215BE33000CDC1A3 /* AppFramework.framework in CopyFiles */,
+				3B756928215E924700F2E8B5 /* AppFramework.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,30 +146,26 @@
 		2C5C6995211DFFAE00D9AD15 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C5C6998211DFFAE00D9AD15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2C5C699A211DFFAE00D9AD15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2C5C69A3211DFFAE00D9AD15 /* StudentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentTests.swift; sourceTree = "<group>"; };
-		2C5C69A5211DFFAE00D9AD15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C964867211E38B0002C3255 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2C96486B211E3AA9002C3255 /* Core.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Core.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/Canvas-dpcdjqfmhsqswfeyltwnrxcvwmjb/Build/Products/Debug-iphoneos/Core.framework"; sourceTree = "<group>"; };
 		2CB3261C21387C99009496AF /* RouterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterViewController.swift; sourceTree = "<group>"; };
 		3B032CA4214C552B00B570F7 /* GroupNavigationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupNavigationPresenter.swift; sourceTree = "<group>"; };
 		3B032CA7214C554C00B570F7 /* GroupNavigationPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupNavigationPresenterTests.swift; sourceTree = "<group>"; };
 		3B032CA9214C55E400B570F7 /* GroupNavigationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupNavigationTableViewController.swift; sourceTree = "<group>"; };
 		3B032CAE214C685B00B570F7 /* MockPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPersistence.swift; sourceTree = "<group>"; };
-		3B032CB52150069B00B570F7 /* RecordableAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordableAPI.swift; sourceTree = "<group>"; };
-		3B032CB7215006A100B570F7 /* StudentUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentUITest.swift; sourceTree = "<group>"; };
 		3B0CEB8F2150464100D07CFA /* TestsFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TestsFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B2C4C952159FB5100995F3B /* AssignmentDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsPresenter.swift; sourceTree = "<group>"; };
 		3B2C4C982159FC9F00995F3B /* AssignmentDetailsPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsPresenterTests.swift; sourceTree = "<group>"; };
 		3B412EFC21406C000090DE02 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../ios-frameworks/Realm.framework"; sourceTree = SOURCE_ROOT; };
 		3B412EFD21406C000090DE02 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "../ios-frameworks/RealmSwift.framework"; sourceTree = SOURCE_ROOT; };
+		3B437704215D87B700B32DFB /* DashboardUITesttestViewLoads.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DashboardUITesttestViewLoads.json; sourceTree = "<group>"; };
 		3B542D0C215ABE630084DA9D /* GroupNavigationUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupNavigationUseCase.swift; sourceTree = "<group>"; };
 		3B542D0F215AC0210084DA9D /* TestEnvironment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestEnvironment.swift; sourceTree = "<group>"; };
-		3B542D38215AE5770084DA9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = /Users/grichards/src/inst.backup/Student/Info.plist; sourceTree = "<absolute>"; };
 		3B542D41215AE5E10084DA9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B542D48215AE6780084DA9D /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B542D4B215AE75B0084DA9D /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B542D4D215AE75E0084DA9D /* TestsFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TestsFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B542D75215AE79E0084DA9D /* StudentUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StudentUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B756926215E921300F2E8B5 /* AppFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppFramework.framework; sourceTree = "<group>"; };
 		788152DA212B3470005BA428 /* DashboardPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardPresenter.swift; sourceTree = "<group>"; };
 		788152DC212B34F2005BA428 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		788152DE212B35F8005BA428 /* DashboardViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DashboardViewController.storyboard; sourceTree = "<group>"; };
@@ -200,8 +196,6 @@
 		7DDC4506215BED34003F3209 /* DividerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DividerView.swift; path = ../../Core/Core/Views/DividerView.swift; sourceTree = "<group>"; };
 		7DDC4507215BED34003F3209 /* DynamicLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DynamicLabel.swift; path = ../../Core/Core/Views/DynamicLabel.swift; sourceTree = "<group>"; };
 		7DF9BF052151961B0099026B /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Colors.xcassets; path = ../../Core/Core/Colors.xcassets; sourceTree = "<group>"; };
-		9F22A0AA215AA9D700383C53 /* DashboardUITesttestViewLoads.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DashboardUITesttestViewLoads.json; sourceTree = "<group>"; };
-		9F7F18572148222C007336A0 /* DashboardUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardUITests.swift; sourceTree = "<group>"; };
 		9FCA66012142C86C00BE0EBB /* SoSeedySwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoSeedySwift.framework; path = "../../ios-frameworks/SoSeedySwift.framework"; sourceTree = "<group>"; };
 		9FCA66062142C8C300BE0EBB /* Secrets.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Secrets.framework; path = "../../ios-frameworks/Secrets.framework"; sourceTree = "<group>"; };
 		9FCA66082142C8D100BE0EBB /* SwiftProtobuf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftProtobuf.framework; path = "../../ios-frameworks/SwiftGRPC/SwiftProtobuf.framework"; sourceTree = "<group>"; };
@@ -209,14 +203,12 @@
 		9FCA660A2142C8D100BE0EBB /* CgRPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CgRPC.framework; path = "../../ios-frameworks/SwiftGRPC/CgRPC.framework"; sourceTree = "<group>"; };
 		9FCA660B2142C8D100BE0EBB /* SwiftGRPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftGRPC.framework; path = "../../ios-frameworks/SwiftGRPC/SwiftGRPC.framework"; sourceTree = "<group>"; };
 		F97304A3212287C400AA2557 /* EarlGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EarlGrey.framework; path = "../../ios-frameworks/EarlGrey.framework"; sourceTree = "<group>"; };
-		F97304A6212287F400AA2557 /* EarlGrey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarlGrey.swift; sourceTree = "<group>"; };
 		F9E7D0CF215BE19F00CDC1A3 /* StudentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StudentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9E7D0D1215BE19F00CDC1A3 /* StudentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentUITests.swift; sourceTree = "<group>"; };
 		F9E7D0D3215BE19F00CDC1A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F9E7D0D9215BE20300CDC1A3 /* EarlGrey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EarlGrey.swift; sourceTree = "<group>"; };
 		F9E7D0DC215BE23600CDC1A3 /* bridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bridge.h; sourceTree = "<group>"; };
 		F9E7D0DE215BE2C100CDC1A3 /* libTestLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTestLib.a; path = "../../ios-frameworks/eg2/libTestLib.a"; sourceTree = "<group>"; };
-		F9E7D0E1215BE33000CDC1A3 /* AppFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppFramework.framework; path = "../ios-frameworks/eg2/AppFramework.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -259,9 +251,7 @@
 		2C5C6980211DFFAC00D9AD15 = {
 			isa = PBXGroup;
 			children = (
-				F9E7D0E1215BE33000CDC1A3 /* AppFramework.framework */,
 				2C5C698B211DFFAD00D9AD15 /* Student */,
-				2C5C69A2211DFFAE00D9AD15 /* StudentTests */,
 				7D067CDD21505AF200B78AF2 /* StudentReborn */,
 				3B542D3E215AE5E10084DA9D /* StudentUnitTests */,
 				F9E7D0D0215BE19F00CDC1A3 /* StudentUITests */,
@@ -303,23 +293,10 @@
 			path = Student;
 			sourceTree = "<group>";
 		};
-		2C5C69A2211DFFAE00D9AD15 /* StudentTests */ = {
-			isa = PBXGroup;
-			children = (
-				9F22A0A9215AA9D700383C53 /* cassettes */,
-				3B542D7A215AEACE0084DA9D /* Dashboard */,
-				3B032CAD214C684800B570F7 /* Helpers */,
-				2C96486B211E3AA9002C3255 /* Core.framework */,
-				2C5C69A3211DFFAE00D9AD15 /* StudentTests.swift */,
-				2C5C69A5211DFFAE00D9AD15 /* Info.plist */,
-				F97304A6212287F400AA2557 /* EarlGrey.swift */,
-			);
-			path = StudentTests;
-			sourceTree = "<group>";
-		};
 		2C964862211E37EC002C3255 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3B756926215E921300F2E8B5 /* AppFramework.framework */,
 				F9E7D0DE215BE2C100CDC1A3 /* libTestLib.a */,
 				3B542D4D215AE75E0084DA9D /* TestsFoundation.framework */,
 				3B542D4B215AE75B0084DA9D /* Core.framework */,
@@ -375,15 +352,6 @@
 			path = GroupNavigation;
 			sourceTree = "<group>";
 		};
-		3B032CAD214C684800B570F7 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				3B032CB7215006A100B570F7 /* StudentUITest.swift */,
-				3B032CB52150069B00B570F7 /* RecordableAPI.swift */,
-			);
-			path = Helpers;
-			sourceTree = "<group>";
-		};
 		3B2C4C942159FB3200995F3B /* Assignments */ = {
 			isa = PBXGroup;
 			children = (
@@ -403,10 +371,17 @@
 			path = Assignments;
 			sourceTree = "<group>";
 		};
+		3B437703215D87B700B32DFB /* cassettes */ = {
+			isa = PBXGroup;
+			children = (
+				3B437704215D87B700B32DFB /* DashboardUITesttestViewLoads.json */,
+			);
+			path = cassettes;
+			sourceTree = "<group>";
+		};
 		3B542D3E215AE5E10084DA9D /* StudentUnitTests */ = {
 			isa = PBXGroup;
 			children = (
-				3B542D38215AE5770084DA9D /* Info.plist */,
 				788152E0212B38C5005BA428 /* Dashboard */,
 				3B032CA6214C553A00B570F7 /* Groups */,
 				3B542D77215AEA450084DA9D /* Helpers */,
@@ -423,14 +398,6 @@
 				3B032CAE214C685B00B570F7 /* MockPersistence.swift */,
 			);
 			path = Helpers;
-			sourceTree = "<group>";
-		};
-		3B542D7A215AEACE0084DA9D /* Dashboard */ = {
-			isa = PBXGroup;
-			children = (
-				9F7F18572148222C007336A0 /* DashboardUITests.swift */,
-			);
-			path = Dashboard;
 			sourceTree = "<group>";
 		};
 		788152D5212B330C005BA428 /* Dashboard */ = {
@@ -495,18 +462,10 @@
 			name = IBDesignables;
 			sourceTree = "<group>";
 		};
-		9F22A0A9215AA9D700383C53 /* cassettes */ = {
-			isa = PBXGroup;
-			children = (
-				9F22A0AA215AA9D700383C53 /* DashboardUITesttestViewLoads.json */,
-			);
-			name = cassettes;
-			path = "../../ios-private/cassettes";
-			sourceTree = "<group>";
-		};
 		F9E7D0D0215BE19F00CDC1A3 /* StudentUITests */ = {
 			isa = PBXGroup;
 			children = (
+				3B437703215D87B700B32DFB /* cassettes */,
 				F9E7D0DC215BE23600CDC1A3 /* bridge.h */,
 				F9E7D0D9215BE20300CDC1A3 /* EarlGrey.swift */,
 				F9E7D0D1215BE19F00CDC1A3 /* StudentUITests.swift */,
@@ -1015,7 +974,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../ios-frameworks/**";
 				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
-				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_FILE = Student/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1040,7 +999,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../ios-frameworks/**";
 				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
-				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_FILE = Student/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1127,6 +1086,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/../ios-frameworks/eg2/**",
 					"$(SRCROOT)/../ios-frameworks/",
+					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = StudentUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1158,6 +1118,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/../ios-frameworks/eg2/**",
 					"$(SRCROOT)/../ios-frameworks/",
+					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = StudentUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
