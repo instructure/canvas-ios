@@ -78,6 +78,7 @@
 		7D979CD8215BE61F00567627 /* AssignmentDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1758BD215A8B8E00F88613 /* AssignmentDetailsViewModel.swift */; };
 		7DF9BF062151961B0099026B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DF9BF052151961B0099026B /* Colors.xcassets */; };
 		9F069B4D215D1CD100658826 /* AssignmentDetailsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F069B4C215D1CD100658826 /* AssignmentDetailsUseCase.swift */; };
+		B1E7F2942162D7D100C5F7EC /* AssignmentDetailsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F069B4C215D1CD100658826 /* AssignmentDetailsUseCase.swift */; };
 		B12557BF215F39FE00CA7F83 /* CgRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B12557BB215F39FE00CA7F83 /* CgRPC.framework */; };
 		B12557C0215F39FE00CA7F83 /* SwiftProtobuf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B12557BC215F39FE00CA7F83 /* SwiftProtobuf.framework */; };
 		B12557C1215F39FE00CA7F83 /* SwiftGRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B12557BD215F39FE00CA7F83 /* SwiftGRPC.framework */; };
@@ -880,6 +881,7 @@
 				7D067CEE21505B3E00B78AF2 /* AllCoursesViewController.swift in Sources */,
 				7D101955215EBB540058FDD1 /* DynamicLabel.swift in Sources */,
 				7D101952215EBB4B0058FDD1 /* DynamicButton.swift in Sources */,
+				B1E7F2942162D7D100C5F7EC /* AssignmentDetailsUseCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
