@@ -17,58 +17,93 @@
 import XCTest
 @testable import Student
 import Core
+import TestsFoundation
 
 class AssignmentDetailsPresenterTests: XCTestCase {
 
-//    var resultingAssignment: Assignment?
     var resultingError: NSError?
+    var resultingAssignment: AssignmentDetailsViewModel?
     var presenter: AssignmentDetailsPresenter!
-//    var env: AppEnvironment = testEnvironment()
+    var env: AppEnvironment = testEnvironment()
     var expectation = XCTestExpectation(description: "expectation")
+    var mockUseCase: MockUseCase!
+    var frc: MockFetchedResultsController<Assignment>?
+    var frcCallCount = 0
 
     override func setUp() {
-//        env = testEnvironment()
         expectation = XCTestExpectation(description: "expectation")
-//        presenter = AssignmentDetailsPresenter(env: env)
+        env = testEnvironment()
+        presenter = AssignmentDetailsPresenter(env: env, view: self, courseID: "1", assignmentID: "1", useCaseFactory: { [weak self] (_, _) -> PresenterUseCase in
+            return self!.mockUseCase
+        })
+        mockUseCase = MockUseCase()
+        presenter.useCase = mockUseCase
+        frc = presenter.frc as? MockFetchedResultsController<Assignment>
+        frc?.delegate = presenter
     }
 
     func testLoadAssignment() {
         //  given
-//        let expected = [Aassignment.make()]
-//        frc?.mockObjects = expected
+        let a = Assignment.make()
+        let expected = AssignmentDetailsViewModel(name: a.name, pointsPossible: a.pointsPossible, dueAt: a.dueAt, submissionTypes: a.submissionTypes)
+
+        frc?.mockObjects = [a]
 
         //  when
-//        presenter.loadAssignment()
+        presenter.loadAssignment()
 
         //  then
-//        XCTAssertEqual(resultingAssignment, expected)
+        XCTAssertEqual(resultingAssignment, expected)
     }
 
     func testErrorInLoadingTabs() {
         //  given
-//        let expected = NSError.instructureError("InternalError")
-//        frc?.error = expected
+        let expected = NSError.instructureError("InternalError")
+        frc?.error = expected
 
         //  when
-//        presenter.loadAssignment()
+        presenter.loadAssignment()
 
         //  then
-//        XCTAssertEqual(resultingError, expected)
+        XCTAssertEqual(resultingError, expected)
     }
 
     func testFrcParameters() {
-
+        XCTAssertEqual(frc?.sortDescriptors, nil)
+        XCTAssertEqual(frc?.predicate, NSPredicate.id("1"))
     }
 
-    func testUseCaseIsAddedToQueue() {
-//        wait(for: [expectation], timeout: 0.1)
+    func testUseCaseFetchesData() {
+        //  given
+        resultingAssignment = nil
+        self.frc?.delegate = self
+        let expectation = XCTestExpectation(description: "expectation")
+        let workOp = BlockOperation { [weak self] in
+            self?.frc?.mockObjects = [Assignment.make()]
+            self?.frc?.delegate?.controllerDidChangeContent(self!.frc!)
+            expectation.fulfill()
+        }
+        mockUseCase.addOperations([workOp])
+
+        //   when
+        presenter.loadDataFromServer()
+        wait(for: [expectation], timeout: 0.1)
+
+        //  then
+        XCTAssertEqual(resultingAssignment?.name, Assignment.make().name)
+
+        //  when
+        presenter.loadAssignment()
+
+        //  then
+        XCTAssertEqual(frcCallCount, 1) //  this attempts to assure that loadFromServer is only called once
     }
 }
 
 extension AssignmentDetailsPresenterTests: AssignmentDetailsViewProtocol {
-//    func showAssignment(_ assignment: Assignment) {
-//        resultingAssignment = assignment
-//    }
+    func update(assignment: AssignmentDetailsViewModel) {
+        resultingAssignment = assignment
+    }
 
     func showError(_ error: Error) {
         resultingError = error as NSError
@@ -76,7 +111,11 @@ extension AssignmentDetailsPresenterTests: AssignmentDetailsViewProtocol {
 
     func updateNavBar(subtitle: String, backgroundColor: UIColor) {
     }
+}
 
-    func update(assignment: AssignmentDetailsViewModel) {
+extension AssignmentDetailsPresenterTests: FetchedResultsControllerDelegate {
+    func controllerDidChangeContent<T>(_ controller: FetchedResultsController<T>) {
+        frcCallCount += 1
+        presenter.loadAssignment()
     }
 }

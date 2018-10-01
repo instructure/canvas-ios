@@ -18,42 +18,52 @@ import Foundation
 import Core
 
 class AssignmentDetailsPresenter {
-    weak var view: AssignmentDetailsViewProtocol?
-//    var frc: FetchedResultsController<Assignment>?
+    typealias PresenterFactory = (String, String) -> PresenterUseCase
 
+    var frc: FetchedResultsController<Assignment>?
+    weak var view: AssignmentDetailsViewProtocol?
     var useCase: PresenterUseCase?
     let queue = OperationQueue()
+    let courseID: String
+    let assignmentID: String
+    let useCaseFactory: PresenterFactory
+    static var factory: PresenterFactory  = { (courseID: String, assignmentID: String) in
+        return AssignmentDetailsUseCase(courseID: courseID, assignmentID: assignmentID)
+    }
 
-    init(env: AppEnvironment = .shared, view: AssignmentDetailsViewProtocol, courseID: String, assignmentID: String) {
+    init(env: AppEnvironment = .shared, view: AssignmentDetailsViewProtocol, courseID: String, assignmentID: String, useCaseFactory: @escaping PresenterFactory = factory) {
         self.view = view
-//        frc = env.database.fetchedResultsController(predicate: pred, sortDescriptors: [sort], sectionNameKeyPath: nil)
-//        frc?.delegate = self
+        self.courseID = courseID
+        self.assignmentID = assignmentID
+        self.useCaseFactory = useCaseFactory
+        let predicate = NSPredicate.id(assignmentID)
+        frc = env.database.fetchedResultsController(predicate: predicate, sortDescriptors: nil, sectionNameKeyPath: nil)
+        frc?.delegate = self
     }
 
     func loadAssignment() {
-//        do {
-//            try frc?.performFetch()
-//            view?.showAssignment()
-//        } catch {
-//            view?.showError(error)
-//        }
+        do {
+            try frc?.performFetch()
+            guard let assignment = frc?.fetchedObjects?.first else { return }
+            view?.update(assignment: AssignmentDetailsViewModel(
+                name: assignment.name,
+                pointsPossible: assignment.pointsPossible,
+                dueAt: assignment.dueAt,
+                submissionTypes: assignment.submissionTypes
+            ))
+        } catch {
+            view?.showError(error)
+        }
     }
 
     func loadDataFromServer() {
-        // Mock
-        view?.update(assignment: AssignmentDetailsViewModel(
-            name: "Essay #1: The Rocky Planets",
-            pointsPossible: 10.5,
-            dueAt: Date(),
-            submissionTypes: [ "File Upload", "Text Entry", "Website URL" ]
-        ))
-
-        guard let useCase = useCase else { return }
+        let useCase = useCaseFactory(courseID, assignmentID)
         queue.addOperation(useCase)
     }
 
     func viewIsReady() {
         loadDataFromServer()
+        loadAssignment()
     }
 
     func pageViewStarted() {
@@ -64,5 +74,11 @@ class AssignmentDetailsPresenter {
 
     func pageViewEnded() {
         // log page view
+    }
+}
+
+extension AssignmentDetailsPresenter: FetchedResultsControllerDelegate {
+    func controllerDidChangeContent<T>(_ controller: FetchedResultsController<T>) {
+        loadAssignment()
     }
 }

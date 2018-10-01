@@ -31,9 +31,9 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
     @IBOutlet weak var submissionTypesLabel: UILabel?
     @IBOutlet weak var gradeHeadingLabel: UILabel?
     @IBOutlet weak var descriptionHeadingLabel: UILabel?
-
+    @IBOutlet weak var scrollView: UIScrollView!
+    var refreshControl: UIRefreshControl?
     let titleSubtitleView = TitleSubtitleView.create()
-
     var presenter: AssignmentDetailsPresenter?
 
     static func create(env: AppEnvironment = .shared, courseID: String, assignmentID: String) -> AssignmentDetailsViewController {
@@ -46,6 +46,8 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        configurePullToRefresh()
 
         // Navigation Bar
         navigationItem.titleView = titleSubtitleView
@@ -70,6 +72,18 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         presenter?.pageViewEnded()
     }
 
+    func configurePullToRefresh() {
+        scrollView.alwaysBounceVertical = true
+        refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: #selector(actionHandleRefresh(_:)), for: UIControl.Event.valueChanged)
+        guard let refreshControl = refreshControl else { return }
+        scrollView.addSubview(refreshControl)
+    }
+
+    @objc func actionHandleRefresh(_ refreshControl: UIRefreshControl) {
+        presenter?.loadDataFromServer()
+    }
+
     func updateNavBar(subtitle: String, backgroundColor: UIColor) {
         titleSubtitleView.subtitle = subtitle
         navigationController?.navigationBar.tintColor = .named(.white)
@@ -82,6 +96,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         pointsLabel?.text = assignment.pointsPossibleText
         dueLabel?.text = assignment.dueText
         submissionTypesLabel?.text = assignment.submissionTypeText
+        refreshControl?.endRefreshing()
     }
 
     func showError(_ error: Error) {

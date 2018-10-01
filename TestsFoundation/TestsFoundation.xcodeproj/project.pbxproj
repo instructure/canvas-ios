@@ -22,6 +22,7 @@
 		3B0CEBA321504C2500D07CFA /* APITab+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0CEBA021504C2500D07CFA /* APITab+Fixture.swift */; };
 		3B0CEBA421504C2500D07CFA /* APIGroup+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0CEBA121504C2500D07CFA /* APIGroup+Fixture.swift */; };
 		3B0CEBA521504C2500D07CFA /* APICourse+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0CEBA221504C2500D07CFA /* APICourse+Fixture.swift */; };
+		3B5757D721629C5D0014F6A2 /* MockUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5757D621629C5D0014F6A2 /* MockUseCase.swift */; };
 		7D63F794215D8FC100151E49 /* APIBrandVariables+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D63F793215D8FC100151E49 /* APIBrandVariables+Fixture.swift */; };
 		B16F0371215BD5F10011E952 /* TestRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16F0370215BD5F10011E952 /* TestRouter.swift */; };
 		B16F0375215C2B340011E952 /* Assignment+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16F0374215C2B340011E952 /* Assignment+Fixture.swift */; };
@@ -49,6 +50,7 @@
 		3B0CEBA021504C2500D07CFA /* APITab+Fixture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APITab+Fixture.swift"; sourceTree = "<group>"; };
 		3B0CEBA121504C2500D07CFA /* APIGroup+Fixture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIGroup+Fixture.swift"; sourceTree = "<group>"; };
 		3B0CEBA221504C2500D07CFA /* APICourse+Fixture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APICourse+Fixture.swift"; sourceTree = "<group>"; };
+		3B5757D621629C5D0014F6A2 /* MockUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUseCase.swift; sourceTree = "<group>"; };
 		7D63F793215D8FC100151E49 /* APIBrandVariables+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIBrandVariables+Fixture.swift"; sourceTree = "<group>"; };
 		B16F0370215BD5F10011E952 /* TestRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRouter.swift; sourceTree = "<group>"; };
 		B16F0374215C2B340011E952 /* Assignment+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Assignment+Fixture.swift"; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 		3B032CFD215037AA00B570F7 /* TestsFoundation */ = {
 			isa = PBXGroup;
 			children = (
+				3B5757D521629C480014F6A2 /* UseCase */,
 				B16F036F215BD5E60011E952 /* Router */,
 				3B0CEB782150429300D07CFA /* Database */,
 				3B032D15215037B900B570F7 /* Fixtures */,
@@ -163,6 +166,14 @@
 				3B0CEB7F2150454500D07CFA /* NSManagedObject+Fixture.swift */,
 			);
 			path = Database;
+			sourceTree = "<group>";
+		};
+		3B5757D521629C480014F6A2 /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				3B5757D621629C5D0014F6A2 /* MockUseCase.swift */,
+			);
+			path = UseCase;
 			sourceTree = "<group>";
 		};
 		B16F036F215BD5E60011E952 /* Router */ = {
@@ -256,6 +267,7 @@
 				B1A32BE02159A28D0071B41E /* APISubmission+Fixture.swift in Sources */,
 				3B0CEBA321504C2500D07CFA /* APITab+Fixture.swift in Sources */,
 				3B0CEB722150406400D07CFA /* Course+Fixture.swift in Sources */,
+				3B5757D721629C5D0014F6A2 /* MockUseCase.swift in Sources */,
 				3B0CEBA521504C2500D07CFA /* APICourse+Fixture.swift in Sources */,
 				B16F0371215BD5F10011E952 /* TestRouter.swift in Sources */,
 				B1A32BDE2159A1D70071B41E /* APIAssignment+Fixture.swift in Sources */,

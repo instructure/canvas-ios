@@ -17,20 +17,23 @@
 import Foundation
 import Core
 
-struct AssignmentDetailsViewModel {
+struct AssignmentDetailsViewModel: Equatable {
     let name: String
     let pointsPossible: Double?
-    let dueAt: Date
-    let submissionTypes: [String]
+    let dueAt: Date?
+    let submissionTypes: [APIAssignment.SubmissionType]
     var pointsPossibleText: String? {
         guard let points = pointsPossible else { return nil }
         let pointsFormat = NSLocalizedString("plural_pts", bundle: .student, comment: "")
         return String.localizedStringWithFormat(pointsFormat, points)
     }
-    var dueText: String {
+    var dueText: String? {
+        guard let dueAt = self.dueAt else {
+            return nil
+        }
         return DateFormatter.localizedString(from: dueAt, dateStyle: .medium, timeStyle: .short)
     }
     var submissionTypeText: String {
-        return ListFormatter.localizedString(from: submissionTypes, conjunction: .or)
+        return ListFormatter.localizedString(from: submissionTypes.map {$0.rawValue}, conjunction: .or)
     }
 }

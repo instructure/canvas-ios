@@ -22,9 +22,6 @@ import RealmSwift
 
 class GroupNavigationPresenterTests: XCTestCase {
 
-    class MockUseCase: PresenterUseCase {
-    }
-
     var resultingTabs: [Tab]?
     var presenter: GroupNavigationPresenter!
     var resultingError: NSError?

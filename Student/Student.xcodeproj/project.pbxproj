@@ -26,6 +26,7 @@
 		3B542D5D215AE79E0084DA9D /* DashboardIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152E3212B3957005BA428 /* DashboardIntegrationTests.swift */; };
 		3B542D5F215AE79E0084DA9D /* TestsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B0CEB8F2150464100D07CFA /* TestsFoundation.framework */; };
 		3B542D61215AE79E0084DA9D /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C964867211E38B0002C3255 /* Core.framework */; };
+		3B5757D4216289E00014F6A2 /* AssignmentDetailsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5757D3216289E00014F6A2 /* AssignmentDetailsViewModelTests.swift */; };
 		3B756928215E924700F2E8B5 /* AppFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3B756926215E921300F2E8B5 /* AppFramework.framework */; };
 		788152DB212B3470005BA428 /* DashboardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152DA212B3470005BA428 /* DashboardPresenter.swift */; };
 		788152DD212B34F2005BA428 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152DC212B34F2005BA428 /* DashboardViewController.swift */; };
@@ -80,6 +81,7 @@
 		7D979CD7215BE61400567627 /* AssignmentDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D89FBC12159809400EEE2F6 /* AssignmentDetailsViewController.swift */; };
 		7D979CD8215BE61F00567627 /* AssignmentDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1758BD215A8B8E00F88613 /* AssignmentDetailsViewModel.swift */; };
 		7DF9BF062151961B0099026B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DF9BF052151961B0099026B /* Colors.xcassets */; };
+		9F069B4D215D1CD100658826 /* AssignmentDetailsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F069B4C215D1CD100658826 /* AssignmentDetailsUseCase.swift */; };
 		F97304A02122268100AA2557 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C964867211E38B0002C3255 /* Core.framework */; };
 		F97304A12122268500AA2557 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C964867211E38B0002C3255 /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F9E7D0D2215BE19F00CDC1A3 /* StudentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E7D0D1215BE19F00CDC1A3 /* StudentUITests.swift */; };
@@ -165,6 +167,7 @@
 		3B542D4B215AE75B0084DA9D /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B542D4D215AE75E0084DA9D /* TestsFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TestsFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B542D75215AE79E0084DA9D /* StudentUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StudentUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B5757D3216289E00014F6A2 /* AssignmentDetailsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsViewModelTests.swift; sourceTree = "<group>"; };
 		3B756926215E921300F2E8B5 /* AppFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppFramework.framework; sourceTree = "<group>"; };
 		788152DA212B3470005BA428 /* DashboardPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardPresenter.swift; sourceTree = "<group>"; };
 		788152DC212B34F2005BA428 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
@@ -196,6 +199,7 @@
 		7D89FBC12159809400EEE2F6 /* AssignmentDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsViewController.swift; sourceTree = "<group>"; };
 		7D979CD3215BE3E300567627 /* Bundle+Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Student.swift"; sourceTree = "<group>"; };
 		7DF9BF052151961B0099026B /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Colors.xcassets; path = ../../Core/Core/Colors.xcassets; sourceTree = "<group>"; };
+		9F069B4C215D1CD100658826 /* AssignmentDetailsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsUseCase.swift; sourceTree = "<group>"; };
 		9FCA66012142C86C00BE0EBB /* SoSeedySwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoSeedySwift.framework; path = "../../ios-frameworks/SoSeedySwift.framework"; sourceTree = "<group>"; };
 		9FCA66062142C8C300BE0EBB /* Secrets.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Secrets.framework; path = "../../ios-frameworks/Secrets.framework"; sourceTree = "<group>"; };
 		9FCA66082142C8D100BE0EBB /* SwiftProtobuf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftProtobuf.framework; path = "../../ios-frameworks/SwiftGRPC/SwiftProtobuf.framework"; sourceTree = "<group>"; };
@@ -359,6 +363,7 @@
 				7D89FBC12159809400EEE2F6 /* AssignmentDetailsViewController.swift */,
 				7D1758AB215985AB00F88613 /* AssignmentDetailsViewController.storyboard */,
 				7D1758BD215A8B8E00F88613 /* AssignmentDetailsViewModel.swift */,
+				9F069B4C215D1CD100658826 /* AssignmentDetailsUseCase.swift */,
 			);
 			path = Assignments;
 			sourceTree = "<group>";
@@ -367,6 +372,7 @@
 			isa = PBXGroup;
 			children = (
 				3B2C4C982159FC9F00995F3B /* AssignmentDetailsPresenterTests.swift */,
+				3B5757D3216289E00014F6A2 /* AssignmentDetailsViewModelTests.swift */,
 			);
 			path = Assignments;
 			sourceTree = "<group>";
@@ -698,6 +704,7 @@
 				3B542D0D215ABE630084DA9D /* GroupNavigationUseCase.swift in Sources */,
 				78815317212F56E1005BA428 /* AllCoursesCourseCell.swift in Sources */,
 				3B032CA5214C552B00B570F7 /* GroupNavigationPresenter.swift in Sources */,
+				9F069B4D215D1CD100658826 /* AssignmentDetailsUseCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -708,6 +715,7 @@
 				3B542D54215AE79E0084DA9D /* MockPersistence.swift in Sources */,
 				3B542D55215AE79E0084DA9D /* GroupNavigationPresenterTests.swift in Sources */,
 				3B542D56215AE79E0084DA9D /* TestEnvironment.swift in Sources */,
+				3B5757D4216289E00014F6A2 /* AssignmentDetailsViewModelTests.swift in Sources */,
 				3B542D5A215AE79E0084DA9D /* DashboardMocks.swift in Sources */,
 				3B542D5C215AE79E0084DA9D /* AssignmentDetailsPresenterTests.swift in Sources */,
 				3B542D5D215AE79E0084DA9D /* DashboardIntegrationTests.swift in Sources */,

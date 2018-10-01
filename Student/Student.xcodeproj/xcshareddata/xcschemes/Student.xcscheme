@@ -99,7 +99,7 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "RouterDebug"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>
