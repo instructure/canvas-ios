@@ -14,11 +14,11 @@
 // limitations under the License.
 //
 
-import XCTest
+import Foundation
 
-class StudentUITestsEG2: StudentTest {
-    func testExample() {
-      EarlGrey.selectElement(with: grey_keyWindow())
-        .perform(grey_tap())
-    }
+@objc
+protocol TestHost {
+    func reset()
+    func logIn(domain: String, token: String)
+    func show(_ route: String)
 }

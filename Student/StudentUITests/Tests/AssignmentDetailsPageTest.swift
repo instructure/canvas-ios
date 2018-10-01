@@ -14,11 +14,20 @@
 // limitations under the License.
 //
 
-import XCTest
+import Foundation
+import SoSeedySwift
 
-class StudentUITestsEG2: StudentTest {
-    func testExample() {
-      EarlGrey.selectElement(with: grey_keyWindow())
-        .perform(grey_tap())
+class AssignmentDetailsPageTest: StudentTest {
+    func testDetails() {
+        getToAssignmentDetails()
+    }
+
+    func getToAssignmentDetails() {
+        let course = SoSeedySwift.createCourse()
+        let teacher = SoSeedySwift.createTeacher(in: course)
+        let student = SoSeedySwift.createStudent(in: course)
+        let assignment = SoSeedySwift.createAssignment(for: course, as: teacher)
+
+        launch("/courses/\(course.id)/assignments/\(assignment.id)", as: student)
     }
 }

@@ -37,6 +37,7 @@ class RouterViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
         cell.textLabel?.text = routes[indexPath.row]
+        cell.accessibilityIdentifier = routes[indexPath.row]
         return cell
     }
 

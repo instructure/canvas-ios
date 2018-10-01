@@ -14,11 +14,31 @@
 // limitations under the License.
 //
 
+import Foundation
 import XCTest
+import SoSeedySwift
 
-class StudentUITestsEG2: StudentTest {
-    func testExample() {
-      EarlGrey.selectElement(with: grey_keyWindow())
-        .perform(grey_tap())
+var app: XCUIApplication?
+
+class StudentTest: XCTestCase {
+    var host: TestHost {
+        return unsafeBitCast(
+            GREYHostApplicationDistantObject.sharedInstance,
+            to: TestHost.self)
+    }
+
+    override func setUp() {
+        super.setUp()
+        continueAfterFailure = false
+        if app == nil {
+            app = XCUIApplication()
+            app!.launch()
+        }
+        host.reset()
+    }
+
+    func launch(_ route: String, as user: Soseedy_CanvasUser) {
+        host.logIn(domain: user.domain, token: user.token)
+        host.show(route)
     }
 }
