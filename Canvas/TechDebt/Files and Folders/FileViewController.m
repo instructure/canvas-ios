@@ -174,16 +174,25 @@
         self.file = file;
 
         NSFileManager *fileManager = [NSFileManager defaultManager];
-        NSString *path = self.showingOldVersion ? [self legacyPathForPersistedFile:file] : [self pathForPersistedFile:file];
+        NSString *path = [self pathForPersistedFile:file];
         NSString *legacyPath = [self legacyPathForPersistedFile:file];
 
-        // Only show old version banner if the old file exists and it has annotations
-        if (!self.showingOldVersion && [fileManager fileExistsAtPath:legacyPath] && [self fileAtPathContainsAnnotations:legacyPath]) {
+        // Try to only show the version with annotations
+        // If both versions have annotations, show the legacy banner
+        BOOL legacyHasAnnotations = [self fileAtPathContainsAnnotations:legacyPath];
+        BOOL bothHaveAnnotations = [self fileAtPathContainsAnnotations:path] && legacyHasAnnotations;
+        BOOL onlyLegacyHasAnnotations = !bothHaveAnnotations && legacyHasAnnotations;
+        BOOL shouldShowLegacyBanner = !self.showingOldVersion && bothHaveAnnotations;
+        if (shouldShowLegacyBanner) {
             self.legacyFileMessageViewHeightConstraint.constant = 25;
             self.legacyFileMessageView.hidden = NO;
             [self.view setNeedsLayout];
         }
-        
+
+        if (self.showingOldVersion || onlyLegacyHasAnnotations) {
+            path = legacyPath;
+        }
+
         if ([fileManager fileExistsAtPath:path]) {
             [self.activityView stopAnimating];
             self.downloadProgress = 1.0;
@@ -218,6 +227,7 @@
 }
 
 - (NSString *)pathForPersistedFile:(CKAttachment *)file {
+    NSFileManager *fileManager = [NSFileManager defaultManager];
     // Store the file in a directory unique to this file as well as the current user
     // Structuring this way prevents overriding files across users and folders
     // example: /canvas.instructure.com-:userID/:fileID/:fileName
@@ -225,7 +235,7 @@
     NSString *documentsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
     NSURL *userDirectory = [[NSURL URLWithString:documentsPath] URLByAppendingPathComponent:sessionID isDirectory:YES];
     NSURL *fileDirectory = [userDirectory URLByAppendingPathComponent:[NSString stringWithFormat:@"%llu", file.ident] isDirectory:YES];
-    [[NSFileManager defaultManager] createDirectoryAtPath:fileDirectory.path withIntermediateDirectories:YES attributes:nil error:nil];
+    [fileManager createDirectoryAtPath:fileDirectory.path withIntermediateDirectories:YES attributes:nil error:nil];
     NSURL *url = [fileDirectory URLByAppendingPathComponent:file.filename isDirectory:NO];
     return url.path;
 }
@@ -238,7 +248,7 @@
 
 - (BOOL)fileAtPathContainsAnnotations:(NSString *)path {
     NSURL *url = [NSURL fileURLWithPath:path];
-    if (!url) {
+    if (!url || ![[NSFileManager defaultManager] fileExistsAtPath:url.path]) {
         return NO;
     }
     PSPDFDocument *document = [[PSPDFDocument alloc] initWithURL:url];
