@@ -28,6 +28,10 @@ public class ExternalToolManager: NSObject {
 
     private var disposable: Disposable?
 
+    public var openInSafari: Bool {
+        return UserDefaults.standard.bool(forKey: "open_lti_safari")
+    }
+
     @objc
     public static func isQuizzesNext(_ url: URL) -> Bool {
         let regex = "\\.quiz-lti-\\w+-prod\\.instructure\\.com\\/lti\\/launch"
@@ -211,6 +215,16 @@ public class ExternalToolManager: NSObject {
 
     private func present(_ url: URL, pageViewPath: String?, from viewController: UIViewController, completionHandler: (() -> Void)?) {
         DispatchQueue.main.async {
+            if self.openInSafari {
+                UIApplication.shared.open(url.ensureHTTPS(), options: [:]) { [weak self] success in
+                    guard success else {
+                        self?.fail(error, from: viewController, completionHandler: completionHandler)
+                        return
+                    }
+                    completionHandler?()
+                }
+                return
+            }
             let safari = ExternalToolSafariViewController(url: url.ensureHTTPS(), eventName: pageViewPath)
             safari.modalPresentationStyle = .overFullScreen
             viewController.present(safari, animated: true, completion: completionHandler)
@@ -238,7 +252,9 @@ public class ExternalToolSafariViewController: SFSafariViewController, PageViewE
     @objc var eventName: String = ""
     
     @objc init(url: URL, eventName: String?) {
-        super.init(url: url, entersReaderIfAvailable: false)
+        let config = SFSafariViewController.Configuration()
+        config.entersReaderIfAvailable = false
+        super.init(url: url, configuration: config)
         self.eventName = eventName ?? url.path
     }
     
