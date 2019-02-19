@@ -1,0 +1,138 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Slider renders 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "display": "flex",
+      "flexDirection": "row",
+      "justifyContent": "space-between",
+      "marginBottom": 8,
+      "marginTop": 20,
+    }
+  }
+>
+  <TouchableHighlight
+    activeOpacity={0.85}
+    onPress={[Function]}
+    testID="slider.zero"
+    underlayColor="transparent"
+  >
+    <View>
+      <Text
+        style={
+          Object {
+            "flex": 0,
+            "marginRight": 8,
+          }
+        }
+      >
+        0
+      </Text>
+    </View>
+  </TouchableHighlight>
+  <View
+    onLayout={[Function]}
+    style={
+      Object {
+        "flex": 1,
+        "justifyContent": "center",
+      }
+    }
+  >
+    <View
+      hitSlop={
+        Object {
+          "bottom": 15,
+          "top": 15,
+        }
+      }
+      onResponderRelease={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "borderTopColor": "#A5AFB5",
+          "borderTopWidth": 1,
+          "height": 1,
+        }
+      }
+      testID="slider.line"
+    />
+    <AnimatedComponent
+      accessibilityLabel="NaN"
+      accessible={true}
+      hitSlop={
+        Object {
+          "bottom": 5,
+          "left": 5,
+          "right": 5,
+          "top": 5,
+        }
+      }
+      onAccessibilityDecrement={[Function]}
+      onAccessibilityIncrement={[Function]}
+      onMoveShouldSetResponder={[Function]}
+      onMoveShouldSetResponderCapture={[Function]}
+      onResponderEnd={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderReject={[Function]}
+      onResponderRelease={[Function]}
+      onResponderStart={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      onStartShouldSetResponderCapture={[Function]}
+      style={
+        Array [
+          Object {
+            "transform": Array [
+              Object {
+                "translateX": 0,
+              },
+            ],
+          },
+          Object {
+            "backgroundColor": "#fff",
+            "borderColor": "#A5AFB5",
+            "borderRadius": 15,
+            "borderWidth": 1,
+            "height": 30,
+            "left": 0,
+            "position": "absolute",
+            "shadowColor": "#000",
+            "shadowOffset": Object {
+              "height": 2,
+              "width": 0,
+            },
+            "shadowOpacity": 0.25,
+            "shadowRadius": 2,
+            "width": 30,
+          },
+        ]
+      }
+      testID="slider.adjustable"
+    />
+  </View>
+  <TouchableHighlight
+    activeOpacity={0.85}
+    onPress={[Function]}
+    testID="slider.pointsPossible"
+    underlayColor="transparent"
+  >
+    <View>
+      <Text
+        style={
+          Object {
+            "flex": 0,
+            "marginLeft": 8,
+          }
+        }
+      >
+        100
+      </Text>
+    </View>
+  </TouchableHighlight>
+</View>
+`;

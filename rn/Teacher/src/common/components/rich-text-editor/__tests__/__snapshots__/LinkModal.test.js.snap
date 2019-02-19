@@ -1,0 +1,190 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LinkModal renders 1`] = `
+<RCTSafeAreaView
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": "transparent",
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "transparent",
+          "flex": 1,
+          "justifyContent": "center",
+          "padding": 50,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "stretch",
+            "backgroundColor": "#e9e9e9",
+            "borderRadius": 8,
+            "flexDirection": "column",
+            "overflow": "hidden",
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "fontSize": 18,
+              "paddingBottom": 15,
+              "paddingTop": 15,
+              "textAlign": "center",
+            }
+          }
+        >
+          Link to Website URL
+        </Text>
+        <View
+          style={
+            Object {
+              "backgroundColor": "#fff",
+              "borderColor": "#ddd",
+              "borderWidth": 1,
+              "marginBottom": 4,
+              "marginLeft": 10,
+              "marginRight": 10,
+              "padding": 4,
+            }
+          }
+        >
+          <TextInput
+            allowFontScaling={true}
+            autoCapitalize="none"
+            autoFocus={false}
+            defaultValue={undefined}
+            onChangeText={[Function]}
+            placeholder="Title"
+            style={
+              Object {
+                "height": 20,
+              }
+            }
+            testID="rich-text-editor.link-modal.titleInput"
+          />
+        </View>
+        <View
+          style={
+            Object {
+              "backgroundColor": "#fff",
+              "borderColor": "#ddd",
+              "borderWidth": 1,
+              "marginBottom": 4,
+              "marginLeft": 10,
+              "marginRight": 10,
+              "padding": 4,
+            }
+          }
+        >
+          <TextInput
+            allowFontScaling={true}
+            autoCapitalize="none"
+            autoCorrect={false}
+            defaultValue={undefined}
+            keyboardType="url"
+            onChangeText={[Function]}
+            placeholder="URL"
+            style={
+              Object {
+                "height": 20,
+              }
+            }
+            testID="rich-text-editor.link-modal.urlInput"
+          />
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#ddd",
+              },
+              Object {
+                "height": 1,
+                "marginTop": 6,
+              },
+            ]
+          }
+        />
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          >
+            <Button
+              onPress={[Function]}
+              testID="rich-text-editor.link-modal.cancelButton"
+              title="Cancel"
+            />
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "#ddd",
+                },
+                Object {
+                  "width": 1,
+                },
+              ]
+            }
+          />
+          <View
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          >
+            <Button
+              onPress={[Function]}
+              testID="rich-text-editor.link-modal.okButton"
+              title="OK"
+            />
+          </View>
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+          },
+          Object {
+            "height": 0,
+          },
+          undefined,
+        ]
+      }
+    />
+  </View>
+</RCTSafeAreaView>
+`;

@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DropView renders a native dropview on ios 11 and above 1`] = `
+<_class>
+  <View />
+</_class>
+`;
+
+exports[`DropView warns and renders a normal view on other versions 1`] = `<View />`;

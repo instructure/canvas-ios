@@ -1,0 +1,155 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BottomDrawer renders any children 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "bottom": 0,
+        "height": 52,
+        "position": "absolute",
+        "transform": Array [
+          Object {
+            "rotate": "180deg",
+          },
+        ],
+      },
+      Object {
+        "left": 25,
+        "right": 25,
+      },
+    ]
+  }
+>
+  <Interactable.View
+    animatedValueY={0}
+    initialPosition={
+      Object {
+        "y": 0,
+      }
+    }
+    onDrag={[Function]}
+    onSnap={[Function]}
+    snapPoints={
+      Array [
+        Object {
+          "y": 0,
+        },
+        Object {
+          "y": 615,
+        },
+        Object {
+          "y": 1212,
+        },
+      ]
+    }
+    style={
+      Object {
+        "height": 78,
+        "left": 16,
+        "position": "absolute",
+        "right": 16,
+      }
+    }
+    verticalOnly={true}
+  />
+  <View
+    collapsable={undefined}
+    style={
+      Object {
+        "height": 667,
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": -615,
+        "transform": Array [
+          Object {
+            "rotate": "180deg",
+          },
+        ],
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "white",
+          "borderTopLeftRadius": 12,
+          "borderTopRightRadius": 12,
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "shadowColor": "black",
+          "shadowOffset": Object {
+            "height": 0,
+            "width": 0,
+          },
+          "shadowOpacity": 0.3,
+          "shadowRadius": 3,
+          "top": 0,
+        }
+      }
+    />
+    <DrawerHandleView
+      style={
+        Array [
+          Object {
+            "marginTop": -16,
+          },
+        ]
+      }
+    >
+      <Button
+        accessibilityTraits={
+          Array [
+            "header",
+            "button",
+          ]
+        }
+        accessible={true}
+        onPress={[Function]}
+        testID="bottom-drawer.cycle"
+      >
+        <View
+          accessibilityLabel="Open Drawer Full screen"
+          style={
+            Object {
+              "alignSelf": "center",
+              "backgroundColor": "darkgray",
+              "borderRadius": 5,
+              "height": 4,
+              "marginTop": 22,
+              "width": 40,
+            }
+          }
+        />
+      </Button>
+      <View
+        style={
+          Object {
+            "marginTop": 6,
+          }
+        }
+      />
+    </DrawerHandleView>
+    <View
+      collapsable={undefined}
+      style={
+        Object {
+          "flex": 1,
+          "opacity": 0,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+      >
+        Yo yo yo
+      </Text>
+    </View>
+  </View>
+</View>
+`;

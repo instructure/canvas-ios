@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FeatureRow renders 1`] = `
+<View
+  style={
+    Object {
+      "paddingBottom": 8,
+      "paddingLeft": 16,
+      "paddingRight": 16,
+      "paddingTop": 16,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "borderRadius": 4,
+        "shadowColor": "#000",
+        "shadowOffset": Object {
+          "height": 1,
+          "width": 0,
+        },
+        "shadowOpacity": 0.3,
+        "shadowRadius": 3,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "white",
+          "borderColor": "#e3e3e3",
+          "borderRadius": 4,
+          "borderWidth": 0.5,
+          "flex": 1,
+          "overflow": "hidden",
+        }
+      }
+    >
+      <Row
+        subtitle="Subtitle"
+        subtitleStyles={
+          Object {
+            "fontWeight": "600",
+          }
+        }
+        title="Title of the row"
+        titleStyles={
+          Object {
+            "fontSize": 24,
+            "fontWeight": "400",
+          }
+        }
+      />
+    </View>
+  </View>
+</View>
+`;

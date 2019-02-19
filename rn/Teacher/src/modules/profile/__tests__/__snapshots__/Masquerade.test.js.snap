@@ -1,0 +1,227 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Masquerade Tests renders correctly with session 1`] = `
+<Screen
+  navBarButtonColor="#008EE2"
+  title="Act as User"
+>
+  <KeyboardAwareScrollView
+    extraScrollHeight={16}
+  >
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "padding": 24,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "marginBottom": 40,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "height": 103,
+              "width": 84,
+            }
+          }
+        >
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/images/masquerade/white-panda.png",
+              }
+            }
+            style={
+              Object {
+                "height": 103,
+                "width": 84,
+              }
+            }
+          />
+          <Image
+            collapsable={undefined}
+            source={
+              Object {
+                "testUri": "../../../src/images/masquerade/red-panda.png",
+              }
+            }
+            style={
+              Object {
+                "height": 103,
+                "left": 5,
+                "position": "absolute",
+                "transform": Array [
+                  Object {
+                    "translateY": 15,
+                  },
+                  Object {
+                    "translateX": -60,
+                  },
+                  Object {
+                    "rotate": "-30deg",
+                  },
+                ],
+                "width": 74,
+              }
+            }
+          />
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "marginBottom": 24,
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "fontSize": 14,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+            ]
+          }
+        >
+          "Act as" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user.
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "borderColor": "#C7CDD1",
+            "borderRadius": 4,
+            "borderWidth": 0.5,
+            "height": 50,
+            "justifyContent": "center",
+            "marginBottom": 12,
+            "padding": 16,
+          }
+        }
+      >
+        <TextInput
+          allowFontScaling={true}
+          autoCapitalize="none"
+          autoCorrect={false}
+          onChangeText={[Function]}
+          onSubmitEditing={[Function]}
+          placeholder="User ID"
+          returnKeyType="next"
+          style={
+            Object {
+              "fontSize": 16,
+            }
+          }
+          value=""
+        />
+      </View>
+      <View
+        style={
+          Object {
+            "borderColor": "#C7CDD1",
+            "borderRadius": 4,
+            "borderWidth": 0.5,
+            "height": 50,
+            "justifyContent": "center",
+            "marginBottom": 12,
+            "padding": 16,
+          }
+        }
+      >
+        <TextInput
+          allowFontScaling={true}
+          autoCapitalize="none"
+          autoCorrect={false}
+          onChangeText={[Function]}
+          onSubmitEditing={[Function]}
+          placeholder="Domain"
+          returnKeyType="done"
+          style={
+            Object {
+              "fontSize": 16,
+            }
+          }
+          value="mobiledev.instructure.com"
+        />
+      </View>
+      <TouchableHighlight
+        accessibilityTraits={
+          Array [
+            "button",
+            "disabled",
+          ]
+        }
+        disabled={true}
+        onPress={[Function]}
+        style={
+          Array [
+            Object {
+              "borderRadius": 4,
+              "height": 50,
+            },
+            Object {
+              "opacity": 0.5,
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#008EE2",
+              "borderRadius": 4,
+              "flex": 1,
+              "justifyContent": "center",
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontFamily": ".SFUIDisplay-bold",
+                  "fontSize": 16,
+                },
+                Object {
+                  "color": "white",
+                  "fontSize": 16,
+                },
+              ]
+            }
+          >
+            Act as User
+          </Text>
+        </View>
+      </TouchableHighlight>
+    </View>
+  </KeyboardAwareScrollView>
+</Screen>
+`;

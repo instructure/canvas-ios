@@ -1,0 +1,147 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`my chat bubbles render correctly 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+      "maxWidth": 300,
+    }
+  }
+>
+  <Image
+    capInsets={
+      Object {
+        "bottom": 16,
+        "left": 18,
+        "right": 18,
+        "top": 24,
+      }
+    }
+    resizeMode="stretch"
+    source={
+      Object {
+        "testUri": "../../../src/images/speedgrader/bubble-me.png",
+      }
+    }
+    style={
+      Object {
+        "bottom": 0,
+        "height": null,
+        "left": 0,
+        "margin": 0,
+        "padding": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": -4,
+        "width": null,
+      }
+    }
+  />
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+            "paddingBottom": 8,
+            "paddingHorizontal": 12,
+            "paddingTop": 12,
+          },
+          Object {
+            "color": "white",
+          },
+        ],
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+      ]
+    }
+  >
+    Hello, World!
+  </Text>
+</View>
+`;
+
+exports[`their chat bubbles render correctly 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+      "maxWidth": 300,
+    }
+  }
+>
+  <Image
+    capInsets={
+      Object {
+        "bottom": 16,
+        "left": 18,
+        "right": 18,
+        "top": 24,
+      }
+    }
+    resizeMode="stretch"
+    source={
+      Object {
+        "testUri": "../../../src/images/speedgrader/bubble-them.png",
+      }
+    }
+    style={
+      Object {
+        "bottom": 0,
+        "height": null,
+        "left": 0,
+        "margin": 0,
+        "padding": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": -4,
+        "width": null,
+      }
+    }
+  />
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+            "paddingBottom": 8,
+            "paddingHorizontal": 12,
+            "paddingTop": 12,
+          },
+          Object {
+            "color": "#2D3B45",
+          },
+        ],
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+      ]
+    }
+  >
+    Hello, back!
+  </Text>
+</View>
+`;

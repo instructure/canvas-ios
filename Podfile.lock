@@ -1,0 +1,312 @@
+PODS:
+  - AFNetworking (3.2.1):
+    - AFNetworking/NSURLSession (= 3.2.1)
+    - AFNetworking/Reachability (= 3.2.1)
+    - AFNetworking/Security (= 3.2.1)
+    - AFNetworking/Serialization (= 3.2.1)
+    - AFNetworking/UIKit (= 3.2.1)
+  - AFNetworking/NSURLSession (3.2.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - AFNetworking/UIKit (3.2.1):
+    - AFNetworking/NSURLSession
+  - BVLinearGradient (2.4.0):
+    - React
+  - Cartography (1.1.0)
+  - Crashlytics (3.10.2):
+    - Fabric (~> 1.7.7)
+  - DeviceKit (1.7.0)
+  - Eureka (3.0.0)
+  - Fabric (1.7.7)
+  - Firebase/Core (5.4.0):
+    - Firebase/CoreOnly
+    - FirebaseAnalytics (= 5.0.1)
+  - Firebase/CoreOnly (5.4.0):
+    - FirebaseCore (= 5.0.5)
+  - FirebaseAnalytics (5.0.1):
+    - FirebaseCore (~> 5.0)
+    - FirebaseInstanceID (~> 3.0)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
+    - nanopb (~> 0.3)
+  - FirebaseCore (5.0.5):
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
+  - FirebaseInstanceID (3.1.1):
+    - FirebaseCore (~> 5.0)
+  - FXKeychain (1.5.3)
+  - GoogleToolboxForMac/Defines (2.1.4)
+  - "GoogleToolboxForMac/NSData+zlib (2.1.4)":
+    - GoogleToolboxForMac/Defines (= 2.1.4)
+  - Interactable (0.0.9):
+    - React
+  - Kingfisher (3.13.1)
+  - Mantle (1.5.8):
+    - Mantle/extobjc (= 1.5.8)
+  - Mantle/extobjc (1.5.8)
+  - Marshal (1.2.4)
+  - Masonry (1.1.0)
+  - nanopb (0.3.8):
+    - nanopb/decode (= 0.3.8)
+    - nanopb/encode (= 0.3.8)
+  - nanopb/decode (0.3.8)
+  - nanopb/encode (0.3.8)
+  - RCTSFSafariViewController (0.2.4):
+    - React
+  - Reachability (3.2)
+  - React (0.51.0):
+    - React/Core (= 0.51.0)
+  - react-native-blur (0.8.0):
+    - React
+  - react-native-camera (0.10.0):
+    - React
+  - react-native-document-picker (2.1.0):
+    - React
+  - react-native-image-picker (0.14.3):
+    - React
+  - react-native-mail (3.0.4):
+    - React
+  - React/ART (0.51.0):
+    - React/Core
+  - React/BatchedBridge (0.51.0):
+    - React/Core
+    - React/cxxreact_legacy
+  - React/Core (0.51.0):
+    - yoga (= 0.51.0.React)
+  - React/cxxreact_legacy (0.51.0):
+    - React/jschelpers_legacy
+  - React/DevSupport (0.51.0):
+    - React/Core
+    - React/RCTWebSocket
+  - React/fishhook (0.51.0)
+  - React/jschelpers_legacy (0.51.0)
+  - React/RCTActionSheet (0.51.0):
+    - React/Core
+  - React/RCTAnimation (0.51.0):
+    - React/Core
+  - React/RCTBlob (0.51.0):
+    - React/Core
+  - React/RCTImage (0.51.0):
+    - React/Core
+    - React/RCTNetwork
+  - React/RCTLinkingIOS (0.51.0):
+    - React/Core
+  - React/RCTNetwork (0.51.0):
+    - React/Core
+  - React/RCTPushNotification (0.51.0):
+    - React/Core
+  - React/RCTSettings (0.51.0):
+    - React/Core
+  - React/RCTText (0.51.0):
+    - React/Core
+  - React/RCTVibration (0.51.0):
+    - React/Core
+  - React/RCTWebSocket (0.51.0):
+    - React/Core
+    - React/fishhook
+    - React/RCTBlob
+  - ReactiveCocoa (5.0.4):
+    - ReactiveSwift (~> 1.1)
+  - ReactiveObjC (3.0.0)
+  - ReactiveObjCBridge (1.1.0):
+    - ReactiveObjC (~> 3.0.0)
+    - ReactiveSwift (~> 1.1.5)
+  - ReactiveSwift (1.1.5):
+    - Result (~> 3.2)
+  - ReactNativeSearchBar (3.4.0):
+    - React
+  - Result (3.2.4)
+  - RNAudio (3.5.1):
+    - React
+  - RNDeviceInfo (0.9.3):
+    - React
+  - RNFS (2.8.1):
+    - React
+  - RNSound (0.10.4):
+    - React/Core
+    - RNSound/Core (= 0.10.4)
+  - RNSound/Core (0.10.4):
+    - React/Core
+  - SDWebImage (4.4.1):
+    - SDWebImage/Core (= 4.4.1)
+  - SDWebImage/Core (4.4.1)
+  - SVProgressHUD (2.2.5)
+  - SwiftSimplify (0.2.0)
+  - TBBModal (1.0.2)
+  - TPKeyboardAvoiding (1.3.2)
+  - yoga (0.51.0.React)
+
+DEPENDENCIES:
+  - AFNetworking (~> 3.0)
+  - BVLinearGradient (from `./rn/Teacher/node_modules/react-native-linear-gradient`)
+  - Cartography (~> 1.1)
+  - Crashlytics (~> 3.10.2)
+  - DeviceKit (~> 1.0)
+  - Eureka (from `https://github.com/xmartlabs/Eureka`, branch `Swift-3.3`)
+  - Fabric (~> 1.7.7)
+  - Firebase/Core
+  - FXKeychain (~> 1.5)
+  - Interactable (from `./rn/Teacher/node_modules/react-native-interactable`)
+  - Kingfisher (~> 3.2)
+  - Mantle (~> 1.5.5)
+  - Marshal (~> 1.1)
+  - Masonry (~> 1.0)
+  - RCTSFSafariViewController (from `./rn/Teacher/node_modules/react-native-sfsafariviewcontroller`)
+  - Reachability (~> 3.2)
+  - react-native-blur (from `./rn/Teacher/node_modules/react-native-blur`)
+  - react-native-camera (from `./rn/Teacher/node_modules/react-native-camera`)
+  - react-native-document-picker (from `./rn/Teacher/node_modules/react-native-document-picker`)
+  - react-native-image-picker (from `./rn/Teacher/node_modules/react-native-image-picker`)
+  - react-native-mail (from `./rn/Teacher/node_modules/react-native-mail`)
+  - React/ART (from `./rn/Teacher/node_modules/react-native/`)
+  - React/BatchedBridge (from `./rn/Teacher/node_modules/react-native/`)
+  - React/Core (from `./rn/Teacher/node_modules/react-native/`)
+  - React/DevSupport (from `./rn/Teacher/node_modules/react-native/`)
+  - React/fishhook (from `./rn/Teacher/node_modules/react-native/`)
+  - React/RCTActionSheet (from `./rn/Teacher/node_modules/react-native/`)
+  - React/RCTAnimation (from `./rn/Teacher/node_modules/react-native/`)
+  - React/RCTImage (from `./rn/Teacher/node_modules/react-native/`)
+  - React/RCTLinkingIOS (from `./rn/Teacher/node_modules/react-native/`)
+  - React/RCTNetwork (from `./rn/Teacher/node_modules/react-native/`)
+  - React/RCTPushNotification (from `./rn/Teacher/node_modules/react-native/`)
+  - React/RCTSettings (from `./rn/Teacher/node_modules/react-native/`)
+  - React/RCTText (from `./rn/Teacher/node_modules/react-native/`)
+  - React/RCTVibration (from `./rn/Teacher/node_modules/react-native/`)
+  - React/RCTWebSocket (from `./rn/Teacher/node_modules/react-native/`)
+  - ReactiveCocoa (~> 5.0)
+  - ReactiveObjC (~> 3.0)
+  - ReactiveObjCBridge (~> 1.1)
+  - ReactiveSwift
+  - ReactNativeSearchBar (from `./rn/Teacher/node_modules/react-native-search-bar`)
+  - Result (~> 3.2)
+  - RNAudio (from `./rn/Teacher/node_modules/react-native-audio`)
+  - RNDeviceInfo (from `./rn/Teacher/node_modules/react-native-device-info`)
+  - RNFS (from `./rn/Teacher/node_modules/react-native-fs`)
+  - RNSound (from `./rn/Teacher/node_modules/react-native-sound`)
+  - SDWebImage (~> 4.1)
+  - SVProgressHUD (~> 2.0)
+  - SwiftSimplify
+  - TBBModal (~> 1.0)
+  - TPKeyboardAvoiding (~> 1.3)
+  - yoga (from `./rn/Teacher/node_modules/react-native/ReactCommon/yoga`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AFNetworking
+    - Cartography
+    - Crashlytics
+    - DeviceKit
+    - Fabric
+    - Firebase
+    - FirebaseAnalytics
+    - FirebaseCore
+    - FirebaseInstanceID
+    - FXKeychain
+    - GoogleToolboxForMac
+    - Kingfisher
+    - Mantle
+    - Marshal
+    - Masonry
+    - nanopb
+    - Reachability
+    - ReactiveCocoa
+    - ReactiveObjC
+    - ReactiveObjCBridge
+    - ReactiveSwift
+    - Result
+    - SDWebImage
+    - SVProgressHUD
+    - SwiftSimplify
+    - TBBModal
+    - TPKeyboardAvoiding
+
+EXTERNAL SOURCES:
+  BVLinearGradient:
+    :path: "./rn/Teacher/node_modules/react-native-linear-gradient"
+  Eureka:
+    :branch: Swift-3.3
+    :git: https://github.com/xmartlabs/Eureka
+  Interactable:
+    :path: "./rn/Teacher/node_modules/react-native-interactable"
+  RCTSFSafariViewController:
+    :path: "./rn/Teacher/node_modules/react-native-sfsafariviewcontroller"
+  React:
+    :path: "./rn/Teacher/node_modules/react-native/"
+  react-native-blur:
+    :path: "./rn/Teacher/node_modules/react-native-blur"
+  react-native-camera:
+    :path: "./rn/Teacher/node_modules/react-native-camera"
+  react-native-document-picker:
+    :path: "./rn/Teacher/node_modules/react-native-document-picker"
+  react-native-image-picker:
+    :path: "./rn/Teacher/node_modules/react-native-image-picker"
+  react-native-mail:
+    :path: "./rn/Teacher/node_modules/react-native-mail"
+  ReactNativeSearchBar:
+    :path: "./rn/Teacher/node_modules/react-native-search-bar"
+  RNAudio:
+    :path: "./rn/Teacher/node_modules/react-native-audio"
+  RNDeviceInfo:
+    :path: "./rn/Teacher/node_modules/react-native-device-info"
+  RNFS:
+    :path: "./rn/Teacher/node_modules/react-native-fs"
+  RNSound:
+    :path: "./rn/Teacher/node_modules/react-native-sound"
+  yoga:
+    :path: "./rn/Teacher/node_modules/react-native/ReactCommon/yoga"
+
+CHECKOUT OPTIONS:
+  Eureka:
+    :commit: 8fcc11477411b1ac96339d3d9d0973956ed05151
+    :git: https://github.com/xmartlabs/Eureka
+
+SPEC CHECKSUMS:
+  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  BVLinearGradient: 8913bd8fdc47b85abc801ae8bae007bbfb6b4ce5
+  Cartography: 0538ccb4044acbbda2266335fc58cb4228794d90
+  Crashlytics: 0360624eea1c978a743feddb2fb1ef8b37fb7a0d
+  DeviceKit: 6a5bdeb103c03757bb94aef1ccb01e08bc8ef4ee
+  Eureka: 5b9418d7bfdc21ca977d69d124a6409f3e9af2c7
+  Fabric: bda89e242bce1b7b8ab264248cf3407774ce0095
+  Firebase: d66f4f29c23f22d96808d9abc174d81d8eee968f
+  FirebaseAnalytics: b3628aea54c50464c32c393fb2ea032566e7ecc2
+  FirebaseCore: 42b3267233bd21a5abd54117ccc38ca3dd0f8e83
+  FirebaseInstanceID: f3f0657372592ecdfdfe2cac604a5a75758376a6
+  FXKeychain: 2fe54573946ffef634f4e2a2851e6c8f4ea15e76
+  GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
+  Interactable: 0a9f2a42b02ea03114d7e03e714d946a65cd8d0b
+  Kingfisher: ed9707a409cc47fddafbcd12a43a9757e3600af5
+  Mantle: f03b2b606c3f0cabd80214ad8a2fed6b464a7359
+  Marshal: 8e04e6624e506921db7143b0bfd83caee03f32d6
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  RCTSFSafariViewController: 954d0fedb55f8b01b8695c78a8697fdc09a931b4
+  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
+  React: 352f02f1db6e4744f9a758527e13e3fdefbbd6ba
+  react-native-blur: cad4d93b364f91e7b7931b3fa935455487e5c33c
+  react-native-camera: a4446f056fb28a9aa7acb3e14af595216aac0a8d
+  react-native-document-picker: 1e75650447a24dd5621d0d02884f004c619547f9
+  react-native-image-picker: 3693786b3d5958c8f71deed66ec068b323565e0d
+  react-native-mail: 8bf6f105a7df00faad2ad258671611a6ac9f3ba4
+  ReactiveCocoa: b31e754d15937811ede648fc83cd68f5de70a3d4
+  ReactiveObjC: ce79989e8684b9086b5f8d0c74bc7b81a8729c9e
+  ReactiveObjCBridge: 8a8623e1d5b8f7bb14e5f6eaef94e4a1aa159d51
+  ReactiveSwift: 3fea31f8fc49f112d2dc613282c5d395c4d167bb
+  ReactNativeSearchBar: cb48a15b28341a1eaa0720a67a52bde4e9b32c1c
+  Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
+  RNAudio: 7846e34218e3247f3e480b0b20277a3aab24b07b
+  RNDeviceInfo: dc3cbee96cd2392cf03d6ff6191dc15f1606a166
+  RNFS: 44ef20bb355e894d86a439be668c3c5ac70838a5
+  RNSound: dcbb42c698757ee4fa9a8528317c40d18a5deb1b
+  SDWebImage: 47e9b5b925cbce75946c23f0c42dd19464189af4
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwiftSimplify: 374ead1c360c6e236539543d6ce5b3abda011080
+  TBBModal: 376820c480cac24b262c2e10c0178c67bb288390
+  TPKeyboardAvoiding: cb69d5ddbe90ce0170e4bc2db1e5e41d4a3ad9a4
+  yoga: b5d96400ca8b2936965a7a6516da7c1177f432a3
+
+PODFILE CHECKSUM: f09f69fd344708ab3a55d918084779bba56e7f93
+
+COCOAPODS: 1.6.0

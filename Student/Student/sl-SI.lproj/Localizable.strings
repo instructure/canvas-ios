@@ -1,0 +1,144 @@
+/* All Courses screen title */
+"All Courses" = "Vsi predmeti";
+
+/* No comment provided by engineer. */
+"Assignment Details" = "Podrobnosti o nalogi";
+
+/* No comment provided by engineer. */
+"Assignments" = "Naloge:";
+
+/* No comment provided by engineer. */
+"Cancel" = "Prekliči";
+
+/* No comment provided by engineer. */
+"Cancel Submission" = "Prekliči oddajo";
+
+/* No comment provided by engineer. */
+"Close App" = "Zapri aplikacijo";
+
+/* No comment provided by engineer. */
+"Comments" = "Komentarji";
+
+/* No comment provided by engineer. */
+"Courses" = "Predmeti";
+
+/* No comment provided by engineer. */
+"Dashboard" = "Preglednica";
+
+/* No comment provided by engineer. */
+"Description" = "Opis";
+
+/* No comment provided by engineer. */
+"Done" = "Dokončano";
+
+/* No comment provided by engineer. */
+"Drawer closed" = "Predal je zaprt";
+
+/* No comment provided by engineer. */
+"Drawer fully open" = "Predal je povsem odprt";
+
+/* No comment provided by engineer. */
+"Drawer partially opened" = "Predal je delno odprt";
+
+/* No comment provided by engineer. */
+"Due" = "Rok";
+
+/* No comment provided by engineer. */
+"Edit" = "Uredi";
+
+/* No comment provided by engineer. */
+"Edit Course" = "Uredi predmet";
+
+/* No comment provided by engineer. */
+"Failed upload" = "Nalaganje ni uspelo";
+
+/* No comment provided by engineer. */
+"File Types" = "Vrste datotek";
+
+/* No comment provided by engineer. */
+"Files" = "Datoteke";
+
+/* No comment provided by engineer. */
+"Grade" = "Ocena";
+
+/* No comment provided by engineer. */
+"Groups" = "Skupine";
+
+/* No comment provided by engineer. */
+"Invalid url" = "Neveljaven naslov URL";
+
+/* No comment provided by engineer. */
+"No Content" = "Ni vsebine.";
+
+/* No comment provided by engineer. */
+"No Submission" = "Ni oddaj.";
+
+/* No comment provided by engineer. */
+"No Submission Date" = "Ni datuma oddaje";
+
+/* Button to open external tool */
+"Open External Tool" = "Odpri zunanje orodje";
+
+/* Past enrollments section title in All Courses screen */
+"Past Enrollments" = "Pretekli vpisi";
+
+/* No comment provided by engineer. */
+"Quizzes" = "Kvizi";
+
+/* No comment provided by engineer. */
+"Resubmit Assignment" = "Ponovno pošlji nalogo";
+
+/* No comment provided by engineer. */
+"Retry" = "Ponovno poskusi";
+
+/* No comment provided by engineer. */
+"Rubric" = "Ocenjevalni vodnik";
+
+/* No comment provided by engineer. */
+"See All" = "Ogled vsega";
+
+/* No comment provided by engineer. */
+"See All Courses" = "Ogled vseh predmetov";
+
+/* No comment provided by engineer. */
+"Something went wrong while loading the quizzes." = "Pri nalaganju kvizov je prišlo je do težav.";
+
+/* No comment provided by engineer. */
+"Submission" = "Oddaja";
+
+/* No comment provided by engineer. */
+"Submission & Rubric" = "Oddaja in ocenjevalni vodnik";
+
+/* No comment provided by engineer. */
+"Submission Types" = "Vrste oddaj";
+
+/* No comment provided by engineer. */
+"Submit" = "Pošlji";
+
+/* No comment provided by engineer. */
+"Submit Assignment" = "Pošlji nalogo";
+
+/* No comment provided by engineer. */
+"Successfully submitted!" = "Uspešno poslano.";
+
+/* No comment provided by engineer. */
+"The app needs to restart to use the new language settings. Please relaunch the app." = "Da bodo uporabljene nove jezikovne nastavitve, je treba aplikacijo znova zagnati. Znova zaženite aplikacijo.";
+
+/* No comment provided by engineer. */
+"There are no quizzes to display." = "Ni nobenih kvizov za prikaz.";
+
+/* No comment provided by engineer. */
+"Updated Language Settings" = "Posodobljene nastavitve jezika";
+
+/* No comment provided by engineer. */
+"Uploading %@ of %@" = "Nalaganje %1$@ od %2$@";
+
+/* No comment provided by engineer. */
+"Uploading..." = "Nalaganje ...";
+
+/* No comment provided by engineer. */
+"Website Address" = "Naslov spletnega mesta";
+
+/* No comment provided by engineer. */
+"Your submission is now waiting to be graded" = "Oddaja čaka, da bo ocenjena.";
+

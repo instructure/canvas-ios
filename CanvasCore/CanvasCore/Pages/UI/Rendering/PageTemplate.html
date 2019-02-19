@@ -1,0 +1,167 @@
+<!doctype html>
+<html>
+<head>
+  <title>{$TITLE$}</title>
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <style>
+    body {
+      font: -apple-system-body;
+      -webkit-overflow-scrolling: touch;
+      font-size: 16px;
+      height: auto;
+      margin: 16px;
+      direction: {$CONTENT_DIRECTION};
+    }
+    a {
+      color: #0081bd;
+    }
+    p {
+      color: #444;
+    }
+    #title {
+      font-size: 25px;
+      font-weight: 400;
+      margin-top: 5px;
+      margin-bottom: 20px;
+    }
+    h2 {
+      font-weight: 300;
+    }
+    h3, h4 {
+      font-weight: 400;
+    }
+    iframe {
+      border: none;
+      width: 100% !important;
+      margin: 0;
+      padding-top: 0;
+    }
+    img, video {
+      max-width: 100% !important;
+      height: auto !important;
+      margin: 0 auto 0 auto;
+      padding: 0;
+    }
+    a.canvas-ios-lti-launch-button {
+      display: block;
+      margin: 20 auto 20 auto;
+      padding: 12px 8px 12px 8px;
+      background-color: {$PRIMARY_BUTTON_COLOR$};
+      color: white;
+      text-decoration: none;
+      text-align: center;
+    }
+  </style>
+  <script>
+    function onLoadAllImages(callback) {
+      let done = callback
+      let html = document.documentElement
+      document.querySelectorAll('img').forEach(img => {
+        if (!img.src) return img.parentNode.removeChild(img)
+      })
+      function checkIfImagesLoaded () {
+        if ([].some.call(document.querySelectorAll('img'), img => !img.complete)) return
+        done && done()
+        done = null
+        html.removeEventListener('load', checkIfImagesLoaded, true)
+        html.removeEventListener('error', checkIfImagesLoaded, true)
+      }
+      html.addEventListener('load', checkIfImagesLoaded, true)
+      html.addEventListener('error', checkIfImagesLoaded, true)
+      checkIfImagesLoaded()
+    }
+  </script>
+  {$JQUERY$}
+</head>
+<body>
+  <div id="page">
+    {$TITLE$}
+    {$PAGE_BODY$}
+  </div>
+  <script>
+    // Replace all iframes with a button to launch in SFSafariViewController
+    const iframes = document.querySelectorAll('iframe');
+    // If there is only one iframe
+    // and id="cnvs_content"
+    // and the src is a canvas file
+    // reload the webview with an authenticated version of the iframe's src
+    if (iframes.length == 1 && /\/courses\/\d+\/files\/\d+\/download/.test(iframes[0].src) && iframes[0].id === "cnvs_content") {
+        window.webkit.messageHandlers.loadFrameSource.postMessage(iframes[0].src)
+    } else {
+        // Replace all iframes with a button to launch in SFSafariViewController
+        iframes.forEach(iframe => {
+            const replace = iframe => {
+                const a = document.createElement('a')
+                a.textContent = '{$LTI_LAUNCH_TEXT$}'
+                a.classList.add('canvas-ios-lti-launch-button')
+                a.href = iframe.src
+                iframe.parentNode.replaceChild(a, iframe)
+            }
+            if (/\/courses\/\d+\/external_tools\/retrieve/.test(iframe.src)) {
+                replace(iframe)
+            } else {
+                iframe.addEventListener('error', event => replace(event.target))
+            }
+
+        })
+    }
+  </script>
+
+  <script>
+    // This script checks for data-api-endpoint attributes inside <a> tags.
+    // If present, it replaces the href with the endpoint, with a few changes.
+    //
+    // The final href will look something like this:
+    //
+    //   x-canvas-discussion://canvas.instructure.com/api/v1/courses/12345/discussion_topics/54321
+    //   x-canvas-folder-array://canvas.instructure.com/api/v1/folders/12345/folders
+    //
+    // The scheme name is composed as follows:
+    //
+    //   'x-canvas-' + <dataset.apiReturntype.toLowerCase()> [ + '-array' ]
+    //
+    // The rest of the URL is as in the data-api-endpoint attribute.
+
+    // handle math
+    ;(() => {
+      let foundMath = !!document.querySelector('math')
+      document.querySelectorAll('img.equation_image').forEach(img => {
+        if (!img.dataset.mathml && !img.dataset.equationContent) return
+        foundMath = true
+        const div = document.createElement('div')
+        div.innerHTML = img.dataset.mathml || '$$' + img.dataset.equationContent + '$$'
+        img.parentNode.replaceChild(div.firstChild, img)
+      })
+      if (foundMath) {
+        const script = document.createElement('script')
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML'
+        document.body.appendChild(script)
+      }
+    })()
+  </script>
+  <script type="module">
+    // Send content height whenever it changes
+    let lastHeight = 0
+    const checkSize = () => {
+      let height = document.documentElement.scrollHeight
+      if (lastHeight !== height) {
+        lastHeight = height
+        window.webkit.messageHandlers.height.postMessage({ height })
+      }
+    }
+    const observer = new MutationObserver(checkSize)
+    observer.observe(document.documentElement, { attributes: true, childList: true, subtree: true })
+    window.addEventListener('resize', checkSize)
+    window.addEventListener('load', checkSize)
+    document.addEventListener('load', checkSize, true)
+    checkSize()
+
+    window.addEventListener('load', () => {
+      if (location.hash) {
+        const target = document.querySelector(`a[name=${location.hash.slice(1)}],${location.hash}`)
+        if (target) target.scrollIntoView()
+      }
+    })
+  </script>
+</body>
+</html>

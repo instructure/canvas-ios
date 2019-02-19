@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13533" systemVersion="17B48" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="DiscussionEntry" representedClassName=".DiscussionEntry" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="id" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="message" attributeType="String" syncable="YES"/>
+        <attribute name="parentID" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="rawContextID" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="read" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="topicID" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="DiscussionTopic" representedClassName=".DiscussionTopic" syncable="YES">
+        <attribute name="assignmentID" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="attachmentIDs" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="attachmentName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="canView" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="closedForComments" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="htmlURL" attributeType="Transformable" syncable="YES"/>
+        <attribute name="id" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="isAnnouncement" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="isRead" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="lockedForUser" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="lockExplanation" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="message" attributeType="String" syncable="YES"/>
+        <attribute name="pinned" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="postedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="published" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="requiresInitialPost" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="title" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="unreadCount" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="username" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="File" representedClassName=".File" syncable="YES">
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <relationship name="fileUpload" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FileUpload" inverseName="file" inverseEntity="FileUpload" syncable="YES"/>
+    </entity>
+    <entity name="FileUpload" representedClassName=".FileUpload" syncable="YES">
+        <relationship name="file" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="File" inverseName="fileUpload" inverseEntity="File" syncable="YES"/>
+    </entity>
+    <entity name="Upload" representedClassName=".Upload" syncable="YES"/>
+    <elements>
+        <element name="DiscussionEntry" positionX="-63" positionY="117" width="128" height="150"/>
+        <element name="DiscussionTopic" positionX="-63" positionY="-18" width="128" height="345"/>
+        <element name="File" positionX="-63" positionY="108" width="128" height="75"/>
+        <element name="FileUpload" positionX="-36" positionY="126" width="128" height="60"/>
+        <element name="Upload" positionX="-18" positionY="135" width="128" height="45"/>
+    </elements>
+</model>

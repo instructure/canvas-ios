@@ -1,0 +1,72 @@
+[ignore]
+; We fork some components by platform
+.*/*[.]android.js
+
+; Ignore "BUCK" generated dirs
+<PROJECT_ROOT>/\.buckd/
+
+; Ignore unexpected extra "@providesModule"
+.*/node_modules/.*/node_modules/fbjs/.*
+
+; Ignore duplicate module providers
+; For RN Apps installed via npm, "Libraries" folder is inside
+; "node_modules/react-native" but in the source repo it is in the root
+.*/Libraries/react-native/React.js
+.*/Libraries/react-native/ReactNative.js
+
+; Ignore polyfills
+.*/Libraries/polyfills/.*
+
+[include]
+
+[untyped]
+.*/node_modules/react-native/Libraries/.*\(StyleSheetValidation\|Share\|List.*\|Easing\|Inspector\|InteractionManager\|ScrollResponder\|CameraRoll\)\.js
+.*/node_modules/react-native-sfsafariviewcontroller/.*
+.*/node_modules/react-native-keyboard-aware-scroll-view/.*
+.*/node_modules/react-native-image-picker/.*
+./generate-release-notes.js
+
+[libs]
+node_modules/react-native/Libraries/react-native/react-native-interface.js
+flow
+node_modules/react-native/flow/
+src/canvas-api/flow
+src/canvas-api-v2/flow
+
+[options]
+emoji=true
+max_header_tokens=20
+module.system=haste
+
+munge_underscores=true
+
+module.name_mapper='^@modules\/\(.*\)$' -> '<PROJECT_ROOT>/src/modules/\1'
+module.name_mapper='^@test\/\(.*\)$' -> '<PROJECT_ROOT>/test/\1'
+module.name_mapper='^@images\/\(.*\)$' -> '<PROJECT_ROOT>/src/images/\1'
+module.name_mapper='^@images$' -> '<PROJECT_ROOT>/src/images'
+module.name_mapper='^@common\/\(.*\)$' -> '<PROJECT_ROOT>/src/common/\1'
+module.name_mapper='^@templates\/\(.*\)$' -> '<PROJECT_ROOT>/src/__templates__/\1'
+module.name_mapper='^@templates$' -> '<PROJECT_ROOT>/src/__templates__'
+module.name_mapper='^@mocks\/\(.*\)$' -> '<PROJECT_ROOT>/src/__mocks__/\1'
+module.name_mapper='^@canvas-api\/\(.*\)$' -> '<PROJECT_ROOT>/src/canvas-api/\1'
+module.name_mapper='^@canvas-api$' -> '<PROJECT_ROOT>/src/canvas-api'
+module.name_mapper='^@canvas-api2\/\(.*\)$' -> '<PROJECT_ROOT>/src/canvas-api-v2/\1'
+module.name_mapper='^@utils\/\(.*\)$' -> '<PROJECT_ROOT>/src/utils/\1'
+module.name_mapper='^@redux\/\(.*\)$' -> '<PROJECT_ROOT>/src/redux/\1'
+module.name_mapper='^@routing\/\(.*\)$' -> '<PROJECT_ROOT>/src/routing/\1'
+module.name_mapper='^@routing$' -> '<PROJECT_ROOT>/src/routing'
+module.name_mapper='^[./a-zA-Z0-9$_-]+\.\(bmp\|gif\|jpg\|jpeg\|png\|psd\|svg\|webp\|m4v\|mov\|mp4\|mpeg\|mpg\|webm\|aac\|aiff\|caf\|m4a\|mp3\|wav\|html\|pdf\)$' -> 'RelativeImageStub'
+
+suppress_type=$FlowIssue
+suppress_type=$FlowFixMe
+suppress_type=$FlowFixMeProps
+suppress_type=$FlowFixMeState
+suppress_type=$FixMe
+
+suppress_comment=\\(.\\|\n\\)*\\$FlowFixMe\\($\\|[^(]\\|(\\(>=0\\.\\(5[0-7]\\|[1-4][0-9]\\|[0-9]\\).[0-9]\\)? *\\(site=[a-z,_]*react_native[a-z,_]*\\)?)\\)
+suppress_comment=\\(.\\|\n\\)*\\$FlowIssue\\((\\(>=0\\.\\(5[0-7]\\|[1-4][0-9]\\|[0-9]\\).[0-9]\\)? *\\(site=[a-z,_]*react_native[a-z,_]*\\)?)\\)?:? #[0-9]+
+suppress_comment=\\(.\\|\n\\)*\\$FlowFixedInNextDeploy
+suppress_comment=\\(.\\|\n\\)*\\$FlowExpectedError
+
+[version]
+^0.63.0

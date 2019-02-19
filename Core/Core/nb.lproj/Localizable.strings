@@ -1,0 +1,237 @@
+/* No comment provided by engineer. */
+"%@ GPA" = "%@ GPA";
+
+/* No comment provided by engineer. */
+"Are you sure you would like to delete this comment?" = "Er du sikker du ønsker å slette denne kommentaren?";
+
+/* No comment provided by engineer. */
+"Assignment" = "Oppgave";
+
+/* No comment provided by engineer. */
+"Assignment not found." = "Ikke funnet oppgave.";
+
+/* No comment provided by engineer. */
+"Authentication failed. Most likely the user denied the request for access." = "Autentisering mislyktes. Mest sannsynlig nektet bruker forespørselen om tilgang.";
+
+/* No comment provided by engineer. */
+"Can’t find your school? Try typing the full school URL." = "Kan du ikke finne skolen din? Prøv å skrive hele skolens URL.";
+
+/* No comment provided by engineer. */
+"Cancel" = "Avbryt";
+
+/* No comment provided by engineer. */
+"Canvas Login" = "Logg inn på Canvas";
+
+/* No comment provided by engineer. */
+"Canvas Network" = "Canvas Nettverk";
+
+/* No comment provided by engineer. */
+"Closed" = "Lukket";
+
+/* No comment provided by engineer. */
+"Comments" = "Kommentarer";
+
+/* No comment provided by engineer. */
+"Complete" = "Fullført";
+
+/* No comment provided by engineer. */
+"Course" = "Emne";
+
+/* No comment provided by engineer. */
+"d_questions" = "d_questions";
+
+/* No comment provided by engineer. */
+"Delete" = "Slett";
+
+/* No comment provided by engineer. */
+"Delete comment" = "Slett kommentar";
+
+/* No comment provided by engineer. */
+"Delete Comment" = "Slett kommentar";
+
+/* No comment provided by engineer. */
+"Discussion Comment" = "Diskusjonskommentarer";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Avvise";
+
+/* No comment provided by engineer. */
+"External Tool" = "Eksternt verktøy";
+
+/* No comment provided by engineer. */
+"File Upload" = "Filopplasting";
+
+/* No comment provided by engineer. */
+"Final Grade: %@" = "Slutt karakter: %@";
+
+/* No comment provided by engineer. */
+"final_grade_g_pts" = "final_grade_g_pts";
+
+/* No comment provided by engineer. */
+"Find my school" = "Finne skolen min";
+
+/* No comment provided by engineer. */
+"Find your school or district" = "Finn din skole eller ditt distrikt";
+
+/* No comment provided by engineer. */
+"Forget %@" = "Glem %@";
+
+/* No comment provided by engineer. */
+"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
+
+/* No comment provided by engineer. */
+"g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
+"Help" = "Hjelp";
+
+/* No comment provided by engineer. */
+"How do I find my school?" = "Hvordan finner jeg skolen min?";
+
+/* No comment provided by engineer. */
+"Incomplete" = "Ikke godkjent";
+
+/* No comment provided by engineer. */
+"late_penalty_g_pts" = "late_penalty_g_pts";
+
+/* No comment provided by engineer. */
+"Launch External Tool" = "Åpne eksternt verktøy";
+
+/* end of and list pattern */
+"list_and_end" = "%1$@, og %2$@";
+
+/* middle of and list pattern */
+"list_and_middle" = "%1$@, %2$@";
+
+/* start of and list pattern */
+"list_and_start" = "%1$@, %2$@";
+
+/* and list pattern for 2 items */
+"list_and_two" = "%1$@ og %2$@";
+
+/* end of or list pattern */
+"list_or_end" = "%1$@, eller %2$@";
+
+/* middle of or list pattern */
+"list_or_middle" = "%1$@, %2$@";
+
+/* start of or list pattern */
+"list_or_start" = "%1$@, %2$@";
+
+/* or list pattern for 2 items */
+"list_or_two" = "%1$@ eller %2$@";
+
+/* No comment provided by engineer. */
+"Manual OAuth Login" = "Manuell OAuth-innlogging";
+
+/* No comment provided by engineer. */
+"Media Recording" = "Medieinnspilling";
+
+/* No comment provided by engineer. */
+"No Due Date" = "Ingen forfallsdato";
+
+/* No comment provided by engineer. */
+"No Submission" = "Ingen innlevering";
+
+/* No comment provided by engineer. */
+"Not Graded" = "Ikke karaktersatt";
+
+/* No comment provided by engineer. */
+"Not Submitted" = "Ikke levert";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"On Paper" = "På papir";
+
+/* No comment provided by engineer. */
+"out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
+"plural_points" = "plural_points";
+
+/* No comment provided by engineer. */
+"Quiz" = "Test";
+
+/* No comment provided by engineer. */
+"Remove" = "Fjern";
+
+/* No comment provided by engineer. */
+"Removed %1$@" = "Fjernet %1$@";
+
+/* No comment provided by engineer. */
+"Removed %1$@ by %2$@" = "Fjernet %1$@ av %2$@";
+
+/* No comment provided by engineer. */
+"Reply to the annotation or previous comments" = "Svar på merknaden eller tidligere kommentar";
+
+/* No comment provided by engineer. */
+"Resubmit Assignment" = "Send oppgaven inn på nytt";
+
+/* No comment provided by engineer. */
+"See what's new." = "Se hva som er nytt.";
+
+/* No comment provided by engineer. */
+"Select Account" = "Velg konto";
+
+/* No comment provided by engineer. */
+"Select Assignment" = "Velg oppgave";
+
+/* No comment provided by engineer. */
+"Select Course" = "Velg emne";
+
+/* No comment provided by engineer. */
+"Send comment" = "Send kommentar";
+
+/* No comment provided by engineer. */
+"Site Admin Login" = "Sideadministratorinnlogging";
+
+/* No comment provided by engineer. */
+"Style" = "Stil";
+
+/* No comment provided by engineer. */
+"Submission Failed" = "Innlevering feilet";
+
+/* No comment provided by engineer. */
+"Submission Uploading..." = "Innlevering lastes opp...";
+
+/* No comment provided by engineer. */
+"Submit Assignment" = "Lever oppgave";
+
+/* No comment provided by engineer. */
+"Submitted" = "Sendt inn";
+
+/* Submitted date */
+"Submitted %@" = "Sendt inn %@";
+
+/* No comment provided by engineer. */
+"Tap here for help." = "Trykk her for hjelp.";
+
+/* No comment provided by engineer. */
+"Tap to view details" = "Trykk for å vise detaljer";
+
+/* No comment provided by engineer. */
+"Tap to view progress" = "Trykk for å se fremgang";
+
+/* No comment provided by engineer. */
+"Text Entry" = "Innlegging av tekst";
+
+/* No comment provided by engineer. */
+"This assignment is due by %@" = "Denne oppgaven har frist %@";
+
+/* No comment provided by engineer. */
+"This assignment was due by %@" = "Denne oppgaven hadde frist %@";
+
+/* No comment provided by engineer. */
+"We've made a few changes." = "Vi har gjort noen endringer.";
+
+/* No comment provided by engineer. */
+"Website URL" = "Websidens URL";
+
+/* No comment provided by engineer. */
+"What’s your school’s name?" = "Hva heter skolen din?";
+
+/* No comment provided by engineer. */
+"You will need to log into at least one Canvas account from the Student app first." = "Du må først logge på med minst én Canvas-konto fra Student-appen.";
+

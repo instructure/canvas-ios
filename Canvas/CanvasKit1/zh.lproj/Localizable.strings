@@ -1,0 +1,171 @@
+/* Description for rubric criterion rating object */
+" Rating for %@, Score: %g" = "评价%1$@，评分：%2$g";
+
+/* B- (83 out of 100 points */
+"%@ (%g out of %@)" = "%1$@（%2$g 分，满分 %3$@ 分）";
+
+/* something at something */
+"%@ at %@" = "%1$@时间%2$@";
+
+/* 88 out of 100 points */
+"%@ out of %@" = "%1$@共%2$@";
+
+/* {point range max} to > {point range min} pts */
+"%@ to > %@ pts" = "%1$@至 > %2$@ 分";
+
+/* Word and ellipses */
+"%@..." = "%@...";
+
+/* 83% (83 out of 100 points */
+"%@%% (%g out of %@)" = "%1$@%%（%2$g，总共%3$@）";
+
+/* Gigabytes */
+"%0.2f GB" = "%0.2f GB";
+
+/* Kilobytes */
+"%0.2f KB" = "%0.2f KB";
+
+/* Megabytes */
+"%0.2f MB" = "%0.2f MB";
+
+/* 88 out of 100 points */
+"%g out of %@" = "%1$g共%2$@";
+
+/* As in, '15 bytes' */
+"%qu bytes" = "%qu字节";
+
+/* Media type is audio */
+"Audio" = "音频";
+
+/* No comment provided by engineer. */
+"Audio input hardware not available" = "音频输入的硬件不可用";
+
+/* Assignment grade: Complete */
+"Complete" = "完成";
+
+/* A custom grade not specified by the rubric. */
+"Custom Grade" = "自定义评分";
+
+/* No comment provided by engineer. */
+"Done" = "完成";
+
+/* No comment provided by engineer. */
+"Excused" = "已请假";
+
+/* The file extension for a submission is not acceptable */
+"File extension not allowed: %@" = "不允许的文件扩展名：%@";
+
+/* Comes before a list of file extensions allowed for an assinment submission */
+"File extension(s) permitted for this assignment: " = "文件扩展名可以使用于此作业：";
+
+/* File upload failed. */
+"File upload failed." = "文件上传失败。";
+
+/* Assignment grade: Incomplete */
+"Incomplete" = "未完成";
+
+/* No comment provided by engineer. */
+"Me" = "我";
+
+/* The name for a video or audio response to something */
+"Media comment" = "媒体评论";
+
+/* No comment provided by engineer. */
+"Media Comment" = "媒体评论";
+
+/* A slider to choose between media types */
+"Media type selector. %@" = "媒体类型选择器。%@";
+
+/* Pass/fail assignment is not complete */
+"Not Complete" = "未完成";
+
+/* not graded string. */
+"Not graded" = "未评分";
+
+/* not graded with points possible */
+"Not graded (0 out of %@)" = "未评分（0分，总共%@分）";
+
+/* No comment provided by engineer. */
+"Note: Media files are not immediately available for playback while they are processed on the server." = "注意：在服务器上处理媒体文件时，无法立即播放媒体文件。";
+
+/* Short name for observer enrollment */
+"Observer" = "观察员";
+
+/* Accessibility label for out or grading style */
+"out of" = "共";
+
+/* The assignment is out of 100 points */
+"out of %@" = "共%@";
+
+/* No comment provided by engineer. */
+"out of %@ points" = "总分%@分";
+
+/* A button that plays */
+"Play" = "播放";
+
+/* No comment provided by engineer. */
+"Post Comment" = "发布评论";
+
+/* No comment provided by engineer. */
+"Posts your comment" = "发布您的评论";
+
+/* A button that records */
+"Record" = "记录";
+
+/* No comment provided by engineer. */
+"Score" = "评分";
+
+/* Hint about the play button */
+"Starts playing your recording" = "开始播放您的录制";
+
+/* Hint about the record button */
+"Starts recording a media comment" = "开始录制媒体评论";
+
+/* A button that stops */
+"Stop" = "停止";
+
+/* Hint about the play button */
+"Stops playing your recording" = "停止播放您的录制";
+
+/* Hint about the record button */
+"Stops recording a media comment" = "停止录制媒体评论";
+
+/* Short name for student enrollment */
+"Student" = "学生";
+
+/* Hint about media input selection */
+"Switches media input between audio and video. Currently set to %@" = "在音频和视频间切换媒体输出。当前设置为%@";
+
+/* No comment provided by engineer. */
+"Switches to media comment mode" = "转换媒体评论的模式";
+
+/* No comment provided by engineer. */
+"Switches to text comment mode" = "转换文体评论的模式";
+
+/* Short name for TA enrollment */
+"TA" = "助教";
+
+/* Short name for teacher enrollment */
+"Teacher" = "教师";
+
+/* No comment provided by engineer. */
+"Text Comment" = "文体评论";
+
+/* Generic name for a submission entered online. */
+"Text Submission" = "文体提交";
+
+/* Error description when a user tries to upload a file that's too big */
+"The file you are trying to uploading is %@, but the maximum size is %@." = "你目前尝试上传的文件是%1$@，但最大规格是%2$@。";
+
+/* When we don't know the name of a file, we display this */
+"unknown" = "未知";
+
+/* Media type is video */
+"Video" = "视频";
+
+/* No comment provided by engineer. */
+"Video Error" = "视频错误";
+
+/* No comment provided by engineer. */
+"Warning" = "警告";
+

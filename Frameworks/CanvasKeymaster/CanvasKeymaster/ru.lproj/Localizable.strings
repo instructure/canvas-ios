@@ -1,0 +1,135 @@
+/* The distance in miles that a user is from a school. */
+"%@ miles away" = "%@ на расстоянии";
+
+/* No comment provided by engineer. */
+"Build all the things" = "Построить все";
+
+/* Help label when user can't find their school. */
+"Can't find your school? Try typing the full school URL." = "Не можете найти ваше учебное заведение? Попробуйте набрать полный адрес URL учебного заведения.";
+
+/* No comment provided by engineer. */
+"Cancel" = "Отменить";
+
+/* No comment provided by engineer. */
+"Cancel Request" = "Отменить запрос";
+
+/* Label displayed when forcing canvas login */
+"Canvas Login" = "Вход в Canvas";
+
+/* No comment provided by engineer. */
+"Casual question or suggestion" = "Обычный вопрос или предложение";
+
+/* No comment provided by engineer. */
+"Check network and try again!" = "Проверьте сеть и попробуйте еще раз!";
+
+/* No comment provided by engineer. */
+"Choose One" = "Выберите один";
+
+/* Connectivity alert close text */
+"Close" = "Закрыть";
+
+/* No comment provided by engineer. */
+"Continue Editing" = "Продолжить редактирование";
+
+/* No comment provided by engineer. */
+"Describe the feature here" = "Опишите функцию здесь";
+
+/* No comment provided by engineer. */
+"describe your problem" = "опишите вашу проблему";
+
+/* Dismiss login expired/revoked alert button */
+"Dismiss" = "Отклонить";
+
+/* No comment provided by engineer. */
+"Emergency" = "Чрезвычайная ситуация";
+
+/* No comment provided by engineer. */
+"enter a subject" = "введите тему";
+
+/* Text view to enter the description of the ticket */
+"Enter ticket description" = "Введите описание обращения";
+
+/* Text field to enter subject of the ticket */
+"Enter ticket subject" = "Введите тему обращения";
+
+/* No comment provided by engineer. */
+"Extremely critical emergency" = "Крайне критическая ситуация";
+
+/* Help View Controller Title */
+"Help" = "Справка";
+
+/* Help label when domain search has started */
+"How do I find my school?" = "Как мне найти свою школу?";
+
+/* No comment provided by engineer. */
+"I am stuck and can't get things done" = "Я зашел в тупик и не могу завершить начатое";
+
+/* No comment provided by engineer. */
+"I can't get things done until I hear back from you" = "Я не могу закончить, пока не услышу ваш ответ";
+
+/* No comment provided by engineer. */
+"I need help but it's not urgent" = "Мне нужна помощь, но это не срочно";
+
+/* No comment provided by engineer. */
+"Invalid Canvas URL." = "Неправильный URL Canvas.";
+
+/* No comment provided by engineer. */
+"Invalid User Agent." = "Неправильный пользовательский агент.";
+
+/* No comment provided by engineer. */
+"Non-urgent help needed" = "Требуется несрочная помощь";
+
+/* No comment provided by engineer. */
+"Not authorized." = "Не разрешено.";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* Placeholder for delete icon in Multi User Table View Cell */
+"remove user" = "удалить пользователя";
+
+/* No comment provided by engineer. */
+"Report a Problem" = "Сообщить о проблеме";
+
+/* No comment provided by engineer. */
+"Request a Feature" = "Запросить функцию";
+
+/* No comment provided by engineer. */
+"Request Failed!" = "Сбой при выполнении запроса!";
+
+/* No comment provided by engineer. */
+"select the impact" = "выбрать воздействие";
+
+/* Button to select the severity of the ticket */
+"Select ticket impact level" = "Выберите уровень воздействия обращения";
+
+/* No comment provided by engineer. */
+"Send" = "Отправить";
+
+/* Label displayed when logging in as site admin */
+"Site Admin Login" = "Учетная запись администратора";
+
+/* No comment provided by engineer. */
+"Something is broken but I can work around it" = "Что-то сломалось, но я могу работать и без этого";
+
+/* No comment provided by engineer. */
+"Success!" = "Успешно!";
+
+/* Subtitle help text describing how to find a school. */
+"Tap here for help." = "Прикоснитесь здесь для получения помощи.";
+
+/* No comment provided by engineer. */
+"Thanks, your request was received!" = "Спасибо, ваш запрос был получен!";
+
+/* No comment provided by engineer. */
+"Trouble logging in" = "Проблема со входом в систему";
+
+/* Connectivity alert message */
+"We can't connect to Canvas. Have you checked your internet connection?" = "Не удается подключиться к Canvas. Вы проверили свое подключение к сети Интернет?";
+
+/* Connectivity alert title */
+"Whoops!" = "Ой!";
+
+/* when the access token has been revoked */
+"Your login has expired or has been removed by the server. Please log in again." = "Ваша учетная запись устарела или была удалена сервером. Пожалуйста, войдите снова.";
+

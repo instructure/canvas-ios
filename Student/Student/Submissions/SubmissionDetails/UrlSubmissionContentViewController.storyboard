@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Url Submission Content View Controller-->
+        <scene sceneID="Abz-IZ-Q1O">
+            <objects>
+                <viewController storyboardIdentifier="UrlSubmissionContentViewController" id="JMK-XT-8GZ" customClass="UrlSubmissionContentViewController" customModule="Student" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TQJ-5h-hLs">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This submission is a URL to an external page. We've included a snapshot of a what the page looked like when it was submitted." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qIN-xp-4Y0" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
+                                <rect key="frame" x="16" y="40" width="343" height="80"/>
+                                <accessibility key="accessibilityConfiguration" identifier="SubmissionDetailsPage.urlSubmissionBlurb"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="BV8-kG-jy1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="body"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yzx-td-6QU" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
+                                <rect key="frame" x="20" y="130" width="335" height="50"/>
+                                <accessibility key="accessibilityConfiguration" identifier="SubmissionDetailsPage.urlButton"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="EeB-Ch-QH4"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="button"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="openUrl:" destination="JMK-XT-8GZ" eventType="touchUpInside" id="KeD-PN-hRR"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Y5V-BG-NEv">
+                                <rect key="frame" x="20" y="196" width="335" height="451"/>
+                                <accessibility key="accessibilityConfiguration" identifier="SubmissionDetailsPage.urlPreview"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V3F-Fa-g3P">
+                                <rect key="frame" x="20" y="196" width="335" height="451"/>
+                                <connections>
+                                    <action selector="openImageInQuickLook:" destination="JMK-XT-8GZ" eventType="touchUpInside" id="CCD-hT-ILf"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="qIN-xp-4Y0" firstAttribute="top" secondItem="FqD-gL-g6P" secondAttribute="top" constant="20" id="9NS-PX-1Zv"/>
+                            <constraint firstItem="FqD-gL-g6P" firstAttribute="trailing" secondItem="qIN-xp-4Y0" secondAttribute="trailing" constant="16" id="Exr-xZ-Nqt"/>
+                            <constraint firstItem="FqD-gL-g6P" firstAttribute="trailing" secondItem="Y5V-BG-NEv" secondAttribute="trailing" constant="20" id="HA1-rC-VmO"/>
+                            <constraint firstItem="V3F-Fa-g3P" firstAttribute="leading" secondItem="FqD-gL-g6P" secondAttribute="leading" constant="20" id="NmM-32-se5"/>
+                            <constraint firstItem="yzx-td-6QU" firstAttribute="top" secondItem="qIN-xp-4Y0" secondAttribute="bottom" constant="10" id="VeD-PS-M0P"/>
+                            <constraint firstItem="V3F-Fa-g3P" firstAttribute="top" secondItem="yzx-td-6QU" secondAttribute="bottom" constant="16" id="Wi0-eR-M3m"/>
+                            <constraint firstItem="FqD-gL-g6P" firstAttribute="bottom" secondItem="V3F-Fa-g3P" secondAttribute="bottom" constant="20" id="YsM-nq-cbz"/>
+                            <constraint firstItem="Y5V-BG-NEv" firstAttribute="top" secondItem="yzx-td-6QU" secondAttribute="bottom" constant="16" id="adE-LW-fao"/>
+                            <constraint firstItem="FqD-gL-g6P" firstAttribute="trailing" secondItem="yzx-td-6QU" secondAttribute="trailing" constant="20" id="bQ9-wm-4CP"/>
+                            <constraint firstItem="Y5V-BG-NEv" firstAttribute="leading" secondItem="FqD-gL-g6P" secondAttribute="leading" constant="20" id="dhp-hF-8UO"/>
+                            <constraint firstItem="FqD-gL-g6P" firstAttribute="bottom" secondItem="Y5V-BG-NEv" secondAttribute="bottom" constant="20" id="hGr-u5-VE7"/>
+                            <constraint firstItem="yzx-td-6QU" firstAttribute="leading" secondItem="FqD-gL-g6P" secondAttribute="leading" constant="20" id="jgA-lX-n6T"/>
+                            <constraint firstItem="FqD-gL-g6P" firstAttribute="trailing" secondItem="V3F-Fa-g3P" secondAttribute="trailing" constant="20" id="nTZ-GG-oBr"/>
+                            <constraint firstItem="qIN-xp-4Y0" firstAttribute="leading" secondItem="FqD-gL-g6P" secondAttribute="leading" constant="16" id="oul-CG-RqJ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="FqD-gL-g6P"/>
+                    </view>
+                    <connections>
+                        <outlet property="descriptionLabel" destination="qIN-xp-4Y0" id="WhN-WC-ttC"/>
+                        <outlet property="previewImageView" destination="Y5V-BG-NEv" id="4lX-N5-qES"/>
+                        <outlet property="urlButton" destination="yzx-td-6QU" id="Z4P-qe-anW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FJJ-Af-f0s" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1078" y="-267"/>
+        </scene>
+    </scenes>
+</document>

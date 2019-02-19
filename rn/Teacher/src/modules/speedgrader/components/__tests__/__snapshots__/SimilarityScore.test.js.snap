@@ -1,0 +1,145 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SimilarityScore renders error status 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "borderRadius": 4,
+        "padding": 4,
+      },
+      Object {
+        "backgroundColor": "#F30017",
+      },
+    ]
+  }
+  testID="speedgrader.similarity-score.status.container"
+>
+  <Image
+    source={
+      Object {
+        "testUri": "../../../src/images/Warning.png",
+      }
+    }
+    style={
+      Object {
+        "height": 18,
+        "tintColor": "white",
+        "width": 18,
+      }
+    }
+    testID="speedgrader.similarity-score.status.icon"
+  />
+</View>
+`;
+
+exports[`SimilarityScore renders pending status 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "borderRadius": 4,
+        "padding": 4,
+      },
+      Object {
+        "backgroundColor": "#72818B",
+      },
+    ]
+  }
+  testID="speedgrader.similarity-score.status.container"
+>
+  <Image
+    source={
+      Object {
+        "testUri": "../../../src/images/clock.png",
+      }
+    }
+    style={
+      Object {
+        "height": 18,
+        "tintColor": "white",
+        "width": 18,
+      }
+    }
+    testID="speedgrader.similarity-score.status.icon"
+  />
+</View>
+`;
+
+exports[`SimilarityScore uses the correct color depending on the score 1`] = `
+Array [
+  Object {
+    "borderRadius": 4,
+    "paddingHorizontal": 8,
+    "paddingVertical": 4,
+  },
+  Object {
+    "backgroundColor": "#008EE2",
+  },
+]
+`;
+
+exports[`SimilarityScore uses the correct color depending on the score 2`] = `
+Array [
+  Object {
+    "borderRadius": 4,
+    "paddingHorizontal": 8,
+    "paddingVertical": 4,
+  },
+  Object {
+    "backgroundColor": "#00AC18",
+  },
+]
+`;
+
+exports[`SimilarityScore uses the correct color depending on the score 3`] = `
+Array [
+  Object {
+    "borderRadius": 4,
+    "paddingHorizontal": 8,
+    "paddingVertical": 4,
+  },
+  Object {
+    "backgroundColor": "#FFC100",
+  },
+]
+`;
+
+exports[`SimilarityScore uses the correct color depending on the score 4`] = `
+Array [
+  Object {
+    "borderRadius": 4,
+    "paddingHorizontal": 8,
+    "paddingVertical": 4,
+  },
+  Object {
+    "backgroundColor": "#FC5E13",
+  },
+]
+`;
+
+exports[`SimilarityScore uses the correct color depending on the score 5`] = `
+Array [
+  Object {
+    "borderRadius": 4,
+    "paddingHorizontal": 8,
+    "paddingVertical": 4,
+  },
+  Object {
+    "backgroundColor": "#EE0612",
+  },
+]
+`;
+
+exports[`SimilarityScore uses the correct color depending on the score 6`] = `
+Array [
+  Object {
+    "borderRadius": 4,
+    "paddingHorizontal": 8,
+    "paddingVertical": 4,
+  },
+  Object {
+    "backgroundColor": "#EE0612",
+  },
+]
+`;

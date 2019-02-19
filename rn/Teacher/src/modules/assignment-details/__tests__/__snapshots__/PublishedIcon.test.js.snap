@@ -1,0 +1,202 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render larger icon size 1`] = `
+<View
+  style={
+    Array [
+      undefined,
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": "row",
+      },
+    ]
+  }
+>
+  <Image
+    source={
+      Object {
+        "testUri": "../../../src/images/publish.png",
+      }
+    }
+    style={
+      Array [
+        Object {
+          "height": 21,
+          "tintColor": "#00AC18",
+          "width": 21,
+        },
+        Object {
+          "height": 75,
+          "width": 75,
+        },
+      ]
+    }
+    testID="assignment-details.published-icon.published-status-img"
+  />
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
+        Array [
+          Object {
+            "color": "#8B969E",
+            "fontWeight": "500",
+            "marginLeft": 6,
+          },
+          Object {
+            "color": "#00AC18",
+          },
+        ],
+        Object {
+          "fontFamily": ".SFUIDisplay-medium",
+        },
+      ]
+    }
+    testID="assignment-details.published-icon.publish-status-lbl"
+  >
+    Published
+  </Text>
+</View>
+`;
+
+exports[`render published 1`] = `
+<View
+  style={
+    Array [
+      undefined,
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": "row",
+      },
+    ]
+  }
+>
+  <Image
+    source={
+      Object {
+        "testUri": "../../../src/images/publish.png",
+      }
+    }
+    style={
+      Array [
+        Object {
+          "height": 21,
+          "tintColor": "#00AC18",
+          "width": 21,
+        },
+        Object {},
+      ]
+    }
+    testID="assignment-details.published-icon.published-status-img"
+  />
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
+        Array [
+          Object {
+            "color": "#8B969E",
+            "fontWeight": "500",
+            "marginLeft": 6,
+          },
+          Object {
+            "color": "#00AC18",
+          },
+        ],
+        Object {
+          "fontFamily": ".SFUIDisplay-medium",
+        },
+      ]
+    }
+    testID="assignment-details.published-icon.publish-status-lbl"
+  >
+    Published
+  </Text>
+</View>
+`;
+
+exports[`render unpublished 1`] = `
+<View
+  style={
+    Array [
+      undefined,
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": "row",
+      },
+    ]
+  }
+>
+  <Image
+    source={
+      Object {
+        "testUri": "../../../src/images/unpublish.png",
+      }
+    }
+    style={
+      Array [
+        Object {
+          "height": 21,
+          "tintColor": "#8B969E",
+          "width": 21,
+        },
+        Object {},
+      ]
+    }
+    testID="assignment-details.published-icon.unpublished-status-img"
+  />
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
+        Array [
+          Object {
+            "color": "#8B969E",
+            "fontWeight": "500",
+            "marginLeft": 6,
+          },
+          Object {
+            "color": "#8B969E",
+          },
+        ],
+        Object {
+          "fontFamily": ".SFUIDisplay-medium",
+        },
+      ]
+    }
+    testID="assignment-details.published-icon.publish-status-lbl"
+  >
+    Unpublished
+  </Text>
+</View>
+`;

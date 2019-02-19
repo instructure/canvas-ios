@@ -1,0 +1,237 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RichTextToolbar renders 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "white",
+      "flexDirection": "column",
+      "justifyContent": "flex-end",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": "white",
+        "borderTopColor": "#C7CDD1",
+        "borderTopWidth": 1,
+      }
+    }
+  >
+    <RCTScrollView
+      horizontal={true}
+    >
+      <View />
+    </RCTScrollView>
+  </View>
+</View>
+`;
+
+exports[`RichTextToolbar renders active items 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "white",
+      "flexDirection": "column",
+      "justifyContent": "flex-end",
+    }
+  }
+>
+  <ColorPicker
+    pickedColor={[Function]}
+  />
+  <View
+    style={
+      Object {
+        "backgroundColor": "white",
+        "borderTopColor": "#C7CDD1",
+        "borderTopWidth": 1,
+      }
+    }
+  >
+    <RCTScrollView
+      horizontal={true}
+    >
+      <View>
+        <TouchableHighlight
+          accessibilityLabel="Bold"
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "justifyContent": "center",
+              "padding": 8,
+              "width": 50,
+            }
+          }
+          testID="rich-text-toolbar-item-bold"
+          underlayColor="#f5f5f5"
+        >
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/images/rce/bold.png",
+              }
+            }
+            style={
+              Object {
+                "tintColor": "#374A59",
+                "transform": Array [
+                  Object {
+                    "scaleX": 1,
+                  },
+                ],
+              }
+            }
+          />
+        </TouchableHighlight>
+        <TouchableHighlight
+          accessibilityLabel="Text Color"
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "justifyContent": "center",
+              "padding": 8,
+              "width": 50,
+            }
+          }
+          testID="rich-text-toolbar-item-textColor"
+          underlayColor="#f5f5f5"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "borderRadius": 13,
+                  "height": 26,
+                  "width": 26,
+                },
+                Object {
+                  "backgroundColor": "white",
+                  "borderColor": "#E6E9EA",
+                  "borderWidth": 1,
+                },
+              ]
+            }
+          />
+        </TouchableHighlight>
+      </View>
+    </RCTScrollView>
+  </View>
+</View>
+`;
+
+exports[`RichTextToolbar renders icons in RTL 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "white",
+      "flexDirection": "column",
+      "justifyContent": "flex-end",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": "white",
+        "borderTopColor": "#C7CDD1",
+        "borderTopWidth": 1,
+      }
+    }
+  >
+    <RCTScrollView
+      horizontal={true}
+    >
+      <View>
+        <TouchableHighlight
+          accessibilityLabel="Undo"
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "justifyContent": "center",
+              "padding": 8,
+              "width": 50,
+            }
+          }
+          testID="rich-text-toolbar-item-undo"
+          underlayColor="#f5f5f5"
+        >
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/images/rce/undo.png",
+              }
+            }
+            style={
+              Object {
+                "tintColor": "#73818C",
+                "transform": Array [
+                  Object {
+                    "scaleX": -1,
+                  },
+                ],
+              }
+            }
+          />
+        </TouchableHighlight>
+        <TouchableHighlight
+          accessibilityLabel="Redo"
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "justifyContent": "center",
+              "padding": 8,
+              "width": 50,
+            }
+          }
+          testID="rich-text-toolbar-item-redo"
+          underlayColor="#f5f5f5"
+        >
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/images/rce/redo.png",
+              }
+            }
+            style={
+              Object {
+                "tintColor": "#73818C",
+                "transform": Array [
+                  Object {
+                    "scaleX": -1,
+                  },
+                ],
+              }
+            }
+          />
+        </TouchableHighlight>
+      </View>
+    </RCTScrollView>
+  </View>
+</View>
+`;

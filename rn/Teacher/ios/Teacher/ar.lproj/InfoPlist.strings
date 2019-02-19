@@ -1,0 +1,12 @@
+/* Privacy - Camera Usage Description */
+"NSCameraUsageDescription" = "إرفاق صور ومقاطع فيديو لتعليقات الإرسال.";
+
+/* Privacy - Microphone Usage Description */
+"NSMicrophoneUsageDescription" = "إرفاق تسجيلات صوتية لتعليقات الإرسال.";
+
+/* Privacy - Photo Library Additions Usage Description */
+"NSPhotoLibraryAddUsageDescription" = "إرفاق صور ومقاطع فيديو لتعليقات الإرسال.";
+
+/* Privacy - Photo Library Usage Description */
+"NSPhotoLibraryUsageDescription" = "تحميل محتوى للمساقات.";
+

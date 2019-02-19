@@ -1,0 +1,12 @@
+/* Privacy - Camera Usage Description */
+"NSCameraUsageDescription" = "Tāpiritia ngā whakāhua me ngā ataata ki ngā tukunga kōrero.";
+
+/* Privacy - Microphone Usage Description */
+"NSMicrophoneUsageDescription" = "Tāpiritia ngā ōrorongo oro me ngā ataata ki ngā tukunga kōrero.";
+
+/* Privacy - Photo Library Additions Usage Description */
+"NSPhotoLibraryAddUsageDescription" = "Tāpiritia ngā whakāhua me ngā ataata ki ngā tukunga kōrero.";
+
+/* Privacy - Photo Library Usage Description */
+"NSPhotoLibraryUsageDescription" = "Tukuake te ihirangi ki ngā akoranga.";
+

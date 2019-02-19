@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RubricDescription renders 1`] = `
+<RCTSafeAreaView
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "paddingHorizontal": 16,
+        "paddingTop": 24,
+      }
+    }
+  >
+    <View
+      style={undefined}
+      testID="web-container.view"
+    >
+      <CanvasWebView
+        automaticallySetHeight={true}
+        bounces={false}
+        html="A satisfactory description"
+        navigator={
+          Object {
+            "dismiss": [Function],
+            "dismissAllModals": [Function],
+            "isModal": false,
+            "pop": [Function],
+            "replace": [Function],
+            "show": [Function],
+            "traitCollection": [Function],
+          }
+        }
+        onError={[Function]}
+        onFinishedLoading={[Function]}
+        onHeightChange={[Function]}
+        onMessage={[Function]}
+        onNavigation={[Function]}
+        scrollEnabled={true}
+        source={
+          Object {
+            "baseURL": "http://mobiledev.instructure.com/",
+            "html": "A satisfactory description",
+          }
+        }
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+      />
+    </View>
+  </View>
+</RCTSafeAreaView>
+`;
+
+exports[`RubricDescription renders without description 1`] = `
+<RCTSafeAreaView
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "paddingHorizontal": 32,
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+          "lineHeight": 19,
+          "textAlign": "center",
+        }
+      }
+    >
+      There currently is no long description for this item.
+    </Text>
+  </View>
+</RCTSafeAreaView>
+`;

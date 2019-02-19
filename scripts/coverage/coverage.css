@@ -1,0 +1,64 @@
+pre {
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.source {
+  align-items: flex-start;
+  display: flex;
+  max-width: 100%;
+}
+
+.code {
+  flex: 1;
+  overflow-x: auto;
+}
+
+.numbers {
+  flex: none;
+  padding: 0.5em 0;
+  text-align: right;
+}
+
+.coverage {
+  flex: none;
+  position: relative;
+  order: 1;
+  width: 2em;
+}
+
+.covblock {
+  pointer-events: none;
+  position: absolute;
+  top: 0.5em;
+  width: 100%;
+}
+
+.covered, .notcovered {
+  pointer-events: auto;
+  position: relative;
+}
+
+.covered:before {
+  background: #cfc;
+}
+.notcovered::before {
+  background: #f99;
+}
+.covered::before, .notcovered::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+}
+.covered:hover::before,
+.notcovered::before {
+  width: 100vw;
+}
+
+.hljs {
+  background: none;
+}

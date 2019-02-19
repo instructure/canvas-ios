@@ -1,0 +1,237 @@
+/* No comment provided by engineer. */
+"%@ GPA" = "%@ GPA";
+
+/* No comment provided by engineer. */
+"Are you sure you would like to delete this comment?" = "E tino hiahia ana koe ki te muku i tēnei kōrero?";
+
+/* No comment provided by engineer. */
+"Assignment" = "Whakataunga";
+
+/* No comment provided by engineer. */
+"Assignment not found." = "Koar ee kitea te whakataunga";
+
+/* No comment provided by engineer. */
+"Authentication failed. Most likely the user denied the request for access." = "I rahua te motuhēhēnga. Ko te nuinga kaore i whakāetia e te kaiwhakamahi te tono mo te uru.";
+
+/* No comment provided by engineer. */
+"Can’t find your school? Try typing the full school URL." = "Kaore e kitea tō kura? Ngana ki te pātō te nuinga o te kura url";
+
+/* No comment provided by engineer. */
+"Cancel" = "Whakakore";
+
+/* No comment provided by engineer. */
+"Canvas Login" = "Canvas Takiuru";
+
+/* No comment provided by engineer. */
+"Canvas Network" = "Canvas Whatunga";
+
+/* No comment provided by engineer. */
+"Closed" = "katia";
+
+/* No comment provided by engineer. */
+"Comments" = "Ngā Kōrero";
+
+/* No comment provided by engineer. */
+"Complete" = "Oti";
+
+/* No comment provided by engineer. */
+"Course" = "akoranga";
+
+/* No comment provided by engineer. */
+"d_questions" = "d_questions";
+
+/* No comment provided by engineer. */
+"Delete" = "Muku";
+
+/* No comment provided by engineer. */
+"Delete comment" = "Muku kōrero";
+
+/* No comment provided by engineer. */
+"Delete Comment" = "Muku Kōrero";
+
+/* No comment provided by engineer. */
+"Discussion Comment" = "Kōrerorero kōrero";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Pana";
+
+/* No comment provided by engineer. */
+"External Tool" = "Taputapu waho";
+
+/* No comment provided by engineer. */
+"File Upload" = "Kōnae Tukuake";
+
+/* No comment provided by engineer. */
+"Final Grade: %@" = "Kōeke whakamutunga: %@";
+
+/* No comment provided by engineer. */
+"final_grade_g_pts" = "final_grade_g_pts kōeke_whakamutunga";
+
+/* No comment provided by engineer. */
+"Find my school" = "Kimihia taku kura";
+
+/* No comment provided by engineer. */
+"Find your school or district" = "Kimihia tō kura takiwa ranei";
+
+/* No comment provided by engineer. */
+"Forget %@" = "Wareware %@";
+
+/* No comment provided by engineer. */
+"g_out_of_g_points_possible" = "g_out_of_g_points_possible i waho i g kōinga e taea ai";
+
+/* No comment provided by engineer. */
+"g_pts" = "g_pts i waho i g kōinga e taea ai";
+
+/* No comment provided by engineer. */
+"Help" = "Āwhina";
+
+/* No comment provided by engineer. */
+"How do I find my school?" = "Me pehea e kitea ai e ahau taku kura?";
+
+/* No comment provided by engineer. */
+"Incomplete" = "Kaore i te oti";
+
+/* No comment provided by engineer. */
+"late_penalty_g_pts" = "late_penalty_g_pts whiu tōmuri";
+
+/* No comment provided by engineer. */
+"Launch External Tool" = "Neke Taputapu Waho";
+
+/* end of and list pattern */
+"list_and_end" = "%1$@, me %2$@";
+
+/* middle of and list pattern */
+"list_and_middle" = "%1$@, %2$@";
+
+/* start of and list pattern */
+"list_and_start" = "%1$@, %2$@";
+
+/* and list pattern for 2 items */
+"list_and_two" = "%1$@ me te %2$@";
+
+/* end of or list pattern */
+"list_or_end" = "%1$@, rānei %2$@";
+
+/* middle of or list pattern */
+"list_or_middle" = "%1$@, %2$@";
+
+/* start of or list pattern */
+"list_or_start" = "%1$@, %2$@";
+
+/* or list pattern for 2 items */
+"list_or_two" = "%1$@ rānei %2$@";
+
+/* No comment provided by engineer. */
+"Manual OAuth Login" = "Mahi ā ringa OAuth Takiuru";
+
+/* No comment provided by engineer. */
+"Media Recording" = "Hopu pāpāho";
+
+/* No comment provided by engineer. */
+"No Due Date" = "Kaore he ra tika";
+
+/* No comment provided by engineer. */
+"No Submission" = "Kāore he Tukunga";
+
+/* No comment provided by engineer. */
+"Not Graded" = "Kāore i kōeketia";
+
+/* No comment provided by engineer. */
+"Not Submitted" = "E Kore E Tukua";
+
+/* No comment provided by engineer. */
+"OK" = "Ae";
+
+/* No comment provided by engineer. */
+"On Paper" = "I runga i te Pepa";
+
+/* No comment provided by engineer. */
+"out_of_g_pts" = "out_of_g_pts i waho i g ngā koinga";
+
+/* No comment provided by engineer. */
+"plural_points" = "plural_points nui ngā kōinga";
+
+/* No comment provided by engineer. */
+"Quiz" = "Quiz";
+
+/* No comment provided by engineer. */
+"Remove" = "Tango";
+
+/* No comment provided by engineer. */
+"Removed %1$@" = "Kua tangohia %1$@";
+
+/* No comment provided by engineer. */
+"Removed %1$@ by %2$@" = "Kua tangohia %1$@ e %2$@";
+
+/* No comment provided by engineer. */
+"Reply to the annotation or previous comments" = "Whakautu ki te whakahuatanga me ngā kōrero o mua";
+
+/* No comment provided by engineer. */
+"Resubmit Assignment" = "Tuku Taumahi";
+
+/* No comment provided by engineer. */
+"See what's new." = "Tirohia ngā mea hou";
+
+/* No comment provided by engineer. */
+"Select Account" = "Tīpako Pūkete";
+
+/* No comment provided by engineer. */
+"Select Assignment" = "Tīpako Whakataunga";
+
+/* No comment provided by engineer. */
+"Select Course" = "Tīpako akoranga";
+
+/* No comment provided by engineer. */
+"Send comment" = "Tuku kōrero";
+
+/* No comment provided by engineer. */
+"Site Admin Login" = "Takiuru Whakahaere Pae";
+
+/* No comment provided by engineer. */
+"Style" = "Kāhua";
+
+/* No comment provided by engineer. */
+"Submission Failed" = "I rahua te tuku o te tāpaetanga";
+
+/* No comment provided by engineer. */
+"Submission Uploading..." = "E tukuake ana te tāpaetanga...";
+
+/* No comment provided by engineer. */
+"Submit Assignment" = "Tuku Whakataunga";
+
+/* No comment provided by engineer. */
+"Submitted" = "Kua tukuna";
+
+/* Submitted date */
+"Submitted %@" = "Kua tukuna %@";
+
+/* No comment provided by engineer. */
+"Tap here for help." = "Pātō ki kōnei mo te awhina";
+
+/* No comment provided by engineer. */
+"Tap to view details" = "Pātō ki te tiro i ngā taipitopito";
+
+/* No comment provided by engineer. */
+"Tap to view progress" = "Pātō ki te tiro i te ahu whakamua";
+
+/* No comment provided by engineer. */
+"Text Entry" = "Whakauru kuputuhi";
+
+/* No comment provided by engineer. */
+"This assignment is due by %@" = "Ko tenei whakatuanga e tika ana %@";
+
+/* No comment provided by engineer. */
+"This assignment was due by %@" = "Ko tenei whakataunga i tika i %@";
+
+/* No comment provided by engineer. */
+"We've made a few changes." = "I mahia e mātou he rerekētanga iti";
+
+/* No comment provided by engineer. */
+"Website URL" = "paetukutuku URL";
+
+/* No comment provided by engineer. */
+"What’s your school’s name?" = "He aha te ingoa o tō kura?";
+
+/* No comment provided by engineer. */
+"You will need to log into at least one Canvas account from the Student app first." = "Me uru atu koe ki tētahi o ngā pūkete Canvas i te tuatahi o te taupānga a te ākonga.";
+

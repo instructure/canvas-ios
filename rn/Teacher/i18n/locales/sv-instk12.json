@@ -1,0 +1,1746 @@
+{
+  "_376f89ea": {
+    "message": "--"
+  },
+  "_4927a5f1": {
+    "message": "?"
+  },
+  "a_description_is_required_54b5f1f6": {
+    "message": "En beskrivning krävs"
+  },
+  "a_title_is_required_71222850": {
+    "message": "En rubrik krävs"
+  },
+  "accept_2fdd362e": {
+    "message": "Acceptera"
+  },
+  "access_9a94f04e": {
+    "message": "Åtkomst"
+  },
+  "access_code_74f4864f": {
+    "message": "Tillgångskod"
+  },
+  "account_group_cb00ca73": {
+    "message": "Kontogrupp"
+  },
+  "account_has_no_terms_of_use_1048a785": {
+    "message": "Kontot har inga användarvillkor"
+  },
+  "act_as_is_essentially_logging_in_as_this_user_with_7870ece0": {
+    "message": "\"Att uppträda som\", loggar huvudsakligen in som den här användaren utan lösenord. Du kommer att kunna vidta åtgärder som om du var den här användaren, och från andra användares synpunkter som om den här användaren utförde dem. I historik-loggar registreras dock att du var den som utförde åtgärderna på den här användarens vägnar."
+  },
+  "act_as_user_d7ef0e48": {
+    "message": "Agera som användare"
+  },
+  "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
+    "message": "Lägg till några av dina favoritkurser för att göra denna plats ditt hem."
+  },
+  "add_an_attachment_by_tapping_the_plus_at_the_top_r_f9350b62": {
+    "message": "Lägg till en bilaga genom att trycka på pluset längst upp till höger."
+  },
+  "add_assignee_24ee0b71": {
+    "message": "Lägg till innehavare"
+  },
+  "add_attachment_dcdb8bf8": {
+    "message": "Lägg till bilaga"
+  },
+  "add_comment_3205529f": {
+    "message": "Lägg till kommentar"
+  },
+  "add_courses_fd45abf": {
+    "message": "Lägg till kurser"
+  },
+  "add_description_5321f1d": {
+    "message": "Lägg till beskrivning"
+  },
+  "add_description_required_e222e483": {
+    "message": "Lägg till beskrivning (krävs)"
+  },
+  "add_due_date_65b08f6c": {
+    "message": "Lägg till slutdatum"
+  },
+  "add_file_e6326e09": {
+    "message": "Lägg till fil"
+  },
+  "add_item_75b67d07": {
+    "message": "Lägg till objekt"
+  },
+  "add_media_cfa37b54": {
+    "message": "Lägg till media"
+  },
+  "add_recipient_7de2dc74": {
+    "message": "Lägg till mottagare"
+  },
+  "add_title_4f788d37": {
+    "message": "Lägg till rubrik"
+  },
+  "add_title_required_8d9bdeaa": {
+    "message": "Lägg till rubrik (krävs)"
+  },
+  "after_date_e5d9b0e1": {
+    "message": "Efter { date }"
+  },
+  "after_last_attempt_c9168da2": {
+    "message": "Efter sista försöket"
+  },
+  "all_4321c3a1": {
+    "message": "Alla"
+  },
+  "all_annotations_saved_c0c650ab": {
+    "message": "Alla noteringar har sparats."
+  },
+  "all_courses_a7dbb853": {
+    "message": "Alla kurser"
+  },
+  "all_grading_periods_77974940": {
+    "message": "Alla bedömningsperioder"
+  },
+  "all_in_e5ddaee0": {
+    "message": "Alla i"
+  },
+  "all_people_16d90b41": {
+    "message": "Alla människor"
+  },
+  "all_submissions_3eedfb97": {
+    "message": "Alla inlämningar"
+  },
+  "all_submissions_b8717440": {
+    "message": "Alla inlämningar"
+  },
+  "allow_multiple_attempts_e67a0a37": {
+    "message": "Tillåt flera försök"
+  },
+  "allow_threaded_replies_43b2311e": {
+    "message": "Tillåt svar i trådar"
+  },
+  "allowed_attempts_4e229caa": {
+    "message": "Tillåtna försök"
+  },
+  "always_3a59e701": {
+    "message": "Alltid"
+  },
+  "an_error_occured_while_fetching_this_conversation_453ca633": {
+    "message": "Ett fel uppstod vid hämtning av den här konversationen."
+  },
+  "an_error_occurred_a4e1cda4": {
+    "message": "Ett fel uppstod"
+  },
+  "announcement_details_81b0bda2": {
+    "message": "Meddelandedetaljer"
+  },
+  "announcements_a4b8ed4a": {
+    "message": "Meddelanden"
+  },
+  "anonymous_grading_3083dc0": {
+    "message": "Anonym bedömning"
+  },
+  "anyone_5b8fdf9f": {
+    "message": "Vem som helst"
+  },
+  "archived_de543437": {
+    "message": "Arkiverad"
+  },
+  "are_you_sure_you_want_to_delete_name_908230d3": {
+    "message": "Är du säker på att du vill radera { name }?"
+  },
+  "are_you_sure_you_want_to_delete_this_announcement_293d51a8": {
+    "message": "Är du säker på att du vill radera det här meddelandet?"
+  },
+  "are_you_sure_you_want_to_delete_this_discussion_334554e0": {
+    "message": "Är du säker på att du vill radera diskussionen?"
+  },
+  "are_you_sure_you_want_to_delete_this_page_2185844": {
+    "message": "Är du säker på att du vill ta bort denna sidan?"
+  },
+  "are_you_sure_you_want_to_delete_this_reply_6a35cccc": {
+    "message": "Är du säker på att du vill ta bort detta svar?"
+  },
+  "assign_to_95404a83": {
+    "message": "Tilldela till"
+  },
+  "assignees_314d5e55": {
+    "message": "Tilldelad"
+  },
+  "assignees_required_1b9218fb": {
+    "message": "Innehavare krävs"
+  },
+  "assignment_details_bc488179": {
+    "message": "Uppgiftsdetaljer"
+  },
+  "assignment_group_1a781505": {
+    "message": "Uppgiftsgrupp"
+  },
+  "assignments_1e02582c": {
+    "message": "Uppgifter"
+  },
+  "assignments_list_fe3e54be": {
+    "message": "Uppgiftslista"
+  },
+  "attachment_deffe5a9": {
+    "message": "Bilaga"
+  },
+  "attachments_694cf227": {
+    "message": "Bifogade filer"
+  },
+  "attempt_number_75028cfa": {
+    "message": "Försök { number }"
+  },
+  "audio_comment_baf426c7": {
+    "message": "Ljud kommentar"
+  },
+  "audio_dd489fcc": {
+    "message": "Ljud"
+  },
+  "audio_playback_failed_912bcb82": {
+    "message": "Ljuduppspelning misslyckades"
+  },
+  "availability_8942cde6": {
+    "message": "Tillgänglighet"
+  },
+  "availability_closed_429d1ba5": {
+    "message": "Tillgänglighet: Stängda"
+  },
+  "availability_e415e857": {
+    "message": "Tillgänglighet:"
+  },
+  "available_from_3821bccc": {
+    "message": "Tillgängligt från:"
+  },
+  "available_from_587ce92f": {
+    "message": "Tillgänglig från"
+  },
+  "available_from_date_bb9d5115": {
+    "message": "Tillgänglig från: { date }"
+  },
+  "available_from_f84e4611": {
+    "message": "Tillgänglig från"
+  },
+  "available_from_must_be_before_available_to_b73ad479": {
+    "message": "”Tillgänglig från och med” måste vara före ”Tillgänglig till och med”"
+  },
+  "available_from_must_be_before_available_until_38d313cc": {
+    "message": "”Tillgänglig från” måste vara före ”Tillgänglig tills''"
+  },
+  "available_to_b7350e02": {
+    "message": "Tillgänglig för"
+  },
+  "available_until_20c0cc5c": {
+    "message": "Tillgänglig till:"
+  },
+  "available_until_date_37684818": {
+    "message": "Tillgänglig till: { date }"
+  },
+  "available_until_f3b9c4ed": {
+    "message": "Tillgänglig tills"
+  },
+  "average_49c63f9b": {
+    "message": "Genomsnitt"
+  },
+  "back_2900f52a": {
+    "message": "Tillbaka"
+  },
+  "back_to_replies_94f3c127": {
+    "message": "Återgå till svar"
+  },
+  "bold_34b9d97e": {
+    "message": "Fet"
+  },
+  "can_edit_5a1e8dbf": {
+    "message": "Kan redigera"
+  },
+  "can_not_forward_message_2a4d4953": {
+    "message": "Kan inte vidarebefodra meddelande"
+  },
+  "cancel_caeb1e68": {
+    "message": "Avbryt"
+  },
+  "canvas_guides_d65431": {
+    "message": "Canvas Guides"
+  },
+  "canvas_parent_app_f9236a3a": {
+    "message": "Canvas förälder app"
+  },
+  "canvas_student_app_329567f": {
+    "message": "Canvas elev app"
+  },
+  "canvas_teacher_app_9dc7d7ed": {
+    "message": "Canvas lärar-app"
+  },
+  "change_discussiontitle_to_different_grouping_9f5ed8c1": {
+    "message": "Ändra { discussionTitle } till en annan gruppering"
+  },
+  "change_user_1b7c4f23": {
+    "message": "Byt användare"
+  },
+  "choose_1319ef6b": {
+    "message": "Välj"
+  },
+  "choose_color_11148181": {
+    "message": "Välj { color }"
+  },
+  "choose_from_library_1b9caf95": {
+    "message": "Välj från biblioteket"
+  },
+  "clear_filter_5b3a182d": {
+    "message": "Rensa filter"
+  },
+  "clear_filter_5c961d1b": {
+    "message": "Rensa filter"
+  },
+  "clear_filter_inbox_9465e74c": {
+    "message": "Rensa filter-inbox"
+  },
+  "clear_recording_5a97b475": {
+    "message": "Rensa inspelning"
+  },
+  "close_d634289d": {
+    "message": "Stäng"
+  },
+  "close_for_comments_ce0e5d00": {
+    "message": "Stäng för kommentarer"
+  },
+  "closed_983a96fe": {
+    "message": "Stängda"
+  },
+  "closed_for_comments_e395b42f": {
+    "message": "Stängd för kommentarer"
+  },
+  "color_a363e1b0": {
+    "message": "Färg"
+  },
+  "comment_7ef1428e": {
+    "message": "Kommentera"
+  },
+  "comment_failed_acf11b54": {
+    "message": "Kommentar misslyckades"
+  },
+  "comments_e07bcbe3": {
+    "message": "Kommentarer"
+  },
+  "complete_fd828dea": {
+    "message": "Fullgjord"
+  },
+  "complete_incomplete_15b3a89c": {
+    "message": "Fullgjord/Ej Fullständig"
+  },
+  "compose_message_8abd180a": {
+    "message": "Skapa ett meddelande"
+  },
+  "conferences_a0a8984b": {
+    "message": "Konferenser"
+  },
+  "conversation_options_8be926f3": {
+    "message": "Konversationsalternativ"
+  },
+  "copied_880dcb1b": {
+    "message": "Kopierad!"
+  },
+  "copy_link_1ffb11a4": {
+    "message": "Kopiera länk"
+  },
+  "copyright_holder_386cc8b8": {
+    "message": "Upphovsrättsinnehavare"
+  },
+  "could_not_get_list_of_assignments_76aa2c7e": {
+    "message": "Det gick inte att få en lista över uppgifter"
+  },
+  "could_not_start_recording_8f31c2e4": {
+    "message": "Kunde inte spelas in"
+  },
+  "count_plural_0_0_students_one_student_other_studen_801f8933": {
+    "message": "{ count, plural,\n     =0 {0 elever}\n    one {# elev}\n  other {# elever}\n}"
+  },
+  "count_plural_one_like_other_likes_338617e5": {
+    "message": "{ count, plural,\n    one {# gilla}\n  other {# gillamarkeringar}\n}"
+  },
+  "count_plural_one_needs_grading_other_need_grading_45cd88a4": {
+    "message": "{ count, plural,\n    one {Behöver bedömas}\n  other {Behöver bedömas}\n}"
+  },
+  "count_plural_one_needs_grading_other_need_grading_7eba188e": {
+    "message": "{ count, plural,\n    one {# Behöver bedömas}\n  other {# Behöver bedömas}\n}"
+  },
+  "count_plural_one_pt_other_pts_c5a3bced": {
+    "message": "{ count, plural,\n    one {# poäng}\n  other {# poäng}\n}",
+    "description": "Number of points possible"
+  },
+  "count_plural_one_question_other_questions_309aafa": {
+    "message": "{ count, plural,\n    one {# Fråga}\n  other {# Frågor}\n}"
+  },
+  "count_plural_one_reply_other_replies_dbf1832a": {
+    "message": "{ count, plural,\n    one {# Svar}\n  other {# Svar}\n}",
+    "description": "Number of replies"
+  },
+  "count_plural_one_there_is_assignee_without_a_grade_15facb89": {
+    "message": "{ count, plural,\n    one {Det finns en # sökande utan bedömning.}\n  other {Det finns # sökanden utan bedömning.}\n}",
+    "description": "Number of assignees without grades."
+  },
+  "count_students_4ae780ca": {
+    "message": "{ count } elever"
+  },
+  "course_activity_stream_40091c17": {
+    "message": "Kurs-aktivitetsflöde"
+  },
+  "course_modules_795cb95e": {
+    "message": "Kursmoduler"
+  },
+  "course_sections_380358a5": {
+    "message": "Kurssektioner"
+  },
+  "course_settings_f6d0bbf8": {
+    "message": "Kursinställningar"
+  },
+  "coursename_sections_faeee6fc": {
+    "message": "{ courseName } Sektioner"
+  },
+  "courses_43204aae": {
+    "message": "Kurser"
+  },
+  "create_folder_6055d558": {
+    "message": "Skapa mapp"
+  },
+  "creative_commons_file_f0ace8ca": {
+    "message": "Creative Commons fil"
+  },
+  "creative_commons_license_ba94fd4d": {
+    "message": "Creative Commons licens"
+  },
+  "customize_course_eefa9c21": {
+    "message": "Anpassa kurs"
+  },
+  "customize_grade_c9d046d": {
+    "message": "Anpassa bedömning"
+  },
+  "customize_grade_value_964695a3": {
+    "message": "Anpassa bedömning { value }"
+  },
+  "date_date_medium_at_date_time_short_2b9ce48b": {
+    "message": "{ date, date, medium } kl { date, time, short }"
+  },
+  "date_date_mmm_d_at_date_time_short_61eeb79b": {
+    "message": "{ date, date, 'MMM d' } kl { date, time, short }"
+  },
+  "date_date_mmm_d_date_time_short_e82719d6": {
+    "message": "{ date, date, 'MMM d' } { date, time, short }"
+  },
+  "decline_7eeb5ff4": {
+    "message": "Neka"
+  },
+  "delay_posting_f45eed7d": {
+    "message": "Fördröj inlägg"
+  },
+  "delayed_until_8f9c2bb1": {
+    "message": "Fördröjd till: "
+  },
+  "delete_a6efa79d": {
+    "message": "Radera"
+  },
+  "delete_file_3ca64c1b": {
+    "message": "Ta bort fil"
+  },
+  "delete_folder_1700498c": {
+    "message": "Ta bort mapp"
+  },
+  "delete_folder_7d84f587": {
+    "message": "Ta bort mapp?"
+  },
+  "delete_recipient_recipient_22a1e3dd": {
+    "message": "Ta bort mottagare { recipient }"
+  },
+  "deleted_this_reply_8b5b0ddc": {
+    "message": "Ta bort detta svar."
+  },
+  "deleting_this_folder_will_also_delete_all_of_the_f_8017926e": {
+    "message": "Om du tar bort den här mappen raderas alla filer i mappen."
+  },
+  "description_436c48d7": {
+    "message": "Beskrivning"
+  },
+  "designer_c458392": {
+    "message": "Designer"
+  },
+  "details_98a31b68": {
+    "message": "Detaljer"
+  },
+  "developer_menu_1e80da35": {
+    "message": "Utvecklarmeny"
+  },
+  "discussion_details_5728ea3d": {
+    "message": "Diskussiondetaljer"
+  },
+  "discussion_submission_781d5d33": {
+    "message": "Diskussionsinlämning"
+  },
+  "discussion_topic_dc85ad4c": {
+    "message": "Diskussionsämne"
+  },
+  "discussions_a5f96392": {
+    "message": "Diskussioner"
+  },
+  "dismiss_dacdb625": {
+    "message": "Avfärda"
+  },
+  "dismiss_invitation_to_name_a650b2c4": {
+    "message": "Avvisa inbjudan till { name }"
+  },
+  "dismiss_name_8646b9fd": {
+    "message": "Avfärda { name }"
+  },
+  "display_grade_as_7b5376a6": {
+    "message": "Visa bedömning som"
+  },
+  "display_grade_as_c165e9a6": {
+    "message": "Visa bedömning som..."
+  },
+  "domain_3b54c511": {
+    "message": "Domän"
+  },
+  "done_54e3d4b6": {
+    "message": "Färdiggjord"
+  },
+  "due_5d7267be": {
+    "message": "Färdiggjord:"
+  },
+  "due_a73610f6": {
+    "message": "Färdiggjord"
+  },
+  "due_date_822625d8": {
+    "message": "Inlämningsdatum"
+  },
+  "due_date_date_mmm_d_yyyy_at_date_time_short_76c5900f": {
+    "message": "På grund av { date, date, 'MMM d, YYYY' } på { date, time, short }"
+  },
+  "due_date_must_be_between_available_from_and_availa_bc4d7904": {
+    "message": "”Slutdatum” måste vara mellan datumen: ”Tillgänglig från” och ”Tillgänglig till”"
+  },
+  "due_dates_double_tap_for_details_36c5a7a4": {
+    "message": "Slutdatum, dubbelklicka för detaljer."
+  },
+  "due_datestring_be4410c7": {
+    "message": "Slutdatum { dateString }"
+  },
+  "edit_assignment_ebf22a72": {
+    "message": "Redigera uppgift"
+  },
+  "edit_attachment_count_ae907c46": {
+    "message": "Redigera bilaga ({ count })"
+  },
+  "edit_attachments_count_5e9276ea": {
+    "message": "Redigera bilagor({ count })"
+  },
+  "edit_c5fbea07": {
+    "message": "Redigera"
+  },
+  "edit_comment_22b23c2f": {
+    "message": "Redigera kommentar"
+  },
+  "edit_course_settings_9736fd1f": {
+    "message": "Redigera kursinställningar"
+  },
+  "edit_courses_1f63340f": {
+    "message": "Redigera kurser & grupper"
+  },
+  "edit_description_1206e0a8": {
+    "message": "Redigera beskrivning"
+  },
+  "edit_file_c560115a": {
+    "message": "Redigera fil"
+  },
+  "edit_folder_f12b1b3c": {
+    "message": "Redigera mapp"
+  },
+  "edit_page_5df5916a": {
+    "message": "Redigera sida"
+  },
+  "edit_quiz_details_72cd055": {
+    "message": "Redigera Quiz detaljer"
+  },
+  "enjoy_your_day_a4cb2c1": {
+    "message": "Ha en bra dag!"
+  },
+  "enter_a_search_term_with_three_or_more_characters_1577ec2": {
+    "message": "Ange en sökterm med tre eller fler tecken."
+  },
+  "enter_code_c7ab5104": {
+    "message": "Ange kod"
+  },
+  "error_98e81528": {
+    "message": "Fel"
+  },
+  "error_saving_grade_367dd920": {
+    "message": "Misslyckades att spara bedömning"
+  },
+  "error_saving_tap_to_retry_a66b9c5f": {
+    "message": "Det gick inte att spara. Tryck igen."
+  },
+  "everyone_854554dd": {
+    "message": "Alla"
+  },
+  "everyone_else_cc5f6888": {
+    "message": "Alla andra"
+  },
+  "excuse_student_1b60e311": {
+    "message": "Ursäkta elev"
+  },
+  "excused_cf8792eb": {
+    "message": "Slipper göras"
+  },
+  "extensions_and_lastextension_f45d68e7": {
+    "message": "{ extensions } och { lastExtension }"
+  },
+  "external_tool_c5a6410a": {
+    "message": "Externt verktyg"
+  },
+  "external_tool_submission_c7b1dfa4": {
+    "message": "Externt inlämningsverktyg"
+  },
+  "fail_c2e91f54": {
+    "message": "Misslyckades"
+  },
+  "failed_comment_options_aa19a936": {
+    "message": "Misslyckade kommentars-alternativ"
+  },
+  "failed_to_download_audio_23abb7b1": {
+    "message": "Misslyckades att ladda ner ljud"
+  },
+  "failed_to_load_audio_46309612": {
+    "message": "Misslyckades att ladda ljud"
+  },
+  "failed_to_upload_attachment_acb5c28f": {
+    "message": "Misslyckades att ladda upp bilaga"
+  },
+  "failed_to_upload_media_comment_c43f581a": {
+    "message": "Misslyckades att ladda upp media kommentar"
+  },
+  "fair_use_exception_d8683c6f": {
+    "message": "Rättvist användningsundantag"
+  },
+  "favorite_courses_fbd356f0": {
+    "message": "Favoritkurser"
+  },
+  "file_types_6fa69505": {
+    "message": "Filtyper"
+  },
+  "files_c300e900": {
+    "message": "Filer"
+  },
+  "files_numberoffiles_number_410d9eba": {
+    "message": "Filer ({ numberOfFiles, number })"
+  },
+  "filter_by_2f4368a8": {
+    "message": "Filtrera efter"
+  },
+  "filter_by_ffcbd05b": {
+    "message": "Filtrerat efter:"
+  },
+  "filter_e3398407": {
+    "message": "Filtrera"
+  },
+  "filter_inbox_dae0ff8f": {
+    "message": "Filtrera inbox"
+  },
+  "filter_numselected_number_2e4c17e3": {
+    "message": "Filtrera ({ numSelected, number })"
+  },
+  "filter_people_b34b567b": {
+    "message": "Filtrera människor"
+  },
+  "filter_submissions_81bc50de": {
+    "message": "Filtrera inlämningar"
+  },
+  "final_grade_4d7f6545": {
+    "message": "Slutbedömning"
+  },
+  "for_974cbb84": {
+    "message": "Till"
+  },
+  "for_e3490d05": {
+    "message": "För:"
+  },
+  "forward_d143f64": {
+    "message": "Vidarebefordra"
+  },
+  "forwarded_message_3acb578c": {
+    "message": "Vidarebefordrat meddelande:"
+  },
+  "front_page_50cae87e": {
+    "message": "Framsida"
+  },
+  "full_screen_712e95f1": {
+    "message": "Fullskärm"
+  },
+  "fw_subject_ebe04db7": {
+    "message": "Vb: { subject }"
+  },
+  "gpa_71809a99": {
+    "message": "Medelbetyg"
+  },
+  "gpa_scale_a6d1cdea": {
+    "message": "GPA skala"
+  },
+  "grade_9c6f076d": {
+    "message": "Bedömning"
+  },
+  "grade_grade_990eb477": {
+    "message": "Bedöm { grade }"
+  },
+  "grade_grade_number_percent_cda06b4d": {
+    "message": "Bedöm { grade, number, percent }"
+  },
+  "graded_25cd3fcd": {
+    "message": "Bedömd"
+  },
+  "graded_quiz_7fabdf1f": {
+    "message": "Bedömd quiz"
+  },
+  "graded_survey_c0f0c395": {
+    "message": "Bedömd undersökning"
+  },
+  "grades_a61eba0a": {
+    "message": "Bedömningar"
+  },
+  "grades_muted_76c70047": {
+    "message": "Bedömningar tystade"
+  },
+  "grades_muted_anonymous_grading_9291ea4b": {
+    "message": "Bedömningar tystade, anonym bedömning"
+  },
+  "group_a8f5ed9c": {
+    "message": "Grupp"
+  },
+  "groups_6c90e26a": {
+    "message": "Grupper"
+  },
+  "half_screen_9cdd83ad": {
+    "message": "Halvskärm"
+  },
+  "haven_t_been_graded_1fbfda56": {
+    "message": "Har inte blivit bedömd"
+  },
+  "haven_t_submitted_yet_3a127a27": {
+    "message": "Har inte lämnat in ännu"
+  },
+  "help_4c4968b1": {
+    "message": "Hjälp"
+  },
+  "hidden_14a032a7": {
+    "message": "Dold"
+  },
+  "hidden_files_inside_will_be_available_with_links_e9e3d233": {
+    "message": "Dold. Filer inuti kommer bli tllgänliga med länkar."
+  },
+  "hide_content_for_name_aee1723a": {
+    "message": "Dölj innehållet för { name }"
+  },
+  "hide_correct_answers_at_b1a59408": {
+    "message": "Dölj korrekta svar kl."
+  },
+  "hide_date_cannot_be_before_show_date_cfaa35f0": {
+    "message": "”Dölj datum” kan inte vara före ”Visa datum”"
+  },
+  "highest_28ad71e6": {
+    "message": "Högsta"
+  },
+  "i_have_permission_to_use_file_d19a1a29": {
+    "message": "Jag har behörighet att använda filen"
+  },
+  "i_hold_the_copyright_71ee91b1": {
+    "message": "Jag är upprättshavare"
+  },
+  "if_you_re_a_student_or_teacher_try_one_of_our_othe_f0ae9b33": {
+    "message": "Om du är en elev eller lärare, testa en av våra andra appar nedan."
+  },
+  "in_progress_9d1ce8b9": {
+    "message": "Pågår"
+  },
+  "incomplete_da3c2ea2": {
+    "message": "Ej fullständig"
+  },
+  "insert_image_42d30344": {
+    "message": "För in bild"
+  },
+  "insert_link_6dc23cae": {
+    "message": "Skriv in länk"
+  },
+  "internet_connection_offline_d7c02b88": {
+    "message": "Internetuppkoppling offline"
+  },
+  "invalid_field_54480fae": {
+    "message": "Ogiltigt fält"
+  },
+  "invite_accepted_290abc90": {
+    "message": "Inbjudan accepterades!"
+  },
+  "invite_declined_d0a9e398": {
+    "message": "Inbjudan avböjd!"
+  },
+  "it_looks_like_your_internet_connection_is_offline__cf4003": {
+    "message": "Din internetuppkoppling tycks vara offline. Koppla upp internet och försök igen."
+  },
+  "it_seems_there_aren_t_any_valid_submissions_to_gra_f136675": {
+    "message": "Det tycks inte finnas några giltiga inlämningar att bedöma."
+  },
+  "italic_ac45200a": {
+    "message": "Kursiv"
+  },
+  "item_count_plural_one_item_other_items_88319c63": {
+    "message": "{ item_count, plural,\n    one {# post}\n  other {# poster}\n}"
+  },
+  "last_activity_on_lastactivity_date_mmmm_d_at_lasta_1a7e8430": {
+    "message": "Senaste aktivitet för { lastActivity, date, 'MMMM d' } vid { lastActivity, time, short }"
+  },
+  "last_post_lastreplydatestr_55fbe7ce": {
+    "message": "Senaste inlägg { lastReplyDateStr }"
+  },
+  "late_2be42b88": {
+    "message": "Sen"
+  },
+  "late_submissions_late_number_baedf6cf": {
+    "message": "Sena inlämningar { late, number }"
+  },
+  "latest_f604a75": {
+    "message": "Senaste"
+  },
+  "launch_external_tool_672c0409": {
+    "message": "Starta externt verktyg"
+  },
+  "length_in_minutes_eca69868": {
+    "message": "Längd i minuter"
+  },
+  "let_students_see_the_correct_answer_a4da886e": {
+    "message": "Låt elever se det rätta svaret"
+  },
+  "let_students_see_their_quiz_responses_fbc07d14": {
+    "message": "Låt eleverna se deras testsvar"
+  },
+  "letter_grade_29ff1938": {
+    "message": "Bokstavsbedömning"
+  },
+  "letter_grade_e83e363c": {
+    "message": "Bedömningsbrev"
+  },
+  "lock_questions_after_answering_e0f61d7c": {
+    "message": "Lås frågor efter svar har getts"
+  },
+  "log_in_again_ec2b1f46": {
+    "message": "Logga in igen"
+  },
+  "log_out_379ba28a": {
+    "message": "Logga ut"
+  },
+  "long_description_7d89285c": {
+    "message": "Lång beskrivning"
+  },
+  "manage_children_a28d764e": {
+    "message": "Hantera barn"
+  },
+  "mark_all_as_read_8f3bdf57": {
+    "message": "Markera alla som lästa"
+  },
+  "me_bf110f4d": {
+    "message": "jag"
+  },
+  "media_recording_77cddc52": {
+    "message": "Mediainspelning"
+  },
+  "media_submission_464829f0": {
+    "message": "Mediainlämning"
+  },
+  "message_5c38209d": {
+    "message": "Meddelande"
+  },
+  "message_details_342e931f": {
+    "message": "Meddela detaljer"
+  },
+  "message_options_59805b8e": {
+    "message": "Meddela alternativ"
+  },
+  "message_students_who_778ce759": {
+    "message": "Meddela elever som"
+  },
+  "minutes_4aee5a41": {
+    "message": "Minuter"
+  },
+  "minutes_plural_one_minute_other_minutes_e2adacfe": {
+    "message": "{ minutes, plural,\n    one {# minut}\n  other {# minuter}\n}"
+  },
+  "missing_1a256b3b": {
+    "message": "Saknas"
+  },
+  "missing_submissions_missing_number_ea40423d": {
+    "message": "Inlämningar som saknas { missing, number }"
+  },
+  "moderated_grading_unsupported_e3a2bba3": {
+    "message": "Modererad bedömning stöds inte"
+  },
+  "multiple_due_dates_283dd861": {
+    "message": "Flera inlämningsdatum"
+  },
+  "mute_grades_b85bece1": {
+    "message": "Tysta bedömningar"
+  },
+  "my_files_eea33f44": {
+    "message": "Mina filer"
+  },
+  "n_a_d6f6c42f": {
+    "message": "Ej tillgängligt"
+  },
+  "name_1aed4a1b": {
+    "message": "Namn"
+  },
+  "name_count_plural_one_other_other_others_f47e51c3": {
+    "message": "{ name } + { count, plural,\n    one {# övriga}\n  other {# övriga}\n}"
+  },
+  "names_count_more_643849d3": {
+    "message": "{ names } + { count } mer"
+  },
+  "needs_grading_9143d47c": {
+    "message": "Behöver bedömas"
+  },
+  "new_13daf639": {
+    "message": "Ny"
+  },
+  "new_announcement_23af4598": {
+    "message": "Nytt meddelande"
+  },
+  "new_discussion_dae4fae3": {
+    "message": "Ny diskussion"
+  },
+  "new_message_f9bbd1c0": {
+    "message": "Nytt meddelande"
+  },
+  "new_page_84b28714": {
+    "message": "Ny sida"
+  },
+  "nickname_1e6da3ad": {
+    "message": "Smeknamn"
+  },
+  "no_attachments_e875f6d5": {
+    "message": "Inga bilagor"
+  },
+  "no_available_from_date_set_6f659d06": {
+    "message": "Inga tillgängliga från datauppsättning."
+  },
+  "no_available_from_date_set_db356ac3": {
+    "message": "Inga tillgängliga från datauppsättning"
+  },
+  "no_available_until_date_set_ad4b4bbb": {
+    "message": "Inget tillgängligt till datum inställd"
+  },
+  "no_available_until_date_set_df9e7434": {
+    "message": "Inget tillgängligt till datum inställd."
+  },
+  "no_due_date_44271c53": {
+    "message": "Inget inlämningsdatum"
+  },
+  "no_due_date_set_bb3a2bf7": {
+    "message": "Inget slutdatum inställt"
+  },
+  "no_e16d9132": {
+    "message": "Nej"
+  },
+  "no_enrollments_6369cd31": {
+    "message": "Inga anmälningar"
+  },
+  "no_grade_3b4d7f3e": {
+    "message": "Ingen bedömning"
+  },
+  "no_internet_connection_9df26cf8": {
+    "message": "Ingen internetanslutning"
+  },
+  "no_messages_a2e67ad4": {
+    "message": "Inga meddelanden"
+  },
+  "no_results_f36777ee": {
+    "message": "Inga resultat"
+  },
+  "no_results_found_2ace1494": {
+    "message": "Inga resultat hittades"
+  },
+  "no_starred_messages_e1b28bca": {
+    "message": "Inga stjärnmärkta meddelanden"
+  },
+  "no_subject_2e2a413c": {
+    "message": "Inga föremål"
+  },
+  "no_subject_58b7941c": {
+    "message": "Inget ämne"
+  },
+  "no_submissions_to_display_6f1491cf": {
+    "message": "Inga inlämningar att visa"
+  },
+  "no_time_limit_2147d9bf": {
+    "message": "Ingen tidsgräns"
+  },
+  "no_title_4921a961": {
+    "message": "Ingen titel"
+  },
+  "none_3b5e34d2": {
+    "message": "Ingen"
+  },
+  "none_9b6c9bec": {
+    "message": "ingen"
+  },
+  "not_a_teacher_b0d0fc55": {
+    "message": "Inte en lärare?"
+  },
+  "not_graded_e027c866": {
+    "message": "Inte bedömd"
+  },
+  "not_published_73f7079": {
+    "message": "Ej publicerad"
+  },
+  "not_submitted_7d05fdb4": {
+    "message": "Inte inskickad"
+  },
+  "nothing_more_to_do_b017e8bb": {
+    "message": "Ingenting mer att göra"
+  },
+  "number_plural_one_minute_other_minutes_648ec0e1": {
+    "message": "{ number, plural,\n    one {# Minut}\n  other {# Minuter}\n}"
+  },
+  "observer_248a192e": {
+    "message": "Observatör"
+  },
+  "off_5385ef3f": {
+    "message": "Av"
+  },
+  "ok_c47544a2": {
+    "message": "OK"
+  },
+  "on_8f7190e5": {
+    "message": "På"
+  },
+  "on_paper_46d0ba36": {
+    "message": "På papper"
+  },
+  "one_of_our_other_apps_might_be_a_better_fit_tap_on_a3138a": {
+    "message": "En av våra andra appar kan vara bättre lämpade. Tryck på ett för att besöka App Store."
+  },
+  "one_question_at_a_time_3161ceeb": {
+    "message": "En fråga i taget"
+  },
+  "online_quiz_5beb2ae5": {
+    "message": "Online-test"
+  },
+  "online_text_entry_1d893ce": {
+    "message": "Text inlägg online"
+  },
+  "online_upload_59969592": {
+    "message": "Online uppladdning"
+  },
+  "online_url_37830a72": {
+    "message": "Online URL"
+  },
+  "only_available_to_students_with_link_not_available_c12278d2": {
+    "message": "Endast tillgänglig för elever med länk. Ej tillgängligt i elevfiler."
+  },
+  "only_once_after_each_attempt_cc842738": {
+    "message": "Endast efter varje försök"
+  },
+  "only_teachers_1628d9b9": {
+    "message": "Endast lärare"
+  },
+  "oops_we_couldn_t_find_that_page_7474fec6": {
+    "message": "Hoppsan! Vi kunde inte hitta sidan."
+  },
+  "open_coursename_user_preferences_430b877e": {
+    "message": "Öppna { courseName } användarinställningar"
+  },
+  "open_drawer_f3c8b11": {
+    "message": "Öppna meny"
+  },
+  "open_for_comments_1810648": {
+    "message": "Öppna för kommentarer"
+  },
+  "options_3ab0ea65": {
+    "message": "Alternativ"
+  },
+  "ordered_list_5fb1ce41": {
+    "message": "Ordnad lista"
+  },
+  "out_of_points_number_42209979": {
+    "message": "Av { points, number }"
+  },
+  "page_details_847e35e6": {
+    "message": "Sidodetaljer"
+  },
+  "page_not_found_683da852": {
+    "message": "Sidan hittades inte"
+  },
+  "pages_e5414c2c": {
+    "message": "Sidor"
+  },
+  "pages_front_page_9ce5188": {
+    "message": "Sidornas framsida"
+  },
+  "pass_8abee039": {
+    "message": "Godkänd"
+  },
+  "past_enrollments_a846da48": {
+    "message": "Tidigare registreringar"
+  },
+  "people_b4ebb13c": {
+    "message": "Personer"
+  },
+  "percent_d7ddd35b": {
+    "message": "Procent (%)"
+  },
+  "percentage_34ab7c2c": {
+    "message": "Procent"
+  },
+  "permission_needed_7e971495": {
+    "message": "Tillstånd behövs"
+  },
+  "pin_cdbc9f8f": {
+    "message": "Nåla"
+  },
+  "pinned_discussions_a55c0cea": {
+    "message": "Fästa diskussioner"
+  },
+  "points_bb475533": {
+    "message": "Poäng"
+  },
+  "points_number_out_of_totalpoints_number_291efb47": {
+    "message": "{ points, number } av { totalPoints, number }"
+  },
+  "points_possible_must_be_a_number_4a592dc6": {
+    "message": "Möjliga poäng måste vara ett nummer"
+  },
+  "pointspossible_number_pts_2d9f157d": {
+    "message": "{ pointsPossible, number } poäng"
+  },
+  "post_at_a9e0fecb": {
+    "message": "Inlägg vid..."
+  },
+  "practice_quiz_19a8505d": {
+    "message": "Övningsquiz"
+  },
+  "preview_quiz_1ffbf684": {
+    "message": "Visa Quiz"
+  },
+  "preview_unavailable_aacd459a": {
+    "message": "Tidigare otillgänglig"
+  },
+  "previewing_this_file_type_is_not_supported_7df9231": {
+    "message": "Förhandsgranskning av denna filtyp stöds inte"
+  },
+  "profile_6bd2baed": {
+    "message": "Profil"
+  },
+  "profile_menu_a688027e": {
+    "message": "Profilmeny"
+  },
+  "pts_699bd9aa": {
+    "message": "poäng"
+  },
+  "public_domain_file_eb5a0de": {
+    "message": "Offentlig domänfil"
+  },
+  "publish_5211dca3": {
+    "message": "Publicera"
+  },
+  "published_4bb5209e": {
+    "message": "Publicerad"
+  },
+  "quiz_details_6c4473d3": {
+    "message": "Quizdetaljer"
+  },
+  "quiz_preview_a7e75769": {
+    "message": "Quiz förhandsvisning"
+  },
+  "quiz_score_to_keep_d1f7c4b1": {
+    "message": "Quizresultat att behålla"
+  },
+  "quiz_submission_dca0c013": {
+    "message": "Quiz-inlämning"
+  },
+  "quiz_type_be1633db": {
+    "message": "Quiztyp"
+  },
+  "quizzes_7e598f57": {
+    "message": "Quizzes"
+  },
+  "recent_activity_51239235": {
+    "message": "Senaste aktivitet"
+  },
+  "recipient_recipient_394cf528": {
+    "message": "Mottagare: { recipient }"
+  },
+  "record_audio_14666880": {
+    "message": "Spela in ljud"
+  },
+  "record_video_70dc8439": {
+    "message": "Spela in video"
+  },
+  "recording_failed_2e1861b": {
+    "message": "Inspelning misslyckades"
+  },
+  "redo_363c58b7": {
+    "message": "Göra om"
+  },
+  "remove_attachment_81f30aa3": {
+    "message": "Ta bort bilaga"
+  },
+  "remove_date_edf2f565": {
+    "message": "Ta bort datum"
+  },
+  "remove_due_date_c1cc8f7": {
+    "message": "Ta bort slutdatum"
+  },
+  "remove_f47dc62a": {
+    "message": "Ta bort"
+  },
+  "remove_this_attachment_90a6665c": {
+    "message": "Ta bort denna bilaga?"
+  },
+  "replies_4a8577c8": {
+    "message": "Svar"
+  },
+  "replies_are_only_visible_to_those_who_have_posted__30e58953": {
+    "message": "Svar är endast synliga för dem som har skrivit minst ett svar."
+  },
+  "reply_389d6fb9": {
+    "message": "Svara"
+  },
+  "reply_all_b864cd0e": {
+    "message": "Svara alla"
+  },
+  "report_a_problem_4d48624a": {
+    "message": "Rapportera ett problem"
+  },
+  "request_a_feature_3c8e2079": {
+    "message": "Begär en funktion"
+  },
+  "request_could_not_be_completed_157615ef": {
+    "message": "Begäran kunde inte genomföras."
+  },
+  "require_an_access_code_46a02601": {
+    "message": "Kräv en tillgångskod"
+  },
+  "reset_95a81614": {
+    "message": "Återställ"
+  },
+  "restricted_606cbc55": {
+    "message": "Begränsat"
+  },
+  "restricted_access_d3e99a39": {
+    "message": "Begränsad tillgång"
+  },
+  "retry_ebd5f8ba": {
+    "message": "Testa igen"
+  },
+  "retry_upload_d854b33b": {
+    "message": "Försök ladda upp igen"
+  },
+  "rubric_fc39da76": {
+    "message": "Matris"
+  },
+  "saving_2521e616": {
+    "message": "Sparar"
+  },
+  "saving_d55dd90e": {
+    "message": "Sparar..."
+  },
+  "schedule_student_availability_332154a": {
+    "message": "Planera elev-tillgänglighet"
+  },
+  "score_number_pointspossible_number_fd8705b8": {
+    "message": "{ score, number }/{ pointsPossible, number }"
+  },
+  "score_to_keep_48ace09b": {
+    "message": "Resultat att behålla"
+  },
+  "scored_less_than_93cde0d2": {
+    "message": "Fick lägre resultat än..."
+  },
+  "scored_less_than_promptvalue_7e5f2b5d": {
+    "message": "Fick lägre resultat än { promptValue }"
+  },
+  "scored_more_than_2185a818": {
+    "message": "Fick högre resultat än..."
+  },
+  "scored_more_than_promptvalue_9097b1f7": {
+    "message": "Fick högre resultat än { promptValue }"
+  },
+  "search_280d00bd": {
+    "message": "Sök"
+  },
+  "search_files_7e8153fd": {
+    "message": "Sök i filer"
+  },
+  "searching_f330d682": {
+    "message": "Söker..."
+  },
+  "seconds_plural_one_second_other_seconds_d33cf6e3": {
+    "message": "{ seconds, plural,\n    one {# sekund}\n  other {# sekunder}\n}"
+  },
+  "section_sectionname_a455be11": {
+    "message": "Sektion: { sectionName }"
+  },
+  "sections_94731e51": {
+    "message": "Sektioner"
+  },
+  "sections_sections_70d64496": {
+    "message": "Sektioner: { sections }"
+  },
+  "see_all_ffa422ef": {
+    "message": "Se alla"
+  },
+  "select_a_course_4710371f": {
+    "message": "Välj en kurs"
+  },
+  "send_e3bd0ed0": {
+    "message": "Skicka"
+  },
+  "send_individual_message_to_each_recipient_4fdfc1e5": {
+    "message": "Skicka individuella meddelanden till varje mottagare"
+  },
+  "send_message_a371a974": {
+    "message": "Skicka meddelandet"
+  },
+  "send_recording_82e5a550": {
+    "message": "Skicka inspelning"
+  },
+  "sending_bf324366": {
+    "message": "Skickar.."
+  },
+  "sent_fe0a1eb4": {
+    "message": "Skickat"
+  },
+  "set_as_front_page_c851ec5e": {
+    "message": "Ställ in som startsida"
+  },
+  "set_home_to_82ab5119": {
+    "message": "Ställ in ”Hem” till..."
+  },
+  "settings_5aa0fd0c": {
+    "message": "Inställningar"
+  },
+  "share_2a333403": {
+    "message": "Dela"
+  },
+  "show_correct_answers_a4b957e4": {
+    "message": "Visa korrekt svar"
+  },
+  "show_correct_answers_at_a5475aa3": {
+    "message": "Visa rätt svar kl."
+  },
+  "show_grades_8680e38e": {
+    "message": "Visa bedömningar"
+  },
+  "show_one_question_at_a_time_52f5b1a0": {
+    "message": "Visa en fråga åt gången"
+  },
+  "show_to_hide_2c0b6d39": {
+    "message": "{ show } till { hide }"
+  },
+  "shuffle_answers_edb602b7": {
+    "message": "Blanda svaren"
+  },
+  "similarity_score_f4b5c343": {
+    "message": "Likhetsresultat"
+  },
+  "something_went_wrong_on_our_end_don_t_worry_we_ve__be005c38": {
+    "message": "Något gick fel i slutet. Oroa dig inte, vi har spelat in det här och kommer att ta hand om det inom kort."
+  },
+  "star_messages_by_tapping_the_star_in_the_message_1c3e8a80": {
+    "message": "Stjärnmärk meddelanden genom att trycka på stjärnan i meddelandet."
+  },
+  "starred_5a9efa8a": {
+    "message": "Stjärnmärkt"
+  },
+  "start_recording_189496b9": {
+    "message": "Påbörja inspelning"
+  },
+  "stop_act_as_user_4f2a4f22": {
+    "message": "Sluta uppträda som användare"
+  },
+  "stop_playing_audio_96aed3bc": {
+    "message": "Stoppa uppspelning av ljud"
+  },
+  "stop_recording_6efe2129": {
+    "message": "Stoppa inspelning"
+  },
+  "student_5da6bfd1": {
+    "message": "Elev"
+  },
+  "students_1b8cd07b": {
+    "message": "Elever"
+  },
+  "students_must_post_before_seeing_replies_1a57eeb2": {
+    "message": "Elever måste lägga ut kommentarer innan de kan se svar"
+  },
+  "subject_114b2e98": {
+    "message": "Ämne"
+  },
+  "submission_comment_873e8f1c": {
+    "message": "inlämnings kommentar"
+  },
+  "submission_settings_f57b0cf8": {
+    "message": "Inlämningsinställningar"
+  },
+  "submission_types_af57bf0": {
+    "message": "Inlämningstyp"
+  },
+  "submissions_11e96106": {
+    "message": "Inlämningar"
+  },
+  "submitted_318fad53": {
+    "message": "Inlämnad"
+  },
+  "submitted_late_3741af29": {
+    "message": "Sen inlämning"
+  },
+  "subscribe_4b301fb7": {
+    "message": "Prenumerera"
+  },
+  "survey_31a240e6": {
+    "message": "Undersökning"
+  },
+  "swipe_left_or_right_to_view_other_student_submissi_da37c1c1": {
+    "message": "Dra åt vänster eller höger för att visa andra elevinlämningar"
+  },
+  "syllabus_f191f65b": {
+    "message": "Kursöversikt"
+  },
+  "ta_8d966626": {
+    "message": "Lärarassistent"
+  },
+  "tap_and_hold_a_rubric_number_to_see_its_descriptio_8762082a": {
+    "message": "Tryck och håll på ett matrisnummer för att se dess beskrivning"
+  },
+  "tap_the_to_create_a_new_conversation_80f77725": {
+    "message": "Tryck på \"+\" för att skapa en ny konversation"
+  },
+  "tap_to_view_announcement_6724a5d": {
+    "message": "Tryck för att visa meddelande"
+  },
+  "tap_to_view_submissions_list_5bfe32f3": {
+    "message": "Tryck för att visa inlämningslista."
+  },
+  "teacher_5a73b637": {
+    "message": "Lärare"
+  },
+  "teachers_52e2423f": {
+    "message": "Lärare"
+  },
+  "teachers_and_students_ba2db3e4": {
+    "message": "Lärare och elever"
+  },
+  "terms_of_use_62ee73ad": {
+    "message": "Användarvillkor"
+  },
+  "terms_of_use_6542769b": {
+    "message": "Användarvillkor"
+  },
+  "text_color_acf75eb6": {
+    "message": "Textfärg"
+  },
+  "text_submission_935eeb5": {
+    "message": "Textinlämning"
+  },
+  "that_message_can_not_be_forwarded_76cb2b1a": {
+    "message": "Meddelandet kan inte vidarebefordras."
+  },
+  "the_value_of_possible_points_must_be_zero_or_great_374e175a": {
+    "message": "Värdet av möjliga poäng måste vara noll eller större"
+  },
+  "there_are_no_announcements_to_display_a91880": {
+    "message": "Det finns inga meddelanden att visa."
+  },
+  "there_are_no_assignments_to_display_83b52cf3": {
+    "message": "Det finns inga uppgifter att visa."
+  },
+  "there_are_no_comments_to_display_bde58f70": {
+    "message": "Det finns inga kommentarer att visa."
+  },
+  "there_are_no_conferences_to_display_400a0413": {
+    "message": "Det finns inga konferenser att visa.Det finns inga filer att visa."
+  },
+  "there_are_no_discussions_to_display_37bc437f": {
+    "message": "Det finns inga diskussioner att visa."
+  },
+  "there_are_no_files_to_display_d3eeb317": {
+    "message": "Det finns inga filer att visa."
+  },
+  "there_are_no_pages_to_display_ce6ca4d3": {
+    "message": "Det finns inga sidor att visa."
+  },
+  "there_are_no_quizzes_to_display_733b28f2": {
+    "message": "Det finns inga quizzes att visa."
+  },
+  "there_currently_is_no_long_description_for_this_it_ea943d61": {
+    "message": "Det finns för närvarande ingen lång beskrivning för denna artikel."
+  },
+  "there_was_a_problem_dismissing_the_announcement_9c5fb4c": {
+    "message": "Det uppstod ett problem med att avvisa meddelandet."
+  },
+  "there_was_a_problem_loading_discussions_ce5318af": {
+    "message": "Det uppstod ett problem vid laddning av diskussioner."
+  },
+  "there_was_a_problem_loading_the_announcements_4871afc4": {
+    "message": "Ett problem uppstod med att ladda meddelandena."
+  },
+  "there_was_a_problem_loading_the_assignment_submiss_4ace7374": {
+    "message": "Det uppstod ett problem vid laddning av bedömningsinlämningar."
+  },
+  "there_was_a_problem_loading_the_grading_periods_3fb714a0": {
+    "message": "Det gick inte att läsa in bedömningsperioderna."
+  },
+  "there_was_a_problem_loading_the_groups_6945e624": {
+    "message": "Ett problem uppstod med att ladda grupperna."
+  },
+  "there_was_a_problem_loading_the_quiz_submissions_b4f5503b": {
+    "message": "Det uppstod ett problem vid laddning av quiz inlämningar."
+  },
+  "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
+    "message": "Det uppstod ett problem vid laddning av quizzes."
+  },
+  "there_was_a_problem_retrieving_the_terms_of_use_df58f7b9": {
+    "message": "Det gick inte att återställa användarvillkoren"
+  },
+  "there_was_a_problem_saving_the_grade_please_try_ag_e46045bd": {
+    "message": "Det gick inte att spara bedömningen. Vänligen försök igen."
+  },
+  "there_was_an_error_loading_the_attachment_840a55ee": {
+    "message": "Ett fel uppstod vid laddning av bilagan."
+  },
+  "there_was_an_error_loading_the_file_a046378e": {
+    "message": "Ett fel uppstod vid laddning av filen."
+  },
+  "there_was_an_error_loading_the_list_of_enrollments_7dc8bafe": {
+    "message": "Det gick inte att läsa in listan över registreringar"
+  },
+  "there_was_an_error_loading_the_quiz_preview_3f3c8104": {
+    "message": "Det uppstod ett fel när du läste in förhandsgranskningen av quiz."
+  },
+  "there_was_an_error_loading_this_attachment_408acc12": {
+    "message": "Ett fel uppstod vid laddning av bilagan."
+  },
+  "there_was_an_error_with_act_as_user_please_try_aga_d9f9f8f1": {
+    "message": "Det uppstod ett fel med att uppträda som en användare. Försök igen senare."
+  },
+  "there_was_an_problem_loading_your_messages_b80423ac": {
+    "message": "Ett problem uppstod vid laddning av dina meddelanden."
+  },
+  "there_was_an_unexepected_error_fd6f2bf": {
+    "message": "Det uppstod ett oväntat fel."
+  },
+  "there_was_an_unexpected_error_please_try_again_5e08774e": {
+    "message": "Det uppstod ett oväntat fel. Vänligen försök igen."
+  },
+  "this_action_can_not_be_undone_eb8a297b": {
+    "message": "Åtgärden kan inte göras ogjord"
+  },
+  "this_action_requires_an_internet_connection_81f6688a": {
+    "message": "Den här åtgärden kräver en internet-anslutningen."
+  },
+  "this_assignment_does_not_allow_submissions_30af1caa": {
+    "message": "Den här uppgiften tillåter inte inlämningar."
+  },
+  "this_assignment_doesn_t_have_a_description_e2f37ec3": {
+    "message": "Denna uppgift har ingen beskrivning."
+  },
+  "this_assignment_only_allows_on_paper_submissions_f478408a": {
+    "message": "Den här uppgiften tillåter endast inlämningar på papper."
+  },
+  "this_criterion_will_not_impact_the_score_94adf77b": {
+    "message": "Detta kriterium påverkar inte resultatet."
+  },
+  "this_file_must_have_usage_rights_set_before_it_can_e4bf8bae": {
+    "message": "Den här filen måste ha användarrättigheter innan den kan publiceras."
+  },
+  "this_folder_is_empty_89c70e89": {
+    "message": "Den här mappen är tom"
+  },
+  "this_group_does_not_have_a_submission_for_this_ass_ca275999": {
+    "message": "Denna grupp har ingen inlämning för denna uppgift."
+  },
+  "this_is_your_personal_color_setting_only_you_will__e47dba70": {
+    "message": "Detta är din personliga färg-inställning. Endast du kommer att se denna färgen för kursen."
+  },
+  "this_student_does_not_have_a_submission_for_this_a_c8c2eafe": {
+    "message": "Den här eleven har ingen inlämning för denna uppgift."
+  },
+  "this_submission_is_a_url_to_an_external_page_we_ve_9993d2fd": {
+    "message": "Denna inlämning är en URL till en extern sida. Vi har inkluderat en bild på hur sidan ser ut när den lämnats in."
+  },
+  "this_will_remove_the_due_date_and_all_of_the_assoc_56d1ea8": {
+    "message": "Detta kommer att ta bort slutdatumet och alla tillhörande sökanden."
+  },
+  "time_elapsed_minutes_seconds_f5d82cb": {
+    "message": "Passerad tid: { minutes }, { seconds }."
+  },
+  "time_limit_a6f1a51e": {
+    "message": "Tidsgräns"
+  },
+  "title_announcement_c0cdaa10": {
+    "message": "{ title } Meddelande"
+  },
+  "title_discussion_4cff9841": {
+    "message": "{ title } Diskussion"
+  },
+  "title_ee03d132": {
+    "message": "Titel"
+  },
+  "to_51406be9": {
+    "message": "Till"
+  },
+  "to_count_others_853f5dc8": {
+    "message": "till { count } övriga"
+  },
+  "to_me_780716c7": {
+    "message": "till mig"
+  },
+  "to_name_bb3e415e": {
+    "message": "till { name }"
+  },
+  "total_grade_568e719f": {
+    "message": "Total bedömning:"
+  },
+  "try_logging_in_again_7a66111a": {
+    "message": "Försök att logga in igen"
+  },
+  "un_starred_8fef021f": {
+    "message": "Ej stjärnmärkta"
+  },
+  "undo_a7be8fef": {
+    "message": "Ångra"
+  },
+  "unexpected_error_93991f40": {
+    "message": "Oväntat fel"
+  },
+  "ungraded_survey_ad7de790": {
+    "message": "Ej bedömd undersökning"
+  },
+  "unknown_author_40d64455": {
+    "message": "Okänd författare"
+  },
+  "unlimited_ff19e96d": {
+    "message": "Obegränsat"
+  },
+  "unordered_list_3c1650b3": {
+    "message": "Ej ordnad lista"
+  },
+  "unpin_a318452a": {
+    "message": "Avnåla"
+  },
+  "unpublish_9f2d730b": {
+    "message": "Avpublicera"
+  },
+  "unpublished_8b6107d6": {
+    "message": "Avpublicerad"
+  },
+  "unread_e9c1b19c": {
+    "message": "Oläst"
+  },
+  "unread_plural_one_unread_other_unread_5d48c74f": {
+    "message": "{ unread, plural,\n    one {# Oläst}\n  other {# Oläst}\n}",
+    "description": "Number of unread discussion posts"
+  },
+  "unrecognized_file_format_def0881c": {
+    "message": "Filformatet känns inte igen"
+  },
+  "until_date_f3b9f367": {
+    "message": "Tills { date }"
+  },
+  "upload_8b403d05": {
+    "message": "Ladda upp"
+  },
+  "upload_cancelled_by_user_ca7723be": {
+    "message": "Uppladdning avbruten av användare"
+  },
+  "upload_complete_46473c7b": {
+    "message": "Uppladdning fullgjord"
+  },
+  "upload_error_38012123": {
+    "message": "Uppladdningsfel"
+  },
+  "upload_file_fd2361b8": {
+    "message": "Ladda upp fil"
+  },
+  "upload_in_progress_57b96797": {
+    "message": "Uppladdning pågår"
+  },
+  "uploading_19e8a4e7": {
+    "message": "Laddar upp"
+  },
+  "uploading_amountuploaded_amounttotal_cd97306a": {
+    "message": "Laddar upp { amountUploaded }/{ amountTotal }"
+  },
+  "uploading_loaded_of_total_d5c3d555": {
+    "message": "Uppladdning { loaded } av { total }"
+  },
+  "url_preview_image_a263a21e": {
+    "message": "URL förhandsvisningsbild"
+  },
+  "url_submission_f76327e3": {
+    "message": "URL-inlämning"
+  },
+  "usage_right_2b398e0b": {
+    "message": "Användarrättigheter"
+  },
+  "usage_rights_f0960ad6": {
+    "message": "Användarrättigheter"
+  },
+  "use_camera_47a0387b": {
+    "message": "Använd kamera"
+  },
+  "user_id_bcace870": {
+    "message": "Användar-ID"
+  },
+  "video_b9f27375": {
+    "message": "Video"
+  },
+  "video_recording_90d21249": {
+    "message": "Video inspelning"
+  },
+  "view_all_submissions_915a8b78": {
+    "message": "Visa alla inlämningar"
+  },
+  "view_canvas_guides_a1c62a97": {
+    "message": "Visa Canvas-vägledningar"
+  },
+  "view_long_description_2b592c0e": {
+    "message": "Visa lång beskrivning"
+  },
+  "view_more_replies_9fef9983": {
+    "message": "Visa mer svar"
+  },
+  "view_responses_d2874266": {
+    "message": "Visa svar"
+  },
+  "visit_the_canvas_guides_7328b93f": {
+    "message": "Besök Canvas Guides"
+  },
+  "welcome_73d18b4d": {
+    "message": "Välkommen!"
+  },
+  "whoops_de2cf9fc": {
+    "message": "Oooj!"
+  },
+  "yes_dde87d5": {
+    "message": "Ja"
+  },
+  "you_have_been_invited_a724be1a": {
+    "message": "Du har blivit inbjuden"
+  },
+  "you_must_enable_camera_and_microphone_permissions__bf35451f": {
+    "message": "Du måste aktivera kamera- och mikrofonbehörigheter i Inställningar för att kunna använda kameran."
+  },
+  "you_must_enable_microphone_permissions_in_settings_b0cf8b44": {
+    "message": "Du måste aktivera mikrofonbehörigheter i Inställningar för att spela in ljud."
+  },
+  "you_must_enable_photos_permissions_in_settings_26faf052": {
+    "message": "Du måste aktivera Foto-behörigheter i Inställningar."
+  },
+  "you_must_enter_an_access_code_8c2c7ae0": {
+    "message": "Du måste ange en tillgångskod"
+  },
+  "you_need_at_least_one_active_observer_enrollment_t_9c78bb6e": {
+    "message": "Du behöver minst en aktiv observerar-registrering för att använda Canvas Parent."
+  },
+  "your_submission_comment_failed_to_send_5c8d2809": {
+    "message": "Din inlämningskommentar kunde inte skickas."
+  }
+}

@@ -1,0 +1,2105 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render 0 submissions 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "flexDirection": "row",
+      "justifyContent": "space-between",
+      "marginRight": 40,
+      "marginTop": 8,
+    }
+  }
+>
+  <TouchableOpacity
+    onPress={[Function]}
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+    testID="quiz-submission_dial_0"
+    underlayColor="#eeeeee00"
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Circle
+            animated={true}
+            borderColor="#374A59"
+            borderWidth={0}
+            color="#374A59"
+            progress={0}
+            showsText={false}
+            size={70}
+            testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
+            thickness={7}
+            unfilledColor="#F5F5F5"
+          />
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "flex": 1,
+                "fontSize": 12,
+                "fontWeight": "500",
+                "marginTop": 8,
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+          testID="submissions.submission-graph.submissions.submissionGraph.undefined-title-lbl"
+        >
+          Graded
+        </Text>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "position": "absolute",
+              "top": 25.5,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+              }
+            }
+          >
+            0
+          </Text>
+        </View>
+      </View>
+    </View>
+  </TouchableOpacity>
+  <TouchableOpacity
+    onPress={[Function]}
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+    testID="quiz-submission_dial_1"
+    underlayColor="#eeeeee00"
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Circle
+            animated={true}
+            borderColor="#374A59"
+            borderWidth={0}
+            color="#374A59"
+            progress={0}
+            showsText={false}
+            size={70}
+            testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
+            thickness={7}
+            unfilledColor="#F5F5F5"
+          />
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "flex": 1,
+                "fontSize": 12,
+                "fontWeight": "500",
+                "marginTop": 8,
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+          testID="submissions.submission-graph.submissions.submissionGraph.undefined-title-lbl"
+        >
+          Need Grading
+        </Text>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "position": "absolute",
+              "top": 25.5,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+              }
+            }
+          >
+            0
+          </Text>
+        </View>
+      </View>
+    </View>
+  </TouchableOpacity>
+  <TouchableOpacity
+    onPress={[Function]}
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+    testID="quiz-submission_dial_2"
+    underlayColor="#eeeeee00"
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Circle
+            animated={true}
+            borderColor="#374A59"
+            borderWidth={0}
+            color="#374A59"
+            progress={0}
+            showsText={false}
+            size={70}
+            testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
+            thickness={7}
+            unfilledColor="#F5F5F5"
+          />
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "flex": 1,
+                "fontSize": 12,
+                "fontWeight": "500",
+                "marginTop": 8,
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+          testID="submissions.submission-graph.submissions.submissionGraph.undefined-title-lbl"
+        >
+          Not Submitted
+        </Text>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "position": "absolute",
+              "top": 25.5,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+              }
+            }
+          >
+            0
+          </Text>
+        </View>
+      </View>
+    </View>
+  </TouchableOpacity>
+</View>
+`;
+
+exports[`render 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "flexDirection": "row",
+      "justifyContent": "space-between",
+      "marginRight": 40,
+      "marginTop": 8,
+    }
+  }
+>
+  <TouchableOpacity
+    onPress={[Function]}
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+    testID="quiz-submission_dial_0"
+    underlayColor="#eeeeee00"
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Circle
+            animated={true}
+            borderColor="#374A59"
+            borderWidth={0}
+            color="#374A59"
+            progress={0}
+            showsText={false}
+            size={70}
+            testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
+            thickness={7}
+            unfilledColor="#F5F5F5"
+          />
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "flex": 1,
+                "fontSize": 12,
+                "fontWeight": "500",
+                "marginTop": 8,
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+          testID="submissions.submission-graph.submissions.submissionGraph.undefined-title-lbl"
+        >
+          Graded
+        </Text>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "position": "absolute",
+              "top": 25.5,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+              }
+            }
+          >
+            0
+          </Text>
+        </View>
+      </View>
+    </View>
+  </TouchableOpacity>
+  <TouchableOpacity
+    onPress={[Function]}
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+    testID="quiz-submission_dial_1"
+    underlayColor="#eeeeee00"
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Circle
+            animated={true}
+            borderColor="#374A59"
+            borderWidth={0}
+            color="#374A59"
+            progress={0}
+            showsText={false}
+            size={70}
+            testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
+            thickness={7}
+            unfilledColor="#F5F5F5"
+          />
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "flex": 1,
+                "fontSize": 12,
+                "fontWeight": "500",
+                "marginTop": 8,
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+          testID="submissions.submission-graph.submissions.submissionGraph.undefined-title-lbl"
+        >
+          Needs Grading
+        </Text>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "position": "absolute",
+              "top": 25.5,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+              }
+            }
+          >
+            0
+          </Text>
+        </View>
+      </View>
+    </View>
+  </TouchableOpacity>
+  <TouchableOpacity
+    onPress={[Function]}
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+    testID="quiz-submission_dial_2"
+    underlayColor="#eeeeee00"
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Circle
+            animated={true}
+            borderColor="#374A59"
+            borderWidth={0}
+            color="#374A59"
+            progress={0}
+            showsText={false}
+            size={70}
+            testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
+            thickness={7}
+            unfilledColor="#F5F5F5"
+          />
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "flex": 1,
+                "fontSize": 12,
+                "fontWeight": "500",
+                "marginTop": 8,
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+          testID="submissions.submission-graph.submissions.submissionGraph.undefined-title-lbl"
+        >
+          Not Submitted
+        </Text>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "position": "absolute",
+              "top": 25.5,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+              }
+            }
+          >
+            0
+          </Text>
+        </View>
+      </View>
+    </View>
+  </TouchableOpacity>
+</View>
+`;
+
+exports[`render 1 needs grading 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "flexDirection": "row",
+      "justifyContent": "space-between",
+      "marginRight": 40,
+      "marginTop": 8,
+    }
+  }
+>
+  <TouchableOpacity
+    onPress={[Function]}
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+    testID="quiz-submission_dial_0"
+    underlayColor="#eeeeee00"
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Circle
+            animated={true}
+            borderColor="#374A59"
+            borderWidth={0}
+            color="#374A59"
+            progress={0}
+            showsText={false}
+            size={70}
+            testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
+            thickness={7}
+            unfilledColor="#F5F5F5"
+          />
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "flex": 1,
+                "fontSize": 12,
+                "fontWeight": "500",
+                "marginTop": 8,
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+          testID="submissions.submission-graph.submissions.submissionGraph.undefined-title-lbl"
+        >
+          Graded
+        </Text>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "position": "absolute",
+              "top": 25.5,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+              }
+            }
+          >
+            0
+          </Text>
+        </View>
+      </View>
+    </View>
+  </TouchableOpacity>
+  <TouchableOpacity
+    onPress={[Function]}
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+    testID="quiz-submission_dial_1"
+    underlayColor="#eeeeee00"
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Circle
+            animated={true}
+            borderColor="#374A59"
+            borderWidth={0}
+            color="#374A59"
+            progress={0}
+            showsText={false}
+            size={70}
+            testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
+            thickness={7}
+            unfilledColor="#F5F5F5"
+          />
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "flex": 1,
+                "fontSize": 12,
+                "fontWeight": "500",
+                "marginTop": 8,
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+          testID="submissions.submission-graph.submissions.submissionGraph.undefined-title-lbl"
+        >
+          Needs Grading
+        </Text>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "position": "absolute",
+              "top": 25.5,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+              }
+            }
+          >
+            0
+          </Text>
+        </View>
+      </View>
+    </View>
+  </TouchableOpacity>
+  <TouchableOpacity
+    onPress={[Function]}
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+    testID="quiz-submission_dial_2"
+    underlayColor="#eeeeee00"
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Circle
+            animated={true}
+            borderColor="#374A59"
+            borderWidth={0}
+            color="#374A59"
+            progress={0}
+            showsText={false}
+            size={70}
+            testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
+            thickness={7}
+            unfilledColor="#F5F5F5"
+          />
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "flex": 1,
+                "fontSize": 12,
+                "fontWeight": "500",
+                "marginTop": 8,
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+          testID="submissions.submission-graph.submissions.submissionGraph.undefined-title-lbl"
+        >
+          Not Submitted
+        </Text>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "position": "absolute",
+              "top": 25.5,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+              }
+            }
+          >
+            0
+          </Text>
+        </View>
+      </View>
+    </View>
+  </TouchableOpacity>
+</View>
+`;
+
+exports[`render 2 need grading 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "flexDirection": "row",
+      "justifyContent": "space-between",
+      "marginRight": 40,
+      "marginTop": 8,
+    }
+  }
+>
+  <TouchableOpacity
+    onPress={[Function]}
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+    testID="quiz-submission_dial_0"
+    underlayColor="#eeeeee00"
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Circle
+            animated={true}
+            borderColor="#374A59"
+            borderWidth={0}
+            color="#374A59"
+            progress={0}
+            showsText={false}
+            size={70}
+            testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
+            thickness={7}
+            unfilledColor="#F5F5F5"
+          />
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "flex": 1,
+                "fontSize": 12,
+                "fontWeight": "500",
+                "marginTop": 8,
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+          testID="submissions.submission-graph.submissions.submissionGraph.undefined-title-lbl"
+        >
+          Graded
+        </Text>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "position": "absolute",
+              "top": 25.5,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+              }
+            }
+          >
+            0
+          </Text>
+        </View>
+      </View>
+    </View>
+  </TouchableOpacity>
+  <TouchableOpacity
+    onPress={[Function]}
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+    testID="quiz-submission_dial_1"
+    underlayColor="#eeeeee00"
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Circle
+            animated={true}
+            borderColor="#374A59"
+            borderWidth={0}
+            color="#374A59"
+            progress={0}
+            showsText={false}
+            size={70}
+            testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
+            thickness={7}
+            unfilledColor="#F5F5F5"
+          />
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "flex": 1,
+                "fontSize": 12,
+                "fontWeight": "500",
+                "marginTop": 8,
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+          testID="submissions.submission-graph.submissions.submissionGraph.undefined-title-lbl"
+        >
+          Need Grading
+        </Text>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "position": "absolute",
+              "top": 25.5,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+              }
+            }
+          >
+            0
+          </Text>
+        </View>
+      </View>
+    </View>
+  </TouchableOpacity>
+  <TouchableOpacity
+    onPress={[Function]}
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+    testID="quiz-submission_dial_2"
+    underlayColor="#eeeeee00"
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Circle
+            animated={true}
+            borderColor="#374A59"
+            borderWidth={0}
+            color="#374A59"
+            progress={0}
+            showsText={false}
+            size={70}
+            testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
+            thickness={7}
+            unfilledColor="#F5F5F5"
+          />
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "flex": 1,
+                "fontSize": 12,
+                "fontWeight": "500",
+                "marginTop": 8,
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+          testID="submissions.submission-graph.submissions.submissionGraph.undefined-title-lbl"
+        >
+          Not Submitted
+        </Text>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "position": "absolute",
+              "top": 25.5,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+              }
+            }
+          >
+            0
+          </Text>
+        </View>
+      </View>
+    </View>
+  </TouchableOpacity>
+</View>
+`;
+
+exports[`render loading with pending set 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "flexDirection": "row",
+      "justifyContent": "space-between",
+      "marginRight": 40,
+      "marginTop": 8,
+    }
+  }
+>
+  <TouchableOpacity
+    onPress={[Function]}
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+    testID="quiz-submission_dial_0"
+    underlayColor="#eeeeee00"
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Circle
+            animated={true}
+            borderColor="#374A59"
+            borderWidth={0}
+            color="#374A59"
+            progress={0}
+            showsText={false}
+            size={70}
+            testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
+            thickness={7}
+            unfilledColor="#F5F5F5"
+          />
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "flex": 1,
+                "fontSize": 12,
+                "fontWeight": "500",
+                "marginTop": 8,
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+          testID="submissions.submission-graph.submissions.submissionGraph.undefined-title-lbl"
+        >
+          Graded
+        </Text>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "position": "absolute",
+              "top": 25.5,
+            }
+          }
+        >
+          <ActivityIndicator
+            animating={true}
+            color="#999999"
+            hidesWhenStopped={true}
+            size="small"
+          />
+        </View>
+      </View>
+    </View>
+  </TouchableOpacity>
+  <TouchableOpacity
+    onPress={[Function]}
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+    testID="quiz-submission_dial_1"
+    underlayColor="#eeeeee00"
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Circle
+            animated={true}
+            borderColor="#374A59"
+            borderWidth={0}
+            color="#374A59"
+            progress={0}
+            showsText={false}
+            size={70}
+            testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
+            thickness={7}
+            unfilledColor="#F5F5F5"
+          />
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "flex": 1,
+                "fontSize": 12,
+                "fontWeight": "500",
+                "marginTop": 8,
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+          testID="submissions.submission-graph.submissions.submissionGraph.undefined-title-lbl"
+        >
+          Needs Grading
+        </Text>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "position": "absolute",
+              "top": 25.5,
+            }
+          }
+        >
+          <ActivityIndicator
+            animating={true}
+            color="#999999"
+            hidesWhenStopped={true}
+            size="small"
+          />
+        </View>
+      </View>
+    </View>
+  </TouchableOpacity>
+  <TouchableOpacity
+    onPress={[Function]}
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+    testID="quiz-submission_dial_2"
+    underlayColor="#eeeeee00"
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Circle
+            animated={true}
+            borderColor="#374A59"
+            borderWidth={0}
+            color="#374A59"
+            progress={0}
+            showsText={false}
+            size={70}
+            testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
+            thickness={7}
+            unfilledColor="#F5F5F5"
+          />
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "flex": 1,
+                "fontSize": 12,
+                "fontWeight": "500",
+                "marginTop": 8,
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+          testID="submissions.submission-graph.submissions.submissionGraph.undefined-title-lbl"
+        >
+          Not Submitted
+        </Text>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "position": "absolute",
+              "top": 25.5,
+            }
+          }
+        >
+          <ActivityIndicator
+            animating={true}
+            color="#999999"
+            hidesWhenStopped={true}
+            size="small"
+          />
+        </View>
+      </View>
+    </View>
+  </TouchableOpacity>
+</View>
+`;
+
+exports[`render no graded 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "flexDirection": "row",
+      "justifyContent": "space-between",
+      "marginRight": 40,
+      "marginTop": 8,
+    }
+  }
+>
+  <TouchableOpacity
+    onPress={[Function]}
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+    testID="quiz-submission_dial_0"
+    underlayColor="#eeeeee00"
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Circle
+            animated={true}
+            borderColor="#374A59"
+            borderWidth={0}
+            color="#374A59"
+            progress={0}
+            showsText={false}
+            size={70}
+            testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
+            thickness={7}
+            unfilledColor="#F5F5F5"
+          />
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "flex": 1,
+                "fontSize": 12,
+                "fontWeight": "500",
+                "marginTop": 8,
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+          testID="submissions.submission-graph.submissions.submissionGraph.undefined-title-lbl"
+        >
+          Graded
+        </Text>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "position": "absolute",
+              "top": 25.5,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+              }
+            }
+          >
+            0
+          </Text>
+        </View>
+      </View>
+    </View>
+  </TouchableOpacity>
+  <TouchableOpacity
+    onPress={[Function]}
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+    testID="quiz-submission_dial_1"
+    underlayColor="#eeeeee00"
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Circle
+            animated={true}
+            borderColor="#374A59"
+            borderWidth={0}
+            color="#374A59"
+            progress={0}
+            showsText={false}
+            size={70}
+            testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
+            thickness={7}
+            unfilledColor="#F5F5F5"
+          />
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "flex": 1,
+                "fontSize": 12,
+                "fontWeight": "500",
+                "marginTop": 8,
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+          testID="submissions.submission-graph.submissions.submissionGraph.undefined-title-lbl"
+        >
+          Needs Grading
+        </Text>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "position": "absolute",
+              "top": 25.5,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+              }
+            }
+          >
+            0
+          </Text>
+        </View>
+      </View>
+    </View>
+  </TouchableOpacity>
+  <TouchableOpacity
+    onPress={[Function]}
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+    testID="quiz-submission_dial_2"
+    underlayColor="#eeeeee00"
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Circle
+            animated={true}
+            borderColor="#374A59"
+            borderWidth={0}
+            color="#374A59"
+            progress={0}
+            showsText={false}
+            size={70}
+            testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
+            thickness={7}
+            unfilledColor="#F5F5F5"
+          />
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "flex": 1,
+                "fontSize": 12,
+                "fontWeight": "500",
+                "marginTop": 8,
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+          testID="submissions.submission-graph.submissions.submissionGraph.undefined-title-lbl"
+        >
+          Not Submitted
+        </Text>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "position": "absolute",
+              "top": 25.5,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+              }
+            }
+          >
+            0
+          </Text>
+        </View>
+      </View>
+    </View>
+  </TouchableOpacity>
+</View>
+`;
+
+exports[`render with an assignment id 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "flexDirection": "row",
+      "justifyContent": "space-between",
+      "marginRight": 40,
+      "marginTop": 8,
+    }
+  }
+>
+  <TouchableOpacity
+    onPress={[Function]}
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+    testID="quiz-submission_dial_0"
+    underlayColor="#eeeeee00"
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Circle
+            animated={true}
+            borderColor="#374A59"
+            borderWidth={0}
+            color="#374A59"
+            progress={0}
+            showsText={false}
+            size={70}
+            testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
+            thickness={7}
+            unfilledColor="#F5F5F5"
+          />
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "flex": 1,
+                "fontSize": 12,
+                "fontWeight": "500",
+                "marginTop": 8,
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+          testID="submissions.submission-graph.submissions.submissionGraph.undefined-title-lbl"
+        >
+          Graded
+        </Text>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "position": "absolute",
+              "top": 25.5,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+              }
+            }
+          >
+            0
+          </Text>
+        </View>
+      </View>
+    </View>
+  </TouchableOpacity>
+  <TouchableOpacity
+    onPress={[Function]}
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+    testID="quiz-submission_dial_1"
+    underlayColor="#eeeeee00"
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Circle
+            animated={true}
+            borderColor="#374A59"
+            borderWidth={0}
+            color="#374A59"
+            progress={0}
+            showsText={false}
+            size={70}
+            testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
+            thickness={7}
+            unfilledColor="#F5F5F5"
+          />
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "flex": 1,
+                "fontSize": 12,
+                "fontWeight": "500",
+                "marginTop": 8,
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+          testID="submissions.submission-graph.submissions.submissionGraph.undefined-title-lbl"
+        >
+          Needs Grading
+        </Text>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "position": "absolute",
+              "top": 25.5,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+              }
+            }
+          >
+            0
+          </Text>
+        </View>
+      </View>
+    </View>
+  </TouchableOpacity>
+  <TouchableOpacity
+    onPress={[Function]}
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+    testID="quiz-submission_dial_2"
+    underlayColor="#eeeeee00"
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Circle
+            animated={true}
+            borderColor="#374A59"
+            borderWidth={0}
+            color="#374A59"
+            progress={0}
+            showsText={false}
+            size={70}
+            testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
+            thickness={7}
+            unfilledColor="#F5F5F5"
+          />
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "flex": 1,
+                "fontSize": 12,
+                "fontWeight": "500",
+                "marginTop": 8,
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+          testID="submissions.submission-graph.submissions.submissionGraph.undefined-title-lbl"
+        >
+          Not Submitted
+        </Text>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "position": "absolute",
+              "top": 25.5,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+              }
+            }
+          >
+            0
+          </Text>
+        </View>
+      </View>
+    </View>
+  </TouchableOpacity>
+</View>
+`;

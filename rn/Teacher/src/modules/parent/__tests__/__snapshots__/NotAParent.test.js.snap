@@ -1,0 +1,262 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders NotAParent correctly 1`] = `
+<RCTSafeAreaView
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "padding": 10,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "margin": 8,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "fontSize": 30,
+              "textAlign": "center",
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
+        }
+        testID="no-parent.title"
+      >
+        No Enrollments
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#7F91A7",
+              "fontSize": 16,
+              "lineHeight": 23,
+            },
+            Object {
+              "fontSize": 16,
+              "maxWidth": 320,
+              "padding": 8,
+              "textAlign": "center",
+            },
+          ]
+        }
+        testID="no-parent.subtitleOne"
+      >
+        You need at least one active observer enrollment to use Canvas Parent.
+      </Text>
+      <View
+        style={
+          Object {
+            "backgroundColor": "#C7CDD1",
+            "height": 0.5,
+            "marginBottom": 20,
+            "marginTop": 20,
+          }
+        }
+      />
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#7F91A7",
+              "fontSize": 16,
+              "lineHeight": 23,
+            },
+            Object {
+              "fontSize": 16,
+              "maxWidth": 320,
+              "padding": 8,
+              "textAlign": "center",
+            },
+          ]
+        }
+        testID="no-parent.subtitleTwo"
+      >
+        If you're a student or teacher, try one of our other apps below.
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "margin": 8,
+        }
+      }
+    >
+      <TouchableOpacity
+        accessibilityLabel="Canvas Student App"
+        accessibilityTraits="button"
+        onPress={[Function]}
+        testID="no-parent.open-student"
+      >
+        <Image
+          source={
+            Object {
+              "testUri": "../../../src/images/Canvas-Student.png",
+            }
+          }
+        />
+      </TouchableOpacity>
+      <TouchableOpacity
+        accessibilityLabel="Canvas Teacher App"
+        accessibilityTraits="button"
+        onPress={[Function]}
+        style={
+          Object {
+            "marginTop": 36,
+          }
+        }
+        testID="no-parent.open-teacher"
+      >
+        <Image
+          source={
+            Object {
+              "testUri": "../../../src/images/Canvas-Teacher.png",
+            }
+          }
+        />
+      </TouchableOpacity>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "margin": 8,
+          },
+          Object {
+            "marginTop": 50,
+          },
+        ]
+      }
+    >
+      <TouchableOpacity
+        accessibilityComponentType="button"
+        accessibilityLabel={undefined}
+        accessibilityTraits={
+          Array [
+            "button",
+          ]
+        }
+        disabled={undefined}
+        hasTVPreferredFocus={undefined}
+        onPress={[Function]}
+        testID="no-parent.logout"
+      >
+        <View
+          style={
+            Array [
+              Object {},
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={undefined}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "color": "#007AFF",
+                  "fontSize": 18,
+                  "padding": 8,
+                  "textAlign": "center",
+                },
+              ]
+            }
+          >
+            Log In Again
+          </Text>
+        </View>
+      </TouchableOpacity>
+    </View>
+    <View
+      style={
+        Object {
+          "margin": 8,
+        }
+      }
+    >
+      <TouchableOpacity
+        accessibilityComponentType="button"
+        accessibilityLabel={undefined}
+        accessibilityTraits={
+          Array [
+            "button",
+          ]
+        }
+        disabled={undefined}
+        hasTVPreferredFocus={undefined}
+        onPress={[Function]}
+        testID="no-parent.canvas-guides"
+      >
+        <View
+          style={
+            Array [
+              Object {},
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={undefined}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "color": "#007AFF",
+                  "fontSize": 18,
+                  "padding": 8,
+                  "textAlign": "center",
+                },
+              ]
+            }
+          >
+            Canvas Guides
+          </Text>
+        </View>
+      </TouchableOpacity>
+    </View>
+  </View>
+</RCTSafeAreaView>
+`;

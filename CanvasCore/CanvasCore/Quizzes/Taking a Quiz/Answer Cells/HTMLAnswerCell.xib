@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="2vV-NN-yim" customClass="HTMLAnswerCell" customModule="CanvasCore" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="123"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2vV-NN-yim" id="Uyt-bb-qbE">
+                <rect key="frame" x="0.0" y="0.0" width="600" height="122.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tcF-gt-a6D" userLabel="Content container">
+                        <rect key="frame" x="20" y="9" width="560" height="104"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="io1-N6-P11" customClass="WhizzyWigView" customModule="CanvasCore" customModuleProvider="target">
+                                <rect key="frame" x="20" y="15" width="520" height="74"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" priority="999" constant="75" id="Rsw-DO-lSa"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="io1-N6-P11" secondAttribute="trailing" constant="20" id="CA8-eE-XFY"/>
+                            <constraint firstItem="io1-N6-P11" firstAttribute="top" secondItem="tcF-gt-a6D" secondAttribute="top" constant="15" id="Gln-r1-72A"/>
+                            <constraint firstItem="io1-N6-P11" firstAttribute="leading" secondItem="tcF-gt-a6D" secondAttribute="leading" constant="20" id="hrJ-tq-qiv"/>
+                            <constraint firstAttribute="bottom" secondItem="io1-N6-P11" secondAttribute="bottom" constant="15" id="xGa-57-w91"/>
+                        </constraints>
+                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="selected" translatesAutoresizingMaskIntoConstraints="NO" id="B4a-lA-cok">
+                        <rect key="frame" x="9" y="51" width="23" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="INb-LZ-cgr"/>
+                            <constraint firstAttribute="width" constant="23" id="Xte-82-VSR"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="tcF-gt-a6D" firstAttribute="leading" secondItem="Uyt-bb-qbE" secondAttribute="leading" constant="20" id="CrG-Sc-Hao"/>
+                    <constraint firstItem="tcF-gt-a6D" firstAttribute="top" secondItem="Uyt-bb-qbE" secondAttribute="top" constant="9" id="NIK-kc-KJv"/>
+                    <constraint firstAttribute="centerY" secondItem="B4a-lA-cok" secondAttribute="centerY" id="iMe-j6-kk4"/>
+                    <constraint firstAttribute="trailing" secondItem="tcF-gt-a6D" secondAttribute="trailing" constant="20" id="lYV-2Y-Yix"/>
+                    <constraint firstItem="B4a-lA-cok" firstAttribute="leading" secondItem="Uyt-bb-qbE" secondAttribute="leading" constant="9" id="lzv-g2-eUL"/>
+                    <constraint firstAttribute="bottom" secondItem="tcF-gt-a6D" secondAttribute="bottom" constant="9" id="rMa-Zt-DQf"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="selectionStatusImageView" destination="B4a-lA-cok" id="u32-6b-5yN"/>
+                <outlet property="whizzyWigView" destination="io1-N6-P11" id="e8h-ZT-1ko"/>
+                <outlet property="whizzyWigViewHeightConstraint" destination="Rsw-DO-lSa" id="Fea-2t-cIL"/>
+            </connections>
+            <point key="canvasLocation" x="709" y="363.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="selected" width="23" height="20"/>
+    </resources>
+</document>

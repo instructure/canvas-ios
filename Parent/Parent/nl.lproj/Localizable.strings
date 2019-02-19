@@ -1,0 +1,303 @@
+/* <String> <Int> of <Int> */
+"%@ %d of %d" = "%1$@ %2$d van %3$d";
+
+/* No comment provided by engineer. */
+"%@ is due at %@" = "%1$@ vervalt op %2$@";
+
+/* No comment provided by engineer. */
+"%@ to %@" = "%1$@ tot %2$@";
+
+/* No comment provided by engineer. */
+"%@ will begin at %@" = "%1$@ begint op %2$@";
+
+/* Percentage field placeholder */
+"1-100%" = "1-100%";
+
+/* Server Error Message */
+"A server error has occurred.  Please try again." = "Er heeft zich een serverfout voorgedaan. Probeer het nogmaals.";
+
+/* Label for button that allows admin to Act as User */
+"Act as User" = "Optreden als gebruiker";
+
+/* Label displayed when logged in as an admin */
+"Admin" = "Beheer";
+
+/* Alert Section Header */
+"Alert me when:" = "Waarschuw me als:";
+
+/* Alerts Tab */
+"Alerts" = "Waarschuwingen";
+
+/* No comment provided by engineer. */
+"An Error Occurred" = "Er is een fout opgetreden";
+
+/* Generic Network Error Message */
+"An unexpected error occurred.  Please try again." = "Er heeft zich een onverwachte fout voorgedaan. Probeer het nogmaals.";
+
+/* No comment provided by engineer. */
+"Announcement" = "Aankondiging";
+
+/* No comment provided by engineer. */
+"Assignment" = "Opdracht";
+
+/* Assignment Grade High On Description */
+"Assignment grade above" = "Opdrachtcijfer hoger dan";
+
+/* Assignment Grade Low On Description */
+"Assignment grade below" = "Opdrachtcijfer lager dan";
+
+/* Assignment Missing Description */
+"Assignment missing" = "Opdracht ontbreekt";
+
+/* No comment provided by engineer. */
+"Assignment reminder" = "Opdrachtherinnering";
+
+/* No comment provided by engineer. */
+"Cache cleared" = "Cache gewist";
+
+/* Cancel button title */
+"Cancel" = "Annuleren";
+
+/* Percent value is over 100 */
+"Cannot use percent that is higher than 100" = "Kan geen percentage gebruiken dat hoger is dan 100";
+
+/* Percent value is under 0 */
+"Cannot use percent that is less than 0" = "Kan geen percentage gebruiken dat lager is dan 100";
+
+/* Cancel the question/suggestion form */
+"Casual question or suggestion" = "Informele vraag of suggestie";
+
+/* Empty Alerts Text */
+"Caught up on Alerts" = "Waarschuwingen bijgewerkt";
+
+/* No comment provided by engineer. */
+"Choose a student" = "Kies een cursist";
+
+/* title for status selection field */
+"Choose One" = "Kies er een";
+
+/* Close Button Title */
+"Close" = "Sluiten";
+
+/* Course Announcement Description */
+"Course announcements" = "Cursusaankondigingen";
+
+/* Course Grade High On Description */
+"Course grade above" = "Cursuscijfer hoger dan";
+
+/* Course Grade Low On Description */
+"Course grade below" = "Cursuscijfer lager dan";
+
+/* Courses Tab */
+"Courses" = "Cursussen";
+
+/* No comment provided by engineer. */
+"Current student: %@, tap to switch students" = "Huidige cursist: %@, tik om van cursist te wisselen";
+
+/* Title for field */
+"Describe your problem" = "Beschrijf je probleem";
+
+/* No comment provided by engineer. */
+"Discussion" = "Discussie";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Verwijderen";
+
+/* No comment provided by engineer. */
+"Error" = "Fout";
+
+/* No comment provided by engineer. */
+"Event" = "Gebeurtenis";
+
+/* No comment provided by engineer. */
+"Event reminder" = "Evenementherinnering";
+
+/* No comment provided by engineer. */
+"Excused" = "Verontschuldigd";
+
+/* Status level for issue being reported */
+"Extremely critical emergency" = "Extreem noodgeval";
+
+/* High Assignment Grade too Low */
+"High assignment grade cannot be lower than low assignment grade" = "Hoog beoordelingscijfer kan niet lager zijn dan laag beoordelingscijfer";
+
+/* High Course Grade too Low */
+"High course grade cannot be lower than low course grade" = "Hoog cursuscijfer kan niet lager zijn dan laag cursuscijfer";
+
+/* Status level for issue being reported */
+"I can't get things done until fixed" = "Ik kan niets doen voordat het opgelost is";
+
+/* Status level for issue being reported */
+"I need help but it's not urgent" = "Ik heb hulp nodig maar het is niet dringend";
+
+/* Impact Title */
+"Impact:" = "Impact:";
+
+/* No comment provided by engineer. */
+"In-Class" = "In-Klas";
+
+/* Institution Announcement Description */
+"Institution announcements" = "Aankondigingen van de instelling";
+
+/* Title for an alert view */
+"Invalid Input" = "Ongeldige invoer";
+
+/* Support Ticket Invalid Input Message */
+"Invalid Input.  Check fields and try again." = "Ongeldige invoer.  Controleer velden en probeer het nogmaals.";
+
+/* Last Week Button Accessibility Label */
+"Last Week" = "Vorige week";
+
+/* No comment provided by engineer. */
+"Late" = "Laat";
+
+/* No comment provided by engineer. */
+"Late: %@" = "Laat: %@";
+
+/* No comment provided by engineer. */
+"Late: %@ (%@/%@)" = "Laat: %1$@ (%2$@/%3$@)";
+
+/* Low Assignment Grade too High */
+"Low assignment grade cannot be higher than high assignment grade" = "Laag opdrachtcijfer kan niet hoger zijn dan hoog beoordelingscijfer";
+
+/* Low Course Grade too High */
+"Low course grade cannot be higher than high course grade" = "Laag cursuscijfer kan niet hoger zijn dan hoog cursuscijfer";
+
+/* Title of the manage children screen. This screen is used to add/remove children that a parent is observing. */
+"Manage Children" = "Kinderen beheren";
+
+/* No comment provided by engineer. */
+"Missing" = "Ontbrekend";
+
+/* No comment provided by engineer. */
+"Missing: (-/%@)" = "Ontbrekend: (-/%@)";
+
+/* Generic Network Error Title */
+"Network Error" = "Netwerkfout";
+
+/* Next Week Button Accessibility Label */
+"Next Week" = "Volgende week";
+
+/* Empty Courses Text */
+"No Courses" = "Geen cursussen";
+
+/* Title for label when no grade has been assigned to the course */
+"No Grade" = "Geen beoordeling";
+
+/* Error message */
+"No installed apps support opening this file" = "Geen geïnstalleerde apps die het openen van dit bestand ondersteunen";
+
+/* Empty Students Text */
+"No Students" = "Geen cursisten";
+
+/* Not Authorized Error Title */
+"Not Authorized" = "Geen toestemming";
+
+/* Not Found Error Title */
+"Not Found" = "Niet gevonden";
+
+/* Empty Calendar Events Text */
+"Nothing this week" = "Niets deze week";
+
+/* OK Button Title */
+"OK" = "OK";
+
+/* Open a url in the application Safari */
+"Open in Safari" = "Openen in Safari";
+
+/* Open file in another application */
+"Open in..." = "Openen in...";
+
+/* No comment provided by engineer. */
+"Permission Needed" = "Toestemming vereist";
+
+/* No comment provided by engineer. */
+"Quiz" = "Toets";
+
+/* Support Ticket Creation Failed */
+"Request Failed!  Check network and try again!" = "Verzoek mislukt!  Controleer het netwerk en probeer het nogmaals!";
+
+/* Not Found Error Message */
+"Resource not found.  Please try again." = "Bron niet gevonden. Probeer het nogmaals.";
+
+/* Select Impact Placeholder */
+"Select Impact" = "Impact selecteren";
+
+/* Server Error Title */
+"Server Error" = "Serverfout";
+
+/* No comment provided by engineer. */
+"Settings" = "Instellingen";
+
+/* Status level for issue being reported */
+"Something is broken but I can work around it" = "Er is iets kapot maar ik kan er wel omheen werken";
+
+/* Title for the subject field */
+"Subject" = "Vak";
+
+/* No comment provided by engineer. */
+"Submitted" = "Ingediend";
+
+/* No comment provided by engineer. */
+"Submitted: %@" = "Ingediend: %@";
+
+/* No comment provided by engineer. */
+"Submitted: %@ (%@/%@)" = "Ingediend: %1$@ (%2$@/%3$@)";
+
+/* Syllabus Button Title */
+"Syllabus" = "Syllabus";
+
+/* Directions in the admin view */
+"Tap to start viewing Canvas as another person." = "Tik hierop om Canvas weer te geven als een andere persoon.";
+
+/* Support Ticket Created Successfully */
+"Thanks, your request was received!" = "Dank je, je verzoek is ontvangen!";
+
+/* Error message */
+"There are no actions for this item" = "Er zijn geen handelingen voor dit item";
+
+/* AlertKit Database Load Failure Message */
+"There was a problem loading the AlertKit database file." = "Er is een probleem met het laden van het AlertKit-databasebestand.";
+
+/* Airwolf database error message */
+"There was a problem loading the database." = "Er is een probleem met het laden van de database.";
+
+/* No comment provided by engineer. */
+"There was an error loading your content. If it  is an audio or video upload it may still be processing." = "Er was een probleem bij het laden van je content. Als het een audio of video upload is, wordt het misschien nog verwerkt.";
+
+/* No comment provided by engineer. */
+"This announcement has expired." = "Deze aankondiging is vervallen.";
+
+/* No comment provided by engineer. */
+"This student's courses may not be published yet." = "De cursussen voor deze cursist zijn mogelijk nog niet gepubliceerd.";
+
+/* Unknown T`hreshold Description */
+"Unknown" = "Onbekend";
+
+/* Default name given a user until we find their real name */
+"Unknown User" = "Onbekende gebruiker";
+
+/* Default user name, the computer-friendly version of their name, until we find their real user name */
+"Unknown User Name" = "Onbekende gebruikersnaam";
+
+/* No comment provided by engineer. */
+"Unread" = "Ongelezen";
+
+/* Calendar Tab */
+"Week" = "Week";
+
+/* Header title of admin view */
+"Welcome!" = "Welkom!";
+
+/* Title for field */
+"What can we do better?" = "Wat kunnen we beter doen?";
+
+/* Not Authorized Error Message */
+"You are unauthorized to access this information.  Check your user permissions and try again." = "Je hebt geen toestemming voor toegang tot deze informatie. Controleer je gebruikersvergunningen en probeer het nogmaals.";
+
+/* No comment provided by engineer. */
+"You must allow notifications in Settings to set reminders." = "Je moet in Instellingen meldingen activeren om herinneringen in te stellen.";
+
+/* Title for the email field */
+"Your Email" = "Jouw E-mail";
+

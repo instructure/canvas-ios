@@ -1,0 +1,267 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GroupRow renders 1`] = `
+<TouchableHighlight
+  onPress={[Function]}
+  testID="group-row-1"
+  underlayColor="transparent"
+>
+  <View>
+    <View
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#ffffff01",
+            "shadowColor": "#000",
+            "shadowOffset": Object {
+              "height": 1,
+              "width": 0,
+            },
+            "shadowOpacity": 0.2,
+            "shadowRadius": 1,
+          },
+          Object {
+            "margin": 8,
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "white",
+              "borderColor": "#e3e3e3",
+              "borderRadius": 4,
+              "borderWidth": 0.5,
+              "flex": 1,
+              "overflow": "hidden",
+            },
+            Object {
+              "flexDirection": "row",
+              "minHeight": 82,
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "width": 4,
+              },
+              Object {
+                "backgroundColor": "blue",
+              },
+            ]
+          }
+        />
+        <View
+          style={
+            Object {
+              "margin": 8,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "fontSize": 18,
+                  "fontWeight": "600",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            Study Group 3
+          </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#7F91A7",
+                  "fontSize": 14,
+                },
+                Array [
+                  Object {
+                    "color": "blue",
+                  },
+                  Object {
+                    "fontSize": 16,
+                    "fontWeight": "600",
+                  },
+                ],
+              ]
+            }
+          >
+            Bio 101
+          </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#7F91A7",
+                  "fontSize": 14,
+                },
+                Object {
+                  "fontSize": 12,
+                  "fontWeight": "600",
+                },
+              ]
+            }
+          >
+            SPRING 2020
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+</TouchableHighlight>
+`;
+
+exports[`GroupRow renders without a term 1`] = `
+<TouchableHighlight
+  onPress={[Function]}
+  testID="group-row-1"
+  underlayColor="transparent"
+>
+  <View>
+    <View
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#ffffff01",
+            "shadowColor": "#000",
+            "shadowOffset": Object {
+              "height": 1,
+              "width": 0,
+            },
+            "shadowOpacity": 0.2,
+            "shadowRadius": 1,
+          },
+          Object {
+            "margin": 8,
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "white",
+              "borderColor": "#e3e3e3",
+              "borderRadius": 4,
+              "borderWidth": 0.5,
+              "flex": 1,
+              "overflow": "hidden",
+            },
+            Object {
+              "flexDirection": "row",
+              "minHeight": 82,
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "width": 4,
+              },
+              Object {
+                "backgroundColor": "blue",
+              },
+            ]
+          }
+        />
+        <View
+          style={
+            Object {
+              "margin": 8,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "fontSize": 18,
+                  "fontWeight": "600",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            Study Group 3
+          </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#7F91A7",
+                  "fontSize": 14,
+                },
+                Array [
+                  Object {
+                    "color": "blue",
+                  },
+                  Object {
+                    "fontSize": 16,
+                    "fontWeight": "600",
+                  },
+                ],
+              ]
+            }
+          >
+            Bio 101
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+</TouchableHighlight>
+`;

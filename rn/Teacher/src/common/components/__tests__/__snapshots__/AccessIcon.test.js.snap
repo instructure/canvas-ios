@@ -1,0 +1,435 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AccessIcon published takes precedence over other properties 1`] = `
+<View
+  accessibilityLabel="Published"
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 0,
+    }
+  }
+>
+  <Image
+    resizeMode="cover"
+    source={
+      Object {
+        "testUri": "../../../src/images/kabob.png",
+      }
+    }
+    style={
+      Array [
+        false,
+        Object {
+          "minHeight": 24,
+          "minWidth": 24,
+        },
+      ]
+    }
+    testID="access-icon-image"
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "white",
+        "borderRadius": 8,
+        "bottom": -6,
+        "height": 16,
+        "justifyContent": "center",
+        "position": "absolute",
+        "right": -5,
+        "width": 16,
+      }
+    }
+  >
+    <Image
+      source={
+        Object {
+          "testUri": "../../../src/images/publish-small.png",
+        }
+      }
+      style={
+        Object {
+          "height": 12,
+          "tintColor": "#00AC18",
+          "width": 12,
+        }
+      }
+      testID="access-icon-icon"
+    />
+  </View>
+</View>
+`;
+
+exports[`AccessIcon shows published when not locked or hidden 1`] = `
+<View
+  accessibilityLabel="Published"
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 0,
+    }
+  }
+>
+  <Image
+    resizeMode="cover"
+    source={
+      Object {
+        "testUri": "../../../src/images/kabob.png",
+      }
+    }
+    style={
+      Array [
+        false,
+        Object {
+          "minHeight": 24,
+          "minWidth": 24,
+        },
+      ]
+    }
+    testID="access-icon-image"
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "white",
+        "borderRadius": 8,
+        "bottom": -6,
+        "height": 16,
+        "justifyContent": "center",
+        "position": "absolute",
+        "right": -5,
+        "width": 16,
+      }
+    }
+  >
+    <Image
+      source={
+        Object {
+          "testUri": "../../../src/images/publish-small.png",
+        }
+      }
+      style={
+        Object {
+          "height": 12,
+          "tintColor": "#00AC18",
+          "width": 12,
+        }
+      }
+      testID="access-icon-icon"
+    />
+  </View>
+</View>
+`;
+
+exports[`AccessIcon shows resticted when hidden 1`] = `
+<View
+  accessibilityLabel="Restricted"
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 0,
+    }
+  }
+>
+  <Image
+    resizeMode="cover"
+    source={
+      Object {
+        "testUri": "../../../src/images/kabob.png",
+      }
+    }
+    style={
+      Array [
+        false,
+        Object {
+          "minHeight": 24,
+          "minWidth": 24,
+        },
+      ]
+    }
+    testID="access-icon-image"
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "white",
+        "borderRadius": 8,
+        "bottom": -6,
+        "height": 16,
+        "justifyContent": "center",
+        "position": "absolute",
+        "right": -5,
+        "width": 16,
+      }
+    }
+  >
+    <Image
+      source={
+        Object {
+          "testUri": "../../../src/images/Restricted.png",
+        }
+      }
+      style={
+        Object {
+          "height": 14,
+          "tintColor": "#FF0000",
+          "width": 14,
+        }
+      }
+      testID="access-icon-icon"
+    />
+  </View>
+</View>
+`;
+
+exports[`AccessIcon shows resticted when lock_at is specified 1`] = `
+<View
+  accessibilityLabel="Restricted"
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 0,
+    }
+  }
+>
+  <Image
+    resizeMode="cover"
+    source={
+      Object {
+        "testUri": "../../../src/images/kabob.png",
+      }
+    }
+    style={
+      Array [
+        false,
+        Object {
+          "minHeight": 24,
+          "minWidth": 24,
+        },
+      ]
+    }
+    testID="access-icon-image"
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "white",
+        "borderRadius": 8,
+        "bottom": -6,
+        "height": 16,
+        "justifyContent": "center",
+        "position": "absolute",
+        "right": -5,
+        "width": 16,
+      }
+    }
+  >
+    <Image
+      source={
+        Object {
+          "testUri": "../../../src/images/Restricted.png",
+        }
+      }
+      style={
+        Object {
+          "height": 14,
+          "tintColor": "#FF0000",
+          "width": 14,
+        }
+      }
+      testID="access-icon-icon"
+    />
+  </View>
+</View>
+`;
+
+exports[`AccessIcon shows resticted when unlock_at is specified 1`] = `
+<View
+  accessibilityLabel="Restricted"
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 0,
+    }
+  }
+>
+  <Image
+    resizeMode="cover"
+    source={
+      Object {
+        "testUri": "../../../src/images/kabob.png",
+      }
+    }
+    style={
+      Array [
+        false,
+        Object {
+          "minHeight": 24,
+          "minWidth": 24,
+        },
+      ]
+    }
+    testID="access-icon-image"
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "white",
+        "borderRadius": 8,
+        "bottom": -6,
+        "height": 16,
+        "justifyContent": "center",
+        "position": "absolute",
+        "right": -5,
+        "width": 16,
+      }
+    }
+  >
+    <Image
+      source={
+        Object {
+          "testUri": "../../../src/images/Restricted.png",
+        }
+      }
+      style={
+        Object {
+          "height": 14,
+          "tintColor": "#FF0000",
+          "width": 14,
+        }
+      }
+      testID="access-icon-icon"
+    />
+  </View>
+</View>
+`;
+
+exports[`AccessIcon shows unpublished when locked 1`] = `
+<View
+  accessibilityLabel="Not Published"
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 0,
+    }
+  }
+>
+  <Image
+    resizeMode="cover"
+    source={
+      Object {
+        "testUri": "../../../src/images/kabob.png",
+      }
+    }
+    style={
+      Array [
+        false,
+        Object {
+          "minHeight": 24,
+          "minWidth": 24,
+        },
+      ]
+    }
+    testID="access-icon-image"
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "white",
+        "borderRadius": 8,
+        "bottom": -6,
+        "height": 16,
+        "justifyContent": "center",
+        "position": "absolute",
+        "right": -5,
+        "width": 16,
+      }
+    }
+  >
+    <Image
+      source={
+        Object {
+          "testUri": "../../../src/images/unpublish-small.png",
+        }
+      }
+      style={
+        Object {
+          "height": 12,
+          "tintColor": "#8B969E",
+          "width": 12,
+        }
+      }
+      testID="access-icon-icon"
+    />
+  </View>
+</View>
+`;
+
+exports[`AccessIcon shows unpublished when published is false 1`] = `
+<View
+  accessibilityLabel="Not Published"
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 0,
+    }
+  }
+>
+  <Image
+    resizeMode="cover"
+    source={
+      Object {
+        "testUri": "../../../src/images/kabob.png",
+      }
+    }
+    style={
+      Array [
+        false,
+        Object {
+          "minHeight": 24,
+          "minWidth": 24,
+        },
+      ]
+    }
+    testID="access-icon-image"
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "white",
+        "borderRadius": 8,
+        "bottom": -6,
+        "height": 16,
+        "justifyContent": "center",
+        "position": "absolute",
+        "right": -5,
+        "width": 16,
+      }
+    }
+  >
+    <Image
+      source={
+        Object {
+          "testUri": "../../../src/images/unpublish-small.png",
+        }
+      }
+      style={
+        Object {
+          "height": 12,
+          "tintColor": "#8B969E",
+          "width": 12,
+        }
+      }
+      testID="access-icon-icon"
+    />
+  </View>
+</View>
+`;

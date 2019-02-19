@@ -1,0 +1,252 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "borderBottomColor": "#C7CDD1",
+      "borderBottomWidth": 0.5,
+      "height": 44,
+    }
+  }
+>
+  <RCTScrollView
+    contentContainerStyle={
+      Object {
+        "alignItems": "center",
+        "flex": 0,
+      }
+    }
+    horizontal={true}
+  >
+    <View>
+      <TouchableOpacity
+        accessibilityTraits={
+          Array [
+            "button",
+            "selected",
+          ]
+        }
+        onPress={[Function]}
+        style={
+          Object {
+            "height": 44,
+            "justifyContent": "center",
+            "paddingLeft": 16,
+            "paddingRight": 16,
+          }
+        }
+        testID="inbox.filter-btn-all"
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Array [
+                Object {
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
+                Object {
+                  "color": "#374A59",
+                },
+              ],
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
+          }
+        >
+          All
+        </Text>
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#374A59",
+                "bottom": 0,
+                "height": 3,
+                "left": 8,
+                "position": "absolute",
+                "right": 8,
+              },
+              Object {
+                "backgroundColor": "#374A59",
+              },
+            ]
+          }
+        />
+      </TouchableOpacity>
+      <TouchableOpacity
+        accessibilityTraits="button"
+        onPress={[Function]}
+        style={
+          Object {
+            "height": 44,
+            "justifyContent": "center",
+            "paddingLeft": 16,
+            "paddingRight": 16,
+          }
+        }
+        testID="inbox.filter-btn-unread"
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "color": "#8B969E",
+                "fontSize": 14,
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
+          }
+        >
+          Unread
+        </Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        accessibilityTraits="button"
+        onPress={[Function]}
+        style={
+          Object {
+            "height": 44,
+            "justifyContent": "center",
+            "paddingLeft": 16,
+            "paddingRight": 16,
+          }
+        }
+        testID="inbox.filter-btn-starred"
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "color": "#8B969E",
+                "fontSize": 14,
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
+          }
+        >
+          Starred
+        </Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        accessibilityTraits="button"
+        onPress={[Function]}
+        style={
+          Object {
+            "height": 44,
+            "justifyContent": "center",
+            "paddingLeft": 16,
+            "paddingRight": 16,
+          }
+        }
+        testID="inbox.filter-btn-sent"
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "color": "#8B969E",
+                "fontSize": 14,
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
+          }
+        >
+          Sent
+        </Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        accessibilityTraits="button"
+        onPress={[Function]}
+        style={
+          Object {
+            "height": 44,
+            "justifyContent": "center",
+            "paddingLeft": 16,
+            "paddingRight": 16,
+          }
+        }
+        testID="inbox.filter-btn-archived"
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "color": "#8B969E",
+                "fontSize": 14,
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
+          }
+        >
+          Archived
+        </Text>
+      </TouchableOpacity>
+    </View>
+  </RCTScrollView>
+</View>
+`;

@@ -1,0 +1,15 @@
+/* Privacy - Camera Usage Description */
+"NSCameraUsageDescription" = "Bifoga foton och videoklipp till meddelanden och diskussionsinlägg, eller skicka in dem som inlämningsuppgifter.";
+
+/* Privacy - Location When In Use Usage Description */
+"NSLocationWhenInUseUsageDescription" = "Hjälp oss att hitta skolor i närheten av dig.";
+
+/* Privacy - Microphone Usage Description */
+"NSMicrophoneUsageDescription" = "Anslut ljudinspelningar till meddelanden och diskussionsinställningar, eller skicka in dem som inlämningsuppgifter.";
+
+/* Privacy - Photo Library Additions Usage Description */
+"NSPhotoLibraryAddUsageDescription" = "Bifoga foton och videoklipp till meddelanden och diskussionsinlägg, eller skicka in dem som inlämningsuppgifter.";
+
+/* Privacy - Photo Library Usage Description */
+"NSPhotoLibraryUsageDescription" = "Bifoga foton och videoklipp till meddelanden och diskussionsinlägg, eller skicka in dem som inlämningsuppgifter.";
+

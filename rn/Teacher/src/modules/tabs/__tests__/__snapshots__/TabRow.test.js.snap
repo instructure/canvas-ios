@@ -1,0 +1,170 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TabRow can be pressed 1`] = `
+<SafeAreaView>
+  <Row
+    border="bottom"
+    disclosureIndicator={true}
+    image={
+      Object {
+        "testUri": "../../../src/images/course/Assignment.png",
+      }
+    }
+    imageSize={
+      Object {
+        "height": 24,
+        "width": 24,
+      }
+    }
+    onPress={[Function]}
+    testID="courses-details.assignments-cell"
+    title="Home"
+    titleStyles={
+      Object {
+        "fontWeight": "500",
+      }
+    }
+  />
+</SafeAreaView>
+`;
+
+exports[`TabRow can be selected 1`] = `
+<SafeAreaView>
+  <Row
+    border="bottom"
+    disclosureIndicator={true}
+    image={
+      Object {
+        "testUri": "../../../src/images/course/Assignment.png",
+      }
+    }
+    imageSize={
+      Object {
+        "height": 24,
+        "width": 24,
+      }
+    }
+    onPress={[Function]}
+    selected={true}
+    testID="courses-details.assignments-cell"
+    title="Home"
+    titleStyles={
+      Object {
+        "fontWeight": "500",
+      }
+    }
+  />
+</SafeAreaView>
+`;
+
+exports[`TabRow renders correctly 1`] = `
+<SafeAreaView>
+  <Row
+    border="bottom"
+    disclosureIndicator={true}
+    image={
+      Object {
+        "testUri": "../../../src/images/course/Assignment.png",
+      }
+    }
+    imageSize={
+      Object {
+        "height": 24,
+        "width": 24,
+      }
+    }
+    onPress={[Function]}
+    testID="courses-details.assignments-cell"
+    title="Home"
+    titleStyles={
+      Object {
+        "fontWeight": "500",
+      }
+    }
+  />
+</SafeAreaView>
+`;
+
+exports[`TabRow shows a default icon 1`] = `
+<SafeAreaView>
+  <Row
+    border="bottom"
+    disclosureIndicator={true}
+    image={
+      Object {
+        "testUri": "../../../src/images/course/Placeholder.png",
+      }
+    }
+    imageSize={
+      Object {
+        "height": 24,
+        "width": 24,
+      }
+    }
+    onPress={[Function]}
+    testID="courses-details.test default icon-cell"
+    title="Home"
+    titleStyles={
+      Object {
+        "fontWeight": "500",
+      }
+    }
+  />
+</SafeAreaView>
+`;
+
+exports[`TabRow uses attendance lti image 1`] = `
+<SafeAreaView>
+  <Row
+    border="bottom"
+    disclosureIndicator={true}
+    image={
+      Object {
+        "testUri": "../../../src/images/course/LTI.png",
+      }
+    }
+    imageSize={
+      Object {
+        "height": 24,
+        "width": 24,
+      }
+    }
+    onPress={[Function]}
+    testID="courses-details./external_tool/-cell"
+    title="Home"
+    titleStyles={
+      Object {
+        "fontWeight": "500",
+      }
+    }
+  />
+</SafeAreaView>
+`;
+
+exports[`TabRow uses attendance tab image 1`] = `
+<SafeAreaView>
+  <Row
+    border="bottom"
+    disclosureIndicator={true}
+    image={
+      Object {
+        "testUri": "../../../src/images/course/attendance-icon.png",
+      }
+    }
+    imageSize={
+      Object {
+        "height": 24,
+        "width": 24,
+      }
+    }
+    onPress={[Function]}
+    testID="courses-details.assignments-cell"
+    title="Home"
+    titleStyles={
+      Object {
+        "fontWeight": "500",
+      }
+    }
+  />
+</SafeAreaView>
+`;

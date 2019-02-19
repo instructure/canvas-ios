@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="637-zD-gyQ">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="WVU-c4-eTo">
+            <objects>
+                <navigationController modalPresentationStyle="formSheet" toolbarHidden="NO" id="637-zD-gyQ" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="BvY-Ns-gBk">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qYf-uc-99d">
+                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="gXY-e2-Teu" kind="relationship" relationship="rootViewController" id="IIG-1n-4yX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eiT-bt-vRv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-914" y="142"/>
+        </scene>
+        <!--Selected file(s)-->
+        <scene sceneID="ycp-BC-Fpz">
+            <objects>
+                <viewController id="gXY-e2-Teu" customClass="ReceivedFilesViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GmU-f0-m2L">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Cookies" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="QSb-db-nvZ">
+                                <rect key="frame" x="149" y="587" width="77" height="24"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" staticText="YES" summaryElement="YES"/>
+                                </accessibility>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                                <size key="shadowOffset" width="0.0" height="1"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oo0-hK-oQd">
+                                <rect key="frame" x="0.0" y="64" width="375" height="515"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottomMargin" secondItem="QSb-db-nvZ" secondAttribute="bottom" constant="12" id="GYR-bY-fnW"/>
+                            <constraint firstItem="oo0-hK-oQd" firstAttribute="leading" secondItem="eHk-mX-rkM" secondAttribute="leading" id="Rxh-2k-rIe"/>
+                            <constraint firstItem="QSb-db-nvZ" firstAttribute="centerX" secondItem="eHk-mX-rkM" secondAttribute="centerX" id="bGV-8r-oUv"/>
+                            <constraint firstItem="oo0-hK-oQd" firstAttribute="trailing" secondItem="eHk-mX-rkM" secondAttribute="trailing" id="fgX-O2-NNC"/>
+                            <constraint firstItem="eHk-mX-rkM" firstAttribute="bottom" secondItem="oo0-hK-oQd" secondAttribute="bottom" constant="44" id="ihi-25-8Ox"/>
+                            <constraint firstItem="oo0-hK-oQd" firstAttribute="top" secondItem="eHk-mX-rkM" secondAttribute="top" id="wUk-B2-hoT"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="eHk-mX-rkM"/>
+                    </view>
+                    <toolbarItems>
+                        <barButtonItem width="8" style="plain" systemItem="fixedSpace" id="b3C-MY-6WC"/>
+                        <barButtonItem systemItem="trash" id="sy6-ky-ODD">
+                            <connections>
+                                <action selector="tappedTrashButton:" destination="gXY-e2-Teu" id="4Cm-7e-OZY"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="61b-kO-wNn"/>
+                        <barButtonItem image="icon_options" id="PCi-zS-q8W">
+                            <connections>
+                                <action selector="tappedSelectButton:" destination="gXY-e2-Teu" id="627-i4-an6"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem width="8" style="plain" systemItem="fixedSpace" id="GPl-eS-Fg7"/>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="Selected file(s)" id="BoA-00-WLO">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="xHs-iM-QQf">
+                            <connections>
+                                <action selector="dismiss:" destination="gXY-e2-Teu" id="vjI-0f-wgx"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Submit" id="PZI-78-bje">
+                            <connections>
+                                <action selector="tappedSubmitButton:" destination="gXY-e2-Teu" id="f0Z-re-RIS"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="filenameLabel" destination="QSb-db-nvZ" id="aOJ-ZP-3cb"/>
+                        <outlet property="libraryContainer" destination="oo0-hK-oQd" id="VNV-Up-EFG"/>
+                        <outlet property="submitButton" destination="PZI-78-bje" id="10j-hI-jj6"/>
+                        <outlet property="trashButton" destination="sy6-ky-ODD" id="aa6-kQ-nsW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="elX-sm-MtY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-215.19999999999999" y="141.67916041979012"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="icon_options" width="34" height="34"/>
+    </resources>
+</document>

@@ -1,0 +1,12 @@
+/* Privacy - Camera Usage Description */
+"NSCameraUsageDescription" = "Vedhæft billeder og videoer til afleveringskommentarer.";
+
+/* Privacy - Microphone Usage Description */
+"NSMicrophoneUsageDescription" = "Vedhæft lydoptagelser til afleveringskommentarer.";
+
+/* Privacy - Photo Library Additions Usage Description */
+"NSPhotoLibraryAddUsageDescription" = "Vedhæft billeder og videoer til afleveringskommentarer.";
+
+/* Privacy - Photo Library Usage Description */
+"NSPhotoLibraryUsageDescription" = "Upload indhold til fag.";
+

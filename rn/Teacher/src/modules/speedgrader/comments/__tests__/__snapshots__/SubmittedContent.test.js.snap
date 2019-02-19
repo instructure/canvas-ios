@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`my chat bubbles render correctly 1`] = `
+<TouchableOpacity
+  onPress={[Function]}
+  style={
+    Object {
+      "borderColor": "#C7CDD1",
+      "borderRadius": 4,
+      "borderWidth": 1,
+      "flexDirection": "row",
+      "marginBottom": 4,
+      "overflow": "hidden",
+      "paddingHorizontal": 8,
+      "paddingVertical": 6,
+      "width": 265,
+    }
+  }
+  testID="submitted-content.item-1"
+>
+  <Image
+    resizeMode="center"
+    source={
+      Object {
+        "testUri": "../../../src/images/Document.png",
+      }
+    }
+    style={
+      Object {
+        "height": 18,
+        "tintColor": "#374A59",
+        "width": 18,
+      }
+    }
+    testID="submitted-content.icon-1"
+  />
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "marginHorizontal": 6,
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      numberOfLines={1}
+      style={
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontFamily": ".SFUIDisplay-semibold",
+            "fontSize": 16,
+          },
+          undefined,
+        ]
+      }
+      testID="submitted-content.title-1"
+    >
+      foo
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      numberOfLines={1}
+      style={
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#7F91A7",
+            "fontSize": 14,
+          },
+          undefined,
+        ]
+      }
+      testID="submitted-content.subtitle-1"
+    >
+      bar
+    </Text>
+  </View>
+</TouchableOpacity>
+`;

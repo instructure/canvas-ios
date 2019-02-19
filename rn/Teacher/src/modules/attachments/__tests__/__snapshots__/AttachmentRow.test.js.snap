@@ -1,0 +1,148 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AttachmentRow renders 1`] = `
+<TouchableHighlight
+  accessibilityLabel={undefined}
+  accessibilityTraits={
+    Array [
+      "button",
+    ]
+  }
+  accessible={false}
+  onPress={[Function]}
+  style={
+    Array [
+      undefined,
+      undefined,
+    ]
+  }
+  testID="attachment-row.0"
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "white",
+          "flex": 1,
+          "flexDirection": "row",
+          "minHeight": 54,
+          "paddingBottom": 12,
+          "paddingLeft": 16,
+          "paddingRight": 16,
+          "paddingTop": 12,
+        },
+        Object {
+          "backgroundColor": "white",
+        },
+      ]
+    }
+  >
+    <View
+      accessibilityLabel="Upload complete"
+      accessible={true}
+      style={Object {}}
+    >
+      <Image
+        source={
+          Object {
+            "testUri": "../../../src/images/attachments/complete-icon.png",
+          }
+        }
+        testID="attachment-row.0.icon.complete"
+      />
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "flex": 1,
+            "flexDirection": "column",
+            "justifyContent": "center",
+          },
+          Object {
+            "marginLeft": 12,
+          },
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        numberOfLines={0}
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Array [
+              Object {
+                "fontWeight": "600",
+              },
+            ],
+            Object {
+              "fontFamily": ".SFUIDisplay-semibold",
+            },
+          ]
+        }
+      >
+        Attachment 1
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 0,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "row",
+            "justifyContent": "flex-end",
+          }
+        }
+      >
+        <TouchableHighlight
+          accessibilityLabel="Remove attachment"
+          accessibilityTraits="button"
+          hitSlop={
+            Object {
+              "bottom": 8,
+              "left": 8,
+              "right": 8,
+              "top": 8,
+            }
+          }
+          onPress={[Function]}
+          testID="attachment-row.0.remove.btn"
+          underlayColor="white"
+        >
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/images/x-icon.png",
+              }
+            }
+            style={
+              Object {
+                "height": 14,
+                "tintColor": "black",
+                "width": 14,
+              }
+            }
+          />
+        </TouchableHighlight>
+      </View>
+    </View>
+  </View>
+</TouchableHighlight>
+`;

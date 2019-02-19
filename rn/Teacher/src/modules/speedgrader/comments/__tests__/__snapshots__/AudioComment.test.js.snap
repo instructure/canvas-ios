@@ -1,0 +1,301 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AudioComment moves the scrubber with the current time 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": "row",
+        "marginTop": 4,
+      },
+      Object {
+        "justifyContent": "flex-start",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": "row",
+      }
+    }
+  >
+    <Image
+      resizeMode="contain"
+      source={
+        Object {
+          "testUri": "../../../src/images/speedgrader/submission-types/audio.png",
+        }
+      }
+      style={
+        Object {
+          "height": 18,
+          "marginRight": 6,
+          "tintColor": "grey",
+          "width": 18,
+        }
+      }
+    />
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "flexDirection": "row",
+        }
+      }
+      testID="audio-comment.player"
+    >
+      <View
+        onLayout={[Function]}
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "justifyContent": "center",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "backgroundColor": "#F5F5F5",
+                "flex": 1,
+                "maxHeight": 5,
+              }
+            }
+          />
+          <View
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "#1790DF",
+                  "borderRadius": 1,
+                  "bottom": 2,
+                  "position": "absolute",
+                  "top": 2,
+                  "width": 3,
+                },
+                Object {
+                  "left": -1,
+                },
+              ]
+            }
+          />
+        </View>
+      </View>
+      <TouchableHighlight
+        accessibilityLabel="Stop playing audio"
+        accessibilityTraits="button"
+        onPress={[Function]}
+        testID="audio-comment.stop-btn"
+      >
+        <View
+          style={
+            Object {
+              "borderColor": "#C7CDD1",
+              "borderRadius": 12.5,
+              "borderWidth": 2,
+              "height": 25,
+              "marginLeft": 8,
+              "width": 25,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "backgroundColor": "#EB0F21",
+                "flex": 1,
+                "margin": 6,
+              }
+            }
+          />
+        </View>
+      </TouchableHighlight>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`AudioComment renders default 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": "row",
+        "marginTop": 4,
+      },
+      Object {
+        "justifyContent": "flex-end",
+      },
+    ]
+  }
+>
+  <TouchableHighlight
+    accessibilityLabel="Audio Comment"
+    accessibilityTraits="button"
+    onPress={[Function]}
+    style={
+      Object {
+        "borderColor": "#73818B",
+        "borderRadius": 3,
+        "borderWidth": 1,
+        "paddingHorizontal": 6,
+        "paddingVertical": 3,
+      }
+    }
+    testID="audio-comment.label"
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+        }
+      }
+    >
+      <Image
+        resizeMode="contain"
+        source={
+          Object {
+            "testUri": "../../../src/images/speedgrader/submission-types/audio.png",
+          }
+        }
+        style={
+          Object {
+            "height": 18,
+            "marginRight": 6,
+            "tintColor": "grey",
+            "width": 18,
+          }
+        }
+      />
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#73818B",
+              "fontSize": 14,
+              "fontWeight": "400",
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
+        }
+      >
+        Audio Comment
+      </Text>
+    </View>
+  </TouchableHighlight>
+</View>
+`;
+
+exports[`AudioComment renders from them 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": "row",
+        "marginTop": 4,
+      },
+      Object {
+        "justifyContent": "flex-start",
+      },
+    ]
+  }
+>
+  <TouchableHighlight
+    accessibilityLabel="Audio Comment"
+    accessibilityTraits="button"
+    onPress={[Function]}
+    style={
+      Object {
+        "borderColor": "#73818B",
+        "borderRadius": 3,
+        "borderWidth": 1,
+        "paddingHorizontal": 6,
+        "paddingVertical": 3,
+      }
+    }
+    testID="audio-comment.label"
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+        }
+      }
+    >
+      <Image
+        resizeMode="contain"
+        source={
+          Object {
+            "testUri": "../../../src/images/speedgrader/submission-types/audio.png",
+          }
+        }
+        style={
+          Object {
+            "height": 18,
+            "marginRight": 6,
+            "tintColor": "grey",
+            "width": 18,
+          }
+        }
+      />
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#73818B",
+              "fontSize": 14,
+              "fontWeight": "400",
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
+        }
+      >
+        Audio Comment
+      </Text>
+    </View>
+  </TouchableHighlight>
+</View>
+`;

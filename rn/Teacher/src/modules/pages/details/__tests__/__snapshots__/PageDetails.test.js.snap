@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PageDetails renders 1`] = `
+<Screen
+  navBarColor="#fff"
+  navBarStyle="dark"
+  rightBarButtons={
+    Array [
+      Object {
+        "accessibilityLabel": "Options",
+        "action": [Function],
+        "image": Object {
+          "testUri": "../../../src/images/kabob.png",
+        },
+        "testID": "pages.details.editButton",
+      },
+    ]
+  }
+  showDismissButton={true}
+  statusBarStyle="default"
+  subtitle="Course 1"
+  title="Page 1"
+>
+  <CanvasWebView
+    navigator={
+      Object {
+        "dismiss": [Function],
+        "dismissAllModals": [Function],
+        "isModal": false,
+        "pop": [Function],
+        "replace": [Function],
+        "show": [Function],
+        "traitCollection": [Function],
+      }
+    }
+    onRefresh={[Function]}
+    scrollEnabled={true}
+    source={
+      Object {
+        "baseURL": "/pages/page-1#jumpto",
+        "html": "<p>Hello, World!</p>",
+      }
+    }
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  />
+</Screen>
+`;
+
+exports[`PageDetails renders while loading 1`] = `
+<Screen
+  navBarColor="#fff"
+  navBarStyle="dark"
+  rightBarButtons={
+    Array [
+      Object {
+        "accessibilityLabel": "Options",
+        "action": [Function],
+        "image": Object {
+          "testUri": "../../../src/images/kabob.png",
+        },
+        "testID": "pages.details.editButton",
+      },
+    ]
+  }
+  showDismissButton={true}
+  statusBarStyle="default"
+  title="Page Details"
+>
+  <CanvasWebView
+    navigator={
+      Object {
+        "dismiss": [Function],
+        "dismissAllModals": [Function],
+        "isModal": false,
+        "pop": [Function],
+        "replace": [Function],
+        "show": [Function],
+        "traitCollection": [Function],
+      }
+    }
+    onRefresh={[Function]}
+    scrollEnabled={true}
+    source={
+      Object {
+        "baseURL": "",
+        "html": "",
+      }
+    }
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  />
+</Screen>
+`;

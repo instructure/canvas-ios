@@ -1,0 +1,12 @@
+/* Class = "UINavigationItem"; title = "Welcome!"; ObjectID = "9dX-mw-zDZ"; */
+"9dX-mw-zDZ.title" = "歡迎！";
+
+/* Class = "UIBarButtonItem"; title = "Logout"; ObjectID = "A5r-zz-POY"; */
+"A5r-zz-POY.title" = "登出";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "di9-vw-QT7"; */
+"di9-vw-QT7.text" = "標籤";
+
+/* Class = "UIButton"; normalTitle = "Switch User"; ObjectID = "jYD-RA-t1Z"; */
+"jYD-RA-t1Z.normalTitle" = "轉換使用者";
+

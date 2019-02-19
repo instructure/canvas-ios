@@ -1,0 +1,237 @@
+/* No comment provided by engineer. */
+"%@ GPA" = "%@GPA";
+
+/* No comment provided by engineer. */
+"Are you sure you would like to delete this comment?" = "このコメントを本当に削除しますか？";
+
+/* No comment provided by engineer. */
+"Assignment" = "課題";
+
+/* No comment provided by engineer. */
+"Assignment not found." = "課題が見つかりません。";
+
+/* No comment provided by engineer. */
+"Authentication failed. Most likely the user denied the request for access." = "認証に失敗。おそらく、ユーザーがアクセス要求を拒否しました。";
+
+/* No comment provided by engineer. */
+"Can’t find your school? Try typing the full school URL." = "学校が見つかりませんか？学校の完全なURLを入力してみてください。";
+
+/* No comment provided by engineer. */
+"Cancel" = "キャンセル";
+
+/* No comment provided by engineer. */
+"Canvas Login" = "キャンバスログイン";
+
+/* No comment provided by engineer. */
+"Canvas Network" = "Canvas Network";
+
+/* No comment provided by engineer. */
+"Closed" = "終了済み";
+
+/* No comment provided by engineer. */
+"Comments" = "コメント";
+
+/* No comment provided by engineer. */
+"Complete" = "完了";
+
+/* No comment provided by engineer. */
+"Course" = "コース";
+
+/* No comment provided by engineer. */
+"d_questions" = "d_questions";
+
+/* No comment provided by engineer. */
+"Delete" = "削除";
+
+/* No comment provided by engineer. */
+"Delete comment" = "コメントの削除";
+
+/* No comment provided by engineer. */
+"Delete Comment" = "コメントを削除する";
+
+/* No comment provided by engineer. */
+"Discussion Comment" = "ディスカッションのコメント";
+
+/* No comment provided by engineer. */
+"Dismiss" = "却下する";
+
+/* No comment provided by engineer. */
+"External Tool" = "外部ツール";
+
+/* No comment provided by engineer. */
+"File Upload" = "ファイルのアップロード";
+
+/* No comment provided by engineer. */
+"Final Grade: %@" = "最終的な成績：%@";
+
+/* No comment provided by engineer. */
+"final_grade_g_pts" = "final_grade_g_pts";
+
+/* No comment provided by engineer. */
+"Find my school" = "私の学校を探す";
+
+/* No comment provided by engineer. */
+"Find your school or district" = "あなたの学校または地域を見つける";
+
+/* No comment provided by engineer. */
+"Forget %@" = "忘れた%@";
+
+/* No comment provided by engineer. */
+"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
+
+/* No comment provided by engineer. */
+"g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
+"Help" = "ヘルプ";
+
+/* No comment provided by engineer. */
+"How do I find my school?" = "私のスクールの見つけ方は？";
+
+/* No comment provided by engineer. */
+"Incomplete" = "不完全";
+
+/* No comment provided by engineer. */
+"late_penalty_g_pts" = "late_penalty_g_pts";
+
+/* No comment provided by engineer. */
+"Launch External Tool" = "外部ツールを起動する";
+
+/* end of and list pattern */
+"list_and_end" = "%1$@と%2$@";
+
+/* middle of and list pattern */
+"list_and_middle" = "%1$@,%2$@";
+
+/* start of and list pattern */
+"list_and_start" = "%1$@,%2$@";
+
+/* and list pattern for 2 items */
+"list_and_two" = "%1$@と%2$@";
+
+/* end of or list pattern */
+"list_or_end" = "%1$@、または%2$@";
+
+/* middle of or list pattern */
+"list_or_middle" = "%1$@,%2$@";
+
+/* start of or list pattern */
+"list_or_start" = "%1$@,%2$@";
+
+/* or list pattern for 2 items */
+"list_or_two" = "%1$@または%2$@";
+
+/* No comment provided by engineer. */
+"Manual OAuth Login" = "手動 O承認ログイン";
+
+/* No comment provided by engineer. */
+"Media Recording" = "メディアレコーディング";
+
+/* No comment provided by engineer. */
+"No Due Date" = "期日なし";
+
+/* No comment provided by engineer. */
+"No Submission" = "提出なし";
+
+/* No comment provided by engineer. */
+"Not Graded" = "採点されていません";
+
+/* No comment provided by engineer. */
+"Not Submitted" = "未提出";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"On Paper" = "書類上";
+
+/* No comment provided by engineer. */
+"out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
+"plural_points" = "plural_points";
+
+/* No comment provided by engineer. */
+"Quiz" = "クイズ";
+
+/* No comment provided by engineer. */
+"Remove" = "削除";
+
+/* No comment provided by engineer. */
+"Removed %1$@" = "除去済%1$@";
+
+/* No comment provided by engineer. */
+"Removed %1$@ by %2$@" = "（）により%1$@除去済%2$@";
+
+/* No comment provided by engineer. */
+"Reply to the annotation or previous comments" = "注釈や以前のコメントに返信する";
+
+/* No comment provided by engineer. */
+"Resubmit Assignment" = "課題を再提出する";
+
+/* No comment provided by engineer. */
+"See what's new." = "最新情報を見る。";
+
+/* No comment provided by engineer. */
+"Select Account" = "アカウントを選択する";
+
+/* No comment provided by engineer. */
+"Select Assignment" = "課題を選択する";
+
+/* No comment provided by engineer. */
+"Select Course" = "コースの選択";
+
+/* No comment provided by engineer. */
+"Send comment" = "コメントを送信する";
+
+/* No comment provided by engineer. */
+"Site Admin Login" = "サイト管理者ログイン";
+
+/* No comment provided by engineer. */
+"Style" = "スタイル";
+
+/* No comment provided by engineer. */
+"Submission Failed" = "提出に失敗しました";
+
+/* No comment provided by engineer. */
+"Submission Uploading..." = "提出をアップロード中...";
+
+/* No comment provided by engineer. */
+"Submit Assignment" = "課題を提出する";
+
+/* No comment provided by engineer. */
+"Submitted" = "タスクの成績を送信";
+
+/* Submitted date */
+"Submitted %@" = "タスクの成績を送信%@";
+
+/* No comment provided by engineer. */
+"Tap here for help." = "ここをタップしてヘルプを表示します。";
+
+/* No comment provided by engineer. */
+"Tap to view details" = "タップして詳細を表示する";
+
+/* No comment provided by engineer. */
+"Tap to view progress" = "タップして進捗を表示する";
+
+/* No comment provided by engineer. */
+"Text Entry" = "テキストエントリ";
+
+/* No comment provided by engineer. */
+"This assignment is due by %@" = "この課題の提出期限は%@";
+
+/* No comment provided by engineer. */
+"This assignment was due by %@" = "この課題の提出期限は%@";
+
+/* No comment provided by engineer. */
+"We've made a few changes." = "2、3変更がありました。";
+
+/* No comment provided by engineer. */
+"Website URL" = "ウェブサイト URL";
+
+/* No comment provided by engineer. */
+"What’s your school’s name?" = "学校の名前は？";
+
+/* No comment provided by engineer. */
+"You will need to log into at least one Canvas account from the Student app first." = "最初に受講生のアプリから少なくとも1つのCanvasアカウントにログインする必要があります。";
+

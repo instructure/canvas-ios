@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ZSSRichTextEditor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <style>/* custom styles */</style>
+  <!-- CSS Styles for ZSSRichTextEditor -->
+  <style>
+/* Default ZSSRichTextEditor Styling */
+* {
+  outline: 0px solid transparent;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-touch-callout: none;
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  height: 100%;
+  padding: 0.8em 1em;
+}
+
+img, video {
+  display: block;
+  max-width: 100% !important;
+  height: auto !important;
+  margin: 0 auto 0 auto;
+  -webkit-margin-before: 1em;
+  -webkit-margin-after: 1em;
+}
+
+img.video-preview {
+  margin: 0 !important;
+  -webkit-margin-after: 1em;
+  -webkit-margin-before: 1em;
+}
+
+img.zs_active {
+  border: 2px dashed #000;
+}
+
+audio {
+  padding: 20px 0;
+}
+
+div.zs_editor_content {
+  width: 100%;
+  height: 100%;
+  -webkit-overflow-scrolling: touch;
+  overflow:auto;
+}
+
+[placeholder]:empty:before {
+  content: attr(placeholder);
+  color: #CBCBD0;
+}
+
+p.zss_final_video_comment {
+  display: none;
+}
+</style>
+</head>
+<body>
+  <!-- ZSSRichTextEditor Editable Content -->
+  <div id="zss_editor_content" class="zs_editor_content" contenteditable="true" placeholder=""></div>
+
+  <!-- Footer -->
+  <div id="zss_editor_footer"></div>
+
+  <!-- Javascript for ZSSRichTextEditor -->
+  <script>
+;(() => {
+/*!
+ *
+ * ZSSRichTextEditor v0.5.2
+ * http://www.zedsaid.com
+ *
+ * Copyright 2014 Zed Said Studio LLC
+ *
+ */
+const zss_editor = window.zss_editor = {}
+
+// If we are using iOS or desktop
+zss_editor.isUsingiOS = true
+
+// If the user is draging
+zss_editor.isDragging = false
+
+// The current selection
+zss_editor.currentSelection
+
+// The current editing image
+zss_editor.currentEditingImage
+
+// The current editing link
+zss_editor.currentEditingLink
+
+// The objects that are enabled
+zss_editor.enabledItems = {}
+
+// Height of content window, will be set by viewController
+zss_editor.contentHeight = 244
+
+// Sets to true when extra footer gap shows and requires to hide
+zss_editor.updateScrollOffset = false
+
+const zss_editor_content = document.querySelector('#zss_editor_content')
+const zss_editor_footer = document.querySelector('#zss_editor_footer')
+/**
+ * The initializer function that must be called onLoad
+ */
+zss_editor.init = () => {
+  zss_editor.init = () => {}
+
+  zss_editor_content.addEventListener('touchend', e => {
+    zss_editor.enabledEditingItems(e)
+    if (!e.target.classList.contains('zs_active')) {
+      for (let img of document.querySelectorAll('img.zs_active')) {
+        img.classList.remove('zs_active')
+      }
+    }
+  })
+
+  document.addEventListener('selectionchange', e => {
+    zss_editor.calculateEditorHeightWithCaretPosition()
+    zss_editor.setScrollPosition()
+    zss_editor.enabledEditingItems()
+  })
+
+  window.addEventListener('scroll', e => {
+    zss_editor.updateOffset()
+  })
+
+  // Make sure that when we tap anywhere in the document we focus on the editor
+  window.addEventListener('touchmove', e => {
+    zss_editor.isDragging = true
+    zss_editor.updateScrollOffset = true
+    zss_editor.setScrollPosition()
+    zss_editor.enabledEditingItems(e)
+  })
+  window.addEventListener('touchstart', e => {
+    zss_editor.isDragging = false
+
+    if (e.target.tagName.toLowerCase() === 'img') {
+      for (let img of document.querySelectorAll('img.zs_active')) {
+        img.classList.remove('zs_active')
+      }
+      e.target.classList.add('zs_active')
+    }
+  })
+  window.addEventListener('touchend', e => {
+    if (e.target.nodeName.toLowerCase() === "a") {
+      let anchor = event.currentTarget
+
+      zss_editor.currentEditingLink = e.target
+
+      let link = {
+        title: e.target.textContent,
+        url: e.target.href
+      }
+
+      postMessage(JSON.stringify({type: 'LINK_TOUCHED', data: link}))
+
+      e.preventDefault()
+    }
+    if (!zss_editor.isDragging && (e.target.id == 'zss_editor_footer'||e.target.nodeName.toLowerCase() == 'html')) {
+      zss_editor.focusEditor()
+    }
+  })
+
+  // Post message on focus
+  zss_editor_content.addEventListener('focus', () => {
+    postMessage(JSON.stringify({type: 'EDITOR_FOCUSED'}))
+  })
+
+  zss_editor_content.addEventListener('blur', () => {
+    postMessage(JSON.stringify({type: 'EDITOR_BLURRED'}))
+  })
+
+  zss_editor_content.addEventListener('focusout', () => {
+    let hasImage = zss_editor_content.querySelector('img') != null
+    if (!hasImage && !zss_editor_content.textContent.trim().length) {
+      zss_editor_content.textContent = ''
+    }
+  })
+
+  zss_editor_content.addEventListener('paste', (e) => {
+    postMessage(JSON.stringify({type: 'EDITOR_PASTE'}))
+    e.stopPropagation()
+    e.preventDefault()
+  })
+
+  setTimeout(() => {
+    postMessage(JSON.stringify({type: 'ZSS_LOADED'}))
+  }, 0)
+}//end
+
+zss_editor.postHTML = () => {
+  let html = zss_editor.getHTML()
+
+  // backspaces leave behind empty line breaks
+  if (['<br>', '<div><br></div>'].includes(html)) {
+    html = ''
+  }
+
+  postMessage(JSON.stringify({type: 'EDITOR_HTML', data: html}))
+}
+
+zss_editor.updateOffset = () => {
+  // This stuff only seems to cause wacky bugs with scrolling
+  // Ignoring for now.
+  return
+
+  if (!zss_editor.updateScrollOffset)
+    return
+
+  let offsetY = window.document.body.scrollTop
+
+  let footer = zss_editor_footer
+
+  let maxOffsetY = footer.offsetTop - zss_editor.contentHeight
+
+  if (maxOffsetY < 0)
+    maxOffsetY = 0
+
+  if (offsetY > maxOffsetY)
+  {
+    window.scrollTo(0, maxOffsetY)
+  }
+
+  zss_editor.setScrollPosition()
+}
+
+// This will show up in the XCode console as we are able to push this into an NSLog.
+zss_editor.debug = msg => {
+  postMessage(JSON.stringify({type: 'DEBUG', data: msg}))
+}
+
+
+zss_editor.setScrollPosition = () => {
+  let position = window.pageYOffset
+  postMessage(JSON.stringify({type: 'SCROLL', data: position}))
+}
+
+
+zss_editor.setPlaceholder = placeholder => {
+  zss_editor_content.setAttribute('placeholder', placeholder)
+}
+
+zss_editor.setFooterHeight = footerHeight => {
+  zss_editor_footer.style.height = footerHeight + 'px'
+}
+
+zss_editor.getCaretYPosition = () => {
+  let selection = window.getSelection()
+  // Next line is comented to prevent deselecting selection. It looks like work but if there are any issues will appear then uconmment it as well as code above.
+  //sel.collapseToStart()
+  if (selection.getRangeAt && selection.rangeCount > 0) {
+    let range = selection.getRangeAt(0)
+    let span = document.createElement('span')// something happening here preventing selection of elements
+    range.collapse(false)
+    range.insertNode(span)
+    let topPosition = span.offsetTop
+    span.parentNode.removeChild(span)
+    return topPosition
+  }
+
+  return 0
+}
+
+zss_editor.calculateEditorHeightWithCaretPosition = () => {
+  let padding = 50
+  let c = zss_editor.getCaretYPosition()
+
+  let editor = zss_editor_content
+
+  let offsetY = window.document.body.scrollTop
+  let height = zss_editor.contentHeight
+
+  let newPos = window.pageYOffset
+
+  if (c < offsetY) {
+    newPos = c
+  } else if (c > (offsetY + height - padding)) {
+    newPos = c - height + padding - 18
+  }
+
+  window.scrollTo(0, newPos)
+}
+
+zss_editor.backuprange = () => {
+  let selection = window.getSelection()
+  let range
+  if (selection.getRangeAt && selection.rangeCount > 0) {
+    range = selection.getRangeAt(0)
+  } else {
+    range = document.createRange()
+  }
+  zss_editor.currentSelection = {
+    startContainer: range.startContainer,
+    startOffset: range.startOffset,
+    endContainer: range.endContainer,
+    endOffset: range.endOffset
+  }
+}
+
+zss_editor.restorerange = () => {
+  let selection = window.getSelection()
+  selection.removeAllRanges()
+  let range = document.createRange()
+  range.setStart(zss_editor.currentSelection.startContainer, zss_editor.currentSelection.startOffset)
+  range.setEnd(zss_editor.currentSelection.endContainer, zss_editor.currentSelection.endOffset)
+  selection.addRange(range)
+}
+
+zss_editor.getSelectedNode = () => {
+  let node
+  let selection
+  if (window.getSelection) {
+    selection = getSelection()
+    node = selection.anchorNode
+  }
+  if (!node && document.selection) {
+    selection = document.selection
+    let range = selection.getRangeAt ? selection.getRangeAt(0) : selection.createRange()
+    node = range.commonAncestorContainer ? range.commonAncestorContainer :
+      range.parentElement ? range.parentElement() : range.item(0)
+  }
+  if (node) {
+    return (node.nodeName == '#text' ? node.parentNode : node)
+  }
+}
+
+zss_editor.setBold = () => {
+  document.execCommand('bold', false, null)
+  zss_editor.enabledEditingItems()
+}
+
+zss_editor.setItalic = () => {
+  document.execCommand('italic', false, null)
+  zss_editor.enabledEditingItems()
+}
+
+zss_editor.setSubscript = () => {
+  document.execCommand('subscript', false, null)
+  zss_editor.enabledEditingItems()
+}
+
+zss_editor.setSuperscript = () => {
+  document.execCommand('superscript', false, null)
+  zss_editor.enabledEditingItems()
+}
+
+zss_editor.setStrikeThrough = () => {
+  document.execCommand('strikeThrough', false, null)
+  zss_editor.enabledEditingItems()
+}
+
+zss_editor.setUnderline = () => {
+  document.execCommand('underline', false, null)
+  zss_editor.enabledEditingItems()
+}
+
+zss_editor.setBlockquote = () => {
+  document.execCommand('formatBlock', false, '<blockquote>')
+  zss_editor.enabledEditingItems()
+}
+
+zss_editor.removeFormating = () => {
+  document.execCommand('removeFormat', false, null)
+  zss_editor.enabledEditingItems()
+}
+
+zss_editor.setHorizontalRule = () => {
+  document.execCommand('insertHorizontalRule', false, null)
+  zss_editor.enabledEditingItems()
+}
+
+zss_editor.setHeading = heading => {
+  let current_selection = zss_editor.getSelectedNode()
+  let t = current_selection && current_selection.tagName.toLowerCase()
+  let is_heading = (t == 'h1' || t == 'h2' || t == 'h3' || t == 'h4' || t == 'h5' || t == 'h6')
+  if (current_selection && is_heading && heading == t) {
+    current_selection.outerHTML = current_selection.innerHTML
+  } else {
+    document.execCommand('formatBlock', false, `<${heading}>`)
+  }
+
+  zss_editor.enabledEditingItems()
+}
+
+zss_editor.setParagraph = () => {
+  let current_selection = zss_editor.getSelectedNode()
+  let t = current_selection && current_selection.tagName.toLowerCase()
+  let is_paragraph = (t == 'p')
+  if (current_selection && is_paragraph) {
+    current_selection.outerHTML = current_selection.innerHTML
+  } else {
+    document.execCommand('formatBlock', false, '<p>')
+  }
+
+  zss_editor.enabledEditingItems()
+}
+
+// Need way to remove formatBlock
+console.log('WARNING: We need a way to remove formatBlock items')
+
+zss_editor.undo = () => {
+  document.execCommand('undo', false, null)
+  zss_editor.enabledEditingItems()
+}
+
+zss_editor.redo = () => {
+  document.execCommand('redo', false, null)
+  zss_editor.enabledEditingItems()
+}
+
+zss_editor.setOrderedList = () => {
+  document.execCommand('insertOrderedList', false, null)
+  zss_editor.enabledEditingItems()
+}
+
+zss_editor.setUnorderedList = () => {
+  document.execCommand('insertUnorderedList', false, null)
+  zss_editor.enabledEditingItems()
+}
+
+zss_editor.setJustifyCenter = () => {
+  document.execCommand('justifyCenter', false, null)
+  zss_editor.enabledEditingItems()
+}
+
+zss_editor.setJustifyFull = () => {
+  document.execCommand('justifyFull', false, null)
+  zss_editor.enabledEditingItems()
+}
+
+zss_editor.setJustifyLeft = () => {
+  document.execCommand('justifyLeft', false, null)
+  zss_editor.enabledEditingItems()
+}
+
+zss_editor.setJustifyRight = () => {
+  document.execCommand('justifyRight', false, null)
+  zss_editor.enabledEditingItems()
+}
+
+zss_editor.setIndent = () => {
+  document.execCommand('indent', false, null)
+  zss_editor.enabledEditingItems()
+}
+
+zss_editor.setOutdent = () => {
+  document.execCommand('outdent', false, null)
+  zss_editor.enabledEditingItems()
+}
+
+zss_editor.setFontFamily = fontFamily => {
+  zss_editor.restorerange()
+  document.execCommand('styleWithCSS', null, true)
+  document.execCommand('fontName', false, fontFamily)
+  document.execCommand('styleWithCSS', null, false)
+  zss_editor.enabledEditingItems()
+}
+
+zss_editor.setTextColor = color => {
+  let boldEnabled = zss_editor.isCommandEnabled('bold')
+  let italicEnabled = zss_editor.isCommandEnabled('italic')
+  zss_editor.restorerange()
+  document.execCommand('styleWithCSS', null, true)
+  document.execCommand('foreColor', false, color)
+  document.execCommand('styleWithCSS', null, false)
+  if (boldEnabled !== zss_editor.isCommandEnabled('bold')) {
+    document.execCommand('bold', false, null)
+  }
+  if (italicEnabled !== zss_editor.isCommandEnabled('italic')) {
+    document.execCommand('italic', false, null)
+  }
+  zss_editor.enabledEditingItems()
+  // document.execCommand('removeFormat', false, 'foreColor') // Removes just foreColor
+}
+
+zss_editor.setBackgroundColor = color => {
+  zss_editor.restorerange()
+  document.execCommand('styleWithCSS', null, true)
+  document.execCommand('hiliteColor', false, color)
+  document.execCommand('styleWithCSS', null, false)
+  zss_editor.enabledEditingItems()
+}
+
+zss_editor.insertLink = (url, title) => {
+  zss_editor.restorerange()
+  let sel = document.getSelection()
+  if (sel.toString().length != 0) {
+    if (sel.rangeCount) {
+
+      let el = document.createElement('a')
+      el.href = url
+      el.title = title
+
+      let range = sel.getRangeAt(0).cloneRange()
+      range.surroundContents(el)
+      sel.removeAllRanges()
+      sel.addRange(range)
+    }
+  } else {
+    document.execCommand('insertHTML',false,`<a title="${title}" href="${url}">${title}</a>`)
+  }
+
+  zss_editor.enabledEditingItems()
+}
+
+zss_editor.updateLink = (url, title) => {
+  zss_editor.restorerange()
+
+  if (zss_editor.currentEditingLink) {
+    let c = zss_editor.currentEditingLink
+    c.href = url
+    c.title = title
+    c.textContent = title
+  }
+  zss_editor.enabledEditingItems()
+}//end
+
+zss_editor.updateImage = (url, alt) => {
+  zss_editor.restorerange()
+
+  if (zss_editor.currentEditingImage) {
+    let c = zss_editor.currentEditingImage
+    c.src = url
+    c.alt = alt
+  }
+  zss_editor.enabledEditingItems()
+}//end
+
+zss_editor.updateImageBase64String = (imageBase64String, alt) => {
+  zss_editor.restorerange()
+
+  if (zss_editor.currentEditingImage) {
+    let c = zss_editor.currentEditingImage
+    let src = `data:image/jpeg;base64,${imageBase64String}`
+    c.src = src
+    c.alt = alt
+  }
+  zss_editor.enabledEditingItems()
+}//end
+
+
+zss_editor.unlink = () => {
+  if (zss_editor.currentEditingLink) {
+    let c = zss_editor.currentEditingLink
+    c.outerHTML = c.innerHTML
+  }
+  zss_editor.enabledEditingItems()
+}
+
+zss_editor.quickLink = () => {
+  let sel = document.getSelection()
+  let link_url = ''
+  let test = String(sel)
+  let mailregexp = /^(.+)(\@)(.+)$/gi
+  if (test.search(mailregexp) == -1) {
+    checkhttplink = /^http\:\/\//gi
+    if (test.search(checkhttplink) == -1) {
+      checkanchorlink = /^\#/gi
+      if (test.search(checkanchorlink) == -1) {
+        link_url = `http://${sel}`
+      } else {
+        link_url = sel
+      }
+    } else {
+      link_url = sel
+    }
+  } else {
+    checkmaillink = /^mailto\:/gi
+    if (test.search(checkmaillink) == -1) {
+      link_url = `mailto:${sel}`
+    } else {
+      link_url = sel
+    }
+  }
+
+  let html_code = `<a href="${link_url}">${sel}</a>`
+  zss_editor.insertHTML(html_code)
+}
+
+zss_editor.prepareInsert = () => {
+  zss_editor.backuprange()
+}
+
+zss_editor.insertImage = (url, alt) => {
+  zss_editor.restorerange()
+  zss_editor.insertHTML(`<img src="${url}" />`)
+  zss_editor.enabledEditingItems()
+}
+
+function videoPreviewHTML (mediaID) {
+  let html = `<img class="zss_postprocess_remove video-preview" src="${zss_editor.videoPreviewImagePath}" width="192px" />`
+  if (mediaID) {
+    html += `<p class="zss_final_video_comment"><a id="media_comment_${mediaID}" class="instructure_inline_media_comment video_comment" href="/media_objects/${mediaID}">this is a media comment</a></p>`
+  }
+  return html
+}
+
+zss_editor.insertVideoComment = mediaID => {
+  zss_editor.restorerange()
+  zss_editor.insertHTML(videoPreviewHTML(mediaID))
+  zss_editor.enabledEditingItems()
+}
+
+zss_editor.insertImageBase64String = (imageBase64String, alt) => {
+  zss_editor.restorerange()
+  let html = `<img src="data:image/jpeg;base64,${imageBase64String}" alt="${alt}" />`
+  zss_editor.insertHTML(html)
+  zss_editor.enabledEditingItems()
+}
+
+zss_editor.setHTML = html => {
+  zss_editor_content.innerHTML = html
+
+  // replace <video> with preview <img>
+  for (let video of document.querySelectorAll('video')) {
+    video.outerHTML = videoPreviewHTML(video.dataset.media_comment_id)
+  }
+}
+
+zss_editor.insertHTML = html => {
+  document.execCommand('insertHTML', false, html)
+  zss_editor.enabledEditingItems()
+}
+
+zss_editor.getHTML = () => {
+  // Images
+  for (let img of document.querySelectorAll('img')) {
+    img.classList.remove('zs_active')
+    if (img.className === '') {
+      img.removeAttribute('class')
+    }
+  }
+
+  // Blockquote
+  for (let bq of document.querySelectorAll('blockquote')) {
+    if (getComputedStyle(bq).border.includes('none')) {
+      bq.style.border = ''
+    }
+    if (getComputedStyle(bq).padding.includes('0px')) {
+      bq.style.padding = ''
+    }
+  }
+
+  // Get the contents
+  let clone = zss_editor_content.cloneNode(true)
+  for (let remove of clone.querySelectorAll('.zss_postprocess_remove')) {
+    remove.parentNode.removeChild(remove)
+  }
+  for (let comment of clone.querySelectorAll('p.zss_final_video_comment')) {
+    comment.classList.remove('zss_final_video_comment')
+  }
+  let h = clone.innerHTML
+
+  // Replace rgb with hex because Canvas will remove rgb styles
+  function componentToHex(c) {
+    let hex = c.toString(16)
+    return hex.length == 1 ? '0' + hex : hex
+  }
+  h = h.replace(/\brgb\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/g, (s, r, g, b) => {
+    return '#' + ((1 << 24) + (Number(r) << 16) + (Number(g) << 8) + Number(b)).toString(16).slice(1)
+  })
+
+  return h
+}
+
+zss_editor.getText = () => {
+  return zss_editor_content.textContent
+}
+
+zss_editor.isCommandEnabled = commandName => {
+  return document.queryCommandState(commandName)
+}
+
+zss_editor.enabledEditingItems = e => {
+  let items = []
+  if (zss_editor.isCommandEnabled('bold')) {
+    items.push('bold')
+  }
+  if (zss_editor.isCommandEnabled('italic')) {
+    items.push('italic')
+  }
+  if (zss_editor.isCommandEnabled('subscript')) {
+    items.push('subscript')
+  }
+  if (zss_editor.isCommandEnabled('superscript')) {
+    items.push('superscript')
+  }
+  if (zss_editor.isCommandEnabled('strikeThrough')) {
+    items.push('strikeThrough')
+  }
+  if (zss_editor.isCommandEnabled('underline')) {
+    items.push('underline')
+  }
+  if (zss_editor.isCommandEnabled('insertOrderedList')) {
+    items.push('orderedList')
+  }
+  if (zss_editor.isCommandEnabled('insertUnorderedList')) {
+    items.push('unorderedList')
+  }
+  if (zss_editor.isCommandEnabled('justifyCenter')) {
+    items.push('justifyCenter')
+  }
+  if (zss_editor.isCommandEnabled('justifyFull')) {
+    items.push('justifyFull')
+  }
+  if (zss_editor.isCommandEnabled('justifyLeft')) {
+    items.push('justifyLeft')
+  }
+  if (zss_editor.isCommandEnabled('justifyRight')) {
+    items.push('justifyRight')
+  }
+  if (zss_editor.isCommandEnabled('insertHorizontalRule')) {
+    items.push('horizontalRule')
+  }
+  let formatBlock = document.queryCommandValue('formatBlock')
+  if (formatBlock.length > 0) {
+    items.push(formatBlock)
+  }
+
+  // The target element
+  let s = zss_editor.getSelectedNode()
+
+  // Background Color
+  let bgColor = s && getComputedStyle(s).backgroundColor
+  if (bgColor && bgColor.length != 0 && bgColor != 'rgba(0, 0, 0, 0)' && bgColor != 'rgb(0, 0, 0)' && bgColor != 'transparent') {
+    items.push('backgroundColor')
+  }
+  // Text Color
+  let textColor = (document.queryCommandEnabled('foreColor') && document.queryCommandValue('foreColor')) || s && getComputedStyle(s).color
+  if (textColor && textColor.length != 0 && textColor != 'transparent') {
+    items.push('textColor:' + textColor)
+  }
+
+  //Fonts
+  let font = s && getComputedStyle(s).fontFamily
+  if (font && font.length != 0 && font != 'Arial, Helvetica, sans-serif') {
+    items.push('fonts')
+  }
+
+  if (e) {
+    let nodeName = e.target.nodeName.toLowerCase()
+    // Link
+    if (nodeName == 'a') {
+      zss_editor.currentEditingLink = s
+      items.push('link:' + (s && s.href))
+      if (s.title) {
+        items.push('link-title:' + (s && s.title))
+      }
+    } else {
+      zss_editor.currentEditingLink = null
+    }
+    // Blockquote
+    if (nodeName == 'blockquote') {
+      items.push('indent')
+    }
+    // Image
+    if (nodeName == 'img') {
+      zss_editor.currentEditingImage = s
+      items.push('image:' + (s && s.src))
+      if (s && s.alt) {
+        items.push('image-alt:' + s.alt)
+      }
+    } else {
+      zss_editor.currentEditingImage = null
+    }
+  }
+
+  setTimeout(() => {
+    postMessage(JSON.stringify({type: 'CALLBACK', data: items}))
+  }, 0)
+}
+
+zss_editor.focusEditor = () => {
+  // the following was taken from http://stackoverflow.com/questions/1125292/how-to-move-cursor-to-end-of-contenteditable-entity/3866442#3866442
+  // and ensures we move the cursor to the end of the editor
+  let range = document.createRange()
+  range.selectNodeContents(zss_editor_content)
+  range.collapse(false)
+  let selection = window.getSelection()
+  selection.removeAllRanges()
+  selection.addRange(range)
+  zss_editor_content.focus()
+}
+
+zss_editor.blurEditor = () => {
+  zss_editor_content.blur()
+}
+
+zss_editor.setCustomCSS = customCSS => {
+  document.querySelector('style').innerHTML = customCSS
+}
+//end
+})()
+</script>
+</body>
+</html>

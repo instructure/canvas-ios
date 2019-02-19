@@ -1,0 +1,257 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render 0 on graph 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "flexDirection": "column",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <Circle
+      animated={true}
+      borderColor="#374A59"
+      borderWidth={0}
+      color="#374A59"
+      progress={0}
+      showsText={false}
+      size={70}
+      testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
+      thickness={7}
+      unfilledColor="#F5F5F5"
+    />
+  </View>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
+        Object {
+          "flex": 1,
+          "fontSize": 12,
+          "fontWeight": "500",
+          "marginTop": 8,
+          "textAlign": "center",
+        },
+        Object {
+          "fontFamily": ".SFUIDisplay-medium",
+        },
+      ]
+    }
+    testID="submissions.submission-graph.submissions.submissionGraph.undefined-title-lbl"
+  >
+    foo
+  </Text>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "position": "absolute",
+        "top": 25.5,
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "#2D3B45",
+          "fontFamily": ".SFUIDisplay-medium",
+          "fontSize": 16,
+        }
+      }
+    >
+      0
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`render 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "flexDirection": "column",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <Circle
+      animated={true}
+      borderColor="#374A59"
+      borderWidth={0}
+      color="#374A59"
+      progress={0}
+      showsText={false}
+      size={70}
+      testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
+      thickness={7}
+      unfilledColor="#F5F5F5"
+    />
+  </View>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
+        Object {
+          "flex": 1,
+          "fontSize": 12,
+          "fontWeight": "500",
+          "marginTop": 8,
+          "textAlign": "center",
+        },
+        Object {
+          "fontFamily": ".SFUIDisplay-medium",
+        },
+      ]
+    }
+    testID="submissions.submission-graph.submissions.submissionGraph.undefined-title-lbl"
+  >
+    foo
+  </Text>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "position": "absolute",
+        "top": 25.5,
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "#2D3B45",
+          "fontFamily": ".SFUIDisplay-medium",
+          "fontSize": 16,
+        }
+      }
+    >
+      0
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`render undefined label 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "flexDirection": "column",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <Circle
+      animated={true}
+      borderColor="#374A59"
+      borderWidth={0}
+      color="#374A59"
+      progress={0}
+      showsText={false}
+      size={70}
+      testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
+      thickness={7}
+      unfilledColor="#F5F5F5"
+    />
+  </View>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
+        Object {
+          "flex": 1,
+          "fontSize": 12,
+          "fontWeight": "500",
+          "marginTop": 8,
+          "textAlign": "center",
+        },
+        Object {
+          "fontFamily": ".SFUIDisplay-medium",
+        },
+      ]
+    }
+    testID="submissions.submission-graph.submissions.submissionGraph.undefined-title-lbl"
+  />
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "position": "absolute",
+        "top": 25.5,
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "#2D3B45",
+          "fontFamily": ".SFUIDisplay-medium",
+          "fontSize": 16,
+        }
+      }
+    >
+      0
+    </Text>
+  </View>
+</View>
+`;

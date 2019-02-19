@@ -1,0 +1,144 @@
+/* All Courses screen title */
+"All Courses" = "Alle emner";
+
+/* No comment provided by engineer. */
+"Assignment Details" = "Oppgavedetaljer";
+
+/* No comment provided by engineer. */
+"Assignments" = "Oppgaver";
+
+/* No comment provided by engineer. */
+"Cancel" = "Avbryt";
+
+/* No comment provided by engineer. */
+"Cancel Submission" = "Avbryt innlevering";
+
+/* No comment provided by engineer. */
+"Close App" = "Lukk app";
+
+/* No comment provided by engineer. */
+"Comments" = "Kommentarer";
+
+/* No comment provided by engineer. */
+"Courses" = "Emner";
+
+/* No comment provided by engineer. */
+"Dashboard" = "Instrumentbord";
+
+/* No comment provided by engineer. */
+"Description" = "Beskrivelse";
+
+/* No comment provided by engineer. */
+"Done" = "Ferdig";
+
+/* No comment provided by engineer. */
+"Drawer closed" = "Skuff lukket";
+
+/* No comment provided by engineer. */
+"Drawer fully open" = "Skuff helt åpen";
+
+/* No comment provided by engineer. */
+"Drawer partially opened" = "Skuff delvis åpen";
+
+/* No comment provided by engineer. */
+"Due" = "Forfall";
+
+/* No comment provided by engineer. */
+"Edit" = "Rediger";
+
+/* No comment provided by engineer. */
+"Edit Course" = "Redigere emne";
+
+/* No comment provided by engineer. */
+"Failed upload" = "Opplasting mislyktes";
+
+/* No comment provided by engineer. */
+"File Types" = "Filtyper";
+
+/* No comment provided by engineer. */
+"Files" = "Filer";
+
+/* No comment provided by engineer. */
+"Grade" = "Karakter";
+
+/* No comment provided by engineer. */
+"Groups" = "Grupper";
+
+/* No comment provided by engineer. */
+"Invalid url" = "Ugyldig URL";
+
+/* No comment provided by engineer. */
+"No Content" = "Uten innhold";
+
+/* No comment provided by engineer. */
+"No Submission" = "Ingen innlevering";
+
+/* No comment provided by engineer. */
+"No Submission Date" = "Ingen innleveringsdato";
+
+/* Button to open external tool */
+"Open External Tool" = "Åpne eksterne verktøy";
+
+/* Past enrollments section title in All Courses screen */
+"Past Enrollments" = "Tidligere påmeldinger";
+
+/* No comment provided by engineer. */
+"Quizzes" = "Tester";
+
+/* No comment provided by engineer. */
+"Resubmit Assignment" = "Send oppgaven inn på nytt";
+
+/* No comment provided by engineer. */
+"Retry" = "Forsøk igjen";
+
+/* No comment provided by engineer. */
+"Rubric" = "Rubrikk";
+
+/* No comment provided by engineer. */
+"See All" = "Se alle";
+
+/* No comment provided by engineer. */
+"See All Courses" = "Se alle emner";
+
+/* No comment provided by engineer. */
+"Something went wrong while loading the quizzes." = "Noe gikk ved lasting av quizene.";
+
+/* No comment provided by engineer. */
+"Submission" = "Innlevering";
+
+/* No comment provided by engineer. */
+"Submission & Rubric" = "Innlevering og rubrikk";
+
+/* No comment provided by engineer. */
+"Submission Types" = "Innleveringstyper";
+
+/* No comment provided by engineer. */
+"Submit" = "Send inn";
+
+/* No comment provided by engineer. */
+"Submit Assignment" = "Lever oppgave";
+
+/* No comment provided by engineer. */
+"Successfully submitted!" = "Vellykket innsending!";
+
+/* No comment provided by engineer. */
+"The app needs to restart to use the new language settings. Please relaunch the app." = "Appen må åpnes på nytt for å ta i bruk de nye språkinnstillingene. Vennligst gjeninnfør appen.";
+
+/* No comment provided by engineer. */
+"There are no quizzes to display." = "Det er ingen tester å vise.";
+
+/* No comment provided by engineer. */
+"Updated Language Settings" = "Oppdatert språkinnstillinger";
+
+/* No comment provided by engineer. */
+"Uploading %@ of %@" = "Laster opp %1$@ av %2$@";
+
+/* No comment provided by engineer. */
+"Uploading..." = "Laster opp...";
+
+/* No comment provided by engineer. */
+"Website Address" = "Adresse til nettside";
+
+/* No comment provided by engineer. */
+"Your submission is now waiting to be graded" = "Din innlevering venter på karaktersetting";
+

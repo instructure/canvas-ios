@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18A391" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Assignment" representedClassName="Core.Assignment" syncable="YES">
+        <attribute name="allowedExtensions" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="courseID" attributeType="String" syncable="YES"/>
+        <attribute name="details" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dueAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="gradingTypeRaw" attributeType="String" syncable="YES"/>
+        <attribute name="htmlURL" attributeType="URI" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="lockAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="lockedForUser" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="pointsPossibleRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="position" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="quizID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="submissionTypesRaw" attributeType="Transformable" syncable="YES"/>
+        <attribute name="unlockAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="URI" syncable="YES"/>
+        <relationship name="fileSubmission" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="FileSubmission" inverseName="assignment" inverseEntity="FileSubmission" syncable="YES"/>
+        <relationship name="submission" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Submission" inverseName="assignment" inverseEntity="Submission" syncable="YES"/>
+    </entity>
+    <entity name="Color" representedClassName="Core.Color" syncable="YES">
+        <attribute name="canvasContextID" attributeType="String" syncable="YES"/>
+        <attribute name="color" attributeType="Transformable" customClassName="UIKit.UIColor" syncable="YES"/>
+    </entity>
+    <entity name="Course" representedClassName="Core.Course" syncable="YES">
+        <attribute name="courseCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="defaultViewRaw" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="imageDownloadURL" optional="YES" attributeType="URI" syncable="YES"/>
+        <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="enrollments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Enrollment" inverseName="course" inverseEntity="Enrollment" syncable="YES"/>
+    </entity>
+    <entity name="DiscussionEntry" representedClassName="Core.DiscussionEntry" syncable="YES">
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="message" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="parentID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="submission" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Submission" inverseName="discussionEntries" inverseEntity="Submission" syncable="YES"/>
+    </entity>
+    <entity name="Enrollment" representedClassName="Core.Enrollment" syncable="YES">
+        <attribute name="canvasContextID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="roleID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="roleRaw" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stateRaw" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="typeRaw" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="enrollments" inverseEntity="Course" syncable="YES"/>
+    </entity>
+    <entity name="File" representedClassName="Core.File" syncable="YES">
+        <attribute name="contentType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="displayName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="filename" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="folderID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hidden" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="hiddenForUser" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="localFileURL" optional="YES" attributeType="URI" syncable="YES"/>
+        <attribute name="lockAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="locked" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lockedForUser" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lockExplanation" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lockInfo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mediaEntryID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mimeClass" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="modifiedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="previewURL" optional="YES" attributeType="URI" syncable="YES"/>
+        <attribute name="size" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="thumbnailURL" optional="YES" attributeType="URI" syncable="YES"/>
+        <attribute name="unlockAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="URI" syncable="YES"/>
+        <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="submission" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Submission" inverseName="attachments" inverseEntity="Submission" syncable="YES"/>
+    </entity>
+    <entity name="FileSubmission" representedClassName="Core.FileSubmission" syncable="YES">
+        <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="error" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="started" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="submitted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="userID" attributeType="String" syncable="YES"/>
+        <relationship name="assignment" maxCount="1" deletionRule="Nullify" destinationEntity="Assignment" inverseName="fileSubmission" inverseEntity="Assignment" syncable="YES"/>
+        <relationship name="fileUploads" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="FileUpload" inverseName="submission" inverseEntity="FileUpload" syncable="YES"/>
+    </entity>
+    <entity name="FileUpload" representedClassName="Core.FileUpload" syncable="YES">
+        <attribute name="backgroundSessionID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="bytesSent" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="completed" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="contextRaw" attributeType="String" syncable="YES"/>
+        <attribute name="error" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fileID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="size" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="taskIDRaw" optional="YES" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="URI" syncable="YES"/>
+        <relationship name="submission" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FileSubmission" inverseName="fileUploads" inverseEntity="FileSubmission" syncable="YES"/>
+    </entity>
+    <entity name="Group" representedClassName="Core.Group" syncable="YES">
+        <attribute name="avatarURL" optional="YES" attributeType="URI" syncable="YES"/>
+        <attribute name="concluded" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="courseID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="showOnDashboard" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
+    <entity name="LogEvent" representedClassName="Core.LogEvent" syncable="YES">
+        <attribute name="message" attributeType="String" syncable="YES"/>
+        <attribute name="timestamp" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="typeRaw" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Quiz" representedClassName="Core.Quiz" syncable="YES">
+        <attribute name="courseID" attributeType="String" syncable="YES"/>
+        <attribute name="details" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dueAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="htmlURL" attributeType="URI" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="lockAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="pointsPossibleRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="questionCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="quizTypeRaw" attributeType="String" syncable="YES"/>
+        <attribute name="title" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Submission" representedClassName="Core.Submission" syncable="YES">
+        <attribute name="assignmentID" attributeType="String" syncable="YES"/>
+        <attribute name="attempt" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="body" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="excusedRaw" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="grade" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="late" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="latePolicyStatusRaw" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="missing" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="pointsDeductedRaw" optional="YES" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="previewUrl" optional="YES" attributeType="URI" syncable="YES"/>
+        <attribute name="scoreRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="submittedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="typeRaw" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="URI" syncable="YES"/>
+        <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="workflowStateRaw" attributeType="String" syncable="YES"/>
+        <relationship name="assignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Assignment" inverseName="submission" inverseEntity="Assignment" syncable="YES"/>
+        <relationship name="attachments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="File" inverseName="submission" inverseEntity="File" syncable="YES"/>
+        <relationship name="discussionEntries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DiscussionEntry" inverseName="submission" inverseEntity="DiscussionEntry" syncable="YES"/>
+    </entity>
+    <entity name="Tab" representedClassName="Core.Tab" syncable="YES">
+        <attribute name="contextRaw" attributeType="String" syncable="YES"/>
+        <attribute name="hiddenRaw" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="htmlURL" attributeType="URI" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="label" attributeType="String" syncable="YES"/>
+        <attribute name="position" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="typeRaw" attributeType="String" syncable="YES"/>
+        <attribute name="visibilityRaw" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="TTL" representedClassName="Core.TTL" syncable="YES">
+        <attribute name="key" attributeType="String" syncable="YES"/>
+        <attribute name="lastRefresh" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Assignment" positionX="-519.22265625" positionY="275.2890625" width="128" height="300"/>
+        <element name="Color" positionX="-177.3046875" positionY="-36" width="128" height="75"/>
+        <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="150"/>
+        <element name="DiscussionEntry" positionX="-369" positionY="-18" width="128" height="150"/>
+        <element name="Enrollment" positionX="-578.41796875" positionY="2.78125" width="128" height="150"/>
+        <element name="File" positionX="-162.1640625" positionY="69.79296875" width="128" height="420"/>
+        <element name="FileSubmission" positionX="-369" positionY="-18" width="128" height="150"/>
+        <element name="FileUpload" positionX="-360" positionY="-9" width="128" height="210"/>
+        <element name="Group" positionX="-366.25" positionY="-174.85546875" width="128" height="135"/>
+        <element name="LogEvent" positionX="-369" positionY="-18" width="128" height="90"/>
+        <element name="Quiz" positionX="-26.7890625" positionY="226.0703125" width="128" height="195"/>
+        <element name="Submission" positionX="-312.484375" positionY="260.38671875" width="128" height="330"/>
+        <element name="Tab" positionX="108.015625" positionY="177.67578125" width="128" height="165"/>
+        <element name="TTL" positionX="-173.30859375" positionY="-128.48046875" width="128" height="75"/>
+    </elements>
+</model>

@@ -1,0 +1,144 @@
+/* All Courses screen title */
+"All Courses" = "すべてのコース";
+
+/* No comment provided by engineer. */
+"Assignment Details" = "課題の詳細";
+
+/* No comment provided by engineer. */
+"Assignments" = "課題";
+
+/* No comment provided by engineer. */
+"Cancel" = "キャンセル";
+
+/* No comment provided by engineer. */
+"Cancel Submission" = "提出をキャンセル";
+
+/* No comment provided by engineer. */
+"Close App" = "アプリを閉じる";
+
+/* No comment provided by engineer. */
+"Comments" = "コメント";
+
+/* No comment provided by engineer. */
+"Courses" = "コース";
+
+/* No comment provided by engineer. */
+"Dashboard" = "ダッシュボード";
+
+/* No comment provided by engineer. */
+"Description" = "説明";
+
+/* No comment provided by engineer. */
+"Done" = "完了";
+
+/* No comment provided by engineer. */
+"Drawer closed" = "引き出しが閉まっている";
+
+/* No comment provided by engineer. */
+"Drawer fully open" = "引き出し全開";
+
+/* No comment provided by engineer. */
+"Drawer partially opened" = "引き出しが部分的に開いている";
+
+/* No comment provided by engineer. */
+"Due" = "締切日";
+
+/* No comment provided by engineer. */
+"Edit" = "編集";
+
+/* No comment provided by engineer. */
+"Edit Course" = "コースを編集";
+
+/* No comment provided by engineer. */
+"Failed upload" = "アップロード中に失敗";
+
+/* No comment provided by engineer. */
+"File Types" = "ファイル タイプ";
+
+/* No comment provided by engineer. */
+"Files" = "ファイル";
+
+/* No comment provided by engineer. */
+"Grade" = "成績";
+
+/* No comment provided by engineer. */
+"Groups" = "グループ";
+
+/* No comment provided by engineer. */
+"Invalid url" = "無効なURL";
+
+/* No comment provided by engineer. */
+"No Content" = "コンテンツなし";
+
+/* No comment provided by engineer. */
+"No Submission" = "提出なし";
+
+/* No comment provided by engineer. */
+"No Submission Date" = "提出日なし";
+
+/* Button to open external tool */
+"Open External Tool" = "開かれている外部ツール";
+
+/* Past enrollments section title in All Courses screen */
+"Past Enrollments" = "過去の登録";
+
+/* No comment provided by engineer. */
+"Quizzes" = "クイズ";
+
+/* No comment provided by engineer. */
+"Resubmit Assignment" = "課題を再提出する";
+
+/* No comment provided by engineer. */
+"Retry" = "再試行";
+
+/* No comment provided by engineer. */
+"Rubric" = "ルービック";
+
+/* No comment provided by engineer. */
+"See All" = "すべてを見る";
+
+/* No comment provided by engineer. */
+"See All Courses" = "すべての コースを表示";
+
+/* No comment provided by engineer. */
+"Something went wrong while loading the quizzes." = "クイズをロード中に問題が発生しました。.";
+
+/* No comment provided by engineer. */
+"Submission" = "提出";
+
+/* No comment provided by engineer. */
+"Submission & Rubric" = "提出 & ルブリック";
+
+/* No comment provided by engineer. */
+"Submission Types" = "提出タイプ";
+
+/* No comment provided by engineer. */
+"Submit" = "提出";
+
+/* No comment provided by engineer. */
+"Submit Assignment" = "課題を提出する";
+
+/* No comment provided by engineer. */
+"Successfully submitted!" = "正常に提出しました！";
+
+/* No comment provided by engineer. */
+"The app needs to restart to use the new language settings. Please relaunch the app." = "新しい言語設定を使用するには、アプリを再起動する必要があります。アプリを再起動してください。";
+
+/* No comment provided by engineer. */
+"There are no quizzes to display." = "表示するクイズはありません。";
+
+/* No comment provided by engineer. */
+"Updated Language Settings" = "更新された言語設定";
+
+/* No comment provided by engineer. */
+"Uploading %@ of %@" = "～の %1$@ をアップロード中%2$@";
+
+/* No comment provided by engineer. */
+"Uploading..." = "更新中...";
+
+/* No comment provided by engineer. */
+"Website Address" = "ウェブサイトのアドレス";
+
+/* No comment provided by engineer. */
+"Your submission is now waiting to be graded" = "あなたの提出物は採点待ちです";
+

@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TypeAheadSearch renders a search bar 1`] = `
+<SearchBar
+  autoCapitalize="sentences"
+  autoCorrect={false}
+  barStyle="default"
+  barTintColor={null}
+  cancelButtonText="Cancel"
+  editable={true}
+  enablesReturnKeyAutomatically={true}
+  hideBackground={true}
+  keyboardAppearance="default"
+  keyboardType="default"
+  onBlur={[Function]}
+  onCancelButtonPress={[Function]}
+  onChange={[Function]}
+  onChangeText={[Function]}
+  onFocus={[Function]}
+  onSearchButtonPress={[Function]}
+  placeholder="Search"
+  returnKeyType="search"
+  searchBarStyle="default"
+  showsCancelButton={false}
+  showsCancelButtonWhileEditing={true}
+  spellCheck={false}
+  text=""
+  textColor={null}
+  textFieldBackgroundColor="#F1F1F2"
+  tintColor={null}
+/>
+`;

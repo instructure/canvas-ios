@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CourseFilter renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "borderBottomColor": "lightgrey",
+      "borderBottomWidth": 0.5,
+      "paddingBottom": 8,
+      "paddingHorizontal": 16,
+      "paddingTop": 16,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "flex-end",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+      }
+    }
+  >
+    <Text
+      accessibilityTraits="header"
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      numberOfLines={1}
+      style={
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontFamily": ".SFUIDisplay-heavy",
+            "fontSize": 24,
+          },
+          Object {
+            "flex": 1,
+          },
+        ]
+      }
+    >
+      All Courses
+    </Text>
+    <TouchableOpacity
+      accessibilityLabel="Filter Inbox"
+      accessibilityTraits="button"
+      hitSlop={
+        Object {
+          "bottom": 15,
+          "left": 15,
+          "right": 15,
+          "top": 15,
+        }
+      }
+      onPress={[Function]}
+      style={
+        Object {
+          "flexShrink": 0,
+          "marginBottom": 1,
+          "marginLeft": 8,
+        }
+      }
+      testID="inbox.filterByCourse"
+    >
+      <View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Array [
+                Object {
+                  "color": "#374A59",
+                  "fontSize": 16,
+                  "fontWeight": "500",
+                },
+                undefined,
+              ],
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+        >
+          Filter
+        </Text>
+      </View>
+    </TouchableOpacity>
+  </View>
+</View>
+`;

@@ -1,0 +1,92 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HomeTabRow can be pressed 1`] = `
+<FeatureRow
+  disclosureIndicator={true}
+  onPress={[Function]}
+  subtitle={null}
+  testID="courses-details.assignments-cell"
+  title="Home"
+/>
+`;
+
+exports[`HomeTabRow can be selected 1`] = `
+<FeatureRow
+  disclosureIndicator={true}
+  onPress={[Function]}
+  selected={true}
+  subtitle={null}
+  testID="courses-details.assignments-cell"
+  title="Home"
+/>
+`;
+
+exports[`HomeTabRow renders correctly 1`] = `
+<FeatureRow
+  disclosureIndicator={true}
+  onPress={[Function]}
+  subtitle={null}
+  testID="courses-details.assignments-cell"
+  title="Home"
+/>
+`;
+
+exports[`HomeTabRow renders correctly for each type 1`] = `
+<FeatureRow
+  disclosureIndicator={true}
+  onPress={[Function]}
+  subtitle={null}
+  testID="courses-details.assignments-cell"
+  title="Home"
+/>
+`;
+
+exports[`HomeTabRow renders correctly for each type 2`] = `
+<FeatureRow
+  disclosureIndicator={true}
+  onPress={[Function]}
+  subtitle={null}
+  testID="courses-details.assignments-cell"
+  title="Home"
+/>
+`;
+
+exports[`HomeTabRow renders correctly for each type 3`] = `
+<FeatureRow
+  disclosureIndicator={true}
+  onPress={[Function]}
+  subtitle={null}
+  testID="courses-details.assignments-cell"
+  title="Home"
+/>
+`;
+
+exports[`HomeTabRow renders correctly for each type 4`] = `
+<FeatureRow
+  disclosureIndicator={true}
+  onPress={[Function]}
+  subtitle={null}
+  testID="courses-details.assignments-cell"
+  title="Home"
+/>
+`;
+
+exports[`HomeTabRow renders correctly for each type 5`] = `
+<FeatureRow
+  disclosureIndicator={true}
+  onPress={[Function]}
+  subtitle={null}
+  testID="courses-details.assignments-cell"
+  title="Home"
+/>
+`;
+
+exports[`HomeTabRow renders correctly for each type 6`] = `
+<FeatureRow
+  disclosureIndicator={true}
+  onPress={[Function]}
+  subtitle={null}
+  testID="courses-details.assignments-cell"
+  title="Home"
+/>
+`;

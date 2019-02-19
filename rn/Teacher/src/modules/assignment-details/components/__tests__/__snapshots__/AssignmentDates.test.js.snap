@@ -1,0 +1,261 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render with multiple due dates 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
+        undefined,
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+      ]
+    }
+  >
+    Multiple Due Dates
+  </Text>
+</View>
+`;
+
+exports[`render with multiple due dates 2`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessibilityLabel={undefined}
+    accessible={true}
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+          },
+          Object {
+            "paddingTop": 4,
+          },
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+        ]
+      }
+      testID="assignment-details.assignment-dates.due-date-lbl"
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "fontWeight": "600",
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay-semibold",
+            },
+          ]
+        }
+      >
+        Due:
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {},
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
+        }
+      >
+         May 31, 2037 at 11:59 PM
+      </Text>
+    </Text>
+  </View>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
+        Object {
+          "paddingTop": 4,
+        },
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+      ]
+    }
+    testID="assignment-details.assignment-dates.due-for-lbl"
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+          },
+          Object {
+            "fontWeight": "600",
+          },
+          Object {
+            "fontFamily": ".SFUIDisplay-semibold",
+          },
+        ]
+      }
+    >
+      For:
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+          },
+          Object {},
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+        ]
+      }
+    >
+       -
+    </Text>
+  </Text>
+  <View>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+          },
+          Object {
+            "paddingTop": 4,
+          },
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "fontWeight": "600",
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay-semibold",
+            },
+          ]
+        }
+      >
+        Availability:
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {},
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
+        }
+      >
+         Closed
+      </Text>
+    </Text>
+  </View>
+</View>
+`;

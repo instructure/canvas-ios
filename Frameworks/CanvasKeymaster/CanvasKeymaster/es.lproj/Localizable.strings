@@ -1,0 +1,135 @@
+/* The distance in miles that a user is from a school. */
+"%@ miles away" = "%@ a millas";
+
+/* No comment provided by engineer. */
+"Build all the things" = "Construir todo";
+
+/* Help label when user can't find their school. */
+"Can't find your school? Try typing the full school URL." = "¿No puede encontrar su escuela? Intente escribir la URL completa de la escuela.";
+
+/* No comment provided by engineer. */
+"Cancel" = "Cancelar";
+
+/* No comment provided by engineer. */
+"Cancel Request" = "CanCancelar solicitud";
+
+/* Label displayed when forcing canvas login */
+"Canvas Login" = "Iniciar sesión en Canvas";
+
+/* No comment provided by engineer. */
+"Casual question or suggestion" = "Pregunta casual o sugerencia";
+
+/* No comment provided by engineer. */
+"Check network and try again!" = "¡Comprueba la red y vuelve a intentarlo!";
+
+/* No comment provided by engineer. */
+"Choose One" = "Escoja uno";
+
+/* Connectivity alert close text */
+"Close" = "Cerrar";
+
+/* No comment provided by engineer. */
+"Continue Editing" = "Continuar editando";
+
+/* No comment provided by engineer. */
+"Describe the feature here" = "Describa la característica aquí";
+
+/* No comment provided by engineer. */
+"describe your problem" = "describa su problema";
+
+/* Dismiss login expired/revoked alert button */
+"Dismiss" = "Descartar";
+
+/* No comment provided by engineer. */
+"Emergency" = "Emergencia";
+
+/* No comment provided by engineer. */
+"enter a subject" = "ingrese un asunto";
+
+/* Text view to enter the description of the ticket */
+"Enter ticket description" = "Ingrese la descripción del boleto";
+
+/* Text field to enter subject of the ticket */
+"Enter ticket subject" = "Ingrese el asunto del boleto";
+
+/* No comment provided by engineer. */
+"Extremely critical emergency" = "Emergencia extremadamente crítica";
+
+/* Help View Controller Title */
+"Help" = "Ayuda";
+
+/* Help label when domain search has started */
+"How do I find my school?" = "¿Cómo encuentro mi escuela?";
+
+/* No comment provided by engineer. */
+"I am stuck and can't get things done" = "Estoy bloqueado y no puedo terminar mis tareas";
+
+/* No comment provided by engineer. */
+"I can't get things done until I hear back from you" = "No puedo hacer nada hasta que me conteste";
+
+/* No comment provided by engineer. */
+"I need help but it's not urgent" = "Necesito ayuda, pero no es urgente";
+
+/* No comment provided by engineer. */
+"Invalid Canvas URL." = "URL de Canvas inválida.";
+
+/* No comment provided by engineer. */
+"Invalid User Agent." = "Agente de usuario inválido.";
+
+/* No comment provided by engineer. */
+"Non-urgent help needed" = "Se necesita ayuda no urgente";
+
+/* No comment provided by engineer. */
+"Not authorized." = "No autorizado.";
+
+/* No comment provided by engineer. */
+"OK" = "Aceptar";
+
+/* Placeholder for delete icon in Multi User Table View Cell */
+"remove user" = "borrar usuario";
+
+/* No comment provided by engineer. */
+"Report a Problem" = "Informe de un problema";
+
+/* No comment provided by engineer. */
+"Request a Feature" = "Solicitar una función";
+
+/* No comment provided by engineer. */
+"Request Failed!" = "¡La solicitud ha fallado!";
+
+/* No comment provided by engineer. */
+"select the impact" = "seleccionar el impacto";
+
+/* Button to select the severity of the ticket */
+"Select ticket impact level" = "Seleccionar nivel de impacto de boleto";
+
+/* No comment provided by engineer. */
+"Send" = "Enviar";
+
+/* Label displayed when logging in as site admin */
+"Site Admin Login" = "Iniciar sesión en el sitio del administrador";
+
+/* No comment provided by engineer. */
+"Something is broken but I can work around it" = "Algo no funciona, pero puedo trabajar de todas maneras";
+
+/* No comment provided by engineer. */
+"Success!" = "¡Éxito!";
+
+/* Subtitle help text describing how to find a school. */
+"Tap here for help." = "Presione aquí para obtener ayuda.";
+
+/* No comment provided by engineer. */
+"Thanks, your request was received!" = "¡Gracias, tu solicitud ha sido recibida!";
+
+/* No comment provided by engineer. */
+"Trouble logging in" = "Problemas para iniciar sesión";
+
+/* Connectivity alert message */
+"We can't connect to Canvas. Have you checked your internet connection?" = "No podemos conectarnos a Canvas. ¿Ha revisado su conexión a Internet?";
+
+/* Connectivity alert title */
+"Whoops!" = "¡Ups!";
+
+/* when the access token has been revoked */
+"Your login has expired or has been removed by the server. Please log in again." = "Su inicio de sesión ha expirado o ha sido borrado por el servidor. Inicie sesión nuevamente.";
+

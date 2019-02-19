@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AnswersFinalViewController" customModule="QuizKit" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="super_panda_quiz" translatesAutoresizingMaskIntoConstraints="NO" id="zuo-ts-Wb8">
+                    <rect key="frame" x="268" y="168" width="64" height="64"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="D9g-Hd-etX"/>
+                        <constraint firstAttribute="width" constant="64" id="zor-Uh-0c9"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This quiz doesn't allow you to go back to change answers." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6TY-PO-Q1U">
+                    <rect key="frame" x="88" y="314" width="426" height="20"/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Answers are final" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yon-N8-sTp">
+                    <rect key="frame" x="198" y="262" width="204" height="32"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="centerX" secondItem="zuo-ts-Wb8" secondAttribute="centerX" id="01f-uo-qOn"/>
+                <constraint firstAttribute="centerX" secondItem="Yon-N8-sTp" secondAttribute="centerX" id="I7g-nP-eUU"/>
+                <constraint firstItem="6TY-PO-Q1U" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="RoT-he-HCQ"/>
+                <constraint firstItem="Yon-N8-sTp" firstAttribute="top" secondItem="zuo-ts-Wb8" secondAttribute="bottom" constant="30" id="Wm6-sR-N3V"/>
+                <constraint firstItem="6TY-PO-Q1U" firstAttribute="top" secondItem="Yon-N8-sTp" secondAttribute="bottom" constant="20" id="biQ-CC-u0g"/>
+                <constraint firstAttribute="centerX" secondItem="6TY-PO-Q1U" secondAttribute="centerX" id="hQN-S3-6na"/>
+                <constraint firstAttribute="centerY" secondItem="Yon-N8-sTp" secondAttribute="centerY" constant="22" id="jT9-Tz-cX5"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="6TY-PO-Q1U" secondAttribute="trailing" constant="20" id="wn2-Aq-HNr"/>
+            </constraints>
+            <point key="canvasLocation" x="533" y="671"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="super_panda_quiz" width="64" height="64"/>
+    </resources>
+</document>

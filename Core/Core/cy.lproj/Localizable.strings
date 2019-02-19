@@ -1,0 +1,237 @@
+/* No comment provided by engineer. */
+"%@ GPA" = "%@ GPA";
+
+/* No comment provided by engineer. */
+"Are you sure you would like to delete this comment?" = "Ydych chi’n siŵr eich bod am ddileu’r sylw hwn?";
+
+/* No comment provided by engineer. */
+"Assignment" = "Aseiniad";
+
+/* No comment provided by engineer. */
+"Assignment not found." = "Heb ddod o hyd i’r aseiniad.";
+
+/* No comment provided by engineer. */
+"Authentication failed. Most likely the user denied the request for access." = "Wedi methu dilysu. Mae’n bur debyg bod y defnyddiwr wedi gwrthod y cais am fynediad.";
+
+/* No comment provided by engineer. */
+"Can’t find your school? Try typing the full school URL." = "Methu dod o hyd i’ch ysgol? Ceisiwch deipio URL llawn yr ysgol.";
+
+/* No comment provided by engineer. */
+"Cancel" = "Canslo";
+
+/* No comment provided by engineer. */
+"Canvas Login" = "Manylion Mewngofnodi Canvas";
+
+/* No comment provided by engineer. */
+"Canvas Network" = "Canvas Network";
+
+/* No comment provided by engineer. */
+"Closed" = "Wedi cau";
+
+/* No comment provided by engineer. */
+"Comments" = "Sylwadau";
+
+/* No comment provided by engineer. */
+"Complete" = "Cwblhau";
+
+/* No comment provided by engineer. */
+"Course" = "Cwrs";
+
+/* No comment provided by engineer. */
+"d_questions" = "d_questions";
+
+/* No comment provided by engineer. */
+"Delete" = "Dileu";
+
+/* No comment provided by engineer. */
+"Delete comment" = "Dileu sylw";
+
+/* No comment provided by engineer. */
+"Delete Comment" = "Dileu Sylw";
+
+/* No comment provided by engineer. */
+"Discussion Comment" = "Sylw ar Drafodaeth";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Gwrthod";
+
+/* No comment provided by engineer. */
+"External Tool" = "Adnodd Allanol";
+
+/* No comment provided by engineer. */
+"File Upload" = "Llwytho Ffeil i Fyny";
+
+/* No comment provided by engineer. */
+"Final Grade: %@" = "Gradd Derfynol: %@";
+
+/* No comment provided by engineer. */
+"final_grade_g_pts" = "final_grade_g_pts";
+
+/* No comment provided by engineer. */
+"Find my school" = "Dod o hyd i fy ysgol";
+
+/* No comment provided by engineer. */
+"Find your school or district" = "Ewch ati i ddod o hyd i'ch ysgol neu'ch ardal";
+
+/* No comment provided by engineer. */
+"Forget %@" = "Anghofio %@";
+
+/* No comment provided by engineer. */
+"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
+
+/* No comment provided by engineer. */
+"g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
+"Help" = "Help";
+
+/* No comment provided by engineer. */
+"How do I find my school?" = "Sut ydw i’n dod o hyd i fy ysgol?";
+
+/* No comment provided by engineer. */
+"Incomplete" = "Heb Gwblhau";
+
+/* No comment provided by engineer. */
+"late_penalty_g_pts" = "late_penalty_g_pts";
+
+/* No comment provided by engineer. */
+"Launch External Tool" = "Lansio Adnodd Allanol";
+
+/* end of and list pattern */
+"list_and_end" = "%1$@, a %2$@";
+
+/* middle of and list pattern */
+"list_and_middle" = "%1$@, %2$@";
+
+/* start of and list pattern */
+"list_and_start" = "%1$@, %2$@";
+
+/* and list pattern for 2 items */
+"list_and_two" = "%1$@ a %2$@";
+
+/* end of or list pattern */
+"list_or_end" = "%1$@, neu %2$@";
+
+/* middle of or list pattern */
+"list_or_middle" = "%1$@, %2$@";
+
+/* start of or list pattern */
+"list_or_start" = "%1$@, %2$@";
+
+/* or list pattern for 2 items */
+"list_or_two" = "%1$@ neu %2$@";
+
+/* No comment provided by engineer. */
+"Manual OAuth Login" = "OAuth Login sydd ddim yn awtomatig";
+
+/* No comment provided by engineer. */
+"Media Recording" = "Recordio Cyfryngau";
+
+/* No comment provided by engineer. */
+"No Due Date" = "Dim Dyddiad Erbyn";
+
+/* No comment provided by engineer. */
+"No Submission" = "Dim cyflwyniad";
+
+/* No comment provided by engineer. */
+"Not Graded" = "Heb eu graddio";
+
+/* No comment provided by engineer. */
+"Not Submitted" = "Heb Gyflwyno";
+
+/* No comment provided by engineer. */
+"OK" = "Iawn";
+
+/* No comment provided by engineer. */
+"On Paper" = "Ar bapur";
+
+/* No comment provided by engineer. */
+"out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
+"plural_points" = "plural_points";
+
+/* No comment provided by engineer. */
+"Quiz" = "Cwis";
+
+/* No comment provided by engineer. */
+"Remove" = "Tynnu";
+
+/* No comment provided by engineer. */
+"Removed %1$@" = "Wedi tynnu %1$@";
+
+/* No comment provided by engineer. */
+"Removed %1$@ by %2$@" = "%1$@ wedi’i dynnu gan %2$@";
+
+/* No comment provided by engineer. */
+"Reply to the annotation or previous comments" = "Ymateb i’r anodiad neu sylwadau blaenorol";
+
+/* No comment provided by engineer. */
+"Resubmit Assignment" = "Ailgyflwyno Aseiniad";
+
+/* No comment provided by engineer. */
+"See what's new." = "Dewch i weld beth sy’n newydd.";
+
+/* No comment provided by engineer. */
+"Select Account" = "Dewis Cyfrif";
+
+/* No comment provided by engineer. */
+"Select Assignment" = "Dewis Aseiniad";
+
+/* No comment provided by engineer. */
+"Select Course" = "Dewis Cwrs";
+
+/* No comment provided by engineer. */
+"Send comment" = "Anfon sylw";
+
+/* No comment provided by engineer. */
+"Site Admin Login" = "Manylion Mewngofnodi Gweinyddwr y Safle";
+
+/* No comment provided by engineer. */
+"Style" = "Arddull";
+
+/* No comment provided by engineer. */
+"Submission Failed" = "Cyflwyniad wedi methu";
+
+/* No comment provided by engineer. */
+"Submission Uploading..." = "Cyflwyniad yn llwytho i fyny...";
+
+/* No comment provided by engineer. */
+"Submit Assignment" = "Cyflwyno Aseiniad";
+
+/* No comment provided by engineer. */
+"Submitted" = "Wedi Cyflwyno";
+
+/* Submitted date */
+"Submitted %@" = "Wedi Cyflwyno %@";
+
+/* No comment provided by engineer. */
+"Tap here for help." = "Tapiwch yma i gael help.";
+
+/* No comment provided by engineer. */
+"Tap to view details" = "Tapiwch i weld manylion";
+
+/* No comment provided by engineer. */
+"Tap to view progress" = "Tapiwch i weld cynnydd";
+
+/* No comment provided by engineer. */
+"Text Entry" = "Cofnod Testun";
+
+/* No comment provided by engineer. */
+"This assignment is due by %@" = "Mae’r aseiniad hwn i fod i gael ei gyflwyno erbyn %@";
+
+/* No comment provided by engineer. */
+"This assignment was due by %@" = "Roedd yr aseiniad hwn yn fod i gael ei gyflwyno erbyn %@";
+
+/* No comment provided by engineer. */
+"We've made a few changes." = "Rydyn ni wedi gwneud ychydig o newidiadau.";
+
+/* No comment provided by engineer. */
+"Website URL" = "URL Gwefan";
+
+/* No comment provided by engineer. */
+"What’s your school’s name?" = "Beth yw enw eich ysgol?";
+
+/* No comment provided by engineer. */
+"You will need to log into at least one Canvas account from the Student app first." = "I ddechrau, bydd angen i chi fewngofnodi i o leiaf un cyfrif Canvas o’r ap Myfyrwyr.";
+

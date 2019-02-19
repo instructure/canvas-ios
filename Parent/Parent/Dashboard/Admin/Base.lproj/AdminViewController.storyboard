@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Admin View Controller-->
+        <scene sceneID="GRG-em-oUj">
+            <objects>
+                <viewController storyboardIdentifier="vc" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qhe-JY-OUn" customClass="AdminViewController" customModule="Parent" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TmQ-Xi-0Ck">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="ada-kN-OkJ">
+                                <rect key="frame" x="0.5" y="150" width="320" height="141"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Welcome!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b0z-1f-3Pv">
+                                        <rect key="frame" x="119.5" y="8" width="81" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="18R-6f-XGb"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Tap to start viewing Canvas as another  person." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="chJ-nt-Qcc">
+                                        <rect key="frame" x="8" y="37" width="303" height="36"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="36" id="NY5-0x-fVj"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" red="0.45098039215686275" green="0.50588235294117645" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pur-YX-Y1F">
+                                        <rect key="frame" x="35" y="97" width="250" height="42"/>
+                                        <color key="backgroundColor" red="0.74117647060000003" green="0.19215686269999999" blue="0.63137254899999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="4Bd-Wb-sAE"/>
+                                            <constraint firstAttribute="height" constant="42" id="Mm6-4l-s71"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                        <state key="normal" title="Act as User">
+                                            <color key="titleColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="actAsUserTapped:" destination="qhe-JY-OUn" eventType="touchUpInside" id="qRH-SE-icz"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="Pur-YX-Y1F" firstAttribute="centerX" secondItem="ada-kN-OkJ" secondAttribute="centerX" id="EB4-SN-WFq"/>
+                                    <constraint firstItem="chJ-nt-Qcc" firstAttribute="centerX" secondItem="ada-kN-OkJ" secondAttribute="centerX" id="fwu-z5-YE7"/>
+                                    <constraint firstItem="b0z-1f-3Pv" firstAttribute="centerX" secondItem="ada-kN-OkJ" secondAttribute="centerX" id="nz8-ia-Yeh"/>
+                                    <constraint firstItem="Pur-YX-Y1F" firstAttribute="top" secondItem="chJ-nt-Qcc" secondAttribute="bottom" constant="24" id="o2r-HV-X0x"/>
+                                    <constraint firstAttribute="height" constant="141" id="oad-yg-WFj"/>
+                                    <constraint firstItem="chJ-nt-Qcc" firstAttribute="top" secondItem="b0z-1f-3Pv" secondAttribute="bottom" constant="8" id="rBn-iT-U6d"/>
+                                    <constraint firstItem="b0z-1f-3Pv" firstAttribute="top" secondItem="ada-kN-OkJ" secondAttribute="top" constant="8" id="rhv-na-iME"/>
+                                    <constraint firstItem="chJ-nt-Qcc" firstAttribute="leading" secondItem="ada-kN-OkJ" secondAttribute="leading" constant="8" id="zMo-Mj-b7s"/>
+                                    <constraint firstAttribute="width" constant="320" id="zrf-FK-aQe"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="ada-kN-OkJ" firstAttribute="centerX" secondItem="qIP-lE-4GV" secondAttribute="centerX" id="8ZZ-yf-rzQ"/>
+                            <constraint firstItem="ada-kN-OkJ" firstAttribute="centerY" secondItem="qIP-lE-4GV" secondAttribute="centerY" multiplier="3:4" id="d9z-xC-Tza"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="qIP-lE-4GV"/>
+                    </view>
+                    <connections>
+                        <outlet property="actAsUserButton" destination="Pur-YX-Y1F" id="OB5-Lh-Egg"/>
+                        <outlet property="directionsLabel" destination="chJ-nt-Qcc" id="Deq-Ai-y9u"/>
+                        <outlet property="welcomeLabel" destination="b0z-1f-3Pv" id="ShQ-Tx-cbb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G5D-hF-Fy6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="135" y="266.19718309859155"/>
+        </scene>
+    </scenes>
+</document>

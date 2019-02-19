@@ -1,0 +1,45 @@
+/* Class = "UILabel"; text = "Label"; ObjectID = "7tl-s1-0wg"; */
+"7tl-s1-0wg.text" = "Mærke";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "7VQ-qv-Wtk"; */
+"7VQ-qv-Wtk.text" = "Titel";
+
+/* Class = "UILabel"; text = "Canvas Login"; ObjectID = "7yY-o5-DSG"; */
+"7yY-o5-DSG.text" = "Canvas-login";
+
+/* Class = "UIButton"; accessibilityLabel = "cancel"; ObjectID = "aHi-ya-AL9"; */
+"aHi-ya-AL9.accessibilityLabel" = "Annuller";
+
+/* Class = "UIButton"; normalTitle = "See what's new."; ObjectID = "bLU-B4-k2x"; */
+"bLU-B4-k2x.normalTitle" = "Se, hvad der er nyt";
+
+/* Class = "UIButton"; normalTitle = "Canvas Network"; ObjectID = "eln-Wg-hVk"; */
+"eln-Wg-hVk.normalTitle" = "Canvas Network";
+
+/* Class = "UILabel"; text = "What's your school's name?"; ObjectID = "hXv-Vt-Lud"; */
+"hXv-Vt-Lud.text" = "Hvad er din skoles navn?";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "jsr-jq-3y0"; */
+"jsr-jq-3y0.text" = "Titel";
+
+/* Class = "UILabel"; text = "Previous Logins"; ObjectID = "Kpj-4f-cdc"; */
+"Kpj-4f-cdc.text" = "Tidligere logins";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "nTZ-ii-mqn"; */
+"nTZ-ii-mqn.text" = "Undertitel";
+
+/* Class = "UIButton"; normalTitle = "http://example.instructure.com"; ObjectID = "OcW-eP-myo"; */
+"OcW-eP-myo.normalTitle" = "http://example.instructure.com";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "UqJ-Ob-4nT"; */
+"UqJ-Ob-4nT.text" = "Mærke";
+
+/* Class = "UITextField"; placeholder = "Find your school or district"; ObjectID = "xzj-lX-iaI"; */
+"xzj-lX-iaI.placeholder" = "Find din skole eller distrikt";
+
+/* Class = "UILabel"; text = "We've made a few changes."; ObjectID = "zAy-eY-MLr"; */
+"zAy-eY-MLr.text" = "Vi har lavet nogle ændringer.";
+
+/* Class = "UIButton"; normalTitle = "Find my school"; ObjectID = "zQQ-hy-gpK"; */
+"zQQ-hy-gpK.normalTitle" = "Find min skole";
+

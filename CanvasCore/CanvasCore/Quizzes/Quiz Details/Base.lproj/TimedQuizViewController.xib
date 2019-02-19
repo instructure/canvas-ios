@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TimedQuizViewController" customModule="QuizKit" customModuleProvider="target">
+            <connections>
+                <outlet property="timeLimitLabel" destination="KWG-Lz-03A" id="awk-ek-76M"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="timed" translatesAutoresizingMaskIntoConstraints="NO" id="BSL-4a-HgP">
+                    <rect key="frame" x="155.5" y="223.5" width="64" height="64"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="64" id="4T0-z2-ulT"/>
+                        <constraint firstAttribute="height" constant="64" id="hon-cM-Fql"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Timed Quiz" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aPJ-b1-PDA">
+                    <rect key="frame" x="119.5" y="317.5" width="136.5" height="32"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hide/show timer by pressing the timer." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VPh-7F-wIC">
+                    <rect key="frame" x="40.5" y="419.5" width="294.5" height="20.5"/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have 5 minutes." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KWG-Lz-03A">
+                    <rect key="frame" x="111" y="369.5" width="153.5" height="20"/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="centerX" secondItem="VPh-7F-wIC" secondAttribute="centerX" id="3Mv-u9-WkQ"/>
+                <constraint firstAttribute="centerX" secondItem="BSL-4a-HgP" secondAttribute="centerX" id="4Vt-tE-1BK"/>
+                <constraint firstItem="KWG-Lz-03A" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="9NW-Ro-6xD"/>
+                <constraint firstItem="VPh-7F-wIC" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="EyU-oL-ats"/>
+                <constraint firstItem="aPJ-b1-PDA" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" priority="150" id="FAK-Lb-5cs"/>
+                <constraint firstItem="aPJ-b1-PDA" firstAttribute="top" secondItem="BSL-4a-HgP" secondAttribute="bottom" constant="30" id="Hm6-E0-89S"/>
+                <constraint firstItem="VPh-7F-wIC" firstAttribute="top" secondItem="KWG-Lz-03A" secondAttribute="bottom" priority="499" constant="30" id="IMf-fF-hw4"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="VPh-7F-wIC" secondAttribute="trailing" constant="20" id="JrX-Fe-o06"/>
+                <constraint firstAttribute="centerX" secondItem="KWG-Lz-03A" secondAttribute="centerX" id="RvJ-G5-LoM"/>
+                <constraint firstItem="KWG-Lz-03A" firstAttribute="top" secondItem="aPJ-b1-PDA" secondAttribute="bottom" constant="20" id="bwg-1C-fP4"/>
+                <constraint firstAttribute="centerX" secondItem="aPJ-b1-PDA" secondAttribute="centerX" id="g17-i7-59N"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="KWG-Lz-03A" secondAttribute="trailing" constant="20" id="kpV-Wp-UUR"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="VPh-7F-wIC" secondAttribute="bottom" constant="100" id="uKl-yL-3vt"/>
+            </constraints>
+            <point key="canvasLocation" x="33.5" y="54.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="timed" width="64" height="64"/>
+    </resources>
+</document>

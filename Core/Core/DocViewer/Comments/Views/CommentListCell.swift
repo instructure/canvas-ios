@@ -1,0 +1,64 @@
+//
+// Copyright (C) 2018-present Instructure, Inc.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, version 3 of the License.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+
+import UIKit
+import PSPDFKit
+
+protocol CommentListCellDelegate: class {
+    func deletePressed(on: DocViewerCommentReplyAnnotation)
+}
+
+class CommentListCell: UITableViewCell {
+    @IBOutlet weak var userLabel: DynamicLabel?
+    @IBOutlet weak var commentLabel: DynamicLabel?
+    @IBOutlet weak var removedLabel: DynamicLabel?
+    @IBOutlet weak var deleteButton: DynamicButton?
+    @IBOutlet weak var removedLabelHeightConstraint: NSLayoutConstraint!
+
+    var comment = DocViewerCommentReplyAnnotation()
+    weak var delegate: CommentListCellDelegate?
+
+    func update(comment: DocViewerCommentReplyAnnotation, delegate: CommentListCellDelegate, metadata: APIDocViewerAnnotationsMetadata?) {
+        accessibilityIdentifier = "CommentListItem.\(comment.name ?? "")"
+        self.comment = comment
+        self.delegate = delegate
+        userLabel?.text = comment.userName
+        commentLabel?.text = comment.contents
+        let isDeletable = metadata?.permissions == .readwritemanage || comment.isEditable
+        deleteButton?.isHidden = !isDeletable || comment.isDeleted
+        deleteButton?.accessibilityIdentifier = "CommentListItem.\(comment.name ?? "").deleteButton"
+        deleteButton?.accessibilityLabel = NSLocalizedString("Delete comment", bundle: .core, comment: "")
+        if comment.isDeleted {
+            removedLabel?.isHidden = false
+            removedLabelHeightConstraint?.constant = 19.5
+            let date = DateFormatter.localizedString(from: comment.deletedAt ?? Date(), dateStyle: .medium, timeStyle: .none)
+            if let deletedBy = comment.deletedBy ?? comment.deletedByID {
+                let format = NSLocalizedString("Removed %1$@ by %2$@", bundle: .core, comment: "")
+                removedLabel?.text = String.localizedStringWithFormat(format, date, deletedBy)
+            } else {
+                let format = NSLocalizedString("Removed %1$@", bundle: .core, comment: "")
+                removedLabel?.text = String.localizedStringWithFormat(format, date)
+            }
+        } else {
+            removedLabel?.isHidden = true
+            removedLabelHeightConstraint?.constant = 0
+        }
+    }
+
+    @IBAction func deletePressed(_ sender: UIButton) {
+        delegate?.deletePressed(on: comment)
+    }
+}

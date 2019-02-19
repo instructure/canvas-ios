@@ -1,0 +1,12 @@
+/* Privacy - Camera Usage Description */
+"NSCameraUsageDescription" = "Komentarjem k oddaji dodajte fotografije in videoposnetke.";
+
+/* Privacy - Microphone Usage Description */
+"NSMicrophoneUsageDescription" = "Komentarjem k oddaji dodajte zvočne posnetke.";
+
+/* Privacy - Photo Library Additions Usage Description */
+"NSPhotoLibraryAddUsageDescription" = "Komentarjem k oddaji dodajte fotografije in videoposnetke.";
+
+/* Privacy - Photo Library Usage Description */
+"NSPhotoLibraryUsageDescription" = "Naložite vsebino v vire.";
+

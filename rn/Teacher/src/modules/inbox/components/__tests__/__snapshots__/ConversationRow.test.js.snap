@@ -1,0 +1,670 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<TouchableHighlight
+  onPress={[Function]}
+  testID="inbox.conversation-123456789"
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "flex-start",
+          "backgroundColor": "white",
+          "flex": 1,
+          "flexDirection": "row",
+          "padding": 16,
+        },
+        Object {
+          "borderBottomColor": "#C7CDD1",
+          "borderBottomWidth": 0.5,
+        },
+      ]
+    }
+  >
+    <View
+      style={
+        Object {
+          "height": 40,
+          "marginRight": 16,
+          "width": 40,
+        }
+      }
+    >
+      <View
+        accessibilityLabel=""
+        style={
+          Array [
+            Object {
+              "overflow": "hidden",
+            },
+            Object {
+              "height": 40,
+              "width": 40,
+            },
+            Object {
+              "borderRadius": 20,
+            },
+            Object {
+              "backgroundColor": "#F5F5F5",
+            },
+          ]
+        }
+      >
+        <Image
+          source={
+            Object {
+              "uri": "http://www.fillmurray.com/200/300",
+            }
+          }
+          style={
+            Object {
+              "height": 40,
+              "width": 40,
+            }
+          }
+        />
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "flex-start",
+          "flex": 1,
+          "flexDirection": "column",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            numberOfLines={1}
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "flex": 1,
+                  "fontSize": 16,
+                  "fontWeight": "600",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            artorias of the abyss, solaire of astora
+          </Text>
+          <View
+            accessibilityLabel="May 31, 2037"
+            accessible={true}
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "color": "#8B969E",
+                    "flexShrink": 0,
+                    "fontSize": 12,
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                ]
+              }
+            >
+              5/31/2037
+            </Text>
+          </View>
+        </View>
+      </View>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        numberOfLines={1}
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 14,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
+        }
+      >
+        learn to write code
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        numberOfLines={1}
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#8B969E",
+              "fontSize": 14,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
+        }
+      >
+        this is the worst class ever
+      </Text>
+    </View>
+  </View>
+</TouchableHighlight>
+`;
+
+exports[`renders correctly with a bunch of people in there 1`] = `
+<TouchableHighlight
+  onPress={[Function]}
+  testID="inbox.conversation-123456789"
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "flex-start",
+          "backgroundColor": "white",
+          "flex": 1,
+          "flexDirection": "row",
+          "padding": 16,
+        },
+        Object {
+          "borderBottomColor": "#C7CDD1",
+          "borderBottomWidth": 0.5,
+        },
+        Object {
+          "borderTopColor": "#C7CDD1",
+          "borderTopWidth": 0.5,
+        },
+      ]
+    }
+  >
+    <View
+      style={
+        Object {
+          "height": 40,
+          "marginRight": 16,
+          "width": 40,
+        }
+      }
+    >
+      <View
+        accessibilityLabel=""
+        style={
+          Array [
+            Object {
+              "overflow": "hidden",
+            },
+            Object {
+              "height": 40,
+              "width": 40,
+            },
+            Object {
+              "borderRadius": 20,
+            },
+            Object {
+              "backgroundColor": "#F5F5F5",
+            },
+          ]
+        }
+      >
+        <Image
+          source={
+            Object {
+              "uri": "http://www.fillmurray.com/200/300",
+            }
+          }
+          style={
+            Object {
+              "height": 40,
+              "width": 40,
+            }
+          }
+        />
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "flex-start",
+          "flex": 1,
+          "flexDirection": "column",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            numberOfLines={1}
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "flex": 1,
+                  "fontSize": 16,
+                  "fontWeight": "600",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            0, 2, 3, 4, 5 + 94 more
+          </Text>
+          <View
+            accessibilityLabel="May 31, 2037"
+            accessible={true}
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "color": "#8B969E",
+                    "flexShrink": 0,
+                    "fontSize": 12,
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                ]
+              }
+            >
+              5/31/2037
+            </Text>
+          </View>
+        </View>
+      </View>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        numberOfLines={1}
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 14,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
+        }
+      >
+        learn to write code
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        numberOfLines={1}
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#8B969E",
+              "fontSize": 14,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
+        }
+      >
+        this is the worst class ever
+      </Text>
+    </View>
+  </View>
+</TouchableHighlight>
+`;
+
+exports[`renders correctly with different data 1`] = `
+<TouchableHighlight
+  onPress={[Function]}
+  testID="inbox.conversation-123456789"
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "flex-start",
+          "backgroundColor": "white",
+          "flex": 1,
+          "flexDirection": "row",
+          "padding": 16,
+        },
+        Object {
+          "borderBottomColor": "#C7CDD1",
+          "borderBottomWidth": 0.5,
+        },
+        Object {
+          "borderTopColor": "#C7CDD1",
+          "borderTopWidth": 0.5,
+        },
+      ]
+    }
+  >
+    <View
+      accessibilityLabel="Unread"
+      style={
+        Object {
+          "backgroundColor": "#008EE2",
+          "borderRadius": 3,
+          "height": 6,
+          "left": 8,
+          "position": "absolute",
+          "top": 8,
+          "width": 6,
+        }
+      }
+    />
+    <View
+      style={
+        Object {
+          "height": 40,
+          "marginRight": 16,
+          "width": 40,
+        }
+      }
+    >
+      <View
+        accessibilityLabel=""
+        style={
+          Array [
+            Object {
+              "overflow": "hidden",
+            },
+            Object {
+              "height": 40,
+              "width": 40,
+            },
+            Object {
+              "borderRadius": 20,
+            },
+            Object {
+              "backgroundColor": "#F5F5F5",
+            },
+          ]
+        }
+      >
+        <Image
+          source={
+            Object {
+              "uri": "http://www.fillmurray.com/200/300",
+            }
+          }
+          style={
+            Object {
+              "height": 40,
+              "width": 40,
+            }
+          }
+        />
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "flex-start",
+          "flex": 1,
+          "flexDirection": "column",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+          }
+        }
+      >
+        <Image
+          accessibilityLabel="Starred"
+          accessible={true}
+          source={
+            Object {
+              "testUri": "../../../src/images/star-filled.png",
+            }
+          }
+          style={
+            Object {
+              "height": 14,
+              "marginRight": 2,
+              "tintColor": "#374A59",
+              "width": 14,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            numberOfLines={1}
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "flex": 1,
+                  "fontSize": 16,
+                  "fontWeight": "600",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            
+          </Text>
+          <View
+            accessibilityLabel="May 31, 2037"
+            accessible={true}
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "color": "#8B969E",
+                    "flexShrink": 0,
+                    "fontSize": 12,
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                ]
+              }
+            >
+              5/31/2037
+            </Text>
+          </View>
+        </View>
+      </View>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        numberOfLines={1}
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 14,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
+        }
+      >
+        No Subject
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        numberOfLines={1}
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#8B969E",
+              "fontSize": 14,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
+        }
+      >
+        this is the worst class ever
+      </Text>
+    </View>
+  </View>
+</TouchableHighlight>
+`;

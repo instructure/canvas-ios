@@ -1,0 +1,144 @@
+/* All Courses screen title */
+"All Courses" = "All Courses";
+
+/* No comment provided by engineer. */
+"Assignment Details" = "Assignment Details";
+
+/* No comment provided by engineer. */
+"Assignments" = "Assignments";
+
+/* No comment provided by engineer. */
+"Cancel" = "Cancel";
+
+/* No comment provided by engineer. */
+"Cancel Submission" = "Cancel Submission";
+
+/* No comment provided by engineer. */
+"Close App" = "Close App";
+
+/* No comment provided by engineer. */
+"Comments" = "Comments";
+
+/* No comment provided by engineer. */
+"Courses" = "Courses";
+
+/* No comment provided by engineer. */
+"Dashboard" = "Dashboard";
+
+/* No comment provided by engineer. */
+"Description" = "Description";
+
+/* No comment provided by engineer. */
+"Done" = "Done";
+
+/* No comment provided by engineer. */
+"Drawer closed" = "Drawer closed";
+
+/* No comment provided by engineer. */
+"Drawer fully open" = "Drawer fully open";
+
+/* No comment provided by engineer. */
+"Drawer partially opened" = "Drawer partially opened";
+
+/* No comment provided by engineer. */
+"Due" = "Due";
+
+/* No comment provided by engineer. */
+"Edit" = "Edit";
+
+/* No comment provided by engineer. */
+"Edit Course" = "Edit Course";
+
+/* No comment provided by engineer. */
+"Failed upload" = "Failed upload";
+
+/* No comment provided by engineer. */
+"File Types" = "File Types";
+
+/* No comment provided by engineer. */
+"Files" = "Files";
+
+/* No comment provided by engineer. */
+"Grade" = "Grade";
+
+/* No comment provided by engineer. */
+"Groups" = "Groups";
+
+/* No comment provided by engineer. */
+"Invalid url" = "Invalid URL";
+
+/* No comment provided by engineer. */
+"No Content" = "No Content";
+
+/* No comment provided by engineer. */
+"No Submission" = "No Submission";
+
+/* No comment provided by engineer. */
+"No Submission Date" = "No Submission Date";
+
+/* Button to open external tool */
+"Open External Tool" = "Open External Tool";
+
+/* Past enrollments section title in All Courses screen */
+"Past Enrollments" = "Past Enrolments";
+
+/* No comment provided by engineer. */
+"Quizzes" = "Quizzes";
+
+/* No comment provided by engineer. */
+"Resubmit Assignment" = "Resubmit Assignment";
+
+/* No comment provided by engineer. */
+"Retry" = "Retry";
+
+/* No comment provided by engineer. */
+"Rubric" = "Rubric";
+
+/* No comment provided by engineer. */
+"See All" = "See All";
+
+/* No comment provided by engineer. */
+"See All Courses" = "See All Courses";
+
+/* No comment provided by engineer. */
+"Something went wrong while loading the quizzes." = "Something went wrong while loading the quizzes.";
+
+/* No comment provided by engineer. */
+"Submission" = "Submission";
+
+/* No comment provided by engineer. */
+"Submission & Rubric" = "Submission & Rubric";
+
+/* No comment provided by engineer. */
+"Submission Types" = "Submission Types";
+
+/* No comment provided by engineer. */
+"Submit" = "Submit";
+
+/* No comment provided by engineer. */
+"Submit Assignment" = "Submit Assignment";
+
+/* No comment provided by engineer. */
+"Successfully submitted!" = "Successfully submitted!";
+
+/* No comment provided by engineer. */
+"The app needs to restart to use the new language settings. Please relaunch the app." = "The app needs to restart to use the new language settings. Please relaunch the app.";
+
+/* No comment provided by engineer. */
+"There are no quizzes to display." = "There are no quizzes to display.";
+
+/* No comment provided by engineer. */
+"Updated Language Settings" = "Updated Language Settings";
+
+/* No comment provided by engineer. */
+"Uploading %@ of %@" = "Uploading %1$@ of %2$@";
+
+/* No comment provided by engineer. */
+"Uploading..." = "Uploading...";
+
+/* No comment provided by engineer. */
+"Website Address" = "Website Address";
+
+/* No comment provided by engineer. */
+"Your submission is now waiting to be graded" = "Your submission is now waiting to be graded";
+

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>d_questions</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@questions@</string>
+		<key>questions</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d Question</string>
+			<key>other</key>
+			<string>%d Questions</string>
+		</dict>
+	</dict>
+	<key>final_grade_g_pts</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Note finale : %#@points@</string>
+		<key>points</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>g</string>
+			<key>one</key>
+			<string>%g pt</string>
+			<key>other</key>
+			<string>%g pts</string>
+		</dict>
+	</dict>
+	<key>g_out_of_g_points_possible</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%g sur %#@points@ possibles</string>
+		<key>points</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>g</string>
+			<key>one</key>
+			<string>%g point</string>
+			<key>other</key>
+			<string>%g points</string>
+		</dict>
+	</dict>
+	<key>g_pts</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@points@</string>
+		<key>points</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>g</string>
+			<key>one</key>
+			<string>%g pt</string>
+			<key>other</key>
+			<string>%g pts</string>
+		</dict>
+	</dict>
+	<key>late_penalty_g_pts</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Pénalité de retard (%#@points@)</string>
+		<key>points</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>g</string>
+			<key>one</key>
+			<string>%g pt</string>
+			<key>other</key>
+			<string>%g pts</string>
+		</dict>
+	</dict>
+	<key>out_of_g_pts</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>sur %#@points@</string>
+		<key>points</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>g</string>
+			<key>one</key>
+			<string>%g pt</string>
+			<key>other</key>
+			<string>%g pts</string>
+		</dict>
+	</dict>
+	<key>plural_points</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@points@</string>
+		<key>points</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>g</string>
+			<key>one</key>
+			<string>Point</string>
+			<key>other</key>
+			<string>Points</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

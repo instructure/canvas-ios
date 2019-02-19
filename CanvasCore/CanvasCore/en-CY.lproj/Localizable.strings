@@ -1,0 +1,850 @@
+/* Error message component with the report id */
+" Error report ID: (reportID)" = " Error report ID: (reportID)";
+
+/* Failure reason from the JSON payload from canvas */
+" Failure reason: (reason)." = " Failure reason: (reason).";
+
+/* Shows the number of flagged questions */
+"%@ Flagged" = "%@ Flagged";
+
+/* Accessiblity hint for question drawer button */
+"%@ Questions Answered" = "%@ Questions answered";
+
+/* Question number in a quiz */
+"%@." = "%@.";
+
+/* Confirmations alerting user of unanswered questions */
+"%d questions not answered" = "%d questions not answered";
+
+/* web content failed to load */
+"⚠️ Error Loading Content" = "⚠️ Error Loading Content";
+
+/* Accessiblity hint for question drawer button */
+"0 Questions Answered" = "0 questions answered";
+
+/* Notification to alert the user that there is only 5 minutes left in the timed quiz */
+"5 minutes remaining" = "5 minutes remaining";
+
+/* Notification to alert the user that there is only 30 seconds left in the time quiz */
+"30 seconds remaining" = "30 seconds remaining";
+
+/* Mark student absent
+   Student is present in class */
+"Absent" = "Absent";
+
+/* URL submission option */
+"Add Website Address" = "Add website address";
+
+/* Shows the number questions */
+"All %@ Questions" = "All %@ questions";
+
+/* option to view results for all grading periods */
+"All Grading Periods" = "All Grading Periods";
+
+/* No comment provided by engineer. */
+"All notifications are currently disabled." = "All notifications are currently disabled.";
+
+/* No comment provided by engineer. */
+"All notifications are currently enabled." = "All notifications are currently enabled.";
+
+/* all pages segmented control title */
+"All Pages" = "All pages";
+
+/* No comment provided by engineer. */
+"Allow Notifications in Settings" = "Allow notifications in settings";
+
+/* label for number of attempts that are allowed */
+"Allowed Attempts" = "Allowed attempts";
+
+/* Default error message displayed when a file fails to upload */
+"An error occured, please try again." = "An error occurred, please try again.";
+
+/* No comment provided by engineer. */
+"An unexpected error has occurred." = "An unexpected error has occurred.";
+
+/* an unknown error's message */
+"An unknown error has occurred." = "An unknown error has occurred.";
+
+/* No comment provided by engineer. */
+"Answers will not be submitted while offline." = "Answers will not be submitted while offline.";
+
+/* Question to confirm user wants to navigate away from a quiz. */
+"Are you sure you want to leave this quiz?" = "Are you sure you want to leave this quiz?";
+
+/* Confirmation before submitting a quiz */
+"Are you sure you want to submit your answers?" = "Are you sure you want to submit your answers?";
+
+/* No comment provided by engineer. */
+"Are you sure you would like to delete this comment?" = "Are you sure you would like to delete this comment?";
+
+/* label to be read for visually impaired users with assignment types */
+"assignment" = "Assignment";
+
+/* No comment provided by engineer. */
+"Attendance" = "Attendance";
+
+/* Error title for attendance app */
+"Attendance Error" = "Attendance error";
+
+/* label for quiz availability date */
+"Available Until" = "Available until";
+
+/* stop record button a11y hint */
+"Begin recording" = "Begin recording";
+
+/* Blue course color button */
+"Blue" = "Blue";
+
+/* Title for screen to build a panda avatar */
+"Build Your Panda!" = "Build your Panda!";
+
+/* Alert title when unable to parse JSON for communication channels */
+"Can't Display Communication Channels" = "Cannot display communication courses";
+
+/* Alert title when unable to parse JSON for notification preferences */
+"Can't Display Notification Preferences" = "Cannot display notification preferences";
+
+/* Cancel Audio recording.
+   Cancel button title
+   Cancel submission option
+   Cancel upload */
+"Cancel" = "Cancel";
+
+/* No comment provided by engineer. */
+"Change Section" = "Change section";
+
+/* Description for Chat communication channel */
+"Chat" = "Chat";
+
+/* Choose a file */
+"Choose a File" = "Choose a file";
+
+/* Pick a photo from library */
+"Choose a Photo" = "Choose a photo";
+
+/* Pick a photo or video */
+"Choose a Photo or Video" = "Choose a photo or video";
+
+/* No comment provided by engineer. */
+"Choose a Section" = "Choose a section";
+
+/* Pick a video from library */
+"Choose a Video" = "Choose a video";
+
+/* No comment provided by engineer. */
+"Choose Date" = "Choose date";
+
+/* No comment provided by engineer. */
+"Close App" = "Close app";
+
+/* No comment provided by engineer. */
+"Collapse" = "Collapse";
+
+/* No comment provided by engineer. */
+"Comments" = "Comments";
+
+/* File upload completed */
+"Complete" = "Complete";
+
+/* Title of a screen that shows all of our open source components */
+"Components" = "Components";
+
+/* Button for electing to be late on a quiz */
+"Continue Quiz" = "Continue quiz";
+
+/* Notification display name for conversations group */
+"Conversations" = "Conversations";
+
+/* Alert title when unable to load notification preferences */
+"Could not load notification preferences" = "Could not load notification preferences";
+
+/* Failure reason for why it couldn't associate a tab with a context */
+"Could not parse context id from URL" = "Could not parse context id from URL";
+
+/* Error title for being unable to update a push notification preference */
+"Could not update" = "Could not update";
+
+/* Notification display name for course activities group */
+"Course Activities" = "Module activities";
+
+/* Header label for a screen that customizes a course */
+"Customize" = "Customise";
+
+/* Cyan course color button */
+"Cyan" = "Cyan";
+
+/* name for upload data */
+"Data" = "Data";
+
+/* Error title for a persistence related data failure */
+"Data Error" = "Data error";
+
+/* No comment provided by engineer. */
+"Date picker" = "Date picker";
+
+/* DeepOrange course color button */
+"DeepOrange" = "DeepOrange";
+
+/* DeepPurple course color button */
+"DeepPurple" = "DeepPurple";
+
+/* Delete button
+   Delete button for file upload */
+"Delete" = "Delete";
+
+/* No comment provided by engineer. */
+"Delete Comment" = "Delete comment";
+
+/* message for delete dialog of audio recorder */
+"Delete recording?" = "Delete recording?";
+
+/* label to be read for visually impaired users with discusstion topic assignment types */
+"discussion topic" = "Discussion topic";
+
+/* Notification display name for discussions group */
+"Discussions" = "Discussions";
+
+/* Error title to alert user their device is out of storage space */
+"Disk Error" = "Disk error";
+
+/* Dismiss an error alert
+   Dismiss an error dialog
+   Dismiss button for error alert
+   Dismiss button for error messages */
+"Dismiss" = "Dismiss";
+
+/* Done button
+   Done recording button */
+"Done" = "Done";
+
+/* due date label for quiz due date */
+"Due Date" = "Due Date";
+
+/* Description for email communication channel */
+"Email" = "Email";
+
+/* Data encoding error title */
+"Encoding Error" = "Encoding error";
+
+/* No comment provided by engineer. */
+"End Act as User" = "End Act as User";
+
+/* Default text for essay cell */
+"Enter answer..." = "Enter answer...";
+
+/* Text submission option */
+"Enter Text" = "Enter text";
+
+/* Placeholder for URL */
+"Enter URL..." = "Enter URL";
+
+/* Prompt for text upload */
+"Enter your submission..." = "Enter your submission...";
+
+/* error message for when the cache management database fails to load */
+"Error loading cache management database." = "Error loading cache management database.";
+
+/* Title for quiz loading error */
+"Error Loading Quiz" = "Error loading quiz";
+
+/* No comment provided by engineer. */
+"Error parsing the Roll Call response. Expected (e), received (a)" = "Error parsing the roll call response. Expected (e), received (a)";
+
+/* No comment provided by engineer. */
+"Error parsing the Roll Call response. Expected (e), received (a) for key (k)" = "Error parsing the roll call response. Expected (e), received (a) for key (k)";
+
+/* No comment provided by engineer. */
+"Error parsing the Roll Call response. Key not found: (k)" = "Error parsing the roll call response. Key not found: (k)";
+
+/* No comment provided by engineer. */
+"Error parsing the Roll Call response. Unexpected null value: (k)" = "Error parsing the roll call response. Unexpected null value: (k)";
+
+/* No comment provided by engineer. */
+"Error retrieving tool launch URL" = "Error retrieving tool launch URL";
+
+/* Error title for parsing assignment data from server */
+"Error Updating Assignment" = "Error updating assignment";
+
+/* rollcall status error */
+"Error: No data returned from the rollcall api." = "Error: No data returned from the roll call API.";
+
+/* Exit button to leave the quiz */
+"Exit" = "Exit";
+
+/* No comment provided by engineer. */
+"Expand" = "Expand";
+
+/* Error message when the server returns a invalid response */
+"Expected a response in the 200-299 range. Got %@" = "Expected a response in the 200-299 range. Got %@";
+
+/* label to be read for visually impaired users with external tool assignment types */
+"external tool" = "External tool";
+
+/* File upload failed */
+"Failed" = "Failed";
+
+/* No comment provided by engineer. */
+"Failed to find image at path" = "Failed to find image at path";
+
+/* Error Message when the app can't load an object model from the database */
+"Failed to load (discussionKitModelName) NSManagedObjectModel" = "Failed to load (discussionKitModelName) NSManagedObjectModel";
+
+/* Error when submitting an assignment */
+"Failed to Submit" = "Failed to Submit";
+
+/* No comment provided by engineer. */
+"Failed to write image" = "Failed to write image";
+
+/* favorite courses or groups */
+"Favorites" = "Favourites";
+
+/* title for file upload errors */
+"File Upload Error" = "File upload error";
+
+/* File uploads screen title */
+"File Uploads" = "File uploads";
+
+/* State of the flagged question */
+"Flagged" = "Flagged";
+
+/* front page segmented control title */
+"Front Page" = "Front page";
+
+/* navigate */
+"Go" = "Go";
+
+/* Title for grading periods picker */
+"Grading Periods" = "Grading periods";
+
+/* Green course color button */
+"Green" = "Green";
+
+/* Notification display name for groups group */
+"Groups" = "Groups";
+
+/* Non favorite hidden courses or groups */
+"Hidden" = "Hidden";
+
+/* Hides the question list */
+"Hide Question List" = "Hide question list";
+
+/* Inbox tab title */
+"Inbox" = "Inbox";
+
+/* Indigo course color button */
+"Indigo" = "Indigo";
+
+/* No comment provided by engineer. */
+"Internet Connection Offline" = "Internet Connection Offline";
+
+/* No comment provided by engineer. */
+"Invalid date received from API." = "Invalid date received from API.";
+
+/* Mark student late
+   Student is present in class */
+"Late" = "Late";
+
+/* No comment provided by engineer. */
+"Launch External Tool" = "Launch external tool";
+
+/* Leave the quiz */
+"Leave" = "Leave";
+
+/* LightBlue course color button */
+"LightBlue" = "LightBlue";
+
+/* LightGreen course color button */
+"LightGreen" = "LightGreen";
+
+/* LightPink course color button */
+"LightPink" = "LightPink";
+
+/* Label indicating that the quiz lock date was reached and the quiz is auto submitting */
+"Lock Date Reached
+Submitting" = "Lock date reached
+Submitting";
+
+/* Detail label for when a tool called Lockdown Browser is required to take the quiz */
+"Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue." = "Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue.";
+
+/* Title for when another tool called Lockdown Browser is required to take a quiz */
+"Lockdown Browser Required" = "Lockdown Browser required";
+
+/* No comment provided by engineer. */
+"Mark All as Present" = "Mark all as present";
+
+/* No comment provided by engineer. */
+"Mark Remaining as Present" = "Mark remaining as present";
+
+/* Error alert title for network error
+   Title for network errors */
+"Network Error" = "Network error";
+
+/* Next button for advancing a quiz */
+"Next" = "Next";
+
+/* Alert title when unable to load communication channels */
+"No Communication Channels Found" = "No communication channels found";
+
+/* A quiz that has no due date */
+"No Due Date" = "No due date";
+
+/* Title for alert when a module item doesn't have mastery paths configured */
+"No Mastery Paths" = "No mastery paths";
+
+/* Error when push channel cannot be found in notificaitons */
+"No push channel found" = "No push channel found";
+
+/* No comment provided by engineer. */
+"No sections available. Please make sure you are enrolled as a teacher or TA in at least on section of this course." = "No sections available. Please make sure you are enrolled as a teacher or TA in at least on section of this module.";
+
+/* when a quiz has no time limit */
+"No time limit" = "No time limit";
+
+/* Section header for assignments without an assignment group */
+"None" = "None";
+
+/* can't record because request for mic access was denied title */
+"Not Permitted" = "Not permitted";
+
+/* Title for alert showing when a quiz isn't takeable */
+"Not Takeable" = "Not available.";
+
+/* Error title for push notification registration error */
+"Notification Error" = "Notification error";
+
+/* Title for the notification preferences page */
+"Notification Preferences" = "Notification preferences";
+
+/* OK Button Title */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"Open in Safari" = "Open in Safari";
+
+/* No comment provided by engineer. */
+"Open in…" = "Open in…";
+
+/* Accessibility hint for the profile button */
+"Opens profile" = "Opens profile";
+
+/* Orange course color button */
+"Orange" = "Orange";
+
+/* Overdue assignmnets (not turned in) */
+"Overdue" = "Overdue";
+
+/* Assignments that have been turned in and are past */
+"Past" = "Past";
+
+/* Pause recording/playback */
+"Pause" = "Pause";
+
+/* record button a11y hint */
+"Pause playback" = "Pause playback";
+
+/* name for a photo just taken */
+"Photo" = "Photo";
+
+/* Photos backdrops */
+"Photos" = "Photos";
+
+/* Pink course color button */
+"Pink" = "Pink";
+
+/* Playback button */
+"Play" = "Play";
+
+/* play button a11y hint */
+"Play back recording" = "Play back recording";
+
+/* Title for playback error messages */
+"Playback Error" = "Playback error";
+
+/* No comment provided by engineer. */
+"Please check your network connection and try again." = "Please check your network connection and try again";
+
+/* label for number of points in a quiz */
+"Points" = "Points";
+
+/* Mark student present
+   Student is present in class */
+"Present" = "Present";
+
+/* Accessibility label for the profile button */
+"Profile" = "Profile";
+
+/* Purple course color button */
+"Purple" = "Purple";
+
+/* Description for Push Notification channel */
+"Push Notifications" = "Push notifications";
+
+/* accessibility label for a quiz question */
+"Question" = "Question";
+
+/* state for a question that has been flagged */
+"Question (number) Flagged" = "Question (number) Flagged";
+
+/* state for unflagged question */
+"Question (number) Unflagged" = "Question (number) Unflagged";
+
+/* Shows question position */
+"Question %@" = "Question %@";
+
+/* label for the number of questions */
+"Questions" = "Questions";
+
+/* label to be read for visually impaired users with quiz assignment types */
+"quiz" = "Quiz";
+
+/* Title for alert that shows when a quiz hits the due date */
+"Quiz Due" = "Quiz due";
+
+/* Title for quiz error */
+"Quiz Error" = "Quiz error";
+
+/* Label for indication that the quiz submission was successful */
+"Quiz Submitted" = "Quiz submitted";
+
+/* Label for indication that the quiz submission failed */
+"QuizSubmission Failure" = "QuizSubmission Failure";
+
+/* tile for error reading cache */
+"Read Error" = "Read error";
+
+/* button to read more of the description */
+"Read More" = "Read more";
+
+/* Record button a11y label */
+"Record" = "Record";
+
+/* Choose record audio submission */
+"Record Audio" = "Record audio";
+
+/* permission denied button a11y label */
+"Record Permission Help" = "Record permission help";
+
+/* title for a recording error */
+"Recording Error" = "Recording error";
+
+/* red course color button */
+"Red" = "Red";
+
+/* No comment provided by engineer. */
+"Remove" = "Remove";
+
+/* Remove the formatting of the essay question text */
+"Remove Formatting" = "Remove formatting";
+
+/* No comment provided by engineer. */
+"Removed %1$@" = "Removed %1$@";
+
+/* No comment provided by engineer. */
+"Removed %1$@ by %2$@" = "Removed %1$@ by %2$@";
+
+/* No comment provided by engineer. */
+"Reply" = "Reply";
+
+/* Button to report an error */
+"Report" = "Report";
+
+/* Record button a11y label */
+"Request Audio Recording Permission" = "Request audio recording permission";
+
+/* stop record button a11y hint */
+"Request Permission to record audio" = "Request permission to record audio";
+
+/* button for resuming a quiz */
+"Resume Quiz" = "Resume quiz";
+
+/* button for retaking quiz */
+"Retake Quiz" = "Retake quiz";
+
+/* Notification display name for scheduling group */
+"Scheduling" = "Scheduling";
+
+/* Label indicating that the question is a multiple answer question and more than 1 answer can be correct */
+"Select all that apply" = "Select all that apply";
+
+/* Indicates that a matching quiz question needs to have an answer selected */
+"Select Answer" = "Select answer";
+
+/* No comment provided by engineer. */
+"Select to change the roll call date" = "Select to change the roll call date";
+
+/* when a button is selected */
+"Selected" = "Selected";
+
+/* Shapes backdrops */
+"Shapes" = "Shapes";
+
+/* Hides the question list */
+"Show Question List" = "Show question list";
+
+/* Text for a button that toggles to show a timer for a timed quiz */
+"Show Timer" = "Show timer";
+
+/* Description for SMS communication channel */
+"SMS" = "SMS";
+
+/* Error message displayed when the file is unrecognized. */
+"Something went wrong. Check the file format and try again." = "Something went wrong. Check the file format and try again.";
+
+/* Text only quiz question label */
+"Spacer" = "Spacer";
+
+/* Stay on the quiz view */
+"Stay" = "Stay";
+
+/* stop recording button a11y label */
+"Stop" = "Stop";
+
+/* No comment provided by engineer. */
+"Stop acting as..." = "Stop acting as...";
+
+/* File upload was stopped */
+"Stopped" = "Stopped";
+
+/* No comment provided by engineer. */
+"Style" = "Style";
+
+/* Submit assignment button
+   Submit button title
+   Turn in this url button */
+"Submit" = "Submit";
+
+/* Title for button to submit assignment */
+"Submit Assignment" = "Submit assignment";
+
+/* No comment provided by engineer. */
+"Submitted!" = "Submitted!";
+
+/* No comment provided by engineer. */
+"Submitting" = "Submitting";
+
+/* Label for indication of submitting quiz */
+"Submitting Quiz" = "Submitting quiz";
+
+/* Take a photo submission choice */
+"Take a Photo" = "Take a photo";
+
+/* Take a video submission choice */
+"Take a Video" = "Take a video";
+
+/* Take a photo or video submission choice */
+"Take Photo or Video" = "Take photo or video";
+
+/* Button for taking the quiz */
+"Take Quiz" = "Take Quiz";
+
+/* Teal course color button */
+"Teal" = "Teal";
+
+/* No comment provided by engineer. */
+"The app needs to restart to use the new language settings. Please relaunch the app." = "The app needs to restart to use the new language settings. Please relaunch the app.";
+
+/* Error message for a file missing */
+"The file does not exist." = "The file does not exist.";
+
+/* This shouldn't ever happen. */
+"The Pages are gone!? Why are the pages always gone?" = "The pages are gone! Why are the pages always gone?";
+
+/* Description for alert that shows when the quiz hits the due date */
+"The quiz is due in 1 minute. Would you like to submit now and be on time or continue taking the quiz and possibly be late?" = "The quiz is due in 1 minute. Would you like to submit now and be on time, or continue taking the quiz and possibly be late?";
+
+/* Error message for interrupted requests marking a to do as done */
+"The request to mark a to do as done was interrupted" = "The request to tick a to do as done was interrupted";
+
+/* bad url message */
+"The text you entered is not a valid URL" = "The text you entered is not a valid URL";
+
+/* Data encoding error message */
+"There was a problem encoding UTF8 Data" = "There was a problem encoding UTF8 data";
+
+/* No comment provided by engineer. */
+"There was a problem fetching the list of course sections." = "There was a problem fetching the list of module sections.";
+
+/* JSON Parsing error description */
+"There was a problem interpreting a response from the server." = "There was a problem interpreting a response from the server.";
+
+/* CalendarKit Database Load Failure Message */
+"There was a problem loading the (kitModelName) database file." = "There was a problem loading the (kitModelName) database file.";
+
+/* AssignmentKit database load failure message */
+"There was a problem loading the AssignmentKit database file." = "There was a problem loading the AssignmentKit database file.";
+
+/* CalendarKit Database Load Failure Message */
+"There was a problem loading the CalendarKit database file." = "There was a problem loading the CalendarKit database file.";
+
+/* DiscussionKit Database Load Failure Message */
+"There was a problem loading the DiscussionKit database file." = "There was a problem loading the DiscussionKit database file.";
+
+/* EnrollmentKit Database Load Failure Message */
+"There was a problem loading the EnrollmentKit database file." = "There was a problem loading the EnrollmentKit database file.";
+
+/* FileKit Database Load Failure Message */
+"There was a problem loading the FileKit database file." = "There was a problem loading the FileKit database file.";
+
+/* Page list fails */
+"There was a problem loading the Pages database file." = "There was a problem loading Pages database file.";
+
+/* PeepKit Database Load Failure Message */
+"There was a problem loading the PeepKit database file." = "There was a problem loading the PeepKit database file.";
+
+/* SoEdventurous database load failure message */
+"There was a problem loading the SoEdventurous database file." = "There was a problem loading the SoEdventurous database file.";
+
+/* File upload error message */
+"There was a problem preparing the file for upload" = "There was a problem preparing the file for upload";
+
+/* Persistence error message */
+"There was a problem reading cached data" = "There was a problem reading cached data";
+
+/* Error description for Push Notifications registration error. */
+"There was a problem registering your device for push notifications." = "There was a problem registering your device for push notifications.";
+
+/* Message when fails to submit an assignment */
+"There was a problem submitting your assignment. Please try again later." = "There was a problem submitting your assignment. Please try again later.";
+
+/* Error description for failing to compute the URL to a quiz */
+"There was a problem updating the Quiz URL" = "There was a problem updating quiz URL";
+
+/* generic error message */
+"There was a problem with the Canvas request." = "There was a problem with the Canvas request.";
+
+/* Error message when parsing contextID for a course or group tab */
+"There was an error associating a tab with a course or group." = "There was an error associating a tab with a module or group.";
+
+/* An error message shown when the Users cache file fails to load */
+"There was an error loading the Users cache." = "There was an error loading the user’s cache.";
+
+/* Error message for a network fail */
+"There was an error while communicating with the server." = "There was an error while communicating with the server.";
+
+/* No comment provided by engineer. */
+"There was no data!" = "There was no data!";
+
+/* Warning to users editing an essay question that was edited on the web. */
+"This essay question has been edited on the web and may contain formatting, links or images. In order to edit this response on your mobile device we will need to clear the formatting (including links and images). Otherwise you may continue editing the question via a web browser." = "This essay question has been edited online and may contain formatting, links or images. In order to edit this response on your mobile device, we will need to clear the formatting (including links and images). Otherwise you may continue editing the question via a web browser.";
+
+/* Body for alert when a module item doesn't have mastery paths configured */
+"This module item does not have mastery paths configured." = "This unit item does not have mastery paths configured.";
+
+/* The HTML page is currently not viewable by the user because it has been locked by the teacher. */
+"This page is currently locked and not viewable." = "This page is currently locked and not viewable.";
+
+/* Message when telling the user they can't take the quiz because the quiz has an IP address filter set */
+"This quiz has an IP address filter set." = "This quiz has an IP address filter set.";
+
+/* Message when telling the user they can't take the quiz for some weird reason */
+"This quiz is currently unavailable." = "This quiz is currently unavailable.";
+
+/* Message when telling the user they can't take the quiz because the quiz is locked */
+"This quiz is locked." = "This quiz is locked.";
+
+/* No comment provided by engineer. */
+"This quiz is not available offline." = "This quiz is not available offline.";
+
+/* label for the time limit */
+"Time Limit" = "Time limit";
+
+/* Toggle flag accessiblity action */
+"Toggle Flag" = "Toggle flag";
+
+/* Total grade label */
+"Total Grade" = "Total mark";
+
+/* Description for Twitter communication channel */
+"Twitter" = "Twitter";
+
+/* Alert message when unable to parse JSON for communication channels */
+"Unable to display any Communication Channels returned from the server at this time." = "Unable to display any communication channels returned from the server at this time.";
+
+/* Alert message when unable to parse JSON for notification preferences */
+"Unable to display any notification preferences returned from the server at this time." = "Unable to display any notification preferences returned from the server at this time.";
+
+/* Alert message when unable to load communication channels */
+"Unable to load any Communication Channels at this time." = "Unable to load any communication channels at this time.";
+
+/* Alert message when unable to load notification preferences */
+"Unable to load any notification preferences at this time.  Error: %@" = "Unable to load any notification preferences at this time.  Error: %@";
+
+/* Error message when parsing communication preferences */
+"Unable to parse JSON for communication channels" = "Unable to parse JSON for communication channels";
+
+/* Error message when parsing notification preferences */
+"Unable to parse JSON for notification preferences" = "Unable to parse JSON for notification preferences";
+
+/* Assignments with no dates */
+"Undated" = "Undated";
+
+/* Unexpected response type */
+"Unexpected response type" = "Unexpected response type";
+
+/* Ungraded quiz */
+"Ungraded" = "Ungraded";
+
+/* An unknown error title */
+"Unknown Error" = "Unknown reror";
+
+/* When a quiz has no limit on the number of attempts */
+"Unlimited" = "Unlimited";
+
+/* Remove attendance status */
+"Unmark" = "Unmark";
+
+/* Upcoming assignments */
+"Upcoming" = "Upcoming";
+
+/* No comment provided by engineer. */
+"Updated Language Settings" = "Updated language settings";
+
+/* File upload submission option */
+"Upload File" = "Upload file";
+
+/* Message displayed while a file is being uploaded */
+"Uploading file..." = "Uploading file...";
+
+/* File upload in progress */
+"uploading..." = "uploading...";
+
+/* permission denied button a11y hint */
+"User has denied record permission" = "User has denied record permission";
+
+/* Error message if we can't pull the avatar image */
+"User has no valid avatar image url" = "User has no valid avatar image url";
+
+/* button for viewing quiz results */
+"View Results" = "View results";
+
+/* a warning message */
+"Warning" = "Warning";
+
+/* Error message for being unable to update a push notification preference */
+"We were not able to update this value with the server" = "We were not able to update this value with the server";
+
+/* Yellow course color button */
+"Yellow" = "Yellow";
+
+/* Description for Yo communication channel */
+"Yo" = "Yo";
+
+/* Shows time limit on a quiz */
+"You have %d minutes." = "You have %d minutes.";
+
+/* Message when telling the user they can't take the quiz because they used up all their attempts */
+"You have used all your attempts available on this quiz." = "You have used all your available attempts for this quiz.";
+
+/* permission was rejected */
+"You must grant (appName) Microphone access in the Settings app in order to record audio." = "You must grant (appName) microphone access in the settings app to record audio.";
+
+/* No comment provided by engineer. */
+"You will stop acting as %@ and return to your account." = "You will stop acting as %@ and return to your account.";
+
+/* No comment provided by engineer. */
+"You will stop acting as this user and return to your account." = "You will stop acting as this user and return to your account.";
+
+/* Error description for file out of space */
+"Your device is out of storage space. Please free up space and try again." = "Your device is out of storage space. Please free up space and try again.";
+

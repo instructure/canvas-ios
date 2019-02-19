@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AttachmentPicker renders 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    Object {
+      "backgroundColor": "transparent",
+      "flex": 1,
+    }
+  }
+  testID="attachment-picker.container"
+>
+  <Modal
+    animationType="fade"
+    hardwareAccelerated={false}
+    onLayout={[Function]}
+    transparent={true}
+    visible={false}
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "rgba(0,0,0,0.8)",
+          "flex": 1,
+          "flexDirection": "column",
+          "justifyContent": "flex-end",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "height": 250,
+          }
+        }
+      >
+        <AudioRecorder
+          onCancel={[Function]}
+          onFinishedRecording={[Function]}
+        />
+      </View>
+    </View>
+  </Modal>
+</View>
+`;

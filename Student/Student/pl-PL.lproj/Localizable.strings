@@ -1,0 +1,144 @@
+/* All Courses screen title */
+"All Courses" = "Wszystkie kursy";
+
+/* No comment provided by engineer. */
+"Assignment Details" = "Szczegóły zadania";
+
+/* No comment provided by engineer. */
+"Assignments" = "Zadania";
+
+/* No comment provided by engineer. */
+"Cancel" = "Anuluj";
+
+/* No comment provided by engineer. */
+"Cancel Submission" = "Anuluj przesyłkę";
+
+/* No comment provided by engineer. */
+"Close App" = "Zamknij aplikację";
+
+/* No comment provided by engineer. */
+"Comments" = "Komentarze";
+
+/* No comment provided by engineer. */
+"Courses" = "Kursy";
+
+/* No comment provided by engineer. */
+"Dashboard" = "Panel nawigacyjny";
+
+/* No comment provided by engineer. */
+"Description" = "Opis";
+
+/* No comment provided by engineer. */
+"Done" = "Gotowe";
+
+/* No comment provided by engineer. */
+"Drawer closed" = "Panel zamknięty";
+
+/* No comment provided by engineer. */
+"Drawer fully open" = "Panel całkowicie otwarty";
+
+/* No comment provided by engineer. */
+"Drawer partially opened" = "Panel częściowo otwarty";
+
+/* No comment provided by engineer. */
+"Due" = "Termin";
+
+/* No comment provided by engineer. */
+"Edit" = "Edytuj";
+
+/* No comment provided by engineer. */
+"Edit Course" = "Edytuj kurs";
+
+/* No comment provided by engineer. */
+"Failed upload" = "Nie udało się przesłać";
+
+/* No comment provided by engineer. */
+"File Types" = "Typy plików";
+
+/* No comment provided by engineer. */
+"Files" = "Pliki";
+
+/* No comment provided by engineer. */
+"Grade" = "Ocena";
+
+/* No comment provided by engineer. */
+"Groups" = "Grupy";
+
+/* No comment provided by engineer. */
+"Invalid url" = "Nieprawidłowy adres URL";
+
+/* No comment provided by engineer. */
+"No Content" = "Brak zawartości";
+
+/* No comment provided by engineer. */
+"No Submission" = "Brak przesłanych zadań";
+
+/* No comment provided by engineer. */
+"No Submission Date" = "Brak terminu przesłania";
+
+/* Button to open external tool */
+"Open External Tool" = "Otwórz narzędzie zewnętrzne";
+
+/* Past enrollments section title in All Courses screen */
+"Past Enrollments" = "Wcześniejsze zapisy";
+
+/* No comment provided by engineer. */
+"Quizzes" = "Testy";
+
+/* No comment provided by engineer. */
+"Resubmit Assignment" = "Wyślij ponownie zadanie";
+
+/* No comment provided by engineer. */
+"Retry" = "Ponów próbę";
+
+/* No comment provided by engineer. */
+"Rubric" = "Rubryka";
+
+/* No comment provided by engineer. */
+"See All" = "Zobacz wszystko";
+
+/* No comment provided by engineer. */
+"See All Courses" = "Zobacz wszystkie kursy";
+
+/* No comment provided by engineer. */
+"Something went wrong while loading the quizzes." = "Wystąpił błąd podczas wczytywania testów.";
+
+/* No comment provided by engineer. */
+"Submission" = "Podanie";
+
+/* No comment provided by engineer. */
+"Submission & Rubric" = "Przesyłka i kryteria ocen";
+
+/* No comment provided by engineer. */
+"Submission Types" = "Typy przesłanych materiałów";
+
+/* No comment provided by engineer. */
+"Submit" = "Prześlij";
+
+/* No comment provided by engineer. */
+"Submit Assignment" = "Prześlij test";
+
+/* No comment provided by engineer. */
+"Successfully submitted!" = "Przesłano pomyślnie!";
+
+/* No comment provided by engineer. */
+"The app needs to restart to use the new language settings. Please relaunch the app." = "Aby użyć nowych ustawień językowych, aplikację należy uruchomić ponownie. Uruchom aplikację ponownie.";
+
+/* No comment provided by engineer. */
+"There are no quizzes to display." = "Brak testów do wyświetlenia.";
+
+/* No comment provided by engineer. */
+"Updated Language Settings" = "Zaktualizuj ustawienia językowe";
+
+/* No comment provided by engineer. */
+"Uploading %@ of %@" = "Wysyłanie %1$@ z %2$@";
+
+/* No comment provided by engineer. */
+"Uploading..." = "Przesyłanie...";
+
+/* No comment provided by engineer. */
+"Website Address" = "Adres witryny";
+
+/* No comment provided by engineer. */
+"Your submission is now waiting to be graded" = "Przesłane materiały oczekują na ocenę";
+

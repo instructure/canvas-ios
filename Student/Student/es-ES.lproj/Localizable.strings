@@ -1,0 +1,144 @@
+/* All Courses screen title */
+"All Courses" = "Todos los cursos";
+
+/* No comment provided by engineer. */
+"Assignment Details" = "Detalles de la tarea";
+
+/* No comment provided by engineer. */
+"Assignments" = "Tareas";
+
+/* No comment provided by engineer. */
+"Cancel" = "Cancelar";
+
+/* No comment provided by engineer. */
+"Cancel Submission" = "Cancelar presentación";
+
+/* No comment provided by engineer. */
+"Close App" = "Cerrar aplicación";
+
+/* No comment provided by engineer. */
+"Comments" = "Comentarios";
+
+/* No comment provided by engineer. */
+"Courses" = "Cursos";
+
+/* No comment provided by engineer. */
+"Dashboard" = "Tablero";
+
+/* No comment provided by engineer. */
+"Description" = "Descripción";
+
+/* No comment provided by engineer. */
+"Done" = "Listo";
+
+/* No comment provided by engineer. */
+"Drawer closed" = "Cajón cerrado";
+
+/* No comment provided by engineer. */
+"Drawer fully open" = "Cajón completamente abierto";
+
+/* No comment provided by engineer. */
+"Drawer partially opened" = "Cajón parcialmente abierto";
+
+/* No comment provided by engineer. */
+"Due" = "Fecha límite";
+
+/* No comment provided by engineer. */
+"Edit" = "Editar";
+
+/* No comment provided by engineer. */
+"Edit Course" = "Editar curso";
+
+/* No comment provided by engineer. */
+"Failed upload" = "La carga falló";
+
+/* No comment provided by engineer. */
+"File Types" = "Tipos de archivo";
+
+/* No comment provided by engineer. */
+"Files" = "Archivos";
+
+/* No comment provided by engineer. */
+"Grade" = "Calificación";
+
+/* No comment provided by engineer. */
+"Groups" = "Grupos";
+
+/* No comment provided by engineer. */
+"Invalid url" = "Url inválida";
+
+/* No comment provided by engineer. */
+"No Content" = "Sin contenido";
+
+/* No comment provided by engineer. */
+"No Submission" = "Sin presentaciones";
+
+/* No comment provided by engineer. */
+"No Submission Date" = "Sin fecha de presentación";
+
+/* Button to open external tool */
+"Open External Tool" = "Abrir herramienta externa";
+
+/* Past enrollments section title in All Courses screen */
+"Past Enrollments" = "Inscripciones pasadas";
+
+/* No comment provided by engineer. */
+"Quizzes" = "Evaluaciones";
+
+/* No comment provided by engineer. */
+"Resubmit Assignment" = "Volver a presentar la tarea";
+
+/* No comment provided by engineer. */
+"Retry" = "Reintentar";
+
+/* No comment provided by engineer. */
+"Rubric" = "Rúbrica";
+
+/* No comment provided by engineer. */
+"See All" = "Ver todos";
+
+/* No comment provided by engineer. */
+"See All Courses" = "Ver todos los cursos";
+
+/* No comment provided by engineer. */
+"Something went wrong while loading the quizzes." = "Se produjo un error al cargar las evaluaciones.";
+
+/* No comment provided by engineer. */
+"Submission" = "Presentación";
+
+/* No comment provided by engineer. */
+"Submission & Rubric" = "Presentación y rúbrica";
+
+/* No comment provided by engineer. */
+"Submission Types" = "Tipos de presentación";
+
+/* No comment provided by engineer. */
+"Submit" = "Presentar";
+
+/* No comment provided by engineer. */
+"Submit Assignment" = "Presentar tarea";
+
+/* No comment provided by engineer. */
+"Successfully submitted!" = "¡Enviada correctamente!";
+
+/* No comment provided by engineer. */
+"The app needs to restart to use the new language settings. Please relaunch the app." = "La aplicación debe reiniciarse para aplicar la nueva configuración de idioma. Vuelva a ejecutar la aplicación.";
+
+/* No comment provided by engineer. */
+"There are no quizzes to display." = "No hay evaluaciones para mostrar.";
+
+/* No comment provided by engineer. */
+"Updated Language Settings" = "Configuración de idioma actualizada.";
+
+/* No comment provided by engineer. */
+"Uploading %@ of %@" = "Cargando %1$@ de %2$@";
+
+/* No comment provided by engineer. */
+"Uploading..." = "Cargando...";
+
+/* No comment provided by engineer. */
+"Website Address" = "Dirección web";
+
+/* No comment provided by engineer. */
+"Your submission is now waiting to be graded" = "Su presentación está ahora esperando para ser calificada";
+

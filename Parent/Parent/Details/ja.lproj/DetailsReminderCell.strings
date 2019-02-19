@@ -1,0 +1,9 @@
+/* Class = "UILabel"; text = "Time"; ObjectID = "0Bw-w1-Rfh"; */
+"0Bw-w1-Rfh.text" = "時間";
+
+/* Class = "UILabel"; text = "9/18/15, 11:00 AM"; ObjectID = "0L6-C4-tpu"; */
+"0L6-C4-tpu.text" = "2015年9月18日、11：00 AM";
+
+/* Class = "UILabel"; text = "Set Reminder"; ObjectID = "RHa-wa-8Mq"; */
+"RHa-wa-8Mq.text" = "リマインダーを設定する";
+

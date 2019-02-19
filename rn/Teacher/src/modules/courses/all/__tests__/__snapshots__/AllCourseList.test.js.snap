@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AllCourseList no refresh when at least one course exists 1`] = `
+<Dashboard
+  courses={Array []}
+  refresh={[Function]}
+  refreshCourses={[Function]}
+  refreshing={false}
+/>
+`;
+
+exports[`AllCourseList refreshes courses when empty 1`] = `
+<Dashboard
+  courses={Array []}
+  refresh={[Function]}
+  refreshCourses={[Function]}
+  refreshing={false}
+/>
+`;
+
+exports[`AllCourseList refreshes with new props 1`] = `
+<Dashboard
+  courses={Array []}
+  refresh={[Function]}
+  refreshCourses={[Function]}
+  refreshing={false}
+/>
+`;

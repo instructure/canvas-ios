@@ -1,0 +1,144 @@
+/* All Courses screen title */
+"All Courses" = "Tous les cours";
+
+/* No comment provided by engineer. */
+"Assignment Details" = "Détails de la tâche";
+
+/* No comment provided by engineer. */
+"Assignments" = "Tâches";
+
+/* No comment provided by engineer. */
+"Cancel" = "Annuler";
+
+/* No comment provided by engineer. */
+"Cancel Submission" = "Annuler l'envoi";
+
+/* No comment provided by engineer. */
+"Close App" = "Fermer l’application";
+
+/* No comment provided by engineer. */
+"Comments" = "Commentaires";
+
+/* No comment provided by engineer. */
+"Courses" = "Cours";
+
+/* No comment provided by engineer. */
+"Dashboard" = "Tableau de bord";
+
+/* No comment provided by engineer. */
+"Description" = "Description";
+
+/* No comment provided by engineer. */
+"Done" = "Terminé";
+
+/* No comment provided by engineer. */
+"Drawer closed" = "Tiroir fermé";
+
+/* No comment provided by engineer. */
+"Drawer fully open" = "Tiroir complètement ouvert";
+
+/* No comment provided by engineer. */
+"Drawer partially opened" = "Tiroir partiellement ouvert";
+
+/* No comment provided by engineer. */
+"Due" = "Échéance";
+
+/* No comment provided by engineer. */
+"Edit" = "Modifier";
+
+/* No comment provided by engineer. */
+"Edit Course" = "Modifier le cours";
+
+/* No comment provided by engineer. */
+"Failed upload" = "Échec du téléversement";
+
+/* No comment provided by engineer. */
+"File Types" = "Types de fichiers";
+
+/* No comment provided by engineer. */
+"Files" = "Fichiers";
+
+/* No comment provided by engineer. */
+"Grade" = "Note";
+
+/* No comment provided by engineer. */
+"Groups" = "Groupes";
+
+/* No comment provided by engineer. */
+"Invalid url" = "URL non valide";
+
+/* No comment provided by engineer. */
+"No Content" = "Pas de contenu";
+
+/* No comment provided by engineer. */
+"No Submission" = "Aucun envoi";
+
+/* No comment provided by engineer. */
+"No Submission Date" = "Aucune date d’envoi";
+
+/* Button to open external tool */
+"Open External Tool" = "Ouvrir Outil externe";
+
+/* Past enrollments section title in All Courses screen */
+"Past Enrollments" = "Inscriptions antérieures";
+
+/* No comment provided by engineer. */
+"Quizzes" = "Questionnaires";
+
+/* No comment provided by engineer. */
+"Resubmit Assignment" = "Envoyer la tâche de nouveau";
+
+/* No comment provided by engineer. */
+"Retry" = "Réessayer";
+
+/* No comment provided by engineer. */
+"Rubric" = "Rubrique";
+
+/* No comment provided by engineer. */
+"See All" = "Afficher tout";
+
+/* No comment provided by engineer. */
+"See All Courses" = "Voir tous les cours";
+
+/* No comment provided by engineer. */
+"Something went wrong while loading the quizzes." = "Une erreur est survenue lors du chargement des questionnaires.";
+
+/* No comment provided by engineer. */
+"Submission" = "Envoi";
+
+/* No comment provided by engineer. */
+"Submission & Rubric" = "Envoi et rubrique";
+
+/* No comment provided by engineer. */
+"Submission Types" = "Types d’envoi";
+
+/* No comment provided by engineer. */
+"Submit" = "Envoyer";
+
+/* No comment provided by engineer. */
+"Submit Assignment" = "Envoyer la tâche";
+
+/* No comment provided by engineer. */
+"Successfully submitted!" = "Envoyé avec succès!";
+
+/* No comment provided by engineer. */
+"The app needs to restart to use the new language settings. Please relaunch the app." = "L’application doit redémarrer pour utiliser les nouveaux paramètres de langue. Veuillez relancer l’application.";
+
+/* No comment provided by engineer. */
+"There are no quizzes to display." = "Il n'existe aucun questionnaire à afficher.";
+
+/* No comment provided by engineer. */
+"Updated Language Settings" = "Paramètres de langue mis à jour";
+
+/* No comment provided by engineer. */
+"Uploading %@ of %@" = "Téléversement de %1$@ sur %2$@";
+
+/* No comment provided by engineer. */
+"Uploading..." = "Téléversement en cours...";
+
+/* No comment provided by engineer. */
+"Website Address" = "Adresse du site Web";
+
+/* No comment provided by engineer. */
+"Your submission is now waiting to be graded" = "Votre envoi est maintenant en attente d'être classé";
+

@@ -1,0 +1,15 @@
+/* Privacy - Camera Usage Description */
+"NSCameraUsageDescription" = "Adjunte fotografías y videos a los mensajes y publicaciones de debate o entréguelos como presentaciones de tareas.";
+
+/* Privacy - Location When In Use Usage Description */
+"NSLocationWhenInUseUsageDescription" = "Ayúdenos a encontrar escuelas cercanas.";
+
+/* Privacy - Microphone Usage Description */
+"NSMicrophoneUsageDescription" = "Adjunte grabaciones de audio a los mensajes y publicaciones de discusión o entréguelas en presentaciones de tarea.";
+
+/* Privacy - Photo Library Additions Usage Description */
+"NSPhotoLibraryAddUsageDescription" = "Adjunte fotografías y videos a los mensajes y publicaciones de debate o entréguelos como presentaciones de tareas.";
+
+/* Privacy - Photo Library Usage Description */
+"NSPhotoLibraryUsageDescription" = "Adjunte fotografías y videos a los mensajes y publicaciones de debate o entréguelos como presentaciones de tareas.";
+

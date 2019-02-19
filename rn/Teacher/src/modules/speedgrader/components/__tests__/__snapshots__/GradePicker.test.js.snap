@@ -1,0 +1,2602 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GradePicker disables the button and has correct text for not graded assignment type 1`] = `
+<View
+  style={
+    Object {
+      "paddingHorizontal": 16,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "lightgray",
+        "borderBottomWidth": 0.5,
+        "paddingVertical": 12,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+        }
+      }
+    >
+      <Text
+        accessibilityTraits="header"
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-heavy",
+              "fontSize": 24,
+            },
+            Object {},
+          ]
+        }
+      >
+        Grade
+      </Text>
+      <TouchableOpacity
+        accessibilityLabel="Customize Grade"
+        accessibilityTraits="button"
+        activeOpacity={1}
+        onPress={null}
+        style={
+          Object {
+            "minHeight": 20,
+          }
+        }
+        testID="grade-picker.button"
+      >
+        <Text
+          accessibilityTraits="header"
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-heavy",
+                "fontSize": 24,
+              },
+              undefined,
+            ]
+          }
+        >
+          Not Graded
+        </Text>
+      </TouchableOpacity>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`GradePicker doesnt render late policy if no grade 1`] = `
+<View
+  style={
+    Object {
+      "paddingHorizontal": 16,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "lightgray",
+        "borderBottomWidth": 0.5,
+        "paddingVertical": 12,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingTop": 12,
+        }
+      }
+    >
+      <Text
+        accessibilityTraits="header"
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-heavy",
+              "fontSize": 24,
+            },
+            Object {
+              "color": "#7F91A7",
+            },
+          ]
+        }
+      >
+        Grade
+      </Text>
+      <TouchableOpacity
+        accessibilityLabel="Customize Grade"
+        accessibilityTraits="button"
+        activeOpacity={0.2}
+        onPress={[Function]}
+        style={
+          Object {
+            "minHeight": 20,
+          }
+        }
+        testID="grade-picker.button"
+      >
+        <Image
+          source={
+            Object {
+              "testUri": "../../../src/images/Add.png",
+            }
+          }
+          style={
+            Object {
+              "tintColor": "#368BD8",
+            }
+          }
+        />
+      </TouchableOpacity>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "display": "flex",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "marginBottom": 8,
+          "marginTop": 20,
+        }
+      }
+    >
+      <View
+        accessibilityComponentType={undefined}
+        accessibilityLabel={undefined}
+        accessibilityTraits={undefined}
+        accessible={true}
+        hasTVPreferredFocus={undefined}
+        hitSlop={undefined}
+        isTVSelectable={true}
+        nativeID={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+            },
+            undefined,
+          ]
+        }
+        testID="slider.zero"
+        tvParallaxProperties={undefined}
+      >
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "flex": 0,
+                  "marginRight": 8,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
+            }
+          >
+            0
+          </Text>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={
+          Object {
+            "flex": 1,
+            "justifyContent": "center",
+          }
+        }
+      >
+        <View
+          hitSlop={
+            Object {
+              "bottom": 15,
+              "top": 15,
+            }
+          }
+          onResponderRelease={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "borderTopColor": "#A5AFB5",
+              "borderTopWidth": 1,
+              "height": 1,
+            }
+          }
+          testID="slider.line"
+        />
+        <Adjustable
+          accessibilityLabel="No Grade"
+          accessible={true}
+          collapsable={undefined}
+          hitSlop={
+            Object {
+              "bottom": 5,
+              "left": 5,
+              "right": 5,
+              "top": 5,
+            }
+          }
+          onAccessibilityDecrement={[Function]}
+          onAccessibilityIncrement={[Function]}
+          onMoveShouldSetResponder={[Function]}
+          onMoveShouldSetResponderCapture={[Function]}
+          onResponderEnd={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderReject={[Function]}
+          onResponderRelease={[Function]}
+          onResponderStart={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          onStartShouldSetResponderCapture={[Function]}
+          style={
+            Object {
+              "backgroundColor": "#fff",
+              "borderColor": "#A5AFB5",
+              "borderRadius": 15,
+              "borderWidth": 1,
+              "height": 30,
+              "left": 0,
+              "position": "absolute",
+              "shadowColor": "#000",
+              "shadowOffset": Object {
+                "height": 2,
+                "width": 0,
+              },
+              "shadowOpacity": 0.25,
+              "shadowRadius": 2,
+              "transform": Array [
+                Object {
+                  "translateX": 0,
+                },
+              ],
+              "width": 30,
+            }
+          }
+          testID="slider.adjustable"
+        />
+      </View>
+      <View
+        accessibilityComponentType={undefined}
+        accessibilityLabel={undefined}
+        accessibilityTraits={undefined}
+        accessible={true}
+        hasTVPreferredFocus={undefined}
+        hitSlop={undefined}
+        isTVSelectable={true}
+        nativeID={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+            },
+            undefined,
+          ]
+        }
+        testID="slider.pointsPossible"
+        tvParallaxProperties={undefined}
+      >
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "flex": 0,
+                  "marginLeft": 8,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
+            }
+          >
+            10
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`GradePicker renders late policy with multiple points deducted 1`] = `
+<View
+  style={
+    Object {
+      "paddingHorizontal": 16,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "lightgray",
+        "borderBottomWidth": 0.5,
+        "paddingVertical": 12,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingTop": 12,
+        }
+      }
+    >
+      <Text
+        accessibilityTraits="header"
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-heavy",
+              "fontSize": 24,
+            },
+            Object {
+              "color": "#7F91A7",
+            },
+          ]
+        }
+      >
+        Grade
+      </Text>
+      <TouchableOpacity
+        accessibilityLabel="Customize Grade"
+        accessibilityTraits="button"
+        activeOpacity={0.2}
+        onPress={[Function]}
+        style={
+          Object {
+            "minHeight": 20,
+          }
+        }
+        testID="grade-picker.button"
+      >
+        <Text
+          accessibilityTraits="header"
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-heavy",
+                "fontSize": 24,
+              },
+              Object {
+                "color": "#7F91A7",
+              },
+            ]
+          }
+        >
+          9/10
+        </Text>
+      </TouchableOpacity>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "marginBottom": 8,
+          "marginTop": 2,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#FC5E13",
+              "fontSize": 14,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
+        }
+      >
+        Late
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#FC5E13",
+              "fontSize": 14,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
+        }
+      >
+        -
+        2 pts
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingBottom": 12,
+        }
+      }
+    >
+      <Text
+        accessibilityTraits="header"
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-heavy",
+              "fontSize": 24,
+            },
+            undefined,
+          ]
+        }
+      >
+        Final Grade
+      </Text>
+      <Text
+        accessibilityTraits="header"
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-heavy",
+              "fontSize": 24,
+            },
+            undefined,
+          ]
+        }
+      >
+        7/10
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "display": "flex",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "marginBottom": 8,
+          "marginTop": 20,
+        }
+      }
+    >
+      <View
+        accessibilityComponentType={undefined}
+        accessibilityLabel={undefined}
+        accessibilityTraits={undefined}
+        accessible={true}
+        hasTVPreferredFocus={undefined}
+        hitSlop={undefined}
+        isTVSelectable={true}
+        nativeID={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+            },
+            undefined,
+          ]
+        }
+        testID="slider.zero"
+        tvParallaxProperties={undefined}
+      >
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "flex": 0,
+                  "marginRight": 8,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
+            }
+          >
+            0
+          </Text>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={
+          Object {
+            "flex": 1,
+            "justifyContent": "center",
+          }
+        }
+      >
+        <View
+          hitSlop={
+            Object {
+              "bottom": 15,
+              "top": 15,
+            }
+          }
+          onResponderRelease={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "borderTopColor": "#A5AFB5",
+              "borderTopWidth": 1,
+              "height": 1,
+            }
+          }
+          testID="slider.line"
+        />
+        <Adjustable
+          accessibilityLabel="NaN"
+          accessible={true}
+          collapsable={undefined}
+          hitSlop={
+            Object {
+              "bottom": 5,
+              "left": 5,
+              "right": 5,
+              "top": 5,
+            }
+          }
+          onAccessibilityDecrement={[Function]}
+          onAccessibilityIncrement={[Function]}
+          onMoveShouldSetResponder={[Function]}
+          onMoveShouldSetResponderCapture={[Function]}
+          onResponderEnd={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderReject={[Function]}
+          onResponderRelease={[Function]}
+          onResponderStart={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          onStartShouldSetResponderCapture={[Function]}
+          style={
+            Object {
+              "backgroundColor": "#fff",
+              "borderColor": "#A5AFB5",
+              "borderRadius": 15,
+              "borderWidth": 1,
+              "height": 30,
+              "left": 0,
+              "position": "absolute",
+              "shadowColor": "#000",
+              "shadowOffset": Object {
+                "height": 2,
+                "width": 0,
+              },
+              "shadowOpacity": 0.25,
+              "shadowRadius": 2,
+              "transform": Array [
+                Object {
+                  "translateX": 0,
+                },
+              ],
+              "width": 30,
+            }
+          }
+          testID="slider.adjustable"
+        />
+      </View>
+      <View
+        accessibilityComponentType={undefined}
+        accessibilityLabel={undefined}
+        accessibilityTraits={undefined}
+        accessible={true}
+        hasTVPreferredFocus={undefined}
+        hitSlop={undefined}
+        isTVSelectable={true}
+        nativeID={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+            },
+            undefined,
+          ]
+        }
+        testID="slider.pointsPossible"
+        tvParallaxProperties={undefined}
+      >
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "flex": 0,
+                  "marginLeft": 8,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
+            }
+          >
+            10
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`GradePicker renders late policy with single point deducted 1`] = `
+<View
+  style={
+    Object {
+      "paddingHorizontal": 16,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "lightgray",
+        "borderBottomWidth": 0.5,
+        "paddingVertical": 12,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingTop": 12,
+        }
+      }
+    >
+      <Text
+        accessibilityTraits="header"
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-heavy",
+              "fontSize": 24,
+            },
+            Object {
+              "color": "#7F91A7",
+            },
+          ]
+        }
+      >
+        Grade
+      </Text>
+      <TouchableOpacity
+        accessibilityLabel="Customize Grade"
+        accessibilityTraits="button"
+        activeOpacity={0.2}
+        onPress={[Function]}
+        style={
+          Object {
+            "minHeight": 20,
+          }
+        }
+        testID="grade-picker.button"
+      >
+        <Text
+          accessibilityTraits="header"
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-heavy",
+                "fontSize": 24,
+              },
+              Object {
+                "color": "#7F91A7",
+              },
+            ]
+          }
+        >
+          9/10
+        </Text>
+      </TouchableOpacity>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "marginBottom": 8,
+          "marginTop": 2,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#FC5E13",
+              "fontSize": 14,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
+        }
+      >
+        Late
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#FC5E13",
+              "fontSize": 14,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
+        }
+      >
+        -
+        1 pt
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingBottom": 12,
+        }
+      }
+    >
+      <Text
+        accessibilityTraits="header"
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-heavy",
+              "fontSize": 24,
+            },
+            undefined,
+          ]
+        }
+      >
+        Final Grade
+      </Text>
+      <Text
+        accessibilityTraits="header"
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-heavy",
+              "fontSize": 24,
+            },
+            undefined,
+          ]
+        }
+      >
+        8/10
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "display": "flex",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "marginBottom": 8,
+          "marginTop": 20,
+        }
+      }
+    >
+      <View
+        accessibilityComponentType={undefined}
+        accessibilityLabel={undefined}
+        accessibilityTraits={undefined}
+        accessible={true}
+        hasTVPreferredFocus={undefined}
+        hitSlop={undefined}
+        isTVSelectable={true}
+        nativeID={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+            },
+            undefined,
+          ]
+        }
+        testID="slider.zero"
+        tvParallaxProperties={undefined}
+      >
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "flex": 0,
+                  "marginRight": 8,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
+            }
+          >
+            0
+          </Text>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={
+          Object {
+            "flex": 1,
+            "justifyContent": "center",
+          }
+        }
+      >
+        <View
+          hitSlop={
+            Object {
+              "bottom": 15,
+              "top": 15,
+            }
+          }
+          onResponderRelease={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "borderTopColor": "#A5AFB5",
+              "borderTopWidth": 1,
+              "height": 1,
+            }
+          }
+          testID="slider.line"
+        />
+        <Adjustable
+          accessibilityLabel="NaN"
+          accessible={true}
+          collapsable={undefined}
+          hitSlop={
+            Object {
+              "bottom": 5,
+              "left": 5,
+              "right": 5,
+              "top": 5,
+            }
+          }
+          onAccessibilityDecrement={[Function]}
+          onAccessibilityIncrement={[Function]}
+          onMoveShouldSetResponder={[Function]}
+          onMoveShouldSetResponderCapture={[Function]}
+          onResponderEnd={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderReject={[Function]}
+          onResponderRelease={[Function]}
+          onResponderStart={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          onStartShouldSetResponderCapture={[Function]}
+          style={
+            Object {
+              "backgroundColor": "#fff",
+              "borderColor": "#A5AFB5",
+              "borderRadius": 15,
+              "borderWidth": 1,
+              "height": 30,
+              "left": 0,
+              "position": "absolute",
+              "shadowColor": "#000",
+              "shadowOffset": Object {
+                "height": 2,
+                "width": 0,
+              },
+              "shadowOpacity": 0.25,
+              "shadowRadius": 2,
+              "transform": Array [
+                Object {
+                  "translateX": 0,
+                },
+              ],
+              "width": 30,
+            }
+          }
+          testID="slider.adjustable"
+        />
+      </View>
+      <View
+        accessibilityComponentType={undefined}
+        accessibilityLabel={undefined}
+        accessibilityTraits={undefined}
+        accessible={true}
+        hasTVPreferredFocus={undefined}
+        hitSlop={undefined}
+        isTVSelectable={true}
+        nativeID={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+            },
+            undefined,
+          ]
+        }
+        testID="slider.pointsPossible"
+        tvParallaxProperties={undefined}
+      >
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "flex": 0,
+                  "marginLeft": 8,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
+            }
+          >
+            10
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`GradePicker renders points based grades 1`] = `
+<View
+  style={
+    Object {
+      "paddingHorizontal": 16,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "lightgray",
+        "borderBottomWidth": 0.5,
+        "paddingVertical": 12,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+        }
+      }
+    >
+      <Text
+        accessibilityTraits="header"
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-heavy",
+              "fontSize": 24,
+            },
+            Object {},
+          ]
+        }
+      >
+        Grade
+      </Text>
+      <TouchableOpacity
+        accessibilityLabel="Customize Grade"
+        accessibilityTraits="button"
+        activeOpacity={0.2}
+        onPress={[Function]}
+        style={
+          Object {
+            "minHeight": 20,
+          }
+        }
+        testID="grade-picker.button"
+      >
+        <Text
+          accessibilityTraits="header"
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-heavy",
+                "fontSize": 24,
+              },
+              undefined,
+            ]
+          }
+        >
+          5/10
+        </Text>
+      </TouchableOpacity>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "display": "flex",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "marginBottom": 8,
+          "marginTop": 20,
+        }
+      }
+    >
+      <View
+        accessibilityComponentType={undefined}
+        accessibilityLabel={undefined}
+        accessibilityTraits={undefined}
+        accessible={true}
+        hasTVPreferredFocus={undefined}
+        hitSlop={undefined}
+        isTVSelectable={true}
+        nativeID={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+            },
+            undefined,
+          ]
+        }
+        testID="slider.zero"
+        tvParallaxProperties={undefined}
+      >
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "flex": 0,
+                  "marginRight": 8,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
+            }
+          >
+            0
+          </Text>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={
+          Object {
+            "flex": 1,
+            "justifyContent": "center",
+          }
+        }
+      >
+        <View
+          hitSlop={
+            Object {
+              "bottom": 15,
+              "top": 15,
+            }
+          }
+          onResponderRelease={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "borderTopColor": "#A5AFB5",
+              "borderTopWidth": 1,
+              "height": 1,
+            }
+          }
+          testID="slider.line"
+        />
+        <Adjustable
+          accessibilityLabel="NaN"
+          accessible={true}
+          collapsable={undefined}
+          hitSlop={
+            Object {
+              "bottom": 5,
+              "left": 5,
+              "right": 5,
+              "top": 5,
+            }
+          }
+          onAccessibilityDecrement={[Function]}
+          onAccessibilityIncrement={[Function]}
+          onMoveShouldSetResponder={[Function]}
+          onMoveShouldSetResponderCapture={[Function]}
+          onResponderEnd={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderReject={[Function]}
+          onResponderRelease={[Function]}
+          onResponderStart={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          onStartShouldSetResponderCapture={[Function]}
+          style={
+            Object {
+              "backgroundColor": "#fff",
+              "borderColor": "#A5AFB5",
+              "borderRadius": 15,
+              "borderWidth": 1,
+              "height": 30,
+              "left": 0,
+              "position": "absolute",
+              "shadowColor": "#000",
+              "shadowOffset": Object {
+                "height": 2,
+                "width": 0,
+              },
+              "shadowOpacity": 0.25,
+              "shadowRadius": 2,
+              "transform": Array [
+                Object {
+                  "translateX": 0,
+                },
+              ],
+              "width": 30,
+            }
+          }
+          testID="slider.adjustable"
+        />
+      </View>
+      <View
+        accessibilityComponentType={undefined}
+        accessibilityLabel={undefined}
+        accessibilityTraits={undefined}
+        accessible={true}
+        hasTVPreferredFocus={undefined}
+        hitSlop={undefined}
+        isTVSelectable={true}
+        nativeID={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+            },
+            undefined,
+          ]
+        }
+        testID="slider.pointsPossible"
+        tvParallaxProperties={undefined}
+      >
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "flex": 0,
+                  "marginLeft": 8,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
+            }
+          >
+            10
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`GradePicker renders the activity indicator when pending 1`] = `
+<View
+  style={
+    Object {
+      "paddingHorizontal": 16,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "lightgray",
+        "borderBottomWidth": 0.5,
+        "paddingVertical": 12,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+        }
+      }
+    >
+      <Text
+        accessibilityTraits="header"
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-heavy",
+              "fontSize": 24,
+            },
+            Object {},
+          ]
+        }
+      >
+        Grade
+      </Text>
+      <TouchableOpacity
+        accessibilityLabel="Customize Grade"
+        accessibilityTraits="button"
+        activeOpacity={1}
+        onPress={null}
+        style={
+          Object {
+            "minHeight": 20,
+          }
+        }
+        testID="grade-picker.button"
+      >
+        <ActivityIndicator
+          animating={true}
+          color="#999999"
+          hidesWhenStopped={true}
+          size="small"
+        />
+      </TouchableOpacity>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "display": "flex",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "marginBottom": 8,
+          "marginTop": 20,
+        }
+      }
+    >
+      <View
+        accessibilityComponentType={undefined}
+        accessibilityLabel={undefined}
+        accessibilityTraits={undefined}
+        accessible={true}
+        hasTVPreferredFocus={undefined}
+        hitSlop={undefined}
+        isTVSelectable={true}
+        nativeID={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+            },
+            undefined,
+          ]
+        }
+        testID="slider.zero"
+        tvParallaxProperties={undefined}
+      >
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "flex": 0,
+                  "marginRight": 8,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
+            }
+          >
+            0
+          </Text>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={
+          Object {
+            "flex": 1,
+            "justifyContent": "center",
+          }
+        }
+      >
+        <View
+          hitSlop={
+            Object {
+              "bottom": 15,
+              "top": 15,
+            }
+          }
+          onResponderRelease={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "borderTopColor": "#A5AFB5",
+              "borderTopWidth": 1,
+              "height": 1,
+            }
+          }
+          testID="slider.line"
+        />
+        <Adjustable
+          accessibilityLabel="NaN"
+          accessible={true}
+          collapsable={undefined}
+          hitSlop={
+            Object {
+              "bottom": 5,
+              "left": 5,
+              "right": 5,
+              "top": 5,
+            }
+          }
+          onAccessibilityDecrement={[Function]}
+          onAccessibilityIncrement={[Function]}
+          onMoveShouldSetResponder={[Function]}
+          onMoveShouldSetResponderCapture={[Function]}
+          onResponderEnd={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderReject={[Function]}
+          onResponderRelease={[Function]}
+          onResponderStart={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          onStartShouldSetResponderCapture={[Function]}
+          style={
+            Object {
+              "backgroundColor": "#fff",
+              "borderColor": "#A5AFB5",
+              "borderRadius": 15,
+              "borderWidth": 1,
+              "height": 30,
+              "left": 0,
+              "position": "absolute",
+              "shadowColor": "#000",
+              "shadowOffset": Object {
+                "height": 2,
+                "width": 0,
+              },
+              "shadowOpacity": 0.25,
+              "shadowRadius": 2,
+              "transform": Array [
+                Object {
+                  "translateX": 0,
+                },
+              ],
+              "width": 30,
+            }
+          }
+          testID="slider.adjustable"
+        />
+      </View>
+      <View
+        accessibilityComponentType={undefined}
+        accessibilityLabel={undefined}
+        accessibilityTraits={undefined}
+        accessible={true}
+        hasTVPreferredFocus={undefined}
+        hitSlop={undefined}
+        isTVSelectable={true}
+        nativeID={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+            },
+            undefined,
+          ]
+        }
+        testID="slider.pointsPossible"
+        tvParallaxProperties={undefined}
+      >
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "flex": 0,
+                  "marginLeft": 8,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
+            }
+          >
+            10
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`GradePicker renders the picker for pass fail assignments 1`] = `
+<View
+  style={
+    Object {
+      "paddingHorizontal": 16,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "lightgray",
+        "borderBottomWidth": 0.5,
+        "paddingVertical": 12,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+        }
+      }
+    >
+      <Text
+        accessibilityTraits="header"
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-heavy",
+              "fontSize": 24,
+            },
+            Object {},
+          ]
+        }
+      >
+        Grade
+      </Text>
+      <TouchableOpacity
+        accessibilityLabel="Customize Grade"
+        accessibilityTraits="button"
+        activeOpacity={0.2}
+        onPress={[Function]}
+        style={
+          Object {
+            "minHeight": 20,
+          }
+        }
+        testID="grade-picker.button"
+      >
+        <Image
+          source={
+            Object {
+              "testUri": "../../../src/images/Add.png",
+            }
+          }
+          style={
+            Object {
+              "tintColor": "#368BD8",
+            }
+          }
+        />
+      </TouchableOpacity>
+    </View>
+  </View>
+  <View
+    collapsable={undefined}
+    style={
+      Object {
+        "height": 0,
+        "overflow": "hidden",
+      }
+    }
+  >
+    <PickerIOS
+      onValueChange={[Function]}
+      selectedValue=""
+    >
+      <Item
+        label="---"
+        value=""
+      />
+      <Item
+        label="Complete"
+        value="complete"
+      />
+      <Item
+        label="Incomplete"
+        value="incomplete"
+      />
+      <Item
+        label="Excuse Student"
+        value="ex"
+      />
+    </PickerIOS>
+  </View>
+</View>
+`;
+
+exports[`GradePicker renders the rubric score when useRubricForGrading 1`] = `
+<View
+  style={
+    Object {
+      "paddingHorizontal": 16,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "lightgray",
+        "borderBottomWidth": 0.5,
+        "paddingVertical": 12,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+        }
+      }
+    >
+      <Text
+        accessibilityTraits="header"
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-heavy",
+              "fontSize": 24,
+            },
+            Object {},
+          ]
+        }
+      >
+        Grade
+      </Text>
+      <TouchableOpacity
+        accessibilityLabel="Customize Grade"
+        accessibilityTraits="button"
+        activeOpacity={0.2}
+        onPress={[Function]}
+        style={
+          Object {
+            "minHeight": 20,
+          }
+        }
+        testID="grade-picker.button"
+      >
+        <Text
+          accessibilityTraits="header"
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-heavy",
+                "fontSize": 24,
+              },
+              undefined,
+            ]
+          }
+        >
+          22/10
+        </Text>
+      </TouchableOpacity>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`GradePicker renders with excused 1`] = `
+<View
+  style={
+    Object {
+      "paddingHorizontal": 16,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "lightgray",
+        "borderBottomWidth": 0.5,
+        "paddingVertical": 12,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+        }
+      }
+    >
+      <Text
+        accessibilityTraits="header"
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-heavy",
+              "fontSize": 24,
+            },
+            Object {},
+          ]
+        }
+      >
+        Grade
+      </Text>
+      <TouchableOpacity
+        accessibilityLabel="Customize Grade"
+        accessibilityTraits="button"
+        activeOpacity={0.2}
+        onPress={[Function]}
+        style={
+          Object {
+            "minHeight": 20,
+          }
+        }
+        testID="grade-picker.button"
+      >
+        <Text
+          accessibilityTraits="header"
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-heavy",
+                "fontSize": 24,
+              },
+              undefined,
+            ]
+          }
+        >
+          Excused
+        </Text>
+      </TouchableOpacity>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "display": "flex",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "marginBottom": 8,
+          "marginTop": 20,
+        }
+      }
+    >
+      <View
+        accessibilityComponentType={undefined}
+        accessibilityLabel={undefined}
+        accessibilityTraits={undefined}
+        accessible={true}
+        hasTVPreferredFocus={undefined}
+        hitSlop={undefined}
+        isTVSelectable={true}
+        nativeID={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+            },
+            undefined,
+          ]
+        }
+        testID="slider.zero"
+        tvParallaxProperties={undefined}
+      >
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "flex": 0,
+                  "marginRight": 8,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
+            }
+          >
+            0
+          </Text>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={
+          Object {
+            "flex": 1,
+            "justifyContent": "center",
+          }
+        }
+      >
+        <View
+          hitSlop={
+            Object {
+              "bottom": 15,
+              "top": 15,
+            }
+          }
+          onResponderRelease={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "borderTopColor": "#A5AFB5",
+              "borderTopWidth": 1,
+              "height": 1,
+            }
+          }
+          testID="slider.line"
+        />
+        <Adjustable
+          accessibilityLabel="Excused"
+          accessible={true}
+          collapsable={undefined}
+          hitSlop={
+            Object {
+              "bottom": 5,
+              "left": 5,
+              "right": 5,
+              "top": 5,
+            }
+          }
+          onAccessibilityDecrement={[Function]}
+          onAccessibilityIncrement={[Function]}
+          onMoveShouldSetResponder={[Function]}
+          onMoveShouldSetResponderCapture={[Function]}
+          onResponderEnd={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderReject={[Function]}
+          onResponderRelease={[Function]}
+          onResponderStart={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          onStartShouldSetResponderCapture={[Function]}
+          style={
+            Object {
+              "backgroundColor": "#fff",
+              "borderColor": "#A5AFB5",
+              "borderRadius": 15,
+              "borderWidth": 1,
+              "height": 30,
+              "left": 0,
+              "position": "absolute",
+              "shadowColor": "#000",
+              "shadowOffset": Object {
+                "height": 2,
+                "width": 0,
+              },
+              "shadowOpacity": 0.25,
+              "shadowRadius": 2,
+              "transform": Array [
+                Object {
+                  "translateX": 0,
+                },
+              ],
+              "width": 30,
+            }
+          }
+          testID="slider.adjustable"
+        />
+      </View>
+      <View
+        accessibilityComponentType={undefined}
+        accessibilityLabel={undefined}
+        accessibilityTraits={undefined}
+        accessible={true}
+        hasTVPreferredFocus={undefined}
+        hitSlop={undefined}
+        isTVSelectable={true}
+        nativeID={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+            },
+            undefined,
+          ]
+        }
+        testID="slider.pointsPossible"
+        tvParallaxProperties={undefined}
+      >
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "flex": 0,
+                  "marginLeft": 8,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
+            }
+          >
+            10
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`GradePicker renders with no grade 1`] = `
+<View
+  style={
+    Object {
+      "paddingHorizontal": 16,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "lightgray",
+        "borderBottomWidth": 0.5,
+        "paddingVertical": 12,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+        }
+      }
+    >
+      <Text
+        accessibilityTraits="header"
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-heavy",
+              "fontSize": 24,
+            },
+            Object {},
+          ]
+        }
+      >
+        Grade
+      </Text>
+      <TouchableOpacity
+        accessibilityLabel="Customize Grade"
+        accessibilityTraits="button"
+        activeOpacity={0.2}
+        onPress={[Function]}
+        style={
+          Object {
+            "minHeight": 20,
+          }
+        }
+        testID="grade-picker.button"
+      >
+        <Image
+          source={
+            Object {
+              "testUri": "../../../src/images/Add.png",
+            }
+          }
+          style={
+            Object {
+              "tintColor": "#368BD8",
+            }
+          }
+        />
+      </TouchableOpacity>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "display": "flex",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "marginBottom": 8,
+          "marginTop": 20,
+        }
+      }
+    >
+      <View
+        accessibilityComponentType={undefined}
+        accessibilityLabel={undefined}
+        accessibilityTraits={undefined}
+        accessible={true}
+        hasTVPreferredFocus={undefined}
+        hitSlop={undefined}
+        isTVSelectable={true}
+        nativeID={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+            },
+            undefined,
+          ]
+        }
+        testID="slider.zero"
+        tvParallaxProperties={undefined}
+      >
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "flex": 0,
+                  "marginRight": 8,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
+            }
+          >
+            0
+          </Text>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={
+          Object {
+            "flex": 1,
+            "justifyContent": "center",
+          }
+        }
+      >
+        <View
+          hitSlop={
+            Object {
+              "bottom": 15,
+              "top": 15,
+            }
+          }
+          onResponderRelease={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "borderTopColor": "#A5AFB5",
+              "borderTopWidth": 1,
+              "height": 1,
+            }
+          }
+          testID="slider.line"
+        />
+        <Adjustable
+          accessibilityLabel="NaN"
+          accessible={true}
+          collapsable={undefined}
+          hitSlop={
+            Object {
+              "bottom": 5,
+              "left": 5,
+              "right": 5,
+              "top": 5,
+            }
+          }
+          onAccessibilityDecrement={[Function]}
+          onAccessibilityIncrement={[Function]}
+          onMoveShouldSetResponder={[Function]}
+          onMoveShouldSetResponderCapture={[Function]}
+          onResponderEnd={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderReject={[Function]}
+          onResponderRelease={[Function]}
+          onResponderStart={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          onStartShouldSetResponderCapture={[Function]}
+          style={
+            Object {
+              "backgroundColor": "#fff",
+              "borderColor": "#A5AFB5",
+              "borderRadius": 15,
+              "borderWidth": 1,
+              "height": 30,
+              "left": 0,
+              "position": "absolute",
+              "shadowColor": "#000",
+              "shadowOffset": Object {
+                "height": 2,
+                "width": 0,
+              },
+              "shadowOpacity": 0.25,
+              "shadowRadius": 2,
+              "transform": Array [
+                Object {
+                  "translateX": 0,
+                },
+              ],
+              "width": 30,
+            }
+          }
+          testID="slider.adjustable"
+        />
+      </View>
+      <View
+        accessibilityComponentType={undefined}
+        accessibilityLabel={undefined}
+        accessibilityTraits={undefined}
+        accessible={true}
+        hasTVPreferredFocus={undefined}
+        hitSlop={undefined}
+        isTVSelectable={true}
+        nativeID={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+            },
+            undefined,
+          ]
+        }
+        testID="slider.pointsPossible"
+        tvParallaxProperties={undefined}
+      >
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "flex": 0,
+                  "marginLeft": 8,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
+            }
+          >
+            10
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`GradePicker updates the visible rubric score when useRubricForGrading and rubrucScore changes 1`] = `
+<View
+  style={
+    Object {
+      "paddingHorizontal": 16,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "lightgray",
+        "borderBottomWidth": 0.5,
+        "paddingVertical": 12,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+        }
+      }
+    >
+      <Text
+        accessibilityTraits="header"
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-heavy",
+              "fontSize": 24,
+            },
+            Object {},
+          ]
+        }
+      >
+        Grade
+      </Text>
+      <TouchableOpacity
+        accessibilityLabel="Customize Grade"
+        accessibilityTraits="button"
+        activeOpacity={0.2}
+        onPress={[Function]}
+        style={
+          Object {
+            "minHeight": 20,
+          }
+        }
+        testID="grade-picker.button"
+      >
+        <Text
+          accessibilityTraits="header"
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-heavy",
+                "fontSize": 24,
+              },
+              undefined,
+            ]
+          }
+        >
+          22/10
+        </Text>
+      </TouchableOpacity>
+    </View>
+  </View>
+</View>
+`;

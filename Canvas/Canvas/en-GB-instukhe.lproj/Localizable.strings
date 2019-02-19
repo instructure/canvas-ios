@@ -1,0 +1,1465 @@
+/* (No Comment) */
+"%0.2f GB" = "%0.2f GB";
+
+/* (No Comment) */
+"%0.2f KB" = "%0.2f KB";
+
+/* (No Comment) */
+"%0.2f MB" = "%0.2f MB";
+
+/* (No Comment) */
+"%1$@ (%2$d)" = "%1$@ (%2$d)";
+
+/* (No Comment) */
+"%1$@ (%2$g out of %3$@)" = "%1$@ (%2$g out of %3$@)";
+
+/* (No Comment) */
+"%1$@ at %2$@" = "%1$@ at %2$@";
+
+/* (No Comment) */
+"%1$@ is due in %2$@" = "%1$@ is due in %2$@";
+
+/* (No Comment) */
+"%1$@ out of %2$@" = "%1$@ out of %2$@";
+
+/* (No Comment) */
+"%1$@%% (%2$g out of %3$@)" = "%1$@%% (%2$g out of %3$@)";
+
+/* (No Comment) */
+"%1$@. %2$@. Type: %3$@." = "%1$@. %2$@. Type: %3$@.";
+
+/* (No Comment) */
+"%1$@. %2$@. Type: %3$@. Status: %4$@" = "%1$@. %2$@. Type: %3$@. Status: %4$@";
+
+/* (No Comment) */
+"%1$d %2$@" = "%1$d %2$@";
+
+/* (No Comment) */
+"%1$g out of %2$@" = "%1$g out of %2$@";
+
+/* (No Comment) */
+"%@ is coming soon!" = "%@ is coming soon!";
+
+/* (No Comment) */
+"%@ is locked" = "%@ is locked";
+
+/* (No Comment) */
+"%@ is not a valid URL" = "%@ is not a valid URL";
+
+/* (No Comment) */
+"%@ is not a valid host" = "%@ is not a valid host";
+
+/* (No Comment) */
+"%@ is not currently supported." = "%@ is not currently supported.";
+
+/* (No Comment) */
+"%@ likes" = "%@ likes";
+
+/* Label indicating multiple submissions need grading */
+"%@ need grading" = "%@ need marking";
+
+/* Shows points possible for an assignment */
+"%@ pts" = "%@ pts";
+
+/* Label to be read for visually impaired users. Name of assingment, then the type of assingment */
+"%@. Type: %@" = "%1$@. Type: %2$@";
+
+/* (No Comment) */
+"%@..." = "%@...";
+
+/* (No Comment) */
+"%d days ago" = "%d days ago";
+
+/* (No Comment) */
+"%d hours ago" = "%d hours ago";
+
+/* (No Comment) */
+"%d items" = "%d items";
+
+/* (No Comment) */
+"%d minutes ago" = "%d minutes ago";
+
+/* (No Comment) */
+"%d months ago" = "%d months ago";
+
+/* (No Comment) */
+"%d more" = "%d more";
+
+/* (No Comment) */
+"%d replies" = "%d replies";
+
+/* (No Comment) */
+"%d unread" = "%d unread";
+
+/* (No Comment) */
+"%d years ago" = "%d years ago";
+
+/* (No Comment) */
+"%qu bytes" = "%qu bytes";
+
+/* (No Comment) */
+"%tu day" = "%tu day";
+
+/* (No Comment) */
+"%tu days" = "%tu days";
+
+/* (No Comment) */
+"%tu hour" = "%tu hour";
+
+/* (No Comment) */
+"%tu hours" = "%tu hours";
+
+/* (No Comment) */
+"%tu minute" = "%tu minute";
+
+/* (No Comment) */
+"%tu minutes" = "%tu minutes";
+
+/* (No Comment) */
+"%u Attachments" = "%u attachments";
+
+/* (No Comment) */
+"%u files" = "%u files";
+
+/* (No Comment) */
+"&quot;%1$@&quot; is locked as part of &quot;%2$@&quot;" = "&quot;%1$@&quot; is locked as part of &quot;%2$@&quot;";
+
+/* (No Comment) */
+"'%@' is now ready to submit to assignments" = "'%@' is now ready to submit assignments";
+
+/* (No Comment) */
+"1 Attachment" = "1 attachment";
+
+/* (No Comment) */
+"1 day" = "1 day";
+
+/* (No Comment) */
+"1 day ago" = "1 day ago";
+
+/* (No Comment) */
+"1 hour" = "1 hour";
+
+/* (No Comment) */
+"1 hour ago" = "1 hour ago";
+
+/* (No Comment) */
+"1 item" = "1 item";
+
+/* (No Comment) */
+"1 like" = "1 like";
+
+/* (No Comment) */
+"1 minute ago" = "1 minute ago";
+
+/* (No Comment) */
+"1 month ago" = "1 month ago";
+
+/* Label indicating a submission need grading */
+"1 needs grading" = "1 needs marking";
+
+/* (No Comment) */
+"1 year ago" = "1 year ago";
+
+/* (No Comment) */
+"3 days" = "3 days";
+
+/* (No Comment) */
+"5 minutes" = "5 minutes";
+
+/* Settings entry title for About */
+"About" = "About";
+
+/* Access Denied from the server */
+"Access Denied" = "Access denied";
+
+/* (No Comment) */
+"Access denied. Please check your permissions for the action you're trying to complete." = "Access denied. Please check your permissions for the action you are trying to complete.";
+
+/* (No Comment) */
+"Add Attachment" = "Add attachment";
+
+/* (No Comment) */
+"Add Comment" = "Add comment";
+
+/* (No Comment) */
+"Add Cover Photo" = "Add cover photo";
+
+/* (No Comment) */
+"Add a folder" = "Add a folder";
+
+/* (No Comment) */
+"Add attachment" = "Add attachment";
+
+/* (No Comment) */
+"Add comment" = "Add comment";
+
+/* (No Comment) */
+"Add folder" = "Add folder";
+
+/* (No Comment) */
+"Add inline media" = "Add inline media";
+
+/* (No Comment) */
+"Add recipients" = "Add recipients";
+
+/* (No Comment) */
+"All members" = "All members";
+
+/* (No Comment) */
+"An unknown error occurred" = "An unknown error occurred";
+
+/* (No Comment) */
+"Announcement" = "Announcement";
+
+/* (No Comment) */
+"Announcements" = "Announcements";
+
+/* (No Comment) */
+"Archive" = "Archive";
+
+/* (No Comment) */
+"Archive Selected Messages Button" = "Archive Selected messages button";
+
+/* (No Comment) */
+"Archive all selected messages" = "Archive all selected messages";
+
+/* (No Comment) */
+"Archived" = "Archived";
+
+/* (No Comment) */
+"Are you ready to logout?" = "Are you ready to log out?";
+
+/* (No Comment) */
+"Ask me later" = "Ask me later";
+
+/* Assignment icon a11y label
+   Assignment module item type */
+"Assignment" = "Assignment";
+
+/* (No Comment) */
+"Assignments" = "Assignments";
+
+/* (No Comment) */
+"Attachment" = "Attachment";
+
+/* (No Comment) */
+"Attachment %d" = "Attachment %d";
+
+/* (No Comment) */
+"Attachment %i" = "Attachment %i";
+
+/* (No Comment) */
+"Attachments" = "Attachments";
+
+/* (No Comment) */
+"Attendance" = "Attendance";
+
+/* (No Comment) */
+"Audio" = "Audio";
+
+/* (No Comment) */
+"Audio input hardware not available" = "Audio input hardware not available";
+
+/* (No Comment) */
+"Authentication error" = "Authentication error";
+
+/* (No Comment) */
+"Build Avatar" = "Build avatar";
+
+/* No comment provided by engineer. */
+"Cache cleared" = "Cache cleared";
+
+/* Calendar landing page title
+   Calendar page title */
+"Calendar" = "Calendar";
+
+/* No comment provided by engineer. */
+"Calendar Event" = "Calendar event";
+
+/* (No Comment) */
+"Can't load tool" = "Cannot load tool";
+
+/* (No Comment) */
+"Can't submit media" = "Cannot submit media";
+
+/* (No Comment) */
+"Cancel" = "Cancel";
+
+/* (No Comment) */
+"Cancel Message" = "Cancel message";
+
+/* (No Comment) */
+"Canvas appears to be unavailable. Please try again later." = "Canvas appears to be unavailable. Please try again later.";
+
+/* (No Comment) */
+"Canvas failed to find recipients for your current search. Please try again later." = "Canvas failed to find recipients for your current search. Please try again later.";
+
+/* (No Comment) */
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, thus leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads and others.\n\nIf you believe that a quiz contains unsupported content, please take the quiz on a desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device.";
+
+/* (No Comment) */
+"Change User" = "Change user";
+
+/* Button to select a landing page */
+"Choose Landing Page" = "Choose landing page";
+
+/* (No Comment) */
+"Choose Photo" = "Choose photo";
+
+/* (No Comment) */
+"Choose Profile Picture" = "Choose profile picture";
+
+/* (No Comment) */
+"Choose Video" = "Choose video";
+
+/* (No Comment) */
+"Choose a name for the new folder" = "Choose a name for the new folder";
+
+/* (No Comment) */
+"Choose a name for the new folder." = "Choose a name for the new folder.";
+
+/* (No Comment) */
+"Choose a submission type" = "Choose a submission type";
+
+/* (No Comment) */
+"Choose from Library..." = "Choose from library...";
+
+/* Text for button to allow user to choose a set of assignments to do */
+"Choose option" = "Choose option";
+
+/* (No Comment) */
+"Choose video" = "Choose video";
+
+/* (No Comment) */
+"Close" = "Close";
+
+/* (No Comment) */
+"Closed for Comments" = "Closed for comments";
+
+/* (No Comment) */
+"Collaborations" = "Collaborations";
+
+/* (No Comment) */
+"Comment" = "Comment";
+
+/* (No Comment) */
+"Comment Error" = "Comment error";
+
+/* (No Comment) */
+"Comments" = "Comments";
+
+/* (No Comment) */
+"Comments are disabled" = "Comments are disabled";
+
+/* (No Comment) */
+"Complete" = "Complete";
+
+/* (No Comment) */
+"Completed" = "Completed";
+
+/* (No Comment) */
+"Compose Message Button" = "Compose message button";
+
+/* (No Comment) */
+"Compose a message" = "Compose a message";
+
+/* (No Comment) */
+"Conferences" = "Conferences";
+
+/* (No Comment) */
+"Confirm deletion" = "Confirm deletion";
+
+/* (No Comment) */
+"Continue" = "Continue";
+
+/* (No Comment) */
+"Could not authenticate with server" = "Could not authenticate with server";
+
+/* (No Comment) */
+"Couldn't Load Submission" = "Could not load submission";
+
+/* (No Comment) */
+"Couldn't find recipients" = "Could not find recipients";
+
+/* (No Comment) */
+"Course Syllabus" = "Course syllabus";
+
+/* Courses landing page title */
+"Courses" = "Courses";
+
+/* (No Comment) */
+"Create Folder" = "Create folder";
+
+/* (No Comment) */
+"Current Submission" = "Current submission";
+
+/* (No Comment) */
+"Currently there is limited quiz support on mobile" = "Currently there is limited quiz support on mobile";
+
+/* (No Comment) */
+"Custom Grade" = "Custom mark";
+
+/* (No Comment) */
+"Customize" = "Customise";
+
+/* dashboard page title */
+"Dashboard" = "Dashboard";
+
+/* (No Comment) */
+"Delete" = "Delete";
+
+/* (No Comment) */
+"Delete (%d)" = "Delete (%d)";
+
+/* (No Comment) */
+"Delete this reply?" = "Delete this reply?";
+
+/* (No Comment) */
+"Deleted file: &quot;%@&quot;" = "Deleted file: &quot;%@&quot;";
+
+/* (No Comment) */
+"Detail" = "Detail";
+
+/* No comment provided by engineer. */
+"Details" = "Details";
+
+/* (No Comment) */
+"Discard" = "Discard";
+
+/* (No Comment) */
+"Discard this entry?" = "Discard this entry?";
+
+/* Discussion module item type */
+"Discussion" = "Discussion";
+
+/* (No Comment) */
+"Discussion Entry" = "Discussion entry";
+
+/* (No Comment) */
+"Discussion Topics" = "Discussion topics";
+
+/* (No Comment) */
+"Discussions" = "Discussions";
+
+/* Dismiss an alert dialog */
+"Dismiss" = "Dismiss";
+
+/* (No Comment) */
+"Do you want to masquerade as this user?" = "Do you want to masquerade as this user?";
+
+/* (No Comment) */
+"Domain" = "Domain";
+
+/* (No Comment) */
+"Don't ask me again" = "Don't ask me again";
+
+/* (No Comment) */
+"Don't delete" = "Don't delete";
+
+/* Button title to mark a to do item as done */
+"Done" = "Done";
+
+/* (No Comment) */
+"Download Canceled" = "Download cancelled";
+
+/* (No Comment) */
+"Downloading..." = "Downloading...";
+
+/* Formatted string for showing an assingment due date (date already localized by system) */
+"Due %@" = "Due %@";
+
+/* (No Comment) */
+"Due:" = "Due:";
+
+/* (No Comment) */
+"Due: %1$@ at %2$@" = "Due: %1$@ at %2$@";
+
+/* Due date label for to do items, first placeholder is date, second is time */
+"Due: %@ at %@" = "Due: %1$@ at %2$@";
+
+/* (No Comment) */
+"EULA" = "EULA";
+
+/* (No Comment) */
+"Edit" = "Edit";
+
+/* (No Comment) */
+"Edit Course List" = "Edit course list";
+
+/* (No Comment) */
+"Edit Group List" = "Edit group list";
+
+/* (No Comment) */
+"Edit items" = "Edit items";
+
+/* (No Comment) */
+"Editing reply by %1$@, %2$@" = "Editing reply by %1$@, %2$@";
+
+/* (No Comment) */
+"Email" = "Email";
+
+/* (No Comment) */
+"Enable Push Notifications" = "Enable push notifications";
+
+/* (No Comment) */
+"Enter User ID and Domain." = "Enter user ID and domain.";
+
+/* (No Comment) */
+"Enter submission" = "Enter submission";
+
+/* (No Comment) */
+"Entry posted" = "Entry posted";
+
+/* (No Comment) */
+"Error" = "Error";
+
+/* (No Comment) */
+"Error adding recipeints" = "Error adding recipeints";
+
+/* (No Comment) */
+"Error deleting file &quot;%@&quot;" = "Error deleting file &quot;%@&quot;";
+
+/* (No Comment) */
+"Error deleting folder" = "Error deleting folder";
+
+/* (No Comment) */
+"Event" = "Event";
+
+/* (No Comment) */
+"Existing Attachments..." = "Existing attachments...";
+
+/* (No Comment) */
+"External Tool" = "External tool";
+
+/* External URL module item type */
+"External URL" = "External URL";
+
+/* File module item type */
+"File" = "File";
+
+/* (No Comment) */
+"File extension not allowed: %@" = "File extension not allowed: %@";
+
+/* (No Comment) */
+"File extension(s) permitted for this assignment:" = "File extension(s) permitted for this assignment:";
+
+/* (No Comment) */
+"File received" = "File received";
+
+/* (No Comment) */
+"File unavailable" = "File unavailable";
+
+/* (No Comment) */
+"File upload" = "File upload";
+
+/* (No Comment) */
+"File upload failed." = "File upload failed.";
+
+/* (No Comment) */
+"Files" = "Files";
+
+/* (No Comment) */
+"Finished downloading" = "Finished downloading";
+
+/* badge indicating front page */
+"Front Page" = "Front page";
+
+/* (No Comment) */
+"Future" = "Future";
+
+/* (No Comment) */
+"Go To Discussion" = "Go to discussion";
+
+/* (No Comment) */
+"Go to App Store" = "Go to app store";
+
+/* (No Comment) */
+"Go to Quiz" = "Go to quiz";
+
+/* (No Comment) */
+"Go to discussion" = "Go to discussion";
+
+/* (No Comment) */
+"Grade" = "Mark";
+
+/* (No Comment) */
+"Grade %@" = "Mark %@";
+
+/* (No Comment) */
+"Grade in SpeedGrader" = "Mark in SpeedGrader";
+
+/* (No Comment) */
+"Grade: %1$i / %2$g" = "Mark: %1$i / %2$g";
+
+/* (No Comment) */
+"Grade: %@" = "Mark: %@";
+
+/* (No Comment) */
+"Graded Discussion" = "Marked discussion";
+
+/* (No Comment) */
+"Graded discussion." = "Marked discussion.";
+
+/* (No Comment) */
+"Graded discussion. %g points possible." = "Marked discussion. %g points possible.";
+
+/* (No Comment) */
+"Grades" = "Marks";
+
+/* (No Comment) */
+"Group conversation" = "Group conversation";
+
+/* (No Comment) */
+"Groups" = "Groups";
+
+/* (No Comment) */
+"Help" = "Help";
+
+/* (No Comment) */
+"Hide Grades" = "Hide marks";
+
+/* (No Comment) */
+"How do you like Canvas?" = "How do you like Canvas?";
+
+/* I give you back your time, use it wisely. */
+"I give you back your time, use it wisely." = "I give you back your time. Use it wisely.";
+
+/* (No Comment) */
+"Image" = "Image";
+
+/* (No Comment) */
+"Import from Dropbox" = "Import from Dropbox";
+
+/* (No Comment) */
+"Import from camera" = "Import from camera";
+
+/* (No Comment) */
+"Inbox" = "Inbox";
+
+/* (No Comment) */
+"Incomplete" = "Incomplete";
+
+/* (No Comment) */
+"Individual messages" = "Individual messages";
+
+/* (No Comment) */
+"Invalid URL" = "Invalid URL";
+
+/* (No Comment) */
+"It has problems" = "It has problems";
+
+/* (No Comment) */
+"Item %1$d of %2$d" = "Item %1$d of %2$d";
+
+/* table header for module items */
+"Items" = "Items";
+
+/* It’s empty, what are you still doing here. */
+"It’s empty, what are you still doing here." = "It’s empty. What are you still doing here?";
+
+/* No comment provided by engineer. */
+"Jumps to current day on calendar" = "Jumps to current day on calendar";
+
+/* (No Comment) */
+"Keep" = "Keep";
+
+/* Settings entry title for Choosing a Landing Page */
+"Landing Page" = "Landing page";
+
+/* (No Comment) */
+"Large file" = "Large file";
+
+/* (No Comment) */
+"Later" = "Later";
+
+/* (No Comment) */
+"Launch External Tool" = "Launch external tool";
+
+/* (No Comment) */
+"Legal" = "Legal";
+
+/* Web URL link item label */
+"Link" = "Link";
+
+/* (No Comment) */
+"Loading..." = "Loading...";
+
+/* (No Comment) */
+"Locked" = "Locked";
+
+/* Displayed when next assignment is locked until current assignment is graded. Placeholder is an assignment's name. */
+"Locked until \"%@\" is graded" = "Locked until \"%@\" is graded";
+
+/* locked date */
+"Locked until %@" = "Locked until %@";
+
+/* (No Comment) */
+"Login ID" = "Login ID";
+
+/* (No Comment) */
+"Login Problem" = "Log-in problem";
+
+/* (No Comment) */
+"Logout" = "Logout";
+
+/* (No Comment) */
+"Love it!" = "Love it!";
+
+/* Button title for mark as done. */
+"Mark as Done" = "Mark as done";
+
+/* (No Comment) */
+"Masquerade" = "Masquerade";
+
+/* Master Path module item type */
+"Mastery Path" = "Mastery path";
+
+/* (No Comment) */
+"Me" = "Me";
+
+/* (No Comment) */
+"Media Comment" = "Media comment";
+
+/* (No Comment) */
+"Media Submission" = "Media submission";
+
+/* (No Comment) */
+"Media comment" = "Media comment";
+
+/* (No Comment) */
+"Media recording" = "Media recording";
+
+/* (No Comment) */
+"Media type selector. %@" = "Media type selector. %@";
+
+/* (No Comment) */
+"Message Instructor" = "Message instructor";
+
+/* (No Comment) */
+"Message Sent." = "Message sent.";
+
+/* (No Comment) */
+"Message everyone separately, or add everyone to a group conversation?" = "Message everyone separately, or add everyone to a group conversation?";
+
+/* Messages landing page title */
+"Messages" = "Messages";
+
+/* (No Comment) */
+"Mobile Quiz Warning" = "Mobile quiz warning";
+
+/* Modules title */
+"Modules" = "Modules";
+
+/* (No Comment) */
+"More Info" = "More info";
+
+/* (No Comment) */
+"Multiple Due Dates" = "Multiple due dates";
+
+/* user must contribute to complete requirement */
+"Must contribute" = "Must contribute";
+
+/* user must mark item as done to complete requirement */
+"Must mark as done" = "Must mark as done";
+
+/* format string saying what the minimum score must be */
+"Must score %@ or higher" = "Must score %@ or higher";
+
+/* user must submit something to complete */
+"Must submit" = "Must submit";
+
+/* user must view item to complete requirement */
+"Must view" = "Must view";
+
+/* (No Comment) */
+"My Files" = "My files";
+
+/* (No Comment) */
+"Name" = "Name";
+
+/* (No Comment) */
+"Need SpeedGrader for iPad" = "Need SpeedGrader for iPad";
+
+/* (No Comment) */
+"Network Error" = "Network error";
+
+/* (No Comment) */
+"New Folder" = "New folder";
+
+/* No comment provided by engineer. */
+"New Message" = "New message";
+
+/* Button title for next module item. */
+"Next" = "Next";
+
+/* (No Comment) */
+"Next 7 Days" = "Next 7 days";
+
+/* Button to navigate to the next day on the calendar */
+"Next Day" = "Next day";
+
+/* (No Comment) */
+"Next item" = "Next item";
+
+/* (No Comment) */
+"No" = "No";
+
+/* (No Comment) */
+"No Date" = "No date";
+
+/* Label shown for a to do that doesn't have a due date */
+"No Due Date" = "No due date";
+
+/* Title for alert when a module item hasn't been set up with mastery paths */
+"No Mastery Paths" = "No mastery paths";
+
+/* (No Comment) */
+"No Recorded Audio" = "No recorded audio";
+
+/* (No Comment) */
+"No Submission" = "No submission";
+
+/* (No Comment) */
+"No Thanks" = "No, thank you.";
+
+/* (No Comment) */
+"No actions available for this file" = "No actions available for this file";
+
+/* (No Comment) */
+"No audio was recorded." = "No audio was recorded.";
+
+/* (No Comment) */
+"No due date" = "No due date";
+
+/* (No Comment) */
+"No installed apps support opening this file" = "No installed apps support opening this file";
+
+/* (No Comment) */
+"No recipients" = "No recipients";
+
+/* (No Comment) */
+"No results found" = "No results found";
+
+/* (No Comment) */
+"Not Authorized" = "Not authorised";
+
+/* (No Comment) */
+"Not Complete" = "Not complete";
+
+/* (No Comment) */
+"Not available" = "Not available";
+
+/* (No Comment) */
+"Not graded" = "Not marked";
+
+/* (No Comment) */
+"Not graded (0 out of %@)" = "Not marked (0 out of %@)";
+
+/* (No Comment) */
+"Note: Media files are not immediately available for playback while they are processed on the server." = "Note: Media files are not immediately available for playback while they are processed on the server.";
+
+/* Nothing to do, go play outside! */
+"Nothing to do, go play outside!" = "Nothing to do. Go have a cup of tea!";
+
+/* Nothing to see here. */
+"Nothing to see here." = "Nothing to see here.";
+
+/* (No Comment) */
+"Notification" = "Notification";
+
+/* Settings entry title for Notification Preferences */
+"Notification Preferences" = "Notification preferences";
+
+/* Notifications tab title */
+"Notifications" = "Notifications";
+
+/* OK Button Title */
+"OK" = "OK";
+
+/* (No Comment) */
+"Observer" = "Observer";
+
+/* (No Comment) */
+"Ok" = "OK";
+
+/* (No Comment) */
+"Online URL" = "Online URL";
+
+/* (No Comment) */
+"Oops!" = "Whoops!";
+
+/* (No Comment) */
+"Open in Safari" = "Open in Safari";
+
+/* (No Comment) */
+"Open in SpeedGrader" = "Open in SpeedGrader";
+
+/* (No Comment) */
+"Open in..." = "Open in...";
+
+/* Button title for selecting an option given a number */
+"Option %d" = "Option %d";
+
+/* (No Comment) */
+"Other" = "Other";
+
+/* (No Comment) */
+"Other replies hidden until you reply" = "Other replies hidden until you reply";
+
+/* (No Comment) */
+"Outcomes" = "Outcomes";
+
+/* Page module item type */
+"Page" = "Page";
+
+/* (No Comment) */
+"Past" = "Past";
+
+/* (No Comment) */
+"People" = "People";
+
+/* (No Comment) */
+"Pinned Discussions" = "Pinned discussions";
+
+/* (No Comment) */
+"Play" = "Play";
+
+/* (No Comment) */
+"Please check your network connection and try again." = "Please check your network connection and try again";
+
+/* (No Comment) */
+"Post" = "Post";
+
+/* (No Comment) */
+"Post Comment" = "Post comment";
+
+/* (No Comment) */
+"Post comment" = "Post comment";
+
+/* (No Comment) */
+"Posting…" = "Posting…";
+
+/* (No Comment) */
+"Posts your comment" = "Posts your comment";
+
+/* Table header for prerequisite modules */
+"Prerequisite Modules" = "Prerequisite modules";
+
+/* Button title for previous module item. */
+"Previous" = "Previous";
+
+/* Button to navigate to the previous day on the calendar */
+"Previous Day" = "Previous day";
+
+/* (No Comment) */
+"Previous item" = "Previous item";
+
+/* (No Comment) */
+"Privacy Policy" = "Privacy Policy";
+
+/* No comment provided by engineer. */
+"Profile" = "Profile";
+
+/* Quiz module item type */
+"Quiz" = "Quiz";
+
+/* (No Comment) */
+"Quiz Alert" = "Quiz alert";
+
+/* (No Comment) */
+"Quizzes" = "Quizzes";
+
+/* (No Comment) */
+"Rate on App Store" = "Rate on app store";
+
+/* (No Comment) */
+"Rating for %1$@, Score: %2$g" = "Rating for %1$@, Score: %2$g";
+
+/* (No Comment) */
+"Re-submit Assignment" = "Re-submit assignment";
+
+/* (No Comment) */
+"Recipients" = "Recipients";
+
+/* (No Comment) */
+"Record" = "Record";
+
+/* (No Comment) */
+"Record Audio" = "Record audio";
+
+/* (No Comment) */
+"Record Audio..." = "Record audio...";
+
+/* (No Comment) */
+"Record Video" = "Record video";
+
+/* (No Comment) */
+"Record audio" = "Record audio";
+
+/* (No Comment) */
+"Record video" = "Record video";
+
+/* Button to refresh the calendar events */
+"Refresh" = "Refresh";
+
+/* No comment provided by engineer. */
+"Refresh Button" = "Refresh button";
+
+/* No comment provided by engineer. */
+"Refreshes the calendar content" = "Refreshes the calendar content";
+
+/* Refreshing Calendar Events */
+"Refreshing Calendar Events" = "Refreshing calendar events";
+
+/* (No Comment) */
+"Remove" = "Remove";
+
+/* (No Comment) */
+"Remove this file?" = "Remove this file?";
+
+/* (No Comment) */
+"Report a problem" = "Report a problem";
+
+/* (No Comment) */
+"Request a feature" = "Request a feature";
+
+/* (No Comment) */
+"Rubric" = "Rubric";
+
+/* (No Comment) */
+"Save" = "Save";
+
+/* (No Comment) */
+"Schedule Notification" = "Schedule notification";
+
+/* (No Comment) */
+"Search for recipients" = "Search for recipients";
+
+/* No comment provided by engineer. */
+"Select Option" = "Select option";
+
+/* Button title to select a certain assignment set option */
+"Select Option %d" = "Select option %d";
+
+/* (No Comment) */
+"Select file(s)" = "Select file(s)";
+
+/* (No Comment) */
+"Select or deselect" = "Select or deselect";
+
+/* (No Comment) */
+"Selected" = "Selected";
+
+/* (No Comment) */
+"Send" = "Send";
+
+/* (No Comment) */
+"Send %@ a message" = "Send %@ a message";
+
+/* (No Comment) */
+"Send Message" = "Send message";
+
+/* (No Comment) */
+"Sent" = "Sent";
+
+/* (No Comment) */
+"Settings" = "Settings";
+
+/* (No Comment) */
+"Show Grades" = "Show marks";
+
+/* (No Comment) */
+"Show Quiz" = "Show Quiz";
+
+/* (No Comment) */
+"Show file" = "Show file";
+
+/* (No Comment) */
+"Show recipients" = "Show recipients";
+
+/* (No Comment) */
+"Some items could not be deleted" = "Some items could not be deleted";
+
+/* (No Comment) */
+"Some selected folders are not empty. Are you sure you want to delete them?" = "Some selected folders are not empty. Are you certain you want to delete them?";
+
+/* (No Comment) */
+"Sorry, we couldn't find the assignment. This assignment may have been deleted." = "Sorry, we couldn't find the assignment. This assignment might have been deleted.";
+
+/* (No Comment) */
+"Starts playing your recording" = "Starts playing your recording";
+
+/* (No Comment) */
+"Starts recording a media comment" = "Starts recording a media comment";
+
+/* Label read aloud when item status is completed.
+   Module status label when completed */
+"Status: Completed" = "Status: Completed";
+
+/* Label read aloud when item status is incomplete. */
+"Status: Incomplete" = "Status: Incomplete";
+
+/* Label read aloud when item status is locked.
+   Module status label when locked */
+"Status: Locked" = "Status: Locked";
+
+/* Module status label when started */
+"Status: Started" = "Status: Started";
+
+/* (No Comment) */
+"Stay Logged In" = "Stay logged in";
+
+/* (No Comment) */
+"Stop" = "Stop";
+
+/* (No Comment) */
+"Stop Masquerading" = "Stop masquerading";
+
+/* (No Comment) */
+"Stops playing your recording" = "Stops playing your recording";
+
+/* (No Comment) */
+"Stops recording a media comment" = "Stops recording a media comment";
+
+/* (No Comment) */
+"Student" = "Student";
+
+/* Header item label */
+"Sub Header" = "Sub header";
+
+/* (No Comment) */
+"Submission" = "Submission";
+
+/* (No Comment) */
+"Submission Error" = "Submission error";
+
+/* (No Comment) */
+"Submission complete" = "Submission complete";
+
+/* (No Comment) */
+"Submit" = "Submit";
+
+/* (No Comment) */
+"Submitted" = "Submitted";
+
+/* (No Comment) */
+"Submitting..." = "Submitting...";
+
+/* (No Comment) */
+"Subscribe to calendar feed" = "Subscribe to calendar feed";
+
+/* (No Comment) */
+"Success!" = "Success!";
+
+/* (No Comment) */
+"Sure!" = "Sure!";
+
+/* (No Comment) */
+"Switches media input between audio and video. Currently set to %@" = "Switches media input between audio and video. Currently set to %@";
+
+/* (No Comment) */
+"Switches to media comment mode" = "Switches to media comment mode";
+
+/* (No Comment) */
+"Switches to text comment mode" = "Switches to text comment mode";
+
+/* (No Comment) */
+"Syllabus" = "Syllabus";
+
+/* (No Comment) */
+"TA" = "TA";
+
+/* (No Comment) */
+"TAs" = "TAs";
+
+/* (No Comment) */
+"Take Photo" = "Take photo";
+
+/* (No Comment) */
+"Take Photo or Video..." = "Take photo or video...";
+
+/* (No Comment) */
+"Take a Photo..." = "Take a photo...";
+
+/* (No Comment) */
+"Take a Video..." = "Take a video...";
+
+/* (No Comment) */
+"Tap to try again" = "Tap to try again";
+
+/* (No Comment) */
+"Teacher" = "Teacher";
+
+/* (No Comment) */
+"Teachers" = "Teachers";
+
+/* (No Comment) */
+"Tell us what's wrong" = "Tell us what's wrong";
+
+/* (No Comment) */
+"Terms of Use" = "Terms of Use";
+
+/* (No Comment) */
+"Text Comment" = "Text comment";
+
+/* (No Comment) */
+"Text Submission" = "Text submission";
+
+/* (No Comment) */
+"Text entry" = "Text entry";
+
+/* No comment provided by engineer. */
+"That page has been disabled for this course" = "That page has been disabled for this course";
+
+/* (No Comment) */
+"The recipients could not be added. Please try again. (%@)" = "The recipients could not be added. Please try again. (%@)";
+
+/* (No Comment) */
+"The server could not be reached" = "The server could not be reached";
+
+/* (No Comment) */
+"The server you entered is not authorized for this app." = "The server you entered is not authorised for this app.";
+
+/* (No Comment) */
+"The user agent for this app is unauthorized." = "The user agent for this app is unauthorised.";
+
+/* (No Comment) */
+"There are no actions for this item" = "There are no actions for this item";
+
+/* (No Comment) */
+"There are no items to display" = "There are no items to display";
+
+/* (No Comment) */
+"There was a network error posting your comment." = "There was a network error posting your comment.";
+
+/* (No Comment) */
+"There was a network problem while attempting to upload your submission" = "There was a network problem while attempting to upload your submission";
+
+/* (No Comment) */
+"There was a problem accessing the requested file.\n\nError: %@" = "There was a problem accessing the requested file.\n\nError: %@";
+
+/* (No Comment) */
+"There was a problem launching Safari" = "There was a problem launching Safari";
+
+/* (No Comment) */
+"There was an error loading the document." = "There was an error loading the document.";
+
+/* (No Comment) */
+"There was an error loading your content. If it is an audio or video upload it may still be processing." = "There was an error loading your content. If it is an audio or video upload, it might still be processing.";
+
+/* (No Comment) */
+"This app is not authorized for use." = "This app is not authorised for use.";
+
+/* (No Comment) */
+"This assignment doesn't appear to be a valid external tool or is misconfigured." = "This assignment doesn't appear to be a valid external tool or is configured incorrectly.";
+
+/* (No Comment) */
+"This assignment has no details." = "This assignment has no details.";
+
+/* (No Comment) */
+"This entry has been deleted" = "This entry has been deleted";
+
+/* (No Comment) */
+"This file cannot be displayed on this device." = "This file cannot be displayed on this device.";
+
+/* (No Comment) */
+"This file is locked" = "This file is locked";
+
+/* (No Comment) */
+"This folder is locked" = "This folder is locked";
+
+/* (No Comment) */
+"This is a media message." = "This is a media message.";
+
+/* Description for alert when a module item doesn't have mastery paths configured */
+"This module item doesn't have mastery paths set up." = "This module item has no mastery paths set up.";
+
+/* This would be a great time to do some extra credit. */
+"This would be a great time to do some extra credit." = "This would be a great time to do some extra credit.";
+
+/* Title of the Todo screen */
+"To Do" = "To do";
+
+/* To-Do List landing page title */
+"To-Do List" = "To-do list";
+
+/* (No Comment) */
+"To:" = "To:";
+
+/* Button to scroll to 'today' on the calendar */
+"Today" = "Today";
+
+/* No comment provided by engineer. */
+"Today Button" = "Today button";
+
+/* (No Comment) */
+"Toggles selection of current item" = "Toggles selection of current item";
+
+/* (No Comment) */
+"Toggles selection of item" = "Toggles selection of item";
+
+/* (No Comment) */
+"Turn In" = "Turn in";
+
+/* (No Comment) */
+"Turn In Again" = "Turn in again";
+
+/* (No Comment) */
+"Turn in %@" = "Turn in %@";
+
+/* Label read aloud to describe module item type */
+"Type: %@" = "Type: %@";
+
+/* (No Comment) */
+"Uh-oh! No Internet Connection" = "Uh-oh! No Internet connection";
+
+/* (No Comment) */
+"Unable to load" = "Unable to load";
+
+/* (No Comment) */
+"Unable to post. Please try again later" = "Unable to post. Please try again later";
+
+/* (No Comment) */
+"Unable to upload to server" = "Unable to upload to server";
+
+/* (No Comment) */
+"Unavailable" = "Unavailable";
+
+/* (No Comment) */
+"Ungraded" = "Ungraded";
+
+/* (No Comment) */
+"Unknown" = "Unknown";
+
+/* (No Comment) */
+"Unread" = "Unread";
+
+/* (No Comment) */
+"Unsaved Reply" = "Unsaved reply";
+
+/* (No Comment) */
+"Upload" = "Upload";
+
+/* (No Comment) */
+"Upload Error" = "Upload error";
+
+/* (No Comment) */
+"Upload a file" = "Upload a file";
+
+/* (No Comment) */
+"Upload failed. Reason: (%@)" = "Upload failed. Reason: (%@)";
+
+/* (No Comment) */
+"Upload file" = "Upload file";
+
+/* (No Comment) */
+"Upload to assignment &quot;%@&quot; failed" = "Upload to assignment &quot;%@&quot; failed";
+
+/* (No Comment) */
+"Upload to folder &quot;%@&quot; failed" = "Upload to folder &quot;%@&quot; failed";
+
+/* (No Comment) */
+"Use" = "Use";
+
+/* (No Comment) */
+"User ID" = "User ID";
+
+/* (No Comment) */
+"User Info" = "User info";
+
+/* (No Comment) */
+"Video" = "Video";
+
+/* (No Comment) */
+"Video error" = "Video error";
+
+/* (No Comment) */
+"View" = "View";
+
+/* (No Comment) */
+"Warning" = "Warning";
+
+/* (No Comment) */
+"We had a problem loading the submission. Please try again later." = "We had a problem loading the submission. Please try again later.";
+
+/* (No Comment) */
+"We were unable to verify the server for use with this app." = "We were unable to verify the server for use with this app.";
+
+/* (No Comment) */
+"Whoops!" = "Whoops!";
+
+/* (No Comment) */
+"Will unlock %@." = "Will unlock %@.";
+
+/* (No Comment) */
+"Would you like to create a new message?" = "Would you like to create a new message?";
+
+/* (No Comment) */
+"Would you mind giving us a rating on the app store?" = "Would you mind giving us a rating on the app store?";
+
+/* (No Comment) */
+"Would you mind letting us know the problems you have been having with the app?" = "Would you mind letting us know the problems you have been having with the app?";
+
+/* (No Comment) */
+"Yes" = "Yes";
+
+/* (No Comment) */
+"You are now masquerading as %@" = "You are now masquerading as %@";
+
+/* (No Comment) */
+"You are now masquerading as %@. To Stop Masquerading go to your Profile." = "You are now masquerading as %@. To stop masquerading, go to your profile.";
+
+/* (No Comment) */
+"You do not have SpeedGrader for iPad. You can download it for free from the App Store." = "You do not have SpeedGrader for iPad. You can download it for free from the app store.";
+
+/* Error message for an unauthorized course or group. */
+"You do not have access to this content. The Course or Group may not have started, or may have been concluded." = "You do not have access to this content. The course or group might not have started, or might have been concluded.";
+
+/* (No Comment) */
+"You do not have permission to delete this reply" = "You do not have permission to delete this reply";
+
+/* (No Comment) */
+"You don't have permission to masquerade as this user or there is no user with that ID" = "You don't have permission to masquerade as this user, or there is no user with that ID";
+
+/* (No Comment) */
+"You have an unsaved reply. Would you like to discard that reply?" = "You have an unsaved reply. Would you like to discard that reply?";
+
+/* (No Comment) */
+"You must first complete:" = "You must first complete:";
+
+/* (No Comment) */
+"You need a title and a description to post" = "You need a title and a description to post";
+
+/* You should go rate Canvas on the App Store! */
+"You should go rate Canvas on the App Store!" = "You should go rate Canvas on the app store!";
+
+/* (No Comment) */
+"Your files could not be found" = "Your files could not be found";
+
+/* (No Comment) */
+"Your school's configuration does not allow the type of submission selected for this assignment" = "Your school's configuration does not allow the type of submission selected for this assignment";
+
+/* (No Comment) */
+"due on %1$@ at %2$@" = "due on %1$@ at %2$@";
+
+/* (No Comment) */
+"moments ago" = "moments ago";
+
+/* (No Comment) */
+"out of" = "out of";
+
+/* (No Comment) */
+"out of %@" = "out of %@";
+
+/* (No Comment) */
+"out of %@ points" = "out of %@ points";
+
+/* (No Comment) */
+"photo" = "photo";
+
+/* (No Comment) */
+"unknown" = "unknown";
+
+/* (No Comment) */
+"until %@" = "until %@";
+

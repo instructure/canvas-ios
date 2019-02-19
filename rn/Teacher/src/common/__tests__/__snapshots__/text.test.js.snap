@@ -1,0 +1,377 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders ModalOverlayText correctly 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={
+    Array [
+      Object {
+        "fontFamily": ".SFUIDisplay",
+      },
+      Object {
+        "color": "#fff",
+        "fontFamily": ".SFUIDisplay-semibold",
+        "fontSize": 24,
+      },
+      undefined,
+    ]
+  }
+/>
+`;
+
+exports[`renders heading1 correctly 1`] = `
+<Text
+  accessibilityTraits="header"
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={
+    Array [
+      Object {
+        "fontFamily": ".SFUIDisplay",
+      },
+      Object {
+        "color": "#2D3B45",
+        "fontFamily": ".SFUIDisplay-heavy",
+        "fontSize": 24,
+      },
+      undefined,
+    ]
+  }
+/>
+`;
+
+exports[`renders heading2 correctly 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={
+    Array [
+      Object {
+        "fontFamily": ".SFUIDisplay",
+      },
+      Object {
+        "color": "#2D3B45",
+        "fontFamily": ".SFUIDisplay-bold",
+        "fontSize": 16,
+      },
+      undefined,
+    ]
+  }
+/>
+`;
+
+exports[`renders paragraph correctly 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={
+    Array [
+      Object {
+        "fontFamily": ".SFUIDisplay",
+      },
+      Object {
+        "color": "#7F91A7",
+        "fontSize": 16,
+        "lineHeight": 23,
+      },
+      undefined,
+    ]
+  }
+/>
+`;
+
+exports[`renders separated correctly 1`] = `
+<View
+  style={
+    Object {
+      "flexDirection": "row",
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    separated={
+      Array [
+        "a",
+        "b",
+        "c",
+      ]
+    }
+    separator=" * "
+    style={
+      Array [
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
+        undefined,
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+      ]
+    }
+  >
+    a
+  </Text>
+  <Text
+    accessible={false}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
+        Array [
+          undefined,
+          Object {
+            "alignSelf": "center",
+            "color": "#8B969E",
+            "fontSize": 10,
+          },
+        ],
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+      ]
+    }
+  >
+     * 
+  </Text>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    separated={
+      Array [
+        "a",
+        "b",
+        "c",
+      ]
+    }
+    separator=" * "
+    style={
+      Array [
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
+        undefined,
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+      ]
+    }
+  >
+    b
+  </Text>
+  <Text
+    accessible={false}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
+        Array [
+          undefined,
+          Object {
+            "alignSelf": "center",
+            "color": "#8B969E",
+            "fontSize": 10,
+          },
+        ],
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+      ]
+    }
+  >
+     * 
+  </Text>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    separated={
+      Array [
+        "a",
+        "b",
+        "c",
+      ]
+    }
+    separator=" * "
+    style={
+      Array [
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
+        undefined,
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+      ]
+    }
+  >
+    c
+  </Text>
+</View>
+`;
+
+exports[`renders separated with one item 1`] = `
+<View
+  style={
+    Object {
+      "flexDirection": "row",
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    separated={
+      Array [
+        "a",
+      ]
+    }
+    separator=" * "
+    style={
+      Array [
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
+        undefined,
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+      ]
+    }
+  >
+    a
+  </Text>
+</View>
+`;
+
+exports[`renders text correctly 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={
+    Array [
+      Object {
+        "fontFamily": ".SFUIDisplay",
+      },
+      Object {
+        "color": "#2D3B45",
+        "fontSize": 16,
+      },
+      undefined,
+      Object {
+        "fontFamily": ".SFUIDisplay",
+      },
+    ]
+  }
+/>
+`;
+
+exports[`renders text with fontWeight bold 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={
+    Array [
+      Object {
+        "fontFamily": ".SFUIDisplay",
+      },
+      Object {
+        "color": "#2D3B45",
+        "fontSize": 16,
+      },
+      Object {
+        "fontWeight": "bold",
+      },
+      Object {
+        "fontFamily": ".SFUIDisplay-bold",
+      },
+    ]
+  }
+/>
+`;
+
+exports[`renders text with fontWeight semibold 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={
+    Array [
+      Object {
+        "fontFamily": ".SFUIDisplay",
+      },
+      Object {
+        "color": "#2D3B45",
+        "fontSize": 16,
+      },
+      Object {
+        "fontWeight": "600",
+      },
+      Object {
+        "fontFamily": ".SFUIDisplay-semibold",
+      },
+    ]
+  }
+/>
+`;
+
+exports[`renders textInput correctly 1`] = `
+<TextInput
+  allowFontScaling={true}
+  style={
+    Array [
+      Object {
+        "fontFamily": ".SFUIDisplay",
+      },
+      Object {
+        "fontSize": 17,
+      },
+      undefined,
+      Object {
+        "fontFamily": ".SFUIDisplay",
+      },
+    ]
+  }
+/>
+`;

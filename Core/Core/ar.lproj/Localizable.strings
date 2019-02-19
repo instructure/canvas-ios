@@ -1,0 +1,237 @@
+/* No comment provided by engineer. */
+"%@ GPA" = "%@ المعدل التراكمي";
+
+/* No comment provided by engineer. */
+"Are you sure you would like to delete this comment?" = "هل أنت متأكد من أنك ترغب في حذف هذا التعليق؟";
+
+/* No comment provided by engineer. */
+"Assignment" = "المهمة";
+
+/* No comment provided by engineer. */
+"Assignment not found." = "لم يتم العثور على مهمة.";
+
+/* No comment provided by engineer. */
+"Authentication failed. Most likely the user denied the request for access." = "فشلت المصادقة. رفض المستخدم على الأغلب طلب الوصول.";
+
+/* No comment provided by engineer. */
+"Can’t find your school? Try typing the full school URL." = "لا تستطيع العثور على مدرستك؟ حاول كتابة رابط URL الكامل للمدرسة.";
+
+/* No comment provided by engineer. */
+"Cancel" = "إلغاء";
+
+/* No comment provided by engineer. */
+"Canvas Login" = "تسجيل الدخول إلى Canvas";
+
+/* No comment provided by engineer. */
+"Canvas Network" = "Canvas Network";
+
+/* No comment provided by engineer. */
+"Closed" = "مغلق";
+
+/* No comment provided by engineer. */
+"Comments" = "التعليقات";
+
+/* No comment provided by engineer. */
+"Complete" = "مكتمل";
+
+/* No comment provided by engineer. */
+"Course" = "المساق";
+
+/* No comment provided by engineer. */
+"d_questions" = "d_questions";
+
+/* No comment provided by engineer. */
+"Delete" = "حذف";
+
+/* No comment provided by engineer. */
+"Delete comment" = "حذف التعليق";
+
+/* No comment provided by engineer. */
+"Delete Comment" = "حذف التعليق";
+
+/* No comment provided by engineer. */
+"Discussion Comment" = "تعليق على النقاش";
+
+/* No comment provided by engineer. */
+"Dismiss" = "تجاهل";
+
+/* No comment provided by engineer. */
+"External Tool" = "أداة خارجية";
+
+/* No comment provided by engineer. */
+"File Upload" = "تحميل ملف";
+
+/* No comment provided by engineer. */
+"Final Grade: %@" = "الدرجة النهائية: %@";
+
+/* No comment provided by engineer. */
+"final_grade_g_pts" = "final_grade_g_pts";
+
+/* No comment provided by engineer. */
+"Find my school" = "ابحث عن مدرستي";
+
+/* No comment provided by engineer. */
+"Find your school or district" = "ابحث عن مدرستك أو دائرتك التعليمية";
+
+/* No comment provided by engineer. */
+"Forget %@" = "نسيت %@";
+
+/* No comment provided by engineer. */
+"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
+
+/* No comment provided by engineer. */
+"g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
+"Help" = "المساعدة";
+
+/* No comment provided by engineer. */
+"How do I find my school?" = "كيف أعثر على مدرستي؟";
+
+/* No comment provided by engineer. */
+"Incomplete" = "غير مكتمل";
+
+/* No comment provided by engineer. */
+"late_penalty_g_pts" = "late_penalty_g_pts";
+
+/* No comment provided by engineer. */
+"Launch External Tool" = "تشغيل الأداة الخارجية";
+
+/* end of and list pattern */
+"list_and_end" = "%1$@، و %2$@";
+
+/* middle of and list pattern */
+"list_and_middle" = "%1$@، %2$@";
+
+/* start of and list pattern */
+"list_and_start" = "%1$@، %2$@";
+
+/* and list pattern for 2 items */
+"list_and_two" = "%1$@ و %2$@";
+
+/* end of or list pattern */
+"list_or_end" = "%1$@، أو %2$@";
+
+/* middle of or list pattern */
+"list_or_middle" = "%1$@، %2$@";
+
+/* start of or list pattern */
+"list_or_start" = "%1$@، %2$@";
+
+/* or list pattern for 2 items */
+"list_or_two" = "%1$@ أو %2$@";
+
+/* No comment provided by engineer. */
+"Manual OAuth Login" = "تسجيل دخول OAuth يدوي ";
+
+/* No comment provided by engineer. */
+"Media Recording" = "تسجيل الوسائط";
+
+/* No comment provided by engineer. */
+"No Due Date" = "لا يوجد تاريخ استحقاق";
+
+/* No comment provided by engineer. */
+"No Submission" = "لا يوجد إرسال";
+
+/* No comment provided by engineer. */
+"Not Graded" = "لم يتم التقييم";
+
+/* No comment provided by engineer. */
+"Not Submitted" = "لم يتم الإرسال";
+
+/* No comment provided by engineer. */
+"OK" = "موافق";
+
+/* No comment provided by engineer. */
+"On Paper" = "على الورق";
+
+/* No comment provided by engineer. */
+"out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
+"plural_points" = "plural_points";
+
+/* No comment provided by engineer. */
+"Quiz" = "الاختبار الموجز";
+
+/* No comment provided by engineer. */
+"Remove" = "إزالة";
+
+/* No comment provided by engineer. */
+"Removed %1$@" = "تمت الإزالة %1$@";
+
+/* No comment provided by engineer. */
+"Removed %1$@ by %2$@" = "تمت إزالة %1$@ بواسطة %2$@";
+
+/* No comment provided by engineer. */
+"Reply to the annotation or previous comments" = "الرد على التعليق التوضيحي أو التعليقات السابقة";
+
+/* No comment provided by engineer. */
+"Resubmit Assignment" = "إعادة إرسال المهمة";
+
+/* No comment provided by engineer. */
+"See what's new." = "تعرف على الجديد.";
+
+/* No comment provided by engineer. */
+"Select Account" = "تحديد حساب";
+
+/* No comment provided by engineer. */
+"Select Assignment" = "تحديد مهمة";
+
+/* No comment provided by engineer. */
+"Select Course" = "تحديد مساق";
+
+/* No comment provided by engineer. */
+"Send comment" = "إرسال تعليق";
+
+/* No comment provided by engineer. */
+"Site Admin Login" = "تسجيل دخول مسؤول الموقع";
+
+/* No comment provided by engineer. */
+"Style" = "النمط";
+
+/* No comment provided by engineer. */
+"Submission Failed" = "فشل الإرسال";
+
+/* No comment provided by engineer. */
+"Submission Uploading..." = "جارٍ تحميل الإرسال...";
+
+/* No comment provided by engineer. */
+"Submit Assignment" = "إرسال المهمة";
+
+/* No comment provided by engineer. */
+"Submitted" = "تم الإرسال";
+
+/* Submitted date */
+"Submitted %@" = "تم الإرسال %@";
+
+/* No comment provided by engineer. */
+"Tap here for help." = "اضغط هنا للحصول على المساعدة.";
+
+/* No comment provided by engineer. */
+"Tap to view details" = "اضغط لعرض التفاصيل";
+
+/* No comment provided by engineer. */
+"Tap to view progress" = "اضغط لعرض التقدم";
+
+/* No comment provided by engineer. */
+"Text Entry" = "إدخال النص";
+
+/* No comment provided by engineer. */
+"This assignment is due by %@" = "هذه المهمة مستحقة بتاريخ %@";
+
+/* No comment provided by engineer. */
+"This assignment was due by %@" = "هذه المهمة كانت مستحقة بتاريخ %@";
+
+/* No comment provided by engineer. */
+"We've made a few changes." = "لقد أجرينا بعض التغييرات.";
+
+/* No comment provided by engineer. */
+"Website URL" = "عنوان URL لموقع ويب";
+
+/* No comment provided by engineer. */
+"What’s your school’s name?" = "ما اسم مدرستك؟";
+
+/* No comment provided by engineer. */
+"You will need to log into at least one Canvas account from the Student app first." = "يجب عليك تسجيل الدخول في حساب Canvas واحد على الأقل من تطبيق الطالب أولاً.";
+

@@ -1,0 +1,111 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PageEdit renders 1`] = `
+<Screen
+  dismissButtonTitle="Cancel"
+  navBarStyle="light"
+  rightBarButtons={
+    Array [
+      Object {
+        "action": [Function],
+        "style": "done",
+        "testID": "pages.edit.doneButton",
+        "title": "Done",
+      },
+    ]
+  }
+  showDismissButton={true}
+  statusBarStyle="default"
+  title="New Page"
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <KeyboardAwareScrollView
+      enableAutoAutomaticScroll={false}
+      keyboardDismissMode="on-drag"
+      keyboardShouldPersistTaps="handled"
+      style={
+        Object {
+          "backgroundColor": "#F5F5F5",
+          "flex": 1,
+        }
+      }
+    >
+      <FormLabel>
+        Title
+      </FormLabel>
+      <RowWithTextInput
+        border="both"
+        defaultValue=""
+        identifier="pages.edit.titleInput"
+        onChangeText={[Function]}
+        onFocus={[Function]}
+        placeholder="Add title"
+        title=""
+      />
+      <FormLabel>
+        Description
+      </FormLabel>
+      <View
+        style={
+          Object {
+            "backgroundColor": "white",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "height": 200,
+          }
+        }
+      >
+        <RichTextEditor
+          attachmentUploadPath="/courses/1/files"
+          contentHeight={150}
+          defaultValue=""
+          keyboardAware={false}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "isModal": false,
+              "pop": [Function],
+              "replace": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
+            }
+          }
+          onFocus={[Function]}
+          placeholder="Add description"
+          scrollEnabled={true}
+          showToolbar="always"
+        />
+      </View>
+      <FormLabel>
+        Details
+      </FormLabel>
+      <RowWithSwitch
+        border="bottom"
+        identifier="pages.edit.published.switch"
+        onValueChange={[Function]}
+        testID="pages.edit.published.row"
+        title="Publish"
+        value={false}
+      />
+      <RowWithDetail
+        border="bottom"
+        detail="Only teachers"
+        detailSelected={false}
+        disclosureIndicator={true}
+        onPress={[Function]}
+        testID="pages.edit.editing_roles.row"
+        title="Can Edit"
+      />
+    </KeyboardAwareScrollView>
+  </View>
+</Screen>
+`;

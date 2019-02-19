@@ -1,0 +1,144 @@
+/* All Courses screen title */
+"All Courses" = "Alla kurser";
+
+/* No comment provided by engineer. */
+"Assignment Details" = "Uppgiftsdetaljer";
+
+/* No comment provided by engineer. */
+"Assignments" = "Uppgifter";
+
+/* No comment provided by engineer. */
+"Cancel" = "Avbryt";
+
+/* No comment provided by engineer. */
+"Cancel Submission" = "Avbryt inlämningen";
+
+/* No comment provided by engineer. */
+"Close App" = "Stäng appen";
+
+/* No comment provided by engineer. */
+"Comments" = "Kommentarer";
+
+/* No comment provided by engineer. */
+"Courses" = "Kurser";
+
+/* No comment provided by engineer. */
+"Dashboard" = "Översikt";
+
+/* No comment provided by engineer. */
+"Description" = "Beskrivning";
+
+/* No comment provided by engineer. */
+"Done" = "Färdig";
+
+/* No comment provided by engineer. */
+"Drawer closed" = "Låda stängd";
+
+/* No comment provided by engineer. */
+"Drawer fully open" = "Låda fullt öppen";
+
+/* No comment provided by engineer. */
+"Drawer partially opened" = "Låda delvis öppen";
+
+/* No comment provided by engineer. */
+"Due" = "Förfallodatum";
+
+/* No comment provided by engineer. */
+"Edit" = "Redigera";
+
+/* No comment provided by engineer. */
+"Edit Course" = "Redigera kurs";
+
+/* No comment provided by engineer. */
+"Failed upload" = "Det gick inte att ladda upp";
+
+/* No comment provided by engineer. */
+"File Types" = "Filtyper";
+
+/* No comment provided by engineer. */
+"Files" = "Filer";
+
+/* No comment provided by engineer. */
+"Grade" = "Omdöme";
+
+/* No comment provided by engineer. */
+"Groups" = "Grupper";
+
+/* No comment provided by engineer. */
+"Invalid url" = "Ogiltig URL";
+
+/* No comment provided by engineer. */
+"No Content" = "Inget innehåll";
+
+/* No comment provided by engineer. */
+"No Submission" = "Ingen inlämning";
+
+/* No comment provided by engineer. */
+"No Submission Date" = "Inget inlämningsdatum";
+
+/* Button to open external tool */
+"Open External Tool" = "Öppna externt verktyg";
+
+/* Past enrollments section title in All Courses screen */
+"Past Enrollments" = "Tidigare registreringar";
+
+/* No comment provided by engineer. */
+"Quizzes" = "Frågor/frågesporter";
+
+/* No comment provided by engineer. */
+"Resubmit Assignment" = "Lämna in uppgift igen";
+
+/* No comment provided by engineer. */
+"Retry" = "Försök igen";
+
+/* No comment provided by engineer. */
+"Rubric" = "Matris";
+
+/* No comment provided by engineer. */
+"See All" = "Se alla";
+
+/* No comment provided by engineer. */
+"See All Courses" = "Se alla kurser";
+
+/* No comment provided by engineer. */
+"Something went wrong while loading the quizzes." = "Något gick fel vid inläsning av quizzen.";
+
+/* No comment provided by engineer. */
+"Submission" = "Inlämning";
+
+/* No comment provided by engineer. */
+"Submission & Rubric" = "Inlämning ";
+
+/* No comment provided by engineer. */
+"Submission Types" = "Inlämningstyp";
+
+/* No comment provided by engineer. */
+"Submit" = "Lämna in";
+
+/* No comment provided by engineer. */
+"Submit Assignment" = "Lämna in uppgift";
+
+/* No comment provided by engineer. */
+"Successfully submitted!" = "Inlämningen har slutförts!";
+
+/* No comment provided by engineer. */
+"The app needs to restart to use the new language settings. Please relaunch the app." = "Du måste starta om appen för att använda de nya språkinställningarna. Starta om appen.";
+
+/* No comment provided by engineer. */
+"There are no quizzes to display." = "Det finns inga quizzes att visa.";
+
+/* No comment provided by engineer. */
+"Updated Language Settings" = "Uppdaterade språkinställningar";
+
+/* No comment provided by engineer. */
+"Uploading %@ of %@" = "Laddar upp %1$@ av %2$@";
+
+/* No comment provided by engineer. */
+"Uploading..." = "Laddar upp...";
+
+/* No comment provided by engineer. */
+"Website Address" = "Webbplatsadress";
+
+/* No comment provided by engineer. */
+"Your submission is now waiting to be graded" = "Din inlämning väntar på att bedömas";
+

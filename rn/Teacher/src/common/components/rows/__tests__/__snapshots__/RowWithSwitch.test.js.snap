@@ -1,0 +1,143 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render row with switch 1`] = `
+<View
+  accessibilityComponentType={undefined}
+  accessibilityLabel="Row with a switch in it!, Off"
+  accessibilityTraits={
+    Array [
+      "button",
+    ]
+  }
+  accessible={true}
+  hasTVPreferredFocus={undefined}
+  hitSlop={undefined}
+  isTVSelectable={true}
+  nativeID={undefined}
+  onLayout={undefined}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Array [
+      Object {
+        "backgroundColor": "transparent",
+      },
+      Array [
+        undefined,
+        undefined,
+      ],
+    ]
+  }
+  testID={undefined}
+  tvParallaxProperties={undefined}
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "white",
+          "flex": 1,
+          "flexDirection": "row",
+          "minHeight": 54,
+          "paddingBottom": 12,
+          "paddingLeft": 16,
+          "paddingRight": 16,
+          "paddingTop": 12,
+        },
+        Object {
+          "backgroundColor": "white",
+        },
+      ]
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "flex": 1,
+            "flexDirection": "column",
+            "justifyContent": "center",
+          },
+          Object {
+            "marginLeft": 0,
+          },
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        numberOfLines={0}
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Array [
+              Object {
+                "fontWeight": "600",
+              },
+            ],
+            Object {
+              "fontFamily": ".SFUIDisplay-semibold",
+            },
+          ]
+        }
+      >
+        Row with a switch in it!
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 0,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "row",
+            "justifyContent": "flex-end",
+          }
+        }
+      >
+        <RCTSwitch
+          disabled={false}
+          identifier="test"
+          onChange={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          onTintColor="#374A59"
+          onValueChange={[Function]}
+          style={
+            Array [
+              Object {
+                "height": 31,
+                "width": 51,
+              },
+              undefined,
+            ]
+          }
+          testID="test"
+          tintColor={null}
+          title="Row with a switch in it!"
+          value={false}
+        />
+      </View>
+    </View>
+  </View>
+</View>
+`;

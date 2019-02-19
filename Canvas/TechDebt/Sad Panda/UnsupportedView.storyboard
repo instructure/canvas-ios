@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="rJs-59-cg5">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Unsupported View Controller-->
+        <scene sceneID="7G4-OG-DYM">
+            <objects>
+                <viewController id="rJs-59-cg5" customClass="UnsupportedViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dfa-Qu-8Vx"/>
+                        <viewControllerLayoutGuide type="bottom" id="5Sk-os-HWP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Wml-ym-xi9">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unsupported" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="hcv-MP-jn7">
+                                <rect key="frame" x="20" y="130" width="280" height="54"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="280" id="ZDM-4c-Wtl"/>
+                                    <constraint firstAttribute="height" constant="54" id="kAh-Nf-lFy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <color key="textColor" red="0.40000000596046448" green="0.40000000596046448" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EIg-eH-Z4M">
+                                <rect key="frame" x="26" y="192" width="268" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Fm2-VB-370"/>
+                                </constraints>
+                                <state key="normal" title="Open in Safari">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="openInSafarButtonTouched:" destination="rJs-59-cg5" eventType="touchUpInside" id="Syy-iY-HLZ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="hcv-MP-jn7" secondAttribute="centerX" id="8UM-CW-6bc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="EIg-eH-Z4M" secondAttribute="trailing" constant="10" id="ITG-yM-vN0"/>
+                            <constraint firstItem="hcv-MP-jn7" firstAttribute="top" secondItem="dfa-Qu-8Vx" secondAttribute="bottom" constant="110" id="bhY-5Z-pzu"/>
+                            <constraint firstItem="EIg-eH-Z4M" firstAttribute="leading" secondItem="Wml-ym-xi9" secondAttribute="leadingMargin" constant="10" id="eAC-Hl-ofQ"/>
+                            <constraint firstItem="EIg-eH-Z4M" firstAttribute="top" secondItem="hcv-MP-jn7" secondAttribute="bottom" constant="8" id="nbJ-6b-JQx"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="openInSafariButton" destination="EIg-eH-Z4M" id="LLg-6g-kcF"/>
+                        <outlet property="unsupportedLabel" destination="hcv-MP-jn7" id="JSm-l8-Mq9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qxd-sv-TYn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="571" y="235"/>
+        </scene>
+    </scenes>
+</document>

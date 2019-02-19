@@ -1,0 +1,144 @@
+/* All Courses screen title */
+"All Courses" = "Todas as disciplinas";
+
+/* No comment provided by engineer. */
+"Assignment Details" = "Detalhes da tarefa";
+
+/* No comment provided by engineer. */
+"Assignments" = "Tarefas";
+
+/* No comment provided by engineer. */
+"Cancel" = "Cancelar";
+
+/* No comment provided by engineer. */
+"Cancel Submission" = "Cancelar subscrição";
+
+/* No comment provided by engineer. */
+"Close App" = "Fechar App";
+
+/* No comment provided by engineer. */
+"Comments" = "Comentários";
+
+/* No comment provided by engineer. */
+"Courses" = "Disciplinas";
+
+/* No comment provided by engineer. */
+"Dashboard" = "Painel de controlo";
+
+/* No comment provided by engineer. */
+"Description" = "Descrição";
+
+/* No comment provided by engineer. */
+"Done" = "Feito";
+
+/* No comment provided by engineer. */
+"Drawer closed" = "Gaveta fechada";
+
+/* No comment provided by engineer. */
+"Drawer fully open" = "Gaveta totalmente aberta";
+
+/* No comment provided by engineer. */
+"Drawer partially opened" = "Gaveta parcialmente aberta";
+
+/* No comment provided by engineer. */
+"Due" = "Vencimento";
+
+/* No comment provided by engineer. */
+"Edit" = "Editar";
+
+/* No comment provided by engineer. */
+"Edit Course" = "Editar disciplina";
+
+/* No comment provided by engineer. */
+"Failed upload" = "Falha no carregamento";
+
+/* No comment provided by engineer. */
+"File Types" = "Tipos de ficheiro";
+
+/* No comment provided by engineer. */
+"Files" = "Ficheiros";
+
+/* No comment provided by engineer. */
+"Grade" = "Nota";
+
+/* No comment provided by engineer. */
+"Groups" = "Grupos";
+
+/* No comment provided by engineer. */
+"Invalid url" = "URL inválido";
+
+/* No comment provided by engineer. */
+"No Content" = "Sem conteúdo";
+
+/* No comment provided by engineer. */
+"No Submission" = "Nenhuma submissão";
+
+/* No comment provided by engineer. */
+"No Submission Date" = "Data Nenhuma submissão";
+
+/* Button to open external tool */
+"Open External Tool" = "Abrir Ferramenta externa";
+
+/* Past enrollments section title in All Courses screen */
+"Past Enrollments" = "Inscrições anteriores";
+
+/* No comment provided by engineer. */
+"Quizzes" = "Testes";
+
+/* No comment provided by engineer. */
+"Resubmit Assignment" = "Voltar a submeter tarefa";
+
+/* No comment provided by engineer. */
+"Retry" = "Tentar novamente";
+
+/* No comment provided by engineer. */
+"Rubric" = "Rubrica";
+
+/* No comment provided by engineer. */
+"See All" = "Ver tudo";
+
+/* No comment provided by engineer. */
+"See All Courses" = "Ver todas as disciplinas";
+
+/* No comment provided by engineer. */
+"Something went wrong while loading the quizzes." = "Algo deu errado ao carregar os testes.";
+
+/* No comment provided by engineer. */
+"Submission" = "Submissão";
+
+/* No comment provided by engineer. */
+"Submission & Rubric" = "Submissão e Rubrica";
+
+/* No comment provided by engineer. */
+"Submission Types" = "Tipos de submissão";
+
+/* No comment provided by engineer. */
+"Submit" = "Submeter";
+
+/* No comment provided by engineer. */
+"Submit Assignment" = "Enviar tarefa";
+
+/* No comment provided by engineer. */
+"Successfully submitted!" = "Submetido com sucesso!";
+
+/* No comment provided by engineer. */
+"The app needs to restart to use the new language settings. Please relaunch the app." = "A aplicação precisa de ser reiniciada para usar as novas definições de idioma. Por favor, reinicie a aplicação.";
+
+/* No comment provided by engineer. */
+"There are no quizzes to display." = "Não há questionários a exibir.";
+
+/* No comment provided by engineer. */
+"Updated Language Settings" = "Definições de idioma atualizadas";
+
+/* No comment provided by engineer. */
+"Uploading %@ of %@" = "A realizar carregamento %1$@ de %2$@";
+
+/* No comment provided by engineer. */
+"Uploading..." = "A fazer upload...";
+
+/* No comment provided by engineer. */
+"Website Address" = "Endereço web";
+
+/* No comment provided by engineer. */
+"Your submission is now waiting to be graded" = "Seu envio está a aguardar para ser avaliado";
+

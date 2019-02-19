@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--External Tool Submission Content View Controller-->
+        <scene sceneID="N1C-d0-XY7">
+            <objects>
+                <viewController storyboardIdentifier="ExternalToolSubmissionContentViewController" id="id8-JN-hXV" customClass="ExternalToolSubmissionContentViewController" customModule="Student" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lLs-YG-GGV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cj4-np-gdB" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
+                                <rect key="frame" x="45" y="308.5" width="285" height="50"/>
+                                <accessibility key="accessibilityConfiguration" identifier="SubmissionDetailsPage.externalToolButton"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="408-CL-sgM"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="285" id="s9R-dm-4hw"/>
+                                </constraints>
+                                <state key="normal" title="Open External Tool"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="backgroundColorName" value="buttonPrimaryBackground"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="buttonPrimaryText"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="openExternalTool:" destination="id8-JN-hXV" eventType="touchUpInside" id="kjD-LP-na9"/>
+                                </connections>
+                            </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There was a problem opening the external tool." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gs4-IK-Dlt" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
+                                <rect key="frame" x="8" y="377" width="359" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textAlert"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Gs4-IK-Dlt" firstAttribute="centerX" secondItem="lLs-YG-GGV" secondAttribute="centerX" id="2gq-Jo-oNe"/>
+                            <constraint firstItem="cj4-np-gdB" firstAttribute="centerX" secondItem="lLs-YG-GGV" secondAttribute="centerX" id="6sm-Ah-5fg"/>
+                            <constraint firstItem="SKX-Dh-dOs" firstAttribute="trailing" secondItem="Gs4-IK-Dlt" secondAttribute="trailing" constant="8" id="DHL-pA-7ak"/>
+                            <constraint firstItem="cj4-np-gdB" firstAttribute="leading" secondItem="SKX-Dh-dOs" secondAttribute="leading" priority="999" constant="45" id="Svx-Wf-svM"/>
+                            <constraint firstItem="cj4-np-gdB" firstAttribute="centerY" secondItem="lLs-YG-GGV" secondAttribute="centerY" id="U4W-Tm-WuH"/>
+                            <constraint firstItem="Gs4-IK-Dlt" firstAttribute="leading" secondItem="SKX-Dh-dOs" secondAttribute="leading" constant="8" id="V52-c3-K7w"/>
+                            <constraint firstItem="SKX-Dh-dOs" firstAttribute="trailing" secondItem="cj4-np-gdB" secondAttribute="trailing" priority="999" constant="45" id="w7n-cO-Lxe"/>
+                            <constraint firstItem="Gs4-IK-Dlt" firstAttribute="top" secondItem="cj4-np-gdB" secondAttribute="bottom" constant="18.5" id="z6m-QY-Vsc"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="SKX-Dh-dOs"/>
+                    </view>
+                    <connections>
+                        <outlet property="errorLabel" destination="Gs4-IK-Dlt" id="Xf5-0r-MBO"/>
+                        <outlet property="openExternalToolButton" destination="cj4-np-gdB" id="bBy-kd-oxv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fAo-cZ-klo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-57" y="106"/>
+        </scene>
+    </scenes>
+</document>

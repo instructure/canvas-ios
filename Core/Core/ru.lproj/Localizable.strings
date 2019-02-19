@@ -1,0 +1,237 @@
+/* No comment provided by engineer. */
+"%@ GPA" = "%@ Балл GPA";
+
+/* No comment provided by engineer. */
+"Are you sure you would like to delete this comment?" = "Вы действительно хотите удалить этот комментарий?";
+
+/* No comment provided by engineer. */
+"Assignment" = "Задание";
+
+/* No comment provided by engineer. */
+"Assignment not found." = "Задание не найдено";
+
+/* No comment provided by engineer. */
+"Authentication failed. Most likely the user denied the request for access." = "Сбой авторизации. Скорее всего, пользователь отклонил запрос на доступ.";
+
+/* No comment provided by engineer. */
+"Can’t find your school? Try typing the full school URL." = "Не можете найти ваше учебное заведение? Попробуйте набрать полный адрес URL учебного заведения.";
+
+/* No comment provided by engineer. */
+"Cancel" = "Отменить";
+
+/* No comment provided by engineer. */
+"Canvas Login" = "Вход в Canvas";
+
+/* No comment provided by engineer. */
+"Canvas Network" = "Canvas Network";
+
+/* No comment provided by engineer. */
+"Closed" = "Закрыто";
+
+/* No comment provided by engineer. */
+"Comments" = "Комментарии";
+
+/* No comment provided by engineer. */
+"Complete" = "Завершить";
+
+/* No comment provided by engineer. */
+"Course" = "Курс";
+
+/* No comment provided by engineer. */
+"d_questions" = "d_questions";
+
+/* No comment provided by engineer. */
+"Delete" = "Удалить";
+
+/* No comment provided by engineer. */
+"Delete comment" = "Удалить комментарий";
+
+/* No comment provided by engineer. */
+"Delete Comment" = "Удалить комментарий";
+
+/* No comment provided by engineer. */
+"Discussion Comment" = "Комментарий к дискуссии";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Исключить";
+
+/* No comment provided by engineer. */
+"External Tool" = "Внешний инструмент";
+
+/* No comment provided by engineer. */
+"File Upload" = "Отправка файла";
+
+/* No comment provided by engineer. */
+"Final Grade: %@" = "Итоговая оценка: %@";
+
+/* No comment provided by engineer. */
+"final_grade_g_pts" = "final_grade_g_pts";
+
+/* No comment provided by engineer. */
+"Find my school" = "Найти мою школу";
+
+/* No comment provided by engineer. */
+"Find your school or district" = "Найдите свое учебное заведение или район";
+
+/* No comment provided by engineer. */
+"Forget %@" = "Исключить %@";
+
+/* No comment provided by engineer. */
+"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
+
+/* No comment provided by engineer. */
+"g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
+"Help" = "Справка";
+
+/* No comment provided by engineer. */
+"How do I find my school?" = "Как мне найти свою школу?";
+
+/* No comment provided by engineer. */
+"Incomplete" = "Не завершено";
+
+/* No comment provided by engineer. */
+"late_penalty_g_pts" = "late_penalty_g_pts";
+
+/* No comment provided by engineer. */
+"Launch External Tool" = "Запуск внешнего инструмента";
+
+/* end of and list pattern */
+"list_and_end" = "%1$@, и %2$@";
+
+/* middle of and list pattern */
+"list_and_middle" = "%1$@, %2$@";
+
+/* start of and list pattern */
+"list_and_start" = "%1$@, %2$@";
+
+/* and list pattern for 2 items */
+"list_and_two" = "%1$@ и %2$@";
+
+/* end of or list pattern */
+"list_or_end" = "%1$@, или %2$@";
+
+/* middle of or list pattern */
+"list_or_middle" = "%1$@, %2$@";
+
+/* start of or list pattern */
+"list_or_start" = "%1$@, %2$@";
+
+/* or list pattern for 2 items */
+"list_or_two" = "%1$@ или %2$@";
+
+/* No comment provided by engineer. */
+"Manual OAuth Login" = "Ручной вход в OAuth";
+
+/* No comment provided by engineer. */
+"Media Recording" = "Запись на носитель";
+
+/* No comment provided by engineer. */
+"No Due Date" = "Срок выполнения не задан";
+
+/* No comment provided by engineer. */
+"No Submission" = "Нет отправки";
+
+/* No comment provided by engineer. */
+"Not Graded" = "Оценка не выставлена";
+
+/* No comment provided by engineer. */
+"Not Submitted" = "Не отправлено";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"On Paper" = "На бумаге";
+
+/* No comment provided by engineer. */
+"out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
+"plural_points" = "plural_points";
+
+/* No comment provided by engineer. */
+"Quiz" = "Тест";
+
+/* No comment provided by engineer. */
+"Remove" = "Удалить";
+
+/* No comment provided by engineer. */
+"Removed %1$@" = "Удалено %1$@";
+
+/* No comment provided by engineer. */
+"Removed %1$@ by %2$@" = "Удалено %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"Reply to the annotation or previous comments" = "Ответить на аннотацию или предыдущие комментарии";
+
+/* No comment provided by engineer. */
+"Resubmit Assignment" = "Повторная отправка задания";
+
+/* No comment provided by engineer. */
+"See what's new." = "Посмотрите, что нового.";
+
+/* No comment provided by engineer. */
+"Select Account" = "Выбрать учетную запись";
+
+/* No comment provided by engineer. */
+"Select Assignment" = "Выбрать задание";
+
+/* No comment provided by engineer. */
+"Select Course" = "Выбрать курс";
+
+/* No comment provided by engineer. */
+"Send comment" = "Отправить комментарий";
+
+/* No comment provided by engineer. */
+"Site Admin Login" = "Учетная запись администратора";
+
+/* No comment provided by engineer. */
+"Style" = "Стиль";
+
+/* No comment provided by engineer. */
+"Submission Failed" = "Ошибка отправки";
+
+/* No comment provided by engineer. */
+"Submission Uploading..." = "Выполняется загрузка...";
+
+/* No comment provided by engineer. */
+"Submit Assignment" = "Отправить задание";
+
+/* No comment provided by engineer. */
+"Submitted" = "Отправлено";
+
+/* Submitted date */
+"Submitted %@" = "Отправлено %@";
+
+/* No comment provided by engineer. */
+"Tap here for help." = "Прикоснитесь здесь для получения помощи.";
+
+/* No comment provided by engineer. */
+"Tap to view details" = "Нажмите для просмотра подробностей";
+
+/* No comment provided by engineer. */
+"Tap to view progress" = "Нажмите для просмотра прогресса";
+
+/* No comment provided by engineer. */
+"Text Entry" = "Ввод текста";
+
+/* No comment provided by engineer. */
+"This assignment is due by %@" = "Данное задание необходимо выполнить до %@";
+
+/* No comment provided by engineer. */
+"This assignment was due by %@" = "Данное задание необходимо было выполнить до %@";
+
+/* No comment provided by engineer. */
+"We've made a few changes." = "Мы добавили несколько изменений.";
+
+/* No comment provided by engineer. */
+"Website URL" = "Адрес веб-сайта";
+
+/* No comment provided by engineer. */
+"What’s your school’s name?" = "Как называется ваше учебное заведение?";
+
+/* No comment provided by engineer. */
+"You will need to log into at least one Canvas account from the Student app first." = "Сначала вам нужно войти хотя бы в одну учетную запись Canvas из приложения Student.";
+

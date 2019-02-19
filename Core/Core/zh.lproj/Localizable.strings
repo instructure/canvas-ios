@@ -1,0 +1,237 @@
+/* No comment provided by engineer. */
+"%@ GPA" = "%@GPA";
+
+/* No comment provided by engineer. */
+"Are you sure you would like to delete this comment?" = "是否确定要删除此评论？";
+
+/* No comment provided by engineer. */
+"Assignment" = "作业";
+
+/* No comment provided by engineer. */
+"Assignment not found." = "找不到作业";
+
+/* No comment provided by engineer. */
+"Authentication failed. Most likely the user denied the request for access." = "身份验证失败。最有可能的原因是用户拒绝了访问请求。";
+
+/* No comment provided by engineer. */
+"Can’t find your school? Try typing the full school URL." = "找不到您的学校？尝试键入完整的学校 URL。";
+
+/* No comment provided by engineer. */
+"Cancel" = "取消";
+
+/* No comment provided by engineer. */
+"Canvas Login" = "Canvas 登录";
+
+/* No comment provided by engineer. */
+"Canvas Network" = "Canvas 网络";
+
+/* No comment provided by engineer. */
+"Closed" = "已关闭";
+
+/* No comment provided by engineer. */
+"Comments" = "评论";
+
+/* No comment provided by engineer. */
+"Complete" = "完成";
+
+/* No comment provided by engineer. */
+"Course" = "课程";
+
+/* No comment provided by engineer. */
+"d_questions" = "d_questions";
+
+/* No comment provided by engineer. */
+"Delete" = "删除";
+
+/* No comment provided by engineer. */
+"Delete comment" = "删除评论";
+
+/* No comment provided by engineer. */
+"Delete Comment" = "删除评论";
+
+/* No comment provided by engineer. */
+"Discussion Comment" = "讨论评论";
+
+/* No comment provided by engineer. */
+"Dismiss" = "撤销";
+
+/* No comment provided by engineer. */
+"External Tool" = "外部工具";
+
+/* No comment provided by engineer. */
+"File Upload" = "文件上传";
+
+/* No comment provided by engineer. */
+"Final Grade: %@" = "最终评分：%@";
+
+/* No comment provided by engineer. */
+"final_grade_g_pts" = "final_grade_g_pts";
+
+/* No comment provided by engineer. */
+"Find my school" = "查找我的学校";
+
+/* No comment provided by engineer. */
+"Find your school or district" = "查找您的学校或地区";
+
+/* No comment provided by engineer. */
+"Forget %@" = "忘记%@";
+
+/* No comment provided by engineer. */
+"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
+
+/* No comment provided by engineer. */
+"g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
+"Help" = "帮助";
+
+/* No comment provided by engineer. */
+"How do I find my school?" = "如何查找我的学校？";
+
+/* No comment provided by engineer. */
+"Incomplete" = "未完成";
+
+/* No comment provided by engineer. */
+"late_penalty_g_pts" = "late_penalty_g_pts";
+
+/* No comment provided by engineer. */
+"Launch External Tool" = "启动外部工具";
+
+/* end of and list pattern */
+"list_and_end" = "%1$@，和%2$@";
+
+/* middle of and list pattern */
+"list_and_middle" = "%1$@,%2$@";
+
+/* start of and list pattern */
+"list_and_start" = "%1$@,%2$@";
+
+/* and list pattern for 2 items */
+"list_and_two" = "%1$@和%2$@";
+
+/* end of or list pattern */
+"list_or_end" = "%1$@, or%2$@";
+
+/* middle of or list pattern */
+"list_or_middle" = "%1$@,%2$@";
+
+/* start of or list pattern */
+"list_or_start" = "%1$@,%2$@";
+
+/* or list pattern for 2 items */
+"list_or_two" = "%1$@或%2$@";
+
+/* No comment provided by engineer. */
+"Manual OAuth Login" = "手动 OAuth 登录";
+
+/* No comment provided by engineer. */
+"Media Recording" = "媒体录制";
+
+/* No comment provided by engineer. */
+"No Due Date" = "无截止日期";
+
+/* No comment provided by engineer. */
+"No Submission" = "无提交项";
+
+/* No comment provided by engineer. */
+"Not Graded" = "未评分";
+
+/* No comment provided by engineer. */
+"Not Submitted" = "未提交";
+
+/* No comment provided by engineer. */
+"OK" = "确定";
+
+/* No comment provided by engineer. */
+"On Paper" = "纸上";
+
+/* No comment provided by engineer. */
+"out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
+"plural_points" = "plural_points";
+
+/* No comment provided by engineer. */
+"Quiz" = "测验";
+
+/* No comment provided by engineer. */
+"Remove" = "移除";
+
+/* No comment provided by engineer. */
+"Removed %1$@" = "已删除%1$@";
+
+/* No comment provided by engineer. */
+"Removed %1$@ by %2$@" = "已删除 %1$@，删除人%2$@";
+
+/* No comment provided by engineer. */
+"Reply to the annotation or previous comments" = "恢复注释或原来的评论";
+
+/* No comment provided by engineer. */
+"Resubmit Assignment" = "重新提交作业";
+
+/* No comment provided by engineer. */
+"See what's new." = "查看新增内容。";
+
+/* No comment provided by engineer. */
+"Select Account" = "选择帐户";
+
+/* No comment provided by engineer. */
+"Select Assignment" = "选择作业";
+
+/* No comment provided by engineer. */
+"Select Course" = "选择课程";
+
+/* No comment provided by engineer. */
+"Send comment" = "发送评论";
+
+/* No comment provided by engineer. */
+"Site Admin Login" = "站点管理员登录";
+
+/* No comment provided by engineer. */
+"Style" = "样式";
+
+/* No comment provided by engineer. */
+"Submission Failed" = "提交文件失败";
+
+/* No comment provided by engineer. */
+"Submission Uploading..." = "正在上传提交项...";
+
+/* No comment provided by engineer. */
+"Submit Assignment" = "提交作业";
+
+/* No comment provided by engineer. */
+"Submitted" = "已提交";
+
+/* Submitted date */
+"Submitted %@" = "已提交%@";
+
+/* No comment provided by engineer. */
+"Tap here for help." = "轻击此处获取帮助。";
+
+/* No comment provided by engineer. */
+"Tap to view details" = "轻按以查看详细信息";
+
+/* No comment provided by engineer. */
+"Tap to view progress" = "轻按以查看进度";
+
+/* No comment provided by engineer. */
+"Text Entry" = "文本输入";
+
+/* No comment provided by engineer. */
+"This assignment is due by %@" = "此作业的截止日期为%@";
+
+/* No comment provided by engineer. */
+"This assignment was due by %@" = "此作业已截止，截止日期为%@";
+
+/* No comment provided by engineer. */
+"We've made a few changes." = "我们进行了一些更改。";
+
+/* No comment provided by engineer. */
+"Website URL" = "网站 URL";
+
+/* No comment provided by engineer. */
+"What’s your school’s name?" = "您的学校名称是什么？";
+
+/* No comment provided by engineer. */
+"You will need to log into at least one Canvas account from the Student app first." = "您需要先从学生应用登录至少一个 Canvas 帐户。";
+

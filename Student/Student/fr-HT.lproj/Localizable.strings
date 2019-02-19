@@ -1,0 +1,144 @@
+/* All Courses screen title */
+"All Courses" = "Tout Kou";
+
+/* No comment provided by engineer. */
+"Assignment Details" = "Detay Sesyon";
+
+/* No comment provided by engineer. */
+"Assignments" = "Sesyon";
+
+/* No comment provided by engineer. */
+"Cancel" = "Anile";
+
+/* No comment provided by engineer. */
+"Cancel Submission" = "Anile Enskripsyon";
+
+/* No comment provided by engineer. */
+"Close App" = "Fèmen App";
+
+/* No comment provided by engineer. */
+"Comments" = "Kòmantè";
+
+/* No comment provided by engineer. */
+"Courses" = "Kou";
+
+/* No comment provided by engineer. */
+"Dashboard" = "Tablo";
+
+/* No comment provided by engineer. */
+"Description" = "Deskripsyon";
+
+/* No comment provided by engineer. */
+"Done" = "Fini";
+
+/* No comment provided by engineer. */
+"Drawer closed" = "Tiwa fèmen";
+
+/* No comment provided by engineer. */
+"Drawer fully open" = "Tiwa ouvri nèt";
+
+/* No comment provided by engineer. */
+"Drawer partially opened" = "Tiwa ouvri a demi";
+
+/* No comment provided by engineer. */
+"Due" = "Delè";
+
+/* No comment provided by engineer. */
+"Edit" = "Modifye";
+
+/* No comment provided by engineer. */
+"Edit Course" = "Modifye Kou";
+
+/* No comment provided by engineer. */
+"Failed upload" = "Chajman echwe";
+
+/* No comment provided by engineer. */
+"File Types" = "Tip Fichye";
+
+/* No comment provided by engineer. */
+"Files" = "Fichye";
+
+/* No comment provided by engineer. */
+"Grade" = "Klas";
+
+/* No comment provided by engineer. */
+"Groups" = "Gwoup";
+
+/* No comment provided by engineer. */
+"Invalid url" = "url envalid";
+
+/* No comment provided by engineer. */
+"No Content" = "Pa gen Kontni";
+
+/* No comment provided by engineer. */
+"No Submission" = "Pa gen Soumisyon";
+
+/* No comment provided by engineer. */
+"No Submission Date" = "Pa gen Dat Soumisyon";
+
+/* Button to open external tool */
+"Open External Tool" = "Ouvri Zouti Ekstèn";
+
+/* Past enrollments section title in All Courses screen */
+"Past Enrollments" = "Enskripsyon Pase";
+
+/* No comment provided by engineer. */
+"Quizzes" = "Quiz";
+
+/* No comment provided by engineer. */
+"Resubmit Assignment" = "Resoumèt Sesyon";
+
+/* No comment provided by engineer. */
+"Retry" = "Re eseye";
+
+/* No comment provided by engineer. */
+"Rubric" = "Ribrik";
+
+/* No comment provided by engineer. */
+"See All" = "Gade Tout";
+
+/* No comment provided by engineer. */
+"See All Courses" = "Afiche Tout Kou";
+
+/* No comment provided by engineer. */
+"Something went wrong while loading the quizzes." = "Gen yon bagay ki pase mal pandan chajman quiz yo.";
+
+/* No comment provided by engineer. */
+"Submission" = "Soumisyon";
+
+/* No comment provided by engineer. */
+"Submission & Rubric" = "Soumisyon ak Ribrik";
+
+/* No comment provided by engineer. */
+"Submission Types" = "Tip Soumisyon";
+
+/* No comment provided by engineer. */
+"Submit" = "Soumèt";
+
+/* No comment provided by engineer. */
+"Submit Assignment" = "Soumèt Sesyon";
+
+/* No comment provided by engineer. */
+"Successfully submitted!" = "Ale avèk siksè!";
+
+/* No comment provided by engineer. */
+"The app needs to restart to use the new language settings. Please relaunch the app." = "App la bezwen redemare pou li ka itilize nouvo langaj ki pwograme a. Tanpri relanse app la.";
+
+/* No comment provided by engineer. */
+"There are no quizzes to display." = "Pa gen quiz pou afiche.";
+
+/* No comment provided by engineer. */
+"Updated Language Settings" = "Paramèt Langaj Aktyalize";
+
+/* No comment provided by engineer. */
+"Uploading %@ of %@" = "Transfè %1$@ sou %2$@";
+
+/* No comment provided by engineer. */
+"Uploading..." = "Chajman...";
+
+/* No comment provided by engineer. */
+"Website Address" = "Adrès Sit Wèb";
+
+/* No comment provided by engineer. */
+"Your submission is now waiting to be graded" = "Soumisyon ou an ap tann pou yo evalye li";
+

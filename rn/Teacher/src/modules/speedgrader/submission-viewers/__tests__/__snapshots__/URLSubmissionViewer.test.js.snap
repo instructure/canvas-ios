@@ -1,0 +1,102 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`url submission renders correctly 1`] = `
+<RCTScrollView
+  contentContainerStyle={
+    Object {
+      "flex": 1,
+    }
+  }
+  contentInset={
+    Object {
+      "bottom": 0,
+    }
+  }
+>
+  <View>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      testID="url-submission-viewer.explanation"
+    >
+      This submission is a URL to an external page. We've included a snapshot of what the page looked like when it was submitted.
+    </Text>
+    <TouchableOpacity
+      accessibilityTraits="button"
+      hitSlop={
+        Object {
+          "bottom": 15,
+          "left": 15,
+          "right": 15,
+          "top": 15,
+        }
+      }
+      onPress={[Function]}
+      style={
+        Object {
+          "alignSelf": "center",
+          "paddingVertical": 12,
+        }
+      }
+      testID="url-submission-viewer.url"
+    >
+      <View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Array [
+                Object {
+                  "color": "#374A59",
+                  "fontSize": 16,
+                  "fontWeight": "500",
+                },
+                Object {
+                  "fontSize": 18,
+                },
+              ],
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+        >
+          https://my-blog-about-rockets.com/2017/6/1/rockets-are-splosive
+        </Text>
+      </View>
+    </TouchableOpacity>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#7F91A7",
+            "fontSize": 16,
+            "lineHeight": 23,
+          },
+          Object {
+            "alignSelf": "center",
+          },
+        ]
+      }
+    >
+      Preview Unavailable
+    </Text>
+  </View>
+</RCTScrollView>
+`;

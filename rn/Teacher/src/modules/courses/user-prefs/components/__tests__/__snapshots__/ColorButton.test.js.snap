@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ColorButton renders selected 1`] = `
+<TouchableHighlight
+  accessibilityLabel="Choose #333"
+  onPress={[Function]}
+  style={
+    Object {
+      "height": 48,
+      "margin": 8,
+    }
+  }
+  testID="colorButton.#333"
+  underlayColor="#fff"
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "borderRadius": 24,
+          "height": 48,
+          "justifyContent": "center",
+          "width": 48,
+        },
+        Object {
+          "backgroundColor": "#333",
+        },
+      ]
+    }
+  >
+    <Image
+      source={
+        Object {
+          "testUri": "../../../src/images/check-white.png",
+        }
+      }
+    />
+  </View>
+</TouchableHighlight>
+`;
+
+exports[`ColorButton renders unselected 1`] = `
+<TouchableHighlight
+  accessibilityLabel="Choose #fff"
+  onPress={[Function]}
+  style={
+    Object {
+      "height": 48,
+      "margin": 8,
+    }
+  }
+  testID="colorButton.#fff"
+  underlayColor="#fff"
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "borderRadius": 24,
+          "height": 48,
+          "justifyContent": "center",
+          "width": 48,
+        },
+        Object {
+          "backgroundColor": "#fff",
+        },
+      ]
+    }
+  />
+</TouchableHighlight>
+`;

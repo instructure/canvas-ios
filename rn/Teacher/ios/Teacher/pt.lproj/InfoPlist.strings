@@ -1,0 +1,12 @@
+/* Privacy - Camera Usage Description */
+"NSCameraUsageDescription" = "Anexe fotos e vídeos aos comentários de envio.";
+
+/* Privacy - Microphone Usage Description */
+"NSMicrophoneUsageDescription" = "Anexe gravações de áudio aos comentários de envio.";
+
+/* Privacy - Photo Library Additions Usage Description */
+"NSPhotoLibraryAddUsageDescription" = "Anexe fotos e vídeos aos comentários de envio.";
+
+/* Privacy - Photo Library Usage Description */
+"NSPhotoLibraryUsageDescription" = "Transfira conteúdo para disciplinas.";
+

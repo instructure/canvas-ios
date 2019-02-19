@@ -1,0 +1,12 @@
+/* Privacy - Camera Usage Description */
+"NSCameraUsageDescription" = "Koppel foto's en video's aan opmerkingen bij een inzending.";
+
+/* Privacy - Microphone Usage Description */
+"NSMicrophoneUsageDescription" = "Koppel audio-opnamen aan opmerkingen bij een inzending";
+
+/* Privacy - Photo Library Additions Usage Description */
+"NSPhotoLibraryAddUsageDescription" = "Koppel foto's en video's aan opmerkingen bij een inzending.";
+
+/* Privacy - Photo Library Usage Description */
+"NSPhotoLibraryUsageDescription" = "Upload inhoud aan cursussen.";
+

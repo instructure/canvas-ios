@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13240" systemVersion="16G29" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="MasteryPathAssignment" representedClassName=".MasteryPathAssignment" syncable="YES">
+        <attribute name="assignmentID" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="assignmentSetID" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="details" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="due" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="id" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="overrideID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pointsPossible" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="position" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="NO" indexed="YES" syncable="YES"/>
+        <attribute name="type" attributeType="String" defaultValueString="assignment" syncable="YES"/>
+        <relationship name="assignmentSet" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MasteryPathAssignmentSet" inverseName="assignments" inverseEntity="MasteryPathAssignmentSet" syncable="YES"/>
+    </entity>
+    <entity name="MasteryPathAssignmentSet" representedClassName=".MasteryPathAssignmentSet" syncable="YES">
+        <attribute name="id" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="position" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="NO" indexed="YES" syncable="YES"/>
+        <relationship name="assignments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="MasteryPathAssignment" inverseName="assignmentSet" inverseEntity="MasteryPathAssignment" syncable="YES"/>
+        <relationship name="masteryPathsItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MasteryPathsItem" inverseName="assignmentSets" inverseEntity="MasteryPathsItem" syncable="YES"/>
+    </entity>
+    <entity name="MasteryPathsItem" representedClassName=".MasteryPathsItem" parentEntity="ModuleItem" syncable="YES">
+        <attribute name="moduleItemID" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="selectedSetID" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="assignmentSets" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="MasteryPathAssignmentSet" inverseName="masteryPathsItem" inverseEntity="MasteryPathAssignmentSet" syncable="YES"/>
+    </entity>
+    <entity name="Module" representedClassName=".Module" syncable="YES">
+        <attribute name="completionDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="courseID" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="id" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="itemCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="position" attributeType="Integer 64" defaultValueString="1" usesScalarValueType="NO" indexed="YES" syncable="YES"/>
+        <attribute name="prerequisiteModuleIDs" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="requireSequentialProgress" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="unlockDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="workflowState" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="ModuleItem" representedClassName=".ModuleItem" syncable="YES">
+        <attribute name="canView" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="completed" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="completionRequirement" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="contentID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="contentType" attributeType="String" syncable="YES"/>
+        <attribute name="courseID" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="externalURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="htmlURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="indent" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="lockedForUser" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="lockExplanation" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="minScore" optional="YES" attributeType="Double" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="moduleID" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="pageURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="position" attributeType="Float" defaultValueString="1" usesScalarValueType="NO" indexed="YES" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="MasteryPathAssignment" positionX="97" positionY="504" width="128" height="208"/>
+        <element name="MasteryPathAssignmentSet" positionX="-252" positionY="525" width="128" height="103"/>
+        <element name="MasteryPathsItem" positionX="-56" positionY="378" width="128" height="90"/>
+        <element name="Module" positionX="-308" positionY="69" width="128" height="210"/>
+        <element name="ModuleItem" positionX="-54" positionY="72" width="128" height="315"/>
+    </elements>
+</model>

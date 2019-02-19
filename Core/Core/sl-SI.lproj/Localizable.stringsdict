@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>d_questions</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@questions@</string>
+		<key>questions</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>few</key>
+			<string></string>
+			<key>one</key>
+			<string>%d Vprašanje</string>
+			<key>other</key>
+			<string>%d Vprašanja</string>
+			<key>two</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>final_grade_g_pts</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Končna ocena: %#@points@</string>
+		<key>points</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>g</string>
+			<key>few</key>
+			<string></string>
+			<key>one</key>
+			<string>%g točka</string>
+			<key>other</key>
+			<string>%g točk</string>
+			<key>two</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>g_out_of_g_points_possible</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%g od možnih %#@točk@</string>
+		<key>points</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>g</string>
+			<key>few</key>
+			<string>%g points</string>
+			<key>one</key>
+			<string>%g točka</string>
+			<key>other</key>
+			<string>%g točk</string>
+			<key>two</key>
+			<string>%g points</string>
+		</dict>
+	</dict>
+	<key>g_pts</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@točke@</string>
+		<key>points</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>g</string>
+			<key>few</key>
+			<string></string>
+			<key>one</key>
+			<string>%g točka</string>
+			<key>other</key>
+			<string>%g točk</string>
+			<key>two</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>late_penalty_g_pts</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Kazen za zamudo (%#@točk@)</string>
+		<key>points</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>g</string>
+			<key>few</key>
+			<string></string>
+			<key>one</key>
+			<string>%g točka</string>
+			<key>other</key>
+			<string>%g točk</string>
+			<key>two</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>out_of_g_pts</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Od %#@točk@</string>
+		<key>points</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>g</string>
+			<key>few</key>
+			<string></string>
+			<key>one</key>
+			<string>%g točka</string>
+			<key>other</key>
+			<string>%g točk</string>
+			<key>two</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>plural_points</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@točke@</string>
+		<key>points</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>g</string>
+			<key>few</key>
+			<string></string>
+			<key>one</key>
+			<string>Točka</string>
+			<key>other</key>
+			<string>Točke</string>
+			<key>two</key>
+			<string></string>
+		</dict>
+	</dict>
+</dict>
+</plist>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>d_questions</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@questions@</string>
+		<key>questions</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>few</key>
+			<string></string>
+			<key>many</key>
+			<string></string>
+			<key>one</key>
+			<string>%d Вопрос</string>
+			<key>other</key>
+			<string>%d Вопросы</string>
+		</dict>
+	</dict>
+	<key>final_grade_g_pts</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Итоговая оценка: %#@points@</string>
+		<key>points</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>g</string>
+			<key>few</key>
+			<string></string>
+			<key>many</key>
+			<string></string>
+			<key>one</key>
+			<string>%g балл</string>
+			<key>other</key>
+			<string>%g баллы</string>
+		</dict>
+	</dict>
+	<key>g_out_of_g_points_possible</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%g из %#@points@ возможных</string>
+		<key>points</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>g</string>
+			<key>few</key>
+			<string>%g points</string>
+			<key>many</key>
+			<string>%g points</string>
+			<key>one</key>
+			<string>%g точка</string>
+			<key>other</key>
+			<string>%g баллы</string>
+		</dict>
+	</dict>
+	<key>g_pts</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@points@</string>
+		<key>points</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>g</string>
+			<key>few</key>
+			<string></string>
+			<key>many</key>
+			<string></string>
+			<key>one</key>
+			<string>%g балл</string>
+			<key>other</key>
+			<string>%g баллы</string>
+		</dict>
+	</dict>
+	<key>late_penalty_g_pts</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Снижение оценки за опоздание (%#@points@)</string>
+		<key>points</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>g</string>
+			<key>few</key>
+			<string></string>
+			<key>many</key>
+			<string></string>
+			<key>one</key>
+			<string>%g балл</string>
+			<key>other</key>
+			<string>%g баллы</string>
+		</dict>
+	</dict>
+	<key>out_of_g_pts</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Из %#@points@</string>
+		<key>points</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>g</string>
+			<key>few</key>
+			<string></string>
+			<key>many</key>
+			<string></string>
+			<key>one</key>
+			<string>%g балл</string>
+			<key>other</key>
+			<string>%g баллы</string>
+		</dict>
+	</dict>
+	<key>plural_points</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@points@</string>
+		<key>points</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>g</string>
+			<key>few</key>
+			<string></string>
+			<key>many</key>
+			<string></string>
+			<key>one</key>
+			<string>Балл</string>
+			<key>other</key>
+			<string>Баллы</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

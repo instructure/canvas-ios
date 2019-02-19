@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ToolTip renders nothing until tooltip added 1`] = `null`;
+
+exports[`ToolTip renders something interesting when showToolTip is called 1`] = `
+<View
+  accessibilityComponentType={undefined}
+  accessibilityLabel={undefined}
+  accessibilityTraits={undefined}
+  accessible={true}
+  hitSlop={undefined}
+  nativeID={undefined}
+  onLayout={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "bottom": 0,
+      "left": 0,
+      "position": "absolute",
+      "right": 0,
+      "top": 0,
+      "zIndex": 2,
+    }
+  }
+  testID="tool-tip.dismiss"
+>
+  <View
+    collapsable={undefined}
+    style={
+      Object {
+        "height": 0,
+        "left": 5,
+        "position": "absolute",
+        "right": 20,
+        "top": 20,
+        "transform": Array [
+          Object {
+            "scale": 0.6,
+          },
+        ],
+        "width": 0,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#2D3B45",
+          "bottom": 8,
+          "height": 16,
+          "left": -8,
+          "position": "absolute",
+          "transform": Array [
+            Object {
+              "rotate": "45deg",
+            },
+          ],
+          "width": 16,
+        }
+      }
+    />
+    <View
+      onLayout={[Function]}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#2D3B45",
+            "borderRadius": 5,
+            "bottom": 9,
+            "left": -30,
+            "padding": 4,
+            "paddingHorizontal": 8,
+            "position": "absolute",
+          },
+          Object {
+            "left": 11,
+            "width": undefined,
+          },
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        numberOfLines={3}
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "white",
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
+        }
+      >
+        The quick brown fox...
+      </Text>
+    </View>
+  </View>
+</View>
+`;

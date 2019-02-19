@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16B2555" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="File" representedClassName=".File" parentEntity="FileNode" syncable="YES">
+        <attribute name="contentType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="size" optional="YES" attributeType="Integer 64" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="thumbnailURL" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="FileNode" representedClassName=".FileNode" syncable="YES">
+        <attribute name="canView" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="hiddenForUser" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="isFolder" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="isInRootFolder" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="lockedForUser" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="lockExplanation" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="parentFolderID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rawContextID" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="FileUpload" representedClassName=".FileUpload" parentEntity="Upload" syncable="YES">
+        <attribute name="contentType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="data" attributeType="Binary" syncable="YES"/>
+        <attribute name="isInRootFolder" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="parentFolderID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="path" attributeType="String" syncable="YES"/>
+        <attribute name="targetParameters" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="targetURL" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="batch" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FileUploadBatch" inverseName="fileUploads" inverseEntity="FileUploadBatch" syncable="YES"/>
+        <relationship name="file" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="File" syncable="YES"/>
+    </entity>
+    <entity name="FileUploadBatch" syncable="YES">
+        <attribute name="apiPath" attributeType="String" syncable="YES"/>
+        <attribute name="fileTypes" attributeType="String" syncable="YES"/>
+        <relationship name="fileUploads" toMany="YES" deletionRule="Cascade" destinationEntity="FileUpload" inverseName="batch" inverseEntity="FileUpload" syncable="YES"/>
+    </entity>
+    <entity name="Folder" representedClassName=".Folder" parentEntity="FileNode" syncable="YES">
+        <attribute name="filesCount" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="filesUrl" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="foldersCount" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="foldersUrl" optional="YES" attributeType="Transformable" syncable="YES"/>
+    </entity>
+    <entity name="Upload" representedClassName=".Upload" syncable="YES">
+        <attribute name="backgroundSessionID" attributeType="String" syncable="YES"/>
+        <attribute name="canceledAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="completedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="errorMessage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="failedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="sent" transient="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="startedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="taskIdentifier" optional="YES" attributeType="Integer 64" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="terminatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="total" transient="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="File" positionX="-101" positionY="-84" width="128" height="120"/>
+        <element name="FileNode" positionX="115" positionY="-273" width="128" height="195"/>
+        <element name="FileUpload" positionX="-378" positionY="-13" width="128" height="195"/>
+        <element name="FileUploadBatch" positionX="-549" positionY="-81" width="128" height="88"/>
+        <element name="Folder" positionX="234" positionY="-54" width="128" height="103"/>
+        <element name="Upload" positionX="-317" positionY="-288" width="128" height="210"/>
+    </elements>
+</model>

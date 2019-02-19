@@ -1,0 +1,34 @@
+//
+// Copyright (C) 2018-present Instructure, Inc.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, version 3 of the License.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+
+// @flow
+
+type AvailableTo = 'user' | 'student' | 'teacher' | 'admin' | 'observer' | 'unenrolled'
+
+export type HelpLinks = {
+  help_link_name: string,
+  help_link_icon: string,
+  default_help_links: HelpLink[],
+  custom_help_links: HelpLink[],
+}
+
+export type HelpLink = {
+  id: string,
+  text: string,
+  type: 'default' | 'custom',
+  available_to: AvailableTo[],
+  url: string,
+}

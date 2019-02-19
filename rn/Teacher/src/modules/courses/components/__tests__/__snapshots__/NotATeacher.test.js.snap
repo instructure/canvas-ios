@@ -1,0 +1,175 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders NotATeacher correctly 1`] = `
+<RCTSafeAreaView
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "padding": 10,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "margin": 8,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "fontSize": 30,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
+        }
+        testID="no-teacher.title"
+      >
+        Not a teacher?
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#7F91A7",
+              "fontSize": 16,
+              "lineHeight": 23,
+            },
+            Object {
+              "fontSize": 16,
+              "maxWidth": 320,
+              "padding": 8,
+              "textAlign": "center",
+            },
+          ]
+        }
+        testID="no-teacher.title"
+      >
+        One of our other apps might be a better fit. Tap one to visit the App Store.
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "margin": 8,
+        }
+      }
+    >
+      <TouchableOpacity
+        accessibilityLabel="Canvas Student App"
+        accessibilityTraits="button"
+        onPress={[Function]}
+        testID="no-teacher.open-student"
+      >
+        <Image
+          source={
+            Object {
+              "testUri": "../../../src/images/Canvas-Student.png",
+            }
+          }
+        />
+      </TouchableOpacity>
+      <TouchableOpacity
+        accessibilityLabel="Canvas Parent App"
+        accessibilityTraits="button"
+        onPress={[Function]}
+        style={
+          Object {
+            "marginTop": 36,
+          }
+        }
+        testID="no-teacher.open-parent"
+      >
+        <Image
+          source={
+            Object {
+              "testUri": "../../../src/images/Canvas-Parent.png",
+            }
+          }
+        />
+      </TouchableOpacity>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "margin": 8,
+        }
+      }
+    >
+      <TouchableOpacity
+        accessibilityComponentType="button"
+        accessibilityLabel={undefined}
+        accessibilityTraits={
+          Array [
+            "button",
+          ]
+        }
+        disabled={undefined}
+        hasTVPreferredFocus={undefined}
+        onPress={[Function]}
+        testID="no-teacher.logout"
+      >
+        <View
+          style={
+            Array [
+              Object {},
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={undefined}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "color": "#007AFF",
+                  "fontSize": 18,
+                  "padding": 8,
+                  "textAlign": "center",
+                },
+              ]
+            }
+          >
+            Try logging in again
+          </Text>
+        </View>
+      </TouchableOpacity>
+    </View>
+  </View>
+</RCTSafeAreaView>
+`;

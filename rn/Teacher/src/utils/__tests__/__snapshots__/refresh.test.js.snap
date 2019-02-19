@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`refresh can be refreshed 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  refresh={[Function]}
+  refreshing={true}
+>
+  Some moar text
+</Text>
+`;
+
+exports[`refresh can be refreshed 2`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  refresh={[Function]}
+  refreshing={true}
+>
+  Some moar text
+</Text>
+`;
+
+exports[`refresh can be refreshed 3`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  refresh={[Function]}
+  refreshing={true}
+>
+  Some moar text
+</Text>
+`;
+
+exports[`refresh can be refreshed 4`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  refresh={[Function]}
+  refreshing={false}
+>
+  Some moar text
+</Text>
+`;
+
+exports[`refresh renders the refreshed component 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  refresh={[Function]}
+  refreshing={false}
+  testID="test"
+>
+  This is text
+</Text>
+`;

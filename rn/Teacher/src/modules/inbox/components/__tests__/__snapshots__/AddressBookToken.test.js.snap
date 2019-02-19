@@ -1,0 +1,155 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddressBookToken renders 1`] = `
+<View
+  accessibilityLabel="Recipient: Donald Trump"
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#EBEDEE",
+      "borderRadius": 15,
+      "flexDirection": "row",
+      "height": 30,
+      "justifyContent": "center",
+      "marginRight": 6,
+      "marginVertical": 4,
+      "paddingLeft": 2,
+      "paddingRight": 12,
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "marginLeft": 8,
+      }
+    }
+  >
+    Donald Trump
+  </Text>
+  <TouchableOpacity
+    accessibilityLabel="Delete recipient Donald Trump"
+    accessibilityTraits={
+      Array [
+        "button",
+      ]
+    }
+    accessible={true}
+    onPress={[Function]}
+    testID="message-recipient.1.delete-btn"
+  >
+    <Image
+      source={
+        Object {
+          "testUri": "../../../src/images/x-icon.png",
+        }
+      }
+      style={
+        Object {
+          "height": 12,
+          "marginLeft": 8,
+          "tintColor": "#2D3B45",
+          "width": 12,
+        }
+      }
+    />
+  </TouchableOpacity>
+</View>
+`;
+
+exports[`AddressBookToken renders with avatar url 1`] = `
+<View
+  accessibilityLabel="Recipient: Donald Trump"
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#EBEDEE",
+      "borderRadius": 15,
+      "flexDirection": "row",
+      "height": 30,
+      "justifyContent": "center",
+      "marginRight": 6,
+      "marginVertical": 4,
+      "paddingLeft": 2,
+      "paddingRight": 12,
+    }
+  }
+>
+  <View
+    accessibilityLabel=""
+    style={
+      Array [
+        Object {
+          "overflow": "hidden",
+        },
+        Object {
+          "height": 24,
+          "width": 24,
+        },
+        Object {
+          "borderRadius": 12,
+        },
+        Object {
+          "backgroundColor": "#F5F5F5",
+        },
+      ]
+    }
+  >
+    <Image
+      source={
+        Object {
+          "uri": "http://www.fillmurray.com/100/100",
+        }
+      }
+      style={
+        Object {
+          "height": 24,
+          "width": 24,
+        }
+      }
+    />
+  </View>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "marginLeft": 8,
+      }
+    }
+  >
+    Donald Trump
+  </Text>
+  <TouchableOpacity
+    accessibilityLabel="Delete recipient Donald Trump"
+    accessibilityTraits={
+      Array [
+        "button",
+      ]
+    }
+    accessible={true}
+    onPress={[Function]}
+    testID="message-recipient.1.delete-btn"
+  >
+    <Image
+      source={
+        Object {
+          "testUri": "../../../src/images/x-icon.png",
+        }
+      }
+      style={
+        Object {
+          "height": 12,
+          "marginLeft": 8,
+          "tintColor": "#2D3B45",
+          "width": 12,
+        }
+      }
+    />
+  </TouchableOpacity>
+</View>
+`;

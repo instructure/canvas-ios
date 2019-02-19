@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Helvetica.ttc">
+            <string>Helvetica</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CKRubricView"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="RubricPointsCell" id="2">
+            <rect key="frame" x="0.0" y="0.0" width="313" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="2" id="xfD-B2-2np">
+                <rect key="frame" x="0.0" y="0.0" width="313" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kXs-Ga-obV">
+                        <rect key="frame" x="100" y="12" width="115" height="20"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" ambiguous="YES" text="out of 5 points" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="5">
+                                <rect key="frame" x="27" y="3" width="88" height="17"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0" textAlignment="right" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4">
+                                <rect key="frame" x="0.0" y="0.0" width="15" height="20"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad" returnKeyType="done"/>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="5" secondAttribute="trailing" id="MRV-xh-4p9"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="f2c-vi-XbD"/>
+                            <constraint firstAttribute="centerY" secondItem="5" secondAttribute="centerY" id="fOp-F0-16L"/>
+                            <constraint firstItem="5" firstAttribute="leading" secondItem="4" secondAttribute="trailing" constant="12" id="jYx-3R-nvm"/>
+                            <constraint firstItem="4" firstAttribute="leading" secondItem="kXs-Ga-obV" secondAttribute="leading" id="w1T-hi-mdL"/>
+                            <constraint firstAttribute="bottom" secondItem="4" secondAttribute="bottom" id="yJt-M3-nwM"/>
+                            <constraint firstItem="4" firstAttribute="top" secondItem="kXs-Ga-obV" secondAttribute="top" id="zVv-P2-cFy"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="centerX" secondItem="kXs-Ga-obV" secondAttribute="centerX" id="BUk-on-CCX"/>
+                    <constraint firstItem="kXs-Ga-obV" firstAttribute="top" secondItem="xfD-B2-2np" secondAttribute="topMargin" constant="4" id="RGC-Zw-Fh6"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="kXs-Ga-obV" secondAttribute="bottom" constant="3" id="ZDy-79-5fz"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </tableViewCell>
+    </objects>
+</document>

@@ -1,0 +1,152 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`wrapComponentInProviders renders wrapped screen and shows the error screen when there is an error 1`] = `
+<ErrorScreen
+  navigator={
+    Navigator {
+      "isModal": undefined,
+      "moduleName": "TestScreen",
+    }
+  }
+/>
+`;
+
+exports[`wrapComponentInProviders renders wrapped screen with store correctly 1`] = `
+<ApolloProvider
+  client={
+    ApolloClient {
+      "cache": InMemoryCache {
+        "addTypename": true,
+        "config": Object {
+          "addTypename": true,
+          "dataIdFromObject": [Function],
+          "fragmentMatcher": HeuristicFragmentMatcher {},
+          "storeFactory": [Function],
+        },
+        "data": ObjectCache {
+          "data": Object {},
+        },
+        "optimistic": Array [],
+        "silenceBroadcast": false,
+        "watches": Array [],
+      },
+      "defaultOptions": Object {},
+      "disableNetworkFetches": false,
+      "link": ApolloLink {
+        "request": [Function],
+      },
+      "mutate": [Function],
+      "query": [Function],
+      "queryDeduplication": true,
+      "reFetchObservableQueries": [Function],
+      "resetStore": [Function],
+      "resetStoreCallbacks": Array [],
+      "ssrMode": false,
+      "store": DataStore {
+        "cache": InMemoryCache {
+          "addTypename": true,
+          "config": Object {
+            "addTypename": true,
+            "dataIdFromObject": [Function],
+            "fragmentMatcher": HeuristicFragmentMatcher {},
+            "storeFactory": [Function],
+          },
+          "data": ObjectCache {
+            "data": Object {},
+          },
+          "optimistic": Array [],
+          "silenceBroadcast": false,
+          "watches": Array [],
+        },
+      },
+      "version": "2.2.2",
+      "watchQuery": [Function],
+    }
+  }
+>
+  <Provider
+    store={
+      Object {
+        "dispatch": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+        Symbol(observable): [Function],
+      }
+    }
+  >
+    <Component
+      apollo={
+        ApolloClient {
+          "cache": InMemoryCache {
+            "addTypename": true,
+            "config": Object {
+              "addTypename": true,
+              "dataIdFromObject": [Function],
+              "fragmentMatcher": HeuristicFragmentMatcher {},
+              "storeFactory": [Function],
+            },
+            "data": ObjectCache {
+              "data": Object {},
+            },
+            "optimistic": Array [],
+            "silenceBroadcast": false,
+            "watches": Array [],
+          },
+          "defaultOptions": Object {},
+          "disableNetworkFetches": false,
+          "link": ApolloLink {
+            "request": [Function],
+          },
+          "mutate": [Function],
+          "query": [Function],
+          "queryDeduplication": true,
+          "reFetchObservableQueries": [Function],
+          "resetStore": [Function],
+          "resetStoreCallbacks": Array [],
+          "ssrMode": false,
+          "store": DataStore {
+            "cache": InMemoryCache {
+              "addTypename": true,
+              "config": Object {
+                "addTypename": true,
+                "dataIdFromObject": [Function],
+                "fragmentMatcher": HeuristicFragmentMatcher {},
+                "storeFactory": [Function],
+              },
+              "data": ObjectCache {
+                "data": Object {},
+              },
+              "optimistic": Array [],
+              "silenceBroadcast": false,
+              "watches": Array [],
+            },
+          },
+          "version": "2.2.2",
+          "watchQuery": [Function],
+        }
+      }
+      navigator={
+        Navigator {
+          "isModal": undefined,
+          "moduleName": "TestScreen",
+        }
+      }
+      session={
+        Object {
+          "actAsUserID": 2,
+          "authToken": "iamanauthtoken",
+          "baseURL": "http://mobiledev.instructure.com/",
+          "user": Object {
+            "avatar_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+            "id": "1",
+            "name": "Key and Peele",
+            "primary_email": "keyandpeele@instructure.com",
+          },
+        }
+      }
+      testID="TestScreen"
+    />
+  </Provider>
+</ApolloProvider>
+`;

@@ -1,0 +1,12 @@
+/* Privacy - Camera Usage Description */
+"NSCameraUsageDescription" = "Adjuntar fotografías y videos a comentarios sobre presentaciones.";
+
+/* Privacy - Microphone Usage Description */
+"NSMicrophoneUsageDescription" = "Adjuntar grabaciones de audio a comentarios de presentación.";
+
+/* Privacy - Photo Library Additions Usage Description */
+"NSPhotoLibraryAddUsageDescription" = "Adjuntar fotografías y videos a comentarios sobre presentaciones.";
+
+/* Privacy - Photo Library Usage Description */
+"NSPhotoLibraryUsageDescription" = "Cargar contenido a los cursos.";
+

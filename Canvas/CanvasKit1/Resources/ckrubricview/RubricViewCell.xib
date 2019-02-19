@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+    <device id="ipad9_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CKRubricView">
+            <connections>
+                <outlet property="rubricCell" destination="2" id="5"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="RubricRatingWithScoreCell" id="2">
+            <rect key="frame" x="0.0" y="0.0" width="313" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2" id="vE9-Ot-cef">
+                <rect key="frame" x="0.0" y="0.0" width="313" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" text="Label" lineBreakMode="wordWrap" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3" userLabel="Description">
+                        <rect key="frame" x="51" y="11" width="254" height="21.5"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" text="10" textAlignment="center" lineBreakMode="clip" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="4" userLabel="Points">
+                        <rect key="frame" x="8" y="8" width="27" height="28"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="24"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P05-FL-qhM">
+                        <rect key="frame" x="42" y="0.0" width="1" height="43.5"/>
+                        <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="1" id="SaX-8k-5wE"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="P05-FL-qhM" firstAttribute="leading" secondItem="vE9-Ot-cef" secondAttribute="leading" constant="42" identifier="divider" id="CEV-Vx-TqL"/>
+                    <constraint firstItem="4" firstAttribute="leading" secondItem="vE9-Ot-cef" secondAttribute="leading" constant="8" id="Clj-cF-97E"/>
+                    <constraint firstAttribute="trailing" secondItem="3" secondAttribute="trailing" constant="8" id="JB4-Zy-B7Z"/>
+                    <constraint firstItem="P05-FL-qhM" firstAttribute="top" secondItem="vE9-Ot-cef" secondAttribute="top" id="Kqr-wX-EeT"/>
+                    <constraint firstItem="3" firstAttribute="top" secondItem="vE9-Ot-cef" secondAttribute="top" constant="11" id="Wcf-vg-gpv"/>
+                    <constraint firstAttribute="bottom" secondItem="3" secondAttribute="bottom" constant="11" id="bEc-pK-w9c"/>
+                    <constraint firstItem="P05-FL-qhM" firstAttribute="leading" secondItem="4" secondAttribute="trailing" constant="7" id="dXm-UW-Owe"/>
+                    <constraint firstItem="3" firstAttribute="leading" secondItem="P05-FL-qhM" secondAttribute="trailing" constant="8" id="eMM-50-opI"/>
+                    <constraint firstAttribute="bottom" secondItem="P05-FL-qhM" secondAttribute="bottom" id="oa2-8y-G4s"/>
+                    <constraint firstItem="4" firstAttribute="centerY" secondItem="vE9-Ot-cef" secondAttribute="centerY" id="oks-QK-yEv"/>
+                </constraints>
+            </tableViewCellContentView>
+        </tableViewCell>
+    </objects>
+</document>

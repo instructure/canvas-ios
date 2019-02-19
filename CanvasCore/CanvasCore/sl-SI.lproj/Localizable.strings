@@ -1,0 +1,853 @@
+/* Error message component with the report id */
+" Error report ID: (reportID)" = " ID poročila o napaki: (reportID)";
+
+/* Failure reason from the JSON payload from canvas */
+" Failure reason: (reason)." = " Razlog napake: (razlog).";
+
+/* Shows the number of flagged questions */
+"%@ Flagged" = "%@ Označeno";
+
+/* Accessiblity hint for question drawer button */
+"%@ Questions Answered" = "%@ Vprašanja s podanimi odgovori";
+
+/* Question number in a quiz */
+"%@." = "%@.";
+
+/* Confirmations alerting user of unanswered questions */
+"%d questions not answered" = "%d vprašanj brez podanih odgovorov";
+
+/* web content failed to load */
+"⚠️ Error Loading Content" = "⚠️ Napaka pri nalaganju vsebine";
+
+/* Accessiblity hint for question drawer button */
+"0 Questions Answered" = "0 vprašanj s podanimi odgovori";
+
+/* Notification to alert the user that there is only 5 minutes left in the timed quiz */
+"5 minutes remaining" = "Preostalo je še 5 minut.";
+
+/* Notification to alert the user that there is only 30 seconds left in the time quiz */
+"30 seconds remaining" = "Preostalo je še 30 sekund.";
+
+/* Mark student absent
+   Student is present in class */
+"Absent" = "Odsoten";
+
+/* URL submission option */
+"Add Website Address" = "Dodaj naslov spletnega mesta";
+
+/* Shows the number questions */
+"All %@ Questions" = "Vseh %@ vprašanj";
+
+/* option to view results for all grading periods */
+"All Grading Periods" = "Vsa ocenjevalna obdobja";
+
+/* No comment provided by engineer. */
+"All notifications are currently disabled." = "Vsa sporočila so trenutno onemogočena.";
+
+/* No comment provided by engineer. */
+"All notifications are currently enabled." = "Vsa sporočila so trenutno omogočena.";
+
+/* all pages segmented control title */
+"All Pages" = "Vse strani";
+
+/* No comment provided by engineer. */
+"Allow Notifications in Settings" = "Dovoli sporočila v nastavitvah";
+
+/* label for number of attempts that are allowed */
+"Allowed Attempts" = "Dovoljeni poskusi";
+
+/* Default error message displayed when a file fails to upload */
+"An error occured, please try again." = "Prišlo je do napake, poskusite znova.";
+
+/* No comment provided by engineer. */
+"An unexpected error has occurred." = "Prišlo je do nepričakovane napake.";
+
+/* an unknown error's message */
+"An unknown error has occurred." = "Prišlo je do neznane napake.";
+
+/* No comment provided by engineer. */
+"Answers will not be submitted while offline." = "Odgovori ne bodo poslani, dokler ste brez povezave.";
+
+/* Question to confirm user wants to navigate away from a quiz. */
+"Are you sure you want to leave this quiz?" = "Ali ste prepričani, da želite zapustiti ta kviz?";
+
+/* Confirmation before submitting a quiz */
+"Are you sure you want to submit your answers?" = "Ali ste prepričani, da želite poslati odgovore?";
+
+/* No comment provided by engineer. */
+"Are you sure you would like to delete this comment?" = "Ali ste prepričani, da želite odstraniti ta komentar?";
+
+/* label to be read for visually impaired users with assignment types */
+"assignment" = "naloga";
+
+/* No comment provided by engineer. */
+"Attendance" = "Prisotnost";
+
+/* Error title for attendance app */
+"Attendance Error" = "Napaka pri prisotnosti";
+
+/* label for quiz availability date */
+"Available Until" = "Na voljo do";
+
+/* stop record button a11y hint */
+"Begin recording" = "Začni snemanje";
+
+/* Blue course color button */
+"Blue" = "Modro";
+
+/* Title for screen to build a panda avatar */
+"Build Your Panda!" = "Ustvarite svojega pando.";
+
+/* Alert title when unable to parse JSON for communication channels */
+"Can't Display Communication Channels" = "Prikaz komunikacijskih kanalov ni mogoč.";
+
+/* Alert title when unable to parse JSON for notification preferences */
+"Can't Display Notification Preferences" = "Prikaz prednostnih nastavitev za sporočila ni mogoč.";
+
+/* Cancel Audio recording.
+   Cancel button title
+   Cancel submission option
+   Cancel upload */
+"Cancel" = "Prekliči";
+
+/* No comment provided by engineer. */
+"Change Section" = "Spremeni sekcijo";
+
+/* Description for Chat communication channel */
+"Chat" = "Klepet";
+
+/* Choose a file */
+"Choose a File" = "Izberi datoteko";
+
+/* Pick a photo from library */
+"Choose a Photo" = "Izberi fotografijo";
+
+/* Pick a photo or video */
+"Choose a Photo or Video" = "Izberi fotografijo ali videoposnetek";
+
+/* No comment provided by engineer. */
+"Choose a Section" = "Izberi sekcijo";
+
+/* Pick a video from library */
+"Choose a Video" = "Izberi videoposnetek";
+
+/* No comment provided by engineer. */
+"Choose Date" = "Izberi datum";
+
+/* No comment provided by engineer. */
+"Close App" = "Zapri aplikacijo";
+
+/* No comment provided by engineer. */
+"Collapse" = "Strni";
+
+/* No comment provided by engineer. */
+"Comments" = "Komentarji";
+
+/* File upload completed */
+"Complete" = "Zaključeno";
+
+/* Title of a screen that shows all of our open source components */
+"Components" = "Komponente";
+
+/* Button for electing to be late on a quiz */
+"Continue Quiz" = "Nadaljuj s kvizom";
+
+/* Notification display name for conversations group */
+"Conversations" = "Pogovori";
+
+/* Alert title when unable to load notification preferences */
+"Could not load notification preferences" = "Prednostnih nastavitev sporočil ni bilo mogoče naložiti.";
+
+/* Failure reason for why it couldn't associate a tab with a context */
+"Could not parse context id from URL" = "ID-ja konteksta iz naslova URL ni bilo mogoče razčleniti.";
+
+/* Error title for being unable to update a push notification preference */
+"Could not update" = "Posodobitev ni bila mogoča.";
+
+/* Notification display name for course activities group */
+"Course Activities" = "Aktivnosti pri predmetu";
+
+/* Header label for a screen that customizes a course */
+"Customize" = "Prilagodi po meri";
+
+/* Cyan course color button */
+"Cyan" = "Cijan";
+
+/* name for upload data */
+"Data" = "Podatki";
+
+/* Error title for a persistence related data failure */
+"Data Error" = "Napaka pri podatkih";
+
+/* No comment provided by engineer. */
+"Date picker" = "Orodje za izbiro podatkov";
+
+/* DeepOrange course color button */
+"DeepOrange" = "DeepOrange";
+
+/* DeepPurple course color button */
+"DeepPurple" = "DeepPurple";
+
+/* Delete button
+   Delete button for file upload */
+"Delete" = "Odstrani";
+
+/* No comment provided by engineer. */
+"Delete Comment" = "Odstrani komentar";
+
+/* message for delete dialog of audio recorder */
+"Delete recording?" = "Ali želite odstraniti posnetek?";
+
+/* label to be read for visually impaired users with discusstion topic assignment types */
+"discussion topic" = "tema razprave";
+
+/* Notification display name for discussions group */
+"Discussions" = "Razprave";
+
+/* Error title to alert user their device is out of storage space */
+"Disk Error" = "Napaka na disku";
+
+/* Dismiss an error alert
+   Dismiss an error dialog
+   Dismiss button for error alert
+   Dismiss button for error messages */
+"Dismiss" = "Opusti";
+
+/* Done button
+   Done recording button */
+"Done" = "Dokončano";
+
+/* due date label for quiz due date */
+"Due Date" = "Rok";
+
+/* Description for email communication channel */
+"Email" = "E-pošta";
+
+/* Data encoding error title */
+"Encoding Error" = "Napaka pri kodiranju";
+
+/* No comment provided by engineer. */
+"End Act as User" = "Opustite vlogo uporabnika";
+
+/* Default text for essay cell */
+"Enter answer..." = "Vnos odgovora ...";
+
+/* Text submission option */
+"Enter Text" = "Vnos besedila";
+
+/* Placeholder for URL */
+"Enter URL..." = "Vnos naslova URL ...";
+
+/* Prompt for text upload */
+"Enter your submission..." = "Vnesite svojo oddajo ...";
+
+/* No comment provided by engineer. */
+"Error" = "Napaka";
+
+/* error message for when the cache management database fails to load */
+"Error loading cache management database." = "Napaka pri nalaganju zbirke podatkov za urejanje predpomnilnika.";
+
+/* Title for quiz loading error */
+"Error Loading Quiz" = "Napaka pri nalaganju kviza";
+
+/* No comment provided by engineer. */
+"Error parsing the Roll Call response. Expected (e), received (a)" = "Napaka pri razčlenitvi odziva na preverjanje prisotnosti Pričakovano (e), prejeto (a)";
+
+/* No comment provided by engineer. */
+"Error parsing the Roll Call response. Expected (e), received (a) for key (k)" = "Napaka pri razčlenitvi odziva na preverjanje prisotnosti Pričakovano (e), prejeto (a) za ključ (k)";
+
+/* No comment provided by engineer. */
+"Error parsing the Roll Call response. Key not found: (k)" = "Napaka pri razčlenitvi odziva na preverjanje prisotnosti Ključa ni mogoče najti: (k)";
+
+/* No comment provided by engineer. */
+"Error parsing the Roll Call response. Unexpected null value: (k)" = "Napaka pri razčlenitvi odziva na preverjanje prisotnosti Nepričakovana ničelna vrednost: (k)";
+
+/* No comment provided by engineer. */
+"Error retrieving tool launch URL" = "Napaka pri pridobivanju naslova URL za zagon orodja";
+
+/* Error title for parsing assignment data from server */
+"Error Updating Assignment" = "Napaka pri posodobitvi naloge";
+
+/* rollcall status error */
+"Error: No data returned from the rollcall api." = "Napaka: Iz vmesnika API za preverjanje prisotnosti ni vrnjenih podatkov.";
+
+/* Exit button to leave the quiz */
+"Exit" = "Izhod";
+
+/* No comment provided by engineer. */
+"Expand" = "Razširi";
+
+/* Error message when the server returns a invalid response */
+"Expected a response in the 200-299 range. Got %@" = "Pričakovan je bil odziv v razponu 200–299. Prejeto %@";
+
+/* label to be read for visually impaired users with external tool assignment types */
+"external tool" = "zunanje orodje";
+
+/* File upload failed */
+"Failed" = "Neuspelo";
+
+/* No comment provided by engineer. */
+"Failed to find image at path" = "Iskanje slike pri poti ni uspelo.";
+
+/* Error Message when the app can't load an object model from the database */
+"Failed to load (discussionKitModelName) NSManagedObjectModel" = "Nalaganje (discussionKitModelName) ni uspelo NSManagedObjectModel";
+
+/* Error when submitting an assignment */
+"Failed to Submit" = "Pošiljanje ni uspelo.";
+
+/* No comment provided by engineer. */
+"Failed to write image" = "Zapisovanje slike ni uspelo.";
+
+/* favorite courses or groups */
+"Favorites" = "Priljubljene";
+
+/* title for file upload errors */
+"File Upload Error" = "Napaka pri nalaganju datoteke";
+
+/* File uploads screen title */
+"File Uploads" = "Nalaganje datotek";
+
+/* State of the flagged question */
+"Flagged" = "Označeno";
+
+/* front page segmented control title */
+"Front Page" = "Prva stran";
+
+/* navigate */
+"Go" = "Pojdi";
+
+/* Title for grading periods picker */
+"Grading Periods" = "Ocenjevalna obdobja";
+
+/* Green course color button */
+"Green" = "Zeleno";
+
+/* Notification display name for groups group */
+"Groups" = "Skupine";
+
+/* Non favorite hidden courses or groups */
+"Hidden" = "Skrito";
+
+/* Hides the question list */
+"Hide Question List" = "Skrij seznam vprašanj";
+
+/* Inbox tab title */
+"Inbox" = "Pošta";
+
+/* Indigo course color button */
+"Indigo" = "Indigo";
+
+/* No comment provided by engineer. */
+"Internet Connection Offline" = "Brez internetne povezave";
+
+/* No comment provided by engineer. */
+"Invalid date received from API." = "Neveljaven datum, prejet od API";
+
+/* Mark student late
+   Student is present in class */
+"Late" = "Zamuda";
+
+/* No comment provided by engineer. */
+"Launch External Tool" = "Zaženi zunanje orodje";
+
+/* Leave the quiz */
+"Leave" = "Zapusti";
+
+/* LightBlue course color button */
+"LightBlue" = "LightBlue";
+
+/* LightGreen course color button */
+"LightGreen" = "LightGreen";
+
+/* LightPink course color button */
+"LightPink" = "LightPink";
+
+/* Label indicating that the quiz lock date was reached and the quiz is auto submitting */
+"Lock Date Reached
+Submitting" = "Dosežen je datum zapore objave.
+Pošiljanje";
+
+/* Detail label for when a tool called Lockdown Browser is required to take the quiz */
+"Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue." = "Za ogled rezultatov je potreben brskalnik Lockdown. Za nadaljevanje odprite kviz v brskalniku Lockdown.";
+
+/* Title for when another tool called Lockdown Browser is required to take a quiz */
+"Lockdown Browser Required" = "Zahtevan je brskalnik Lockdown.";
+
+/* No comment provided by engineer. */
+"Mark All as Present" = "Označi vse kot prisotne";
+
+/* No comment provided by engineer. */
+"Mark Remaining as Present" = "Označi preostale kot prisotne";
+
+/* Error alert title for network error
+   Title for network errors */
+"Network Error" = "Napaka v omrežju";
+
+/* Next button for advancing a quiz */
+"Next" = "Naprej";
+
+/* Alert title when unable to load communication channels */
+"No Communication Channels Found" = "Ni najdenih komunikacijskih kanalov.";
+
+/* A quiz that has no due date */
+"No Due Date" = "Ni roka.";
+
+/* Title for alert when a module item doesn't have mastery paths configured */
+"No Mastery Paths" = "Ni napredovanj v odličnosti.";
+
+/* Error when push channel cannot be found in notificaitons */
+"No push channel found" = "Ni najdenega kanala potiska.";
+
+/* No comment provided by engineer. */
+"No sections available. Please make sure you are enrolled as a teacher or TA in at least on section of this course." = "Na voljo ni nobenih sekcij. Poskrbite, da boste vsaj pri eni sekciji tega predmeta vpisani kot izvajalec ali demonstrator.";
+
+/* when a quiz has no time limit */
+"No time limit" = "Brez časovne omejitve";
+
+/* Section header for assignments without an assignment group */
+"None" = "Brez";
+
+/* can't record because request for mic access was denied title */
+"Not Permitted" = "Ni dovoljeno.";
+
+/* Title for alert showing when a quiz isn't takeable */
+"Not Takeable" = "Ni mogoče vzeti.";
+
+/* Error title for push notification registration error */
+"Notification Error" = "Napaka pri sporočilu";
+
+/* Title for the notification preferences page */
+"Notification Preferences" = "Prednostne nastavitve sporočil";
+
+/* OK Button Title */
+"OK" = "V redu";
+
+/* No comment provided by engineer. */
+"Open in Safari" = "Odpri v brskalniku Safari";
+
+/* No comment provided by engineer. */
+"Open in…" = "Odpri v ...";
+
+/* Accessibility hint for the profile button */
+"Opens profile" = "Odpre profil";
+
+/* Orange course color button */
+"Orange" = "Oranžno";
+
+/* Overdue assignmnets (not turned in) */
+"Overdue" = "Rok je potekel.";
+
+/* Assignments that have been turned in and are past */
+"Past" = "Preteklo";
+
+/* Pause recording/playback */
+"Pause" = "Začasna zaustavitev";
+
+/* record button a11y hint */
+"Pause playback" = "Začasna zaustavitev predvajanja";
+
+/* name for a photo just taken */
+"Photo" = "Fotografija";
+
+/* Photos backdrops */
+"Photos" = "Fotografije";
+
+/* Pink course color button */
+"Pink" = "Rožnato";
+
+/* Playback button */
+"Play" = "Predvajaj";
+
+/* play button a11y hint */
+"Play back recording" = "Predvajaj posnetek";
+
+/* Title for playback error messages */
+"Playback Error" = "Napaka pri predvajanju.";
+
+/* No comment provided by engineer. */
+"Please check your network connection and try again." = "Preverite svojo omrežno povezavo in poskusite znova.";
+
+/* label for number of points in a quiz */
+"Points" = "Točke";
+
+/* Mark student present
+   Student is present in class */
+"Present" = "Trenutno";
+
+/* Accessibility label for the profile button */
+"Profile" = "Profil";
+
+/* Purple course color button */
+"Purple" = "Škrlatno";
+
+/* Description for Push Notification channel */
+"Push Notifications" = "Potisni sporočila";
+
+/* accessibility label for a quiz question */
+"Question" = "Vprašanje";
+
+/* state for a question that has been flagged */
+"Question (number) Flagged" = "Vprašanje (številka) je označeno.";
+
+/* state for unflagged question */
+"Question (number) Unflagged" = "Vprašanje (številka) ni označeno.";
+
+/* Shows question position */
+"Question %@" = "Vprašanje %@";
+
+/* label for the number of questions */
+"Questions" = "Vprašanja";
+
+/* label to be read for visually impaired users with quiz assignment types */
+"quiz" = "kviz";
+
+/* Title for alert that shows when a quiz hits the due date */
+"Quiz Due" = "Rok kviza";
+
+/* Title for quiz error */
+"Quiz Error" = "Napaka pri kvizu";
+
+/* Label for indication that the quiz submission was successful */
+"Quiz Submitted" = "Kviz je poslan.";
+
+/* Label for indication that the quiz submission failed */
+"QuizSubmission Failure" = "QuizSubmission Napaka";
+
+/* tile for error reading cache */
+"Read Error" = "Napaka pri branju";
+
+/* button to read more of the description */
+"Read More" = "Preberite več.";
+
+/* Record button a11y label */
+"Record" = "Posnemi";
+
+/* Choose record audio submission */
+"Record Audio" = "Posnemi zvok";
+
+/* permission denied button a11y label */
+"Record Permission Help" = "Pomoč pri dovoljenju za snemanje";
+
+/* title for a recording error */
+"Recording Error" = "Napaka pri snemanju";
+
+/* red course color button */
+"Red" = "Rdeče";
+
+/* No comment provided by engineer. */
+"Remove" = "Odstrani";
+
+/* Remove the formatting of the essay question text */
+"Remove Formatting" = "Odstrani oblikovanje";
+
+/* No comment provided by engineer. */
+"Removed %1$@" = "Odstranjeno %1$@";
+
+/* No comment provided by engineer. */
+"Removed %1$@ by %2$@" = "Odstranjeno %1$@, odstranil %2$@";
+
+/* No comment provided by engineer. */
+"Reply" = "Odgovori";
+
+/* Button to report an error */
+"Report" = "Poročilo";
+
+/* Record button a11y label */
+"Request Audio Recording Permission" = "Zahtevaj dovoljenje za posnetek zvoka";
+
+/* stop record button a11y hint */
+"Request Permission to record audio" = "Zahtevaj dovoljenje za snemanje zvoka";
+
+/* button for resuming a quiz */
+"Resume Quiz" = "Nadaljevanje kviza";
+
+/* button for retaking quiz */
+"Retake Quiz" = "Ponovno opravljanje kviza";
+
+/* Notification display name for scheduling group */
+"Scheduling" = "Razporejanje";
+
+/* Label indicating that the question is a multiple answer question and more than 1 answer can be correct */
+"Select all that apply" = "Izberi vse, ki veljajo.";
+
+/* Indicates that a matching quiz question needs to have an answer selected */
+"Select Answer" = "Izberi odgovor";
+
+/* No comment provided by engineer. */
+"Select to change the roll call date" = "Izberite, da spremenite datum preverjanja prisotnosti.";
+
+/* when a button is selected */
+"Selected" = "Izbrano";
+
+/* Shapes backdrops */
+"Shapes" = "Oblike";
+
+/* Hides the question list */
+"Show Question List" = "Prikaži seznam vprašanj";
+
+/* Text for a button that toggles to show a timer for a timed quiz */
+"Show Timer" = "Prikaži časovnik";
+
+/* Description for SMS communication channel */
+"SMS" = "SMS";
+
+/* Error message displayed when the file is unrecognized. */
+"Something went wrong. Check the file format and try again." = "Prišlo je do težav. Preverite obliko zapisa datoteke in poskusite znova.";
+
+/* Text only quiz question label */
+"Spacer" = "Razmik";
+
+/* Stay on the quiz view */
+"Stay" = "Ostani";
+
+/* stop recording button a11y label */
+"Stop" = "Zaustavi";
+
+/* No comment provided by engineer. */
+"Stop acting as..." = "Prenehajte nastopati v vlogi ...";
+
+/* File upload was stopped */
+"Stopped" = "Zaustavljeno";
+
+/* No comment provided by engineer. */
+"Style" = "Slog";
+
+/* Submit assignment button
+   Submit button title
+   Turn in this url button */
+"Submit" = "Pošlji";
+
+/* Title for button to submit assignment */
+"Submit Assignment" = "Pošlji nalogo";
+
+/* No comment provided by engineer. */
+"Submitted!" = "Poslano.";
+
+/* No comment provided by engineer. */
+"Submitting" = "Pošiljanje ...";
+
+/* Label for indication of submitting quiz */
+"Submitting Quiz" = "Pošiljanje kviza";
+
+/* Take a photo submission choice */
+"Take a Photo" = "Posnemi fotografijo";
+
+/* Take a video submission choice */
+"Take a Video" = "Posnemi videoposnetek";
+
+/* Take a photo or video submission choice */
+"Take Photo or Video" = "Posnemi fotografijo ali videoposnetek";
+
+/* Button for taking the quiz */
+"Take Quiz" = "Opravi kviz";
+
+/* Teal course color button */
+"Teal" = "Zelenomodra";
+
+/* No comment provided by engineer. */
+"The app needs to restart to use the new language settings. Please relaunch the app." = "Da bodo uporabljene nove jezikovne nastavitve, je treba aplikacijo znova zagnati. Znova zaženite aplikacijo.";
+
+/* Error message for a file missing */
+"The file does not exist." = "Datoteka ne obstaja.";
+
+/* This shouldn't ever happen. */
+"The Pages are gone!? Why are the pages always gone?" = "Strani so izginile! Zakaj strani vedno izginjajo?";
+
+/* Description for alert that shows when the quiz hits the due date */
+"The quiz is due in 1 minute. Would you like to submit now and be on time or continue taking the quiz and possibly be late?" = "Rok kviza se izteče čez 1 minuto. Ali želite poslati zdaj in biti pravočasni ali pa želite nadaljevati kviz in morda zamuditi rok?";
+
+/* Error message for interrupted requests marking a to do as done */
+"The request to mark a to do as done was interrupted" = "Zahteva za oznako opravila kot dokončanega je bila prekinjena.";
+
+/* bad url message */
+"The text you entered is not a valid URL" = "Besedilo, ki ste ga vnesli, ni veljavni naslov URL.";
+
+/* Data encoding error message */
+"There was a problem encoding UTF8 Data" = "Prišlo je do težave pri kodiranju podatkov UTF-8.";
+
+/* No comment provided by engineer. */
+"There was a problem fetching the list of course sections." = "Prišlo je do težave pri pridobivanju seznama sekcij predmeta.";
+
+/* JSON Parsing error description */
+"There was a problem interpreting a response from the server." = "Prišlo je do težav pri tolmačenju odziva strežnika.";
+
+/* CalendarKit Database Load Failure Message */
+"There was a problem loading the (kitModelName) database file." = "Prišlo je do težav pri nalaganju datoteke zbirke podatkov (kitModelName).";
+
+/* AssignmentKit database load failure message */
+"There was a problem loading the AssignmentKit database file." = "Prišlo je do težav pri nalaganju datoteke zbirke podatkov AssignmentKit.";
+
+/* CalendarKit Database Load Failure Message */
+"There was a problem loading the CalendarKit database file." = "Prišlo je do težav pri nalaganju datoteke zbirke podatkov CalendarKit.";
+
+/* DiscussionKit Database Load Failure Message */
+"There was a problem loading the DiscussionKit database file." = "Prišlo je do težav pri nalaganju datoteke zbirke podatkov DiscussionKit.";
+
+/* EnrollmentKit Database Load Failure Message */
+"There was a problem loading the EnrollmentKit database file." = "Prišlo je do težav pri nalaganju datoteke zbirke podatkov EnrollmentKit.";
+
+/* FileKit Database Load Failure Message */
+"There was a problem loading the FileKit database file." = "Prišlo je do težav pri nalaganju datoteke zbirke podatkov FileKit.";
+
+/* Page list fails */
+"There was a problem loading the Pages database file." = "Prišlo je do težav pri nalaganju datoteke zbirke podatkov Strani.";
+
+/* PeepKit Database Load Failure Message */
+"There was a problem loading the PeepKit database file." = "Prišlo je do težav pri nalaganju datoteke zbirke podatkov PeepKit.";
+
+/* SoEdventurous database load failure message */
+"There was a problem loading the SoEdventurous database file." = "Prišlo je do težav pri nalaganju datoteke zbirke podatkov SoEdventurous.";
+
+/* File upload error message */
+"There was a problem preparing the file for upload" = "Prišlo je do težav pri pripravi zbirke podatkov na nalaganje.";
+
+/* Persistence error message */
+"There was a problem reading cached data" = "Prišlo je do težave pri branju predpomnjenih podatkov.";
+
+/* Error description for Push Notifications registration error. */
+"There was a problem registering your device for push notifications." = "Prišlo je do težave pri registriranju naprave za poslana sporočila.";
+
+/* Message when fails to submit an assignment */
+"There was a problem submitting your assignment. Please try again later." = "Prišlo je do težave pri oddaji vaše naloge. Poskusite znova pozneje.";
+
+/* Error description for failing to compute the URL to a quiz */
+"There was a problem updating the Quiz URL" = "Prišlo je do težave pri posodabljanju naslova URL kviza.";
+
+/* generic error message */
+"There was a problem with the Canvas request." = "Prišlo je do težave z zahtevo sistema Canvas.";
+
+/* Error message when parsing contextID for a course or group tab */
+"There was an error associating a tab with a course or group." = "Prišlo je do napake pri povezavi zavihka s predmetom ali skupino.";
+
+/* An error message shown when the Users cache file fails to load */
+"There was an error loading the Users cache." = "Prišlo je do napake pri nalaganju predpomnilnika Uporabniki.";
+
+/* Error message for a network fail */
+"There was an error while communicating with the server." = "Med komunikacijo s strežnikom je prišlo do napake.";
+
+/* No comment provided by engineer. */
+"There was no data!" = "Ni bilo nobenih podatkov.";
+
+/* Warning to users editing an essay question that was edited on the web. */
+"This essay question has been edited on the web and may contain formatting, links or images. In order to edit this response on your mobile device we will need to clear the formatting (including links and images). Otherwise you may continue editing the question via a web browser." = "To vprašanje iz eseja je bilo urejeno v spletu in lahko vsebuje oblikovanje, povezave ali slike. Za urejanje tega odziva na vaši mobilni napravi je treba počistiti oblikovanje (vključno s povezavami in slikami). Sicer lahko še naprej urejate vprašanje prek spletnega brskalnika.";
+
+/* Body for alert when a module item doesn't have mastery paths configured */
+"This module item does not have mastery paths configured." = "Pri tem modulu niso konfigurirana napredovanja v odličnosti.";
+
+/* The HTML page is currently not viewable by the user because it has been locked by the teacher. */
+"This page is currently locked and not viewable." = "Ta stran je trenutno zaklenjena in ogled ni mogoč.";
+
+/* Message when telling the user they can't take the quiz because the quiz has an IP address filter set */
+"This quiz has an IP address filter set." = "Ta kviz ima nastavljeno filtriranje IP-naslovov.";
+
+/* Message when telling the user they can't take the quiz for some weird reason */
+"This quiz is currently unavailable." = "Ta kviz trenutno ni na voljo.";
+
+/* Message when telling the user they can't take the quiz because the quiz is locked */
+"This quiz is locked." = "Ta kviz je zaklenjen.";
+
+/* No comment provided by engineer. */
+"This quiz is not available offline." = "Ta kviz ni na voljo brez povezave.";
+
+/* label for the time limit */
+"Time Limit" = "Časovna omejitev";
+
+/* Toggle flag accessiblity action */
+"Toggle Flag" = "Preklop oznake";
+
+/* Total grade label */
+"Total Grade" = "Skupna ocena";
+
+/* Description for Twitter communication channel */
+"Twitter" = "Twitter";
+
+/* Alert message when unable to parse JSON for communication channels */
+"Unable to display any Communication Channels returned from the server at this time." = "Trenutno ni mogoče prikazati nobenih komunikacijskih kanalov, ki jih je vrnil strežnik.";
+
+/* Alert message when unable to parse JSON for notification preferences */
+"Unable to display any notification preferences returned from the server at this time." = "Trenutno ni mogoče prikazati nobenih prednostnih nastavitev sporočil, ki jih je vrnil strežnik.";
+
+/* Alert message when unable to load communication channels */
+"Unable to load any Communication Channels at this time." = "Trenutno ni bilo mogoče naložiti nobenih komunikacijskih kanalov.";
+
+/* Alert message when unable to load notification preferences */
+"Unable to load any notification preferences at this time.  Error: %@" = "Trenutno ni bilo mogoče naložiti nobenih prednostnih nastavitev.  Napaka: %@";
+
+/* Error message when parsing communication preferences */
+"Unable to parse JSON for communication channels" = "Datoteke JSON ni bilo mogoče razčleniti za komunikacijske kanale.";
+
+/* Error message when parsing notification preferences */
+"Unable to parse JSON for notification preferences" = "Datoteke JSON ni bilo mogoče razčleniti za prednostne nastavitve.";
+
+/* Assignments with no dates */
+"Undated" = "Brez datuma";
+
+/* Unexpected response type */
+"Unexpected response type" = "Nepričakovana vrsta odziva";
+
+/* Ungraded quiz */
+"Ungraded" = "Neocenjeno";
+
+/* An unknown error title */
+"Unknown Error" = "Neznana napaka";
+
+/* When a quiz has no limit on the number of attempts */
+"Unlimited" = "Neomejeno";
+
+/* Remove attendance status */
+"Unmark" = "Razveljavi oznako";
+
+/* Upcoming assignments */
+"Upcoming" = "Prihodnje";
+
+/* No comment provided by engineer. */
+"Updated Language Settings" = "Posodobljene nastavitve jezika";
+
+/* File upload submission option */
+"Upload File" = "Naloži datoteko";
+
+/* Message displayed while a file is being uploaded */
+"Uploading file..." = "Nalaganje datoteke ...";
+
+/* File upload in progress */
+"uploading..." = "nalaganje ...";
+
+/* permission denied button a11y hint */
+"User has denied record permission" = "Uporabnik je zavrnil dovoljenje za snemanje.";
+
+/* Error message if we can't pull the avatar image */
+"User has no valid avatar image url" = "Uporabnik nima veljavnega naslova URL za sliko avatarja.";
+
+/* button for viewing quiz results */
+"View Results" = "Ogled rezultatov";
+
+/* a warning message */
+"Warning" = "Opozorilo";
+
+/* Error message for being unable to update a push notification preference */
+"We were not able to update this value with the server" = "Posodobitev te vrednosti s strežnikom ni bila mogoča.";
+
+/* Yellow course color button */
+"Yellow" = "Rumeno";
+
+/* Description for Yo communication channel */
+"Yo" = "Hej!";
+
+/* Shows time limit on a quiz */
+"You have %d minutes." = "Imate %d minut.";
+
+/* Message when telling the user they can't take the quiz because they used up all their attempts */
+"You have used all your attempts available on this quiz." = "Porabili ste vse poskuse, ki so na voljo pri tem kvizu.";
+
+/* permission was rejected */
+"You must grant (appName) Microphone access in the Settings app in order to record audio." = "Za snemanje zvoka morate (aplikaciji appName) podeliti dostop do mikrofona v aplikaciji Nastavitve.";
+
+/* No comment provided by engineer. */
+"You will stop acting as %@ and return to your account." = "Prenehali boste nastopati v vlogi %@ in vrnili se boste v svoj račun.";
+
+/* No comment provided by engineer. */
+"You will stop acting as this user and return to your account." = "Prenehali boste nastopati v vlogi tega uporabnika in se boste vrnili v svoj račun.";
+
+/* Error description for file out of space */
+"Your device is out of storage space. Please free up space and try again." = "V napravi je zmanjkalo prostora na disku. Počistite prostor na disku in poskusite znova.";
+

@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RichTextEditor renders 1`] = `
+<Screen
+  leftBarButtons={
+    Array [
+      Object {
+        "action": [Function],
+        "style": "done",
+        "testID": "rich-text-editor.dismiss",
+        "title": "Done",
+      },
+    ]
+  }
+  navBarStyle="light"
+  showDismissButton={false}
+  statusBarStyle="default"
+>
+  <RichTextEditor
+    navigator={
+      Object {
+        "dismiss": [Function],
+        "dismissAllModals": [Function],
+        "isModal": false,
+        "pop": [Function],
+        "replace": [Function],
+        "show": [Function],
+        "traitCollection": [Function],
+      }
+    }
+  />
+</Screen>
+`;

@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Avatar renders with image 1`] = `
+<VideoContainer
+  source={
+    Object {
+      "uri": "https://youtube.com/cat_video",
+    }
+  }
+  style={undefined}
+/>
+`;

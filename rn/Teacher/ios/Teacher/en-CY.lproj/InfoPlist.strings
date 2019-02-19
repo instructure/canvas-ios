@@ -1,0 +1,12 @@
+/* Privacy - Camera Usage Description */
+"NSCameraUsageDescription" = "Attach photos and videos to submission comments.";
+
+/* Privacy - Microphone Usage Description */
+"NSMicrophoneUsageDescription" = "Attach audio recordings to submission comments.";
+
+/* Privacy - Photo Library Additions Usage Description */
+"NSPhotoLibraryAddUsageDescription" = "Attach photos and videos to submission comments.";
+
+/* Privacy - Photo Library Usage Description */
+"NSPhotoLibraryUsageDescription" = "Upload content to modules.";
+

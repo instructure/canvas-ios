@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14D87h" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="50" id="KGk-i7-Jjw" customClass="CBIAddSubmissionCommentCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PQj-Qy-ia1" customClass="CBIResizableTextView">
+                        <rect key="frame" x="15" y="9" width="248" height="31"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="31" id="ccR-2Y-zQs"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        <connections>
+                            <outlet property="delegate" destination="KGk-i7-Jjw" id="dSi-P4-A5k"/>
+                        </connections>
+                    </textView>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="vh8-q0-drm">
+                        <rect key="frame" x="278" y="15" width="20" height="20"/>
+                    </activityIndicatorView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7A2-JI-Enw">
+                        <rect key="frame" x="271" y="8" width="34" height="34"/>
+                        <state key="normal" image="icon_attachment">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JLJ-KC-tmV">
+                        <rect key="frame" x="269" y="10" width="36" height="30"/>
+                        <state key="normal" title="Send">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="7A2-JI-Enw" secondAttribute="trailing" constant="15" id="1Pe-tM-fzC"/>
+                    <constraint firstItem="PQj-Qy-ia1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="9" id="Cl5-UD-Ow3"/>
+                    <constraint firstAttribute="bottom" secondItem="JLJ-KC-tmV" secondAttribute="bottom" constant="9" id="MCE-jq-i1C"/>
+                    <constraint firstAttribute="trailing" secondItem="PQj-Qy-ia1" secondAttribute="trailing" constant="57" id="Y23-H3-Ftn"/>
+                    <constraint firstAttribute="bottom" secondItem="PQj-Qy-ia1" secondAttribute="bottom" constant="9" id="cIA-vZ-jpe"/>
+                    <constraint firstItem="7A2-JI-Enw" firstAttribute="centerX" secondItem="JLJ-KC-tmV" secondAttribute="centerX" constant="1" id="i2i-RQ-kcl"/>
+                    <constraint firstItem="PQj-Qy-ia1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="oU6-Qz-mRO"/>
+                    <constraint firstItem="7A2-JI-Enw" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="q3m-l3-5dL"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="activityIndicator" destination="vh8-q0-drm" id="dKs-Qm-fPS"/>
+                <outlet property="attachButton" destination="7A2-JI-Enw" id="uvQ-du-8z5"/>
+                <outlet property="resizeableTextView" destination="PQj-Qy-ia1" id="bHr-zF-dHh"/>
+                <outlet property="sendButton" destination="JLJ-KC-tmV" id="SHj-3m-CVr"/>
+                <outlet property="textViewHeightConstraint" destination="ccR-2Y-zQs" id="o3m-pp-P6F"/>
+            </connections>
+            <point key="canvasLocation" x="505" y="524"/>
+        </tableViewCell>
+        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="v4W-rT-kdH">
+            <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+            <nil key="highlightedColor"/>
+        </label>
+    </objects>
+    <resources>
+        <image name="icon_attachment" width="34" height="34"/>
+    </resources>
+</document>

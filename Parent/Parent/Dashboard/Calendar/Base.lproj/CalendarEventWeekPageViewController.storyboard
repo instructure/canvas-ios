@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="R8x-kF-W2e">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Calendar Event Week Page View Controller-->
+        <scene sceneID="Xc0-AM-F7F">
+            <objects>
+                <viewController id="R8x-kF-W2e" customClass="CalendarEventWeekPageViewController" customModule="Parent" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Rlb-Ss-Y0q"/>
+                        <viewControllerLayoutGuide type="bottom" id="ucr-5f-QJD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="MaI-Xx-Mb4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G8J-65-fhx">
+                                <rect key="frame" x="0.0" y="60" width="375" height="607"/>
+                                <connections>
+                                    <segue destination="Ozo-5B-Pgz" kind="embed" identifier="embed_page_view_controller" id="Efl-aE-Ow3"/>
+                                </connections>
+                            </containerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Header Text Here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TS5-Tf-EOd">
+                                <rect key="frame" x="118" y="20" width="139.5" height="40"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sNr-9V-PDF">
+                                <rect key="frame" x="20" y="20" width="50" height="40"/>
+                                <accessibility key="accessibilityConfiguration" identifier="next_week_button"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="7jJ-RM-gDa"/>
+                                </constraints>
+                                <state key="normal" image="icon_back"/>
+                                <connections>
+                                    <action selector="scrollToPrevWeek:" destination="R8x-kF-W2e" eventType="touchUpInside" id="Wbz-5G-GNe"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zoP-Qs-fo9">
+                                <rect key="frame" x="305" y="20" width="50" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="SKI-WA-B51"/>
+                                </constraints>
+                                <state key="normal" image="icon_forward"/>
+                                <connections>
+                                    <action selector="scrollToNextWeek:" destination="R8x-kF-W2e" eventType="touchUpInside" id="ySN-hh-6N7"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="zoP-Qs-fo9" firstAttribute="top" secondItem="Rlb-Ss-Y0q" secondAttribute="bottom" id="3RI-C9-beX"/>
+                            <constraint firstItem="sNr-9V-PDF" firstAttribute="top" secondItem="Rlb-Ss-Y0q" secondAttribute="bottom" id="4MJ-1M-QDG"/>
+                            <constraint firstItem="G8J-65-fhx" firstAttribute="top" secondItem="zoP-Qs-fo9" secondAttribute="bottom" id="SWt-bk-HCQ"/>
+                            <constraint firstItem="G8J-65-fhx" firstAttribute="top" secondItem="Rlb-Ss-Y0q" secondAttribute="bottom" constant="40" id="Utz-g1-JR1">
+                                <variation key="heightClass=compact" constant="30"/>
+                            </constraint>
+                            <constraint firstItem="G8J-65-fhx" firstAttribute="top" secondItem="TS5-Tf-EOd" secondAttribute="bottom" id="V2j-I3-nV8"/>
+                            <constraint firstAttribute="trailing" secondItem="G8J-65-fhx" secondAttribute="trailing" id="Xcr-IY-9Rz"/>
+                            <constraint firstItem="G8J-65-fhx" firstAttribute="top" secondItem="sNr-9V-PDF" secondAttribute="bottom" id="ZXv-zY-4rW"/>
+                            <constraint firstItem="TS5-Tf-EOd" firstAttribute="top" secondItem="Rlb-Ss-Y0q" secondAttribute="bottom" id="bxt-9Q-aR0"/>
+                            <constraint firstItem="TS5-Tf-EOd" firstAttribute="centerX" secondItem="MaI-Xx-Mb4" secondAttribute="centerX" id="chz-y4-0nQ"/>
+                            <constraint firstAttribute="trailing" secondItem="zoP-Qs-fo9" secondAttribute="trailing" constant="20" id="eJC-Ic-q6H"/>
+                            <constraint firstItem="TS5-Tf-EOd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="sNr-9V-PDF" secondAttribute="trailing" constant="8" id="fPx-cS-xHq"/>
+                            <constraint firstItem="G8J-65-fhx" firstAttribute="leading" secondItem="MaI-Xx-Mb4" secondAttribute="leading" id="gib-2q-X2D"/>
+                            <constraint firstAttribute="bottom" secondItem="G8J-65-fhx" secondAttribute="bottom" id="ptv-kX-jNV"/>
+                            <constraint firstItem="sNr-9V-PDF" firstAttribute="leading" secondItem="MaI-Xx-Mb4" secondAttribute="leading" constant="20" id="zcd-gt-Kdz"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="headerLabel" destination="TS5-Tf-EOd" id="4nl-J7-LDA"/>
+                        <outlet property="nextWeekButton" destination="zoP-Qs-fo9" id="Cev-8g-hNl"/>
+                        <outlet property="prevWeekButton" destination="sNr-9V-PDF" id="z9X-n3-337"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="myQ-aE-Ov8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="550" y="439"/>
+        </scene>
+        <!--Page View Controller-->
+        <scene sceneID="flH-6C-G1Z">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="Ozo-5B-Pgz" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lbf-Wj-j96" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1536" y="438"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="icon_back" width="34" height="34"/>
+        <image name="icon_forward" width="34" height="34"/>
+    </resources>
+</document>

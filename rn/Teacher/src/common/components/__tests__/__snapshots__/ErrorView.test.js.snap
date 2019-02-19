@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "justifyContent": "center",
+      "padding": 16,
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+        Object {
+          "color": "#2D3B45",
+          "fontFamily": ".SFUIDisplay-bold",
+          "fontSize": 16,
+        },
+        Object {
+          "marginBottom": 8,
+          "textAlign": "center",
+        },
+      ]
+    }
+  >
+    there was an error
+  </Text>
+</View>
+`;

@@ -1,0 +1,833 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a single file type 1`] = `
+<Screen
+  navBarStyle="dark"
+  rightBarButtons={Array []}
+  showDismissButton={true}
+  statusBarStyle="default"
+  testID="assignment-details"
+  title="Assignment Details"
+>
+  <RefreshableScrollView
+    onRefresh={[Function]}
+    refreshing={false}
+  >
+    <AssignmentSection
+      isFirstRow={true}
+      style={
+        Object {
+          "paddingBottom": 17,
+          "paddingLeft": 16,
+          "paddingRight": 16,
+          "paddingTop": 14,
+        }
+      }
+    >
+      <Heading1
+        testID="assignment-details.assignment-name-lbl"
+      >
+        learn to write code
+      </Heading1>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "row",
+            "marginTop": 2,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#8B969E",
+              "fontWeight": "500",
+            }
+          }
+          testID="assignment-details.points-possible-lbl"
+        >
+          20 pts
+        </Text>
+        <PublishedIcon
+          published={true}
+          style={
+            Object {
+              "marginLeft": 14,
+            }
+          }
+        />
+      </View>
+    </AssignmentSection>
+    <AssignmentSection
+      testID="assignment-details.assignment-section.due"
+      title="Due"
+    >
+      <Text>
+        May 31, 2037 at 11:59 PM
+      </Text>
+    </AssignmentSection>
+    <AssignmentSection
+      onPress={null}
+      showDisclosureIndicator={false}
+      testID="assignment-details.assignment-section.submission-type"
+      title="Submission Types"
+    >
+      <SubmissionType
+        data={
+          Array [
+            "online_text_entry",
+            "online_url",
+            "media_recording",
+            "online_upload",
+          ]
+        }
+      />
+    </AssignmentSection>
+    <AssignmentSection
+      testID="assignment-details.assignment-section.file-types"
+      title="File Types"
+    >
+      <Text>
+        pdf
+      </Text>
+    </AssignmentSection>
+    <View
+      style={
+        Object {
+          "backgroundColor": "white",
+          "borderTopColor": "#C7CDD1",
+          "borderTopWidth": 0.5,
+          "flex": 1,
+          "paddingBottom": 16,
+          "paddingLeft": 16,
+          "paddingRight": 16,
+          "paddingTop": 16,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#8B969E",
+            "fontSize": 16,
+            "fontWeight": "500",
+            "marginBottom": 4,
+          }
+        }
+        testID="assignment-details.description-section-title-lbl"
+      >
+        Description
+      </Text>
+      <CanvasWebView
+        automaticallySetHeight={true}
+        html="a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion."
+        navigator={
+          Object {
+            "dismiss": [Function],
+            "dismissAllModals": [Function],
+            "isModal": false,
+            "pop": [Function],
+            "replace": [Function],
+            "show": [Function],
+            "traitCollection": [Function],
+          }
+        }
+        scrollEnabled={true}
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+        testID="assignment-details.description-section-info-lbl"
+      />
+    </View>
+  </RefreshableScrollView>
+</Screen>
+`;
+
+exports[`renders even if there is fake data 1`] = `
+<Screen
+  navBarStyle="dark"
+  rightBarButtons={Array []}
+  showDismissButton={true}
+  statusBarStyle="default"
+  testID="assignment-details"
+  title="Assignment Details"
+>
+  <RefreshableScrollView
+    onRefresh={[Function]}
+    refreshing={false}
+  >
+    <AssignmentSection
+      isFirstRow={true}
+      style={
+        Object {
+          "paddingBottom": 17,
+          "paddingLeft": 16,
+          "paddingRight": 16,
+          "paddingTop": 14,
+        }
+      }
+    >
+      <Heading1
+        testID="assignment-details.assignment-name-lbl"
+      >
+        learn to write code
+      </Heading1>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "row",
+            "marginTop": 2,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#8B969E",
+              "fontWeight": "500",
+            }
+          }
+          testID="assignment-details.points-possible-lbl"
+        >
+          20 pts
+        </Text>
+        <PublishedIcon
+          published={true}
+          style={
+            Object {
+              "marginLeft": 14,
+            }
+          }
+        />
+      </View>
+    </AssignmentSection>
+    <AssignmentSection
+      testID="assignment-details.assignment-section.due"
+      title="Due"
+    >
+      <Text>
+        May 31, 2037 at 11:59 PM
+      </Text>
+    </AssignmentSection>
+    <AssignmentSection
+      onPress={null}
+      showDisclosureIndicator={false}
+      testID="assignment-details.assignment-section.submission-type"
+      title="Submission Types"
+    >
+      <SubmissionType
+        data={
+          Array [
+            "online_text_entry",
+            "online_url",
+            "media_recording",
+            "online_upload",
+          ]
+        }
+      />
+    </AssignmentSection>
+    <View
+      style={
+        Object {
+          "backgroundColor": "white",
+          "borderTopColor": "#C7CDD1",
+          "borderTopWidth": 0.5,
+          "flex": 1,
+          "paddingBottom": 16,
+          "paddingLeft": 16,
+          "paddingRight": 16,
+          "paddingTop": 16,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#8B969E",
+            "fontSize": 16,
+            "fontWeight": "500",
+            "marginBottom": 4,
+          }
+        }
+        testID="assignment-details.description-section-title-lbl"
+      >
+        Description
+      </Text>
+      <CanvasWebView
+        automaticallySetHeight={true}
+        html="a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion."
+        navigator={
+          Object {
+            "dismiss": [Function],
+            "dismissAllModals": [Function],
+            "isModal": false,
+            "pop": [Function],
+            "replace": [Function],
+            "show": [Function],
+            "traitCollection": [Function],
+          }
+        }
+        scrollEnabled={true}
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+        testID="assignment-details.description-section-info-lbl"
+      />
+    </View>
+  </RefreshableScrollView>
+</Screen>
+`;
+
+exports[`renders for a student 1`] = `
+<Screen
+  navBarStyle="dark"
+  rightBarButtons={Array []}
+  showDismissButton={true}
+  statusBarStyle="default"
+  testID="assignment-details"
+  title="Assignment Details"
+>
+  <RefreshableScrollView
+    onRefresh={[Function]}
+    refreshing={false}
+  >
+    <AssignmentSection
+      isFirstRow={true}
+      style={
+        Object {
+          "paddingBottom": 17,
+          "paddingLeft": 16,
+          "paddingRight": 16,
+          "paddingTop": 14,
+        }
+      }
+    >
+      <Heading1
+        testID="assignment-details.assignment-name-lbl"
+      >
+        learn to write code
+      </Heading1>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "row",
+            "marginTop": 2,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#8B969E",
+              "fontWeight": "500",
+            }
+          }
+          testID="assignment-details.points-possible-lbl"
+        >
+          20 pts
+        </Text>
+        <PublishedIcon
+          published={true}
+          style={
+            Object {
+              "marginLeft": 14,
+            }
+          }
+        />
+      </View>
+    </AssignmentSection>
+    <AssignmentSection
+      testID="assignment-details.assignment-section.due"
+      title="Due"
+    >
+      <Text>
+        May 31, 2037 at 11:59 PM
+      </Text>
+    </AssignmentSection>
+    <AssignmentSection
+      onPress={null}
+      showDisclosureIndicator={false}
+      testID="assignment-details.assignment-section.submission-type"
+      title="Submission Types"
+    >
+      <SubmissionType
+        data={
+          Array [
+            "online_text_entry",
+            "online_url",
+            "media_recording",
+            "online_upload",
+          ]
+        }
+      />
+    </AssignmentSection>
+    <View
+      style={
+        Object {
+          "backgroundColor": "white",
+          "borderTopColor": "#C7CDD1",
+          "borderTopWidth": 0.5,
+          "flex": 1,
+          "paddingBottom": 16,
+          "paddingLeft": 16,
+          "paddingRight": 16,
+          "paddingTop": 16,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#8B969E",
+            "fontSize": 16,
+            "fontWeight": "500",
+            "marginBottom": 4,
+          }
+        }
+        testID="assignment-details.description-section-title-lbl"
+      >
+        Description
+      </Text>
+      <CanvasWebView
+        automaticallySetHeight={true}
+        html="a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion."
+        navigator={
+          Object {
+            "dismiss": [Function],
+            "dismissAllModals": [Function],
+            "isModal": false,
+            "pop": [Function],
+            "replace": [Function],
+            "show": [Function],
+            "traitCollection": [Function],
+          }
+        }
+        scrollEnabled={true}
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+        testID="assignment-details.description-section-info-lbl"
+      />
+    </View>
+  </RefreshableScrollView>
+</Screen>
+`;
+
+exports[`renders multiple file types 1`] = `
+<Screen
+  navBarStyle="dark"
+  rightBarButtons={Array []}
+  showDismissButton={true}
+  statusBarStyle="default"
+  testID="assignment-details"
+  title="Assignment Details"
+>
+  <RefreshableScrollView
+    onRefresh={[Function]}
+    refreshing={false}
+  >
+    <AssignmentSection
+      isFirstRow={true}
+      style={
+        Object {
+          "paddingBottom": 17,
+          "paddingLeft": 16,
+          "paddingRight": 16,
+          "paddingTop": 14,
+        }
+      }
+    >
+      <Heading1
+        testID="assignment-details.assignment-name-lbl"
+      >
+        learn to write code
+      </Heading1>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "row",
+            "marginTop": 2,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#8B969E",
+              "fontWeight": "500",
+            }
+          }
+          testID="assignment-details.points-possible-lbl"
+        >
+          20 pts
+        </Text>
+        <PublishedIcon
+          published={true}
+          style={
+            Object {
+              "marginLeft": 14,
+            }
+          }
+        />
+      </View>
+    </AssignmentSection>
+    <AssignmentSection
+      testID="assignment-details.assignment-section.due"
+      title="Due"
+    >
+      <Text>
+        May 31, 2037 at 11:59 PM
+      </Text>
+    </AssignmentSection>
+    <AssignmentSection
+      onPress={null}
+      showDisclosureIndicator={false}
+      testID="assignment-details.assignment-section.submission-type"
+      title="Submission Types"
+    >
+      <SubmissionType
+        data={
+          Array [
+            "online_text_entry",
+            "online_url",
+            "media_recording",
+            "online_upload",
+          ]
+        }
+      />
+    </AssignmentSection>
+    <AssignmentSection
+      testID="assignment-details.assignment-section.file-types"
+      title="File Types"
+    >
+      <Text>
+        pdf, txt and mp4
+      </Text>
+    </AssignmentSection>
+    <View
+      style={
+        Object {
+          "backgroundColor": "white",
+          "borderTopColor": "#C7CDD1",
+          "borderTopWidth": 0.5,
+          "flex": 1,
+          "paddingBottom": 16,
+          "paddingLeft": 16,
+          "paddingRight": 16,
+          "paddingTop": 16,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#8B969E",
+            "fontSize": 16,
+            "fontWeight": "500",
+            "marginBottom": 4,
+          }
+        }
+        testID="assignment-details.description-section-title-lbl"
+      >
+        Description
+      </Text>
+      <CanvasWebView
+        automaticallySetHeight={true}
+        html="a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion."
+        navigator={
+          Object {
+            "dismiss": [Function],
+            "dismissAllModals": [Function],
+            "isModal": false,
+            "pop": [Function],
+            "replace": [Function],
+            "show": [Function],
+            "traitCollection": [Function],
+          }
+        }
+        scrollEnabled={true}
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+        testID="assignment-details.description-section-info-lbl"
+      />
+    </View>
+  </RefreshableScrollView>
+</Screen>
+`;
+
+exports[`renders without a due date 1`] = `
+<Screen
+  navBarStyle="dark"
+  rightBarButtons={Array []}
+  showDismissButton={true}
+  statusBarStyle="default"
+  testID="assignment-details"
+  title="Assignment Details"
+>
+  <RefreshableScrollView
+    onRefresh={[Function]}
+    refreshing={false}
+  >
+    <AssignmentSection
+      isFirstRow={true}
+      style={
+        Object {
+          "paddingBottom": 17,
+          "paddingLeft": 16,
+          "paddingRight": 16,
+          "paddingTop": 14,
+        }
+      }
+    >
+      <Heading1
+        testID="assignment-details.assignment-name-lbl"
+      >
+        learn to write code
+      </Heading1>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "row",
+            "marginTop": 2,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#8B969E",
+              "fontWeight": "500",
+            }
+          }
+          testID="assignment-details.points-possible-lbl"
+        >
+          20 pts
+        </Text>
+        <PublishedIcon
+          published={true}
+          style={
+            Object {
+              "marginLeft": 14,
+            }
+          }
+        />
+      </View>
+    </AssignmentSection>
+    <AssignmentSection
+      testID="assignment-details.assignment-section.due"
+      title="Due"
+    >
+      <Text>
+        No Due Date
+      </Text>
+    </AssignmentSection>
+    <AssignmentSection
+      onPress={null}
+      showDisclosureIndicator={false}
+      testID="assignment-details.assignment-section.submission-type"
+      title="Submission Types"
+    >
+      <SubmissionType
+        data={
+          Array [
+            "online_text_entry",
+            "online_url",
+            "media_recording",
+            "online_upload",
+          ]
+        }
+      />
+    </AssignmentSection>
+    <View
+      style={
+        Object {
+          "backgroundColor": "white",
+          "borderTopColor": "#C7CDD1",
+          "borderTopWidth": 0.5,
+          "flex": 1,
+          "paddingBottom": 16,
+          "paddingLeft": 16,
+          "paddingRight": 16,
+          "paddingTop": 16,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#8B969E",
+            "fontSize": 16,
+            "fontWeight": "500",
+            "marginBottom": 4,
+          }
+        }
+        testID="assignment-details.description-section-title-lbl"
+      >
+        Description
+      </Text>
+      <CanvasWebView
+        automaticallySetHeight={true}
+        html="a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion."
+        navigator={
+          Object {
+            "dismiss": [Function],
+            "dismissAllModals": [Function],
+            "isModal": false,
+            "pop": [Function],
+            "replace": [Function],
+            "show": [Function],
+            "traitCollection": [Function],
+          }
+        }
+        scrollEnabled={true}
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+        testID="assignment-details.description-section-info-lbl"
+      />
+    </View>
+  </RefreshableScrollView>
+</Screen>
+`;
+
+exports[`renders without description 1`] = `
+<Screen
+  navBarStyle="dark"
+  rightBarButtons={Array []}
+  showDismissButton={true}
+  statusBarStyle="default"
+  testID="assignment-details"
+  title="Assignment Details"
+>
+  <RefreshableScrollView
+    onRefresh={[Function]}
+    refreshing={false}
+  >
+    <AssignmentSection
+      isFirstRow={true}
+      style={
+        Object {
+          "paddingBottom": 17,
+          "paddingLeft": 16,
+          "paddingRight": 16,
+          "paddingTop": 14,
+        }
+      }
+    >
+      <Heading1
+        testID="assignment-details.assignment-name-lbl"
+      >
+        learn to write code
+      </Heading1>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "row",
+            "marginTop": 2,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#8B969E",
+              "fontWeight": "500",
+            }
+          }
+          testID="assignment-details.points-possible-lbl"
+        >
+          20 pts
+        </Text>
+        <PublishedIcon
+          published={true}
+          style={
+            Object {
+              "marginLeft": 14,
+            }
+          }
+        />
+      </View>
+    </AssignmentSection>
+    <AssignmentSection
+      testID="assignment-details.assignment-section.due"
+      title="Due"
+    >
+      <Text>
+        May 31, 2037 at 11:59 PM
+      </Text>
+    </AssignmentSection>
+    <AssignmentSection
+      onPress={null}
+      showDisclosureIndicator={false}
+      testID="assignment-details.assignment-section.submission-type"
+      title="Submission Types"
+    >
+      <SubmissionType
+        data={
+          Array [
+            "online_text_entry",
+            "online_url",
+            "media_recording",
+            "online_upload",
+          ]
+        }
+      />
+    </AssignmentSection>
+    <View
+      style={
+        Object {
+          "backgroundColor": "white",
+          "borderTopColor": "#C7CDD1",
+          "borderTopWidth": 0.5,
+          "flex": 1,
+          "paddingBottom": 16,
+          "paddingLeft": 16,
+          "paddingRight": 16,
+          "paddingTop": 16,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#8B969E",
+            "fontSize": 16,
+            "fontWeight": "500",
+            "marginBottom": 4,
+          }
+        }
+        testID="assignment-details.description-section-title-lbl"
+      >
+        Description
+      </Text>
+      <DescriptionDefaultView
+        testID="assignment-details.description-default-view"
+        text="This assignment doesn't have a description."
+      />
+    </View>
+  </RefreshableScrollView>
+</Screen>
+`;

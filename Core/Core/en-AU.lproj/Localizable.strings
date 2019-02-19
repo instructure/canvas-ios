@@ -1,0 +1,237 @@
+/* No comment provided by engineer. */
+"%@ GPA" = "%@ GPA";
+
+/* No comment provided by engineer. */
+"Are you sure you would like to delete this comment?" = "Are you sure you would like to delete this comment?";
+
+/* No comment provided by engineer. */
+"Assignment" = "Assignment";
+
+/* No comment provided by engineer. */
+"Assignment not found." = "Assignment not found.";
+
+/* No comment provided by engineer. */
+"Authentication failed. Most likely the user denied the request for access." = "Authentication failed. Most likely the user denied the request for access.";
+
+/* No comment provided by engineer. */
+"Can’t find your school? Try typing the full school URL." = "Can’t find your school? Try typing the full school URL.";
+
+/* No comment provided by engineer. */
+"Cancel" = "Cancel";
+
+/* No comment provided by engineer. */
+"Canvas Login" = "Canvas Login";
+
+/* No comment provided by engineer. */
+"Canvas Network" = "Canvas Network";
+
+/* No comment provided by engineer. */
+"Closed" = "Closed";
+
+/* No comment provided by engineer. */
+"Comments" = "Comments";
+
+/* No comment provided by engineer. */
+"Complete" = "Complete";
+
+/* No comment provided by engineer. */
+"Course" = "Course";
+
+/* No comment provided by engineer. */
+"d_questions" = "d_questions";
+
+/* No comment provided by engineer. */
+"Delete" = "Delete";
+
+/* No comment provided by engineer. */
+"Delete comment" = "Delete comment";
+
+/* No comment provided by engineer. */
+"Delete Comment" = "Delete Comment";
+
+/* No comment provided by engineer. */
+"Discussion Comment" = "Discussion Comment";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Dismiss";
+
+/* No comment provided by engineer. */
+"External Tool" = "External Tool";
+
+/* No comment provided by engineer. */
+"File Upload" = "File Upload";
+
+/* No comment provided by engineer. */
+"Final Grade: %@" = "Final Grade: %@";
+
+/* No comment provided by engineer. */
+"final_grade_g_pts" = "final_grade_g_pts";
+
+/* No comment provided by engineer. */
+"Find my school" = "Find my school";
+
+/* No comment provided by engineer. */
+"Find your school or district" = "Find your school or district";
+
+/* No comment provided by engineer. */
+"Forget %@" = "Forget %@";
+
+/* No comment provided by engineer. */
+"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
+
+/* No comment provided by engineer. */
+"g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
+"Help" = "Help";
+
+/* No comment provided by engineer. */
+"How do I find my school?" = "How do I find my school?";
+
+/* No comment provided by engineer. */
+"Incomplete" = "Incomplete";
+
+/* No comment provided by engineer. */
+"late_penalty_g_pts" = "late_penalty_g_pts";
+
+/* No comment provided by engineer. */
+"Launch External Tool" = "Launch External Tool";
+
+/* end of and list pattern */
+"list_and_end" = "%1$@, and %2$@";
+
+/* middle of and list pattern */
+"list_and_middle" = "%1$@, %2$@";
+
+/* start of and list pattern */
+"list_and_start" = "%1$@, %2$@";
+
+/* and list pattern for 2 items */
+"list_and_two" = "%1$@ and %2$@";
+
+/* end of or list pattern */
+"list_or_end" = "%1$@, or %2$@";
+
+/* middle of or list pattern */
+"list_or_middle" = "%1$@, %2$@";
+
+/* start of or list pattern */
+"list_or_start" = "%1$@, %2$@";
+
+/* or list pattern for 2 items */
+"list_or_two" = "%1$@ or %2$@";
+
+/* No comment provided by engineer. */
+"Manual OAuth Login" = "Manual OAuth Login";
+
+/* No comment provided by engineer. */
+"Media Recording" = "Media Recording";
+
+/* No comment provided by engineer. */
+"No Due Date" = "No Due Date";
+
+/* No comment provided by engineer. */
+"No Submission" = "No Submission";
+
+/* No comment provided by engineer. */
+"Not Graded" = "Not Graded";
+
+/* No comment provided by engineer. */
+"Not Submitted" = "Not Submitted";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"On Paper" = "On Paper";
+
+/* No comment provided by engineer. */
+"out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
+"plural_points" = "plural_points";
+
+/* No comment provided by engineer. */
+"Quiz" = "Quiz";
+
+/* No comment provided by engineer. */
+"Remove" = "Remove";
+
+/* No comment provided by engineer. */
+"Removed %1$@" = "Removed %1$@";
+
+/* No comment provided by engineer. */
+"Removed %1$@ by %2$@" = "Removed %1$@ by %2$@";
+
+/* No comment provided by engineer. */
+"Reply to the annotation or previous comments" = "Reply to the annotation or previous comments";
+
+/* No comment provided by engineer. */
+"Resubmit Assignment" = "Resubmit Assignment";
+
+/* No comment provided by engineer. */
+"See what's new." = "See what's new.";
+
+/* No comment provided by engineer. */
+"Select Account" = "Select Account";
+
+/* No comment provided by engineer. */
+"Select Assignment" = "Select Assignment";
+
+/* No comment provided by engineer. */
+"Select Course" = "Select Course";
+
+/* No comment provided by engineer. */
+"Send comment" = "Send comment";
+
+/* No comment provided by engineer. */
+"Site Admin Login" = "Site Admin Login";
+
+/* No comment provided by engineer. */
+"Style" = "Style";
+
+/* No comment provided by engineer. */
+"Submission Failed" = "Submission Failed";
+
+/* No comment provided by engineer. */
+"Submission Uploading..." = "Submission Uploading...";
+
+/* No comment provided by engineer. */
+"Submit Assignment" = "Submit Assignment";
+
+/* No comment provided by engineer. */
+"Submitted" = "Submitted";
+
+/* Submitted date */
+"Submitted %@" = "Submitted %@";
+
+/* No comment provided by engineer. */
+"Tap here for help." = "Tap here for help.";
+
+/* No comment provided by engineer. */
+"Tap to view details" = "Tap to view details";
+
+/* No comment provided by engineer. */
+"Tap to view progress" = "Tap to view progress";
+
+/* No comment provided by engineer. */
+"Text Entry" = "Text Entry";
+
+/* No comment provided by engineer. */
+"This assignment is due by %@" = "This assignment is due by %@";
+
+/* No comment provided by engineer. */
+"This assignment was due by %@" = "This assignment was due by %@";
+
+/* No comment provided by engineer. */
+"We've made a few changes." = "We've made a few changes.";
+
+/* No comment provided by engineer. */
+"Website URL" = "Website URL";
+
+/* No comment provided by engineer. */
+"What’s your school’s name?" = "What’s your school’s name?";
+
+/* No comment provided by engineer. */
+"You will need to log into at least one Canvas account from the Student app first." = "You will need to log into at least one Canvas account from the Student app first.";
+

@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditFolder passes the correct props to EditItem 1`] = `
+<EditItem
+  delete={[Function]}
+  getCourseEnabledFeatures={[Function]}
+  getCourseLicenses={[Function]}
+  item={
+    Object {
+      "context_id": "1",
+      "context_type": "course",
+      "created_at": "",
+      "files_count": 2,
+      "files_url": "",
+      "folders_count": 1,
+      "folders_url": "",
+      "for_submissions": false,
+      "full_name": "course files/some_folder",
+      "hidden": false,
+      "hidden_for_user": false,
+      "id": "111",
+      "lock_at": null,
+      "locked": false,
+      "locked_for_user": false,
+      "name": "some folder",
+      "parent_folder_id": null,
+      "position": 1,
+      "unlock_at": null,
+      "updated_at": "",
+    }
+  }
+  itemID="12345"
+  navigator={
+    Object {
+      "dismiss": [Function],
+      "pop": [Function],
+      "show": [Function],
+    }
+  }
+  onChange={[Function]}
+  onDelete={[Function]}
+  update={[Function]}
+/>
+`;

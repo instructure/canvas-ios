@@ -1,0 +1,152 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders favorited correctly 1`] = `
+<TouchableHighlight
+  accessibilityTraits={
+    Array [
+      "selected",
+      "button",
+    ]
+  }
+  onPress={[Function]}
+  style={
+    Object {
+      "borderBottomColor": "#e3e3e3",
+      "borderBottomWidth": 1,
+    }
+  }
+  testID="edit-favorites.course-favorite.1-favorited"
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "white",
+        "flexDirection": "row",
+        "paddingHorizontal": 16,
+        "paddingVertical": 16,
+      }
+    }
+  >
+    <Image
+      source={
+        Object {
+          "testUri": "../../../src/images/star-filled.png",
+        }
+      }
+      style={
+        Array [
+          Object {
+            "height": 20,
+            "marginRight": 10,
+            "width": 20,
+          },
+          Object {
+            "tintColor": "#374A59",
+          },
+        ]
+      }
+    />
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+          },
+          Object {
+            "fontWeight": "500",
+            "marginRight": 16,
+          },
+          Object {
+            "fontFamily": ".SFUIDisplay-medium",
+          },
+        ]
+      }
+    >
+      Learn React Native
+    </Text>
+  </View>
+</TouchableHighlight>
+`;
+
+exports[`renders unfavorited correctly 1`] = `
+<TouchableHighlight
+  accessibilityTraits={
+    Array [
+      "button",
+    ]
+  }
+  onPress={[Function]}
+  style={
+    Object {
+      "borderBottomColor": "#e3e3e3",
+      "borderBottomWidth": 1,
+    }
+  }
+  testID="edit-favorites.course-favorite.1-not-favorited"
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "white",
+        "flexDirection": "row",
+        "paddingHorizontal": 16,
+        "paddingVertical": 16,
+      }
+    }
+  >
+    <Image
+      source={
+        Object {
+          "testUri": "../../../src/images/star-lined.png",
+        }
+      }
+      style={
+        Array [
+          Object {
+            "height": 20,
+            "marginRight": 10,
+            "width": 20,
+          },
+          Object {
+            "tintColor": "#374A59",
+          },
+        ]
+      }
+    />
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+          },
+          Object {
+            "fontWeight": "500",
+            "marginRight": 16,
+          },
+          Object {
+            "fontFamily": ".SFUIDisplay-medium",
+          },
+        ]
+      }
+    >
+      Learn React Native
+    </Text>
+  </View>
+</TouchableHighlight>
+`;

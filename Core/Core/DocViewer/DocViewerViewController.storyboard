@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Doc Viewer View Controller-->
+        <scene sceneID="iIu-Xl-rvZ">
+            <objects>
+                <viewController storyboardIdentifier="DocViewerViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="zMj-m0-Fr2" customClass="DocViewerViewController" customModule="Core" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="H3H-4s-oeO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Jys-o2-1P4">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <subviews>
+                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GF5-Jx-QTk">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                                        <connections>
+                                            <segue destination="bbk-Yt-VEE" kind="embed" identifier="embedPSPDFViewController" id="BbL-Re-gUm"/>
+                                        </connections>
+                                    </containerView>
+                                </subviews>
+                            </stackView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="gZr-3P-dUi">
+                                <rect key="frame" x="177.5" y="323.5" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="gZr-3P-dUi" firstAttribute="centerX" secondItem="H3H-4s-oeO" secondAttribute="centerX" id="88a-qi-diG"/>
+                            <constraint firstItem="Jys-o2-1P4" firstAttribute="top" secondItem="Sr0-LJ-zzw" secondAttribute="top" id="9FJ-kd-fuO"/>
+                            <constraint firstItem="gZr-3P-dUi" firstAttribute="centerY" secondItem="H3H-4s-oeO" secondAttribute="centerY" id="Mhp-kn-FHK"/>
+                            <constraint firstItem="Sr0-LJ-zzw" firstAttribute="bottom" secondItem="Jys-o2-1P4" secondAttribute="bottom" id="TI5-wd-YfP"/>
+                            <constraint firstItem="Jys-o2-1P4" firstAttribute="leading" secondItem="Sr0-LJ-zzw" secondAttribute="leading" id="hFU-eo-fxj"/>
+                            <constraint firstItem="Sr0-LJ-zzw" firstAttribute="trailing" secondItem="Jys-o2-1P4" secondAttribute="trailing" id="tRg-Xj-Lma"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Sr0-LJ-zzw"/>
+                    </view>
+                    <connections>
+                        <outlet property="contentView" destination="GF5-Jx-QTk" id="fvu-TK-Y2L"/>
+                        <outlet property="loadingView" destination="gZr-3P-dUi" id="CHC-Sn-SCo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XJ0-Cd-6Rk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="79" y="-21"/>
+        </scene>
+        <!--PDF View Controller-->
+        <scene sceneID="8Ka-Al-597">
+            <objects>
+                <viewController storyboardIdentifier="PSPDFViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bbk-Yt-VEE" userLabel="PDF View Controller" customClass="PSPDFViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ulc-Z9-6V4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Bmd-Up-f5o"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fzJ-Yt-d1v" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="758" y="-21"/>
+        </scene>
+    </scenes>
+</document>

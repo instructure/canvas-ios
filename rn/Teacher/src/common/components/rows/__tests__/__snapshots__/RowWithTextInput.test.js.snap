@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RowWithTextInput renders 1`] = `
+<Row
+  title=""
+>
+  <TextInput
+    allowFontScaling={true}
+    onChangeText={[Function]}
+    style={
+      Array [
+        Object {
+          "flex": 1,
+        },
+        undefined,
+      ]
+    }
+  />
+</Row>
+`;
+
+exports[`RowWithTextInput renders with a title 1`] = `
+<Row
+  accessibilityLabel="Title, "
+  accessories={
+    <View
+      style={
+        Object {
+          "height": 30,
+          "width": 50,
+        }
+      }
+    >
+      <TextInput
+        allowFontScaling={true}
+        defaultValue={undefined}
+        keyboardType={undefined}
+        onChangeText={[Function]}
+        onFocus={undefined}
+        placeholder={undefined}
+        style={
+          Array [
+            Object {
+              "flex": 1,
+            },
+            Object {
+              "textAlign": "right",
+            },
+          ]
+        }
+        testID={undefined}
+        value={undefined}
+      />
+    </View>
+  }
+  onPress={[Function]}
+  title="Title"
+/>
+`;

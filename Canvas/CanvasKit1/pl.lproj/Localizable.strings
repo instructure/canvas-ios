@@ -1,0 +1,171 @@
+/* Description for rubric criterion rating object */
+" Rating for %@, Score: %g" = " Ocena dla %1$@, wynik: %2$g";
+
+/* B- (83 out of 100 points */
+"%@ (%g out of %@)" = "%1$@ (%2$g z %3$@)";
+
+/* something at something */
+"%@ at %@" = "%1$@ o godz. %2$@";
+
+/* 88 out of 100 points */
+"%@ out of %@" = "%1$@ z %2$@";
+
+/* {point range max} to > {point range min} pts */
+"%@ to > %@ pts" = "%1$@ do > %2$@ pkt";
+
+/* Word and ellipses */
+"%@..." = "%@...";
+
+/* 83% (83 out of 100 points */
+"%@%% (%g out of %@)" = "%1$@%% (%2$g z %3$@)";
+
+/* Gigabytes */
+"%0.2f GB" = "%0.2f GB";
+
+/* Kilobytes */
+"%0.2f KB" = "%0.2f KB";
+
+/* Megabytes */
+"%0.2f MB" = "%0.2f MB";
+
+/* 88 out of 100 points */
+"%g out of %@" = "%1$g z %2$@";
+
+/* As in, '15 bytes' */
+"%qu bytes" = "%qu bajtów";
+
+/* Media type is audio */
+"Audio" = "Audio";
+
+/* No comment provided by engineer. */
+"Audio input hardware not available" = "Sprzętowe wejście audio jest niedostępne";
+
+/* Assignment grade: Complete */
+"Complete" = "Ukończony";
+
+/* A custom grade not specified by the rubric. */
+"Custom Grade" = "Dostosowana ocena";
+
+/* No comment provided by engineer. */
+"Done" = "Gotowe";
+
+/* No comment provided by engineer. */
+"Excused" = "Usprawiedliwiony";
+
+/* The file extension for a submission is not acceptable */
+"File extension not allowed: %@" = "Rozszerzenie pliku niedozwolone: %@";
+
+/* Comes before a list of file extensions allowed for an assinment submission */
+"File extension(s) permitted for this assignment: " = "Rozszerzenie(a) pliku dozwolone dla danego zadania: ";
+
+/* File upload failed. */
+"File upload failed." = "Pobieranie pliku nie powiodło się.";
+
+/* Assignment grade: Incomplete */
+"Incomplete" = "Nie ukończono";
+
+/* No comment provided by engineer. */
+"Me" = "Ja";
+
+/* The name for a video or audio response to something */
+"Media comment" = "Komentarz multimedialny";
+
+/* No comment provided by engineer. */
+"Media Comment" = "Komentarz multimedialny";
+
+/* A slider to choose between media types */
+"Media type selector. %@" = "Selektor rodzaju multimediów. %@";
+
+/* Pass/fail assignment is not complete */
+"Not Complete" = "Niekompletne";
+
+/* not graded string. */
+"Not graded" = "Bez oceny";
+
+/* not graded with points possible */
+"Not graded (0 out of %@)" = "Bez oceny (0 z %@)";
+
+/* No comment provided by engineer. */
+"Note: Media files are not immediately available for playback while they are processed on the server." = "Uwaga: Podczas przetwarzania przez serwer, pliki multimediów nie są natychmiast dostępne do odtworzenia.";
+
+/* Short name for observer enrollment */
+"Observer" = "Obserwujący";
+
+/* Accessibility label for out or grading style */
+"out of" = "z";
+
+/* The assignment is out of 100 points */
+"out of %@" = "z %@";
+
+/* No comment provided by engineer. */
+"out of %@ points" = "z %@ pkt";
+
+/* A button that plays */
+"Play" = "Odtwórz";
+
+/* No comment provided by engineer. */
+"Post Comment" = "Publikuj komentarz";
+
+/* No comment provided by engineer. */
+"Posts your comment" = "Opublikuj komentarz";
+
+/* A button that records */
+"Record" = "Nagraj";
+
+/* No comment provided by engineer. */
+"Score" = "Wynik";
+
+/* Hint about the play button */
+"Starts playing your recording" = "Rozpoczyna odtwarzanie nagrania";
+
+/* Hint about the record button */
+"Starts recording a media comment" = "Rozpoczyna nagrywanie komentarza medialnego";
+
+/* A button that stops */
+"Stop" = "Zatrzymaj";
+
+/* Hint about the play button */
+"Stops playing your recording" = "Zatrzymuje odtwarzanie nagrywania";
+
+/* Hint about the record button */
+"Stops recording a media comment" = "Zatrzymuje nagrywanie komentarza multimedialnego";
+
+/* Short name for student enrollment */
+"Student" = "Uczestnik";
+
+/* Hint about media input selection */
+"Switches media input between audio and video. Currently set to %@" = "Przełącza wejście multimediów między audio a wideo. Obecnie ustawione na %@";
+
+/* No comment provided by engineer. */
+"Switches to media comment mode" = "Przełącza na tryb komentarza medialnego";
+
+/* No comment provided by engineer. */
+"Switches to text comment mode" = "Przełącza na tryb komentarza tekstowego";
+
+/* Short name for TA enrollment */
+"TA" = "TA";
+
+/* Short name for teacher enrollment */
+"Teacher" = "Nauczyciel";
+
+/* No comment provided by engineer. */
+"Text Comment" = "Komentarz tekstowy";
+
+/* Generic name for a submission entered online. */
+"Text Submission" = "Zgłoszenie tekstowe";
+
+/* Error description when a user tries to upload a file that's too big */
+"The file you are trying to uploading is %@, but the maximum size is %@." = "Rozmiar pliku, który próbujesz wysłać, to %1$@, ale maksymalny rozmiar wynosi %2$@.";
+
+/* When we don't know the name of a file, we display this */
+"unknown" = "nieznany";
+
+/* Media type is video */
+"Video" = "Wideo";
+
+/* No comment provided by engineer. */
+"Video Error" = "Błąd wideo";
+
+/* No comment provided by engineer. */
+"Warning" = "Ostrzeżenie";
+

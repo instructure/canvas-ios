@@ -1,0 +1,180 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MediaComment renders defaults 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <AudioRecorder
+    doneButtonText="Send"
+    onCancel={[Function]}
+    onFinishedRecording={[Function]}
+  />
+</View>
+`;
+
+exports[`MediaComment renders videos 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      pointerEvents="none"
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "rgba(0,0,0,0.2)",
+          "flexDirection": "row",
+          "left": 0,
+          "paddingHorizontal": 16,
+          "paddingVertical": 12,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+          "zIndex": 2,
+        }
+      }
+    >
+      <Text
+        accessibilityLabel="Time elapsed: 0 minutes, 0 seconds."
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "white",
+            "flex": 1,
+            "fontSize": 20,
+            "textAlign": "center",
+          }
+        }
+      >
+        00:00
+      </Text>
+    </View>
+    <TouchableHighlight
+      accessibilityLabel="Cancel"
+      accessibilityTraits="button"
+      hitSlop={
+        Object {
+          "bottom": 4,
+          "left": 4,
+          "right": 4,
+          "top": 4,
+        }
+      }
+      onPress={[Function]}
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "rgba(255,255,255,0.14)",
+            "borderRadius": 8,
+            "height": 31,
+            "justifyContent": "center",
+            "width": 45,
+          },
+          Object {
+            "left": 7,
+            "position": "absolute",
+            "top": 8,
+            "zIndex": 2,
+          },
+        ]
+      }
+      testID="video-recorder.cancel.btn"
+      underlayColor="transparent"
+    >
+      <Image
+        source={
+          Object {
+            "testUri": "../../../src/images/media-comments/Close.png",
+          }
+        }
+        style={
+          Object {
+            "tintColor": "white",
+          }
+        }
+      />
+    </TouchableHighlight>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "transparent",
+          "bottom": 0,
+          "justifyContent": "center",
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+          "zIndex": 1,
+        }
+      }
+    >
+      <TouchableHighlight
+        accessibilityLabel="Start recording"
+        accessibilityTraits="button"
+        onPress={[Function]}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderColor": "white",
+              "borderRadius": 40,
+              "borderWidth": 4,
+              "height": 80,
+              "justifyContent": "center",
+              "width": 80,
+            },
+            Object {
+              "borderColor": "rgba(255,255,255,1)",
+            },
+          ]
+        }
+        testID="video-recorder.start-recording.btn"
+        underlayColor="transparent"
+      >
+        <View
+          style={
+            Object {
+              "backgroundColor": "rgba(235,15,33,1)",
+              "borderRadius": 32,
+              "height": 64,
+              "width": 64,
+            }
+          }
+        />
+      </TouchableHighlight>
+    </View>
+    <Camera
+      aspect={undefined}
+      captureAudio={true}
+      captureMode="video"
+      captureQuality="medium"
+      captureTarget="disk"
+      style={
+        Object {
+          "flex": 1,
+          "zIndex": 0,
+        }
+      }
+      type="front"
+    />
+  </View>
+</View>
+`;

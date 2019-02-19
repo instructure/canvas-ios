@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16D32" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="User" representedClassName=".User" syncable="YES">
+        <attribute name="avatarURL" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="loginID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="obverveeID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sortableName" attributeType="String" indexed="YES" syncable="YES"/>
+        <relationship name="enrollments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="UserEnrollment" inverseName="user" inverseEntity="UserEnrollment" syncable="YES"/>
+    </entity>
+    <entity name="UserEnrollment" representedClassName=".UserEnrollment" syncable="YES">
+        <attribute name="courseID" attributeType="String" defaultValueString="course_0" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="role" attributeType="String" syncable="YES"/>
+        <attribute name="roleOrder" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="enrollments" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="User" positionX="-63" positionY="-18" width="128" height="165"/>
+        <element name="UserEnrollment" positionX="-63" positionY="36" width="128" height="135"/>
+    </elements>
+</model>

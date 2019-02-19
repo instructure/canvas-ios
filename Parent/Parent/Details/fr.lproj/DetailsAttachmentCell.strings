@@ -1,0 +1,6 @@
+/* Class = "UILabel"; text = "Attachments aren't currently supported"; ObjectID = "5ch-Fq-szf"; */
+"5ch-Fq-szf.text" = "Les pièces jointes ne sont pas acceptées actuellement";
+
+/* Class = "UILabel"; text = "Filename"; ObjectID = "mcg-EI-bgW"; */
+"mcg-EI-bgW.text" = "Nom de fichier";
+

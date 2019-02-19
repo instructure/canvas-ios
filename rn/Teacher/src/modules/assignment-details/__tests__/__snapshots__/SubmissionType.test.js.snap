@@ -1,0 +1,104 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render 0 types 1`] = `
+<View
+  style={
+    Object {
+      "flexDirection": "column",
+    }
+  }
+/>
+`;
+
+exports[`render 1`] = `
+<View
+  style={
+    Object {
+      "flexDirection": "column",
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
+        Object {
+          "flex": 1,
+        },
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+      ]
+    }
+    testID="assignment-details.submission-type.details-lbl"
+  />
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
+        Object {
+          "flex": 1,
+        },
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+      ]
+    }
+    testID="assignment-details.submission-type.details-lbl"
+  />
+</View>
+`;
+
+exports[`render no data 1`] = `null`;
+
+exports[`render single type 1`] = `
+<View
+  style={
+    Object {
+      "flexDirection": "column",
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
+        Object {
+          "flex": 1,
+        },
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+      ]
+    }
+    testID="assignment-details.submission-type.details-lbl"
+  />
+</View>
+`;

@@ -1,0 +1,2766 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View>
+  <View>
+    <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={
+        Array [
+          "button",
+        ]
+      }
+      accessible={true}
+      hasTVPreferredFocus={undefined}
+      hitSlop={undefined}
+      isTVSelectable={true}
+      nativeID={undefined}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+          },
+          Array [
+            undefined,
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+            },
+          ],
+        ]
+      }
+      testID="assignment-list.assignment-list-row.cell-123456789"
+      tvParallaxProperties={undefined}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
+              "flex": 1,
+              "flexDirection": "row",
+              "minHeight": 54,
+              "paddingBottom": 12,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 12,
+            },
+            Object {
+              "backgroundColor": "white",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignSelf": "flex-start",
+            }
+          }
+          testID="assignment-list-row-assignment-icon-published-123456789.icon-img"
+        >
+          <View
+            accessibilityLabel="Published"
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 0,
+              }
+            }
+          >
+            <Image
+              resizeMode="cover"
+              source={
+                Object {
+                  "testUri": "../../../src/images/course/Assignment.png",
+                }
+              }
+              style={
+                Array [
+                  false,
+                  Object {
+                    "minHeight": 24,
+                    "minWidth": 24,
+                  },
+                ]
+              }
+              testID="access-icon-image"
+            />
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "borderRadius": 8,
+                  "bottom": -6,
+                  "height": 16,
+                  "justifyContent": "center",
+                  "position": "absolute",
+                  "right": -5,
+                  "width": 16,
+                }
+              }
+            >
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/images/publish-small.png",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 12,
+                    "tintColor": "#00AC18",
+                    "width": 12,
+                  }
+                }
+                testID="access-icon-icon"
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              },
+              Object {
+                "marginLeft": 12,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            numberOfLines={2}
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Array [
+                  Object {
+                    "fontWeight": "600",
+                  },
+                ],
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            learn to write code
+          </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Array [
+                  Object {
+                    "color": "#8B969E",
+                    "fontSize": 14,
+                    "marginTop": 2,
+                  },
+                ],
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
+            }
+            testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
+          >
+            No Due Date
+          </Text>
+          <View />
+        </View>
+        <View
+          style={
+            Object {
+              "flex": 0,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 1,
+                "flexDirection": "row",
+                "justifyContent": "flex-end",
+              }
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignSelf": "center",
+                    "backgroundColor": "transparent",
+                    "borderColor": "#c7c7cc",
+                    "borderRightWidth": 2,
+                    "borderTopWidth": 2,
+                    "height": 10,
+                    "marginLeft": 7,
+                    "width": 10,
+                  },
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "rotate": "45deg",
+                      },
+                    ],
+                  },
+                ]
+              }
+            />
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`renders correctly assignment icon 1`] = `
+<View>
+  <View>
+    <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={
+        Array [
+          "button",
+        ]
+      }
+      accessible={true}
+      hasTVPreferredFocus={undefined}
+      hitSlop={undefined}
+      isTVSelectable={true}
+      nativeID={undefined}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+          },
+          Array [
+            undefined,
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+            },
+          ],
+        ]
+      }
+      testID="assignment-list.assignment-list-row.cell-123456789"
+      tvParallaxProperties={undefined}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
+              "flex": 1,
+              "flexDirection": "row",
+              "minHeight": 54,
+              "paddingBottom": 12,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 12,
+            },
+            Object {
+              "backgroundColor": "white",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignSelf": "flex-start",
+            }
+          }
+          testID="assignment-list-row-assignment-icon-published-123456789.icon-img"
+        >
+          <View
+            accessibilityLabel="Published"
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 0,
+              }
+            }
+          >
+            <Image
+              resizeMode="cover"
+              source={
+                Object {
+                  "testUri": "../../../src/images/course/Assignment.png",
+                }
+              }
+              style={
+                Array [
+                  false,
+                  Object {
+                    "minHeight": 24,
+                    "minWidth": 24,
+                  },
+                ]
+              }
+              testID="access-icon-image"
+            />
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "borderRadius": 8,
+                  "bottom": -6,
+                  "height": 16,
+                  "justifyContent": "center",
+                  "position": "absolute",
+                  "right": -5,
+                  "width": 16,
+                }
+              }
+            >
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/images/publish-small.png",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 12,
+                    "tintColor": "#00AC18",
+                    "width": 12,
+                  }
+                }
+                testID="access-icon-icon"
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              },
+              Object {
+                "marginLeft": 12,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            numberOfLines={2}
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Array [
+                  Object {
+                    "fontWeight": "600",
+                  },
+                ],
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            learn to write code
+          </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Array [
+                  Object {
+                    "color": "#8B969E",
+                    "fontSize": 14,
+                    "marginTop": 2,
+                  },
+                ],
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
+            }
+            testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
+          >
+            Due May 31, 2037 at 11:59 PM
+          </Text>
+          <View />
+        </View>
+        <View
+          style={
+            Object {
+              "flex": 0,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 1,
+                "flexDirection": "row",
+                "justifyContent": "flex-end",
+              }
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignSelf": "center",
+                    "backgroundColor": "transparent",
+                    "borderColor": "#c7c7cc",
+                    "borderRightWidth": 2,
+                    "borderTopWidth": 2,
+                    "height": 10,
+                    "marginLeft": 7,
+                    "width": 10,
+                  },
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "rotate": "45deg",
+                      },
+                    ],
+                  },
+                ]
+              }
+            />
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`renders correctly discussion icon 1`] = `
+<View>
+  <View>
+    <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={
+        Array [
+          "button",
+        ]
+      }
+      accessible={true}
+      hasTVPreferredFocus={undefined}
+      hitSlop={undefined}
+      isTVSelectable={true}
+      nativeID={undefined}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+          },
+          Array [
+            undefined,
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+            },
+          ],
+        ]
+      }
+      testID="assignment-list.assignment-list-row.cell-123456789"
+      tvParallaxProperties={undefined}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
+              "flex": 1,
+              "flexDirection": "row",
+              "minHeight": 54,
+              "paddingBottom": 12,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 12,
+            },
+            Object {
+              "backgroundColor": "white",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignSelf": "flex-start",
+            }
+          }
+          testID="assignment-list-row-discussion-icon-published-123456789.icon-img"
+        >
+          <View
+            accessibilityLabel="Published"
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 0,
+              }
+            }
+          >
+            <Image
+              resizeMode="cover"
+              source={
+                Object {
+                  "testUri": "../../../src/images/course/Discussions.png",
+                }
+              }
+              style={
+                Array [
+                  false,
+                  Object {
+                    "minHeight": 24,
+                    "minWidth": 24,
+                  },
+                ]
+              }
+              testID="access-icon-image"
+            />
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "borderRadius": 8,
+                  "bottom": -6,
+                  "height": 16,
+                  "justifyContent": "center",
+                  "position": "absolute",
+                  "right": -5,
+                  "width": 16,
+                }
+              }
+            >
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/images/publish-small.png",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 12,
+                    "tintColor": "#00AC18",
+                    "width": 12,
+                  }
+                }
+                testID="access-icon-icon"
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              },
+              Object {
+                "marginLeft": 12,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            numberOfLines={2}
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Array [
+                  Object {
+                    "fontWeight": "600",
+                  },
+                ],
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            learn to write code
+          </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Array [
+                  Object {
+                    "color": "#8B969E",
+                    "fontSize": 14,
+                    "marginTop": 2,
+                  },
+                ],
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
+            }
+            testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
+          >
+            Due May 31, 2037 at 11:59 PM
+          </Text>
+          <View />
+        </View>
+        <View
+          style={
+            Object {
+              "flex": 0,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 1,
+                "flexDirection": "row",
+                "justifyContent": "flex-end",
+              }
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignSelf": "center",
+                    "backgroundColor": "transparent",
+                    "borderColor": "#c7c7cc",
+                    "borderRightWidth": 2,
+                    "borderTopWidth": 2,
+                    "height": 10,
+                    "marginLeft": 7,
+                    "width": 10,
+                  },
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "rotate": "45deg",
+                      },
+                    ],
+                  },
+                ]
+              }
+            />
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`renders correctly not published icon 1`] = `
+<View>
+  <View>
+    <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={
+        Array [
+          "button",
+        ]
+      }
+      accessible={true}
+      hasTVPreferredFocus={undefined}
+      hitSlop={undefined}
+      isTVSelectable={true}
+      nativeID={undefined}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+          },
+          Array [
+            undefined,
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+            },
+          ],
+        ]
+      }
+      testID="assignment-list.assignment-list-row.cell-123456789"
+      tvParallaxProperties={undefined}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
+              "flex": 1,
+              "flexDirection": "row",
+              "minHeight": 54,
+              "paddingBottom": 12,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 12,
+            },
+            Object {
+              "backgroundColor": "white",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignSelf": "flex-start",
+            }
+          }
+          testID="assignment-list-row-assignment-icon-not-published-123456789.icon-img"
+        >
+          <View
+            accessibilityLabel="Not Published"
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 0,
+              }
+            }
+          >
+            <Image
+              resizeMode="cover"
+              source={
+                Object {
+                  "testUri": "../../../src/images/course/Assignment.png",
+                }
+              }
+              style={
+                Array [
+                  false,
+                  Object {
+                    "minHeight": 24,
+                    "minWidth": 24,
+                  },
+                ]
+              }
+              testID="access-icon-image"
+            />
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "borderRadius": 8,
+                  "bottom": -6,
+                  "height": 16,
+                  "justifyContent": "center",
+                  "position": "absolute",
+                  "right": -5,
+                  "width": 16,
+                }
+              }
+            >
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/images/unpublish-small.png",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 12,
+                    "tintColor": "#8B969E",
+                    "width": 12,
+                  }
+                }
+                testID="access-icon-icon"
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              },
+              Object {
+                "marginLeft": 12,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            numberOfLines={2}
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Array [
+                  Object {
+                    "fontWeight": "600",
+                  },
+                ],
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            learn to write code
+          </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Array [
+                  Object {
+                    "color": "#8B969E",
+                    "fontSize": 14,
+                    "marginTop": 2,
+                  },
+                ],
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
+            }
+            testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
+          >
+            Due May 31, 2037 at 11:59 PM
+          </Text>
+          <View />
+        </View>
+        <View
+          style={
+            Object {
+              "flex": 0,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 1,
+                "flexDirection": "row",
+                "justifyContent": "flex-end",
+              }
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignSelf": "center",
+                    "backgroundColor": "transparent",
+                    "borderColor": "#c7c7cc",
+                    "borderRightWidth": 2,
+                    "borderTopWidth": 2,
+                    "height": 10,
+                    "marginLeft": 7,
+                    "width": 10,
+                  },
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "rotate": "45deg",
+                      },
+                    ],
+                  },
+                ]
+              }
+            />
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`renders correctly published icon 1`] = `
+<View>
+  <View>
+    <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={
+        Array [
+          "button",
+        ]
+      }
+      accessible={true}
+      hasTVPreferredFocus={undefined}
+      hitSlop={undefined}
+      isTVSelectable={true}
+      nativeID={undefined}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+          },
+          Array [
+            undefined,
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+            },
+          ],
+        ]
+      }
+      testID="assignment-list.assignment-list-row.cell-123456789"
+      tvParallaxProperties={undefined}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
+              "flex": 1,
+              "flexDirection": "row",
+              "minHeight": 54,
+              "paddingBottom": 12,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 12,
+            },
+            Object {
+              "backgroundColor": "white",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignSelf": "flex-start",
+            }
+          }
+          testID="assignment-list-row-assignment-icon-published-123456789.icon-img"
+        >
+          <View
+            accessibilityLabel="Published"
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 0,
+              }
+            }
+          >
+            <Image
+              resizeMode="cover"
+              source={
+                Object {
+                  "testUri": "../../../src/images/course/Assignment.png",
+                }
+              }
+              style={
+                Array [
+                  false,
+                  Object {
+                    "minHeight": 24,
+                    "minWidth": 24,
+                  },
+                ]
+              }
+              testID="access-icon-image"
+            />
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "borderRadius": 8,
+                  "bottom": -6,
+                  "height": 16,
+                  "justifyContent": "center",
+                  "position": "absolute",
+                  "right": -5,
+                  "width": 16,
+                }
+              }
+            >
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/images/publish-small.png",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 12,
+                    "tintColor": "#00AC18",
+                    "width": 12,
+                  }
+                }
+                testID="access-icon-icon"
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              },
+              Object {
+                "marginLeft": 12,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            numberOfLines={2}
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Array [
+                  Object {
+                    "fontWeight": "600",
+                  },
+                ],
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            learn to write code
+          </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Array [
+                  Object {
+                    "color": "#8B969E",
+                    "fontSize": 14,
+                    "marginTop": 2,
+                  },
+                ],
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
+            }
+            testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
+          >
+            Due May 31, 2037 at 11:59 PM
+          </Text>
+          <View />
+        </View>
+        <View
+          style={
+            Object {
+              "flex": 0,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 1,
+                "flexDirection": "row",
+                "justifyContent": "flex-end",
+              }
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignSelf": "center",
+                    "backgroundColor": "transparent",
+                    "borderColor": "#c7c7cc",
+                    "borderRightWidth": 2,
+                    "borderTopWidth": 2,
+                    "height": 10,
+                    "marginLeft": 7,
+                    "width": 10,
+                  },
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "rotate": "45deg",
+                      },
+                    ],
+                  },
+                ]
+              }
+            />
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`renders correctly quiz icon 1`] = `
+<View>
+  <View>
+    <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={
+        Array [
+          "button",
+        ]
+      }
+      accessible={true}
+      hasTVPreferredFocus={undefined}
+      hitSlop={undefined}
+      isTVSelectable={true}
+      nativeID={undefined}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+          },
+          Array [
+            undefined,
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+            },
+          ],
+        ]
+      }
+      testID="assignment-list.assignment-list-row.cell-123456789"
+      tvParallaxProperties={undefined}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
+              "flex": 1,
+              "flexDirection": "row",
+              "minHeight": 54,
+              "paddingBottom": 12,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 12,
+            },
+            Object {
+              "backgroundColor": "white",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignSelf": "flex-start",
+            }
+          }
+          testID="assignment-list-row-quiz-icon-published-123456789.icon-img"
+        >
+          <View
+            accessibilityLabel="Published"
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 0,
+              }
+            }
+          >
+            <Image
+              resizeMode="cover"
+              source={
+                Object {
+                  "testUri": "../../../src/images/course/Quiz.png",
+                }
+              }
+              style={
+                Array [
+                  false,
+                  Object {
+                    "minHeight": 24,
+                    "minWidth": 24,
+                  },
+                ]
+              }
+              testID="access-icon-image"
+            />
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "borderRadius": 8,
+                  "bottom": -6,
+                  "height": 16,
+                  "justifyContent": "center",
+                  "position": "absolute",
+                  "right": -5,
+                  "width": 16,
+                }
+              }
+            >
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/images/publish-small.png",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 12,
+                    "tintColor": "#00AC18",
+                    "width": 12,
+                  }
+                }
+                testID="access-icon-icon"
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              },
+              Object {
+                "marginLeft": 12,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            numberOfLines={2}
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Array [
+                  Object {
+                    "fontWeight": "600",
+                  },
+                ],
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            learn to write code
+          </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Array [
+                  Object {
+                    "color": "#8B969E",
+                    "fontSize": 14,
+                    "marginTop": 2,
+                  },
+                ],
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
+            }
+            testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
+          >
+            Due May 31, 2037 at 11:59 PM
+          </Text>
+          <View />
+        </View>
+        <View
+          style={
+            Object {
+              "flex": 0,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 1,
+                "flexDirection": "row",
+                "justifyContent": "flex-end",
+              }
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignSelf": "center",
+                    "backgroundColor": "transparent",
+                    "borderColor": "#c7c7cc",
+                    "borderRightWidth": 2,
+                    "borderTopWidth": 2,
+                    "height": 10,
+                    "marginLeft": 7,
+                    "width": 10,
+                  },
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "rotate": "45deg",
+                      },
+                    ],
+                  },
+                ]
+              }
+            />
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`renders correctly with closed due dates 1`] = `
+<View>
+  <View>
+    <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={
+        Array [
+          "button",
+        ]
+      }
+      accessible={true}
+      hasTVPreferredFocus={undefined}
+      hitSlop={undefined}
+      isTVSelectable={true}
+      nativeID={undefined}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+          },
+          Array [
+            undefined,
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+            },
+          ],
+        ]
+      }
+      testID="assignment-list.assignment-list-row.cell-123456789"
+      tvParallaxProperties={undefined}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
+              "flex": 1,
+              "flexDirection": "row",
+              "minHeight": 54,
+              "paddingBottom": 12,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 12,
+            },
+            Object {
+              "backgroundColor": "white",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignSelf": "flex-start",
+            }
+          }
+          testID="assignment-list-row-assignment-icon-published-123456789.icon-img"
+        >
+          <View
+            accessibilityLabel="Published"
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 0,
+              }
+            }
+          >
+            <Image
+              resizeMode="cover"
+              source={
+                Object {
+                  "testUri": "../../../src/images/course/Assignment.png",
+                }
+              }
+              style={
+                Array [
+                  false,
+                  Object {
+                    "minHeight": 24,
+                    "minWidth": 24,
+                  },
+                ]
+              }
+              testID="access-icon-image"
+            />
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "borderRadius": 8,
+                  "bottom": -6,
+                  "height": 16,
+                  "justifyContent": "center",
+                  "position": "absolute",
+                  "right": -5,
+                  "width": 16,
+                }
+              }
+            >
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/images/publish-small.png",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 12,
+                    "tintColor": "#00AC18",
+                    "width": 12,
+                  }
+                }
+                testID="access-icon-icon"
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              },
+              Object {
+                "marginLeft": 12,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            numberOfLines={2}
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Array [
+                  Object {
+                    "fontWeight": "600",
+                  },
+                ],
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            learn to write code
+          </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Array [
+                  Object {
+                    "color": "#8B969E",
+                    "fontSize": 14,
+                    "marginTop": 2,
+                  },
+                ],
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
+            }
+            testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
+          >
+            Availability: Closed
+          </Text>
+          <View />
+        </View>
+        <View
+          style={
+            Object {
+              "flex": 0,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 1,
+                "flexDirection": "row",
+                "justifyContent": "flex-end",
+              }
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignSelf": "center",
+                    "backgroundColor": "transparent",
+                    "borderColor": "#c7c7cc",
+                    "borderRightWidth": 2,
+                    "borderTopWidth": 2,
+                    "height": 10,
+                    "marginLeft": 7,
+                    "width": 10,
+                  },
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "rotate": "45deg",
+                      },
+                    ],
+                  },
+                ]
+              }
+            />
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`renders correctly with needs_grading_count 1`] = `
+<View>
+  <View>
+    <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={
+        Array [
+          "button",
+        ]
+      }
+      accessible={true}
+      hasTVPreferredFocus={undefined}
+      hitSlop={undefined}
+      isTVSelectable={true}
+      nativeID={undefined}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+          },
+          Array [
+            undefined,
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+            },
+          ],
+        ]
+      }
+      testID="assignment-list.assignment-list-row.cell-123456789"
+      tvParallaxProperties={undefined}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
+              "flex": 1,
+              "flexDirection": "row",
+              "minHeight": 54,
+              "paddingBottom": 12,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 12,
+            },
+            Object {
+              "backgroundColor": "white",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignSelf": "flex-start",
+            }
+          }
+          testID="assignment-list-row-assignment-icon-published-123456789.icon-img"
+        >
+          <View
+            accessibilityLabel="Published"
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 0,
+              }
+            }
+          >
+            <Image
+              resizeMode="cover"
+              source={
+                Object {
+                  "testUri": "../../../src/images/course/Assignment.png",
+                }
+              }
+              style={
+                Array [
+                  false,
+                  Object {
+                    "minHeight": 24,
+                    "minWidth": 24,
+                  },
+                ]
+              }
+              testID="access-icon-image"
+            />
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "borderRadius": 8,
+                  "bottom": -6,
+                  "height": 16,
+                  "justifyContent": "center",
+                  "position": "absolute",
+                  "right": -5,
+                  "width": 16,
+                }
+              }
+            >
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/images/publish-small.png",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 12,
+                    "tintColor": "#00AC18",
+                    "width": 12,
+                  }
+                }
+                testID="access-icon-icon"
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              },
+              Object {
+                "marginLeft": 12,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            numberOfLines={2}
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Array [
+                  Object {
+                    "fontWeight": "600",
+                  },
+                ],
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            learn to write code
+          </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Array [
+                  Object {
+                    "color": "#8B969E",
+                    "fontSize": 14,
+                    "marginTop": 2,
+                  },
+                ],
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
+            }
+            testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
+          >
+            No Due Date
+          </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "alignSelf": "flex-start",
+                  "backgroundColor": "white",
+                  "borderColor": "#008EE2",
+                  "borderRadius": 9,
+                  "borderWidth": 1,
+                  "color": "#008EE2",
+                  "flex": 0,
+                  "fontSize": 11,
+                  "fontWeight": "600",
+                  "marginTop": 4,
+                  "overflow": "hidden",
+                  "paddingBottom": 2,
+                  "paddingLeft": 6,
+                  "paddingRight": 6,
+                  "paddingTop": 2,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            5 NEED GRADING
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "flex": 0,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 1,
+                "flexDirection": "row",
+                "justifyContent": "flex-end",
+              }
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignSelf": "center",
+                    "backgroundColor": "transparent",
+                    "borderColor": "#c7c7cc",
+                    "borderRightWidth": 2,
+                    "borderTopWidth": 2,
+                    "height": 10,
+                    "marginLeft": 7,
+                    "width": 10,
+                  },
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "rotate": "45deg",
+                      },
+                    ],
+                  },
+                ]
+              }
+            />
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`renders correctly with needs_grading_count and set to not_graded 1`] = `
+<View>
+  <View>
+    <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={
+        Array [
+          "button",
+        ]
+      }
+      accessible={true}
+      hasTVPreferredFocus={undefined}
+      hitSlop={undefined}
+      isTVSelectable={true}
+      nativeID={undefined}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+          },
+          Array [
+            undefined,
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+            },
+          ],
+        ]
+      }
+      testID="assignment-list.assignment-list-row.cell-123456789"
+      tvParallaxProperties={undefined}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
+              "flex": 1,
+              "flexDirection": "row",
+              "minHeight": 54,
+              "paddingBottom": 12,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 12,
+            },
+            Object {
+              "backgroundColor": "white",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignSelf": "flex-start",
+            }
+          }
+          testID="assignment-list-row-assignment-icon-published-123456789.icon-img"
+        >
+          <View
+            accessibilityLabel="Published"
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 0,
+              }
+            }
+          >
+            <Image
+              resizeMode="cover"
+              source={
+                Object {
+                  "testUri": "../../../src/images/course/Assignment.png",
+                }
+              }
+              style={
+                Array [
+                  false,
+                  Object {
+                    "minHeight": 24,
+                    "minWidth": 24,
+                  },
+                ]
+              }
+              testID="access-icon-image"
+            />
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "borderRadius": 8,
+                  "bottom": -6,
+                  "height": 16,
+                  "justifyContent": "center",
+                  "position": "absolute",
+                  "right": -5,
+                  "width": 16,
+                }
+              }
+            >
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/images/publish-small.png",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 12,
+                    "tintColor": "#00AC18",
+                    "width": 12,
+                  }
+                }
+                testID="access-icon-icon"
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              },
+              Object {
+                "marginLeft": 12,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            numberOfLines={2}
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Array [
+                  Object {
+                    "fontWeight": "600",
+                  },
+                ],
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            learn to write code
+          </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Array [
+                  Object {
+                    "color": "#8B969E",
+                    "fontSize": 14,
+                    "marginTop": 2,
+                  },
+                ],
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
+            }
+            testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
+          >
+            No Due Date
+          </Text>
+          <View />
+        </View>
+        <View
+          style={
+            Object {
+              "flex": 0,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 1,
+                "flexDirection": "row",
+                "justifyContent": "flex-end",
+              }
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignSelf": "center",
+                    "backgroundColor": "transparent",
+                    "borderColor": "#c7c7cc",
+                    "borderRightWidth": 2,
+                    "borderTopWidth": 2,
+                    "height": 10,
+                    "marginLeft": 7,
+                    "width": 10,
+                  },
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "rotate": "45deg",
+                      },
+                    ],
+                  },
+                ]
+              }
+            />
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`renders correctly with open due dates 1`] = `
+<View>
+  <View>
+    <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={
+        Array [
+          "button",
+        ]
+      }
+      accessible={true}
+      hasTVPreferredFocus={undefined}
+      hitSlop={undefined}
+      isTVSelectable={true}
+      nativeID={undefined}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+          },
+          Array [
+            undefined,
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+            },
+          ],
+        ]
+      }
+      testID="assignment-list.assignment-list-row.cell-123456789"
+      tvParallaxProperties={undefined}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
+              "flex": 1,
+              "flexDirection": "row",
+              "minHeight": 54,
+              "paddingBottom": 12,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 12,
+            },
+            Object {
+              "backgroundColor": "white",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignSelf": "flex-start",
+            }
+          }
+          testID="assignment-list-row-assignment-icon-published-123456789.icon-img"
+        >
+          <View
+            accessibilityLabel="Published"
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 0,
+              }
+            }
+          >
+            <Image
+              resizeMode="cover"
+              source={
+                Object {
+                  "testUri": "../../../src/images/course/Assignment.png",
+                }
+              }
+              style={
+                Array [
+                  false,
+                  Object {
+                    "minHeight": 24,
+                    "minWidth": 24,
+                  },
+                ]
+              }
+              testID="access-icon-image"
+            />
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "borderRadius": 8,
+                  "bottom": -6,
+                  "height": 16,
+                  "justifyContent": "center",
+                  "position": "absolute",
+                  "right": -5,
+                  "width": 16,
+                }
+              }
+            >
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/images/publish-small.png",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 12,
+                    "tintColor": "#00AC18",
+                    "width": 12,
+                  }
+                }
+                testID="access-icon-icon"
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              },
+              Object {
+                "marginLeft": 12,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            numberOfLines={2}
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Array [
+                  Object {
+                    "fontWeight": "600",
+                  },
+                ],
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            learn to write code
+          </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Array [
+                  Object {
+                    "color": "#8B969E",
+                    "fontSize": 14,
+                    "marginTop": 2,
+                  },
+                ],
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
+            }
+            testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
+          >
+            Multiple Due Dates
+          </Text>
+          <View />
+        </View>
+        <View
+          style={
+            Object {
+              "flex": 0,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 1,
+                "flexDirection": "row",
+                "justifyContent": "flex-end",
+              }
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignSelf": "center",
+                    "backgroundColor": "transparent",
+                    "borderColor": "#c7c7cc",
+                    "borderRightWidth": 2,
+                    "borderTopWidth": 2,
+                    "height": 10,
+                    "marginLeft": 7,
+                    "width": 10,
+                  },
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "rotate": "45deg",
+                      },
+                    ],
+                  },
+                ]
+              }
+            />
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`renders correctly with selected props 1`] = `
+<View>
+  <View>
+    <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={
+        Array [
+          "button",
+        ]
+      }
+      accessible={true}
+      hasTVPreferredFocus={undefined}
+      hitSlop={undefined}
+      isTVSelectable={true}
+      nativeID={undefined}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+          },
+          Array [
+            undefined,
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+            },
+          ],
+        ]
+      }
+      testID="assignment-list.assignment-list-row.cell-123456789"
+      tvParallaxProperties={undefined}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
+              "flex": 1,
+              "flexDirection": "row",
+              "minHeight": 54,
+              "paddingBottom": 12,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 12,
+            },
+            Object {
+              "backgroundColor": "#f5f5f5",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignSelf": "flex-start",
+            }
+          }
+          testID="assignment-list-row-assignment-icon-published-123456789.icon-img"
+        >
+          <View
+            accessibilityLabel="Published"
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 0,
+              }
+            }
+          >
+            <Image
+              resizeMode="cover"
+              source={
+                Object {
+                  "testUri": "../../../src/images/course/Assignment.png",
+                }
+              }
+              style={
+                Array [
+                  false,
+                  Object {
+                    "minHeight": 24,
+                    "minWidth": 24,
+                  },
+                ]
+              }
+              testID="access-icon-image"
+            />
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "borderRadius": 8,
+                  "bottom": -6,
+                  "height": 16,
+                  "justifyContent": "center",
+                  "position": "absolute",
+                  "right": -5,
+                  "width": 16,
+                }
+              }
+            >
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/images/publish-small.png",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 12,
+                    "tintColor": "#00AC18",
+                    "width": 12,
+                  }
+                }
+                testID="access-icon-icon"
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              },
+              Object {
+                "marginLeft": 12,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            numberOfLines={2}
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Array [
+                  Object {
+                    "fontWeight": "600",
+                  },
+                ],
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            learn to write code
+          </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Array [
+                  Object {
+                    "color": "#8B969E",
+                    "fontSize": 14,
+                    "marginTop": 2,
+                  },
+                ],
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
+            }
+            testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
+          >
+            No Due Date
+          </Text>
+          <View />
+        </View>
+        <View
+          style={
+            Object {
+              "flex": 0,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 1,
+                "flexDirection": "row",
+                "justifyContent": "flex-end",
+              }
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignSelf": "center",
+                    "backgroundColor": "transparent",
+                    "borderColor": "#c7c7cc",
+                    "borderRightWidth": 2,
+                    "borderTopWidth": 2,
+                    "height": 10,
+                    "marginLeft": 7,
+                    "width": 10,
+                  },
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "rotate": "45deg",
+                      },
+                    ],
+                  },
+                ]
+              }
+            />
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;

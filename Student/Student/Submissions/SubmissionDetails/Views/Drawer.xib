@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Drawer" customModule="Student" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="zvd-Vb-YDD" id="iFr-8N-zmB"/>
+                <outlet property="contentViewHeight" destination="y8L-1T-xAL" id="Wbd-9y-8tw"/>
+                <outlet property="drawer" destination="iN0-l3-epB" id="xuh-ct-0jb"/>
+                <outlet property="drawerControls" destination="yhc-Hf-2mW" id="uPW-ro-P14"/>
+                <outlet property="gripper" destination="zQw-tB-yGY" id="PXj-wl-gyE"/>
+                <outlet property="tabs" destination="RnZ-Eu-Ple" id="0Zw-Jm-t11"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="413" height="461"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yhc-Hf-2mW" userLabel="DrawerControls">
+                    <rect key="frame" x="0.0" y="0.0" width="413" height="460"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zQw-tB-yGY" userLabel="Gripper">
+                            <rect key="frame" x="188.5" y="4" width="36" height="4"/>
+                            <color key="backgroundColor" name="backgroundMedium"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="4" id="tcd-LV-eYZ"/>
+                                <constraint firstAttribute="width" constant="36" id="woM-iG-Hxv"/>
+                            </constraints>
+                            <connections>
+                                <action selector="gripperPressed:" destination="-1" eventType="touchUpInside" id="nEk-bS-kvC"/>
+                            </connections>
+                        </button>
+                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="RnZ-Eu-Ple">
+                            <rect key="frame" x="16" y="16" width="381" height="437"/>
+                            <constraints>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="kDR-tw-Pus"/>
+                            </constraints>
+                            <segments>
+                                <segment title="Comments"/>
+                                <segment title="Files"/>
+                                <segment title="Rubric"/>
+                            </segments>
+                        </segmentedControl>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <gestureRecognizers/>
+                    <constraints>
+                        <constraint firstItem="zQw-tB-yGY" firstAttribute="centerX" secondItem="yhc-Hf-2mW" secondAttribute="centerX" id="1Sk-J4-XnA"/>
+                        <constraint firstItem="RnZ-Eu-Ple" firstAttribute="top" secondItem="zQw-tB-yGY" secondAttribute="bottom" constant="8" id="J1x-lU-6Kk"/>
+                        <constraint firstAttribute="trailing" secondItem="RnZ-Eu-Ple" secondAttribute="trailing" constant="16" id="Uhy-cl-hY2"/>
+                        <constraint firstItem="RnZ-Eu-Ple" firstAttribute="leading" secondItem="yhc-Hf-2mW" secondAttribute="leading" constant="16" id="XQM-dk-Gyz"/>
+                        <constraint firstAttribute="bottom" secondItem="RnZ-Eu-Ple" secondAttribute="bottom" constant="8" id="lfw-js-Mkf"/>
+                        <constraint firstItem="zQw-tB-yGY" firstAttribute="top" secondItem="yhc-Hf-2mW" secondAttribute="top" constant="4" id="sfX-gz-adx"/>
+                    </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="8Cv-db-Q3F" appends="YES" id="Qlk-sd-TIH"/>
+                    </connections>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NiS-Q8-E9V" userLabel="Border">
+                    <rect key="frame" x="0.0" y="460" width="413" height="1"/>
+                    <color key="backgroundColor" name="borderMedium"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="fb3-3f-fZ5"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zvd-Vb-YDD" userLabel="ContentView">
+                    <rect key="frame" x="0.0" y="461" width="413" height="0.0"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" priority="999" id="y8L-1T-xAL"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <gestureRecognizers/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="yhc-Hf-2mW" secondAttribute="trailing" id="64l-Jw-jmc"/>
+                <constraint firstItem="zvd-Vb-YDD" firstAttribute="top" secondItem="NiS-Q8-E9V" secondAttribute="bottom" id="8Tk-et-0Qf"/>
+                <constraint firstItem="zvd-Vb-YDD" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="CoF-Ye-DL3"/>
+                <constraint firstAttribute="bottom" secondItem="zvd-Vb-YDD" secondAttribute="bottom" id="FJ2-ar-mYl"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="NiS-Q8-E9V" secondAttribute="trailing" id="KIn-5b-LU2"/>
+                <constraint firstAttribute="trailing" secondItem="zvd-Vb-YDD" secondAttribute="trailing" id="WIx-Xa-2a0"/>
+                <constraint firstItem="NiS-Q8-E9V" firstAttribute="top" secondItem="yhc-Hf-2mW" secondAttribute="bottom" id="dtm-r0-lOf"/>
+                <constraint firstItem="NiS-Q8-E9V" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="dyq-A6-Y8w"/>
+                <constraint firstItem="yhc-Hf-2mW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ifu-KH-LSA"/>
+                <constraint firstItem="yhc-Hf-2mW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="nMF-Og-j0i"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="84" y="-44.527736131934034"/>
+        </view>
+        <panGestureRecognizer minimumNumberOfTouches="1" id="8Cv-db-Q3F">
+            <connections>
+                <action selector="handlePan:" destination="-1" id="Hje-my-lE8"/>
+            </connections>
+        </panGestureRecognizer>
+    </objects>
+    <resources>
+        <namedColor name="backgroundMedium">
+            <color red="0.7803921568627451" green="0.80392156862745101" blue="0.81960784313725488" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="borderMedium">
+            <color red="0.7803921568627451" green="0.80392156862745101" blue="0.81960784313725488" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

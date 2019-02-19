@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="QuestionHeaderView" customModule="CanvasCore" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6XV-yf-AsN">
+                    <rect key="frame" x="62" y="11" width="530" height="21"/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HIU-hi-FaG">
+                    <rect key="frame" x="20" y="5" width="34" height="34"/>
+                    <constraints>
+                        <constraint firstAttribute="width" priority="999" constant="34" id="R8m-4v-gxE"/>
+                        <constraint firstAttribute="height" priority="999" constant="34" id="nxw-He-AEY"/>
+                    </constraints>
+                    <state key="normal" image="flag_deselected">
+                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <state key="selected" image="flag_selected"/>
+                    <connections>
+                        <action selector="flagAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="VMh-wr-X7A"/>
+                    </connections>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstItem="6XV-yf-AsN" firstAttribute="leading" secondItem="HIU-hi-FaG" secondAttribute="trailing" priority="999" constant="8" id="309-nQ-QWS"/>
+                <constraint firstAttribute="trailing" secondItem="6XV-yf-AsN" secondAttribute="trailing" priority="999" constant="8" id="LZw-MQ-9WT"/>
+                <constraint firstItem="6XV-yf-AsN" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" priority="999" constant="11" id="Lru-0V-pX7"/>
+                <constraint firstItem="6XV-yf-AsN" firstAttribute="centerY" secondItem="HIU-hi-FaG" secondAttribute="centerY" id="W2s-B4-OOd"/>
+                <constraint firstItem="HIU-hi-FaG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" priority="999" constant="20" id="xDu-50-ARb"/>
+                <constraint firstAttribute="bottom" secondItem="6XV-yf-AsN" secondAttribute="bottom" priority="999" constant="12" id="z5T-i9-UKa"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="flagButton" destination="HIU-hi-FaG" id="49f-kd-Qmh"/>
+                <outlet property="numberLabel" destination="6XV-yf-AsN" id="ISe-Oi-TWW"/>
+            </connections>
+            <point key="canvasLocation" x="661" y="619"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="flag_deselected" width="34" height="34"/>
+        <image name="flag_selected" width="34" height="34"/>
+    </resources>
+</document>

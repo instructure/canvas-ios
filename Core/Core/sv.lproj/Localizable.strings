@@ -1,0 +1,237 @@
+/* No comment provided by engineer. */
+"%@ GPA" = "%@ Medelbetyg";
+
+/* No comment provided by engineer. */
+"Are you sure you would like to delete this comment?" = "Är du säker på att du vill ta bort den här kommentaren?";
+
+/* No comment provided by engineer. */
+"Assignment" = "Uppgift";
+
+/* No comment provided by engineer. */
+"Assignment not found." = "Bedömningen hittades inte";
+
+/* No comment provided by engineer. */
+"Authentication failed. Most likely the user denied the request for access." = "Autentiseringen misslyckades. Sannolikt avslog användaren åtkomstbegäran.";
+
+/* No comment provided by engineer. */
+"Can’t find your school? Try typing the full school URL." = "Hittar du inte din skola? Försök att skriva in skolans fullständiga URL.";
+
+/* No comment provided by engineer. */
+"Cancel" = "Avbryt";
+
+/* No comment provided by engineer. */
+"Canvas Login" = "Canvas lnloggning";
+
+/* No comment provided by engineer. */
+"Canvas Network" = "Canvas Network";
+
+/* No comment provided by engineer. */
+"Closed" = "Stängda";
+
+/* No comment provided by engineer. */
+"Comments" = "Kommentarer";
+
+/* No comment provided by engineer. */
+"Complete" = "Färdig";
+
+/* No comment provided by engineer. */
+"Course" = "Kurs";
+
+/* No comment provided by engineer. */
+"d_questions" = "d_questions";
+
+/* No comment provided by engineer. */
+"Delete" = "Ta bort";
+
+/* No comment provided by engineer. */
+"Delete comment" = "Radera kommentar";
+
+/* No comment provided by engineer. */
+"Delete Comment" = "Ta bort kommentar";
+
+/* No comment provided by engineer. */
+"Discussion Comment" = "Diskussionskommentar";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Avvisa";
+
+/* No comment provided by engineer. */
+"External Tool" = "Externt verktyg";
+
+/* No comment provided by engineer. */
+"File Upload" = "Filuppladdning";
+
+/* No comment provided by engineer. */
+"Final Grade: %@" = "Totalt omdöme: %@";
+
+/* No comment provided by engineer. */
+"final_grade_g_pts" = "final_grade_g_pts";
+
+/* No comment provided by engineer. */
+"Find my school" = "Hitta min skola";
+
+/* No comment provided by engineer. */
+"Find your school or district" = "Hitta din skola eller distrikt";
+
+/* No comment provided by engineer. */
+"Forget %@" = "Glöm %@";
+
+/* No comment provided by engineer. */
+"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
+
+/* No comment provided by engineer. */
+"g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
+"Help" = "Hjälp";
+
+/* No comment provided by engineer. */
+"How do I find my school?" = "Hur hittar jag min skola?";
+
+/* No comment provided by engineer. */
+"Incomplete" = "Ofullständig";
+
+/* No comment provided by engineer. */
+"late_penalty_g_pts" = "late_penalty_g_pts";
+
+/* No comment provided by engineer. */
+"Launch External Tool" = "Starta externt verktyg";
+
+/* end of and list pattern */
+"list_and_end" = "%1$@, och %2$@";
+
+/* middle of and list pattern */
+"list_and_middle" = "%1$@, %2$@";
+
+/* start of and list pattern */
+"list_and_start" = "%1$@, %2$@";
+
+/* and list pattern for 2 items */
+"list_and_two" = "%1$@ och %2$@";
+
+/* end of or list pattern */
+"list_or_end" = "%1$@, eller %2$@";
+
+/* middle of or list pattern */
+"list_or_middle" = "%1$@, %2$@";
+
+/* start of or list pattern */
+"list_or_start" = "%1$@, %2$@";
+
+/* or list pattern for 2 items */
+"list_or_two" = "%1$@ eller %2$@";
+
+/* No comment provided by engineer. */
+"Manual OAuth Login" = "Manuell OAuth-inloggning";
+
+/* No comment provided by engineer. */
+"Media Recording" = "Mediainspelning";
+
+/* No comment provided by engineer. */
+"No Due Date" = "Inget inlämningsdatum";
+
+/* No comment provided by engineer. */
+"No Submission" = "Ingen inlämning";
+
+/* No comment provided by engineer. */
+"Not Graded" = "Ej bedömd";
+
+/* No comment provided by engineer. */
+"Not Submitted" = "Inte inskickad";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"On Paper" = "På papper";
+
+/* No comment provided by engineer. */
+"out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
+"plural_points" = "plural_points";
+
+/* No comment provided by engineer. */
+"Quiz" = "Quiz";
+
+/* No comment provided by engineer. */
+"Remove" = "Ta bort";
+
+/* No comment provided by engineer. */
+"Removed %1$@" = "Borttagen %1$@";
+
+/* No comment provided by engineer. */
+"Removed %1$@ by %2$@" = "Borttagna %1$@ av %2$@";
+
+/* No comment provided by engineer. */
+"Reply to the annotation or previous comments" = "Svara på noteringen eller tidigare kommentarer";
+
+/* No comment provided by engineer. */
+"Resubmit Assignment" = "Lämna in uppgift igen";
+
+/* No comment provided by engineer. */
+"See what's new." = "Se vad som är nytt";
+
+/* No comment provided by engineer. */
+"Select Account" = "Välj konto";
+
+/* No comment provided by engineer. */
+"Select Assignment" = "Välj uppgift";
+
+/* No comment provided by engineer. */
+"Select Course" = "Välj kurs";
+
+/* No comment provided by engineer. */
+"Send comment" = "Skicka kommentar";
+
+/* No comment provided by engineer. */
+"Site Admin Login" = "Sidoadministratörs inloggning";
+
+/* No comment provided by engineer. */
+"Style" = "Stil";
+
+/* No comment provided by engineer. */
+"Submission Failed" = "Inlämningen misslyckades";
+
+/* No comment provided by engineer. */
+"Submission Uploading..." = "Inlämningen laddas upp ...";
+
+/* No comment provided by engineer. */
+"Submit Assignment" = "Lämna in uppgift";
+
+/* No comment provided by engineer. */
+"Submitted" = "Skickad";
+
+/* Submitted date */
+"Submitted %@" = "Skickad %@";
+
+/* No comment provided by engineer. */
+"Tap here for help." = "Tryck här för hjälp.";
+
+/* No comment provided by engineer. */
+"Tap to view details" = "Tryck för att visa detaljerad information";
+
+/* No comment provided by engineer. */
+"Tap to view progress" = "Tryck för att visa framsteg";
+
+/* No comment provided by engineer. */
+"Text Entry" = "Textinlägg";
+
+/* No comment provided by engineer. */
+"This assignment is due by %@" = "Den här uppgiften ska lämnas in  %@";
+
+/* No comment provided by engineer. */
+"This assignment was due by %@" = "Den här uppgiften skulle ha lämnats in %@";
+
+/* No comment provided by engineer. */
+"We've made a few changes." = "Vi har gjort några ändringar.";
+
+/* No comment provided by engineer. */
+"Website URL" = "Hemsida URL";
+
+/* No comment provided by engineer. */
+"What’s your school’s name?" = "Vad heter din skola?";
+
+/* No comment provided by engineer. */
+"You will need to log into at least one Canvas account from the Student app first." = "Du måste först logga in på minst ett Canvas-konto från studentappen.";
+

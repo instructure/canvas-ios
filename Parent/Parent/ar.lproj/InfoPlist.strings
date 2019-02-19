@@ -1,0 +1,12 @@
+/* Privacy - Camera Usage Description */
+"NSCameraUsageDescription" = "إرفاق صور ومقاطع فيديو بالرسائل ومنشورات النقاش أو تسليمها في صورة إرسالات تعيينات.";
+
+/* Privacy - Microphone Usage Description */
+"NSMicrophoneUsageDescription" = "إرفاق تسجيلات صوتية بالرسائل ومنشورات النقاش أو تسليمها في صورة إرسالات تعيينات.";
+
+/* Privacy - Photo Library Additions Usage Description */
+"NSPhotoLibraryAddUsageDescription" = "إرفاق صور ومقاطع فيديو بالرسائل ومنشورات النقاش أو تسليمها في صورة إرسالات تعيينات.";
+
+/* Privacy - Photo Library Usage Description */
+"NSPhotoLibraryUsageDescription" = "إرفاق صور ومقاطع فيديو بالرسائل ومنشورات النقاش أو تسليمها في صورة إرسالات تعيينات.";
+

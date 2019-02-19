@@ -1,0 +1,1095 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SubmissionGrader can render the handle content 1`] = `
+<View
+  style={
+    Object {
+      "borderBottomColor": "lightgray",
+      "borderBottomWidth": 0.5,
+      "paddingBottom": 8,
+      "paddingHorizontal": 16,
+    }
+  }
+>
+  <SegmentedControlIOS
+    onChange={[Function]}
+    selectedIndex={-1}
+    testID="speedgrader.segment-control"
+    tintColor="#374A59"
+    values={
+      Array [
+        "Grades",
+        "Comments",
+        "Files",
+      ]
+    }
+  />
+</View>
+`;
+
+exports[`SubmissionGrader renders 1`] = `
+<A11yGroup
+  onLayout={[Function]}
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <ToolTip />
+  <Header
+    closeModal={[Function]}
+    submissionID="1"
+    submissionProps={Object {}}
+  />
+  <SubmissionPicker
+    submissionID="1"
+    submissionProps={Object {}}
+  />
+  <SimilarityScore
+    submissionID="1"
+  />
+  <SubmissionViewer
+    closeModal={[Function]}
+    drawerState={
+      DrawerState {
+        "commentProgress": Object {},
+        "currentSnap": 0,
+        "deltaY": 0,
+        "dragBegan": [Function],
+        "drawerDidSnap": [Function],
+        "drawers": Array [
+          SubmissionGrader {
+            "captureToolTip": [Function],
+            "changeTab": [Function],
+            "context": Object {},
+            "donePressed": [Function],
+            "onDragBegan": [Function],
+            "onLayout": [Function],
+            "props": Object {
+              "closeModal": [Function],
+              "drawerState": [Circular],
+              "gradeSubmissionWithRubric": [Function],
+              "submissionID": "1",
+              "submissionProps": Object {},
+            },
+            "refs": Object {},
+            "renderHandleContent": [Function],
+            "saveUnsavedChanges": [Function],
+            "snapTo": [Function],
+            "state": Object {
+              "height": 200,
+              "selectedTabIndex": -1,
+              "unsavedChanges": null,
+              "width": 200,
+            },
+            "updateUnsavedChanges": [Function],
+            "updater": Updater {
+              "_renderer": ReactShallowRenderer {
+                "_context": Object {},
+                "_element": <SubmissionGrader
+                  closeModal={[Function]}
+                  drawerState={[Circular]}
+                  gradeSubmissionWithRubric={[Function]}
+                  submissionID="1"
+                  submissionProps={Object {}}
+      />,
+                "_forcedUpdate": false,
+                "_instance": [Circular],
+                "_newState": Object {
+                  "height": 200,
+                  "selectedTabIndex": -1,
+                  "unsavedChanges": null,
+                  "width": 200,
+                },
+                "_rendered": <A11yGroup
+                  onLayout={[Function]}
+                  style={
+                              Object {
+                                          "flex": 1,
+                                        }
+                  }
+      >
+                  <ToolTip />
+                  <Header
+                              assignmentID={undefined}
+                              closeModal={[Function]}
+                              courseID={undefined}
+                              navigator={undefined}
+                              submissionID="1"
+                              submissionProps={Object {}}
+                              userID={undefined}
+                  />
+                  <SubmissionPicker
+                              submissionID="1"
+                              submissionProps={Object {}}
+                  />
+                  <SimilarityScore
+                              submissionID="1"
+                  />
+                  <SubmissionViewer
+                              closeModal={[Function]}
+                              drawerState={[Circular]}
+                              gradeSubmissionWithRubric={[Function]}
+                              size={
+                                          Object {
+                                                      "height": 200,
+                                                      "width": 200,
+                                                    }
+                              }
+                              submissionID="1"
+                              submissionProps={Object {}}
+                  />
+                  <BottomDrawer
+                              containerHeight={200}
+                              containerWidth={200}
+                              drawerState={[Circular]}
+                              renderHandleContent={[Function]}
+                  >
+                              <GradeTab
+                                          closeModal={[Function]}
+                                          dismissToolTip={undefined}
+                                          drawerState={[Circular]}
+                                          gradeSubmissionWithRubric={[Function]}
+                                          showToolTip={undefined}
+                                          submissionID="1"
+                                          submissionProps={Object {}}
+                                          unsavedChanges={null}
+                                          updateUnsavedChanges={[Function]}
+                              />
+                  </BottomDrawer>
+      </A11yGroup>,
+                "_rendering": false,
+                "_updater": [Circular],
+              },
+            },
+          },
+        ],
+        "registerCommentProgress": [Function],
+        "snapTo": [Function],
+        "unregisterCommentProgress": [Function],
+      }
+    }
+    gradeSubmissionWithRubric={[Function]}
+    size={
+      Object {
+        "height": 200,
+        "width": 200,
+      }
+    }
+    submissionID="1"
+    submissionProps={Object {}}
+  />
+  <BottomDrawer
+    containerHeight={200}
+    containerWidth={200}
+    drawerState={
+      DrawerState {
+        "commentProgress": Object {},
+        "currentSnap": 0,
+        "deltaY": 0,
+        "dragBegan": [Function],
+        "drawerDidSnap": [Function],
+        "drawers": Array [
+          SubmissionGrader {
+            "captureToolTip": [Function],
+            "changeTab": [Function],
+            "context": Object {},
+            "donePressed": [Function],
+            "onDragBegan": [Function],
+            "onLayout": [Function],
+            "props": Object {
+              "closeModal": [Function],
+              "drawerState": [Circular],
+              "gradeSubmissionWithRubric": [Function],
+              "submissionID": "1",
+              "submissionProps": Object {},
+            },
+            "refs": Object {},
+            "renderHandleContent": [Function],
+            "saveUnsavedChanges": [Function],
+            "snapTo": [Function],
+            "state": Object {
+              "height": 200,
+              "selectedTabIndex": -1,
+              "unsavedChanges": null,
+              "width": 200,
+            },
+            "updateUnsavedChanges": [Function],
+            "updater": Updater {
+              "_renderer": ReactShallowRenderer {
+                "_context": Object {},
+                "_element": <SubmissionGrader
+                  closeModal={[Function]}
+                  drawerState={[Circular]}
+                  gradeSubmissionWithRubric={[Function]}
+                  submissionID="1"
+                  submissionProps={Object {}}
+      />,
+                "_forcedUpdate": false,
+                "_instance": [Circular],
+                "_newState": Object {
+                  "height": 200,
+                  "selectedTabIndex": -1,
+                  "unsavedChanges": null,
+                  "width": 200,
+                },
+                "_rendered": <A11yGroup
+                  onLayout={[Function]}
+                  style={
+                              Object {
+                                          "flex": 1,
+                                        }
+                  }
+      >
+                  <ToolTip />
+                  <Header
+                              assignmentID={undefined}
+                              closeModal={[Function]}
+                              courseID={undefined}
+                              navigator={undefined}
+                              submissionID="1"
+                              submissionProps={Object {}}
+                              userID={undefined}
+                  />
+                  <SubmissionPicker
+                              submissionID="1"
+                              submissionProps={Object {}}
+                  />
+                  <SimilarityScore
+                              submissionID="1"
+                  />
+                  <SubmissionViewer
+                              closeModal={[Function]}
+                              drawerState={[Circular]}
+                              gradeSubmissionWithRubric={[Function]}
+                              size={
+                                          Object {
+                                                      "height": 200,
+                                                      "width": 200,
+                                                    }
+                              }
+                              submissionID="1"
+                              submissionProps={Object {}}
+                  />
+                  <BottomDrawer
+                              containerHeight={200}
+                              containerWidth={200}
+                              drawerState={[Circular]}
+                              renderHandleContent={[Function]}
+                  >
+                              <GradeTab
+                                          closeModal={[Function]}
+                                          dismissToolTip={undefined}
+                                          drawerState={[Circular]}
+                                          gradeSubmissionWithRubric={[Function]}
+                                          showToolTip={undefined}
+                                          submissionID="1"
+                                          submissionProps={Object {}}
+                                          unsavedChanges={null}
+                                          updateUnsavedChanges={[Function]}
+                              />
+                  </BottomDrawer>
+      </A11yGroup>,
+                "_rendering": false,
+                "_updater": [Circular],
+              },
+            },
+          },
+        ],
+        "registerCommentProgress": [Function],
+        "snapTo": [Function],
+        "unregisterCommentProgress": [Function],
+      }
+    }
+    renderHandleContent={[Function]}
+  >
+    <GradeTab
+      closeModal={[Function]}
+      drawerState={
+        DrawerState {
+          "commentProgress": Object {},
+          "currentSnap": 0,
+          "deltaY": 0,
+          "dragBegan": [Function],
+          "drawerDidSnap": [Function],
+          "drawers": Array [
+            SubmissionGrader {
+              "captureToolTip": [Function],
+              "changeTab": [Function],
+              "context": Object {},
+              "donePressed": [Function],
+              "onDragBegan": [Function],
+              "onLayout": [Function],
+              "props": Object {
+                "closeModal": [Function],
+                "drawerState": [Circular],
+                "gradeSubmissionWithRubric": [Function],
+                "submissionID": "1",
+                "submissionProps": Object {},
+              },
+              "refs": Object {},
+              "renderHandleContent": [Function],
+              "saveUnsavedChanges": [Function],
+              "snapTo": [Function],
+              "state": Object {
+                "height": 200,
+                "selectedTabIndex": -1,
+                "unsavedChanges": null,
+                "width": 200,
+              },
+              "updateUnsavedChanges": [Function],
+              "updater": Updater {
+                "_renderer": ReactShallowRenderer {
+                  "_context": Object {},
+                  "_element": <SubmissionGrader
+                    closeModal={[Function]}
+                    drawerState={[Circular]}
+                    gradeSubmissionWithRubric={[Function]}
+                    submissionID="1"
+                    submissionProps={Object {}}
+        />,
+                  "_forcedUpdate": false,
+                  "_instance": [Circular],
+                  "_newState": Object {
+                    "height": 200,
+                    "selectedTabIndex": -1,
+                    "unsavedChanges": null,
+                    "width": 200,
+                  },
+                  "_rendered": <A11yGroup
+                    onLayout={[Function]}
+                    style={
+                                Object {
+                                            "flex": 1,
+                                          }
+                    }
+        >
+                    <ToolTip />
+                    <Header
+                                assignmentID={undefined}
+                                closeModal={[Function]}
+                                courseID={undefined}
+                                navigator={undefined}
+                                submissionID="1"
+                                submissionProps={Object {}}
+                                userID={undefined}
+                    />
+                    <SubmissionPicker
+                                submissionID="1"
+                                submissionProps={Object {}}
+                    />
+                    <SimilarityScore
+                                submissionID="1"
+                    />
+                    <SubmissionViewer
+                                closeModal={[Function]}
+                                drawerState={[Circular]}
+                                gradeSubmissionWithRubric={[Function]}
+                                size={
+                                            Object {
+                                                        "height": 200,
+                                                        "width": 200,
+                                                      }
+                                }
+                                submissionID="1"
+                                submissionProps={Object {}}
+                    />
+                    <BottomDrawer
+                                containerHeight={200}
+                                containerWidth={200}
+                                drawerState={[Circular]}
+                                renderHandleContent={[Function]}
+                    >
+                                <GradeTab
+                                            closeModal={[Function]}
+                                            dismissToolTip={undefined}
+                                            drawerState={[Circular]}
+                                            gradeSubmissionWithRubric={[Function]}
+                                            showToolTip={undefined}
+                                            submissionID="1"
+                                            submissionProps={Object {}}
+                                            unsavedChanges={null}
+                                            updateUnsavedChanges={[Function]}
+                                />
+                    </BottomDrawer>
+        </A11yGroup>,
+                  "_rendering": false,
+                  "_updater": [Circular],
+                },
+              },
+            },
+          ],
+          "registerCommentProgress": [Function],
+          "snapTo": [Function],
+          "unregisterCommentProgress": [Function],
+        }
+      }
+      gradeSubmissionWithRubric={[Function]}
+      submissionID="1"
+      submissionProps={Object {}}
+      unsavedChanges={null}
+      updateUnsavedChanges={[Function]}
+    />
+  </BottomDrawer>
+</A11yGroup>
+`;
+
+exports[`SubmissionGrader renders wide 1`] = `
+<A11yGroup
+  onLayout={[Function]}
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <Header
+    closeModal={[Function]}
+    style={
+      Object {
+        "borderBottomColor": "#C7CDD1",
+        "borderBottomWidth": 0.5,
+        "paddingBottom": 16,
+      }
+    }
+    submissionID="1"
+    submissionProps={Object {}}
+  />
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "flexDirection": "row",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      <SubmissionPicker
+        submissionID="1"
+        submissionProps={Object {}}
+      />
+      <SimilarityScore
+        submissionID="1"
+      />
+      <SubmissionViewer
+        closeModal={[Function]}
+        drawerInset={0}
+        drawerState={
+          DrawerState {
+            "commentProgress": Object {},
+            "currentSnap": 0,
+            "deltaY": 0,
+            "dragBegan": [Function],
+            "drawerDidSnap": [Function],
+            "drawers": Array [
+              SubmissionGrader {
+                "captureToolTip": [Function],
+                "changeTab": [Function],
+                "context": Object {},
+                "donePressed": [Function],
+                "onDragBegan": [Function],
+                "onLayout": [Function],
+                "props": Object {
+                  "closeModal": [Function],
+                  "drawerState": [Circular],
+                  "gradeSubmissionWithRubric": [Function],
+                  "submissionID": "1",
+                  "submissionProps": Object {},
+                },
+                "refs": Object {},
+                "renderHandleContent": [Function],
+                "saveUnsavedChanges": [Function],
+                "snapTo": [Function],
+                "state": Object {
+                  "height": 200,
+                  "selectedTabIndex": -1,
+                  "unsavedChanges": null,
+                  "width": 200,
+                },
+                "updateUnsavedChanges": [Function],
+                "updater": Updater {
+                  "_renderer": ReactShallowRenderer {
+                    "_context": Object {},
+                    "_element": <SubmissionGrader
+                      closeModal={[Function]}
+                      drawerState={[Circular]}
+                      gradeSubmissionWithRubric={[Function]}
+                      submissionID="1"
+                      submissionProps={Object {}}
+          />,
+                    "_forcedUpdate": false,
+                    "_instance": [Circular],
+                    "_newState": Object {
+                      "height": 200,
+                      "selectedTabIndex": -1,
+                      "unsavedChanges": null,
+                      "width": 200,
+                    },
+                    "_rendered": <A11yGroup
+                      onLayout={[Function]}
+                      style={
+                                  Object {
+                                              "flex": 1,
+                                            }
+                      }
+          >
+                      <ToolTip />
+                      <Header
+                                  assignmentID={undefined}
+                                  closeModal={[Function]}
+                                  courseID={undefined}
+                                  navigator={undefined}
+                                  submissionID="1"
+                                  submissionProps={Object {}}
+                                  userID={undefined}
+                      />
+                      <SubmissionPicker
+                                  submissionID="1"
+                                  submissionProps={Object {}}
+                      />
+                      <SimilarityScore
+                                  submissionID="1"
+                      />
+                      <SubmissionViewer
+                                  closeModal={[Function]}
+                                  drawerState={[Circular]}
+                                  gradeSubmissionWithRubric={[Function]}
+                                  size={
+                                              Object {
+                                                          "height": 200,
+                                                          "width": 200,
+                                                        }
+                                  }
+                                  submissionID="1"
+                                  submissionProps={Object {}}
+                      />
+                      <BottomDrawer
+                                  containerHeight={200}
+                                  containerWidth={200}
+                                  drawerState={[Circular]}
+                                  renderHandleContent={[Function]}
+                      >
+                                  <GradeTab
+                                              closeModal={[Function]}
+                                              dismissToolTip={undefined}
+                                              drawerState={[Circular]}
+                                              gradeSubmissionWithRubric={[Function]}
+                                              showToolTip={undefined}
+                                              submissionID="1"
+                                              submissionProps={Object {}}
+                                              unsavedChanges={null}
+                                              updateUnsavedChanges={[Function]}
+                                  />
+                      </BottomDrawer>
+          </A11yGroup>,
+                    "_rendering": false,
+                    "_updater": [Circular],
+                  },
+                },
+              },
+              SubmissionGrader {
+                "captureToolTip": [Function],
+                "changeTab": [Function],
+                "context": Object {},
+                "donePressed": [Function],
+                "onDragBegan": [Function],
+                "onLayout": [Function],
+                "props": Object {
+                  "closeModal": [Function],
+                  "drawerState": [Circular],
+                  "gradeSubmissionWithRubric": [Function],
+                  "submissionID": "1",
+                  "submissionProps": Object {},
+                },
+                "refs": Object {},
+                "renderHandleContent": [Function],
+                "saveUnsavedChanges": [Function],
+                "snapTo": [Function],
+                "state": Object {
+                  "height": 200,
+                  "selectedTabIndex": -1,
+                  "unsavedChanges": null,
+                  "width": 1000,
+                },
+                "updateUnsavedChanges": [Function],
+                "updater": Updater {
+                  "_renderer": ReactShallowRenderer {
+                    "_context": Object {},
+                    "_element": <SubmissionGrader
+                      closeModal={[Function]}
+                      drawerState={[Circular]}
+                      gradeSubmissionWithRubric={[Function]}
+                      submissionID="1"
+                      submissionProps={Object {}}
+          />,
+                    "_forcedUpdate": false,
+                    "_instance": [Circular],
+                    "_newState": Object {
+                      "height": 200,
+                      "selectedTabIndex": -1,
+                      "unsavedChanges": null,
+                      "width": 1000,
+                    },
+                    "_rendered": <A11yGroup
+                      onLayout={[Function]}
+                      style={
+                                  Object {
+                                              "flex": 1,
+                                            }
+                      }
+          >
+                      <Header
+                                  assignmentID={undefined}
+                                  closeModal={[Function]}
+                                  courseID={undefined}
+                                  navigator={undefined}
+                                  style={
+                                              Object {
+                                                          "borderBottomColor": "#C7CDD1",
+                                                          "borderBottomWidth": 0.5,
+                                                          "paddingBottom": 16,
+                                                        }
+                                  }
+                                  submissionID="1"
+                                  submissionProps={Object {}}
+                                  userID={undefined}
+                      />
+                      <View
+                                  style={
+                                              Object {
+                                                          "flex": 1,
+                                                          "flexDirection": "row",
+                                                        }
+                                  }
+                      >
+                                  <View
+                                              style={
+                                                          Object {
+                                                                      "flex": 1,
+                                                                    }
+                                              }
+                                  >
+                                              <SubmissionPicker
+                                                          submissionID="1"
+                                                          submissionProps={Object {}}
+                                              />
+                                              <SimilarityScore
+                                                          submissionID="1"
+                                              />
+                                              <SubmissionViewer
+                                                          closeModal={[Function]}
+                                                          drawerInset={0}
+                                                          drawerState={[Circular]}
+                                                          gradeSubmissionWithRubric={[Function]}
+                                                          size={
+                                                                      Object {
+                                                                                  "height": 200,
+                                                                                  "width": 625,
+                                                                                }
+                                                          }
+                                                          submissionID="1"
+                                                          submissionProps={Object {}}
+                                              />
+                                  </View>
+                                  <View
+                                              style={
+                                                          Object {
+                                                                      "borderLeftColor": "#C7CDD1",
+                                                                      "borderLeftWidth": 0.5,
+                                                                      "paddingTop": 16,
+                                                                      "width": 375,
+                                                                    }
+                                              }
+                                  >
+                                              <View
+                                                          style={
+                                                                      Object {
+                                                                                  "borderBottomColor": "lightgray",
+                                                                                  "borderBottomWidth": 0.5,
+                                                                                  "paddingBottom": 8,
+                                                                                  "paddingHorizontal": 16,
+                                                                                }
+                                                          }
+                                              >
+                                                          <SegmentedControlIOS
+                                                                      onChange={[Function]}
+                                                                      selectedIndex={-1}
+                                                                      testID="speedgrader.segment-control"
+                                                                      tintColor="#374A59"
+                                                                      values={
+                                                                                  Array [
+                                                                                              "Grades",
+                                                                                              "Comments",
+                                                                                              "Files",
+                                                                                            ]
+                                                                      }
+                                                          />
+                                              </View>
+                                              <GradeTab
+                                                          closeModal={[Function]}
+                                                          dismissToolTip={undefined}
+                                                          drawerState={[Circular]}
+                                                          gradeSubmissionWithRubric={[Function]}
+                                                          showToolTip={undefined}
+                                                          submissionID="1"
+                                                          submissionProps={Object {}}
+                                                          unsavedChanges={null}
+                                                          updateUnsavedChanges={[Function]}
+                                              />
+                                  </View>
+                      </View>
+                      <ToolTip />
+          </A11yGroup>,
+                    "_rendering": false,
+                    "_updater": [Circular],
+                  },
+                },
+              },
+            ],
+            "registerCommentProgress": [Function],
+            "snapTo": [Function],
+            "unregisterCommentProgress": [Function],
+          }
+        }
+        gradeSubmissionWithRubric={[Function]}
+        size={
+          Object {
+            "height": 200,
+            "width": 625,
+          }
+        }
+        submissionID="1"
+        submissionProps={Object {}}
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "borderLeftColor": "#C7CDD1",
+          "borderLeftWidth": 0.5,
+          "paddingTop": 16,
+          "width": 375,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "borderBottomColor": "lightgray",
+            "borderBottomWidth": 0.5,
+            "paddingBottom": 8,
+            "paddingHorizontal": 16,
+          }
+        }
+      >
+        <SegmentedControlIOS
+          onChange={[Function]}
+          selectedIndex={-1}
+          testID="speedgrader.segment-control"
+          tintColor="#374A59"
+          values={
+            Array [
+              "Grades",
+              "Comments",
+              "Files",
+            ]
+          }
+        />
+      </View>
+      <GradeTab
+        closeModal={[Function]}
+        drawerState={
+          DrawerState {
+            "commentProgress": Object {},
+            "currentSnap": 0,
+            "deltaY": 0,
+            "dragBegan": [Function],
+            "drawerDidSnap": [Function],
+            "drawers": Array [
+              SubmissionGrader {
+                "captureToolTip": [Function],
+                "changeTab": [Function],
+                "context": Object {},
+                "donePressed": [Function],
+                "onDragBegan": [Function],
+                "onLayout": [Function],
+                "props": Object {
+                  "closeModal": [Function],
+                  "drawerState": [Circular],
+                  "gradeSubmissionWithRubric": [Function],
+                  "submissionID": "1",
+                  "submissionProps": Object {},
+                },
+                "refs": Object {},
+                "renderHandleContent": [Function],
+                "saveUnsavedChanges": [Function],
+                "snapTo": [Function],
+                "state": Object {
+                  "height": 200,
+                  "selectedTabIndex": -1,
+                  "unsavedChanges": null,
+                  "width": 200,
+                },
+                "updateUnsavedChanges": [Function],
+                "updater": Updater {
+                  "_renderer": ReactShallowRenderer {
+                    "_context": Object {},
+                    "_element": <SubmissionGrader
+                      closeModal={[Function]}
+                      drawerState={[Circular]}
+                      gradeSubmissionWithRubric={[Function]}
+                      submissionID="1"
+                      submissionProps={Object {}}
+          />,
+                    "_forcedUpdate": false,
+                    "_instance": [Circular],
+                    "_newState": Object {
+                      "height": 200,
+                      "selectedTabIndex": -1,
+                      "unsavedChanges": null,
+                      "width": 200,
+                    },
+                    "_rendered": <A11yGroup
+                      onLayout={[Function]}
+                      style={
+                                  Object {
+                                              "flex": 1,
+                                            }
+                      }
+          >
+                      <ToolTip />
+                      <Header
+                                  assignmentID={undefined}
+                                  closeModal={[Function]}
+                                  courseID={undefined}
+                                  navigator={undefined}
+                                  submissionID="1"
+                                  submissionProps={Object {}}
+                                  userID={undefined}
+                      />
+                      <SubmissionPicker
+                                  submissionID="1"
+                                  submissionProps={Object {}}
+                      />
+                      <SimilarityScore
+                                  submissionID="1"
+                      />
+                      <SubmissionViewer
+                                  closeModal={[Function]}
+                                  drawerState={[Circular]}
+                                  gradeSubmissionWithRubric={[Function]}
+                                  size={
+                                              Object {
+                                                          "height": 200,
+                                                          "width": 200,
+                                                        }
+                                  }
+                                  submissionID="1"
+                                  submissionProps={Object {}}
+                      />
+                      <BottomDrawer
+                                  containerHeight={200}
+                                  containerWidth={200}
+                                  drawerState={[Circular]}
+                                  renderHandleContent={[Function]}
+                      >
+                                  <GradeTab
+                                              closeModal={[Function]}
+                                              dismissToolTip={undefined}
+                                              drawerState={[Circular]}
+                                              gradeSubmissionWithRubric={[Function]}
+                                              showToolTip={undefined}
+                                              submissionID="1"
+                                              submissionProps={Object {}}
+                                              unsavedChanges={null}
+                                              updateUnsavedChanges={[Function]}
+                                  />
+                      </BottomDrawer>
+          </A11yGroup>,
+                    "_rendering": false,
+                    "_updater": [Circular],
+                  },
+                },
+              },
+              SubmissionGrader {
+                "captureToolTip": [Function],
+                "changeTab": [Function],
+                "context": Object {},
+                "donePressed": [Function],
+                "onDragBegan": [Function],
+                "onLayout": [Function],
+                "props": Object {
+                  "closeModal": [Function],
+                  "drawerState": [Circular],
+                  "gradeSubmissionWithRubric": [Function],
+                  "submissionID": "1",
+                  "submissionProps": Object {},
+                },
+                "refs": Object {},
+                "renderHandleContent": [Function],
+                "saveUnsavedChanges": [Function],
+                "snapTo": [Function],
+                "state": Object {
+                  "height": 200,
+                  "selectedTabIndex": -1,
+                  "unsavedChanges": null,
+                  "width": 1000,
+                },
+                "updateUnsavedChanges": [Function],
+                "updater": Updater {
+                  "_renderer": ReactShallowRenderer {
+                    "_context": Object {},
+                    "_element": <SubmissionGrader
+                      closeModal={[Function]}
+                      drawerState={[Circular]}
+                      gradeSubmissionWithRubric={[Function]}
+                      submissionID="1"
+                      submissionProps={Object {}}
+          />,
+                    "_forcedUpdate": false,
+                    "_instance": [Circular],
+                    "_newState": Object {
+                      "height": 200,
+                      "selectedTabIndex": -1,
+                      "unsavedChanges": null,
+                      "width": 1000,
+                    },
+                    "_rendered": <A11yGroup
+                      onLayout={[Function]}
+                      style={
+                                  Object {
+                                              "flex": 1,
+                                            }
+                      }
+          >
+                      <Header
+                                  assignmentID={undefined}
+                                  closeModal={[Function]}
+                                  courseID={undefined}
+                                  navigator={undefined}
+                                  style={
+                                              Object {
+                                                          "borderBottomColor": "#C7CDD1",
+                                                          "borderBottomWidth": 0.5,
+                                                          "paddingBottom": 16,
+                                                        }
+                                  }
+                                  submissionID="1"
+                                  submissionProps={Object {}}
+                                  userID={undefined}
+                      />
+                      <View
+                                  style={
+                                              Object {
+                                                          "flex": 1,
+                                                          "flexDirection": "row",
+                                                        }
+                                  }
+                      >
+                                  <View
+                                              style={
+                                                          Object {
+                                                                      "flex": 1,
+                                                                    }
+                                              }
+                                  >
+                                              <SubmissionPicker
+                                                          submissionID="1"
+                                                          submissionProps={Object {}}
+                                              />
+                                              <SimilarityScore
+                                                          submissionID="1"
+                                              />
+                                              <SubmissionViewer
+                                                          closeModal={[Function]}
+                                                          drawerInset={0}
+                                                          drawerState={[Circular]}
+                                                          gradeSubmissionWithRubric={[Function]}
+                                                          size={
+                                                                      Object {
+                                                                                  "height": 200,
+                                                                                  "width": 625,
+                                                                                }
+                                                          }
+                                                          submissionID="1"
+                                                          submissionProps={Object {}}
+                                              />
+                                  </View>
+                                  <View
+                                              style={
+                                                          Object {
+                                                                      "borderLeftColor": "#C7CDD1",
+                                                                      "borderLeftWidth": 0.5,
+                                                                      "paddingTop": 16,
+                                                                      "width": 375,
+                                                                    }
+                                              }
+                                  >
+                                              <View
+                                                          style={
+                                                                      Object {
+                                                                                  "borderBottomColor": "lightgray",
+                                                                                  "borderBottomWidth": 0.5,
+                                                                                  "paddingBottom": 8,
+                                                                                  "paddingHorizontal": 16,
+                                                                                }
+                                                          }
+                                              >
+                                                          <SegmentedControlIOS
+                                                                      onChange={[Function]}
+                                                                      selectedIndex={-1}
+                                                                      testID="speedgrader.segment-control"
+                                                                      tintColor="#374A59"
+                                                                      values={
+                                                                                  Array [
+                                                                                              "Grades",
+                                                                                              "Comments",
+                                                                                              "Files",
+                                                                                            ]
+                                                                      }
+                                                          />
+                                              </View>
+                                              <GradeTab
+                                                          closeModal={[Function]}
+                                                          dismissToolTip={undefined}
+                                                          drawerState={[Circular]}
+                                                          gradeSubmissionWithRubric={[Function]}
+                                                          showToolTip={undefined}
+                                                          submissionID="1"
+                                                          submissionProps={Object {}}
+                                                          unsavedChanges={null}
+                                                          updateUnsavedChanges={[Function]}
+                                              />
+                                  </View>
+                      </View>
+                      <ToolTip />
+          </A11yGroup>,
+                    "_rendering": false,
+                    "_updater": [Circular],
+                  },
+                },
+              },
+            ],
+            "registerCommentProgress": [Function],
+            "snapTo": [Function],
+            "unregisterCommentProgress": [Function],
+          }
+        }
+        gradeSubmissionWithRubric={[Function]}
+        submissionID="1"
+        submissionProps={Object {}}
+        unsavedChanges={null}
+        updateUnsavedChanges={[Function]}
+      />
+    </View>
+  </View>
+  <ToolTip />
+</A11yGroup>
+`;

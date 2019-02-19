@@ -1,0 +1,171 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SubmissionStatus status \`excused\` renders properly 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={
+    Array [
+      Object {
+        "fontFamily": ".SFUIDisplay",
+      },
+      Object {
+        "color": "#2D3B45",
+        "fontSize": 16,
+      },
+      Array [
+        Object {
+          "fontSize": 14,
+          "paddingTop": 2,
+        },
+        undefined,
+        Object {
+          "color": "#8B969E",
+        },
+      ],
+      Object {
+        "fontFamily": ".SFUIDisplay",
+      },
+    ]
+  }
+>
+  Excused
+</Text>
+`;
+
+exports[`SubmissionStatus status \`late\` renders properly 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={
+    Array [
+      Object {
+        "fontFamily": ".SFUIDisplay",
+      },
+      Object {
+        "color": "#2D3B45",
+        "fontSize": 16,
+      },
+      Array [
+        Object {
+          "fontSize": 14,
+          "paddingTop": 2,
+        },
+        undefined,
+        Object {
+          "color": "#FC5E13",
+        },
+      ],
+      Object {
+        "fontFamily": ".SFUIDisplay",
+      },
+    ]
+  }
+>
+  Late
+</Text>
+`;
+
+exports[`SubmissionStatus status \`missing\` renders properly 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={
+    Array [
+      Object {
+        "fontFamily": ".SFUIDisplay",
+      },
+      Object {
+        "color": "#2D3B45",
+        "fontSize": 16,
+      },
+      Array [
+        Object {
+          "fontSize": 14,
+          "paddingTop": 2,
+        },
+        undefined,
+        Object {
+          "color": "#EE0612",
+        },
+      ],
+      Object {
+        "fontFamily": ".SFUIDisplay",
+      },
+    ]
+  }
+>
+  Missing
+</Text>
+`;
+
+exports[`SubmissionStatus status \`none\` renders properly 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={
+    Array [
+      Object {
+        "fontFamily": ".SFUIDisplay",
+      },
+      Object {
+        "color": "#2D3B45",
+        "fontSize": 16,
+      },
+      Array [
+        Object {
+          "fontSize": 14,
+          "paddingTop": 2,
+        },
+        undefined,
+        Object {
+          "color": "#8B969E",
+        },
+      ],
+      Object {
+        "fontFamily": ".SFUIDisplay",
+      },
+    ]
+  }
+>
+  Not Submitted
+</Text>
+`;
+
+exports[`SubmissionStatus status \`submitted\` renders properly 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={
+    Array [
+      Object {
+        "fontFamily": ".SFUIDisplay",
+      },
+      Object {
+        "color": "#2D3B45",
+        "fontSize": 16,
+      },
+      Array [
+        Object {
+          "fontSize": 14,
+          "paddingTop": 2,
+        },
+        undefined,
+        Object {
+          "color": "#07AF1F",
+        },
+      ],
+      Object {
+        "fontFamily": ".SFUIDisplay",
+      },
+    ]
+  }
+>
+  Submitted
+</Text>
+`;

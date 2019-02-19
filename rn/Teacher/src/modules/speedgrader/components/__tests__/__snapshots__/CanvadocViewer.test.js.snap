@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Canvadoc viewer renders the native component 1`] = `
+<_class
+  config={
+    Object {
+      "drawerInset": 0,
+      "previewPath": "/",
+    }
+  }
+/>
+`;

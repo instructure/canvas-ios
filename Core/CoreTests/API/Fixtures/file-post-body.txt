@@ -1,0 +1,10 @@
+--3klfenalksjflkjoi9auf89eshajsnl3kjnwal
+Content-Disposition: form-data; name="filename"
+
+fileupload.txt
+--3klfenalksjflkjoi9auf89eshajsnl3kjnwal
+Content-Disposition: form-data; name="file"; filename="fileupload.txt"
+
+This is a test.
+
+--3klfenalksjflkjoi9auf89eshajsnl3kjnwal--

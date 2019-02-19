@@ -1,0 +1,303 @@
+/* <String> <Int> of <Int> */
+"%@ %d of %d" = "%3$d 的 %1$@ %2$d ";
+
+/* No comment provided by engineer. */
+"%@ is due at %@" = "%1$@截止日期%2$@";
+
+/* No comment provided by engineer. */
+"%@ to %@" = "%1$@ 到 %2$@";
+
+/* No comment provided by engineer. */
+"%@ will begin at %@" = "%1$@开始日期%2$@";
+
+/* Percentage field placeholder */
+"1-100%" = "1-100%";
+
+/* Server Error Message */
+"A server error has occurred.  Please try again." = "服务器出现错误。请再次尝试。";
+
+/* Label for button that allows admin to Act as User */
+"Act as User" = "临时代理用户";
+
+/* Label displayed when logged in as an admin */
+"Admin" = "管理员";
+
+/* Alert Section Header */
+"Alert me when:" = "通知我当：";
+
+/* Alerts Tab */
+"Alerts" = "警告";
+
+/* No comment provided by engineer. */
+"An Error Occurred" = "发生错误";
+
+/* Generic Network Error Message */
+"An unexpected error occurred.  Please try again." = "出现意外错误。请再次尝试。";
+
+/* No comment provided by engineer. */
+"Announcement" = "公告";
+
+/* No comment provided by engineer. */
+"Assignment" = "作业";
+
+/* Assignment Grade High On Description */
+"Assignment grade above" = "以上作业成绩";
+
+/* Assignment Grade Low On Description */
+"Assignment grade below" = "以下作业成绩";
+
+/* Assignment Missing Description */
+"Assignment missing" = "没交作业";
+
+/* No comment provided by engineer. */
+"Assignment reminder" = "作业提醒";
+
+/* No comment provided by engineer. */
+"Cache cleared" = "清除缓存";
+
+/* Cancel button title */
+"Cancel" = "取消";
+
+/* Percent value is over 100 */
+"Cannot use percent that is higher than 100" = "不可以使用超过百分之100";
+
+/* Percent value is under 0 */
+"Cannot use percent that is less than 0" = "不可以使用小于百分之0";
+
+/* Cancel the question/suggestion form */
+"Casual question or suggestion" = "简单问题或建议";
+
+/* Empty Alerts Text */
+"Caught up on Alerts" = "赶上了通知";
+
+/* No comment provided by engineer. */
+"Choose a student" = "选择一个学生";
+
+/* title for status selection field */
+"Choose One" = "选择一个";
+
+/* Close Button Title */
+"Close" = "关闭";
+
+/* Course Announcement Description */
+"Course announcements" = "课程通告";
+
+/* Course Grade High On Description */
+"Course grade above" = "以上课程成绩";
+
+/* Course Grade Low On Description */
+"Course grade below" = "以下课程成绩";
+
+/* Courses Tab */
+"Courses" = "课程";
+
+/* No comment provided by engineer. */
+"Current student: %@, tap to switch students" = "当前学生：%@，点击以切换学生";
+
+/* Title for field */
+"Describe your problem" = "描述您的问题";
+
+/* No comment provided by engineer. */
+"Discussion" = "讨论";
+
+/* No comment provided by engineer. */
+"Dismiss" = "解散";
+
+/* No comment provided by engineer. */
+"Error" = "错误";
+
+/* No comment provided by engineer. */
+"Event" = "活动";
+
+/* No comment provided by engineer. */
+"Event reminder" = "活动提醒";
+
+/* No comment provided by engineer. */
+"Excused" = "免除";
+
+/* Status level for issue being reported */
+"Extremely critical emergency" = "十万火急的紧急事件";
+
+/* High Assignment Grade too Low */
+"High assignment grade cannot be lower than low assignment grade" = "得分高的作业不能低于得分低的作业";
+
+/* High Course Grade too Low */
+"High course grade cannot be lower than low course grade" = "得分高的课程不能低于得分低的课程";
+
+/* Status level for issue being reported */
+"I can't get things done until fixed" = "我无法办事直到修复为止";
+
+/* Status level for issue being reported */
+"I need help but it's not urgent" = "我需要帮助，但不是迫切";
+
+/* Impact Title */
+"Impact:" = "影响：";
+
+/* No comment provided by engineer. */
+"In-Class" = "在课堂";
+
+/* Institution Announcement Description */
+"Institution announcements" = "机构通告";
+
+/* Title for an alert view */
+"Invalid Input" = "输入无效";
+
+/* Support Ticket Invalid Input Message */
+"Invalid Input.  Check fields and try again." = "输入无效。请检查字段，并重试。";
+
+/* Last Week Button Accessibility Label */
+"Last Week" = "上个星期";
+
+/* No comment provided by engineer. */
+"Late" = "迟到、迟交";
+
+/* No comment provided by engineer. */
+"Late: %@" = "迟交：%@";
+
+/* No comment provided by engineer. */
+"Late: %@ (%@/%@)" = "迟交：%1$@ (%2$@/%3$@)";
+
+/* Low Assignment Grade too High */
+"Low assignment grade cannot be higher than high assignment grade" = "得分低的作业不能高于得分高的作业 ";
+
+/* Low Course Grade too High */
+"Low course grade cannot be higher than high course grade" = " 得分低的课程不能高于得分高的课程 ";
+
+/* Title of the manage children screen. This screen is used to add/remove children that a parent is observing. */
+"Manage Children" = "管理儿童";
+
+/* No comment provided by engineer. */
+"Missing" = "丢失";
+
+/* No comment provided by engineer. */
+"Missing: (-/%@)" = "丢失：(-/%@)";
+
+/* Generic Network Error Title */
+"Network Error" = "网络错误";
+
+/* Next Week Button Accessibility Label */
+"Next Week" = "下个星期";
+
+/* Empty Courses Text */
+"No Courses" = "没有课程";
+
+/* Title for label when no grade has been assigned to the course */
+"No Grade" = "没有评分";
+
+/* Error message */
+"No installed apps support opening this file" = "没有安装的应用程序支持打开此文件";
+
+/* Empty Students Text */
+"No Students" = "没有学生";
+
+/* Not Authorized Error Title */
+"Not Authorized" = "未获授权";
+
+/* Not Found Error Title */
+"Not Found" = "未找到";
+
+/* Empty Calendar Events Text */
+"Nothing this week" = "本周没事";
+
+/* OK Button Title */
+"OK" = "OK";
+
+/* Open a url in the application Safari */
+"Open in Safari" = "在Safari中打开";
+
+/* Open file in another application */
+"Open in..." = "在...打开";
+
+/* No comment provided by engineer. */
+"Permission Needed" = "需要权限";
+
+/* No comment provided by engineer. */
+"Quiz" = "测验";
+
+/* Support Ticket Creation Failed */
+"Request Failed!  Check network and try again!" = "请求失败！请检查网络，并重试！";
+
+/* Not Found Error Message */
+"Resource not found.  Please try again." = "没有找到资源。请再次尝试。";
+
+/* Select Impact Placeholder */
+"Select Impact" = "选择影响";
+
+/* Server Error Title */
+"Server Error" = "服务器错误";
+
+/* No comment provided by engineer. */
+"Settings" = "设置";
+
+/* Status level for issue being reported */
+"Something is broken but I can work around it" = "某东西坏了，但我可以修复它";
+
+/* Title for the subject field */
+"Subject" = "主题";
+
+/* No comment provided by engineer. */
+"Submitted" = "提交";
+
+/* No comment provided by engineer. */
+"Submitted: %@" = "提交：%@";
+
+/* No comment provided by engineer. */
+"Submitted: %@ (%@/%@)" = "提交：%1$@ (%2$@/%3$@)";
+
+/* Syllabus Button Title */
+"Syllabus" = "教学大纲";
+
+/* Directions in the admin view */
+"Tap to start viewing Canvas as another person." = "轻触以开始以另一个人的身份查看 Canvas。";
+
+/* Support Ticket Created Successfully */
+"Thanks, your request was received!" = "谢谢，您的请求被接受！";
+
+/* Error message */
+"There are no actions for this item" = "此项目没有动作";
+
+/* AlertKit Database Load Failure Message */
+"There was a problem loading the AlertKit database file." = "加载AlertKit数据库文件时出现问题。";
+
+/* Airwolf database error message */
+"There was a problem loading the database." = "加载数据库时出现问题。";
+
+/* No comment provided by engineer. */
+"There was an error loading your content. If it  is an audio or video upload it may still be processing." = "加载您的内容时出现错误。如果上传音频或视频，可能还正在处理中。";
+
+/* No comment provided by engineer. */
+"This announcement has expired." = "此公告已过期。";
+
+/* No comment provided by engineer. */
+"This student's courses may not be published yet." = "此学生的课程可能尚未发布。";
+
+/* Unknown T`hreshold Description */
+"Unknown" = "未知";
+
+/* Default name given a user until we find their real name */
+"Unknown User" = "未知用户";
+
+/* Default user name, the computer-friendly version of their name, until we find their real user name */
+"Unknown User Name" = "未知用户名";
+
+/* No comment provided by engineer. */
+"Unread" = "未读";
+
+/* Calendar Tab */
+"Week" = "周";
+
+/* Header title of admin view */
+"Welcome!" = "欢迎！";
+
+/* Title for field */
+"What can we do better?" = "我们如何能做得更好？";
+
+/* Not Authorized Error Message */
+"You are unauthorized to access this information.  Check your user permissions and try again." = "您没有访问此信息的权限。 检查您的用户权限并再次尝试。";
+
+/* No comment provided by engineer. */
+"You must allow notifications in Settings to set reminders." = "您必须允许“设置”中的通知设置提醒。";
+
+/* Title for the email field */
+"Your Email" = "您的电子邮件";
+

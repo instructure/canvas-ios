@@ -1,0 +1,15 @@
+/* Class = "UITabBarItem"; title = "Courses"; ObjectID = "BPk-vK-62u"; */
+"BPk-vK-62u.title" = "Fag";
+
+/* Class = "UILabel"; text = "Peter"; ObjectID = "JVX-Up-gUl"; */
+"JVX-Up-gUl.text" = "Peter";
+
+/* Class = "UIButton"; accessibilityLabel = "Settings"; ObjectID = "LhY-UH-BvJ"; */
+"LhY-UH-BvJ.accessibilityLabel" = "Innstillinger";
+
+/* Class = "UITabBarItem"; title = "Alerts"; ObjectID = "nta-AM-F42"; */
+"nta-AM-F42.title" = "Varsler";
+
+/* Class = "UITabBarItem"; title = "Week"; ObjectID = "W2P-Wd-gLR"; */
+"W2P-Wd-gLR.title" = "Uke";
+

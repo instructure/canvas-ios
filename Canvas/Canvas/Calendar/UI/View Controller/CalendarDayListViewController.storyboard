@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="4VK-NU-6rW">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Calendar Day List View Controller-->
+        <scene sceneID="6kg-cn-e9u">
+            <objects>
+                <tableViewController id="4VK-NU-6rW" customClass="CalendarDayListViewController" customModule="Canvas" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="94" sectionHeaderHeight="22" sectionFooterHeight="22" id="Vu5-2c-emG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CalendarDayListCell" id="MsL-ec-oah" customClass="CalendarDayListCell" customModule="CalendarUIKit">
+                                <rect key="frame" x="0.0" y="22" width="375" height="94"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MsL-ec-oah" id="SdH-hy-ELG">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="93.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g6P-jb-cKX">
+                                            <rect key="frame" x="5" y="5" width="365" height="83"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qPU-FB-0sr">
+                                                    <rect key="frame" x="10" y="10" width="34" height="34"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="34" id="0Ze-FA-2OW"/>
+                                                        <constraint firstAttribute="height" constant="34" id="T0p-zh-s01"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="255" text="Calendar Event Title" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vfa-ux-jlA">
+                                                    <rect key="frame" x="52" y="10" width="160.5" height="20"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                    <color key="textColor" red="0.75" green="0.75" blue="0.75" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Course" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MNU-uh-oio">
+                                                    <rect key="frame" x="52" y="32" width="40.5" height="14"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due: 10:45 PM" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nEB-tb-J9y">
+                                                    <rect key="frame" x="52" y="46" width="77" height="14"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="qPU-FB-0sr" firstAttribute="top" secondItem="vfa-ux-jlA" secondAttribute="top" id="4gg-n6-ApH"/>
+                                                <constraint firstItem="qPU-FB-0sr" firstAttribute="leading" secondItem="g6P-jb-cKX" secondAttribute="leading" constant="10" id="9TA-06-xjB"/>
+                                                <constraint firstItem="nEB-tb-J9y" firstAttribute="top" secondItem="MNU-uh-oio" secondAttribute="bottom" id="LxL-ZO-MMv"/>
+                                                <constraint firstItem="vfa-ux-jlA" firstAttribute="leading" secondItem="qPU-FB-0sr" secondAttribute="trailing" constant="8" id="N8p-Mn-Wjj"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="nEB-tb-J9y" secondAttribute="bottom" constant="10" id="Rdg-Y6-md7"/>
+                                                <constraint firstItem="MNU-uh-oio" firstAttribute="leading" secondItem="nEB-tb-J9y" secondAttribute="leading" id="Sem-ai-xXL"/>
+                                                <constraint firstItem="MNU-uh-oio" firstAttribute="top" secondItem="vfa-ux-jlA" secondAttribute="bottom" constant="2" id="U6l-wY-prr"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="qPU-FB-0sr" secondAttribute="bottom" constant="10" id="W2q-dE-Vzr"/>
+                                                <constraint firstItem="vfa-ux-jlA" firstAttribute="leading" secondItem="MNU-uh-oio" secondAttribute="leading" id="d1L-oU-74P"/>
+                                                <constraint firstItem="qPU-FB-0sr" firstAttribute="top" secondItem="g6P-jb-cKX" secondAttribute="top" constant="10" id="zkz-a9-iU2"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="vfa-ux-jlA" secondAttribute="trailing" constant="10" id="zq6-uP-o7p"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="g6P-jb-cKX" secondAttribute="trailing" constant="5" id="Zai-i0-azs"/>
+                                        <constraint firstAttribute="bottom" secondItem="g6P-jb-cKX" secondAttribute="bottom" constant="5" id="Zav-AM-30S"/>
+                                        <constraint firstItem="g6P-jb-cKX" firstAttribute="top" secondItem="SdH-hy-ELG" secondAttribute="top" constant="5" id="ciB-vB-WZK"/>
+                                        <constraint firstItem="g6P-jb-cKX" firstAttribute="leading" secondItem="SdH-hy-ELG" secondAttribute="leading" constant="5" id="xtt-NZ-M3z"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="containerView" destination="g6P-jb-cKX" id="kfl-J1-C7W"/>
+                                    <outlet property="courseLabel" destination="MNU-uh-oio" id="F9r-f8-G8z"/>
+                                    <outlet property="dueLabel" destination="nEB-tb-J9y" id="jQL-8d-2FO"/>
+                                    <outlet property="titleLabel" destination="vfa-ux-jlA" id="WvS-SY-DCY"/>
+                                    <outlet property="typeImage" destination="qPU-FB-0sr" id="dXP-zY-KXD"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="4VK-NU-6rW" id="QEv-GY-gS6"/>
+                            <outlet property="delegate" destination="4VK-NU-6rW" id="RFQ-kd-zRq"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ccQ-V1-mO6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="300" y="452"/>
+        </scene>
+    </scenes>
+</document>

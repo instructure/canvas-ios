@@ -1,0 +1,303 @@
+/* <String> <Int> of <Int> */
+"%@ %d of %d" = "%1$@ %2$d od %3$d";
+
+/* No comment provided by engineer. */
+"%@ is due at %@" = "%1$@ ima rok ob %2$@";
+
+/* No comment provided by engineer. */
+"%@ to %@" = "%1$@ naslovnik %2$@";
+
+/* No comment provided by engineer. */
+"%@ will begin at %@" = "%1$@ se začne ob %2$@";
+
+/* Percentage field placeholder */
+"1-100%" = "1–100 %";
+
+/* Server Error Message */
+"A server error has occurred.  Please try again." = "Prišlo je do napake strežnika.  Poskusite znova.";
+
+/* Label for button that allows admin to Act as User */
+"Act as User" = "Nastopajoči v vlogi uporabnika";
+
+/* Label displayed when logged in as an admin */
+"Admin" = "Skrbnik";
+
+/* Alert Section Header */
+"Alert me when:" = "Obvesti me, ko:";
+
+/* Alerts Tab */
+"Alerts" = "Opozorila";
+
+/* No comment provided by engineer. */
+"An Error Occurred" = "Prišlo je do napake.";
+
+/* Generic Network Error Message */
+"An unexpected error occurred.  Please try again." = "Prišlo je do nepričakovane napake.  Poskusite znova.";
+
+/* No comment provided by engineer. */
+"Announcement" = "Obvestilo";
+
+/* No comment provided by engineer. */
+"Assignment" = "Naloga";
+
+/* Assignment Grade High On Description */
+"Assignment grade above" = "Ocena pri nalogi višja od";
+
+/* Assignment Grade Low On Description */
+"Assignment grade below" = "Ocena pri nalogi nižja od";
+
+/* Assignment Missing Description */
+"Assignment missing" = "Manjkajoča naloga";
+
+/* No comment provided by engineer. */
+"Assignment reminder" = "Opomnik za nalogo";
+
+/* No comment provided by engineer. */
+"Cache cleared" = "Predpomnilnik je počiščen.";
+
+/* Cancel button title */
+"Cancel" = "Prekliči";
+
+/* Percent value is over 100 */
+"Cannot use percent that is higher than 100" = "Ni mogoče uporabiti odstotka, ki je večji od 100.";
+
+/* Percent value is under 0 */
+"Cannot use percent that is less than 0" = "Ni mogoče uporabiti odstotka, ki je manjši od 0.";
+
+/* Cancel the question/suggestion form */
+"Casual question or suggestion" = "Naključno vprašanje ali predlog";
+
+/* Empty Alerts Text */
+"Caught up on Alerts" = "Seznanitev z opozorili";
+
+/* No comment provided by engineer. */
+"Choose a student" = "Izberi študenta";
+
+/* title for status selection field */
+"Choose One" = "Izberi eno";
+
+/* Close Button Title */
+"Close" = "Zapri";
+
+/* Course Announcement Description */
+"Course announcements" = "Obvestila o predmetu";
+
+/* Course Grade High On Description */
+"Course grade above" = "Ocena pri predmetu višja od";
+
+/* Course Grade Low On Description */
+"Course grade below" = "Ocena pri predmetu nižja od";
+
+/* Courses Tab */
+"Courses" = "Predmeti";
+
+/* No comment provided by engineer. */
+"Current student: %@, tap to switch students" = "Trenutni študent: %@, tapnite za preklop študentov.";
+
+/* Title for field */
+"Describe your problem" = "Opišite težavo.";
+
+/* No comment provided by engineer. */
+"Discussion" = "Razprava";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Opusti";
+
+/* No comment provided by engineer. */
+"Error" = "Napaka";
+
+/* No comment provided by engineer. */
+"Event" = "Dogodek";
+
+/* No comment provided by engineer. */
+"Event reminder" = "Opozorilo o dogodku";
+
+/* No comment provided by engineer. */
+"Excused" = "Opravičeno";
+
+/* Status level for issue being reported */
+"Extremely critical emergency" = "Skrajno kritični nujni primer";
+
+/* High Assignment Grade too Low */
+"High assignment grade cannot be lower than low assignment grade" = "Visoka ocena naloge ne more biti nižja od nizke ocene naloge.";
+
+/* High Course Grade too Low */
+"High course grade cannot be lower than low course grade" = "Visoka ocena predmeta ne more biti nižja od nizke ocene predmeta.";
+
+/* Status level for issue being reported */
+"I can't get things done until fixed" = "Zadev ne morem opraviti, dokler ni rešeno.";
+
+/* Status level for issue being reported */
+"I need help but it's not urgent" = "Potrebujem pomoč, ni pa nujno.";
+
+/* Impact Title */
+"Impact:" = "Vpliv:";
+
+/* No comment provided by engineer. */
+"In-Class" = "V razredu";
+
+/* Institution Announcement Description */
+"Institution announcements" = "Obvestila ustanove";
+
+/* Title for an alert view */
+"Invalid Input" = "Neveljaven vnos";
+
+/* Support Ticket Invalid Input Message */
+"Invalid Input.  Check fields and try again." = "Neveljaven vnos.  Preverite polja in poskusite znova.";
+
+/* Last Week Button Accessibility Label */
+"Last Week" = "Prejšnji teden";
+
+/* No comment provided by engineer. */
+"Late" = "Zamuda";
+
+/* No comment provided by engineer. */
+"Late: %@" = "Zamuda: %@";
+
+/* No comment provided by engineer. */
+"Late: %@ (%@/%@)" = "Zamuda: %1$@ (%2$@/%3$@)";
+
+/* Low Assignment Grade too High */
+"Low assignment grade cannot be higher than high assignment grade" = "Nizka ocena naloge ne more biti višja od visoke ocene naloge.";
+
+/* Low Course Grade too High */
+"Low course grade cannot be higher than high course grade" = "Nizka ocena predmeta ne more biti višja od visoke ocene predmeta.";
+
+/* Title of the manage children screen. This screen is used to add/remove children that a parent is observing. */
+"Manage Children" = "Urejaj otroke";
+
+/* No comment provided by engineer. */
+"Missing" = "Manjkajoče";
+
+/* No comment provided by engineer. */
+"Missing: (-/%@)" = "Manjkajoče: (–/%@)";
+
+/* Generic Network Error Title */
+"Network Error" = "Napaka v omrežju";
+
+/* Next Week Button Accessibility Label */
+"Next Week" = "Naslednji teden";
+
+/* Empty Courses Text */
+"No Courses" = "Ni predmetov.";
+
+/* Title for label when no grade has been assigned to the course */
+"No Grade" = "Ni ocen.";
+
+/* Error message */
+"No installed apps support opening this file" = "Nobena nameščena aplikacija ne podpira odpiranja te datoteke.";
+
+/* Empty Students Text */
+"No Students" = "Ni študentov.";
+
+/* Not Authorized Error Title */
+"Not Authorized" = "Ni pooblastila.";
+
+/* Not Found Error Title */
+"Not Found" = "Ni mogoče najti.";
+
+/* Empty Calendar Events Text */
+"Nothing this week" = "Ta teden ni ničesar.";
+
+/* OK Button Title */
+"OK" = "V redu";
+
+/* Open a url in the application Safari */
+"Open in Safari" = "Odpri v brskalniku Safari";
+
+/* Open file in another application */
+"Open in..." = "Odpri v ...";
+
+/* No comment provided by engineer. */
+"Permission Needed" = "Potrebno je dovoljenje.";
+
+/* No comment provided by engineer. */
+"Quiz" = "Kviz";
+
+/* Support Ticket Creation Failed */
+"Request Failed!  Check network and try again!" = "Zahteva ni uspela.  Preverite omrežje in poskusite znova.";
+
+/* Not Found Error Message */
+"Resource not found.  Please try again." = "Vira ni mogoče najti.  Poskusite znova.";
+
+/* Select Impact Placeholder */
+"Select Impact" = "Izberi vpliv";
+
+/* Server Error Title */
+"Server Error" = "Napaka strežnika";
+
+/* No comment provided by engineer. */
+"Settings" = "Nastavitve";
+
+/* Status level for issue being reported */
+"Something is broken but I can work around it" = "Nekaj ne deluje, a znam to rešiti.";
+
+/* Title for the subject field */
+"Subject" = "Kratek opis predmeta";
+
+/* No comment provided by engineer. */
+"Submitted" = "Poslano";
+
+/* No comment provided by engineer. */
+"Submitted: %@" = "Poslano: %@";
+
+/* No comment provided by engineer. */
+"Submitted: %@ (%@/%@)" = "Poslano: %1$@ (%2$@/%3$@)";
+
+/* Syllabus Button Title */
+"Syllabus" = "Učni načrt";
+
+/* Directions in the admin view */
+"Tap to start viewing Canvas as another person." = "Tapnite za ogled sistema Canvas v vlogi drugega uporabnika.";
+
+/* Support Ticket Created Successfully */
+"Thanks, your request was received!" = "Hvala, vaša zahteva je prejeta.";
+
+/* Error message */
+"There are no actions for this item" = "Pri tem elementu ni dejanj.";
+
+/* AlertKit Database Load Failure Message */
+"There was a problem loading the AlertKit database file." = "Prišlo je do težav pri nalaganju datoteke zbirke podatkov AlertKit.";
+
+/* Airwolf database error message */
+"There was a problem loading the database." = "Prišlo je do težav pri nalaganju zbirke podatkov.";
+
+/* No comment provided by engineer. */
+"There was an error loading your content. If it  is an audio or video upload it may still be processing." = "Pri nalaganju vsebine je prišlo do napake. Če gre za nalaganje zvočnega posnetka ali videoposnetka, obdelava morda še poteka.";
+
+/* No comment provided by engineer. */
+"This announcement has expired." = "Čas tega obvestila se je iztekel.";
+
+/* No comment provided by engineer. */
+"This student's courses may not be published yet." = "Predmeti tega študenta morda še niso objavljeni.";
+
+/* Unknown T`hreshold Description */
+"Unknown" = "Neznano";
+
+/* Default name given a user until we find their real name */
+"Unknown User" = "Neznani uporabnik";
+
+/* Default user name, the computer-friendly version of their name, until we find their real user name */
+"Unknown User Name" = "Neznano ime uporabnika";
+
+/* No comment provided by engineer. */
+"Unread" = "Neprebrano";
+
+/* Calendar Tab */
+"Week" = "Teden";
+
+/* Header title of admin view */
+"Welcome!" = "Dobrodošli.";
+
+/* Title for field */
+"What can we do better?" = "Kaj lahko izboljšamo?";
+
+/* Not Authorized Error Message */
+"You are unauthorized to access this information.  Check your user permissions and try again." = "Nimate pooblastil za dostop do teh informacij.  Preverite dovoljenja uporabnika in poskusite znova.";
+
+/* No comment provided by engineer. */
+"You must allow notifications in Settings to set reminders." = "Za nastavitev opomnikov morate v možnosti »Nastavitve« dovoliti sporočila.";
+
+/* Title for the email field */
+"Your Email" = "Vaš e-poštni naslov";
+

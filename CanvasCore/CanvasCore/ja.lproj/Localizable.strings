@@ -1,0 +1,853 @@
+/* Error message component with the report id */
+" Error report ID: (reportID)" = " エラーレポート ID(reportID)";
+
+/* Failure reason from the JSON payload from canvas */
+" Failure reason: (reason)." = " エラーの理由：(理由)。";
+
+/* Shows the number of flagged questions */
+"%@ Flagged" = "%@ フラグ付き";
+
+/* Accessiblity hint for question drawer button */
+"%@ Questions Answered" = "%@ 質問の回答";
+
+/* Question number in a quiz */
+"%@." = "%@.";
+
+/* Confirmations alerting user of unanswered questions */
+"%d questions not answered" = "%d 未回答の質問";
+
+/* web content failed to load */
+"⚠️ Error Loading Content" = "⚠️ コンテンツ読み込み中エラー";
+
+/* Accessiblity hint for question drawer button */
+"0 Questions Answered" = "回答された質問数 0";
+
+/* Notification to alert the user that there is only 5 minutes left in the timed quiz */
+"5 minutes remaining" = "残り時間5分";
+
+/* Notification to alert the user that there is only 30 seconds left in the time quiz */
+"30 seconds remaining" = "残り時間30秒";
+
+/* Mark student absent
+   Student is present in class */
+"Absent" = "欠席";
+
+/* URL submission option */
+"Add Website Address" = "ウェブサイトアドレスを追加する";
+
+/* Shows the number questions */
+"All %@ Questions" = "すべての %@ 質問";
+
+/* option to view results for all grading periods */
+"All Grading Periods" = "すべての採点期間";
+
+/* No comment provided by engineer. */
+"All notifications are currently disabled." = "すべての通知は、現在無効です。";
+
+/* No comment provided by engineer. */
+"All notifications are currently enabled." = "すべての通知は、現在有効です。";
+
+/* all pages segmented control title */
+"All Pages" = "すべてのページ";
+
+/* No comment provided by engineer. */
+"Allow Notifications in Settings" = "通知の設定を許可";
+
+/* label for number of attempts that are allowed */
+"Allowed Attempts" = "試行許可数";
+
+/* Default error message displayed when a file fails to upload */
+"An error occured, please try again." = "エラーが起こりました。再試行してください。";
+
+/* No comment provided by engineer. */
+"An unexpected error has occurred." = "予期しないエラーが発生しました。";
+
+/* an unknown error's message */
+"An unknown error has occurred." = "不明なエラーが発生しました";
+
+/* No comment provided by engineer. */
+"Answers will not be submitted while offline." = "解答はオフラインでは送信されません。";
+
+/* Question to confirm user wants to navigate away from a quiz. */
+"Are you sure you want to leave this quiz?" = "このクイズを止めますか？";
+
+/* Confirmation before submitting a quiz */
+"Are you sure you want to submit your answers?" = "回答を提出しますか？";
+
+/* No comment provided by engineer. */
+"Are you sure you would like to delete this comment?" = "このコメントを本当に削除しますか？";
+
+/* label to be read for visually impaired users with assignment types */
+"assignment" = "課題";
+
+/* No comment provided by engineer. */
+"Attendance" = "出席状況";
+
+/* Error title for attendance app */
+"Attendance Error" = "出席エラー";
+
+/* label for quiz availability date */
+"Available Until" = "最終利用可能日";
+
+/* stop record button a11y hint */
+"Begin recording" = "録音を開始する";
+
+/* Blue course color button */
+"Blue" = "ブルー";
+
+/* Title for screen to build a panda avatar */
+"Build Your Panda!" = "あなたのパンダを作りましょう！";
+
+/* Alert title when unable to parse JSON for communication channels */
+"Can't Display Communication Channels" = "コミュニケーションチャンネルを表示できません";
+
+/* Alert title when unable to parse JSON for notification preferences */
+"Can't Display Notification Preferences" = "通知の設定を表示できません";
+
+/* Cancel Audio recording.
+   Cancel button title
+   Cancel submission option
+   Cancel upload */
+"Cancel" = "キャンセル";
+
+/* No comment provided by engineer. */
+"Change Section" = "セクションをかえる";
+
+/* Description for Chat communication channel */
+"Chat" = "チャット";
+
+/* Choose a file */
+"Choose a File" = "ファイルの選択";
+
+/* Pick a photo from library */
+"Choose a Photo" = "写真を選択する";
+
+/* Pick a photo or video */
+"Choose a Photo or Video" = "写真または動画を選択する";
+
+/* No comment provided by engineer. */
+"Choose a Section" = "セクションを選択する";
+
+/* Pick a video from library */
+"Choose a Video" = "動画を選択する";
+
+/* No comment provided by engineer. */
+"Choose Date" = "日付を選択する";
+
+/* No comment provided by engineer. */
+"Close App" = "アプリを閉じる";
+
+/* No comment provided by engineer. */
+"Collapse" = "折りたたみ";
+
+/* No comment provided by engineer. */
+"Comments" = "コメント";
+
+/* File upload completed */
+"Complete" = "完了";
+
+/* Title of a screen that shows all of our open source components */
+"Components" = "コンポーネント";
+
+/* Button for electing to be late on a quiz */
+"Continue Quiz" = "クイズを続ける";
+
+/* Notification display name for conversations group */
+"Conversations" = "会話";
+
+/* Alert title when unable to load notification preferences */
+"Could not load notification preferences" = "通知の設定を読み込むことができませんでした";
+
+/* Failure reason for why it couldn't associate a tab with a context */
+"Could not parse context id from URL" = "URLからコンテキストIDを構文解析できませんでした";
+
+/* Error title for being unable to update a push notification preference */
+"Could not update" = "アップデートできませんでした";
+
+/* Notification display name for course activities group */
+"Course Activities" = "コースアクティビティ";
+
+/* Header label for a screen that customizes a course */
+"Customize" = "カスタマイズ";
+
+/* Cyan course color button */
+"Cyan" = "シアン";
+
+/* name for upload data */
+"Data" = "データ";
+
+/* Error title for a persistence related data failure */
+"Data Error" = "データエラー";
+
+/* No comment provided by engineer. */
+"Date picker" = "日付ピッカー";
+
+/* DeepOrange course color button */
+"DeepOrange" = "DeepOrange";
+
+/* DeepPurple course color button */
+"DeepPurple" = "DeepPurple";
+
+/* Delete button
+   Delete button for file upload */
+"Delete" = "削除";
+
+/* No comment provided by engineer. */
+"Delete Comment" = "コメントを削除する";
+
+/* message for delete dialog of audio recorder */
+"Delete recording?" = "録音を消去しますか？";
+
+/* label to be read for visually impaired users with discusstion topic assignment types */
+"discussion topic" = "ディスカッション トピック";
+
+/* Notification display name for discussions group */
+"Discussions" = "ディスカッション";
+
+/* Error title to alert user their device is out of storage space */
+"Disk Error" = "ディスクエラー";
+
+/* Dismiss an error alert
+   Dismiss an error dialog
+   Dismiss button for error alert
+   Dismiss button for error messages */
+"Dismiss" = "却下する";
+
+/* Done button
+   Done recording button */
+"Done" = "完了";
+
+/* due date label for quiz due date */
+"Due Date" = "期日";
+
+/* Description for email communication channel */
+"Email" = "メールアドレス";
+
+/* Data encoding error title */
+"Encoding Error" = "エンコードエラー";
+
+/* No comment provided by engineer. */
+"End Act as User" = "ユーザーとして行動することを止める";
+
+/* Default text for essay cell */
+"Enter answer..." = "回答を入力...";
+
+/* Text submission option */
+"Enter Text" = "テキストを入力する";
+
+/* Placeholder for URL */
+"Enter URL..." = "URLを入力...";
+
+/* Prompt for text upload */
+"Enter your submission..." = "提出物を入力する...";
+
+/* No comment provided by engineer. */
+"Error" = "エラー";
+
+/* error message for when the cache management database fails to load */
+"Error loading cache management database." = "キャッシュ管理データベースの読み込みエラー";
+
+/* Title for quiz loading error */
+"Error Loading Quiz" = "クイズ読み込み中エラー";
+
+/* No comment provided by engineer. */
+"Error parsing the Roll Call response. Expected (e), received (a)" = "ロールコール応答を解析中にエラーが発生しました。期待される（e）、受け取られた（a）";
+
+/* No comment provided by engineer. */
+"Error parsing the Roll Call response. Expected (e), received (a) for key (k)" = "ロールコール応答を解析中にエラーが発生しました。キー（k）の期待される（e）、受け取られた（a）";
+
+/* No comment provided by engineer. */
+"Error parsing the Roll Call response. Key not found: (k)" = "ロールコール応答を解析中にエラーが発生しました。キーが見つかりません：(k)";
+
+/* No comment provided by engineer. */
+"Error parsing the Roll Call response. Unexpected null value: (k)" = "ロールコール応答を解析中にエラーが発生しました。予期しないヌル値：(k)";
+
+/* No comment provided by engineer. */
+"Error retrieving tool launch URL" = "ツール起動 URL 取得中にエラーが発生しました";
+
+/* Error title for parsing assignment data from server */
+"Error Updating Assignment" = "課題のアップロードエラー";
+
+/* rollcall status error */
+"Error: No data returned from the rollcall api." = "エラー:ロールコールAPIから返されたデータはありません。";
+
+/* Exit button to leave the quiz */
+"Exit" = "終了";
+
+/* No comment provided by engineer. */
+"Expand" = "展開";
+
+/* Error message when the server returns a invalid response */
+"Expected a response in the 200-299 range. Got %@" = "200-299の範囲で応答が期待されます。取得%@";
+
+/* label to be read for visually impaired users with external tool assignment types */
+"external tool" = "外部ツール";
+
+/* File upload failed */
+"Failed" = "失敗";
+
+/* No comment provided by engineer. */
+"Failed to find image at path" = "パスで画像を見つけることができませんでした";
+
+/* Error Message when the app can't load an object model from the database */
+"Failed to load (discussionKitModelName) NSManagedObjectModel" = "(discussionKitModelName) をロードできませんでしたNSManagedObjectModel";
+
+/* Error when submitting an assignment */
+"Failed to Submit" = "提出できませんでした";
+
+/* No comment provided by engineer. */
+"Failed to write image" = "画像の書き込みに失敗しました";
+
+/* favorite courses or groups */
+"Favorites" = "お気に入り";
+
+/* title for file upload errors */
+"File Upload Error" = "ファイルアップロードエラー";
+
+/* File uploads screen title */
+"File Uploads" = "ファイルのアップロード";
+
+/* State of the flagged question */
+"Flagged" = "フラグ付き";
+
+/* front page segmented control title */
+"Front Page" = "フロントページ";
+
+/* navigate */
+"Go" = "移動";
+
+/* Title for grading periods picker */
+"Grading Periods" = "採点期間";
+
+/* Green course color button */
+"Green" = "グリーン";
+
+/* Notification display name for groups group */
+"Groups" = "グループ";
+
+/* Non favorite hidden courses or groups */
+"Hidden" = "非表示";
+
+/* Hides the question list */
+"Hide Question List" = "質問リストを隠す";
+
+/* Inbox tab title */
+"Inbox" = "受信トレイ";
+
+/* Indigo course color button */
+"Indigo" = "インディゴ";
+
+/* No comment provided by engineer. */
+"Internet Connection Offline" = "インターネット接続がオフライン";
+
+/* No comment provided by engineer. */
+"Invalid date received from API." = "APIから受け取った日付が無効です。";
+
+/* Mark student late
+   Student is present in class */
+"Late" = "遅れている";
+
+/* No comment provided by engineer. */
+"Launch External Tool" = "外部ツールを起動する";
+
+/* Leave the quiz */
+"Leave" = "退出する";
+
+/* LightBlue course color button */
+"LightBlue" = "LightBlue";
+
+/* LightGreen course color button */
+"LightGreen" = "LightGreen";
+
+/* LightPink course color button */
+"LightPink" = "LightPink";
+
+/* Label indicating that the quiz lock date was reached and the quiz is auto submitting */
+"Lock Date Reached
+Submitting" = "ロックの日付に到達しました
+提出中";
+
+/* Detail label for when a tool called Lockdown Browser is required to take the quiz */
+"Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue." = "結果を見るにはロックダウンブラウザが必要です。ロックダウンブラウザでクイズを開くと続行します。";
+
+/* Title for when another tool called Lockdown Browser is required to take a quiz */
+"Lockdown Browser Required" = "ロックダウンブラウザが必要";
+
+/* No comment provided by engineer. */
+"Mark All as Present" = "全員を出席としてマークする";
+
+/* No comment provided by engineer. */
+"Mark Remaining as Present" = "出席としてマークする";
+
+/* Error alert title for network error
+   Title for network errors */
+"Network Error" = "ネットワークエラー";
+
+/* Next button for advancing a quiz */
+"Next" = "次";
+
+/* Alert title when unable to load communication channels */
+"No Communication Channels Found" = "コミュニケーションチャンネルが見つかりません";
+
+/* A quiz that has no due date */
+"No Due Date" = "期日なし";
+
+/* Title for alert when a module item doesn't have mastery paths configured */
+"No Mastery Paths" = "達成パスなし";
+
+/* Error when push channel cannot be found in notificaitons */
+"No push channel found" = "プッシュチャネルが見つかりません";
+
+/* No comment provided by engineer. */
+"No sections available. Please make sure you are enrolled as a teacher or TA in at least on section of this course." = "利用可能なセクションがありません。少なくともこのコースのセクションで、教師またはTAとして登録されていることを確認してください。";
+
+/* when a quiz has no time limit */
+"No time limit" = "時間制限なし";
+
+/* Section header for assignments without an assignment group */
+"None" = "なし";
+
+/* can't record because request for mic access was denied title */
+"Not Permitted" = "未提出";
+
+/* Title for alert showing when a quiz isn't takeable */
+"Not Takeable" = "受けられません";
+
+/* Error title for push notification registration error */
+"Notification Error" = "通知エラー";
+
+/* Title for the notification preferences page */
+"Notification Preferences" = "通知設定";
+
+/* OK Button Title */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"Open in Safari" = "Safariで開く";
+
+/* No comment provided by engineer. */
+"Open in…" = "...で開く";
+
+/* Accessibility hint for the profile button */
+"Opens profile" = "プロファイルを開く";
+
+/* Orange course color button */
+"Orange" = "オレンジ";
+
+/* Overdue assignmnets (not turned in) */
+"Overdue" = "期限超過";
+
+/* Assignments that have been turned in and are past */
+"Past" = "過去";
+
+/* Pause recording/playback */
+"Pause" = "一時停止";
+
+/* record button a11y hint */
+"Pause playback" = "再生を一時停止する";
+
+/* name for a photo just taken */
+"Photo" = "写真";
+
+/* Photos backdrops */
+"Photos" = "写真";
+
+/* Pink course color button */
+"Pink" = "ピンク";
+
+/* Playback button */
+"Play" = "再生";
+
+/* play button a11y hint */
+"Play back recording" = "録音を再生する";
+
+/* Title for playback error messages */
+"Playback Error" = "再生エラー";
+
+/* No comment provided by engineer. */
+"Please check your network connection and try again." = "ネットワークの接続を確認して再度お試しください。";
+
+/* label for number of points in a quiz */
+"Points" = "ポイント";
+
+/* Mark student present
+   Student is present in class */
+"Present" = "Present　現在";
+
+/* Accessibility label for the profile button */
+"Profile" = "プロフィール";
+
+/* Purple course color button */
+"Purple" = "パープル";
+
+/* Description for Push Notification channel */
+"Push Notifications" = "プッシュ通知";
+
+/* accessibility label for a quiz question */
+"Question" = "質問";
+
+/* state for a question that has been flagged */
+"Question (number) Flagged" = "質問 (数) がフラグ付けされました";
+
+/* state for unflagged question */
+"Question (number) Unflagged" = "質問 (数) がフラグ解除されました";
+
+/* Shows question position */
+"Question %@" = "質問%@";
+
+/* label for the number of questions */
+"Questions" = "質問";
+
+/* label to be read for visually impaired users with quiz assignment types */
+"quiz" = "クイズ";
+
+/* Title for alert that shows when a quiz hits the due date */
+"Quiz Due" = "クイズの期限";
+
+/* Title for quiz error */
+"Quiz Error" = "クイズエラー";
+
+/* Label for indication that the quiz submission was successful */
+"Quiz Submitted" = "クイズ提出済み";
+
+/* Label for indication that the quiz submission failed */
+"QuizSubmission Failure" = "QuizSubmission 失敗";
+
+/* tile for error reading cache */
+"Read Error" = "読み込みエラー";
+
+/* button to read more of the description */
+"Read More" = "もっと読む";
+
+/* Record button a11y label */
+"Record" = "記録";
+
+/* Choose record audio submission */
+"Record Audio" = "オーディオを録音する";
+
+/* permission denied button a11y label */
+"Record Permission Help" = "録音許可のヘルプ";
+
+/* title for a recording error */
+"Recording Error" = "録音エラー";
+
+/* red course color button */
+"Red" = "レッド";
+
+/* No comment provided by engineer. */
+"Remove" = "削除";
+
+/* Remove the formatting of the essay question text */
+"Remove Formatting" = "フォーマットを取り消す";
+
+/* No comment provided by engineer. */
+"Removed %1$@" = "除去済%1$@";
+
+/* No comment provided by engineer. */
+"Removed %1$@ by %2$@" = "（）により%1$@除去済%2$@";
+
+/* No comment provided by engineer. */
+"Reply" = "返信";
+
+/* Button to report an error */
+"Report" = "報告";
+
+/* Record button a11y label */
+"Request Audio Recording Permission" = "オーディオ録音許可をリクエストする";
+
+/* stop record button a11y hint */
+"Request Permission to record audio" = "オーディオ録音の許可をリクエストする";
+
+/* button for resuming a quiz */
+"Resume Quiz" = "クイズを再開する";
+
+/* button for retaking quiz */
+"Retake Quiz" = "クイズを受けなおす";
+
+/* Notification display name for scheduling group */
+"Scheduling" = "スケジュール中";
+
+/* Label indicating that the question is a multiple answer question and more than 1 answer can be correct */
+"Select all that apply" = "適合するものすべてを選択";
+
+/* Indicates that a matching quiz question needs to have an answer selected */
+"Select Answer" = "回答を選択する";
+
+/* No comment provided by engineer. */
+"Select to change the roll call date" = "ロールコールの日付を変更するために選択します";
+
+/* when a button is selected */
+"Selected" = "選択されました";
+
+/* Shapes backdrops */
+"Shapes" = "形";
+
+/* Hides the question list */
+"Show Question List" = "質問リストを表示する";
+
+/* Text for a button that toggles to show a timer for a timed quiz */
+"Show Timer" = "タイマーを表示する";
+
+/* Description for SMS communication channel */
+"SMS" = "SMS";
+
+/* Error message displayed when the file is unrecognized. */
+"Something went wrong. Check the file format and try again." = "なにかが失敗しました。ファイルフォーマットを確認して、再試行してください。";
+
+/* Text only quiz question label */
+"Spacer" = "スペーサ";
+
+/* Stay on the quiz view */
+"Stay" = "留まる";
+
+/* stop recording button a11y label */
+"Stop" = "停止";
+
+/* No comment provided by engineer. */
+"Stop acting as..." = "以下として行動することを止める";
+
+/* File upload was stopped */
+"Stopped" = "停止";
+
+/* No comment provided by engineer. */
+"Style" = "スタイル";
+
+/* Submit assignment button
+   Submit button title
+   Turn in this url button */
+"Submit" = "提出";
+
+/* Title for button to submit assignment */
+"Submit Assignment" = "課題を提出する";
+
+/* No comment provided by engineer. */
+"Submitted!" = "提出しました！";
+
+/* No comment provided by engineer. */
+"Submitting" = "提出しています";
+
+/* Label for indication of submitting quiz */
+"Submitting Quiz" = "クイズを提出する";
+
+/* Take a photo submission choice */
+"Take a Photo" = "写真を撮る";
+
+/* Take a video submission choice */
+"Take a Video" = "動画を撮影する";
+
+/* Take a photo or video submission choice */
+"Take Photo or Video" = "写真または動画を撮影する";
+
+/* Button for taking the quiz */
+"Take Quiz" = "クイズを受ける";
+
+/* Teal course color button */
+"Teal" = "ティール";
+
+/* No comment provided by engineer. */
+"The app needs to restart to use the new language settings. Please relaunch the app." = "新しい言語設定を使用するには、アプリを再起動する必要があります。アプリを再起動してください。";
+
+/* Error message for a file missing */
+"The file does not exist." = "ファイルが存在しません。";
+
+/* This shouldn't ever happen. */
+"The Pages are gone!? Why are the pages always gone?" = "ページがなくなった!?どうしていつもページが消えるのでしょうか？";
+
+/* Description for alert that shows when the quiz hits the due date */
+"The quiz is due in 1 minute. Would you like to submit now and be on time or continue taking the quiz and possibly be late?" = "クイズは1分で期限切れとなります。今すぐ時間通りに提出しますか？それとも遅くなってもクイズを続行しますか？";
+
+/* Error message for interrupted requests marking a to do as done */
+"The request to mark a to do as done was interrupted" = "「するべきこと」に完了マークをつけるリクエストに割り込みが入りました";
+
+/* bad url message */
+"The text you entered is not a valid URL" = "入力したテキストは有効なURLではありません";
+
+/* Data encoding error message */
+"There was a problem encoding UTF8 Data" = "UTF8 データのエンコード中にエラーが発生しました";
+
+/* No comment provided by engineer. */
+"There was a problem fetching the list of course sections." = "コースセクションのリストを取得する際に問題が発生しました。";
+
+/* JSON Parsing error description */
+"There was a problem interpreting a response from the server." = "サーバーからの応答の読み取り中にエラーが発生しました。";
+
+/* CalendarKit Database Load Failure Message */
+"There was a problem loading the (kitModelName) database file." = "kitModelName データベースファイルを読み込み中、問題がありました。.";
+
+/* AssignmentKit database load failure message */
+"There was a problem loading the AssignmentKit database file." = "AssignmentKit データベースファイルを読み込み中、問題がありました。.";
+
+/* CalendarKit Database Load Failure Message */
+"There was a problem loading the CalendarKit database file." = "CalendarKit データベースファイルを読み込み中、問題がありました。.";
+
+/* DiscussionKit Database Load Failure Message */
+"There was a problem loading the DiscussionKit database file." = "DiscussionKit データベースファイルを読み込み中、問題がありました。.";
+
+/* EnrollmentKit Database Load Failure Message */
+"There was a problem loading the EnrollmentKit database file." = "EnrollmentKit データベースファイルを読み込み中、問題がありました。.";
+
+/* FileKit Database Load Failure Message */
+"There was a problem loading the FileKit database file." = "FileKit データベースファイルを読み込み中、問題がありました。.";
+
+/* Page list fails */
+"There was a problem loading the Pages database file." = "Pages データベースファイルの読み込み中にエラーが発生しました。";
+
+/* PeepKit Database Load Failure Message */
+"There was a problem loading the PeepKit database file." = "PeepKit データベースファイルを読み込み中、問題がありました。.";
+
+/* SoEdventurous database load failure message */
+"There was a problem loading the SoEdventurous database file." = "SoEdventurous データベースファイルを読み込み中、問題がありました。.";
+
+/* File upload error message */
+"There was a problem preparing the file for upload" = "アップロードのためのファイルの準備中にエラーが発生しました";
+
+/* Persistence error message */
+"There was a problem reading cached data" = "キャッシュデータの読み込み中に問題が発生しました";
+
+/* Error description for Push Notifications registration error. */
+"There was a problem registering your device for push notifications." = "デバイスにプッシュ通知を登録する際に問題が発生しました。";
+
+/* Message when fails to submit an assignment */
+"There was a problem submitting your assignment. Please try again later." = "課題提出の際に問題がありました。後ほどもういちど試してください。";
+
+/* Error description for failing to compute the URL to a quiz */
+"There was a problem updating the Quiz URL" = "クイズURLのアップデート中に問題が発生しました";
+
+/* generic error message */
+"There was a problem with the Canvas request." = "Canvasリクエストについての問題が発生しました。";
+
+/* Error message when parsing contextID for a course or group tab */
+"There was an error associating a tab with a course or group." = "コースまたはグループにタブを関連付ける際にエラーが発生しました。";
+
+/* An error message shown when the Users cache file fails to load */
+"There was an error loading the Users cache." = "ユーザーキャッシュの読み込み中にエラーが発生しました。";
+
+/* Error message for a network fail */
+"There was an error while communicating with the server." = "サーバーとの通信中にエラーが発生しました。";
+
+/* No comment provided by engineer. */
+"There was no data!" = "データがありません！";
+
+/* Warning to users editing an essay question that was edited on the web. */
+"This essay question has been edited on the web and may contain formatting, links or images. In order to edit this response on your mobile device we will need to clear the formatting (including links and images). Otherwise you may continue editing the question via a web browser." = "このエッセイの質問はウェブ上で編集されたもので、書式設定、リンクまたは画像が含まれている可能性があります。モバイルデバイスでこの回答を編集するには、フォーマット（リンクや画像を含む）をクリアする必要があります。それ以外の場合は、ウェブブラウザで質問を編集し続けることができます。";
+
+/* Body for alert when a module item doesn't have mastery paths configured */
+"This module item does not have mastery paths configured." = "このモジュール項目には達成パスは設定されていません。";
+
+/* The HTML page is currently not viewable by the user because it has been locked by the teacher. */
+"This page is currently locked and not viewable." = "現在、ページはロックされているので閲覧できません。";
+
+/* Message when telling the user they can't take the quiz because the quiz has an IP address filter set */
+"This quiz has an IP address filter set." = "クイズにはIPアドレスフィルタセットがあります。";
+
+/* Message when telling the user they can't take the quiz for some weird reason */
+"This quiz is currently unavailable." = "クイズは現在受けることができません。";
+
+/* Message when telling the user they can't take the quiz because the quiz is locked */
+"This quiz is locked." = "このクイズはロックされています。";
+
+/* No comment provided by engineer. */
+"This quiz is not available offline." = "クイズはオフラインでは利用できません。";
+
+/* label for the time limit */
+"Time Limit" = "時間制限";
+
+/* Toggle flag accessiblity action */
+"Toggle Flag" = "フラグを切り替える";
+
+/* Total grade label */
+"Total Grade" = "合計成績";
+
+/* Description for Twitter communication channel */
+"Twitter" = "Twitter";
+
+/* Alert message when unable to parse JSON for communication channels */
+"Unable to display any Communication Channels returned from the server at this time." = "只今、サーバーから返信されたすべてのコミュニケーションチャンネルを表示することができません。";
+
+/* Alert message when unable to parse JSON for notification preferences */
+"Unable to display any notification preferences returned from the server at this time." = "只今、サーバーから返信されたすべての通知設定を表示することができません。";
+
+/* Alert message when unable to load communication channels */
+"Unable to load any Communication Channels at this time." = "現時点では通信チャネルを読み込めません。";
+
+/* Alert message when unable to load notification preferences */
+"Unable to load any notification preferences at this time.  Error: %@" = "現時点では通知設定を読み込めません。エラー:%@";
+
+/* Error message when parsing communication preferences */
+"Unable to parse JSON for communication channels" = "通信チャネル用に JSON をパースすることはできません";
+
+/* Error message when parsing notification preferences */
+"Unable to parse JSON for notification preferences" = "通知設定用に JSON をパースすることはできません";
+
+/* Assignments with no dates */
+"Undated" = "更新しました";
+
+/* Unexpected response type */
+"Unexpected response type" = "予期せぬ応答タイプ";
+
+/* Ungraded quiz */
+"Ungraded" = "未採点";
+
+/* An unknown error title */
+"Unknown Error" = "未知のエラー";
+
+/* When a quiz has no limit on the number of attempts */
+"Unlimited" = "無制限";
+
+/* Remove attendance status */
+"Unmark" = "マークを外す";
+
+/* Upcoming assignments */
+"Upcoming" = "今後の";
+
+/* No comment provided by engineer. */
+"Updated Language Settings" = "更新された言語設定";
+
+/* File upload submission option */
+"Upload File" = "ファイルアップロード";
+
+/* Message displayed while a file is being uploaded */
+"Uploading file..." = "ファイルアップロード中...";
+
+/* File upload in progress */
+"uploading..." = "アップロード中...";
+
+/* permission denied button a11y hint */
+"User has denied record permission" = "ユーザーが録音許可のリクエストを拒否しました";
+
+/* Error message if we can't pull the avatar image */
+"User has no valid avatar image url" = "ユーザーは有効なアバターの画像url を持っていません";
+
+/* button for viewing quiz results */
+"View Results" = "結果を表示";
+
+/* a warning message */
+"Warning" = "警告";
+
+/* Error message for being unable to update a push notification preference */
+"We were not able to update this value with the server" = "サーバーでこの値をアップデートすることができませんでした";
+
+/* Yellow course color button */
+"Yellow" = "イエロー";
+
+/* Description for Yo communication channel */
+"Yo" = "やあ";
+
+/* Shows time limit on a quiz */
+"You have %d minutes." = "%d 分あります。";
+
+/* Message when telling the user they can't take the quiz because they used up all their attempts */
+"You have used all your attempts available on this quiz." = "このクイズですべての試行回数を使いました。";
+
+/* permission was rejected */
+"You must grant (appName) Microphone access in the Settings app in order to record audio." = "音声を録音するには、設定アプリ内で (appName) マイクのアクセスを取得しなければなりません。";
+
+/* No comment provided by engineer. */
+"You will stop acting as %@ and return to your account." = "%@行動することを止め、自分のアカウントに戻る";
+
+/* No comment provided by engineer. */
+"You will stop acting as this user and return to your account." = "このユーザーとして行動することを止め、自分のアカウントに戻る";
+
+/* Error description for file out of space */
+"Your device is out of storage space. Please free up space and try again." = "デバイスのストレージスペースが不足しています。スペースを作ってもう一度お試しください。";
+

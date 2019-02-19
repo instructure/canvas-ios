@@ -1,0 +1,13 @@
+{
+  "ignorePatterns": [
+    "AppDelegate.\\w+$",
+    "Cell.\\w+$",
+    "Controller.\\w+$",
+    "\\/Views\\/",
+    "Core\/ShareExtension\/",
+    "Student\/Courses\/CourseList\/",
+    "Student\/Dashboard\/"
+  ],
+  "fileMinCoverage": 0,
+  "totalMinCoverage": 0.9
+}

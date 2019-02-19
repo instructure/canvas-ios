@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Submission Details View Controller-->
+        <scene sceneID="RqT-cb-7Go">
+            <objects>
+                <viewController storyboardIdentifier="SubmissionDetailsViewController" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="l3A-rq-KxF" customClass="SubmissionDetailsViewController" customModule="Student" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bcu-XY-Y5h">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pNE-3D-zl2" customClass="SubmissionDetailsEmptyView" customModule="Student" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OAc-d9-7i7">
+                                <rect key="frame" x="0.0" y="39" width="375" height="564"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Iq-2N-D4G" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="38"/>
+                                <accessibility key="accessibilityConfiguration" identifier="SubmissionDetailsPage.attemptPickerToggle"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="4ET-91-dZS"/>
+                                </constraints>
+                                <inset key="contentEdgeInsets" minX="16" minY="16" maxX="16" maxY="4"/>
+                                <state key="normal" title="Mar 3 at 11:58pm"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="bodySmall"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="pickerButtonTapped:" destination="l3A-rq-KxF" eventType="touchUpInside" id="Q9L-ki-qe4"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="u5L-w3-mKu" customClass="IconView" customModule="Student" customModuleProvider="target">
+                                <rect key="frame" x="343" y="17" width="16" height="16"/>
+                                <accessibility key="accessibilityConfiguration" identifier="SubmissionDetailsPage.attemptPickerArrow"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="16" id="d6K-gN-0PI"/>
+                                    <constraint firstAttribute="width" constant="16" id="zdF-j0-28M"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="miniArrowDownSolid"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="textDark"/>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z8l-gf-K01">
+                                <rect key="frame" x="0.0" y="38" width="375" height="216"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <accessibility key="accessibilityConfiguration" identifier="SubmissionDetailsPage.attemptPicker"/>
+                            </pickerView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FS1-GB-kdN" customClass="DividerView" customModule="Student" customModuleProvider="target">
+                                <rect key="frame" x="16" y="38" width="343" height="1"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="eo0-QM-how"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="tintColorName" value="borderMedium"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ac8-45-rao" customClass="Drawer" customModule="Student" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Bea-4p-X3b" firstAttribute="trailing" secondItem="u5L-w3-mKu" secondAttribute="trailing" constant="16" id="576-kH-3Z0"/>
+                            <constraint firstItem="FS1-GB-kdN" firstAttribute="leading" secondItem="bcu-XY-Y5h" secondAttribute="leading" constant="16" id="7rg-jZ-IMg"/>
+                            <constraint firstItem="ac8-45-rao" firstAttribute="bottom" secondItem="Bea-4p-X3b" secondAttribute="bottom" constant="2" id="DNT-bc-RmK"/>
+                            <constraint firstItem="Bea-4p-X3b" firstAttribute="bottom" secondItem="pNE-3D-zl2" secondAttribute="bottom" id="FAL-2f-Lut"/>
+                            <constraint firstItem="Bea-4p-X3b" firstAttribute="trailing" secondItem="ac8-45-rao" secondAttribute="trailing" id="Fvv-Fw-X8e"/>
+                            <constraint firstItem="OAc-d9-7i7" firstAttribute="top" secondItem="FS1-GB-kdN" secondAttribute="bottom" id="KYL-Ok-7ua"/>
+                            <constraint firstItem="pNE-3D-zl2" firstAttribute="top" secondItem="Bea-4p-X3b" secondAttribute="top" id="Mc9-sM-Te4"/>
+                            <constraint firstItem="z8l-gf-K01" firstAttribute="trailing" secondItem="Bea-4p-X3b" secondAttribute="trailing" id="Mjf-XO-1RO"/>
+                            <constraint firstItem="Bea-4p-X3b" firstAttribute="trailing" secondItem="pNE-3D-zl2" secondAttribute="trailing" id="Nn7-Gn-7L1"/>
+                            <constraint firstItem="pNE-3D-zl2" firstAttribute="leading" secondItem="Bea-4p-X3b" secondAttribute="leading" id="Osr-nX-LR6"/>
+                            <constraint firstItem="ac8-45-rao" firstAttribute="leading" secondItem="Bea-4p-X3b" secondAttribute="leading" id="Xvg-IC-BXr"/>
+                            <constraint firstItem="OAc-d9-7i7" firstAttribute="leading" secondItem="Bea-4p-X3b" secondAttribute="leading" id="Zqn-R4-3wF"/>
+                            <constraint firstItem="ac8-45-rao" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Bea-4p-X3b" secondAttribute="top" id="dQD-Sk-A89"/>
+                            <constraint firstItem="Bea-4p-X3b" firstAttribute="bottom" secondItem="OAc-d9-7i7" secondAttribute="bottom" constant="50" id="eA4-7r-3Ap"/>
+                            <constraint firstItem="z8l-gf-K01" firstAttribute="leading" secondItem="Bea-4p-X3b" secondAttribute="leading" id="eS9-Ez-DZK"/>
+                            <constraint firstItem="z8l-gf-K01" firstAttribute="top" secondItem="9Iq-2N-D4G" secondAttribute="bottom" id="fAx-Fc-aoI"/>
+                            <constraint firstItem="Bea-4p-X3b" firstAttribute="trailing" secondItem="9Iq-2N-D4G" secondAttribute="trailing" id="fZj-Ph-om1"/>
+                            <constraint firstAttribute="trailing" secondItem="FS1-GB-kdN" secondAttribute="trailing" constant="16" id="hOW-ji-Ao7"/>
+                            <constraint firstItem="FS1-GB-kdN" firstAttribute="top" secondItem="9Iq-2N-D4G" secondAttribute="bottom" id="ixb-lK-9w6"/>
+                            <constraint firstItem="OAc-d9-7i7" firstAttribute="trailing" secondItem="Bea-4p-X3b" secondAttribute="trailing" id="jse-aL-OdG"/>
+                            <constraint firstItem="u5L-w3-mKu" firstAttribute="centerY" secondItem="9Iq-2N-D4G" secondAttribute="centerY" constant="6" id="llN-MQ-nIO"/>
+                            <constraint firstItem="9Iq-2N-D4G" firstAttribute="leading" secondItem="Bea-4p-X3b" secondAttribute="leading" id="n9E-ws-2Km"/>
+                            <constraint firstItem="9Iq-2N-D4G" firstAttribute="top" secondItem="Bea-4p-X3b" secondAttribute="top" id="r2S-Du-uhE"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Bea-4p-X3b"/>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="contentView" destination="OAc-d9-7i7" id="xfM-xF-980"/>
+                        <outlet property="emptyView" destination="pNE-3D-zl2" id="WQS-H9-pBe"/>
+                        <outlet property="picker" destination="z8l-gf-K01" id="K9b-dG-QGh"/>
+                        <outlet property="pickerButton" destination="9Iq-2N-D4G" id="9io-yg-ETE"/>
+                        <outlet property="pickerButtonArrow" destination="u5L-w3-mKu" id="hyC-Hn-5NC"/>
+                        <outlet property="pickerButtonDivider" destination="FS1-GB-kdN" id="EFw-ol-chr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WUa-IC-nOr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="205.59999999999999" y="-266.71664167916043"/>
+        </scene>
+    </scenes>
+</document>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="Exu-cP-UKu">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="N1h-gx-cOi">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="Exu-cP-UKu" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ICE-dt-772">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="CE1-Tb-2Z7" kind="relationship" relationship="rootViewController" id="4kV-zi-Pzd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OLw-Jk-s92" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="212" y="149"/>
+        </scene>
+        <!--Web Browser View Controller-->
+        <scene sceneID="F7T-Qu-zVS">
+            <objects>
+                <viewController id="CE1-Tb-2Z7" customClass="WebBrowserViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WYs-JX-uub"/>
+                        <viewControllerLayoutGuide type="bottom" id="mcH-A7-rvB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jZk-GN-D3F">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qe1-RH-Fz5">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="seX-Ww-8Hb"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem image="icon_arrow_left" id="SUZ-rT-ypR">
+                                        <connections>
+                                            <action selector="backButtonTapped:" destination="CE1-Tb-2Z7" id="oaj-vt-Mbt"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem image="icon_arrow_right" id="NmV-9l-dj9">
+                                        <connections>
+                                            <action selector="forwardButtonTapped:" destination="CE1-Tb-2Z7" id="MAR-gg-qXU"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="UJr-SX-vZs"/>
+                                    <barButtonItem style="plain" id="jaw-Sh-nv2">
+                                        <view key="customView" contentMode="scaleToFill" id="1BS-l2-twg">
+                                            <rect key="frame" x="332" y="22" width="0.0" height="0.0"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="RT6-8j-9mZ">
+                                                    <rect key="frame" x="6" y="7" width="20" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </activityIndicatorView>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </view>
+                                    </barButtonItem>
+                                    <barButtonItem image="icon_reload" id="zhg-Kz-m4W">
+                                        <connections>
+                                            <action selector="refreshButtonTapped:" destination="CE1-Tb-2Z7" id="Vnn-Nz-lSP"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Ei-iS-8CL">
+                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="qe1-RH-Fz5" firstAttribute="top" secondItem="7Ei-iS-8CL" secondAttribute="bottom" id="1Kn-f4-L5k"/>
+                            <constraint firstAttribute="trailing" secondItem="qe1-RH-Fz5" secondAttribute="trailing" id="9Fb-2U-sRd"/>
+                            <constraint firstItem="7Ei-iS-8CL" firstAttribute="top" secondItem="WYs-JX-uub" secondAttribute="bottom" id="W9p-Dw-lyk"/>
+                            <constraint firstItem="mcH-A7-rvB" firstAttribute="top" secondItem="qe1-RH-Fz5" secondAttribute="bottom" id="b1p-Gh-WMo"/>
+                            <constraint firstAttribute="trailing" secondItem="7Ei-iS-8CL" secondAttribute="trailing" id="gMC-64-KOm"/>
+                            <constraint firstItem="qe1-RH-Fz5" firstAttribute="leading" secondItem="jZk-GN-D3F" secondAttribute="leading" id="hPq-k9-tav"/>
+                            <constraint firstItem="7Ei-iS-8CL" firstAttribute="leading" secondItem="jZk-GN-D3F" secondAttribute="leading" id="xYK-CD-suu"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="bgn-NZ-elV">
+                        <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="Ftu-N3-XvY">
+                            <connections>
+                                <action selector="doneButtonTapped:" destination="CE1-Tb-2Z7" id="Vk6-mm-toz"/>
+                            </connections>
+                        </barButtonItem>
+                        <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" id="jHb-wL-DNF">
+                            <rect key="frame" x="123.5" y="7" width="128" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" returnKeyType="go"/>
+                            <connections>
+                                <outlet property="delegate" destination="CE1-Tb-2Z7" id="QHl-sG-TSx"/>
+                            </connections>
+                        </textField>
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="PRN-wH-AVL">
+                            <connections>
+                                <action selector="actionButtonTapped:" destination="CE1-Tb-2Z7" id="9w4-NR-9Xo"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="actionButton" destination="PRN-wH-AVL" id="nSZ-15-RGT"/>
+                        <outlet property="activityIndicator" destination="RT6-8j-9mZ" id="VN5-jD-VdB"/>
+                        <outlet property="backButton" destination="SUZ-rT-ypR" id="2Ib-9g-qNs"/>
+                        <outlet property="bottomToolbar" destination="qe1-RH-Fz5" id="sGu-II-6vS"/>
+                        <outlet property="doneButton" destination="Ftu-N3-XvY" id="4he-5e-jmm"/>
+                        <outlet property="forwardButton" destination="NmV-9l-dj9" id="TNW-JP-uu3"/>
+                        <outlet property="refreshButton" destination="zhg-Kz-m4W" id="teB-c5-Heq"/>
+                        <outlet property="titleField" destination="jHb-wL-DNF" id="mnt-sA-jwP"/>
+                        <outlet property="webViewContainer" destination="7Ei-iS-8CL" id="YNb-ok-f9W"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6ff-0a-TVh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="652.5" y="148.5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="icon_arrow_left" width="34" height="34"/>
+        <image name="icon_arrow_right" width="34" height="34"/>
+        <image name="icon_reload" width="22" height="22"/>
+    </resources>
+</document>

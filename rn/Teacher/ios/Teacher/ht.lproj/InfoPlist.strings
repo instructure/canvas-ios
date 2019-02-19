@@ -1,0 +1,12 @@
+/* Privacy - Camera Usage Description */
+"NSCameraUsageDescription" = "Ajoute foto ak videyo nan kòmantè soumisyon yo.";
+
+/* Privacy - Microphone Usage Description */
+"NSMicrophoneUsageDescription" = "Ajoute anrejistreman odyo nan kòmantè soumisyon yo.";
+
+/* Privacy - Photo Library Additions Usage Description */
+"NSPhotoLibraryAddUsageDescription" = "Ajoute foto ak videyo nan kòmantè soumisyon yo.";
+
+/* Privacy - Photo Library Usage Description */
+"NSPhotoLibraryUsageDescription" = "Transfere kontni nan kou yo.";
+

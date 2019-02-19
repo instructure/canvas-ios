@@ -1,0 +1,303 @@
+/* <String> <Int> of <Int> */
+"%@ %d of %d" = "%1$@ %2$d из %3$d";
+
+/* No comment provided by engineer. */
+"%@ is due at %@" = "%1$@ необходимо завершить через %2$@";
+
+/* No comment provided by engineer. */
+"%@ to %@" = "%1$@ до %2$@";
+
+/* No comment provided by engineer. */
+"%@ will begin at %@" = "%1$@ начнется в %2$@";
+
+/* Percentage field placeholder */
+"1-100%" = "1-100%";
+
+/* Server Error Message */
+"A server error has occurred.  Please try again." = "Произошла ошибка сервера. Пожалуйста, попробуйте еще раз.";
+
+/* Label for button that allows admin to Act as User */
+"Act as User" = "Действовать как пользователь";
+
+/* Label displayed when logged in as an admin */
+"Admin" = "Админ";
+
+/* Alert Section Header */
+"Alert me when:" = "Оповестить меня, когда:";
+
+/* Alerts Tab */
+"Alerts" = "Предупреждения";
+
+/* No comment provided by engineer. */
+"An Error Occurred" = "Произошла ошибка";
+
+/* Generic Network Error Message */
+"An unexpected error occurred.  Please try again." = "Произошла непредвиденная ошибка. Пожалуйста, попробуйте еще раз.";
+
+/* No comment provided by engineer. */
+"Announcement" = "Объявление";
+
+/* No comment provided by engineer. */
+"Assignment" = "Задание";
+
+/* Assignment Grade High On Description */
+"Assignment grade above" = "Оценка за задание выше";
+
+/* Assignment Grade Low On Description */
+"Assignment grade below" = "Оценка за задание ниже";
+
+/* Assignment Missing Description */
+"Assignment missing" = "Задание отсутствует";
+
+/* No comment provided by engineer. */
+"Assignment reminder" = "Напоминание о тестировании";
+
+/* No comment provided by engineer. */
+"Cache cleared" = "Данные кэша очищены";
+
+/* Cancel button title */
+"Cancel" = "Отменить";
+
+/* Percent value is over 100 */
+"Cannot use percent that is higher than 100" = "Нельзя использовать проценты выше 100";
+
+/* Percent value is under 0 */
+"Cannot use percent that is less than 0" = "Нельзя использовать проценты меньше 0";
+
+/* Cancel the question/suggestion form */
+"Casual question or suggestion" = "Обычный вопрос или предложение";
+
+/* Empty Alerts Text */
+"Caught up on Alerts" = "Выполнить задания по оповещениям";
+
+/* No comment provided by engineer. */
+"Choose a student" = "Выберите студента";
+
+/* title for status selection field */
+"Choose One" = "Выбрать один вариант";
+
+/* Close Button Title */
+"Close" = "Закрыть";
+
+/* Course Announcement Description */
+"Course announcements" = "Объявления курса";
+
+/* Course Grade High On Description */
+"Course grade above" = "Оценка за курс выше";
+
+/* Course Grade Low On Description */
+"Course grade below" = "Оценка за курс ниже";
+
+/* Courses Tab */
+"Courses" = "Курсы";
+
+/* No comment provided by engineer. */
+"Current student: %@, tap to switch students" = "Текущий студент: %@, нажмите для переключения между студентами";
+
+/* Title for field */
+"Describe your problem" = "Опишите вашу проблему";
+
+/* No comment provided by engineer. */
+"Discussion" = "Обсуждение";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Отклонить";
+
+/* No comment provided by engineer. */
+"Error" = "Ошибка";
+
+/* No comment provided by engineer. */
+"Event" = "Событие";
+
+/* No comment provided by engineer. */
+"Event reminder" = "Напоминание о событии";
+
+/* No comment provided by engineer. */
+"Excused" = "По уважительной причине";
+
+/* Status level for issue being reported */
+"Extremely critical emergency" = "Крайне критическая ситуация";
+
+/* High Assignment Grade too Low */
+"High assignment grade cannot be lower than low assignment grade" = "Высокая оценка за задание не может быть ниже низкой оценки за задание";
+
+/* High Course Grade too Low */
+"High course grade cannot be lower than low course grade" = "Высокая оценка за курс не может быть ниже низкой оценки за курс";
+
+/* Status level for issue being reported */
+"I can't get things done until fixed" = "Я не могу добиться цели до решения проблемы";
+
+/* Status level for issue being reported */
+"I need help but it's not urgent" = "Мне нужна помощь, но это не срочно";
+
+/* Impact Title */
+"Impact:" = "Влияние:";
+
+/* No comment provided by engineer. */
+"In-Class" = "Аудиторный";
+
+/* Institution Announcement Description */
+"Institution announcements" = "Объявления заведения";
+
+/* Title for an alert view */
+"Invalid Input" = "Некорректный ввод";
+
+/* Support Ticket Invalid Input Message */
+"Invalid Input.  Check fields and try again." = "Неправильный ввод.  Проверьте поля и попробуйте еще раз.";
+
+/* Last Week Button Accessibility Label */
+"Last Week" = "На прошлой неделе";
+
+/* No comment provided by engineer. */
+"Late" = "Поздно";
+
+/* No comment provided by engineer. */
+"Late: %@" = "С опозданием: %@";
+
+/* No comment provided by engineer. */
+"Late: %@ (%@/%@)" = "С опозданием: %1$@ (%2$@/%3$@)";
+
+/* Low Assignment Grade too High */
+"Low assignment grade cannot be higher than high assignment grade" = "Низкая оценка за задание не может быть выше высокой оценки за задание";
+
+/* Low Course Grade too High */
+"Low course grade cannot be higher than high course grade" = "Низкая оценка за курс не может быть выше высокой оценки за курс";
+
+/* Title of the manage children screen. This screen is used to add/remove children that a parent is observing. */
+"Manage Children" = "Управление детьми";
+
+/* No comment provided by engineer. */
+"Missing" = "Отсутствует";
+
+/* No comment provided by engineer. */
+"Missing: (-/%@)" = "Отсутствует: (-/%@)";
+
+/* Generic Network Error Title */
+"Network Error" = "Ошибка сети";
+
+/* Next Week Button Accessibility Label */
+"Next Week" = "На следующей неделе";
+
+/* Empty Courses Text */
+"No Courses" = "Курсы отсутствуют";
+
+/* Title for label when no grade has been assigned to the course */
+"No Grade" = "Без оценки";
+
+/* Error message */
+"No installed apps support opening this file" = "Установленные приложения не поддерживают открытие этого файла";
+
+/* Empty Students Text */
+"No Students" = "Студенты отсутствуют";
+
+/* Not Authorized Error Title */
+"Not Authorized" = "Нет авторизации";
+
+/* Not Found Error Title */
+"Not Found" = "Не найдено";
+
+/* Empty Calendar Events Text */
+"Nothing this week" = "Ничего на этой неделе";
+
+/* OK Button Title */
+"OK" = "OK";
+
+/* Open a url in the application Safari */
+"Open in Safari" = "Открыть в Safari";
+
+/* Open file in another application */
+"Open in..." = "Открыть в...";
+
+/* No comment provided by engineer. */
+"Permission Needed" = "Требуется разрешение";
+
+/* No comment provided by engineer. */
+"Quiz" = "Тест";
+
+/* Support Ticket Creation Failed */
+"Request Failed!  Check network and try again!" = "Сбой при выполнении запроса!  Проверьте сеть и попробуйте еще раз!";
+
+/* Not Found Error Message */
+"Resource not found.  Please try again." = "Ресурс не найден. Пожалуйста, попробуйте еще раз.";
+
+/* Select Impact Placeholder */
+"Select Impact" = "Выберите влияние";
+
+/* Server Error Title */
+"Server Error" = "Ошибка сервера";
+
+/* No comment provided by engineer. */
+"Settings" = "Настройки";
+
+/* Status level for issue being reported */
+"Something is broken but I can work around it" = "Что-то сломалось, но я могу работать и без этого";
+
+/* Title for the subject field */
+"Subject" = "Тема";
+
+/* No comment provided by engineer. */
+"Submitted" = "Отправлено";
+
+/* No comment provided by engineer. */
+"Submitted: %@" = "Отправлено: %@";
+
+/* No comment provided by engineer. */
+"Submitted: %@ (%@/%@)" = "Отправлено: %1$@ (%2$@/%3$@)";
+
+/* Syllabus Button Title */
+"Syllabus" = "Учебный план";
+
+/* Directions in the admin view */
+"Tap to start viewing Canvas as another person." = "Нажмите, чтобы начать просмотр Canvas как другой пользователь.";
+
+/* Support Ticket Created Successfully */
+"Thanks, your request was received!" = "Спасибо, ваш запрос был получен!";
+
+/* Error message */
+"There are no actions for this item" = "Отсутствуют действия для этого элемента";
+
+/* AlertKit Database Load Failure Message */
+"There was a problem loading the AlertKit database file." = "Возникла проблема при загрузке файла базы данных AlertKit.";
+
+/* Airwolf database error message */
+"There was a problem loading the database." = "Возникла проблема при загрузке базы данных.";
+
+/* No comment provided by engineer. */
+"There was an error loading your content. If it  is an audio or video upload it may still be processing." = "Возникла ошибка при загрузке контента. Если это загрузка аудио или видео, она все еще может быть в обработке.";
+
+/* No comment provided by engineer. */
+"This announcement has expired." = "Срок действия этого объявления истек.";
+
+/* No comment provided by engineer. */
+"This student's courses may not be published yet." = "Курсы этого студента пока еще не могут быть опубликованы.";
+
+/* Unknown T`hreshold Description */
+"Unknown" = "Неизвестно";
+
+/* Default name given a user until we find their real name */
+"Unknown User" = "Неизвестный пользователь";
+
+/* Default user name, the computer-friendly version of their name, until we find their real user name */
+"Unknown User Name" = "Неизвестное имя пользователя";
+
+/* No comment provided by engineer. */
+"Unread" = "Не прочитано";
+
+/* Calendar Tab */
+"Week" = "Неделя";
+
+/* Header title of admin view */
+"Welcome!" = "Добро пожаловать!";
+
+/* Title for field */
+"What can we do better?" = "Что мы можем сделать лучше?";
+
+/* Not Authorized Error Message */
+"You are unauthorized to access this information.  Check your user permissions and try again." = "Вы не авторизованы для доступа к этой информации. Проверьте права доступа пользователя и повторите попытку.";
+
+/* No comment provided by engineer. */
+"You must allow notifications in Settings to set reminders." = "Вы должны разрешить уведомления в настройках для задания напоминаний.";
+
+/* Title for the email field */
+"Your Email" = "Ваша электронная почта";
+

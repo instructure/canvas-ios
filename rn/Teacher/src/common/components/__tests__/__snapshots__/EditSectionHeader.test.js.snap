@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#F5F5F5",
+        "flex": 1,
+        "flexDirection": "row",
+        "height": "auto",
+        "justifyContent": "flex-start",
+      },
+      undefined,
+    ]
+  }
+>
+  <Text
+    accessibilityTraits="header"
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "color": "#73818C",
+          "fontFamily": ".SFUIDisplay-semibold",
+          "fontSize": 14,
+          "marginBottom": 8,
+          "marginLeft": 16,
+          "marginTop": 16,
+        },
+        undefined,
+      ]
+    }
+  >
+    foo
+  </Text>
+</View>
+`;
+
+exports[`render no title 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#F5F5F5",
+        "flex": 1,
+        "flexDirection": "row",
+        "height": "auto",
+        "justifyContent": "flex-start",
+      },
+      undefined,
+    ]
+  }
+>
+  <Text
+    accessibilityTraits="header"
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "color": "#73818C",
+          "fontFamily": ".SFUIDisplay-semibold",
+          "fontSize": 14,
+          "marginBottom": 8,
+          "marginLeft": 16,
+          "marginTop": 16,
+        },
+        undefined,
+      ]
+    }
+  />
+</View>
+`;

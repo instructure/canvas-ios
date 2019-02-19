@@ -1,0 +1,578 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RichContent can convert a color attribute for RN styles 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={
+    Object {
+      "fontSize": 16,
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    key="0"
+    style={
+      Array [
+        Object {
+          "fontSize": 16,
+        },
+        Object {
+          "color": "#333",
+        },
+      ]
+    }
+  >
+    Some fonty goodness
+  </Text>
+</Text>
+`;
+
+exports[`RichContent can convert an href into an onPress 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={
+    Object {
+      "fontSize": 16,
+    }
+  }
+>
+  <Text
+    accessibilityTraits="button"
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    key="0"
+    onPress={[Function]}
+    style={
+      Array [
+        Object {
+          "fontSize": 16,
+        },
+        undefined,
+        Object {
+          "color": "#368BD8",
+        },
+      ]
+    }
+  >
+    A link
+  </Text>
+</Text>
+`;
+
+exports[`RichContent can convert style rules for RN 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={
+    Object {
+      "fontSize": 16,
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    key="0"
+    style={
+      Array [
+        Object {
+          "fontSize": 16,
+        },
+        Object {
+          "color": "#333",
+          "fontVariant": Array [
+            "small-caps",
+          ],
+          "minWidth": 100,
+        },
+      ]
+    }
+  >
+    Some colorful text
+  </Text>
+</Text>
+`;
+
+exports[`RichContent can handle anchors 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={
+    Object {
+      "fontSize": 16,
+    }
+  }
+>
+  <Text
+    accessibilityTraits="button"
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    key="0"
+    style={
+      Array [
+        Object {
+          "fontSize": 16,
+        },
+        undefined,
+        Object {
+          "color": "#368BD8",
+        },
+      ]
+    }
+  >
+    Drop the anchor
+  </Text>
+</Text>
+`;
+
+exports[`RichContent can handle bs 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={
+    Object {
+      "fontSize": 16,
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    key="0"
+    style={
+      Array [
+        Object {
+          "fontSize": 16,
+        },
+        Object {
+          "fontWeight": "600",
+        },
+        undefined,
+      ]
+    }
+  >
+    You all are getting bees!
+  </Text>
+</Text>
+`;
+
+exports[`RichContent can handle complex html 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={
+    Object {
+      "fontSize": 16,
+    }
+  }
+>
+  
+            
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    key="1"
+    style={
+      Array [
+        Object {
+          "fontSize": 16,
+        },
+        undefined,
+      ]
+    }
+  >
+    
+    
+    
+                
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      key="1"
+      style={
+        Array [
+          Object {
+            "fontSize": 16,
+          },
+          undefined,
+        ]
+      }
+    >
+      
+      
+      
+                    Some p tag
+                    
+      <Text
+        accessibilityTraits="button"
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        key="1"
+        onPress={[Function]}
+        style={
+          Array [
+            Object {
+              "fontSize": 16,
+            },
+            undefined,
+            Object {
+              "color": "#368BD8",
+            },
+          ]
+        }
+      >
+        With an a tag mixed in
+      </Text>
+      
+                    Then some more text that should all be inline
+                  
+      
+      
+    </Text>
+    
+                
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      key="3"
+      style={
+        Array [
+          Object {
+            "fontSize": 16,
+          },
+          undefined,
+        ]
+      }
+    >
+      Woah we are spanning it up 
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        key="1"
+        style={
+          Array [
+            Object {
+              "fontSize": 16,
+            },
+            Object {
+              "fontWeight": "600",
+            },
+            undefined,
+          ]
+        }
+      >
+        Boldly
+        
+                    
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          key="2"
+          style={
+            Array [
+              Object {
+                "fontSize": 16,
+              },
+              Object {
+                "color": "#eee",
+              },
+            ]
+          }
+        >
+          And we will throw some font in there
+        </Text>
+        
+                    
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          key="4"
+          style={
+            Array [
+              Object {
+                "fontSize": 16,
+              },
+              Object {
+                "fontStyle": "italic",
+              },
+              undefined,
+            ]
+          }
+        >
+          How about a little italics
+        </Text>
+        
+                  
+        
+                  
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          key="7"
+          style={
+            Array [
+              Object {
+                "fontSize": 16,
+              },
+              undefined,
+            ]
+          }
+        >
+          Woah and there is more span 
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            key="1"
+            style={
+              Array [
+                Object {
+                  "fontSize": 16,
+                },
+                Object {
+                  "color": "#e3e3e3",
+                },
+              ]
+            }
+          >
+            Dope
+          </Text>
+        </Text>
+        
+                
+      </Text>
+    </Text>
+  </Text>
+</Text>
+`;
+
+exports[`RichContent can handle data-api-endpoint and data-api-returntype attributes 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={
+    Object {
+      "fontSize": 16,
+    }
+  }
+>
+  <Text
+    accessibilityTraits="button"
+    accessible={true}
+    allowFontScaling={true}
+    data={
+      Object {
+        "data-api-endpoint": "https://canvas.instructure.com/courses/5",
+        "data-api-returntype": "application/json",
+      }
+    }
+    ellipsizeMode="tail"
+    key="0"
+    style={
+      Array [
+        Object {
+          "fontSize": 16,
+        },
+        undefined,
+        Object {
+          "color": "#368BD8",
+        },
+      ]
+    }
+  >
+    An anchor
+  </Text>
+</Text>
+`;
+
+exports[`RichContent can handle divs 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={
+    Object {
+      "fontSize": 16,
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    key="0"
+    style={
+      Array [
+        Object {
+          "fontSize": 16,
+        },
+        undefined,
+      ]
+    }
+  >
+    Some other text
+  </Text>
+</Text>
+`;
+
+exports[`RichContent can handle fonts 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={
+    Object {
+      "fontSize": 16,
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    key="0"
+    style={
+      Array [
+        Object {
+          "fontSize": 16,
+        },
+        undefined,
+      ]
+    }
+  >
+    Some font stuff yo
+  </Text>
+</Text>
+`;
+
+exports[`RichContent can handle i tags 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={
+    Object {
+      "fontSize": 16,
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    key="0"
+    style={
+      Array [
+        Object {
+          "fontSize": 16,
+        },
+        Object {
+          "fontStyle": "italic",
+        },
+        undefined,
+      ]
+    }
+  >
+    Deleted reply
+  </Text>
+</Text>
+`;
+
+exports[`RichContent can handle p tags 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={
+    Object {
+      "fontSize": 16,
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    key="0"
+    style={
+      Array [
+        Object {
+          "fontSize": 16,
+        },
+        undefined,
+      ]
+    }
+  >
+    a wild p tag appears
+  </Text>
+</Text>
+`;
+
+exports[`RichContent can handle spans 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={
+    Object {
+      "fontSize": 16,
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    key="0"
+    style={
+      Array [
+        Object {
+          "fontSize": 16,
+        },
+        undefined,
+      ]
+    }
+  >
+    Some span-dex
+  </Text>
+</Text>
+`;
+
+exports[`RichContent can handle text at the root 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={
+    Object {
+      "fontSize": 16,
+    }
+  }
+>
+  This is some text
+</Text>
+`;

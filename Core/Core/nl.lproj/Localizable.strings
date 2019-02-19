@@ -1,0 +1,237 @@
+/* No comment provided by engineer. */
+"%@ GPA" = "%@ GPA";
+
+/* No comment provided by engineer. */
+"Are you sure you would like to delete this comment?" = "Weet je zeker dat je deze opmerking wilt verwijderen?";
+
+/* No comment provided by engineer. */
+"Assignment" = "Opdracht";
+
+/* No comment provided by engineer. */
+"Assignment not found." = "Beoordeling niet gevonden.";
+
+/* No comment provided by engineer. */
+"Authentication failed. Most likely the user denied the request for access." = "Verificatie mislukt. Hoogstwaarschijnlijk heeft de gebruiker de aanvraag voor toegang geweigerd.";
+
+/* No comment provided by engineer. */
+"Can’t find your school? Try typing the full school URL." = "Kun je je school niet vinden? Typ de volledige URL van de school.";
+
+/* No comment provided by engineer. */
+"Cancel" = "Annuleren";
+
+/* No comment provided by engineer. */
+"Canvas Login" = "Aanmelding bij Canvas";
+
+/* No comment provided by engineer. */
+"Canvas Network" = "Canvas Network";
+
+/* No comment provided by engineer. */
+"Closed" = "Gesloten";
+
+/* No comment provided by engineer. */
+"Comments" = "Opmerkingen";
+
+/* No comment provided by engineer. */
+"Complete" = "Voltooid";
+
+/* No comment provided by engineer. */
+"Course" = "Cursus";
+
+/* No comment provided by engineer. */
+"d_questions" = "d_questions";
+
+/* No comment provided by engineer. */
+"Delete" = "Verwijderen";
+
+/* No comment provided by engineer. */
+"Delete comment" = "Opmerking verwijderen";
+
+/* No comment provided by engineer. */
+"Delete Comment" = "Opmerking verwijderen";
+
+/* No comment provided by engineer. */
+"Discussion Comment" = "Opmerking bij discussie";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Afwijzen";
+
+/* No comment provided by engineer. */
+"External Tool" = "Externe tool";
+
+/* No comment provided by engineer. */
+"File Upload" = "Bestand uploaden";
+
+/* No comment provided by engineer. */
+"Final Grade: %@" = "Eindcijfer: %@";
+
+/* No comment provided by engineer. */
+"final_grade_g_pts" = "final_grade_g_pts";
+
+/* No comment provided by engineer. */
+"Find my school" = "Zoek mijn school";
+
+/* No comment provided by engineer. */
+"Find your school or district" = "Vind je school of district";
+
+/* No comment provided by engineer. */
+"Forget %@" = "Vergeten %@";
+
+/* No comment provided by engineer. */
+"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
+
+/* No comment provided by engineer. */
+"g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
+"Help" = "Help";
+
+/* No comment provided by engineer. */
+"How do I find my school?" = "Hoe vind ik mijn school?";
+
+/* No comment provided by engineer. */
+"Incomplete" = "Incompleet";
+
+/* No comment provided by engineer. */
+"late_penalty_g_pts" = "late_penalty_g_pts";
+
+/* No comment provided by engineer. */
+"Launch External Tool" = "Extern hulpmiddel lanceren";
+
+/* end of and list pattern */
+"list_and_end" = "%1$@en %2$@";
+
+/* middle of and list pattern */
+"list_and_middle" = "%1$@, %2$@";
+
+/* start of and list pattern */
+"list_and_start" = "%1$@, %2$@";
+
+/* and list pattern for 2 items */
+"list_and_two" = "%1$@ en %2$@";
+
+/* end of or list pattern */
+"list_or_end" = "%1$@, of %2$@";
+
+/* middle of or list pattern */
+"list_or_middle" = "%1$@, %2$@";
+
+/* start of or list pattern */
+"list_or_start" = "%1$@, %2$@";
+
+/* or list pattern for 2 items */
+"list_or_two" = "%1$@ of %2$@";
+
+/* No comment provided by engineer. */
+"Manual OAuth Login" = "Handmatige OAuth Login";
+
+/* No comment provided by engineer. */
+"Media Recording" = "Media opnames";
+
+/* No comment provided by engineer. */
+"No Due Date" = "Geen inleverdatum";
+
+/* No comment provided by engineer. */
+"No Submission" = "Geen inzending";
+
+/* No comment provided by engineer. */
+"Not Graded" = "Niet beoordeeld";
+
+/* No comment provided by engineer. */
+"Not Submitted" = "Niet ingediend";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"On Paper" = "Op papier";
+
+/* No comment provided by engineer. */
+"out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
+"plural_points" = "plural_points";
+
+/* No comment provided by engineer. */
+"Quiz" = "Toets";
+
+/* No comment provided by engineer. */
+"Remove" = "Verwijderen";
+
+/* No comment provided by engineer. */
+"Removed %1$@" = "Verwijderd %1$@";
+
+/* No comment provided by engineer. */
+"Removed %1$@ by %2$@" = "%1$@ verwijderd door %2$@";
+
+/* No comment provided by engineer. */
+"Reply to the annotation or previous comments" = "Reageer op de aantekening of op vorige opmerkingen";
+
+/* No comment provided by engineer. */
+"Resubmit Assignment" = "Opdracht opnieuw inleveren";
+
+/* No comment provided by engineer. */
+"See what's new." = "Wat is er nieuw.";
+
+/* No comment provided by engineer. */
+"Select Account" = "Account selecteren";
+
+/* No comment provided by engineer. */
+"Select Assignment" = "Opdracht selecteren";
+
+/* No comment provided by engineer. */
+"Select Course" = "Cursus selecteren";
+
+/* No comment provided by engineer. */
+"Send comment" = "Opmerking verzenden";
+
+/* No comment provided by engineer. */
+"Site Admin Login" = "Aanmelding sitebeheer";
+
+/* No comment provided by engineer. */
+"Style" = "Stijl";
+
+/* No comment provided by engineer. */
+"Submission Failed" = "Inzending mislukt";
+
+/* No comment provided by engineer. */
+"Submission Uploading..." = "Inlevering wordt geüpload...";
+
+/* No comment provided by engineer. */
+"Submit Assignment" = "Opdracht inleveren";
+
+/* No comment provided by engineer. */
+"Submitted" = "Ingediend";
+
+/* Submitted date */
+"Submitted %@" = "Ingediend %@";
+
+/* No comment provided by engineer. */
+"Tap here for help." = "Tik hier voor hulp.";
+
+/* No comment provided by engineer. */
+"Tap to view details" = "Tik om details te bekijken";
+
+/* No comment provided by engineer. */
+"Tap to view progress" = "Tik om voortgang te bekijken";
+
+/* No comment provided by engineer. */
+"Text Entry" = "Tekstinvoer";
+
+/* No comment provided by engineer. */
+"This assignment is due by %@" = "Deze opdracht moet uiterlijk worden ingeleverd op %@";
+
+/* No comment provided by engineer. */
+"This assignment was due by %@" = "Deze opdracht moest ingeleverd zijn op %@";
+
+/* No comment provided by engineer. */
+"We've made a few changes." = "We hebben enkele wijzigingen aangebracht.";
+
+/* No comment provided by engineer. */
+"Website URL" = "Website-URL";
+
+/* No comment provided by engineer. */
+"What’s your school’s name?" = "Wat is de naam van je school?";
+
+/* No comment provided by engineer. */
+"You will need to log into at least one Canvas account from the Student app first." = "Je moet je eerst vanuit de Student App bij ten minste één Canvas-account aanmelden.";
+

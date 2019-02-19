@@ -1,0 +1,144 @@
+/* All Courses screen title */
+"All Courses" = "所有课程";
+
+/* No comment provided by engineer. */
+"Assignment Details" = "作业详情";
+
+/* No comment provided by engineer. */
+"Assignments" = "作业";
+
+/* No comment provided by engineer. */
+"Cancel" = "取消";
+
+/* No comment provided by engineer. */
+"Cancel Submission" = "取消提交";
+
+/* No comment provided by engineer. */
+"Close App" = "关闭应用程序";
+
+/* No comment provided by engineer. */
+"Comments" = "评论";
+
+/* No comment provided by engineer. */
+"Courses" = "课程";
+
+/* No comment provided by engineer. */
+"Dashboard" = "控制面板";
+
+/* No comment provided by engineer. */
+"Description" = "说明";
+
+/* No comment provided by engineer. */
+"Done" = "完成";
+
+/* No comment provided by engineer. */
+"Drawer closed" = "抽屉已关闭";
+
+/* No comment provided by engineer. */
+"Drawer fully open" = "抽屉已完全打开";
+
+/* No comment provided by engineer. */
+"Drawer partially opened" = "抽屉已部分打开";
+
+/* No comment provided by engineer. */
+"Due" = "截止";
+
+/* No comment provided by engineer. */
+"Edit" = "编辑";
+
+/* No comment provided by engineer. */
+"Edit Course" = "编辑课程";
+
+/* No comment provided by engineer. */
+"Failed upload" = "上传失败";
+
+/* No comment provided by engineer. */
+"File Types" = "文件类型";
+
+/* No comment provided by engineer. */
+"Files" = "文件";
+
+/* No comment provided by engineer. */
+"Grade" = "评分";
+
+/* No comment provided by engineer. */
+"Groups" = "小组";
+
+/* No comment provided by engineer. */
+"Invalid url" = "无效的 URL";
+
+/* No comment provided by engineer. */
+"No Content" = "无内容";
+
+/* No comment provided by engineer. */
+"No Submission" = "无提交项";
+
+/* No comment provided by engineer. */
+"No Submission Date" = "无提交日期";
+
+/* Button to open external tool */
+"Open External Tool" = "打开外部工具";
+
+/* Past enrollments section title in All Courses screen */
+"Past Enrollments" = "以前的注册";
+
+/* No comment provided by engineer. */
+"Quizzes" = "测验";
+
+/* No comment provided by engineer. */
+"Resubmit Assignment" = "重新提交作业";
+
+/* No comment provided by engineer. */
+"Retry" = "重试";
+
+/* No comment provided by engineer. */
+"Rubric" = "评测";
+
+/* No comment provided by engineer. */
+"See All" = "查看全部";
+
+/* No comment provided by engineer. */
+"See All Courses" = "查看所有课程";
+
+/* No comment provided by engineer. */
+"Something went wrong while loading the quizzes." = "加载测验时出了些问题。";
+
+/* No comment provided by engineer. */
+"Submission" = "提交";
+
+/* No comment provided by engineer. */
+"Submission & Rubric" = "提交项和评估表格";
+
+/* No comment provided by engineer. */
+"Submission Types" = "提交项类型";
+
+/* No comment provided by engineer. */
+"Submit" = "提交";
+
+/* No comment provided by engineer. */
+"Submit Assignment" = "提交作业";
+
+/* No comment provided by engineer. */
+"Successfully submitted!" = "已成功提交。";
+
+/* No comment provided by engineer. */
+"The app needs to restart to use the new language settings. Please relaunch the app." = "此应用程序需重启后才能使用新语言设置。请重新启动应用程序。";
+
+/* No comment provided by engineer. */
+"There are no quizzes to display." = "没有要显示的测验。";
+
+/* No comment provided by engineer. */
+"Updated Language Settings" = "已更新语言设置";
+
+/* No comment provided by engineer. */
+"Uploading %@ of %@" = "正在上传 %1$@，共%2$@";
+
+/* No comment provided by engineer. */
+"Uploading..." = "正在上传...";
+
+/* No comment provided by engineer. */
+"Website Address" = "网址";
+
+/* No comment provided by engineer. */
+"Your submission is now waiting to be graded" = "您的提交项目前正在等待评分";
+

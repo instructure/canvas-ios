@@ -1,0 +1,9 @@
+/* Class = "UILabel"; text = "Welcome!"; ObjectID = "b0z-1f-3Pv"; */
+"b0z-1f-3Pv.text" = "Dobrodošli.";
+
+/* Class = "UILabel"; text = "Tap to start viewing Canvas as another  person."; ObjectID = "chJ-nt-Qcc"; */
+"chJ-nt-Qcc.text" = "Tapnite za ogled sistema Canvas v vlogi drugega  uporabnika.";
+
+/* Class = "UIButton"; normalTitle = "Act as User"; ObjectID = "Pur-YX-Y1F"; */
+"Pur-YX-Y1F.normalTitle" = "Nastopajoči v vlogi uporabnika";
+

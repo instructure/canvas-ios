@@ -1,0 +1,26 @@
+{
+  "presets": ["react-native"],
+  "plugins": [
+    [ "transform-format-message", {
+      "generateId": "underscored_crc32",
+      "inline": false
+    } ],
+    ["module-resolver", {
+      "root": ["./src"],
+      "alias": {
+        "@modules": "./src/modules",
+        "@test": "./test",
+        "@common": "./src/common",
+        "@images": "./src/images",
+        "@templates": "./src/__templates__",
+        "@mocks": "./src/__mocks__",
+        "@canvas-api": "./src/canvas-api",
+        "@canvas-api2": "./src/canvas-api-v2",
+        "@utils": "./src/utils",
+        "@redux": "./src/redux",
+        "@routing": "./src/routing"
+      }
+    }]
+  ],
+  "sourceMaps": true
+}

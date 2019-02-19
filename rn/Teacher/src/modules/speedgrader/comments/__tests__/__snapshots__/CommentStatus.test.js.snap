@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CommentStatus renders 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    Object {
+      "bottom": 50,
+      "flexDirection": "row",
+      "height": 1,
+      "left": 0,
+      "position": "absolute",
+      "right": 0,
+    }
+  }
+>
+  <View
+    collapsable={undefined}
+    style={
+      Object {
+        "backgroundColor": "#008EE2",
+        "width": 0,
+      }
+    }
+  />
+</View>
+`;

@@ -1,0 +1,303 @@
+/* <String> <Int> of <Int> */
+"%@ %d of %d" = "%1$@ %2$d de %3$d";
+
+/* No comment provided by engineer. */
+"%@ is due at %@" = "%1$@ delè li se %2$@";
+
+/* No comment provided by engineer. */
+"%@ to %@" = "%1$@ a %2$@";
+
+/* No comment provided by engineer. */
+"%@ will begin at %@" = "%1$@ ap kòmanse a %2$@";
+
+/* Percentage field placeholder */
+"1-100%" = "1-100%";
+
+/* Server Error Message */
+"A server error has occurred.  Please try again." = "Yon erè te fèt sou sèvè a. Tanpri eseye ankò.";
+
+/* Label for button that allows admin to Act as User */
+"Act as User" = "Aji tankou Itilizatè";
+
+/* Label displayed when logged in as an admin */
+"Admin" = "Admin";
+
+/* Alert Section Header */
+"Alert me when:" = "Avèti mwen lè:";
+
+/* Alerts Tab */
+"Alerts" = "Alèt";
+
+/* No comment provided by engineer. */
+"An Error Occurred" = "Gen yon Erè ki Fèt";
+
+/* Generic Network Error Message */
+"An unexpected error occurred.  Please try again." = "Yon erè ki fèt sanzatann. Tanpri eseye ankò.";
+
+/* No comment provided by engineer. */
+"Announcement" = "Anons";
+
+/* No comment provided by engineer. */
+"Assignment" = "Sesyon";
+
+/* Assignment Grade High On Description */
+"Assignment grade above" = "Nòt sesyon pi wo a";
+
+/* Assignment Grade Low On Description */
+"Assignment grade below" = "Nòt sesyon pi ba a";
+
+/* Assignment Missing Description */
+"Assignment missing" = "Sesyon ki manke";
+
+/* No comment provided by engineer. */
+"Assignment reminder" = "Rapèl sesyon";
+
+/* No comment provided by engineer. */
+"Cache cleared" = "Kache netwaye";
+
+/* Cancel button title */
+"Cancel" = "Anile";
+
+/* Percent value is over 100 */
+"Cannot use percent that is higher than 100" = "Pa kapab itilize pousantaj ki pi wo ke 100";
+
+/* Percent value is under 0 */
+"Cannot use percent that is less than 0" = "Pa kapab itilize pousantaj ki mwens ke 0";
+
+/* Cancel the question/suggestion form */
+"Casual question or suggestion" = "Kesyon oswa sijesyon pa aza";
+
+/* Empty Alerts Text */
+"Caught up on Alerts" = "Pran nan Avètisman";
+
+/* No comment provided by engineer. */
+"Choose a student" = "Chwazi yon elèv";
+
+/* title for status selection field */
+"Choose One" = "Chwazi Yonn";
+
+/* Close Button Title */
+"Close" = "Fèmen";
+
+/* Course Announcement Description */
+"Course announcements" = "Anons kou";
+
+/* Course Grade High On Description */
+"Course grade above" = "Nòt kou pi wo a";
+
+/* Course Grade Low On Description */
+"Course grade below" = "Nòt kou pi ba a";
+
+/* Courses Tab */
+"Courses" = "Kou";
+
+/* No comment provided by engineer. */
+"Current student: %@, tap to switch students" = "Elèv aktyèl: %@, tape pou chanje elèv yo";
+
+/* Title for field */
+"Describe your problem" = "Dekri Pwoblèm ou a";
+
+/* No comment provided by engineer. */
+"Discussion" = "Diskisyon";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Rejte";
+
+/* No comment provided by engineer. */
+"Error" = "Erè";
+
+/* No comment provided by engineer. */
+"Event" = "Aktivite";
+
+/* No comment provided by engineer. */
+"Event reminder" = "Rapèl aktivite";
+
+/* No comment provided by engineer. */
+"Excused" = "Eskize";
+
+/* Status level for issue being reported */
+"Extremely critical emergency" = "Ijans Trè Kritik";
+
+/* High Assignment Grade too Low */
+"High assignment grade cannot be lower than low assignment grade" = "Klas sesyon elve pa kapab enferyè a klas sesyon fèb";
+
+/* High Course Grade too Low */
+"High course grade cannot be lower than low course grade" = "Klas kou elve pa kapab enferyè a klas kou fèb";
+
+/* Status level for issue being reported */
+"I can't get things done until fixed" = "Mwen paka fè anyen jiskaske li ranje";
+
+/* Status level for issue being reported */
+"I need help but it's not urgent" = "Mwen bezwen èd men li pa ijan";
+
+/* Impact Title */
+"Impact:" = "Enpa";
+
+/* No comment provided by engineer. */
+"In-Class" = "Nan Klas";
+
+/* Institution Announcement Description */
+"Institution announcements" = "Anons Enstitisyon";
+
+/* Title for an alert view */
+"Invalid Input" = "Antre Envalid";
+
+/* Support Ticket Invalid Input Message */
+"Invalid Input.  Check fields and try again." = "Antre envalid  Verifye espas yo epi eseye ankò.";
+
+/* Last Week Button Accessibility Label */
+"Last Week" = "Semenn Pase";
+
+/* No comment provided by engineer. */
+"Late" = "Ta";
+
+/* No comment provided by engineer. */
+"Late: %@" = "Ta: %@";
+
+/* No comment provided by engineer. */
+"Late: %@ (%@/%@)" = "Ta: %1$@ (%2$@/%3$@)";
+
+/* Low Assignment Grade too High */
+"Low assignment grade cannot be higher than high assignment grade" = "Klas sesyon fèb pa kapab siperyè a klas sesyon elve";
+
+/* Low Course Grade too High */
+"Low course grade cannot be higher than high course grade" = "Klas kou fèb pa kapab siperyè a klas kou elve";
+
+/* Title of the manage children screen. This screen is used to add/remove children that a parent is observing. */
+"Manage Children" = "Jere Timoun yo";
+
+/* No comment provided by engineer. */
+"Missing" = "Manke";
+
+/* No comment provided by engineer. */
+"Missing: (-/%@)" = "Manke: (-/%@)";
+
+/* Generic Network Error Title */
+"Network Error" = "Erè Rezo";
+
+/* Next Week Button Accessibility Label */
+"Next Week" = "Semenn Pwochen";
+
+/* Empty Courses Text */
+"No Courses" = "Pa gen Kou";
+
+/* Title for label when no grade has been assigned to the course */
+"No Grade" = "Pa gen Klas";
+
+/* Error message */
+"No installed apps support opening this file" = "Pa gen app instale ki sipòte ouvèti fichye sa a";
+
+/* Empty Students Text */
+"No Students" = "Pa gen Elèv";
+
+/* Not Authorized Error Title */
+"Not Authorized" = "Pa Otorize";
+
+/* Not Found Error Title */
+"Not Found" = "Entwouvab";
+
+/* Empty Calendar Events Text */
+"Nothing this week" = "Pa gen anyen pou semenn sa a";
+
+/* OK Button Title */
+"OK" = "OK";
+
+/* Open a url in the application Safari */
+"Open in Safari" = "Ouvri nan Safari";
+
+/* Open file in another application */
+"Open in..." = "Ouvri nan...";
+
+/* No comment provided by engineer. */
+"Permission Needed" = "Otorizasyon Nesesè";
+
+/* No comment provided by engineer. */
+"Quiz" = "Quiz";
+
+/* Support Ticket Creation Failed */
+"Request Failed!  Check network and try again!" = "Demann Echwe!  Verifye rezo epi eseye ankò!";
+
+/* Not Found Error Message */
+"Resource not found.  Please try again." = "Resous entwouvab. Tanpri eseye ankò.";
+
+/* Select Impact Placeholder */
+"Select Impact" = "Seleksyone Enpak";
+
+/* Server Error Title */
+"Server Error" = "Erè Sèvè";
+
+/* No comment provided by engineer. */
+"Settings" = "Paramèt";
+
+/* Status level for issue being reported */
+"Something is broken but I can work around it" = "Gen yon bagay ki kase mwen mwen ka jere sa";
+
+/* Title for the subject field */
+"Subject" = "Sijè";
+
+/* No comment provided by engineer. */
+"Submitted" = "Soumèt";
+
+/* No comment provided by engineer. */
+"Submitted: %@" = "Soumèt: %@";
+
+/* No comment provided by engineer. */
+"Submitted: %@ (%@/%@)" = "Soumèt: %1$@ (%2$@/%3$@)";
+
+/* Syllabus Button Title */
+"Syllabus" = "Pwogram";
+
+/* Directions in the admin view */
+"Tap to start viewing Canvas as another person." = "Tape pou kòmanse afiche Canvas tankou yon lòt moun.";
+
+/* Support Ticket Created Successfully */
+"Thanks, your request was received!" = "Mèsi, nou resevwa demann ou an!";
+
+/* Error message */
+"There are no actions for this item" = "Pa gen aksyon pou atik sa a";
+
+/* AlertKit Database Load Failure Message */
+"There was a problem loading the AlertKit database file." = "Te gen yon pwoblèm nan chajman fichye baz de done AlertKit a,";
+
+/* Airwolf database error message */
+"There was a problem loading the database." = "Te gen yon pwoblèm nan chajman baz de done a.";
+
+/* No comment provided by engineer. */
+"There was an error loading your content. If it  is an audio or video upload it may still be processing." = "Te gen yon erè nan chajman kontni ou an. Si se yon odyo oswa videyo li kapab ap chaje toujou.";
+
+/* No comment provided by engineer. */
+"This announcement has expired." = "Anons sa a ekspire.";
+
+/* No comment provided by engineer. */
+"This student's courses may not be published yet." = "Kou elèv sa a poko ka pibliye.";
+
+/* Unknown T`hreshold Description */
+"Unknown" = "Enkoni";
+
+/* Default name given a user until we find their real name */
+"Unknown User" = "Itilizatè Enkoni";
+
+/* Default user name, the computer-friendly version of their name, until we find their real user name */
+"Unknown User Name" = "Non Itilizatè Enkoni";
+
+/* No comment provided by engineer. */
+"Unread" = "Poko li";
+
+/* Calendar Tab */
+"Week" = "Semenn";
+
+/* Header title of admin view */
+"Welcome!" = "Bienveni!";
+
+/* Title for field */
+"What can we do better?" = "Kisa nou ka amelyore?";
+
+/* Not Authorized Error Message */
+"You are unauthorized to access this information.  Check your user permissions and try again." = "Ou pa otorize pou gen aksè a enfòmasyon sa a. Verifye pèmisyon itilizatè ou epi eseye ankò.";
+
+/* No comment provided by engineer. */
+"You must allow notifications in Settings to set reminders." = "Ou dwe otorize notifikasyon nan Paramèt yo pou ka regle èd memwa yo.";
+
+/* Title for the email field */
+"Your Email" = "Imèl Ou";
+

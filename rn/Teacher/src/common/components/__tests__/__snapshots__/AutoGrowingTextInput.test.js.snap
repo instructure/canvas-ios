@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AutoGrowingTextInput adjusts the height when content size is updated 1`] = `
+<TextInput
+  allowFontScaling={true}
+  defaultHeight={54}
+  multiline={true}
+  onContentSizeChange={[Function]}
+  style={
+    Array [
+      undefined,
+      Object {
+        "height": 105,
+      },
+    ]
+  }
+/>
+`;
+
+exports[`AutoGrowingTextInput renders 1`] = `
+<TextInput
+  allowFontScaling={true}
+  defaultHeight={54}
+  multiline={true}
+  onContentSizeChange={[Function]}
+  style={
+    Array [
+      undefined,
+      Object {
+        "height": 54,
+      },
+    ]
+  }
+/>
+`;

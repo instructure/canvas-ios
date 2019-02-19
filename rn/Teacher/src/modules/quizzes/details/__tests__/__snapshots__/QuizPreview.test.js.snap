@@ -1,0 +1,380 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`QuizPreview renders 1`] = `
+<RCTSafeAreaView
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "justifyContent": "center",
+        }
+      }
+    >
+      <ActivityIndicator
+        animating={true}
+        color="#999999"
+        hidesWhenStopped={true}
+        size="small"
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "bottom": -1,
+          "flex": 0,
+          "height": 1,
+          "position": "absolute",
+        }
+      }
+    >
+      <AuthenticatedWebView
+        automaticallyAdjustContentInsets={false}
+        onError={[Function]}
+        onFinishedLoading={[Function]}
+        onMessage={[Function]}
+        source={
+          Object {
+            "uri": "http://mobiledev.instructure.com/courses/1/quizzes/take?preview=1&persist_headless=1&force_user=1",
+          }
+        }
+        style={
+          Object {
+            "bottom": -1,
+            "flex": 0,
+            "height": 1,
+            "position": "absolute",
+          }
+        }
+      />
+    </View>
+  </View>
+</RCTSafeAreaView>
+`;
+
+exports[`QuizPreview renders error if needed 1`] = `
+<RCTSafeAreaView
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "justifyContent": "center",
+        }
+      }
+    >
+      <ActivityIndicator
+        animating={true}
+        color="#999999"
+        hidesWhenStopped={true}
+        size="small"
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "bottom": -1,
+          "flex": 0,
+          "height": 1,
+          "position": "absolute",
+        }
+      }
+    >
+      <AuthenticatedWebView
+        automaticallyAdjustContentInsets={false}
+        onError={[Function]}
+        onFinishedLoading={[Function]}
+        onMessage={[Function]}
+        source={
+          Object {
+            "uri": "http://mobiledev.instructure.com/courses/1/quizzes/take?preview=1&persist_headless=1&force_user=1",
+          }
+        }
+        style={
+          Object {
+            "bottom": -1,
+            "flex": 0,
+            "height": 1,
+            "position": "absolute",
+          }
+        }
+      />
+    </View>
+  </View>
+</RCTSafeAreaView>
+`;
+
+exports[`QuizPreview renders error if needed 2`] = `
+<RCTSafeAreaView
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "justifyContent": "center",
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            undefined,
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
+        }
+      >
+        There was an error loading the quiz preview.
+      </Text>
+    </View>
+  </View>
+</RCTSafeAreaView>
+`;
+
+exports[`QuizPreview renders on error 1`] = `
+<RCTSafeAreaView
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "justifyContent": "center",
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            undefined,
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
+        }
+      >
+        There was an error loading the quiz preview.
+      </Text>
+    </View>
+  </View>
+</RCTSafeAreaView>
+`;
+
+exports[`QuizPreview renders on finish 1`] = `
+<RCTSafeAreaView
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      <AuthenticatedWebView
+        automaticallyAdjustContentInsets={false}
+        onError={[Function]}
+        onFinishedLoading={[Function]}
+        onMessage={[Function]}
+        source={
+          Object {
+            "uri": "http://mobiledev.instructure.com/courses/1/quizzes/take?preview=1&persist_headless=1&force_user=1",
+          }
+        }
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+      />
+    </View>
+  </View>
+</RCTSafeAreaView>
+`;
+
+exports[`QuizPreview renders on timeout 1`] = `
+<RCTSafeAreaView
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "justifyContent": "center",
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            undefined,
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
+        }
+      >
+        There was an error loading the quiz preview.
+      </Text>
+    </View>
+  </View>
+</RCTSafeAreaView>
+`;
+
+exports[`QuizPreview renders on timeout without actually timing out 1`] = `
+<RCTSafeAreaView
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      <AuthenticatedWebView
+        automaticallyAdjustContentInsets={false}
+        onError={[Function]}
+        onFinishedLoading={[Function]}
+        onMessage={[Function]}
+        source={
+          Object {
+            "uri": "http://mobiledev.instructure.com/courses/1/quizzes/take?preview=1&persist_headless=1&force_user=1",
+          }
+        }
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+      />
+    </View>
+  </View>
+</RCTSafeAreaView>
+`;

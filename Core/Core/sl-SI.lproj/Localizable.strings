@@ -1,0 +1,237 @@
+/* No comment provided by engineer. */
+"%@ GPA" = "%@ Lestvica GPA";
+
+/* No comment provided by engineer. */
+"Are you sure you would like to delete this comment?" = "Ali ste prepričani, da želite odstraniti ta komentar?";
+
+/* No comment provided by engineer. */
+"Assignment" = "Naloga";
+
+/* No comment provided by engineer. */
+"Assignment not found." = "Naloge ni mogoče najti.";
+
+/* No comment provided by engineer. */
+"Authentication failed. Most likely the user denied the request for access." = "Overitev ni uspela. Najverjetneje je uporabnik zavrnil zahtevo za dostop.";
+
+/* No comment provided by engineer. */
+"Can’t find your school? Try typing the full school URL." = "Ali svoje šole ne najdete? Poskusite vnesti poln naslov URL šole.";
+
+/* No comment provided by engineer. */
+"Cancel" = "Prekliči";
+
+/* No comment provided by engineer. */
+"Canvas Login" = "Prijava v sistem Canvas";
+
+/* No comment provided by engineer. */
+"Canvas Network" = "Omrežje Canvas Network";
+
+/* No comment provided by engineer. */
+"Closed" = "Zaprto";
+
+/* No comment provided by engineer. */
+"Comments" = "Komentarji";
+
+/* No comment provided by engineer. */
+"Complete" = "Zaključeno";
+
+/* No comment provided by engineer. */
+"Course" = "Predmet";
+
+/* No comment provided by engineer. */
+"d_questions" = "d_questions";
+
+/* No comment provided by engineer. */
+"Delete" = "Odstrani";
+
+/* No comment provided by engineer. */
+"Delete comment" = "Izbriši komentar";
+
+/* No comment provided by engineer. */
+"Delete Comment" = "Odstrani komentar";
+
+/* No comment provided by engineer. */
+"Discussion Comment" = "Komentar k razpravi";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Opusti";
+
+/* No comment provided by engineer. */
+"External Tool" = "Zunanje orodje";
+
+/* No comment provided by engineer. */
+"File Upload" = "Nalaganje datotek";
+
+/* No comment provided by engineer. */
+"Final Grade: %@" = "Končna ocena: %@";
+
+/* No comment provided by engineer. */
+"final_grade_g_pts" = "final_grade_g_pts";
+
+/* No comment provided by engineer. */
+"Find my school" = "Najdi mojo šolo";
+
+/* No comment provided by engineer. */
+"Find your school or district" = "Najdite svojo šolo ali okoliš.";
+
+/* No comment provided by engineer. */
+"Forget %@" = "Pozabi %@";
+
+/* No comment provided by engineer. */
+"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
+
+/* No comment provided by engineer. */
+"g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
+"Help" = "Pomoč";
+
+/* No comment provided by engineer. */
+"How do I find my school?" = "Kako najdem svojo šolo?";
+
+/* No comment provided by engineer. */
+"Incomplete" = "Nezaključeno";
+
+/* No comment provided by engineer. */
+"late_penalty_g_pts" = "late_penalty_g_pts";
+
+/* No comment provided by engineer. */
+"Launch External Tool" = "Zaženi zunanje orodje";
+
+/* end of and list pattern */
+"list_and_end" = "%1$@, in %2$@";
+
+/* middle of and list pattern */
+"list_and_middle" = "%1$@, %2$@";
+
+/* start of and list pattern */
+"list_and_start" = "%1$@, %2$@";
+
+/* and list pattern for 2 items */
+"list_and_two" = "%1$@ in %2$@";
+
+/* end of or list pattern */
+"list_or_end" = "%1$@, ali %2$@";
+
+/* middle of or list pattern */
+"list_or_middle" = "%1$@, %2$@";
+
+/* start of or list pattern */
+"list_or_start" = "%1$@, %2$@";
+
+/* or list pattern for 2 items */
+"list_or_two" = "%1$@ ali %2$@";
+
+/* No comment provided by engineer. */
+"Manual OAuth Login" = "Ročna prijava OAuth";
+
+/* No comment provided by engineer. */
+"Media Recording" = "Medijski posnetek";
+
+/* No comment provided by engineer. */
+"No Due Date" = "Ni roka.";
+
+/* No comment provided by engineer. */
+"No Submission" = "Ni oddaj.";
+
+/* No comment provided by engineer. */
+"Not Graded" = "Ni ocenjeno.";
+
+/* No comment provided by engineer. */
+"Not Submitted" = "Ni oddano.";
+
+/* No comment provided by engineer. */
+"OK" = "V redu";
+
+/* No comment provided by engineer. */
+"On Paper" = "Na papirju";
+
+/* No comment provided by engineer. */
+"out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
+"plural_points" = "plural_points";
+
+/* No comment provided by engineer. */
+"Quiz" = "Kviz";
+
+/* No comment provided by engineer. */
+"Remove" = "Odstrani";
+
+/* No comment provided by engineer. */
+"Removed %1$@" = "Odstranjeno %1$@";
+
+/* No comment provided by engineer. */
+"Removed %1$@ by %2$@" = "Odstranjeno %1$@, odstranil %2$@";
+
+/* No comment provided by engineer. */
+"Reply to the annotation or previous comments" = "Odgovori na opombo ali predhodne komentarje";
+
+/* No comment provided by engineer. */
+"Resubmit Assignment" = "Ponovno pošlji nalogo";
+
+/* No comment provided by engineer. */
+"See what's new." = "Oglejte si, kaj je novega.";
+
+/* No comment provided by engineer. */
+"Select Account" = "Izberi račun";
+
+/* No comment provided by engineer. */
+"Select Assignment" = "Izberi nalogo";
+
+/* No comment provided by engineer. */
+"Select Course" = "Izberi predmet";
+
+/* No comment provided by engineer. */
+"Send comment" = "Pošlji komentar";
+
+/* No comment provided by engineer. */
+"Site Admin Login" = "Prijava skrbnika mesta";
+
+/* No comment provided by engineer. */
+"Style" = "Slog";
+
+/* No comment provided by engineer. */
+"Submission Failed" = "Oddaja ni uspela.";
+
+/* No comment provided by engineer. */
+"Submission Uploading..." = "Nalaganje oddaj ...";
+
+/* No comment provided by engineer. */
+"Submit Assignment" = "Pošlji nalogo";
+
+/* No comment provided by engineer. */
+"Submitted" = "Poslano";
+
+/* Submitted date */
+"Submitted %@" = "Poslano %@";
+
+/* No comment provided by engineer. */
+"Tap here for help." = "Za pomoč tapnite tukaj.";
+
+/* No comment provided by engineer. */
+"Tap to view details" = "Tapnite za ogled podrobnosti";
+
+/* No comment provided by engineer. */
+"Tap to view progress" = "Tapnite za ogled napredka";
+
+/* No comment provided by engineer. */
+"Text Entry" = "Vnos besedila";
+
+/* No comment provided by engineer. */
+"This assignment is due by %@" = "Ta naloga ima rok do %@";
+
+/* No comment provided by engineer. */
+"This assignment was due by %@" = "Ta naloga je imela rok do %@";
+
+/* No comment provided by engineer. */
+"We've made a few changes." = "Uvedli smo nekaj sprememb.";
+
+/* No comment provided by engineer. */
+"Website URL" = "URL spletnega mesta";
+
+/* No comment provided by engineer. */
+"What’s your school’s name?" = "Kakšno je ime vaše šole?";
+
+/* No comment provided by engineer. */
+"You will need to log into at least one Canvas account from the Student app first." = "Najprej se morate v aplikaciji Student prijaviti v vsaj en račun Canvas.";
+

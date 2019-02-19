@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`common buttons <Button> adds additional styles to the base button 1`] = `
+<Button
+  containerStyle={
+    Array [
+      Object {
+        "backgroundColor": "#374A59",
+        "borderRadius": 8,
+        "overflow": "hidden",
+        "padding": 10,
+      },
+      5,
+    ]
+  }
+  style={
+    Array [
+      Object {
+        "color": "white",
+      },
+      42,
+    ]
+  }
+>
+  push
+</Button>
+`;
+
+exports[`common buttons <LinkButton> adds additional styles to the base button 1`] = `
+<TouchableOpacity
+  accessibilityTraits="button"
+  activeOpacity={0.2}
+  hitSlop={
+    Object {
+      "bottom": 15,
+      "left": 15,
+      "right": 15,
+      "top": 15,
+    }
+  }
+>
+  <View>
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#374A59",
+            "fontSize": 16,
+            "fontWeight": "500",
+          },
+          42,
+        ]
+      }
+    >
+      push
+    </Text>
+  </View>
+</TouchableOpacity>
+`;

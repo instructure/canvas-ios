@@ -1,0 +1,679 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ColorPicker renders 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "white",
+      "borderTopColor": "#C7CDD1",
+      "borderTopWidth": 1,
+    }
+  }
+>
+  <RCTScrollView
+    horizontal={true}
+    testID="color-picker.options"
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "justifyContent": "center",
+          }
+        }
+      >
+        <TouchableHighlight
+          accessibilityLabel="Choose white"
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Object {
+              "height": 44,
+              "width": 44,
+            }
+          }
+          testID="color-picker-option-white"
+          underlayColor="transparent"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "borderRadius": 19,
+                  "flex": 1,
+                  "justifyContent": "center",
+                  "margin": 6,
+                },
+                Object {
+                  "backgroundColor": "white",
+                  "borderColor": "#E6E9EA",
+                  "borderWidth": 1,
+                },
+              ]
+            }
+          />
+        </TouchableHighlight>
+        <TouchableHighlight
+          accessibilityLabel="Choose black"
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Object {
+              "height": 44,
+              "width": 44,
+            }
+          }
+          testID="color-picker-option-black"
+          underlayColor="transparent"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "borderRadius": 19,
+                  "flex": 1,
+                  "justifyContent": "center",
+                  "margin": 6,
+                },
+                Object {
+                  "backgroundColor": "black",
+                  "borderColor": "transparent",
+                  "borderWidth": 0,
+                },
+              ]
+            }
+          />
+        </TouchableHighlight>
+        <TouchableHighlight
+          accessibilityLabel="Choose #8B969E"
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Object {
+              "height": 44,
+              "width": 44,
+            }
+          }
+          testID="color-picker-option-#8B969E"
+          underlayColor="transparent"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "borderRadius": 19,
+                  "flex": 1,
+                  "justifyContent": "center",
+                  "margin": 6,
+                },
+                Object {
+                  "backgroundColor": "#8B969E",
+                  "borderColor": "transparent",
+                  "borderWidth": 0,
+                },
+              ]
+            }
+          />
+        </TouchableHighlight>
+        <TouchableHighlight
+          accessibilityLabel="Choose #EC463D"
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Object {
+              "height": 44,
+              "width": 44,
+            }
+          }
+          testID="color-picker-option-#EC463D"
+          underlayColor="transparent"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "borderRadius": 19,
+                  "flex": 1,
+                  "justifyContent": "center",
+                  "margin": 6,
+                },
+                Object {
+                  "backgroundColor": "#EC463D",
+                  "borderColor": "transparent",
+                  "borderWidth": 0,
+                },
+              ]
+            }
+          />
+        </TouchableHighlight>
+        <TouchableHighlight
+          accessibilityLabel="Choose #E42565"
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Object {
+              "height": 44,
+              "width": 44,
+            }
+          }
+          testID="color-picker-option-#E42565"
+          underlayColor="transparent"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "borderRadius": 19,
+                  "flex": 1,
+                  "justifyContent": "center",
+                  "margin": 6,
+                },
+                Object {
+                  "backgroundColor": "#E42565",
+                  "borderColor": "transparent",
+                  "borderWidth": 0,
+                },
+              ]
+            }
+          />
+        </TouchableHighlight>
+        <TouchableHighlight
+          accessibilityLabel="Choose #8E4195"
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Object {
+              "height": 44,
+              "width": 44,
+            }
+          }
+          testID="color-picker-option-#8E4195"
+          underlayColor="transparent"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "borderRadius": 19,
+                  "flex": 1,
+                  "justifyContent": "center",
+                  "margin": 6,
+                },
+                Object {
+                  "backgroundColor": "#8E4195",
+                  "borderColor": "transparent",
+                  "borderWidth": 0,
+                },
+              ]
+            }
+          />
+        </TouchableHighlight>
+        <TouchableHighlight
+          accessibilityLabel="Choose #654C9B"
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Object {
+              "height": 44,
+              "width": 44,
+            }
+          }
+          testID="color-picker-option-#654C9B"
+          underlayColor="transparent"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "borderRadius": 19,
+                  "flex": 1,
+                  "justifyContent": "center",
+                  "margin": 6,
+                },
+                Object {
+                  "backgroundColor": "#654C9B",
+                  "borderColor": "transparent",
+                  "borderWidth": 0,
+                },
+              ]
+            }
+          />
+        </TouchableHighlight>
+        <TouchableHighlight
+          accessibilityLabel="Choose #4656A2"
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Object {
+              "height": 44,
+              "width": 44,
+            }
+          }
+          testID="color-picker-option-#4656A2"
+          underlayColor="transparent"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "borderRadius": 19,
+                  "flex": 1,
+                  "justifyContent": "center",
+                  "margin": 6,
+                },
+                Object {
+                  "backgroundColor": "#4656A2",
+                  "borderColor": "transparent",
+                  "borderWidth": 0,
+                },
+              ]
+            }
+          />
+        </TouchableHighlight>
+        <TouchableHighlight
+          accessibilityLabel="Choose #2684C2"
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Object {
+              "height": 44,
+              "width": 44,
+            }
+          }
+          testID="color-picker-option-#2684C2"
+          underlayColor="transparent"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "borderRadius": 19,
+                  "flex": 1,
+                  "justifyContent": "center",
+                  "margin": 6,
+                },
+                Object {
+                  "backgroundColor": "#2684C2",
+                  "borderColor": "transparent",
+                  "borderWidth": 0,
+                },
+              ]
+            }
+          />
+        </TouchableHighlight>
+        <TouchableHighlight
+          accessibilityLabel="Choose #3BA5DA"
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Object {
+              "height": 44,
+              "width": 44,
+            }
+          }
+          testID="color-picker-option-#3BA5DA"
+          underlayColor="transparent"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "borderRadius": 19,
+                  "flex": 1,
+                  "justifyContent": "center",
+                  "margin": 6,
+                },
+                Object {
+                  "backgroundColor": "#3BA5DA",
+                  "borderColor": "transparent",
+                  "borderWidth": 0,
+                },
+              ]
+            }
+          />
+        </TouchableHighlight>
+        <TouchableHighlight
+          accessibilityLabel="Choose #2EBCD1"
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Object {
+              "height": 44,
+              "width": 44,
+            }
+          }
+          testID="color-picker-option-#2EBCD1"
+          underlayColor="transparent"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "borderRadius": 19,
+                  "flex": 1,
+                  "justifyContent": "center",
+                  "margin": 6,
+                },
+                Object {
+                  "backgroundColor": "#2EBCD1",
+                  "borderColor": "transparent",
+                  "borderWidth": 0,
+                },
+              ]
+            }
+          />
+        </TouchableHighlight>
+        <TouchableHighlight
+          accessibilityLabel="Choose #219588"
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Object {
+              "height": 44,
+              "width": 44,
+            }
+          }
+          testID="color-picker-option-#219588"
+          underlayColor="transparent"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "borderRadius": 19,
+                  "flex": 1,
+                  "justifyContent": "center",
+                  "margin": 6,
+                },
+                Object {
+                  "backgroundColor": "#219588",
+                  "borderColor": "transparent",
+                  "borderWidth": 0,
+                },
+              ]
+            }
+          />
+        </TouchableHighlight>
+        <TouchableHighlight
+          accessibilityLabel="Choose #479F4B"
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Object {
+              "height": 44,
+              "width": 44,
+            }
+          }
+          testID="color-picker-option-#479F4B"
+          underlayColor="transparent"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "borderRadius": 19,
+                  "flex": 1,
+                  "justifyContent": "center",
+                  "margin": 6,
+                },
+                Object {
+                  "backgroundColor": "#479F4B",
+                  "borderColor": "transparent",
+                  "borderWidth": 0,
+                },
+              ]
+            }
+          />
+        </TouchableHighlight>
+        <TouchableHighlight
+          accessibilityLabel="Choose #8CC152"
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Object {
+              "height": 44,
+              "width": 44,
+            }
+          }
+          testID="color-picker-option-#8CC152"
+          underlayColor="transparent"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "borderRadius": 19,
+                  "flex": 1,
+                  "justifyContent": "center",
+                  "margin": 6,
+                },
+                Object {
+                  "backgroundColor": "#8CC152",
+                  "borderColor": "transparent",
+                  "borderWidth": 0,
+                },
+              ]
+            }
+          />
+        </TouchableHighlight>
+        <TouchableHighlight
+          accessibilityLabel="Choose #FBBF40"
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Object {
+              "height": 44,
+              "width": 44,
+            }
+          }
+          testID="color-picker-option-#FBBF40"
+          underlayColor="transparent"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "borderRadius": 19,
+                  "flex": 1,
+                  "justifyContent": "center",
+                  "margin": 6,
+                },
+                Object {
+                  "backgroundColor": "#FBBF40",
+                  "borderColor": "transparent",
+                  "borderWidth": 0,
+                },
+              ]
+            }
+          />
+        </TouchableHighlight>
+        <TouchableHighlight
+          accessibilityLabel="Choose #F69637"
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Object {
+              "height": 44,
+              "width": 44,
+            }
+          }
+          testID="color-picker-option-#F69637"
+          underlayColor="transparent"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "borderRadius": 19,
+                  "flex": 1,
+                  "justifyContent": "center",
+                  "margin": 6,
+                },
+                Object {
+                  "backgroundColor": "#F69637",
+                  "borderColor": "transparent",
+                  "borderWidth": 0,
+                },
+              ]
+            }
+          />
+        </TouchableHighlight>
+        <TouchableHighlight
+          accessibilityLabel="Choose #ED5A34"
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Object {
+              "height": 44,
+              "width": 44,
+            }
+          }
+          testID="color-picker-option-#ED5A34"
+          underlayColor="transparent"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "borderRadius": 19,
+                  "flex": 1,
+                  "justifyContent": "center",
+                  "margin": 6,
+                },
+                Object {
+                  "backgroundColor": "#ED5A34",
+                  "borderColor": "transparent",
+                  "borderWidth": 0,
+                },
+              ]
+            }
+          />
+        </TouchableHighlight>
+        <TouchableHighlight
+          accessibilityLabel="Choose #EE6491"
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Object {
+              "height": 44,
+              "width": 44,
+            }
+          }
+          testID="color-picker-option-#EE6491"
+          underlayColor="transparent"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "borderRadius": 19,
+                  "flex": 1,
+                  "justifyContent": "center",
+                  "margin": 6,
+                },
+                Object {
+                  "backgroundColor": "#EE6491",
+                  "borderColor": "transparent",
+                  "borderWidth": 0,
+                },
+              ]
+            }
+          />
+        </TouchableHighlight>
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;

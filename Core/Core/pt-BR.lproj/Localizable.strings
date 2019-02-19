@@ -1,0 +1,237 @@
+/* No comment provided by engineer. */
+"%@ GPA" = "%@ GPA";
+
+/* No comment provided by engineer. */
+"Are you sure you would like to delete this comment?" = "Tem certeza de que deseja excluir este comentário?";
+
+/* No comment provided by engineer. */
+"Assignment" = "Tarefa";
+
+/* No comment provided by engineer. */
+"Assignment not found." = "Tarefa não encontrada.";
+
+/* No comment provided by engineer. */
+"Authentication failed. Most likely the user denied the request for access." = "Falha na autenticação. Provavelmente o usuário recusou a solicitação para acesso.";
+
+/* No comment provided by engineer. */
+"Can’t find your school? Try typing the full school URL." = "Não consegue localizar a sua escola? Tente digitar a URL completa da escola.";
+
+/* No comment provided by engineer. */
+"Cancel" = "Cancelar";
+
+/* No comment provided by engineer. */
+"Canvas Login" = "Login Canvas";
+
+/* No comment provided by engineer. */
+"Canvas Network" = "Canvas Network";
+
+/* No comment provided by engineer. */
+"Closed" = "Fechado";
+
+/* No comment provided by engineer. */
+"Comments" = "Comentários";
+
+/* No comment provided by engineer. */
+"Complete" = "Concluído";
+
+/* No comment provided by engineer. */
+"Course" = "Curso";
+
+/* No comment provided by engineer. */
+"d_questions" = "d_questions";
+
+/* No comment provided by engineer. */
+"Delete" = "Excluir";
+
+/* No comment provided by engineer. */
+"Delete comment" = "Excluir comentário";
+
+/* No comment provided by engineer. */
+"Delete Comment" = "Excluir comentário";
+
+/* No comment provided by engineer. */
+"Discussion Comment" = "Comentário da discussão";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Descartar";
+
+/* No comment provided by engineer. */
+"External Tool" = "Ferramenta externa";
+
+/* No comment provided by engineer. */
+"File Upload" = "Carregamento de arquivo";
+
+/* No comment provided by engineer. */
+"Final Grade: %@" = "Nota final: %@";
+
+/* No comment provided by engineer. */
+"final_grade_g_pts" = "final_grade_g_pts";
+
+/* No comment provided by engineer. */
+"Find my school" = "Encontrar minha escola";
+
+/* No comment provided by engineer. */
+"Find your school or district" = "Encontre sua escola ou distrito";
+
+/* No comment provided by engineer. */
+"Forget %@" = "Esquecer %@";
+
+/* No comment provided by engineer. */
+"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
+
+/* No comment provided by engineer. */
+"g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
+"Help" = "Ajuda";
+
+/* No comment provided by engineer. */
+"How do I find my school?" = "Como encontrar minha escola?";
+
+/* No comment provided by engineer. */
+"Incomplete" = "Incompleto";
+
+/* No comment provided by engineer. */
+"late_penalty_g_pts" = "late_penalty_g_pts";
+
+/* No comment provided by engineer. */
+"Launch External Tool" = "Lançar Ferramenta Externa";
+
+/* end of and list pattern */
+"list_and_end" = "%1$@, e %2$@";
+
+/* middle of and list pattern */
+"list_and_middle" = "%1$@, %2$@";
+
+/* start of and list pattern */
+"list_and_start" = "%1$@, %2$@";
+
+/* and list pattern for 2 items */
+"list_and_two" = "%1$@ e %2$@";
+
+/* end of or list pattern */
+"list_or_end" = "%1$@, ou %2$@";
+
+/* middle of or list pattern */
+"list_or_middle" = "%1$@, %2$@";
+
+/* start of or list pattern */
+"list_or_start" = "%1$@, %2$@";
+
+/* or list pattern for 2 items */
+"list_or_two" = "%1$@ ou %2$@";
+
+/* No comment provided by engineer. */
+"Manual OAuth Login" = "Login manual OAuth";
+
+/* No comment provided by engineer. */
+"Media Recording" = "Gravação de Mídia";
+
+/* No comment provided by engineer. */
+"No Due Date" = "Sem Prazo";
+
+/* No comment provided by engineer. */
+"No Submission" = "Sem envio";
+
+/* No comment provided by engineer. */
+"Not Graded" = "Sem nota";
+
+/* No comment provided by engineer. */
+"Not Submitted" = "Não Enviado";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"On Paper" = "Em Papel";
+
+/* No comment provided by engineer. */
+"out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
+"plural_points" = "plural_points";
+
+/* No comment provided by engineer. */
+"Quiz" = "Questionário";
+
+/* No comment provided by engineer. */
+"Remove" = "Remover";
+
+/* No comment provided by engineer. */
+"Removed %1$@" = "Removido %1$@";
+
+/* No comment provided by engineer. */
+"Removed %1$@ by %2$@" = "%1$@ removido por %2$@";
+
+/* No comment provided by engineer. */
+"Reply to the annotation or previous comments" = "Responder a anotação ou comentários anteriores";
+
+/* No comment provided by engineer. */
+"Resubmit Assignment" = "Reenviar Tarefa";
+
+/* No comment provided by engineer. */
+"See what's new." = "Ver as novidades.";
+
+/* No comment provided by engineer. */
+"Select Account" = "Selecionar conta";
+
+/* No comment provided by engineer. */
+"Select Assignment" = "Selecionar tarefa";
+
+/* No comment provided by engineer. */
+"Select Course" = "Selecionar curso";
+
+/* No comment provided by engineer. */
+"Send comment" = "Enviar comentário";
+
+/* No comment provided by engineer. */
+"Site Admin Login" = "Login do Admin do Site";
+
+/* No comment provided by engineer. */
+"Style" = "Estilo";
+
+/* No comment provided by engineer. */
+"Submission Failed" = "Falha no envio";
+
+/* No comment provided by engineer. */
+"Submission Uploading..." = "Envio carregando...";
+
+/* No comment provided by engineer. */
+"Submit Assignment" = "Enviar tarefa";
+
+/* No comment provided by engineer. */
+"Submitted" = "Enviado";
+
+/* Submitted date */
+"Submitted %@" = "Enviado %@";
+
+/* No comment provided by engineer. */
+"Tap here for help." = "Toque aqui para ajuda.";
+
+/* No comment provided by engineer. */
+"Tap to view details" = "Toque para visualizar os detalhes";
+
+/* No comment provided by engineer. */
+"Tap to view progress" = "Toque para visualizar o progresso";
+
+/* No comment provided by engineer. */
+"Text Entry" = "Entrada de texto";
+
+/* No comment provided by engineer. */
+"This assignment is due by %@" = "Essa tarefa vence em %@";
+
+/* No comment provided by engineer. */
+"This assignment was due by %@" = "Essa tarefa venceu em %@";
+
+/* No comment provided by engineer. */
+"We've made a few changes." = "Fizemos algumas mudanças.";
+
+/* No comment provided by engineer. */
+"Website URL" = "URL do site";
+
+/* No comment provided by engineer. */
+"What’s your school’s name?" = "Qual é o nome da sua escola?";
+
+/* No comment provided by engineer. */
+"You will need to log into at least one Canvas account from the Student app first." = "Você precisará fazer login em pelo menos uma conta do Canvas a partir do app Student primeiro.";
+

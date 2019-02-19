@@ -1,0 +1,303 @@
+/* <String> <Int> of <Int> */
+"%@ %d of %d" = "%3$d 中 %1$@ %2$d";
+
+/* No comment provided by engineer. */
+"%@ is due at %@" = "%1$@の期日は（）です%2$@";
+
+/* No comment provided by engineer. */
+"%@ to %@" = "%1$@から%2$@へ";
+
+/* No comment provided by engineer. */
+"%@ will begin at %@" = "%1$@（）に開始します%2$@";
+
+/* Percentage field placeholder */
+"1-100%" = "1-100%";
+
+/* Server Error Message */
+"A server error has occurred.  Please try again." = "サーバーエラーが発生しました。再度お試しください。";
+
+/* Label for button that allows admin to Act as User */
+"Act as User" = "ユーザーとして行動する";
+
+/* Label displayed when logged in as an admin */
+"Admin" = "管理者";
+
+/* Alert Section Header */
+"Alert me when:" = "次の時にアラートしてください：";
+
+/* Alerts Tab */
+"Alerts" = "アラート";
+
+/* No comment provided by engineer. */
+"An Error Occurred" = "エラーが発生しました。";
+
+/* Generic Network Error Message */
+"An unexpected error occurred.  Please try again." = "予期しないエラーが発生しました。再度お試しください。";
+
+/* No comment provided by engineer. */
+"Announcement" = "発表";
+
+/* No comment provided by engineer. */
+"Assignment" = "課題";
+
+/* Assignment Grade High On Description */
+"Assignment grade above" = "より上の課題成績";
+
+/* Assignment Grade Low On Description */
+"Assignment grade below" = "より下の課題成績";
+
+/* Assignment Missing Description */
+"Assignment missing" = "未提出の課題";
+
+/* No comment provided by engineer. */
+"Assignment reminder" = "課題のリマインダ";
+
+/* No comment provided by engineer. */
+"Cache cleared" = "キャッシュがクリアされました";
+
+/* Cancel button title */
+"Cancel" = "キャンセル";
+
+/* Percent value is over 100 */
+"Cannot use percent that is higher than 100" = "100以上のパーセントは使えません";
+
+/* Percent value is under 0 */
+"Cannot use percent that is less than 0" = "0以下のパーセントは使えません";
+
+/* Cancel the question/suggestion form */
+"Casual question or suggestion" = "気軽なご質問または提案";
+
+/* Empty Alerts Text */
+"Caught up on Alerts" = "アラートにこだわる";
+
+/* No comment provided by engineer. */
+"Choose a student" = "受講生を選択";
+
+/* title for status selection field */
+"Choose One" = "ひとつ選んでください";
+
+/* Close Button Title */
+"Close" = "閉じる";
+
+/* Course Announcement Description */
+"Course announcements" = "コースのアナウンスメント";
+
+/* Course Grade High On Description */
+"Course grade above" = "より上のコース成績";
+
+/* Course Grade Low On Description */
+"Course grade below" = "より下のコース成績";
+
+/* Courses Tab */
+"Courses" = "コース";
+
+/* No comment provided by engineer. */
+"Current student: %@, tap to switch students" = "現在の受講生：%@、タップして受講生を切り替える";
+
+/* Title for field */
+"Describe your problem" = "問題についてお聞かせください";
+
+/* No comment provided by engineer. */
+"Discussion" = "ディスカッション";
+
+/* No comment provided by engineer. */
+"Dismiss" = "棄却する";
+
+/* No comment provided by engineer. */
+"Error" = "エラー";
+
+/* No comment provided by engineer. */
+"Event" = "イベント";
+
+/* No comment provided by engineer. */
+"Event reminder" = "イベントのリマインダ";
+
+/* No comment provided by engineer. */
+"Excused" = "免除";
+
+/* Status level for issue being reported */
+"Extremely critical emergency" = "非常に深刻な緊急事態";
+
+/* High Assignment Grade too Low */
+"High assignment grade cannot be lower than low assignment grade" = "高い課題成績は、低い課題成績より低くしないでください";
+
+/* High Course Grade too Low */
+"High course grade cannot be lower than low course grade" = "高いコース成績は、低いコース成績より低くしないでください";
+
+/* Status level for issue being reported */
+"I can't get things done until fixed" = "修正されるまで作業が何もできません";
+
+/* Status level for issue being reported */
+"I need help but it's not urgent" = "ヘルプが必要ですが、緊急ではありません";
+
+/* Impact Title */
+"Impact:" = "深刻度：";
+
+/* No comment provided by engineer. */
+"In-Class" = "教室内";
+
+/* Institution Announcement Description */
+"Institution announcements" = "教育機関のアナウンスメント";
+
+/* Title for an alert view */
+"Invalid Input" = "無効な入力";
+
+/* Support Ticket Invalid Input Message */
+"Invalid Input.  Check fields and try again." = "入力が無効。フィールドをチェックして、もういちど試してください。";
+
+/* Last Week Button Accessibility Label */
+"Last Week" = "先週";
+
+/* No comment provided by engineer. */
+"Late" = "遅滞";
+
+/* No comment provided by engineer. */
+"Late: %@" = "遅滞: %@";
+
+/* No comment provided by engineer. */
+"Late: %@ (%@/%@)" = "遅滞: %1$@ (%2$@/%3$@)";
+
+/* Low Assignment Grade too High */
+"Low assignment grade cannot be higher than high assignment grade" = "低い課題成績は、高い課題成績より高くしないでください";
+
+/* Low Course Grade too High */
+"Low course grade cannot be higher than high course grade" = "低いコース成績は、高いコース成績より高くしないでください";
+
+/* Title of the manage children screen. This screen is used to add/remove children that a parent is observing. */
+"Manage Children" = "「子」を管理する";
+
+/* No comment provided by engineer. */
+"Missing" = "紛失";
+
+/* No comment provided by engineer. */
+"Missing: (-/%@)" = "紛失: (-/%@)";
+
+/* Generic Network Error Title */
+"Network Error" = "ネットワークエラー";
+
+/* Next Week Button Accessibility Label */
+"Next Week" = "次週";
+
+/* Empty Courses Text */
+"No Courses" = "コースなし";
+
+/* Title for label when no grade has been assigned to the course */
+"No Grade" = "成績なし";
+
+/* Error message */
+"No installed apps support opening this file" = "このファイルを開くことができるアプリがインストールされていません";
+
+/* Empty Students Text */
+"No Students" = "受講生なし";
+
+/* Not Authorized Error Title */
+"Not Authorized" = "権限がありません。";
+
+/* Not Found Error Title */
+"Not Found" = "見つかりません";
+
+/* Empty Calendar Events Text */
+"Nothing this week" = "今週はありません";
+
+/* OK Button Title */
+"OK" = "OK";
+
+/* Open a url in the application Safari */
+"Open in Safari" = "Safariで開く";
+
+/* Open file in another application */
+"Open in..." = "...で開く";
+
+/* No comment provided by engineer. */
+"Permission Needed" = "許可が必要";
+
+/* No comment provided by engineer. */
+"Quiz" = "クイズ";
+
+/* Support Ticket Creation Failed */
+"Request Failed!  Check network and try again!" = "リクエストに失敗しました！ネットワークをチェックして、もういちど試してください。";
+
+/* Not Found Error Message */
+"Resource not found.  Please try again." = "リソースが見つかりません。再度お試しください。";
+
+/* Select Impact Placeholder */
+"Select Impact" = "深刻度をお選びください";
+
+/* Server Error Title */
+"Server Error" = "サーバーエラー";
+
+/* No comment provided by engineer. */
+"Settings" = "設定";
+
+/* Status level for issue being reported */
+"Something is broken but I can work around it" = "何かが壊れていますが、それを避けて作業ができます";
+
+/* Title for the subject field */
+"Subject" = "件名";
+
+/* No comment provided by engineer. */
+"Submitted" = "提出済み";
+
+/* No comment provided by engineer. */
+"Submitted: %@" = "提出済み: %@";
+
+/* No comment provided by engineer. */
+"Submitted: %@ (%@/%@)" = "提出済み: %1$@ (%2$@/%3$@)";
+
+/* Syllabus Button Title */
+"Syllabus" = "シラバス";
+
+/* Directions in the admin view */
+"Tap to start viewing Canvas as another person." = "タップして別の人物としてCanvasの閲覧を開始する";
+
+/* Support Ticket Created Successfully */
+"Thanks, your request was received!" = "リクエストが受理されました！";
+
+/* Error message */
+"There are no actions for this item" = "このアイテムへのアクションはありません";
+
+/* AlertKit Database Load Failure Message */
+"There was a problem loading the AlertKit database file." = "AlertKit データベースファイルを読み込み中、問題がありました。.";
+
+/* Airwolf database error message */
+"There was a problem loading the database." = "データベースの読み込み中、問題がありました。";
+
+/* No comment provided by engineer. */
+"There was an error loading your content. If it  is an audio or video upload it may still be processing." = "コンテンツのロード中にエラーが発生しました。コンテンツがオーディオまたは動画のアップロードの場合、処理が継続中の可能性があります。";
+
+/* No comment provided by engineer. */
+"This announcement has expired." = "この発表は終了しました。";
+
+/* No comment provided by engineer. */
+"This student's courses may not be published yet." = "この受講生のコースはまだ公開されていないかもしれません。";
+
+/* Unknown T`hreshold Description */
+"Unknown" = "未知の";
+
+/* Default name given a user until we find their real name */
+"Unknown User" = "存在しないユーザー";
+
+/* Default user name, the computer-friendly version of their name, until we find their real user name */
+"Unknown User Name" = "存在しないユーザーネームです";
+
+/* No comment provided by engineer. */
+"Unread" = "未読";
+
+/* Calendar Tab */
+"Week" = "週";
+
+/* Header title of admin view */
+"Welcome!" = "どういたしまして！";
+
+/* Title for field */
+"What can we do better?" = "改善する余地はどこにあるでしょう？";
+
+/* Not Authorized Error Message */
+"You are unauthorized to access this information.  Check your user permissions and try again." = "この情報にアクセスする権限がありません。ユーザー承認をご確認のうえ、再度お試しください。";
+
+/* No comment provided by engineer. */
+"You must allow notifications in Settings to set reminders." = "[設定]で通知を許可して、リマインダを設定しなければなりません。";
+
+/* Title for the email field */
+"Your Email" = "あなたのメールアドレス";
+

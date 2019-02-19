@@ -1,0 +1,144 @@
+/* All Courses screen title */
+"All Courses" = "Alle Kurse";
+
+/* No comment provided by engineer. */
+"Assignment Details" = "Aufgabendetails";
+
+/* No comment provided by engineer. */
+"Assignments" = "Aufgaben";
+
+/* No comment provided by engineer. */
+"Cancel" = "Abbrechen";
+
+/* No comment provided by engineer. */
+"Cancel Submission" = "Abgabe abbrechen";
+
+/* No comment provided by engineer. */
+"Close App" = "App schließen";
+
+/* No comment provided by engineer. */
+"Comments" = "Kommentare";
+
+/* No comment provided by engineer. */
+"Courses" = "Kurse";
+
+/* No comment provided by engineer. */
+"Dashboard" = "Dashboard";
+
+/* No comment provided by engineer. */
+"Description" = "Beschreibung";
+
+/* No comment provided by engineer. */
+"Done" = "Fertig";
+
+/* No comment provided by engineer. */
+"Drawer closed" = "Fach geschlossen";
+
+/* No comment provided by engineer. */
+"Drawer fully open" = "Fach vollständig geöffnet";
+
+/* No comment provided by engineer. */
+"Drawer partially opened" = "Fach teilweise geöffnet";
+
+/* No comment provided by engineer. */
+"Due" = "Fällig";
+
+/* No comment provided by engineer. */
+"Edit" = "Ändern";
+
+/* No comment provided by engineer. */
+"Edit Course" = "Kurs bearbeiten";
+
+/* No comment provided by engineer. */
+"Failed upload" = "Upload fehlgeschlagen";
+
+/* No comment provided by engineer. */
+"File Types" = "Dateitypen";
+
+/* No comment provided by engineer. */
+"Files" = "Dateien";
+
+/* No comment provided by engineer. */
+"Grade" = "Note";
+
+/* No comment provided by engineer. */
+"Groups" = "Gruppen";
+
+/* No comment provided by engineer. */
+"Invalid url" = "Ungültiger URL";
+
+/* No comment provided by engineer. */
+"No Content" = "Keine Inhalte vorhanden";
+
+/* No comment provided by engineer. */
+"No Submission" = "Keine Abgabe";
+
+/* No comment provided by engineer. */
+"No Submission Date" = "Kein Abgabedatum";
+
+/* Button to open external tool */
+"Open External Tool" = "Externes Tool öffnen";
+
+/* Past enrollments section title in All Courses screen */
+"Past Enrollments" = "Frühere Einschreibungen";
+
+/* No comment provided by engineer. */
+"Quizzes" = "Quizze";
+
+/* No comment provided by engineer. */
+"Resubmit Assignment" = "Aufgabe neu einreichen";
+
+/* No comment provided by engineer. */
+"Retry" = "Erneut versuchen";
+
+/* No comment provided by engineer. */
+"Rubric" = "Bewertungsschema";
+
+/* No comment provided by engineer. */
+"See All" = "Alle ansehen";
+
+/* No comment provided by engineer. */
+"See All Courses" = "Alle Kurse anzeigen";
+
+/* No comment provided by engineer. */
+"Something went wrong while loading the quizzes." = "Beim Laden der Quizaufgaben ist etwas schiefgegangen.";
+
+/* No comment provided by engineer. */
+"Submission" = "Abgabe";
+
+/* No comment provided by engineer. */
+"Submission & Rubric" = "Abgabe und Bewertungsschema";
+
+/* No comment provided by engineer. */
+"Submission Types" = "Abgabearten";
+
+/* No comment provided by engineer. */
+"Submit" = "Abgeben";
+
+/* No comment provided by engineer. */
+"Submit Assignment" = "Aufgabe abgeben";
+
+/* No comment provided by engineer. */
+"Successfully submitted!" = "Wurde abgegeben!";
+
+/* No comment provided by engineer. */
+"The app needs to restart to use the new language settings. Please relaunch the app." = "Die Anwendung muss neu gestartet werden, um die neuen Spracheinstellungen zu übernehmen. Bitte starten Sie die App erneut.";
+
+/* No comment provided by engineer. */
+"There are no quizzes to display." = "Es sind keine Quizaufgaben anzuzeigen.";
+
+/* No comment provided by engineer. */
+"Updated Language Settings" = "Aktualisierte Spracheinstellungen";
+
+/* No comment provided by engineer. */
+"Uploading %@ of %@" = "%1$@ von [...] wird hochgeladen %2$@";
+
+/* No comment provided by engineer. */
+"Uploading..." = "Wird hochgeladen ...";
+
+/* No comment provided by engineer. */
+"Website Address" = "Website-Adresse";
+
+/* No comment provided by engineer. */
+"Your submission is now waiting to be graded" = "Ihre Abgabe wartet nun auf die Benotung.";
+

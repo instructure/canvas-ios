@@ -1,0 +1,144 @@
+/* All Courses screen title */
+"All Courses" = "Все курсы";
+
+/* No comment provided by engineer. */
+"Assignment Details" = "Сведения о задании";
+
+/* No comment provided by engineer. */
+"Assignments" = "Задания";
+
+/* No comment provided by engineer. */
+"Cancel" = "Отменить";
+
+/* No comment provided by engineer. */
+"Cancel Submission" = "Отменить отправку";
+
+/* No comment provided by engineer. */
+"Close App" = "Закрыть приложение";
+
+/* No comment provided by engineer. */
+"Comments" = "Комментарии";
+
+/* No comment provided by engineer. */
+"Courses" = "Курсы";
+
+/* No comment provided by engineer. */
+"Dashboard" = "Информационная панель";
+
+/* No comment provided by engineer. */
+"Description" = "Описание";
+
+/* No comment provided by engineer. */
+"Done" = "Готово";
+
+/* No comment provided by engineer. */
+"Drawer closed" = "Панель закрыта";
+
+/* No comment provided by engineer. */
+"Drawer fully open" = "Панель полностью открыта";
+
+/* No comment provided by engineer. */
+"Drawer partially opened" = "Панель частично открыта";
+
+/* No comment provided by engineer. */
+"Due" = "Срок";
+
+/* No comment provided by engineer. */
+"Edit" = "Редактировать";
+
+/* No comment provided by engineer. */
+"Edit Course" = "Редактировать курс";
+
+/* No comment provided by engineer. */
+"Failed upload" = "Сбой загрузки";
+
+/* No comment provided by engineer. */
+"File Types" = "Типы файлов";
+
+/* No comment provided by engineer. */
+"Files" = "Файлы";
+
+/* No comment provided by engineer. */
+"Grade" = "Оценка";
+
+/* No comment provided by engineer. */
+"Groups" = "Группы";
+
+/* No comment provided by engineer. */
+"Invalid url" = "Неверный URL";
+
+/* No comment provided by engineer. */
+"No Content" = "Нет содержимого";
+
+/* No comment provided by engineer. */
+"No Submission" = "Нет отправки";
+
+/* No comment provided by engineer. */
+"No Submission Date" = "Отсутствует дата предоставления";
+
+/* Button to open external tool */
+"Open External Tool" = "Открыть внешний инструмент";
+
+/* Past enrollments section title in All Courses screen */
+"Past Enrollments" = "Прошлые регистрации";
+
+/* No comment provided by engineer. */
+"Quizzes" = "Тесты";
+
+/* No comment provided by engineer. */
+"Resubmit Assignment" = "Повторная отправка задания";
+
+/* No comment provided by engineer. */
+"Retry" = "Повторить";
+
+/* No comment provided by engineer. */
+"Rubric" = "Рубрика";
+
+/* No comment provided by engineer. */
+"See All" = "Смотреть все";
+
+/* No comment provided by engineer. */
+"See All Courses" = "Показать все курсы";
+
+/* No comment provided by engineer. */
+"Something went wrong while loading the quizzes." = "При загрузке тестов что-то пошло не так.";
+
+/* No comment provided by engineer. */
+"Submission" = "Отправка";
+
+/* No comment provided by engineer. */
+"Submission & Rubric" = "Предоставление и рубрика";
+
+/* No comment provided by engineer. */
+"Submission Types" = "Типы сдаваемых работ";
+
+/* No comment provided by engineer. */
+"Submit" = "Отправить";
+
+/* No comment provided by engineer. */
+"Submit Assignment" = "Отправить задание";
+
+/* No comment provided by engineer. */
+"Successfully submitted!" = "Успешно отправлено!";
+
+/* No comment provided by engineer. */
+"The app needs to restart to use the new language settings. Please relaunch the app." = "Необходимо перезапустить приложение для использования новых языковых настроек. Перезапустите приложение.";
+
+/* No comment provided by engineer. */
+"There are no quizzes to display." = "Нет доступных для отображения тестов.";
+
+/* No comment provided by engineer. */
+"Updated Language Settings" = "Обновленные языковые настройки";
+
+/* No comment provided by engineer. */
+"Uploading %@ of %@" = "Отправка %1$@ из %2$@";
+
+/* No comment provided by engineer. */
+"Uploading..." = "Выполняется отправка...";
+
+/* No comment provided by engineer. */
+"Website Address" = "Адрес веб-сайта";
+
+/* No comment provided by engineer. */
+"Your submission is now waiting to be graded" = "Предоставляемые вами данные в ожидании оценки";
+

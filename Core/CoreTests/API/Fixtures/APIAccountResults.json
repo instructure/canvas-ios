@@ -1,0 +1,4 @@
+[
+    {"id":"1","name":"CGNU","domain":"cgnuonline-eniversity.edu","distance":null,"authentication_provider":null},
+    {"id":"2","name":"Jedi Academy","domain":"academy.jedi","distance":null,"authentication_provider":"canvas"}
+]

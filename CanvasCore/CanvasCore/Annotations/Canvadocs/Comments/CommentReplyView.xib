@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CommentReplyView" customModule="SoAnnotated" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="49"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="POr-o2-61t">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="49"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="f4l-Dg-97V">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="49"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iIt-dV-eKO">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="0.5"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="0.5" id="FVl-dV-N2Y"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pyd-Ii-3Gu">
+                                <rect key="frame" x="20" y="8" width="560" height="33"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="YdD-ec-7WW">
+                                        <rect key="frame" x="4" y="0.0" width="524" height="33"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="iN0-l3-epB" id="mFi-0a-KQp"/>
+                                        </connections>
+                                    </textView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="upO-Kr-dri">
+                                        <rect key="frame" x="532" y="4" width="24" height="24"/>
+                                        <accessibility key="accessibilityConfiguration" label="Send reply"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="24" id="Zy9-r0-z7L"/>
+                                            <constraint firstAttribute="height" constant="24" id="nxZ-SN-vIy"/>
+                                        </constraints>
+                                        <state key="normal" image="send-btn"/>
+                                        <connections>
+                                            <action selector="sendButtonClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="2h6-ZS-dgF"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="upO-Kr-dri" firstAttribute="top" secondItem="Pyd-Ii-3Gu" secondAttribute="top" constant="4" id="2t1-gU-fV9"/>
+                                    <constraint firstItem="YdD-ec-7WW" firstAttribute="leading" secondItem="Pyd-Ii-3Gu" secondAttribute="leading" constant="4" id="3uD-3v-bjI"/>
+                                    <constraint firstAttribute="bottom" secondItem="YdD-ec-7WW" secondAttribute="bottom" id="Qz2-sR-edI"/>
+                                    <constraint firstItem="upO-Kr-dri" firstAttribute="leading" secondItem="YdD-ec-7WW" secondAttribute="trailing" constant="4" id="cCP-rW-ssG"/>
+                                    <constraint firstItem="YdD-ec-7WW" firstAttribute="top" secondItem="Pyd-Ii-3Gu" secondAttribute="top" id="hvP-Xk-K16"/>
+                                    <constraint firstAttribute="trailing" secondItem="upO-Kr-dri" secondAttribute="trailing" constant="4" id="leh-DG-aCb"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="iIt-dV-eKO" firstAttribute="leading" secondItem="f4l-Dg-97V" secondAttribute="leading" id="55b-YN-NuS"/>
+                            <constraint firstItem="Pyd-Ii-3Gu" firstAttribute="top" secondItem="f4l-Dg-97V" secondAttribute="top" constant="8" id="Mqi-4Q-VlQ"/>
+                            <constraint firstAttribute="bottom" secondItem="Pyd-Ii-3Gu" secondAttribute="bottom" constant="8" id="PWu-Al-OHk"/>
+                            <constraint firstItem="Pyd-Ii-3Gu" firstAttribute="leading" secondItem="f4l-Dg-97V" secondAttribute="leading" constant="20" id="eQs-ld-suD"/>
+                            <constraint firstAttribute="trailing" secondItem="iIt-dV-eKO" secondAttribute="trailing" id="pMh-E8-wFM"/>
+                            <constraint firstAttribute="trailing" secondItem="Pyd-Ii-3Gu" secondAttribute="trailing" constant="20" id="ujE-AZ-U33"/>
+                            <constraint firstItem="iIt-dV-eKO" firstAttribute="top" secondItem="f4l-Dg-97V" secondAttribute="top" id="zOI-6G-hCU"/>
+                        </constraints>
+                    </view>
+                    <blurEffect style="extraLight"/>
+                </visualEffectView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="POr-o2-61t" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Sjx-Gj-LKV"/>
+                <constraint firstAttribute="trailing" secondItem="POr-o2-61t" secondAttribute="trailing" id="fBV-6y-4In"/>
+                <constraint firstItem="POr-o2-61t" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="hT0-Vw-jVn"/>
+                <constraint firstAttribute="bottom" secondItem="POr-o2-61t" secondAttribute="bottom" id="z1m-sI-CNg"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="replyContainerView" destination="Pyd-Ii-3Gu" id="bKl-3p-avx"/>
+                <outlet property="replyTextView" destination="YdD-ec-7WW" id="dv8-y2-RV5"/>
+                <outlet property="sendButton" destination="upO-Kr-dri" id="mPF-kq-VU6"/>
+            </connections>
+            <point key="canvasLocation" x="794" y="224.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="send-btn" width="24" height="24"/>
+    </resources>
+</document>

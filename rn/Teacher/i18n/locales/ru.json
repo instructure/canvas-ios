@@ -1,0 +1,1743 @@
+{
+  "_376f89ea": {
+    "message": "--"
+  },
+  "_4927a5f1": {
+    "message": "?"
+  },
+  "a_description_is_required_54b5f1f6": {
+    "message": "Требуется описание"
+  },
+  "a_title_is_required_71222850": {
+    "message": "Требуется заголовок"
+  },
+  "accept_2fdd362e": {
+    "message": "Принять"
+  },
+  "access_9a94f04e": {
+    "message": "Доступ"
+  },
+  "access_code_74f4864f": {
+    "message": "Код доступа"
+  },
+  "account_group_cb00ca73": {
+    "message": "Рабочая группа клиента"
+  },
+  "account_has_no_terms_of_use_1048a785": {
+    "message": "У учетной записи нет условия использования"
+  },
+  "act_as_is_essentially_logging_in_as_this_user_with_7870ece0": {
+    "message": "\"Действовать как пользователь\" является по существу входом в систему в качестве этого пользователя без пароля. Вы сможете выполнять любые действия, как будто вы являетесь этим пользователем, и с точки зрения других пользователей это будет выглядеть так, как будто именно этот пользователь выполнил это действие. Тем не менее, в контрольных журналах записывается информация от том, что именно вы выполняли указанные действия от имени этого пользователя."
+  },
+  "act_as_user_d7ef0e48": {
+    "message": "Действовать как пользователь"
+  },
+  "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
+    "message": "Добавьте несколько избранных курсов, чтобы сделать это место вашим домом."
+  },
+  "add_an_attachment_by_tapping_the_plus_at_the_top_r_f9350b62": {
+    "message": "Добавьте приложение, щелкнув по кнопке \"плюс\" в верхнем правом углу."
+  },
+  "add_assignee_24ee0b71": {
+    "message": "Добавить получателя"
+  },
+  "add_attachment_dcdb8bf8": {
+    "message": "Добавить вложение"
+  },
+  "add_comment_3205529f": {
+    "message": "Добавить комментарий"
+  },
+  "add_courses_fd45abf": {
+    "message": "Добавить курсы"
+  },
+  "add_description_5321f1d": {
+    "message": "Добавить описание"
+  },
+  "add_description_required_e222e483": {
+    "message": "Добавить описание (обязательно)"
+  },
+  "add_due_date_65b08f6c": {
+    "message": "Добавить срок исполнения"
+  },
+  "add_file_e6326e09": {
+    "message": "Добавить файл"
+  },
+  "add_item_75b67d07": {
+    "message": "Добавить элемент"
+  },
+  "add_media_cfa37b54": {
+    "message": "Добавить носитель"
+  },
+  "add_recipient_7de2dc74": {
+    "message": "Добавить получателя"
+  },
+  "add_title_4f788d37": {
+    "message": "Добавить заголовок"
+  },
+  "add_title_required_8d9bdeaa": {
+    "message": "Добавить заголовок (обязательно)"
+  },
+  "after_date_e5d9b0e1": {
+    "message": "После { date }"
+  },
+  "after_last_attempt_c9168da2": {
+    "message": "После последней попытки"
+  },
+  "all_4321c3a1": {
+    "message": "Все"
+  },
+  "all_annotations_saved_c0c650ab": {
+    "message": "Все аннотации сохранены."
+  },
+  "all_courses_a7dbb853": {
+    "message": "Все курсы"
+  },
+  "all_grading_periods_77974940": {
+    "message": "Все периоды оценивания"
+  },
+  "all_in_e5ddaee0": {
+    "message": "Все в"
+  },
+  "all_people_16d90b41": {
+    "message": "Все люди"
+  },
+  "all_submissions_3eedfb97": {
+    "message": "Все отправки"
+  },
+  "all_submissions_b8717440": {
+    "message": "Все отправки"
+  },
+  "allow_multiple_attempts_e67a0a37": {
+    "message": "Разрешить несколько попыток"
+  },
+  "allow_threaded_replies_43b2311e": {
+    "message": "Разрешить цепочечные ответы"
+  },
+  "allowed_attempts_4e229caa": {
+    "message": "Разрешенные Попытки"
+  },
+  "always_3a59e701": {
+    "message": "Всегда"
+  },
+  "an_error_occured_while_fetching_this_conversation_453ca633": {
+    "message": "Произошла ошибка при загрузке этого диалога."
+  },
+  "an_error_occurred_a4e1cda4": {
+    "message": "Произошла ошибка"
+  },
+  "announcement_details_81b0bda2": {
+    "message": "Сведения об объявлении"
+  },
+  "announcements_a4b8ed4a": {
+    "message": "Объявления"
+  },
+  "anonymous_grading_3083dc0": {
+    "message": "Анонимное оценивание"
+  },
+  "anyone_5b8fdf9f": {
+    "message": "Все"
+  },
+  "archived_de543437": {
+    "message": "Архивировано"
+  },
+  "are_you_sure_you_want_to_delete_name_908230d3": {
+    "message": "Вы действительно хотите удалить { name }?"
+  },
+  "are_you_sure_you_want_to_delete_this_announcement_293d51a8": {
+    "message": "Вы уверены, что хотите удалить эту аннотацию?"
+  },
+  "are_you_sure_you_want_to_delete_this_discussion_334554e0": {
+    "message": "Вы уверены, что хотите удалить эту дискуссию?"
+  },
+  "are_you_sure_you_want_to_delete_this_page_2185844": {
+    "message": "Вы действительно хотите удалить эту страницу?"
+  },
+  "are_you_sure_you_want_to_delete_this_reply_6a35cccc": {
+    "message": "Вы действительно хотите удалить этот ответ?"
+  },
+  "assign_to_95404a83": {
+    "message": "Назначить"
+  },
+  "assignees_314d5e55": {
+    "message": "Получатели"
+  },
+  "assignees_required_1b9218fb": {
+    "message": "Необходимы получатели"
+  },
+  "assignment_details_bc488179": {
+    "message": "Сведения о задании"
+  },
+  "assignment_group_1a781505": {
+    "message": "Группа заданий"
+  },
+  "assignments_1e02582c": {
+    "message": "Задания"
+  },
+  "assignments_list_fe3e54be": {
+    "message": "Список заданий"
+  },
+  "attachment_deffe5a9": {
+    "message": "Вложение"
+  },
+  "attachments_694cf227": {
+    "message": "Вложения"
+  },
+  "attempt_number_75028cfa": {
+    "message": "Попытка { number }"
+  },
+  "audio_comment_baf426c7": {
+    "message": "Аудиокомментарий"
+  },
+  "audio_dd489fcc": {
+    "message": "Аудио"
+  },
+  "audio_playback_failed_912bcb82": {
+    "message": "Ошибка при воспроизведении аудиозаписи"
+  },
+  "availability_8942cde6": {
+    "message": "Доступность"
+  },
+  "availability_closed_429d1ba5": {
+    "message": "Доступность: Закрыто"
+  },
+  "availability_e415e857": {
+    "message": "Доступность:"
+  },
+  "available_from_3821bccc": {
+    "message": "Доступно с:"
+  },
+  "available_from_587ce92f": {
+    "message": "Доступно с"
+  },
+  "available_from_date_bb9d5115": {
+    "message": "Доступно с: { date }"
+  },
+  "available_from_f84e4611": {
+    "message": "Доступно с"
+  },
+  "available_from_must_be_before_available_to_b73ad479": {
+    "message": "«Доступно с» должно быть раньше «Доступно до»"
+  },
+  "available_from_must_be_before_available_until_38d313cc": {
+    "message": "«Доступно с» должно быть раньше «Доступно до»"
+  },
+  "available_to_b7350e02": {
+    "message": "Доступно для"
+  },
+  "available_until_20c0cc5c": {
+    "message": "Доступно до:"
+  },
+  "available_until_date_37684818": {
+    "message": "Доступно до: { date }"
+  },
+  "available_until_f3b9c4ed": {
+    "message": "Доступно до"
+  },
+  "average_49c63f9b": {
+    "message": "Среднее значение"
+  },
+  "back_2900f52a": {
+    "message": "Назад"
+  },
+  "back_to_replies_94f3c127": {
+    "message": "Назад к ответам"
+  },
+  "bold_34b9d97e": {
+    "message": "Жирный"
+  },
+  "can_edit_5a1e8dbf": {
+    "message": "Можно редактировать"
+  },
+  "can_not_forward_message_2a4d4953": {
+    "message": "Не удается перенаправить сообщение"
+  },
+  "cancel_caeb1e68": {
+    "message": "Отменить"
+  },
+  "canvas_guides_d65431": {
+    "message": "Руководства Canvas"
+  },
+  "canvas_parent_app_f9236a3a": {
+    "message": "Основное приложение Canvas"
+  },
+  "canvas_student_app_329567f": {
+    "message": "Приложение Canvas для студентов"
+  },
+  "canvas_teacher_app_9dc7d7ed": {
+    "message": "Приложение Canvas для преподавателей"
+  },
+  "change_discussiontitle_to_different_grouping_9f5ed8c1": {
+    "message": "Изменить { discussionTitle } на другое группирование"
+  },
+  "change_user_1b7c4f23": {
+    "message": "Сменить пользователя"
+  },
+  "choose_1319ef6b": {
+    "message": "Выбрать"
+  },
+  "choose_color_11148181": {
+    "message": "Выбрать { color }"
+  },
+  "choose_from_library_1b9caf95": {
+    "message": "Выберите из библиотеки"
+  },
+  "clear_filter_5b3a182d": {
+    "message": "Очистить фильтр"
+  },
+  "clear_filter_5c961d1b": {
+    "message": "Очистить фильтр"
+  },
+  "clear_filter_inbox_9465e74c": {
+    "message": "Очистить фильтр Входящие"
+  },
+  "clear_recording_5a97b475": {
+    "message": "Удалить запись"
+  },
+  "close_d634289d": {
+    "message": "Закрыть"
+  },
+  "close_for_comments_ce0e5d00": {
+    "message": "Закрыто для комментариев"
+  },
+  "closed_983a96fe": {
+    "message": "Закрыто"
+  },
+  "closed_for_comments_e395b42f": {
+    "message": "Закрыто для комментариев"
+  },
+  "color_a363e1b0": {
+    "message": "Цвет"
+  },
+  "comment_7ef1428e": {
+    "message": "Комментарий"
+  },
+  "comment_failed_acf11b54": {
+    "message": "Не удалось добавить комментарий"
+  },
+  "comments_e07bcbe3": {
+    "message": "Комментарии"
+  },
+  "complete_fd828dea": {
+    "message": "Завершить"
+  },
+  "complete_incomplete_15b3a89c": {
+    "message": "Завершено/не завершено"
+  },
+  "compose_message_8abd180a": {
+    "message": "Написать сообщение"
+  },
+  "conferences_a0a8984b": {
+    "message": "Конференции"
+  },
+  "conversation_options_8be926f3": {
+    "message": "Опции дискуссии"
+  },
+  "copied_880dcb1b": {
+    "message": "Скопировано!"
+  },
+  "copy_link_1ffb11a4": {
+    "message": "Копировать ссылку"
+  },
+  "copyright_holder_386cc8b8": {
+    "message": "Владелец авторских прав"
+  },
+  "could_not_get_list_of_assignments_76aa2c7e": {
+    "message": "Не удалось получить список заданий"
+  },
+  "could_not_start_recording_8f31c2e4": {
+    "message": "Невозможно начать запись"
+  },
+  "count_plural_0_0_students_one_student_other_studen_801f8933": {
+    "message": "{ count, plural,     =0 {0 студентов}    one {# студент}  other {# студенты}}"
+  },
+  "count_plural_one_like_other_likes_338617e5": {
+    "message": "{ count, plural,\n    one {# хотят}\n  other {# хочет}\n}"
+  },
+  "count_plural_one_needs_grading_other_need_grading_45cd88a4": {
+    "message": "{ count, plural,    one {Требует оценки} few {Требуют оценки} many {Требуют оценки} other {Требуют оценки}}"
+  },
+  "count_plural_one_needs_grading_other_need_grading_7eba188e": {
+    "message": "{ count, plural,    one {# требует оценки} few {# требуют оценки} many {# требуют оценки} other {# требуют оценки}}"
+  },
+  "count_plural_one_pt_other_pts_c5a3bced": {
+    "message": "{ count, plural,    one {# балл} few {# балла/баллов} many {# балла/баллов} other {# балла/баллов}}"
+  },
+  "count_plural_one_question_other_questions_309aafa": {
+    "message": "{ count, plural,    one {# вопрос} few {# вопроса/вопросов} many {# вопроса/вопросов} other {# вопроса/вопросов}}"
+  },
+  "count_plural_one_reply_other_replies_dbf1832a": {
+    "message": "{ count, plural,    one {# ответ} few {# ответа/ответов} many {# ответа/ответов} other {# ответа/ответов}}"
+  },
+  "count_plural_one_there_is_assignee_without_a_grade_15facb89": {
+    "message": "{ count, plural,    one {Имеется # получатель без оценки.} few {Имеется # получателей без оценки.} many {Имеется # получателей без оценки.} other {Имеется # получателей без оценки.}}"
+  },
+  "count_students_4ae780ca": {
+    "message": "{ count } студенты"
+  },
+  "course_activity_stream_40091c17": {
+    "message": "Лента активности курса"
+  },
+  "course_modules_795cb95e": {
+    "message": "Модули курса"
+  },
+  "course_sections_380358a5": {
+    "message": "Разделы курса"
+  },
+  "course_settings_f6d0bbf8": {
+    "message": "Настройки курса"
+  },
+  "coursename_sections_faeee6fc": {
+    "message": "Разделы { courseName }"
+  },
+  "courses_43204aae": {
+    "message": "Курсы"
+  },
+  "create_folder_6055d558": {
+    "message": "Создать папку"
+  },
+  "creative_commons_file_f0ace8ca": {
+    "message": "Файл творческого сообщества"
+  },
+  "creative_commons_license_ba94fd4d": {
+    "message": "Лицензия творческого сообщества"
+  },
+  "customize_course_eefa9c21": {
+    "message": "Настроить курс"
+  },
+  "customize_grade_c9d046d": {
+    "message": "Персонализировать оценку"
+  },
+  "customize_grade_value_964695a3": {
+    "message": "Персонализировать оценку { value }"
+  },
+  "date_date_medium_at_date_time_short_2b9ce48b": {
+    "message": "{ date, date, medium } в { date, time, short }"
+  },
+  "date_date_mmm_d_at_date_time_short_61eeb79b": {
+    "message": "{ date, date, 'MMM d' } в { date, time, short }"
+  },
+  "date_date_mmm_d_date_time_short_e82719d6": {
+    "message": "{ date, date, 'MMM d' } { date, time, short }"
+  },
+  "decline_7eeb5ff4": {
+    "message": "Снизить"
+  },
+  "delay_posting_f45eed7d": {
+    "message": "Задержка публикации"
+  },
+  "delayed_until_8f9c2bb1": {
+    "message": "Отложено до: "
+  },
+  "delete_a6efa79d": {
+    "message": "Удалить"
+  },
+  "delete_file_3ca64c1b": {
+    "message": "Удалить файл"
+  },
+  "delete_folder_1700498c": {
+    "message": "Удалить папку"
+  },
+  "delete_folder_7d84f587": {
+    "message": "Удалить папку?"
+  },
+  "delete_recipient_recipient_22a1e3dd": {
+    "message": "Удалить получателя { recipient }"
+  },
+  "deleted_this_reply_8b5b0ddc": {
+    "message": "Удалить этот ответ."
+  },
+  "deleting_this_folder_will_also_delete_all_of_the_f_8017926e": {
+    "message": "Удаление этой папки также приведет к удалению всех содержащихся в ней файлов."
+  },
+  "description_436c48d7": {
+    "message": "Описание"
+  },
+  "designer_c458392": {
+    "message": "Дизайнер"
+  },
+  "details_98a31b68": {
+    "message": "Подробности"
+  },
+  "developer_menu_1e80da35": {
+    "message": "Меню программиста"
+  },
+  "discussion_details_5728ea3d": {
+    "message": "Сведения об обсуждении"
+  },
+  "discussion_submission_781d5d33": {
+    "message": "Отправка обсуждения"
+  },
+  "discussion_topic_dc85ad4c": {
+    "message": "Тема обсуждения"
+  },
+  "discussions_a5f96392": {
+    "message": "Дискуссии"
+  },
+  "dismiss_dacdb625": {
+    "message": "Исключить"
+  },
+  "dismiss_invitation_to_name_a650b2c4": {
+    "message": "Отказаться от приглашения на { name }"
+  },
+  "dismiss_name_8646b9fd": {
+    "message": "Исключить { name }"
+  },
+  "display_grade_as_7b5376a6": {
+    "message": "Отображать оценку как"
+  },
+  "display_grade_as_c165e9a6": {
+    "message": "Отображать оценку как..."
+  },
+  "domain_3b54c511": {
+    "message": "Домен"
+  },
+  "done_54e3d4b6": {
+    "message": "Готово"
+  },
+  "due_5d7267be": {
+    "message": "Срок:"
+  },
+  "due_a73610f6": {
+    "message": "Срок"
+  },
+  "due_date_822625d8": {
+    "message": "Срок выполнения"
+  },
+  "due_date_date_mmm_d_yyyy_at_date_time_short_76c5900f": {
+    "message": "Срок выполнения наступает { date, date, 'MMM d, YYYY' } в { date, time, short }"
+  },
+  "due_date_must_be_between_available_from_and_availa_bc4d7904": {
+    "message": "«Срок выполнения» должен находиться между датами «Доступно с» и «Доступно до»"
+  },
+  "due_dates_double_tap_for_details_36c5a7a4": {
+    "message": "Сроки исполнения, щелкнуть дважды для отображения деталей."
+  },
+  "due_datestring_be4410c7": {
+    "message": "Срок { dateString }"
+  },
+  "edit_assignment_ebf22a72": {
+    "message": "Редактировать задание"
+  },
+  "edit_attachment_count_ae907c46": {
+    "message": "Редактировать вложение ({ count })"
+  },
+  "edit_attachments_count_5e9276ea": {
+    "message": "Редактировать вложения ({ count })"
+  },
+  "edit_c5fbea07": {
+    "message": "Редактировать"
+  },
+  "edit_comment_22b23c2f": {
+    "message": "Редактировать комментарий"
+  },
+  "edit_course_settings_9736fd1f": {
+    "message": "Редактировать настройки курса"
+  },
+  "edit_courses_1f63340f": {
+    "message": "Редактировать курсы"
+  },
+  "edit_description_1206e0a8": {
+    "message": "Редактировать описание"
+  },
+  "edit_file_c560115a": {
+    "message": "Редактировать файл"
+  },
+  "edit_folder_f12b1b3c": {
+    "message": "Редактировать папку"
+  },
+  "edit_page_5df5916a": {
+    "message": "Редактировать страницу"
+  },
+  "edit_quiz_details_72cd055": {
+    "message": "Редактировать сведения о контрольной работе"
+  },
+  "enjoy_your_day_a4cb2c1": {
+    "message": "Хорошего дня!"
+  },
+  "enter_a_search_term_with_three_or_more_characters_1577ec2": {
+    "message": "Введите ключевое слово из трех или более символов."
+  },
+  "enter_code_c7ab5104": {
+    "message": "Ввести код"
+  },
+  "error_98e81528": {
+    "message": "Ошибка"
+  },
+  "error_saving_grade_367dd920": {
+    "message": "Ошибка при сохранении оценки"
+  },
+  "error_saving_tap_to_retry_a66b9c5f": {
+    "message": "Ошибка при сохранении. Нажмите, чтобы повторить попытку."
+  },
+  "everyone_854554dd": {
+    "message": "Все"
+  },
+  "everyone_else_cc5f6888": {
+    "message": "Все остальные"
+  },
+  "excuse_student_1b60e311": {
+    "message": "Освободить студента"
+  },
+  "excused_cf8792eb": {
+    "message": "По уважительной причине"
+  },
+  "extensions_and_lastextension_f45d68e7": {
+    "message": "{ extensions } и { lastExtension }"
+  },
+  "external_tool_c5a6410a": {
+    "message": "Внешний инструмент"
+  },
+  "external_tool_submission_c7b1dfa4": {
+    "message": "Отправка внешнего инструмента"
+  },
+  "fail_c2e91f54": {
+    "message": "Ошибка"
+  },
+  "failed_comment_options_aa19a936": {
+    "message": "Сбой опции комментирования"
+  },
+  "failed_to_download_audio_23abb7b1": {
+    "message": "Ошибка при выгрузке аудио"
+  },
+  "failed_to_load_audio_46309612": {
+    "message": "Ошибка при загрузке аудио"
+  },
+  "failed_to_upload_attachment_acb5c28f": {
+    "message": "Ошибка при импорте приложения"
+  },
+  "failed_to_upload_media_comment_c43f581a": {
+    "message": "Ошибка при импорте медиакомментария"
+  },
+  "fair_use_exception_d8683c6f": {
+    "message": "Исключение правомерного использования"
+  },
+  "favorite_courses_fbd356f0": {
+    "message": "Избранные курсы"
+  },
+  "file_types_6fa69505": {
+    "message": "Типы файлов"
+  },
+  "files_c300e900": {
+    "message": "Файлы"
+  },
+  "files_numberoffiles_number_410d9eba": {
+    "message": "Файлы ({ numberOfFiles, number })"
+  },
+  "filter_by_2f4368a8": {
+    "message": "Фильтровать по"
+  },
+  "filter_by_ffcbd05b": {
+    "message": "Фильтровать по:"
+  },
+  "filter_e3398407": {
+    "message": "Фильтр"
+  },
+  "filter_inbox_dae0ff8f": {
+    "message": "Фильтровать Входящие"
+  },
+  "filter_numselected_number_2e4c17e3": {
+    "message": "Фильтр ({ numSelected, number })"
+  },
+  "filter_people_b34b567b": {
+    "message": "Фильтрация людей"
+  },
+  "filter_submissions_81bc50de": {
+    "message": "Фильтр отправок"
+  },
+  "final_grade_4d7f6545": {
+    "message": "Итоговая оценка"
+  },
+  "for_974cbb84": {
+    "message": "Для"
+  },
+  "for_e3490d05": {
+    "message": "Для:"
+  },
+  "forward_d143f64": {
+    "message": "Переслать"
+  },
+  "forwarded_message_3acb578c": {
+    "message": "Перенаправленное сообщение:"
+  },
+  "front_page_50cae87e": {
+    "message": "Первая страница"
+  },
+  "full_screen_712e95f1": {
+    "message": "Полный экран"
+  },
+  "fw_subject_ebe04db7": {
+    "message": "Fw: { subject }"
+  },
+  "gpa_71809a99": {
+    "message": "Балл GPA"
+  },
+  "gpa_scale_a6d1cdea": {
+    "message": "Шкала GPA"
+  },
+  "grade_9c6f076d": {
+    "message": "Оценка"
+  },
+  "grade_grade_990eb477": {
+    "message": "Оценить { grade }"
+  },
+  "grade_grade_number_percent_cda06b4d": {
+    "message": "Оценить { grade, number, percent }"
+  },
+  "graded_25cd3fcd": {
+    "message": "С оценкой"
+  },
+  "graded_quiz_7fabdf1f": {
+    "message": "Оцененная контрольная работа"
+  },
+  "graded_survey_c0f0c395": {
+    "message": "Оцененный опрос"
+  },
+  "grades_a61eba0a": {
+    "message": "Оценки"
+  },
+  "grades_muted_76c70047": {
+    "message": "Оценки скрыты"
+  },
+  "grades_muted_anonymous_grading_9291ea4b": {
+    "message": "Оценки скрыты, анонимное выставление оценок"
+  },
+  "group_a8f5ed9c": {
+    "message": "Группа"
+  },
+  "groups_6c90e26a": {
+    "message": "Группы"
+  },
+  "half_screen_9cdd83ad": {
+    "message": "Пол-экрана"
+  },
+  "haven_t_been_graded_1fbfda56": {
+    "message": "Оценка не поставлена"
+  },
+  "haven_t_submitted_yet_3a127a27": {
+    "message": "Не отправлено"
+  },
+  "help_4c4968b1": {
+    "message": "Справка"
+  },
+  "hidden_14a032a7": {
+    "message": "Скрыто"
+  },
+  "hidden_files_inside_will_be_available_with_links_e9e3d233": {
+    "message": "Скрыто. Находящиеся внутри файлы будут доступны по ссылкам."
+  },
+  "hide_content_for_name_aee1723a": {
+    "message": "Скрыть контент для { name }"
+  },
+  "hide_correct_answers_at_b1a59408": {
+    "message": "Скрыть правильные ответы в"
+  },
+  "hide_date_cannot_be_before_show_date_cfaa35f0": {
+    "message": "«Скрыть дату» не может быть до «Показать дату»"
+  },
+  "highest_28ad71e6": {
+    "message": "Самая высокая"
+  },
+  "i_have_permission_to_use_file_d19a1a29": {
+    "message": "У меня есть разрешение на использование файла"
+  },
+  "i_hold_the_copyright_71ee91b1": {
+    "message": "Я являюсь правообладателем"
+  },
+  "if_you_re_a_student_or_teacher_try_one_of_our_othe_f0ae9b33": {
+    "message": "Если вы студент или преподаватель, попробуйте одно из наших приложений ниже."
+  },
+  "in_progress_9d1ce8b9": {
+    "message": "Выполняется"
+  },
+  "incomplete_da3c2ea2": {
+    "message": "Не завершено"
+  },
+  "insert_image_42d30344": {
+    "message": "Вставить изображение"
+  },
+  "insert_link_6dc23cae": {
+    "message": "Вставить ссылку"
+  },
+  "internet_connection_offline_d7c02b88": {
+    "message": "Нет подключения к Интернету"
+  },
+  "invalid_field_54480fae": {
+    "message": "Недействительное поле"
+  },
+  "invite_accepted_290abc90": {
+    "message": "Приглашение принято!"
+  },
+  "invite_declined_d0a9e398": {
+    "message": "Приглашение отклонено!"
+  },
+  "it_looks_like_your_internet_connection_is_offline__cf4003": {
+    "message": "Похоже, что вы не подключены к Интернету. Подключитесь к Интернету и попробуйте еще раз."
+  },
+  "it_seems_there_aren_t_any_valid_submissions_to_gra_f136675": {
+    "message": "По-видимому, нет актуальных сданных работ для проверки."
+  },
+  "italic_ac45200a": {
+    "message": "Курсив"
+  },
+  "item_count_plural_one_item_other_items_88319c63": {
+    "message": "{ item_count, plural,\n    one {# элемент}\n  other {# элементы}\n}"
+  },
+  "last_activity_on_lastactivity_date_mmmm_d_at_lasta_1a7e8430": {
+    "message": "Последняя работа на { lastActivity, date, 'MMMM d' } в { lastActivity, time, short }"
+  },
+  "last_post_lastreplydatestr_55fbe7ce": {
+    "message": "Последний пост { lastReplyDateStr }"
+  },
+  "late_2be42b88": {
+    "message": "Поздно"
+  },
+  "late_submissions_late_number_baedf6cf": {
+    "message": "Поздние отправки { late, number }"
+  },
+  "latest_f604a75": {
+    "message": "Последняя"
+  },
+  "launch_external_tool_672c0409": {
+    "message": "Запуск внешнего инструмента"
+  },
+  "length_in_minutes_eca69868": {
+    "message": "Продолжительность в минутах"
+  },
+  "let_students_see_the_correct_answer_a4da886e": {
+    "message": "Показать студентам правильный ответ"
+  },
+  "let_students_see_their_quiz_responses_fbc07d14": {
+    "message": "Разрешить студентам просматривать результаты контрольной работы"
+  },
+  "letter_grade_29ff1938": {
+    "message": "Успеваемость"
+  },
+  "letter_grade_e83e363c": {
+    "message": "Успеваемость"
+  },
+  "lock_questions_after_answering_e0f61d7c": {
+    "message": "Заблокировать вопросы после ответа на них"
+  },
+  "log_in_again_ec2b1f46": {
+    "message": "Войдите заново"
+  },
+  "log_out_379ba28a": {
+    "message": "Выйти"
+  },
+  "long_description_7d89285c": {
+    "message": "Длинное описание"
+  },
+  "manage_children_a28d764e": {
+    "message": "Управление детьми"
+  },
+  "mark_all_as_read_8f3bdf57": {
+    "message": "Отметить все как прочитанное"
+  },
+  "me_bf110f4d": {
+    "message": "меня"
+  },
+  "media_recording_77cddc52": {
+    "message": "Запись на носитель"
+  },
+  "media_submission_464829f0": {
+    "message": "Отправка медиа"
+  },
+  "message_5c38209d": {
+    "message": "Сообщение"
+  },
+  "message_details_342e931f": {
+    "message": "Данные сообщения"
+  },
+  "message_options_59805b8e": {
+    "message": "Опции сообщения"
+  },
+  "message_students_who_778ce759": {
+    "message": "Отправить сообщение студентам, которые"
+  },
+  "minutes_4aee5a41": {
+    "message": "мин."
+  },
+  "minutes_plural_one_minute_other_minutes_e2adacfe": {
+    "message": "{ minutes, plural,    one {# минута} few {# минут/минуты} many {# минут/минуты} other {# минут/минуты}}"
+  },
+  "missing_1a256b3b": {
+    "message": "Отсутствует"
+  },
+  "missing_submissions_missing_number_ea40423d": {
+    "message": "Отсутствующие отправки { missing, number }"
+  },
+  "moderated_grading_unsupported_e3a2bba3": {
+    "message": "Модерированное выставление оценок не поддерживается"
+  },
+  "multiple_due_dates_283dd861": {
+    "message": "Множественные сроки выполнения"
+  },
+  "mute_grades_b85bece1": {
+    "message": "Скрыть оценки"
+  },
+  "my_files_eea33f44": {
+    "message": "Мои файлы"
+  },
+  "n_a_d6f6c42f": {
+    "message": "Н/Д"
+  },
+  "name_1aed4a1b": {
+    "message": "Имя"
+  },
+  "name_count_plural_one_other_other_others_f47e51c3": {
+    "message": "{ name } + { count, plural,    one {# другое}  other {# другие}}"
+  },
+  "names_count_more_643849d3": {
+    "message": "{ names } + { count } дополнительно"
+  },
+  "needs_grading_9143d47c": {
+    "message": "Требуется оценка"
+  },
+  "new_13daf639": {
+    "message": "Новый"
+  },
+  "new_announcement_23af4598": {
+    "message": "Новое объявление"
+  },
+  "new_discussion_dae4fae3": {
+    "message": "Новая дискуссия"
+  },
+  "new_message_f9bbd1c0": {
+    "message": "Новое сообщение"
+  },
+  "new_page_84b28714": {
+    "message": "Новая страница"
+  },
+  "nickname_1e6da3ad": {
+    "message": "Ник"
+  },
+  "no_attachments_e875f6d5": {
+    "message": "Вложения отсутствуют"
+  },
+  "no_available_from_date_set_6f659d06": {
+    "message": "Недоступно с заданной даты."
+  },
+  "no_available_from_date_set_db356ac3": {
+    "message": "Недоступно с заданной даты"
+  },
+  "no_available_until_date_set_ad4b4bbb": {
+    "message": "Недоступно до заданной даты"
+  },
+  "no_available_until_date_set_df9e7434": {
+    "message": "Недоступно до заданной даты."
+  },
+  "no_due_date_44271c53": {
+    "message": "Без срока выполнения"
+  },
+  "no_due_date_set_bb3a2bf7": {
+    "message": "Не задан срок исполнения."
+  },
+  "no_e16d9132": {
+    "message": "Нет"
+  },
+  "no_enrollments_6369cd31": {
+    "message": "Нет зачислений"
+  },
+  "no_grade_3b4d7f3e": {
+    "message": "Нет оценки"
+  },
+  "no_internet_connection_9df26cf8": {
+    "message": "Нет интернет-соединения"
+  },
+  "no_messages_a2e67ad4": {
+    "message": "Нет сообщений"
+  },
+  "no_results_f36777ee": {
+    "message": "Без результата"
+  },
+  "no_results_found_2ace1494": {
+    "message": "Результаты не найдены"
+  },
+  "no_starred_messages_e1b28bca": {
+    "message": "Нет сообщений, помеченных звездочкой"
+  },
+  "no_subject_2e2a413c": {
+    "message": "(нет субъекта)"
+  },
+  "no_subject_58b7941c": {
+    "message": "Нет темы"
+  },
+  "no_submissions_to_display_6f1491cf": {
+    "message": "Нет сданных работ для отображения"
+  },
+  "no_time_limit_2147d9bf": {
+    "message": "Нет ограничения времени"
+  },
+  "no_title_4921a961": {
+    "message": "Без названия"
+  },
+  "none_3b5e34d2": {
+    "message": "Ничего"
+  },
+  "none_9b6c9bec": {
+    "message": "нет"
+  },
+  "not_a_teacher_b0d0fc55": {
+    "message": "Не преподаватель?"
+  },
+  "not_graded_e027c866": {
+    "message": "Оценка не выставлена"
+  },
+  "not_published_73f7079": {
+    "message": "Не опубликовано"
+  },
+  "not_submitted_7d05fdb4": {
+    "message": "Не отправлено"
+  },
+  "nothing_more_to_do_b017e8bb": {
+    "message": "Все задания выполнены."
+  },
+  "number_plural_one_minute_other_minutes_648ec0e1": {
+    "message": "{ number, plural,    one {# минута} few {# минут/минуты} many {# минут/минуты} other {# минут/минуты}}"
+  },
+  "observer_248a192e": {
+    "message": "Наблюдатель"
+  },
+  "off_5385ef3f": {
+    "message": "Выкл"
+  },
+  "ok_c47544a2": {
+    "message": "OK"
+  },
+  "on_8f7190e5": {
+    "message": "Вкл"
+  },
+  "on_paper_46d0ba36": {
+    "message": "На бумаге"
+  },
+  "one_of_our_other_apps_might_be_a_better_fit_tap_on_a3138a": {
+    "message": "Одно из наших других приложений может подойти лучше. Прикоснитесь один раз для входа в App Store."
+  },
+  "one_question_at_a_time_3161ceeb": {
+    "message": "По одному вопросу за раз"
+  },
+  "online_quiz_5beb2ae5": {
+    "message": "Онлайн тест"
+  },
+  "online_text_entry_1d893ce": {
+    "message": "Онлайновый ввод текста"
+  },
+  "online_upload_59969592": {
+    "message": "Онлайновая отправка"
+  },
+  "online_url_37830a72": {
+    "message": "Онлайн URL"
+  },
+  "only_available_to_students_with_link_not_available_c12278d2": {
+    "message": "Доступно только студентам по ссылке. Не доступно в файлах студентов."
+  },
+  "only_once_after_each_attempt_cc842738": {
+    "message": "Только один раз после каждой попытки"
+  },
+  "only_teachers_1628d9b9": {
+    "message": "Только учителя"
+  },
+  "oops_we_couldn_t_find_that_page_7474fec6": {
+    "message": "Ой, невозможно найти эту страницу."
+  },
+  "open_coursename_user_preferences_430b877e": {
+    "message": "Открыть { courseName } пользовательские предпочтения"
+  },
+  "open_drawer_f3c8b11": {
+    "message": "Открыть панель"
+  },
+  "open_for_comments_1810648": {
+    "message": "Открыть для комментариев"
+  },
+  "options_3ab0ea65": {
+    "message": "Опции"
+  },
+  "ordered_list_5fb1ce41": {
+    "message": "Упорядоченный список"
+  },
+  "out_of_points_number_42209979": {
+    "message": "Из { points, number }"
+  },
+  "page_details_847e35e6": {
+    "message": "Данные страницы"
+  },
+  "page_not_found_683da852": {
+    "message": "Страница не найдена"
+  },
+  "pages_e5414c2c": {
+    "message": "Страницы"
+  },
+  "pages_front_page_9ce5188": {
+    "message": "Страницы титульной страницы"
+  },
+  "pass_8abee039": {
+    "message": "Прохождение"
+  },
+  "past_enrollments_a846da48": {
+    "message": "Прошлые регистрации"
+  },
+  "people_b4ebb13c": {
+    "message": "Люди"
+  },
+  "percent_d7ddd35b": {
+    "message": "Процент (%)"
+  },
+  "percentage_34ab7c2c": {
+    "message": "Процент"
+  },
+  "permission_needed_7e971495": {
+    "message": "Требуется разрешение"
+  },
+  "pin_cdbc9f8f": {
+    "message": "Привязать"
+  },
+  "pinned_discussions_a55c0cea": {
+    "message": "Закрепленные Дискуссии"
+  },
+  "points_bb475533": {
+    "message": "Баллы"
+  },
+  "points_number_out_of_totalpoints_number_291efb47": {
+    "message": "{ points, number } из { totalPoints, number }"
+  },
+  "points_possible_must_be_a_number_4a592dc6": {
+    "message": "Значение возможных баллов должно быть числом"
+  },
+  "pointspossible_number_pts_2d9f157d": {
+    "message": "{ pointsPossible, number } баллы"
+  },
+  "post_at_a9e0fecb": {
+    "message": "Опубликовать в..."
+  },
+  "practice_quiz_19a8505d": {
+    "message": "Практическая контрольная работа"
+  },
+  "preview_quiz_1ffbf684": {
+    "message": "Просмотреть контрольную работу"
+  },
+  "preview_unavailable_aacd459a": {
+    "message": "Предпросмотр недоступен"
+  },
+  "previewing_this_file_type_is_not_supported_7df9231": {
+    "message": "Предпросмотр этого типа файлов не поддерживается"
+  },
+  "profile_6bd2baed": {
+    "message": "Профиль"
+  },
+  "profile_menu_a688027e": {
+    "message": "Меню профиля"
+  },
+  "pts_699bd9aa": {
+    "message": "баллы"
+  },
+  "public_domain_file_eb5a0de": {
+    "message": "Общедоступный файл"
+  },
+  "publish_5211dca3": {
+    "message": "Опубликовать"
+  },
+  "published_4bb5209e": {
+    "message": "Опубликовано"
+  },
+  "quiz_details_6c4473d3": {
+    "message": "Сведения о контрольной работе"
+  },
+  "quiz_preview_a7e75769": {
+    "message": "Просмотр контрольной работы"
+  },
+  "quiz_score_to_keep_d1f7c4b1": {
+    "message": "Оценка контрольной работы для сохранения"
+  },
+  "quiz_submission_dca0c013": {
+    "message": "Отправка теста"
+  },
+  "quiz_type_be1633db": {
+    "message": "Тип контрольной работы"
+  },
+  "quizzes_7e598f57": {
+    "message": "Тесты"
+  },
+  "recent_activity_51239235": {
+    "message": "Недавно выполненные действия"
+  },
+  "recipient_recipient_394cf528": {
+    "message": "Получатель: { recipient }"
+  },
+  "record_audio_14666880": {
+    "message": "Записать аудио"
+  },
+  "record_video_70dc8439": {
+    "message": "Записать видео"
+  },
+  "recording_failed_2e1861b": {
+    "message": "Ошибка при записи"
+  },
+  "redo_363c58b7": {
+    "message": "Повторить"
+  },
+  "remove_attachment_81f30aa3": {
+    "message": "Удалить вложение"
+  },
+  "remove_date_edf2f565": {
+    "message": "Удалить дату"
+  },
+  "remove_due_date_c1cc8f7": {
+    "message": "Удалить срок исполнения"
+  },
+  "remove_f47dc62a": {
+    "message": "Удалить"
+  },
+  "remove_this_attachment_90a6665c": {
+    "message": "Удалить это приложение?"
+  },
+  "replies_4a8577c8": {
+    "message": "Ответы"
+  },
+  "replies_are_only_visible_to_those_who_have_posted__30e58953": {
+    "message": "Ответы видны только тем, кто опубликовал не менее одного ответа."
+  },
+  "reply_389d6fb9": {
+    "message": "Ответить"
+  },
+  "reply_all_b864cd0e": {
+    "message": "Ответить на все"
+  },
+  "report_a_problem_4d48624a": {
+    "message": "Сообщить о проблеме"
+  },
+  "request_a_feature_3c8e2079": {
+    "message": "Запросить функцию"
+  },
+  "request_could_not_be_completed_157615ef": {
+    "message": "Не удается обработать запрос."
+  },
+  "require_an_access_code_46a02601": {
+    "message": "Запросить код доступа"
+  },
+  "reset_95a81614": {
+    "message": "Восстановить"
+  },
+  "restricted_606cbc55": {
+    "message": "Доступ ограничен"
+  },
+  "restricted_access_d3e99a39": {
+    "message": "Ограниченный доступ"
+  },
+  "retry_ebd5f8ba": {
+    "message": "Повторить попытку"
+  },
+  "retry_upload_d854b33b": {
+    "message": "Повторная попытка импорта"
+  },
+  "rubric_fc39da76": {
+    "message": "Рубрика"
+  },
+  "saving_2521e616": {
+    "message": "Идет сохранение"
+  },
+  "saving_d55dd90e": {
+    "message": "Выполняется сохранение..."
+  },
+  "schedule_student_availability_332154a": {
+    "message": "График доступности студентов"
+  },
+  "score_number_pointspossible_number_fd8705b8": {
+    "message": "{ score, number }/{ pointsPossible, number }"
+  },
+  "score_to_keep_48ace09b": {
+    "message": "Оценка для сохранения"
+  },
+  "scored_less_than_93cde0d2": {
+    "message": "Оценка ниже…"
+  },
+  "scored_less_than_promptvalue_7e5f2b5d": {
+    "message": "Оценено меньше { promptValue }"
+  },
+  "scored_more_than_2185a818": {
+    "message": "Оценка выше…"
+  },
+  "scored_more_than_promptvalue_9097b1f7": {
+    "message": "Оценено больше { promptValue }"
+  },
+  "search_280d00bd": {
+    "message": "Поиск"
+  },
+  "search_files_7e8153fd": {
+    "message": "Поиск файлов"
+  },
+  "searching_f330d682": {
+    "message": "Идет поиск..."
+  },
+  "seconds_plural_one_second_other_seconds_d33cf6e3": {
+    "message": "{ seconds, plural,    one {# секунда} few {# секунды/секунд} many {# секунды/секунд} other {# секунды/секунд}}"
+  },
+  "section_sectionname_a455be11": {
+    "message": "Раздел: { sectionName }"
+  },
+  "sections_94731e51": {
+    "message": "Разделы"
+  },
+  "sections_sections_70d64496": {
+    "message": "Разделы: { sections }"
+  },
+  "see_all_ffa422ef": {
+    "message": "Смотреть все"
+  },
+  "select_a_course_4710371f": {
+    "message": "Выбрать курс"
+  },
+  "send_e3bd0ed0": {
+    "message": "Отправить"
+  },
+  "send_individual_message_to_each_recipient_4fdfc1e5": {
+    "message": "Отправить индивидуальное сообщение каждому получателю"
+  },
+  "send_message_a371a974": {
+    "message": "Отправить сообщение"
+  },
+  "send_recording_82e5a550": {
+    "message": "Отправить запись"
+  },
+  "sending_bf324366": {
+    "message": "Отправка..."
+  },
+  "sent_fe0a1eb4": {
+    "message": "Отправлено"
+  },
+  "set_as_front_page_c851ec5e": {
+    "message": "Установить в качестве титульной страницы"
+  },
+  "set_home_to_82ab5119": {
+    "message": "Установить ''Домой'' на..."
+  },
+  "settings_5aa0fd0c": {
+    "message": "Настройки"
+  },
+  "share_2a333403": {
+    "message": "Поделиться"
+  },
+  "show_correct_answers_a4b957e4": {
+    "message": "Показать правильные ответы"
+  },
+  "show_correct_answers_at_a5475aa3": {
+    "message": "Показать правильные ответы в"
+  },
+  "show_grades_8680e38e": {
+    "message": "Показать оценки"
+  },
+  "show_one_question_at_a_time_52f5b1a0": {
+    "message": "Показывать по одному вопросу за раз"
+  },
+  "show_to_hide_2c0b6d39": {
+    "message": "{ show } к { hide }"
+  },
+  "shuffle_answers_edb602b7": {
+    "message": "Изменить порядок ответов"
+  },
+  "similarity_score_f4b5c343": {
+    "message": "Оценка сходства"
+  },
+  "something_went_wrong_on_our_end_don_t_worry_we_ve__be005c38": {
+    "message": "У нас что-то пошло не так. Не беспокойтесь, мы записали это и примем необходимые меры в ближайшее время."
+  },
+  "star_messages_by_tapping_the_star_in_the_message_1c3e8a80": {
+    "message": "Отметьте сообщения звездочкой касанием к звездочке в сообщении."
+  },
+  "starred_5a9efa8a": {
+    "message": "Отмечено звездочкой"
+  },
+  "start_recording_189496b9": {
+    "message": "Запустить запись"
+  },
+  "stop_act_as_user_4f2a4f22": {
+    "message": "Отключить функцию «Действовать как пользователь»"
+  },
+  "stop_playing_audio_96aed3bc": {
+    "message": "Остановить воспроизведение аудио"
+  },
+  "stop_recording_6efe2129": {
+    "message": "Остановить запись"
+  },
+  "student_5da6bfd1": {
+    "message": "Студент"
+  },
+  "students_1b8cd07b": {
+    "message": "Студенты"
+  },
+  "students_must_post_before_seeing_replies_1a57eeb2": {
+    "message": "Студенты должны публиковать сообщения, прежде чем увидят ответы"
+  },
+  "subject_114b2e98": {
+    "message": "Тема"
+  },
+  "submission_comment_873e8f1c": {
+    "message": "комментарий к отправке"
+  },
+  "submission_settings_f57b0cf8": {
+    "message": "Настройки отправки"
+  },
+  "submission_types_af57bf0": {
+    "message": "Типы сдаваемых работ"
+  },
+  "submissions_11e96106": {
+    "message": "Отправки"
+  },
+  "submitted_318fad53": {
+    "message": "Отправлено"
+  },
+  "submitted_late_3741af29": {
+    "message": "Отправлено поздно"
+  },
+  "subscribe_4b301fb7": {
+    "message": "Подписаться"
+  },
+  "survey_31a240e6": {
+    "message": "Опрос"
+  },
+  "swipe_left_or_right_to_view_other_student_submissi_da37c1c1": {
+    "message": "Смахните влево для просмотра других отправок студентам"
+  },
+  "syllabus_f191f65b": {
+    "message": "Учебный план"
+  },
+  "ta_8d966626": {
+    "message": "Ассистент учителя"
+  },
+  "tap_and_hold_a_rubric_number_to_see_its_descriptio_8762082a": {
+    "message": "Прикоснитесь и удерживайте номер рубрики для просмотра ее описания"
+  },
+  "tap_the_to_create_a_new_conversation_80f77725": {
+    "message": "Прикоснитесь к \"+\" для создания нового диалога"
+  },
+  "tap_to_view_announcement_6724a5d": {
+    "message": "Нажать для просмотра объявления"
+  },
+  "tap_to_view_submissions_list_5bfe32f3": {
+    "message": "Прикоснитесь для просмотра списка отправок."
+  },
+  "teacher_5a73b637": {
+    "message": "Учитель"
+  },
+  "teachers_52e2423f": {
+    "message": "Учителя"
+  },
+  "teachers_and_students_ba2db3e4": {
+    "message": "Учителя и студенты"
+  },
+  "terms_of_use_62ee73ad": {
+    "message": "Условия использования"
+  },
+  "terms_of_use_6542769b": {
+    "message": "Условия использования"
+  },
+  "text_color_acf75eb6": {
+    "message": "Цвет текста"
+  },
+  "text_submission_935eeb5": {
+    "message": "Текстовая отправка"
+  },
+  "that_message_can_not_be_forwarded_76cb2b1a": {
+    "message": "Невозможно перенаправить это сообщение."
+  },
+  "the_value_of_possible_points_must_be_zero_or_great_374e175a": {
+    "message": "Возможное значение в баллах должно быть ноль или выше"
+  },
+  "there_are_no_announcements_to_display_a91880": {
+    "message": "Нет доступных для отображения объявлений."
+  },
+  "there_are_no_assignments_to_display_83b52cf3": {
+    "message": "Нет доступных для отображения заданий."
+  },
+  "there_are_no_comments_to_display_bde58f70": {
+    "message": "Нет доступных для отображения комментариев."
+  },
+  "there_are_no_conferences_to_display_400a0413": {
+    "message": "Нет доступных для отображения конференций."
+  },
+  "there_are_no_discussions_to_display_37bc437f": {
+    "message": "Нет доступных для отображения обсуждений."
+  },
+  "there_are_no_files_to_display_d3eeb317": {
+    "message": "Нет доступных для отображения файлов."
+  },
+  "there_are_no_pages_to_display_ce6ca4d3": {
+    "message": "Нет доступных для отображения страниц."
+  },
+  "there_are_no_quizzes_to_display_733b28f2": {
+    "message": "Нет доступных для отображения тестов."
+  },
+  "there_currently_is_no_long_description_for_this_it_ea943d61": {
+    "message": "В настоящее время нет длинного описания данной позиции."
+  },
+  "there_was_a_problem_dismissing_the_announcement_9c5fb4c": {
+    "message": "Возникла проблема с отменой этой аннотации."
+  },
+  "there_was_a_problem_loading_discussions_ce5318af": {
+    "message": "Проблема при загрузке обсуждений."
+  },
+  "there_was_a_problem_loading_the_announcements_4871afc4": {
+    "message": "Проблема при загрузке объявлений."
+  },
+  "there_was_a_problem_loading_the_assignment_submiss_4ace7374": {
+    "message": "Проблема при загрузке отправок заданий."
+  },
+  "there_was_a_problem_loading_the_grading_periods_3fb714a0": {
+    "message": "Возникла проблема при загрузке академических периодов."
+  },
+  "there_was_a_problem_loading_the_groups_6945e624": {
+    "message": "Проблема при загрузке групп."
+  },
+  "there_was_a_problem_loading_the_quiz_submissions_b4f5503b": {
+    "message": "Проблема при загрузке отправок контрольных."
+  },
+  "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
+    "message": "Проблема при загрузке контрольных."
+  },
+  "there_was_a_problem_retrieving_the_terms_of_use_df58f7b9": {
+    "message": "Не удалось получить условия использования"
+  },
+  "there_was_a_problem_saving_the_grade_please_try_ag_e46045bd": {
+    "message": "Возникла проблема при сохранении оценки. Попробуйте еще раз."
+  },
+  "there_was_an_error_loading_the_attachment_840a55ee": {
+    "message": "Произошла ошибка при загрузке вложения."
+  },
+  "there_was_an_error_loading_the_file_a046378e": {
+    "message": "Произошла ошибка при загрузке файла."
+  },
+  "there_was_an_error_loading_the_list_of_enrollments_7dc8bafe": {
+    "message": "Произошла ошибка при загрузке списка зачислений"
+  },
+  "there_was_an_error_loading_the_quiz_preview_3f3c8104": {
+    "message": "Проблема при загрузке предпросмотра теста."
+  },
+  "there_was_an_error_loading_this_attachment_408acc12": {
+    "message": "Произошла ошибка при загрузке этого вложения."
+  },
+  "there_was_an_error_with_act_as_user_please_try_aga_d9f9f8f1": {
+    "message": "Возникла ошибка использования функции «Действовать как пользователь». Попробуйте еще раз позже."
+  },
+  "there_was_an_problem_loading_your_messages_b80423ac": {
+    "message": "Проблема при загрузке ваших сообщений."
+  },
+  "there_was_an_unexepected_error_fd6f2bf": {
+    "message": "Произошла непредвиденная ошибка."
+  },
+  "there_was_an_unexpected_error_please_try_again_5e08774e": {
+    "message": "Возникла непредвиденная ошибка. Попробуйте еще раз."
+  },
+  "this_action_can_not_be_undone_eb8a297b": {
+    "message": "Это действие нельзя отменить."
+  },
+  "this_action_requires_an_internet_connection_81f6688a": {
+    "message": "Для выполнения этого действия необходимо интернет-соединение."
+  },
+  "this_assignment_does_not_allow_submissions_30af1caa": {
+    "message": "Это задание не может быть отправлено."
+  },
+  "this_assignment_doesn_t_have_a_description_e2f37ec3": {
+    "message": "Это задание не имеет описания."
+  },
+  "this_assignment_only_allows_on_paper_submissions_f478408a": {
+    "message": "Это задание может быть отправлено только в печатном виде."
+  },
+  "this_criterion_will_not_impact_the_score_94adf77b": {
+    "message": "Этот критерий не повлияет на оценку."
+  },
+  "this_file_must_have_usage_rights_set_before_it_can_e4bf8bae": {
+    "message": "Для этого файла должны быть заданы права на использование перед тем, как его публиковать."
+  },
+  "this_folder_is_empty_89c70e89": {
+    "message": "Эта папка пуста"
+  },
+  "this_group_does_not_have_a_submission_for_this_ass_ca275999": {
+    "message": "Эта группа не имеет отправки для этого задания."
+  },
+  "this_is_your_personal_color_setting_only_you_will__e47dba70": {
+    "message": "Это ваша персональная настройка цвета. Только вы будет видеть этот цвет для курса."
+  },
+  "this_student_does_not_have_a_submission_for_this_a_c8c2eafe": {
+    "message": "Этот студент не имеет отправки для этого задания."
+  },
+  "this_submission_is_a_url_to_an_external_page_we_ve_9993d2fd": {
+    "message": "Эта отправка представляет собой URL к внешней странице. Мы включили скриншот того, как выглядела страница, когда она была представлена."
+  },
+  "this_will_remove_the_due_date_and_all_of_the_assoc_56d1ea8": {
+    "message": "Это приведет к удалению даты исполнения и всех связанных получателей."
+  },
+  "time_elapsed_minutes_seconds_f5d82cb": {
+    "message": "Время истекло: { minutes }, { seconds }."
+  },
+  "time_limit_a6f1a51e": {
+    "message": "Лимит времени"
+  },
+  "title_announcement_c0cdaa10": {
+    "message": "{ title } Объявление"
+  },
+  "title_discussion_4cff9841": {
+    "message": "{ title } Обсуждение"
+  },
+  "title_ee03d132": {
+    "message": "Название"
+  },
+  "to_51406be9": {
+    "message": "Кому"
+  },
+  "to_count_others_853f5dc8": {
+    "message": "{ count } другим"
+  },
+  "to_me_780716c7": {
+    "message": "мне"
+  },
+  "to_name_bb3e415e": {
+    "message": "к { name }"
+  },
+  "total_grade_568e719f": {
+    "message": "Общая оценка:"
+  },
+  "try_logging_in_again_7a66111a": {
+    "message": "Попробуйте войти еще раз"
+  },
+  "un_starred_8fef021f": {
+    "message": "Звездочка убрана"
+  },
+  "undo_a7be8fef": {
+    "message": "Аннулировать"
+  },
+  "unexpected_error_93991f40": {
+    "message": "Непредвиденная ошибка"
+  },
+  "ungraded_survey_ad7de790": {
+    "message": "Опрос без оценки"
+  },
+  "unknown_author_40d64455": {
+    "message": "Неизвестный автор"
+  },
+  "unlimited_ff19e96d": {
+    "message": "Неограничено"
+  },
+  "unordered_list_3c1650b3": {
+    "message": "Неупорядоченный список"
+  },
+  "unpin_a318452a": {
+    "message": "Отменить привязку"
+  },
+  "unpublish_9f2d730b": {
+    "message": "Отменить публикацию"
+  },
+  "unpublished_8b6107d6": {
+    "message": "Не опубликовано"
+  },
+  "unread_e9c1b19c": {
+    "message": "Не прочитано"
+  },
+  "unread_plural_one_unread_other_unread_5d48c74f": {
+    "message": "{ unread, plural,\n    one {# Не прочитано}\n  other {# Не прочитано}\n}",
+    "description": "Number of unread discussion posts"
+  },
+  "unrecognized_file_format_def0881c": {
+    "message": "Неизвестный формат файла"
+  },
+  "until_date_f3b9f367": {
+    "message": "До { date }"
+  },
+  "upload_8b403d05": {
+    "message": "Загрузить"
+  },
+  "upload_cancelled_by_user_ca7723be": {
+    "message": "Импорт отменен пользователем"
+  },
+  "upload_complete_46473c7b": {
+    "message": "Отправка завершена"
+  },
+  "upload_error_38012123": {
+    "message": "Ошибка при импорте"
+  },
+  "upload_file_fd2361b8": {
+    "message": "Отправить файл"
+  },
+  "upload_in_progress_57b96797": {
+    "message": "Выполняется отправка"
+  },
+  "uploading_19e8a4e7": {
+    "message": "Загрузка"
+  },
+  "uploading_amountuploaded_amounttotal_cd97306a": {
+    "message": "Выполняется отправка { amountUploaded }/{ amountTotal }"
+  },
+  "uploading_loaded_of_total_d5c3d555": {
+    "message": "Отправка { loaded } из { total }"
+  },
+  "url_preview_image_a263a21e": {
+    "message": "URL изображения для предварительного просмотра"
+  },
+  "url_submission_f76327e3": {
+    "message": "Отправка на URL"
+  },
+  "usage_right_2b398e0b": {
+    "message": "Право на использование"
+  },
+  "usage_rights_f0960ad6": {
+    "message": "Права на использование"
+  },
+  "use_camera_47a0387b": {
+    "message": "Использование камеры"
+  },
+  "user_id_bcace870": {
+    "message": "Идентификатор пользователя"
+  },
+  "video_b9f27375": {
+    "message": "Видео"
+  },
+  "video_recording_90d21249": {
+    "message": "Запись видео"
+  },
+  "view_all_submissions_915a8b78": {
+    "message": "Просмотреть все отправки"
+  },
+  "view_canvas_guides_a1c62a97": {
+    "message": "Просмотр руководств Canvas"
+  },
+  "view_long_description_2b592c0e": {
+    "message": "Просмотреть длинное описание"
+  },
+  "view_more_replies_9fef9983": {
+    "message": "Просмотреть другие ответы"
+  },
+  "view_responses_d2874266": {
+    "message": "Просмотреть ответы"
+  },
+  "visit_the_canvas_guides_7328b93f": {
+    "message": "Просмотреть руководства Canvas"
+  },
+  "welcome_73d18b4d": {
+    "message": "Добро пожаловать!"
+  },
+  "whoops_de2cf9fc": {
+    "message": "Ой!"
+  },
+  "yes_dde87d5": {
+    "message": "Да"
+  },
+  "you_have_been_invited_a724be1a": {
+    "message": "Вам поступило приглашение"
+  },
+  "you_must_enable_camera_and_microphone_permissions__bf35451f": {
+    "message": "Вы должны активировать разрешения для камеры и микрофона в настройках для использования камеры."
+  },
+  "you_must_enable_microphone_permissions_in_settings_b0cf8b44": {
+    "message": "Вы должны активировать разрешения для микрофона в настройках для записи аудио."
+  },
+  "you_must_enable_photos_permissions_in_settings_26faf052": {
+    "message": "Вы должны активировать разрешения для фотографий в настройках."
+  },
+  "you_must_enter_an_access_code_8c2c7ae0": {
+    "message": "Вы должны ввести код доступа"
+  },
+  "you_need_at_least_one_active_observer_enrollment_t_9c78bb6e": {
+    "message": "Вам необходимо как минимум одно активное зачисление оценщика для использования Canvas Parent."
+  },
+  "your_submission_comment_failed_to_send_5c8d2809": {
+    "message": "Не удалось отправить ваш комментарий к отправке."
+  }
+}

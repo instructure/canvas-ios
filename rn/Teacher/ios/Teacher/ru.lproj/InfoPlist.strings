@@ -1,0 +1,12 @@
+/* Privacy - Camera Usage Description */
+"NSCameraUsageDescription" = "Прикрепить фотографии и видеоматериалы к комментариям к отправке.";
+
+/* Privacy - Microphone Usage Description */
+"NSMicrophoneUsageDescription" = "Прикрепить аудиозаписи к комментариям к отправке.";
+
+/* Privacy - Photo Library Additions Usage Description */
+"NSPhotoLibraryAddUsageDescription" = "Прикрепить фотографии и видеоматериалы к комментариям к отправке.";
+
+/* Privacy - Photo Library Usage Description */
+"NSPhotoLibraryUsageDescription" = "Загрузить контент в курсы.";
+

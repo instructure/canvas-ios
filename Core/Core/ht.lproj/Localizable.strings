@@ -1,0 +1,237 @@
+/* No comment provided by engineer. */
+"%@ GPA" = "%@ GPA";
+
+/* No comment provided by engineer. */
+"Are you sure you would like to delete this comment?" = "Èske se tout bon ou vle efase kòmantè sa a?";
+
+/* No comment provided by engineer. */
+"Assignment" = "Sesyon";
+
+/* No comment provided by engineer. */
+"Assignment not found." = "Sesyon entwouvab.";
+
+/* No comment provided by engineer. */
+"Authentication failed. Most likely the user denied the request for access." = "Otantifikasyon echwe. Li pwobab pou itilizatè a refize demann aksè a.";
+
+/* No comment provided by engineer. */
+"Can’t find your school? Try typing the full school URL." = "Ou paka jwenn lekòl ou a? Eseye tape tout URL lekòl la";
+
+/* No comment provided by engineer. */
+"Cancel" = "Anile";
+
+/* No comment provided by engineer. */
+"Canvas Login" = "Koneksyon Canvas";
+
+/* No comment provided by engineer. */
+"Canvas Network" = "Canvas Network";
+
+/* No comment provided by engineer. */
+"Closed" = "Fèmen";
+
+/* No comment provided by engineer. */
+"Comments" = "Kòmantè";
+
+/* No comment provided by engineer. */
+"Complete" = "Fini";
+
+/* No comment provided by engineer. */
+"Course" = "Kou";
+
+/* No comment provided by engineer. */
+"d_questions" = "d_questions";
+
+/* No comment provided by engineer. */
+"Delete" = "Efase";
+
+/* No comment provided by engineer. */
+"Delete comment" = "Efase kòmantè";
+
+/* No comment provided by engineer. */
+"Delete Comment" = "Efase Kòmantè";
+
+/* No comment provided by engineer. */
+"Discussion Comment" = "Kòmantè Diskisyon";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Rejte";
+
+/* No comment provided by engineer. */
+"External Tool" = "Zouti Ekstèn";
+
+/* No comment provided by engineer. */
+"File Upload" = "Transfè Fichye";
+
+/* No comment provided by engineer. */
+"Final Grade: %@" = "Nòt Final: %@";
+
+/* No comment provided by engineer. */
+"final_grade_g_pts" = "final_grade_g_pts";
+
+/* No comment provided by engineer. */
+"Find my school" = "Jwenn lekòl mwen an";
+
+/* No comment provided by engineer. */
+"Find your school or district" = "Jwenn lekòl oswa distri ou a";
+
+/* No comment provided by engineer. */
+"Forget %@" = "Bliye %@";
+
+/* No comment provided by engineer. */
+"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
+
+/* No comment provided by engineer. */
+"g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
+"Help" = "Èd";
+
+/* No comment provided by engineer. */
+"How do I find my school?" = "Kijan pou mwen jwenn lekòl mwen an?";
+
+/* No comment provided by engineer. */
+"Incomplete" = "Enkonplè";
+
+/* No comment provided by engineer. */
+"late_penalty_g_pts" = "late_penalty_g_pts";
+
+/* No comment provided by engineer. */
+"Launch External Tool" = "Lanse Zouti Eksteryè";
+
+/* end of and list pattern */
+"list_and_end" = "%1$@, epi %2$@";
+
+/* middle of and list pattern */
+"list_and_middle" = "%1$@, %2$@";
+
+/* start of and list pattern */
+"list_and_start" = "%1$@, %2$@";
+
+/* and list pattern for 2 items */
+"list_and_two" = "%1$@ epi %2$@";
+
+/* end of or list pattern */
+"list_or_end" = "%1$@, oswa %2$@";
+
+/* middle of or list pattern */
+"list_or_middle" = "%1$@, %2$@";
+
+/* start of or list pattern */
+"list_or_start" = "%1$@, %2$@";
+
+/* or list pattern for 2 items */
+"list_or_two" = "%1$@ oswa %2$@";
+
+/* No comment provided by engineer. */
+"Manual OAuth Login" = "Koneksyon OAuth Manyèl";
+
+/* No comment provided by engineer. */
+"Media Recording" = "Anrejistreman Medya";
+
+/* No comment provided by engineer. */
+"No Due Date" = "San Delè";
+
+/* No comment provided by engineer. */
+"No Submission" = "Pa gen Soumisyon";
+
+/* No comment provided by engineer. */
+"Not Graded" = "Pa Klase";
+
+/* No comment provided by engineer. */
+"Not Submitted" = "Pa Soumèt";
+
+/* No comment provided by engineer. */
+"OK" = "DAKO";
+
+/* No comment provided by engineer. */
+"On Paper" = "Sou Papye";
+
+/* No comment provided by engineer. */
+"out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
+"plural_points" = "plural_points";
+
+/* No comment provided by engineer. */
+"Quiz" = "Quiz";
+
+/* No comment provided by engineer. */
+"Remove" = "Elimine";
+
+/* No comment provided by engineer. */
+"Removed %1$@" = "Elimine %1$@";
+
+/* No comment provided by engineer. */
+"Removed %1$@ by %2$@" = "Elimine %1$@ pa %2$@";
+
+/* No comment provided by engineer. */
+"Reply to the annotation or previous comments" = "Reponn anotasyon an oswa ansyen kòmantè yo";
+
+/* No comment provided by engineer. */
+"Resubmit Assignment" = "Resoumèt Sesyon";
+
+/* No comment provided by engineer. */
+"See what's new." = "Gade kisa ki nouvo.";
+
+/* No comment provided by engineer. */
+"Select Account" = "Seleksyone Kont";
+
+/* No comment provided by engineer. */
+"Select Assignment" = "Seleksyone Sesyon";
+
+/* No comment provided by engineer. */
+"Select Course" = "Seleksyone Kou";
+
+/* No comment provided by engineer. */
+"Send comment" = "Voye kòmantè";
+
+/* No comment provided by engineer. */
+"Site Admin Login" = "Koneksyon Admin Sit";
+
+/* No comment provided by engineer. */
+"Style" = "Estil";
+
+/* No comment provided by engineer. */
+"Submission Failed" = "Soumisyon Echwe";
+
+/* No comment provided by engineer. */
+"Submission Uploading..." = "Soumisyon ap Transfere...";
+
+/* No comment provided by engineer. */
+"Submit Assignment" = "Soumèt Sesyon";
+
+/* No comment provided by engineer. */
+"Submitted" = "Soumèt";
+
+/* Submitted date */
+"Submitted %@" = "Soumèt %@";
+
+/* No comment provided by engineer. */
+"Tap here for help." = "Tape la pou èd.";
+
+/* No comment provided by engineer. */
+"Tap to view details" = "Tape pou afiche detay";
+
+/* No comment provided by engineer. */
+"Tap to view progress" = "Tape pou afiche pwogrè";
+
+/* No comment provided by engineer. */
+"Text Entry" = "Antre Tèks";
+
+/* No comment provided by engineer. */
+"This assignment is due by %@" = "Delè sesyon sa a se %@";
+
+/* No comment provided by engineer. */
+"This assignment was due by %@" = "Delè sesyon sa a se te %@";
+
+/* No comment provided by engineer. */
+"We've made a few changes." = "Nou te fè kèk chanjman.";
+
+/* No comment provided by engineer. */
+"Website URL" = "URL sit Web";
+
+/* No comment provided by engineer. */
+"What’s your school’s name?" = "Ki non lekòl ou a?";
+
+/* No comment provided by engineer. */
+"You will need to log into at least one Canvas account from the Student app first." = "Ou dwe toudabò konekte sou omwen yon kont Canvas sou app Elèv la.";
+

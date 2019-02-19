@@ -1,0 +1,303 @@
+/* <String> <Int> of <Int> */
+"%@ %d of %d" = "%1$@ %2$d von %3$d";
+
+/* No comment provided by engineer. */
+"%@ is due at %@" = "%1$@ ist fällig um %2$@";
+
+/* No comment provided by engineer. */
+"%@ to %@" = "%1$@ bis %2$@";
+
+/* No comment provided by engineer. */
+"%@ will begin at %@" = "%1$@ beginnt um %2$@";
+
+/* Percentage field placeholder */
+"1-100%" = "1-100%";
+
+/* Server Error Message */
+"A server error has occurred.  Please try again." = "Es ist ein Serverfehler aufgetreten. Bitte versuchen Sie es erneut.";
+
+/* Label for button that allows admin to Act as User */
+"Act as User" = "Handeln als Benutzer";
+
+/* Label displayed when logged in as an admin */
+"Admin" = "Admin";
+
+/* Alert Section Header */
+"Alert me when:" = "Mich alarmieren wenn:";
+
+/* Alerts Tab */
+"Alerts" = "Benachrichtigungen";
+
+/* No comment provided by engineer. */
+"An Error Occurred" = "Ein Fehler ist aufgetreten.";
+
+/* Generic Network Error Message */
+"An unexpected error occurred.  Please try again." = "Es ist ein unerwarteter Fehler aufgetreten. Bitte versuchen Sie es erneut.";
+
+/* No comment provided by engineer. */
+"Announcement" = "Ankündigung";
+
+/* No comment provided by engineer. */
+"Assignment" = "Aufgabe";
+
+/* Assignment Grade High On Description */
+"Assignment grade above" = "Aufgabennote über";
+
+/* Assignment Grade Low On Description */
+"Assignment grade below" = "Aufgabennote unter";
+
+/* Assignment Missing Description */
+"Assignment missing" = "Aufgabe fehlend";
+
+/* No comment provided by engineer. */
+"Assignment reminder" = "Aufgabenerinnerung";
+
+/* No comment provided by engineer. */
+"Cache cleared" = "Cache geleert";
+
+/* Cancel button title */
+"Cancel" = "Abbrechen";
+
+/* Percent value is over 100 */
+"Cannot use percent that is higher than 100" = "Mehr als 100% sind nicht zulässig.";
+
+/* Percent value is under 0 */
+"Cannot use percent that is less than 0" = "Weniger als 0% sind nicht zulässig.";
+
+/* Cancel the question/suggestion form */
+"Casual question or suggestion" = "Beiläufige Frage oder Vorschlag";
+
+/* Empty Alerts Text */
+"Caught up on Alerts" = "Über Alarmsignale informiert";
+
+/* No comment provided by engineer. */
+"Choose a student" = "Wählen Sie einen Studenten";
+
+/* title for status selection field */
+"Choose One" = "Eine auswählen";
+
+/* Close Button Title */
+"Close" = "Schließen";
+
+/* Course Announcement Description */
+"Course announcements" = "Kursankündigungen";
+
+/* Course Grade High On Description */
+"Course grade above" = "Kursnote über";
+
+/* Course Grade Low On Description */
+"Course grade below" = "Kursnote unter";
+
+/* Courses Tab */
+"Courses" = "Kurse";
+
+/* No comment provided by engineer. */
+"Current student: %@, tap to switch students" = "Aktueller Student: %@Tippen Sie zum Wechseln des Studenten.";
+
+/* Title for field */
+"Describe your problem" = "Bitte beschreiben Sie Ihr Problem";
+
+/* No comment provided by engineer. */
+"Discussion" = "Diskussion";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Ablehnen";
+
+/* No comment provided by engineer. */
+"Error" = "Fehler";
+
+/* No comment provided by engineer. */
+"Event" = "Event";
+
+/* No comment provided by engineer. */
+"Event reminder" = "Ereigniserinnerung";
+
+/* No comment provided by engineer. */
+"Excused" = "Entschuldigt";
+
+/* Status level for issue being reported */
+"Extremely critical emergency" = "Sehr kritischer Notfall";
+
+/* High Assignment Grade too Low */
+"High assignment grade cannot be lower than low assignment grade" = "Gute Aufgabennote kann nicht schlechter sein als schlechte Aufgabennote";
+
+/* High Course Grade too Low */
+"High course grade cannot be lower than low course grade" = "Gute Kursnote kann nicht schlechter sein als schlechte Kursnote";
+
+/* Status level for issue being reported */
+"I can't get things done until fixed" = "Ich kann nicht weiterarbeiten, solange das Problem besteht";
+
+/* Status level for issue being reported */
+"I need help but it's not urgent" = "Ich benötige zwar Hilfe, es eilt jedoch nicht";
+
+/* Impact Title */
+"Impact:" = "Auswirkung:";
+
+/* No comment provided by engineer. */
+"In-Class" = "Klassenintern";
+
+/* Institution Announcement Description */
+"Institution announcements" = "Institutionsankündigungen";
+
+/* Title for an alert view */
+"Invalid Input" = "Unzulässige Eingabe";
+
+/* Support Ticket Invalid Input Message */
+"Invalid Input.  Check fields and try again." = "Unzulässige Eingabe.  Bitte überprüfen Sie alle Felder und versuchen Sie es erneut.";
+
+/* Last Week Button Accessibility Label */
+"Last Week" = "Letzte Woche";
+
+/* No comment provided by engineer. */
+"Late" = "Zu spät";
+
+/* No comment provided by engineer. */
+"Late: %@" = "Zu spät: %@";
+
+/* No comment provided by engineer. */
+"Late: %@ (%@/%@)" = "Zu spät: %1$@ (%2$@/%3$@)";
+
+/* Low Assignment Grade too High */
+"Low assignment grade cannot be higher than high assignment grade" = "Schlechte Aufgabennote kann nicht besser sein als gute Aufgabennote";
+
+/* Low Course Grade too High */
+"Low course grade cannot be higher than high course grade" = "Schlechte Kursnote kann nicht besser sein als gute Kursnote";
+
+/* Title of the manage children screen. This screen is used to add/remove children that a parent is observing. */
+"Manage Children" = "Kinder verwalten";
+
+/* No comment provided by engineer. */
+"Missing" = "Fehlend";
+
+/* No comment provided by engineer. */
+"Missing: (-/%@)" = "Fehlend: (-/%@)";
+
+/* Generic Network Error Title */
+"Network Error" = "Netzwerkfehler";
+
+/* Next Week Button Accessibility Label */
+"Next Week" = "Nächste Woche";
+
+/* Empty Courses Text */
+"No Courses" = "Keine Kurse";
+
+/* Title for label when no grade has been assigned to the course */
+"No Grade" = "Keine Noten";
+
+/* Error message */
+"No installed apps support opening this file" = "Öffnen dieser Datei wird von keiner der installierten Apps unterstützt";
+
+/* Empty Students Text */
+"No Students" = "Keine Studenten";
+
+/* Not Authorized Error Title */
+"Not Authorized" = "Nicht berechtigt";
+
+/* Not Found Error Title */
+"Not Found" = "Nicht gefunden";
+
+/* Empty Calendar Events Text */
+"Nothing this week" = "Nichts diese Woche";
+
+/* OK Button Title */
+"OK" = "OK";
+
+/* Open a url in the application Safari */
+"Open in Safari" = "In Safari öffnen";
+
+/* Open file in another application */
+"Open in..." = "Öffnen in...";
+
+/* No comment provided by engineer. */
+"Permission Needed" = "Berechtigung erforderlich";
+
+/* No comment provided by engineer. */
+"Quiz" = "Quiz";
+
+/* Support Ticket Creation Failed */
+"Request Failed!  Check network and try again!" = "Anfrage fehlgeschlagen.  Bitte überprüfen Sie das Netzwerk, und versuchen Sie es erneut.";
+
+/* Not Found Error Message */
+"Resource not found.  Please try again." = "Ressource nicht gefunden. Bitte versuchen Sie es erneut.";
+
+/* Select Impact Placeholder */
+"Select Impact" = "Auswirkung auswählen";
+
+/* Server Error Title */
+"Server Error" = "Serverfehler";
+
+/* No comment provided by engineer. */
+"Settings" = "Einstellungen";
+
+/* Status level for issue being reported */
+"Something is broken but I can work around it" = "Es liegt zwar ein Problem vor, aber ich kann es umgehen";
+
+/* Title for the subject field */
+"Subject" = "Betreff";
+
+/* No comment provided by engineer. */
+"Submitted" = "Eingereicht";
+
+/* No comment provided by engineer. */
+"Submitted: %@" = "Eingereicht: %@";
+
+/* No comment provided by engineer. */
+"Submitted: %@ (%@/%@)" = "Eingereicht: %1$@ (%2$@/%3$@)";
+
+/* Syllabus Button Title */
+"Syllabus" = "Lehrplan";
+
+/* Directions in the admin view */
+"Tap to start viewing Canvas as another person." = "Tippen Sie, um zu beginnen, Canvas als eine andere Person zu sehen";
+
+/* Support Ticket Created Successfully */
+"Thanks, your request was received!" = "Danke sehr. Wir haben Ihre Anfrage erhalten.";
+
+/* Error message */
+"There are no actions for this item" = "Für dieses Element gibt es keine Handlungen";
+
+/* AlertKit Database Load Failure Message */
+"There was a problem loading the AlertKit database file." = "Beim Laden der AlertKit-Datenbankdatei ist ein Problem aufgetreten.";
+
+/* Airwolf database error message */
+"There was a problem loading the database." = "Beim Laden der Datenbank ist ein Problem aufgetreten.";
+
+/* No comment provided by engineer. */
+"There was an error loading your content. If it  is an audio or video upload it may still be processing." = "Beim Laden Ihres Inhalts ist ein Fehler aufgetreten. Wenn Sie Audio- oder Videodateien hochladen, kann dies noch andauern.";
+
+/* No comment provided by engineer. */
+"This announcement has expired." = "Diese Ankündigung ist nicht mehr gültig.";
+
+/* No comment provided by engineer. */
+"This student's courses may not be published yet." = "Die Kurse dieses Studenten können jetzt nicht veröffentlicht werden.";
+
+/* Unknown T`hreshold Description */
+"Unknown" = "Unbekannt";
+
+/* Default name given a user until we find their real name */
+"Unknown User" = "Unbekannter Benutzer";
+
+/* Default user name, the computer-friendly version of their name, until we find their real user name */
+"Unknown User Name" = "Unbekannter Benutzername";
+
+/* No comment provided by engineer. */
+"Unread" = "Ungelesen";
+
+/* Calendar Tab */
+"Week" = "Woche";
+
+/* Header title of admin view */
+"Welcome!" = "Willkommen!";
+
+/* Title for field */
+"What can we do better?" = "Was können wir besser machen?";
+
+/* Not Authorized Error Message */
+"You are unauthorized to access this information.  Check your user permissions and try again." = "Sie sind nicht autorisiert, diese Informationen abzurufen. Überprüfen Sie Ihre Benutzerberechtigungen und versuchen Sie es erneut.";
+
+/* No comment provided by engineer. */
+"You must allow notifications in Settings to set reminders." = "Sie müssen in den Einstellungen die Option Benachrichtigungen erlauben, um Erinnerungen zu verwenden.";
+
+/* Title for the email field */
+"Your Email" = "Ihre E-Mail";
+
