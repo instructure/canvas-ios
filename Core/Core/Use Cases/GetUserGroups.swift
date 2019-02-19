@@ -16,26 +16,25 @@
 
 import Foundation
 
-public class GetUserGroups: CollectionUseCase<GetGroupsRequest, Group> {
-    public init(env: AppEnvironment, force: Bool = false) {
-        let request = GetGroupsRequest(context: ContextModel.currentUser)
-        super.init(api: env.api, database: env.database, request: request)
+public struct GetUserGroups: CollectionUseCase {
+    public typealias Model = Group
+
+    public init() {}
+
+    public var request: GetGroupsRequest {
+        return GetGroupsRequest(context: ContextModel.currentUser)
     }
 
-    override var predicate: NSPredicate {
-        return NSPredicate(format: "%K == YES", #keyPath(Group.showOnDashboard))
+    public var scope: Scope {
+        return .where(#keyPath(Group.showOnDashboard), equals: true)
     }
 
-    public override func predicate(forItem item: APIGroup) -> NSPredicate {
-        return NSPredicate(format: "%K == %@", #keyPath(Group.id), item.id.value)
-    }
+    public let cacheKey = "get-user-groups"
 
-    override func updateModel(_ model: Group, using object: APIGroup, in client: PersistenceClient) {
-        model.avatarURL = object.avatar_url
-        model.courseID = object.course_id?.value
-        model.id = object.id.value
-        model.name = object.name
-        model.concluded = object.concluded
-        model.showOnDashboard = true
+    public func write(response: [APIGroup]?, urlResponse: URLResponse?, to client: PersistenceClient) throws {
+        guard let response = response else {
+            return
+        }
+        Group.save(response, in: client)
     }
 }

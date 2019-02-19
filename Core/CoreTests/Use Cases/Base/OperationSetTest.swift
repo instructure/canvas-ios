@@ -20,33 +20,16 @@ import XCTest
 
 class OperationSetTest: CoreTestCase {
     func testItRunsOperations() {
-        let coursesRequest = GetCoursesRequest(includeUnpublished: true)
-        let groupsRequest = GetGroupsRequest(context: ContextModel.currentUser)
-
-        let course = APICourse.make(["id": "1", "name": "Course 1"])
-        api.mock(coursesRequest, value: [course], response: nil, error: nil)
-
-        let group = APIGroup.make(["id": "2", "name": "Group 2"])
-        api.mock(groupsRequest, value: [group], response: nil, error: nil)
-
-        let getCourses = GetCourses(env: environment)
-        let getGroups = GetUserGroups(env: environment)
-        let grouped = OperationSet(operations: [getCourses, getGroups])
-        addOperationAndWait(grouped)
-
-        XCTAssert(getCourses.errors.isEmpty)
-        XCTAssert(getGroups.errors.isEmpty)
-
-        let courses: [Course] = databaseClient.fetch()
-        XCTAssertEqual(courses.count, 1)
-        XCTAssertEqual(courses.first?.id, "1")
-        XCTAssertEqual(courses.first?.name, "Course 1")
-
-        let groups: [Group] = databaseClient.fetch()
-        XCTAssertEqual(groups.count, 1)
-        XCTAssertEqual(groups.first?.id, "2")
-        XCTAssertEqual(groups.first?.name, "Group 2")
-        XCTAssertEqual(groups.first?.showOnDashboard, true)
+        var count = 0
+        let one = BlockOperation {
+            count += 1
+        }
+        let two = BlockOperation {
+            count += 1
+        }
+        let set = OperationSet(operations: [one, two])
+        addOperationAndWait(set)
+        XCTAssertEqual(count, 2)
     }
 
     func testAddSequence() {

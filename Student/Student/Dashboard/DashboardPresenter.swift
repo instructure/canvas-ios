@@ -60,7 +60,12 @@ class DashboardPresenter: DashboardPresenterProtocol {
 
     let coursesFetch: FetchedResultsController<Course>
 
-    let groupsFetch: FetchedResultsController<Group>
+    lazy var groups: Store<GetUserGroups> = {
+        let useCase = GetUserGroups()
+        return environment.subscribe(useCase) { [weak self] in
+            self?.fetchData()
+        }
+    }()
 
     init(env: AppEnvironment = .shared, view: DashboardViewProtocol?) {
         self.environment = env
@@ -68,7 +73,6 @@ class DashboardPresenter: DashboardPresenterProtocol {
         self.router = env.router
         self.view = view
         self.coursesFetch = env.subscribe(Course.self, .favorites)
-        self.groupsFetch = env.subscribe(Group.self, .dashboard)
     }
 
     func courseWasSelected(_ courseID: String) {
@@ -112,7 +116,6 @@ class DashboardPresenter: DashboardPresenterProtocol {
 
     func loadData() {
         coursesFetch.performFetch()
-        groupsFetch.performFetch()
 
         // Load data from cache, if any
         fetchData()
@@ -126,19 +129,17 @@ class DashboardPresenter: DashboardPresenterProtocol {
             return
         }
 
+        groups.refresh(force: force)
+
         let getColors = GetCustomColors(env: environment)
         let getCourses = GetCourses(env: environment)
-        let getGroups = GetUserGroups(env: environment)
+        getColors.addDependency(getCourses)
 
-        let group = OperationSet(operations: [getCourses, getGroups])
-        getColors.addDependency(group)
-
-        let groupOperation = OperationSet(operations: [group, getColors])
+        let groupOperation = OperationSet(operations: [getCourses, getColors])
         groupOperation.completionBlock = { [weak self] in
             // Load data from data store once our big group finishes
             DispatchQueue.main.async { [weak self] in
                 self?.coursesFetch.performFetch()
-                self?.groupsFetch.performFetch()
                 self?.fetchData()
             }
         }
@@ -149,13 +150,12 @@ class DashboardPresenter: DashboardPresenterProtocol {
 
     func fetchData() {
         let courses = coursesFetch.fetchedObjects ?? []
-        let groups = groupsFetch.fetchedObjects ?? []
 
-        let vm = transformToViewModel(courses: courses, groups: groups)
+        let vm = transformToViewModel(courses: courses)
         view?.updateDisplay(vm)
     }
 
-    func transformToViewModel(courses: [Course], groups: [Group]) -> DashboardViewModel {
+    func transformToViewModel(courses: [Course]) -> DashboardViewModel {
         let cs = courses.compactMap { (course: Course) -> DashboardViewModel.Course? in
             guard let name = course.name, !course.id.isEmpty else {
                 return nil

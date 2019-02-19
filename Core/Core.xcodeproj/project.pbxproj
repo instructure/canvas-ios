@@ -307,6 +307,7 @@
 		B14FE5D32134E9ED00328CD7 /* DatabaseOperationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14FE5D22134E9ED00328CD7 /* DatabaseOperationTest.swift */; };
 		B14FE5D72134F63C00328CD7 /* RequestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14FE5D62134F63C00328CD7 /* RequestUseCase.swift */; };
 		B14FE5D92134F68800328CD7 /* CoreTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14FE5D82134F68800328CD7 /* CoreTestCase.swift */; };
+		B15CA22D221CA2EE0014FB02 /* UseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA22C221CA2EE0014FB02 /* UseCaseTests.swift */; };
 		B16F036E215AE6210011E952 /* GetAssignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A32BE5215A81350071B41E /* GetAssignment.swift */; };
 		B171A10721B9BE6C000325D3 /* CancelFileSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = B171A10621B9BE6C000325D3 /* CancelFileSubmission.swift */; };
 		B171A10B21BA13CF000325D3 /* UpdateFileUploadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B171A10A21BA13CF000325D3 /* UpdateFileUploadTests.swift */; };
@@ -325,7 +326,6 @@
 		B1911CF121C851AD00F42F91 /* ProcessInfoExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1911CF021C851AD00F42F91 /* ProcessInfoExtensions.swift */; };
 		B192833821C07A4E008D1B9B /* LoggerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B192833721C07A4E008D1B9B /* LoggerExtensions.swift */; };
 		B195DC45213201DE00797FE4 /* GetUserGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = B195DC44213201DE00797FE4 /* GetUserGroups.swift */; };
-		B195DC472132127200797FE4 /* CollectionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B195DC462132127200797FE4 /* CollectionUseCase.swift */; };
 		B195DC49213215A300797FE4 /* NSPredicateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B195DC48213215A300797FE4 /* NSPredicateExtensions.swift */; };
 		B195DC4F2132232F00797FE4 /* DetailUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B195DC4E2132232F00797FE4 /* DetailUseCase.swift */; };
 		B195DC512132257500797FE4 /* GetCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B195DC502132257500797FE4 /* GetCourse.swift */; };
@@ -876,6 +876,7 @@
 		B14FE5D22134E9ED00328CD7 /* DatabaseOperationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseOperationTest.swift; sourceTree = "<group>"; };
 		B14FE5D62134F63C00328CD7 /* RequestUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestUseCase.swift; sourceTree = "<group>"; };
 		B14FE5D82134F68800328CD7 /* CoreTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreTestCase.swift; sourceTree = "<group>"; };
+		B15CA22C221CA2EE0014FB02 /* UseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCaseTests.swift; sourceTree = "<group>"; };
 		B171A10621B9BE6C000325D3 /* CancelFileSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelFileSubmission.swift; sourceTree = "<group>"; };
 		B171A10A21BA13CF000325D3 /* UpdateFileUploadTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateFileUploadTests.swift; sourceTree = "<group>"; };
 		B17DFABD21B8606D008B9FA9 /* BackgroundURLSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundURLSessionManager.swift; sourceTree = "<group>"; };
@@ -893,7 +894,6 @@
 		B1911CF021C851AD00F42F91 /* ProcessInfoExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessInfoExtensions.swift; sourceTree = "<group>"; };
 		B192833721C07A4E008D1B9B /* LoggerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerExtensions.swift; sourceTree = "<group>"; };
 		B195DC44213201DE00797FE4 /* GetUserGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserGroups.swift; sourceTree = "<group>"; };
-		B195DC462132127200797FE4 /* CollectionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionUseCase.swift; sourceTree = "<group>"; };
 		B195DC48213215A300797FE4 /* NSPredicateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPredicateExtensions.swift; sourceTree = "<group>"; };
 		B195DC4E2132232F00797FE4 /* DetailUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUseCase.swift; sourceTree = "<group>"; };
 		B195DC502132257500797FE4 /* GetCourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCourse.swift; sourceTree = "<group>"; };
@@ -1702,7 +1702,6 @@
 				B144530A212E5BCC0009D848 /* AsyncOperation.swift */,
 				9FD504F12180C5F600B395BA /* AsyncBlockOperation.swift */,
 				B1381F14212E5E4A001F908C /* APIOperation.swift */,
-				B195DC462132127200797FE4 /* CollectionUseCase.swift */,
 				B195DC4E2132232F00797FE4 /* DetailUseCase.swift */,
 				B1EA5AF7212E6A6D00DABC5F /* OperationSet.swift */,
 				B14FE5D02134E9D200328CD7 /* DatabaseOperation.swift */,
@@ -1827,6 +1826,7 @@
 			isa = PBXGroup;
 			children = (
 				B1EF7AB621E7E41F00D653D7 /* StoreTests.swift */,
+				B15CA22C221CA2EE0014FB02 /* UseCaseTests.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -2179,7 +2179,6 @@
 				7D2DC306219C9D36008FE29A /* GetDocViewerSession.swift in Sources */,
 				7DB0A1D021C179D8009ABB40 /* GetAccounts.swift in Sources */,
 				3B3467DC2137087100F9BC2E /* HTTPHeaderConstants.swift in Sources */,
-				B195DC472132127200797FE4 /* CollectionUseCase.swift in Sources */,
 				7DCF2036216D546C003AF358 /* APIQuiz+Requestable.swift in Sources */,
 				7D10194B215E97D90058FDD1 /* UIImageExtensions.swift in Sources */,
 				B10D777021C2E27200BCE822 /* UITableViewCellExtensions.swift in Sources */,
@@ -2388,6 +2387,7 @@
 				9FD504F62180FC7200B395BA /* GetFileTest.swift in Sources */,
 				DFE1FF20212F5E41003F27AA /* KeychainTests.swift in Sources */,
 				B17F23AF21378F4B00771F86 /* TTLOperationTest.swift in Sources */,
+				B15CA22D221CA2EE0014FB02 /* UseCaseTests.swift in Sources */,
 				3B3467CD2134A06300F9BC2E /* GetAuthTokenTests.swift in Sources */,
 				7D80AC17212B689E00C40ECE /* APITab+Requestable+Tests.swift in Sources */,
 				3B3467D62135B99700F9BC2E /* IDTests.swift in Sources */,

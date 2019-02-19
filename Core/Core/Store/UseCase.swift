@@ -15,9 +15,10 @@
 //
 
 import Foundation
+import CoreData
 
 public protocol UseCase {
-    associatedtype Model
+    associatedtype Model: NSManagedObject = NSManagedObject
     associatedtype Response: Codable
     typealias RequestCallback = (Response?, URLResponse?, Error?) -> Void
 
@@ -27,15 +28,19 @@ public protocol UseCase {
 
     func makeRequest(environment: AppEnvironment, completionHandler: @escaping RequestCallback)
     func write(response: Response?, urlResponse: URLResponse?, to client: PersistenceClient) throws
-    func getNext(from urlResponse: URLResponse) -> GetNextRequest<Response>?
+    func getNext(from response: URLResponse) -> GetNextRequest<Response>?
 }
 
 extension UseCase {
+    public var scope: Scope {
+        return Scope.all(orderBy: "id")
+    }
+
     public var ttl: TimeInterval {
         return 60 * 60 * 2 // 2 hours
     }
 
-    public func getNext(from urlResponse: URLResponse) -> GetNextRequest<Response>? {
+    public func getNext(from response: URLResponse) -> GetNextRequest<Response>? {
         return nil
     }
 
@@ -54,6 +59,31 @@ extension UseCase {
         cache.key = cacheKey
         cache.lastRefresh = Clock.now
     }
+
+    public func fetch(environment: AppEnvironment = .shared, force: Bool = false, _ callback: @escaping RequestCallback) {
+        environment.database.perform { client in
+            guard force || self.hasExpired(in: client) else {
+                callback(nil, nil, nil) // FIXME: Return cached data?
+                return
+            }
+            self.makeRequest(environment: environment) { response, urlResponse, error in
+                if let error = error {
+                    callback(response, urlResponse, error)
+                    return
+                }
+                environment.database.performBackgroundTask { client in
+                    do {
+                        try self.write(response: response, urlResponse: urlResponse, to: client)
+                        self.updateTTL(in: client)
+                        try client.save()
+                        callback(response, urlResponse, error)
+                    } catch {
+                        callback(response, urlResponse, error)
+                    }
+                }
+            }
+        }
+    }
 }
 
 public protocol APIUseCase: UseCase {
@@ -62,8 +92,8 @@ public protocol APIUseCase: UseCase {
 }
 
 extension APIUseCase {
-    public func getNext(from urlResponse: URLResponse) -> GetNextRequest<Request.Response>? {
-        return request.getNext(from: urlResponse)
+    public func getNext(from response: URLResponse) -> GetNextRequest<Request.Response>? {
+        return request.getNext(from: response)
     }
 }
 
@@ -73,8 +103,8 @@ extension APIUseCase where Response == Request.Response {
     }
 }
 
-public protocol PagedUseCase: APIUseCase {}
-extension PagedUseCase where Response == Request.Response {
+public protocol CollectionUseCase: APIUseCase {}
+extension CollectionUseCase where Response == Request.Response {
     public func makeRequest(environment: AppEnvironment, completionHandler: @escaping RequestCallback) {
         environment.api.makeRequest(request) { response, urlResponse, error in
             if let error = error {

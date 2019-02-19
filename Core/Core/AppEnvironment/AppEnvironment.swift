@@ -27,8 +27,8 @@ open class AppEnvironment {
     open var backgroundAPI: API {
         return backgroundAPIManager.backgroundAPI
     }
-    public var database: Persistence
-    public var globalDatabase: Persistence = NSPersistentContainer.create()
+    public var database: NSPersistentContainer
+    public var globalDatabase: NSPersistentContainer = NSPersistentContainer.create()
     public var logger: LoggerProtocol
     public let queue = OperationQueue()
     public var router: RouterProtocol
