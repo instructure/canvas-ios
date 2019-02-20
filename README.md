@@ -34,7 +34,7 @@ The `setup.sh` script should take care of installing additional dependencies fro
 Carthage is used to checkout the source code of the EarlGrey 2 dependency.
 EG2 is included via source because Carthage doesn't support building static libraries.
 
-PSPDFKit is also installed via Carthage. Because this is a paid library, only an example `Cartfile` is provided in the repo. To build a distributable app, you will need to create a `Cartfile` with your PSPDFKit dependency. See `Cartfile.example` and `Cartfile.resolved.example`.
+PSPDFKit is also installed via Carthage. Because this is a paid library, only an example Cartfile is provided in the repo. To build a distributable app, you will need to set up `Cartfile` with your PSPDFKit dependency. See `Cartfile.example` and `Cartfile.resolved.example`.
 
 - `carthage update` Updates `Cartfile.resolved` with new dependencies
 - `carthage bootstrap` Fetches dependencies defined in `Cartfile.resolved`
