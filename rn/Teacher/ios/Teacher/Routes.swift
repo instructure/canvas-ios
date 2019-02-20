@@ -16,26 +16,11 @@
 
 import Foundation
 import Core
+import CanvasCore
 
-protocol ModuleListView: class {
-    func reloadModules()
-}
-
-class ModuleListPresenter {
-    let env: AppEnvironment
-    let courseID: String
-    weak var view: ModuleListView?
-
-    lazy var modules: Store<GetModules> = {
-        let useCase = GetModules(courseID: courseID)
-        return env.subscribe(useCase) { [weak self] in
-            self?.view?.reloadModules()
-        }
-    }()
-
-    init(env: AppEnvironment, courseID: String, view: ModuleListView) {
-        self.env = env
-        self.courseID = courseID
-        self.view = view
+let router = Router(routes: [
+    RouteHandler(.modules(forCourse: ":courseID")) { _, params in
+        guard let courseID = params["courseID"] else { return nil }
+        return ModuleListViewController.create(courseID: courseID)
     }
-}
+])

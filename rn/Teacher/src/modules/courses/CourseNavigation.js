@@ -237,7 +237,7 @@ export function mapStateToProps (state: AppState, { courseID }: RoutingParams): 
 
   const attendanceTabID = courseState.attendanceTool.tabID
 
-  const availableCourseTabs = ['assignments', 'quizzes', 'discussions', 'announcements', 'people', 'pages', 'files']
+  const availableCourseTabs = ['assignments', 'quizzes', 'discussions', 'announcements', 'people', 'pages', 'files', 'modules']
   if (attendanceTabID) availableCourseTabs.push(attendanceTabID)
 
   const tabs = courseState.tabs.tabs

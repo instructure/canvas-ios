@@ -18,9 +18,10 @@ import Foundation
 import XCTest
 @testable import Teacher
 import TestsFoundation
+@testable import Core
 
 class ModuleListPresenterTests: TeacherTestCase {
-    class View: ModuleListView {
+    class View: ModuleListViewProtocol {
         var onReloadModules: (() -> Void)?
         func reloadModules() {
             onReloadModules?()
@@ -34,15 +35,19 @@ class ModuleListPresenterTests: TeacherTestCase {
         super.setUp()
 
         view = View()
-        presenter = ModuleListPresenter(env: environment, courseID: "1", view: view)
+        presenter = ModuleListPresenter(env: environment, view: view, courseID: "1")
     }
 
     func testReloadModules() {
         let expectation = XCTestExpectation(description: "modules reloaded")
         view.onReloadModules = {
-            if presenter.modules.count == 1 {
+            if self.presenter.modules.count == 1 {
                 expectation.fulfill()
             }
         }
+        presenter.viewIsReady()
+        Module.make()
+
+        wait(for: [expectation], timeout: 0.1)
     }
 }

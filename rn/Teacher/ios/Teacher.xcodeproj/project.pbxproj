@@ -36,10 +36,14 @@
 		7D3DA83B2187615E000D828F /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D3DA83821876142000D828F /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		840CABA038B02116B1BDA3E0 /* Pods_defaults_TeacherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 862F1400F211EDA7FFBD70FA /* Pods_defaults_TeacherTests.framework */; };
 		8C2F55972B1A4A3EBFAEEBBD /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D063D27A1B3640208ABF74D4 /* libz.tbd */; };
-		B15CA249221DDA800014FB02 /* ModuleListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA248221DDA800014FB02 /* ModuleListPresenter.swift */; };
+		B15CA240221DBA940014FB02 /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA23F221DBA940014FB02 /* Routes.swift */; };
+		B15CA243221DC4EC0014FB02 /* CKIClientExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA242221DC4EC0014FB02 /* CKIClientExtensions.swift */; };
+		B15CA245221DC5BC0014FB02 /* ModuleListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA244221DC5BC0014FB02 /* ModuleListViewController.swift */; };
+		B15CA247221DC5CC0014FB02 /* ModuleListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B15CA246221DC5CC0014FB02 /* ModuleListViewController.storyboard */; };
 		B15CA26A221DDB9F0014FB02 /* ModuleListPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA269221DDB9F0014FB02 /* ModuleListPresenterTests.swift */; };
 		B15CA26D221DDEB40014FB02 /* TestsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B15CA26C221DDEB40014FB02 /* TestsFoundation.framework */; };
 		B15CA26F221DDF230014FB02 /* TeacherTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA26E221DDF230014FB02 /* TeacherTestCase.swift */; };
+		B15CA292221E082D0014FB02 /* ModuleListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA291221E082D0014FB02 /* ModuleListPresenter.swift */; };
 		F9B946F8221492580083E660 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946F6221492580083E660 /* PSPDFKit.framework */; };
 		F9B946F9221492580083E660 /* PSPDFKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946F7221492580083E660 /* PSPDFKitUI.framework */; };
 		F9FDB9351C9FB4F9CF7E0F94 /* Pods_defaults_Teacher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE78272172F7D235E49A1D77 /* Pods_defaults_Teacher.framework */; };
@@ -195,12 +199,16 @@
 		9FCA66282142CFF100BE0EBB /* SwiftGRPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftGRPC.framework; path = "../../../ios-frameworks/SwiftGRPC/SwiftGRPC.framework"; sourceTree = "<group>"; };
 		B159CA6C21540E0800DA6044 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = "../../../ios-frameworks/PSPDFKit.framework"; sourceTree = "<group>"; };
 		B159CA6D21540E0800DA6044 /* PSPDFKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKitUI.framework; path = "../../../ios-frameworks/PSPDFKitUI.framework"; sourceTree = "<group>"; };
-		B15CA248221DDA800014FB02 /* ModuleListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleListPresenter.swift; sourceTree = "<group>"; };
+		B15CA23F221DBA940014FB02 /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Routes.swift; path = Teacher/Routes.swift; sourceTree = "<group>"; };
+		B15CA242221DC4EC0014FB02 /* CKIClientExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKIClientExtensions.swift; sourceTree = "<group>"; };
+		B15CA244221DC5BC0014FB02 /* ModuleListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleListViewController.swift; sourceTree = "<group>"; };
+		B15CA246221DC5CC0014FB02 /* ModuleListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ModuleListViewController.storyboard; sourceTree = "<group>"; };
 		B15CA25D221DDB820014FB02 /* TeacherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeacherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B15CA261221DDB820014FB02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B15CA269221DDB9F0014FB02 /* ModuleListPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleListPresenterTests.swift; sourceTree = "<group>"; };
 		B15CA26C221DDEB40014FB02 /* TestsFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TestsFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B15CA26E221DDF230014FB02 /* TeacherTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherTestCase.swift; sourceTree = "<group>"; };
+		B15CA291221E082D0014FB02 /* ModuleListPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleListPresenter.swift; sourceTree = "<group>"; };
 		D063D27A1B3640208ABF74D4 /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		EE78272172F7D235E49A1D77 /* Pods_defaults_Teacher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_Teacher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9B946F6221492580083E660 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../../../Carthage/Build/iOS/PSPDFKit.framework; sourceTree = "<group>"; };
@@ -246,6 +254,9 @@
 		13B07FAE1A68108700A75B9A /* Teacher */ = {
 			isa = PBXGroup;
 			children = (
+				B15CA293221E0F890014FB02 /* IBDesignables */,
+				B15CA241221DC4DA0014FB02 /* Extensions */,
+				B15CA23E221DB3480014FB02 /* Modules */,
 				78AD913021C8180C0075FBCF /* GoogleService-Info.plist */,
 				61BD85FB1EB2933C005A09A5 /* AppDelegate.swift */,
 				494AE0B61F843CB4001A8F31 /* AppDelegate+Routes.swift */,
@@ -259,6 +270,7 @@
 				61BD85FA1EB29270005A09A5 /* bridging-header.h */,
 				2C96863B1FFE9FC3005127A3 /* LaunchScreen.storyboard */,
 				2CA3473E1F2147290000BB79 /* Localizable.strings */,
+				B15CA23F221DBA940014FB02 /* Routes.swift */,
 			);
 			name = Teacher;
 			sourceTree = "<group>";
@@ -330,6 +342,26 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		B15CA23E221DB3480014FB02 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				B15CA291221E082D0014FB02 /* ModuleListPresenter.swift */,
+				B15CA244221DC5BC0014FB02 /* ModuleListViewController.swift */,
+				B15CA246221DC5CC0014FB02 /* ModuleListViewController.storyboard */,
+			);
+			name = Modules;
+			path = Teacher/Modules;
+			sourceTree = "<group>";
+		};
+		B15CA241221DC4DA0014FB02 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B15CA242221DC4EC0014FB02 /* CKIClientExtensions.swift */,
+			);
+			name = Extensions;
+			path = Teacher/Extensions;
+			sourceTree = "<group>";
+		};
 		B15CA25E221DDB820014FB02 /* TeacherTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -351,9 +383,15 @@
 		B15CA27C221DF4E20014FB02 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
-				B15CA248221DDA800014FB02 /* ModuleListPresenter.swift */,
 			);
 			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		B15CA293221E0F890014FB02 /* IBDesignables */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = IBDesignables;
 			sourceTree = "<group>";
 		};
 		E3598DCFB2D0E7A9019957B2 /* Pods */ = {
@@ -486,6 +524,7 @@
 				2CA347401F2147290000BB79 /* Localizable.strings in Resources */,
 				2C3DE50E1F21498A00AE1D59 /* InfoPlist.strings in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				B15CA247221DC5CC0014FB02 /* ModuleListViewController.storyboard in Resources */,
 				2C96863D1FFE9FC4005127A3 /* LaunchScreen.storyboard in Resources */,
 				2C8E35722093AD760071ED94 /* Settings.bundle in Resources */,
 				2C7B27A81E6F5A1100E097B9 /* AppIcon.xcassets in Resources */,
@@ -530,7 +569,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"${CONFIGURATION}\" = \"Release\" ] ; then\nexit 0\nfi\n\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\nif nc -w 5 -z localhost 8081 ; then\nif ! curl -s \"http://localhost:8081/status\" | grep -q \"packager-status:running\" ; then\necho \"Port 8081 already in use, packager is either not running or not running correctly\"\nexit 2\nfi\nelse\nopen \"$SRCROOT/../launchPackager.command\" || echo \"Can't start packager automatically\"\nfi\nfi";
+			shellScript = "if [ \"${CONFIGURATION}\" = \"Release\" ] ; then\nexit 0\nfi\n\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\nif nc -w 5 -z localhost 8081 ; then\nif ! curl -s \"http://localhost:8081/status\" | grep -q \"packager-status:running\" ; then\necho \"Port 8081 already in use, packager is either not running or not running correctly\"\nexit 2\nfi\nelse\nopen \"$SRCROOT/../launchPackager.command\" || echo \"Can't start packager automatically\"\nfi\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		49AD4F601F730CB000BEDB8E /* Bundle React Native Code and Resources */ = {
@@ -826,8 +865,11 @@
 			files = (
 				494AE0BB1F843CB5001A8F31 /* TeacherAttendanceViewController.swift in Sources */,
 				494AE0BA1F843CB5001A8F31 /* AppDelegate+Routes.swift in Sources */,
+				B15CA240221DBA940014FB02 /* Routes.swift in Sources */,
+				B15CA245221DC5BC0014FB02 /* ModuleListViewController.swift in Sources */,
 				61BD85FC1EB2933C005A09A5 /* AppDelegate.swift in Sources */,
-				B15CA249221DDA800014FB02 /* ModuleListPresenter.swift in Sources */,
+				B15CA243221DC4EC0014FB02 /* CKIClientExtensions.swift in Sources */,
+				B15CA292221E082D0014FB02 /* ModuleListPresenter.swift in Sources */,
 				494AE0B91F843CB5001A8F31 /* RootTabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
