@@ -35,6 +35,8 @@
 		9F4B53AC2180FFDF0056A557 /* File+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4B53AB2180FFDF0056A557 /* File+Fixture.swift */; };
 		9F4B53AE218100BC0056A557 /* ApiFile+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4B53AD218100BC0056A557 /* ApiFile+Fixture.swift */; };
 		B12E7EAE2187E02B00D5D58F /* TestHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12E7EAD2187E02B00D5D58F /* TestHost.swift */; };
+		B15CA280221DFED00014FB02 /* ModuleFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA27F221DFED00014FB02 /* ModuleFixture.swift */; };
+		B15CA282221DFF240014FB02 /* APIModuleFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA281221DFF240014FB02 /* APIModuleFixture.swift */; };
 		B16F0371215BD5F10011E952 /* TestRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16F0370215BD5F10011E952 /* TestRouter.swift */; };
 		B16F0375215C2B340011E952 /* Assignment+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16F0374215C2B340011E952 /* Assignment+Fixture.swift */; };
 		B16F0377215C2CEF0011E952 /* Submission+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16F0376215C2CEF0011E952 /* Submission+Fixture.swift */; };
@@ -88,6 +90,8 @@
 		9F4B53AB2180FFDF0056A557 /* File+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "File+Fixture.swift"; sourceTree = "<group>"; };
 		9F4B53AD218100BC0056A557 /* ApiFile+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ApiFile+Fixture.swift"; sourceTree = "<group>"; };
 		B12E7EAD2187E02B00D5D58F /* TestHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHost.swift; sourceTree = "<group>"; };
+		B15CA27F221DFED00014FB02 /* ModuleFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFixture.swift; sourceTree = "<group>"; };
+		B15CA281221DFF240014FB02 /* APIModuleFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModuleFixture.swift; sourceTree = "<group>"; };
 		B16F0370215BD5F10011E952 /* TestRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRouter.swift; sourceTree = "<group>"; };
 		B16F0374215C2B340011E952 /* Assignment+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Assignment+Fixture.swift"; sourceTree = "<group>"; };
 		B16F0376215C2CEF0011E952 /* Submission+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Submission+Fixture.swift"; sourceTree = "<group>"; };
@@ -197,6 +201,7 @@
 				3BAA4178218A3ACE00701E03 /* APIEnrollmentFixture.swift */,
 				9F4B53AD218100BC0056A557 /* ApiFile+Fixture.swift */,
 				3B0CEBA121504C2500D07CFA /* APIGroup+Fixture.swift */,
+				B15CA281221DFF240014FB02 /* APIModuleFixture.swift */,
 				7DCF2047216D6597003AF358 /* APIQuiz+Fixture.swift */,
 				B1A32BDF2159A28D0071B41E /* APISubmission+Fixture.swift */,
 				3B0CEBA021504C2500D07CFA /* APITab+Fixture.swift */,
@@ -218,6 +223,7 @@
 				B1EE9D0021B8DE0200FCF736 /* FileUploadFixture.swift */,
 				3B032D19215037CA00B570F7 /* Group+Fixture.swift */,
 				B1E789B921B1D0D30087FE4A /* LogEventFixture.swift */,
+				B15CA27F221DFED00014FB02 /* ModuleFixture.swift */,
 				7DCF2049216D6668003AF358 /* Quiz+Fixture.swift */,
 				B16F0376215C2CEF0011E952 /* Submission+Fixture.swift */,
 				3B0CEB7D2150445100D07CFA /* Tab+Fixture.swift */,
@@ -411,7 +417,9 @@
 				3B0CEB7E2150445100D07CFA /* Tab+Fixture.swift in Sources */,
 				7DB0A1CE21C16D5A009ABB40 /* KeychainEntryFixture.swift in Sources */,
 				B19792F521767B830000369C /* Color+Fixture.swift in Sources */,
+				B15CA282221DFF240014FB02 /* APIModuleFixture.swift in Sources */,
 				B1A6BC92218B3733000515E3 /* HealthCheckRequestable.swift in Sources */,
+				B15CA280221DFED00014FB02 /* ModuleFixture.swift in Sources */,
 				7D47769A21AF396500B441CE /* APIQuiz.swift in Sources */,
 				7DCF2048216D6597003AF358 /* APIQuiz+Fixture.swift in Sources */,
 				B1C6BF6521BF2C2B00C8C585 /* UIBarButtonItemExtensions.swift in Sources */,

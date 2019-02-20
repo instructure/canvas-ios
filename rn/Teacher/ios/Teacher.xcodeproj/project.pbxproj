@@ -34,11 +34,26 @@
 		78AD913121C8180C0075FBCF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78AD913021C8180C0075FBCF /* GoogleService-Info.plist */; };
 		7D3DA83A2187615E000D828F /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D3DA83821876142000D828F /* Core.framework */; };
 		7D3DA83B2187615E000D828F /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D3DA83821876142000D828F /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		840CABA038B02116B1BDA3E0 /* Pods_defaults_TeacherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 862F1400F211EDA7FFBD70FA /* Pods_defaults_TeacherTests.framework */; };
 		8C2F55972B1A4A3EBFAEEBBD /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D063D27A1B3640208ABF74D4 /* libz.tbd */; };
+		B15CA249221DDA800014FB02 /* ModuleListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA248221DDA800014FB02 /* ModuleListPresenter.swift */; };
+		B15CA26A221DDB9F0014FB02 /* ModuleListPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA269221DDB9F0014FB02 /* ModuleListPresenterTests.swift */; };
+		B15CA26D221DDEB40014FB02 /* TestsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B15CA26C221DDEB40014FB02 /* TestsFoundation.framework */; };
+		B15CA26F221DDF230014FB02 /* TeacherTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA26E221DDF230014FB02 /* TeacherTestCase.swift */; };
 		F9B946F8221492580083E660 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946F6221492580083E660 /* PSPDFKit.framework */; };
 		F9B946F9221492580083E660 /* PSPDFKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946F7221492580083E660 /* PSPDFKitUI.framework */; };
 		F9FDB9351C9FB4F9CF7E0F94 /* Pods_defaults_Teacher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE78272172F7D235E49A1D77 /* Pods_defaults_Teacher.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B15CA262221DDB820014FB02 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
+			remoteInfo = Teacher;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		4943ECC51E5CEFBD001DC5B5 /* Embed Frameworks */ = {
@@ -116,6 +131,7 @@
 		2CA3476B1F2147300000BB79 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = Teacher/ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2E32426347BE56C907EB34A1 /* Pods_defaults_common_ui_tests_TeacherUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_common_ui_tests_TeacherUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3088A0FC28C5D205A6F7EBBA /* Pods-defaults-common_ui_tests-TeacherUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_ui_tests-TeacherUITests.debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-common_ui_tests-TeacherUITests/Pods-defaults-common_ui_tests-TeacherUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		3581D3E58E310D454B137601 /* Pods-defaults-TeacherTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-TeacherTests.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-TeacherTests/Pods-defaults-TeacherTests.release.xcconfig"; sourceTree = "<group>"; };
 		4943ECAB1E5CEFAC001DC5B5 /* CanvasKeymaster.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKeymaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4943ECAC1E5CEFAC001DC5B5 /* CanvasKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4943ECC91E5D0133001DC5B5 /* Teacher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Teacher.entitlements; path = Teacher/Teacher.entitlements; sourceTree = "<group>"; };
@@ -125,6 +141,7 @@
 		494BC60A1F954E1A00C77257 /* SoGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoGrey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		497CA7321F82ACF400501613 /* CanvasCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		510EF9905DA0D0F8D63CE1CD /* EarlGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EarlGrey.framework; path = Pods/EarlGrey/EarlGrey/EarlGrey.framework; sourceTree = SOURCE_ROOT; };
+		5641857260D9B45E5BEF297B /* Pods-defaults-TeacherTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-TeacherTests.debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-TeacherTests/Pods-defaults-TeacherTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5B0508CB203179F6004DFC9A /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "Teacher/en-AU.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		5B0E3D2B203179FD00F45C25 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "Teacher/en-GB.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		5B18C4D320317A0400CD8239 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Teacher/es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -169,6 +186,7 @@
 		7D349D1721430FA9004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "Teacher/sv-instk12.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		7D349D1821430FAA004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "Teacher/sv-instk12.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7D3DA83821876142000D828F /* Core.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		862F1400F211EDA7FFBD70FA /* Pods_defaults_TeacherTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_TeacherTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9210A7D2CE7CB864C8337310 /* Pods-defaults-Teacher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Teacher.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-Teacher/Pods-defaults-Teacher.release.xcconfig"; sourceTree = "<group>"; };
 		9FCA66222142CFDC00BE0EBB /* SoSeedySwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoSeedySwift.framework; path = "../../../ios-frameworks/SoSeedySwift.framework"; sourceTree = "<group>"; };
 		9FCA66252142CFF100BE0EBB /* SwiftProtobuf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftProtobuf.framework; path = "../../../ios-frameworks/SwiftGRPC/SwiftProtobuf.framework"; sourceTree = "<group>"; };
@@ -177,6 +195,12 @@
 		9FCA66282142CFF100BE0EBB /* SwiftGRPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftGRPC.framework; path = "../../../ios-frameworks/SwiftGRPC/SwiftGRPC.framework"; sourceTree = "<group>"; };
 		B159CA6C21540E0800DA6044 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = "../../../ios-frameworks/PSPDFKit.framework"; sourceTree = "<group>"; };
 		B159CA6D21540E0800DA6044 /* PSPDFKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKitUI.framework; path = "../../../ios-frameworks/PSPDFKitUI.framework"; sourceTree = "<group>"; };
+		B15CA248221DDA800014FB02 /* ModuleListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleListPresenter.swift; sourceTree = "<group>"; };
+		B15CA25D221DDB820014FB02 /* TeacherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeacherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B15CA261221DDB820014FB02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B15CA269221DDB9F0014FB02 /* ModuleListPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleListPresenterTests.swift; sourceTree = "<group>"; };
+		B15CA26C221DDEB40014FB02 /* TestsFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TestsFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B15CA26E221DDF230014FB02 /* TeacherTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherTestCase.swift; sourceTree = "<group>"; };
 		D063D27A1B3640208ABF74D4 /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		EE78272172F7D235E49A1D77 /* Pods_defaults_Teacher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_Teacher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9B946F6221492580083E660 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../../../Carthage/Build/iOS/PSPDFKit.framework; sourceTree = "<group>"; };
@@ -207,6 +231,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B15CA25A221DDB820014FB02 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				840CABA038B02116B1BDA3E0 /* Pods_defaults_TeacherTests.framework in Frameworks */,
+				B15CA26D221DDEB40014FB02 /* TestsFoundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -234,6 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				B159CA6C21540E0800DA6044 /* PSPDFKit.framework */,
+				B15CA26C221DDEB40014FB02 /* TestsFoundation.framework */,
 				B159CA6D21540E0800DA6044 /* PSPDFKitUI.framework */,
 				F9B946F6221492580083E660 /* PSPDFKit.framework */,
 				F9B946F7221492580083E660 /* PSPDFKitUI.framework */,
@@ -254,6 +288,7 @@
 				EE78272172F7D235E49A1D77 /* Pods_defaults_Teacher.framework */,
 				2E32426347BE56C907EB34A1 /* Pods_defaults_common_ui_tests_TeacherUITests.framework */,
 				510EF9905DA0D0F8D63CE1CD /* EarlGrey.framework */,
+				862F1400F211EDA7FFBD70FA /* Pods_defaults_TeacherTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -276,9 +311,11 @@
 				2C8E35712093AD760071ED94 /* Settings.bundle */,
 				13B07FAE1A68108700A75B9A /* Teacher */,
 				4943EC8A1E5CEF93001DC5B5 /* Dependencies */,
+				B15CA25E221DDB820014FB02 /* TeacherTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2C50EDDF1E735CA50096592C /* Frameworks */,
 				E3598DCFB2D0E7A9019957B2 /* Pods */,
+				B15CA27C221DF4E20014FB02 /* Recovered References */,
 			);
 			indentWidth = 4;
 			sourceTree = "<group>";
@@ -288,8 +325,35 @@
 			isa = PBXGroup;
 			children = (
 				13B07F961A680F5B00A75B9A /* Teacher.app */,
+				B15CA25D221DDB820014FB02 /* TeacherTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		B15CA25E221DDB820014FB02 /* TeacherTests */ = {
+			isa = PBXGroup;
+			children = (
+				B15CA267221DDB8D0014FB02 /* Modules */,
+				B15CA261221DDB820014FB02 /* Info.plist */,
+				B15CA26E221DDF230014FB02 /* TeacherTestCase.swift */,
+			);
+			path = TeacherTests;
+			sourceTree = "<group>";
+		};
+		B15CA267221DDB8D0014FB02 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				B15CA269221DDB9F0014FB02 /* ModuleListPresenterTests.swift */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		B15CA27C221DF4E20014FB02 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				B15CA248221DDA800014FB02 /* ModuleListPresenter.swift */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		E3598DCFB2D0E7A9019957B2 /* Pods */ = {
@@ -299,6 +363,8 @@
 				9210A7D2CE7CB864C8337310 /* Pods-defaults-Teacher.release.xcconfig */,
 				3088A0FC28C5D205A6F7EBBA /* Pods-defaults-common_ui_tests-TeacherUITests.debug.xcconfig */,
 				1ED095C0D4A9D20D53D1F6BD /* Pods-defaults-common_ui_tests-TeacherUITests.release.xcconfig */,
+				5641857260D9B45E5BEF297B /* Pods-defaults-TeacherTests.debug.xcconfig */,
+				3581D3E58E310D454B137601 /* Pods-defaults-TeacherTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -332,13 +398,33 @@
 			productReference = 13B07F961A680F5B00A75B9A /* Teacher.app */;
 			productType = "com.apple.product-type.application";
 		};
+		B15CA25C221DDB820014FB02 /* TeacherTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B15CA264221DDB820014FB02 /* Build configuration list for PBXNativeTarget "TeacherTests" */;
+			buildPhases = (
+				5AB2BCD6CC4B25C00B73A429 /* [CP] Check Pods Manifest.lock */,
+				B15CA259221DDB820014FB02 /* Sources */,
+				B15CA25A221DDB820014FB02 /* Frameworks */,
+				B15CA25B221DDB820014FB02 /* Resources */,
+				AF77E971FEE0456B393856EF /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B15CA263221DDB820014FB02 /* PBXTargetDependency */,
+			);
+			name = TeacherTests;
+			productName = TeacherTests;
+			productReference = B15CA25D221DDB820014FB02 /* TeacherTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 830;
+				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = Instructure;
 				TargetAttributes = {
@@ -357,6 +443,13 @@
 								enabled = 1;
 							};
 						};
+					};
+					B15CA25C221DDB820014FB02 = {
+						CreatedOnToolsVersion = 10.1;
+						DevelopmentTeam = B6333T4PXQ;
+						LastSwiftMigration = 1010;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 				};
 			};
@@ -380,6 +473,7 @@
 			projectRoot = "";
 			targets = (
 				13B07F861A680F5B00A75B9A /* Teacher */,
+				B15CA25C221DDB820014FB02 /* TeacherTests */,
 			);
 		};
 /* End PBXProject section */
@@ -396,6 +490,13 @@
 				2C8E35722093AD760071ED94 /* Settings.bundle in Resources */,
 				2C7B27A81E6F5A1100E097B9 /* AppIcon.xcassets in Resources */,
 				78AD913121C8180C0075FBCF /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B15CA25B221DDB820014FB02 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,6 +546,120 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n\n# Define NVM_DIR and source the nvm.sh setup script\n[ -z \"$NVM_DIR\" ] && export NVM_DIR=\"$HOME/.nvm\"\nif [[ -s \"$HOME/.nvm/nvm.sh\" ]]; then\n. \"$HOME/.nvm/nvm.sh\"\nelif [[ -x \"$(command -v brew)\" && -s \"$(brew --prefix nvm)/nvm.sh\" ]]; then\n. \"$(brew --prefix nvm)/nvm.sh\"\nfi\n\nif [ \"${CONFIGURATION}\" = \"Release\" ]\nthen\ncd \"${PROJECT_DIR}/../\"\nset -x\nDEST=$CONFIGURATION_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\nreact-native bundle --entry-file ./index.ios.js --platform ios --bundle-output \"${DEST}/main.jsbundle\" --sourcemap-output \"${DEST}/main.jsbundle.map\" --dev false --assets-dest \"$DEST\" --reset-cache\ncd \"${PROJECT_DIR}\"\nelse\n../node_modules/react-native/scripts/react-native-xcode.sh\nfi";
+		};
+		5AB2BCD6CC4B25C00B73A429 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-defaults-TeacherTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AF77E971FEE0456B393856EF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-defaults-TeacherTests/Pods-defaults-TeacherTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/FXKeychain/FXKeychain.framework",
+				"${BUILT_PRODUCTS_DIR}/Mantle/Mantle.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveObjC/ReactiveObjC.framework",
+				"${BUILT_PRODUCTS_DIR}/BVLinearGradient/BVLinearGradient.framework",
+				"${BUILT_PRODUCTS_DIR}/Cartography/Cartography.framework",
+				"${BUILT_PRODUCTS_DIR}/DeviceKit/DeviceKit.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Interactable/Interactable.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/Marshal/Marshal.framework",
+				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${BUILT_PRODUCTS_DIR}/RCTSFSafariViewController/RCTSFSafariViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/RNAudio/RNAudio.framework",
+				"${BUILT_PRODUCTS_DIR}/RNDeviceInfo/RNDeviceInfo.framework",
+				"${BUILT_PRODUCTS_DIR}/RNFS/RNFS.framework",
+				"${BUILT_PRODUCTS_DIR}/RNSound/RNSound.framework",
+				"${BUILT_PRODUCTS_DIR}/Reachability/Reachability.framework",
+				"${BUILT_PRODUCTS_DIR}/React/React.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactNativeSearchBar/ReactNativeSearchBar.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveObjCBridge/ReactiveObjCBridge.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftSimplify/SwiftSimplify.framework",
+				"${BUILT_PRODUCTS_DIR}/TBBModal/TBBModal.framework",
+				"${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-blur/react_native_blur.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-camera/react_native_camera.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-document-picker/react_native_document_picker.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-image-picker/react_native_image_picker.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-mail/react_native_mail.framework",
+				"${BUILT_PRODUCTS_DIR}/yoga/yoga.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FXKeychain.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mantle.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveObjC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BVLinearGradient.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cartography.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DeviceKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Interactable.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RCTSFSafariViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNAudio.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNDeviceInfo.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNFS.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNSound.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/React.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactNativeSearchBar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveObjCBridge.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSimplify.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TBBModal.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPKeyboardAvoiding.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_blur.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_camera.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_document_picker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_image_picker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_mail.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/yoga.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-defaults-TeacherTests/Pods-defaults-TeacherTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		B186F36B2144BE0C0026429F /* Strip Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -612,11 +827,29 @@
 				494AE0BB1F843CB5001A8F31 /* TeacherAttendanceViewController.swift in Sources */,
 				494AE0BA1F843CB5001A8F31 /* AppDelegate+Routes.swift in Sources */,
 				61BD85FC1EB2933C005A09A5 /* AppDelegate.swift in Sources */,
+				B15CA249221DDA800014FB02 /* ModuleListPresenter.swift in Sources */,
 				494AE0B91F843CB5001A8F31 /* RootTabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B15CA259221DDB820014FB02 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B15CA26F221DDF230014FB02 /* TeacherTestCase.swift in Sources */,
+				B15CA26A221DDB9F0014FB02 /* ModuleListPresenterTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B15CA263221DDB820014FB02 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 13B07F861A680F5B00A75B9A /* Teacher */;
+			targetProxy = B15CA262221DDB820014FB02 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		2C3DE5101F21498A00AE1D59 /* InfoPlist.strings */ = {
@@ -952,6 +1185,68 @@
 			};
 			name = Release;
 		};
+		B15CA265221DDB820014FB02 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5641857260D9B45E5BEF297B /* Pods-defaults-TeacherTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = B6333T4PXQ;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = TeacherTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.TeacherTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Teacher.app/Teacher";
+			};
+			name = Debug;
+		};
+		B15CA266221DDB820014FB02 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3581D3E58E310D454B137601 /* Pods-defaults-TeacherTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = B6333T4PXQ;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = TeacherTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.TeacherTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Teacher.app/Teacher";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -969,6 +1264,15 @@
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
 				83CBBA211A601CBA00E9B192 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B15CA264221DDB820014FB02 /* Build configuration list for PBXNativeTarget "TeacherTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B15CA265221DDB820014FB02 /* Debug */,
+				B15CA266221DDB820014FB02 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

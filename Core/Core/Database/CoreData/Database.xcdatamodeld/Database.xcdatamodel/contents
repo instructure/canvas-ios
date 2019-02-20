@@ -113,6 +113,14 @@
         <attribute name="timestamp" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="typeRaw" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="Module" representedClassName="Core.Module" syncable="YES">
+        <attribute name="courseID" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="position" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="published" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="workflowStateRaw" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="Quiz" representedClassName="Core.Quiz" syncable="YES">
         <attribute name="courseID" attributeType="String" syncable="YES"/>
         <attribute name="details" optional="YES" attributeType="String" syncable="YES"/>
@@ -176,5 +184,6 @@
         <element name="Submission" positionX="-312.484375" positionY="260.38671875" width="128" height="330"/>
         <element name="Tab" positionX="108.015625" positionY="177.67578125" width="128" height="165"/>
         <element name="TTL" positionX="-173.30859375" positionY="-128.48046875" width="128" height="75"/>
+        <element name="Module" positionX="-369" positionY="-18" width="128" height="135"/>
     </elements>
 </model>
