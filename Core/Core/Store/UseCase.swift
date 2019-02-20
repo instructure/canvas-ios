@@ -150,3 +150,38 @@ public struct GetNextUseCase<U: UseCase>: APIUseCase {
         try parent.write(response: response, urlResponse: urlResponse, to: client)
     }
 }
+
+public protocol WriteableModel {
+    associatedtype JSON
+
+    @discardableResult
+    static func save(_ item: JSON, in context: PersistenceClient) throws -> Self
+
+    @discardableResult
+    static func save(_ items: [JSON], in context: PersistenceClient) throws -> [Self]
+}
+
+extension WriteableModel {
+    @discardableResult
+    public static func save(_ items: [JSON], in context: PersistenceClient) throws -> [Self] {
+        return try items.map { try save($0, in: context) }
+    }
+}
+
+extension UseCase where Model: WriteableModel, Model.JSON == Response {
+    public func write(response: Model.JSON?, urlResponse: URLResponse?, to client: PersistenceClient) throws {
+        guard let response = response else {
+            return
+        }
+        try Model.save(response, in: client)
+    }
+}
+
+extension UseCase where Model: WriteableModel, Response: Collection, Model.JSON == Response.Element {
+    public func write(response: [Model.JSON]?, urlResponse: URLResponse?, to client: PersistenceClient) throws {
+        guard let response = response else {
+            return
+        }
+        try Model.save(response, in: client)
+    }
+}

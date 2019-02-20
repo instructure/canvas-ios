@@ -17,7 +17,8 @@
 import Foundation
 import CoreData
 
-public class Group: NSManagedObject, Context {
+public final class Group: NSManagedObject, Context, WriteableModel {
+    public typealias JSON = APIGroup
     public let contextType = ContextType.group
 
     @NSManaged public var avatarURL: URL?
@@ -28,12 +29,7 @@ public class Group: NSManagedObject, Context {
     @NSManaged public var showOnDashboard: Bool
 
     @discardableResult
-    public static func save(_ items: [APIGroup], in context: PersistenceClient) -> [Group] {
-        return items.map { save($0, in: context) }
-    }
-
-    @discardableResult
-    public static func save(_ item: APIGroup, in context: PersistenceClient) -> Group {
+    public static func save(_ item: APIGroup, in context: PersistenceClient) throws -> Group {
         let predicate = NSPredicate(format: "%K == %@", #keyPath(Group.id), item.id.value)
         let model: Group = context.fetch(predicate).first ?? context.insert()
         model.avatarURL = item.avatar_url

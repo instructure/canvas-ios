@@ -226,3 +226,22 @@ class APIUseCaseTests: CoreTestCase {
         XCTAssertEqual(useCase.getNext(from: response)?.path, next)
     }
 }
+
+class WriteableModelTests: CoreTestCase {
+    struct TestUseCase: UseCase {
+        typealias Model = Group
+
+        func makeRequest(environment: AppEnvironment, completionHandler: @escaping (APIGroup?, URLResponse?, Error?) -> Void) {
+        }
+
+        let scope = Scope.all(orderBy: "name")
+        let cacheKey = "writeable"
+    }
+
+    func testWrite() {
+        let useCase = TestUseCase()
+        try! useCase.write(response: APIGroup.make(["id": "1"]), urlResponse: nil, to: databaseClient)
+        let group: Group = databaseClient.fetch().first!
+        XCTAssertEqual(group.id, "1")
+    }
+}

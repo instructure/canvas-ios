@@ -30,11 +30,4 @@ public struct GetUserGroups: CollectionUseCase {
     }
 
     public let cacheKey = "get-user-groups"
-
-    public func write(response: [APIGroup]?, urlResponse: URLResponse?, to client: PersistenceClient) throws {
-        guard let response = response else {
-            return
-        }
-        Group.save(response, in: client)
-    }
 }
