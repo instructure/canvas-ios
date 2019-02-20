@@ -45,7 +45,6 @@ Canvas.app.dSYM.zip
 Carthage/
 dd/
 
-translations/
 ios-open-source
 video.mp4
 
@@ -56,10 +55,8 @@ fastlane/1
 bluepill/
 
 # rn
-rn/modules/instructure-canvas-api/build/
 package-lock.json
 yarn-error.log
-/rn/modules/instructure-canvas-api/package/
 *.tgz
 build
 
@@ -68,9 +65,10 @@ node_modules/
 npm-debug.log
 yarn-error.log
 
-#build scripts
+# Scripts data
 scripts/build_automation/release.config
-scripts/Gemfile.lock
+scripts/translations/source
+scripts/translations/imports
 
 # Secrets
 **/*.xcassets/Secrets/*.dataset
