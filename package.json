@@ -1,23 +1,31 @@
 {
-  "name": "iOS",
+  "name": "canvas-ios",
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "build-icons": "./scripts/build-icons.js",
+    "build-secrets": "./scripts/build-secrets.js",
     "coverage": "./scripts/coverage/coverage.js",
-    "test": "./scripts/coverage/coverage.js --test",
     "danger": "danger ci",
     "danger-core": "danger ci -i core -d scripts/coverage/dangerfile-core.js",
     "danger-student": "danger ci -i student -d scripts/coverage/dangerfile-student.js",
     "danger-teacher": "danger ci -i teacher -d scripts/coverage/dangerfile-teacher.js",
-    "build-icons": "./scripts/build_icons.js",
-    "build-secrets": "./scripts/build_secrets.js"
+    "export-translations": "./scripts/translations/export.js",
+    "import-translations": "./scripts/translations/import.js",
+    "test": "./scripts/coverage/coverage.js --test",
+    "update-headers": "./scripts/update-headers.js"
   },
   "devDependencies": {
+    "aws-sdk": "^2.178.0",
     "chalk": "^2.4.1",
     "commander": "^2.19.0",
     "danger": "^3.7.18",
+    "format-message": "^5.2.0",
+    "format-message-parse": "^5.1.2",
+    "format-message-print": "^5.1.2",
     "highlight.js": "^9.13.1",
     "lodash": "^4.17.11",
+    "mkdirp": "^0.5.1",
     "prompt": "1.0",
     "yargs": "^12.0.2"
   }
