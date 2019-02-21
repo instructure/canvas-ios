@@ -18,19 +18,23 @@ import XCTest
 @testable import Core
 
 class GetCustomColorsTests: CoreTestCase {
-    func testSuccess() {
-        Color.make([ "canvasContextID": "course_8", "color": UIColor.named(.electric) ])
-        api.mock(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [ "course_1": "#000", "course_2": "invalid" ]))
-        addOperationAndWait(GetCustomColors(env: environment, force: true))
-        let colors: [Color] = databaseClient.fetch(.all)
-        XCTAssertEqual(colors.count, 1)
-        XCTAssertEqual(colors[0].color.hexString, "#000000")
+    let useCase = GetCustomColors()
+
+    func testRequest() {
+        XCTAssertEqual(useCase.request.path, "users/self/colors")
     }
 
-    func testSaveNil() {
-        let color = Color.make()
-        XCTAssertNoThrow(try GetCustomColors(env: environment, force: true).save(response: nil, urlResponse: nil, client: databaseClient))
-        let colors: [Color] = databaseClient.fetch(.all)
-        XCTAssertEqual(colors, [color])
+    func testScope() {
+        let course = Color.make(["canvasContextID": "course_1"])
+        let group = Color.make(["canvasContextID": "group_1"])
+        XCTAssert(useCase.scope.predicate.evaluate(with: course))
+        XCTAssert(useCase.scope.predicate.evaluate(with: group))
+    }
+
+    func testWrite() {
+        let response = APICustomColors(custom_colors: ["course_1": "#fff", "group_2": "#000"])
+        try! useCase.write(response: response, urlResponse: nil, to: databaseClient)
+        let colors: [Color] = databaseClient.fetch()
+        XCTAssertEqual(colors.count, 2)
     }
 }

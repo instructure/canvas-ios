@@ -22,10 +22,28 @@ class ModuleListPresenter {
     let courseID: String
     weak var view: ModuleListViewProtocol?
 
+    var course: Course? {
+        return courses.first
+    }
+
     lazy var modules: Store<GetModules> = {
         let useCase = GetModules(courseID: courseID)
         return env.subscribe(useCase) { [weak self] in
             self?.view?.reloadModules()
+        }
+    }()
+
+    private lazy var courses: Store<GetCourseUseCase> = {
+        let useCase = GetCourseUseCase(courseID: courseID)
+        return env.subscribe(useCase) { [weak self] in
+            self?.view?.reloadCourse()
+        }
+    }()
+
+    private lazy var colors: Store<GetCustomColors> = {
+        let useCase = GetCustomColors()
+        return env.subscribe(useCase) { [weak self] in
+            self?.view?.reloadCourse()
         }
     }()
 
@@ -37,5 +55,7 @@ class ModuleListPresenter {
 
     func viewIsReady() {
         modules.refresh()
+        courses.refresh()
+        colors.refresh()
     }
 }

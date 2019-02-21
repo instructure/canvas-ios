@@ -297,6 +297,7 @@
 		B120D9D921B794BA00D93F39 /* UpdateFileUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B120D9D821B794BA00D93F39 /* UpdateFileUpload.swift */; };
 		B12A763821914059000693DE /* fileupload.txt in Resources */ = {isa = PBXBuildFile; fileRef = B12A763721914059000693DE /* fileupload.txt */; };
 		B12A763A2191459F000693DE /* file-post-body.txt in Resources */ = {isa = PBXBuildFile; fileRef = B12A76392191459F000693DE /* file-post-body.txt */; };
+		B133A78A221F59A3000E393E /* ColorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B133A789221F59A3000E393E /* ColorTests.swift */; };
 		B1381F15212E5E4A001F908C /* APIOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1381F14212E5E4A001F908C /* APIOperation.swift */; };
 		B1445307212E5B6E0009D848 /* FetchedResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1445301212E5B6E0009D848 /* FetchedResultsController.swift */; };
 		B1445308212E5B6E0009D848 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1445302212E5B6E0009D848 /* Persistence.swift */; };
@@ -870,6 +871,7 @@
 		B120D9D821B794BA00D93F39 /* UpdateFileUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateFileUpload.swift; sourceTree = "<group>"; };
 		B12A763721914059000693DE /* fileupload.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = fileupload.txt; sourceTree = "<group>"; };
 		B12A76392191459F000693DE /* file-post-body.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "file-post-body.txt"; sourceTree = "<group>"; };
+		B133A789221F59A3000E393E /* ColorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTests.swift; sourceTree = "<group>"; };
 		B1381F14212E5E4A001F908C /* APIOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIOperation.swift; sourceTree = "<group>"; };
 		B14452FC212E5B6E0009D848 /* CoreDataFetchedResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataFetchedResultsController.swift; sourceTree = "<group>"; };
 		B14452FD212E5B6E0009D848 /* NSManagedObjectContextExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSManagedObjectContextExtensions.swift; sourceTree = "<group>"; };
@@ -1366,6 +1368,7 @@
 			children = (
 				3B84C38E218B9B51005946BA /* AssignmentDatesTests.swift */,
 				B19792F6217697E30000369C /* AssignmentTests.swift */,
+				B133A789221F59A3000E393E /* ColorTests.swift */,
 				B19792F8217699B70000369C /* CourseTests.swift */,
 				B19792FC21769E280000369C /* GroupTests.swift */,
 				B15CA283221E00870014FB02 /* ModuleTests.swift */,
@@ -2468,6 +2471,7 @@
 				B1EE9CFF21B8D25E00FCF736 /* CreateFileSubmissionsTests.swift in Sources */,
 				7DCF2040216D5EF1003AF358 /* APIQuiz+Requestable+Tests.swift in Sources */,
 				B1E789BD21B1D3D50087FE4A /* LogEventListPresenterTests.swift in Sources */,
+				B133A78A221F59A3000E393E /* ColorTests.swift in Sources */,
 				7D7110CC2139AB310085C2E5 /* URLComponentsExtensionsTests.swift in Sources */,
 				7DF4FFC121700BCE007E5F81 /* TabViewable.swift in Sources */,
 				B19792FB21769B320000369C /* QuizTests.swift in Sources */,

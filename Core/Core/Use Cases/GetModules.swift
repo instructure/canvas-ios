@@ -22,7 +22,7 @@ public struct GetModules: APIUseCase {
     public let courseID: String
 
     public var scope: Scope {
-        return .where(#keyPath(Module.courseID), equals: courseID)
+        return .where(#keyPath(Module.courseID), equals: courseID, orderBy: #keyPath(Module.position))
     }
 
     public var cacheKey: String {

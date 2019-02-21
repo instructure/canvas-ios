@@ -16,29 +16,17 @@
 
 import Foundation
 
-public class GetCustomColors: RequestUseCase<GetCustomColorsRequest> {
-    public init(env: AppEnvironment, force: Bool = false) {
-        let request = GetCustomColorsRequest()
-        super.init(api: env.api, database: env.database, request: request)
+public class GetCustomColors: APIUseCase {
+    public typealias Model = Color
 
-        addSaveOperation { [weak self] response, urlResponse, client in
-            try self?.save(response: response, urlResponse: urlResponse, client: client)
-        }
-    }
+    public let request = GetCustomColorsRequest()
+    public let scope = Scope.all(orderBy: #keyPath(Color.canvasContextID))
+    public let cacheKey = "get-custom-colors"
 
-    func save(response: APICustomColors?, urlResponse: URLResponse?, client: PersistenceClient) throws {
+    public init() {}
+
+    public func write(response: APICustomColors?, urlResponse: URLResponse?, to client: PersistenceClient) throws {
         guard let response = response else { return }
-
-        let colors: [Color] = client.fetch(.all)
-        for color in colors {
-            try client.delete(color)
-        }
-
-        response.custom_colors.forEach { record in
-            guard let color = UIColor(hexString: record.value) else { return }
-            let model: Color = client.insert()
-            model.canvasContextID = record.key
-            model.color = color
-        }
+        Color.save(response, in: client)
     }
 }

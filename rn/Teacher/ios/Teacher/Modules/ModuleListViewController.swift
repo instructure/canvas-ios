@@ -17,14 +17,18 @@
 import Foundation
 import Core
 
-protocol ModuleListViewProtocol: class {
+protocol ModuleListViewProtocol: ErrorViewController, ColoredNavViewProtocol {
     func reloadModules()
+    func reloadCourse()
 }
 
 class ModuleListViewController: UIViewController, ModuleListViewProtocol {
     @IBOutlet weak var tableView: UITableView!
 
+    var titleSubtitleView: TitleSubtitleView = TitleSubtitleView.create()
+
     var presenter: ModuleListPresenter?
+    var color: UIColor?
 
     static func create(courseID: String) -> ModuleListViewController {
         let view = Bundle.loadController(self)
@@ -36,6 +40,8 @@ class ModuleListViewController: UIViewController, ModuleListViewProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupTitleViewInNavbar(title: NSLocalizedString("Modules", bundle: .teacher, comment: ""))
+
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = UIView()
@@ -45,6 +51,10 @@ class ModuleListViewController: UIViewController, ModuleListViewProtocol {
 
     func reloadModules() {
         tableView.reloadData()
+    }
+
+    func reloadCourse() {
+        updateNavBar(subtitle: presenter?.course?.name, color: presenter?.course?.color)
     }
 }
 

@@ -22,9 +22,23 @@ import TestsFoundation
 
 class ModuleListPresenterTests: TeacherTestCase {
     class View: ModuleListViewProtocol {
+        var color: UIColor?
+        var titleSubtitleView: TitleSubtitleView = TitleSubtitleView.create()
+        var navigationItem: UINavigationItem = UINavigationItem(title: "")
+        var navigationController: UINavigationController?
+
         var onReloadModules: (() -> Void)?
+        var onReloadCourse: (() -> Void)?
+
         func reloadModules() {
             onReloadModules?()
+        }
+
+        func reloadCourse() {
+            onReloadCourse?()
+        }
+
+        func showAlert(title: String?, message: String?) {
         }
     }
 
@@ -47,6 +61,50 @@ class ModuleListPresenterTests: TeacherTestCase {
         }
         presenter.viewIsReady()
         Module.make()
+
+        wait(for: [expectation], timeout: 0.1)
+    }
+
+    func testReloadCourse() {
+        let expectation = XCTestExpectation(description: "modules reloaded")
+        view.onReloadCourse = {
+            if self.presenter.course != nil {
+                expectation.fulfill()
+            }
+        }
+        presenter.viewIsReady()
+        Course.make(["id": "1"])
+
+        wait(for: [expectation], timeout: 0.1)
+    }
+
+    func testReloadCourseColor() {
+        let color = UIColor.red
+        let expectation = XCTestExpectation(description: "course reloaded")
+        view.onReloadCourse = {
+            if self.presenter.course?.color == color {
+                expectation.fulfill()
+            }
+        }
+        presenter.viewIsReady()
+        Course.make(["id": "1"])
+        Color.make(["canvasContextID": "course_1", "color": color])
+
+        wait(for: [expectation], timeout: 0.1)
+    }
+
+    func testRefreshCourseColors() {
+        let request = GetCustomColorsRequest()
+        let response = APICustomColors(custom_colors: ["course_1": "#000000"])
+        api.mock(request, value: response, response: nil, error: nil)
+        let expectation = XCTestExpectation(description: "color refreshed")
+        view.onReloadCourse = {
+            if self.presenter.course?.color.hexString == "#000000" {
+                expectation.fulfill()
+            }
+        }
+        presenter.viewIsReady()
+        Course.make(["id": "1"])
 
         wait(for: [expectation], timeout: 0.1)
     }

@@ -22,8 +22,7 @@ class AssignmentListUseCase: PresenterUseCase {
         super.init()
         addOperations([
             GetContext(context: ContextModel(.course, id: courseID), env: env),
-            GetCustomColors(env: env),
             GetAssignments(courseID: courseID, force: force, env: env),
-            ])
+        ])
     }
 }

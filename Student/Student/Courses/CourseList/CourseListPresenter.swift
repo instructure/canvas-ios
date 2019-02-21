@@ -35,7 +35,6 @@ class CourseListPresenter {
     let environment: AppEnvironment
     let queue: OperationQueue
     let router: RouterProtocol
-    var groupOperation: OperationSet?
 
     let coursesFetch: FetchedResultsController<Course>
 
@@ -83,24 +82,14 @@ class CourseListPresenter {
     }
 
     func loadDataFromServer() {
-        if let gop = self.groupOperation, !gop.isFinished {
-            return
-        }
-
         let getCourses = GetCourses(env: environment)
-        let getColors = GetCustomColors(env: environment)
-        getColors.addDependency(getCourses)
-
-        let groupOperation = OperationSet(operations: [getCourses, getColors])
-        groupOperation.completionBlock = { [weak self] in
+        getCourses.completionBlock = { [weak self] in
             // Load data from data store once our big group finishes
             DispatchQueue.main.async {
                 self?.fetchData()
             }
         }
-        self.groupOperation = groupOperation
-
-        queue.addOperationWithErrorHandling(groupOperation, sendErrorsTo: view)
+        queue.addOperationWithErrorHandling(getCourses, sendErrorsTo: view)
     }
 
     func fetchData() {
@@ -126,12 +115,6 @@ class CourseListPresenter {
 
 extension CourseListPresenter: FetchedResultsControllerDelegate {
     func controllerDidChangeContent<T>(_ controller: FetchedResultsController<T>) {
-        guard let gop = groupOperation else {
-            return
-        }
-
-        if gop.isFinished {
-            fetchData()
-        }
+        fetchData()
     }
 }

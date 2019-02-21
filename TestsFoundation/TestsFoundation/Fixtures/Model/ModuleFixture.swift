@@ -24,6 +24,5 @@ extension Module: Fixture {
         "position": 1,
         "courseID": "1",
         "published": true,
-        "workflowStateRaw": "active"
     ]
 }

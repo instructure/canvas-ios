@@ -21,11 +21,20 @@ import XCTest
 class GetModulesTests: CoreTestCase {
     let useCase = GetModules(courseID: "1")
 
-    func testScope() {
+    func testScopePredicate() {
         let yes = Module.make(["id": "1", "courseID": "1"], client: databaseClient)
         let no = Module.make(["id": "2", "courseID": "2"], client: databaseClient)
         XCTAssert(useCase.scope.predicate.evaluate(with: yes))
         XCTAssertFalse(useCase.scope.predicate.evaluate(with: no))
+    }
+
+    func testScopeOrder() {
+        let one = Module.make(["id": "1", "position": 1], client: databaseClient)
+        let two = Module.make(["id": "2", "position": 2], client: databaseClient)
+        let three = Module.make(["id": "2", "position": 3], client: databaseClient)
+        let order = useCase.scope.order[0]
+        XCTAssertEqual(order.compare(one, to: two), .orderedAscending)
+        XCTAssertEqual(order.compare(two, to: three), .orderedAscending)
     }
 
     func testCacheKey() {
