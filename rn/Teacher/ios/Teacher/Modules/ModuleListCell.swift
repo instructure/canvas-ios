@@ -15,11 +15,15 @@
 //
 
 import Foundation
+import UIKit
+import Core
 
-// https://canvas.instructure.com/doc/api/modules.html#Module
-public struct APIModule: Codable, Equatable {
-    let id: ID
-    let name: String
-    let position: Int
-    let published: Bool
+class ModuleListCell: UITableViewCell {
+    @IBOutlet weak var nameLabel: UILabel!
+
+    var module: Module? {
+        didSet {
+            nameLabel.text = module?.name
+        }
+    }
 }

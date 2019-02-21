@@ -119,7 +119,6 @@
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="position" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="published" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="workflowStateRaw" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Quiz" representedClassName="Core.Quiz" syncable="YES">
         <attribute name="courseID" attributeType="String" syncable="YES"/>
@@ -180,10 +179,10 @@
         <element name="FileUpload" positionX="-360" positionY="-9" width="128" height="210"/>
         <element name="Group" positionX="-366.25" positionY="-174.85546875" width="128" height="135"/>
         <element name="LogEvent" positionX="-369" positionY="-18" width="128" height="90"/>
+        <element name="Module" positionX="-369" positionY="-18" width="128" height="120"/>
         <element name="Quiz" positionX="-26.7890625" positionY="226.0703125" width="128" height="195"/>
         <element name="Submission" positionX="-312.484375" positionY="260.38671875" width="128" height="330"/>
         <element name="Tab" positionX="108.015625" positionY="177.67578125" width="128" height="165"/>
         <element name="TTL" positionX="-173.30859375" positionY="-128.48046875" width="128" height="75"/>
-        <element name="Module" positionX="-369" positionY="-18" width="128" height="135"/>
     </elements>
 </model>

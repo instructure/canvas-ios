@@ -23,12 +23,6 @@ public class Module: NSManagedObject {
     @NSManaged public var position: Int64
     @NSManaged public var courseID: String
     @NSManaged public var published: Bool
-    @NSManaged var workflowStateRaw: String
-
-    public var workflowState: ModuleWorkflowState {
-        get { return ModuleWorkflowState(rawValue: workflowStateRaw) ?? .active }
-        set { workflowStateRaw = newValue.rawValue }
-    }
 
     @discardableResult
     public static func save(_ items: [APIModule], forCourse courseID: String, in context: PersistenceClient) -> [Module] {
@@ -44,7 +38,6 @@ public class Module: NSManagedObject {
         module.name = item.name
         module.position = Int64(item.position)
         module.published = item.published
-        module.workflowState = item.workflow_state
         return module
     }
 }

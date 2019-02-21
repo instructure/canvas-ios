@@ -22,6 +22,8 @@ protocol ModuleListViewProtocol: class {
 }
 
 class ModuleListViewController: UIViewController, ModuleListViewProtocol {
+    @IBOutlet weak var tableView: UITableView!
+
     var presenter: ModuleListPresenter?
 
     static func create(courseID: String) -> ModuleListViewController {
@@ -31,6 +33,39 @@ class ModuleListViewController: UIViewController, ModuleListViewProtocol {
         return view
     }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.tableFooterView = UIView()
+
+        presenter?.viewIsReady()
+    }
+
     func reloadModules() {
+        tableView.reloadData()
+    }
+}
+
+extension ModuleListViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return presenter?.modules.numberOfSections ?? 0
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return presenter?.modules.numberOfObjects(inSection: section) ?? 0
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeue(ModuleListCell.self, for: indexPath)
+        cell.module = presenter?.modules[indexPath]
+        return cell
+    }
+}
+
+extension ModuleListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // TODO: route to module details
     }
 }

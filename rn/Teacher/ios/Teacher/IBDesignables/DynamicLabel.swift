@@ -14,12 +14,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import Core
 
-// https://canvas.instructure.com/doc/api/modules.html#Module
-public struct APIModule: Codable, Equatable {
-    let id: ID
-    let name: String
-    let position: Int
-    let published: Bool
-}
+@IBDesignable
+class DynamicLabel: Core.DynamicLabel {}
