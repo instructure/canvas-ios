@@ -176,12 +176,12 @@
     progressToolbar.hidden = NO;
     progressToolbar.alpha = 0.0;
     [UIView animateWithDuration:0.4 animations:^{
-        progressView.alpha = 1.0;
-        progressToolbar.alpha = 1.0;
-        progressCompleteLabel.alpha = 0.0;
+        self->progressView.alpha = 1.0;
+        self->progressToolbar.alpha = 1.0;
+        self->progressCompleteLabel.alpha = 0.0;
         
-        submittingSpinner.alpha = 0.0;
-        submittingLabel.alpha = 0.0;
+        self->submittingSpinner.alpha = 0.0;
+        self->submittingLabel.alpha = 0.0;
     }];
     UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification,
                                     submittingLabel.text);
@@ -193,12 +193,12 @@
         progressToolbar.alpha = 0.0;
     }
     [UIView animateWithDuration:0.4 animations:^{
-        progressView.alpha = 0.0;
-        progressCompleteLabel.alpha = 0.0;
+        self->progressView.alpha = 0.0;
+        self->progressCompleteLabel.alpha = 0.0;
         
-        progressToolbar.alpha = 1.0;
-        submittingLabel.alpha = 1.0;
-        submittingSpinner.alpha = 1.0;
+        self->progressToolbar.alpha = 1.0;
+        self->submittingLabel.alpha = 1.0;
+        self->submittingSpinner.alpha = 1.0;
     }];
     UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification,
                                     submittingLabel.text);
@@ -231,12 +231,12 @@
     [submittingSpinner stopAnimating];
     [UIView animateWithDuration:0.2 animations:^{
         if (error) {
-            progressToolbar.alpha = 1.0; // In case it was previously hidden
+            self->progressToolbar.alpha = 1.0; // In case it was previously hidden
         }
-        progressView.alpha = 0.0;
-        progressCompleteLabel.alpha = 1;
-        submittingSpinner.alpha = 0.0;
-        submittingLabel.alpha = 0.0;
+        self->progressView.alpha = 0.0;
+        self->progressCompleteLabel.alpha = 1;
+        self->submittingSpinner.alpha = 0.0;
+        self->submittingLabel.alpha = 0.0;
         cancelView.alpha = 0.0;
     }];
     UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification,
@@ -257,10 +257,10 @@
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         
         [UIView animateWithDuration:0.4 animations:^{
-            progressToolbar.alpha = 0.0;
+            self->progressToolbar.alpha = 0.0;
         } completion:^(BOOL finished) {
-            progressToolbar.hidden = YES;
-            progressView.progress = 0.0;
+            self->progressToolbar.hidden = YES;
+            self->progressView.progress = 0.0;
             cancelView.alpha = 1.0;
             if (completion) {
                 completion();

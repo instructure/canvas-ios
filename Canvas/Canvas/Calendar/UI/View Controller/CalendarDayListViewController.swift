@@ -97,7 +97,7 @@ open class CalendarDayListViewController: UITableViewController {
     // ---------------------------------------------
     // MARK: - Lifecycle
     // ---------------------------------------------
-    @objc open static func new(_ session: Session, date: Date, routeToURL: @escaping RouteToURL, colorForContextID: @escaping ColorForContextID) -> CalendarDayListViewController {
+    @objc public static func new(_ session: Session, date: Date, routeToURL: @escaping RouteToURL, colorForContextID: @escaping ColorForContextID) -> CalendarDayListViewController {
         let controller = CalendarDayListViewController(nibName: nil, bundle: nil)
         controller.session = session
         controller.routeToURL = routeToURL

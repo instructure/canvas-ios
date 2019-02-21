@@ -89,7 +89,7 @@ extension NSError {
         var report = "===== Error Report \(domain)–\(code) =====\n"
         
         for (key, value) in userInfo {
-            if (key as? String) == NSUnderlyingErrorKey { continue } // handled separately
+            if key == NSUnderlyingErrorKey { continue } // handled separately
             report += "🔑 \(key): \(value)\n"
         }
         

@@ -85,7 +85,7 @@ open class CalendarSplitMonthViewController: UIViewController {
     // ---------------------------------------------
     // MARK: - Lifecycle
     // ---------------------------------------------
-    @objc open static func new(_ session: Session, dateSelected: DateSelected? = nil, colorForContextID: ColorForContextID? = nil, routeToURL: RouteToURL? = nil) -> CalendarSplitMonthViewController {
+    @objc public static func new(_ session: Session, dateSelected: DateSelected? = nil, colorForContextID: ColorForContextID? = nil, routeToURL: RouteToURL? = nil) -> CalendarSplitMonthViewController {
         let controller = UIStoryboard(name: "CalendarSplitMonthViewController", bundle: CalendarSplitMonthViewController.bundle).instantiateInitialViewController() as! CalendarSplitMonthViewController
         controller.session = session
         

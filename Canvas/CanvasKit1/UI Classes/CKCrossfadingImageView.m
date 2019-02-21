@@ -104,17 +104,17 @@
     isAnimatingCurrentFrame = YES;
     [UIView animateWithDuration:frameInterval animations:^{
         [UIView setAnimationCurve:UIViewAnimationCurveLinear];
-        _frontImageView.alpha = 0.0;
+        self->_frontImageView.alpha = 0.0;
     } completion:^(BOOL finished) {
-        isAnimatingCurrentFrame = NO;
-        _currentFrame = nextFrame;
+        self->isAnimatingCurrentFrame = NO;
+        self->_currentFrame = nextFrame;
         
-        UIImageView *tmp = _backImageView;
-        _backImageView = _frontImageView;
-        _frontImageView = tmp;
-        [self bringSubviewToFront:_frontImageView];
+        UIImageView *tmp = self->_backImageView;
+        self->_backImageView = self->_frontImageView;
+        self->_frontImageView = tmp;
+        [self bringSubviewToFront:self->_frontImageView];
         
-        if (_isAnimating) {
+        if (self->_isAnimating) {
             [self runNextAnimationFrame];
         }
      }];

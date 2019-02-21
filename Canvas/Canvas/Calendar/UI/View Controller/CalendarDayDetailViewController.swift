@@ -56,7 +56,7 @@ open class CalendarDayDetailViewController: UIViewController, CalendarDayPageVie
     // ---------------------------------------------
     // MARK: - Lifecycle
     // ---------------------------------------------    
-    @objc open static func new(_ session: Session, date: Date, canvasContextIDs: [String], routeToURL: @escaping RouteToURL, colorForContextID: @escaping ColorForContextID) -> CalendarDayDetailViewController {
+    @objc public static func new(_ session: Session, date: Date, canvasContextIDs: [String], routeToURL: @escaping RouteToURL, colorForContextID: @escaping ColorForContextID) -> CalendarDayDetailViewController {
         let controller = CalendarDayDetailViewController(nibName: nil, bundle: nil)
         controller.session = session
         controller.date = date

@@ -346,12 +346,12 @@ UIColor *CKPostButtonDisabledColor() {
         NSString *activityGif = [[NSBundle bundleForClass:[self class]] pathForResource:@"glossy-spinner" ofType:@"gif"];
         NSString *activityImageTag = [NSString stringWithFormat:@"<img id=\"activity-indicator%d\" src=\"%@\">", activityIndicatorCount, activityGif];
         activityIndicatorCount++;
-        loadingImages[activityImageTag] = imageTag;
+        self->loadingImages[activityImageTag] = imageTag;
         
         returnValue = [returnValue stringByReplacingOccurrencesOfString:imageTag withString:activityImageTag];
         
         CKRemoteImageView *imageView = [CKRemoteImageView new];
-        imageView.imageCache = imageCache;
+        imageView.imageCache = self->imageCache;
         __weak CKRemoteImageView *weakImageView = imageView;
         imageView.afterLoadingBlock = ^{
             UIImage *image = weakImageView.image;

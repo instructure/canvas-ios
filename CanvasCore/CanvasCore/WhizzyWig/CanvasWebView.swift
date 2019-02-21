@@ -200,8 +200,7 @@ public class CanvasWebView: WKWebView {
     
     @objc public func htmlContentHeight(completionHandler: @escaping (CGFloat) -> Void) {
         evaluateJavaScript("document.documentElement.scrollHeight") { result, error in
-            guard let height = result as? NSNumber else { completionHandler(0.0); return }
-            completionHandler(CGFloat(height))
+            completionHandler(result as? CGFloat ?? 0.0)
         }
     }
 

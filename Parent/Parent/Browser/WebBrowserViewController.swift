@@ -153,7 +153,7 @@ class WebBrowserViewController: UIViewController {
 
     @objc func reloadButtonTapped(_ refreshButton: UIBarButtonItem) {
         networkOps = 0
-        if let request = webView.request, (request.url?.absoluteString.characters.count)! > 0 && request.url?.absoluteString != "about:blank" {
+        if let request = webView.request, request.url?.absoluteString.isEmpty == false && request.url?.absoluteString != "about:blank" {
             webView.reload()
         } else {
             if let request = self.request {
@@ -258,7 +258,7 @@ extension WebBrowserViewController: UIWebViewDelegate {
         }
 
         UIView.animate(withDuration: 0.3, animations: {
-            if let text = self.titleField.text, let font = self.titleField.font, text.characters.count > 0 {
+            if let text = self.titleField.text, let font = self.titleField.font, !text.isEmpty {
                 let size = (text as NSString).size(withAttributes: convertToOptionalNSAttributedStringKeyDictionary([convertFromNSAttributedStringKey(NSAttributedString.Key.font): font]))
                 let x: CGFloat = (self.view.frame.size.width - CGFloat(roundf(Float(size.width))) * 0.5)
                 let width: CGFloat = CGFloat(roundf(Float(size.width)))

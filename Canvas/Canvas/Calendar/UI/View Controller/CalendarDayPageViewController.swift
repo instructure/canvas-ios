@@ -49,7 +49,7 @@ open class CalendarDayPageViewController: UIViewController, UIPageViewController
     // ---------------------------------------------
     // MARK: - Lifecycle
     // ---------------------------------------------
-    open static func new(_ session: Session, date: Date, delegate: CalendarDayPageViewControllerDelegate? = nil, routeToURL: @escaping RouteToURL, colorForContextID: @escaping ColorForContextID) -> CalendarDayPageViewController {
+    public static func new(_ session: Session, date: Date, delegate: CalendarDayPageViewControllerDelegate? = nil, routeToURL: @escaping RouteToURL, colorForContextID: @escaping ColorForContextID) -> CalendarDayPageViewController {
         let controller = CalendarDayPageViewController(nibName: nil, bundle: nil)
         
         controller.session = session

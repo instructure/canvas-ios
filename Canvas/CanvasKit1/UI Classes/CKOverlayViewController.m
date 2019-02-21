@@ -164,7 +164,7 @@ static CGRect CGRectWithMinY(CGRect input, CGFloat minY) {;
 //        CGRect frame = floatingView.frame;
 //        CGFloat bottomOfView = CGRectGetMaxY(frame);
         
-        effectiveBottom = topOfKeyboard;
+        self->effectiveBottom = topOfKeyboard;
         
 //        CGFloat overlapAmount = bottomOfView - topOfKeyboard;
 //        

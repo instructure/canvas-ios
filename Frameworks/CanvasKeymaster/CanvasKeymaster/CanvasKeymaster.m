@@ -116,7 +116,7 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
     [[client login] subscribeNext:^(CKIClient *currentClient) {
         [self setCurrentClient:currentClient];
         [[FXKeychain sharedKeychain] addClient:currentClient];
-        [_subjectForClientLogin sendNext:currentClient];
+        [self->_subjectForClientLogin sendNext:currentClient];
     } error:^(NSError *error) {
         [self login];
     }];
@@ -274,7 +274,7 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
     [signalForClientForUsersDomain subscribeNext:^(CKIClient *currentClient) {
         [self setCurrentClient:currentClient];
         [[FXKeychain sharedKeychain] addClient:currentClient];
-        [_subjectForClientLogin sendNext:currentClient];
+        [self->_subjectForClientLogin sendNext:currentClient];
     } error:^(NSError *error) {
         [self login];
     }];
@@ -301,7 +301,7 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
         } else if (self.currentClient == nil) {
             [self login];
         } else {
-            [_subjectForClientCannotLogInAutomatically sendNext:self.domainPickerNavigationController];
+            [self->_subjectForClientCannotLogInAutomatically sendNext:self.domainPickerNavigationController];
         }
         [subscriber sendCompleted];
         
@@ -412,7 +412,7 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
         [newClient setValue:masqueradingUser forKeyPath:@"currentUser"];
         self.currentClient = newClient;
         self.currentClient.originalIDOfMasqueradingUser = originalIDOfMasqueradingUser;
-        [_subjectForClientLogin sendNext:newClient];
+        [self->_subjectForClientLogin sendNext:newClient];
     }];
     
     return [fetchUserID deliverOn:[RACScheduler mainThreadScheduler]];
@@ -435,7 +435,7 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
         [plainOlClient setValue:x forKeyPath:@"currentUser"];
         self.currentClient = plainOlClient;
         [[FXKeychain sharedKeychain] addClient:plainOlClient];
-        [_subjectForClientLogin sendNext:plainOlClient];
+        [self->_subjectForClientLogin sendNext:plainOlClient];
     }];
 }
 

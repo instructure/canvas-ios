@@ -22,7 +22,7 @@ import WebKit
 /** This was built specifically for choosing a URL for assignment submission, but could be general purpose with a little love.
  */
 open class BrowserViewController: UIViewController {
-    @objc open static func presentFromViewController(_ viewController: UIViewController, completion: (()->())? = nil) -> BrowserViewController {
+    @objc public static func presentFromViewController(_ viewController: UIViewController, completion: (()->())? = nil) -> BrowserViewController {
         let browser = BrowserViewController(nibName: nil, bundle: nil)
         let nav = UINavigationController(rootViewController: browser)
         
@@ -43,7 +43,7 @@ open class BrowserViewController: UIViewController {
     @objc open var didSelectURLForSubmission: (URL)->() = { _ in }
     @objc open var didCancel: ()->() = { }
     
-    fileprivate var webView: WKWebView! {
+    fileprivate var webView: WKWebView {
         get {
             return view as! WKWebView
         }

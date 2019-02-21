@@ -30,8 +30,8 @@ public protocol CollectionViewDataSource: UICollectionViewDataSource {
 
 open class CollectionCollectionViewDataSource<C: Collection, VM: CollectionViewCellViewModel>: NSObject, CollectionViewDataSource {
     
-    open let collection: C
-    open let viewModelFactory: (C.Object)->VM
+    public let collection: C
+    public let viewModelFactory: (C.Object)->VM
     fileprivate var disposable: Disposable?
     
     @objc weak var collectionView: UICollectionView? {

@@ -48,8 +48,6 @@ extern NSString * const CKIModuleWorkflowStateDeleted;
 /**
  The state of this Module for the calling user: locked,
  unlocked, started, or completed.
- 
- @see
  */
 @property (nonatomic, copy) NSString *state;
 

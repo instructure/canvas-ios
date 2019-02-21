@@ -47,7 +47,7 @@ open class SupportTicketViewController : FormViewController {
     fileprivate var notification: ToastManager?
     fileprivate var sendTask: URLSessionDataTask?
 
-    open static func new(_ session: Session, type: SupportTicketType) -> SupportTicketViewController{
+    public static func new(_ session: Session, type: SupportTicketType) -> SupportTicketViewController{
         let controller = SupportTicketViewController()
         controller.requesterName = session.user.sortableName ?? session.user.name
         controller.requesterEmail = session.user.email

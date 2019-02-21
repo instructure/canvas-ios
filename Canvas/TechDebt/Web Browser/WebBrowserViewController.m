@@ -210,7 +210,7 @@
 {
     [[self presentingViewController] dismissViewControllerAnimated:YES completion:^{
         // Blank the webview by loading empty HTML
-        [_webView loadHTMLString:@"" baseURL:nil];
+        [self->_webView loadHTMLString:@"" baseURL:nil];
     }];
     if (self.browserWillDismissBlock) {
         self.browserWillDismissBlock();
@@ -276,7 +276,7 @@
 
     [self.webView evaluateJavaScript:@"document.title" completionHandler:^(id result, NSError *error) {
         BOOL addedAtLeastOneButton = NO;
-        optionsActionSheet = [[CKActionSheetWithBlocks alloc] initWithTitle:result];
+        self->optionsActionSheet = [[CKActionSheetWithBlocks alloc] initWithTitle:result];
 
         // Present an action sheet.
         // 1. Open in Safari

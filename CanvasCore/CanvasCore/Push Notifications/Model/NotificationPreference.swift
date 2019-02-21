@@ -67,7 +67,7 @@ open class NotificationPreference: CustomStringConvertible {
         return "Category: \(category) Frequency: \(frequency) Notification: \(notification)"
     }
     
-    open static func create(_ dictionary: Dictionary<String, Any>) -> NotificationPreference? {
+    public static func create(_ dictionary: Dictionary<String, Any>) -> NotificationPreference? {
         if  let category        = dictionary["category"] as? String,
             let frequency       = dictionary["frequency"] as? String,
             let notification    = dictionary["notification"] as? String {

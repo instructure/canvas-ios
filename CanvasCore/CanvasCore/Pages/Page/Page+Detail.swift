@@ -103,14 +103,14 @@ extension Page {
 
         // MARK: - Properties
 
-        @objc open let webView: CanvasWebView
+        @objc public let webView: CanvasWebView
 
         open var refresher: Refresher
         open var observer: ManagedObjectObserver<Page>
-        @objc open let route: (UIViewController, URL) -> Void
-        @objc open let url: String
-        open let contextID: ContextID
-        @objc open let session: Session
+        @objc public let route: (UIViewController, URL) -> Void
+        @objc public let url: String
+        public let contextID: ContextID
+        @objc public let session: Session
 
         // MARK: - Initializers
 

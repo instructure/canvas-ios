@@ -44,7 +44,7 @@ typedef NS_ENUM(NSInteger, CKIConversationScope) {
 /**
  updates the conversation to include the recipients
  
- @param array of string ids for users
+ @param recipientIDs array of string ids for users
  */
 - (RACSignal *)addNewRecipientsIDs:(NSArray *)recipientIDs toConversation:(CKIConversation *)conversation;
 

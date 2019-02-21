@@ -236,11 +236,11 @@ static const CGFloat kUnselectedAlpha = 0.4;
 - (void)highlightItemAtIndex:(NSUInteger)index {
     [UIView animateWithDuration:0.4 animations:
      ^{
-         for (UIView *container in previewContainers) {
+         for (UIView *container in self->previewContainers) {
              container.alpha = kUnselectedAlpha;
          }
          
-         UIView *newSelection = previewContainers[index];
+         UIView *newSelection = self->previewContainers[index];
          newSelection.alpha = 1.0;
      }];
     
@@ -509,7 +509,7 @@ static CGRect CGRectForDisplayingItemOfSize(CGRect container, CGSize itemSize) {
     }];
     
     [selectedItemIndexes enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
-        UIView *container = previewContainers[idx];
+        UIView *container = self->previewContainers[idx];
         
         [container.layer enableImplicitAnimationsInBlock:^{
             container.layer.borderWidth = 5.0;

@@ -84,15 +84,15 @@ public enum SupportTicketType {
 
 open class SupportTicket {
 
-    open let requesterName: String
-    open let requesterUsername: String
-    open let requesterEmail: String
-    open let requesterDomain: URL
-    open let subject: String
-    open let body: String
+    public let requesterName: String
+    public let requesterUsername: String
+    public let requesterEmail: String
+    public let requesterDomain: URL
+    public let subject: String
+    public let body: String
 
-    open let impact: ImpactLevel
-    open let type: SupportTicketType
+    public let impact: ImpactLevel
+    public let type: SupportTicketType
 
     //intentionally not localizing this area since this is what support will see and our support staff is only expected to read English
     init(requesterName: String = "Unknown User", requesterUsername: String = "Unknown User", requesterEmail: String = "unknown_user@test.com", requesterDomain: URL = URL(string: "https://canvas.instructure.com")!, subject: String = "N/A", body: String = "N/A", impact: ImpactLevel = .None, type: SupportTicketType = .featureRequest) {

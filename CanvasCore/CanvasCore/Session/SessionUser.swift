@@ -22,12 +22,12 @@ import Kingfisher
 
 // this is in `AuthKit` so the `Session` can have a `currentUser`
 open class SessionUser: NSObject {
-    @objc open let id: String
-    @objc open let loginID: String?
-    @objc open let name: String
-    @objc open let sortableName: String?
-    @objc open let email: String?
-    @objc open let avatarURL: URL?
+    @objc public let id: String
+    @objc public let loginID: String?
+    @objc public let name: String
+    @objc public let sortableName: String?
+    @objc public let email: String?
+    @objc public let avatarURL: URL?
     
     @objc public init(id: String, name: String, loginID: String? = nil, sortableName: String? = nil, email: String? = nil, avatarURL: URL? = nil) {
         self.id = id

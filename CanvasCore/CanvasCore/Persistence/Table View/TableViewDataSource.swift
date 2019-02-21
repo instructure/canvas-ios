@@ -85,8 +85,8 @@ extension TableViewDataSource {
 }
 
 open class CollectionTableViewDataSource<C: Collection, VM: TableViewCellViewModel>: NSObject, TableViewDataSource {
-    open let collection: C
-    open let viewModelFactory: (C.Object)->VM
+    public let collection: C
+    public let viewModelFactory: (C.Object)->VM
     open var collectionDidChange: ()->Void = { }
     fileprivate var disposable: Disposable?
 
