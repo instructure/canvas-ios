@@ -106,6 +106,6 @@ class ModuleListPresenterTests: TeacherTestCase {
         presenter.viewIsReady()
         Course.make(["id": "1"])
 
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 0.5)
     }
 }
