@@ -60,7 +60,7 @@ exports[`Slider renders 1`] = `
       testID="slider.line"
     />
     <AnimatedComponent
-      accessibilityLabel="NaN"
+      accessibilityLabel="0"
       accessible={true}
       hitSlop={
         Object {

@@ -667,7 +667,7 @@ exports[`GradePicker renders late policy with multiple points deducted 1`] = `
           testID="slider.line"
         />
         <Adjustable
-          accessibilityLabel="NaN"
+          accessibilityLabel="0"
           accessible={true}
           collapsable={undefined}
           hitSlop={
@@ -1077,7 +1077,7 @@ exports[`GradePicker renders late policy with single point deducted 1`] = `
           testID="slider.line"
         />
         <Adjustable
-          accessibilityLabel="NaN"
+          accessibilityLabel="0"
           accessible={true}
           collapsable={undefined}
           hitSlop={
@@ -1366,7 +1366,7 @@ exports[`GradePicker renders points based grades 1`] = `
           testID="slider.line"
         />
         <Adjustable
-          accessibilityLabel="NaN"
+          accessibilityLabel="0"
           accessible={true}
           collapsable={undefined}
           hitSlop={
@@ -1640,7 +1640,7 @@ exports[`GradePicker renders the activity indicator when pending 1`] = `
           testID="slider.line"
         />
         <Adjustable
-          accessibilityLabel="NaN"
+          accessibilityLabel="0"
           accessible={true}
           collapsable={undefined}
           hitSlop={
@@ -2403,7 +2403,7 @@ exports[`GradePicker renders with no grade 1`] = `
           testID="slider.line"
         />
         <Adjustable
-          accessibilityLabel="NaN"
+          accessibilityLabel="0"
           accessible={true}
           collapsable={undefined}
           hitSlop={
