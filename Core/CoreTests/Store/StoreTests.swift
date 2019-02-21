@@ -137,6 +137,37 @@ class StoreTests: CoreTestCase {
         XCTAssertEqual(ttls.count, 1)
     }
 
+    func testSubscribeWithForceRefresh() {
+        let course = APICourse.make(["id": "1"])
+        let useCase = TestUseCase(courses: [course])
+        eventsExpectation.expectedFulfillmentCount = 4
+        store = environment.subscribe(useCase, storeUpdated)
+        store.refresh(force: true)
+
+        wait(for: [eventsExpectation], timeout: 1.0)
+
+        let pending = snapshots[0]
+        let cached = snapshots[1]
+        let loading = snapshots[2]
+        let notLoading = snapshots[3]
+        let loaded = snapshots[4]
+
+        // pending
+        XCTAssertTrue(pending.pending)
+
+        // cached
+        XCTAssertEqual(cached.count, 0)
+
+        // loading
+        XCTAssertTrue(loading.pending)
+
+        // not loading
+        XCTAssertFalse(notLoading.pending)
+
+        // loaded
+        XCTAssertFalse(loaded.pending)
+    }
+
     func testSubscribeWithCache() {
         let course = APICourse.make(["id": "1"])
         let useCase = TestUseCase(courses: [course])

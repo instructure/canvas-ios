@@ -84,6 +84,9 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
     }
 
     public func refresh(force: Bool = false) {
+        if force {
+            pending = true
+        }
         notify() // send cache
         pending = true
         useCase.fetch(environment: env, force: force) { [weak self] _, urlResponse, error in

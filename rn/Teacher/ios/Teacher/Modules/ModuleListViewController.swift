@@ -46,15 +46,28 @@ class ModuleListViewController: UIViewController, ModuleListViewProtocol {
         tableView.delegate = self
         tableView.tableFooterView = UIView()
 
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+
         presenter?.viewIsReady()
     }
 
     func reloadModules() {
+        if presenter?.modules.pending == false {
+            tableView.refreshControl?.endRefreshing()
+        }
         tableView.reloadData()
     }
 
     func reloadCourse() {
         updateNavBar(subtitle: presenter?.course?.name, color: presenter?.course?.color)
+    }
+
+    @objc
+    func refresh() {
+        tableView.refreshControl?.beginRefreshing()
+        presenter?.forceRefresh()
     }
 }
 

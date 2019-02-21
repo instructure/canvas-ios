@@ -108,4 +108,31 @@ class ModuleListPresenterTests: TeacherTestCase {
 
         wait(for: [expectation], timeout: 0.5)
     }
+
+    func testForceRefresh() {
+        let first = XCTestExpectation(description: "first load")
+        let firstRequest = GetModulesRequest(courseID: "1")
+        let firstResponse = [APIModule.make(["name": "Old Name"])]
+        api.mock(firstRequest, value: firstResponse, response: nil, error: nil)
+        view.onReloadModules = {
+            if self.presenter.modules.first?.name == "Old Name" {
+                first.fulfill()
+            }
+        }
+        presenter.viewIsReady()
+        wait(for: [first], timeout: 0.1)
+
+        let request = GetModulesRequest(courseID: "1")
+        let response = [APIModule.make(["name": "Refreshed"])]
+        api.mock(request, value: response, response: nil, error: nil)
+        let expectation = XCTestExpectation(description: "modules refreshed")
+        view.onReloadModules = {
+            if self.presenter.modules.first?.name == "Refreshed" {
+                expectation.fulfill()
+            }
+        }
+        presenter.forceRefresh()
+
+        wait(for: [expectation], timeout: 0.5)
+    }
 }

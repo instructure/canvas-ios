@@ -58,4 +58,8 @@ class ModuleListPresenter {
         courses.refresh()
         colors.refresh()
     }
+
+    func forceRefresh() {
+        modules.refresh(force: true)
+    }
 }
