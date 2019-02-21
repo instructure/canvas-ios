@@ -27,8 +27,8 @@ open class AppEnvironment {
     open var backgroundAPI: API {
         return backgroundAPIManager.backgroundAPI
     }
-    public var database: Persistence
-    public var globalDatabase: Persistence = NSPersistentContainer.create()
+    public var database: NSPersistentContainer
+    public var globalDatabase: NSPersistentContainer = NSPersistentContainer.create()
     public var logger: LoggerProtocol
     public let queue = OperationQueue()
     public var router: RouterProtocol
@@ -58,31 +58,5 @@ open class AppEnvironment {
 
     public func subscribe<U>(_ useCase: U, _ callback: @escaping Store<U>.EventHandler) -> Store<U> where U: UseCase {
         return Store(env: self, useCase: useCase, eventHandler: callback)
-    }
-
-    public func fetch<U>(_ useCase: U, force: Bool = false, _ callback: @escaping (U.Response?, URLResponse?, Error?) -> Void) where U: UseCase {
-        database.perform { client in
-            guard force || useCase.hasExpired(in: client) else {
-                callback(nil, nil, nil)
-                return
-            }
-            useCase.makeRequest(environment: self) { [weak self] response, urlResponse, error in
-                if let error = error {
-                    callback(response, urlResponse, error)
-                    return
-                }
-                self?.database.performBackgroundTask { client in
-                    do {
-                        try useCase.write(response: response, urlResponse: urlResponse, to: client)
-                        useCase.updateTTL(in: client)
-                        try client.save()
-                        callback(response, urlResponse, error)
-                    } catch {
-                        callback(response, urlResponse, error)
-                    }
-                }
-            }
-
-        }
     }
 }

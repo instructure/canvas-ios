@@ -17,7 +17,8 @@
 import Foundation
 import CoreData
 
-public class Group: NSManagedObject, Context {
+public final class Group: NSManagedObject, Context, WriteableModel {
+    public typealias JSON = APIGroup
     public let contextType = ContextType.group
 
     @NSManaged public var avatarURL: URL?
@@ -26,6 +27,19 @@ public class Group: NSManagedObject, Context {
     @NSManaged public var id: String
     @NSManaged public var name: String
     @NSManaged public var showOnDashboard: Bool
+
+    @discardableResult
+    public static func save(_ item: APIGroup, in context: PersistenceClient) throws -> Group {
+        let predicate = NSPredicate(format: "%K == %@", #keyPath(Group.id), item.id.value)
+        let model: Group = context.fetch(predicate).first ?? context.insert()
+        model.avatarURL = item.avatar_url
+        model.courseID = item.course_id?.value
+        model.id = item.id.value
+        model.name = item.name
+        model.concluded = item.concluded
+        model.showOnDashboard = !item.concluded
+        return model
+    }
 }
 
 extension Group {

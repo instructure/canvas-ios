@@ -18,9 +18,9 @@ import Foundation
 import CoreData
 import Core
 
-public var singleSharedTestDatabase: Persistence  = resetSingleSharedTestDatabase()
+public var singleSharedTestDatabase: NSPersistentContainer  = resetSingleSharedTestDatabase()
 
-public func resetSingleSharedTestDatabase() -> Persistence {
+public func resetSingleSharedTestDatabase() -> NSPersistentContainer {
     let bundle = Bundle.core
     let modelURL = bundle.url(forResource: "Database", withExtension: "momd")!
     let model = NSManagedObjectModel(contentsOf: modelURL)!

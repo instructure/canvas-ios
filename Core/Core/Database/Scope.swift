@@ -16,7 +16,7 @@
 
 import Foundation
 
-public struct Scope {
+public struct Scope: Equatable {
     public let predicate: NSPredicate
     public let order: [NSSortDescriptor]
     public let sectionNameKeyPath: String?

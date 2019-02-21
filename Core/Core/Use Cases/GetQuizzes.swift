@@ -16,7 +16,7 @@
 
 import Foundation
 
-public struct GetQuizzes: PagedUseCase {
+public struct GetQuizzes: CollectionUseCase {
     public typealias Model = Quiz
 
     public let courseID: String

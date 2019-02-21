@@ -24,8 +24,8 @@ class GetUserGroupsTest: CoreTestCase {
         let group = APIGroup.make(["id": "1", "name": "Group One", "members_count": 2])
         api.mock(request, value: [group])
 
-        let getUserGroups = GetUserGroups(env: environment)
-        addOperationAndWait(getUserGroups)
+        let getUserGroups = GetUserGroups()
+        try! getUserGroups.write(response: [group], urlResponse: nil, to: databaseClient)
 
         let groups: [Group] = databaseClient.fetch()
         XCTAssertEqual(groups.count, 1)
@@ -38,8 +38,13 @@ class GetUserGroupsTest: CoreTestCase {
         let request = GetGroupsRequest(context: ContextModel.currentUser)
         api.mock(request, value: [])
 
-        let getUserGroups = GetUserGroups(env: environment)
-        addOperationAndWait(getUserGroups)
+        let expectation = XCTestExpectation(description: "fetch")
+        let getUserGroups = GetUserGroups()
+        getUserGroups.fetch(environment: environment, force: true) { _, _, _ in
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 0.1)
 
         databaseClient.refresh()
         let groups: [Group] = databaseClient.fetch()
@@ -51,8 +56,13 @@ class GetUserGroupsTest: CoreTestCase {
         let request = GetGroupsRequest(context: ContextModel.currentUser)
         api.mock(request, value: [])
 
-        let getUserGroups = GetUserGroups(env: environment)
-        addOperationAndWait(getUserGroups)
+        let expectation = XCTestExpectation(description: "fetch")
+        let getUserGroups = GetUserGroups()
+        getUserGroups.fetch(environment: environment, force: true) { _, _, _ in
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 0.1)
 
         let groups: [Group] = databaseClient.fetch()
         XCTAssert(groups.contains(notMember))

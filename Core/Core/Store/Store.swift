@@ -17,11 +17,11 @@
 import Foundation
 import CoreData
 
-public class Store<U>: NSObject, FetchedResultsControllerDelegate where U: UseCase {
+public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
     public typealias EventHandler = () -> Void
 
     public let env: AppEnvironment
-    private let frc: FetchedResultsController<U.Model>
+    private let frc: NSFetchedResultsController<U.Model>
     public let useCase: U
     public let eventHandler: EventHandler
 
@@ -55,18 +55,14 @@ public class Store<U>: NSObject, FetchedResultsControllerDelegate where U: UseCa
         self.env = env
         self.useCase = useCase
         let scope = useCase.scope
-        let frc: FetchedResultsController<U.Model> = env.database.fetchedResultsController(
-            predicate: scope.predicate,
-            sortDescriptors: scope.order,
-            sectionNameKeyPath: scope.sectionNameKeyPath
-        )
+        let frc: NSFetchedResultsController<U.Model> = env.database.fetchedResultsController(predicate: scope.predicate, sortDescriptors: scope.order, sectionNameKeyPath: scope.sectionNameKeyPath)
         self.frc = frc
         self.eventHandler = eventHandler
 
         super.init()
 
         frc.delegate = self
-        frc.performFetch()
+        try? frc.performFetch()
     }
 
     private func notify() {
@@ -90,7 +86,7 @@ public class Store<U>: NSObject, FetchedResultsControllerDelegate where U: UseCa
     public func refresh(force: Bool = false) {
         notify() // send cache
         pending = true
-        env.fetch(useCase, force: force) { [weak self] _, urlResponse, error in
+        useCase.fetch(environment: env, force: force) { [weak self] _, urlResponse, error in
             self?.pending = false
             if let error = error {
                 self?.error = error
@@ -106,7 +102,7 @@ public class Store<U>: NSObject, FetchedResultsControllerDelegate where U: UseCa
             return
         }
         let useCase = GetNextUseCase(parent: self.useCase, request: next)
-        env.fetch(useCase, force: true) { [weak self] _, urlResponse, error in
+        useCase.fetch(environment: env, force: true) { [weak self] _, urlResponse, error in
             if let error = error {
                 self?.error = error
             }
@@ -116,7 +112,32 @@ public class Store<U>: NSObject, FetchedResultsControllerDelegate where U: UseCa
         }
     }
 
-    public func controllerDidChangeContent<T>(_ controller: FetchedResultsController<T>) {
+    @objc
+    public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         notify()
+    }
+}
+
+public struct FetchedResultsControllerGenerator<T: NSManagedObject>: IteratorProtocol {
+    public typealias Element = T
+
+    var index: Int = 0
+    let fetchedResultsController: NSFetchedResultsController<T>
+
+    init(fetchedResultsController: NSFetchedResultsController<T>) {
+        self.fetchedResultsController = fetchedResultsController
+    }
+
+    public mutating func next() -> T? {
+        guard let count = fetchedResultsController.fetchedObjects?.count else { return nil}
+        guard index < count else { return nil }
+        defer { index += 1 }
+        return fetchedResultsController.fetchedObjects?[index]
+    }
+}
+
+extension Store: Sequence {
+    public func makeIterator() -> FetchedResultsControllerGenerator<U.Model> {
+        return FetchedResultsControllerGenerator<U.Model>(fetchedResultsController: frc)
     }
 }
