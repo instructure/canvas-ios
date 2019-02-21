@@ -34,7 +34,7 @@ The `setup.sh` script should take care of installing additional dependencies fro
 Carthage is used to checkout the source code of the EarlGrey 2 dependency.
 EG2 is included via source because Carthage doesn't support building static libraries.
 
-PSPDFKit is also installed via Carthage. Because this is a paid library, only an example `Cartfile` is provided in the repo. To build a distributable app, you will need to create a `Cartfile` with your PSPDFKit dependency. See `Cartfile.example` and `Cartfile.resolved.example`.
+PSPDFKit is also installed via Carthage. Because this is a paid library, only an example Cartfile is provided in the repo. To build a distributable app, you will need to set up `Cartfile` with your PSPDFKit dependency. See `Cartfile.example` and `Cartfile.resolved.example`.
 
 - `carthage update` Updates `Cartfile.resolved` with new dependencies
 - `carthage bootstrap` Fetches dependencies defined in `Cartfile.resolved`
@@ -83,9 +83,7 @@ Writing code in a testable way is paramount for long term success. These apps ar
 
 ### Conventions
 
-We make and keep strong conventions in order to reduce mental overhead.
-
-[Conventions](./CONVENTIONS.md).
+We make and keep strong [conventions](./CONVENTIONS.md) in order to reduce mental overhead.
 
 ### No Tricky Stuff
 
@@ -105,7 +103,7 @@ We don't do any manual QA of our products. We write code that tests our apps for
 
 ### Prune Legacy Code
 
-😬 One day React Native, Cocoapods, CanvasKit and other old frameworks will be fully replaced be the swift architecture (Core + StudentReborn). Eventually. Hopefully. 🤞
+😬 One day React Native, Cocoapods, CanvasKit and other old frameworks will be fully replaced by the swift architecture (Core + StudentReborn). Eventually. Hopefully. 🤞
 
 
 ## Using the Canvas Apps
@@ -133,7 +131,10 @@ with your local instance
 ### Generating icons from [instructure.design](https://instructure.design/#iconography)
 
 Most, if not all of the icons used in the Canvas apps can be found in instructure-icons, but are defined as React components, SVG, & Sketch files. Since iOS does not handle SVG files in UIImageViews natively, these are converted to PDF.
-The script to download and convert all the available icons is at [scripts/build_icons.js](scripts/build_icons.js). Use instructions and additional detail is written in that script file.
+
+```sh
+yarn build-icons
+```
 
 ### Generating code coverage report
 
@@ -141,32 +142,37 @@ You can generate code coverage reports with `yarn coverage --scheme <SCHEME>`
 
 #### Student
 ```bash
-$ yarn coverage --scheme Student
+yarn coverage --scheme Student
 ```
 
 #### Core
 ```bash
-$ yarn coverage --scheme Core
+yarn coverage --scheme Core
 ```
 
 To run tests first use `yarn test`
 ```bash
-$ yarn test --scheme Core
+yarn test --scheme Core
 ```
 
 | Option | Description |
 | ------ | ----------- |
 | scheme  | The scheme to run against  |
-| html  | Generate html report  |
 | os  | Specify simulator os. Only available when running tests  |
 
 
 ## Open Source Licenses Used
 
+We have a script that should ensure the correct license header comments are in place:
+
+```sh
+yarn update-headers
+```
+
 #### Our applications are licensed under the GPLv3 License.
 
 ```
-Copyright (C) 2016 - present  Instructure, Inc.
+Copyright (C) 2016-present  Instructure, Inc.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -184,13 +190,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #### Our frameworks are licensed under the Apache v2 License.
 
 ```
-Copyright (C) 2016 - present Instructure, Inc.
+Copyright (C) 2016-present Instructure, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-    http://www.apache.org/licenses/LICENSE-2.0
+http://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
