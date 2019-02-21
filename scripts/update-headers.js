@@ -44,9 +44,9 @@ const instructureExp = /(^|\r\n|\n|\r)*Instructure/i
  Tests and Frameworks are Apache;
  App code and everything else is GPL.
 */
-function appropriateBanner (file, year) {
-  year = year || thisYear
-  
+function appropriateBanner (file, text) {
+  // Find the existing copyright date
+  const year = (text.match(/\/\/.*copyright.*(\d{4})/i) || [])[1] || thisYear
   const useApache = (
     file.startsWith('Frameworks') ||
     file.includes('Tests') ||
@@ -107,10 +107,7 @@ for (const file of files) {
   const hasCopyright = copyrightExp.test(text)
   const hasBanner = text.match(bannerExp)
   const hasInstructure = instructureExp.test(text)
-
-  // Find the existing copyright date
-  const year = (text.match(/\/\/.*copyright.*(\d{4})/i) || [])[1]
-  const banner = appropriateBanner(file, year)
+  const banner = appropriateBanner(file, text)
 
   if (!hasCopyright) {
     text = `${banner}\n${text}`

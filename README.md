@@ -163,6 +163,12 @@ yarn test --scheme Core
 
 ## Open Source Licenses Used
 
+We have a script that should ensure the correct license header comments are in place:
+
+```sh
+yarn update-headers
+```
+
 #### Our applications are licensed under the GPLv3 License.
 
 ```
