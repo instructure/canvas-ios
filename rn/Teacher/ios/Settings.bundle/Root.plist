@@ -10,6 +10,16 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
+			<string>Open external tools in Safari</string>
+			<key>Key</key>
+			<string>open_lti_safari</string>
+			<key>DefaultValue</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
 			<string>Reset Cache on Next Launch</string>
 			<key>Key</key>
 			<string>reset_cache_on_next_launch</string>
