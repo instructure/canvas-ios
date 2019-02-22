@@ -28,11 +28,22 @@ import * as React from 'react'
 
 import * as template from '../../src/__templates__'
 
+import i18n from 'format-message'
 import setupI18n from '../../i18n/setup'
 import { shouldTrackAsyncActions } from '../../src/redux/middleware/redux-promise'
 import { enableAllFeaturesFlagsForTesting } from '@common/feature-flags'
 
 setupI18n('en')
+
+// Make most date rendering use a consistent timeZone.
+const formats = i18n.setup().formats
+for (const key of Object.keys(formats.date)) {
+  formats.date[key].timeZone = 'America/Denver'
+}
+for (const key of Object.keys(formats.time)) {
+  formats.time[key].timeZone = 'America/Denver'
+}
+
 shouldTrackAsyncActions(false)
 setSession(template.session())
 enableAllFeaturesFlagsForTesting()

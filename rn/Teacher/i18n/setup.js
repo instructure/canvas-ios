@@ -76,6 +76,7 @@ export default function (locale: ?string): void {
         'MMMM d': { month: 'long', day: 'numeric' },
         'MMM d': { month: 'short', day: 'numeric' },
         'M/d/yyyy': { day: 'numeric', month: 'numeric', year: 'numeric' },
+        'MMM d, YYYY': { day: 'numeric', month: 'short', year: 'numeric' },
       },
     },
   })
