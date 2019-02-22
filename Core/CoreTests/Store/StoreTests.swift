@@ -269,4 +269,35 @@ class StoreTests: CoreTestCase {
         wait(for: [secondPage], timeout: 1.0)
         XCTAssertEqual(store.count, 2)
     }
+
+    func testSequence() {
+        Course.make(["id": "1"])
+        Course.make(["id": "2"])
+        let useCase = TestUseCase(courses: nil, requestError: nil, writeError: nil, urlResponse: nil)
+        let store = Store(env: environment, useCase: useCase) { }
+
+        let ids = store.map { $0.id }
+        XCTAssertEqual(ids.count, 2)
+        XCTAssert(ids.contains("1"))
+        XCTAssert(ids.contains("2"))
+    }
+
+    func testSubscriptInt() {
+        let one = Course.make(["id": "1", "name": "A"])
+        let two = Course.make(["id": "2", "name": "B"])
+        let useCase = TestUseCase(courses: nil, requestError: nil, writeError: nil, urlResponse: nil)
+        let store = Store(env: environment, useCase: useCase) { }
+
+        XCTAssertEqual(one, store[0])
+        XCTAssertEqual(two, store[1])
+    }
+
+    func testFirst() {
+        let one = Course.make(["id": "1", "name": "A"])
+        Course.make(["id": "2", "name": "B"])
+        let useCase = TestUseCase(courses: nil, requestError: nil, writeError: nil, urlResponse: nil)
+        let store = Store(env: environment, useCase: useCase) { }
+
+        XCTAssertEqual(store.first, one)
+    }
 }

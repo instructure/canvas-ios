@@ -22,7 +22,7 @@ extension NSManagedObjectContext: PersistenceClient {
         refreshAllObjects()
     }
 
-    public func fetch<T>(predicate: NSPredicate?, sortDescriptors: [NSSortDescriptor]?) -> [T] {
+    public func fetch<T>(predicate: NSPredicate? = nil, sortDescriptors: [NSSortDescriptor]? = nil) -> [T] {
         let name = String(describing: T.self)
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: name)
         request.predicate = predicate

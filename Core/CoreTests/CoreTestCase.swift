@@ -18,9 +18,10 @@ import Foundation
 import XCTest
 @testable import Core
 import TestsFoundation
+import CoreData
 
 class CoreTestCase: XCTestCase {
-    var database: Persistence {
+    var database: NSPersistentContainer {
         return TestsFoundation.singleSharedTestDatabase
     }
     var databaseClient: PersistenceClient {

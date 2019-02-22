@@ -87,4 +87,11 @@ extension NSPersistentContainer: Persistence {
         request.sortDescriptors = sortDescriptors
         return CoreDataFetchedResultsController(fetchRequest: request, managedObjectContext: viewContext, sectionNameKeyPath: sectionNameKeyPath)
     }
+
+    public func fetchedResultsController<T>(predicate: NSPredicate? = nil, sortDescriptors: [NSSortDescriptor], sectionNameKeyPath: String? = nil) -> NSFetchedResultsController<T> {
+        let request = NSFetchRequest<T>(entityName: String(describing: T.self))
+        request.predicate = predicate ?? NSPredicate(value: true)
+        request.sortDescriptors = sortDescriptors
+        return NSFetchedResultsController(fetchRequest: request, managedObjectContext: viewContext, sectionNameKeyPath: sectionNameKeyPath, cacheName: nil)
+    }
 }
