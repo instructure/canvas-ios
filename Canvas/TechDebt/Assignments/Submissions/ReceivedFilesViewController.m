@@ -335,7 +335,7 @@ static NSURL *receivedFilesFolder() {
                                 NSFileManager *fileManager = [NSFileManager new];
                                 NSError *error;
                                 if ([fileManager removeItemAtURL:selectedItem error:&error]) {
-                                    [self->libraryView removeItem:selectedItem];
+                                    [self.libraryView removeItem:selectedItem];
                                     [self updateSubmitButton];
                                 }
                                 else {
@@ -422,7 +422,7 @@ static NSURL *receivedFilesFolder() {
                                // Create local copy at receivedFiles
                                NSURL *fileURL = [[self class] addItemAtURLToReceivedFiles:tempFileURL error:NULL];
                                if (fileURL) {
-                                   [self->libraryView addItem:fileURL];
+                                   [self.libraryView addItem:fileURL];
                                }
                                
                                // Cleanup temp file now that it has been added to the uploads available

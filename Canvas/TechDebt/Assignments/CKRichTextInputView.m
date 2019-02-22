@@ -351,7 +351,7 @@ UIColor *CKPostButtonDisabledColor() {
         returnValue = [returnValue stringByReplacingOccurrencesOfString:imageTag withString:activityImageTag];
         
         CKRemoteImageView *imageView = [CKRemoteImageView new];
-        imageView.imageCache = self->imageCache;
+        imageView.imageCache = self.imageCache;
         __weak CKRemoteImageView *weakImageView = imageView;
         imageView.afterLoadingBlock = ^{
             UIImage *image = weakImageView.image;

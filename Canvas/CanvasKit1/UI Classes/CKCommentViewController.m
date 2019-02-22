@@ -577,7 +577,7 @@ static void *CommentsObservationContext = &CommentsObservationContext;
             if (done) {
                 [self.recorderView clearRecordedMedia];
                 if (self.visible && updatedSubmission.ident == self.submission.ident) {
-                    if ([self->delegate respondsToSelector:@selector(commentViewController:didPostNewAttachmentForSubmission:)]) {
+                    if ([self.delegate respondsToSelector:@selector(commentViewController:didPostNewAttachmentForSubmission:)]) {
                         [delegate commentViewController:self didPostNewAttachmentForSubmission:submission];
                     } else {
                         // If the delegate doesn't implement the above method, we'll just update it ourselves.

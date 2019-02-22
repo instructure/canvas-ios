@@ -282,20 +282,20 @@
         // 1. Open in Safari
         NSURL *theURL = [NSURL URLWithString:self.fullURL]; // Copy to a local variable to avoid a retain cycle
         if (self.request.canOpenInSafari) {
-            [optionsActionSheet addButtonWithTitle:NSLocalizedStringFromTableInBundle(@"Open in Safari", nil, bundle, @"Open a document in the application Safari") handler:^{
+            [self->optionsActionSheet addButtonWithTitle:NSLocalizedStringFromTableInBundle(@"Open in Safari", nil, bundle, @"Open a document in the application Safari") handler:^{
                 [[UIApplication sharedApplication] openURL:theURL options:@{} completionHandler:nil];
             }];
             addedAtLeastOneButton = YES;
         }
 
         // 2. Open in another application
-        CKActionSheetWithBlocks *localOpenInErrorSheet = openInErrorSheet;
+        CKActionSheetWithBlocks *localOpenInErrorSheet = self->openInErrorSheet;
 
         if (self.fileURLPath) {
-            dic = [UIDocumentInteractionController interactionControllerWithURL:self.fileURLPath];
-            dic.delegate = self;
-            __weak UIDocumentInteractionController *weakDic = dic;
-            [optionsActionSheet addButtonWithTitle:NSLocalizedStringFromTableInBundle(@"Open in...", nil, bundle, @"Open file in another application") handler:^{
+            self->dic = [UIDocumentInteractionController interactionControllerWithURL:self.fileURLPath];
+            self->dic.delegate = self;
+            __weak UIDocumentInteractionController *weakDic = self->dic;
+            [self->optionsActionSheet addButtonWithTitle:NSLocalizedStringFromTableInBundle(@"Open in...", nil, bundle, @"Open file in another application") handler:^{
                 // Dismiss this action sheet and generate an OpenIn DIC display.
                 // If there are no apps to handle the URL, display an action sheet that says, "Nothing supports this document". This is required to be in the App Store.
                 BOOL presentedOpenInMenu = [weakDic presentOpenInMenuFromBarButtonItem:sender animated:YES];
@@ -311,13 +311,13 @@
         // 4. Make a sandwich
         // 5. Sudo make a sandwich
         // 6. Cancel
-        [optionsActionSheet addCancelButtonWithTitle:NSLocalizedStringFromTableInBundle(@"Cancel", nil, bundle, nil)];;
+        [self->optionsActionSheet addCancelButtonWithTitle:NSLocalizedStringFromTableInBundle(@"Cancel", nil, bundle, nil)];;
 
         if (addedAtLeastOneButton == NO) {
-            optionsActionSheet.title = NSLocalizedStringFromTableInBundle(@"There are no actions for this item", nil, bundle, @"Error message");
+            self->optionsActionSheet.title = NSLocalizedStringFromTableInBundle(@"There are no actions for this item", nil, bundle, @"Error message");
         }
 
-        [optionsActionSheet showFromBarButtonItem:sender animated:YES];
+        [self->optionsActionSheet showFromBarButtonItem:sender animated:YES];
     }];
 }
 
