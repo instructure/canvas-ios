@@ -301,7 +301,7 @@ static const NSString *ItemStatusContext;
     else {
         [UIView animateWithDuration:0.2 * animated
                          animations:^{
-                             [self.mediaPanel insertSubview:videoPreviewView belowSubview:mediaPanelBaseView];
+                             [self.mediaPanel insertSubview:self.videoPreviewView belowSubview:self.mediaPanelBaseView];
                              
                              CGRect previewFrame = self.videoPreviewView.frame;
                              previewFrame.origin.y = CGRectGetMaxY(self.mediaPanelHeadView.frame);

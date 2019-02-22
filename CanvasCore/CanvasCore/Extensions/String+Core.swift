@@ -37,8 +37,8 @@ extension String {
         guard let range = self.range(of: regex, options: .regularExpression, range: nil, locale: nil) else {
             return self
         }
-        let prefix = String(self[self.startIndex..<range.lowerBound]) ?? ""
-        let suffix = String(self[range.upperBound..<self.endIndex]) ?? ""
+        let prefix = String(self[self.startIndex..<range.lowerBound]) 
+        let suffix = String(self[range.upperBound..<self.endIndex]) 
         return prefix + suffix
     }
 }

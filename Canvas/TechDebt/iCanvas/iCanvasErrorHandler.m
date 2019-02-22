@@ -71,7 +71,7 @@
                 // Bad access token error
                 NSBundle *bundle = [NSBundle bundleForClass:self.class];
                 [UIAlertController showAlertWithTitle:NSLocalizedStringFromTableInBundle(@"Authentication error", nil, bundle, @"Title for an error popup") message:NSLocalizedStringFromTableInBundle(@"Could not authenticate with server", nil, bundle, nil) handler:^{
-                    _showedAccessTokenError = NO;
+                    self->_showedAccessTokenError = NO;
                 }];
                 _showedAccessTokenError = YES;
             }

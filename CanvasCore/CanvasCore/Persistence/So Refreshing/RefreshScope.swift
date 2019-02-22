@@ -50,7 +50,7 @@ open class RefreshScope: NSObject {
         }
     }
     
-    @objc open static var global = RefreshScope()
+    @objc public static var global = RefreshScope()
 
     fileprivate enum Associated {
         static var lastRefresh = "SoRefreshingLastRefresh"

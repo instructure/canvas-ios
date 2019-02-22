@@ -78,7 +78,7 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
     [fetchCurrentUserSignal subscribeNext:^(CKIUser *currentUser) {
         [cell.client.currentUser mergeValuesForKeysFromModel:currentUser];
         [cell.profileImage setImageWithURL:cell.client.currentUser.avatarURL];
-        [_subjectForClient sendNext:client];
+        [self->_subjectForClient sendNext:client];
     } error:^(NSError *error) {
         NSHTTPURLResponse *failingResponse = error.userInfo[AFNetworkingOperationFailingURLResponseErrorKey];
         if (failingResponse.statusCode == 401) {

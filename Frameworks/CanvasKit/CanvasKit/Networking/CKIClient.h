@@ -108,7 +108,7 @@ extern NSString *const CKIClientAccessTokenExpiredNotification;
 /**
  This method is intended for testing only. It should not be used in a production app
  
- @param baseURL the base URL to be used by the client
+ @param url the base URL to be used by the client
  @param token the auth token acquired from Canvas web for the user
  */
 - (instancetype)initWithBaseURL:(NSURL *)url token:(NSString *)token;
@@ -151,7 +151,7 @@ extern NSString *const CKIClientAccessTokenExpiredNotification;
  
  @param path the paginated JSON API endpoint (ex. @"api/v1/courses/123/modules")
  @param parameters the parameters to be applied to the request
- @param valueTransformer an NSValueTransformer that transforms dictionaries into CKIModels
+ @param transformer an NSValueTransformer that transforms dictionaries into CKIModels
  @param context the context for the created object(s)
  */
 - (RACSignal *)fetchResponseAtPath:(NSString *)path parameters:(NSDictionary *)parameters transformer:(NSValueTransformer *)transformer context:(id<CKIContext>)context;

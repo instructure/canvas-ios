@@ -31,12 +31,12 @@ open class Session: NSObject {
         case Default, AppGroup
     }
 
-    @objc open let user: SessionUser
-    @objc open let baseURL: URL
-    @objc open let masqueradeAsUserID: String?
+    @objc public let user: SessionUser
+    @objc public let baseURL: URL
+    @objc public let masqueradeAsUserID: String?
     @objc open var URLSession: Foundation.URLSession
     @objc open var token: String?
-    open let localStoreDirectory: LocalStoreDirectory
+    public let localStoreDirectory: LocalStoreDirectory
 
     public typealias ProgressBlock = (_ bytesSent: Int64, _ totalBytes: Int64)->()
     open var progressUpdateByTask: [URLSessionTask: ProgressBlock] = [:]
@@ -49,7 +49,7 @@ open class Session: NSObject {
 
     @objc open var responseDataByTask: [URLSessionTask: Data] = [:]
 
-    @objc open static var unauthenticated: Session {
+    @objc public static var unauthenticated: Session {
         return Session(baseURL: URL(string: "https://canvas.instructure.com/")!, user: SessionUser(id: "", name: ""), token: nil)
     }
 

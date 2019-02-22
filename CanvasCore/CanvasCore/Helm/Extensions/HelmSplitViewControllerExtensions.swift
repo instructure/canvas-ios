@@ -16,7 +16,7 @@
 
 import UIKit
 
-public extension HelmSplitViewController {
+extension HelmSplitViewController {
     @objc var masterHelmNavigationController: UINavigationController? {
         get {
             return self.viewControllers.first as? UINavigationController

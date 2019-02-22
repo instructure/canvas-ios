@@ -300,11 +300,11 @@ open class Clock {
         set { referenceDate = Date(timeIntervalSinceReferenceDate: newValue) }
     }
 
-    open static func currentTime() -> Date {
+    public static func currentTime() -> Date {
         return Date(timeIntervalSinceNow: sharedClock.referenceDateInterval)
     }
 
-    open static func timeTravel(to date: Date, block: ()->Void) {
+    public static func timeTravel(to date: Date, block: ()->Void) {
         sharedClock.referenceDateInterval = date.timeIntervalSinceNow
         block()
         restoreTime()

@@ -98,7 +98,7 @@
             if (topOfKeyboard < bottomOfView) {
                 bottomInset = bottomOfView - topOfKeyboard;
             }
-            webView.scrollView.contentInset = webView.scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, bottomInset, 0);
+            self->webView.scrollView.contentInset = self->webView.scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, bottomInset, 0);
             
         }];
         

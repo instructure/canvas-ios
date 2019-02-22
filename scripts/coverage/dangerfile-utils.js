@@ -1,8 +1,9 @@
-function checkCoverage (scheme) {
+function checkCoverage (scheme, masterCoverage, prCoverage) {
   const coverageFolder = `./${scheme.toLowerCase()}`
+  const master = masterCoverage || require(`${coverageFolder}/coverage-summary-master.json`)
+  const pr = prCoverage || require(`${coverageFolder}/coverage-summary.json`)
+
   const { fileMinCoverage, totalMinCoverage } = require('./config.json')
-  const master = require(`${coverageFolder}/coverage-summary-master.json`)
-  const pr = require(`${coverageFolder}/coverage-summary.json`)
   const empty = { executableLines: 0, coveredLines: 0 }
   const files = Object.keys(pr).filter(path => (path !== 'total' &&
     (pr[path].coveredLines / pr[path].executableLines) < fileMinCoverage

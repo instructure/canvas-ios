@@ -81,7 +81,7 @@
         [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             if (data) {
                 NSPurgeableData *purgeableData = [[NSPurgeableData alloc] initWithData:data];
-                [_imageCache setObject:purgeableData forKey:url];
+                [self->_imageCache setObject:purgeableData forKey:url];
                 [noteCenter postNotificationName:CKLoadedImageNotification object:url];
                 [purgeableData endContentAccess];
             }

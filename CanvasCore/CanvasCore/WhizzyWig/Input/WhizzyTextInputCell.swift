@@ -26,8 +26,8 @@ extension String {
 
 open class WhizzyTextInputCell: UITableViewCell, UITextViewDelegate {
     
-    @objc open let placeholder: UILabel
-    @objc open let textView: UITextView
+    @objc public let placeholder: UILabel
+    @objc public let textView: UITextView
     
     @objc open var inputText: String {
         get {

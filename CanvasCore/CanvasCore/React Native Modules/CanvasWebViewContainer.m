@@ -105,7 +105,7 @@ static NSString *WebViewKeyPath = @"webView.scrollView.contentSize";
             while (rootViewController.presentedViewController) {
                 rootViewController = rootViewController.presentedViewController;
             }
-            _webView.presentingViewController = rootViewController;
+            self->_webView.presentingViewController = rootViewController;
         });
 
         [self addSubview:_webView];

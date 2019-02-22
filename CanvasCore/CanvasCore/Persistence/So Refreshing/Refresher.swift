@@ -44,11 +44,11 @@ import ReactiveSwift
 
 open class SignalProducerRefresher<SP: SignalProducerProtocol>: NSObject, Refresher where SP.Error == NSError {
 
-    @objc open let refreshControl = UIRefreshControl()
+    @objc public let refreshControl = UIRefreshControl()
     let signalProducer: SP
     var disposable: Disposable?
 
-    @objc open let cacheKey: String
+    @objc public let cacheKey: String
     @objc weak var scope: RefreshScope?
     @objc let ttl: TimeInterval
 

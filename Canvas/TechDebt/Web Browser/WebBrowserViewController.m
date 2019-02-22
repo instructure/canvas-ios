@@ -210,7 +210,7 @@
 {
     [[self presentingViewController] dismissViewControllerAnimated:YES completion:^{
         // Blank the webview by loading empty HTML
-        [_webView loadHTMLString:@"" baseURL:nil];
+        [self->_webView loadHTMLString:@"" baseURL:nil];
     }];
     if (self.browserWillDismissBlock) {
         self.browserWillDismissBlock();
@@ -276,26 +276,26 @@
 
     [self.webView evaluateJavaScript:@"document.title" completionHandler:^(id result, NSError *error) {
         BOOL addedAtLeastOneButton = NO;
-        optionsActionSheet = [[CKActionSheetWithBlocks alloc] initWithTitle:result];
+        self->optionsActionSheet = [[CKActionSheetWithBlocks alloc] initWithTitle:result];
 
         // Present an action sheet.
         // 1. Open in Safari
         NSURL *theURL = [NSURL URLWithString:self.fullURL]; // Copy to a local variable to avoid a retain cycle
         if (self.request.canOpenInSafari) {
-            [optionsActionSheet addButtonWithTitle:NSLocalizedStringFromTableInBundle(@"Open in Safari", nil, bundle, @"Open a document in the application Safari") handler:^{
+            [self->optionsActionSheet addButtonWithTitle:NSLocalizedStringFromTableInBundle(@"Open in Safari", nil, bundle, @"Open a document in the application Safari") handler:^{
                 [[UIApplication sharedApplication] openURL:theURL options:@{} completionHandler:nil];
             }];
             addedAtLeastOneButton = YES;
         }
 
         // 2. Open in another application
-        CKActionSheetWithBlocks *localOpenInErrorSheet = openInErrorSheet;
+        CKActionSheetWithBlocks *localOpenInErrorSheet = self->openInErrorSheet;
 
         if (self.fileURLPath) {
-            dic = [UIDocumentInteractionController interactionControllerWithURL:self.fileURLPath];
-            dic.delegate = self;
-            __weak UIDocumentInteractionController *weakDic = dic;
-            [optionsActionSheet addButtonWithTitle:NSLocalizedStringFromTableInBundle(@"Open in...", nil, bundle, @"Open file in another application") handler:^{
+            self->dic = [UIDocumentInteractionController interactionControllerWithURL:self.fileURLPath];
+            self->dic.delegate = self;
+            __weak UIDocumentInteractionController *weakDic = self->dic;
+            [self->optionsActionSheet addButtonWithTitle:NSLocalizedStringFromTableInBundle(@"Open in...", nil, bundle, @"Open file in another application") handler:^{
                 // Dismiss this action sheet and generate an OpenIn DIC display.
                 // If there are no apps to handle the URL, display an action sheet that says, "Nothing supports this document". This is required to be in the App Store.
                 BOOL presentedOpenInMenu = [weakDic presentOpenInMenuFromBarButtonItem:sender animated:YES];
@@ -311,13 +311,13 @@
         // 4. Make a sandwich
         // 5. Sudo make a sandwich
         // 6. Cancel
-        [optionsActionSheet addCancelButtonWithTitle:NSLocalizedStringFromTableInBundle(@"Cancel", nil, bundle, nil)];;
+        [self->optionsActionSheet addCancelButtonWithTitle:NSLocalizedStringFromTableInBundle(@"Cancel", nil, bundle, nil)];;
 
         if (addedAtLeastOneButton == NO) {
-            optionsActionSheet.title = NSLocalizedStringFromTableInBundle(@"There are no actions for this item", nil, bundle, @"Error message");
+            self->optionsActionSheet.title = NSLocalizedStringFromTableInBundle(@"There are no actions for this item", nil, bundle, @"Error message");
         }
 
-        [optionsActionSheet showFromBarButtonItem:sender animated:YES];
+        [self->optionsActionSheet showFromBarButtonItem:sender animated:YES];
     }];
 }
 
