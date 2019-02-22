@@ -23,7 +23,7 @@ import Result
  by some uniqueID
  */
 open class ManagedObjectsObserver<M: NSManagedObject, ID: Hashable> {
-    open let collection: FetchedCollection<M>
+    public let collection: FetchedCollection<M>
     fileprivate let idFunction: (M)->ID
     fileprivate var propertiesByID: [ID: MutableProperty<M?>] = [:]
     fileprivate let scheduler: ManagedObjectContextScheduler

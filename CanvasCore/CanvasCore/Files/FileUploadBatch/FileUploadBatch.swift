@@ -18,8 +18,8 @@ import CoreData
 
 
 final public class FileUploadBatch: NSManagedObject {
-    @NSManaged open internal(set) var primitiveFileTypes: String
-    @objc open internal(set) var fileTypes: [String] {
+    @NSManaged public internal(set) var primitiveFileTypes: String
+    @objc public internal(set) var fileTypes: [String] {
         get {
             return primitiveFileTypes.components(separatedBy: ",")
         }
@@ -28,9 +28,9 @@ final public class FileUploadBatch: NSManagedObject {
         }
     }
 
-    @NSManaged open internal(set) var apiPath: String
+    @NSManaged public internal(set) var apiPath: String
 
-    @NSManaged open internal(set) var fileUploads: Set<FileUpload>
+    @NSManaged public internal(set) var fileUploads: Set<FileUpload>
 
 
     @objc public convenience init(session: Session, fileTypes: [String], apiPath: String) {

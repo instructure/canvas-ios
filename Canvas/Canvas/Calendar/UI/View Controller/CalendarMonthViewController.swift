@@ -94,7 +94,7 @@ open class CalendarMonthViewController: UIViewController, CalendarViewDelegate, 
         }
     }()
 
-    @objc open static func new(_ session: Session, dateSelected: DateSelected? = nil, colorForContextID: ColorForContextID? = nil, routeToURL: RouteToURL? = nil) -> CalendarMonthViewController {
+    @objc public static func new(_ session: Session, dateSelected: DateSelected? = nil, colorForContextID: ColorForContextID? = nil, routeToURL: RouteToURL? = nil) -> CalendarMonthViewController {
         let controller = CalendarMonthViewController(nibName: nil, bundle: nil)
         controller.session = session
 

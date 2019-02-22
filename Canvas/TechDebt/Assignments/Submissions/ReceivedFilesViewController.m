@@ -335,7 +335,7 @@ static NSURL *receivedFilesFolder() {
                                 NSFileManager *fileManager = [NSFileManager new];
                                 NSError *error;
                                 if ([fileManager removeItemAtURL:selectedItem error:&error]) {
-                                    [libraryView removeItem:selectedItem];
+                                    [self.libraryView removeItem:selectedItem];
                                     [self updateSubmitButton];
                                 }
                                 else {
@@ -378,7 +378,6 @@ static NSURL *receivedFilesFolder() {
 
 - (void)tappedCameraURL {
     BOOL cameraAvailable = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
-    NSBundle *bundle = [NSBundle bundleForClass:self.class];
     if (cameraAvailable) {
         NSBundle *bundle = [NSBundle bundleForClass:self.class];
         CKActionSheetWithBlocks *actionSheet = [[CKActionSheetWithBlocks alloc] initWithTitle:nil];
@@ -423,7 +422,7 @@ static NSURL *receivedFilesFolder() {
                                // Create local copy at receivedFiles
                                NSURL *fileURL = [[self class] addItemAtURLToReceivedFiles:tempFileURL error:NULL];
                                if (fileURL) {
-                                   [libraryView addItem:fileURL];
+                                   [self.libraryView addItem:fileURL];
                                }
                                
                                // Cleanup temp file now that it has been added to the uploads available

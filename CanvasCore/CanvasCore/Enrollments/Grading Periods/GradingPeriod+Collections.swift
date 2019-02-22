@@ -118,9 +118,9 @@ extension GradingPeriod {
     
     open class Header: NSObject, UITableViewDataSource, UITableViewDelegate {
         // Input
-        @objc open let includeGradingPeriods: Bool
+        @objc public let includeGradingPeriods: Bool
         @objc open weak var viewController: UIViewController?
-        open let grade: MutableProperty<String?>
+        public let grade: MutableProperty<String?>
         
         // Output
         open var selectedGradingPeriod: ReactiveSwift.Property<GradingPeriodItem?> {

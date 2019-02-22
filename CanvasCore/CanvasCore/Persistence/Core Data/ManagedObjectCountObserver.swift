@@ -20,11 +20,11 @@ import Foundation
 import CoreData
 
 open class ManagedObjectCountObserver<T: NSManagedObject>: NSObject, NSFetchedResultsControllerDelegate {
-    @objc open let predicate: NSPredicate
-    @objc open let context: NSManagedObjectContext
+    @objc public let predicate: NSPredicate
+    @objc public let context: NSManagedObjectContext
     fileprivate let fetchedResultsController: NSFetchedResultsController<T>
 
-    @objc open let objectCountUpdated: (Int)->Void
+    @objc public let objectCountUpdated: (Int)->Void
 
     @objc open var currentCount: Int {
         return fetchedResultsController.sections?.first?.numberOfObjects ?? 0

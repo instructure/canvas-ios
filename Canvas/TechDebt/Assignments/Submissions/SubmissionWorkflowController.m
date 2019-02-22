@@ -459,7 +459,7 @@ static void deleteFiles(NSArray *fileURLs) {
             
             [Submission submitArcSubmission:url session:TheKeymaster.currentClient.authSession courseID:courseID assignmentID:self.assignment.id completion:^(NSError * _Nullable error) {
                 if (error != nil) {
-                    showErrorForAssignment(error, _assignment.name);
+                    showErrorForAssignment(error, self->_assignment.name);
                 }
                 
                 if (self.uploadCompleteBlock) {

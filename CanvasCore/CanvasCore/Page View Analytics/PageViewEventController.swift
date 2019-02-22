@@ -21,7 +21,7 @@ typealias ErrorHandler = (Error?) -> Void
 
 @objc(PageViewEventController)
 open class PageViewEventController: NSObject {
-    @objc open static let instance = PageViewEventController()
+    @objc public static let instance = PageViewEventController()
     private var requestManager = PageViewEventRequestManager()
     private let session = PageViewSession()
     

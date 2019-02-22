@@ -111,7 +111,7 @@ open class WhizzyWigView: UIWebView, UIWebViewDelegate {
         }
     }
     
-    @objc open static func setOpenURLHandler(_ urlHandler: @escaping URLHandler) {
+    @objc public static func setOpenURLHandler(_ urlHandler: @escaping URLHandler) {
         WhizzyWigOpenURLHandler = urlHandler
     }
 }

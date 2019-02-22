@@ -22,7 +22,7 @@ import ReactiveSwift
 
 
 open class EnrollmentViewModel {
-    open let enrollment: MutableProperty<Enrollment?>
+    public let enrollment: MutableProperty<Enrollment?>
     public init(enrollment: Enrollment?) {
         self.enrollment = MutableProperty(enrollment)
     }
