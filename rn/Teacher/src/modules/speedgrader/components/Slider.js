@@ -57,7 +57,7 @@ export default class Slider extends Component<Props, State> {
   noGradeTimeout: TimeoutID
   excusedTimeout: TimeoutID
   value: number = 0
-  width: number = 0
+  width: number = 1
   slide: Animated.Value = new Animated.Value(0)
   tooltipPop: Animated.Value = new Animated.Value(1)
 
