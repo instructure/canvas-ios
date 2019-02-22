@@ -314,7 +314,6 @@
 		B15CA275221DE8E50014FB02 /* APIModuleRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA274221DE8E50014FB02 /* APIModuleRequestableTests.swift */; };
 		B15CA277221DE94F0014FB02 /* APIModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA276221DE94F0014FB02 /* APIModule.swift */; };
 		B15CA279221DE9660014FB02 /* APIModuleRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA278221DE9660014FB02 /* APIModuleRequestable.swift */; };
-		B15CA27B221DEA610014FB02 /* ModuleWorkflowState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA27A221DEA610014FB02 /* ModuleWorkflowState.swift */; };
 		B15CA27E221DFA450014FB02 /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA27D221DFA450014FB02 /* Module.swift */; };
 		B15CA284221E00870014FB02 /* ModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA283221E00870014FB02 /* ModuleTests.swift */; };
 		B16F036E215AE6210011E952 /* GetAssignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A32BE5215A81350071B41E /* GetAssignment.swift */; };
@@ -892,7 +891,6 @@
 		B15CA274221DE8E50014FB02 /* APIModuleRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModuleRequestableTests.swift; sourceTree = "<group>"; };
 		B15CA276221DE94F0014FB02 /* APIModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModule.swift; sourceTree = "<group>"; };
 		B15CA278221DE9660014FB02 /* APIModuleRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModuleRequestable.swift; sourceTree = "<group>"; };
-		B15CA27A221DEA610014FB02 /* ModuleWorkflowState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleWorkflowState.swift; sourceTree = "<group>"; };
 		B15CA27D221DFA450014FB02 /* Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
 		B15CA283221E00870014FB02 /* ModuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleTests.swift; sourceTree = "<group>"; };
 		B171A10621B9BE6C000325D3 /* CancelFileSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelFileSubmission.swift; sourceTree = "<group>"; };
@@ -1252,7 +1250,6 @@
 				7DF4FFD4217133AF007E5F81 /* TabType.swift */,
 				7DCF1EB9216BC8C5003AF358 /* TabVisibility.swift */,
 				B1B6F070219A1F2800C1575D /* UTI.swift */,
-				B15CA27A221DEA610014FB02 /* ModuleWorkflowState.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2319,7 +2316,6 @@
 				3BE2C766218CB56E004B8E5E /* EnrollmentRole.swift in Sources */,
 				7DCF1EB6216BC861003AF358 /* SubmissionWorkflowState.swift in Sources */,
 				2C96485E211E3723002C3255 /* AppEnvironment.swift in Sources */,
-				B15CA27B221DEA610014FB02 /* ModuleWorkflowState.swift in Sources */,
 				B1AE17AE21877C37002995E6 /* APIEnrollment+Requestable.swift in Sources */,
 				B1A6BC7E218A317A000515E3 /* APIAssignmentOverride.swift in Sources */,
 				B1EA5AEB212E641900DABC5F /* GetCourses.swift in Sources */,

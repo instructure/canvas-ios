@@ -104,19 +104,15 @@ class StoreTests: CoreTestCase {
     func testSubscribeWithoutCache() {
         let course = APICourse.make(["id": "1"])
         let useCase = TestUseCase(courses: [course])
-        eventsExpectation.expectedFulfillmentCount = 4
+        eventsExpectation.expectedFulfillmentCount = 3
         store = environment.subscribe(useCase, storeUpdated)
         store.refresh()
 
         wait(for: [eventsExpectation], timeout: 1.0)
 
-        let cached = snapshots[0]
-        let loading = snapshots[1]
-        let notLoading = snapshots[2]
-        let loaded = snapshots[3]
-
-        // cached
-        XCTAssertEqual(cached.count, 0)
+        let loading = snapshots[0]
+        let notLoading = snapshots[1]
+        let loaded = snapshots[2]
 
         // loading
         XCTAssertEqual(loading.count, 0)
@@ -140,23 +136,15 @@ class StoreTests: CoreTestCase {
     func testSubscribeWithForceRefresh() {
         let course = APICourse.make(["id": "1"])
         let useCase = TestUseCase(courses: [course])
-        eventsExpectation.expectedFulfillmentCount = 4
+        eventsExpectation.expectedFulfillmentCount = 3
         store = environment.subscribe(useCase, storeUpdated)
         store.refresh(force: true)
 
         wait(for: [eventsExpectation], timeout: 1.0)
 
-        let pending = snapshots[0]
-        let cached = snapshots[1]
-        let loading = snapshots[2]
-        let notLoading = snapshots[3]
-        let loaded = snapshots[4]
-
-        // pending
-        XCTAssertTrue(pending.pending)
-
-        // cached
-        XCTAssertEqual(cached.count, 0)
+        let loading = snapshots[0]
+        let notLoading = snapshots[1]
+        let loaded = snapshots[2]
 
         // loading
         XCTAssertTrue(loading.pending)
@@ -202,19 +190,15 @@ class StoreTests: CoreTestCase {
     func testSubscribeWithNetworkError() {
         let requestError = NSError.instructureError("network error")
         let useCase = TestUseCase(requestError: requestError)
-        eventsExpectation.expectedFulfillmentCount = 4
+        eventsExpectation.expectedFulfillmentCount = 3
         store = environment.subscribe(useCase, storeUpdated)
         store.refresh()
 
         wait(for: [eventsExpectation], timeout: 1.0)
 
-        let cached = snapshots[0]
-        let loading = snapshots[1]
-        let notLoading = snapshots[2]
-        let error = snapshots[3]
-
-        // cached
-        XCTAssertEqual(cached.count, 0)
+        let loading = snapshots[0]
+        let notLoading = snapshots[1]
+        let error = snapshots[2]
 
         // loading
         XCTAssertEqual(loading.count, 0)
@@ -237,20 +221,15 @@ class StoreTests: CoreTestCase {
     func testSubscribeWithWriteError() {
         let writeError = NSError.instructureError("write error")
         let useCase = TestUseCase(writeError: writeError)
-        eventsExpectation.expectedFulfillmentCount = 4
+        eventsExpectation.expectedFulfillmentCount = 3
         store = environment.subscribe(useCase, storeUpdated)
         store.refresh()
 
         wait(for: [eventsExpectation], timeout: 1.0)
 
-        let cached = snapshots[0]
-        let loading = snapshots[1]
-        let notLoading = snapshots[2]
-        let error = snapshots[3]
-
-        // cached
-        XCTAssertEqual(cached.count, 0)
-        XCTAssertNil(cached.error)
+        let loading = snapshots[0]
+        let notLoading = snapshots[1]
+        let error = snapshots[2]
 
         // loading
         XCTAssertEqual(loading.count, 0)
@@ -279,11 +258,11 @@ class StoreTests: CoreTestCase {
         ]
         let response = HTTPURLResponse(url: URL(string: curr)!, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: headers)!
         let secondPage = XCTestExpectation(description: "second page of courses")
-        secondPage.expectedFulfillmentCount = 5
+        secondPage.expectedFulfillmentCount = 4
 
         let course1 = APICourse.make(["id": "1"])
         let useCase = TestUseCase(courses: [course1], urlResponse: response)
-        eventsExpectation.expectedFulfillmentCount = 4
+        eventsExpectation.expectedFulfillmentCount = 3
         store = environment.subscribe(useCase) {
             self.storeUpdated()
             secondPage.fulfill()

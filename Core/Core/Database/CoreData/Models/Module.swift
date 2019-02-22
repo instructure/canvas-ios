@@ -20,7 +20,7 @@ import CoreData
 public class Module: NSManagedObject {
     @NSManaged public var id: String
     @NSManaged public var name: String
-    @NSManaged public var position: Int64
+    @NSManaged public var position: Int
     @NSManaged public var courseID: String
     @NSManaged public var published: Bool
 
@@ -36,7 +36,7 @@ public class Module: NSManagedObject {
         module.id = item.id.value
         module.courseID = courseID
         module.name = item.name
-        module.position = Int64(item.position)
+        module.position = item.position
         module.published = item.published
         return module
     }
