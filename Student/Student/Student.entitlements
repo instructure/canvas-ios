@@ -5,6 +5,10 @@
 	<key>com.apple.security.application-groups</key>
 	<array>
 		<string>group.com.instructure.icanvas</string>
+		<string>group.com.instructure.Contexts</string>
+		<string>group.com.instructure.Calendar</string>
+		<string>group.com.instructure.Courses</string>
+		<string>group.instructure.shared</string>
 	</array>
 	<key>keychain-access-groups</key>
 	<array>
