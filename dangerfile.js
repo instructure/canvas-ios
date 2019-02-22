@@ -17,12 +17,12 @@
 const { danger, warn, markdown, fail } = require('danger')
 const fs = require('fs')
 const path = require('path')
-const _ = require('lodash')
+const { check } = require('./scripts/update-headers')
 
 // Warns if there are changes to package.json without changes to yarn.lock.
 function packages () {
-  const packageChanged = _.includes(danger.git.modified_files, 'package.json')
-  const lockfileChanged = _.includes(danger.git.modified_files, 'yarn.lock')
+  const packageChanged = danger.git.modified_files.includes('package.json')
+  const lockfileChanged = danger.git.modified_files.includes('yarn.lock')
   if (packageChanged && !lockfileChanged) {
     const message = 'Changes were made to package.json, but not to yarn.lock'
     const idea = 'Perhaps you need to run `yarn install`?'
@@ -89,15 +89,17 @@ function handleAffects (message) {
     return
   }
 
-  apps = apps.split(',').map((x) => x.trim())
-  const valid = ['student', 'teacher', 'parent', 'none']
-  const invalid = apps.filter((e) => _.find(valid, e.toLowerCase()))
+  apps = apps.split(',').map(app => app.trim()).map(app =>
+    app[0].toUpperCase() + app.slice(1).toLowerCase()
+  )
+  const valid = ['Student', 'Teacher', 'Parent', 'None']
+  const invalid = apps.filter(app => valid.includes(app))
   if (invalid.length > 0) {
-    fail(`You have included an invalid app. Valid values are: ${valid.map((e) => _.startCase(e)).join(', ')}`)
+    fail(`You have included an invalid app. Valid values are: ${valid.join(', ')}`)
     return
   }
 
-  const description = apps.map((a) => _.startCase(a)).join(', ')
+  const description = apps.join(', ')
   markdown(`#### Affected Apps: ${description}`)
 }
 
@@ -117,4 +119,15 @@ function handleJira (message) {
   }
 }
 
+function licenseHeaders () {
+  const files = danger.git.modified_files.concat(danger.git.created_files)
+  const { replaced } = check(files)
+  if (replaced.length === 0) { return }
+  fail(`Please run \`yarn update-headers\`. The following do not have the correct license header: \n${
+    replaced.sort().map(file => `* ${file}`).join('\n')
+  }`)
+}
+
 commitMessage()
+packages()
+licenseHeaders()

@@ -10,15 +10,13 @@ Run this script from the repo root directory
 */
 const { execSync } = require('child_process')
 const program = require('commander')
-const { readdirSync, readFileSync, writeFileSync } = require('fs')
+const { existsSync, readdirSync, readFileSync, writeFileSync } = require('fs')
 
 program
   .version(require('../package.json').version)
   .option('-s --skip-write', 'Skips actually writing the files to disk')
   .option('-p --print', 'Print all of the files that will be modified')
-  .parse(process.argv)
 
-const { skipWrite, print } = program
 const thisYear = new Date().getFullYear()
 const ignoreExps = [
   /^scripts\//i,
@@ -90,66 +88,75 @@ function appropriateBanner (file, text) {
 `
 }
 
-const files = execSync('git ls-files -z', { encoding: 'utf8' })
-  .split('\0')
-  .filter(file => (
-    /\.(swift|h|m|js)$/i.test(file) &&
-    !ignoreExps.some(exp => exp.test(file))
-  ))
+exports.check = check
+function check(files, skipWrite = true) {
+  const replaced = []
+  const skipped = []
+  const incompatible = []
 
-const replaced = []
-const skipped = []
-const incompatible = []
+  for (const file of files) {
+    if (
+      !/\.(swift|h|m|js)$/i.test(file) ||
+      ignoreExps.some(exp => exp.test(file)) ||
+      !existsSync(file)
+    ) { continue }
+    let text = readFileSync(file, 'utf8')
+    const hasCopyright = copyrightExp.test(text)
+    const hasBanner = text.match(bannerExp)
+    const hasInstructure = instructureExp.test(text)
+    const banner = appropriateBanner(file, text)
 
-console.log(`Checking ${files.length} files...`)
-for (const file of files) {
-  let text = readFileSync(file, 'utf8')
-  const hasCopyright = copyrightExp.test(text)
-  const hasBanner = text.match(bannerExp)
-  const hasInstructure = instructureExp.test(text)
-  const banner = appropriateBanner(file, text)
+    if (!hasCopyright) {
+      text = `${banner}\n${text}`
+      if (!skipWrite) {
+        writeFileSync(file, text, 'utf8')
+      }
+      replaced.push(file)
+      continue
+    }
 
-  if (!hasCopyright) {
-    text = `${banner}\n${text}`
+    if (!hasBanner) {
+      skipped.push(file)
+      continue
+    }
+
+    if (!hasInstructure) {
+      if (hasBanner[0].includes('GPL')) {
+        incompatible.push(file)
+      } else {
+        skipped.push(file)
+      }
+      continue
+    }
+
+    const updated = text.replace(bannerExp, banner)
+    if (updated === text) {
+      skipped.push(file)
+      continue
+    }
     if (!skipWrite) {
-      writeFileSync(file, text, 'utf8')
+      writeFileSync(file, updated, 'utf8')
     }
     replaced.push(file)
-    continue
   }
-
-  if (!hasBanner) {
-    skipped.push(file)
-    continue
-  }
-
-  if (!hasInstructure) {
-    if (hasBanner[0].includes('GPL')) {
-      incompatible.push(file)
-    } else {
-      skipped.push(file)
-    }
-    continue
-  }
-
-  const updated = text.replace(bannerExp, banner)
-  if (updated === text) {
-    skipped.push(file)
-    continue
-  }
-  if (!skipWrite) {
-    writeFileSync(file, updated, 'utf8')
-  }
-  replaced.push(file)
+  
+  return { replaced, skipped, incompatible }
 }
 
-console.log(`Files ${skipWrite ? 'to be ' : ''}modified: ${replaced.length}`)
-if (print) {
-  console.log(replaced.sort().join('\n'))
+if (require.main === module) {
+  program.parse(process.argv)
+  const { skipWrite = false, print = false } = program
+  const files = execSync('git ls-files -z', { encoding: 'utf8' }).split('\0')
+  console.log(`Checking ${files.length} files...`)
+  const { replaced, skipped, incompatible } = check(files, skipWrite)
+  console.log(`Files ${skipWrite ? 'to be ' : ''}modified: ${replaced.length}`)
+  if (print) {
+    console.log(replaced.sort().join('\n'))
+  }
+  console.log(`Files ${skipWrite ? 'to be ' : ''}skipped: ${skipped.length}`)
+  if (print) {
+    console.log(skipped.sort().join('\n'))
+  }
+  console.log(`\nFiles with incompatible liceneses: ${incompatible.length}`)
+  console.log(incompatible.sort().join('\n'))
 }
-console.log(`Files ${skipWrite ? 'to be ' : ''}skipped: ${skipped.length}`)
-if (print) {
-  console.log(skipped.sort().join('\n'))
-}
-console.log(`\nFiles with incompatible liceneses: ${incompatible.length}`)
-console.log(incompatible.sort().join('\n'))
