@@ -66,4 +66,8 @@ public struct Route: Equatable {
     }
 
     public static let logs = Route("/logs")
+
+    public static func modules(forCourse courseID: String) -> Route {
+        return Route("/courses/\(courseID)/modules")
+    }
 }

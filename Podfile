@@ -77,6 +77,12 @@ abstract_target 'defaults' do
     pod 'Firebase/Core'
   end
 
+  target 'TeacherTests' do
+    project 'rn/Teacher/ios/Teacher.xcodeproj'
+    pod 'Fabric', '~> 1.7.7'
+    pod 'Firebase/Core'
+  end
+
   target 'TechDebt' do
     project 'Canvas/Canvas.xcodeproj'
     pod 'FXKeychain', '~> 1.5'

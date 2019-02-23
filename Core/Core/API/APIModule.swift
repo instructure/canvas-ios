@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2018-present Instructure, Inc.
+// Copyright (C) 2019-present Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -15,15 +15,11 @@
 //
 
 import Foundation
-import Core
 
-class SubmissionDetailsUseCase: PresenterUseCase {
-    init(context: Context, assignmentID: String, userID: String, env: AppEnvironment = .shared) {
-        super.init()
-        addOperations([
-            GetContext(context: context, env: env),
-            GetAssignment(courseID: context.id, assignmentID: assignmentID),
-            GetSubmission(context: context, assignmentID: assignmentID, userID: userID, env: env),
-        ])
-    }
+// https://canvas.instructure.com/doc/api/modules.html#Module
+public struct APIModule: Codable, Equatable {
+    let id: ID
+    let name: String
+    let position: Int
+    let published: Bool
 }

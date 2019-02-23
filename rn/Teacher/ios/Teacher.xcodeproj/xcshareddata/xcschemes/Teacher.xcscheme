@@ -42,7 +42,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "228DC9D28CA1E53CEAD837BE6270A810"
+               BlueprintIdentifier = "4CAE790B904C6277683CC787CA4DCA59"
                BuildableName = "Pods_defaults_CanvasKeymaster.framework"
                BlueprintName = "Pods-defaults-CanvasKeymaster"
                ReferencedContainer = "container:../../../Pods/Pods.xcodeproj">
@@ -56,7 +56,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0D293273CBFF1CE8FDF597A1F3614B74"
+               BlueprintIdentifier = "B886C6606AF746242B64685ADD80ABA2"
                BuildableName = "Pods_defaults_CanvasKit.framework"
                BlueprintName = "Pods-defaults-CanvasKit"
                ReferencedContainer = "container:../../../Pods/Pods.xcodeproj">
@@ -70,7 +70,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "66C64F27F748D5A1AA50BFE1E22A206A"
+               BlueprintIdentifier = "AD4748FC27684016C3C2C37711B2A53A"
                BuildableName = "Mantle.framework"
                BlueprintName = "Mantle"
                ReferencedContainer = "container:../../../Pods/Pods.xcodeproj">
@@ -95,6 +95,16 @@
                ReferencedContainer = "container:Teacher.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B15CA25C221DDB820014FB02"
+               BuildableName = "TeacherTests.xctest"
+               BlueprintName = "TeacherTests"
+               ReferencedContainer = "container:Teacher.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
@@ -105,13 +115,6 @@
             ReferencedContainer = "container:Teacher.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "DYLD_INSERT_LIBRARIES"
-            value = "@executable_path/EarlGrey.framework/EarlGrey"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>

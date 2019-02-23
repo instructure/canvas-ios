@@ -185,6 +185,8 @@ export function registerScreens (store: Store): void {
     registerScreen('/courses/:courseID/wiki/:url', wrap(PageDetails), store, { deepLink: true })
     registerScreen('/courses/:courseID/pages/:url', wrap(PageDetails), store, { deepLink: true })
     registerScreen('/courses/:courseID/pages/:url/edit', wrap(PageEdit), store, { deepLink: true })
+
+    registerScreen('/courses/:courseID/modules', null, null, { canBecomeMaster: true })
   }
 
   if (isStudent()) {

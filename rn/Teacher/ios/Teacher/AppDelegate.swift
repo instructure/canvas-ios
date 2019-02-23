@@ -35,6 +35,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     let hasFabric = (Bundle.main.object(forInfoDictionaryKey: "Fabric") as? [String: Any])?["APIKey"] != nil
     let hasFirebase = FirebaseOptions.defaultOptions()?.apiKey != nil
 
+    lazy var environment: AppEnvironment = {
+        let env = AppEnvironment.shared
+        env.router = Teacher.router
+        return env
+    }()
+
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         NotificationKitController.didRegisterForRemoteNotifications(deviceToken) { [weak self] error in
             ErrorReporter.reportError(error.addingInfo(), from: self?.window?.rootViewController)
@@ -180,6 +186,12 @@ extension AppDelegate: NativeLoginManagerDelegate {
                 let response = try! JSONDecoder().decode(APIBrandVariables.self, from: data)
                 Core.Brand.shared = Core.Brand(response: response)
             }
+        }
+
+        if let entry = client.keychainEntry {
+            // TODO: Persist this keychain entry
+            Keychain.currentSession = entry
+            environment.userDidLogin(session: entry)
         }
 
         if let locale = client.effectiveLocale {

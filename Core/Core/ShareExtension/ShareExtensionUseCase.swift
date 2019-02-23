@@ -20,9 +20,8 @@ class ShareExtensionUseCase: PresenterUseCase {
     init(courseID: String, assignmentID: String, env: AppEnvironment = .shared) {
         super.init()
         addOperations([
-            GetCustomColors(env: env),
             GetContext(context: ContextModel(.course, id: courseID), env: env),
             GetAssignment(courseID: courseID, assignmentID: assignmentID, include: [.submission], env: env),
-            ])
+        ])
     }
 }

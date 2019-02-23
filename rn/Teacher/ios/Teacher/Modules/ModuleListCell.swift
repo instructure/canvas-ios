@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2018-present Instructure, Inc.
+// Copyright (C) 2019-present Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -15,15 +15,15 @@
 //
 
 import Foundation
+import UIKit
 import Core
 
-class SubmissionDetailsUseCase: PresenterUseCase {
-    init(context: Context, assignmentID: String, userID: String, env: AppEnvironment = .shared) {
-        super.init()
-        addOperations([
-            GetContext(context: context, env: env),
-            GetAssignment(courseID: context.id, assignmentID: assignmentID),
-            GetSubmission(context: context, assignmentID: assignmentID, userID: userID, env: env),
-        ])
+class ModuleListCell: UITableViewCell {
+    @IBOutlet weak var nameLabel: UILabel!
+
+    var module: Module? {
+        didSet {
+            nameLabel.text = module?.name
+        }
     }
 }
