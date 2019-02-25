@@ -21,10 +21,6 @@ import React from 'react'
 import { CourseNavigation, Refreshed, mapStateToProps } from '../CourseNavigation'
 import App from '../../app'
 import * as LTITools from '../../../common/LTITools'
-import {
-  enableAllFeaturesFlagsForTesting,
-  disableAllFeatureFlagsForTesting,
-} from '../../../common/feature-flags'
 
 const template = {
   ...require('../../../__templates__/course'),
@@ -437,97 +433,6 @@ describe('mapStateToProps', () => {
     })
     const props = mapStateToProps(state, { courseID: '1' })
     expect(props).toMatchObject({ tabs: [tab] })
-  })
-
-  it('includes modules in student', () => {
-    App.setCurrentApp('student')
-    const course = template.course({ id: 1 })
-    const tabs = {
-      tabs: [
-        template.tab({ id: 'modules' }),
-      ],
-      pending: 0,
-    }
-    const state = template.appState({
-      entities: {
-        courses: {
-          '1': {
-            course,
-            color: '#fff',
-            tabs,
-            attendanceTool: { pending: 0 },
-          },
-        },
-      },
-      favoriteCourses: {
-        pending: 0,
-        courseRefs: ['1'],
-      },
-    })
-
-    const props = mapStateToProps(state, { courseID: '1' })
-    expect(props).toMatchObject({ tabs: [{ id: 'modules' }] })
-  })
-
-  it('excludes modules in teacher', () => {
-    disableAllFeatureFlagsForTesting()
-    App.setCurrentApp('teacher')
-    const course = template.course({ id: 1 })
-    const tabs = {
-      tabs: [
-        template.tab({ id: 'modules' }),
-      ],
-      pending: 0,
-    }
-    const state = template.appState({
-      entities: {
-        courses: {
-          '1': {
-            course,
-            color: '#fff',
-            tabs,
-            attendanceTool: { pending: 0 },
-          },
-        },
-      },
-      favoriteCourses: {
-        pending: 0,
-        courseRefs: ['1'],
-      },
-    })
-
-    const props = mapStateToProps(state, { courseID: '1' })
-    expect(props).toMatchObject({ tabs: [] })
-  })
-
-  it('includes modules in teacher when feature flags enabled', () => {
-    App.setCurrentApp('student')
-    const course = template.course({ id: 1 })
-    const tabs = {
-      tabs: [
-        template.tab({ id: 'modules' }),
-      ],
-      pending: 0,
-    }
-    const state = template.appState({
-      entities: {
-        courses: {
-          '1': {
-            course,
-            color: '#fff',
-            tabs,
-            attendanceTool: { pending: 0 },
-          },
-        },
-      },
-      favoriteCourses: {
-        pending: 0,
-        courseRefs: ['1'],
-      },
-    })
-
-    const props = mapStateToProps(state, { courseID: '1' })
-    expect(props).toMatchObject({ tabs: [{ id: 'modules' }] })
   })
 
   describe('external tools', () => {
