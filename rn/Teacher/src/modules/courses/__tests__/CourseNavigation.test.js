@@ -22,7 +22,6 @@ import { CourseNavigation, Refreshed, mapStateToProps } from '../CourseNavigatio
 import App from '../../app'
 import * as LTITools from '../../../common/LTITools'
 import {
-  enableAllFeaturesFlagsForTesting,
   disableAllFeatureFlagsForTesting,
 } from '../../../common/feature-flags'
 
