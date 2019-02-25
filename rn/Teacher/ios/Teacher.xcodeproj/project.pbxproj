@@ -351,10 +351,7 @@
 		B15CA23E221DB3480014FB02 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				B15CA291221E082D0014FB02 /* ModuleListPresenter.swift */,
-				B15CA244221DC5BC0014FB02 /* ModuleListViewController.swift */,
-				B15CA246221DC5CC0014FB02 /* ModuleListViewController.storyboard */,
-				B15CA298221E10900014FB02 /* ModuleListCell.swift */,
+				B18359A1222447200005A918 /* ModuleList */,
 			);
 			name = Modules;
 			path = Teacher/Modules;
@@ -402,6 +399,17 @@
 			);
 			name = IBDesignables;
 			path = Teacher/IBDesignables;
+			sourceTree = "<group>";
+		};
+		B18359A1222447200005A918 /* ModuleList */ = {
+			isa = PBXGroup;
+			children = (
+				B15CA291221E082D0014FB02 /* ModuleListPresenter.swift */,
+				B15CA244221DC5BC0014FB02 /* ModuleListViewController.swift */,
+				B15CA246221DC5CC0014FB02 /* ModuleListViewController.storyboard */,
+				B15CA298221E10900014FB02 /* ModuleListCell.swift */,
+			);
+			path = ModuleList;
 			sourceTree = "<group>";
 		};
 		E3598DCFB2D0E7A9019957B2 /* Pods */ = {
