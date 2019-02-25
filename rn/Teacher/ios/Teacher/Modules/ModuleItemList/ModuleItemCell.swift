@@ -15,17 +15,9 @@
 //
 
 import Foundation
+import UIKit
 import Core
-import CanvasCore
 
-let router = Router(routes: [
-    RouteHandler(.modules(forCourse: ":courseID")) { _, params in
-        guard let courseID = params["courseID"] else { return nil }
-        return ModuleListViewController.create(courseID: courseID)
-    },
-
-    RouteHandler(.module(forCourse: ":courseID", moduleID: ":moduleID")) { _, params in
-        guard let courseID = params["courseID"], let moduleID = params["moduleID"] else { return nil }
-        return ModuleItemListViewController.create(courseID: courseID, moduleID: moduleID)
-    }
-])
+class ModuleItemCell: UITableViewCell {
+    @IBOutlet weak var accessIconView: AccessIconView!
+}

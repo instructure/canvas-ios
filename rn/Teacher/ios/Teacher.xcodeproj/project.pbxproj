@@ -47,6 +47,10 @@
 		B15CA297221E103B0014FB02 /* DynamicLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA296221E103B0014FB02 /* DynamicLabel.swift */; };
 		B15CA299221E10900014FB02 /* ModuleListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA298221E10900014FB02 /* ModuleListCell.swift */; };
 		B15CA29D221F16C90014FB02 /* BundleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA29C221F16C90014FB02 /* BundleExtensions.swift */; };
+		B18359A42224477C0005A918 /* ModuleItemListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B18359A32224477C0005A918 /* ModuleItemListViewController.storyboard */; };
+		B18359A62224479F0005A918 /* ModuleItemListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18359A52224479F0005A918 /* ModuleItemListViewController.swift */; };
+		B18359B2222485E60005A918 /* AccessIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18359B1222485E60005A918 /* AccessIconView.swift */; };
+		B18359B4222487050005A918 /* ModuleItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18359B3222487050005A918 /* ModuleItemCell.swift */; };
 		F9B946F8221492580083E660 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946F6221492580083E660 /* PSPDFKit.framework */; };
 		F9B946F9221492580083E660 /* PSPDFKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946F7221492580083E660 /* PSPDFKitUI.framework */; };
 		F9FDB9351C9FB4F9CF7E0F94 /* Pods_defaults_Teacher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE78272172F7D235E49A1D77 /* Pods_defaults_Teacher.framework */; };
@@ -215,6 +219,10 @@
 		B15CA296221E103B0014FB02 /* DynamicLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicLabel.swift; sourceTree = "<group>"; };
 		B15CA298221E10900014FB02 /* ModuleListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleListCell.swift; sourceTree = "<group>"; };
 		B15CA29C221F16C90014FB02 /* BundleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtensions.swift; sourceTree = "<group>"; };
+		B18359A32224477C0005A918 /* ModuleItemListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ModuleItemListViewController.storyboard; sourceTree = "<group>"; };
+		B18359A52224479F0005A918 /* ModuleItemListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemListViewController.swift; sourceTree = "<group>"; };
+		B18359B1222485E60005A918 /* AccessIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessIconView.swift; sourceTree = "<group>"; };
+		B18359B3222487050005A918 /* ModuleItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemCell.swift; sourceTree = "<group>"; };
 		D063D27A1B3640208ABF74D4 /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		EE78272172F7D235E49A1D77 /* Pods_defaults_Teacher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_Teacher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9B946F6221492580083E660 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../../../Carthage/Build/iOS/PSPDFKit.framework; sourceTree = "<group>"; };
@@ -351,6 +359,7 @@
 		B15CA23E221DB3480014FB02 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				B18359A2222447600005A918 /* ModuleItemList */,
 				B18359A1222447200005A918 /* ModuleList */,
 			);
 			name = Modules;
@@ -396,6 +405,7 @@
 			isa = PBXGroup;
 			children = (
 				B15CA296221E103B0014FB02 /* DynamicLabel.swift */,
+				B18359B1222485E60005A918 /* AccessIconView.swift */,
 			);
 			name = IBDesignables;
 			path = Teacher/IBDesignables;
@@ -410,6 +420,16 @@
 				B15CA298221E10900014FB02 /* ModuleListCell.swift */,
 			);
 			path = ModuleList;
+			sourceTree = "<group>";
+		};
+		B18359A2222447600005A918 /* ModuleItemList */ = {
+			isa = PBXGroup;
+			children = (
+				B18359A32224477C0005A918 /* ModuleItemListViewController.storyboard */,
+				B18359A52224479F0005A918 /* ModuleItemListViewController.swift */,
+				B18359B3222487050005A918 /* ModuleItemCell.swift */,
+			);
+			path = ModuleItemList;
 			sourceTree = "<group>";
 		};
 		E3598DCFB2D0E7A9019957B2 /* Pods */ = {
@@ -546,6 +566,7 @@
 				2C96863D1FFE9FC4005127A3 /* LaunchScreen.storyboard in Resources */,
 				2C8E35722093AD760071ED94 /* Settings.bundle in Resources */,
 				2C7B27A81E6F5A1100E097B9 /* AppIcon.xcassets in Resources */,
+				B18359A42224477C0005A918 /* ModuleItemListViewController.storyboard in Resources */,
 				78AD913121C8180C0075FBCF /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -881,15 +902,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B18359B4222487050005A918 /* ModuleItemCell.swift in Sources */,
 				494AE0BB1F843CB5001A8F31 /* TeacherAttendanceViewController.swift in Sources */,
 				494AE0BA1F843CB5001A8F31 /* AppDelegate+Routes.swift in Sources */,
 				B15CA240221DBA940014FB02 /* Routes.swift in Sources */,
 				B15CA29D221F16C90014FB02 /* BundleExtensions.swift in Sources */,
 				B15CA245221DC5BC0014FB02 /* ModuleListViewController.swift in Sources */,
+				B18359A62224479F0005A918 /* ModuleItemListViewController.swift in Sources */,
 				61BD85FC1EB2933C005A09A5 /* AppDelegate.swift in Sources */,
 				B15CA243221DC4EC0014FB02 /* CKIClientExtensions.swift in Sources */,
 				B15CA292221E082D0014FB02 /* ModuleListPresenter.swift in Sources */,
 				B15CA297221E103B0014FB02 /* DynamicLabel.swift in Sources */,
+				B18359B2222485E60005A918 /* AccessIconView.swift in Sources */,
 				494AE0B91F843CB5001A8F31 /* RootTabBarController.swift in Sources */,
 				B15CA299221E10900014FB02 /* ModuleListCell.swift in Sources */,
 			);

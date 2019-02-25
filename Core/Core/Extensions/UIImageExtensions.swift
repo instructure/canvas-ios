@@ -18,7 +18,10 @@ import UIKit
 
 extension UIImage {
     public enum IconName: String, CaseIterable {
-        case attendance, collaborations, conferences, todo, addFile, addPhoto, addLibrary, warning
+        case attendance, collaborations, conferences, todo
+        case addFile, addPhoto, addLibrary
+        case publish, unpublish
+        case warning
     }
 
     public static func icon(_ name: IconName) -> UIImage {
