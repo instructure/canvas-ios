@@ -18,59 +18,50 @@ import Foundation
 import Core
 
 protocol AssignmentListViewProtocol: ErrorViewController, ColoredNavViewProtocol {
-    func update(list: [Assignment])
+    func update()
 }
 
 class AssignmentListPresenter {
     let courseID: String
     let env: AppEnvironment
     weak var view: AssignmentListViewProtocol?
-    let frc: FetchedResultsController<Assignment>
-    let frcCourse: FetchedResultsController<Course>
-    let useCaseFactory: UseCaseFactory
+
+    lazy var course: Store<GetCourseUseCase> = {
+        let useCase = GetCourseUseCase(courseID: courseID)
+        return self.env.subscribe(useCase) { [weak self] in
+            self?.update()
+        }
+    }()
+
+    lazy var assignments: Store<GetAssignments> = {
+        let useCase = GetAssignments(courseID: self.courseID)
+        return self.env.subscribe(useCase) { [weak self] in
+            self?.update()
+        }
+    }()
 
     init(env: AppEnvironment = .shared, view: AssignmentListViewProtocol, courseID: String) {
         self.courseID = courseID
         self.env = env
         self.view = view
-        frc = env.subscribe(Assignment.self, .courseList(courseID))
-        frcCourse = env.subscribe(Course.self, .details(courseID))
-        useCaseFactory = { force in return AssignmentListUseCase(courseID: courseID, force: force) }
-        frc.delegate = self
     }
 
-    func loadDataForView() {
-        loadAssignments()
+    func viewIsReady() {
+        assignments.refresh(force: true)
+        course.refresh(force: true)
+    }
+
+    func update() {
+        view?.update()
         loadColor()
     }
 
-    func loadAssignments() {
-        frc.performFetch()
-        guard let assignments = frc.fetchedObjects else { return }
-        view?.update(list: assignments)
-    }
-
     func loadColor() {
-        frcCourse.performFetch()
-        guard let course = frcCourse.fetchedObjects?.first else { return }
+        guard let course = course[IndexPath(row: 0, section: 0)] else { return }
         view?.updateNavBar(subtitle: course.name, color: course.color)
-    }
-
-    func loadDataFromServer(force: Bool = false) {
-        let useCase = AssignmentListUseCase(courseID: courseID, force: force)
-        let reload = BlockOperation { DispatchQueue.main.async {[weak self] in self?.loadDataForView() } }
-        reload.addDependency(useCase)
-        env.queue.addOperation(reload)
-        env.queue.addOperationWithErrorHandling(useCase, sendErrorsTo: view)
     }
 
     func select(_ assignment: Assignment, from: UIViewController) {
         env.router.route(to: assignment.htmlURL, from: from, options: nil)
-    }
-}
-
-extension AssignmentListPresenter: FetchedResultsControllerDelegate {
-    func controllerDidChangeContent<T>(_ controller: FetchedResultsController<T>) {
-        loadDataForView()
     }
 }

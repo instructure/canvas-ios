@@ -19,7 +19,6 @@
 		3B0B0F5E219C8CE700F04216 /* AssignmentDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0047219BD9F50045E8A1 /* AssignmentDetailsPresenter.swift */; };
 		3B0B0F5F219C8CFE00F04216 /* AssignmentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0042219BD9F50045E8A1 /* AssignmentListViewController.swift */; };
 		3B0B0F60219C8CFE00F04216 /* AssignmentListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0043219BD9F50045E8A1 /* AssignmentListPresenter.swift */; };
-		3B0B0F61219C8CFE00F04216 /* AssignmentListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0044219BD9F50045E8A1 /* AssignmentListUseCase.swift */; };
 		3B0B0F62219C8D0500F04216 /* AssignmentDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B1B0046219BD9F50045E8A1 /* AssignmentDetailsViewController.storyboard */; };
 		3B0B0F63219C8D0500F04216 /* AssignmentDetailsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0048219BD9F50045E8A1 /* AssignmentDetailsUseCase.swift */; };
 		3B0B0F64219C8D0A00F04216 /* GradeCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B004D219BD9F50045E8A1 /* GradeCircle.swift */; };
@@ -40,7 +39,6 @@
 		3B1B0066219BD9F60045E8A1 /* GroupNavigationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B003F219BD9F50045E8A1 /* GroupNavigationPresenter.swift */; };
 		3B1B0067219BD9F60045E8A1 /* AssignmentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0042219BD9F50045E8A1 /* AssignmentListViewController.swift */; };
 		3B1B0068219BD9F60045E8A1 /* AssignmentListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0043219BD9F50045E8A1 /* AssignmentListPresenter.swift */; };
-		3B1B0069219BD9F60045E8A1 /* AssignmentListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0044219BD9F50045E8A1 /* AssignmentListUseCase.swift */; };
 		3B1B006A219BD9F60045E8A1 /* AssignmentDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B1B0046219BD9F50045E8A1 /* AssignmentDetailsViewController.storyboard */; };
 		3B1B006B219BD9F60045E8A1 /* AssignmentDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0047219BD9F50045E8A1 /* AssignmentDetailsPresenter.swift */; };
 		3B1B006C219BD9F60045E8A1 /* AssignmentDetailsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0048219BD9F50045E8A1 /* AssignmentDetailsUseCase.swift */; };
@@ -370,7 +368,6 @@
 		3B1B003F219BD9F50045E8A1 /* GroupNavigationPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupNavigationPresenter.swift; sourceTree = "<group>"; };
 		3B1B0042219BD9F50045E8A1 /* AssignmentListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentListViewController.swift; sourceTree = "<group>"; };
 		3B1B0043219BD9F50045E8A1 /* AssignmentListPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentListPresenter.swift; sourceTree = "<group>"; };
-		3B1B0044219BD9F50045E8A1 /* AssignmentListUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentListUseCase.swift; sourceTree = "<group>"; };
 		3B1B0046219BD9F50045E8A1 /* AssignmentDetailsViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AssignmentDetailsViewController.storyboard; sourceTree = "<group>"; };
 		3B1B0047219BD9F50045E8A1 /* AssignmentDetailsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsPresenter.swift; sourceTree = "<group>"; };
 		3B1B0048219BD9F50045E8A1 /* AssignmentDetailsUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsUseCase.swift; sourceTree = "<group>"; };
@@ -837,7 +834,6 @@
 			children = (
 				3B1B0042219BD9F50045E8A1 /* AssignmentListViewController.swift */,
 				3B1B0043219BD9F50045E8A1 /* AssignmentListPresenter.swift */,
-				3B1B0044219BD9F50045E8A1 /* AssignmentListUseCase.swift */,
 			);
 			path = AssignmentList;
 			sourceTree = "<group>";
@@ -1761,7 +1757,6 @@
 				7D0BF3232165315B00859FA1 /* CoreWebView.swift in Sources */,
 				9FCD79DD2188E9D90054293A /* SubmissionDetailsViewController.swift in Sources */,
 				3B1B0079219BD9F60045E8A1 /* CourseListViewController.swift in Sources */,
-				3B1B0069219BD9F60045E8A1 /* AssignmentListUseCase.swift in Sources */,
 				3B1B0074219BD9F60045E8A1 /* CourseNavigationUseCase.swift in Sources */,
 				3B1B0070219BD9F60045E8A1 /* GradeCircle.swift in Sources */,
 				3B692535219F428E0023ED75 /* FilePickerProgressView.swift in Sources */,
@@ -1826,7 +1821,6 @@
 				3B0B0F5E219C8CE700F04216 /* AssignmentDetailsPresenter.swift in Sources */,
 				7D067CE821505B3500B78AF2 /* DashboardPresenter.swift in Sources */,
 				3B0B0F5C219C8CC900F04216 /* CourseNavigationTableViewController.swift in Sources */,
-				3B0B0F61219C8CFE00F04216 /* AssignmentListUseCase.swift in Sources */,
 				3B0B0F69219C8D1500F04216 /* CourseNavigationUseCase.swift in Sources */,
 				7D10194F215EBA7B0058FDD1 /* DividerView.swift in Sources */,
 				7D63F781215D37B100151E49 /* CardView.swift in Sources */,

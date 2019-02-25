@@ -20,7 +20,6 @@ import Core
 class AssignmentListViewController: UITableViewController {
 
     var presenter: AssignmentListPresenter?
-    var assignments: [Assignment]?
     var color: UIColor?
     var titleSubtitleView: TitleSubtitleView = TitleSubtitleView.create()
 
@@ -33,8 +32,7 @@ class AssignmentListViewController: UITableViewController {
         super.viewDidLoad()
         setupTitleViewInNavbar(title: NSLocalizedString("Assignments", comment: ""))
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: String(describing: UITableViewCell.self))
-        presenter?.loadDataFromServer()
-        presenter?.loadDataForView()
+        presenter?.viewIsReady()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -43,26 +41,25 @@ class AssignmentListViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return assignments?.count ?? 0
+        return presenter?.assignments.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(UITableViewCell.self, for: indexPath)
-        cell.textLabel?.text = assignments?[indexPath.row].name
+        cell.textLabel?.text = presenter?.assignments[indexPath.row]?.name
         cell.imageView?.image = .icon(.assignment, .line)
         cell.imageView?.tintColor = color
         return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let assignment = assignments?[indexPath.row] else { return }
+        guard let assignment = presenter?.assignments[indexPath.row] else { return }
         presenter?.select(assignment, from: self)
     }
 }
 
 extension AssignmentListViewController: AssignmentListViewProtocol {
-    func update(list: [Assignment]) {
-        assignments = list
+    func update() {
         tableView.reloadData()
     }
 }
