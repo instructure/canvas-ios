@@ -54,10 +54,10 @@ function checkSchemeCoverage (scheme, masterCoverage, prCoverage) {
   ))
 
   if (files.length > 0) {
-    fail(`One or more files are below the minimum test coverage ${percent(fileMinCoverage)}`)
+    fail(`One or more files in ${scheme} are below the minimum test coverage ${percent(fileMinCoverage)}`)
   }
   if (pr.total.coveredLines / pr.total.executableLines < totalMinCoverage) {
-    fail(`The total test coverage is below the minimum ${percent(totalMinCoverage)}`)
+    fail(`The total test coverage in ${scheme} is below the minimum ${percent(totalMinCoverage)}`)
   }
   return `**${scheme}** | ${coverageMarkdown(pr.total, master.total)}
     ${files.map(path =>
