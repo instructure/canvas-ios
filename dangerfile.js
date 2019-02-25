@@ -93,7 +93,7 @@ function handleAffects (message) {
     app[0].toUpperCase() + app.slice(1).toLowerCase()
   )
   const valid = ['Student', 'Teacher', 'Parent', 'None']
-  const invalid = apps.filter(app => valid.includes(app))
+  const invalid = apps.filter(app => !valid.includes(app))
   if (invalid.length > 0) {
     fail(`You have included an invalid app. Valid values are: ${valid.join(', ')}`)
     return
