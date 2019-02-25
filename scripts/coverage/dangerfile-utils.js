@@ -22,7 +22,7 @@ function checkCoverage () {
 
   const master = require('../../rn/Teacher/coverage/coverage-summary-master.json')
   const pr = require('../../rn/Teacher/coverage/coverage-summary.json')
-  table += checkCoverage('React Native', convertCoverage(master), convertCoverage(pr))
+  table += checkSchemeCoverage('React Native', convertCoverage(master), convertCoverage(pr))
   markdown(`
     Coverage | New % | Master % | Delta
     -------- | ----- | -------- | -----
