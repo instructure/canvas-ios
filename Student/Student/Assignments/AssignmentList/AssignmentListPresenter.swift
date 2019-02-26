@@ -47,8 +47,8 @@ class AssignmentListPresenter {
     }
 
     func viewIsReady() {
-        assignments.refresh(force: true)
-        course.refresh(force: true)
+        assignments.refresh()
+        course.refresh()
     }
 
     func update() {
@@ -57,7 +57,7 @@ class AssignmentListPresenter {
     }
 
     func loadColor() {
-        guard let course = course[IndexPath(row: 0, section: 0)] else { return }
+        guard let course = course.first else { return }
         view?.updateNavBar(subtitle: course.name, color: course.color)
     }
 
