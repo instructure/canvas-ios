@@ -1,10 +1,11 @@
 {
   "ignorePatterns": [
-    "AppDelegate.\\w+$",
+    "AppDelegate",
     "Cell.\\w+$",
     "Controller.\\w+$",
     "\\/Views\\/",
     "Core\/ShareExtension\/",
+    "Pods\\/",
     "Student\/Courses\/CourseList\/",
     "Student\/Dashboard\/"
   ],
