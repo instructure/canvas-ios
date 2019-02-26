@@ -14,7 +14,7 @@ Run with --test option to run tests first
 */
 const program = require('commander')
 const { execSync } = require('child_process')
-const { readFileSync, writeFileSync } = require('fs')
+const { existsSync, readFileSync, writeFileSync } = require('fs')
 const hljs = require('highlight.js')
 const { basename, dirname, extname, join, relative, resolve } = require('path')
 
@@ -59,10 +59,8 @@ function runTests() {
 
 function reportCoverage () {
   console.log('Finding Xcode coverage report')
-  let folder = process.env.BITRISE_XCODE_RAW_TEST_RESULT_TEXT_PATH
-  if (folder) {
-    folder = `${dirname(dirname(folder))}/XCUITestOutput*/*.xcresult`
-  } else {
+  let folder = `scripts/coverage/${scheme.toLowerCase()}.xcresult`
+  if (!existsSync(folder)) {
     const settings = run(`xcrun xcodebuild -showBuildSettings -workspace Canvas.xcworkspace -scheme ${scheme}`)
     folder = join(settings.match(/BUILD_DIR = (.*)/)[1], '../../Logs/Test/*.xcresult')
   }
