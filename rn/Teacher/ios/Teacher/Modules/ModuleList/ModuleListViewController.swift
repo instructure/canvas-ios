@@ -89,6 +89,7 @@ extension ModuleListViewController: UITableViewDataSource {
 
 extension ModuleListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // TODO: route to module details
+        guard let module = presenter?.modules[indexPath] else { return }
+        router.route(to: .module(forCourse: module.courseID, moduleID: module.id), from: self)
     }
 }

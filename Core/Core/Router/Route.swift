@@ -70,4 +70,8 @@ public struct Route: Equatable {
     public static func modules(forCourse courseID: String) -> Route {
         return Route("/courses/\(courseID)/modules")
     }
+
+    public static func module(forCourse courseID: String, moduleID: String) -> Route {
+        return Route("/courses/\(courseID)/modules/\(moduleID)")
+    }
 }

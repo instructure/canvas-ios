@@ -328,6 +328,8 @@
 		B17F23B12137981B00771F86 /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17F23B02137981B00771F86 /* Clock.swift */; };
 		B18126922150542A00E71F63 /* GetContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18126912150542A00E71F63 /* GetContext.swift */; };
 		B18126942150564900E71F63 /* GetContextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18126932150564900E71F63 /* GetContextTests.swift */; };
+		B18359A822244E230005A918 /* AccessIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18359A722244E230005A918 /* AccessIconView.swift */; };
+		B18359AA222450DE0005A918 /* AccessIconView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B18359A9222450DE0005A918 /* AccessIconView.xib */; };
 		B1911CE621C840AC00F42F91 /* FileSubmissionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1911CE521C840AC00F42F91 /* FileSubmissionTests.swift */; };
 		B1911CE921C8460000F42F91 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1911CE821C8460000F42F91 /* NotificationManager.swift */; };
 		B1911CEC21C849BE00F42F91 /* NotificationManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1911CEB21C849BE00F42F91 /* NotificationManagerTests.swift */; };
@@ -904,6 +906,8 @@
 		B17F23B02137981B00771F86 /* Clock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
 		B18126912150542A00E71F63 /* GetContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetContext.swift; sourceTree = "<group>"; };
 		B18126932150564900E71F63 /* GetContextTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetContextTests.swift; sourceTree = "<group>"; };
+		B18359A722244E230005A918 /* AccessIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessIconView.swift; sourceTree = "<group>"; };
+		B18359A9222450DE0005A918 /* AccessIconView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccessIconView.xib; sourceTree = "<group>"; };
 		B1911CE521C840AC00F42F91 /* FileSubmissionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionTests.swift; sourceTree = "<group>"; };
 		B1911CE821C8460000F42F91 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		B1911CEB21C849BE00F42F91 /* NotificationManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManagerTests.swift; sourceTree = "<group>"; };
@@ -1286,6 +1290,8 @@
 		7D1758B12159894C00F88613 /* CoreViews */ = {
 			isa = PBXGroup;
 			children = (
+				B18359A722244E230005A918 /* AccessIconView.swift */,
+				B18359A9222450DE0005A918 /* AccessIconView.xib */,
 				7D8B78FC21627887005E08F1 /* CoreWebView.swift */,
 				7D364F2321AE04B20028E3EA /* CoreWebViewController.swift */,
 				7D765023215AEDDD00BB4F38 /* DividerView.swift */,
@@ -2021,6 +2027,7 @@
 				B1B4C1C9219631AC00FA9E0E /* EmptyView.xib in Resources */,
 				5BF786A6218599B600471A5F /* InfoPlist.strings in Resources */,
 				7DFFAB1A219DDB22003E71F8 /* CommentListViewController.storyboard in Resources */,
+				B18359AA222450DE0005A918 /* AccessIconView.xib in Resources */,
 				7DD6CC6921BCCE20004C4BB6 /* LoginFindSchoolViewController.storyboard in Resources */,
 				7DCF1ECC216BFE5D003AF358 /* Localizable.strings in Resources */,
 				7DD694892195F7A200BA4984 /* DocViewerViewController.storyboard in Resources */,
@@ -2221,6 +2228,7 @@
 				B19792ED21751C200000369C /* CoreDataFetchedResultsController.swift in Sources */,
 				7D0215A921BB1762009A8E69 /* LoginStartViewController.swift in Sources */,
 				9FD504E72180BE1400B395BA /* APIFile.swift in Sources */,
+				B18359A822244E230005A918 /* AccessIconView.swift in Sources */,
 				7DF4FFD82171347B007E5F81 /* Tab.swift in Sources */,
 				3B3467D02135024800F9BC2E /* ErrorViewControllerProtocol.swift in Sources */,
 				7D062AF4212496E600677F66 /* Context.swift in Sources */,
