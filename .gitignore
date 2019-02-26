@@ -67,6 +67,8 @@ yarn-error.log
 
 # Scripts data
 scripts/build_automation/release.config
+scripts/coverage/**/
+scripts/coverage/*.xcresult
 scripts/translations/source
 scripts/translations/imports
 

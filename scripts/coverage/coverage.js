@@ -61,7 +61,7 @@ function reportCoverage () {
   console.log('Finding Xcode coverage report')
   let folder = `scripts/coverage/${scheme.toLowerCase()}.xcresult`
   if (!existsSync(folder)) {
-    const settings = run(`xcrun xcodebuild -showBuildSettings -workspace Canvas.xcworkspace -scheme ${scheme}`)
+    const settings = run(`xcrun xcodebuild -showBuildSettings -workspace AllTheThings.xcworkspace -scheme ${scheme}`)
     folder = join(settings.match(/BUILD_DIR = (.*)/)[1], '../../Logs/Test/*.xcresult')
   }
 
