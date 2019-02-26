@@ -21,6 +21,7 @@ import Fabric
 import Crashlytics
 import Firebase
 import UserNotifications
+import Core
 
 let TheKeymaster = CanvasKeymaster.the()
 let ParentAppRefresherTTL: TimeInterval = 5.minutes
@@ -49,6 +50,9 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
     let hasFirebase = FirebaseOptions.defaultOptions()?.apiKey != nil
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+
+        AppEnvironment.shared.router = Parent.router
+
         setupCrashlytics()
         ResetAppIfNecessary()
         if hasFirebase {
@@ -209,7 +213,12 @@ extension ParentAppDelegate: NativeLoginManagerDelegate {
     func didLogin(_ client: CKIClient) {
         let session = client.authSession
         self.session = session
-        
+
+        guard let keychainEntry = client.keychainEntry else {
+            return
+        }
+        AppEnvironment.shared.userDidLogin(session: keychainEntry)
+
         // UX requires that students are given color schemes in a specific order.
         // The method call below ensures that we always start with the first color scheme.
         ColorCoordinator.clearColorSchemeDictionary()

@@ -48,7 +48,8 @@ class IDTests: XCTestCase {
                         "id": 3,
                         "name": "student",
                         "global_id": "1",
-                        "effective_locale": "en"
+                        "effective_locale": "en",
+                        "email": "email@email.com"
                     },
                     "refresh_token": "refresh"
             }

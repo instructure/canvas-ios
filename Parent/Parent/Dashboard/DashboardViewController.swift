@@ -472,10 +472,7 @@ class DashboardViewController: UIViewController {
     }
     
     @IBAction func drawerDashboardButtonPreseed(_ sender: UIButton) {
-        let dashboard = HelmViewController(moduleName: "/profile", props: [:])
-        dashboard.modalPresentationStyle = .custom
-        dashboard.transitioningDelegate = DrawerTransition
-        self.present(dashboard, animated: true, completion: nil)
+        Router.sharedInstance.route(self, toURL: Router.sharedInstance.profileRoute(), modal: true)
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {

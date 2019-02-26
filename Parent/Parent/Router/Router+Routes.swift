@@ -13,20 +13,18 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-    
-    
+
+
 
 import UIKit
-
 import Result
-
-
 import ReactiveSwift
 import ReactiveCocoa
 import CanvasCore
-
-import CanvasCore
+import Core
 import Marshal
+import SafariServices
+import CanvasKeymaster
 
 let LoggedInNotificationContentsSession = "LoggedInNotificationContentsSession"
 
@@ -38,6 +36,7 @@ extension NSNotification.Name {
 class RouteTemplates {
     static let dashboardRouteTemplate = "dashboard"
     static let settingsRouteTemplate = "settings"
+    static let profileRouteTemplate = "profile"
     static let studentThresholdRouteTemplate = "students/:studentID/thresholds"
     static let assignmentDetailsTemplate = "students/:studentID/courses/:courseID/assignments/:assignmentID"
     static let standaloneAssignmentDetailsTemplate = "students/:studentID/courses/:courseID/assignments/:assignmentID/standalone"
@@ -57,6 +56,10 @@ extension Router {
 
     func settingsRoute() -> URL {
         return URL(string: RouteTemplates.settingsRouteTemplate)!
+    }
+
+    func profileRoute() -> URL {
+        return URL(string: RouteTemplates.profileRouteTemplate)!
     }
 
     func thresholdSettingsRoute(studentID: String) -> URL {
@@ -108,6 +111,7 @@ extension Router {
         let routeDictionary = [
             RouteTemplates.dashboardRouteTemplate: parentDashboardHandler(),
             RouteTemplates.settingsRouteTemplate: settingsPageHandler(),
+            RouteTemplates.profileRouteTemplate: profilePageHandler(),
             RouteTemplates.studentThresholdRouteTemplate: adjustThresholdsHandler(),
             RouteTemplates.assignmentDetailsTemplate: assignmentDetailsHandler(),
             RouteTemplates.standaloneAssignmentDetailsTemplate: standaloneAssignmentDetailsHandler(),
@@ -128,13 +132,13 @@ extension Router {
         })
         addRoutesWithDictionary(routeDictionary)
     }
-    
+
     func parentDashboardHandler() -> RouteHandler {
         return { params in
             guard let session = self.session else {
                 return nil
             }
-            
+
             let dashboardVC = DashboardViewController.new(session: session)
             dashboardVC.selectCalendarEventAction = { [weak dashboardVC] session, studentID, calendarEvent in
                 guard let dashboardVC = dashboardVC else { return }
@@ -159,14 +163,14 @@ extension Router {
             dashboardVC.logoutAction = {
                 CanvasKeymaster.the().logout()
             }
-            
-            
+
+
             let navController = UINavigationController.parentNavigationController(withRootViewController: dashboardVC)
             navController.navigationBar.accessibilityIdentifier = "navigation_bar"
             return navController
         }
     }
-    
+
     func settingsPageHandler() -> RouteHandler {
         return { params in
             guard let session = self.session else {
@@ -174,17 +178,23 @@ extension Router {
             }
 
             let settingsVC = SettingsViewController.new(session: session)
-            
+
             settingsVC.closeAction = { [weak settingsVC] session in
                 settingsVC?.dismiss(animated: true, completion: nil)
             }
-            
+
             settingsVC.observeeSelectedAction = { [weak settingsVC] session, observee in
                 guard let settingsVC = settingsVC else { return }
                 self.route(settingsVC, toURL: self.thresholdSettingsRoute(studentID: String(observee.id)))
             }
 
             return settingsVC
+        }
+    }
+
+    func profilePageHandler() -> RouteHandler {
+        return { _ in
+            return ProfileViewController.create()
         }
     }
 
@@ -222,7 +232,7 @@ extension Router {
 
             // Only add syllabus if the course has a syllabus
             session.enrollmentsDataSource(withScope: studentID).producer(ContextID(id: courseID, context: .course)).observe(on: UIScheduler()).startWithValues { next in
-                guard let course = next as? Course else { return }
+                guard let course = next as? CanvasCore.Course else { return }
 
                 calendarWeekPageVC.title = course.name
 
@@ -384,4 +394,47 @@ extension Router {
 
         return appDelegate
     }
+}
+
+let router = Core.Router(routes: [
+    Core.RouteHandler(.profileObservees, name: "profile_observees") { _, _ in
+        let vc = Parent.Router.sharedInstance.matchURL(Router.sharedInstance.settingsRoute())
+        return vc
+    },
+    Core.RouteHandler(.support, name: "support") { _, params in
+        guard let type = params["type"] else {
+            return nil
+        }
+
+        let storyboard = UIStoryboard(name: "SupportTicket", bundle: Bundle(for: SupportTicketViewController.self))
+        let controller = storyboard.instantiateInitialViewController()!.children[0] as! SupportTicketViewController
+        if type == "feature" {
+            controller.ticketType = SupportTicketTypeFeatureRequest
+        } else {
+            controller.ticketType = SupportTicketTypeProblem
+        }
+        return UINavigationController(rootViewController: controller)
+    },
+    Core.RouteHandler(.termsOfService, name: "terms_of_service") { _, params in
+        guard let accountID = params["accountID"] else {
+            return nil
+        }
+        let vc = TermsOfServiceViewController(AppEnvironment.shared)
+        return vc
+    },
+    Core.RouteHandler(.developerMenu, name: "dev_menu") { _, _ in
+        return DeveloperMenuViewController.create()
+    },
+    Core.RouteHandler(.anythingElse, name: "anything_else") { url, _ in
+        guard url.host != nil, let url = url.url else {
+            return nil
+        }
+        let safari = SFSafariViewController(url: url)
+        safari.transitioningDelegate = ResetTransitionDelegate.shared
+        return safari
+    }
+])
+
+public class ResetTransitionDelegate: NSObject, UIViewControllerTransitioningDelegate {
+    public static let shared = ResetTransitionDelegate()
 }

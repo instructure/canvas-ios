@@ -34,7 +34,8 @@ extension CKIClient {
             refreshToken: nil,
             userAvatarURL: currentUser.avatarURL,
             userID: currentUser.id,
-            userName: currentUser.name
+            userName: currentUser.name,
+            userEmail: currentUser.email
         )
     }
 }

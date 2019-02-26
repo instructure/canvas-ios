@@ -112,7 +112,8 @@ class LoginWebPresenter {
                             locale: model.user.effective_locale,
                             refreshToken: model.refresh_token,
                             userID: model.user.id.value,
-                            userName: model.user.name
+                            userName: model.user.name,
+                            userEmail: model.user.email
                         ))
                     }
                 }

@@ -16,6 +16,26 @@
 
 import UIKit
 
+public protocol ViewControllerLoader {}
+extension UIViewController: ViewControllerLoader {}
+extension ViewControllerLoader where Self: UIViewController {
+    /// Instantiates and returns the view controller.
+    /// This can assume that the identifier matches the type name.
+    public static func loadFromStoryboard(withIdentifier identifier: String = String(describing: Self.self)) -> Self {
+        let storyboard = UIStoryboard(name: identifier, bundle: Bundle(for: self))
+        guard let viewController = storyboard.instantiateViewController(withIdentifier: identifier) as? Self else {
+            fatalError("Could not create \(identifier) from a storyboard.")
+        }
+        return viewController
+    }
+
+    /// Returns a newly initialized view controller.
+    /// This can assume the nib name matches the type name and the bundle contains the type.
+    public static func loadFromXib(nibName name: String = String(describing: Self.self)) -> Self {
+        return Self.init(nibName: name, bundle: Bundle(for: self))
+    }
+}
+
 extension UIViewController {
     public enum NavigationItemSide {
         case right
@@ -39,7 +59,7 @@ extension UIViewController {
         addDismissBarButton(.done, side: side)
     }
 
-    private func addDismissBarButton(_ barButtonSystemItem: UIBarButtonItem.SystemItem, side: NavigationItemSide) {
+    public func addDismissBarButton(_ barButtonSystemItem: UIBarButtonItem.SystemItem, side: NavigationItemSide) {
         let button = UIBarButtonItem(barButtonSystemItem: barButtonSystemItem, target: self, action: #selector(dismissDoneButton))
         addNavigationButton(button, side: side)
     }

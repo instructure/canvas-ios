@@ -28,16 +28,18 @@ public struct RouteHandler {
         case splat(String)
     }
 
+    public let name: String
     public let template: String
     public let factory: ViewFactory
     public let segments: [Segment]
 
-    public init(_ route: Route, factory: @escaping ViewFactory) {
-        self.init(route.url.path, factory: factory)
+    public init(_ route: Route, name: String, factory: @escaping ViewFactory) {
+        self.init(route.url.path, name: name, factory: factory)
     }
 
-    public init(_ template: String, factory: @escaping ViewFactory) {
+    public init(_ template: String, name: String, factory: @escaping ViewFactory) {
         self.template = template
+        self.name = name
         self.factory = factory
         self.segments = template.split(separator: "/").map { part in
             if part.hasPrefix("*") {
@@ -53,11 +55,12 @@ public struct RouteHandler {
         var parts = url.path.split(separator: "/")
         var params: [String: String] = [:]
         for segment in segments {
-            guard !parts.isEmpty else { return nil } // too short
             switch segment {
             case .literal(let template):
+                guard !parts.isEmpty else { return nil } // too short
                 guard parts.removeFirst() == template else { return nil }
             case .param(let name):
+                guard !parts.isEmpty else { return nil } // too short
                 params[name] = String(parts.removeFirst())
             case .splat(let name):
                 params[name] = parts.joined(separator: "/")
