@@ -16,28 +16,6 @@
 
 import Foundation
 
-class GetPaginatedAssignments: PaginatedUseCase<GetAssignmentsRequest, Assignment> {
-    let courseID: String
-
-    init(courseID: String, env: AppEnvironment, force: Bool = false) {
-        self.courseID = courseID
-        let request = GetAssignmentsRequest(courseID: courseID)
-        super.init(api: env.api, database: env.database, request: request)
-    }
-
-    override var predicate: NSPredicate {
-        return NSPredicate(format: "%K == %@", #keyPath(Assignment.courseID), courseID)
-    }
-
-    override func predicate(forItem item: APIAssignment) -> NSPredicate {
-        return NSPredicate(format: "%K == %@", #keyPath(Assignment.htmlURL), item.html_url as CVarArg)
-    }
-
-    override func updateModel(_ model: Assignment, using item: APIAssignment, in client: PersistenceClient) throws {
-        try model.update(fromApiModel: item, in: client, updateSubmission: false)
-    }
-}
-
 public class GetAssignments: CollectionUseCase {
     public typealias Model = Assignment
 

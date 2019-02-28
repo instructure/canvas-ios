@@ -20,7 +20,6 @@
 		3B0B0F5F219C8CFE00F04216 /* AssignmentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0042219BD9F50045E8A1 /* AssignmentListViewController.swift */; };
 		3B0B0F60219C8CFE00F04216 /* AssignmentListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0043219BD9F50045E8A1 /* AssignmentListPresenter.swift */; };
 		3B0B0F62219C8D0500F04216 /* AssignmentDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B1B0046219BD9F50045E8A1 /* AssignmentDetailsViewController.storyboard */; };
-		3B0B0F63219C8D0500F04216 /* AssignmentDetailsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0048219BD9F50045E8A1 /* AssignmentDetailsUseCase.swift */; };
 		3B0B0F64219C8D0A00F04216 /* GradeCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B004D219BD9F50045E8A1 /* GradeCircle.swift */; };
 		3B0B0F65219C8D1100F04216 /* CourseListSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0056219BD9F50045E8A1 /* CourseListSectionHeaderView.swift */; };
 		3B0B0F66219C8D1100F04216 /* CourseListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B1B0057219BD9F50045E8A1 /* CourseListViewController.storyboard */; };
@@ -41,7 +40,6 @@
 		3B1B0068219BD9F60045E8A1 /* AssignmentListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0043219BD9F50045E8A1 /* AssignmentListPresenter.swift */; };
 		3B1B006A219BD9F60045E8A1 /* AssignmentDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B1B0046219BD9F50045E8A1 /* AssignmentDetailsViewController.storyboard */; };
 		3B1B006B219BD9F60045E8A1 /* AssignmentDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0047219BD9F50045E8A1 /* AssignmentDetailsPresenter.swift */; };
-		3B1B006C219BD9F60045E8A1 /* AssignmentDetailsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0048219BD9F50045E8A1 /* AssignmentDetailsUseCase.swift */; };
 		3B1B006F219BD9F60045E8A1 /* AssignmentDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B004B219BD9F50045E8A1 /* AssignmentDetailsViewController.swift */; };
 		3B1B0070219BD9F60045E8A1 /* GradeCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B004D219BD9F50045E8A1 /* GradeCircle.swift */; };
 		3B1B0072219BD9F60045E8A1 /* CourseNavigationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0051219BD9F50045E8A1 /* CourseNavigationTableViewController.swift */; };
@@ -59,7 +57,6 @@
 		3B1B0080219BD9F60045E8A1 /* QuizListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0063219BD9F60045E8A1 /* QuizListCell.swift */; };
 		3B1B0094219BDA560045E8A1 /* AssignmentListPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0084219BDA550045E8A1 /* AssignmentListPresenterTests.swift */; };
 		3B1B0095219BDA560045E8A1 /* AssignmentDetailsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0086219BDA550045E8A1 /* AssignmentDetailsPresenterTests.swift */; };
-		3B1B0097219BDA560045E8A1 /* AssignmentDetailsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0088219BDA550045E8A1 /* AssignmentDetailsUseCaseTests.swift */; };
 		3B1B0098219BDA560045E8A1 /* CourseNavigationPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B008B219BDA550045E8A1 /* CourseNavigationPresenterTests.swift */; };
 		3B1B009A219BDA560045E8A1 /* QuizListPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B008F219BDA560045E8A1 /* QuizListPresenterTests.swift */; };
 		3B1B009B219BDA560045E8A1 /* GroupNavigationPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0092219BDA560045E8A1 /* GroupNavigationPresenterTests.swift */; };
@@ -369,7 +366,6 @@
 		3B1B0043219BD9F50045E8A1 /* AssignmentListPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentListPresenter.swift; sourceTree = "<group>"; };
 		3B1B0046219BD9F50045E8A1 /* AssignmentDetailsViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AssignmentDetailsViewController.storyboard; sourceTree = "<group>"; };
 		3B1B0047219BD9F50045E8A1 /* AssignmentDetailsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsPresenter.swift; sourceTree = "<group>"; };
-		3B1B0048219BD9F50045E8A1 /* AssignmentDetailsUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsUseCase.swift; sourceTree = "<group>"; };
 		3B1B004B219BD9F50045E8A1 /* AssignmentDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsViewController.swift; sourceTree = "<group>"; };
 		3B1B004D219BD9F50045E8A1 /* GradeCircle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradeCircle.swift; sourceTree = "<group>"; };
 		3B1B0051219BD9F50045E8A1 /* CourseNavigationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseNavigationTableViewController.swift; sourceTree = "<group>"; };
@@ -387,7 +383,6 @@
 		3B1B0063219BD9F60045E8A1 /* QuizListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizListCell.swift; sourceTree = "<group>"; };
 		3B1B0084219BDA550045E8A1 /* AssignmentListPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentListPresenterTests.swift; sourceTree = "<group>"; };
 		3B1B0086219BDA550045E8A1 /* AssignmentDetailsPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsPresenterTests.swift; sourceTree = "<group>"; };
-		3B1B0088219BDA550045E8A1 /* AssignmentDetailsUseCaseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsUseCaseTests.swift; sourceTree = "<group>"; };
 		3B1B008B219BDA550045E8A1 /* CourseNavigationPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseNavigationPresenterTests.swift; sourceTree = "<group>"; };
 		3B1B008F219BDA560045E8A1 /* QuizListPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizListPresenterTests.swift; sourceTree = "<group>"; };
 		3B1B0092219BDA560045E8A1 /* GroupNavigationPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupNavigationPresenterTests.swift; sourceTree = "<group>"; };
@@ -842,7 +837,6 @@
 				3B1B004C219BD9F50045E8A1 /* Views */,
 				3B1B0046219BD9F50045E8A1 /* AssignmentDetailsViewController.storyboard */,
 				3B1B0047219BD9F50045E8A1 /* AssignmentDetailsPresenter.swift */,
-				3B1B0048219BD9F50045E8A1 /* AssignmentDetailsUseCase.swift */,
 				3B1B004B219BD9F50045E8A1 /* AssignmentDetailsViewController.swift */,
 			);
 			path = AssignmentDetails;
@@ -936,7 +930,6 @@
 			isa = PBXGroup;
 			children = (
 				3B1B0086219BDA550045E8A1 /* AssignmentDetailsPresenterTests.swift */,
-				3B1B0088219BDA550045E8A1 /* AssignmentDetailsUseCaseTests.swift */,
 			);
 			path = AssignmentDetails;
 			sourceTree = "<group>";
@@ -1740,7 +1733,6 @@
 				3B1B0073219BD9F60045E8A1 /* CourseNavigationPresenter.swift in Sources */,
 				3B1B006F219BD9F60045E8A1 /* AssignmentDetailsViewController.swift in Sources */,
 				7D08F53621541AE80042E1F4 /* CardView.swift in Sources */,
-				3B1B006C219BD9F60045E8A1 /* AssignmentDetailsUseCase.swift in Sources */,
 				B1B6F06F219A1B2F00C1575D /* SubmissionFilePickerPresenter.swift in Sources */,
 				B10D776E21C1CCE200BCE822 /* FilePickerCell.swift in Sources */,
 				9F9F4EB321B58AA300842570 /* ExternalToolSubmissionContentViewController.swift in Sources */,
@@ -1774,7 +1766,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B1B0097219BDA560045E8A1 /* AssignmentDetailsUseCaseTests.swift in Sources */,
 				3B542D56215AE79E0084DA9D /* TestEnvironment.swift in Sources */,
 				3B6065FA2194EEF800D04D53 /* PersistenceTestCase.swift in Sources */,
 				9FFA7555218CA2520036FD41 /* SubmissionDetailsUseCaseTests.swift in Sources */,
@@ -1854,7 +1845,6 @@
 				3BE2C77C219386F1004B8E5E /* FilePickerViewController.swift in Sources */,
 				3BE2C78121938BFD004B8E5E /* FilePickerPresenter.swift in Sources */,
 				3B0B0F5F219C8CFE00F04216 /* AssignmentListViewController.swift in Sources */,
-				3B0B0F63219C8D0500F04216 /* AssignmentDetailsUseCase.swift in Sources */,
 				7D101952215EBB4B0058FDD1 /* DynamicButton.swift in Sources */,
 				B1B6F07E219B34A900C1575D /* SubmissionFilePickerPresenter.swift in Sources */,
 			);

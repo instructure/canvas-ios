@@ -16,22 +16,39 @@
 
 import Foundation
 
-public class GetAssignment: DetailUseCase<GetAssignmentRequest, Assignment> {
-    let assignmentID: String
-    let includes: [GetAssignmentRequest.GetAssignmentInclude]
+public class GetAssignment: APIUseCase {
+    public typealias Model = Assignment
 
-    public init(courseID: String, assignmentID: String, include: [GetAssignmentRequest.GetAssignmentInclude] = [], env: AppEnvironment = .shared) {
+    public let courseID: String
+    public let assignmentID: String
+    public let include: [GetAssignmentRequest.GetAssignmentInclude]
+
+    public init(courseID: String, assignmentID: String, include: [GetAssignmentRequest.GetAssignmentInclude] = []) {
+        self.courseID = courseID
         self.assignmentID = assignmentID
-        self.includes = include
-        let request = GetAssignmentRequest(courseID: courseID, assignmentID: assignmentID, include: include)
-        super.init(api: env.api, database: env.database, request: request)
+        self.include = include
     }
 
-    override var predicate: NSPredicate {
-        return NSPredicate(format: "%K == %@", #keyPath(Assignment.id), assignmentID)
+    public var cacheKey: String {
+        return "get-\(courseID)-\(assignmentID)-assignment"
     }
 
-    override func updateModel(_ model: Assignment, using item: APIAssignment, in client: PersistenceClient) throws {
-        try model.update(fromApiModel: item, in: client, updateSubmission: includes.contains(.submission))
+    public var request: GetAssignmentRequest {
+        return GetAssignmentRequest(courseID: courseID, assignmentID: assignmentID, include: include)
+    }
+
+    public var scope: Scope {
+        return .where(#keyPath(Assignment.id), equals: assignmentID, orderBy: nil, naturally: true)
+    }
+
+    public func write(response: APIAssignment?, urlResponse: URLResponse?, to client: PersistenceClient) throws {
+        guard let response = response else {
+            return
+        }
+
+        let predicate = NSPredicate(format: "%K == %@", #keyPath(Assignment.id), response.id.value as CVarArg)
+        let model: Assignment = client.fetch(predicate).first ?? client.insert()
+        let updateSubmission = include.contains(.submission)
+        try model.update(fromApiModel: response, in: client, updateSubmission: updateSubmission)
     }
 }

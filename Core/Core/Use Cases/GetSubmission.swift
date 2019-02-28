@@ -16,30 +16,41 @@
 
 import Foundation
 
-public class GetSubmission: RequestUseCase<GetSubmissionRequest> {
+public class GetSubmission: APIUseCase {
     let context: Context
     let assignmentID: String
     let userID: String
 
-    public init(context: Context, assignmentID: String, userID: String, env: AppEnvironment) {
-        self.context = context
+    private var mainPredicate: NSPredicate
+    private var mainSort: NSSortDescriptor = NSSortDescriptor(key: #keyPath(Submission.attempt), ascending: false)
+
+    public typealias Model = Submission
+
+    public init(context: Context, assignmentID: String, userID: String) {
         self.assignmentID = assignmentID
         self.userID = userID
-        let request = GetSubmissionRequest(context: context, assignmentID: assignmentID, userID: userID)
-        super.init(api: env.api, database: env.database, request: request)
-        addSaveOperation { [weak self] response, urlResponse, client in
-            try self?.save(response: response, urlResponse: urlResponse, client: client)
-        }
+        self.context = context
+
+        mainPredicate = NSPredicate(format: "%K == %@ AND %K == %@", #keyPath(Submission.assignmentID), assignmentID, #keyPath(Submission.userID), userID)
     }
 
-    func save(response: APISubmission?, urlResponse: URLResponse?, client: PersistenceClient) throws {
-        guard let item = response else { return }
-        let mainPredicate = NSPredicate(
-            format: "%K == %@ AND %K == %@",
-            #keyPath(Submission.assignmentID), assignmentID,
-            #keyPath(Submission.userID), userID
-        )
-        let mainSort = NSSortDescriptor(key: #keyPath(Submission.attempt), ascending: false)
+    public var cacheKey: String {
+        return "get-\(context.id)-\(assignmentID)-\(userID)-submission"
+    }
+
+    public var request: GetSubmissionRequest {
+        return GetSubmissionRequest(context: context, assignmentID: assignmentID, userID: userID)
+    }
+
+    public var scope: Scope {
+        return Scope(predicate: mainPredicate, order: [mainSort])
+    }
+
+    public func write(response: APISubmission?, urlResponse: URLResponse?, to client: PersistenceClient) throws {
+        guard let item = response else {
+            return
+        }
+
         let model: Submission = client.fetch(predicate: mainPredicate, sortDescriptors: [ mainSort ]).first ?? client.insert()
         try model.update(fromApiModel: item, in: client)
         for entry in item.submission_history ?? [] {

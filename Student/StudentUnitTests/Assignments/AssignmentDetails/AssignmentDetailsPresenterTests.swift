@@ -40,21 +40,24 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
 
     func testLoadCourse() {
         //  given
+        Assignment.make()
         let c = Course.make()
         Color.make(["canvasContextID": c.canvasContextID])
 
         presenter.viewIsReady()
+        wait(for: [expectation], timeout: 0.1)
         XCTAssertEqual(resultingSubtitle, c.name)
         XCTAssertEqual(resultingBackgroundColor, UIColor.red)
     }
 
     func testLoadAssignment() {
         //  given
+        Course.make()
         let expected = Assignment.make([ "submission": Submission.make() ])
 
         //  when
         presenter.viewIsReady()
-
+        wait(for: [expectation], timeout: 0.1)
         //  then
         XCTAssert(resultingAssignment as! Assignment === expected)
         XCTAssertEqual(presenter!.userID!, expected.submission!.userID)
@@ -63,10 +66,11 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
     func testBaseURLWithNilFragment() {
         let expected = URL(string: "https://canvas.instructure.com/courses/1/assignments/1")!
         Assignment.make(["htmlURL": expected])
+        Course.make()
         presenter = AssignmentDetailsPresenter(env: env, view: self, courseID: "1", assignmentID: "1", fragment: nil)
 
         presenter.viewIsReady()
-
+        wait(for: [expectation], timeout: 0.1)
         XCTAssertEqual(resultingBaseURL, expected)
     }
 
@@ -74,11 +78,13 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         let url = URL(string: "https://canvas.instructure.com/courses/1/assignments/1")!
         let fragment = "fragment"
         Assignment.make(["htmlURL": url])
+        Course.make()
         let expected = URL(string: "https://canvas.instructure.com/courses/1/assignments/1#fragment")!
 
         presenter = AssignmentDetailsPresenter(env: env, view: self, courseID: "1", assignmentID: "1", fragment: fragment)
 
         presenter.viewIsReady()
+        wait(for: [expectation], timeout: 0.1)
         XCTAssertEqual(resultingBaseURL?.absoluteString, expected.absoluteString)
     }
 
@@ -86,27 +92,32 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         let expected = URL(string: "https://canvas.instructure.com/courses/1/assignments/1")!
         let fragment = ""
         Assignment.make(["htmlURL": expected])
+        Course.make()
         presenter = AssignmentDetailsPresenter(env: env, view: self, courseID: "1", assignmentID: "1", fragment: fragment)
 
         presenter.viewIsReady()
-
+        wait(for: [expectation], timeout: 0.1)
         XCTAssertEqual(resultingBaseURL?.absoluteString, expected.absoluteString)
     }
 
     func testUseCaseFetchesData() {
         //  given
+        Course.make()
         let expected = Assignment.make()
 
         presenter.viewIsReady()
+        wait(for: [expectation], timeout: 0.1)
 
         //  then
         XCTAssertEqual(resultingAssignment?.name, expected.name)
     }
 
     func testRoutesToSubmission() {
+        Course.make()
         Assignment.make([ "id": "1", "submission": Submission.make([ "userID": "2" ]) ])
 
         presenter.viewIsReady()
+        wait(for: [expectation], timeout: 0.1)
 
         let router = env.router as? TestRouter
 
@@ -155,16 +166,16 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         XCTAssertEqual(resultingButtonTitle, "Submit Assignment")
     }
 
-    @discardableResult
-    func assignmentSetupForSubmissionsTypeTests(_ types: [SubmissionType]) -> Assignment {
-        let subTypes = Array(types.map { $0.rawValue })
-
-        let assignment = Assignment.make(["submissionTypesRaw": subTypes])
-        Course.make(["enrollments": Set([Enrollment.make()])])
-
-        presenter.loadData()
-        return assignment
-    }
+//    @discardableResult
+//    func assignmentSetupForSubmissionsTypeTests(_ types: [SubmissionType]) -> Assignment {
+//        let subTypes = Array(types.map { $0.rawValue })
+//
+//        let assignment = Assignment.make(["submissionTypesRaw": subTypes])
+//        Course.make(["enrollments": Set([Enrollment.make()])])
+//
+//        presenter.viewIsReady()
+//        return assignment
+//    }
 
     func testShowSubmitAssignmentButtonMultipleAttempts() {
         //  given
