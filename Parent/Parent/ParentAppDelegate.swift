@@ -30,7 +30,8 @@ let ParentAppRefresherTTL: TimeInterval = 5.minutes
 class ParentAppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    @objc var session: Session?
+    var legacySession: Session?
+    var session: KeychainEntry?
     @objc let loginConfig = LoginConfiguration(mobileVerifyName: "iosParent",
                                          logo: UIImage(named: "parent-logomark")!,
                                          fullLogo: UIImage(named: "parent-logo")!,
@@ -122,11 +123,21 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
 
 // MARK: Post launch setup
 extension ParentAppDelegate {
-    
     @objc func postLaunchSetup() {
-        prepareReactNative()
+        NativeLoginManager.shared().setup()
+        NativeLoginManager.shared().delegate = self
+        NativeLoginManager.shared().app = .parent
         setupDefaultErrorHandling()
         CanvasAnalytics.setHandler(self)
+
+        guard let lastSession = Keychain.mostRecentSession else {
+            TheKeymaster.logout()
+            return
+        }
+
+        self.session = lastSession
+        self.legacySession = Session(baseURL: lastSession.baseURL, user: SessionUser(id: lastSession.userID, name: lastSession.userName, avatarURL: lastSession.userAvatarURL), token: lastSession.accessToken)
+        self.didLogin(lastSession)
     }
 }
 
@@ -210,14 +221,13 @@ extension ParentAppDelegate: CanvasAnalyticsHandler {
 }
 
 extension ParentAppDelegate: NativeLoginManagerDelegate {
-    func didLogin(_ client: CKIClient) {
-        let session = client.authSession
-        self.session = session
-
-        guard let keychainEntry = client.keychainEntry else {
+    func didLogin(_ session: KeychainEntry) {
+        guard let legacySession = self.legacySession else {
             return
         }
-        AppEnvironment.shared.userDidLogin(session: keychainEntry)
+        Keychain.currentSession = session
+        Keychain.addEntry(session)
+        AppEnvironment.shared.userDidLogin(session: session)
 
         // UX requires that students are given color schemes in a specific order.
         // The method call below ensures that we always start with the first color scheme.
@@ -227,13 +237,51 @@ extension ParentAppDelegate: NativeLoginManagerDelegate {
 
         let countryCode: String? = Locale.current.regionCode
         if countryCode != "CA" {
-            let crashlyticsUserId = "\(session.user.id)@\(session.baseURL.host ?? session.baseURL.absoluteString)"
+            let crashlyticsUserId = "\(session.userID)@\(session.baseURL.host ?? session.baseURL.absoluteString)"
             Crashlytics.sharedInstance().setUserIdentifier(crashlyticsUserId)
         }
+
+        do {
+            let refresher = try Student.observedStudentsRefresher(legacySession)
+            refresher.refreshingCompleted.observeValues { [weak self] _ in
+                guard let weakSelf = self, let window = weakSelf.window else { return }
+
+                let dashboardHandler = Router.sharedInstance.parentDashboardHandler()
+                guard let root = dashboardHandler(nil) else { return }
+
+                weakSelf.addClearCacheGesture(root.view)
+
+                UIView.transition(with: window, duration: 0.25, options: .transitionCrossDissolve, animations: {
+                    let loading = UIViewController()
+                    loading.view.backgroundColor = .white
+                    window.rootViewController = loading
+                }, completion: { _ in
+                    window.rootViewController = root
+                })
+
+            }
+            refresher.refresh(true)
+        } catch let e as NSError {
+            print(e)
+        }
+
+        Router.sharedInstance.addRoutes()
+        Router.sharedInstance.session = legacySession
+        NotificationCenter.default.post(name: .loggedIn, object: self, userInfo: [LoggedInNotificationContentsSession: legacySession])
+    }
+
+    func didLogin(_ client: CKIClient) {
+        self.legacySession = client.authSession
+        guard let token = client.authSession.token else {
+            return
+        }
+        let entry = KeychainEntry(accessToken: token, baseURL: client.authSession.baseURL, expiresAt: nil, locale: "en", masquerader: nil, refreshToken: nil, userAvatarURL: client.authSession.user.avatarURL, userID: client.authSession.user.id, userName: client.authSession.user.name)
+        self.didLogin(entry)
     }
     
     func didLogout(_ controller: UIViewController) {
         guard let window = self.window else { return }
+        Keychain.clearEntries()
         UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: {
             window.rootViewController = controller
         }, completion:nil)
