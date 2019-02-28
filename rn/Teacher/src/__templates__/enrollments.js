@@ -33,8 +33,10 @@ export const enrollment: Template<Enrollment> = template({
   grades: {
     html_url: 'https://mobiledev.instructure.com/courses/1/grades/5123',
     current_score: 99,
+    override_score: null,
     final_score: 99,
     current_grade: null,
+    override_grade: null,
     final_grade: null,
   },
 })

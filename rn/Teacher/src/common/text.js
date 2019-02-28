@@ -140,6 +140,10 @@ const FontWeight = {
     normal: MEDIUM_FONT,
     italic: MEDIUM_FONT_ITALIC,
   },
+  '800': {
+    normal: HEAVY_FONT,
+    italic: HEAVY_FONT_ITALIC,
+  },
   '700': { // 700 weight
     normal: BOLD_FONT,
     italic: BOLD_FONT_ITALIC,

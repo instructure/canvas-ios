@@ -22,7 +22,7 @@ import {
   View,
   StyleSheet,
 } from 'react-native'
-import { Text, SubTitle, Heading1 } from '../../common/text'
+import { Text, SubTitle } from '../../common/text'
 import Screen from '../../routing/Screen'
 import ActivityIndicatorView from '../../common/components/ActivityIndicatorView'
 import ErrorView from '../../common/components/ErrorView'
@@ -71,8 +71,13 @@ export class ContextCard extends Component<ContextCardProps> {
     }
 
     let grade: ?string
-    if (enrollment && enrollment.grades && enrollment.grades.current_grade) {
-      grade = enrollment.grades.current_grade
+    if (enrollment && enrollment.grades && (enrollment.grades.current_grade || enrollment.grades.current_score != null)) {
+      grade = enrollment.grades.current_grade || i18n.number(enrollment.grades.current_score / 100, 'percent')
+    }
+
+    let overrideGrade: ?string
+    if (enrollment && enrollment.grades && (enrollment.grades.override_grade || enrollment.grades.override_score != null)) {
+      overrideGrade = enrollment.grades.override_grade || i18n.number(enrollment.grades.override_score / 100, 'percent')
     }
 
     return (
@@ -86,10 +91,13 @@ export class ContextCard extends Component<ContextCardProps> {
             />
             <View style={styles.userText}>
               <Text style={styles.userName}>{user.name}</Text>
+              { user.primary_email &&
+                <SubTitle>{user.primary_email}</SubTitle>
+              }
             </View>
           </View>
           <View>
-            <Heading1>{course.name}</Heading1>
+            <Text style={styles.heading}>{course.name}</Text>
             { sectionName && <Text testID='context-card.section-name' style={{ marginVertical: 4, fontSize: 14 }}>{i18n('Section: {sectionName}', { sectionName })}</Text> }
             {enrollment && enrollment.last_activity_at && !app.isStudent() &&
               <SubTitle testID='context-card.last-activity'>
@@ -100,41 +108,52 @@ export class ContextCard extends Component<ContextCardProps> {
             }
           </View>
         </View>
-        {isStudent && permissions.viewAnalytics && user.analytics && enrollment && enrollment.grades &&
+        {isStudent && ((permissions.viewAnalytics && user.analytics) || (enrollment && enrollment.grades)) &&
           <View style={styles.headerSection}>
-            <Heading1 style={{ marginBottom: 16 }}>{i18n('Submissions')}</Heading1>
+            <Text style={[styles.heading, { marginBottom: 16 }]}>{i18n('Submissions')}</Text>
             <View style={styles.line}>
               <View
                 accessible={true}
                 style={styles.analyticsGroup}
-                accessibilityLabel={grade
-                  ? i18n('Grade {grade}', { grade })
-                  : i18n('Grade {grade, number, percent}', { grade: enrollment.grades.current_score / 100 })
-                }
+                accessibilityLabel={i18n('Grade {grade}', { grade })}
               >
-                <Text testID='context-card.grade' style={styles.largeText}>{grade || i18n.number(enrollment.grades.current_score / 100, 'percent')}</Text>
+                <Text testID='context-card.grade' style={styles.largeText}>{grade}</Text>
                 <Text style={styles.label}>{i18n('Grade')}</Text>
               </View>
-              <View
-                accessible={true}
-                style={styles.analyticsGroup}
-                accessibilityLabel={i18n('Late Submissions {late, number}', {
-                  late: user.analytics.tardinessBreakdown.late,
-                })}
-              >
-                <Text style={styles.largeText}>{i18n.number(user.analytics.tardinessBreakdown.late)}</Text>
-                <Text style={styles.label}>{i18n('Late')}</Text>
-              </View>
-              <View
-                accessible={true}
-                style={styles.analyticsGroup}
-                accessibilityLabel={i18n('Missing Submissions {missing, number}', {
-                  missing: user.analytics.tardinessBreakdown.missing,
-                })}
-              >
-                <Text style={styles.largeText}>{i18n.number(user.analytics.tardinessBreakdown.missing)}</Text>
-                <Text style={styles.label}>{i18n('Missing')}</Text>
-              </View>
+              { overrideGrade &&
+                <View
+                  accessible={true}
+                  style={styles.analyticsGroup}
+                  accessibilityLabel={i18n('Override Grade {grade}', { grade: overrideGrade })}
+                >
+                  <Text testID='context-card.override-grade' style={styles.largeText}>{overrideGrade}</Text>
+                  <Text style={styles.label}>{i18n('Override')}</Text>
+                </View>
+              }
+              { user.analytics &&
+                <View
+                  accessible={true}
+                  style={styles.analyticsGroup}
+                  accessibilityLabel={i18n('Late Submissions {late, number}', {
+                    late: user.analytics.tardinessBreakdown.late,
+                  })}
+                >
+                  <Text style={styles.largeText}>{i18n.number(user.analytics.tardinessBreakdown.late)}</Text>
+                  <Text style={styles.label}>{i18n('Late')}</Text>
+                </View>
+              }
+              { user.analytics &&
+                <View
+                  accessible={true}
+                  style={styles.analyticsGroup}
+                  accessibilityLabel={i18n('Missing Submissions {missing, number}', {
+                    missing: user.analytics.tardinessBreakdown.missing,
+                  })}
+                >
+                  <Text style={styles.largeText}>{i18n.number(user.analytics.tardinessBreakdown.missing)}</Text>
+                  <Text style={styles.label}>{i18n('Missing')}</Text>
+                </View>
+              }
             </View>
           </View>
         }
@@ -241,19 +260,22 @@ const styles = StyleSheet.create({
   line: {
     flexDirection: 'row',
   },
+  heading: {
+    fontSize: 18,
+    fontWeight: '600',
+  },
   largeText: {
     fontSize: 28,
-    fontWeight: '700',
+    fontWeight: '800',
     color: colors.darkText,
     flex: 1,
   },
-  largeTextTitle: {
-    fontWeight: '500',
+  label: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: colors.darkText,
   },
   textWrapper: {
-    flex: 1,
-  },
-  label: {
     flex: 1,
   },
   outOf: {

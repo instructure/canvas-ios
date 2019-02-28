@@ -17,12 +17,7 @@
 /* @flow */
 
 import template, { type Template } from '../../../utils/template'
-const templates = {
-  ...require('../../../__templates__/course'),
-  ...require('../../../__templates__/users'),
-  ...require('../../../__templates__/enrollments'),
-  ...require('../../../__templates__/submissions'),
-}
+import * as templates from '../../../__templates__'
 
 export const ContextCardResult: Template<any> = template({
   course: templates.course({
