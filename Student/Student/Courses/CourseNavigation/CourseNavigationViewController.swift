@@ -29,6 +29,7 @@ protocol CourseNavigationViewModel: TabViewable {
 
 class CourseNavigationViewController: UITableViewController {
     var presenter: CourseNavigationPresenter!
+    var color: UIColor?
 
     convenience init(env: AppEnvironment = .shared, courseID: String) {
         self.init(nibName: nil, bundle: nil)
@@ -58,6 +59,7 @@ extension CourseNavigationViewController: CourseNavigationViewProtocol {
     func updateNavBar(title: String?, backgroundColor: UIColor?) {
         navigationItem.title = title
         navigationController?.navigationBar.useContextColor(backgroundColor)
+        color = backgroundColor?.ensureContrast(against: .named(.white))
     }
 }
 
@@ -73,6 +75,7 @@ extension CourseNavigationViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = presenter?.tabs[indexPath.row]?.label
         cell.imageView?.image = presenter?.tabs[indexPath.row]?.icon
+        cell.imageView?.tintColor = color
         return cell
     }
 

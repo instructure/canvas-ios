@@ -46,7 +46,7 @@ public class GetContextTabs: CollectionUseCase {
         for item in response {
             let predicate = NSPredicate(format: "%K == %@", #keyPath(Tab.htmlURL), item.html_url as CVarArg)
             let model: Tab = client.fetch(predicate).first ?? client.insert()
-            try model.update(fromApiModel: item, in: client, context: context)
+            try model.save(item, in: client, context: context)
         }
     }
 }

@@ -47,7 +47,7 @@ public class Tab: NSManagedObject {
         set { visibilityRaw = newValue.rawValue }
     }
 
-    func update(fromApiModel item: APITab, in client: PersistenceClient, context: Context) throws {
+    func save(_ item: APITab, in client: PersistenceClient, context: Context) throws {
         id = item.id.value
         htmlURL = item.html_url
         label = item.label

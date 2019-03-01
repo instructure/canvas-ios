@@ -21,9 +21,12 @@ import XCTest
 class GetContextTabsTest: CoreTestCase {
 
     let context = ContextModel(.group, id: "1")
-    lazy var request: GetTabsRequest = { [weak self] in
-        return GetTabsRequest(context: self!.context)
-    }()
+
+    func testCacheKey() {
+        let useCase = GetContextTabs(context: context)
+
+        XCTAssertEqual("get-group_1-tabs", useCase.cacheKey)
+    }
 
     func testScopeSort() {
         Tab.make(["position": 3, "label": "3"])
