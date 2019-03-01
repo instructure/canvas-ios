@@ -46,8 +46,7 @@ public class GetAssignment: APIUseCase {
             return
         }
 
-        let predicate = NSPredicate(format: "%K == %@", #keyPath(Assignment.id), response.id.value as CVarArg)
-        let model: Assignment = client.fetch(predicate).first ?? client.insert()
+        let model: Assignment = client.fetch(scope.predicate).first ?? client.insert()
         let updateSubmission = include.contains(.submission)
         try model.update(fromApiModel: response, in: client, updateSubmission: updateSubmission)
     }
