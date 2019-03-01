@@ -58,15 +58,17 @@ class DocViewerPresenter: NSObject {
             let api = URLSessionAPI(accessToken: nil, baseURL: sessionURL)
             self?.metadata = metadata
             let document = PSPDFDocument(url: localURL)
-            document.defaultAnnotationUsername = metadata.annotations.user_name
-            document.didCreateDocumentProviderBlock = { documentProvider in
-                let provider = DocViewerAnnotationProvider(documentProvider: documentProvider, metadata: metadata.annotations, annotations: useCase.annotations, api: api, sessionID: sessionID)
-                provider.docViewerDelegate = self
-                documentProvider.annotationManager.annotationProviders.insert(provider, at: 0)
-                self?.annotationProvider = provider
-                for (pageKey, rawRotation) in metadata.rotations ?? [:] {
-                    if let pageIndex = PageIndex(pageKey), let rotation = Rotation(rawValue: rawRotation) {
-                        documentProvider.setRotationOffset(rotation, forPageAt: pageIndex)
+            if let annotationMeta = metadata.annotations {
+                document.defaultAnnotationUsername = annotationMeta.user_name
+                document.didCreateDocumentProviderBlock = { documentProvider in
+                    let provider = DocViewerAnnotationProvider(documentProvider: documentProvider, metadata: annotationMeta, annotations: useCase.annotations, api: api, sessionID: sessionID)
+                    provider.docViewerDelegate = self
+                    documentProvider.annotationManager.annotationProviders.insert(provider, at: 0)
+                    self?.annotationProvider = provider
+                    for (pageKey, rawRotation) in metadata.rotations ?? [:] {
+                        if let pageIndex = PageIndex(pageKey), let rotation = Rotation(rawValue: rawRotation) {
+                            documentProvider.setRotationOffset(rotation, forPageAt: pageIndex)
+                        }
                     }
                 }
             }
