@@ -34,7 +34,7 @@ public class GetAssignments: CollectionUseCase {
     }
 
     public var scope: Scope {
-        return .where(#keyPath(Assignment.courseID), equals: courseID, orderBy: nil, naturally: true)
+        return .where(#keyPath(Assignment.courseID), equals: courseID, orderBy: #keyPath(Assignment.position), naturally: false)
     }
 
     public func write(response: [APIAssignment]?, urlResponse: URLResponse?, to client: PersistenceClient) throws {
