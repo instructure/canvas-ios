@@ -45,7 +45,7 @@ class RoutesTests: XCTestCase {
     }
 
     func testCourseNavTab() {
-        XCTAssert(router.match(Route.course("1").url) is CourseNavigationTableViewController)
+        XCTAssert(router.match(Route.course("1").url) is CourseNavigationViewController)
     }
 
     func testSubmission() {

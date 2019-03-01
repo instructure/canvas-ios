@@ -21,7 +21,6 @@ import TestsFoundation
 
 class CourseNavigationPresenterTests: PersistenceTestCase {
 
-    var resultingTabs: [CourseNavigationViewModel]?
     var presenter: CourseNavigationPresenter!
     var resultingError: NSError?
     var navigationController: UINavigationController?
@@ -30,9 +29,8 @@ class CourseNavigationPresenterTests: PersistenceTestCase {
 
     override func setUp() {
         super.setUp()
-        resultingTabs = nil
         expectation = XCTestExpectation(description: "expectation")
-        presenter = CourseNavigationPresenter(courseID: "1", view: self, env: env, useCase: MockUseCase {})
+        presenter = CourseNavigationPresenter(courseID: "1", view: self, env: env)
     }
 
     @discardableResult
@@ -42,13 +40,14 @@ class CourseNavigationPresenterTests: PersistenceTestCase {
 
     func testLoadTabs() {
         //  given
+        Course.make()
         let expected = tab()
 
         //  when
-        presenter.loadTabs()
+        presenter.viewIsReady()
         wait(for: [expectation], timeout: 0.1)
         //  then
-        XCTAssertEqual(resultingTabs?.first?.id, expected.id)
+        XCTAssertEqual(presenter.tabs.first?.id, expected.id)
     }
 
     func testTabsAreOrderedByPosition() {
@@ -56,11 +55,12 @@ class CourseNavigationPresenterTests: PersistenceTestCase {
         Tab.make(["position": 3, "id": "c", "contextRaw": "course_1"])
         Tab.make(["position": 1, "id": "a", "contextRaw": "course_1"])
 
-        presenter.loadTabs()
+        presenter.viewIsReady()
+        wait(for: [expectation], timeout: 0.1)
 
-        XCTAssertEqual(resultingTabs?.count, 3)
-        XCTAssertEqual(resultingTabs?.first?.id, "a")
-        XCTAssertEqual(resultingTabs?.last?.id, "c")
+        XCTAssertEqual(presenter.tabs.count, 3)
+        XCTAssertEqual(presenter.tabs.first?.id, "a")
+        XCTAssertEqual(presenter.tabs.last?.id, "c")
     }
 
     func testUseCaseFetchesData() {
@@ -68,19 +68,19 @@ class CourseNavigationPresenterTests: PersistenceTestCase {
         tab()
 
         //   when
-        presenter.loadTabs()
+        presenter.viewIsReady()
+        wait(for: [expectation], timeout: 0.1)
 
         //  then
-        XCTAssertEqual(resultingTabs?.first?.label, Tab.make().label)
+        XCTAssertEqual(presenter.tabs.first?.label, Tab.make().label)
     }
 }
 
 extension CourseNavigationPresenterTests: CourseNavigationViewProtocol {
-    func updateNavBar(title: String, backgroundColor: UIColor) {
+    func updateNavBar(title: String?, backgroundColor: UIColor?) {
     }
 
-    func showTabs(_ tabs: [CourseNavigationViewModel]) {
-        resultingTabs = tabs
+    func update() {
         expectation.fulfill()
     }
 

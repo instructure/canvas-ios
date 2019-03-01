@@ -16,38 +16,38 @@
 
 import Foundation
 
-class GetPaginatedContextTabs: PaginatedUseCase<GetTabsRequest, Tab> {
-    let context: Context
+public class GetContextTabs: CollectionUseCase {
+    public typealias Model = Tab
 
-    init(context: Context, env: AppEnvironment, force: Bool = false) {
+    public let context: Context
+
+    public init(context: Context) {
         self.context = context
-        let request = GetTabsRequest(context: context)
-        super.init(api: env.api, database: env.database, request: request)
     }
 
-    override var predicate: NSPredicate {
-        return NSPredicate(format: "%K == %@", #keyPath(Tab.contextRaw), context.canvasContextID)
+    public var cacheKey: String {
+        return "get-\(context.canvasContextID)-tabs"
     }
 
-    override func predicate(forItem item: APITab) -> NSPredicate {
-        return NSPredicate(format: "%K == %@", #keyPath(Tab.htmlURL), item.html_url as CVarArg)
+    public var request: GetTabsRequest {
+        return GetTabsRequest(context: context)
     }
 
-    override func updateModel(_ model: Tab, using item: APITab, in client: PersistenceClient) throws {
-        model.id = item.id.value
-        model.htmlURL = item.html_url
-        model.label = item.label
-        model.position = item.position
-        model.context = self.context
-        model.type = item.type
-        model.visibility = item.visibility
+    public var scope: Scope {
+        let sort = NSSortDescriptor(key: #keyPath(Tab.position), ascending: true)
+        let pred = NSPredicate(format: "%K == %@", #keyPath(Tab.contextRaw), context.canvasContextID)
+        return Scope(predicate: pred, order: [sort])
     }
-}
 
-public class GetContextTabs: OperationSet {
-    public init(context: Context, env: AppEnvironment, force: Bool = false) {
-        let paginated = GetPaginatedContextTabs(context: context, env: env)
-        let ttl = TTLOperation(key: "get-\(context.canvasContextID)-tabs", database: env.database, operation: paginated, force: force)
-        super.init(operations: [ttl])
+    public func write(response: [APITab]?, urlResponse: URLResponse?, to client: PersistenceClient) throws {
+        guard let response = response else {
+            return
+        }
+
+        for item in response {
+            let predicate = NSPredicate(format: "%K == %@", #keyPath(Tab.htmlURL), item.html_url as CVarArg)
+            let model: Tab = client.fetch(predicate).first ?? client.insert()
+            try model.update(fromApiModel: item, in: client, context: context)
+        }
     }
 }

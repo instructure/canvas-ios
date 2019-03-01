@@ -71,6 +71,19 @@ class PersistenceTests: CoreTestCase {
         XCTAssertEqual(objs.count, 0)
     }
 
+    func testDeleteCollection() {
+        let a = Course.make(["id": "1", "name": "a"])
+        let b = Course.make(["id": "2", "name": "b"])
+
+        var objs: [Course] = client.fetch()
+        XCTAssertEqual(objs.count, 2)
+
+        try? client.delete([a, b])
+
+        objs = client.fetch()
+        XCTAssertEqual(objs.count, 0)
+    }
+
     func testInsert() {
         let name = "test object"
 
