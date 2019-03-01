@@ -18,7 +18,6 @@ import Foundation
 
 public class GetContextTabs: CollectionUseCase {
     public typealias Model = Tab
-
     public let context: Context
 
     public init(context: Context) {

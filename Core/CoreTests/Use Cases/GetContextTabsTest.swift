@@ -25,6 +25,19 @@ class GetContextTabsTest: CoreTestCase {
         return GetTabsRequest(context: self!.context)
     }()
 
+    func testScopeSort() {
+        Tab.make(["position": 3, "label": "3"])
+        Tab.make(["position": 1, "label": "1"])
+        Tab.make(["position": 2, "label": "2"])
+
+        let useCase = GetContextTabs(context: context)
+
+        let tabs: [Tab] = databaseClient.fetch(predicate: useCase.scope.predicate, sortDescriptors: useCase.scope.order)
+
+        XCTAssertEqual(tabs.first?.label, "1")
+        XCTAssertEqual(tabs.last?.label, "3")
+    }
+
     func testItCreatesTabs() {
         let groupTab = APITab.make(["html_url": "https://twilson.instructure.com/groups/16"])
         let getContextTabs = GetContextTabs(context: context)
