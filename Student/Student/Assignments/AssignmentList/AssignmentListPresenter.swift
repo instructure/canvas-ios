@@ -49,6 +49,7 @@ class AssignmentListPresenter {
     func viewIsReady() {
         assignments.refresh()
         course.refresh()
+        update()
     }
 
     func update() {
