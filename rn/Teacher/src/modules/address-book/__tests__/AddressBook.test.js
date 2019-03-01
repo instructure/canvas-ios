@@ -155,12 +155,25 @@ describe('AddressBook', () => {
     props.name = 'Teachers'
     props.onSelect = jest.fn()
     const screen = shallow(<AddressBook {...props} />)
+    screen.instance()._requestFinished([
+      templates.addressBookResult({
+        id: '1',
+        name: 'Teachers 1',
+        user_count: 55,
+      }),
+      templates.addressBookResult({
+        id: '2',
+        name: 'Teachers 2',
+        user_count: 147,
+      }),
+    ])
     const list = screen.find('FlatList')
     const row = shallow(screen.instance()._renderRow({ item: list.props().data[0] }))
     row.simulate('press')
     expect(props.onSelect).toHaveBeenCalledWith([{
       id: 'course_1_teachers',
       name: 'Teachers',
+      user_count: 202,
     }])
   })
 

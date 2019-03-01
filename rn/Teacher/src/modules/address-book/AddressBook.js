@@ -123,6 +123,9 @@ export class AddressBook extends Component<AddressBookProps, State> {
       item = {
         id: this.props.context,
         name: this.props.name,
+        user_count: item.user_count || (this.state.searchResults || []).reduce((count: number, result: AddressBookResult) => (
+          count + (result.user_count || 0)
+        ), 0),
       }
     }
 
