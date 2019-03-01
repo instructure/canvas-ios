@@ -17,7 +17,7 @@
 import Foundation
 
 struct APIDocViewerMetadata: Codable {
-    let annotations: APIDocViewerAnnotationsMetadata
+    let annotations: APIDocViewerAnnotationsMetadata?
     let panda_push: APIDocViewerPandaPushMetadata?
     let rotations: [String: UInt]?
     let urls: APIDocViewerURLsMetadata
@@ -37,8 +37,10 @@ enum APIDocViewerPermissions: String, Codable {
 
 struct APIDocViewerPandaPushMetadata: Codable {
     let host: String
-    let annotations_channel: String
-    let annotations_token: String
+    let annotations_channel: String?
+    let annotations_token: String?
+    let document_channel: String?
+    let document_token: String?
 }
 
 struct APIDocViewerURLsMetadata: Codable {

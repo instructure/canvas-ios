@@ -22,7 +22,7 @@ extension OperationQueue {
     public func addOperationWithErrorHandling(_ group: OperationSet, sendErrorsTo view: ErrorViewController?) {
         addOperation(group, errorHandler: { error in
             if let error = error {
-                view?.showError(error)
+                DispatchQueue.main.async { view?.showError(error) }
             }
         })
     }

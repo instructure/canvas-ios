@@ -40,7 +40,7 @@ class DocViewerUseCase: OperationSet {
         addSequence([ getMeta, BlockOperation {
             guard let metadata = getMeta.response else { return }
             self.metadata = metadata
-            if metadata.annotations.enabled == true {
+            if metadata.annotations?.enabled == true {
                 self.loadAnnotations(docViewerAPI: docViewerAPI, sessionID: sessionID)
             }
             if let downloadURL = URL(string: metadata.urls.pdf_download.absoluteString, relativeTo: sessionURL) {
