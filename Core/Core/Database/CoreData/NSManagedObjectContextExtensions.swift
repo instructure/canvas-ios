@@ -36,6 +36,14 @@ extension NSManagedObjectContext: PersistenceClient {
         }
     }
 
+    public func delete<T>(_ objects: [T]) {
+        for o in objects {
+            if let managedObject = o as? NSManagedObject {
+                delete(managedObject)
+            }
+        }
+    }
+
     public func insert<T>() -> T {
         let name = String(describing: T.self)
         if let result = NSEntityDescription.insertNewObject(forEntityName: name, into: self) as? T {

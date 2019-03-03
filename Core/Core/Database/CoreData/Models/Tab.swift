@@ -46,6 +46,16 @@ public class Tab: NSManagedObject {
         get { return TabVisibility(rawValue: visibilityRaw) ?? .none }
         set { visibilityRaw = newValue.rawValue }
     }
+
+    func save(_ item: APITab, in client: PersistenceClient, context: Context) throws {
+        id = item.id.value
+        htmlURL = item.html_url
+        label = item.label
+        position = item.position
+        self.context = context
+        type = item.type
+        visibility = item.visibility
+    }
 }
 
 extension Tab: Scoped {

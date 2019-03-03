@@ -114,9 +114,7 @@ extension CollectionUseCase where Response == Request.Response {
             environment.database.performBackgroundTask { client in
                 do {
                     let all: [Model] = client.fetch(self.scope.predicate)
-                    for model in all {
-                        try client.delete(model)
-                    }
+                    try client.delete(all)
                     try client.save()
                     completionHandler(response, urlResponse, error)
                 } catch {

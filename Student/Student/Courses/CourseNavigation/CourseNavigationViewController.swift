@@ -18,8 +18,8 @@ import UIKit
 import Core
 
 protocol CourseNavigationViewProtocol: ErrorViewController {
-    func updateNavBar(title: String, backgroundColor: UIColor)
-    func showTabs(_ tabs: [CourseNavigationViewModel])
+    func updateNavBar(title: String?, backgroundColor: UIColor?)
+    func update()
 }
 
 protocol CourseNavigationViewModel: TabViewable {
@@ -27,9 +27,9 @@ protocol CourseNavigationViewModel: TabViewable {
     var htmlURL: URL { get }
 }
 
-class CourseNavigationTableViewController: UITableViewController {
+class CourseNavigationViewController: UITableViewController {
     var presenter: CourseNavigationPresenter!
-    var tabs: [CourseNavigationViewModel]?
+    var color: UIColor?
 
     convenience init(env: AppEnvironment = .shared, courseID: String) {
         self.init(nibName: nil, bundle: nil)
@@ -39,12 +39,7 @@ class CourseNavigationTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
-        presenter.loadTabs()
-    }
-
-    func updateNavBar(title: String, backgroundColor: UIColor) {
-        navigationItem.title = title
-        navigationController?.navigationBar.useContextColor(backgroundColor)
+        presenter.viewIsReady()
     }
 
     func configureTableView() {
@@ -52,34 +47,40 @@ class CourseNavigationTableViewController: UITableViewController {
     }
 }
 
-extension CourseNavigationTableViewController: CourseNavigationViewProtocol {
+extension CourseNavigationViewController: CourseNavigationViewProtocol {
     func showError(_ error: Error) {
         print(error)
     }
 
-    func showTabs(_ tabs: [CourseNavigationViewModel]) {
-        self.tabs = tabs
+    func update() {
         tableView.reloadData()
+    }
+
+    func updateNavBar(title: String?, backgroundColor: UIColor?) {
+        navigationItem.title = title
+        navigationController?.navigationBar.useContextColor(backgroundColor)
+        color = backgroundColor?.ensureContrast(against: .named(.white))
     }
 }
 
-extension CourseNavigationTableViewController {
+extension CourseNavigationViewController {
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tabs?.count ?? 0
+        return presenter?.tabs.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = tabs?[indexPath.row].label
-        cell.imageView?.image = tabs?[indexPath.row].icon
+        cell.textLabel?.text = presenter?.tabs[indexPath.row]?.label
+        cell.imageView?.image = presenter?.tabs[indexPath.row]?.icon
+        cell.imageView?.tintColor = color
         return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard indexPath.row < tabs?.count ?? 0, let tab = tabs?[indexPath.row] else { return }
+        guard indexPath.row < presenter?.tabs.count ?? 0, let tab = presenter?.tabs[indexPath.row] else { return }
         router.route(to: tab.htmlURL, from: self)
     }
 }

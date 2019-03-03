@@ -23,8 +23,8 @@ class GroupNavigationUseCase: PresenterUseCase {
         addSequence([
             GetContext(context: ContextModel(.group, id: context.id), env: env),
         ])
-        let getGroupOp = GetContext(context: context, env: env)
-        let tabsOp = GetContextTabs(context: context, env: env, force: false)
-        addOperations([getGroupOp, tabsOp])
+//        let getGroupOp = GetContext(context: context, env: env)
+//        let tabsOp = GetContextTabs(context: context, env: env, force: false)
+//        addOperations([getGroupOp, tabsOp])
     }
 }
