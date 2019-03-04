@@ -21,38 +21,37 @@ extension Tab: CourseNavigationViewModel {}
 
 class CourseNavigationPresenter {
     weak var view: CourseNavigationViewProtocol?
-    let frc: FetchedResultsController<Tab>
     var context: Context
-    let useCase: PresenterUseCase
     let env: AppEnvironment
-    lazy var loadDataFromServerOnce: () = {
-        env.queue.addOperation(useCase)
+
+    lazy var courses: Store<GetCourseUseCase> = {
+        let useCase = GetCourseUseCase(courseID: context.id)
+        return self.env.subscribe(useCase) { [weak self] in
+            self?.update()
+        }
     }()
 
-    init(courseID: String, view: CourseNavigationViewProtocol, env: AppEnvironment = .shared, useCase u: PresenterUseCase? = nil) {
+    lazy var tabs: Store<GetContextTabs> = {
+        let useCase = GetContextTabs(context: context)
+        return self.env.subscribe(useCase) { [weak self] in
+            self?.update()
+        }
+    }()
+
+    init(courseID: String, view: CourseNavigationViewProtocol, env: AppEnvironment = .shared) {
         self.context = ContextModel(.course, id: courseID)
         self.env = env
         self.view = view
-
-        if let u = u { useCase = u } else { useCase = CourseNavigationUseCase(context: context, env: env) }
-
-        frc = env.subscribe(Tab.self, .context(context))
-        frc.delegate = self
     }
 
-    func loadTabs() {
-        _ = loadDataFromServerOnce
-        frc.performFetch()
-        view?.showTabs(transformToViewModels())
+    func viewIsReady() {
+        courses.refresh()
+        tabs.refresh()
+        update()
     }
 
-    func transformToViewModels() -> [CourseNavigationViewModel] {
-        return frc.fetchedObjects?.compactMap { $0 } ?? []
-    }
-}
-
-extension CourseNavigationPresenter: FetchedResultsControllerDelegate {
-    func controllerDidChangeContent<T>(_ controller: FetchedResultsController<T>) {
-        self.loadTabs()
+    func update() {
+        view?.update()
+        view?.updateNavBar(title: courses.first?.name, backgroundColor: courses.first?.color)
     }
 }

@@ -52,8 +52,10 @@ export type Enrollment = {
 export type Grades = {
   html_url: string,
   current_score: ?number,
+  override_score: ?number,
   final_score: ?number,
   current_grade: ?string,
+  override_grade: ?string,
   final_grade: ?string,
 }
 

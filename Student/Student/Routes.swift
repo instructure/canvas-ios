@@ -28,7 +28,7 @@ public let router = Router(routes: [
 
     RouteHandler(.course(":courseID"), name: "course") {_, params in
         guard let courseID = params["courseID"] else { return nil }
-        return CourseNavigationTableViewController(courseID: courseID)
+        return CourseNavigationViewController(courseID: courseID)
     },
 
     RouteHandler(.course(":courseID", assignment: ":assignmentID"), name: "course_assignment") { url, params in

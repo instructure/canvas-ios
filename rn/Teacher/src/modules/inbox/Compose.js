@@ -124,6 +124,12 @@ export class Compose extends PureComponent<ComposeProps & OwnProps, ComposeState
     )
   }
 
+  mustSendAll () {
+    return this.state.recipients.reduce((count: number, result: AddressBookResult) => (
+      count + (result.user_count || 1)
+    ), 0) >= 100
+  }
+
   sendMessage = () => {
     const state = this.state
     const convo: CreateConversationParameters = {
@@ -136,7 +142,7 @@ export class Compose extends PureComponent<ComposeProps & OwnProps, ComposeState
       context_code: state.contextCode || undefined,
     }
 
-    if (this.state.sendToAll) {
+    if (this.mustSendAll() || state.sendToAll) {
       convo.bulk_message = 1
     }
 
@@ -329,7 +335,7 @@ export class Compose extends PureComponent<ComposeProps & OwnProps, ComposeState
                 border='bottom'
                 title={i18n('Send individual message to each recipient')}
                 onValueChange={this.toggleSendAll}
-                value={this.state.sendToAll}
+                value={this.mustSendAll() || this.state.sendToAll}
                 identifier='compose-message.send-all-toggle'
               />
             }

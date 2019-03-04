@@ -310,4 +310,13 @@ class StoreTests: CoreTestCase {
 
         XCTAssertEqual(store.first, one)
     }
+
+    func testLast() {
+        Course.make(["id": "1", "name": "A"])
+        let two = Course.make(["id": "2", "name": "B"])
+        let useCase = TestUseCase(courses: nil, requestError: nil, writeError: nil, urlResponse: nil)
+        let store = Store(env: environment, useCase: useCase) { }
+
+        XCTAssertEqual(store.last, two)
+    }
 }

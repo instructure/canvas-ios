@@ -30,6 +30,7 @@ public protocol PersistenceClient {
     func insert<T>() -> T
     func fetch<T>(predicate: NSPredicate?, sortDescriptors: [NSSortDescriptor]?) -> [T]
     func delete<T>(_ entity: T) throws
+    func delete<T>(_ objects: [T]) throws
     func save() throws
     func refresh()
 }

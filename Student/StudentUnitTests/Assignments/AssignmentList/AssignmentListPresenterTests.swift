@@ -22,7 +22,6 @@ import TestsFoundation
 class AssignmentListPresenterTests: PersistenceTestCase {
 
     var resultingError: NSError?
-    var resultingAssignments: [Assignment]?
     var resultingBaseURL: URL?
     var resultingSubtitle: String?
     var resultingBackgroundColor: UIColor?
@@ -47,10 +46,10 @@ class AssignmentListPresenterTests: PersistenceTestCase {
         let expected = Assignment.make()
 
         //  when
-        presenter.loadDataForView()
+        presenter.viewIsReady()
 
         //  then
-        XCTAssert(resultingAssignments?.first! === expected)
+        XCTAssert(presenter.assignments.first! === expected)
     }
 
     func testUseCaseFetchesData() {
@@ -58,10 +57,10 @@ class AssignmentListPresenterTests: PersistenceTestCase {
         Assignment.make()
 
         //   when
-        presenter.loadDataForView()
+        presenter.viewIsReady()
 
         //  then
-        XCTAssertEqual(resultingAssignments?.first?.name, "Assignment One")
+        XCTAssertEqual(presenter.assignments.first?.name, "Assignment One")
     }
 
     func testLoadCourseColorsAndTitle() {
@@ -70,7 +69,10 @@ class AssignmentListPresenterTests: PersistenceTestCase {
         let expectedColor = Color.make()
 
         //  when
-        presenter.loadDataForView()
+        presenter.viewIsReady()
+        XCTAssertEqual(presenter.course.count, 1)
+        wait(for: [expectation], timeout: 0.4)
+        presenter.loadColor()
 
         //  then
         XCTAssertEqual(resultingBackgroundColor, expectedColor.color)
@@ -86,8 +88,8 @@ class AssignmentListPresenterTests: PersistenceTestCase {
 }
 
 extension AssignmentListPresenterTests: AssignmentListViewProtocol {
-    func update(list: [Assignment]) {
-        resultingAssignments = list
+    func update() {
+        expectation.fulfill()
     }
 
     var navigationController: UINavigationController? {

@@ -36,6 +36,7 @@ export default gql`query StudentContextCard($courseID: ID!, $userID: ID!, $limit
             name
             short_name: shortName
             avatar_url: avatarUrl
+            primary_email: email
             enrollments(courseId: $courseID) {
               last_activity_at: lastActivityAt
               type
@@ -45,6 +46,8 @@ export default gql`query StudentContextCard($courseID: ID!, $userID: ID!, $limit
               grades {
                 current_grade: currentGrade
                 current_score: currentScore
+                override_grade: overrideGrade
+                override_score: overrideScore
               }
             }
             analytics: summaryAnalytics(courseId: $courseID) {

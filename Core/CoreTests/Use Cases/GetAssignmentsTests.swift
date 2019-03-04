@@ -190,12 +190,10 @@ class GetAssignmentsTests: CoreTestCase {
             "submission_types": ["on_paper", "external_tool"],
             "position": 0,
             ])
+        let getAssignments = GetAssignments(courseID: "1")
         api.mock(request, value: [apiAssignment], response: nil, error: nil)
+        try! getAssignments.write(response: [apiAssignment], urlResponse: nil, to: databaseClient)
 
-        let getAssignmentsListUseCase = GetAssignments(courseID: "1", force: true, env: environment)
-        addOperationAndWait(getAssignmentsListUseCase)
-
-        XCTAssertEqual(getAssignmentsListUseCase.errors.count, 0)
         let assignments: [Assignment] = databaseClient.fetch(predicate: nil, sortDescriptors: nil)
         XCTAssertEqual(assignments.count, 1)
         let assignment = assignments.first!
