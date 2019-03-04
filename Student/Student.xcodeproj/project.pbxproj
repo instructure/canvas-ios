@@ -59,6 +59,7 @@
 		3B3436E9215EF0FB009EF87F /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3436E7215EF0FB009EF87F /* UIImageExtensions.swift */; };
 		3B3436EC215EF2F8009EF87F /* UIImageStudentExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3436EB215EF2F8009EF87F /* UIImageStudentExtensionTests.swift */; };
 		3B3785BF222DC0B90047DAE4 /* CourseNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3785BE222DC0B90047DAE4 /* CourseNavigationViewController.swift */; };
+		3B4B75B1222DE7F3002CCBEC /* CourseNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3785BE222DC0B90047DAE4 /* CourseNavigationViewController.swift */; };
 		3B5369EA219D519C00D3F62E /* TestImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B5369E9219D519C00D3F62E /* TestImage.png */; };
 		3B5425FE21B094CC0009D069 /* UrlSubmissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5425FD21B094CC0009D069 /* UrlSubmissionViewController.swift */; };
 		3B5425FF21B094CC0009D069 /* UrlSubmissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5425FD21B094CC0009D069 /* UrlSubmissionViewController.swift */; };
@@ -1799,6 +1800,7 @@
 				3B0B0F6C219C8D2300F04216 /* QuizListPresenter.swift in Sources */,
 				7D0BF3242165315B00859FA1 /* CoreWebView.swift in Sources */,
 				7D067CE421505B2500B78AF2 /* Routes.swift in Sources */,
+				3B4B75B1222DE7F3002CCBEC /* CourseNavigationViewController.swift in Sources */,
 				3B692536219F428E0023ED75 /* FilePickerProgressView.swift in Sources */,
 				B10D777621C2F14900BCE822 /* FilePickerCell.swift in Sources */,
 				7D067CE521505B3500B78AF2 /* DashboardCourseCell.swift in Sources */,
