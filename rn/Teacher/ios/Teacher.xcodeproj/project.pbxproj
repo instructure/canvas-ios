@@ -477,7 +477,6 @@
 				F9B947072215EA3C0083E660 /* Carthage Copy Frameworks */,
 				2CDD85CA1F1D6CDB00FD1CF8 /* Fabric */,
 				B186F36B2144BE0C0026429F /* Strip Frameworks */,
-				B1FB2F1B21542E32008480C3 /* Strip PSPDFKit */,
 			);
 			buildRules = (
 			);
@@ -766,20 +765,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/CanvasCore.framework/strip-frameworks.sh\"";
-		};
-		B1FB2F1B21542E32008480C3 /* Strip PSPDFKit */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Strip PSPDFKit";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "cp -r \"$SRCROOT/../../../scripts/pspdfkit/\"* \"$BUILT_PRODUCTS_DIR/$FRAMEWORKS_FOLDER_PATH/PSPDFKit.framework/\"\nbash \"$BUILT_PRODUCTS_DIR/$FRAMEWORKS_FOLDER_PATH/PSPDFKit.framework/strip-framework.sh\"\n";
 		};
 		B3ADBFFA3D2F8B176CD267CC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

@@ -123,7 +123,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
 
     @objc
     func refresh(_ refreshControl: UIRefreshControl) {
-        presenter?.loadDataFromServer()
+        presenter?.refresh()
     }
 
     @objc

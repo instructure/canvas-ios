@@ -135,7 +135,7 @@ class SubmissionFilePresenter: FilePickerPresenterProtocol, FetchedResultsContro
         self.userID = userID
         self.assignmentController = env.subscribe(Assignment.self, .details(assignmentID))
         self.fileSubmissionController = env.subscribe(FileSubmission.self, .assignment(assignmentID))
-        self.useCase = useCase ?? { GetAssignment(courseID: courseID, assignmentID: assignmentID) }
+        self.useCase = useCase ?? { return PresenterUseCase() }
         context = ContextModel(.course, id: courseID)
         frc = env.subscribe(FileUpload.self, .assignment(assignmentID))
         frc.delegate = self

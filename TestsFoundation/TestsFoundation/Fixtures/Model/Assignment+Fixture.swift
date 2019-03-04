@@ -24,7 +24,7 @@ extension Assignment: Fixture {
             "courseID": "1",
             "name": "Assignment One",
             "pointsPossibleRaw": 10,
-            "htmlURL": URL(string: "https://canvas.instructure.com/courses/1/assignments/2")!,
+            "htmlURL": URL(string: "https://canvas.instructure.com/courses/1/assignments/1")!,
             "gradingTypeRaw": GradingType.not_graded.rawValue,
             "submissionTypesRaw": [SubmissionType.none.rawValue],
         ]

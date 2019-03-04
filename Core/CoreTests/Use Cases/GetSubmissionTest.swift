@@ -20,17 +20,14 @@ import XCTest
 class GetSubmissionTest: CoreTestCase {
     func testItCreatesSubmission() {
         let context = ContextModel(.course, id: "1")
-        let request = GetSubmissionRequest(context: context, assignmentID: "2", userID: "3")
         let apiSubmission = APISubmission.make([
             "assignment_id": "2",
             "user_id": "3",
         ])
-        api.mock(request, value: apiSubmission, response: nil, error: nil)
 
-        let getSubmission = GetSubmission(context: context, assignmentID: "2", userID: "3", env: environment)
-        addOperationAndWait(getSubmission)
+        let getSubmission = GetSubmission(context: context, assignmentID: "2", userID: "3")
+        try! getSubmission.write(response: apiSubmission, urlResponse: nil, to: databaseClient)
 
-        XCTAssertEqual(getSubmission.errors.count, 0)
         let submissions: [Submission] = databaseClient.fetch()
         XCTAssertEqual(submissions.count, 1)
         let submission = submissions.first!
@@ -40,7 +37,6 @@ class GetSubmissionTest: CoreTestCase {
 
     func testItCreatesSubmissionHistory() {
         let context = ContextModel(.course, id: "1")
-        let request = GetSubmissionRequest(context: context, assignmentID: "2", userID: "3")
         let apiSubmission = APISubmission.make([
             "attempt": 2,
             "assignment_id": "2",
@@ -50,12 +46,9 @@ class GetSubmissionTest: CoreTestCase {
                 APISubmission.fixture([ "attempt": 1, "assignment_id": "2", "user_id": "3" ]),
             ],
         ])
-        api.mock(request, value: apiSubmission, response: nil, error: nil)
+        let getSubmission = GetSubmission(context: context, assignmentID: "2", userID: "3")
+        try! getSubmission.write(response: apiSubmission, urlResponse: nil, to: databaseClient)
 
-        let getSubmission = GetSubmission(context: context, assignmentID: "2", userID: "3", env: environment)
-        addOperationAndWait(getSubmission)
-
-        XCTAssertEqual(getSubmission.errors.count, 0)
         let submissions: [Submission] = databaseClient.fetch()
         XCTAssertEqual(submissions.count, 2)
         let submission = submissions.first!
@@ -65,7 +58,6 @@ class GetSubmissionTest: CoreTestCase {
 
     func testNoHistoryDoesntDelete() {
         let context = ContextModel(.course, id: "1")
-        let request = GetSubmissionRequest(context: context, assignmentID: "2", userID: "3")
         Submission.make([ "attempt": 2, "assignmentID": "2", "userID": "3", "late": false ])
         Submission.make([ "attempt": 1, "assignmentID": "2", "userID": "3" ])
         let apiSubmission = APISubmission.make([
@@ -74,12 +66,10 @@ class GetSubmissionTest: CoreTestCase {
             "user_id": "3",
             "late": true,
         ])
-        api.mock(request, value: apiSubmission, response: nil, error: nil)
 
-        let getSubmission = GetSubmission(context: context, assignmentID: "2", userID: "3", env: environment)
-        addOperationAndWait(getSubmission)
+        let getSubmission = GetSubmission(context: context, assignmentID: "2", userID: "3")
+        try! getSubmission.write(response: apiSubmission, urlResponse: nil, to: databaseClient)
 
-        XCTAssertEqual(getSubmission.errors.count, 0)
         let submissions: [Submission] = databaseClient.fetch()
         XCTAssertEqual(submissions.count, 2)
         let submission = submissions.first(where: { $0.attempt == 2 })!

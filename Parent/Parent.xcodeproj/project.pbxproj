@@ -1607,20 +1607,6 @@
 			shellPath = /bin/sh;
 			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/CanvasCore.framework/strip-frameworks.sh\"\n";
 		};
-		B1A32BD621594CD60071B41E /* Strip PSPDFKit */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Strip PSPDFKit";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "cp -r \"$SRCROOT/../scripts/pspdfkit/\"* \"$BUILT_PRODUCTS_DIR/$FRAMEWORKS_FOLDER_PATH/PSPDFKit.framework/\"\nbash \"$BUILT_PRODUCTS_DIR/$FRAMEWORKS_FOLDER_PATH/PSPDFKit.framework/strip-framework.sh\"\n";
-		};
 		F9B947062215E9CF0083E660 /* Carthage Copy Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

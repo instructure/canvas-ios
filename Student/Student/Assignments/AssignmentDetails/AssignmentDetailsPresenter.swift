@@ -40,17 +40,26 @@ protocol AssignmentDetailsViewProtocol: ErrorViewController {
 }
 
 class AssignmentDetailsPresenter {
-    let frc: FetchedResultsController<Assignment>
-    let courseFrc: FetchedResultsController<Course>
-    let fileSubmissionFrc: FetchedResultsController<FileSubmission>
+    lazy var assignments: Store<GetAssignment> = {
+        let useCase = GetAssignment(courseID: courseID, assignmentID: assignmentID, include: [.submission])
+        return self.env.subscribe(useCase) { [weak self] in
+            self?.update()
+        }
+    }()
+
+    lazy var courses: Store<GetCourseUseCase> = {
+        let useCase = GetCourseUseCase(courseID: courseID)
+        return self.env.subscribe(useCase) { [weak self] in
+            self?.update()
+        }
+    }()
+
     let env: AppEnvironment
     weak var view: AssignmentDetailsViewProtocol?
     let courseID: String
     let assignmentID: String
     var userID: String?
-    var assignment: Assignment?
     let fragment: String?
-    let useCaseFactory: UseCaseFactory
     var fragmentHash: String? {
         guard let fragment = fragment, !fragment.isEmpty else { return nil }
         return "#\(fragment)"
@@ -61,56 +70,34 @@ class AssignmentDetailsPresenter {
         .online_url,
     ]
 
-    init(env: AppEnvironment = .shared, view: AssignmentDetailsViewProtocol, courseID: String, assignmentID: String, fragment: String? = nil, useCaseFactory factory: UseCaseFactory? = nil) {
+    init(env: AppEnvironment = .shared, view: AssignmentDetailsViewProtocol, courseID: String, assignmentID: String, fragment: String? = nil) {
         self.env = env
         self.view = view
         self.courseID = courseID
         self.assignmentID = assignmentID
         self.fragment = fragment
-        self.frc = env.subscribe(Assignment.self, .details(assignmentID))
-        self.courseFrc = env.subscribe(Course.self, .details(courseID))
-        self.fileSubmissionFrc = env.subscribe(FileSubmission.self, .assignment(assignmentID))
-        self.useCaseFactory = factory ?? { _ in AssignmentDetailsUseCase(courseID: courseID, assignmentID: assignmentID) }
-
-        frc.delegate = self
-        courseFrc.delegate = self
-        fileSubmissionFrc.delegate = self
     }
 
-    func loadCourse() -> Course? {
-        return courseFrc.fetchedObjects?.first
-    }
-
-    func loadAssignment() -> Assignment? {
-        return frc.fetchedObjects?.first
-    }
-
-    func loadData() {
-        let course = loadCourse()
-        view?.updateNavBar(subtitle: course?.name, backgroundColor: course?.color)
-
-        if let assignment = loadAssignment() {
-            self.assignment = assignment
-            let baseURL = fragmentHash.flatMap { URL(string: $0, relativeTo: assignment.htmlURL) } ?? assignment.htmlURL
-            if let submission = assignment.submission {
-                userID = submission.userID
-            }
-            view?.update(assignment: assignment, baseURL: baseURL)
-            showSubmitAssignmentButton(assignment: assignment, course: course)
+    func update() {
+        guard let assignment = assignments.first, let course = courses.first else { return }
+        let baseURL = fragmentHash.flatMap { URL(string: $0, relativeTo: assignment.htmlURL) } ?? assignment.htmlURL
+        if let submission = assignment.submission {
+            userID = submission.userID
         }
-    }
+        showSubmitAssignmentButton(assignment: assignment, course: course)
+        view?.updateNavBar(subtitle: course.name, backgroundColor: course.color)
+        view?.update(assignment: assignment, baseURL: baseURL)
 
-    func loadDataFromServer() {
-        let useCase = useCaseFactory(false)
-        env.queue.addOperationWithErrorHandling(useCase, sendErrorsTo: view)
     }
 
     func viewIsReady() {
-        courseFrc.performFetch()
-        frc.performFetch()
-        fileSubmissionFrc.performFetch()
-        loadDataFromServer()
-        loadData()
+        courses.refresh()
+        assignments.refresh()
+    }
+
+    func refresh() {
+        courses.refresh(force: true)
+        assignments.refresh(force: true)
     }
 
     func routeToSubmission(view: UIViewController) {
@@ -148,7 +135,7 @@ class AssignmentDetailsPresenter {
     }
 
     func submitAssignment(from viewController: UIViewController) {
-        guard let assignment = assignment, assignment.canMakeSubmissions else {
+        guard let assignment = assignments.first, assignment.canMakeSubmissions else {
             return
         }
         let supported = assignment.submissionTypes.filter { supportedSubmissionTypes.contains($0) }
@@ -178,11 +165,5 @@ class AssignmentDetailsPresenter {
         default:
             break
         }
-    }
-}
-
-extension AssignmentDetailsPresenter: FetchedResultsControllerDelegate {
-    func controllerDidChangeContent<T>(_ controller: FetchedResultsController<T>) {
-        loadData()
     }
 }
