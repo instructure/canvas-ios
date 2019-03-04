@@ -36,14 +36,4 @@ public class GetCourses: CollectionUseCase {
             .where(#keyPath(Course.isFavorite), equals: true, orderBy: #keyPath(Course.name)) :
             .all(orderBy: #keyPath(Course.name), ascending: true, naturally: true)
     }
-
-    public func write(response: [APICourse]?, urlResponse: URLResponse?, to client: PersistenceClient) throws {
-        guard let response = response else {
-            return
-        }
-
-        for item in response {
-            Course.save(item, in: client)
-        }
-    }
 }

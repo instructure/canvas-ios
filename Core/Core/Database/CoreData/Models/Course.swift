@@ -17,7 +17,8 @@
 import Foundation
 import CoreData
 
-final public class Course: NSManagedObject, Context {
+final public class Course: NSManagedObject, Context, WriteableModel {
+    public typealias JSON = APICourse
     public let contextType = ContextType.course
 
     @NSManaged public var courseCode: String?
