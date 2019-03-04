@@ -71,7 +71,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     }
 
     func setup(session: KeychainEntry) {
-        Keychain.currentSession = session
         environment.userDidLogin(session: session)
         CoreWebView.keepCookieAlive(for: environment)
         let getBrand = GetBrandVariables(env: environment, force: true)
@@ -121,9 +120,9 @@ extension AppDelegate: LoginDelegate {
     func userDidLogout(keychainEntry: KeychainEntry) {
         Keychain.removeEntry(keychainEntry)
         // TODO: Deregister push notifications?
-        try? NSPersistentContainer.destroy(session: keychainEntry)
+        environment.userDidLogout(session: keychainEntry)
         guard Keychain.currentSession == keychainEntry else { return }
-        Keychain.currentSession = nil
+        CoreWebView.stopCookieKeepAlive()
         changeUser()
     }
 }

@@ -43,9 +43,22 @@ open class AppEnvironment {
     }
 
     public func userDidLogin(session: KeychainEntry) {
-        self.database = NSPersistentContainer.create(session: session)
-        self.api = URLSessionAPI(accessToken: session.accessToken, actAsUserID: session.actAsUserID, baseURL: session.baseURL)
-        self.currentSession = session
+        Keychain.currentSession = session
+        database = NSPersistentContainer.create(session: session)
+        api = URLSessionAPI(accessToken: session.accessToken, actAsUserID: session.actAsUserID, baseURL: session.baseURL)
+        currentSession = session
+        backgroundAPIManager.session = session
+        backgroundAPIManager.database = database
+        Logger.shared.database = database
+    }
+
+    public func userDidLogout(session: KeychainEntry) {
+        try? NSPersistentContainer.destroy(session: session)
+        guard session == currentSession else { return }
+        Keychain.currentSession = nil
+        database = globalDatabase
+        api = URLSessionAPI()
+        currentSession = nil
         backgroundAPIManager.session = session
         backgroundAPIManager.database = database
         Logger.shared.database = database
