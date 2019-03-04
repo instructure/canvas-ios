@@ -37,5 +37,5 @@ public struct APIOAuthUser: Codable, Equatable {
     let id: ID
     let name: String
     let effective_locale: String
-    let email: String
+    let email: String?
 }
