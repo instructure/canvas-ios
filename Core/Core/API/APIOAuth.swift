@@ -29,12 +29,13 @@ public struct APIOAuthToken: Codable, Equatable {
     let access_token: String
     let refresh_token: String?
     let token_type: String
-    let user: User
+    let user: APIOAuthUser
     let expires_in: TimeInterval?
+}
 
-    struct User: Codable, Equatable {
-        let id: ID
-        let name: String
-        let effective_locale: String
-    }
+public struct APIOAuthUser: Codable, Equatable {
+    let id: ID
+    let name: String
+    let effective_locale: String
+    let email: String
 }

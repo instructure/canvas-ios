@@ -74,10 +74,12 @@ class LoginWebPresenterTests: XCTestCase {
         let responseData: [String: Any] = [
             "access_token": expectedToken,
             "token_type": "Bearer",
-            "user": ["id": "1",
-                     "name": "student3",
-                     "global_id": "1",
-                     "effective_locale": "en",
+            "user": [
+                "id": "1",
+                 "name": "student3",
+                 "global_id": "1",
+                 "effective_locale": "en",
+                 "email": "email@email.com",
             ],
             "refresh_token": "<refresh_token>",
             "expires_in": 10,
@@ -133,10 +135,12 @@ class LoginWebPresenterTests: XCTestCase {
         let responseData2: [String: Any] = [
             "access_token": expectedToken,
             "token_type": "Bearer",
-            "user": ["id": "1",
-                     "name": "student3",
-                     "global_id": "1",
-                     "effective_locale": "en",
+            "user": [
+                "id": "1",
+                 "name": "student3",
+                 "global_id": "1",
+                 "effective_locale": "en",
+                 "email": "email@email.com",
             ],
             "refresh_token": "<refresh_token>",
             "expires_in": 10,

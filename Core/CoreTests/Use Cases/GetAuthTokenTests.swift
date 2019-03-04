@@ -33,11 +33,12 @@ class GetAuthTokenTests: XCTestCase {
     }
 
     func testGetMobileVerify() {
-        let expected = APIOAuthToken(access_token: token, refresh_token: nil, token_type: "Bearer", user: APIOAuthToken.User(id: "1", name: "john", effective_locale: "en"), expires_in: 10)
+        let user = APIOAuthUser(id: "1", name: "john", effective_locale: "en", email: "email@email.com")
+        let expected = APIOAuthToken(access_token: token, refresh_token: nil, token_type: "Bearer", user: user, expires_in: 10)
         let responseData: [String: Any] = [
             "access_token": token,
             "token_type": "Bearer",
-            "user": [ "name": "john", "id": "1", "effective_locale": "en" ],
+            "user": [ "name": "john", "id": "1", "effective_locale": "en", "email": "email@email.com" ],
             "expires_in": 10,
         ]
 

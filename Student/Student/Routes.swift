@@ -17,48 +17,48 @@
 import Core
 
 public let router = Router(routes: [
-    RouteHandler(.login) { _, _ in
+    RouteHandler(.login, name: "login") { _, _ in
         guard let delegate = UIApplication.shared.delegate as? LoginDelegate else { return nil }
         return LoginNavigationController.create(loginDelegate: delegate)
     },
 
-    RouteHandler(.courses) { _, _ in
+    RouteHandler(.courses, name: "courses") { _, _ in
         return CourseListViewController.create()
     },
 
-    RouteHandler(.course(":courseID")) {_, params in
+    RouteHandler(.course(":courseID"), name: "course") {_, params in
         guard let courseID = params["courseID"] else { return nil }
         return CourseNavigationViewController(courseID: courseID)
     },
 
-    RouteHandler(.course(":courseID", assignment: ":assignmentID")) { url, params in
+    RouteHandler(.course(":courseID", assignment: ":assignmentID"), name: "course_assignment") { url, params in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
         return AssignmentDetailsViewController.create(courseID: courseID, assignmentID: assignmentID, fragment: url.fragment)
     },
 
-    RouteHandler(.group(":groupID")) {_, params in
+    RouteHandler(.group(":groupID"), name: "group") {_, params in
         guard let groupID = params["groupID"] else { return nil }
         return GroupNavigationTableViewController(groupID: groupID)
     },
 
-    RouteHandler(.quizzes(forCourse: ":courseID")) { _, params in
+    RouteHandler(.quizzes(forCourse: ":courseID"), name: "course_quiz") { _, params in
         guard let courseID = params["courseID"] else { return nil }
         return QuizListViewController.create(courseID: courseID)
     },
 
-    RouteHandler(.assignments(forCourse: ":courseID")) { _, params in
+    RouteHandler(.assignments(forCourse: ":courseID"), name: "course_assignments") { _, params in
         guard let courseID = params["courseID"] else { return nil }
         return AssignmentListViewController(courseID: courseID)
     },
 
-    RouteHandler(.submission(forCourse: ":courseID", assignment: ":assignmentID", user: ":userID")) { _, params in
+    RouteHandler(.submission(forCourse: ":courseID", assignment: ":assignmentID", user: ":userID"), name: "submission") { _, params in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"], let userID = params["userID"] else {
             return nil
         }
         return SubmissionDetailsViewController.create(context: ContextModel(.course, id: courseID), assignmentID: assignmentID, userID: userID)
     },
 
-    RouteHandler(.assignmentFileUpload(courseID: ":courseID", assignmentID: ":assignmentID")) { _, params in
+    RouteHandler(.assignmentFileUpload(courseID: ":courseID", assignmentID: ":assignmentID"), name: "assignment_file_upload") { _, params in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"], let userID = Keychain.currentSession?.userID else {
             return nil
         }
@@ -66,14 +66,14 @@ public let router = Router(routes: [
         return FilePickerViewController.create(presenter: presenter)
     },
 
-    RouteHandler(.assignmentUrlSubmission(courseID: ":courseID", assignmentID: ":assignmentID", userID: ":userID")) { _, params in
+    RouteHandler(.assignmentUrlSubmission(courseID: ":courseID", assignmentID: ":assignmentID", userID: ":userID"), name: "assignment_url_submission") { _, params in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"], let userID = params["userID"] else {
             return nil
         }
         return UrlSubmissionViewController.create(courseID: courseID, assignmentID: assignmentID, userID: userID)
     },
 
-    RouteHandler(.logs) { _, _ in
+    RouteHandler(.logs, name: "logs") { _, _ in
         return LogEventListViewController.create()
     },
 ])

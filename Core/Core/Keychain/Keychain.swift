@@ -38,6 +38,7 @@ public struct KeychainEntry: Codable, Hashable {
     public let userAvatarURL: URL?
     public let userID: String
     public let userName: String
+    public let userEmail: String?
 
     public var actAsUserID: String? {
         return masquerader == nil ? nil : userID
@@ -57,7 +58,8 @@ public struct KeychainEntry: Codable, Hashable {
         refreshToken: String?,
         userAvatarURL: URL? = nil,
         userID: String,
-        userName: String
+        userName: String,
+        userEmail: String? = nil
     ) {
         self.accessToken = accessToken
         // remove trailing slash
@@ -72,6 +74,7 @@ public struct KeychainEntry: Codable, Hashable {
         self.userAvatarURL = userAvatarURL
         self.userID = userID
         self.userName = userName
+        self.userEmail = userEmail
     }
 
     // Only keep 1 entry per account user
@@ -100,7 +103,8 @@ public struct KeychainEntry: Codable, Hashable {
             refreshToken: refreshToken,
             userAvatarURL: userAvatarURL,
             userID: userID,
-            userName: userName
+            userName: userName,
+            userEmail: userEmail
         )
     }
 }

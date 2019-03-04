@@ -32,6 +32,7 @@ open class AppEnvironment {
     public var logger: LoggerProtocol
     public let queue = OperationQueue()
     public var router: RouterProtocol
+    public var currentSession: KeychainEntry?
 
     public init() {
         self.database = globalDatabase
@@ -44,6 +45,7 @@ open class AppEnvironment {
     public func userDidLogin(session: KeychainEntry) {
         self.database = NSPersistentContainer.create(session: session)
         self.api = URLSessionAPI(accessToken: session.accessToken, actAsUserID: session.actAsUserID, baseURL: session.baseURL)
+        self.currentSession = session
         backgroundAPIManager.session = session
         backgroundAPIManager.database = database
         Logger.shared.database = database

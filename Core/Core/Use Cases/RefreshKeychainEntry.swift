@@ -59,7 +59,8 @@ public class RefreshKeychainEntry: OperationSet {
             refreshToken: entry.refreshToken,
             userAvatarURL: response.avatar_url,
             userID: entry.userID,
-            userName: response.name
+            userName: response.name,
+            userEmail: response.email
         )
         if Keychain.entries.contains(entry) {
             Keychain.addEntry(refreshed)

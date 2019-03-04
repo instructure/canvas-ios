@@ -18,13 +18,13 @@ import Foundation
 import Core
 import CanvasCore
 
-let router = Router(routes: [
-    RouteHandler(.modules(forCourse: ":courseID")) { _, params in
+let router = Core.Router(routes: [
+    RouteHandler(.modules(forCourse: ":courseID"), name: "course_modules") { _, params in
         guard let courseID = params["courseID"] else { return nil }
         return ModuleListViewController.create(courseID: courseID)
     },
 
-    RouteHandler(.module(forCourse: ":courseID", moduleID: ":moduleID")) { _, params in
+    RouteHandler(.module(forCourse: ":courseID", moduleID: ":moduleID"), name: "course_module_item") { _, params in
         guard let courseID = params["courseID"], let moduleID = params["moduleID"] else { return nil }
         return ModuleItemListViewController.create(courseID: courseID, moduleID: moduleID)
     }
