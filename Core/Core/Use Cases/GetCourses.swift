@@ -24,7 +24,7 @@ public class GetCourses: CollectionUseCase {
     }
 
     public var cacheKey: String {
-        return "get-assignments"
+        return "get-courses"
     }
 
     public var request: GetCoursesRequest {
