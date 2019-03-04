@@ -321,8 +321,7 @@ extension AppDelegate: NativeLoginManagerDelegate {
             Analytics.setUserProperty(client.baseURL?.absoluteString, forName: "base_url")
         }
         if let entry = client.keychainEntry {
-            // TODO: Persist this keychain entry
-            Keychain.currentSession = entry
+            Keychain.addEntry(entry)
             environment.userDidLogin(session: entry)
             CoreWebView.keepCookieAlive(for: environment)
         }
@@ -348,6 +347,11 @@ extension AppDelegate: NativeLoginManagerDelegate {
     }
     
     func didLogout(_ controller: UIViewController) {
+        if let entry = Keychain.currentSession {
+            Keychain.removeEntry(entry)
+            environment.userDidLogout(session: entry)
+            CoreWebView.stopCookieKeepAlive()
+        }
         NotificationKitController.deregisterPushNotifications { _ in
             // this is a no-op because we don't want errors to prevent logging out
         }

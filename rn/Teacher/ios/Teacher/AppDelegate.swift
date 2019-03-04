@@ -189,9 +189,9 @@ extension AppDelegate: NativeLoginManagerDelegate {
         }
 
         if let entry = client.keychainEntry {
-            // TODO: Persist this keychain entry
-            Keychain.currentSession = entry
+            Keychain.addEntry(entry)
             environment.userDidLogin(session: entry)
+            CoreWebView.keepCookieAlive(for: environment)
         }
 
         if let locale = client.effectiveLocale {
@@ -207,6 +207,11 @@ extension AppDelegate: NativeLoginManagerDelegate {
     }
     
     func didLogout(_ controller: UIViewController) {
+        if let entry = Keychain.currentSession {
+            Keychain.removeEntry(entry)
+            environment.userDidLogout(session: entry)
+            CoreWebView.stopCookieKeepAlive()
+        }
         guard let window = self.window else { return }
         
         UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: {
