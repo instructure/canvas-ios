@@ -37,6 +37,7 @@ if (!scheme) {
 }
 
 const coverageFolder = `scripts/coverage/${scheme.toLowerCase()}`
+const resultBundlePath = `scripts/coverage/${scheme.toLowerCase()}.xcresult`
 
 try {
   runTests()
@@ -49,17 +50,19 @@ try {
 
 function runTests() {
   if (!test || !device || !os) { return }
+  run(`rm -rf ${resultBundlePath}`)
   run(
     `xcodebuild test -scheme ${scheme} -workspace Canvas.xcworkspace \
     -sdk iphonesimulator \
-    -destination 'platform=iOS Simulator,name=${device},OS=${os}'`,
+    -destination 'platform=iOS Simulator,name=${device},OS=${os}' \
+    -resultBundlePath ${resultBundlePath}`,
     { stdio: 'inherit' }
   )
 }
 
 function reportCoverage () {
   console.log('Finding Xcode coverage report')
-  let folder = `scripts/coverage/${scheme.toLowerCase()}.xcresult`
+  let folder = resultBundlePath
   if (!existsSync(folder)) {
     const settings = run(`xcrun xcodebuild -showBuildSettings -workspace AllTheThings.xcworkspace -scheme ${scheme}`)
     folder = join(settings.match(/BUILD_DIR = (.*)/)[1], '../../Logs/Test/*.xcresult')
