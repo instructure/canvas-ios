@@ -3217,7 +3217,6 @@
 				3B6DCCB51FB502CE005EE8D2 /* Embed App Extensions */,
 				4902E1271CF4CBA00069E043 /* Fabric */,
 				B186F36C2144BE340026429F /* Strip Frameworks */,
-				B1FB2F1A21542DCD008480C3 /* Strip PSPDFKit */,
 			);
 			buildRules = (
 			);
@@ -3748,20 +3747,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/CanvasCore.framework/strip-frameworks.sh\"\n";
-		};
-		B1FB2F1A21542DCD008480C3 /* Strip PSPDFKit */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Strip PSPDFKit";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "cp -r \"$SRCROOT/../scripts/pspdfkit/\"* \"$BUILT_PRODUCTS_DIR/$FRAMEWORKS_FOLDER_PATH/PSPDFKit.framework/\"\n\nbash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSPDFKit.framework/strip-framework.sh\"\n";
 		};
 		C73DE1ED4E94F6D1C1DAA30D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
