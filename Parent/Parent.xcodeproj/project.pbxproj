@@ -125,7 +125,6 @@
 		7893BDFD20D1A83F00231DF7 /* AdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7893BDFC20D1A83F00231DF7 /* AdminViewController.swift */; };
 		78A84A0E209BB7A000921C9B /* ParentAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7835A5E6209B6F4C00C9220B /* ParentAppDelegate.swift */; };
 		78AD913321C8184F0075FBCF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78AD913221C8184F0075FBCF /* GoogleService-Info.plist */; };
-		7BB523FEFB60656451EC01E2 /* Pods_Parent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B38F4CDA7FBACEC7F04FB4BB /* Pods_Parent.framework */; };
 		7D0215A521BAE863009A8E69 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D0215A421BAE863009A8E69 /* Core.framework */; };
 		9F5043662225949500C4FA14 /* TermsOfServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5043652225949500C4FA14 /* TermsOfServiceViewController.swift */; };
 		9FC676A3222832C700945F64 /* CKIClientExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC676A2222832C700945F64 /* CKIClientExtensions.swift */; };
@@ -888,7 +887,6 @@
 				7864D52921C3FD230075D955 /* Core.framework in Frameworks */,
 				5180FB980843FA6B1321EF5E /* Pods_defaults_Parent.framework in Frameworks */,
 				49A36ECF1FA90BEF005F5905 /* CanvasKeymaster.framework in Frameworks */,
-				7BB523FEFB60656451EC01E2 /* Pods_Parent.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1342,11 +1340,10 @@
 				5E6441841C3EE2E0003D7397 /* Frameworks */,
 				5E6441851C3EE2E0003D7397 /* Resources */,
 				5E75B5FF1C4D4A7F00A44160 /* Embed Frameworks */,
+				ADAFC3B5838CDB330E525883 /* [CP] Embed Pods Frameworks */,
 				F9B947062215E9CF0083E660 /* Carthage Copy Frameworks */,
 				61DA38861D468D2C002FEE31 /* Fabric */,
 				B186F3662144B9B20026429F /* Strip Frameworks */,
-				B1A32BD621594CD60071B41E /* Strip PSPDFKit */,
-				ADAFC3B5838CDB330E525883 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
