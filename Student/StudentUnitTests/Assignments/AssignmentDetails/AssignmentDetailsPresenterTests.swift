@@ -96,7 +96,7 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         presenter = AssignmentDetailsPresenter(env: env, view: self, courseID: "1", assignmentID: "1", fragment: fragment)
 
         presenter.viewIsReady()
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 0.4)
         XCTAssertEqual(resultingBaseURL?.absoluteString, expected.absoluteString)
     }
 
