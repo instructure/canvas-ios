@@ -15,6 +15,7 @@
 //
 
 import UIKit
+import Core
 
 class DashboardGroupCell: UICollectionViewCell {
     @IBOutlet weak var leftColorView: UIView?
@@ -22,7 +23,7 @@ class DashboardGroupCell: UICollectionViewCell {
     @IBOutlet weak var courseNameLabel: UILabel?
     @IBOutlet weak var termLabel: UILabel?
 
-    var group: DashboardViewModel.Group? = nil {
+    var group: Group? = nil {
         didSet {
             _accessibilityElements = nil
         }
@@ -46,7 +47,7 @@ class DashboardGroupCell: UICollectionViewCell {
 
             var elements = [UIAccessibilityElement]()
             let cardElement = UIAccessibilityElement(accessibilityContainer: self)
-            cardElement.accessibilityLabel = group.groupName
+            cardElement.accessibilityLabel = group.name
             cardElement.accessibilityFrameInContainerSpace = bounds
             elements.append(cardElement)
 
@@ -57,13 +58,13 @@ class DashboardGroupCell: UICollectionViewCell {
 
     }
 
-    func configure(with model: DashboardViewModel.Group) {
+    func configure(with model: Group) {
         let color = model.color.ensureContrast(against: .named(.white))
         group = model
-        groupNameLabel?.text = model.groupName
-        courseNameLabel?.text = model.courseName
+        groupNameLabel?.text = model.name
+        courseNameLabel?.text = nil //model.courseName
         courseNameLabel?.textColor = color
-        termLabel?.text = model.term
+        termLabel?.text = nil
         leftColorView?.backgroundColor = color
     }
 }

@@ -15,7 +15,6 @@
 		3B0B0F59219C8C9300F04216 /* QuizListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B005F219BD9F60045E8A1 /* QuizListViewController.swift */; };
 		3B0B0F5A219C8CA400F04216 /* GroupNavigationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B003D219BD9F50045E8A1 /* GroupNavigationTableViewController.swift */; };
 		3B0B0F5B219C8CBA00F04216 /* AssignmentDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B004B219BD9F50045E8A1 /* AssignmentDetailsViewController.swift */; };
-		3B0B0F5C219C8CC900F04216 /* CourseNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0051219BD9F50045E8A1 /* CourseNavigationViewController.swift */; };
 		3B0B0F5E219C8CE700F04216 /* AssignmentDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0047219BD9F50045E8A1 /* AssignmentDetailsPresenter.swift */; };
 		3B0B0F5F219C8CFE00F04216 /* AssignmentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0042219BD9F50045E8A1 /* AssignmentListViewController.swift */; };
 		3B0B0F60219C8CFE00F04216 /* AssignmentListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0043219BD9F50045E8A1 /* AssignmentListPresenter.swift */; };
@@ -41,7 +40,6 @@
 		3B1B006B219BD9F60045E8A1 /* AssignmentDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0047219BD9F50045E8A1 /* AssignmentDetailsPresenter.swift */; };
 		3B1B006F219BD9F60045E8A1 /* AssignmentDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B004B219BD9F50045E8A1 /* AssignmentDetailsViewController.swift */; };
 		3B1B0070219BD9F60045E8A1 /* GradeCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B004D219BD9F50045E8A1 /* GradeCircle.swift */; };
-		3B1B0072219BD9F60045E8A1 /* CourseNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0051219BD9F50045E8A1 /* CourseNavigationViewController.swift */; };
 		3B1B0073219BD9F60045E8A1 /* CourseNavigationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0052219BD9F50045E8A1 /* CourseNavigationPresenter.swift */; };
 		3B1B0076219BD9F60045E8A1 /* CourseListSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0056219BD9F50045E8A1 /* CourseListSectionHeaderView.swift */; };
 		3B1B0077219BD9F60045E8A1 /* CourseListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B1B0057219BD9F50045E8A1 /* CourseListViewController.storyboard */; };
@@ -60,6 +58,7 @@
 		3B1B009B219BDA560045E8A1 /* GroupNavigationPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0092219BDA560045E8A1 /* GroupNavigationPresenterTests.swift */; };
 		3B3436E9215EF0FB009EF87F /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3436E7215EF0FB009EF87F /* UIImageExtensions.swift */; };
 		3B3436EC215EF2F8009EF87F /* UIImageStudentExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3436EB215EF2F8009EF87F /* UIImageStudentExtensionTests.swift */; };
+		3B3785BF222DC0B90047DAE4 /* CourseNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3785BE222DC0B90047DAE4 /* CourseNavigationViewController.swift */; };
 		3B5369EA219D519C00D3F62E /* TestImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B5369E9219D519C00D3F62E /* TestImage.png */; };
 		3B5425FE21B094CC0009D069 /* UrlSubmissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5425FD21B094CC0009D069 /* UrlSubmissionViewController.swift */; };
 		3B5425FF21B094CC0009D069 /* UrlSubmissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5425FD21B094CC0009D069 /* UrlSubmissionViewController.swift */; };
@@ -366,7 +365,6 @@
 		3B1B0047219BD9F50045E8A1 /* AssignmentDetailsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsPresenter.swift; sourceTree = "<group>"; };
 		3B1B004B219BD9F50045E8A1 /* AssignmentDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsViewController.swift; sourceTree = "<group>"; };
 		3B1B004D219BD9F50045E8A1 /* GradeCircle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradeCircle.swift; sourceTree = "<group>"; };
-		3B1B0051219BD9F50045E8A1 /* CourseNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseNavigationViewController.swift; sourceTree = "<group>"; };
 		3B1B0052219BD9F50045E8A1 /* CourseNavigationPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseNavigationPresenter.swift; sourceTree = "<group>"; };
 		3B1B0056219BD9F50045E8A1 /* CourseListSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseListSectionHeaderView.swift; sourceTree = "<group>"; };
 		3B1B0057219BD9F50045E8A1 /* CourseListViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CourseListViewController.storyboard; sourceTree = "<group>"; };
@@ -385,6 +383,7 @@
 		3B1B0092219BDA560045E8A1 /* GroupNavigationPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupNavigationPresenterTests.swift; sourceTree = "<group>"; };
 		3B3436E7215EF0FB009EF87F /* UIImageExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtensions.swift; sourceTree = "<group>"; };
 		3B3436EB215EF2F8009EF87F /* UIImageStudentExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageStudentExtensionTests.swift; sourceTree = "<group>"; };
+		3B3785BE222DC0B90047DAE4 /* CourseNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseNavigationViewController.swift; sourceTree = "<group>"; };
 		3B437704215D87B700B32DFB /* DashboardUITesttestViewLoads.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DashboardUITesttestViewLoads.json; sourceTree = "<group>"; };
 		3B5369E9219D519C00D3F62E /* TestImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TestImage.png; sourceTree = "<group>"; };
 		3B5425FD21B094CC0009D069 /* UrlSubmissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlSubmissionViewController.swift; sourceTree = "<group>"; };
@@ -859,7 +858,7 @@
 		3B1B0050219BD9F50045E8A1 /* CourseNavigation */ = {
 			isa = PBXGroup;
 			children = (
-				3B1B0051219BD9F50045E8A1 /* CourseNavigationViewController.swift */,
+				3B3785BE222DC0B90047DAE4 /* CourseNavigationViewController.swift */,
 				3B1B0052219BD9F50045E8A1 /* CourseNavigationPresenter.swift */,
 			);
 			path = CourseNavigation;
@@ -1710,7 +1709,6 @@
 				7D10A49221B5E3CC0040C311 /* RootViewController.swift in Sources */,
 				B107189821963BC000ED1DC7 /* EmptyView.swift in Sources */,
 				3B1B0080219BD9F60045E8A1 /* QuizListCell.swift in Sources */,
-				3B1B0072219BD9F60045E8A1 /* CourseNavigationViewController.swift in Sources */,
 				7DA057542193A3A800A3CFBB /* IconView.swift in Sources */,
 				788152FC212B83D0005BA428 /* DashboardSectionHeaderView.swift in Sources */,
 				3B54260521B1D08B0009D069 /* UrlSubmissionPresenter.swift in Sources */,
@@ -1752,6 +1750,7 @@
 				3B6325DE21ADF49200237CE6 /* UrlSubmissionContentViewController.swift in Sources */,
 				788152DD212B34F2005BA428 /* DashboardViewController.swift in Sources */,
 				3B1B007A219BD9F60045E8A1 /* QuizListPresenter.swift in Sources */,
+				3B3785BF222DC0B90047DAE4 /* CourseNavigationViewController.swift in Sources */,
 				7D20F61621C3142E00B77E5E /* CourseListPresenter.swift in Sources */,
 				3B1B0064219BD9F60045E8A1 /* GroupNavigationTableViewController.swift in Sources */,
 			);
@@ -1802,7 +1801,6 @@
 				3B0B0F74219C8D3100F04216 /* QuizListCell.swift in Sources */,
 				3B0B0F5E219C8CE700F04216 /* AssignmentDetailsPresenter.swift in Sources */,
 				7D067CE821505B3500B78AF2 /* DashboardPresenter.swift in Sources */,
-				3B0B0F5C219C8CC900F04216 /* CourseNavigationViewController.swift in Sources */,
 				7D10194F215EBA7B0058FDD1 /* DividerView.swift in Sources */,
 				7D63F781215D37B100151E49 /* CardView.swift in Sources */,
 				3B0B0F65219C8D1100F04216 /* CourseListSectionHeaderView.swift in Sources */,

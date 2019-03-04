@@ -82,14 +82,6 @@ class CourseListPresenter {
     }
 
     func loadDataFromServer() {
-        let getCourses = GetCourses(env: environment)
-        getCourses.completionBlock = { [weak self] in
-            // Load data from data store once our big group finishes
-            DispatchQueue.main.async {
-                self?.fetchData()
-            }
-        }
-        queue.addOperationWithErrorHandling(getCourses, sendErrorsTo: view)
     }
 
     func fetchData() {

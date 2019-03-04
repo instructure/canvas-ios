@@ -16,33 +16,32 @@
 
 import Foundation
 
-private class GetPaginatedCourses: PaginatedUseCase<GetCoursesRequest, Course> {
-    init(env: AppEnvironment) {
-        let request = GetCoursesRequest(includeUnpublished: true)
-        super.init(api: env.api, database: env.database, request: request)
+public class GetCourses: CollectionUseCase {
+    public typealias Model = Course
+
+    public init() {
+
     }
 
-    override var predicate: NSPredicate {
-        return .all
+    public var cacheKey: String {
+        return "get-assignments"
     }
 
-    override func predicate(forItem item: APICourse) -> NSPredicate {
-        return NSPredicate(format: "%K == %@", #keyPath(Course.id), item.id)
+    public var request: GetCoursesRequest {
+        return GetCoursesRequest(includeUnpublished: true)
     }
 
-    override func updateModel(_ model: Course, using item: APICourse, in client: PersistenceClient) throws {
-        if model.id.isEmpty { model.id = item.id }
-        model.name = item.name
-        model.isFavorite = item.is_favorite ?? false
-        model.courseCode = item.course_code
-        model.imageDownloadURL = item.image_download_url
+    public var scope: Scope {
+        return Scope.all(orderBy: #keyPath(Course.name), ascending: true, naturally: true)
     }
-}
 
-public class GetCourses: OperationSet {
-    public init(env: AppEnvironment, force: Bool = false) {
-        let paginated = GetPaginatedCourses(env: env)
-        let ttl = TTLOperation(key: "get-courses", database: env.database, operation: paginated, force: force)
-        super.init(operations: [ttl])
+    public func write(response: [APICourse]?, urlResponse: URLResponse?, to client: PersistenceClient) throws {
+        guard let response = response else {
+            return
+        }
+
+        for item in response {
+            Course.save(item, in: client)
+        }
     }
 }

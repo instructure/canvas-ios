@@ -32,6 +32,18 @@ final public class Course: NSManagedObject, Context {
         get { return CourseDefaultView(rawValue: defaultViewRaw ?? "") }
         set { defaultViewRaw = newValue?.rawValue }
     }
+
+    @discardableResult
+    public static func save(_ item: APICourse, in context: PersistenceClient) -> Course {
+        let predicate = NSPredicate(format: "%K == %@", #keyPath(Course.id), item.id)
+        let model: Course = context.fetch(predicate).first ?? context.insert()
+        model.id = item.id
+        model.name = item.name
+        model.isFavorite = item.is_favorite ?? false
+        model.courseCode = item.course_code
+        model.imageDownloadURL = item.image_download_url
+        return model
+    }
 }
 
 extension Course {
