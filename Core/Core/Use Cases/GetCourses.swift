@@ -18,9 +18,9 @@ import Foundation
 
 public class GetCourses: CollectionUseCase {
     public typealias Model = Course
-
-    public init() {
-
+    var showFavorites: Bool
+    public init(showFavorites: Bool = false) {
+        self.showFavorites = showFavorites
     }
 
     public var cacheKey: String {
@@ -32,7 +32,9 @@ public class GetCourses: CollectionUseCase {
     }
 
     public var scope: Scope {
-        return Scope.all(orderBy: #keyPath(Course.name), ascending: true, naturally: true)
+        return showFavorites ?
+            .where(#keyPath(Course.isFavorite), equals: true, orderBy: #keyPath(Course.name)) :
+            .all(orderBy: #keyPath(Course.name), ascending: true, naturally: true)
     }
 
     public func write(response: [APICourse]?, urlResponse: URLResponse?, to client: PersistenceClient) throws {

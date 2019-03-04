@@ -24,25 +24,12 @@ class GetCoursesTest: CoreTestCase {
 
     func testItCreatesCourses() {
         let course = APICourse.make(["id": "1", "name": "Course 1"])
-        api.mock(request, value: [course], response: nil, error: nil)
-
-        let getCourses = GetCourses(env: environment)
-        addOperationAndWait(getCourses)
+        let getCourses = GetCourses()
+        try! getCourses.write(response: [course], urlResponse: nil, to: databaseClient)
 
         let courses: [Course] = databaseClient.fetch(predicate: nil, sortDescriptors: nil)
         XCTAssertEqual(courses.count, 1)
         XCTAssertEqual(courses.first?.id, "1")
         XCTAssertEqual(courses.first?.name, "Course 1")
-    }
-
-    func testItDeletesCoursesThatNoLongerExist() {
-        let course = Course.make()
-        api.mock(request, value: [], response: nil, error: nil)
-
-        let getCourses = GetCourses(env: environment)
-        addOperationAndWait(getCourses)
-
-        let courses: [Course] = databaseClient.fetch()
-        XCTAssertFalse(courses.contains(course))
     }
 }

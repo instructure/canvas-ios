@@ -18,12 +18,11 @@ import UIKit
 import Core
 
 protocol CourseListViewProtocol: ErrorViewController {
-    func update(courses: CourseListViewModel)
+    func update()
 }
 
 class CourseListViewController: UIViewController, CourseListViewProtocol {
-    var presenter: CourseListPresenter?
-    var viewModel: CourseListViewModel?
+    var presenter: CourseListPresenter!
 
     let gutterWidth: CGFloat = 16
     let shadowMargin: CGFloat = 5
@@ -73,26 +72,18 @@ class CourseListViewController: UIViewController, CourseListViewProtocol {
         presenter?.refreshRequested()
     }
 
-    func update(courses: CourseListViewModel) {
-        self.viewModel = courses
-
-        // check for empty state
-
-        // display courses
+    func update() {
         collectionView?.reloadData()
         refreshControl.endRefreshing()
     }
 
     func itemWasSelected(at indexPath: IndexPath) {
-        guard let viewModel = viewModel else {
-            return
+        let courseID = (indexPath.section == CourseListViewSection.current.rawValue)
+            ? presenter.current[indexPath.row]?.id
+            : presenter.past[indexPath.row]?.id
+        if let courseID = courseID {
+            presenter?.courseWasSelected(courseID, from: self)
         }
-
-        let courseId = (indexPath.section == CourseListViewSection.current.rawValue)
-            ? viewModel.current[indexPath.row].courseID
-            : viewModel.past[indexPath.row].courseID
-
-        presenter?.courseWasSelected(courseId, from: self)
     }
 }
 
@@ -109,40 +100,30 @@ enum CourseListViewSection: Int {
 
 extension CourseListViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        guard let vm = viewModel else {
-            return 0
-        }
-
-        return (vm.current.count > 0 || vm.past.count > 0) ? 2 : 0
+        let current = presenter.current.count
+        let past = presenter.past.count
+        return (current > 0 || past > 0) ? 2 : 0
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let viewModel = viewModel else {
-            return 0
-        }
-
         if section == CourseListViewSection.current.rawValue {
-            return viewModel.current.count
+            return presenter.current.count
         }
 
-        return  viewModel.past.count
+        return  presenter.past.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let viewModel = viewModel else {
-            return UICollectionViewCell(frame: CGRect.zero)
-        }
-
         if indexPath.section == CourseListViewSection.current.rawValue {
             let cell = collectionView.dequeue(CourseListCourseCell.self, for: indexPath)
-            let model = viewModel.current[indexPath.row]
+            guard let model = presenter.current[indexPath.row] else { return UICollectionViewCell(frame: CGRect.zero) }
             cell.configure(with: model)
             cell.optionsCallback = { [unowned self, model] in
                 // TODO:
                 //self.delegate?.courseWasSelected(model.courseID)
 
                 // REMOVEDashboardSectionHeaderView
-                let alert = UIAlertController(title: "Course Options", message: "Course options was tapped for Id => \(model.courseID)", preferredStyle: .alert)
+                let alert = UIAlertController(title: "Course Options", message: "Course options was tapped for Id => \(model.id)", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }
@@ -150,7 +131,7 @@ extension CourseListViewController: UICollectionViewDataSource {
         }
 
         let cell = collectionView.dequeue(CourseListCourseCell.self, for: indexPath)
-        let past = viewModel.past[indexPath.row]
+        guard let past = presenter.past[indexPath.row] else { return UICollectionViewCell(frame: CGRect.zero) }
         cell.configure(with: past)
         return cell
     }

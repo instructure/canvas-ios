@@ -67,8 +67,6 @@
 		3B54260521B1D08B0009D069 /* UrlSubmissionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B54260421B1D08B0009D069 /* UrlSubmissionPresenter.swift */; };
 		3B54260721B1E6C10009D069 /* UrlSubmissionPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B54260621B1E6C10009D069 /* UrlSubmissionPresenterTests.swift */; };
 		3B542D56215AE79E0084DA9D /* TestEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B542D0F215AC0210084DA9D /* TestEnvironment.swift */; };
-		3B542D5A215AE79E0084DA9D /* DashboardMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152E5212B3987005BA428 /* DashboardMocks.swift */; };
-		3B542D5D215AE79E0084DA9D /* DashboardIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152E3212B3957005BA428 /* DashboardIntegrationTests.swift */; };
 		3B6065FA2194EEF800D04D53 /* PersistenceTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6065F92194EEF800D04D53 /* PersistenceTestCase.swift */; };
 		3B6325DE21ADF49200237CE6 /* UrlSubmissionContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6325DD21ADF49200237CE6 /* UrlSubmissionContentViewController.swift */; };
 		3B67BCB621B5784500055324 /* UrlSubmissionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B54260421B1D08B0009D069 /* UrlSubmissionPresenter.swift */; };
@@ -571,8 +569,6 @@
 		788152DA212B3470005BA428 /* DashboardPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardPresenter.swift; sourceTree = "<group>"; };
 		788152DC212B34F2005BA428 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		788152DE212B35F8005BA428 /* DashboardViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DashboardViewController.storyboard; sourceTree = "<group>"; };
-		788152E3212B3957005BA428 /* DashboardIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardIntegrationTests.swift; sourceTree = "<group>"; };
-		788152E5212B3987005BA428 /* DashboardMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardMocks.swift; sourceTree = "<group>"; };
 		788152EC212B4FA4005BA428 /* DashboardCourseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCourseCell.swift; sourceTree = "<group>"; };
 		788152F4212B7482005BA428 /* DashboardGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardGroupCell.swift; sourceTree = "<group>"; };
 		788152FA212B83D0005BA428 /* DashboardSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardSectionHeaderView.swift; sourceTree = "<group>"; };
@@ -1067,8 +1063,6 @@
 		788152E0212B38C5005BA428 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
-				788152E3212B3957005BA428 /* DashboardIntegrationTests.swift */,
-				788152E5212B3987005BA428 /* DashboardMocks.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -1765,7 +1759,6 @@
 				9FFA7555218CA2520036FD41 /* SubmissionDetailsUseCaseTests.swift in Sources */,
 				B10D777221C2EA5B00BCE822 /* BlockExpectation.swift in Sources */,
 				B1B6F076219A3E2600C1575D /* SubmissionFilePickerPresenterTests.swift in Sources */,
-				3B542D5A215AE79E0084DA9D /* DashboardMocks.swift in Sources */,
 				3B1B009A219BDA560045E8A1 /* QuizListPresenterTests.swift in Sources */,
 				3B1B0095219BDA560045E8A1 /* AssignmentDetailsPresenterTests.swift in Sources */,
 				7DA61A60216679170085BAE8 /* RoutesTests.swift in Sources */,
@@ -1776,7 +1769,6 @@
 				3B1B009B219BDA560045E8A1 /* GroupNavigationPresenterTests.swift in Sources */,
 				B1BCFF9121BF24C200F58D0F /* FilePickerView.swift in Sources */,
 				9FFA7553218C8E540036FD41 /* SubmissionDetailsPresenterTests.swift in Sources */,
-				3B542D5D215AE79E0084DA9D /* DashboardIntegrationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

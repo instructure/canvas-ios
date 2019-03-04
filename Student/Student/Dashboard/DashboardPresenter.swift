@@ -30,7 +30,7 @@ class DashboardPresenter {
     }()
 
     lazy var courses: Store<GetCourses> = {
-        let useCase = GetCourses()
+        let useCase = GetCourses(showFavorites: true)
         return environment.subscribe(useCase) { [weak self] in
             self?.update()
         }
