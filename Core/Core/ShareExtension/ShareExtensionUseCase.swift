@@ -21,7 +21,8 @@ class ShareExtensionUseCase: PresenterUseCase {
         super.init()
         addOperations([
             GetContext(context: ContextModel(.course, id: courseID), env: env),
-            GetAssignment(courseID: courseID, assignmentID: assignmentID, include: [.submission], env: env),
+            //  FIXME: - FIX ME
+//            GetAssignment(courseID: courseID, assignmentID: assignmentID, includes: [.submission]),
         ])
     }
 }

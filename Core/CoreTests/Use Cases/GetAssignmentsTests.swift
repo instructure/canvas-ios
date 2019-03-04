@@ -19,7 +19,6 @@ import XCTest
 
 class GetAssignmentsTests: CoreTestCase {
     func testItCreatesAssignment() {
-        let request = GetAssignmentRequest(courseID: "1", assignmentID: "2", include: [.submission])
         let apiAssignment = APIAssignment.make([
             "id": "2",
             "course_id": "1",
@@ -35,12 +34,10 @@ class GetAssignmentsTests: CoreTestCase {
             "unlock_at": "2018-10-26T06:00:00Z",
             "lock_at": "2018-11-10T06:59:59Z",
         ])
-        api.mock(request, value: apiAssignment, response: nil, error: nil)
 
-        let getAssignment = GetAssignment(courseID: "1", assignmentID: "2", include: [.submission], env: environment)
-        addOperationAndWait(getAssignment)
+        let getAssignment = GetAssignment(courseID: "1", assignmentID: "2", include: [.submission])
+        try! getAssignment.write(response: apiAssignment, urlResponse: nil, to: databaseClient)
 
-        XCTAssertEqual(getAssignment.errors.count, 0)
         let assignments: [Assignment] = databaseClient.fetch(predicate: nil, sortDescriptors: nil)
         XCTAssertEqual(assignments.count, 1)
         let assignment = assignments.first!
@@ -76,10 +73,9 @@ class GetAssignmentsTests: CoreTestCase {
         ])
         api.mock(request, value: apiAssignment, response: nil, error: nil)
 
-        let getAssignment = GetAssignment(courseID: "1", assignmentID: "2", include: [.submission], env: environment)
-        addOperationAndWait(getAssignment)
+        let getAssignment = GetAssignment(courseID: "1", assignmentID: "2", include: [.submission])
+        try! getAssignment.write(response: apiAssignment, urlResponse: nil, to: databaseClient)
 
-        XCTAssertEqual(getAssignment.errors.count, 0)
         let assignments: [Assignment] = databaseClient.fetch()
         let assignment = assignments.first
         XCTAssertNotNil(assignment)
@@ -106,10 +102,9 @@ class GetAssignmentsTests: CoreTestCase {
             ])
         api.mock(request, value: apiAssignment, response: nil, error: nil)
 
-        let getAssignment = GetAssignment(courseID: "1", assignmentID: "2", include: [.submission], env: environment)
-        addOperationAndWait(getAssignment)
+        let getAssignment = GetAssignment(courseID: "1", assignmentID: "2", include: [.submission])
+        try! getAssignment.write(response: apiAssignment, urlResponse: nil, to: databaseClient)
 
-        XCTAssertEqual(getAssignment.errors.count, 0)
         let assignments: [Assignment] = databaseClient.fetch()
         let assignment = assignments.first
         XCTAssertNotNil(assignment?.submission)
@@ -119,19 +114,19 @@ class GetAssignmentsTests: CoreTestCase {
     }
 
     func testItDeletesSubmission() {
-        Assignment.make(["id": "1", "submission": Submission.make()])
+        Assignment.make(["id": "1", "courseID": "1", "submission": Submission.make()])
+        let preCheckAssignments: [Assignment] = databaseClient.fetch()
         let apiAssignment = APIAssignment.make([
             "id": "1",
+            "name": "a",
             "submission": nil,
         ])
+        XCTAssertEqual(apiAssignment.html_url, preCheckAssignments.first?.htmlURL)
         XCTAssertEqual((databaseClient.fetch() as [Submission]).count, 1)
-        let request = GetAssignmentRequest(courseID: "1", assignmentID: "1", include: [.submission])
-        api.mock(request, value: apiAssignment, response: nil, error: nil)
 
-        let getAssignment = GetAssignment(courseID: "1", assignmentID: "1", include: [.submission], env: environment)
-        addOperationAndWait(getAssignment)
+        let getAssignment = GetAssignment(courseID: "1", assignmentID: "1", include: [.submission])
+        try! getAssignment.write(response: apiAssignment, urlResponse: nil, to: databaseClient)
 
-        databaseClient.refresh()
         let submissions: [Submission] = databaseClient.fetch()
         XCTAssertEqual(submissions.count, 0)
         let assignments: [Assignment] = databaseClient.fetch()
@@ -146,11 +141,9 @@ class GetAssignmentsTests: CoreTestCase {
             "id": "1",
             "submission": nil,
         ])
-        let request = GetAssignmentRequest(courseID: "1", assignmentID: "1", include: [])
-        api.mock(request, value: apiAssignment, response: nil, error: nil)
 
-        let getAssignment = GetAssignment(courseID: "1", assignmentID: "1", include: [], env: environment)
-        addOperationAndWait(getAssignment)
+        let getAssignment = GetAssignment(courseID: "1", assignmentID: "1", include: [])
+        try! getAssignment.write(response: apiAssignment, urlResponse: nil, to: databaseClient)
 
         databaseClient.refresh()
         let submissions: [Submission] = databaseClient.fetch()
@@ -159,16 +152,16 @@ class GetAssignmentsTests: CoreTestCase {
 
     func testDoesntDeleteSubmissionWithoutInclude() {
         Assignment.make(["id": "1", "submission": Submission.make()])
+        let preCheckAssignments: [Assignment] = databaseClient.fetch()
         let apiAssignment = APIAssignment.make([
             "id": "1",
             "submission": nil,
         ])
+        XCTAssertEqual(apiAssignment.html_url, preCheckAssignments.first?.htmlURL)
         XCTAssertEqual((databaseClient.fetch() as [Submission]).count, 1)
-        let request = GetAssignmentRequest(courseID: "1", assignmentID: "1", include: [])
-        api.mock(request, value: apiAssignment, response: nil, error: nil)
 
-        let getAssignment = GetAssignment(courseID: "1", assignmentID: "1", include: [], env: environment)
-        addOperationAndWait(getAssignment)
+        let getAssignment = GetAssignment(courseID: "1", assignmentID: "1", include: [])
+        try! getAssignment.write(response: apiAssignment, urlResponse: nil, to: databaseClient)
 
         databaseClient.refresh()
         let submissions: [Submission] = databaseClient.fetch()
@@ -176,7 +169,6 @@ class GetAssignmentsTests: CoreTestCase {
     }
 
     func testGetAssignmentsList() {
-        let request = GetAssignmentsRequest(courseID: "1")
         let apiAssignment = APIAssignment.make([
             "id": "2",
             "course_id": "1",
@@ -191,7 +183,6 @@ class GetAssignmentsTests: CoreTestCase {
             "position": 0,
             ])
         let getAssignments = GetAssignments(courseID: "1")
-        api.mock(request, value: [apiAssignment], response: nil, error: nil)
         try! getAssignments.write(response: [apiAssignment], urlResponse: nil, to: databaseClient)
 
         let assignments: [Assignment] = databaseClient.fetch(predicate: nil, sortDescriptors: nil)

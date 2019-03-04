@@ -22,8 +22,9 @@ class SubmissionDetailsUseCase: PresenterUseCase {
         super.init()
         addOperations([
             GetContext(context: context, env: env),
-            GetAssignment(courseID: context.id, assignmentID: assignmentID),
-            GetSubmission(context: context, assignmentID: assignmentID, userID: userID, env: env),
+            //  FIXME: - FIX ME
+//            GetAssignment(courseID: context.id, assignmentID: assignmentID),
+//            GetSubmission(context: context, assignmentID: assignmentID, userID: userID, env: env),
         ])
     }
 }
