@@ -147,7 +147,7 @@ struct BackdropFile: Hashable, Equatable {
         let start: String.Index = name.index(name.endIndex, offsetBy: -6)
         let end: String.Index = name.index(name.endIndex, offsetBy: -4)
         if start >= name.startIndex && end >= start && name.endIndex >= end {
-            if let n = Int(name.substring(with: start..<end)) {
+            if let n = Int(name[start..<end]) {
                 if let _ = name.range(of: shapeRoot) {
                     return BackdropFile(type: .shapes, n: n)
                 } else if let _ = name.range(of: photoRoot) {
@@ -213,7 +213,7 @@ struct BackdropFile: Hashable, Equatable {
     //! Inverse of BackdropFile.url()
     static func fromURL(_ url: String) -> BackdropFile? {
         if let range = url.range(of: rootURL.absoluteString) {
-            let name = url.substring(with: range.upperBound..<url.endIndex)
+            let name = String(url[range.upperBound..<url.endIndex])
             return BackdropFile.fromName(name)
         }
         return nil
@@ -242,7 +242,7 @@ struct BackdropFile: Hashable, Equatable {
             let start = rootRange.lowerBound
             let end = json.index(json.endIndex, offsetBy: -2)
             if start < end {
-                let url = json.substring(with: start..<end)
+                let url = String(json[start..<end])
                 let file = BackdropFile.fromURL(url)
                 result = Result(value: file)
                 return result

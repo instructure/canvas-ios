@@ -107,7 +107,7 @@ class CanvadocsAnnotationService: NSObject {
     fileprivate func sessionBasedPDFFilename() -> String {
         let url = self.sessionURL.absoluteString
         let endIndex = url.index(url.endIndex, offsetBy: -12)
-        let prefix = self.sessionURL.absoluteString.substring(from: endIndex)
+        let prefix = self.sessionURL.absoluteString[endIndex...]
         return "\(prefix)_doc.pdf"
     }
     

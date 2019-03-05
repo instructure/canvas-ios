@@ -110,14 +110,14 @@ class SubmissionDetailsPageTest: StudentTest {
         let metadata = seedClient.pollForDocViewerMetadata(sessionURL: sessionURL)
         let point = seedClient.createAnnotation(APIDocViewerAnnotation.make([
             "id": UUID().uuidString,
-            "user_name": metadata.annotations.user_name,
+            "user_name": metadata.annotations?.user_name,
             "type": APIDocViewerAnnotationType.text.rawValue,
             "color": DocViewerAnnotationColor.green.rawValue,
             "rect": [ [ 0, (11 * 72) - 240 ], [ 170, (11 * 72) ] ],
         ]), on: sessionURL, as: teacher)
         let comment = seedClient.createAnnotation(APIDocViewerAnnotation.make([
             "id": UUID().uuidString,
-            "user_name": metadata.annotations.user_name,
+            "user_name": metadata.annotations?.user_name,
             "type": APIDocViewerAnnotationType.commentReply.rawValue,
             "contents": "Why is the document empty?",
             "inreplyto": point.id,

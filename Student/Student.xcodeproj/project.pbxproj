@@ -90,7 +90,6 @@
 		78761D87218B8C2A0042E5D2 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78761D86218B8C2A0042E5D2 /* ShareViewController.swift */; };
 		78761D8A218B8C2A0042E5D2 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78761D88218B8C2A0042E5D2 /* MainInterface.storyboard */; };
 		78761D8E218B8C2A0042E5D2 /* StudentShare.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 78761D84218B8C2A0042E5D2 /* StudentShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		78761D98218BBF250042E5D2 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78761D97218BBF250042E5D2 /* Core.framework */; };
 		788152DB212B3470005BA428 /* DashboardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152DA212B3470005BA428 /* DashboardPresenter.swift */; };
 		788152DD212B34F2005BA428 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152DC212B34F2005BA428 /* DashboardViewController.swift */; };
 		788152DF212B35F8005BA428 /* DashboardViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 788152DE212B35F8005BA428 /* DashboardViewController.storyboard */; };
@@ -566,7 +565,6 @@
 		78761D89218B8C2A0042E5D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		78761D8B218B8C2A0042E5D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78761D93218B8C3C0042E5D2 /* StudentShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StudentShare.entitlements; sourceTree = "<group>"; };
-		78761D97218BBF250042E5D2 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		788152DA212B3470005BA428 /* DashboardPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardPresenter.swift; sourceTree = "<group>"; };
 		788152DC212B34F2005BA428 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		788152DE212B35F8005BA428 /* DashboardViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DashboardViewController.storyboard; sourceTree = "<group>"; };
@@ -678,7 +676,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78761D98218BBF250042E5D2 /* Core.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -730,7 +727,6 @@
 				78761D85218B8C2A0042E5D2 /* StudentShare */,
 				2C964862211E37EC002C3255 /* Frameworks */,
 				2C5C698A211DFFAD00D9AD15 /* Products */,
-				5B22A366219812380002DBD0 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1028,14 +1024,6 @@
 				B10D777121C2EA5B00BCE822 /* BlockExpectation.swift */,
 			);
 			path = Helpers;
-			sourceTree = "<group>";
-		};
-		5B22A366219812380002DBD0 /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				78761D97218BBF250042E5D2 /* Core.framework */,
-			);
-			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		78761D85218B8C2A0042E5D2 /* StudentShare */ = {

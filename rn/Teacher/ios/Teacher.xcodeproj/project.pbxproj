@@ -353,7 +353,6 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2C50EDDF1E735CA50096592C /* Frameworks */,
 				E3598DCFB2D0E7A9019957B2 /* Pods */,
-				B15CA27C221DF4E20014FB02 /* Recovered References */,
 			);
 			indentWidth = 4;
 			sourceTree = "<group>";
@@ -406,13 +405,6 @@
 				B15CA269221DDB9F0014FB02 /* ModuleListPresenterTests.swift */,
 			);
 			path = Modules;
-			sourceTree = "<group>";
-		};
-		B15CA27C221DF4E20014FB02 /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		B15CA293221E0F890014FB02 /* IBDesignables */ = {
@@ -476,7 +468,6 @@
 				B714E89FBF87F7C6C1A4CBF2 /* [CP] Embed Pods Frameworks */,
 				F9B947072215EA3C0083E660 /* Carthage Copy Frameworks */,
 				2CDD85CA1F1D6CDB00FD1CF8 /* Fabric */,
-				B186F36B2144BE0C0026429F /* Strip Frameworks */,
 			);
 			buildRules = (
 			);
@@ -636,7 +627,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n\n# Define NVM_DIR and source the nvm.sh setup script\n[ -z \"$NVM_DIR\" ] && export NVM_DIR=\"$HOME/.nvm\"\nif [[ -s \"$HOME/.nvm/nvm.sh\" ]]; then\n. \"$HOME/.nvm/nvm.sh\"\nelif [[ -x \"$(command -v brew)\" && -s \"$(brew --prefix nvm)/nvm.sh\" ]]; then\n. \"$(brew --prefix nvm)/nvm.sh\"\nfi\n\nif [ \"${CONFIGURATION}\" = \"Release\" ]\nthen\ncd \"${PROJECT_DIR}/../\"\nset -x\nDEST=$CONFIGURATION_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\nreact-native bundle --entry-file ./index.ios.js --platform ios --bundle-output \"${DEST}/main.jsbundle\" --sourcemap-output \"${DEST}/main.jsbundle.map\" --dev false --assets-dest \"$DEST\" --reset-cache\ncd \"${PROJECT_DIR}\"\nelse\n../node_modules/react-native/scripts/react-native-xcode.sh\nfi";
+			shellScript = "export NODE_BINARY=node\n\n# Define NVM_DIR and source the nvm.sh setup script\n[ -z \"$NVM_DIR\" ] && export NVM_DIR=\"$HOME/.nvm\"\nif [[ -s \"$HOME/.nvm/nvm.sh\" ]]; then\n. \"$HOME/.nvm/nvm.sh\"\nelif [[ -x \"$(command -v brew)\" && -s \"$(brew --prefix nvm)/nvm.sh\" ]]; then\n. \"$(brew --prefix nvm)/nvm.sh\"\nfi\n\nif [ \"${CONFIGURATION}\" = \"Release\" ]\nthen\ncd \"${PROJECT_DIR}/../\"\nset -x\nDEST=$CONFIGURATION_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\nreact-native bundle --entry-file ./index.ios.js --platform ios --bundle-output \"${DEST}/main.jsbundle\" --sourcemap-output \"${DEST}/main.jsbundle.map\" --dev false --assets-dest \"$DEST\" --reset-cache\ncd \"${PROJECT_DIR}\"\nelse\n../node_modules/react-native/scripts/react-native-xcode.sh\nfi\n";
 		};
 		5AB2BCD6CC4B25C00B73A429 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -751,20 +742,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-defaults-TeacherTests/Pods-defaults-TeacherTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
-		};
-		B186F36B2144BE0C0026429F /* Strip Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Strip Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/CanvasCore.framework/strip-frameworks.sh\"";
 		};
 		B3ADBFFA3D2F8B176CD267CC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
