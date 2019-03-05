@@ -24,4 +24,15 @@ class AppEnvironmentTests: CoreTestCase {
         XCTAssertEqual(env.api.accessToken, "token")
         XCTAssertEqual(env.backgroundAPI.accessToken, "token")
     }
+
+    func testUserDidLogout() {
+        let env = AppEnvironment()
+        let current = KeychainEntry.make(accessToken: "token")
+        env.userDidLogin(session: current)
+        env.userDidLogout(session: KeychainEntry.make(userID: "7"))
+        XCTAssertEqual(env.api.accessToken, "token")
+        env.userDidLogout(session: current)
+        XCTAssertNil(env.api.accessToken)
+        XCTAssertNil(env.currentSession)
+    }
 }

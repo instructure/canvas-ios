@@ -59,9 +59,8 @@ extension JSONSerialization {
         guard let dataString = String(data: data, encoding: .utf8) else {
             return nil
         }
-        let whileIndex = dataString.index(dataString.startIndex, offsetBy: 9)
-        if dataString.substring(to: whileIndex) == "while(1);" {
-            return dataString.substring(from: whileIndex).data(using: .utf8)
+        if dataString.hasPrefix("while(1);") {
+            return dataString.dropFirst(9).data(using: .utf8)
         }
         return nil
     }

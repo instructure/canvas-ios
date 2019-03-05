@@ -15,6 +15,7 @@
 //
 
 import UIKit
+import Core
 
 class CourseListCourseCell: UICollectionViewCell {
     @IBOutlet var topView: UIView?
@@ -26,7 +27,7 @@ class CourseListCourseCell: UICollectionViewCell {
 
     var optionsCallback: (() -> Void)?
 
-    var course: CourseListViewModel.Course? = nil {
+    var course: Course? = nil {
         didSet {
             _accessibilityElements = nil
         }
@@ -50,7 +51,7 @@ class CourseListCourseCell: UICollectionViewCell {
 
             var elements = [UIAccessibilityElement]()
             let cardElement = UIAccessibilityElement(accessibilityContainer: self)
-            cardElement.accessibilityLabel = course.title
+            cardElement.accessibilityLabel = course.name
             cardElement.accessibilityFrameInContainerSpace = bounds
             elements.append(cardElement)
 
@@ -83,14 +84,14 @@ class CourseListCourseCell: UICollectionViewCell {
         optionsCallback = nil
     }
 
-    func configure(with model: CourseListViewModel.Course) {
+    func configure(with model: Course) {
         let color = model.color.ensureContrast(against: .named(.white))
         course = model
-        titleLabel?.text = model.title
+        titleLabel?.text = model.name
         titleLabel?.textColor = color
-        abbrevationLabel?.text = model.abbreviation
+        abbrevationLabel?.text = model.courseCode ?? ""
         topView?.backgroundColor = color
-        imageView?.load(url: model.imageUrl)
+        imageView?.load(url: model.imageDownloadURL)
     }
 
     @IBAction func optionsButtonTapped(_ sender: Any) {

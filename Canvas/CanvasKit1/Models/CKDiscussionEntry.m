@@ -214,8 +214,6 @@ NSString *CKDiscussionEntryMediaToken = @"instructure_inline_media_comment_on_ip
         }
     }
     
-    [attachmentInfoArray sortUsingSelector:@selector(compareAttachmentsIndex:)];
-    
     NSDictionary *entryInfo = @{@"internalIdent": self.internalIdent,
                                @"date": formattedUpdatedAt,
                                @"entryMessage": self.entryMessage,

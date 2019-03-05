@@ -27,7 +27,7 @@ class DashboardCourseCell: UICollectionViewCell {
 
     var optionsCallback: (() -> Void)?
 
-    var course: DashboardViewModel.Course? = nil {
+    var course: Course? = nil {
         didSet {
             _accessibilityElements = nil
         }
@@ -51,7 +51,7 @@ class DashboardCourseCell: UICollectionViewCell {
 
             var elements = [UIAccessibilityElement]()
             let cardElement = UIAccessibilityElement(accessibilityContainer: self)
-            cardElement.accessibilityLabel = course.title
+            cardElement.accessibilityLabel = course.name
             cardElement.accessibilityFrameInContainerSpace = bounds
             elements.append(cardElement)
 
@@ -84,14 +84,14 @@ class DashboardCourseCell: UICollectionViewCell {
         optionsCallback = nil
     }
 
-    func configure(with model: DashboardViewModel.Course) {
+    func configure(with model: Course) {
         let color = model.color.ensureContrast(against: .named(.white))
         course = model
-        titleLabel?.text = model.title
+        titleLabel?.text = model.name
         titleLabel?.textColor = color
-        abbrevationLabel?.text = model.abbreviation
+        abbrevationLabel?.text = model.courseCode
         topView?.backgroundColor = color
-        imageView?.load(url: model.imageUrl)
+        imageView?.load(url: model.imageDownloadURL)
     }
 
     @IBAction func optionsButtonTapped(_ sender: Any) {

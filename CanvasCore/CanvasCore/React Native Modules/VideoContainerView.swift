@@ -71,7 +71,7 @@ public class VideoContainerView: UIView {
     @objc var itemURL: URL? {
         guard let uri = source["uri"] as? String else { return nil }
         if uri.hasPrefix("file://") {
-            let path = uri.substring(from: uri.index(uri.startIndex, offsetBy: 7))
+            let path = String(uri.dropFirst(7))
             return URL(fileURLWithPath: path)
         }
         return URL(string: uri)

@@ -23,7 +23,6 @@
 @import Mantle;
 @import CanvasKit;
 
-static double const CKMDistanceThreshold = 50.0;
 static CKMLocationSchoolSuggester* _sharedInstance = nil;
 
 @interface CKMLocationSchoolSuggester ()
