@@ -163,7 +163,7 @@ export default class SubmissionGrader extends Component<SubmissionGraderProps, S
       case 1:
         return <CommentsTab {...this.props} />
       case 2:
-        return <FilesTab {...this.props} />
+        return <FilesTab {...this.props} isWide={this.isWide()} />
       default:
         const showToolTip = this.toolTip ? this.toolTip.showToolTip : undefined
         const dismissToolTip = this.toolTip ? this.toolTip.dismissToolTip : undefined
@@ -219,6 +219,8 @@ export default class SubmissionGrader extends Component<SubmissionGraderProps, S
     }
     this.props.closeModal()
   }
+
+  isWide = () => this.state.width > COMPACT_DEVICE_WIDTH
 
   renderCompact (width: number, height: number) {
     return (
@@ -298,7 +300,7 @@ export default class SubmissionGrader extends Component<SubmissionGraderProps, S
 
   render () {
     const { width, height } = this.state
-    if (width > COMPACT_DEVICE_WIDTH) {
+    if (this.isWide()) {
       return this.renderWide(width, height)
     } else {
       return this.renderCompact(width, height)

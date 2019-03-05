@@ -26,6 +26,8 @@ describe('Canvadoc viewer', () => {
     const config = {
       drawerInset: 0,
       previewPath: template.attachment().preview_url,
+      filename: template.attachment().filename,
+      fallbackURL: template.attachment().url,
     }
     const tree = shallow(<CanvadocViewer config={config} />)
     expect(tree).toMatchSnapshot()
@@ -35,6 +37,8 @@ describe('Canvadoc viewer', () => {
     const config = {
       drawerInset: 0,
       previewPath: template.attachment().preview_url,
+      filename: template.attachment().filename,
+      fallbackURL: template.attachment().url,
     }
     const tree = shallow(<CanvadocViewer config={config} />)
     expect(tree.instance().shouldComponentUpdate({
@@ -42,6 +46,15 @@ describe('Canvadoc viewer', () => {
     })).toBe(false)
     expect(tree.instance().shouldComponentUpdate({
       config: { ...config, drawerInset: 62 },
+    })).toBe(true)
+    expect(tree.instance().shouldComponentUpdate({
+      config: { ...config, previewPath: 'https://google.com' },
+    })).toBe(true)
+    expect(tree.instance().shouldComponentUpdate({
+      config: { ...config, filename: 'file.jpg' },
+    })).toBe(true)
+    expect(tree.instance().shouldComponentUpdate({
+      config: { ...config, fallbackURL: 'https://google.com' },
     })).toBe(true)
   })
 })

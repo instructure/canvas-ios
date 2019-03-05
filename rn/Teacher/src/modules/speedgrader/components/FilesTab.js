@@ -49,7 +49,9 @@ export class FilesTab extends Component<FileTabProps> {
   selectFile = (index: number) => {
     if (this.props.submissionID) {
       this.props.selectFile(this.props.submissionID, index)
-      this.props.drawerState.snapTo(0, true)
+      if (!this.props.isWide) {
+        this.props.drawerState.snapTo(0, true)
+      }
     }
   }
 
@@ -188,6 +190,7 @@ type RouterProps = {
   submissionProps: Object,
   selectedIndex: ?number,
   drawerState: DrawerState,
+  isWide: boolean,
 }
 
 type FileTabDataProps = {
