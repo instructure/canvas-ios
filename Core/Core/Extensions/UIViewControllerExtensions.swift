@@ -68,7 +68,7 @@ extension UIViewController {
         dismiss(animated: true, completion: nil)
     }
 
-    public func topMostViewController() -> UIViewController {
+    public func topMostViewController() -> UIViewController? {
         if let presented = presentedViewController {
             return presented.topMostViewController()
         } else if let tabBarSelected = (self as? UITabBarController)?.selectedViewController {
