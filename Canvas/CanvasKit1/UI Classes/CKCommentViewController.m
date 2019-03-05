@@ -211,28 +211,6 @@ static void * MediaCommentFrameContext = &MediaCommentFrameContext;
     // Release any cached data, images, etc that aren't in use.
 }
 
-- (void)viewWillUnload {
-    [super viewWillUnload];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
-    
-    // We only register for these in the iPhone version
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
-    }
-    
-    [self.recorderView removeObserver:self forKeyPath:@"frame" context:MediaCommentFrameContext];
-}
-
-- (void)viewDidUnload {
-    [super viewDidUnload];
-    
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-    self.htmlIsLoaded = NO;
-}
-
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
     
@@ -244,8 +222,6 @@ static void * MediaCommentFrameContext = &MediaCommentFrameContext;
     
     [self.recorderView removeObserver:self forKeyPath:@"frame" context:MediaCommentFrameContext];
     [self.submission removeObserver:self forKeyPath:@"comments" context:CommentsObservationContext];
-    
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -578,7 +554,7 @@ static void *CommentsObservationContext = &CommentsObservationContext;
                 [self.recorderView clearRecordedMedia];
                 if (self.visible && updatedSubmission.ident == self.submission.ident) {
                     if ([self.delegate respondsToSelector:@selector(commentViewController:didPostNewAttachmentForSubmission:)]) {
-                        [delegate commentViewController:self didPostNewAttachmentForSubmission:submission];
+                        [self.delegate commentViewController:self didPostNewAttachmentForSubmission:self.submission];
                     } else {
                         // If the delegate doesn't implement the above method, we'll just update it ourselves.
                         [self reloadIfVisible];
@@ -629,8 +605,8 @@ static void *CommentsObservationContext = &CommentsObservationContext;
                                            
                                            if (updatedSubmission.ident == self.submission.ident) {
                                                [self reload];
-                                               if ([delegate respondsToSelector:@selector(commentViewController:didPostNewAttachmentForSubmission:)]) {
-                                                   [delegate commentViewController:self didPostNewAttachmentForSubmission:updatedSubmission];
+                                               if ([self.delegate respondsToSelector:@selector(commentViewController:didPostNewAttachmentForSubmission:)]) {
+                                                   [self.delegate commentViewController:self didPostNewAttachmentForSubmission:updatedSubmission];
                                                }
                                            }
                                        }

@@ -510,7 +510,7 @@ extension String {
             let regex = try NSRegularExpression(pattern: regex)
             let results = regex.matches(in: self, range: NSRange(self.startIndex..., in: self))
             return results.map {
-                self.substring(with: Range($0.range, in: self)!)
+                String(self[Range($0.range, in: self)!])
             }
         } catch let error {
             print("invalid regex: \(error.localizedDescription)")

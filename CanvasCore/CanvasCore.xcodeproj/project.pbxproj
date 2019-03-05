@@ -501,8 +501,6 @@
 		9FCA1A11205AC2FC00ECB5E9 /* AlertControls.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FCA1A10205AC2FC00ECB5E9 /* AlertControls.m */; };
 		9FD18B6B2052DE6800119927 /* LTITools.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD18B6A2052DE6800119927 /* LTITools.m */; };
 		B1411D5A1FE825ED00CD4967 /* CoreDataSyncHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1411D591FE825ED00CD4967 /* CoreDataSyncHelper.swift */; };
-		B186F3692144BBDE0026429F /* strip-frameworks.sh in Sources */ = {isa = PBXBuildFile; fileRef = B186F3682144BBDE0026429F /* strip-frameworks.sh */; };
-		B186F36A2144BC230026429F /* strip-frameworks.sh in Resources */ = {isa = PBXBuildFile; fileRef = B186F3682144BBDE0026429F /* strip-frameworks.sh */; };
 		B196F79B206AB60400DE640F /* CoreDataSync.m in Sources */ = {isa = PBXBuildFile; fileRef = B196F79A206AB60400DE640F /* CoreDataSync.m */; };
 		B1A6BC94218CAB51000515E3 /* SessionToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A6BC93218CAB51000515E3 /* SessionToken.swift */; };
 		B1BE249720AB13FE00C521C3 /* SafariActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BE249620AB13FE00C521C3 /* SafariActivity.swift */; };
@@ -1151,7 +1149,6 @@
 		B1411D591FE825ED00CD4967 /* CoreDataSyncHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataSyncHelper.swift; sourceTree = "<group>"; };
 		B159CA592153F0B500DA6044 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = "../ios-frameworks/PSPDFKit.framework"; sourceTree = "<group>"; };
 		B159CA5A2153F0B500DA6044 /* PSPDFKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKitUI.framework; path = "../ios-frameworks/PSPDFKitUI.framework"; sourceTree = "<group>"; };
-		B186F3682144BBDE0026429F /* strip-frameworks.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "strip-frameworks.sh"; sourceTree = "<group>"; };
 		B196F79A206AB60400DE640F /* CoreDataSync.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataSync.m; sourceTree = "<group>"; };
 		B1A6BC93218CAB51000515E3 /* SessionToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionToken.swift; sourceTree = "<group>"; };
 		B1BE249620AB13FE00C521C3 /* SafariActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariActivity.swift; sourceTree = "<group>"; };
@@ -1283,7 +1280,6 @@
 				49383CF41F849921009C8F8E /* Inbox */,
 				9F544E071FBB766E00BB2D84 /* InfoPlist.strings */,
 				2CAF1B181F72AEDB007225DF /* Info.plist */,
-				B186F3682144BBDE0026429F /* strip-frameworks.sh */,
 				4988D47B1F82DC450006D18C /* Login */,
 				9F544E0C1FBB766E00BB2D84 /* Localizable.strings */,
 				493BEFA81FB14560006E8EFC /* LTI */,
@@ -2949,7 +2945,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B186F36A2144BC230026429F /* strip-frameworks.sh in Resources */,
 				49383CF31F8498DA009C8F8E /* CanvasCore.xcassets in Resources */,
 				9F544E051FBB766E00BB2D84 /* InfoPlist.strings in Resources */,
 				3BA8BE9B1FE2ED85003EC4FD /* SubmissionConfirmationViewController.xib in Resources */,
@@ -3022,7 +3017,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B186F3692144BBDE0026429F /* strip-frameworks.sh in Sources */,
 				49CE979C1F900D0000121A43 /* UserEnrollment+Collections.swift in Sources */,
 				4961F5591F8FAF2D0093EC86 /* MediaComment.swift in Sources */,
 				4961F5E41F8FB3FC0093EC86 /* RefreshScope.swift in Sources */,

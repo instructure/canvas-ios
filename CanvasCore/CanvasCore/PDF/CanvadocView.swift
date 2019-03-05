@@ -79,7 +79,7 @@ public class CanvadocView: UIView {
     
     @objc var previewPath: String {
         if let path = config["previewPath"] as? String {
-            return path.substring(from: path.index(path.startIndex, offsetBy: 1)) // lop off beginning forward slash to avoid dupes
+            return String(path.dropFirst()) // lop off beginning forward slash to avoid dupes
         } else {
             return ""
         }
