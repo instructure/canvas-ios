@@ -158,6 +158,7 @@
 		9F74200C21932DEB00108A0F /* SubmissionDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FCD79DE2188EAC40054293A /* SubmissionDetailsViewController.storyboard */; };
 		9F74200D21932DEF00108A0F /* SubmissionDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5ADB30218B656400D8C973 /* SubmissionDetailsPresenter.swift */; };
 		9F74200E21932DF100108A0F /* SubmissionDetailsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5ADB32218B67A600D8C973 /* SubmissionDetailsUseCase.swift */; };
+		9F9424A8222F11DD001FDF4A /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1DF2578215F36F3006EDA4F /* Core.framework */; };
 		9F9F4EB121B58A5D00842570 /* ExternalToolSubmissionContentViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F9F4EB021B58A5D00842570 /* ExternalToolSubmissionContentViewController.storyboard */; };
 		9F9F4EB321B58AA300842570 /* ExternalToolSubmissionContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9F4EB221B58AA300842570 /* ExternalToolSubmissionContentViewController.swift */; };
 		9F9F4EB421B58AA300842570 /* ExternalToolSubmissionContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9F4EB221B58AA300842570 /* ExternalToolSubmissionContentViewController.swift */; };
@@ -676,6 +677,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F9424A8222F11DD001FDF4A /* Core.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
