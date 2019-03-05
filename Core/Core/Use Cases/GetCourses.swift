@@ -16,33 +16,24 @@
 
 import Foundation
 
-private class GetPaginatedCourses: PaginatedUseCase<GetCoursesRequest, Course> {
-    init(env: AppEnvironment) {
-        let request = GetCoursesRequest(includeUnpublished: true)
-        super.init(api: env.api, database: env.database, request: request)
+public class GetCourses: CollectionUseCase {
+    public typealias Model = Course
+    var showFavorites: Bool
+    public init(showFavorites: Bool = false) {
+        self.showFavorites = showFavorites
     }
 
-    override var predicate: NSPredicate {
-        return .all
+    public var cacheKey: String {
+        return "get-courses"
     }
 
-    override func predicate(forItem item: APICourse) -> NSPredicate {
-        return NSPredicate(format: "%K == %@", #keyPath(Course.id), item.id)
+    public var request: GetCoursesRequest {
+        return GetCoursesRequest(includeUnpublished: true)
     }
 
-    override func updateModel(_ model: Course, using item: APICourse, in client: PersistenceClient) throws {
-        if model.id.isEmpty { model.id = item.id }
-        model.name = item.name
-        model.isFavorite = item.is_favorite ?? false
-        model.courseCode = item.course_code
-        model.imageDownloadURL = item.image_download_url
-    }
-}
-
-public class GetCourses: OperationSet {
-    public init(env: AppEnvironment, force: Bool = false) {
-        let paginated = GetPaginatedCourses(env: env)
-        let ttl = TTLOperation(key: "get-courses", database: env.database, operation: paginated, force: force)
-        super.init(operations: [ttl])
+    public var scope: Scope {
+        return showFavorites ?
+            .where(#keyPath(Course.isFavorite), equals: true, orderBy: #keyPath(Course.name)) :
+            .all(orderBy: #keyPath(Course.name), ascending: true, naturally: true)
     }
 }

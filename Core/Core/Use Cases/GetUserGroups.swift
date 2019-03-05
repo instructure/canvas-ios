@@ -26,7 +26,7 @@ public struct GetUserGroups: CollectionUseCase {
     }
 
     public var scope: Scope {
-        return .where(#keyPath(Group.showOnDashboard), equals: true)
+        return .where(#keyPath(Group.showOnDashboard), equals: true, orderBy: #keyPath(Group.name))
     }
 
     public let cacheKey = "get-user-groups"

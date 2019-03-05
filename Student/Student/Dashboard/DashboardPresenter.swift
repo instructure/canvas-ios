@@ -17,68 +17,36 @@
 import UIKit
 import Core
 
-struct DashboardViewModel {
-    struct Course {
-        let courseID: String
-        let title: String
-        let abbreviation: String
-        let color: UIColor
-        let imageUrl: URL?
-    }
-
-    struct Group {
-        let groupID: String
-        let groupName: String
-        let courseName: String?
-        let term: String?
-        let color: UIColor
-    }
-
-    var favorites: [Course]
-    var groups: [Group]
-}
-
-protocol DashboardPresenterProtocol {
-    func viewIsReady()
-    func pageViewStarted()
-    func pageViewEnded()
-    func loadData()
-    func refreshRequested()
-    func courseWasSelected(_ courseID: String)
-    func courseOptionsWasSelected(_ courseID: String)
-    func groupWasSelected(_ groupID: String)
-    func editButtonWasTapped()
-    func seeAllWasTapped()
-}
-
-class DashboardPresenter: DashboardPresenterProtocol {
+class DashboardPresenter {
     weak var view: DashboardViewProtocol?
     let environment: AppEnvironment
-    let queue: OperationQueue
     let router: RouterProtocol
-
-    let coursesFetch: FetchedResultsController<Course>
 
     lazy var groups: Store<GetUserGroups> = {
         let useCase = GetUserGroups()
         return environment.subscribe(useCase) { [weak self] in
-            self?.fetchData()
+            self?.update()
+        }
+    }()
+
+    lazy var courses: Store<GetCourses> = {
+        let useCase = GetCourses(showFavorites: true)
+        return environment.subscribe(useCase) { [weak self] in
+            self?.update()
         }
     }()
 
     lazy var colors: Store<GetCustomColors> = {
         let useCase = GetCustomColors()
         return environment.subscribe(useCase) { [weak self] in
-            self?.fetchData()
+            self?.update()
         }
     }()
 
     init(env: AppEnvironment = .shared, view: DashboardViewProtocol?) {
         self.environment = env
-        self.queue = env.queue
         self.router = env.router
         self.view = view
-        self.coursesFetch = env.subscribe(Course.self, .favorites)
     }
 
     func courseWasSelected(_ courseID: String) {
@@ -90,7 +58,8 @@ class DashboardPresenter: DashboardPresenterProtocol {
     }
 
     func viewIsReady() {
-        loadData()
+        loadDataFromServer()
+        update()
     }
 
     func pageViewStarted() {
@@ -120,60 +89,13 @@ class DashboardPresenter: DashboardPresenterProtocol {
         loadDataFromServer(force: true)
     }
 
-    func loadData() {
-        coursesFetch.performFetch()
-
-        // Load data from cache, if any
-        fetchData()
-
-        // Make requests for updated data
-        loadDataFromServer()
-    }
-
     func loadDataFromServer(force: Bool = false) {
         groups.refresh(force: force)
         colors.refresh(force: force)
-
-        let getCourses = GetCourses(env: environment)
-        getCourses.completionBlock = { [weak self] in
-            // Load data from data store once our big group finishes
-            DispatchQueue.main.async { [weak self] in
-                self?.coursesFetch.performFetch()
-                self?.fetchData()
-            }
-        }
-        queue.addOperationWithErrorHandling(getCourses, sendErrorsTo: view)
+        courses.refresh(force: force)
     }
 
-    func fetchData() {
-        let courses = coursesFetch.fetchedObjects ?? []
-
-        let vm = transformToViewModel(courses: courses)
-        view?.updateDisplay(vm)
-    }
-
-    func transformToViewModel(courses: [Course]) -> DashboardViewModel {
-        let cs = courses.compactMap { (course: Course) -> DashboardViewModel.Course? in
-            guard let name = course.name, !course.id.isEmpty else {
-                return nil
-            }
-
-            return DashboardViewModel.Course(courseID: course.id, title: name, abbreviation: course.courseCode ?? "", color: course.color, imageUrl: course.imageDownloadURL)
-        }
-
-        let gs = groups.compactMap { (group: Group) -> DashboardViewModel.Group? in
-            if group.name.isEmpty || group.id.isEmpty {
-                return nil
-            }
-            return DashboardViewModel.Group(groupID: group.id, groupName: group.name, courseName: nil, term: nil, color: group.color)
-        }
-
-        return DashboardViewModel(favorites: cs, groups: gs)
-    }
-}
-
-extension DashboardPresenter: FetchedResultsControllerDelegate {
-    func controllerDidChangeContent<T>(_ controller: FetchedResultsController<T>) {
-        fetchData()
+    func update() {
+        view?.updateDisplay()
     }
 }

@@ -18,15 +18,14 @@ import UIKit
 import Core
 
 protocol DashboardViewProtocol: ErrorViewController {
-    func updateDisplay(_ viewModel: DashboardViewModel)
+    func updateDisplay()
 }
 
 class DashboardViewController: UIViewController, DashboardViewProtocol {
     @IBOutlet weak var collectionView: UICollectionView?
     var logoView = UIImageView(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
 
-    var presenter: DashboardPresenterProtocol?
-    var viewModel: DashboardViewModel?
+    var presenter: DashboardPresenter!
 
     lazy var refreshControl: UIRefreshControl = {
         let rc = UIRefreshControl()
@@ -98,12 +97,8 @@ class DashboardViewController: UIViewController, DashboardViewProtocol {
         presenter?.refreshRequested()
     }
 
-    func updateDisplay(_ viewModel: DashboardViewModel) {
-        self.viewModel = viewModel
-
-        // check for empty state
-
-        // display courses
+    func updateDisplay() {
+       // display courses
         collectionView?.reloadData()
         refreshControl.endRefreshing()
         navigationItem.rightBarButtonItem?.isEnabled = true
@@ -121,16 +116,16 @@ class DashboardViewController: UIViewController, DashboardViewProtocol {
     }
 
     func itemWasSelected(at indexPath: IndexPath) {
-        guard let viewModel = viewModel,
-            let section: DashboardViewSection = DashboardViewSection(rawValue: indexPath.section)
-            else { return }
+        guard let section: DashboardViewSection = DashboardViewSection(rawValue: indexPath.section) else { return }
 
         switch section {
         case .courses:
-            let route = Route.course(viewModel.favorites[indexPath.item].courseID)
+            guard let id = presenter.courses[indexPath.item]?.id else { return }
+            let route = Route.course(id)
             router.route(to: route, from: self, options: nil)
         case .groups:
-            let route = Route.group(viewModel.groups[indexPath.item].groupID)
+            guard let id = presenter.groups[indexPath.item]?.id else { return }
+            let route = Route.group(id)
             router.route(to: route, from: self, options: nil)
         }
     }
@@ -159,51 +154,42 @@ extension DashboardViewController: UICollectionViewDataSource {
     }
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        guard let vm = viewModel else {
-            return 0
-        }
+        let groups = presenter?.groups.count ?? 0
+        let courses = presenter?.courses.count ?? 0
 
-        return (vm.favorites.count + vm.groups.count) > 0 ? 2 : 0
+        return (courses + groups) > 0 ? 2 : 0
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let viewModel = viewModel else {
-            return 0
-        }
-
         if section == DashboardViewSection.courses.rawValue {
-            return viewModel.favorites.count
+            return presenter?.courses.count ?? 0
         }
 
-        return  viewModel.groups.count
+        return  presenter?.groups.count ?? 0
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let viewModel = viewModel else {
-            return UICollectionViewCell(frame: CGRect.zero)
-        }
-
         if indexPath.section == DashboardViewSection.courses.rawValue {
             let cell = collectionView.dequeue(DashboardCourseCell.self, for: indexPath)
-            let model = viewModel.favorites[indexPath.row]
+            guard let model = presenter?.courses[indexPath.row] else { return UICollectionViewCell(frame: CGRect.zero) }
             cell.configure(with: model)
-
-            cell.optionsCallback = { [unowned self, model] in
+            cell.optionsCallback = { [weak self, model] in
                 // TODO:
                 //self.delegate?.courseWasSelected(model.courseID)
 
                 // REMOVE
-                let alert = UIAlertController(title: "Course Options", message: "Course options was tapped for Id => \(model.courseID). See line \(#line) in \(#file)", preferredStyle: .alert)
+                let alert = UIAlertController(title: "Course Options", message: "Course options was tapped for Id => \(model.id). See line \(#line) in \(#file)", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+                self?.present(alert, animated: true, completion: nil)
             }
 
             return cell
         }
 
         let cell = collectionView.dequeue(DashboardGroupCell.self, for: indexPath)
-        let group = viewModel.groups[indexPath.row]
-        cell.configure(with: group)
+        if let group = presenter?.groups[indexPath.row] {
+            cell.configure(with: group)
+        }
         return cell
     }
 

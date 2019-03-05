@@ -17,34 +17,29 @@
 import UIKit
 import Core
 
-struct CourseListViewModel {
-    struct Course {
-        let courseID: String
-        let title: String
-        let abbreviation: String
-        let color: UIColor
-        let imageUrl: URL?
-    }
-
-    var current: [Course]
-    var past: [Course]
-}
-
 class CourseListPresenter {
     weak var view: CourseListViewProtocol?
     let environment: AppEnvironment
-    let queue: OperationQueue
     let router: RouterProtocol
 
-    let coursesFetch: FetchedResultsController<Course>
+    lazy var current: Store<GetCourses> = {
+        let useCase = GetCourses()
+        return environment.subscribe(useCase) { [weak self] in
+            self?.update()
+        }
+    }()
+
+    lazy var past: Store<GetCourses> = {
+        let useCase = GetCourses(showFavorites: true)
+        return environment.subscribe(useCase) { [weak self] in
+            self?.update()
+        }
+    }()
 
     init(env: AppEnvironment = .shared, view: CourseListViewProtocol?) {
         self.environment = env
-        self.queue = env.queue
         self.router = env.router
         self.view = view
-        self.coursesFetch = env.subscribe(Course.self, .all)
-        self.coursesFetch.delegate = self
     }
 
     func courseWasSelected(_ courseID: String, from controller: UIViewController) {
@@ -52,7 +47,9 @@ class CourseListPresenter {
     }
 
     func viewIsReady() {
-        loadData()
+        current.refresh()
+        past.refresh()
+        view?.update()
     }
 
     func pageViewStarted() {
@@ -68,53 +65,11 @@ class CourseListPresenter {
     }
 
     func refreshRequested() {
-        loadDataFromServer()
+        current.refresh(force: true)
+        past.refresh(force: true)
     }
 
-    func loadData() {
-        coursesFetch.performFetch()
-
-        // Get from cache to start
-        fetchData()
-
-        // Get from server
-        loadDataFromServer()
-    }
-
-    func loadDataFromServer() {
-        let getCourses = GetCourses(env: environment)
-        getCourses.completionBlock = { [weak self] in
-            // Load data from data store once our big group finishes
-            DispatchQueue.main.async {
-                self?.fetchData()
-            }
-        }
-        queue.addOperationWithErrorHandling(getCourses, sendErrorsTo: view)
-    }
-
-    func fetchData() {
-        let courses = coursesFetch.fetchedObjects ?? []
-        let vm = transformToViewModel(current: courses, past: courses)
-
-        view?.update(courses: vm)
-    }
-
-    func transformToViewModel(current: [Course], past: [Course]) -> CourseListViewModel {
-        let vms = current.compactMap { (course: Course) -> CourseListViewModel.Course? in
-            guard let name = course.name, !course.id.isEmpty else {
-                return nil
-            }
-
-            return CourseListViewModel.Course(courseID: course.id, title: name, abbreviation: course.courseCode ?? "", color: course.color, imageUrl: course.imageDownloadURL)
-        }
-
-        let vm = CourseListViewModel(current: vms, past: vms)
-        return vm
-    }
-}
-
-extension CourseListPresenter: FetchedResultsControllerDelegate {
-    func controllerDidChangeContent<T>(_ controller: FetchedResultsController<T>) {
-        fetchData()
+    func update() {
+        view?.update()
     }
 }
