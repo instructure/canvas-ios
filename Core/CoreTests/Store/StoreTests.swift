@@ -38,7 +38,7 @@ class StoreTests: CoreTestCase {
             return .all(orderBy: #keyPath(Course.name))
         }
 
-        var cacheKey: String {
+        var cacheKey: String? {
             return "test-use-case"
         }
 
@@ -173,7 +173,7 @@ class StoreTests: CoreTestCase {
         let now = Date()
         Clock.mockNow(now)
         let cache: TTL = databaseClient.insert()
-        cache.key = useCase.cacheKey
+        cache.key = useCase.cacheKey ?? ""
         cache.lastRefresh = Clock.now
         try! databaseClient.save()
 

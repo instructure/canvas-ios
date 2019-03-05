@@ -34,7 +34,7 @@ public class GetSubmission: APIUseCase {
         mainPredicate = NSPredicate(format: "%K == %@ AND %K == %@", #keyPath(Submission.assignmentID), assignmentID, #keyPath(Submission.userID), userID)
     }
 
-    public var cacheKey: String {
+    public var cacheKey: String? {
         return "get-\(context.id)-\(assignmentID)-\(userID)-submission"
     }
 

@@ -52,9 +52,7 @@ public class CreateSubmission: APIUseCase {
         )
     }
 
-    public var cacheKey: String {
-        return NSUUID().uuidString
-    }
+    public var cacheKey: String?
 
     public var request: CreateSubmissionRequest {
         return req
