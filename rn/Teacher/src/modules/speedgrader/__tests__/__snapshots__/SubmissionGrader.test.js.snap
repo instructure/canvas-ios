@@ -64,6 +64,7 @@ exports[`SubmissionGrader renders 1`] = `
             "changeTab": [Function],
             "context": Object {},
             "donePressed": [Function],
+            "isWide": [Function],
             "onDragBegan": [Function],
             "onLayout": [Function],
             "props": Object {
@@ -196,6 +197,7 @@ exports[`SubmissionGrader renders 1`] = `
             "changeTab": [Function],
             "context": Object {},
             "donePressed": [Function],
+            "isWide": [Function],
             "onDragBegan": [Function],
             "onLayout": [Function],
             "props": Object {
@@ -319,6 +321,7 @@ exports[`SubmissionGrader renders 1`] = `
               "changeTab": [Function],
               "context": Object {},
               "donePressed": [Function],
+              "isWide": [Function],
               "onDragBegan": [Function],
               "onLayout": [Function],
               "props": Object {
@@ -494,6 +497,7 @@ exports[`SubmissionGrader renders wide 1`] = `
                 "changeTab": [Function],
                 "context": Object {},
                 "donePressed": [Function],
+                "isWide": [Function],
                 "onDragBegan": [Function],
                 "onLayout": [Function],
                 "props": Object {
@@ -599,6 +603,7 @@ exports[`SubmissionGrader renders wide 1`] = `
                 "changeTab": [Function],
                 "context": Object {},
                 "donePressed": [Function],
+                "isWide": [Function],
                 "onDragBegan": [Function],
                 "onLayout": [Function],
                 "props": Object {
@@ -818,6 +823,7 @@ exports[`SubmissionGrader renders wide 1`] = `
                 "changeTab": [Function],
                 "context": Object {},
                 "donePressed": [Function],
+                "isWide": [Function],
                 "onDragBegan": [Function],
                 "onLayout": [Function],
                 "props": Object {
@@ -923,6 +929,7 @@ exports[`SubmissionGrader renders wide 1`] = `
                 "changeTab": [Function],
                 "context": Object {},
                 "donePressed": [Function],
+                "isWide": [Function],
                 "onDragBegan": [Function],
                 "onLayout": [Function],
                 "props": Object {

@@ -117,6 +117,7 @@ let defaultProps = {
   selectedIndex: 0,
   selectedAttachmentIndex: null,
   drawerState: new DrawerState(),
+  isWide: false,
 }
 
 let withIndex = {
@@ -191,6 +192,24 @@ describe('SpeedGraderFilesTab', () => {
     thirdRow.props.onPress()
     expect(withIndex.selectFile).toHaveBeenCalled()
     expect(drawerState.snapTo).toHaveBeenCalledWith(0, true)
+  })
+
+  it('changes the selected file and doesnt close the drawer when wide', () => {
+    const drawerState = new DrawerState()
+    drawerState.snapTo = jest.fn()
+    const props = {
+      ...withIndex,
+      drawerState,
+      isWide: true,
+    }
+    let tree = renderer.create(
+      <FilesTab {...props} />
+    ).toJSON()
+
+    const thirdRow = explore(tree).selectByID('speedgrader.files.row2') || {}
+    thirdRow.props.onPress()
+    expect(withIndex.selectFile).toHaveBeenCalled()
+    expect(drawerState.snapTo).not.toHaveBeenCalled()
   })
 
   it('ignores attachments for URL Submissions', () => {

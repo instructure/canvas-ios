@@ -24,6 +24,8 @@ type Props = {
   config: {
     drawerInset: number,
     previewPath: string,
+    filename: string,
+    fallbackURL: string,
   },
   style?: any,
 }
@@ -33,9 +35,12 @@ export default class CanvadocViewer extends Component<Props> {
     return (
       this.props.style !== newProps.style ||
       this.props.config.drawerInset !== newProps.config.drawerInset ||
-      this.props.config.previewPath !== newProps.config.previewPath
+      this.props.config.previewPath !== newProps.config.previewPath ||
+      this.props.config.filename !== newProps.config.filename ||
+      this.props.config.fallbackURL !== newProps.config.fallbackURL
     )
   }
+
   render () {
     return <CanvadocView {...this.props} />
   }
