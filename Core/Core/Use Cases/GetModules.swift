@@ -25,7 +25,7 @@ public struct GetModules: APIUseCase {
         return .where(#keyPath(Module.courseID), equals: courseID, orderBy: #keyPath(Module.position))
     }
 
-    public var cacheKey: String {
+    public var cacheKey: String? {
         return "get-modules-\(courseID)"
     }
 

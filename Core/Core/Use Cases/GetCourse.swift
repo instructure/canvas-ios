@@ -60,7 +60,7 @@ public class GetCourseUseCase: APIUseCase {
         self.courseID = courseID
     }
 
-    public var cacheKey: String {
+    public var cacheKey: String? {
         return "get-course-\(courseID)"
     }
 

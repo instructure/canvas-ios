@@ -23,8 +23,6 @@ class CreateSubmissionTests: CoreTestCase {
         let submissionType = SubmissionType.online_url
         let context = ContextModel(.course, id: "1")
         let url = URL(string: "http://www.instructure.com")!
-        let body = CreateSubmissionRequest.Body.Submission(text_comment: nil, submission_type: submissionType, body: nil, url: url, file_ids: nil, media_comment_id: nil, media_comment_type: nil)
-        let request =  CreateSubmissionRequest(context: context, assignmentID: "1", body: .init(submission: body))
         let template: APISubmission = APISubmission.make([
             "assignment_id": "2",
             "grade": "A-",
@@ -37,14 +35,11 @@ class CreateSubmissionTests: CoreTestCase {
             "points_deducted": 10,
             ])
 
-        api.mock(request, value: template, response: nil, error: nil)
-
         //  when
-        let createSubmission = CreateSubmission(context: context, assignmentID: "1", userID: "1", submissionType: submissionType, url: url, env: environment)
-        addOperationAndWait(createSubmission)
+        let createSubmission = CreateSubmission(context: context, assignmentID: "1", userID: "1", submissionType: submissionType, url: url)
+        try! createSubmission.write(response: template, urlResponse: nil, to: databaseClient)
 
         //  then
-        XCTAssertEqual(createSubmission.errors.count, 0)
         let subs: [Submission] = databaseClient.fetch()
         let submission = subs.first
         XCTAssertNotNil(submission)

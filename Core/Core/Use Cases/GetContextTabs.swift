@@ -24,7 +24,7 @@ public class GetContextTabs: CollectionUseCase {
         self.context = context
     }
 
-    public var cacheKey: String {
+    public var cacheKey: String? {
         return "get-\(context.canvasContextID)-tabs"
     }
 

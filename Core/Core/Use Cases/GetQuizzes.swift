@@ -25,7 +25,7 @@ public struct GetQuizzes: CollectionUseCase {
         self.courseID = courseID
     }
 
-    public var cacheKey: String {
+    public var cacheKey: String? {
         return "get-\(courseID)-quizzes"
     }
 

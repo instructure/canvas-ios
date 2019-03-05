@@ -29,5 +29,5 @@ public struct GetUserGroups: CollectionUseCase {
         return .where(#keyPath(Group.showOnDashboard), equals: true, orderBy: #keyPath(Group.name))
     }
 
-    public let cacheKey = "get-user-groups"
+    public let cacheKey: String? = "get-user-groups"
 }
