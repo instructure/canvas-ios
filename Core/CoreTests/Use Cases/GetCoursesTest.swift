@@ -32,4 +32,42 @@ class GetCoursesTest: CoreTestCase {
         XCTAssertEqual(courses.first?.id, "1")
         XCTAssertEqual(courses.first?.name, "Course 1")
     }
+
+    func testCache() {
+        let useCase = GetCourses()
+        XCTAssertEqual("get-courses", useCase.cacheKey)
+    }
+
+    func testRequest() {
+        let useCase = GetCourses()
+        let req = useCase.request
+        XCTAssertNotNil(req)
+    }
+
+    func testScopeShowFavorites() {
+        let c = Course.make(["name": "c", "isFavorite": true])
+        let a = Course.make(["name": "a", "isFavorite": true])
+        Course.make(["name": "b", "isFavorite": true])
+        let d = Course.make(["name": "d", "isFavorite": false])
+        let useCase = GetCourses(showFavorites: true)
+        let courses: [Course] = databaseClient.fetch(predicate: useCase.scope.predicate, sortDescriptors: useCase.scope.order)
+
+        XCTAssertFalse(d.isFavorite)
+        XCTAssertEqual(courses.count, 3)
+        XCTAssertEqual(courses.first, a)
+        XCTAssertEqual(courses.last, c)
+    }
+
+    func testScopeShowAll() {
+        let c = Course.make(["name": "3", "isFavorite": true])
+        let a = Course.make(["name": "1", "isFavorite": true])
+        Course.make(["name": "2", "isFavorite": true])
+
+        let useCase = GetCourses()
+        let courses: [Course] = databaseClient.fetch(predicate: useCase.scope.predicate, sortDescriptors: useCase.scope.order)
+
+        XCTAssertEqual(courses.count, 3)
+        XCTAssertEqual(courses.first, a)
+        XCTAssertEqual(courses.last, c)
+    }
 }
