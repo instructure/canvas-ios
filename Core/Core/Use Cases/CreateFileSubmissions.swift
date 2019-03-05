@@ -57,7 +57,7 @@ public class CreateFileSubmissions: OperationSet {
         let assignmentID = fileSubmission.assignment.id
 
         let context = ContextModel(.course, id: fileSubmission.assignment.courseID)
-        let createSubmission = CreateSubmission(
+        let createSubmission = CreateFileSubmission(
             context: context,
             assignmentID: fileSubmission.assignment.id,
             userID: fileSubmission.userID,

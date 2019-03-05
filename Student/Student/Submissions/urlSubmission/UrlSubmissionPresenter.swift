@@ -28,6 +28,7 @@ class UrlSubmissionPresenter {
     let assignmentID: String
     let userID: String
     let env: AppEnvironment
+    var store: Store<CreateSubmission>?
 
     init(view: UrlSubmissionViewProtocol?, courseID: String, assignmentID: String, userID: String, env: AppEnvironment = .shared) {
         self.view = view
@@ -56,15 +57,15 @@ class UrlSubmissionPresenter {
 
     func submit(_ text: String?) {
         if let url = scrubUrl(text: text) {
-            let createOp = CreateSubmission(context: ContextModel(.course, id: courseID), assignmentID: assignmentID, userID: userID, submissionType: .online_url, url: url, env: env)
-
-            env.queue.addOperation(createOp, errorHandler: { [weak self] error in
-                if let error = error {
+            let useCase = CreateSubmission(context: ContextModel(.course, id: courseID), assignmentID: assignmentID, userID: userID, submissionType: .online_url, url: url)
+            store = env.subscribe(useCase) { [weak self] in
+                if let error = self?.store?.error {
                     self?.view?.showError(error)
                 } else {
                     self?.view?.dismiss()
                 }
-            })
+            }
+            store?.refresh()
         } else {
             let error = NSError.instructureError(NSLocalizedString("Invalid url", comment: ""))
             view?.showError(error)

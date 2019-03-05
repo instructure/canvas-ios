@@ -35,10 +35,11 @@
 		3B3467E42137172900F9BC2E /* DepenedencyOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3467E32137172900F9BC2E /* DepenedencyOperation.swift */; };
 		3B412F0B2141A9760090DE02 /* FetchedResultsControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B412F0A2141A9760090DE02 /* FetchedResultsControllerTests.swift */; };
 		3B472274213795E500BF6FF3 /* PersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B472273213795E500BF6FF3 /* PersistenceTests.swift */; };
+		3B4B75C7222F09C7002CCBEC /* CreateSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4B75C6222F09C7002CCBEC /* CreateSubmission.swift */; };
 		3B5369E2219CDD3500D3F62E /* URLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5369E1219CDD3500D3F62E /* URLExtensions.swift */; };
 		3B5369E4219D0FD000D3F62E /* URLExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5369E3219D0FD000D3F62E /* URLExtensionsTests.swift */; };
 		3B5425FC21B074500009D069 /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5425FB21B074500009D069 /* UIViewControllerExtensions.swift */; };
-		3B67BCB521B1F2C900055324 /* CreateSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B67BCB421B1F2C900055324 /* CreateSubmission.swift */; };
+		3B67BCB521B1F2C900055324 /* CreateFileSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B67BCB421B1F2C900055324 /* CreateFileSubmission.swift */; };
 		3B67BCB821B5E72000055324 /* CreateSubmissionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B67BCB721B5E72000055324 /* CreateSubmissionTests.swift */; };
 		3B69253A21A1012D0023ED75 /* FileUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B69253721A0FD2D0023ED75 /* FileUpload.swift */; };
 		3B69253C21A102E90023ED75 /* QueueFileUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B69253B21A102E90023ED75 /* QueueFileUpload.swift */; };
@@ -465,10 +466,11 @@
 		3B3467E32137172900F9BC2E /* DepenedencyOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepenedencyOperation.swift; sourceTree = "<group>"; };
 		3B412F0A2141A9760090DE02 /* FetchedResultsControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsControllerTests.swift; sourceTree = "<group>"; };
 		3B472273213795E500BF6FF3 /* PersistenceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceTests.swift; sourceTree = "<group>"; };
+		3B4B75C6222F09C7002CCBEC /* CreateSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSubmission.swift; sourceTree = "<group>"; };
 		3B5369E1219CDD3500D3F62E /* URLExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLExtensions.swift; sourceTree = "<group>"; };
 		3B5369E3219D0FD000D3F62E /* URLExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLExtensionsTests.swift; sourceTree = "<group>"; };
 		3B5425FB21B074500009D069 /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
-		3B67BCB421B1F2C900055324 /* CreateSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSubmission.swift; sourceTree = "<group>"; };
+		3B67BCB421B1F2C900055324 /* CreateFileSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFileSubmission.swift; sourceTree = "<group>"; };
 		3B67BCB721B5E72000055324 /* CreateSubmissionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSubmissionTests.swift; sourceTree = "<group>"; };
 		3B69253721A0FD2D0023ED75 /* FileUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUpload.swift; sourceTree = "<group>"; };
 		3B69253B21A102E90023ED75 /* QueueFileUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueFileUpload.swift; sourceTree = "<group>"; };
@@ -1679,7 +1681,7 @@
 				B171A10621B9BE6C000325D3 /* CancelFileSubmission.swift */,
 				3B3467E12137170500F9BC2E /* ConstructLoginRequest.swift */,
 				B120D9D421B7941E00D93F39 /* CreateFileSubmissions.swift */,
-				3B67BCB421B1F2C900055324 /* CreateSubmission.swift */,
+				3B67BCB421B1F2C900055324 /* CreateFileSubmission.swift */,
 				9FD504EF2180C17C00B395BA /* DownloadFile.swift */,
 				7DB0A1CF21C179D8009ABB40 /* GetAccounts.swift */,
 				B1A32BE5215A81350071B41E /* GetAssignment.swift */,
@@ -1708,6 +1710,7 @@
 				7DB0A1C621C046B0009ABB40 /* RefreshKeychainEntry.swift */,
 				B120D9D821B794BA00D93F39 /* UpdateFileUpload.swift */,
 				B120D9D621B7946F00D93F39 /* UploadFile.swift */,
+				3B4B75C6222F09C7002CCBEC /* CreateSubmission.swift */,
 			);
 			path = "Use Cases";
 			sourceTree = "<group>";
@@ -2273,6 +2276,7 @@
 				B1B4C1CB219631B700FA9E0E /* EmptyView.swift in Sources */,
 				7D80AC03212B445200C40ECE /* APIUser.swift in Sources */,
 				7D8262F9212B3B2000BD268D /* APISection.swift in Sources */,
+				3B4B75C7222F09C7002CCBEC /* CreateSubmission.swift in Sources */,
 				B195DC512132257500797FE4 /* GetCourse.swift in Sources */,
 				7D29D2FF218A4FEA0036437C /* PSPDFAnnotationExtension.swift in Sources */,
 				7D80AC0E212B4D4100C40ECE /* APIFavorite.swift in Sources */,
@@ -2317,7 +2321,7 @@
 				B1EA5AEB212E641900DABC5F /* GetCourses.swift in Sources */,
 				7D0215AE21BB2D68009A8E69 /* LoginPreviousUserCell.swift in Sources */,
 				7DF4FFE021713919007E5F81 /* Submission.swift in Sources */,
-				3B67BCB521B1F2C900055324 /* CreateSubmission.swift in Sources */,
+				3B67BCB521B1F2C900055324 /* CreateFileSubmission.swift in Sources */,
 				B120D9D521B7941E00D93F39 /* CreateFileSubmissions.swift in Sources */,
 				3B346755213052C700F9BC2E /* NSErrorExtensions.swift in Sources */,
 				7D8262EF212B228F00BD268D /* APICourse+Requestable.swift in Sources */,

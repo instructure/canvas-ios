@@ -16,12 +16,10 @@
 
 import Foundation
 
-public class CreateSubmission: APIUseCase {
+public class CreateFileSubmission: RequestUseCase<CreateSubmissionRequest> {
     let context: Context
     let assignmentID: String
     let userID: String
-    fileprivate let req: CreateSubmissionRequest
-    public typealias Model = Submission
 
     public init(context: Context, assignmentID: String, userID: String,
                 textComment: String? = nil,
@@ -30,7 +28,8 @@ public class CreateSubmission: APIUseCase {
                 url: URL? = nil,
                 fileIDs: [String]? = nil,
                 mediaCommentID: String? = nil,
-                mediaCommentType: MediaCommentType? = nil) {
+                mediaCommentType: MediaCommentType? = nil,
+                env: AppEnvironment) {
         self.context = context
         self.assignmentID = assignmentID
         self.userID = userID
@@ -45,28 +44,19 @@ public class CreateSubmission: APIUseCase {
             media_comment_type: mediaCommentType
         )
 
-        req = CreateSubmissionRequest(
+        let request = CreateSubmissionRequest(
             context: context,
             assignmentID: assignmentID,
             body: .init(submission: submission)
         )
+
+        super.init(api: env.api, database: env.database, request: request)
+        addSaveOperation { [weak self] response, urlResponse, client in
+            try self?.save(response: response, urlResponse: urlResponse, client: client)
+        }
     }
 
-    public var cacheKey: String {
-        return NSUUID().uuidString
-    }
-
-    public var request: CreateSubmissionRequest {
-        return req
-    }
-
-    public var scope: Scope {
-        let predicate = NSPredicate(format: "%K == %@ AND %K == %@", #keyPath(Submission.assignmentID), assignmentID, #keyPath(Submission.userID), userID)
-        let sort = NSSortDescriptor(key: #keyPath(Submission.attempt), ascending: false)
-        return Scope(predicate: predicate, order: [sort])
-    }
-
-    public func write(response: APISubmission?, urlResponse: URLResponse?, to client: PersistenceClient) throws {
+    func save(response: APISubmission?, urlResponse: URLResponse?, client: PersistenceClient) throws {
         guard let item = response else { return }
         let mainPredicate = NSPredicate(
             format: "%K == %@ AND %K == %@",
