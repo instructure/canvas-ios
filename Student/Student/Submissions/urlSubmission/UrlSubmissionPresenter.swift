@@ -28,7 +28,6 @@ class UrlSubmissionPresenter {
     let assignmentID: String
     let userID: String
     let env: AppEnvironment
-    var store: Store<CreateSubmission>?
 
     init(view: UrlSubmissionViewProtocol?, courseID: String, assignmentID: String, userID: String, env: AppEnvironment = .shared) {
         self.view = view
@@ -59,7 +58,7 @@ class UrlSubmissionPresenter {
         if let url = scrubUrl(text: text) {
             let useCase = CreateSubmission(context: ContextModel(.course, id: courseID), assignmentID: assignmentID, userID: userID, submissionType: .online_url, url: url)
             useCase.fetch(environment: env) { [weak self] (_, _, error) in
-                if let error = self?.store?.error {
+                if let error = error {
                     self?.view?.showError(error)
                 } else {
                     self?.view?.dismiss()
