@@ -34,7 +34,8 @@ function checkCoverage () {
 function convertCoverage (jest) {
   const xccov = {}
   for (const key of Object.keys(jest)) {
-    xccov[key] = {
+    const path = key.replace(/^.*\/rn\//, 'rn/')
+    xccov[path] = {
       executableLines: jest[key].lines.total,
       coveredLines: jest[key].lines.covered,
     }

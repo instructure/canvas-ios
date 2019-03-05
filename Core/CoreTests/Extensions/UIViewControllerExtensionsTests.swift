@@ -43,4 +43,13 @@ class UIViewControllerExtensionsTests: XCTestCase {
         controller.dismissDoneButton()
         XCTAssertEqual(controller.dismissAnimated, true)
     }
+
+    func testLoadFromStoryboard() {
+        XCTAssertNotNil(LoadingViewController.loadFromStoryboard())
+    }
+
+    func testTopMostViewController() {
+        let vc = UIViewController()
+        XCTAssertEqual(vc.topMostViewController(), vc)
+    }
 }

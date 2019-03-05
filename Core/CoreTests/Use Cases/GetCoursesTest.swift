@@ -32,4 +32,13 @@ class GetCoursesTest: CoreTestCase {
         XCTAssertEqual(courses.first?.id, "1")
         XCTAssertEqual(courses.first?.name, "Course 1")
     }
+
+    func testRequest() {
+        XCTAssertEqual(GetCourses().request.includeUnpublished, true)
+    }
+
+    func testScope() {
+        XCTAssertEqual(GetCourses().scope, Scope.all(orderBy: #keyPath(Course.name), ascending: true, naturally: true))
+        XCTAssertEqual(GetCourses(showFavorites: true).scope, Scope.where(#keyPath(Course.isFavorite), equals: true, orderBy: #keyPath(Course.name)))
+    }
 }

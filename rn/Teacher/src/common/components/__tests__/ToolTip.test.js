@@ -53,6 +53,7 @@ test('ToolTip renders something interesting when showToolTip is called', () => {
   )
 
   toolTip.getInstance().showToolTip({ x: 5, y: 20 }, 'The quick brown fox...')
+  toolTip.getInstance().setState({ toolTipLayoutWidth: 100 })
   let tree = toolTip.toJSON()
   expect(tree).toMatchSnapshot()
 })
