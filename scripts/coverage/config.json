@@ -5,10 +5,11 @@
     "Controller.\\w+$",
     "\\/Views\\/",
     "Core\/ShareExtension\/",
+    "Core\/Use Cases\/SubmitFileSubmission",
     "Pods\\/",
     "Student\/Courses\/CourseList\/",
     "Student\/Dashboard\/"
   ],
-  "fileMinCoverage": 0,
+  "fileMinCoverage": 0.5,
   "totalMinCoverage": 0.9
 }

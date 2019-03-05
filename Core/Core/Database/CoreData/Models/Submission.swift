@@ -121,10 +121,8 @@ extension Submission {
         }
 
         if let discussions = item.discussion_entries {
-            let discussionModels: [DiscussionEntry] = try discussions.map { (apiEntry: APIDiscussionEntry) in
-                let discussionEntry: DiscussionEntry = client.fetch(predicate: .id(apiEntry.id.value), sortDescriptors: nil).first ?? client.insert()
-                try discussionEntry.update(fromApiModel: apiEntry, in: client)
-                return discussionEntry
+            let discussionModels: [DiscussionEntry] = discussions.map { (apiEntry: APIDiscussionEntry) in
+                return DiscussionEntry.save(apiEntry, in: client)
             }
             discussionEntries = Set(discussionModels)
         }

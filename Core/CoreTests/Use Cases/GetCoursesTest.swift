@@ -39,9 +39,7 @@ class GetCoursesTest: CoreTestCase {
     }
 
     func testRequest() {
-        let useCase = GetCourses()
-        let req = useCase.request
-        XCTAssertNotNil(req)
+        XCTAssertEqual(GetCourses().request.includeUnpublished, true)
     }
 
     func testScopeShowFavorites() {

@@ -118,4 +118,16 @@ class GetCourseTest: CoreTestCase {
         databaseClient.refresh()
         XCTAssertEqual(course.name, "New Name")
     }
+
+    func testCacheKey() {
+        XCTAssertEqual(GetCourseUseCase(courseID: "72").cacheKey, "get-course-72")
+    }
+
+    func testScope() {
+        XCTAssertEqual(GetCourseUseCase(courseID: "5").scope, Scope.where(#keyPath(Course.id), equals: "5"))
+    }
+
+    func testRequest() {
+        XCTAssertEqual(GetCourseUseCase(courseID: "2").request.courseID, "2")
+    }
 }
