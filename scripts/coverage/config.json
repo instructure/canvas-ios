@@ -5,6 +5,7 @@
     "Controller.\\w+$",
     "\\/Views\\/",
     "Core\/ShareExtension\/",
+    "Core\/Use Cases\/SubmitFileSubmission",
     "Pods\\/",
     "Student\/Courses\/CourseList\/",
     "Student\/Dashboard\/"
