@@ -20,7 +20,7 @@ public class CreateSubmission: APIUseCase {
     let context: Context
     let assignmentID: String
     let userID: String
-    fileprivate let req: CreateSubmissionRequest
+    public let request: CreateSubmissionRequest
     public typealias Model = Submission
 
     public init(context: Context, assignmentID: String, userID: String,
@@ -45,7 +45,7 @@ public class CreateSubmission: APIUseCase {
             media_comment_type: mediaCommentType
         )
 
-        req = CreateSubmissionRequest(
+        request = CreateSubmissionRequest(
             context: context,
             assignmentID: assignmentID,
             body: .init(submission: submission)
@@ -53,10 +53,6 @@ public class CreateSubmission: APIUseCase {
     }
 
     public var cacheKey: String?
-
-    public var request: CreateSubmissionRequest {
-        return req
-    }
 
     public var scope: Scope {
         let predicate = NSPredicate(format: "%K == %@ AND %K == %@", #keyPath(Submission.assignmentID), assignmentID, #keyPath(Submission.userID), userID)
