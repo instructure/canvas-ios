@@ -52,7 +52,6 @@
 		78151DCB21AE75D400692862 /* APIDiscussion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78151DCA21AE75D400692862 /* APIDiscussion.swift */; };
 		78151DCD21AE75F600692862 /* APIDiscussion+Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78151DCC21AE75F600692862 /* APIDiscussion+Requestable.swift */; };
 		78151DCF21AE7E0500692862 /* APIDiscussionRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78151DCE21AE7E0500692862 /* APIDiscussionRequestableTests.swift */; };
-		7836B0D12199021500FA25AE /* ShareExtensionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7836B0CE2199021500FA25AE /* ShareExtensionUseCase.swift */; };
 		7836B0D22199021500FA25AE /* ShareExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7836B0CF2199021500FA25AE /* ShareExtensionViewController.swift */; };
 		7836B0D32199021500FA25AE /* ShareExtensionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7836B0D02199021500FA25AE /* ShareExtensionPresenter.swift */; };
 		7851D9B32138264800E76EC3 /* GetCustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7851D9B22138264800E76EC3 /* GetCustomColors.swift */; };
@@ -611,7 +610,6 @@
 		78151DCA21AE75D400692862 /* APIDiscussion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDiscussion.swift; sourceTree = "<group>"; };
 		78151DCC21AE75F600692862 /* APIDiscussion+Requestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIDiscussion+Requestable.swift"; sourceTree = "<group>"; };
 		78151DCE21AE7E0500692862 /* APIDiscussionRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDiscussionRequestableTests.swift; sourceTree = "<group>"; };
-		7836B0CE2199021500FA25AE /* ShareExtensionUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareExtensionUseCase.swift; sourceTree = "<group>"; };
 		7836B0CF2199021500FA25AE /* ShareExtensionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareExtensionViewController.swift; sourceTree = "<group>"; };
 		7836B0D02199021500FA25AE /* ShareExtensionPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareExtensionPresenter.swift; sourceTree = "<group>"; };
 		7851D9B22138264800E76EC3 /* GetCustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCustomColors.swift; sourceTree = "<group>"; };
@@ -1206,7 +1204,6 @@
 			isa = PBXGroup;
 			children = (
 				7836B0D02199021500FA25AE /* ShareExtensionPresenter.swift */,
-				7836B0CE2199021500FA25AE /* ShareExtensionUseCase.swift */,
 				7836B0CF2199021500FA25AE /* ShareExtensionViewController.swift */,
 			);
 			path = ShareExtension;
@@ -2185,7 +2182,6 @@
 				7DF4FFBF21700133007E5F81 /* TabViewable.swift in Sources */,
 				7D80AC58212DAE4C00C40ECE /* URLResponseExtensions.swift in Sources */,
 				7DD6948F2196891200BA4984 /* Secret.swift in Sources */,
-				7836B0D12199021500FA25AE /* ShareExtensionUseCase.swift in Sources */,
 				7DD752A121BEFA7C00E26260 /* LoginManualOAuthViewController.swift in Sources */,
 				7D2DC308219CA02D008FE29A /* GetDocViewerAnnotations.swift in Sources */,
 				B1A6BC86218A5D07000515E3 /* LatePolicyInterval.swift in Sources */,
