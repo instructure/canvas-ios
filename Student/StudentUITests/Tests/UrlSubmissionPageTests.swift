@@ -21,6 +21,7 @@ import TestsFoundation
 class UrlSubmissionPageTests: StudentTest {
 
     let page = UrlSubmissionPage.self
+    let assignmentDetailsPage = AssignmentDetailsPage.self
 
     lazy var course: APICourse = {
         return seedClient.createCourse()
@@ -44,7 +45,10 @@ class UrlSubmissionPageTests: StudentTest {
         page.assertExists(.loadingView)
         page.assertVisible(.loadingView)
 
-        launch("/courses/\(course.id)/assignments/\(assignment.id)/submissions/\(student.id)", as: student)
+        // for some reason navigating directly to the submission details page is not loading the submission
+        launch("/courses/\(course.id)/assignments/\(assignment.id)", as: student)
+        AssignmentDetailsPage.tap(.viewSubmissionButton)
+
         let submission = SubmissionDetailsPage.self
         submission.assertExists(.urlButton)
         submission.assertText(.urlButton, equals: "http://www.amazon.com")

@@ -20,6 +20,7 @@ import TestsFoundation
 
 class SubmissionDetailsPageTest: StudentTest {
     let page = SubmissionDetailsPage.self
+    let assignmentDetailsPage = AssignmentDetailsPage.self
 
     lazy var course: APICourse = {
         return seedClient.createCourse()
@@ -34,7 +35,8 @@ class SubmissionDetailsPageTest: StudentTest {
     func testNoSubmission() {
         let dueAt = DateComponents(calendar: Calendar.current, year: 2018, month: 10, day: 31, hour: 22, minute: 0).date!
         let assignment = seedClient.createAssignment(for: course, dueAt: dueAt)
-        launch("/courses/\(course.id)/assignments/\(assignment.id)/submissions/\(student.id)", as: student)
+        launch("/courses/\(course.id)/assignments/\(assignment.id)", as: student)
+        AssignmentDetailsPage.tap(.viewSubmissionButton)
 
         page.assertText(.emptyAssignmentDueBy, equals: "This assignment was due by October 31, 2018 at 10:00 PM")
         page.assertVisible(.emptySubmitButton)
@@ -43,7 +45,8 @@ class SubmissionDetailsPageTest: StudentTest {
     func testOneSubmission() {
         let assignment = seedClient.createAssignment(for: course)
         let submission = seedClient.submit(assignment: assignment, context: ContextModel(.course, id: course.id), as: student)
-        launch("/courses/\(course.id)/assignments/\(assignment.id)/submissions/\(student.id)", as: student)
+        launch("/courses/\(course.id)/assignments/\(assignment.id)", as: student)
+        AssignmentDetailsPage.tap(.viewSubmissionButton)
 
         page.assertHidden(.emptyView)
         page.assertHidden(.attemptPicker)
@@ -60,7 +63,8 @@ class SubmissionDetailsPageTest: StudentTest {
         let assignment = seedClient.createAssignment(for: course)
         let submission1 = seedClient.submit(assignment: assignment, context: ContextModel(.course, id: course.id), as: student)
         let submission2 = seedClient.resubmit(assignment: assignment, context: ContextModel(.course, id: course.id), as: student, comment: "Oops, I meant this one.")
-        launch("/courses/\(course.id)/assignments/\(assignment.id)/submissions/\(student.id)", as: student)
+        launch("/courses/\(course.id)/assignments/\(assignment.id)", as: student)
+        AssignmentDetailsPage.tap(.viewSubmissionButton)
 
         let date1 = DateFormatter.localizedString(from: submission1.submitted_at!, dateStyle: .medium, timeStyle: .short)
         let date2 = DateFormatter.localizedString(from: submission2.submitted_at!, dateStyle: .medium, timeStyle: .short)
@@ -85,7 +89,8 @@ class SubmissionDetailsPageTest: StudentTest {
         let sessionURL = seedClient.createDocViewerSession(for: submission.attachments![0], as: student)
         seedClient.pollForDocViewerMetadata(sessionURL: sessionURL)
 
-        launch("/courses/\(course.id)/assignments/\(assignment.id)/submissions/\(student.id)", as: student)
+        launch("/courses/\(course.id)/assignments/\(assignment.id)", as: student)
+        AssignmentDetailsPage.tap(.viewSubmissionButton)
 
         PSPDFDoc.waitToExist(.view, timeout: 15.0)
         PSPDFDoc.assertVisible(.view)
@@ -123,7 +128,8 @@ class SubmissionDetailsPageTest: StudentTest {
             "inreplyto": point.id,
         ]), on: sessionURL, as: teacher)
 
-        launch("/courses/\(course.id)/assignments/\(assignment.id)/submissions/\(student.id)", as: student)
+        launch("/courses/\(course.id)/assignments/\(assignment.id)", as: student)
+        AssignmentDetailsPage.tap(.viewSubmissionButton)
 
         PSPDFDoc.waitToExist(.view, timeout: 15.0)
 
@@ -163,7 +169,8 @@ class SubmissionDetailsPageTest: StudentTest {
         let entry = seedClient.createDiscussionEntry(discussion, context: context, message: "First entry", as: student)
         seedClient.createDiscussionEntry(discussion, context: context, message: "Second entry", as: student)
 
-        launch("/courses/\(course.id)/assignments/\(discussion.assignment_id!.value)/submissions/\(student.id)", as: student)
+        launch("/courses/\(course.id)/assignments/\(discussion.assignment_id!.value)", as: student)
+        AssignmentDetailsPage.tap(.viewSubmissionButton)
 
         page.assertHidden(.emptyView)
         page.assertHidden(.attemptPicker)
@@ -182,7 +189,8 @@ class SubmissionDetailsPageTest: StudentTest {
             questions[0].id: .string("He who shall not be named."),
         ])
         let assignment = seedClient.makeRequest(GetAssignmentsRequest(courseID: course.id), with: student.token).first { $0.quiz_id?.value == quiz.id }
-        launch("/courses/\(course.id)/assignments/\(assignment!.id)/submissions/\(student.id)", as: student)
+        launch("/courses/\(course.id)/assignments/\(assignment!.id)", as: student)
+        AssignmentDetailsPage.tap(.viewSubmissionButton)
 
         page.assertHidden(.emptyView)
         page.assertVisible(.onlineQuizWebView)
@@ -192,7 +200,8 @@ class SubmissionDetailsPageTest: StudentTest {
         let url = URL(string: "https://www.instructure.com/")!
         let assignment = seedClient.createAssignment(for: course, submissionTypes: [.online_url])
         seedClient.submit(assignment: assignment, context: ContextModel(.course, id: course.id), as: student, submissionType: .online_url, url: url)
-        launch("/courses/\(course.id)/assignments/\(assignment.id)/submissions/\(student.id)", as: student)
+        launch("/courses/\(course.id)/assignments/\(assignment.id)", as: student)
+        AssignmentDetailsPage.tap(.viewSubmissionButton)
 
         page.assertVisible(.urlSubmissionBlurb)
         page.assertVisible(.urlButton)
@@ -204,7 +213,8 @@ class SubmissionDetailsPageTest: StudentTest {
 
     func testExternalToolSubmission() {
         let assignment = seedClient.createAssignment(for: course, submissionTypes: [.external_tool])
-        launch("/courses/\(course.id)/assignments/\(assignment.id)/submissions/\(student.id)", as: student)
+        launch("/courses/\(course.id)/assignments/\(assignment.id)", as: student)
+        AssignmentDetailsPage.tap(.viewSubmissionButton)
 
         page.assertVisible(.externalToolButton)
         page.assertHidden(.emptyView)
