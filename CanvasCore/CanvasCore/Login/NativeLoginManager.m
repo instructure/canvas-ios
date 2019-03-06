@@ -34,7 +34,6 @@ CanvasApp _Nonnull CanvasAppParent = @"parent";
 @property (nonatomic) RACDisposable *clientObserver;
 @property (nonatomic) UIViewController *domainPicker;
 @property (nonatomic) CKIClient *currentClient;
-@property (nonatomic) BOOL shouldCleanupOnNextLogoutEvent;
 
 - (void)setup;
 

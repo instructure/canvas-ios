@@ -33,6 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, nonnull) CanvasApp app;
 @property (nonatomic, weak) id<NativeLoginManagerDelegate> delegate;
+@property (nonatomic) BOOL shouldCleanupOnNextLogoutEvent;
 
 + (instancetype)shared;
 
@@ -55,6 +56,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)injectLoginInformation:(nullable NSDictionary<NSString *, id> *)info;
 
 - (void)stopMasquerding;
+
+- (void)setup;
 
 @end
 
