@@ -20,18 +20,12 @@
 		3B3467612130556000F9BC2E /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3467602130556000F9BC2E /* MockURLSession.swift */; };
 		3B3467C72134954A00F9BC2E /* UserAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3467C62134954A00F9BC2E /* UserAgent.swift */; };
 		3B3467C921349EC100F9BC2E /* LoginWebPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3467C821349EC000F9BC2E /* LoginWebPresenterTests.swift */; };
-		3B3467CB21349FE300F9BC2E /* GetMobileVerifyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3467CA21349FE300F9BC2E /* GetMobileVerifyTests.swift */; };
-		3B3467CD2134A06300F9BC2E /* GetAuthTokenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3467CC2134A06300F9BC2E /* GetAuthTokenTests.swift */; };
 		3B3467D02135024800F9BC2E /* ErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3467CF2135024800F9BC2E /* ErrorViewController.swift */; };
-		3B3467D22135AF5100F9BC2E /* ConstructLoginRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3467D12135AF5100F9BC2E /* ConstructLoginRequestTests.swift */; };
 		3B3467D42135B7B700F9BC2E /* ID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3467D32135B7B700F9BC2E /* ID.swift */; };
 		3B3467D62135B99700F9BC2E /* IDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3467D52135B99700F9BC2E /* IDTests.swift */; };
 		3B3467D821360A7C00F9BC2E /* APILoginWeb+Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3467D721360A7C00F9BC2E /* APILoginWeb+Requestable.swift */; };
 		3B3467DA2136FFBA00F9BC2E /* APILoginWeb+RequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3467D92136FFBA00F9BC2E /* APILoginWeb+RequestableTests.swift */; };
 		3B3467DC2137087100F9BC2E /* HTTPHeaderConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3467DB2137087100F9BC2E /* HTTPHeaderConstants.swift */; };
-		3B3467DF21370F6600F9BC2E /* GetAuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3467DD21370F6600F9BC2E /* GetAuthToken.swift */; };
-		3B3467E021370F6600F9BC2E /* GetMobileVerify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3467DE21370F6600F9BC2E /* GetMobileVerify.swift */; };
-		3B3467E22137170500F9BC2E /* ConstructLoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3467E12137170500F9BC2E /* ConstructLoginRequest.swift */; };
 		3B412F0B2141A9760090DE02 /* FetchedResultsControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B412F0A2141A9760090DE02 /* FetchedResultsControllerTests.swift */; };
 		3B472274213795E500BF6FF3 /* PersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B472273213795E500BF6FF3 /* PersistenceTests.swift */; };
 		3B4B75C7222F09C7002CCBEC /* CreateSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4B75C6222F09C7002CCBEC /* CreateSubmission.swift */; };
@@ -176,7 +170,6 @@
 		7D8B78FB215EC9BE005E08F1 /* BrandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8B78FA215EC9BE005E08F1 /* BrandTests.swift */; };
 		7D8B78FD21627887005E08F1 /* CoreWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8B78FC21627887005E08F1 /* CoreWebView.swift */; };
 		7D8B79032162B9E2005E08F1 /* CoreWebViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8B79022162B9E2005E08F1 /* CoreWebViewTests.swift */; };
-		7D8F2FEE21F793C0005E5C5C /* GetAccountsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8F2FED21F793C0005E5C5C /* GetAccountsTests.swift */; };
 		7D8FDFB62187B62A0067557E /* UINavigationBarExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8FDFB52187B62A0067557E /* UINavigationBarExtensions.swift */; };
 		7D8FDFB82187B92C0067557E /* UINavigationBarExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8FDFB72187B92C0067557E /* UINavigationBarExtensionsTests.swift */; };
 		7D979CCA215BDFD500567627 /* DividerViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D979CC9215BDFD500567627 /* DividerViewTests.swift */; };
@@ -188,9 +181,6 @@
 		7DB0A1B621BF168A009ABB40 /* LoginDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1B521BF168A009ABB40 /* LoginDelegateTests.swift */; };
 		7DB0A1B821BF175E009ABB40 /* LoginFindSchoolPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1B721BF175E009ABB40 /* LoginFindSchoolPresenterTests.swift */; };
 		7DB0A1BA21BF1904009ABB40 /* LoginStartPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1B921BF1904009ABB40 /* LoginStartPresenterTests.swift */; };
-		7DB0A1C721C046B0009ABB40 /* RefreshKeychainEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1C621C046B0009ABB40 /* RefreshKeychainEntry.swift */; };
-		7DB0A1CB21C16C6D009ABB40 /* RefreshKeychainEntryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1CA21C16C6D009ABB40 /* RefreshKeychainEntryTests.swift */; };
-		7DB0A1D021C179D8009ABB40 /* GetAccounts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1CF21C179D8009ABB40 /* GetAccounts.swift */; };
 		7DC23092213D710000318ED0 /* UIImageViewExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC23091213D710000318ED0 /* UIImageViewExtensionsTests.swift */; };
 		7DC4A555222EF87300FA03DC /* DiscussionEntryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4A554222EF87300FA03DC /* DiscussionEntryTests.swift */; };
 		7DC4A559222EFC9900FA03DC /* Int64ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4A558222EFC9900FA03DC /* Int64ExtensionsTests.swift */; };
@@ -453,18 +443,12 @@
 		3B3467602130556000F9BC2E /* MockURLSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
 		3B3467C62134954A00F9BC2E /* UserAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAgent.swift; sourceTree = "<group>"; };
 		3B3467C821349EC000F9BC2E /* LoginWebPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginWebPresenterTests.swift; path = CoreTests/Login/LoginWebPresenterTests.swift; sourceTree = SOURCE_ROOT; };
-		3B3467CA21349FE300F9BC2E /* GetMobileVerifyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMobileVerifyTests.swift; sourceTree = "<group>"; };
-		3B3467CC2134A06300F9BC2E /* GetAuthTokenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAuthTokenTests.swift; sourceTree = "<group>"; };
 		3B3467CF2135024800F9BC2E /* ErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewController.swift; sourceTree = "<group>"; };
-		3B3467D12135AF5100F9BC2E /* ConstructLoginRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructLoginRequestTests.swift; sourceTree = "<group>"; };
 		3B3467D32135B7B700F9BC2E /* ID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ID.swift; sourceTree = "<group>"; };
 		3B3467D52135B99700F9BC2E /* IDTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDTests.swift; sourceTree = "<group>"; };
 		3B3467D721360A7C00F9BC2E /* APILoginWeb+Requestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APILoginWeb+Requestable.swift"; sourceTree = "<group>"; };
 		3B3467D92136FFBA00F9BC2E /* APILoginWeb+RequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APILoginWeb+RequestableTests.swift"; sourceTree = "<group>"; };
 		3B3467DB2137087100F9BC2E /* HTTPHeaderConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPHeaderConstants.swift; sourceTree = "<group>"; };
-		3B3467DD21370F6600F9BC2E /* GetAuthToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetAuthToken.swift; sourceTree = "<group>"; };
-		3B3467DE21370F6600F9BC2E /* GetMobileVerify.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetMobileVerify.swift; sourceTree = "<group>"; };
-		3B3467E12137170500F9BC2E /* ConstructLoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructLoginRequest.swift; sourceTree = "<group>"; };
 		3B412F0A2141A9760090DE02 /* FetchedResultsControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsControllerTests.swift; sourceTree = "<group>"; };
 		3B472273213795E500BF6FF3 /* PersistenceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceTests.swift; sourceTree = "<group>"; };
 		3B4B75C6222F09C7002CCBEC /* CreateSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSubmission.swift; sourceTree = "<group>"; };
@@ -755,7 +739,6 @@
 		7D8B78FA215EC9BE005E08F1 /* BrandTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandTests.swift; sourceTree = "<group>"; };
 		7D8B78FC21627887005E08F1 /* CoreWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreWebView.swift; sourceTree = "<group>"; };
 		7D8B79022162B9E2005E08F1 /* CoreWebViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreWebViewTests.swift; sourceTree = "<group>"; };
-		7D8F2FED21F793C0005E5C5C /* GetAccountsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAccountsTests.swift; sourceTree = "<group>"; };
 		7D8FDFB52187B62A0067557E /* UINavigationBarExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBarExtensions.swift; sourceTree = "<group>"; };
 		7D8FDFB72187B92C0067557E /* UINavigationBarExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBarExtensionsTests.swift; sourceTree = "<group>"; };
 		7D979CC9215BDFD500567627 /* DividerViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerViewTests.swift; sourceTree = "<group>"; };
@@ -767,9 +750,6 @@
 		7DB0A1B521BF168A009ABB40 /* LoginDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDelegateTests.swift; sourceTree = "<group>"; };
 		7DB0A1B721BF175E009ABB40 /* LoginFindSchoolPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFindSchoolPresenterTests.swift; sourceTree = "<group>"; };
 		7DB0A1B921BF1904009ABB40 /* LoginStartPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStartPresenterTests.swift; sourceTree = "<group>"; };
-		7DB0A1C621C046B0009ABB40 /* RefreshKeychainEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshKeychainEntry.swift; sourceTree = "<group>"; };
-		7DB0A1CA21C16C6D009ABB40 /* RefreshKeychainEntryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshKeychainEntryTests.swift; sourceTree = "<group>"; };
-		7DB0A1CF21C179D8009ABB40 /* GetAccounts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAccounts.swift; sourceTree = "<group>"; };
 		7DC23091213D710000318ED0 /* UIImageViewExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtensionsTests.swift; sourceTree = "<group>"; };
 		7DC4A554222EF87300FA03DC /* DiscussionEntryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionEntryTests.swift; sourceTree = "<group>"; };
 		7DC4A558222EFC9900FA03DC /* Int64ExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int64ExtensionsTests.swift; sourceTree = "<group>"; };
@@ -1686,14 +1666,11 @@
 			children = (
 				B195DC5F2132659800797FE4 /* Base */,
 				B171A10621B9BE6C000325D3 /* CancelFileSubmission.swift */,
-				3B3467E12137170500F9BC2E /* ConstructLoginRequest.swift */,
 				B120D9D421B7941E00D93F39 /* CreateFileSubmissions.swift */,
 				3B67BCB421B1F2C900055324 /* CreateFileSubmission.swift */,
 				9FD504EF2180C17C00B395BA /* DownloadFile.swift */,
-				7DB0A1CF21C179D8009ABB40 /* GetAccounts.swift */,
 				B1A32BE5215A81350071B41E /* GetAssignment.swift */,
 				3BF5C54E2187800B0081A858 /* GetAssignments.swift */,
-				3B3467DD21370F6600F9BC2E /* GetAuthToken.swift */,
 				7D63F789215D46AB00151E49 /* GetBrandVariables.swift */,
 				B18126912150542A00E71F63 /* GetContext.swift */,
 				9FE84DDD2150281300B95A68 /* GetContextTabs.swift */,
@@ -1706,7 +1683,6 @@
 				7D2DC305219C9D36008FE29A /* GetDocViewerSession.swift */,
 				9FD504ED2180C17400B395BA /* GetFile.swift */,
 				9FE84DD9214FE06300B95A68 /* GetGroup.swift */,
-				3B3467DE21370F6600F9BC2E /* GetMobileVerify.swift */,
 				B15CA270221DE1C80014FB02 /* GetModules.swift */,
 				7DCF2043216D622B003AF358 /* GetQuizzes.swift */,
 				9FAE410421B6CA4C00FE7F58 /* GetSessionlessLaunchURL.swift */,
@@ -1714,7 +1690,6 @@
 				B195DC44213201DE00797FE4 /* GetUserGroups.swift */,
 				3B69253B21A102E90023ED75 /* QueueFileUpload.swift */,
 				B1BCFF8D21BEC82900F58D0F /* SubmitFileSubmission.swift */,
-				7DB0A1C621C046B0009ABB40 /* RefreshKeychainEntry.swift */,
 				B120D9D821B794BA00D93F39 /* UpdateFileUpload.swift */,
 				B120D9D621B7946F00D93F39 /* UploadFile.swift */,
 				3B4B75C6222F09C7002CCBEC /* CreateSubmission.swift */,
@@ -1818,13 +1793,10 @@
 			children = (
 				B195DC602132660700797FE4 /* Base */,
 				B115423D21BA3062006D1BA3 /* CancelFileSubmissionTests.swift */,
-				3B3467D12135AF5100F9BC2E /* ConstructLoginRequestTests.swift */,
 				B1EE9CFE21B8D25E00FCF736 /* CreateFileSubmissionsTests.swift */,
 				3B67BCB721B5E72000055324 /* CreateSubmissionTests.swift */,
 				9F47F53921820494002D8BD8 /* DownloadFileTest.swift */,
-				7D8F2FED21F793C0005E5C5C /* GetAccountsTests.swift */,
 				3BF5C55221879A430081A858 /* GetAssignmentsTests.swift */,
-				3B3467CC2134A06300F9BC2E /* GetAuthTokenTests.swift */,
 				7D63F791215D8EEC00151E49 /* GetBrandVariablesTests.swift */,
 				9FE84DE1215037A000B95A68 /* GetContextTabsTest.swift */,
 				B18126932150564900E71F63 /* GetContextTests.swift */,
@@ -1837,14 +1809,12 @@
 				7D2DC312219CD986008FE29A /* GetDocViewerSessionTests.swift */,
 				9FD504F52180FC7200B395BA /* GetFileTest.swift */,
 				9FE84DDB214FE5C500B95A68 /* GetGroupTest.swift */,
-				3B3467CA21349FE300F9BC2E /* GetMobileVerifyTests.swift */,
 				B15CA272221DE1FA0014FB02 /* GetModulesTests.swift */,
 				7DCF2045216D652C003AF358 /* GetQuizzesTests.swift */,
 				9FAE410621B6CB7F00FE7F58 /* GetSessionlessLaunchURLTests.swift */,
 				9FCD79D92188E3CD0054293A /* GetSubmissionTest.swift */,
 				B195DC5421324DA600797FE4 /* GetUserGroupsTest.swift */,
 				3B69253D21A106430023ED75 /* QueueFileUploadTests.swift */,
-				7DB0A1CA21C16C6D009ABB40 /* RefreshKeychainEntryTests.swift */,
 				B171A10A21BA13CF000325D3 /* UpdateFileUploadTests.swift */,
 				B17DFABF21B8855D008B9FA9 /* UploadFileTests.swift */,
 			);
@@ -2166,7 +2136,6 @@
 				7DAFB46321A361C400311275 /* LocalizationManager.swift in Sources */,
 				7DCF202D216D461C003AF358 /* UITableViewExtensions.swift in Sources */,
 				9FE84DDE2150281300B95A68 /* GetContextTabs.swift in Sources */,
-				3B3467E021370F6600F9BC2E /* GetMobileVerify.swift in Sources */,
 				7D47769C21AF3A0200B441CE /* QuizQuestionType.swift in Sources */,
 				B1A6BC80218A32F3000515E3 /* APIAssignmentOverride+Requestable.swift in Sources */,
 				B1A32BDC21599F1C0071B41E /* APISubmission.swift in Sources */,
@@ -2207,7 +2176,6 @@
 				3B3467C72134954A00F9BC2E /* UserAgent.swift in Sources */,
 				789C9BC32138656E00B37AC4 /* OperationQueueExtensions.swift in Sources */,
 				7D2DC306219C9D36008FE29A /* GetDocViewerSession.swift in Sources */,
-				7DB0A1D021C179D8009ABB40 /* GetAccounts.swift in Sources */,
 				3B3467DC2137087100F9BC2E /* HTTPHeaderConstants.swift in Sources */,
 				7DCF2036216D546C003AF358 /* APIQuiz+Requestable.swift in Sources */,
 				7D10194B215E97D90058FDD1 /* UIImageExtensions.swift in Sources */,
@@ -2228,7 +2196,6 @@
 				7DF4FFD82171347B007E5F81 /* Tab.swift in Sources */,
 				3B3467D02135024800F9BC2E /* ErrorViewController.swift in Sources */,
 				7D062AF4212496E600677F66 /* Context.swift in Sources */,
-				3B3467DF21370F6600F9BC2E /* GetAuthToken.swift in Sources */,
 				7DCF2038216D55E6003AF358 /* QuizType.swift in Sources */,
 				7D29D309218A5E810036437C /* APIDocViewerRequestable.swift in Sources */,
 				7D29D307218A592B0036437C /* APIDocViewer.swift in Sources */,
@@ -2267,7 +2234,6 @@
 				9FD504EE2180C17400B395BA /* GetFile.swift in Sources */,
 				3BF5C54F218780140081A858 /* GetAssignments.swift in Sources */,
 				7DFFAB1C219DDB8B003E71F8 /* CommentListViewController.swift in Sources */,
-				7DB0A1C721C046B0009ABB40 /* RefreshKeychainEntry.swift in Sources */,
 				7D8B78FD21627887005E08F1 /* CoreWebView.swift in Sources */,
 				7D29D303218A54CC0036437C /* DocViewerCommentReplyAnnotation.swift in Sources */,
 				7DD7F890215ADFA5006E1715 /* UIFontExtensions.swift in Sources */,
@@ -2304,7 +2270,6 @@
 				7D80AC21212B89C500C40ECE /* APIAccount+Requestable.swift in Sources */,
 				7DCF1EA6216BC0F5003AF358 /* CourseWorkflowState.swift in Sources */,
 				7D63F78C215D4BD300151E49 /* Brand.swift in Sources */,
-				3B3467E22137170500F9BC2E /* ConstructLoginRequest.swift in Sources */,
 				7D2DC311219CC29D008FE29A /* DocViewerUseCase.swift in Sources */,
 				7D765024215AEDDE00BB4F38 /* DividerView.swift in Sources */,
 				7851D9B32138264800E76EC3 /* GetCustomColors.swift in Sources */,
@@ -2373,7 +2338,6 @@
 				B171A10B21BA13CF000325D3 /* UpdateFileUploadTests.swift in Sources */,
 				9F47F53A21820494002D8BD8 /* DownloadFileTest.swift in Sources */,
 				7D63F78E215D7B8100151E49 /* DynamicButtonTests.swift in Sources */,
-				7DB0A1CB21C16C6D009ABB40 /* RefreshKeychainEntryTests.swift in Sources */,
 				7D37BE8821C824DA0063FAAC /* UIViewControllerExtensionsTests.swift in Sources */,
 				B14FE5D92134F68800328CD7 /* CoreTestCase.swift in Sources */,
 				3B67BCB821B5E72000055324 /* CreateSubmissionTests.swift in Sources */,
@@ -2401,7 +2365,6 @@
 				7DCF1EBE216BC969003AF358 /* SubmissionWorkflowStateTests.swift in Sources */,
 				3B3467612130556000F9BC2E /* MockURLSession.swift in Sources */,
 				7DDC450D215BF14A003F3209 /* DynamicLabelTests.swift in Sources */,
-				3B3467CB21349FE300F9BC2E /* GetMobileVerifyTests.swift in Sources */,
 				7D1F704821CAE4E700E78D69 /* AppEnvironmentTests.swift in Sources */,
 				7D80AC25212C61F100C40ECE /* APIAccount+Requestable+Tests.swift in Sources */,
 				7D80AC2D212C801600C40ECE /* APIOAuthRequestableTests.swift in Sources */,
@@ -2416,14 +2379,12 @@
 				9FE84DE2215037A000B95A68 /* GetContextTabsTest.swift in Sources */,
 				9FE84DDC214FE5C500B95A68 /* GetGroupTest.swift in Sources */,
 				B1A32BE22159A3100071B41E /* APIAssignmentRequestableTests.swift in Sources */,
-				7D8F2FEE21F793C0005E5C5C /* GetAccountsTests.swift in Sources */,
 				7DA20E932168128400F5FD19 /* UIImageInstIconsExtensionsTests.swift in Sources */,
 				7D63F788215D44A600151E49 /* APIBrandVariables+Requestable+Tests.swift in Sources */,
 				9FD504F62180FC7200B395BA /* GetFileTest.swift in Sources */,
 				DFE1FF20212F5E41003F27AA /* KeychainTests.swift in Sources */,
 				B17F23AF21378F4B00771F86 /* TTLOperationTest.swift in Sources */,
 				B15CA22D221CA2EE0014FB02 /* UseCaseTests.swift in Sources */,
-				3B3467CD2134A06300F9BC2E /* GetAuthTokenTests.swift in Sources */,
 				B15CA284221E00870014FB02 /* ModuleTests.swift in Sources */,
 				7D80AC17212B689E00C40ECE /* APITab+Requestable+Tests.swift in Sources */,
 				3B3467D62135B99700F9BC2E /* IDTests.swift in Sources */,
@@ -2487,7 +2448,6 @@
 				7DC4A559222EFC9900FA03DC /* Int64ExtensionsTests.swift in Sources */,
 				7D20F61B21C31CE900B77E5E /* UICollectionViewExtensionsTests.swift in Sources */,
 				7DCF1EC0216BC97F003AF358 /* TabVisibilityTests.swift in Sources */,
-				3B3467D22135AF5100F9BC2E /* ConstructLoginRequestTests.swift in Sources */,
 				7DC4A55B222EFE0E00FA03DC /* NSErrorExtensionsTests.swift in Sources */,
 				7D6A2BE4214C538F00DB15C4 /* Route+Tests.swift in Sources */,
 				B1911CE621C840AC00F42F91 /* FileSubmissionTests.swift in Sources */,
