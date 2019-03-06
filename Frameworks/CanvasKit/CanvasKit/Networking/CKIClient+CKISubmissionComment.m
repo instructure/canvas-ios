@@ -22,18 +22,21 @@
 
 @implementation CKIClient (CKISubmissionComment)
 
-- (RACSignal *)createSubmissionComment:(CKISubmissionComment *)comment {
+- (RACSignal *)createSubmissionComment:(CKISubmissionComment *)comment isGroupComment:(BOOL) isGroupComment {
     
     NSMutableDictionary *commentDictionary = [@{ @"text_comment" : comment.comment } mutableCopy];
     if (comment.mediaComment.mediaID) {
         commentDictionary[@"media_comment_id"] = comment.mediaComment.mediaID;
         commentDictionary[@"media_comment_type"] = comment.mediaComment.mediaType;
     }
+    if (isGroupComment) {
+        commentDictionary[@"group_comment"] = @YES;
+    }
     NSDictionary *params = @{@"comment" : commentDictionary};
     return [self updateModel:(CKIModel *)comment.context parameters:params];
 }
 
-- (void)createCommentWithMedia:(CKIMediaComment *)mediaComment forSubmissionRecord:(CKISubmissionRecord *)submissionRecord success:(void(^)(void))success failure:(void(^)(NSError *error))failure {
+- (void)createCommentWithMedia:(CKIMediaComment *)mediaComment isGroupComment:(BOOL) isGroupComment forSubmissionRecord:(CKISubmissionRecord *)submissionRecord success:(void(^)(void))success failure:(void(^)(NSError *error))failure {
     
     if (!mediaComment.mediaType || !([mediaComment.mediaType isEqualToString:CKIMediaCommentMediaTypeAudio] || [mediaComment.mediaType isEqualToString:CKIMediaCommentMediaTypeVideo])) {
         if (failure) {
@@ -49,7 +52,11 @@
         comment.mediaComment = mediaComment;
         
         NSString *path = [[[submissionRecord.context path] stringByAppendingPathComponent:@"submissions"] stringByAppendingPathComponent:submissionRecord.userID];
-        NSDictionary *params = @{@"media_comment_id": mediaUploadID, @"media_comment_type": mediaComment.mediaType, @"text_comment": @""};
+        NSMutableDictionary *params = [@{@"media_comment_id": mediaUploadID, @"media_comment_type": mediaComment.mediaType, @"text_comment": @""} mutableCopy];
+        if (isGroupComment) {
+            params[@"text_comment"] = @"This is a media comment";
+            params[@"group_comment"] = @YES;
+        }
         [self PUT:path parameters:@{@"comment": params} success:^(NSURLSessionDataTask *task, id responseObject) {
             if (success) {
                 success();

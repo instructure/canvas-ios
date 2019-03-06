@@ -502,9 +502,10 @@ typedef enum CBISubmissionState : NSUInteger {
     CKISubmissionComment *comment = [CKISubmissionComment new];
     comment.context = self.viewModel.record;
     comment.comment = commentText;
+    BOOL isGroupComment = [[self.assignment assignmentGroupID] length];
 
     @weakify(self);
-    [[TheKeymaster.currentClient createSubmissionComment:comment] subscribeNext:^(CKISubmissionRecord *record){
+    [[TheKeymaster.currentClient createSubmissionComment:comment isGroupComment:isGroupComment] subscribeNext:^(CKISubmissionRecord *record){
         @strongify(self);
         [self tappedAdComment:nil];
         
