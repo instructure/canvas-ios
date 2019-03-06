@@ -16,24 +16,23 @@
 
 import Foundation
 
-public class GetGroup: DetailUseCase<GetGroupRequest, Group> {
+public class GetGroup: APIUseCase {
     let groupID: String
+    public typealias Model = Group
+
+    public var request: GetGroupRequest {
+        return GetGroupRequest(id: groupID)
+    }
+
+    public var scope: Scope {
+        return Scope(predicate: NSPredicate(format: "%K == %@", #keyPath(Group.id), groupID), order: [])
+    }
+
+    public var cacheKey: String? {
+        return "get-group-\(groupID)"
+    }
 
     public init(groupID: String, env: AppEnvironment = .shared) {
         self.groupID = groupID
-        let request = GetGroupRequest(id: groupID)
-        super.init(api: env.api, database: env.database, request: request)
-    }
-
-    override public var predicate: NSPredicate {
-        return NSPredicate(format: "%K == %@", #keyPath(Group.id), groupID)
-    }
-
-    override public func updateModel(_ model: Group, using item: APIGroup, in client: PersistenceClient) throws {
-        model.avatarURL = item.avatar_url
-        model.concluded = item.concluded
-        model.courseID = item.course_id?.value
-        if model.id.isEmpty { model.id = item.id.value }
-        model.name = item.name
     }
 }

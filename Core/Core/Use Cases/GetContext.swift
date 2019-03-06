@@ -23,7 +23,7 @@ open class GetContext: TTLOperation {
         case .course:
             operation = GetCourse(courseID: context.id, env: env)
         case .group:
-            operation = GetGroup(groupID: context.id, env: env)
+            fatalError("context not supported")
         default:
             fatalError("context not supported")
         }

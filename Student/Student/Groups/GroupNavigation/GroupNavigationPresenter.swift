@@ -19,55 +19,47 @@ import Core
 
 protocol GroupNavigationViewProtocol: ErrorViewController {
     func updateNavBar(title: String, backgroundColor: UIColor)
-    func showTabs(_ tabs: [GroupNavigationViewModel], color: UIColor)
+    func update(color: UIColor)
 }
 
 extension Tab: GroupNavigationViewModel {}
 
 class GroupNavigationPresenter {
     weak var view: GroupNavigationViewProtocol?
-    let frc: FetchedResultsController<Tab>
-    let groupFrc: FetchedResultsController<Group>
     var context: Context
-    var useCase: PresenterUseCase
     let env: AppEnvironment
-    lazy var loadDataFromServerOnce: () = {
-        env.queue.addOperation(useCase)
+
+    lazy var groups: Store<GetGroup> = {
+        let useCase = GetGroup(groupID: context.id)
+        return self.env.subscribe(useCase) { [weak self] in
+            self?.update()
+        }
     }()
 
-    init(groupID: String, view: GroupNavigationViewProtocol, env: AppEnvironment = .shared, useCase u: PresenterUseCase? = nil) {
+    lazy var tabs: Store<GetContextTabs> = {
+        let useCase = GetContextTabs(context: context)
+        return self.env.subscribe(useCase) { [weak self] in
+            self?.update()
+        }
+    }()
+
+    init(groupID: String, view: GroupNavigationViewProtocol, env: AppEnvironment = .shared) {
         self.context = ContextModel(.group, id: groupID)
         self.env = env
         self.view = view
-
-        if let u = u { useCase = u } else { useCase = GroupNavigationUseCase(context: context, env: env) }
-
-        frc = env.subscribe(Tab.self, .context(context))
-        groupFrc = env.subscribe(Group.self, .details(groupID))
-        frc.delegate = self
-        groupFrc.delegate = self
     }
 
-    func loadTabs() {
-        _ = loadDataFromServerOnce
-        groupFrc.performFetch()
+    func viewIsReady() {
+        groups.refresh()
+        tabs.refresh()
+    }
+
+    func update() {
         var color: UIColor = .black
-        if let group = groupFrc.fetchedObjects?.first {
+        if let group = groups.first {
             color = group.color
             view?.updateNavBar(title: group.name, backgroundColor: color)
         }
-
-        frc.performFetch()
-        view?.showTabs(transformToViewModels(), color: color)
-    }
-
-    func transformToViewModels() -> [GroupNavigationViewModel] {
-        return frc.fetchedObjects?.compactMap { $0 } ?? []
-    }
-}
-
-extension GroupNavigationPresenter: FetchedResultsControllerDelegate {
-    func controllerDidChangeContent<T>(_ controller: FetchedResultsController<T>) {
-        self.loadTabs()
+        view?.update(color: color)
     }
 }
