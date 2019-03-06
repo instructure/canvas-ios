@@ -48,16 +48,16 @@ class GroupNavigationPresenterTests: PersistenceTestCase {
     }
 
     func testTabsAreOrderedByPosition() {
-        Tab.make(["position": 2, "id": "b"])
-        Tab.make(["position": 3, "id": "c"])
-        Tab.make(["position": 1, "id": "a"])
-
+        presenter.viewIsReady()
+        Tab.make(["position": 2, "id": "b", "contextRaw": "group_1"])
+        Tab.make(["position": 3, "id": "c", "contextRaw": "group_1"])
+        Tab.make(["position": 1, "id": "a", "contextRaw": "group_1"])
         presenter.viewIsReady()
         wait(for: [expectation], timeout: 1)
 
         XCTAssertEqual(presenter.tabs.count, 3)
         XCTAssertEqual(presenter.tabs.first?.id, "a")
-        XCTAssertEqual(presenter.tabs.last?.id, "c")
+        XCTAssertEqual(presenter.tabs.last?.id, "c", "\(String(describing: presenter.tabs.last?.id)) was the last" )
     }
 
     func testUseCaseFetchesData() {
@@ -86,7 +86,8 @@ extension GroupNavigationPresenterTests: GroupNavigationViewProtocol {
     func updateNavBar(title: String, backgroundColor: UIColor) {
         resultingTitle = title
         expectation.fulfill()
-
+        print("tabs: \(presenter.tabs.count)")
+        print("first: \(String(describing: presenter.tabs.first?.id))")
     }
 
     func update(color: UIColor) {
