@@ -26,8 +26,7 @@ class LoginStartPresenter {
     var method = AuthenticationMethod.normalLogin
     weak var loginDelegate: LoginDelegate?
     weak var view: LoginStartViewProtocol?
-    var queue = OperationQueue()
-    var session = URLSession(configuration: URLSessionAPI.defaultUrlSessionConfiguration)
+    var session = URLSession.shared
 
     init(loginDelegate: LoginDelegate?, view: LoginStartViewProtocol) {
         self.loginDelegate = loginDelegate
@@ -36,13 +35,41 @@ class LoginStartPresenter {
 
     func viewIsReady() {
         loadEntries()
-        let refresh = OperationSet(operations: Keychain.entries.map { entry in
-            return RefreshKeychainEntry(entry, session: self.session)
-        })
-        refresh.completionBlock = { [weak self] in DispatchQueue.main.async {
+        let group = DispatchGroup()
+        var refreshed = Set<KeychainEntry>()
+        for entry in Keychain.entries {
+            let api = URLSessionAPI(accessToken: entry.accessToken, baseURL: entry.baseURL, urlSession: session)
+            group.enter()
+            api.makeRequest(GetUserRequest(userID: entry.userID)) { (response, _, error) in
+                if let response = response, error == nil {
+                    refreshed.insert(KeychainEntry(
+                        accessToken: entry.accessToken,
+                        baseURL: entry.baseURL,
+                        expiresAt: entry.expiresAt,
+                        lastUsedAt: entry.lastUsedAt,
+                        locale: response.locale ?? response.effective_locale,
+                        masquerader: entry.masquerader,
+                        refreshToken: entry.refreshToken,
+                        userAvatarURL: response.avatar_url,
+                        userID: entry.userID,
+                        userName: response.name,
+                        userEmail: response.email
+                    ))
+                }
+                group.leave()
+            }
+        }
+        group.notify(queue: DispatchQueue.main) { [weak self] in
+            for entry in refreshed {
+                if Keychain.entries.contains(entry) {
+                    Keychain.addEntry(entry)
+                }
+                if Keychain.currentSession == entry {
+                    Keychain.currentSession = entry
+                }
+            }
             self?.loadEntries()
-        } }
-        queue.addOperation(refresh)
+        }
     }
 
     func loadEntries() {

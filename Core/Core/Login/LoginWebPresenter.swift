@@ -42,7 +42,7 @@ class LoginWebPresenter {
     var session: URLSession = URLSession.shared
     weak var loginDelegate: LoginDelegate?
     var method = AuthenticationMethod.normalLogin
-    private var operationQueue = OperationQueue()
+    var task: URLSessionTask?
     weak var view: LoginWebViewProtocol?
 
     init(authenticationProvider: String?, host: String, loginDelegate: LoginDelegate?, method: AuthenticationMethod, view: LoginWebViewProtocol) {
@@ -54,31 +54,33 @@ class LoginWebPresenter {
     }
 
     deinit {
-        operationQueue.cancelAllOperations()
+        task?.cancel()
     }
 
     func viewIsReady() {
         // Manual OAuth provided mobileVerifyModel
+        if mobileVerifyModel != nil {
+            loadLoginWebRequest()
+            return
+        }
+
+        // Lookup OAuth from mobile verify
+        task?.cancel()
+        task = URLSessionAPI(urlSession: session).makeRequest(GetMobileVerifyRequest(domain: host)) { [weak self] (response, _, _) in
+            self?.mobileVerifyModel = response
+            self?.task = nil
+            DispatchQueue.main.async { self?.loadLoginWebRequest() }
+        }
+    }
+
+    func loadLoginWebRequest() {
         let params = LoginParams(host: host, authenticationProvider: authenticationProvider, method: method)
         if let verify = mobileVerifyModel, let url = verify.base_url, let clientID = verify.client_id {
             let requestable = LoginWebRequest(clientID: clientID, params: params)
             if let request = try? requestable.urlRequest(relativeTo: url, accessToken: nil, actAsUserID: nil) {
                 view?.loadRequest(request)
             }
-            return
         }
-
-        // Lookup OAuth from mobile verify
-        let op = ConstructLoginRequest(params: params, urlSession: session)
-        op.completionBlock = { [weak op, weak self] in
-            self?.mobileVerifyModel = op?.mobileVerify
-            if let request = op?.request {
-                DispatchQueue.main.async {
-                    self?.view?.loadRequest(request)
-                }
-            }
-        }
-        operationQueue.addOperation(op)
     }
 
     func navigationActionPolicyForUrl(url: URL) -> WKNavigationActionPolicy {
@@ -100,9 +102,9 @@ class LoginWebPresenter {
         // I dunno why, but we have to wait for the code to be the first param cuz it can keep changing as we follow redirects
         //  "/canvas/login?code="
         if let code = codeFromQueryItems(queryItems), let mobileVerify = mobileVerifyModel, let baseURL = mobileVerify.base_url {
-            let getAuthToken = GetAuthToken(api: URLSessionAPI(urlSession: session), mobileVerify: mobileVerify, code: code)
-            getAuthToken.completionBlock = { [weak self] in
-                if let model = getAuthToken.response {
+            task?.cancel()
+            task = URLSessionAPI(urlSession: session).makeRequest(PostLoginOAuthRequest(client: mobileVerify, code: code)) { [weak self] (response, _, error) in
+                if let model = response {
                     DispatchQueue.main.async {
                         self?.view?.show(LoadingViewController.create(), sender: nil)
                         self?.loginDelegate?.userDidLogin(keychainEntry: KeychainEntry(
@@ -117,13 +119,12 @@ class LoginWebPresenter {
                         ))
                     }
                 }
-                if let error = getAuthToken.errors.first {
+                if let error = error {
                     DispatchQueue.main.async {
                         self?.view?.showError(error)
                     }
                 }
             }
-            operationQueue.addOperation(getAuthToken)
 
             return .cancel
         } else if queryItems?.first(where: { $0.name == "error" }) != nil {

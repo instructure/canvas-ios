@@ -34,6 +34,7 @@ class LoginStartPresenterTests: XCTestCase {
         super.setUp()
         Keychain.config = KeychainConfig(service: "com.instructure.service", accessGroup: nil)
         Keychain.clearEntries()
+        Keychain.currentSession = nil
     }
 
     func testViewIsReady() {
@@ -46,6 +47,7 @@ class LoginStartPresenterTests: XCTestCase {
         let bob = KeychainEntry.make(lastUsedAt: Date(), userID: "3", userName: "Bob")
         Keychain.addEntry(bill)
         Keychain.addEntry(bob)
+        Keychain.currentSession = bill
         let presenter = LoginStartPresenter(loginDelegate: self, view: self)
         presenter.session = mockSession
         presenter.viewIsReady()
@@ -53,6 +55,7 @@ class LoginStartPresenterTests: XCTestCase {
         let poll = expectation(for: NSPredicate(value: true), evaluatedWith: presenter) { self.logins?[0].userAvatarURL != nil }
         wait(for: [poll], timeout: 5)
         XCTAssertEqual(logins?[0].userAvatarURL, URL(string: "avatar"))
+        XCTAssertEqual(Keychain.currentSession?.userAvatarURL, URL(string: "avatar"))
     }
 
     func testCycleAuthMethod() {

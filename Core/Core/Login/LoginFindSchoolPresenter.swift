@@ -26,7 +26,7 @@ class LoginFindSchoolPresenter {
     var api: API = URLSessionAPI(urlSession: URLSession.shared)
     let method: AuthenticationMethod
     weak var loginDelegate: LoginDelegate?
-    var queue = OperationQueue()
+    var searchTask: URLSessionTask?
     weak var view: LoginFindSchoolViewProtocol?
 
     init(loginDelegate: LoginDelegate?, method: AuthenticationMethod, view: LoginFindSchoolViewProtocol) {
@@ -44,16 +44,15 @@ class LoginFindSchoolPresenter {
             return
         }
 
-        let useCase = GetAccounts(api: api, searchTerm: query)
-        useCase.completionBlock = { [weak self] in DispatchQueue.main.async {
-            guard let self = self, !useCase.isCancelled else { return }
-            self.accounts = useCase.response ?? []
+        searchTask?.cancel()
+        searchTask = api.makeRequest(GetAccountsSearchRequest(searchTerm: query)) { [weak self] (results, _, error) in DispatchQueue.main.async {
+            guard let self = self, error == nil else { return }
+            self.accounts = results ?? []
             self.view?.update(results: self.accounts.map { (account) -> (domain: String, name: String) in
                 return (domain: account.domain, name: account.name.trimmingCharacters(in: .whitespacesAndNewlines))
             })
+            self.searchTask = nil
         } }
-        queue.cancelAllOperations()
-        queue.addOperation(useCase)
     }
 
     func showHelp() {

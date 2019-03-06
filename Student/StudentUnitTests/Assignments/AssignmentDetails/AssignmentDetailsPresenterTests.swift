@@ -45,7 +45,7 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         Color.make(["canvasContextID": c.canvasContextID])
 
         presenter.viewIsReady()
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 1)
         XCTAssertEqual(resultingSubtitle, c.name)
         XCTAssertEqual(resultingBackgroundColor, UIColor.red)
     }
@@ -57,7 +57,7 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
 
         //  when
         presenter.viewIsReady()
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 1)
         //  then
         XCTAssert(resultingAssignment as! Assignment === expected)
         XCTAssertEqual(presenter!.userID!, expected.submission!.userID)
@@ -70,7 +70,7 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         presenter = AssignmentDetailsPresenter(env: env, view: self, courseID: "1", assignmentID: "1", fragment: nil)
 
         presenter.viewIsReady()
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 1)
         XCTAssertEqual(resultingBaseURL, expected)
     }
 
@@ -84,7 +84,7 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         presenter = AssignmentDetailsPresenter(env: env, view: self, courseID: "1", assignmentID: "1", fragment: fragment)
 
         presenter.viewIsReady()
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 1)
         XCTAssertEqual(resultingBaseURL?.absoluteString, expected.absoluteString)
     }
 
@@ -96,7 +96,7 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         presenter = AssignmentDetailsPresenter(env: env, view: self, courseID: "1", assignmentID: "1", fragment: fragment)
 
         presenter.viewIsReady()
-        wait(for: [expectation], timeout: 0.4)
+        wait(for: [expectation], timeout: 1)
         XCTAssertEqual(resultingBaseURL?.absoluteString, expected.absoluteString)
     }
 
@@ -106,7 +106,7 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         let expected = Assignment.make()
 
         presenter.viewIsReady()
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 1)
 
         //  then
         XCTAssertEqual(resultingAssignment?.name, expected.name)
@@ -117,7 +117,7 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         Assignment.make([ "id": "1", "submission": Submission.make([ "userID": "2" ]) ])
 
         presenter.viewIsReady()
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 1)
 
         let router = env.router as? TestRouter
 
