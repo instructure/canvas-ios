@@ -21,7 +21,6 @@ import TestsFoundation
 
 class GroupNavigationPresenterTests: PersistenceTestCase {
 
-    var resultingTabs: [GroupNavigationViewModel]?
     var resultingColor: UIColor?
     var resultingTitle = ""
     var presenter: GroupNavigationPresenter!
@@ -32,7 +31,7 @@ class GroupNavigationPresenterTests: PersistenceTestCase {
     override func setUp() {
         super.setUp()
         expectation = XCTestExpectation(description: "expectation")
-        presenter = GroupNavigationPresenter(groupID: Group.make().id, view: self, env: env, useCase: MockUseCase {})
+        presenter = GroupNavigationPresenter(groupID: Group.make().id, view: self, env: env)
     }
 
     func testLoadTabs() {
@@ -41,10 +40,11 @@ class GroupNavigationPresenterTests: PersistenceTestCase {
         let expected = Tab.make()
 
         //  when
-        presenter.loadTabs()
+        presenter.viewIsReady()
+        wait(for: [expectation], timeout: 1)
 
         //  then
-        XCTAssertEqual(resultingTabs?.first?.id, expected.id)
+        XCTAssertEqual(presenter.tabs.first?.id, expected.id)
     }
 
     func testTabsAreOrderedByPosition() {
@@ -52,33 +52,31 @@ class GroupNavigationPresenterTests: PersistenceTestCase {
         Tab.make(["position": 3, "id": "c"])
         Tab.make(["position": 1, "id": "a"])
 
-        presenter.loadTabs()
+        presenter.viewIsReady()
+        wait(for: [expectation], timeout: 1)
 
-        XCTAssertEqual(resultingTabs?.count, 3)
-        XCTAssertEqual(resultingTabs?.first?.id, "a")
-        XCTAssertEqual(resultingTabs?.last?.id, "c")
+        XCTAssertEqual(presenter.tabs.count, 3)
+        XCTAssertEqual(presenter.tabs.first?.id, "a")
+        XCTAssertEqual(presenter.tabs.last?.id, "c")
     }
 
     func testUseCaseFetchesData() {
         //  given
         var color: Color!
         var group: Group!
-        let useCase = MockUseCase {
-            group = Group.make()
-            color = Color.make(["canvasContextID": group.canvasContextID, "color": UIColor.init(hexString: "#ff0")])
-            Tab.make()
-            self.expectation.fulfill()
-        }
+        group = Group.make()
+        color = Color.make(["canvasContextID": group.canvasContextID, "color": UIColor.init(hexString: "#ff0")])
+        Tab.make()
 
-        presenter = GroupNavigationPresenter(groupID: Group.make().id, view: self, env: env, useCase: useCase)
+        presenter = GroupNavigationPresenter(groupID: Group.make().id, view: self, env: env)
 
        //   when
-        presenter.loadTabs()
+        presenter.viewIsReady()
         wait(for: [expectation], timeout: 1)
 
         //  then
-        XCTAssertEqual(resultingTabs?.first?.label, Tab.make().label)
-        XCTAssertEqual(resultingTabs?.first?.icon.renderingMode, .alwaysTemplate)
+        XCTAssertEqual(presenter.tabs.first?.label, Tab.make().label)
+        XCTAssertEqual(presenter.tabs.first?.icon.renderingMode, .alwaysTemplate)
         XCTAssertEqual(resultingTitle, group.name)
         XCTAssertEqual(resultingColor, color.color )
     }
@@ -87,10 +85,11 @@ class GroupNavigationPresenterTests: PersistenceTestCase {
 extension GroupNavigationPresenterTests: GroupNavigationViewProtocol {
     func updateNavBar(title: String, backgroundColor: UIColor) {
         resultingTitle = title
+        expectation.fulfill()
+
     }
 
-    func showTabs(_ tabs: [GroupNavigationViewModel], color: UIColor) {
-        resultingTabs = tabs
+    func update(color: UIColor) {
         resultingColor = color
     }
 
