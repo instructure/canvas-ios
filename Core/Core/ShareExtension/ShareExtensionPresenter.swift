@@ -33,7 +33,6 @@ public protocol ShareExtensionViewProtocol: ErrorViewController {
 class ShareExtensionPresenter {
     let env: AppEnvironment
     weak var view: ShareExtensionViewProtocol?
-    var useCase: OperationSet?
     let courseID: String
     let assignmentID: String
     var userID: String?
