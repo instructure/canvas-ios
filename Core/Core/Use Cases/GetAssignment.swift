@@ -29,7 +29,7 @@ public class GetAssignment: APIUseCase {
         self.include = include
     }
 
-    public var cacheKey: String {
+    public var cacheKey: String? {
         return "get-\(courseID)-\(assignmentID)-assignment"
     }
 

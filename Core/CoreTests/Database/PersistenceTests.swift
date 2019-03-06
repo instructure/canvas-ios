@@ -226,6 +226,13 @@ class PersistenceTests: CoreTestCase {
         let objs: [Course] = client.fetch()
         XCTAssertEqual(objs.count, 0)
     }
+
+    func testPersistenceError() {
+        XCTAssertEqual(PersistenceError.wrongEntityType.description, "Wrong entity type")
+        XCTAssertEqual(PersistenceError.uninitializedPersistence.description, "Persistence uninitialized")
+        XCTAssertEqual(PersistenceError.failureToInit.description, "Failed to init Persistence")
+        XCTAssertEqual(PersistenceError.invalidSectionNameKeyPath.description, "Invalid section name key path")
+    }
 }
 
 extension PersistenceTests: FetchedResultsControllerDelegate {

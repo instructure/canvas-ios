@@ -60,7 +60,7 @@ public class GetCourseUseCase: APIUseCase {
         self.courseID = courseID
     }
 
-    public var cacheKey: String {
+    public var cacheKey: String? {
         return "get-course-\(courseID)"
     }
 
@@ -70,29 +70,5 @@ public class GetCourseUseCase: APIUseCase {
 
     public var request: GetCourseRequest {
         return GetCourseRequest(courseID: courseID)
-    }
-
-    public func write(response: APICourse?, urlResponse: URLResponse?, to client: PersistenceClient) throws {
-        guard let item = response else {
-            return
-        }
-        let model: Course = client.fetch(scope.predicate).first ?? client.insert()
-        model.id = item.id
-        model.name = item.name
-        model.isFavorite = item.is_favorite ?? false
-        model.courseCode = item.course_code
-        model.imageDownloadURL = item.image_download_url
-
-        try model.enrollments?.forEach { try client.delete($0) }
-        model.enrollments = nil
-
-        if let apiEnrollments = item.enrollments {
-            let enrollmentModels: [Enrollment] = try apiEnrollments.map { apiItem in
-                let e: Enrollment = client.insert()
-                try e.update(fromApiModel: apiItem, course: model, in: client)
-                return e
-            }
-            model.enrollments = Set(enrollmentModels)
-        }
     }
 }

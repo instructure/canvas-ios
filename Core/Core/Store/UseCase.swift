@@ -23,7 +23,7 @@ public protocol UseCase {
     typealias RequestCallback = (Response?, URLResponse?, Error?) -> Void
 
     var scope: Scope { get }
-    var cacheKey: String { get }
+    var cacheKey: String? { get }
     var ttl: TimeInterval { get }
 
     func makeRequest(environment: AppEnvironment, completionHandler: @escaping RequestCallback)
@@ -45,6 +45,7 @@ extension UseCase {
     }
 
     public func hasExpired(in client: PersistenceClient) -> Bool {
+        guard let cacheKey = cacheKey else { return true }
         var expired = true
         let predicate = NSPredicate(format: "%K == %@", #keyPath(TTL.key), cacheKey)
         if let cache: TTL = client.fetch(predicate).first {
@@ -54,6 +55,7 @@ extension UseCase {
     }
 
     public func updateTTL(in client: PersistenceClient) {
+        guard let cacheKey = cacheKey else { return }
         let predicate = NSPredicate(format: "%K == %@", #keyPath(TTL.key), cacheKey)
         let cache: TTL = client.fetch(predicate).first ?? client.insert()
         cache.key = cacheKey
@@ -136,7 +138,7 @@ public struct GetNextUseCase<U: UseCase>: APIUseCase {
         return parent.scope
     }
 
-    public var cacheKey: String {
+    public var cacheKey: String? {
         return parent.cacheKey
     }
 

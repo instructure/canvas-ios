@@ -21,7 +21,7 @@ public class GetCustomColors: APIUseCase {
 
     public let request = GetCustomColorsRequest()
     public let scope = Scope.all(orderBy: #keyPath(Color.canvasContextID))
-    public let cacheKey = "get-custom-colors"
+    public let cacheKey: String? = "get-custom-colors"
 
     public init() {}
 

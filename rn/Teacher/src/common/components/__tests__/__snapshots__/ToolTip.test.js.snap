@@ -79,7 +79,7 @@ exports[`ToolTip renders something interesting when showToolTip is called 1`] = 
           },
           Object {
             "left": 11,
-            "width": undefined,
+            "width": 100,
           },
         ]
       }

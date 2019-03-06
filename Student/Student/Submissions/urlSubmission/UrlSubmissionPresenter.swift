@@ -56,15 +56,14 @@ class UrlSubmissionPresenter {
 
     func submit(_ text: String?) {
         if let url = scrubUrl(text: text) {
-            let createOp = CreateSubmission(context: ContextModel(.course, id: courseID), assignmentID: assignmentID, userID: userID, submissionType: .online_url, url: url, env: env)
-
-            env.queue.addOperation(createOp, errorHandler: { [weak self] error in
+            let useCase = CreateSubmission(context: ContextModel(.course, id: courseID), assignmentID: assignmentID, userID: userID, submissionType: .online_url, url: url)
+            useCase.fetch(environment: env) { [weak self] (_, _, error) in
                 if let error = error {
                     self?.view?.showError(error)
                 } else {
                     self?.view?.dismiss()
                 }
-            })
+            }
         } else {
             let error = NSError.instructureError(NSLocalizedString("Invalid url", comment: ""))
             view?.showError(error)

@@ -17,7 +17,9 @@
 import Foundation
 import CoreData
 
-public class DiscussionEntry: NSManagedObject {
+public final class DiscussionEntry: NSManagedObject, WriteableModel {
+    public typealias JSON = APIDiscussionEntry
+
     @NSManaged public var id: String
     @NSManaged public var userID: String?
     @NSManaged public var parentID: String?
@@ -25,15 +27,17 @@ public class DiscussionEntry: NSManagedObject {
     @NSManaged public var updatedAt: Date?
     @NSManaged public var message: String?
     @NSManaged public var submission: Submission?
-}
 
-extension DiscussionEntry {
-    func update(fromApiModel item: APIDiscussionEntry, in client: PersistenceClient) throws {
-        id = item.id.value
-        userID = item.user_id.value
-        parentID = item.parent_id?.value
-        createdAt = item.created_at
-        updatedAt = item.updated_at
-        message = item.message
+    @discardableResult
+    public static func save(_ item: APIDiscussionEntry, in context: PersistenceClient) -> DiscussionEntry {
+        let predicate = NSPredicate(format: "%K == %@", #keyPath(DiscussionEntry.id), item.id.value)
+        let model: DiscussionEntry = context.fetch(predicate).first ?? context.insert()
+        model.id = item.id.value
+        model.userID = item.user_id.value
+        model.parentID = item.parent_id?.value
+        model.createdAt = item.created_at
+        model.updatedAt = item.updated_at
+        model.message = item.message
+        return model
     }
 }

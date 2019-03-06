@@ -30,6 +30,7 @@
 		7DB0A1C921C07F39009ABB40 /* APIUserFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1C821C07F39009ABB40 /* APIUserFixture.swift */; };
 		7DB0A1CE21C16D5A009ABB40 /* KeychainEntryFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1CD21C16D5A009ABB40 /* KeychainEntryFixture.swift */; };
 		7DB0A1D421C1C90D009ABB40 /* APIAccountResultsFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1D321C1C90D009ABB40 /* APIAccountResultsFixture.swift */; };
+		7DC4A557222EF9A800FA03DC /* APIDiscussionEntryFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4A556222EF9A800FA03DC /* APIDiscussionEntryFixture.swift */; };
 		7DCF2048216D6597003AF358 /* APIQuiz+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF2047216D6597003AF358 /* APIQuiz+Fixture.swift */; };
 		7DCF204A216D6668003AF358 /* Quiz+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF2049216D6668003AF358 /* Quiz+Fixture.swift */; };
 		9F4B53AC2180FFDF0056A557 /* File+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4B53AB2180FFDF0056A557 /* File+Fixture.swift */; };
@@ -85,6 +86,7 @@
 		7DB0A1C821C07F39009ABB40 /* APIUserFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIUserFixture.swift; sourceTree = "<group>"; };
 		7DB0A1CD21C16D5A009ABB40 /* KeychainEntryFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainEntryFixture.swift; sourceTree = "<group>"; };
 		7DB0A1D321C1C90D009ABB40 /* APIAccountResultsFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAccountResultsFixture.swift; sourceTree = "<group>"; };
+		7DC4A556222EF9A800FA03DC /* APIDiscussionEntryFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDiscussionEntryFixture.swift; sourceTree = "<group>"; };
 		7DCF2047216D6597003AF358 /* APIQuiz+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIQuiz+Fixture.swift"; sourceTree = "<group>"; };
 		7DCF2049216D6668003AF358 /* Quiz+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Quiz+Fixture.swift"; sourceTree = "<group>"; };
 		9F4B53AB2180FFDF0056A557 /* File+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "File+Fixture.swift"; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 				B1A32BDD2159A1D70071B41E /* APIAssignment+Fixture.swift */,
 				7D63F793215D8FC100151E49 /* APIBrandVariables+Fixture.swift */,
 				3B0CEBA221504C2500D07CFA /* APICourse+Fixture.swift */,
+				7DC4A556222EF9A800FA03DC /* APIDiscussionEntryFixture.swift */,
 				7D2DC2FE219A0514008FE29A /* APIDocViewerFixture.swift */,
 				3BAA4178218A3ACE00701E03 /* APIEnrollmentFixture.swift */,
 				9F4B53AD218100BC0056A557 /* ApiFile+Fixture.swift */,
@@ -408,6 +411,7 @@
 				B19792EF21751FBC0000369C /* TestPersistence.swift in Sources */,
 				B16F0371215BD5F10011E952 /* TestRouter.swift in Sources */,
 				B1E789B821B1B06F0087FE4A /* TestLogger.swift in Sources */,
+				7DC4A557222EF9A800FA03DC /* APIDiscussionEntryFixture.swift in Sources */,
 				B1A32BDE2159A1D70071B41E /* APIAssignment+Fixture.swift in Sources */,
 				7DB0A1D421C1C90D009ABB40 /* APIAccountResultsFixture.swift in Sources */,
 				3BAA4177218A361100701E03 /* EnrollmentFixture.swift in Sources */,

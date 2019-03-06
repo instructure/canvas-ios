@@ -23,9 +23,7 @@ public class GetCourses: CollectionUseCase {
         self.showFavorites = showFavorites
     }
 
-    public var cacheKey: String {
-        return "get-courses"
-    }
+    public let cacheKey: String? = "get-courses"
 
     public var request: GetCoursesRequest {
         return GetCoursesRequest(includeUnpublished: true)

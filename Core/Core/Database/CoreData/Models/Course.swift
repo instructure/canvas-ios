@@ -35,7 +35,7 @@ final public class Course: NSManagedObject, Context, WriteableModel {
     }
 
     @discardableResult
-    public static func save(_ item: APICourse, in context: PersistenceClient) -> Course {
+    public static func save(_ item: APICourse, in context: PersistenceClient) throws -> Course {
         let predicate = NSPredicate(format: "%K == %@", #keyPath(Course.id), item.id)
         let model: Course = context.fetch(predicate).first ?? context.insert()
         model.id = item.id
@@ -43,6 +43,19 @@ final public class Course: NSManagedObject, Context, WriteableModel {
         model.isFavorite = item.is_favorite ?? false
         model.courseCode = item.course_code
         model.imageDownloadURL = item.image_download_url
+
+        try model.enrollments?.forEach { try context.delete($0) }
+        model.enrollments = nil
+
+        if let apiEnrollments = item.enrollments {
+            let enrollmentModels: [Enrollment] = try apiEnrollments.map { apiItem in
+                let e: Enrollment = context.insert()
+                try e.update(fromApiModel: apiItem, course: model, in: context)
+                return e
+            }
+            model.enrollments = Set(enrollmentModels)
+        }
+
         return model
     }
 }

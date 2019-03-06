@@ -23,7 +23,7 @@ class UseCaseTests: CoreTestCase {
         typealias Model = Course
         typealias Response = APICourse
 
-        let cacheKey = "test-cache-key"
+        let cacheKey: String? = "test-cache-key"
 
         func makeRequest(environment: AppEnvironment, completionHandler: @escaping RequestCallback) {
             completionHandler(nil, nil, nil)
@@ -169,7 +169,7 @@ class CollectionUseCaseTests: CoreTestCase {
         }
 
         let scope = Scope.all(orderBy: "name")
-        let cacheKey = "test-collection-use-case"
+        let cacheKey: String? = "test-collection-use-case"
         func write(response: [APICourse]?, urlResponse: URLResponse?, to client: PersistenceClient) throws {
         }
     }
@@ -209,7 +209,7 @@ class APIUseCaseTests: CoreTestCase {
             return GetCoursesRequest(includeUnpublished: true)
         }
         let scope = Scope.all(orderBy: "name")
-        let cacheKey = "api-use-case"
+        let cacheKey: String? = "api-use-case"
         func write(response: [APICourse]?, urlResponse: URLResponse?, to client: PersistenceClient) throws {
         }
     }
@@ -235,7 +235,7 @@ class WriteableModelTests: CoreTestCase {
         }
 
         let scope = Scope.all(orderBy: "name")
-        let cacheKey = "writeable"
+        let cacheKey: String? = "writeable"
     }
 
     func testWrite() {
