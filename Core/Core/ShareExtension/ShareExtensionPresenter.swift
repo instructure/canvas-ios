@@ -31,51 +31,40 @@ public protocol ShareExtensionViewProtocol: ErrorViewController {
 }
 
 class ShareExtensionPresenter {
-    typealias PresenterFactory = (String, String) -> PresenterUseCase
-
-    let frc: FetchedResultsController<Assignment>
-    let courseFrc: FetchedResultsController<Course>
     let env: AppEnvironment
     weak var view: ShareExtensionViewProtocol?
-    var useCase: PresenterUseCase?
-    let queue = OperationQueue()
+    var useCase: OperationSet?
     let courseID: String
     let assignmentID: String
     var userID: String?
     var assignment: Assignment?
-    let useCaseFactory: PresenterFactory
-    static var factory: PresenterFactory  = { (courseID: String, assignmentID: String) in
-        return ShareExtensionUseCase(courseID: courseID, assignmentID: assignmentID)
-    }
 
-    init(env: AppEnvironment = .shared, view: ShareExtensionViewProtocol, courseID: String, assignmentID: String, useCaseFactory: @escaping PresenterFactory = factory) {
+    lazy var assignments: Store<GetAssignment> = {
+        let useCase = GetAssignment(courseID: courseID, assignmentID: assignmentID, include: [.submission])
+        return self.env.subscribe(useCase) { [weak self] in
+            self?.update()
+        }
+    }()
+
+    lazy var courses: Store<GetCourseUseCase> = {
+        let useCase = GetCourseUseCase(courseID: courseID)
+        return self.env.subscribe(useCase) { [weak self] in
+            self?.update()
+        }
+    }()
+
+    init(env: AppEnvironment = .shared, view: ShareExtensionViewProtocol, courseID: String, assignmentID: String) {
         self.env = env
         self.view = view
         self.courseID = courseID
         self.assignmentID = assignmentID
-        self.useCaseFactory = useCaseFactory
-        self.frc = env.subscribe(Assignment.self, .details(assignmentID))
-        self.courseFrc = env.subscribe(Course.self, .details(courseID))
-        self.frc.delegate = self
-        self.courseFrc.delegate = self
     }
 
-    func loadCourse() -> Course? {
-        courseFrc.performFetch()
-        guard let course = courseFrc.fetchedObjects?.first else { return nil }
-        return course
-    }
-
-    func loadAssignment() -> Assignment? {
-        frc.performFetch()
-        return frc.fetchedObjects?.first
-    }
-
-    func loadData() {
-        if let course = loadCourse() {
+    func update() {
+        if let course = courses.first {
             view?.updateNavBar(backgroundColor: course.color)
 
-            if let assignment = loadAssignment() {
+            if let assignment = assignments.first {
                 self.assignment = assignment
                 if let submission = assignment.submission {
                     userID = submission.userID
@@ -86,14 +75,10 @@ class ShareExtensionPresenter {
         }
     }
 
-    func loadDataFromServer() {
-        let useCase = useCaseFactory(courseID, assignmentID)
-        queue.addOperationWithErrorHandling(useCase, sendErrorsTo: view)
-    }
-
     func viewIsReady() {
-        loadDataFromServer()
-        loadData()
+        assignments.refresh()
+        courses.refresh()
+        update()
     }
 
     func showSubmitAssignmentButton(assignment: Assignment?, course: Course?) {
@@ -104,11 +89,5 @@ class ShareExtensionPresenter {
             let title = submissionCount > 0 ? NSLocalizedString("Resubmit Assignment", comment: "") : NSLocalizedString("Submit Assignment", comment: "")
             view?.showSubmitAssignmentButton(isEnabled: isOnlineUpload, buttonTitle: title)
         }
-    }
-}
-
-extension ShareExtensionPresenter: FetchedResultsControllerDelegate {
-    func controllerDidChangeContent<T>(_ controller: FetchedResultsController<T>) {
-        loadData()
     }
 }
