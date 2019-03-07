@@ -247,7 +247,7 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
 
     func testSubmitAssignmentSendsBackSupportedSubmissionTypes() {
         let assignment = Assignment.make(["id": "1"])
-        assignment.submissionTypes = [.online_upload, .online_url, .on_paper]
+        assignment.submissionTypes = [.online_upload, .online_url]
 
         presenter.viewIsReady()
         let viewController = UIViewController()
