@@ -26,6 +26,7 @@ const whitelist = [
   'arrow-open-left',
   'arrow-open-right',
   'assignment',
+  'audio',
   'box',
   'calendar-month',
   'check',
@@ -53,6 +54,7 @@ const whitelist = [
   'no',
   'outcomes',
   'paint',
+  'pdf',
   'prerequisite',
   'question',
   'quiz',
@@ -66,6 +68,7 @@ const whitelist = [
   'trouble', // cancel
   'unlock',
   'user',
+  'video',
   'x',
 ]
 

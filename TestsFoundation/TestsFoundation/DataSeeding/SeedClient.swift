@@ -245,12 +245,13 @@ public struct SeedClient {
     @discardableResult
     public func uploadFile(
         url: URL,
+        named name: String? = nil,
         for assignment: APIAssignment,
         as user: AuthUser
     ) -> APIFile {
         let target = makeRequest(PostFileUploadTargetRequest(
            target: .submission(courseID: assignment.course_id.value, assignmentID: assignment.id.value),
-           body: .init(name: url.lastPathComponent, on_duplicate: .rename, parent_folder_id: nil)
+           body: .init(name: name ?? url.lastPathComponent, on_duplicate: .rename, parent_folder_id: nil)
         ), with: user.token)
         return makeRequest(PostFileUploadRequest(fileURL: url, target: target), with: user.token)
     }

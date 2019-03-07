@@ -123,12 +123,19 @@
 		7D1758E5215AA06C00F88613 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7D1758E7215AA06C00F88613 /* Localizable.strings */; };
 		7D1758E8215AA07E00F88613 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 7D1758EB215AA07E00F88613 /* Localizable.stringsdict */; };
 		7D1758E9215AA07E00F88613 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 7D1758EB215AA07E00F88613 /* Localizable.stringsdict */; };
+		7D2000432233355F003BE403 /* SubmissionFilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7963682230646B00CCF943 /* SubmissionFilesViewController.swift */; };
 		7D20F61621C3142E00B77E5E /* CourseListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D20F61521C3142E00B77E5E /* CourseListPresenter.swift */; };
 		7D20F61721C3144C00B77E5E /* CourseListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D20F61521C3142E00B77E5E /* CourseListPresenter.swift */; };
 		7D63F77B215C253A00151E49 /* DashboardViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 788152DE212B35F8005BA428 /* DashboardViewController.storyboard */; };
 		7D63F781215D37B100151E49 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D08F53521541AE80042E1F4 /* CardView.swift */; };
+		7D6F93602236C7B900528598 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6F935F2236C7B900528598 /* Element.swift */; };
+		7D6F93622236CB6000528598 /* SubmissionDetailsElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6F93612236CB6000528598 /* SubmissionDetailsElement.swift */; };
+		7D6F93652236CF2600528598 /* SubmissionFilesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6F93642236CF2600528598 /* SubmissionFilesTests.swift */; };
+		7D6F93672236D1B200528598 /* SubmissionFilesElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6F93662236D1B200528598 /* SubmissionFilesElement.swift */; };
 		7D7110C321389AD90085C2E5 /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7110C221389AD90085C2E5 /* Routes.swift */; };
 		7D781C9E217FADD40046A83E /* NavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D781C9D217FADD40046A83E /* NavBar.swift */; };
+		7D79636B22307F2500CCF943 /* SubmissionFilesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D79636A22307F2500CCF943 /* SubmissionFilesCell.swift */; };
+		7D79636D22307FC000CCF943 /* SubmissionFilesViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D79636C22307FC000CCF943 /* SubmissionFilesViewController.storyboard */; };
 		7D7ABFDF21671998007DF1D1 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D7ABFDE21671998007DF1D1 /* Core.framework */; };
 		7D979CD4215BE3E300567627 /* BundleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D979CD3215BE3E300567627 /* BundleExtensions.swift */; };
 		7D979CD5215BE3E600567627 /* BundleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D979CD3215BE3E300567627 /* BundleExtensions.swift */; };
@@ -148,7 +155,10 @@
 		7DB0A1C221BF288C009ABB40 /* LoginWebPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1C121BF288C009ABB40 /* LoginWebPage.swift */; };
 		7DB0A1C421BF2A20009ABB40 /* LoginFindSchoolPageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1C321BF2A20009ABB40 /* LoginFindSchoolPageTests.swift */; };
 		7DD6947D2194B67100BA4984 /* SubmissionDetailsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6947C2194B67100BA4984 /* SubmissionDetailsPage.swift */; };
-		7DD6947F2194B94500BA4984 /* SubmissionDetailsPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6947E2194B94500BA4984 /* SubmissionDetailsPageTest.swift */; };
+		7DD6947F2194B94500BA4984 /* SubmissionDetailsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6947E2194B94500BA4984 /* SubmissionDetailsTests.swift */; };
+		7DFEC227223085AB00BE236D /* SubmissionFilesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D79636A22307F2500CCF943 /* SubmissionFilesCell.swift */; };
+		7DFEC22C223085B300BE236D /* SubmissionFilesViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D79636C22307FC000CCF943 /* SubmissionFilesViewController.storyboard */; };
+		7DFEC22D223085B700BE236D /* SubmissionFilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7963682230646B00CCF943 /* SubmissionFilesViewController.swift */; };
 		9F2C9F7D219B0F4D001F0F32 /* Drawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDDE2DF218CCAB9002B71F0 /* Drawer.swift */; };
 		9F5ADB31218B656400D8C973 /* SubmissionDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5ADB30218B656400D8C973 /* SubmissionDetailsPresenter.swift */; };
 		9F74200B21932DCE00108A0F /* SubmissionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCD79DC2188E9D90054293A /* SubmissionDetailsViewController.swift */; };
@@ -583,8 +593,15 @@
 		7D20F61521C3142E00B77E5E /* CourseListPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseListPresenter.swift; sourceTree = "<group>"; };
 		7D29D30E218B59340036437C /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = "../../ios-frameworks/PSPDFKit.framework"; sourceTree = "<group>"; };
 		7D29D310218B593D0036437C /* PSPDFKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKitUI.framework; path = "../../ios-frameworks/PSPDFKitUI.framework"; sourceTree = "<group>"; };
+		7D6F935F2236C7B900528598 /* Element.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
+		7D6F93612236CB6000528598 /* SubmissionDetailsElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsElement.swift; sourceTree = "<group>"; };
+		7D6F93642236CF2600528598 /* SubmissionFilesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionFilesTests.swift; sourceTree = "<group>"; };
+		7D6F93662236D1B200528598 /* SubmissionFilesElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionFilesElement.swift; sourceTree = "<group>"; };
 		7D7110C221389AD90085C2E5 /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
 		7D781C9D217FADD40046A83E /* NavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBar.swift; sourceTree = "<group>"; };
+		7D7963682230646B00CCF943 /* SubmissionFilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionFilesViewController.swift; sourceTree = "<group>"; };
+		7D79636A22307F2500CCF943 /* SubmissionFilesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionFilesCell.swift; sourceTree = "<group>"; };
+		7D79636C22307FC000CCF943 /* SubmissionFilesViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SubmissionFilesViewController.storyboard; sourceTree = "<group>"; };
 		7D7ABFDE21671998007DF1D1 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D979CD3215BE3E300567627 /* BundleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtensions.swift; sourceTree = "<group>"; };
 		7DA057532193A3A800A3CFBB /* IconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconView.swift; sourceTree = "<group>"; };
@@ -599,7 +616,7 @@
 		7DB0A1C121BF288C009ABB40 /* LoginWebPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWebPage.swift; sourceTree = "<group>"; };
 		7DB0A1C321BF2A20009ABB40 /* LoginFindSchoolPageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFindSchoolPageTests.swift; sourceTree = "<group>"; };
 		7DD6947C2194B67100BA4984 /* SubmissionDetailsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsPage.swift; sourceTree = "<group>"; };
-		7DD6947E2194B94500BA4984 /* SubmissionDetailsPageTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsPageTest.swift; sourceTree = "<group>"; };
+		7DD6947E2194B94500BA4984 /* SubmissionDetailsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsTests.swift; sourceTree = "<group>"; };
 		9F5ADB30218B656400D8C973 /* SubmissionDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsPresenter.swift; sourceTree = "<group>"; };
 		9F9F4EB021B58A5D00842570 /* ExternalToolSubmissionContentViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ExternalToolSubmissionContentViewController.storyboard; sourceTree = "<group>"; };
 		9F9F4EB221B58AA300842570 /* ExternalToolSubmissionContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExternalToolSubmissionContentViewController.swift; sourceTree = "<group>"; };
@@ -1098,6 +1115,7 @@
 			children = (
 				3B54260321B1D05F0009D069 /* urlSubmission */,
 				9FCD79DB2188E7B40054293A /* SubmissionDetails */,
+				7D79636322305A3B00CCF943 /* SubmissionFiles */,
 			);
 			path = Submissions;
 			sourceTree = "<group>";
@@ -1120,6 +1138,45 @@
 				788152FA212B83D0005BA428 /* DashboardSectionHeaderView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		7D6F93572236C3A600528598 /* Submissions */ = {
+			isa = PBXGroup;
+			children = (
+				7DAFB456219F476200311275 /* Fixtures */,
+				7D6F935C2236C3B400528598 /* SubmissionDetails */,
+				7D6F93632236CEF700528598 /* SubmissionFiles */,
+			);
+			path = Submissions;
+			sourceTree = "<group>";
+		};
+		7D6F935C2236C3B400528598 /* SubmissionDetails */ = {
+			isa = PBXGroup;
+			children = (
+				7D6F93612236CB6000528598 /* SubmissionDetailsElement.swift */,
+				7DD6947C2194B67100BA4984 /* SubmissionDetailsPage.swift */,
+				7DD6947E2194B94500BA4984 /* SubmissionDetailsTests.swift */,
+			);
+			path = SubmissionDetails;
+			sourceTree = "<group>";
+		};
+		7D6F93632236CEF700528598 /* SubmissionFiles */ = {
+			isa = PBXGroup;
+			children = (
+				7D6F93662236D1B200528598 /* SubmissionFilesElement.swift */,
+				7D6F93642236CF2600528598 /* SubmissionFilesTests.swift */,
+			);
+			path = SubmissionFiles;
+			sourceTree = "<group>";
+		};
+		7D79636322305A3B00CCF943 /* SubmissionFiles */ = {
+			isa = PBXGroup;
+			children = (
+				7D79636A22307F2500CCF943 /* SubmissionFilesCell.swift */,
+				7D79636C22307FC000CCF943 /* SubmissionFilesViewController.storyboard */,
+				7D7963682230646B00CCF943 /* SubmissionFilesViewController.swift */,
+			);
+			path = SubmissionFiles;
 			sourceTree = "<group>";
 		};
 		7D979CD2215BE3CC00567627 /* Extensions */ = {
@@ -1223,13 +1280,11 @@
 		B1E1FA5B215F11010008C76D /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				7DAFB456219F476200311275 /* Fixtures */,
 				B1E1FA5C215F11160008C76D /* AssignmentDetailsPageTest.swift */,
 				B1B6F07B219A8A8500C1575D /* FilePickerPageTests.swift */,
 				7DB0A1C321BF2A20009ABB40 /* LoginFindSchoolPageTests.swift */,
 				7DB0A1BF21BF2671009ABB40 /* LoginStartPageTests.swift */,
 				B1FFB80A215FADC2000684AA /* StudentTest.swift */,
-				7DD6947E2194B94500BA4984 /* SubmissionDetailsPageTest.swift */,
 				3BE2ADC821B6F72D008D91AB /* UrlSubmissionPageTests.swift */,
 			);
 			path = Tests;
@@ -1247,7 +1302,6 @@
 				7DB0A1C121BF288C009ABB40 /* LoginWebPage.swift */,
 				7D781C9D217FADD40046A83E /* NavBar.swift */,
 				7DAFB45A219F61B400311275 /* PSPDFDoc.swift */,
-				7DD6947C2194B67100BA4984 /* SubmissionDetailsPage.swift */,
 				3BE2ADC621B6F6E1008D91AB /* UrlSubmissionPage.swift */,
 			);
 			path = Pages;
@@ -1294,11 +1348,13 @@
 				B12557B6215F39A500CA7F83 /* Frameworks */,
 				B1E1FA5B215F11010008C76D /* Tests */,
 				3B437703215D87B700B32DFB /* cassettes */,
+				7D6F93572236C3A600528598 /* Submissions */,
 				F9E7D0DC215BE23600CDC1A3 /* bridge.h */,
 				F9E7D0D1215BE19F00CDC1A3 /* StudentUITests.swift */,
 				F9E7D0D3215BE19F00CDC1A3 /* Info.plist */,
 				B191F4C721613E520045506F /* TestHost.swift */,
 				B1E7F29D216329EF00C5F7EC /* UITestElement.swift */,
+				7D6F935F2236C7B900528598 /* Element.swift */,
 			);
 			path = StudentUITests;
 			sourceTree = "<group>";
@@ -1555,6 +1611,7 @@
 				2C5C6996211DFFAE00D9AD15 /* Assets.xcassets in Resources */,
 				9FCD79DF2188EAC40054293A /* SubmissionDetailsViewController.storyboard in Resources */,
 				9FDDE2E2218CCBF5002B71F0 /* Drawer.xib in Resources */,
+				7D79636D22307FC000CCF943 /* SubmissionFilesViewController.storyboard in Resources */,
 				9F9F4EB121B58A5D00842570 /* ExternalToolSubmissionContentViewController.storyboard in Resources */,
 				3BE1307421AE0074001D4582 /* UrlSubmissionContentViewController.storyboard in Resources */,
 				7D1758E4215AA06C00F88613 /* Localizable.strings in Resources */,
@@ -1591,6 +1648,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DFEC22C223085B300BE236D /* SubmissionFilesViewController.storyboard in Resources */,
 				5B5E29762185A057001C9C79 /* InfoPlist.strings in Resources */,
 				7DA61A5D216561A60085BAE8 /* Localizable.strings in Resources */,
 				3B0B0F66219C8D1100F04216 /* CourseListViewController.storyboard in Resources */,
@@ -1715,11 +1773,13 @@
 				3B1B0079219BD9F60045E8A1 /* CourseListViewController.swift in Sources */,
 				3B1B0070219BD9F60045E8A1 /* GradeCircle.swift in Sources */,
 				3B692535219F428E0023ED75 /* FilePickerProgressView.swift in Sources */,
+				7D2000432233355F003BE403 /* SubmissionFilesViewController.swift in Sources */,
 				3B1B0066219BD9F60045E8A1 /* GroupNavigationPresenter.swift in Sources */,
 				2CB3261D21387C99009496AF /* RouterViewController.swift in Sources */,
 				7D10194E215EBA7B0058FDD1 /* DividerView.swift in Sources */,
 				3BE2ADCD21B70537008D91AB /* DynamicTextField.swift in Sources */,
 				3B6325DE21ADF49200237CE6 /* UrlSubmissionContentViewController.swift in Sources */,
+				7D79636B22307F2500CCF943 /* SubmissionFilesCell.swift in Sources */,
 				788152DD212B34F2005BA428 /* DashboardViewController.swift in Sources */,
 				3B1B007A219BD9F60045E8A1 /* QuizListPresenter.swift in Sources */,
 				3B3785BF222DC0B90047DAE4 /* CourseNavigationViewController.swift in Sources */,
@@ -1773,6 +1833,7 @@
 				7D10194F215EBA7B0058FDD1 /* DividerView.swift in Sources */,
 				7D63F781215D37B100151E49 /* CardView.swift in Sources */,
 				3B0B0F65219C8D1100F04216 /* CourseListSectionHeaderView.swift in Sources */,
+				7DFEC227223085AB00BE236D /* SubmissionFilesCell.swift in Sources */,
 				3B0B0F6C219C8D2300F04216 /* QuizListPresenter.swift in Sources */,
 				7D0BF3242165315B00859FA1 /* CoreWebView.swift in Sources */,
 				7D067CE421505B2500B78AF2 /* Routes.swift in Sources */,
@@ -1786,6 +1847,7 @@
 				9F74200B21932DCE00108A0F /* SubmissionDetailsViewController.swift in Sources */,
 				7D10A49321B5E3CF0040C311 /* RootViewController.swift in Sources */,
 				3B0B0F5B219C8CBA00F04216 /* AssignmentDetailsViewController.swift in Sources */,
+				7DFEC22D223085B700BE236D /* SubmissionFilesViewController.swift in Sources */,
 				7D09E5BA21935933006150FA /* SubmissionDetailsEmptyView.swift in Sources */,
 				7D067CE621505B3500B78AF2 /* DashboardGroupCell.swift in Sources */,
 				3B0B0F68219C8D1500F04216 /* CourseNavigationPresenter.swift in Sources */,
@@ -1824,10 +1886,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9E7D0DA215BE20400CDC1A3 /* EarlGrey.swift in Sources */,
-				7DD6947F2194B94500BA4984 /* SubmissionDetailsPageTest.swift in Sources */,
+				7DD6947F2194B94500BA4984 /* SubmissionDetailsTests.swift in Sources */,
 				B1B6F07A219A89E300C1575D /* FilePickerPage.swift in Sources */,
 				7DB0A1C021BF2671009ABB40 /* LoginStartPageTests.swift in Sources */,
 				7DAFB45B219F61B400311275 /* PSPDFDoc.swift in Sources */,
+				7D6F93622236CB6000528598 /* SubmissionDetailsElement.swift in Sources */,
 				7DB0A1BE21BF2337009ABB40 /* LoginFindSchoolPage.swift in Sources */,
 				3BE2ADC921B6F72D008D91AB /* UrlSubmissionPageTests.swift in Sources */,
 				B1E7F29B216329C700C5F7EC /* EarlGrey+Helpers.swift in Sources */,
@@ -1836,14 +1899,17 @@
 				B1E7F29E216329EF00C5F7EC /* UITestElement.swift in Sources */,
 				B1B6F07C219A8A8500C1575D /* FilePickerPageTests.swift in Sources */,
 				F9E7D0D2215BE19F00CDC1A3 /* StudentUITests.swift in Sources */,
+				7D6F93652236CF2600528598 /* SubmissionFilesTests.swift in Sources */,
 				7DB0A1C421BF2A20009ABB40 /* LoginFindSchoolPageTests.swift in Sources */,
 				7DB0A1C221BF288C009ABB40 /* LoginWebPage.swift in Sources */,
 				B1E1FA5D215F11160008C76D /* AssignmentDetailsPageTest.swift in Sources */,
+				7D6F93672236D1B200528598 /* SubmissionFilesElement.swift in Sources */,
 				7DD6947D2194B67100BA4984 /* SubmissionDetailsPage.swift in Sources */,
 				7DB0A1BC21BF2326009ABB40 /* LoginStartPage.swift in Sources */,
 				7DAFB455219F44AD00311275 /* DocViewer.swift in Sources */,
 				B1FFB80B215FADC2000684AA /* StudentTest.swift in Sources */,
 				3BE2ADC721B6F6E1008D91AB /* UrlSubmissionPage.swift in Sources */,
+				7D6F93602236C7B900528598 /* Element.swift in Sources */,
 				B1E7F2992163172300C5F7EC /* AssignmentDetailsPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

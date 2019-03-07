@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2018-present Instructure, Inc.
+// Copyright (C) 2019-present Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -25,12 +25,12 @@ extension UIImage {
     }
 
     public enum InstIconName: String, CaseIterable {
-        case alerts, announcement, arrowOpenLeft, arrowOpenRight, assignment, box, calendarMonth,
-            check, complete, courses, dashboard, discussion, document, email, empty, folder,
-            gradebook, group, hamburger, highlighter, instructure, link, lock, lti, marker,
-            miniArrowDown, miniArrowUp, module, more, no, outcomes, paint, prerequisite, question,
-            quiz, refresh, rubric, settings, star, strikethrough, text, trash, trouble, unlock,
-            user, x
+        case alerts, announcement, arrowOpenLeft, arrowOpenRight, assignment, audio, box,
+            calendarMonth, check, complete, courses, dashboard, discussion, document, email, empty,
+            folder, gradebook, group, hamburger, highlighter, instructure, link, lock, lti, marker,
+            miniArrowDown, miniArrowUp, module, more, no, outcomes, paint, pdf, prerequisite,
+            question, quiz, refresh, rubric, settings, star, strikethrough, text, trash, trouble,
+            unlock, user, video, x
     }
 
     public static func icon(_ name: InstIconName, _ type: InstIconType = .line) -> UIImage {
