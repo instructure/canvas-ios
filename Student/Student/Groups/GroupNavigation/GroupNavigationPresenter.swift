@@ -52,6 +52,7 @@ class GroupNavigationPresenter {
     func viewIsReady() {
         groups.refresh()
         tabs.refresh()
+        update()
     }
 
     func update() {
