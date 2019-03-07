@@ -122,8 +122,10 @@ class AssignmentDetailsPresenter {
     func showSubmitAssignmentButton(assignment: Assignment?, course: Course?) {
         guard let assignment = assignment, let course = course else { return }
         if assignment.canMakeSubmissions && assignment.isOpenForSubmissions() && course.enrollments?.hasRole(.student) ?? false {
-            let submissionCount = assignment.submission?.attempt ?? 0
-            let title = submissionCount > 0 ? NSLocalizedString("Resubmit Assignment", comment: "") : NSLocalizedString("Submit Assignment", comment: "")
+            let title = assignment.submission?.workflowState == .unsubmitted
+                ? NSLocalizedString("Submit Assignment", comment: "")
+                : NSLocalizedString("Resubmit Assignment", comment: "")
+
             view?.showSubmitAssignmentButton(title: title)
         } else {
             view?.showSubmitAssignmentButton(title: nil)

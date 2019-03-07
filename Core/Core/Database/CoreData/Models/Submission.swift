@@ -92,39 +92,48 @@ extension Submission: Scoped {
 }
 
 extension Submission {
-    func update(fromApiModel item: APISubmission, in client: PersistenceClient) throws {
-        id = item.id.value
-        assignmentID = item.assignment_id.value
-        userID = item.user_id.value
-        body = item.body
-        grade = item.grade
-        score = item.score
-        submittedAt = item.submitted_at
-        late = item.late
-        excused = item.excused ?? false
-        missing = item.missing
-        workflowState = item.workflow_state
-        latePolicyStatus = item.late_policy_status
-        pointsDeducted = item.points_deducted
-        attempt = item.attempt ?? 0
-        type = item.submission_type
-        attachments = nil
-        url = item.url
-        previewUrl = item.preview_url
-        if let files = item.attachments {
-            let fileModels: [File] = try files.map { (attachment: APIFile) in
-                let file: File = client.fetch(predicate: .id(attachment.id.value), sortDescriptors: nil).first ?? client.insert()
-                try file.update(fromApiModel: attachment, in: client)
-                return file
-            }
-            attachments = Set(fileModels)
-        }
+    @discardableResult
+    static func save(_ item: APISubmission, in context: NSManagedObjectContext) -> Submission {
+        let predicate = NSPredicate(
+            format: "%K == %@ AND %K == %@ AND %K == %d",
+            #keyPath(Submission.assignmentID),
+            item.assignment_id.value,
+            #keyPath(Submission.userID),
+            item.user_id.value,
+            #keyPath(Submission.attempt),
+            item.attempt ?? 1
+        )
+        let model: Submission = context.fetch(predicate).first ?? context.insert()
+        model.id = item.id.value
+        model.assignmentID = item.assignment_id.value
+        model.userID = item.user_id.value
+        model.body = item.body
+        model.grade = item.grade
+        model.score = item.score
+        model.submittedAt = item.submitted_at
+        model.late = item.late
+        model.excused = item.excused
+        model.missing = item.missing
+        model.workflowState = item.workflow_state
+        model.latePolicyStatus = item.late_policy_status
+        model.pointsDeducted = item.points_deducted
+        model.attempt = item.attempt ?? 1
+        model.type = item.submission_type
+        model.url = item.url
+        model.previewUrl = item.preview_url
 
-        if let discussions = item.discussion_entries {
-            let discussionModels: [DiscussionEntry] = discussions.map { (apiEntry: APIDiscussionEntry) in
-                return DiscussionEntry.save(apiEntry, in: client)
-            }
-            discussionEntries = Set(discussionModels)
-        }
+        model.attachments = Set(item.attachments?.map { attachment in
+            return File.save(attachment, in: context)
+        } ?? [])
+
+        model.discussionEntries = Set(item.discussion_entries?.map { entry in
+            return DiscussionEntry.save(entry, in: context)
+        } ?? [])
+
+        item.submission_history?.forEach({ submission in
+            Submission.save(submission, in: context)
+        })
+
+        return model
     }
 }

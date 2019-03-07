@@ -89,9 +89,8 @@ extension Assignment {
         lockedForUser = item.locked_for_user ?? false
         url = item.url
         if updateSubmission {
-            if let submissionItem = item.submission {
-                let sub = submission ?? client.insert()
-                try sub.update(fromApiModel: submissionItem, in: client)
+            if let submissionItem = item.submission, let context = client as? NSManagedObjectContext {
+                let sub = Submission.save(submissionItem, in: context)
                 submission = sub
             } else if let submission = submission {
                 try client.delete(submission)

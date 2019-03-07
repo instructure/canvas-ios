@@ -15,6 +15,7 @@
 //
 
 import Foundation
+import CoreData
 
 public class CreateSubmission: APIUseCase {
     let context: Context
@@ -61,25 +62,10 @@ public class CreateSubmission: APIUseCase {
     }
 
     public func write(response: APISubmission?, urlResponse: URLResponse?, to client: PersistenceClient) throws {
-        guard let item = response else { return }
-        let mainPredicate = NSPredicate(
-            format: "%K == %@ AND %K == %@",
-            #keyPath(Submission.assignmentID), assignmentID,
-            #keyPath(Submission.userID), userID
-        )
-        let mainSort = NSSortDescriptor(key: #keyPath(Submission.attempt), ascending: false)
-        let model: Submission = client.fetch(predicate: mainPredicate, sortDescriptors: [ mainSort ]).first ?? client.insert()
-        try model.update(fromApiModel: item, in: client)
-        for entry in item.submission_history ?? [] {
-            let predicate = NSPredicate(
-                format: "%K == %@ AND %K == %@ AND %K == %d",
-                #keyPath(Submission.assignmentID), assignmentID,
-                #keyPath(Submission.userID), userID,
-                #keyPath(Submission.attempt), entry.attempt ?? 0
-            )
-            let historical: Submission = client.fetch(predicate: predicate, sortDescriptors: nil).first ?? client.insert()
-            try historical.update(fromApiModel: entry, in: client)
+        guard let item = response, let context = client as? NSManagedObjectContext else {
+            return
         }
+        Submission.save(item, in: context)
         Logger.shared.log("created a submission")
     }
 }

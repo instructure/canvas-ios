@@ -17,119 +17,80 @@
 import Foundation
 import Core
 
-extension Assignment: SubmissionDetailsViewAssignmentModel {}
-extension Submission: SubmissionDetailsViewModel {}
+public protocol SubmissionDetailsViewProtocol: class {
+    func reload()
+    func embed()
+    var navigationItem: UINavigationItem { get }
+}
 
 class SubmissionDetailsPresenter {
-    typealias PresenterFactory = (Bool) -> PresenterUseCase
-
     let context: Context
     let assignmentID: String
     let userID: String
     let env: AppEnvironment
     weak var view: SubmissionDetailsViewProtocol?
 
-    let useCaseFactory: PresenterFactory
+    lazy var submissions: Store<GetSubmission> = {
+        let useCase = GetSubmission(context: context, assignmentID: assignmentID, userID: userID)
+        return env.subscribe(useCase) { [weak self] in
+            self?.view?.embed()
+            self?.view?.reload()
+        }
+    }()
 
-    let submissionFrc: FetchedResultsController<Submission>
-    let assignmentFrc: FetchedResultsController<Assignment>
-    let courseFrc: FetchedResultsController<Course>
+    lazy var assignment: Store<GetAssignment> = {
+        let useCase = GetAssignment(courseID: context.id, assignmentID: assignmentID)
+        return env.subscribe(useCase) { [weak self] in
+            self?.view?.reload()
+        }
+    }()
 
-    var selectedAttempt: Int = 0
-    var contentSubmission: Submission?
-
-    init(env: AppEnvironment = .shared, view: SubmissionDetailsViewProtocol, context: Context,
-         assignmentID: String, userID: String, useCaseFactory: PresenterFactory? = nil) {
+    init(env: AppEnvironment = .shared, view: SubmissionDetailsViewProtocol, context: Context, assignmentID: String, userID: String) {
         self.context = context
         self.assignmentID = assignmentID
         self.userID = userID
         self.env = env
         self.view = view
-        self.useCaseFactory = useCaseFactory ?? { (force: Bool) in
-            return SubmissionDetailsUseCase(context: context, assignmentID: assignmentID, userID: userID)
-        }
-        self.submissionFrc = env.subscribe(Submission.self, .forUserOnAssignment(assignmentID, userID))
-        self.assignmentFrc = env.subscribe(Assignment.self, .details(assignmentID))
-        self.courseFrc = env.subscribe(Course.self, .details(context.id)) // TODO: support group contexts
-
-        self.submissionFrc.delegate = self
-        self.assignmentFrc.delegate = self
-        self.courseFrc.delegate = self
     }
 
     func viewIsReady() {
-        loadDataFromServer()
-        loadData()
+        submissions.refresh(force: true)
+        assignment.refresh(force: true)
     }
 
-    func loadDataFromServer(force: Bool = false) {
-        let useCase = useCaseFactory(force)
-        env.queue.addOperationWithErrorHandling(useCase, sendErrorsTo: view)
+    func submissionFor(attempt: Int) -> Submission? {
+        return submissions.filter({ $0.attempt == attempt }).first
     }
 
-    func loadData() {
-        guard let assignment = loadAssignment() else { return }
-        if let course = loadCourse() {
-            view?.updateNavBar(subtitle: assignment.name, color: course.color)
+    func viewControllerFor(attempt: Int) -> UIViewController? {
+        guard let submission = self.submissionFor(attempt: attempt), let assignment = assignment.first else {
+            return nil
         }
-
-        let submissions = loadSubmissions()
-        if selectedAttempt == 0 { selectedAttempt = submissions.last?.attempt ?? 0 }
-        view?.update(assignment: assignment, submissions: submissions, selectedAttempt: selectedAttempt)
-        embed(submissions.first(where: { $0.attempt == selectedAttempt }), assignment: assignment)
-    }
-
-    func loadSubmissions() -> [Submission] {
-        submissionFrc.performFetch()
-        return submissionFrc.fetchedObjects ?? []
-    }
-
-    func loadAssignment() -> Assignment? {
-        assignmentFrc.performFetch()
-        return assignmentFrc.fetchedObjects?.first
-    }
-
-    func loadCourse() -> Course? {
-        courseFrc.performFetch()
-        return courseFrc.fetchedObjects?.first
-    }
-
-    func select(attempt: Int) {
-        selectedAttempt = attempt
-        loadData()
-    }
-
-    func embed(_ submission: Submission?, assignment: Assignment) {
-        guard contentSubmission != submission else { return }
-        contentSubmission = submission
-        var content: UIViewController?
 
         // external tools submission may be unsubmitted and the type nil but there could
         // still be a submission inside the tool
         if assignment.submissionTypes.contains(.external_tool) {
-            content = ExternalToolSubmissionContentViewController.create(env: self.env, assignment: assignment)
-            view?.embed(content)
-            return
+            return ExternalToolSubmissionContentViewController.create(env: self.env, assignment: assignment)
         }
 
-        switch submission?.type {
+        switch submission.type {
         case .some(.online_quiz):
-            if let quizID = assignment.quizID, let attempt = submission?.attempt,
+            if let quizID = assignment.quizID,
                 let url = URL(string: "/courses/\(assignment.courseID)/quizzes/\(quizID)/history?version=\(attempt)&headless=1", relativeTo: env.api.baseURL) {
                 let controller = CoreWebViewController(env: env)
                 controller.webView.accessibilityIdentifier = "SubmissionDetailsPage.onlineQuizWebView"
                 controller.webView.load(URLRequest(url: url))
-                content = controller
+                return controller
             }
         case .some(.online_text_entry):
             let controller = CoreWebViewController(env: env)
             controller.webView.accessibilityIdentifier = "SubmissionDetailsPage.onlineTextEntryWebView"
-            controller.webView.loadHTMLString(submission?.body ?? "")
-            content = controller
+            controller.webView.loadHTMLString(submission.body ?? "")
+            return controller
         case .some(.online_upload):
             // TODO: switch between multiple attachments in the same submission
-            if let attachment = submission?.attachments?.first {
-                content = DocViewerViewController.create(
+            if let attachment = submission.attachments?.first {
+                return DocViewerViewController.create(
                     filename: attachment.filename,
                     previewURL: attachment.previewURL,
                     fallbackURL: attachment.url,
@@ -138,23 +99,18 @@ class SubmissionDetailsPresenter {
                 )
             }
         case .some(.discussion_topic):
-            guard let previewUrl = submission?.previewUrl else { break }
+            guard let previewUrl = submission.previewUrl else { break }
 
             let controller = CoreWebViewController(env: env)
             controller.webView.accessibilityIdentifier = "SubmissionDetailsPage.discussionWebView"
             controller.webView.load(URLRequest(url: previewUrl))
-            content = controller
+            return controller
         case .some(.online_url):
-            content = UrlSubmissionContentViewController.create(submission: submission)
+            return UrlSubmissionContentViewController.create(submission: submission)
         default:
-            content = nil
+            return nil
         }
-        view?.embed(content)
+        return nil
     }
-}
 
-extension SubmissionDetailsPresenter: FetchedResultsControllerDelegate {
-    func controllerDidChangeContent<T>(_ controller: FetchedResultsController<T>) {
-        loadData()
-    }
 }

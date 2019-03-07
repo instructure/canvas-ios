@@ -153,11 +153,9 @@
 		7DD6947F2194B94500BA4984 /* SubmissionDetailsPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6947E2194B94500BA4984 /* SubmissionDetailsPageTest.swift */; };
 		9F2C9F7D219B0F4D001F0F32 /* Drawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDDE2DF218CCAB9002B71F0 /* Drawer.swift */; };
 		9F5ADB31218B656400D8C973 /* SubmissionDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5ADB30218B656400D8C973 /* SubmissionDetailsPresenter.swift */; };
-		9F5ADB33218B67A600D8C973 /* SubmissionDetailsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5ADB32218B67A600D8C973 /* SubmissionDetailsUseCase.swift */; };
 		9F74200B21932DCE00108A0F /* SubmissionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCD79DC2188E9D90054293A /* SubmissionDetailsViewController.swift */; };
 		9F74200C21932DEB00108A0F /* SubmissionDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FCD79DE2188EAC40054293A /* SubmissionDetailsViewController.storyboard */; };
 		9F74200D21932DEF00108A0F /* SubmissionDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5ADB30218B656400D8C973 /* SubmissionDetailsPresenter.swift */; };
-		9F74200E21932DF100108A0F /* SubmissionDetailsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5ADB32218B67A600D8C973 /* SubmissionDetailsUseCase.swift */; };
 		9F9424A8222F11DD001FDF4A /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1DF2578215F36F3006EDA4F /* Core.framework */; };
 		9F9F4EB121B58A5D00842570 /* ExternalToolSubmissionContentViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F9F4EB021B58A5D00842570 /* ExternalToolSubmissionContentViewController.storyboard */; };
 		9F9F4EB321B58AA300842570 /* ExternalToolSubmissionContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9F4EB221B58AA300842570 /* ExternalToolSubmissionContentViewController.swift */; };
@@ -170,7 +168,6 @@
 		9FDDE2E0218CCAB9002B71F0 /* Drawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDDE2DF218CCAB9002B71F0 /* Drawer.swift */; };
 		9FDDE2E2218CCBF5002B71F0 /* Drawer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FDDE2E1218CCBF5002B71F0 /* Drawer.xib */; };
 		9FFA7553218C8E540036FD41 /* SubmissionDetailsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA7552218C8E540036FD41 /* SubmissionDetailsPresenterTests.swift */; };
-		9FFA7555218CA2520036FD41 /* SubmissionDetailsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA7554218CA2520036FD41 /* SubmissionDetailsUseCaseTests.swift */; };
 		B107189821963BC000ED1DC7 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B107189721963BC000ED1DC7 /* EmptyView.swift */; };
 		B10D776E21C1CCE200BCE822 /* FilePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10D776D21C1CCE200BCE822 /* FilePickerCell.swift */; };
 		B10D777221C2EA5B00BCE822 /* BlockExpectation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10D777121C2EA5B00BCE822 /* BlockExpectation.swift */; };
@@ -607,7 +604,6 @@
 		7DD6947C2194B67100BA4984 /* SubmissionDetailsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsPage.swift; sourceTree = "<group>"; };
 		7DD6947E2194B94500BA4984 /* SubmissionDetailsPageTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsPageTest.swift; sourceTree = "<group>"; };
 		9F5ADB30218B656400D8C973 /* SubmissionDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsPresenter.swift; sourceTree = "<group>"; };
-		9F5ADB32218B67A600D8C973 /* SubmissionDetailsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsUseCase.swift; sourceTree = "<group>"; };
 		9F9F4EB021B58A5D00842570 /* ExternalToolSubmissionContentViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ExternalToolSubmissionContentViewController.storyboard; sourceTree = "<group>"; };
 		9F9F4EB221B58AA300842570 /* ExternalToolSubmissionContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExternalToolSubmissionContentViewController.swift; sourceTree = "<group>"; };
 		9FCD79DC2188E9D90054293A /* SubmissionDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsViewController.swift; sourceTree = "<group>"; };
@@ -615,7 +611,6 @@
 		9FDDE2DF218CCAB9002B71F0 /* Drawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drawer.swift; sourceTree = "<group>"; };
 		9FDDE2E1218CCBF5002B71F0 /* Drawer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Drawer.xib; sourceTree = "<group>"; };
 		9FFA7552218C8E540036FD41 /* SubmissionDetailsPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsPresenterTests.swift; sourceTree = "<group>"; };
-		9FFA7554218CA2520036FD41 /* SubmissionDetailsUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsUseCaseTests.swift; sourceTree = "<group>"; };
 		B107189721963BC000ED1DC7 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		B10D776D21C1CCE200BCE822 /* FilePickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePickerCell.swift; sourceTree = "<group>"; };
 		B10D777121C2EA5B00BCE822 /* BlockExpectation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockExpectation.swift; sourceTree = "<group>"; };
@@ -1153,7 +1148,6 @@
 			children = (
 				7D09E5B421935933006150FA /* Views */,
 				9F5ADB30218B656400D8C973 /* SubmissionDetailsPresenter.swift */,
-				9F5ADB32218B67A600D8C973 /* SubmissionDetailsUseCase.swift */,
 				9FCD79DE2188EAC40054293A /* SubmissionDetailsViewController.storyboard */,
 				9FCD79DC2188E9D90054293A /* SubmissionDetailsViewController.swift */,
 				3B6325DD21ADF49200237CE6 /* UrlSubmissionContentViewController.swift */,
@@ -1168,7 +1162,6 @@
 			isa = PBXGroup;
 			children = (
 				9FFA7552218C8E540036FD41 /* SubmissionDetailsPresenterTests.swift */,
-				9FFA7554218CA2520036FD41 /* SubmissionDetailsUseCaseTests.swift */,
 			);
 			path = SubmissionDetails;
 			sourceTree = "<group>";
@@ -1729,7 +1722,6 @@
 				3B692535219F428E0023ED75 /* FilePickerProgressView.swift in Sources */,
 				3B1B0066219BD9F60045E8A1 /* GroupNavigationPresenter.swift in Sources */,
 				2CB3261D21387C99009496AF /* RouterViewController.swift in Sources */,
-				9F5ADB33218B67A600D8C973 /* SubmissionDetailsUseCase.swift in Sources */,
 				7D10194E215EBA7B0058FDD1 /* DividerView.swift in Sources */,
 				3BE2ADCD21B70537008D91AB /* DynamicTextField.swift in Sources */,
 				3B6325DE21ADF49200237CE6 /* UrlSubmissionContentViewController.swift in Sources */,
@@ -1747,7 +1739,6 @@
 			files = (
 				3B542D56215AE79E0084DA9D /* TestEnvironment.swift in Sources */,
 				3B6065FA2194EEF800D04D53 /* PersistenceTestCase.swift in Sources */,
-				9FFA7555218CA2520036FD41 /* SubmissionDetailsUseCaseTests.swift in Sources */,
 				B10D777221C2EA5B00BCE822 /* BlockExpectation.swift in Sources */,
 				B1B6F076219A3E2600C1575D /* SubmissionFilePickerPresenterTests.swift in Sources */,
 				3B1B009A219BDA560045E8A1 /* QuizListPresenterTests.swift in Sources */,
@@ -1796,7 +1787,6 @@
 				7D067CE521505B3500B78AF2 /* DashboardCourseCell.swift in Sources */,
 				7DA057552193A3A800A3CFBB /* IconView.swift in Sources */,
 				7D979CD5215BE3E600567627 /* BundleExtensions.swift in Sources */,
-				9F74200E21932DF100108A0F /* SubmissionDetailsUseCase.swift in Sources */,
 				3B0B0F73219C8D3100F04216 /* QuizListEmptyView.swift in Sources */,
 				3B0B0F6A219C8D1D00F04216 /* GroupNavigationUseCase.swift in Sources */,
 				9F74200B21932DCE00108A0F /* SubmissionDetailsViewController.swift in Sources */,

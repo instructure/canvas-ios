@@ -151,7 +151,9 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
 
     func testShowSubmitAssignmentButton() {
         //  given
-        let a = Assignment.make()
+        let a = Assignment.make([
+            "submission": Submission.make(["workflowStateRaw": "unsubmitted"]),
+        ])
         a.unlockAt = Date().addDays(-1)
         a.lockAt = Date().addDays(1)
         a.lockedForUser = false
@@ -179,12 +181,13 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
 
     func testShowSubmitAssignmentButtonMultipleAttempts() {
         //  given
-        let a = Assignment.make()
+        let a = Assignment.make([
+            "submission": Submission.make(["workflowStateRaw": "submitted"]),
+        ])
         a.unlockAt = Date().addDays(-1)
         a.lockAt = Date().addDays(1)
         a.lockedForUser = false
         a.submissionTypes = [.online_upload]
-        a.submission = Submission.make()
 
         let c = Course.make(["enrollments": Set([Enrollment.make()])])
 

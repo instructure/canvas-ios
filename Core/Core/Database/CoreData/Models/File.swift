@@ -85,4 +85,33 @@ extension File {
         lockExplanation = item.lock_explanation
         previewURL = item.preview_url
     }
+
+    static func save(_ item: APIFile, in context: NSManagedObjectContext) -> File {
+        let predicate = NSPredicate(format: "%K == %@", #keyPath(File.id), item.id.value)
+        let model: File = context.fetch(predicate).first ?? context.insert()
+        model.id = item.id.value
+        model.uuid = item.uuid
+        model.folderID = item.folder_id.value
+        model.displayName = item.display_name
+        model.filename = item.filename
+        model.contentType = item.contentType
+        model.url = item.url
+        model.size = item.size
+        model.createdAt = item.created_at
+        model.updatedAt = item.updated_at
+        model.unlockAt = item.unlock_at
+        model.locked = item.locked
+        model.hidden = item.hidden
+        model.lockAt = item.lock_at
+        model.hiddenForUser = item.hidden_for_user
+        model.thumbnailURL = item.thumbnail_url
+        model.modifiedAt = item.modified_at
+        model.mimeClass = item.mime_class
+        model.mediaEntryID = item.media_entry_id
+        model.lockedForUser = item.locked_for_user
+        model.lockInfo = item.lock_info
+        model.lockExplanation = item.lock_explanation
+        model.previewURL = item.preview_url
+        return model
+    }
 }

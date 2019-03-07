@@ -19,171 +19,126 @@ import XCTest
 import Core
 import TestsFoundation
 
-class SubmissionDetailsPresenterTests: PersistenceTestCase {
-    var color: UIColor?
-    var titleSubtitleView = TitleSubtitleView.create()
-    var navigationController: UINavigationController?
-    var navigationItem = UINavigationItem()
+class SubmissionDetailsView: SubmissionDetailsViewProtocol {
+    var didReload = false
+    var reloaded = XCTestExpectation(description: "Reloaded")
+    var didEmbed = false
+    var embedded = XCTestExpectation(description: "Embedded")
 
-    var resultingAssignment: SubmissionDetailsViewAssignmentModel?
-    var resultingSubmissions: [SubmissionDetailsViewModel]?
-    var resultingAttempt: Int = 0
-    var resultingError: Error?
-    var resultingEmbed: UIViewController?
+    func reload() {
+        didReload = true
+        reloaded.fulfill()
+    }
+
+    func embed() {
+        didEmbed = true
+        embedded.fulfill()
+    }
+
+    let navigationItem = UINavigationItem(title: "Test")
+}
+
+class SubmissionDetailsPresenterTests: PersistenceTestCase {
     var presenter: SubmissionDetailsPresenter!
+    var view: SubmissionDetailsView!
 
     override func setUp() {
         super.setUp()
-        let mockUseCase =  MockUseCase {}
-        presenter = SubmissionDetailsPresenter(env: env, view: self, context: ContextModel(.course, id: "1"), assignmentID: "1", userID: "1", useCaseFactory: { _ in return mockUseCase })
+        view = SubmissionDetailsView()
+        presenter = SubmissionDetailsPresenter(env: env, view: view, context: ContextModel(.course, id: "1"), assignmentID: "1", userID: "1")
     }
 
-    func testDefaultUseCase() {
-        presenter = SubmissionDetailsPresenter(env: env, view: self, context: ContextModel(.course, id: "1"), assignmentID: "1", userID: "3")
-        XCTAssert(presenter.useCaseFactory(false) is SubmissionDetailsUseCase)
-    }
-
-    func testLoadNoAssignment() {
-        presenter.loadData()
-        XCTAssertEqual(titleSubtitleView.subtitle, "")
-        XCTAssertNil(resultingAssignment)
-        XCTAssertNil(resultingSubmissions)
-        XCTAssertEqual(resultingAttempt, 0)
-    }
-
-    func testLoadNoCourse() {
-        let a = Assignment.make()
-        presenter.loadData()
-        XCTAssertEqual(titleSubtitleView.subtitle, "")
-        XCTAssertEqual(resultingAssignment?.dueAt, a.dueAt)
-        XCTAssertEqual(resultingSubmissions?.count, 0)
-        XCTAssertEqual(resultingAttempt, 0)
-    }
-
-    func testLoadNoSubmissions() {
-        let a = Assignment.make()
-        Course.make()
-
-        presenter.loadData()
-
-        XCTAssertEqual(titleSubtitleView.subtitle, a.name)
-        XCTAssertEqual(resultingAssignment?.dueAt, a.dueAt)
-        XCTAssertEqual(resultingSubmissions?.count, 0)
-        XCTAssertEqual(resultingAttempt, 0)
-    }
-
-    func testLoad() {
-        let a = Assignment.make()
-        Course.make()
-        let s = Submission.make()
-
-        presenter.loadData()
-
-        XCTAssertEqual(titleSubtitleView.subtitle, a.name)
-        XCTAssertEqual(resultingAssignment?.dueAt, a.dueAt)
-        XCTAssertEqual(resultingSubmissions?[0].workflowState, s.workflowState)
-        XCTAssertEqual(resultingAttempt, 1)
-    }
-
-    func testSelect() {
-        Assignment.make()
-        Course.make()
-        Submission.make()
-
-        presenter.select(attempt: 5)
-        XCTAssertEqual(resultingAttempt, 5)
-    }
-
-    func testLoadDataFromServer() {
-        let expectation = XCTestExpectation(description: "Expect use case to work")
-        var assignment: Assignment!
-        var submission: Submission!
-        let useCase = MockUseCase {
-            submission = Submission.make()
-            assignment = Assignment.make()
-            Course.make()
-            expectation.fulfill()
-        }
-        presenter = SubmissionDetailsPresenter(env: env, view: self, context: ContextModel(.course, id: "1"), assignmentID: "1", userID: "1", useCaseFactory: { _ in return useCase })
+    func testLoadData() {
+        Submission.make(["assignmentID": "1", "userID": "1"])
+        Assignment.make(["id": "1"])
 
         presenter.viewIsReady()
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [view.reloaded, view.embedded], timeout: 0.1)
+        XCTAssertTrue(view.didReload)
+        XCTAssertTrue(view.didEmbed)
 
-        presenter.controllerDidChangeContent(presenter.submissionFrc)
+        XCTAssertEqual(presenter.assignment.count, 1)
+        XCTAssertEqual(presenter.submissions.count, 1)
+    }
 
-        XCTAssertEqual(titleSubtitleView.subtitle, assignment.name)
-        XCTAssertEqual(resultingAssignment?.dueAt, assignment.dueAt)
-        XCTAssertEqual(resultingSubmissions?[0].workflowState, submission.workflowState)
-        XCTAssertEqual(resultingAttempt, 1)
+    func testSubmissionForAttempt() {
+        let s = Submission.make(["assignmentID": "1", "userID": "1", "attempt": 1])
+
+        presenter.viewIsReady()
+        wait(for: [view.reloaded], timeout: 0.1)
+
+        XCTAssertEqual(presenter.submissionFor(attempt: 1), s)
     }
 
     func testEmbedExternalTool() {
-        let assignment = Assignment.make([ "submissionTypesRaw": [ "external_tool" ] ])
-        let submission = Submission.make([ "typeRaw": "external_tool" ])
+        Assignment.make([ "submissionTypesRaw": [ "external_tool" ] ])
+        Submission.make([ "typeRaw": "external_tool" ])
 
-        presenter.embed(submission, assignment: assignment)
-        XCTAssert(resultingEmbed is ExternalToolSubmissionContentViewController)
+        presenter.viewIsReady()
+        wait(for: [view.reloaded], timeout: 0.1)
+
+        let vc = presenter.viewControllerFor(attempt: 1)
+        XCTAssert(vc is ExternalToolSubmissionContentViewController)
     }
 
     func testEmbedQuiz() {
-        let assignment = Assignment.make([ "quizID": "1" ])
-        let submission = Submission.make([ "typeRaw": "online_quiz", "attempt": 2 ])
+        Assignment.make([ "quizID": "1" ])
+        Submission.make([ "typeRaw": "online_quiz", "attempt": 2 ])
 
-        presenter.embed(submission, assignment: assignment)
-        XCTAssert(resultingEmbed is CoreWebViewController)
-        XCTAssertEqual(resultingEmbed?.view.accessibilityIdentifier, "SubmissionDetailsPage.onlineQuizWebView")
+        presenter.viewIsReady()
+        wait(for: [view.reloaded], timeout: 0.1)
+
+        let vc = presenter.viewControllerFor(attempt: 2)
+        XCTAssert(vc is CoreWebViewController)
+        XCTAssertEqual(vc?.view.accessibilityIdentifier, "SubmissionDetailsPage.onlineQuizWebView")
     }
 
     func testEmbedTextEntry() {
-        let assignment = Assignment.make()
-        let submission = Submission.make([ "typeRaw": "online_text_entry" ])
+        Assignment.make()
+        Submission.make([ "typeRaw": "online_text_entry" ])
 
-        presenter.embed(submission, assignment: assignment)
-        XCTAssert(resultingEmbed is CoreWebViewController)
-        XCTAssertEqual(resultingEmbed?.view.accessibilityIdentifier, "SubmissionDetailsPage.onlineTextEntryWebView")
+        presenter.viewIsReady()
+        wait(for: [view.reloaded], timeout: 0.1)
+
+        let vc = presenter.viewControllerFor(attempt: 1)
+        XCTAssert(vc is CoreWebViewController)
+        XCTAssertEqual(vc?.view.accessibilityIdentifier, "SubmissionDetailsPage.onlineTextEntryWebView")
     }
 
     func testEmbedUpload() {
-        let assignment = Assignment.make()
-        let submission = Submission.make([
+        Assignment.make()
+        Submission.make([
             "typeRaw": "online_upload",
             "attachments": Set([ File.make() ]),
         ])
 
-        presenter.embed(submission, assignment: assignment)
-        XCTAssert(resultingEmbed is DocViewerViewController)
+        presenter.viewIsReady()
+        wait(for: [view.reloaded], timeout: 0.1)
+
+        let vc = presenter.viewControllerFor(attempt: 1)
+        XCTAssert(vc is DocViewerViewController)
     }
 
     func testEmbedDiscussion() {
-        let assignment = Assignment.make()
-        let submission = Submission.make([ "typeRaw": "discussion_topic", "previewUrl": URL(string: "preview") ])
+        Assignment.make()
+        Submission.make([ "typeRaw": "discussion_topic", "previewUrl": URL(string: "preview") ])
 
-        presenter.embed(submission, assignment: assignment)
-        XCTAssert(resultingEmbed is CoreWebViewController)
-        XCTAssertEqual(resultingEmbed?.view.accessibilityIdentifier, "SubmissionDetailsPage.discussionWebView")
+        presenter.viewIsReady()
+        wait(for: [view.reloaded], timeout: 0.1)
+
+        let vc = presenter.viewControllerFor(attempt: 1)
+        XCTAssert(vc is CoreWebViewController)
+        XCTAssertEqual(vc?.view.accessibilityIdentifier, "SubmissionDetailsPage.discussionWebView")
     }
 
     func testEmbedURL() {
-        let assignment = Assignment.make()
-        let submission = Submission.make([ "typeRaw": "online_url" ])
+        Assignment.make()
+        Submission.make([ "typeRaw": "online_url" ])
 
-        presenter.embed(submission, assignment: assignment)
-        XCTAssert(resultingEmbed is UrlSubmissionContentViewController)
-    }
-}
+        presenter.viewIsReady()
+        wait(for: [view.reloaded], timeout: 0.1)
 
-extension SubmissionDetailsPresenterTests: SubmissionDetailsViewProtocol {
-    func update(assignment: SubmissionDetailsViewAssignmentModel, submissions: [SubmissionDetailsViewModel], selectedAttempt: Int) {
-        resultingAssignment = assignment
-        resultingSubmissions = submissions
-        resultingAttempt = selectedAttempt
-    }
-
-    func embed(_ controller: UIViewController?) {
-        resultingEmbed = controller
-    }
-
-    func showError(_ error: Error) {
-        resultingError = error
+        let vc = presenter.viewControllerFor(attempt: 1)
+        XCTAssert(vc is UrlSubmissionContentViewController)
     }
 }
