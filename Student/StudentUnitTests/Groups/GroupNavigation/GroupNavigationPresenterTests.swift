@@ -86,8 +86,6 @@ extension GroupNavigationPresenterTests: GroupNavigationViewProtocol {
     func updateNavBar(title: String, backgroundColor: UIColor) {
         resultingTitle = title
         expectation.fulfill()
-        print("tabs: \(presenter.tabs.count)")
-        print("first: \(String(describing: presenter.tabs.first?.id))")
     }
 
     func update(color: UIColor) {
