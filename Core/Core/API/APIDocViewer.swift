@@ -16,14 +16,14 @@
 
 import Foundation
 
-struct APIDocViewerMetadata: Codable {
+struct APIDocViewerMetadata: Codable, Equatable {
     let annotations: APIDocViewerAnnotationsMetadata?
     let panda_push: APIDocViewerPandaPushMetadata?
     let rotations: [String: UInt]?
     let urls: APIDocViewerURLsMetadata
 }
 
-struct APIDocViewerAnnotationsMetadata: Codable {
+struct APIDocViewerAnnotationsMetadata: Codable, Equatable {
     let enabled: Bool
     let user_id: String?
     let user_name: String?
@@ -35,7 +35,7 @@ enum APIDocViewerPermissions: String, Codable {
     case none, read, readwrite, readwritemanage
 }
 
-struct APIDocViewerPandaPushMetadata: Codable {
+struct APIDocViewerPandaPushMetadata: Codable, Equatable {
     let host: String
     let annotations_channel: String?
     let annotations_token: String?
@@ -43,12 +43,12 @@ struct APIDocViewerPandaPushMetadata: Codable {
     let document_token: String?
 }
 
-struct APIDocViewerURLsMetadata: Codable {
+struct APIDocViewerURLsMetadata: Codable, Equatable {
     let pdf_download: URL
 }
 
 // https://canvadocs.instructure.com/docs/docs/annotationsApi.html#responses
-struct APIDocViewerAnnotations: Codable {
+struct APIDocViewerAnnotations: Codable, Equatable {
     let data: [APIDocViewerAnnotation]
 }
 

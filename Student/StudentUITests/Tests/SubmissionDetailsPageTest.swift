@@ -86,8 +86,8 @@ class SubmissionDetailsPageTest: StudentTest {
         let assignment = seedClient.createAssignment(for: course, submissionTypes: [ .online_upload ], allowedExtensions: [ "pdf" ])
         let file = seedClient.uploadFile(url: Bundle(for: SubmissionDetailsPageTest.self).url(forResource: "empty", withExtension: "pdf")!, for: assignment, as: student)
         let submission = seedClient.submit(assignment: assignment, context: ContextModel(.course, id: course.id), as: student, submissionType: .online_upload, fileIDs: [ file.id.value ])
-        let sessionURL = seedClient.createDocViewerSession(for: submission.attachments![0], as: student)
-        seedClient.pollForDocViewerMetadata(sessionURL: sessionURL)
+        let session = seedClient.createDocViewerSession(for: submission.attachments![0], as: student)
+        seedClient.pollForDocViewerMetadata(session: session)
 
         launch("/courses/\(course.id)/assignments/\(assignment.id)", as: student)
         AssignmentDetailsPage.tap(.viewSubmissionButton)
@@ -105,28 +105,28 @@ class SubmissionDetailsPageTest: StudentTest {
         // TODO: Test share sheet?
     }
 
-    func xtestPDFAnnotations() {
+    func testPDFAnnotations() {
         let assignment = seedClient.createAssignment(for: course, submissionTypes: [ .online_upload ], allowedExtensions: [ "pdf" ])
         let file = seedClient.uploadFile(url: Bundle(for: SubmissionDetailsPageTest.self).url(forResource: "empty", withExtension: "pdf")!, for: assignment, as: student)
         seedClient.submit(assignment: assignment, context: ContextModel(.course, id: course.id), as: student, submissionType: .online_upload, fileIDs: [ file.id.value ])
 
         let submission = seedClient.makeRequest(GetSubmissionRequest(context: ContextModel(.course, id: course.id), assignmentID: assignment.id.value, userID: student.id), with: teacher.token)
-        let sessionURL = seedClient.createDocViewerSession(for: submission.attachments![0], as: teacher)
-        let metadata = seedClient.pollForDocViewerMetadata(sessionURL: sessionURL)
+        let session = seedClient.createDocViewerSession(for: submission.attachments![0], as: teacher)
+        let metadata = seedClient.pollForDocViewerMetadata(session: session)
         let point = seedClient.createAnnotation(APIDocViewerAnnotation.make([
             "id": UUID().uuidString,
             "user_name": metadata.annotations?.user_name,
             "type": APIDocViewerAnnotationType.text.rawValue,
             "color": DocViewerAnnotationColor.green.rawValue,
             "rect": [ [ 0, (11 * 72) - 240 ], [ 170, (11 * 72) ] ],
-        ]), on: sessionURL, as: teacher)
+        ]), on: session)
         let comment = seedClient.createAnnotation(APIDocViewerAnnotation.make([
             "id": UUID().uuidString,
             "user_name": metadata.annotations?.user_name,
             "type": APIDocViewerAnnotationType.commentReply.rawValue,
             "contents": "Why is the document empty?",
             "inreplyto": point.id,
-        ]), on: sessionURL, as: teacher)
+        ]), on: session)
 
         launch("/courses/\(course.id)/assignments/\(assignment.id)", as: student)
         AssignmentDetailsPage.tap(.viewSubmissionButton)
