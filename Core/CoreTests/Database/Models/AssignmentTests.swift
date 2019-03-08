@@ -117,6 +117,18 @@ class AssignmentTests: CoreTestCase {
         XCTAssertFalse(result)
     }
 
+    func testCannotMakeSubmissionsOnPaper() {
+        //  given
+        let a = Assignment.make()
+        a.submissionTypes = [.on_paper]
+
+        //  when
+        let result = a.canMakeSubmissions
+
+        //  then
+        XCTAssertFalse(result)
+    }
+
     func testCannotMakeSubmissionsWithNoSubmissionTypes() {
         //  given
         let a = Assignment.make()
