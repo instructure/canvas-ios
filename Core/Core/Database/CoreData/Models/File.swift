@@ -17,7 +17,7 @@
 import Foundation
 import CoreData
 
-public class File: NSManagedObject {
+final public class File: NSManagedObject {
     @NSManaged public var id: String
     @NSManaged public var uuid: String
     @NSManaged public var folderID: String
@@ -59,7 +59,9 @@ extension File: Scoped {
     }
 }
 
-extension File {
+extension File: WriteableModel {
+    public typealias JSON = APIFile
+
     func update(fromApiModel item: APIFile, in client: PersistenceClient) throws {
         id = item.id.value
         uuid = item.uuid
@@ -86,9 +88,10 @@ extension File {
         previewURL = item.preview_url
     }
 
-    static func save(_ item: APIFile, in context: NSManagedObjectContext) -> File {
+    @discardableResult
+    public static func save(_ item: APIFile, in client: PersistenceClient) throws -> File {
         let predicate = NSPredicate(format: "%K == %@", #keyPath(File.id), item.id.value)
-        let model: File = context.fetch(predicate).first ?? context.insert()
+        let model: File = client.fetch(predicate).first ?? client.insert()
         model.id = item.id.value
         model.uuid = item.uuid
         model.folderID = item.folder_id.value

@@ -58,10 +58,10 @@ public class CreateFileSubmission: RequestUseCase<CreateSubmissionRequest> {
     }
 
     func save(response: APISubmission?, urlResponse: URLResponse?, client: PersistenceClient) throws {
-        guard let item = response, let context = client as? NSManagedObjectContext else {
+        guard let item = response else {
             return
         }
-        Submission.save(item, in: context)
+        try Submission.save(item, in: client)
         Logger.shared.log("created a submission")
     }
 }

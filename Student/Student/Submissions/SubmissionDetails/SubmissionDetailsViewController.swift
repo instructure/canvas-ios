@@ -18,7 +18,7 @@ import Foundation
 import UIKit
 import Core
 
-class SubmissionDetailsViewController: UIViewController, ColoredNavViewProtocol, SubmissionDetailsViewProtocol {
+class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewProtocol, ColoredNavViewProtocol {
     var color: UIColor?
     var presenter: SubmissionDetailsPresenter?
     var titleSubtitleView = TitleSubtitleView.create()
@@ -68,6 +68,13 @@ class SubmissionDetailsViewController: UIViewController, ColoredNavViewProtocol,
         if presenter.submissions.count <= 1 || assignment.isExternalToolAssignment {
             picker?.isHidden = true
         }
+    }
+
+    func reloadNavBar() {
+        guard let assignment = presenter?.assignment.first, let course = presenter?.course.first else {
+            return
+        }
+        self.updateNavBar(subtitle: assignment.name, color: course.color)
     }
 
     func embed() {

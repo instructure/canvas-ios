@@ -24,10 +24,17 @@ class SubmissionDetailsView: SubmissionDetailsViewProtocol {
     var reloaded = XCTestExpectation(description: "Reloaded")
     var didEmbed = false
     var embedded = XCTestExpectation(description: "Embedded")
+    var didReloadNavbar = false
+    var reloadedNavbar = XCTestExpectation(description: "Reloaded Navbar")
 
     func reload() {
         didReload = true
         reloaded.fulfill()
+    }
+
+    func reloadNavBar() {
+        didReloadNavbar = true
+        reloadedNavbar.fulfill()
     }
 
     func embed() {
@@ -53,9 +60,10 @@ class SubmissionDetailsPresenterTests: PersistenceTestCase {
         Assignment.make(["id": "1"])
 
         presenter.viewIsReady()
-        wait(for: [view.reloaded, view.embedded], timeout: 0.1)
+        wait(for: [view.reloaded, view.embedded, view.reloadedNavbar], timeout: 0.1)
         XCTAssertTrue(view.didReload)
         XCTAssertTrue(view.didEmbed)
+        XCTAssertTrue(view.didReloadNavbar)
 
         XCTAssertEqual(presenter.assignment.count, 1)
         XCTAssertEqual(presenter.submissions.count, 1)

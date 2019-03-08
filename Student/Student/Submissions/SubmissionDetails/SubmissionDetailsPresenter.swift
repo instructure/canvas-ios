@@ -19,6 +19,7 @@ import Core
 
 public protocol SubmissionDetailsViewProtocol: class {
     func reload()
+    func reloadNavBar()
     func embed()
     var navigationItem: UINavigationItem { get }
 }
@@ -42,6 +43,14 @@ class SubmissionDetailsPresenter {
         let useCase = GetAssignment(courseID: context.id, assignmentID: assignmentID)
         return env.subscribe(useCase) { [weak self] in
             self?.view?.reload()
+            self?.view?.reloadNavBar()
+        }
+    }()
+
+    lazy var course: Store<GetCourseUseCase> = {
+        let useCase = GetCourseUseCase(courseID: context.id)
+        return env.subscribe(useCase) { [weak self] in
+            self?.view?.reloadNavBar()
         }
     }()
 
@@ -56,6 +65,7 @@ class SubmissionDetailsPresenter {
     func viewIsReady() {
         submissions.refresh(force: true)
         assignment.refresh(force: true)
+        course.refresh(force: false)
     }
 
     func submissionFor(attempt: Int) -> Submission? {

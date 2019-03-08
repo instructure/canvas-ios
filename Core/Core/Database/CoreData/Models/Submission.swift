@@ -17,7 +17,7 @@
 import Foundation
 import CoreData
 
-public class Submission: NSManagedObject {
+final public class Submission: NSManagedObject {
     @NSManaged public var assignment: Assignment?
     @NSManaged public var assignmentID: String
     @NSManaged public var userID: String
@@ -91,9 +91,11 @@ extension Submission: Scoped {
     }
 }
 
-extension Submission {
+extension Submission: WriteableModel {
+    public typealias JSON = APISubmission
+
     @discardableResult
-    static func save(_ item: APISubmission, in context: NSManagedObjectContext) -> Submission {
+    static public func save(_ item: APISubmission, in client: PersistenceClient) throws -> Submission {
         let predicate = NSPredicate(
             format: "%K == %@ AND %K == %@ AND %K == %d",
             #keyPath(Submission.assignmentID),
@@ -103,7 +105,7 @@ extension Submission {
             #keyPath(Submission.attempt),
             item.attempt ?? 1
         )
-        let model: Submission = context.fetch(predicate).first ?? context.insert()
+        let model: Submission = client.fetch(predicate).first ?? client.insert()
         model.id = item.id.value
         model.assignmentID = item.assignment_id.value
         model.userID = item.user_id.value
@@ -122,17 +124,17 @@ extension Submission {
         model.url = item.url
         model.previewUrl = item.preview_url
 
-        model.attachments = Set(item.attachments?.map { attachment in
-            return File.save(attachment, in: context)
+        model.attachments = Set(try item.attachments?.map { attachment in
+            return try File.save(attachment, in: client)
         } ?? [])
 
         model.discussionEntries = Set(item.discussion_entries?.map { entry in
-            return DiscussionEntry.save(entry, in: context)
+            return DiscussionEntry.save(entry, in: client)
         } ?? [])
 
-        item.submission_history?.forEach({ submission in
-            Submission.save(submission, in: context)
-        })
+        if let submissionHistory = item.submission_history {
+            try Submission.save(submissionHistory, in: client)
+        }
 
         return model
     }

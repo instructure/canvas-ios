@@ -52,9 +52,9 @@ public class GetSubmission: APIUseCase {
     }
 
     public func write(response: APISubmission?, urlResponse: URLResponse?, to client: PersistenceClient) throws {
-        guard let item = response, let context = client as? NSManagedObjectContext else {
+        guard let item = response else {
             return
         }
-        Submission.save(item, in: context)
+        try Submission.save(item, in: client)
     }
 }

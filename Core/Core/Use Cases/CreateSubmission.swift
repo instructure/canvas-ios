@@ -65,7 +65,7 @@ public class CreateSubmission: APIUseCase {
         guard let item = response, let context = client as? NSManagedObjectContext else {
             return
         }
-        Submission.save(item, in: context)
+        try Submission.save(item, in: context)
         Logger.shared.log("created a submission")
     }
 }
