@@ -18,24 +18,14 @@ import Foundation
 import UIKit
 import Core
 
-protocol SubmissionDetailsViewAssignmentModel: DueViewable, SubmissionViewable {}
-protocol SubmissionDetailsViewModel {
-    var attempt: Int { get }
-    var submittedAt: Date? { get }
-    var workflowState: SubmissionWorkflowState { get }
-}
-
-protocol SubmissionDetailsViewProtocol: ErrorViewController, ColoredNavViewProtocol {
-    func update(assignment: SubmissionDetailsViewAssignmentModel, submissions: [SubmissionDetailsViewModel], selectedAttempt: Int)
-    var navigationItem: UINavigationItem { get }
-    func embed(_ controller: UIViewController?)
-}
-
-class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewProtocol {
+class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewProtocol, ColoredNavViewProtocol {
     var color: UIColor?
     var presenter: SubmissionDetailsPresenter?
     var titleSubtitleView = TitleSubtitleView.create()
     var contentViewController: UIViewController?
+    var env: AppEnvironment?
+    var selectedAttempt = 0
+
     @IBOutlet weak var contentView: UIView?
     @IBOutlet weak var emptyView: SubmissionDetailsEmptyView?
     @IBOutlet weak var pickerButton: DynamicButton?
@@ -43,11 +33,10 @@ class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewPr
     @IBOutlet weak var pickerButtonDivider: DividerView?
     @IBOutlet weak var picker: UIPickerView?
 
-    var submissions: [SubmissionDetailsViewModel] = []
-
     static func create(env: AppEnvironment = .shared, context: Context, assignmentID: String, userID: String) -> SubmissionDetailsViewController {
-        let controller = Bundle.loadController(self)
+        let controller: SubmissionDetailsViewController = loadFromStoryboard()
         controller.presenter = SubmissionDetailsPresenter(env: env, view: controller, context: context, assignmentID: assignmentID, userID: userID)
+        controller.env = env
         return controller
     }
 
@@ -58,32 +47,38 @@ class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewPr
         presenter?.viewIsReady()
     }
 
-    func update(assignment: SubmissionDetailsViewAssignmentModel, submissions: [SubmissionDetailsViewModel], selectedAttempt: Int) {
-        self.submissions = submissions
-        picker?.reloadAllComponents()
-        var selected: SubmissionDetailsViewModel?
-        for (i, submission) in submissions.enumerated() {
-            guard submission.attempt == selectedAttempt else { continue }
-            selected = submission
-            picker?.selectRow(i, inComponent: 0, animated: false)
+    func reload() {
+        guard let presenter = presenter, let assignment = presenter.assignment.first else {
+            return
         }
-        let isSubmitted = selected != nil && selected?.workflowState != .unsubmitted
+        picker?.reloadAllComponents()
+
+        let submission = presenter.submissionFor(attempt: selectedAttempt)
+
+        let isSubmitted = submission?.workflowState != .unsubmitted
         contentView?.isHidden = !isSubmitted && !assignment.isExternalToolAssignment
         emptyView?.isHidden = isSubmitted || assignment.isExternalToolAssignment
         emptyView?.dueText = assignment.assignmentDueByText
         pickerButton?.isHidden = !isSubmitted
-        if let submittedAt = selected?.submittedAt {
+        if let submittedAt = submission?.submittedAt {
             pickerButton?.setTitle(DateFormatter.localizedString(from: submittedAt, dateStyle: .medium, timeStyle: .short), for: .normal)
         }
-        pickerButton?.isEnabled = submissions.count > 1
-        pickerButtonArrow?.isHidden = !isSubmitted || submissions.count <= 1
+        pickerButton?.isEnabled = presenter.submissions.count > 1
+        pickerButtonArrow?.isHidden = !isSubmitted || presenter.submissions.count <= 1
         pickerButtonDivider?.isHidden = !isSubmitted
-        if submissions.count <= 1 || assignment.isExternalToolAssignment {
+        if presenter.submissions.count <= 1 || assignment.isExternalToolAssignment {
             picker?.isHidden = true
         }
     }
 
-    func embed(_ controller: UIViewController?) {
+    func reloadNavBar() {
+        guard let assignment = presenter?.assignment.first, let course = presenter?.course.first else {
+            return
+        }
+        self.updateNavBar(subtitle: assignment.name, color: course.color)
+    }
+
+    func embed() {
         if let old = contentViewController {
             navigationItem.rightBarButtonItems = []
             old.willMove(toParent: nil)
@@ -92,13 +87,14 @@ class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewPr
             old.didMove(toParent: nil)
         }
 
-        guard let contentView = contentView, let controller = controller, let view = controller.view else { return }
+        guard let contentView = contentView, let controller = presenter?.viewControllerFor(attempt: selectedAttempt), let view = controller.view else { return }
 
         controller.willMove(toParent: self)
         contentView.addSubview(view)
         view.pin(inside: contentView)
         addChild(controller)
         controller.didMove(toParent: self)
+        contentViewController = controller
     }
 
     func showError(_ error: Error) {
@@ -125,21 +121,19 @@ extension SubmissionDetailsViewController: UIPickerViewDataSource, UIPickerViewD
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return submissions.count
-    }
-
-    func submissionAt(_ row: Int) -> SubmissionDetailsViewModel {
-        return submissions[row]
+        return presenter?.submissions.count ?? 0
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        guard let submittedAt = submissionAt(row).submittedAt else {
+        guard let submittedAt = presenter?.submissions[row]?.submittedAt else {
             return NSLocalizedString("No Submission Date", bundle: .student, comment: "")
         }
         return DateFormatter.localizedString(from: submittedAt, dateStyle: .medium, timeStyle: .short)
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        presenter?.select(attempt: submissionAt(row).attempt)
+        selectedAttempt = presenter?.submissions[row]?.attempt ?? 0
+        self.reload()
+        self.embed()
     }
 }

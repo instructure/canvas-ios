@@ -90,8 +90,7 @@ extension Assignment {
         url = item.url
         if updateSubmission {
             if let submissionItem = item.submission {
-                let sub = submission ?? client.insert()
-                try sub.update(fromApiModel: submissionItem, in: client)
+                let sub = try Submission.save(submissionItem, in: client)
                 submission = sub
             } else if let submission = submission {
                 try client.delete(submission)

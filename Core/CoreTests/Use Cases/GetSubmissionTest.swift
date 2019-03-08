@@ -77,4 +77,30 @@ class GetSubmissionTest: CoreTestCase {
         XCTAssertEqual(submission.userID, "3")
         XCTAssertEqual(submission.late, true)
     }
+
+    func testCacheKey() {
+        let getSubmission = GetSubmission(context: ContextModel(.course, id: "1"), assignmentID: "2", userID: "3")
+        XCTAssertEqual(getSubmission.cacheKey, "get-1-2-3-submission")
+    }
+
+    func testRequest() {
+        let getSubmission = GetSubmission(context: ContextModel(.course, id: "1"), assignmentID: "2", userID: "3")
+        XCTAssertEqual(getSubmission.request.path, "courses/1/assignments/2/submissions/3")
+    }
+
+    func testScope() {
+        let getSubmission = GetSubmission(context: ContextModel(.course, id: "1"), assignmentID: "2", userID: "3")
+        let scope = Scope(
+            predicate: NSPredicate(
+                format: "%K == %@ AND %K == %@",
+                #keyPath(Submission.assignmentID),
+                "2",
+                #keyPath(Submission.userID),
+                "3"
+            ),
+            order: [NSSortDescriptor(key: #keyPath(Submission.attempt), ascending: false)]
+        )
+        XCTAssertEqual(getSubmission.scope, scope)
+    }
+
 }
