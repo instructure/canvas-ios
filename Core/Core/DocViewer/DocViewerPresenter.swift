@@ -18,64 +18,76 @@ import PSPDFKit
 import PSPDFKitUI
 
 class DocViewerPresenter: NSObject {
-    typealias UseCaseFactory = (Bool) -> DocViewerUseCase
-
-    let env: AppEnvironment
-    let filename: String
-    let previewURL: URL?
-    let fallbackURL: URL
     var annotationProvider: DocViewerAnnotationProvider?
+    let env: AppEnvironment
+    let fallbackURL: URL
+    var fallbackUsed = false
+    let filename: String
     var metadata: APIDocViewerMetadata?
-    let useCaseFactory: UseCaseFactory
+    var previewURL: URL?
     weak var view: DocViewerViewProtocol?
 
-    init(env: AppEnvironment = .shared, view: DocViewerViewProtocol, filename: String, previewURL: URL?, fallbackURL: URL, useCaseFactory: UseCaseFactory? = nil) {
+    lazy var session: DocViewerSession = {
+        return DocViewerSession { [weak self] in
+            DispatchQueue.main.async { self?.sessionIsReady() }
+        }
+    }()
+
+    init(env: AppEnvironment = .shared, view: DocViewerViewProtocol, filename: String, previewURL: URL?, fallbackURL: URL) {
         self.env = env
         self.view = view
         self.filename = filename
         self.previewURL = previewURL
         self.fallbackURL = fallbackURL
-        self.useCaseFactory = useCaseFactory ?? { (force: Bool) in
-            return DocViewerUseCase(api: env.api, previewURL: URL(string: previewURL?.absoluteString ?? "", relativeTo: env.api.baseURL)!) // TODO: handle fallback
-        }
     }
 
     func viewIsReady() {
-        loadDataFromServer()
+        guard let url = URL(string: previewURL?.absoluteString ?? "", relativeTo: env.api.baseURL) else {
+            return loadFallback()
+        }
+        session.load(url: url, accessToken: env.api.accessToken ?? "")
     }
 
-    func loadDataFromServer(force: Bool = false) {
-        let useCase = useCaseFactory(force)
-        let set = OperationSet()
-        set.addSequence([ useCase, BlockOperation { [weak self] in DispatchQueue.main.async {
-            for error in useCase.errors { self?.view?.showError(error) }
-            guard
-                useCase.errors.count == 0, self != nil,
-                let sessionID = useCase.sessionID, let sessionURL = useCase.sessionURL,
-                let localURL = useCase.localURL, let metadata = useCase.metadata
-            else { return }
+    func sessionIsReady() {
+        guard
+            session.error == nil,
+            let annotations = session.annotations,
+            let localURL = session.localURL,
+            let metadata = session.metadata,
+            let sessionID = session.sessionID
+        else { return loadFallback() }
 
-            let api = URLSessionAPI(accessToken: nil, baseURL: sessionURL)
-            self?.metadata = metadata
-            let document = PSPDFDocument(url: localURL)
-            if let annotationMeta = metadata.annotations {
-                document.defaultAnnotationUsername = annotationMeta.user_name
-                document.didCreateDocumentProviderBlock = { documentProvider in
-                    let provider = DocViewerAnnotationProvider(documentProvider: documentProvider, metadata: annotationMeta, annotations: useCase.annotations, api: api, sessionID: sessionID)
-                    provider.docViewerDelegate = self
-                    documentProvider.annotationManager.annotationProviders.insert(provider, at: 0)
-                    self?.annotationProvider = provider
-                    for (pageKey, rawRotation) in metadata.rotations ?? [:] {
-                        if let pageIndex = PageIndex(pageKey), let rotation = Rotation(rawValue: rawRotation) {
-                            documentProvider.setRotationOffset(rotation, forPageAt: pageIndex)
-                        }
+        self.metadata = metadata
+        let document = PSPDFDocument(url: localURL)
+        if let annotationMeta = metadata.annotations {
+            document.defaultAnnotationUsername = annotationMeta.user_name
+            document.didCreateDocumentProviderBlock = { documentProvider in
+                let provider = DocViewerAnnotationProvider(documentProvider: documentProvider, metadata: annotationMeta, annotations: annotations, api: self.session.api, sessionID: sessionID)
+                provider.docViewerDelegate = self
+                documentProvider.annotationManager.annotationProviders.insert(provider, at: 0)
+                self.annotationProvider = provider
+                for (pageKey, rawRotation) in metadata.rotations ?? [:] {
+                    if let pageIndex = PageIndex(pageKey), let rotation = Rotation(rawValue: rawRotation) {
+                        documentProvider.setRotationOffset(rotation, forPageAt: pageIndex)
                     }
                 }
             }
+        }
+        view?.load(document: document)
+    }
 
-            self?.view?.load(document: document)
-        } }, ])
-        env.queue.addOperationWithErrorHandling(set, sendErrorsTo: view)
+    func loadFallback() {
+        if let error = session.error { view?.showError(error) }
+        if let url = session.localURL {
+            view?.load(document: PSPDFDocument(url: url))
+            return
+        }
+
+        guard !fallbackUsed else { return }
+        fallbackUsed = true
+        session.error = nil
+        session.annotations = []
+        session.loadDocument(downloadURL: fallbackURL)
     }
 }
 

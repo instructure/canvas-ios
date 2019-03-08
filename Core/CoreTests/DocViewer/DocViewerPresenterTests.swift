@@ -26,40 +26,66 @@ class DocViewerPresenterTests: CoreTestCase {
 
     let url = Bundle(for: DocViewerPresenterTests.self).url(forResource: "instructure", withExtension: "pdf")!
 
-    class MockUseCase: DocViewerUseCase {
-        override func execute() { finish() }
+    class MockSession: DocViewerSession {
+        var loading: URL?
+        override func load(url: URL, accessToken: String) { notify() }
+        override func loadDocument(downloadURL: URL) {
+            loading = downloadURL
+        }
     }
-    lazy var mockUseCase: MockUseCase = {
-        return MockUseCase(api: api, previewURL: url)
-    }()
+    lazy var session = MockSession { self.presenter.sessionIsReady() }
 
     lazy var presenter: DocViewerPresenter = {
-        return DocViewerPresenter(env: environment, view: self, filename: "instructure.pdf", previewURL: url, fallbackURL: url) { (_: Bool) in
-            return self.mockUseCase
-        }
+        let presenter = DocViewerPresenter(env: environment, view: self, filename: "instructure.pdf", previewURL: url, fallbackURL: url)
+        XCTAssertNoThrow(presenter.session)
+        presenter.session = session
+        return presenter
     }()
 
-    func testUseCaseFactory() {
-        let presenter = DocViewerPresenter(env: environment, view: self, filename: "instructure.pdf", previewURL: url, fallbackURL: url)
-        XCTAssertEqual(presenter.useCaseFactory(false).errors.count, 0)
-    }
-
-    func testViewIsReady() {
+    func testViewIsReadyErrors() {
         let err = APIDocViewerError.noData
-        mockUseCase.addError(err)
+        session.error = err
         presenter.viewIsReady()
         wait(for: [expectation(for: .all, evaluatedWith: err) { self.error != nil }], timeout: 5)
         XCTAssertEqual(error as? APIDocViewerError, .noData)
     }
 
-    func testLoadDataFromServer() {
-        mockUseCase.sessionID = "abcd"
-        mockUseCase.sessionURL = URL(string: "session")
-        mockUseCase.localURL = url
-        mockUseCase.metadata = APIDocViewerMetadata.make([ "rotations": [ "0": 90 ] ])
-        presenter.loadDataFromServer()
-        wait(for: [expectation(for: .all, evaluatedWith: api) { self.document != nil }], timeout: 5)
-        XCTAssertTrue(document?.documentProviders.first?.annotationManager.annotationProviders.contains(where: { $0 is DocViewerAnnotationProvider }) ?? false)
+    func testViewIsReadyNoURL() {
+        presenter.previewURL = nil
+        presenter.viewIsReady()
+        XCTAssertEqual(session.loading, presenter.fallbackURL)
+    }
+
+    func testSessionIsReady() {
+        session.annotations = []
+        session.api = api
+        session.sessionID = "abcd"
+        session.sessionURL = URL(string: "session")
+        session.localURL = url
+        session.metadata = APIDocViewerMetadata.make([ "rotations": [ "0": 90 ] ])
+        presenter.sessionIsReady()
+        let providers = document?.documentProviders.first?.annotationManager.annotationProviders
+        XCTAssertTrue(providers?.contains(where: { $0 is DocViewerAnnotationProvider }) ?? false)
+    }
+
+    func testLoadFallback() {
+        session.localURL = url
+        presenter.loadFallback()
+        XCTAssertEqual(document?.fileURL, url)
+    }
+
+    func testLoadFallbackRepeat() {
+        session.error = APIDocViewerError.noData
+        presenter.loadFallback()
+        XCTAssertNotNil(error)
+        XCTAssertNil(session.error)
+        XCTAssertEqual(presenter.fallbackUsed, true)
+
+        session.error = APIDocViewerError.noData
+        presenter.loadFallback()
+        XCTAssertNotNil(session.error)
+        XCTAssertNil(document)
+        XCTAssertEqual(presenter.fallbackUsed, true)
     }
 
     func testShouldShowForSelectedText() {

@@ -95,16 +95,8 @@
 		7D2DC2FB2199FD47008FE29A /* instructure.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 7D2DC2FA2199FD47008FE29A /* instructure.pdf */; };
 		7D2DC2FD219A001E008FE29A /* UIViewExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2DC2FC219A001E008FE29A /* UIViewExtensionsTests.swift */; };
 		7D2DC301219A16EC008FE29A /* DocViewerConstantsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2DC300219A16EC008FE29A /* DocViewerConstantsTests.swift */; };
-		7D2DC306219C9D36008FE29A /* GetDocViewerSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2DC305219C9D36008FE29A /* GetDocViewerSession.swift */; };
-		7D2DC308219CA02D008FE29A /* GetDocViewerAnnotations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2DC307219CA02D008FE29A /* GetDocViewerAnnotations.swift */; };
-		7D2DC30A219CA06F008FE29A /* GetDocViewerMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2DC309219CA06F008FE29A /* GetDocViewerMetadata.swift */; };
-		7D2DC30C219CA0AD008FE29A /* GetDocViewerDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2DC30B219CA0AD008FE29A /* GetDocViewerDocument.swift */; };
-		7D2DC311219CC29D008FE29A /* DocViewerUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2DC310219CC29D008FE29A /* DocViewerUseCase.swift */; };
-		7D2DC313219CD986008FE29A /* GetDocViewerSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2DC312219CD986008FE29A /* GetDocViewerSessionTests.swift */; };
-		7D2DC315219CDFF3008FE29A /* GetDocViewerMetadataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2DC314219CDFF3008FE29A /* GetDocViewerMetadataTests.swift */; };
-		7D2DC317219CE091008FE29A /* GetDocViewerDocumentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2DC316219CE091008FE29A /* GetDocViewerDocumentTests.swift */; };
-		7D2DC319219CE3AD008FE29A /* GetDocViewerAnnotationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2DC318219CE3AD008FE29A /* GetDocViewerAnnotationsTests.swift */; };
-		7D2DC31B219CE469008FE29A /* DocViewerUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2DC31A219CE469008FE29A /* DocViewerUseCaseTests.swift */; };
+		7D2DC306219C9D36008FE29A /* DocViewerSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2DC305219C9D36008FE29A /* DocViewerSession.swift */; };
+		7D2DC31B219CE469008FE29A /* DocViewerSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2DC31A219CE469008FE29A /* DocViewerSessionTests.swift */; };
 		7D364F2421AE04B20028E3EA /* CoreWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D364F2321AE04B20028E3EA /* CoreWebViewController.swift */; };
 		7D37BE8621C81C9A0063FAAC /* UserAgentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D37BE8521C81C9A0063FAAC /* UserAgentTests.swift */; };
 		7D37BE8821C824DA0063FAAC /* UIViewControllerExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D37BE8721C824DA0063FAAC /* UIViewControllerExtensionsTests.swift */; };
@@ -655,16 +647,8 @@
 		7D2DC2FA2199FD47008FE29A /* instructure.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = instructure.pdf; sourceTree = "<group>"; };
 		7D2DC2FC219A001E008FE29A /* UIViewExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensionsTests.swift; sourceTree = "<group>"; };
 		7D2DC300219A16EC008FE29A /* DocViewerConstantsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerConstantsTests.swift; sourceTree = "<group>"; };
-		7D2DC305219C9D36008FE29A /* GetDocViewerSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDocViewerSession.swift; sourceTree = "<group>"; };
-		7D2DC307219CA02D008FE29A /* GetDocViewerAnnotations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDocViewerAnnotations.swift; sourceTree = "<group>"; };
-		7D2DC309219CA06F008FE29A /* GetDocViewerMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDocViewerMetadata.swift; sourceTree = "<group>"; };
-		7D2DC30B219CA0AD008FE29A /* GetDocViewerDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDocViewerDocument.swift; sourceTree = "<group>"; };
-		7D2DC310219CC29D008FE29A /* DocViewerUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerUseCase.swift; sourceTree = "<group>"; };
-		7D2DC312219CD986008FE29A /* GetDocViewerSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDocViewerSessionTests.swift; sourceTree = "<group>"; };
-		7D2DC314219CDFF3008FE29A /* GetDocViewerMetadataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDocViewerMetadataTests.swift; sourceTree = "<group>"; };
-		7D2DC316219CE091008FE29A /* GetDocViewerDocumentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDocViewerDocumentTests.swift; sourceTree = "<group>"; };
-		7D2DC318219CE3AD008FE29A /* GetDocViewerAnnotationsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDocViewerAnnotationsTests.swift; sourceTree = "<group>"; };
-		7D2DC31A219CE469008FE29A /* DocViewerUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerUseCaseTests.swift; sourceTree = "<group>"; };
+		7D2DC305219C9D36008FE29A /* DocViewerSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerSession.swift; sourceTree = "<group>"; };
+		7D2DC31A219CE469008FE29A /* DocViewerSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerSessionTests.swift; sourceTree = "<group>"; };
 		7D349C352143090C004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/Main.strings"; sourceTree = "<group>"; };
 		7D349C362143090C004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		7D349C3721430929004C1074 /* en-GB-instukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-instukhe"; path = "en-GB-instukhe.lproj/Main.strings"; sourceTree = "<group>"; };
@@ -1328,7 +1312,7 @@
 				7D29D2F8218A2BC60036437C /* DocViewerConstants.swift */,
 				7D29D300218A52F00036437C /* DocViewerPointAnnotation.swift */,
 				7DD6948A21960EBD00BA4984 /* DocViewerPresenter.swift */,
-				7D2DC310219CC29D008FE29A /* DocViewerUseCase.swift */,
+				7D2DC305219C9D36008FE29A /* DocViewerSession.swift */,
 				7DD694882195F7A200BA4984 /* DocViewerViewController.storyboard */,
 				7DD694862195F76C00BA4984 /* DocViewerViewController.swift */,
 				7D29D2FE218A4FEA0036437C /* PSPDFAnnotationExtension.swift */,
@@ -1395,7 +1379,7 @@
 				7D2DC300219A16EC008FE29A /* DocViewerConstantsTests.swift */,
 				7D2DC2F52199F27B008FE29A /* DocViewerPointAnnotationTests.swift */,
 				7D37BE9021C849D10063FAAC /* DocViewerPresenterTests.swift */,
-				7D2DC31A219CE469008FE29A /* DocViewerUseCaseTests.swift */,
+				7D2DC31A219CE469008FE29A /* DocViewerSessionTests.swift */,
 				7D7472D8218CD77C00CE1430 /* PSPDFAnnotationExtensionTests.swift */,
 			);
 			path = DocViewer;
@@ -1674,10 +1658,6 @@
 				B195DC502132257500797FE4 /* GetCourse.swift */,
 				B1EA5AEA212E641900DABC5F /* GetCourses.swift */,
 				7851D9B22138264800E76EC3 /* GetCustomColors.swift */,
-				7D2DC307219CA02D008FE29A /* GetDocViewerAnnotations.swift */,
-				7D2DC30B219CA0AD008FE29A /* GetDocViewerDocument.swift */,
-				7D2DC309219CA06F008FE29A /* GetDocViewerMetadata.swift */,
-				7D2DC305219C9D36008FE29A /* GetDocViewerSession.swift */,
 				9FD504ED2180C17400B395BA /* GetFile.swift */,
 				9FE84DD9214FE06300B95A68 /* GetGroup.swift */,
 				B15CA270221DE1C80014FB02 /* GetModules.swift */,
@@ -1800,10 +1780,6 @@
 				B1EA5AED212E656100DABC5F /* GetCoursesTest.swift */,
 				B195DC612133326900797FE4 /* GetCourseTest.swift */,
 				7DFB2CF821C978D40077DEEE /* GetCustomColorsTests.swift */,
-				7D2DC318219CE3AD008FE29A /* GetDocViewerAnnotationsTests.swift */,
-				7D2DC316219CE091008FE29A /* GetDocViewerDocumentTests.swift */,
-				7D2DC314219CDFF3008FE29A /* GetDocViewerMetadataTests.swift */,
-				7D2DC312219CD986008FE29A /* GetDocViewerSessionTests.swift */,
 				9FD504F52180FC7200B395BA /* GetFileTest.swift */,
 				9FE84DDB214FE5C500B95A68 /* GetGroupTest.swift */,
 				B15CA272221DE1FA0014FB02 /* GetModulesTests.swift */,
@@ -2150,7 +2126,6 @@
 				B1A6BC82218A5066000515E3 /* APILatePolicy.swift in Sources */,
 				7D7110CA2139A57A0085C2E5 /* URLComponentsExtensions.swift in Sources */,
 				7DF4FFDC21713636007E5F81 /* Assignment.swift in Sources */,
-				7D2DC30A219CA06F008FE29A /* GetDocViewerMetadata.swift in Sources */,
 				7D1758C1215A8F5600F88613 /* ListFormatter.swift in Sources */,
 				B19792F1217536230000369C /* Database.xcdatamodeld in Sources */,
 				7D29D2F9218A2BC60036437C /* DocViewerConstants.swift in Sources */,
@@ -2172,7 +2147,7 @@
 				7D8FDFB62187B62A0067557E /* UINavigationBarExtensions.swift in Sources */,
 				3B3467C72134954A00F9BC2E /* UserAgent.swift in Sources */,
 				789C9BC32138656E00B37AC4 /* OperationQueueExtensions.swift in Sources */,
-				7D2DC306219C9D36008FE29A /* GetDocViewerSession.swift in Sources */,
+				7D2DC306219C9D36008FE29A /* DocViewerSession.swift in Sources */,
 				3B3467DC2137087100F9BC2E /* HTTPHeaderConstants.swift in Sources */,
 				7DCF2036216D546C003AF358 /* APIQuiz+Requestable.swift in Sources */,
 				7D10194B215E97D90058FDD1 /* UIImageExtensions.swift in Sources */,
@@ -2183,7 +2158,6 @@
 				7D80AC58212DAE4C00C40ECE /* URLResponseExtensions.swift in Sources */,
 				7DD6948F2196891200BA4984 /* Secret.swift in Sources */,
 				7DD752A121BEFA7C00E26260 /* LoginManualOAuthViewController.swift in Sources */,
-				7D2DC308219CA02D008FE29A /* GetDocViewerAnnotations.swift in Sources */,
 				B1A6BC86218A5D07000515E3 /* LatePolicyInterval.swift in Sources */,
 				B19792ED21751C200000369C /* CoreDataFetchedResultsController.swift in Sources */,
 				7D0215A921BB1762009A8E69 /* LoginStartViewController.swift in Sources */,
@@ -2255,7 +2229,6 @@
 				7D02159F21B88B19009A8E69 /* UITabBarExtensions.swift in Sources */,
 				B17F23A9213788B100771F86 /* PaginatedUseCase.swift in Sources */,
 				B1EA5AF6212E67CE00DABC5F /* DateExtensions.swift in Sources */,
-				7D2DC30C219CA0AD008FE29A /* GetDocViewerDocument.swift in Sources */,
 				B14FE5D72134F63C00328CD7 /* RequestUseCase.swift in Sources */,
 				B17DFABE21B8606D008B9FA9 /* BackgroundURLSessionManager.swift in Sources */,
 				7DF4FFD22171322E007E5F81 /* TTL.swift in Sources */,
@@ -2266,7 +2239,6 @@
 				7D80AC21212B89C500C40ECE /* APIAccount+Requestable.swift in Sources */,
 				7DCF1EA6216BC0F5003AF358 /* CourseWorkflowState.swift in Sources */,
 				7D63F78C215D4BD300151E49 /* Brand.swift in Sources */,
-				7D2DC311219CC29D008FE29A /* DocViewerUseCase.swift in Sources */,
 				7D765024215AEDDE00BB4F38 /* DividerView.swift in Sources */,
 				7851D9B32138264800E76EC3 /* GetCustomColors.swift in Sources */,
 				B1EF7ABB21E902DD00D653D7 /* UseCase.swift in Sources */,
@@ -2317,7 +2289,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FAE410721B6CB7F00FE7F58 /* GetSessionlessLaunchURLTests.swift in Sources */,
-				7D2DC313219CD986008FE29A /* GetDocViewerSessionTests.swift in Sources */,
 				B1A6BC8A218A977D000515E3 /* APIEnrollmentRequestableTests.swift in Sources */,
 				7D80AC5B212DB0B500C40ECE /* URLResponseExtensionsTests.swift in Sources */,
 				3B3467DA2136FFBA00F9BC2E /* APILoginWeb+RequestableTests.swift in Sources */,
@@ -2326,7 +2297,7 @@
 				7DCF1EBC216BC94E003AF358 /* LatePolicyStatusTests.swift in Sources */,
 				7DC4A555222EF87300FA03DC /* DiscussionEntryTests.swift in Sources */,
 				7D80AC19212B697600C40ECE /* APIGroup+Requestable+Tests.swift in Sources */,
-				7D2DC31B219CE469008FE29A /* DocViewerUseCaseTests.swift in Sources */,
+				7D2DC31B219CE469008FE29A /* DocViewerSessionTests.swift in Sources */,
 				B195DC622133326900797FE4 /* GetCourseTest.swift in Sources */,
 				7D4C3D59222D9E41001B1198 /* LTIToolsTests.swift in Sources */,
 				3BE2C76F219335FA004B8E5E /* ColoredNavViewProtocol.swift in Sources */,
@@ -2354,7 +2325,6 @@
 				B19792F9217699B70000369C /* CourseTests.swift in Sources */,
 				9FD504EA2180BE2900B395BA /* APIFile+Requestable+Tests.swift in Sources */,
 				7DCF1EAC216BC360003AF358 /* CourseDefaultViewTests.swift in Sources */,
-				7D2DC319219CE3AD008FE29A /* GetDocViewerAnnotationsTests.swift in Sources */,
 				78151DCF21AE7E0500692862 /* APIDiscussionRequestableTests.swift in Sources */,
 				3B3467C921349EC100F9BC2E /* LoginWebPresenterTests.swift in Sources */,
 				7DF4001B2174FA24007E5F81 /* UITableViewExtensionsTests.swift in Sources */,
@@ -2396,8 +2366,6 @@
 				3B472274213795E500BF6FF3 /* PersistenceTests.swift in Sources */,
 				7DCF1EA2216BB7E4003AF358 /* SubmissionTypeTests.swift in Sources */,
 				7D979CCA215BDFD500567627 /* DividerViewTests.swift in Sources */,
-				7D2DC317219CE091008FE29A /* GetDocViewerDocumentTests.swift in Sources */,
-				7D2DC315219CDFF3008FE29A /* GetDocViewerMetadataTests.swift in Sources */,
 				9F7DF8172136EEE400966382 /* OperationSetTest.swift in Sources */,
 				7D7110C12138910D0085C2E5 /* RouteHandler+Tests.swift in Sources */,
 				B195DC5521324DA600797FE4 /* GetUserGroupsTest.swift in Sources */,

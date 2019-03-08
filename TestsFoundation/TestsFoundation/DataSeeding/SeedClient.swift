@@ -34,8 +34,8 @@ public struct SeedClient {
     }
 
     @discardableResult
-    public func makeRequest<Request: APIRequestable>(_ request: Request, with token: String) -> Request.Response {
-        let api = URLSessionAPI(accessToken: token, baseURL: baseURL)
+    public func makeRequest<Request: APIRequestable>(_ request: Request, with token: String, api: API? = nil) -> Request.Response {
+        let api = api ?? URLSessionAPI(accessToken: token, baseURL: baseURL)
         let operation = APIOperation(api: api, request: request)
         queue.addOperations([operation], waitUntilFinished: true)
         guard let response = operation.response else {
@@ -255,35 +255,44 @@ public struct SeedClient {
         return makeRequest(PostFileUploadRequest(fileURL: url, target: target), with: user.token)
     }
 
-    public func createDocViewerSession(for file: APIFile, as user: AuthUser) -> URL {
-        let operation = GetDocViewerSession(url: URL(string: file.preview_url!.absoluteString, relativeTo: baseURL)!, accessToken: user.token)
+    public func createDocViewerSession(for file: APIFile, as user: AuthUser) -> DocViewerSession {
+        var session: DocViewerSession?
+        let operation = AsyncBlockOperation { done in
+            session = DocViewerSession {
+                done(nil)
+            }
+            session?.load(url: URL(string: file.preview_url!.absoluteString, relativeTo: self.baseURL)!, accessToken: user.token)
+        }
         queue.addOperations([operation], waitUntilFinished: true)
-        return operation.sessionURL!
+        return session!
     }
 
     @discardableResult
-    public func pollForDocViewerMetadata(sessionURL: URL) -> APIDocViewerMetadata {
-        let api = URLSessionAPI(accessToken: nil, baseURL: sessionURL)
+    public func pollForDocViewerMetadata(session: DocViewerSession) -> APIDocViewerMetadata {
         var triesLeft = 30
         while triesLeft > 0 {
             triesLeft -= 1
-            let operation = GetDocViewerMetadata(api: api)
-            queue.addOperations([operation], waitUntilFinished: true)
-            if let metadata = operation.response {
+            if let metadata = session.metadata {
                 return metadata
             }
-            operation.errors.forEach { print($0.localizedDescription) }
+            let operation = AsyncBlockOperation { done in
+                session.callback = { done(nil) }
+                session.error = nil
+                session.loadMetadata(sessionURL: session.sessionURL)
+            }
+            queue.addOperations([operation], waitUntilFinished: true)
+            if let metadata = session.metadata {
+                return metadata
+            }
+            if let error = session.error { print(error.localizedDescription) }
             sleep(2) // 2 * 30 = up to 1 minute of polling
         }
         fatalError("Could not get the metadata for DocViewer session.")
     }
 
     @discardableResult
-    public func createAnnotation(_ annotation: APIDocViewerAnnotation, on sessionURL: URL, as user: AuthUser) -> APIDocViewerAnnotation {
-        let api = URLSessionAPI(accessToken: nil, baseURL: sessionURL)
-        let operation = APIOperation(api: api, request: PutDocViewerAnnotationRequest(body: annotation, sessionID: sessionURL.lastPathComponent))
-        queue.addOperations([operation], waitUntilFinished: true)
-        return operation.response!
+    public func createAnnotation(_ annotation: APIDocViewerAnnotation, on session: DocViewerSession) -> APIDocViewerAnnotation {
+        return makeRequest(PutDocViewerAnnotationRequest(body: annotation, sessionID: session.sessionID!), with: "", api: session.api)
     }
 
     @discardableResult
