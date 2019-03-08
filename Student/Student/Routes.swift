@@ -38,7 +38,7 @@ public let router = Router(routes: [
 
     RouteHandler(.group(":groupID"), name: "group") {_, params in
         guard let groupID = params["groupID"] else { return nil }
-        return GroupNavigationTableViewController(groupID: groupID)
+        return GroupNavigationViewController(groupID: groupID)
     },
 
     RouteHandler(.quizzes(forCourse: ":courseID"), name: "course_quiz") { _, params in

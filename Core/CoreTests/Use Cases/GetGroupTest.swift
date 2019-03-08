@@ -20,12 +20,10 @@ import XCTest
 
 class GetGroupTest: CoreTestCase {
     func testItCreatesGroup() {
-        let request = GetGroupRequest(id: "1")
         let response = APIGroup.make()
-        api.mock(request, value: response)
 
         let getGroup = GetGroup(groupID: "1", env: environment)
-        addOperationAndWait(getGroup)
+        try! getGroup.write(response: response, urlResponse: nil, to: databaseClient)
 
         let groups: [Group] = databaseClient.fetch(predicate: nil, sortDescriptors: nil)
         XCTAssertEqual(groups.count, 1)
@@ -35,13 +33,26 @@ class GetGroupTest: CoreTestCase {
 
     func testItUpdatesGroup() {
         let group = Group.make(["id": "1", "name": "Old Name"])
-        let request = GetGroupRequest(id: "1")
         let response = APIGroup.make(["id": "1", "name": "New Name"])
-        api.mock(request, value: response)
 
         let getGroup = GetGroup(groupID: "1", env: environment)
-        addOperationAndWait(getGroup)
+        try! getGroup.write(response: response, urlResponse: nil, to: databaseClient)
         databaseClient.refresh()
         XCTAssertEqual(group.name, "New Name")
+    }
+
+    func testCacheKey() {
+        let getGroup = GetGroup(groupID: "1", env: environment)
+        XCTAssertEqual("get-group-1", getGroup.cacheKey)
+    }
+
+    func testScope() {
+        let group = Group.make(["id": "1", "name": "Old Name"])
+        let getGroup = GetGroup(groupID: "1", env: environment)
+
+        let groups: [Group] = databaseClient.fetch(predicate: getGroup.scope.predicate, sortDescriptors: getGroup.scope.order)
+
+        XCTAssertEqual(groups.count, 1)
+        XCTAssertEqual(groups.first, group)
     }
 }

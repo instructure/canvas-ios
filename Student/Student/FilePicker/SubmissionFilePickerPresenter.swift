@@ -133,6 +133,7 @@ class SubmissionFilePresenter: FilePickerPresenterProtocol, FetchedResultsContro
         self.courseID = courseID
         self.assignmentID = assignmentID
         self.userID = userID
+
         self.assignmentController = env.subscribe(Assignment.self, .details(assignmentID))
         self.fileSubmissionController = env.subscribe(FileSubmission.self, .assignment(assignmentID))
         self.useCase = useCase ?? { return PresenterUseCase() }

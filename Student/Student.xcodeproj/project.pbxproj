@@ -13,7 +13,7 @@
 		2CB3261D21387C99009496AF /* RouterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB3261C21387C99009496AF /* RouterViewController.swift */; };
 		3B0B0F58219C8C7300F04216 /* CourseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0059219BD9F50045E8A1 /* CourseListViewController.swift */; };
 		3B0B0F59219C8C9300F04216 /* QuizListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B005F219BD9F60045E8A1 /* QuizListViewController.swift */; };
-		3B0B0F5A219C8CA400F04216 /* GroupNavigationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B003D219BD9F50045E8A1 /* GroupNavigationTableViewController.swift */; };
+		3B0B0F5A219C8CA400F04216 /* GroupNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B003D219BD9F50045E8A1 /* GroupNavigationViewController.swift */; };
 		3B0B0F5B219C8CBA00F04216 /* AssignmentDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B004B219BD9F50045E8A1 /* AssignmentDetailsViewController.swift */; };
 		3B0B0F5E219C8CE700F04216 /* AssignmentDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0047219BD9F50045E8A1 /* AssignmentDetailsPresenter.swift */; };
 		3B0B0F5F219C8CFE00F04216 /* AssignmentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0042219BD9F50045E8A1 /* AssignmentListViewController.swift */; };
@@ -24,15 +24,13 @@
 		3B0B0F66219C8D1100F04216 /* CourseListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B1B0057219BD9F50045E8A1 /* CourseListViewController.storyboard */; };
 		3B0B0F67219C8D1100F04216 /* CourseListCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0058219BD9F50045E8A1 /* CourseListCourseCell.swift */; };
 		3B0B0F68219C8D1500F04216 /* CourseNavigationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0052219BD9F50045E8A1 /* CourseNavigationPresenter.swift */; };
-		3B0B0F6A219C8D1D00F04216 /* GroupNavigationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B003E219BD9F50045E8A1 /* GroupNavigationUseCase.swift */; };
 		3B0B0F6B219C8D1D00F04216 /* GroupNavigationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B003F219BD9F50045E8A1 /* GroupNavigationPresenter.swift */; };
 		3B0B0F6C219C8D2300F04216 /* QuizListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B005C219BD9F60045E8A1 /* QuizListPresenter.swift */; };
 		3B0B0F6D219C8D2300F04216 /* QuizListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B1B005D219BD9F60045E8A1 /* QuizListViewController.storyboard */; };
 		3B0B0F72219C8D3100F04216 /* QuizListEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B1B0061219BD9F60045E8A1 /* QuizListEmptyView.xib */; };
 		3B0B0F73219C8D3100F04216 /* QuizListEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0062219BD9F60045E8A1 /* QuizListEmptyView.swift */; };
 		3B0B0F74219C8D3100F04216 /* QuizListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0063219BD9F60045E8A1 /* QuizListCell.swift */; };
-		3B1B0064219BD9F60045E8A1 /* GroupNavigationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B003D219BD9F50045E8A1 /* GroupNavigationTableViewController.swift */; };
-		3B1B0065219BD9F60045E8A1 /* GroupNavigationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B003E219BD9F50045E8A1 /* GroupNavigationUseCase.swift */; };
+		3B1B0064219BD9F60045E8A1 /* GroupNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B003D219BD9F50045E8A1 /* GroupNavigationViewController.swift */; };
 		3B1B0066219BD9F60045E8A1 /* GroupNavigationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B003F219BD9F50045E8A1 /* GroupNavigationPresenter.swift */; };
 		3B1B0067219BD9F60045E8A1 /* AssignmentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0042219BD9F50045E8A1 /* AssignmentListViewController.swift */; };
 		3B1B0068219BD9F60045E8A1 /* AssignmentListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0043219BD9F50045E8A1 /* AssignmentListPresenter.swift */; };
@@ -355,8 +353,7 @@
 		2C5C6998211DFFAE00D9AD15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2C5C699A211DFFAE00D9AD15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2CB3261C21387C99009496AF /* RouterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterViewController.swift; sourceTree = "<group>"; };
-		3B1B003D219BD9F50045E8A1 /* GroupNavigationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupNavigationTableViewController.swift; sourceTree = "<group>"; };
-		3B1B003E219BD9F50045E8A1 /* GroupNavigationUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupNavigationUseCase.swift; sourceTree = "<group>"; };
+		3B1B003D219BD9F50045E8A1 /* GroupNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupNavigationViewController.swift; sourceTree = "<group>"; };
 		3B1B003F219BD9F50045E8A1 /* GroupNavigationPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupNavigationPresenter.swift; sourceTree = "<group>"; };
 		3B1B0042219BD9F50045E8A1 /* AssignmentListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentListViewController.swift; sourceTree = "<group>"; };
 		3B1B0043219BD9F50045E8A1 /* AssignmentListPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentListPresenter.swift; sourceTree = "<group>"; };
@@ -797,8 +794,7 @@
 		3B1B003C219BD9F50045E8A1 /* GroupNavigation */ = {
 			isa = PBXGroup;
 			children = (
-				3B1B003D219BD9F50045E8A1 /* GroupNavigationTableViewController.swift */,
-				3B1B003E219BD9F50045E8A1 /* GroupNavigationUseCase.swift */,
+				3B1B003D219BD9F50045E8A1 /* GroupNavigationViewController.swift */,
 				3B1B003F219BD9F50045E8A1 /* GroupNavigationPresenter.swift */,
 			);
 			path = GroupNavigation;
@@ -1705,7 +1701,6 @@
 				3B1B0068219BD9F60045E8A1 /* AssignmentListPresenter.swift in Sources */,
 				7D7110C321389AD90085C2E5 /* Routes.swift in Sources */,
 				7D101951215EBB4B0058FDD1 /* DynamicButton.swift in Sources */,
-				3B1B0065219BD9F60045E8A1 /* GroupNavigationUseCase.swift in Sources */,
 				3B3436E9215EF0FB009EF87F /* UIImageExtensions.swift in Sources */,
 				788152ED212B4FA4005BA428 /* DashboardCourseCell.swift in Sources */,
 				3B1B0076219BD9F60045E8A1 /* CourseListSectionHeaderView.swift in Sources */,
@@ -1737,7 +1732,7 @@
 				3B1B007A219BD9F60045E8A1 /* QuizListPresenter.swift in Sources */,
 				3B3785BF222DC0B90047DAE4 /* CourseNavigationViewController.swift in Sources */,
 				7D20F61621C3142E00B77E5E /* CourseListPresenter.swift in Sources */,
-				3B1B0064219BD9F60045E8A1 /* GroupNavigationTableViewController.swift in Sources */,
+				3B1B0064219BD9F60045E8A1 /* GroupNavigationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1798,7 +1793,6 @@
 				7D979CD5215BE3E600567627 /* BundleExtensions.swift in Sources */,
 				9F74200E21932DF100108A0F /* SubmissionDetailsUseCase.swift in Sources */,
 				3B0B0F73219C8D3100F04216 /* QuizListEmptyView.swift in Sources */,
-				3B0B0F6A219C8D1D00F04216 /* GroupNavigationUseCase.swift in Sources */,
 				9F74200B21932DCE00108A0F /* SubmissionDetailsViewController.swift in Sources */,
 				7D10A49321B5E3CF0040C311 /* RootViewController.swift in Sources */,
 				3B0B0F5B219C8CBA00F04216 /* AssignmentDetailsViewController.swift in Sources */,
@@ -1809,7 +1803,7 @@
 				3B5425FF21B094CC0009D069 /* UrlSubmissionViewController.swift in Sources */,
 				3B0B0F67219C8D1100F04216 /* CourseListCourseCell.swift in Sources */,
 				9F9F4EB421B58AA300842570 /* ExternalToolSubmissionContentViewController.swift in Sources */,
-				3B0B0F5A219C8CA400F04216 /* GroupNavigationTableViewController.swift in Sources */,
+				3B0B0F5A219C8CA400F04216 /* GroupNavigationViewController.swift in Sources */,
 				3B0B0F6B219C8D1D00F04216 /* GroupNavigationPresenter.swift in Sources */,
 				3BE1307221ADFFDD001D4582 /* UrlSubmissionContentViewController.swift in Sources */,
 				B10D777721C2F69500BCE822 /* EmptyView.swift in Sources */,

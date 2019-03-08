@@ -35,22 +35,6 @@ class GetContextTests: CoreTestCase {
         XCTAssertEqual(courses.count, 1)
     }
 
-    func testGroup() {
-        // given
-        let request = GetGroupRequest(id: "1")
-        let response = APIGroup.make(["id": "1"])
-        api.mock(request, value: response)
-
-        // when
-        let context = ContextModel(.group, id: "1")
-        let getContext = GetContext(context: context, env: environment)
-        addOperationAndWait(getContext)
-
-        // then
-        let groups: [Group] = databaseClient.fetch(predicate: nil, sortDescriptors: nil)
-        XCTAssertEqual(groups.count, 1)
-    }
-
     func testItHasATTL() {
         // given
         let course = Course.make()
