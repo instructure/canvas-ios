@@ -74,5 +74,3 @@ scripts/translations/imports
 
 # Secrets
 **/*.xcassets/Secrets/*.dataset
-Cartfile
-Cartfile.resolved
