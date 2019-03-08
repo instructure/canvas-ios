@@ -23,8 +23,8 @@
 
 @interface CKIClient (CKISubmissionComment)
 
-- (RACSignal *)createSubmissionComment:(CKISubmissionComment *)comment;
-- (void)createCommentWithMedia:(CKIMediaComment *)mediaComment forSubmissionRecord:(CKISubmissionRecord *)submissionRecord success:(void(^)(void))success failure:(void(^)(NSError *error))failure;
+- (RACSignal *)createSubmissionComment:(CKISubmissionComment *)comment isGroupComment:(BOOL) isGroupComment;
+- (void)createCommentWithMedia:(CKIMediaComment *)mediaComment isGroupComment:(BOOL) isGroupComment forSubmissionRecord:(CKISubmissionRecord *)submissionRecord success:(void(^)(void))success failure:(void(^)(NSError *error))failure;
 - (void)getThumbnailForMediaComment:(CKIMediaComment *)mediaComment ofSize:(CGSize)size success:(void(^)(UIImage *image))success failure:(void(^)(NSError *error))failure;
 
 @end

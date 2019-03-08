@@ -33,7 +33,7 @@ class RoutesTests: XCTestCase {
     }
 
     func testGroup() {
-        XCTAssert(router.match(Route.group("7").url) is GroupNavigationTableViewController)
+        XCTAssert(router.match(Route.group("7").url) is GroupNavigationViewController)
     }
 
     func testQuizzes() {

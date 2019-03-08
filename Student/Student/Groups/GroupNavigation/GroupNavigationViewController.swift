@@ -21,9 +21,8 @@ protocol GroupNavigationViewModel: TabViewable {
     var label: String { get }
 }
 
-class GroupNavigationTableViewController: UITableViewController {
+class GroupNavigationViewController: UITableViewController {
     var presenter: GroupNavigationPresenter!
-    var tabs: [GroupNavigationViewModel]?
     var color: UIColor = .black
 
     convenience init(env: AppEnvironment = .shared, groupID: String) {
@@ -34,7 +33,7 @@ class GroupNavigationTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
-        presenter.loadTabs()
+        presenter.viewIsReady()
     }
 
     func updateNavBar(title: String, backgroundColor: UIColor) {
@@ -48,30 +47,29 @@ class GroupNavigationTableViewController: UITableViewController {
     }
 }
 
-extension GroupNavigationTableViewController: GroupNavigationViewProtocol {
+extension GroupNavigationViewController: GroupNavigationViewProtocol {
     func showError(_ error: Error) {
         print(error)
     }
 
-    func showTabs(_ tabs: [GroupNavigationViewModel], color: UIColor) {
-        self.tabs = tabs
+    func update(color: UIColor) {
         self.color = color
         tableView.reloadData()
     }
 }
 
-extension GroupNavigationTableViewController {
+extension GroupNavigationViewController {
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tabs?.count ?? 0
+        return presenter.tabs.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = tabs?[indexPath.row].label
-        cell.imageView?.image = tabs?[indexPath.row].icon
+        cell.textLabel?.text = presenter.tabs[indexPath.row]?.label
+        cell.imageView?.image = presenter.tabs[indexPath.row]?.icon
         cell.imageView?.tintColor = color
         return cell
     }

@@ -101,7 +101,7 @@ extension Assignment {
 
     public var canMakeSubmissions: Bool {
         return submissionTypes.count > 0 &&
-            !submissionTypes.contains(.none) &&
+            !submissionTypes.contains(.none) && !submissionTypes.contains(.on_paper) &&
             (fileSubmission == nil || fileSubmission?.submitted == true || fileSubmission?.failed == true)
     }
 

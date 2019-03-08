@@ -27,7 +27,7 @@ class LoginFindSchoolPresenterTests: XCTestCase {
     func testViewIsReady() {
         let presenter = LoginFindSchoolPresenter(loginDelegate: nil, method: .normalLogin, view: self)
         presenter.viewIsReady()
-        XCTAssertEqual(presenter.queue.operationCount, 0)
+        XCTAssertNil(presenter.searchTask)
     }
 
     func testSearch() {
