@@ -69,6 +69,12 @@ class SubmissionDetailsPresenter {
     }
 
     func submissionFor(attempt: Int) -> Submission? {
+        guard submissions.count > 0 else {
+            return nil
+        }
+        if attempt == 0 {
+            return submissions.first
+        }
         return submissions.filter({ $0.attempt == attempt }).first
     }
 

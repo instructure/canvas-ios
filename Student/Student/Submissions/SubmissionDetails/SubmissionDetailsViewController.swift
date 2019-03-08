@@ -24,7 +24,8 @@ class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewPr
     var titleSubtitleView = TitleSubtitleView.create()
     var contentViewController: UIViewController?
     var env: AppEnvironment?
-    var selectedAttempt = 1
+    var selectedAttempt = 0
+
     @IBOutlet weak var contentView: UIView?
     @IBOutlet weak var emptyView: SubmissionDetailsEmptyView?
     @IBOutlet weak var pickerButton: DynamicButton?
@@ -131,7 +132,8 @@ extension SubmissionDetailsViewController: UIPickerViewDataSource, UIPickerViewD
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedAttempt = presenter?.submissions[row]?.attempt ?? 1
+        selectedAttempt = presenter?.submissions[row]?.attempt ?? 0
+        self.reload()
         self.embed()
     }
 }

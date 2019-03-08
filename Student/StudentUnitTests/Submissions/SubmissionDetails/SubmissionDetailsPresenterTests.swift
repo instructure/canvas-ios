@@ -70,12 +70,14 @@ class SubmissionDetailsPresenterTests: PersistenceTestCase {
     }
 
     func testSubmissionForAttempt() {
-        let s = Submission.make(["assignmentID": "1", "userID": "1", "attempt": 1])
+        let s1 = Submission.make(["assignmentID": "1", "userID": "1", "attempt": 1])
+        let s2 = Submission.make(["assignmentID": "1", "userID": "1", "attempt": 2])
 
         presenter.viewIsReady()
         wait(for: [view.reloaded], timeout: 0.1)
 
-        XCTAssertEqual(presenter.submissionFor(attempt: 1), s)
+        XCTAssertEqual(presenter.submissionFor(attempt: 1), s1)
+        XCTAssertEqual(presenter.submissionFor(attempt: 0), s2)
     }
 
     func testEmbedExternalTool() {
