@@ -64,17 +64,11 @@
 /* Percent value is under 0 */
 "Cannot use percent that is less than 0" = "Methu defnyddio canran llai na 0";
 
-/* Cancel the question/suggestion form */
-"Casual question or suggestion" = "Awgrym neu gwestiwn anffurfiol";
-
 /* Empty Alerts Text */
 "Caught up on Alerts" = "Wedi gweld y negeseuon hysbysu diweddaraf";
 
 /* No comment provided by engineer. */
 "Choose a student" = "Dewiswch fyfyriwr";
-
-/* title for status selection field */
-"Choose One" = "Dewiswch Un";
 
 /* Close Button Title */
 "Close" = "Cau";
@@ -94,9 +88,6 @@
 /* No comment provided by engineer. */
 "Current student: %@, tap to switch students" = "Myfyriwr Presennol: %@, tapiwch i newid myfyrwyr";
 
-/* Title for field */
-"Describe your problem" = "Disgrifiwch eich problem";
-
 /* No comment provided by engineer. */
 "Discussion" = "Trafodaeth";
 
@@ -115,23 +106,11 @@
 /* No comment provided by engineer. */
 "Excused" = "Wedi esgusodi";
 
-/* Status level for issue being reported */
-"Extremely critical emergency" = "Argyfwng difrifol iawn";
-
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "Ni all gradd aseiniad uchel fod yn is na gradd aseiniad isel";
 
 /* High Course Grade too Low */
 "High course grade cannot be lower than low course grade" = "Ni all gradd cwrs uchel fod yn is na gradd cwrs isel";
-
-/* Status level for issue being reported */
-"I can't get things done until fixed" = "Alla i ddim gorffen fy ngwaith nes bydd y broblem wedi'i datrys";
-
-/* Status level for issue being reported */
-"I need help but it's not urgent" = "Mae angen help arna i, ond dydy’r mater ddim yn un brys";
-
-/* Impact Title */
-"Impact:" = "Effaith:";
 
 /* No comment provided by engineer. */
 "In-Class" = "Yn y dosbarth";
@@ -141,9 +120,6 @@
 
 /* Title for an alert view */
 "Invalid Input" = "Mewnbwn Annilys";
-
-/* Support Ticket Invalid Input Message */
-"Invalid Input.  Check fields and try again." = "Mewnbwn Annilys.  Gwiriwch y meysydd a rhoi cynnig arall arni.";
 
 /* Last Week Button Accessibility Label */
 "Last Week" = "Wythnos Diwethaf";
@@ -214,26 +190,14 @@
 /* No comment provided by engineer. */
 "Quiz" = "Cwis";
 
-/* Support Ticket Creation Failed */
-"Request Failed!  Check network and try again!" = "Mae'r cais wedi methu!  Gwiriwch y rhwydwaith a rhoi cynnig arall arni!";
-
 /* Not Found Error Message */
 "Resource not found.  Please try again." = "Heb ddod o hyd i'r adnodd.  Rhowch gynnig arall arni.";
-
-/* Select Impact Placeholder */
-"Select Impact" = "Dewiswch Effaith";
 
 /* Server Error Title */
 "Server Error" = "Gwall ar y Gweinydd";
 
 /* No comment provided by engineer. */
 "Settings" = "Gosodiadau";
-
-/* Status level for issue being reported */
-"Something is broken but I can work around it" = "Mae rhywbeth wedi mynd o’i le, ond fe alla i ddal ati";
-
-/* Title for the subject field */
-"Subject" = "Pwnc";
 
 /* No comment provided by engineer. */
 "Submitted" = "Wedi cyflwyno";
@@ -249,9 +213,6 @@
 
 /* Directions in the admin view */
 "Tap to start viewing Canvas as another person." = "Tapiwch i ddechrau gweld Canvas fel person arall.";
-
-/* Support Ticket Created Successfully */
-"Thanks, your request was received!" = "Wedi cael eich cais, diolch!";
 
 /* Error message */
 "There are no actions for this item" = "Does dim gweithrediadau ar gyfer yr eitem hon.";
@@ -274,12 +235,6 @@
 /* Unknown T`hreshold Description */
 "Unknown" = "Dieithr";
 
-/* Default name given a user until we find their real name */
-"Unknown User" = "Defnyddiwr Dieithr";
-
-/* Default user name, the computer-friendly version of their name, until we find their real user name */
-"Unknown User Name" = "Enw Defnyddiwr Dieithr";
-
 /* No comment provided by engineer. */
 "Unread" = "Heb ddarllen";
 
@@ -289,15 +244,9 @@
 /* Header title of admin view */
 "Welcome!" = "Croeso!";
 
-/* Title for field */
-"What can we do better?" = "Beth fydden ni'n gallu ei wneud yn well?";
-
 /* Not Authorized Error Message */
 "You are unauthorized to access this information.  Check your user permissions and try again." = "Does gennych chi ddim hawl i gael mynediad at yr wybodaeth hon.  Gwiriwch eich hawliau defnyddiwr a rhoi cynnig arall arni.";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Rhaid i chi ganiatáu hysbysiadau yn y Gosodiadau er mwyn gosod nodiadau atgoffa.";
-
-/* Title for the email field */
-"Your Email" = "Eich E-bost";
 

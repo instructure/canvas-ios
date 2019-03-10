@@ -64,17 +64,11 @@
 /* Percent value is under 0 */
 "Cannot use percent that is less than 0" = "Pa kapab itilize pousantaj ki mwens ke 0";
 
-/* Cancel the question/suggestion form */
-"Casual question or suggestion" = "Kesyon oswa sijesyon pa aza";
-
 /* Empty Alerts Text */
 "Caught up on Alerts" = "Pran nan Avètisman";
 
 /* No comment provided by engineer. */
 "Choose a student" = "Chwazi yon elèv";
-
-/* title for status selection field */
-"Choose One" = "Chwazi Yonn";
 
 /* Close Button Title */
 "Close" = "Fèmen";
@@ -94,9 +88,6 @@
 /* No comment provided by engineer. */
 "Current student: %@, tap to switch students" = "Elèv aktyèl: %@, tape pou chanje elèv yo";
 
-/* Title for field */
-"Describe your problem" = "Dekri Pwoblèm ou a";
-
 /* No comment provided by engineer. */
 "Discussion" = "Diskisyon";
 
@@ -115,23 +106,11 @@
 /* No comment provided by engineer. */
 "Excused" = "Eskize";
 
-/* Status level for issue being reported */
-"Extremely critical emergency" = "Ijans Trè Kritik";
-
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "Klas sesyon elve pa kapab enferyè a klas sesyon fèb";
 
 /* High Course Grade too Low */
 "High course grade cannot be lower than low course grade" = "Klas kou elve pa kapab enferyè a klas kou fèb";
-
-/* Status level for issue being reported */
-"I can't get things done until fixed" = "Mwen paka fè anyen jiskaske li ranje";
-
-/* Status level for issue being reported */
-"I need help but it's not urgent" = "Mwen bezwen èd men li pa ijan";
-
-/* Impact Title */
-"Impact:" = "Enpa";
 
 /* No comment provided by engineer. */
 "In-Class" = "Nan Klas";
@@ -141,9 +120,6 @@
 
 /* Title for an alert view */
 "Invalid Input" = "Antre Envalid";
-
-/* Support Ticket Invalid Input Message */
-"Invalid Input.  Check fields and try again." = "Antre envalid  Verifye espas yo epi eseye ankò.";
 
 /* Last Week Button Accessibility Label */
 "Last Week" = "Semenn Pase";
@@ -214,26 +190,14 @@
 /* No comment provided by engineer. */
 "Quiz" = "Quiz";
 
-/* Support Ticket Creation Failed */
-"Request Failed!  Check network and try again!" = "Demann Echwe!  Verifye rezo epi eseye ankò!";
-
 /* Not Found Error Message */
 "Resource not found.  Please try again." = "Resous entwouvab. Tanpri eseye ankò.";
-
-/* Select Impact Placeholder */
-"Select Impact" = "Seleksyone Enpak";
 
 /* Server Error Title */
 "Server Error" = "Erè Sèvè";
 
 /* No comment provided by engineer. */
 "Settings" = "Paramèt";
-
-/* Status level for issue being reported */
-"Something is broken but I can work around it" = "Gen yon bagay ki kase mwen mwen ka jere sa";
-
-/* Title for the subject field */
-"Subject" = "Sijè";
 
 /* No comment provided by engineer. */
 "Submitted" = "Soumèt";
@@ -249,9 +213,6 @@
 
 /* Directions in the admin view */
 "Tap to start viewing Canvas as another person." = "Tape pou kòmanse afiche Canvas tankou yon lòt moun.";
-
-/* Support Ticket Created Successfully */
-"Thanks, your request was received!" = "Mèsi, nou resevwa demann ou an!";
 
 /* Error message */
 "There are no actions for this item" = "Pa gen aksyon pou atik sa a";
@@ -274,12 +235,6 @@
 /* Unknown T`hreshold Description */
 "Unknown" = "Enkoni";
 
-/* Default name given a user until we find their real name */
-"Unknown User" = "Itilizatè Enkoni";
-
-/* Default user name, the computer-friendly version of their name, until we find their real user name */
-"Unknown User Name" = "Non Itilizatè Enkoni";
-
 /* No comment provided by engineer. */
 "Unread" = "Poko li";
 
@@ -289,15 +244,9 @@
 /* Header title of admin view */
 "Welcome!" = "Bienveni!";
 
-/* Title for field */
-"What can we do better?" = "Kisa nou ka amelyore?";
-
 /* Not Authorized Error Message */
 "You are unauthorized to access this information.  Check your user permissions and try again." = "Ou pa otorize pou gen aksè a enfòmasyon sa a. Verifye pèmisyon itilizatè ou epi eseye ankò.";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Ou dwe otorize notifikasyon nan Paramèt yo pou ka regle èd memwa yo.";
-
-/* Title for the email field */
-"Your Email" = "Imèl Ou";
 

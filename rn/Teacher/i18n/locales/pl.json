@@ -348,28 +348,31 @@
     "message": "Nie można uruchomić nagrywania"
   },
   "count_plural_0_0_students_one_student_other_studen_801f8933": {
-    "message": "{ count, plural,     =0 {0 uczestników}    one {# uczestnik}  other {# uczestnicy}}"
+    "message": "{ count, plural,\n     =0 {0 uczestników}\n    one {# uczestnik}\n  other {# uczestnicy}\n}"
   },
   "count_plural_one_like_other_likes_338617e5": {
     "message": "{ count, plural,\n    one {# polubienia}\n  other {# polubienia}\n}"
   },
   "count_plural_one_needs_grading_other_need_grading_45cd88a4": {
-    "message": "{ count, plural,    one {Wymaga oceny} few {Wymagają oceny} many {Wymagają oceny} other {Wymagają oceny}}"
+    "message": "{ count, plural,\n    one {Wymaga oceny}\n few {Wymagają oceny}\n many {Wymagają oceny}\n other {Wymagają oceny}\n}"
   },
   "count_plural_one_needs_grading_other_need_grading_7eba188e": {
-    "message": "{ count, plural,    one {# wymaga oceny} few {# wymagają oceny} many {# wymagają oceny} other {# wymagają oceny}}"
+    "message": "{ count, plural,\n    one {# wymaga oceny}\n few {# wymagają oceny}\n many {# wymagają oceny}\n other {# wymagają oceny}\n}"
   },
   "count_plural_one_pt_other_pts_c5a3bced": {
-    "message": "{ count, plural,    one {# pkt} few {# pkt} many {# pkt} other {# pkt}}"
+    "message": "{ count, plural,\n    one {# pkt}\n few {# pkt}\n many {# pkt}\n other {# pkt}\n}",
+    "description": "Number of points possible"
   },
   "count_plural_one_question_other_questions_309aafa": {
-    "message": "{ count, plural,    one {# pytanie} few {# pytań} many {# pytań} other {# pytań}}"
+    "message": "{ count, plural,\n    one {# pytanie}\n few {# pytań}\n many {# pytań}\n other {# pytań}\n}"
   },
   "count_plural_one_reply_other_replies_dbf1832a": {
-    "message": "{ count, plural,    one {# odpowiedź} few {# odpowiedzi} many {# odpowiedzi} other {# odpowiedzi}}"
+    "message": "{ count, plural,\n    one {# odpowiedź}\n few {# odpowiedzi}\n many {# odpowiedzi}\n other {# odpowiedzi}\n}",
+    "description": "Number of replies"
   },
   "count_plural_one_there_is_assignee_without_a_grade_15facb89": {
-    "message": "{ count, plural,    one {Istnieje # uczestnik bez oceny.} few {Istnieje # uczestników bez oceny.} many {Istnieje # uczestników bez oceny.} other {Istnieje # uczestników bez oceny.}}"
+    "message": "{ count, plural,\n    one {Istnieje # uczestnik bez oceny.}\n few {Istnieje # uczestników bez oceny.}\n many {Istnieje # uczestników bez oceny.}\n other {Istnieje # uczestników bez oceny.}\n}",
+    "description": "Number of assignees without grades."
   },
   "count_students_4ae780ca": {
     "message": "{ count } uczestnicy"
@@ -858,7 +861,7 @@
     "message": "min"
   },
   "minutes_plural_one_minute_other_minutes_e2adacfe": {
-    "message": "{ minutes, plural,    one {# min} few {# min} many {# min} other {# min}}"
+    "message": "{ minutes, plural,\n    one {# min}\n few {# min}\n many {# min}\n other {# min}\n}"
   },
   "missing_1a256b3b": {
     "message": "Brakuje"
@@ -885,7 +888,7 @@
     "message": "Nazwa"
   },
   "name_count_plural_one_other_other_others_f47e51c3": {
-    "message": "{ name } + { count, plural,    one {# inny}  other {# innych}}"
+    "message": "{ name } + { count, plural,\n    one {# inny}\n  other {# innych}\n}"
   },
   "names_count_more_643849d3": {
     "message": "{ names } + { count } więcej"
@@ -993,7 +996,7 @@
     "message": "Nic więcej do zrobienia."
   },
   "number_plural_one_minute_other_minutes_648ec0e1": {
-    "message": "{ number, plural,    one {# min} few {# min} many {# min} other {# min}}"
+    "message": "{ number, plural,\n    one {# min}\n few {# min}\n many {# min}\n other {# min}\n}"
   },
   "observer_248a192e": {
     "message": "Obserwator"
@@ -1269,7 +1272,7 @@
     "message": "Trwa wyszukiwanie..."
   },
   "seconds_plural_one_second_other_seconds_d33cf6e3": {
-    "message": "{ seconds, plural,    one {# s} few {# s} many {# s} other {# s}}"
+    "message": "{ seconds, plural,\n    one {# s}\n few {# s}\n many {# s}\n other {# s}\n}"
   },
   "section_sectionname_a455be11": {
     "message": "Sekcja: { sectionName }"
@@ -1552,6 +1555,9 @@
   },
   "this_group_does_not_have_a_submission_for_this_ass_ca275999": {
     "message": "Ta grupa nie ma żadnych przesłanych materiałów dla zadania."
+  },
+  "this_is_a_media_comment_2e395230": {
+    "message": "To komentarz w formie multimedialnej"
   },
   "this_is_your_personal_color_setting_only_you_will__e47dba70": {
     "message": "To jest twoje osobiste ustawienie koloru. Tylko ty będziesz widzieć ten kurs podczas kursu."

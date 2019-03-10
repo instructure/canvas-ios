@@ -348,28 +348,31 @@
     "message": "無法開始錄製"
   },
   "count_plural_0_0_students_one_student_other_studen_801f8933": {
-    "message": "{ count, plural,     =0 {0 學生}    one {# 學生}  other {# 學生}}"
+    "message": "{ count, plural,\n     =0 {0 學生}\n    one {# 學生}\n  other {# 學生}\n}"
   },
   "count_plural_one_like_other_likes_338617e5": {
     "message": "{ count, plural,\n    one {# 個「讚好」}\n  other {# 個「讚好」}\n}"
   },
   "count_plural_one_needs_grading_other_need_grading_45cd88a4": {
-    "message": "{ count, plural,    other {需要評分}}"
+    "message": "{ count, plural,\n    other {需要評分}\n}"
   },
   "count_plural_one_needs_grading_other_need_grading_7eba188e": {
-    "message": "{ count, plural,    other {# 需要評分}}"
+    "message": "{ count, plural,\n    other {# 需要評分}\n}"
   },
   "count_plural_one_pt_other_pts_c5a3bced": {
-    "message": "{ count, plural,    other {# 分數}}"
+    "message": "{ count, plural,\n    other {# 分數}\n}",
+    "description": "Number of points possible"
   },
   "count_plural_one_question_other_questions_309aafa": {
-    "message": "{ count, plural,    other {# 問題}}"
+    "message": "{ count, plural,\n    other {# 問題}\n}"
   },
   "count_plural_one_reply_other_replies_dbf1832a": {
-    "message": "{ count, plural,    other {# 回覆}}"
+    "message": "{ count, plural,\n    other {# 回覆}\n}",
+    "description": "Number of replies"
   },
   "count_plural_one_there_is_assignee_without_a_grade_15facb89": {
-    "message": "{ count, plural,    other {有 # 名沒有成績的獲配人。}}"
+    "message": "{ count, plural,\n    other {有 # 名沒有成績的獲配人。}\n}",
+    "description": "Number of assignees without grades."
   },
   "count_students_4ae780ca": {
     "message": "{ count } 學生"
@@ -858,7 +861,7 @@
     "message": "分鐘"
   },
   "minutes_plural_one_minute_other_minutes_e2adacfe": {
-    "message": "{ minutes, plural,    other {# 分鐘}}"
+    "message": "{ minutes, plural,\n    other {# 分鐘}\n}"
   },
   "missing_1a256b3b": {
     "message": "缺少"
@@ -885,7 +888,7 @@
     "message": "名稱"
   },
   "name_count_plural_one_other_other_others_f47e51c3": {
-    "message": "{ name } + { count, plural,    one {# 其他}  other {# 其他}}"
+    "message": "{ name } + { count, plural,\n    one {# 其他}\n  other {# 其他}\n}"
   },
   "names_count_more_643849d3": {
     "message": "{ names } + { count } 更多"
@@ -993,7 +996,7 @@
     "message": "沒有待辦事項。"
   },
   "number_plural_one_minute_other_minutes_648ec0e1": {
-    "message": "{ number, plural,    other {# 分鐘}}"
+    "message": "{ number, plural,\n    other {# 分鐘}\n}"
   },
   "observer_248a192e": {
     "message": "觀察者"
@@ -1269,7 +1272,7 @@
     "message": "正在搜尋..."
   },
   "seconds_plural_one_second_other_seconds_d33cf6e3": {
-    "message": "{ seconds, plural,    other {# 秒}}"
+    "message": "{ seconds, plural,\n    other {# 秒}\n}"
   },
   "section_sectionname_a455be11": {
     "message": "分班：{ sectionName }"
@@ -1552,6 +1555,9 @@
   },
   "this_group_does_not_have_a_submission_for_this_ass_ca275999": {
     "message": "本群組沒有該作業的提交項目。"
+  },
+  "this_is_a_media_comment_2e395230": {
+    "message": "這是媒體評論"
   },
   "this_is_your_personal_color_setting_only_you_will__e47dba70": {
     "message": "這是您的個人顏色設定。只有您會看見本課程顏色。"

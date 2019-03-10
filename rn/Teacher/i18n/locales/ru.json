@@ -348,28 +348,31 @@
     "message": "Невозможно начать запись"
   },
   "count_plural_0_0_students_one_student_other_studen_801f8933": {
-    "message": "{ count, plural,     =0 {0 студентов}    one {# студент}  other {# студенты}}"
+    "message": "{ count, plural,\n     =0 {0 студентов}\n    one {# студент}\n  other {# студенты}\n}"
   },
   "count_plural_one_like_other_likes_338617e5": {
     "message": "{ count, plural,\n    one {# хотят}\n  other {# хочет}\n}"
   },
   "count_plural_one_needs_grading_other_need_grading_45cd88a4": {
-    "message": "{ count, plural,    one {Требует оценки} few {Требуют оценки} many {Требуют оценки} other {Требуют оценки}}"
+    "message": "{ count, plural,\n    one {Требует оценки}\n few {Требуют оценки}\n many {Требуют оценки}\n other {Требуют оценки}\n}"
   },
   "count_plural_one_needs_grading_other_need_grading_7eba188e": {
-    "message": "{ count, plural,    one {# требует оценки} few {# требуют оценки} many {# требуют оценки} other {# требуют оценки}}"
+    "message": "{ count, plural,\n    one {# требует оценки}\n few {# требуют оценки}\n many {# требуют оценки}\n other {# требуют оценки}\n}"
   },
   "count_plural_one_pt_other_pts_c5a3bced": {
-    "message": "{ count, plural,    one {# балл} few {# балла/баллов} many {# балла/баллов} other {# балла/баллов}}"
+    "message": "{ count, plural,\n    one {# балл}\n few {# балла/баллов}\n many {# балла/баллов}\n other {# балла/баллов}\n}",
+    "description": "Number of points possible"
   },
   "count_plural_one_question_other_questions_309aafa": {
-    "message": "{ count, plural,    one {# вопрос} few {# вопроса/вопросов} many {# вопроса/вопросов} other {# вопроса/вопросов}}"
+    "message": "{ count, plural,\n    one {# вопрос}\n few {# вопроса/вопросов}\n many {# вопроса/вопросов}\n other {# вопроса/вопросов}\n}"
   },
   "count_plural_one_reply_other_replies_dbf1832a": {
-    "message": "{ count, plural,    one {# ответ} few {# ответа/ответов} many {# ответа/ответов} other {# ответа/ответов}}"
+    "message": "{ count, plural,\n    one {# ответ}\n few {# ответа/ответов}\n many {# ответа/ответов}\n other {# ответа/ответов}\n}",
+    "description": "Number of replies"
   },
   "count_plural_one_there_is_assignee_without_a_grade_15facb89": {
-    "message": "{ count, plural,    one {Имеется # получатель без оценки.} few {Имеется # получателей без оценки.} many {Имеется # получателей без оценки.} other {Имеется # получателей без оценки.}}"
+    "message": "{ count, plural,\n    one {Имеется # получатель без оценки.}\n few {Имеется # получателей без оценки.}\n many {Имеется # получателей без оценки.}\n other {Имеется # получателей без оценки.}\n}",
+    "description": "Number of assignees without grades."
   },
   "count_students_4ae780ca": {
     "message": "{ count } студенты"
@@ -858,7 +861,7 @@
     "message": "мин."
   },
   "minutes_plural_one_minute_other_minutes_e2adacfe": {
-    "message": "{ minutes, plural,    one {# минута} few {# минут/минуты} many {# минут/минуты} other {# минут/минуты}}"
+    "message": "{ minutes, plural,\n    one {# минута}\n few {# минут/минуты}\n many {# минут/минуты}\n other {# минут/минуты}\n}"
   },
   "missing_1a256b3b": {
     "message": "Отсутствует"
@@ -885,7 +888,7 @@
     "message": "Имя"
   },
   "name_count_plural_one_other_other_others_f47e51c3": {
-    "message": "{ name } + { count, plural,    one {# другое}  other {# другие}}"
+    "message": "{ name } + { count, plural,\n    one {# другое}\n  other {# другие}\n}"
   },
   "names_count_more_643849d3": {
     "message": "{ names } + { count } дополнительно"
@@ -993,7 +996,7 @@
     "message": "Все задания выполнены."
   },
   "number_plural_one_minute_other_minutes_648ec0e1": {
-    "message": "{ number, plural,    one {# минута} few {# минут/минуты} many {# минут/минуты} other {# минут/минуты}}"
+    "message": "{ number, plural,\n    one {# минута}\n few {# минут/минуты}\n many {# минут/минуты}\n other {# минут/минуты}\n}"
   },
   "observer_248a192e": {
     "message": "Наблюдатель"
@@ -1269,7 +1272,7 @@
     "message": "Идет поиск..."
   },
   "seconds_plural_one_second_other_seconds_d33cf6e3": {
-    "message": "{ seconds, plural,    one {# секунда} few {# секунды/секунд} many {# секунды/секунд} other {# секунды/секунд}}"
+    "message": "{ seconds, plural,\n    one {# секунда}\n few {# секунды/секунд}\n many {# секунды/секунд}\n other {# секунды/секунд}\n}"
   },
   "section_sectionname_a455be11": {
     "message": "Раздел: { sectionName }"
@@ -1552,6 +1555,9 @@
   },
   "this_group_does_not_have_a_submission_for_this_ass_ca275999": {
     "message": "Эта группа не имеет отправки для этого задания."
+  },
+  "this_is_a_media_comment_2e395230": {
+    "message": "Это мультимедийный комментарий"
   },
   "this_is_your_personal_color_setting_only_you_will__e47dba70": {
     "message": "Это ваша персональная настройка цвета. Только вы будет видеть этот цвет для курса."
