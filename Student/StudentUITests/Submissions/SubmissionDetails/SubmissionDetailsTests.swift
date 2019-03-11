@@ -18,7 +18,7 @@ import Foundation
 @testable import Core
 import TestsFoundation
 
-class SubmissionDetailsPageTest: StudentTest {
+class SubmissionDetailsTests: StudentTest {
     let page = SubmissionDetailsPage.self
     let assignmentDetailsPage = AssignmentDetailsPage.self
 
@@ -84,7 +84,7 @@ class SubmissionDetailsPageTest: StudentTest {
 
     func testPDFSubmission() {
         let assignment = seedClient.createAssignment(for: course, submissionTypes: [ .online_upload ], allowedExtensions: [ "pdf" ])
-        let file = seedClient.uploadFile(url: Bundle(for: SubmissionDetailsPageTest.self).url(forResource: "empty", withExtension: "pdf")!, for: assignment, as: student)
+        let file = seedClient.uploadFile(url: Bundle(for: SubmissionDetailsTests.self).url(forResource: "empty", withExtension: "pdf")!, for: assignment, as: student)
         let submission = seedClient.submit(assignment: assignment, context: ContextModel(.course, id: course.id), as: student, submissionType: .online_upload, fileIDs: [ file.id.value ])
         let session = seedClient.createDocViewerSession(for: submission.attachments![0], as: student)
         seedClient.pollForDocViewerMetadata(session: session)
@@ -107,7 +107,7 @@ class SubmissionDetailsPageTest: StudentTest {
 
     func testPDFAnnotations() {
         let assignment = seedClient.createAssignment(for: course, submissionTypes: [ .online_upload ], allowedExtensions: [ "pdf" ])
-        let file = seedClient.uploadFile(url: Bundle(for: SubmissionDetailsPageTest.self).url(forResource: "empty", withExtension: "pdf")!, for: assignment, as: student)
+        let file = seedClient.uploadFile(url: Bundle(for: SubmissionDetailsTests.self).url(forResource: "empty", withExtension: "pdf")!, for: assignment, as: student)
         seedClient.submit(assignment: assignment, context: ContextModel(.course, id: course.id), as: student, submissionType: .online_upload, fileIDs: [ file.id.value ])
 
         let submission = seedClient.makeRequest(GetSubmissionRequest(context: ContextModel(.course, id: course.id), assignmentID: assignment.id.value, userID: student.id), with: teacher.token)

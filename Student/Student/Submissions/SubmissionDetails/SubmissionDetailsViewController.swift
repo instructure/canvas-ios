@@ -18,15 +18,16 @@ import Foundation
 import UIKit
 import Core
 
-class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewProtocol, ColoredNavViewProtocol {
+class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewProtocol {
     var color: UIColor?
     var presenter: SubmissionDetailsPresenter?
     var titleSubtitleView = TitleSubtitleView.create()
     var contentViewController: UIViewController?
+    var drawerContentViewController: UIViewController?
     var env: AppEnvironment?
-    var selectedAttempt = 0
 
     @IBOutlet weak var contentView: UIView?
+    @IBOutlet weak var drawer: Drawer?
     @IBOutlet weak var emptyView: SubmissionDetailsEmptyView?
     @IBOutlet weak var pickerButton: DynamicButton?
     @IBOutlet weak var pickerButtonArrow: IconView?
@@ -42,6 +43,7 @@ class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewPr
 
     override func viewDidLoad() {
         setupTitleViewInNavbar(title: NSLocalizedString("Submission", bundle: .student, comment: ""))
+        drawer?.tabs?.addTarget(self, action: #selector(drawerTabChanged), for: .valueChanged)
         picker?.dataSource = self
         picker?.delegate = self
         presenter?.viewIsReady()
@@ -53,10 +55,11 @@ class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewPr
         }
         picker?.reloadAllComponents()
 
-        let submission = presenter.submissionFor(attempt: selectedAttempt)
+        let submission = presenter.currentSubmission
 
         let isSubmitted = submission?.workflowState != .unsubmitted
         contentView?.isHidden = !isSubmitted && !assignment.isExternalToolAssignment
+        drawer?.fileCount = submission?.attachments?.count ?? 0
         emptyView?.isHidden = isSubmitted || assignment.isExternalToolAssignment
         emptyView?.dueText = assignment.assignmentDueByText
         pickerButton?.isHidden = !isSubmitted
@@ -78,7 +81,7 @@ class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewPr
         self.updateNavBar(subtitle: assignment.name, color: course.color)
     }
 
-    func embed() {
+    func embed(_ controller: UIViewController?) {
         if let old = contentViewController {
             navigationItem.rightBarButtonItems = []
             old.willMove(toParent: nil)
@@ -87,7 +90,8 @@ class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewPr
             old.didMove(toParent: nil)
         }
 
-        guard let contentView = contentView, let controller = presenter?.viewControllerFor(attempt: selectedAttempt), let view = controller.view else { return }
+        contentViewController = controller
+        guard let contentView = contentView, let controller = contentViewController, let view = controller.view else { return }
 
         controller.willMove(toParent: self)
         contentView.addSubview(view)
@@ -97,8 +101,29 @@ class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewPr
         contentViewController = controller
     }
 
-    func showError(_ error: Error) {
-        assertionFailure(error.localizedDescription)
+    func embedInDrawer(_ controller: UIViewController?) {
+        if let old = drawerContentViewController {
+            old.willMove(toParent: nil)
+            old.removeFromParent()
+            old.view.removeFromSuperview()
+            old.didMove(toParent: nil)
+        }
+
+        drawerContentViewController = controller
+        guard let contentView = drawer?.contentView, let controller = drawerContentViewController, let view = controller.view else { return }
+
+        controller.willMove(toParent: self)
+        contentView.addSubview(view)
+        view.pin(inside: contentView)
+        addChild(controller)
+        controller.didMove(toParent: self)
+    }
+
+    @IBAction func drawerTabChanged(_ sender: UISegmentedControl) {
+        presenter?.select(drawerTab: Drawer.Tab(rawValue: sender.selectedSegmentIndex))
+        if let drawer = drawer, drawer.height == 0 {
+            drawer.moveTo(height: drawer.midDrawerHeight, velocity: 1)
+        }
     }
 
     @IBAction func pickerButtonTapped(_ sender: Any) {
@@ -132,8 +157,6 @@ extension SubmissionDetailsViewController: UIPickerViewDataSource, UIPickerViewD
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedAttempt = presenter?.submissions[row]?.attempt ?? 0
-        self.reload()
-        self.embed()
+        presenter?.select(submissionIndex: row)
     }
 }

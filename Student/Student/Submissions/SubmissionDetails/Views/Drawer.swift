@@ -19,6 +19,11 @@ import QuartzCore
 import Core
 
 class Drawer: UIView {
+    enum Tab: Int {
+        case comments
+        case files
+        case rubric
+    }
 
     @IBOutlet weak var drawer: UIView?
     @IBOutlet weak var drawerControls: UIView?
@@ -41,6 +46,13 @@ class Drawer: UIView {
         return maxDrawerHeight / 2
     }()
 
+    var fileCount: Int = 0 {
+        didSet {
+            let title = String.localizedStringWithFormat(NSLocalizedString("Files (%d)", bundle: .student, comment: ""), fileCount)
+            tabs?.setTitle(title, forSegmentAt: Tab.files.rawValue)
+        }
+    }
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         Bundle.loadView(for: self)
@@ -53,9 +65,10 @@ class Drawer: UIView {
         drawer?.backgroundColor = UIColor.clear
 
         gripper?.layer.cornerRadius = 2
-        tabs?.setTitle(NSLocalizedString("Comments", bundle: .student, comment: ""), forSegmentAt: 0)
-        tabs?.setTitle(NSLocalizedString("Files", bundle: .student, comment: ""), forSegmentAt: 1)
-        tabs?.setTitle(NSLocalizedString("Rubric", bundle: .student, comment: ""), forSegmentAt: 2)
+        tabs?.accessibilityIdentifier = "SubmissionDetailsElement.drawerSegmentedControl"
+        tabs?.setTitle(NSLocalizedString("Comments", bundle: .student, comment: ""), forSegmentAt: Tab.comments.rawValue)
+        tabs?.setTitle(NSLocalizedString("Files", bundle: .student, comment: ""), forSegmentAt: Tab.files.rawValue)
+        tabs?.setTitle(NSLocalizedString("Rubric", bundle: .student, comment: ""), forSegmentAt: Tab.rubric.rawValue)
     }
 
     override func layoutSubviews() {
