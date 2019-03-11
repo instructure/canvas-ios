@@ -64,17 +64,11 @@
 /* Percent value is under 0 */
 "Cannot use percent that is less than 0" = "Weniger als 0% sind nicht zulässig.";
 
-/* Cancel the question/suggestion form */
-"Casual question or suggestion" = "Beiläufige Frage oder Vorschlag";
-
 /* Empty Alerts Text */
 "Caught up on Alerts" = "Über Alarmsignale informiert";
 
 /* No comment provided by engineer. */
 "Choose a student" = "Wählen Sie einen Studenten";
-
-/* title for status selection field */
-"Choose One" = "Eine auswählen";
 
 /* Close Button Title */
 "Close" = "Schließen";
@@ -94,9 +88,6 @@
 /* No comment provided by engineer. */
 "Current student: %@, tap to switch students" = "Aktueller Student: %@Tippen Sie zum Wechseln des Studenten.";
 
-/* Title for field */
-"Describe your problem" = "Bitte beschreiben Sie Ihr Problem";
-
 /* No comment provided by engineer. */
 "Discussion" = "Diskussion";
 
@@ -115,23 +106,11 @@
 /* No comment provided by engineer. */
 "Excused" = "Entschuldigt";
 
-/* Status level for issue being reported */
-"Extremely critical emergency" = "Sehr kritischer Notfall";
-
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "Gute Aufgabennote kann nicht schlechter sein als schlechte Aufgabennote";
 
 /* High Course Grade too Low */
 "High course grade cannot be lower than low course grade" = "Gute Kursnote kann nicht schlechter sein als schlechte Kursnote";
-
-/* Status level for issue being reported */
-"I can't get things done until fixed" = "Ich kann nicht weiterarbeiten, solange das Problem besteht";
-
-/* Status level for issue being reported */
-"I need help but it's not urgent" = "Ich benötige zwar Hilfe, es eilt jedoch nicht";
-
-/* Impact Title */
-"Impact:" = "Auswirkung:";
 
 /* No comment provided by engineer. */
 "In-Class" = "Klassenintern";
@@ -141,9 +120,6 @@
 
 /* Title for an alert view */
 "Invalid Input" = "Unzulässige Eingabe";
-
-/* Support Ticket Invalid Input Message */
-"Invalid Input.  Check fields and try again." = "Unzulässige Eingabe.  Bitte überprüfen Sie alle Felder und versuchen Sie es erneut.";
 
 /* Last Week Button Accessibility Label */
 "Last Week" = "Letzte Woche";
@@ -214,26 +190,14 @@
 /* No comment provided by engineer. */
 "Quiz" = "Quiz";
 
-/* Support Ticket Creation Failed */
-"Request Failed!  Check network and try again!" = "Anfrage fehlgeschlagen.  Bitte überprüfen Sie das Netzwerk, und versuchen Sie es erneut.";
-
 /* Not Found Error Message */
 "Resource not found.  Please try again." = "Ressource nicht gefunden. Bitte versuchen Sie es erneut.";
-
-/* Select Impact Placeholder */
-"Select Impact" = "Auswirkung auswählen";
 
 /* Server Error Title */
 "Server Error" = "Serverfehler";
 
 /* No comment provided by engineer. */
 "Settings" = "Einstellungen";
-
-/* Status level for issue being reported */
-"Something is broken but I can work around it" = "Es liegt zwar ein Problem vor, aber ich kann es umgehen";
-
-/* Title for the subject field */
-"Subject" = "Betreff";
 
 /* No comment provided by engineer. */
 "Submitted" = "Eingereicht";
@@ -249,9 +213,6 @@
 
 /* Directions in the admin view */
 "Tap to start viewing Canvas as another person." = "Tippen Sie, um zu beginnen, Canvas als eine andere Person zu sehen";
-
-/* Support Ticket Created Successfully */
-"Thanks, your request was received!" = "Danke sehr. Wir haben Ihre Anfrage erhalten.";
 
 /* Error message */
 "There are no actions for this item" = "Für dieses Element gibt es keine Handlungen";
@@ -274,12 +235,6 @@
 /* Unknown T`hreshold Description */
 "Unknown" = "Unbekannt";
 
-/* Default name given a user until we find their real name */
-"Unknown User" = "Unbekannter Benutzer";
-
-/* Default user name, the computer-friendly version of their name, until we find their real user name */
-"Unknown User Name" = "Unbekannter Benutzername";
-
 /* No comment provided by engineer. */
 "Unread" = "Ungelesen";
 
@@ -289,15 +244,9 @@
 /* Header title of admin view */
 "Welcome!" = "Willkommen!";
 
-/* Title for field */
-"What can we do better?" = "Was können wir besser machen?";
-
 /* Not Authorized Error Message */
 "You are unauthorized to access this information.  Check your user permissions and try again." = "Sie sind nicht autorisiert, diese Informationen abzurufen. Überprüfen Sie Ihre Benutzerberechtigungen und versuchen Sie es erneut.";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Sie müssen in den Einstellungen die Option Benachrichtigungen erlauben, um Erinnerungen zu verwenden.";
-
-/* Title for the email field */
-"Your Email" = "Ihre E-Mail";
 

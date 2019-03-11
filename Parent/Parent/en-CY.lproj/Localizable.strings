@@ -64,17 +64,11 @@
 /* Percent value is under 0 */
 "Cannot use percent that is less than 0" = "Cannot use per cent that is less than 0";
 
-/* Cancel the question/suggestion form */
-"Casual question or suggestion" = "Casual question or suggestion";
-
 /* Empty Alerts Text */
 "Caught up on Alerts" = "Caught up on alerts";
 
 /* No comment provided by engineer. */
 "Choose a student" = "Choose a student";
-
-/* title for status selection field */
-"Choose One" = "Choose one";
 
 /* Close Button Title */
 "Close" = "Close";
@@ -94,9 +88,6 @@
 /* No comment provided by engineer. */
 "Current student: %@, tap to switch students" = "Current student: %@, tap to switch students";
 
-/* Title for field */
-"Describe your problem" = "Describe your problem";
-
 /* No comment provided by engineer. */
 "Discussion" = "Discussion";
 
@@ -115,23 +106,11 @@
 /* No comment provided by engineer. */
 "Excused" = "Excused";
 
-/* Status level for issue being reported */
-"Extremely critical emergency" = "Extremely critical emergency";
-
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "High assignment mark cannot be lower than low assignment mark";
 
 /* High Course Grade too Low */
 "High course grade cannot be lower than low course grade" = "High module mark cannot be lower than low module mark";
-
-/* Status level for issue being reported */
-"I can't get things done until fixed" = "I cannot get things done until fixed";
-
-/* Status level for issue being reported */
-"I need help but it's not urgent" = "I need help but it's not urgent";
-
-/* Impact Title */
-"Impact:" = "Impact:";
 
 /* No comment provided by engineer. */
 "In-Class" = "In-class";
@@ -141,9 +120,6 @@
 
 /* Title for an alert view */
 "Invalid Input" = "Invalid input";
-
-/* Support Ticket Invalid Input Message */
-"Invalid Input.  Check fields and try again." = "Invalid input.  Check fields and try again.";
 
 /* Last Week Button Accessibility Label */
 "Last Week" = "Last week";
@@ -214,26 +190,14 @@
 /* No comment provided by engineer. */
 "Quiz" = "Quiz";
 
-/* Support Ticket Creation Failed */
-"Request Failed!  Check network and try again!" = "Request failed  Check network and try again!";
-
 /* Not Found Error Message */
 "Resource not found.  Please try again." = "Resource not found. Please try again.";
-
-/* Select Impact Placeholder */
-"Select Impact" = "Select impact";
 
 /* Server Error Title */
 "Server Error" = "Server error";
 
 /* No comment provided by engineer. */
 "Settings" = "Settings";
-
-/* Status level for issue being reported */
-"Something is broken but I can work around it" = "Something is broken but I can work around it";
-
-/* Title for the subject field */
-"Subject" = "Subject";
 
 /* No comment provided by engineer. */
 "Submitted" = "Submitted";
@@ -249,9 +213,6 @@
 
 /* Directions in the admin view */
 "Tap to start viewing Canvas as another person." = "Tap to start viewing Canvas as another person.";
-
-/* Support Ticket Created Successfully */
-"Thanks, your request was received!" = "Thanks, your request was received.";
 
 /* Error message */
 "There are no actions for this item" = "There are no actions for this item";
@@ -274,12 +235,6 @@
 /* Unknown T`hreshold Description */
 "Unknown" = "Unknown";
 
-/* Default name given a user until we find their real name */
-"Unknown User" = "Unknown user";
-
-/* Default user name, the computer-friendly version of their name, until we find their real user name */
-"Unknown User Name" = "Unknown user name";
-
 /* No comment provided by engineer. */
 "Unread" = "Unread";
 
@@ -289,15 +244,9 @@
 /* Header title of admin view */
 "Welcome!" = "Welcome!";
 
-/* Title for field */
-"What can we do better?" = "What can we do better?";
-
 /* Not Authorized Error Message */
 "You are unauthorized to access this information.  Check your user permissions and try again." = "You are unauthorised to access this information. Check your user permissions and try again.";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "You must allow notifications in settings to set reminders.";
-
-/* Title for the email field */
-"Your Email" = "Your email";
 

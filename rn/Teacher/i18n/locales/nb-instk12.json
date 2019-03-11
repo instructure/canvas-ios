@@ -1197,7 +1197,7 @@
     "message": "Svar"
   },
   "replies_are_only_visible_to_those_who_have_posted__30e58953": {
-    "message": "Svar er bare synlige for de som har lagt inn minst ett svar"
+    "message": "Svar er bare synlige for de som har lagt inn minst ett svar."
   },
   "reply_389d6fb9": {
     "message": "Svar"
@@ -1555,6 +1555,9 @@
   },
   "this_group_does_not_have_a_submission_for_this_ass_ca275999": {
     "message": "Denne gruppen har ikke en innlevering for denne oppgaven."
+  },
+  "this_is_a_media_comment_2e395230": {
+    "message": "Dette er en mediekommentar"
   },
   "this_is_your_personal_color_setting_only_you_will__e47dba70": {
     "message": "Dette er din personlige fargeinnstilling. Bare du vil se denne fargen for faget."

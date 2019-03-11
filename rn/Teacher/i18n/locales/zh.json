@@ -348,28 +348,31 @@
     "message": "无法开始录制"
   },
   "count_plural_0_0_students_one_student_other_studen_801f8933": {
-    "message": "{ count, plural,     =0 {0 位学生}    one {# 位学生}  other {# 位学生}}"
+    "message": "{ count, plural,\n     =0 {0 位学生}\n    one {# 位学生}\n  other {# 位学生}\n}"
   },
   "count_plural_one_like_other_likes_338617e5": {
     "message": "{ count, plural,\n    one {#个赞}\n  other {#个赞}\n}"
   },
   "count_plural_one_needs_grading_other_need_grading_45cd88a4": {
-    "message": "{ count, plural,    other {需要评分}}"
+    "message": "{ count, plural,\n    other {需要评分}\n}"
   },
   "count_plural_one_needs_grading_other_need_grading_7eba188e": {
-    "message": "{ count, plural,    other {#需要评分}}"
+    "message": "{ count, plural,\n    other {#需要评分}\n}"
   },
   "count_plural_one_pt_other_pts_c5a3bced": {
-    "message": "{ count, plural,    other {#得分}}"
+    "message": "{ count, plural,\n    other {#得分}\n}",
+    "description": "Number of points possible"
   },
   "count_plural_one_question_other_questions_309aafa": {
-    "message": "{ count, plural,    other {#问题}}"
+    "message": "{ count, plural,\n    other {#问题}\n}"
   },
   "count_plural_one_reply_other_replies_dbf1832a": {
-    "message": "{ count, plural,    other {#回复}}"
+    "message": "{ count, plural,\n    other {#回复}\n}",
+    "description": "Number of replies"
   },
   "count_plural_one_there_is_assignee_without_a_grade_15facb89": {
-    "message": "{ count, plural,    other {有#个被指定人员没有评分。}}"
+    "message": "{ count, plural,\n    other {有#个被指定人员没有评分。}\n}",
+    "description": "Number of assignees without grades."
   },
   "count_students_4ae780ca": {
     "message": "{ count } 学生"
@@ -858,7 +861,7 @@
     "message": "分钟"
   },
   "minutes_plural_one_minute_other_minutes_e2adacfe": {
-    "message": "{ minutes, plural,    other {#分钟}}"
+    "message": "{ minutes, plural,\n    other {#分钟}\n}"
   },
   "missing_1a256b3b": {
     "message": "丢失"
@@ -885,7 +888,7 @@
     "message": "名称、名字"
   },
   "name_count_plural_one_other_other_others_f47e51c3": {
-    "message": "{ name } + { count, plural,    one {#其他}  other {#其他}}"
+    "message": "{ name } + { count, plural,\n    one {#其他}\n  other {#其他}\n}"
   },
   "names_count_more_643849d3": {
     "message": "{ names } + 另外{ count }"
@@ -993,7 +996,7 @@
     "message": "没有更多操作。"
   },
   "number_plural_one_minute_other_minutes_648ec0e1": {
-    "message": "{ number, plural,    other {#分钟}}"
+    "message": "{ number, plural,\n    other {#分钟}\n}"
   },
   "observer_248a192e": {
     "message": "观察员"
@@ -1269,7 +1272,7 @@
     "message": "正在搜索..."
   },
   "seconds_plural_one_second_other_seconds_d33cf6e3": {
-    "message": "{ seconds, plural,    other {#秒}}"
+    "message": "{ seconds, plural,\n    other {#秒}\n}"
   },
   "section_sectionname_a455be11": {
     "message": "分组：{ sectionName }"
@@ -1552,6 +1555,9 @@
   },
   "this_group_does_not_have_a_submission_for_this_ass_ca275999": {
     "message": "此组没有此作业的提交项。"
+  },
+  "this_is_a_media_comment_2e395230": {
+    "message": "这是一条媒体评论"
   },
   "this_is_your_personal_color_setting_only_you_will__e47dba70": {
     "message": "这是您的个人颜色设置。只有您自己可以看到此课程颜色。"
