@@ -83,9 +83,9 @@ class SubmissionDetailsPresenter {
             selectedFileID = submission?.attachments?.sorted(by: { $0.id < $1.id }).first?.id
         }
 
-        let assignmentChanged = (assignment != currentAssignment)
-        let fileIDChanged = (currentFileID != selectedFileID)
-        let submissionChanged = (submission != currentSubmission)
+        let assignmentChanged = assignment != currentAssignment
+        let fileIDChanged = currentFileID != selectedFileID
+        let submissionChanged = submission != currentSubmission
         currentAssignment = assignment
         currentFileID = selectedFileID
         currentSubmission = submission
