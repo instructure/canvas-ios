@@ -348,28 +348,31 @@
     "message": "تعذر بدء التسجيل"
   },
   "count_plural_0_0_students_one_student_other_studen_801f8933": {
-    "message": "{ count, plural,     =0 {0 طلاب}    one {# طالب}  other {# طلاب}}"
+    "message": "{ count, plural,\n     =0 {0 طلاب}\n    one {# طالب}\n  other {# طلاب}\n}"
   },
   "count_plural_one_like_other_likes_338617e5": {
     "message": "{ count, plural,\n    one {# إعجاب}\n  other {# إعجابات}\n}"
   },
   "count_plural_one_needs_grading_other_need_grading_45cd88a4": {
-    "message": "{ count, plural,    zero {بحاجة إلى تقييم} one {بحاجة إلى تقييم} two {بحاجة إلى تقييم} few {بحاجة إلى تقييم} many {بحاجة إلى تقييم} other {بحاجة إلى تقييم}}"
+    "message": "{ count, plural,\n    zero {بحاجة إلى تقييم}\n one {بحاجة إلى تقييم}\n two {بحاجة إلى تقييم}\n few {بحاجة إلى تقييم}\n many {بحاجة إلى تقييم}\n other {بحاجة إلى تقييم}\n}"
   },
   "count_plural_one_needs_grading_other_need_grading_7eba188e": {
-    "message": "{ count, plural,    zero {# بحاجة إلى تقييم} one {# بحاجة إلى تقييم} two {# بحاجة إلى تقييم} few {# بحاجة إلى تقييم} many {# بحاجة إلى تقييم} other {# بحاجة إلى تقييم}}"
+    "message": "{ count, plural,\n    zero {# بحاجة إلى تقييم}\n one {# بحاجة إلى تقييم}\n two {# بحاجة إلى تقييم}\n few {# بحاجة إلى تقييم}\n many {# بحاجة إلى تقييم}\n other {# بحاجة إلى تقييم}\n}"
   },
   "count_plural_one_pt_other_pts_c5a3bced": {
-    "message": "{ count, plural,    zero {# نقاط} one {# نقطة} two {# نقاط} few {# نقاط} many {# نقاط} other {# نقاط}}"
+    "message": "{ count, plural,\n    zero {# نقاط}\n one {# نقطة}\n two {# نقاط}\n few {# نقاط}\n many {# نقاط}\n other {# نقاط}\n}",
+    "description": "Number of points possible"
   },
   "count_plural_one_question_other_questions_309aafa": {
-    "message": "{ count, plural,    zero {# الأسئلة} one {# السؤال} two {# الأسئلة} few {# الأسئلة} many {# الأسئلة} other {# الأسئلة}}"
+    "message": "{ count, plural,\n    zero {# الأسئلة}\n one {# السؤال}\n two {# الأسئلة}\n few {# الأسئلة}\n many {# الأسئلة}\n other {# الأسئلة}\n}"
   },
   "count_plural_one_reply_other_replies_dbf1832a": {
-    "message": "{ count, plural,    zero {# ردود} one {# رد} two {# ردود} few {# ردود} many {# ردود} other {# ردود}}"
+    "message": "{ count, plural,\n    zero {# ردود}\n one {# رد}\n two {# ردود}\n few {# ردود}\n many {# ردود}\n other {# ردود}\n}",
+    "description": "Number of replies"
   },
   "count_plural_one_there_is_assignee_without_a_grade_15facb89": {
-    "message": "{ count, plural,    zero {يوجد # معينين دون درجات.} one {يوجد # معين دون درجة.} two {يوجد # معينين دون درجات.} few {يوجد # معينين دون درجات.} many {يوجد # معينين دون درجات.} other {يوجد # معينين دون درجات.}}"
+    "message": "{ count, plural,\n    zero {يوجد # معينين دون درجات.}\n one {يوجد # معين دون درجة.}\n two {يوجد # معينين دون درجات.}\n few {يوجد # معينين دون درجات.}\n many {يوجد # معينين دون درجات.}\n other {يوجد # معينين دون درجات.}\n}",
+    "description": "Number of assignees without grades."
   },
   "count_students_4ae780ca": {
     "message": "{ count } طلاب"
@@ -858,7 +861,7 @@
     "message": "دقائق"
   },
   "minutes_plural_one_minute_other_minutes_e2adacfe": {
-    "message": "{ minutes, plural,    zero {# دقائق} one {# دقيقة} two {# دقائق} few {# دقائق} many {# دقائق} other {# دقائق}}"
+    "message": "{ minutes, plural,\n    zero {# دقائق}\n one {# دقيقة}\n two {# دقائق}\n few {# دقائق}\n many {# دقائق}\n other {# دقائق}\n}"
   },
   "missing_1a256b3b": {
     "message": "غير منجزة"
@@ -885,7 +888,7 @@
     "message": "الاسم"
   },
   "name_count_plural_one_other_other_others_f47e51c3": {
-    "message": "{ name } + { count, plural,    one {# آخر}  other {# أخرى}}"
+    "message": "{ name } + { count, plural,\n    one {# آخر}\n  other {# أخرى}\n}"
   },
   "names_count_more_643849d3": {
     "message": "{ names } + { count } المزيد"
@@ -993,7 +996,7 @@
     "message": "لا يوجد شيء آخر يمكن فعله."
   },
   "number_plural_one_minute_other_minutes_648ec0e1": {
-    "message": "{ number, plural,    zero {# دقائق} one {# دقيقة} two {# دقائق} few {# دقائق} many {# دقائق} other {# دقائق}}"
+    "message": "{ number, plural,\n    zero {# دقائق}\n one {# دقيقة}\n two {# دقائق}\n few {# دقائق}\n many {# دقائق}\n other {# دقائق}\n}"
   },
   "observer_248a192e": {
     "message": "ملاحظ"
@@ -1269,7 +1272,7 @@
     "message": "جارٍ البحث..."
   },
   "seconds_plural_one_second_other_seconds_d33cf6e3": {
-    "message": "{ seconds, plural,    zero {# ثواني} one {# ثانية} two {# ثواني} few {# ثواني} many {# ثواني} other {# ثواني}}"
+    "message": "{ seconds, plural,\n    zero {# ثواني}\n one {# ثانية}\n two {# ثواني}\n few {# ثواني}\n many {# ثواني}\n other {# ثواني}\n}"
   },
   "section_sectionname_a455be11": {
     "message": "القسم: { sectionName }"
@@ -1552,6 +1555,9 @@
   },
   "this_group_does_not_have_a_submission_for_this_ass_ca275999": {
     "message": "لا تشتمل هذه المجموعة على إرسال لهذه المهمة."
+  },
+  "this_is_a_media_comment_2e395230": {
+    "message": "هذا تعليق وسائط"
   },
   "this_is_your_personal_color_setting_only_you_will__e47dba70": {
     "message": "هذا إعداد اللون الشخصي الخاص بك. أنت فقط من سترى هذا اللون للمساق."

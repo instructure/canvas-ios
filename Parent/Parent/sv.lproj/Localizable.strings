@@ -64,17 +64,11 @@
 /* Percent value is under 0 */
 "Cannot use percent that is less than 0" = "Kan inte använda en procentsats som är lägre än 0";
 
-/* Cancel the question/suggestion form */
-"Casual question or suggestion" = "Informell fråga eller förslag";
-
 /* Empty Alerts Text */
 "Caught up on Alerts" = "Läst av larmen";
 
 /* No comment provided by engineer. */
 "Choose a student" = "Välj en elev";
-
-/* title for status selection field */
-"Choose One" = "Välj en";
 
 /* Close Button Title */
 "Close" = "Stäng";
@@ -94,9 +88,6 @@
 /* No comment provided by engineer. */
 "Current student: %@, tap to switch students" = "Aktuell student: %@, tryck för att växla student";
 
-/* Title for field */
-"Describe your problem" = "Beskriv ditt problem";
-
 /* No comment provided by engineer. */
 "Discussion" = "Diskussion";
 
@@ -115,23 +106,11 @@
 /* No comment provided by engineer. */
 "Excused" = "Befriad";
 
-/* Status level for issue being reported */
-"Extremely critical emergency" = "Extremt kritiskt nödläge";
-
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "Högt uppgiftsbetyg kan inte vara lägre än lågt uppgiftsbetyg";
 
 /* High Course Grade too Low */
 "High course grade cannot be lower than low course grade" = "Högt kursbetyg kan inte vara lägre än lågt kursbetyg";
-
-/* Status level for issue being reported */
-"I can't get things done until fixed" = "Jag kan inte göra något fören det är fixat";
-
-/* Status level for issue being reported */
-"I need help but it's not urgent" = "Jag behöver hjälp men det är inte akut";
-
-/* Impact Title */
-"Impact:" = "Påverkan:";
 
 /* No comment provided by engineer. */
 "In-Class" = "I klassen";
@@ -141,9 +120,6 @@
 
 /* Title for an alert view */
 "Invalid Input" = "Ogiltig inmatning";
-
-/* Support Ticket Invalid Input Message */
-"Invalid Input.  Check fields and try again." = "Ogiltig inmatning.  Kontrollera fält och försök igen.";
 
 /* Last Week Button Accessibility Label */
 "Last Week" = "Förra veckan";
@@ -214,26 +190,14 @@
 /* No comment provided by engineer. */
 "Quiz" = "Quiz";
 
-/* Support Ticket Creation Failed */
-"Request Failed!  Check network and try again!" = "Begäran misslyckades!  Kontrollera nätverket och försök igen!";
-
 /* Not Found Error Message */
 "Resource not found.  Please try again." = "Resursen hittades inte. Försök igen.";
-
-/* Select Impact Placeholder */
-"Select Impact" = "Välj påverkan";
 
 /* Server Error Title */
 "Server Error" = "Serverfel";
 
 /* No comment provided by engineer. */
 "Settings" = "Inställningar";
-
-/* Status level for issue being reported */
-"Something is broken but I can work around it" = "Något är trasigt och jag kan inte hitta en alternativ lösning";
-
-/* Title for the subject field */
-"Subject" = "Ämne";
 
 /* No comment provided by engineer. */
 "Submitted" = "Inskickad";
@@ -249,9 +213,6 @@
 
 /* Directions in the admin view */
 "Tap to start viewing Canvas as another person." = "Tryck för att använda Canvas som någon annan.";
-
-/* Support Ticket Created Successfully */
-"Thanks, your request was received!" = "Tack, din förfrågan har tagits emot!";
 
 /* Error message */
 "There are no actions for this item" = "Det finns inga åtgärder för det här objektet";
@@ -274,12 +235,6 @@
 /* Unknown T`hreshold Description */
 "Unknown" = "Okänd";
 
-/* Default name given a user until we find their real name */
-"Unknown User" = "Okänd användare";
-
-/* Default user name, the computer-friendly version of their name, until we find their real user name */
-"Unknown User Name" = "Okänt användarnamn";
-
 /* No comment provided by engineer. */
 "Unread" = "Oläst";
 
@@ -289,15 +244,9 @@
 /* Header title of admin view */
 "Welcome!" = "Välkommen!";
 
-/* Title for field */
-"What can we do better?" = "Vad kan vi förbättra?";
-
 /* Not Authorized Error Message */
 "You are unauthorized to access this information.  Check your user permissions and try again." = "Du har inte behörighet att komma åt den här informationen. Kontrollera din behörighet och försök igen.";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Du måste tillåta notifikationer i Inställningar för att ställa in påminnelser.";
-
-/* Title for the email field */
-"Your Email" = "Din e-post";
 

@@ -27,7 +27,7 @@
     "message": "Account has no Terms of Use"
   },
   "act_as_is_essentially_logging_in_as_this_user_with_7870ece0": {
-    "message": "\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user."
+    "message": "\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users'' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user."
   },
   "act_as_user_d7ef0e48": {
     "message": "Act as user"
@@ -348,28 +348,28 @@
     "message": "Could not start recording"
   },
   "count_plural_0_0_students_one_student_other_studen_801f8933": {
-    "message": "{ count, plural,     =0 {0 students}    one {# student}  other {# students}}"
+    "message": "{ count, plural,\n     =0 {0 students}\n    one {# student}\n  other {# students}\n}"
   },
   "count_plural_one_like_other_likes_338617e5": {
     "message": "{ count, plural,\n    one {# like}\n  other {# likes}\n}"
   },
   "count_plural_one_needs_grading_other_need_grading_45cd88a4": {
-    "message": "{ count, plural,    one {Needs Grading} other {Need grading}}"
+    "message": "{ count, plural,\n    one {Needs Grading}\n other {Need grading}\n}"
   },
   "count_plural_one_needs_grading_other_need_grading_7eba188e": {
-    "message": "{ count, plural,    one {# Needs grading} other {# Need grading}}"
+    "message": "{ count, plural,\n    one {# Needs grading}\n other {# Need grading}\n}"
   },
   "count_plural_one_pt_other_pts_c5a3bced": {
-    "message": "{ count, plural,    one {# pt} other {# pts}}"
+    "message": "{ count, plural,\n    one {# pt}\n other {# pts}\n}"
   },
   "count_plural_one_question_other_questions_309aafa": {
-    "message": "{ count, plural,    one {# Question} other {# Questions}}"
+    "message": "{ count, plural,\n    one {# Question}\n other {# Questions}\n}"
   },
   "count_plural_one_reply_other_replies_dbf1832a": {
-    "message": "{ count, plural,    one {# Reply} other {# Replies}}"
+    "message": "{ count, plural,\n    one {# Reply}\n other {# Replies}\n}"
   },
   "count_plural_one_there_is_assignee_without_a_grade_15facb89": {
-    "message": "{ count, plural,    one {There is # assignee without a grade.} other {There are # assignees without grades.}}"
+    "message": "{ count, plural,\n    one {There is # assignee without a grade.}\n other {There are # assignees without grades.}\n}"
   },
   "count_students_4ae780ca": {
     "message": "{ count } students"
@@ -774,7 +774,7 @@
     "message": "It looks like your internet connection is offline. Reconnect to the internet and try again."
   },
   "it_seems_there_aren_t_any_valid_submissions_to_gra_f136675": {
-    "message": "It seems there aren't any valid submissions to grade."
+    "message": "It seems there aren''t any valid submissions to grade."
   },
   "italic_ac45200a": {
     "message": "Italic"
@@ -858,7 +858,7 @@
     "message": "Minutes"
   },
   "minutes_plural_one_minute_other_minutes_e2adacfe": {
-    "message": "{ minutes, plural,    one {# minute} other {# minutes}}"
+    "message": "{ minutes, plural,\n    one {# minute}\n other {# minutes}\n}"
   },
   "missing_1a256b3b": {
     "message": "Missing"
@@ -885,7 +885,7 @@
     "message": "Name"
   },
   "name_count_plural_one_other_other_others_f47e51c3": {
-    "message": "{ name } + { count, plural,    one {# other}  other {# others}}"
+    "message": "{ name } + { count, plural,\n    one {# other}\n  other {# others}\n}"
   },
   "names_count_more_643849d3": {
     "message": "{ names } + { count } more"
@@ -993,7 +993,7 @@
     "message": "Nothing more to do."
   },
   "number_plural_one_minute_other_minutes_648ec0e1": {
-    "message": "{ number, plural,    one {# Minute} other {# Minutes}}"
+    "message": "{ number, plural,\n    one {# Minute}\n other {# Minutes}\n}"
   },
   "observer_248a192e": {
     "message": "Observer"
@@ -1269,7 +1269,7 @@
     "message": "Searching..."
   },
   "seconds_plural_one_second_other_seconds_d33cf6e3": {
-    "message": "{ seconds, plural,    one {# second} other {# seconds}}"
+    "message": "{ seconds, plural,\n    one {# second}\n other {# seconds}\n}"
   },
   "section_sectionname_a455be11": {
     "message": "Section: { sectionName }"
@@ -1552,6 +1552,9 @@
   },
   "this_group_does_not_have_a_submission_for_this_ass_ca275999": {
     "message": "Group does not have a submission for this assignment."
+  },
+  "this_is_a_media_comment_2e395230": {
+    "message": "This is a media comment"
   },
   "this_is_your_personal_color_setting_only_you_will__e47dba70": {
     "message": "This is your personal colour setting. Only you will see this colour for the course."

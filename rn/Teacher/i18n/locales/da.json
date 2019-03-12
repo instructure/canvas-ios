@@ -348,28 +348,31 @@
     "message": "Kunne ikke starte optagelsen"
   },
   "count_plural_0_0_students_one_student_other_studen_801f8933": {
-    "message": "{ count, plural,     =0 {0 studerende}    one {# studerende}  other {# studerende}}"
+    "message": "{ count, plural,\n     =0 {0 studerende}\n    one {# studerende}\n  other {# studerende}\n}"
   },
   "count_plural_one_like_other_likes_338617e5": {
     "message": "{ count, plural,\n    one {# Like}\n  other {# Likes}\n}"
   },
   "count_plural_one_needs_grading_other_need_grading_45cd88a4": {
-    "message": "{ count, plural,    one {Mangler bedømmelse} other {Mangler bedømmelse}}"
+    "message": "{ count, plural,\n    one {Mangler bedømmelse}\n other {Mangler bedømmelse}\n}"
   },
   "count_plural_one_needs_grading_other_need_grading_7eba188e": {
-    "message": "{ count, plural,    one {# mangler karakter} other {# mangler karakter}}"
+    "message": "{ count, plural,\n    one {# mangler karakter}\n other {# mangler karakter}\n}"
   },
   "count_plural_one_pt_other_pts_c5a3bced": {
-    "message": "{ count, plural,    one {# point} other {# point}}"
+    "message": "{ count, plural,\n    one {# point}\n other {# point}\n}",
+    "description": "Number of points possible"
   },
   "count_plural_one_question_other_questions_309aafa": {
-    "message": "{ count, plural,    one {# spørgsmål} other {# spørgsmål}}"
+    "message": "{ count, plural,\n    one {# spørgsmål}\n other {# spørgsmål}\n}"
   },
   "count_plural_one_reply_other_replies_dbf1832a": {
-    "message": "{ count, plural,    one {# svar} other {# svar}}"
+    "message": "{ count, plural,\n    one {# svar}\n other {# svar}\n}",
+    "description": "Number of replies"
   },
   "count_plural_one_there_is_assignee_without_a_grade_15facb89": {
-    "message": "{ count, plural,    one {Der er # assignatar uden karakter.} other {Der er # assignatarer uden karakter.}}"
+    "message": "{ count, plural,\n    one {Der er # assignatar uden karakter.}\n other {Der er # assignatarer uden karakter.}\n}",
+    "description": "Number of assignees without grades."
   },
   "count_students_4ae780ca": {
     "message": "{ count } studerende"
@@ -858,7 +861,7 @@
     "message": "Minutter"
   },
   "minutes_plural_one_minute_other_minutes_e2adacfe": {
-    "message": "{ minutes, plural,    one {# minut} other {# minutter}}"
+    "message": "{ minutes, plural,\n    one {# minut}\n other {# minutter}\n}"
   },
   "missing_1a256b3b": {
     "message": "Manglende"
@@ -885,7 +888,7 @@
     "message": "Navn"
   },
   "name_count_plural_one_other_other_others_f47e51c3": {
-    "message": "{ name } + { count, plural,    one {# anden}  other {# andre}}"
+    "message": "{ name } + { count, plural,\n    one {# anden}\n  other {# andre}\n}"
   },
   "names_count_more_643849d3": {
     "message": "{ names } + { count } mere"
@@ -993,7 +996,7 @@
     "message": "Ikke mere at gøre."
   },
   "number_plural_one_minute_other_minutes_648ec0e1": {
-    "message": "{ number, plural,    one {# minut} other {# minutter}}"
+    "message": "{ number, plural,\n    one {# minut}\n other {# minutter}\n}"
   },
   "observer_248a192e": {
     "message": "Observatør"
@@ -1269,7 +1272,7 @@
     "message": "Søger ..."
   },
   "seconds_plural_one_second_other_seconds_d33cf6e3": {
-    "message": "{ seconds, plural,    one {# sekund} other {# sekunder}}"
+    "message": "{ seconds, plural,\n    one {# sekund}\n other {# sekunder}\n}"
   },
   "section_sectionname_a455be11": {
     "message": "Sektion: { sectionName }"
@@ -1536,7 +1539,7 @@
     "message": "Denne opgave tillader ikke afleveringer."
   },
   "this_assignment_doesn_t_have_a_description_e2f37ec3": {
-    "message": "Denne opgave har ikke nogen beskrivelse"
+    "message": "Denne opgave har ikke nogen beskrivelse."
   },
   "this_assignment_only_allows_on_paper_submissions_f478408a": {
     "message": "Denne opgave tillader kun aflevering på papir."
@@ -1552,6 +1555,9 @@
   },
   "this_group_does_not_have_a_submission_for_this_ass_ca275999": {
     "message": "Denne gruppe har ikke nogen aflevering for denne opgave."
+  },
+  "this_is_a_media_comment_2e395230": {
+    "message": "Dette er en mediekommentar"
   },
   "this_is_your_personal_color_setting_only_you_will__e47dba70": {
     "message": "Denne er din personlige farveindstilling. Du er den eneste, der ser denne farve sammen med faget."

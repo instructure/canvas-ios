@@ -64,17 +64,11 @@
 /* Percent value is under 0 */
 "Cannot use percent that is less than 0" = "Ni mogoče uporabiti odstotka, ki je manjši od 0.";
 
-/* Cancel the question/suggestion form */
-"Casual question or suggestion" = "Naključno vprašanje ali predlog";
-
 /* Empty Alerts Text */
 "Caught up on Alerts" = "Seznanitev z opozorili";
 
 /* No comment provided by engineer. */
 "Choose a student" = "Izberi študenta";
-
-/* title for status selection field */
-"Choose One" = "Izberi eno";
 
 /* Close Button Title */
 "Close" = "Zapri";
@@ -94,9 +88,6 @@
 /* No comment provided by engineer. */
 "Current student: %@, tap to switch students" = "Trenutni študent: %@, tapnite za preklop študentov.";
 
-/* Title for field */
-"Describe your problem" = "Opišite težavo.";
-
 /* No comment provided by engineer. */
 "Discussion" = "Razprava";
 
@@ -115,23 +106,11 @@
 /* No comment provided by engineer. */
 "Excused" = "Opravičeno";
 
-/* Status level for issue being reported */
-"Extremely critical emergency" = "Skrajno kritični nujni primer";
-
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "Visoka ocena naloge ne more biti nižja od nizke ocene naloge.";
 
 /* High Course Grade too Low */
 "High course grade cannot be lower than low course grade" = "Visoka ocena predmeta ne more biti nižja od nizke ocene predmeta.";
-
-/* Status level for issue being reported */
-"I can't get things done until fixed" = "Zadev ne morem opraviti, dokler ni rešeno.";
-
-/* Status level for issue being reported */
-"I need help but it's not urgent" = "Potrebujem pomoč, ni pa nujno.";
-
-/* Impact Title */
-"Impact:" = "Vpliv:";
 
 /* No comment provided by engineer. */
 "In-Class" = "V razredu";
@@ -141,9 +120,6 @@
 
 /* Title for an alert view */
 "Invalid Input" = "Neveljaven vnos";
-
-/* Support Ticket Invalid Input Message */
-"Invalid Input.  Check fields and try again." = "Neveljaven vnos.  Preverite polja in poskusite znova.";
 
 /* Last Week Button Accessibility Label */
 "Last Week" = "Prejšnji teden";
@@ -214,26 +190,14 @@
 /* No comment provided by engineer. */
 "Quiz" = "Kviz";
 
-/* Support Ticket Creation Failed */
-"Request Failed!  Check network and try again!" = "Zahteva ni uspela.  Preverite omrežje in poskusite znova.";
-
 /* Not Found Error Message */
 "Resource not found.  Please try again." = "Vira ni mogoče najti.  Poskusite znova.";
-
-/* Select Impact Placeholder */
-"Select Impact" = "Izberi vpliv";
 
 /* Server Error Title */
 "Server Error" = "Napaka strežnika";
 
 /* No comment provided by engineer. */
 "Settings" = "Nastavitve";
-
-/* Status level for issue being reported */
-"Something is broken but I can work around it" = "Nekaj ne deluje, a znam to rešiti.";
-
-/* Title for the subject field */
-"Subject" = "Kratek opis predmeta";
 
 /* No comment provided by engineer. */
 "Submitted" = "Poslano";
@@ -249,9 +213,6 @@
 
 /* Directions in the admin view */
 "Tap to start viewing Canvas as another person." = "Tapnite za ogled sistema Canvas v vlogi drugega uporabnika.";
-
-/* Support Ticket Created Successfully */
-"Thanks, your request was received!" = "Hvala, vaša zahteva je prejeta.";
 
 /* Error message */
 "There are no actions for this item" = "Pri tem elementu ni dejanj.";
@@ -274,12 +235,6 @@
 /* Unknown T`hreshold Description */
 "Unknown" = "Neznano";
 
-/* Default name given a user until we find their real name */
-"Unknown User" = "Neznani uporabnik";
-
-/* Default user name, the computer-friendly version of their name, until we find their real user name */
-"Unknown User Name" = "Neznano ime uporabnika";
-
 /* No comment provided by engineer. */
 "Unread" = "Neprebrano";
 
@@ -289,15 +244,9 @@
 /* Header title of admin view */
 "Welcome!" = "Dobrodošli.";
 
-/* Title for field */
-"What can we do better?" = "Kaj lahko izboljšamo?";
-
 /* Not Authorized Error Message */
 "You are unauthorized to access this information.  Check your user permissions and try again." = "Nimate pooblastil za dostop do teh informacij.  Preverite dovoljenja uporabnika in poskusite znova.";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Za nastavitev opomnikov morate v možnosti »Nastavitve« dovoliti sporočila.";
-
-/* Title for the email field */
-"Your Email" = "Vaš e-poštni naslov";
 
