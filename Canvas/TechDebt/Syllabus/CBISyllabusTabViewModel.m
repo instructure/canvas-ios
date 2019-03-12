@@ -175,7 +175,9 @@ typedef NS_ENUM(NSInteger, sectionType) {
     }];
     
     RACSignal *calendarEventViewModels = [[[CKIClient currentClient] fetchCalendarEventsForContext:self.model.context] map:^id(NSArray *calendarEvents) {
-        return [[[calendarEvents rac_sequence] map:^id(CKICalendarEvent *event) {
+        return [[[[calendarEvents rac_sequence] filter:^BOOL(CKICalendarEvent *event) {
+            return event.hidden == NO;
+        }] map:^id(CKICalendarEvent *event) {
             CBICalendarEventViewModel *viewModel = [CBICalendarEventViewModel viewModelForModel:event];
             RAC(viewModel, tintColor) = RACObserve(self, tintColor);
             return viewModel;
