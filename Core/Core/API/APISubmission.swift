@@ -41,4 +41,6 @@ public struct APISubmission: Codable, Equatable {
     let points_deducted: Double?
 
     let submission_history: [APISubmission]? // include[]=submission_history
+
+    let media_comment: APIMediaComment?
 }

@@ -256,6 +256,19 @@ public struct SeedClient {
         return makeRequest(PostFileUploadRequest(fileURL: url, target: target), with: user.token)
     }
 
+    @discardableResult
+    public func uploadFile(
+        url: URL,
+        named name: String? = nil,
+        as user: AuthUser
+    ) -> APIFile {
+        let target = makeRequest(PostFileUploadTargetRequest(
+            target: .myFiles,
+            body: .init(name: name ?? url.lastPathComponent, on_duplicate: .rename, parent_folder_id: nil)
+        ), with: user.token)
+        return makeRequest(PostFileUploadRequest(fileURL: url, target: target), with: user.token)
+    }
+
     public func createDocViewerSession(for file: APIFile, as user: AuthUser) -> DocViewerSession {
         var session: DocViewerSession?
         let operation = AsyncBlockOperation { done in

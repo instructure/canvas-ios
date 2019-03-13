@@ -71,4 +71,9 @@ class SubmissionTests: CoreTestCase {
         XCTAssertEqual(objects, [one, two, three])
         XCTAssertEqual(objects?.contains(other), false)
     }
+
+    func testMediaSubmission() {
+        let submission = Submission.make(["mediaComment": MediaComment.make()])
+        XCTAssertNotNil(submission.mediaComment)
+    }
 }

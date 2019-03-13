@@ -175,6 +175,7 @@
 		9FCD79DF2188EAC40054293A /* SubmissionDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FCD79DE2188EAC40054293A /* SubmissionDetailsViewController.storyboard */; };
 		9FDDE2E0218CCAB9002B71F0 /* Drawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDDE2DF218CCAB9002B71F0 /* Drawer.swift */; };
 		9FDDE2E2218CCBF5002B71F0 /* Drawer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FDDE2E1218CCBF5002B71F0 /* Drawer.xib */; };
+		9FF4276422398C17005AB73C /* test.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 9FF4276322398C0E005AB73C /* test.m4a */; };
 		9FFA7553218C8E540036FD41 /* SubmissionDetailsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA7552218C8E540036FD41 /* SubmissionDetailsPresenterTests.swift */; };
 		B107189821963BC000ED1DC7 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B107189721963BC000ED1DC7 /* EmptyView.swift */; };
 		B10D776E21C1CCE200BCE822 /* FilePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10D776D21C1CCE200BCE822 /* FilePickerCell.swift */; };
@@ -624,6 +625,7 @@
 		9FCD79DE2188EAC40054293A /* SubmissionDetailsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SubmissionDetailsViewController.storyboard; sourceTree = "<group>"; };
 		9FDDE2DF218CCAB9002B71F0 /* Drawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drawer.swift; sourceTree = "<group>"; };
 		9FDDE2E1218CCBF5002B71F0 /* Drawer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Drawer.xib; sourceTree = "<group>"; };
+		9FF4276322398C0E005AB73C /* test.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.m4a; sourceTree = "<group>"; };
 		9FFA7552218C8E540036FD41 /* SubmissionDetailsPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsPresenterTests.swift; sourceTree = "<group>"; };
 		B107189721963BC000ED1DC7 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		B10D776D21C1CCE200BCE822 /* FilePickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePickerCell.swift; sourceTree = "<group>"; };
@@ -1191,6 +1193,7 @@
 		7DAFB456219F476200311275 /* Fixtures */ = {
 			isa = PBXGroup;
 			children = (
+				9FF4276322398C0E005AB73C /* test.m4a */,
 				7DAFB457219F48D000311275 /* empty.pdf */,
 			);
 			path = Fixtures;
@@ -1681,6 +1684,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D1758E5215AA06C00F88613 /* Localizable.strings in Resources */,
+				9FF4276422398C17005AB73C /* test.m4a in Resources */,
 				7D1758E9215AA07E00F88613 /* Localizable.stringsdict in Resources */,
 				7D63F77B215C253A00151E49 /* DashboardViewController.storyboard in Resources */,
 				5B5E29832185A058001C9C79 /* InfoPlist.strings in Resources */,

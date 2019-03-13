@@ -35,6 +35,8 @@
 		7DCF204A216D6668003AF358 /* Quiz+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF2049216D6668003AF358 /* Quiz+Fixture.swift */; };
 		9F4B53AC2180FFDF0056A557 /* File+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4B53AB2180FFDF0056A557 /* File+Fixture.swift */; };
 		9F4B53AE218100BC0056A557 /* ApiFile+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4B53AD218100BC0056A557 /* ApiFile+Fixture.swift */; };
+		9F6878B322396A7900E559CE /* APIMediaCommentFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6878B222396A7900E559CE /* APIMediaCommentFixture.swift */; };
+		9F6878B52239701F00E559CE /* MediaCommentFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6878B42239701F00E559CE /* MediaCommentFixture.swift */; };
 		B12E7EAE2187E02B00D5D58F /* TestHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12E7EAD2187E02B00D5D58F /* TestHost.swift */; };
 		B15CA280221DFED00014FB02 /* ModuleFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA27F221DFED00014FB02 /* ModuleFixture.swift */; };
 		B15CA282221DFF240014FB02 /* APIModuleFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA281221DFF240014FB02 /* APIModuleFixture.swift */; };
@@ -90,6 +92,8 @@
 		7DCF2049216D6668003AF358 /* Quiz+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Quiz+Fixture.swift"; sourceTree = "<group>"; };
 		9F4B53AB2180FFDF0056A557 /* File+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "File+Fixture.swift"; sourceTree = "<group>"; };
 		9F4B53AD218100BC0056A557 /* ApiFile+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ApiFile+Fixture.swift"; sourceTree = "<group>"; };
+		9F6878B222396A7900E559CE /* APIMediaCommentFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIMediaCommentFixture.swift; sourceTree = "<group>"; };
+		9F6878B42239701F00E559CE /* MediaCommentFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaCommentFixture.swift; sourceTree = "<group>"; };
 		B12E7EAD2187E02B00D5D58F /* TestHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHost.swift; sourceTree = "<group>"; };
 		B15CA27F221DFED00014FB02 /* ModuleFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFixture.swift; sourceTree = "<group>"; };
 		B15CA281221DFF240014FB02 /* APIModuleFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModuleFixture.swift; sourceTree = "<group>"; };
@@ -207,6 +211,7 @@
 				B1A32BDF2159A28D0071B41E /* APISubmission+Fixture.swift */,
 				3B0CEBA021504C2500D07CFA /* APITab+Fixture.swift */,
 				7DB0A1C821C07F39009ABB40 /* APIUserFixture.swift */,
+				9F6878B222396A7900E559CE /* APIMediaCommentFixture.swift */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -229,6 +234,7 @@
 				B16F0376215C2CEF0011E952 /* Submission+Fixture.swift */,
 				3B0CEB7D2150445100D07CFA /* Tab+Fixture.swift */,
 				3B032D17215037C900B570F7 /* TTL+Fixture.swift */,
+				9F6878B42239701F00E559CE /* MediaCommentFixture.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -402,6 +408,7 @@
 				3B0CEB722150406400D07CFA /* Course+Fixture.swift in Sources */,
 				3B5757D721629C5D0014F6A2 /* MockUseCase.swift in Sources */,
 				7DB0A1C921C07F39009ABB40 /* APIUserFixture.swift in Sources */,
+				9F6878B52239701F00E559CE /* MediaCommentFixture.swift in Sources */,
 				9F4B53AC2180FFDF0056A557 /* File+Fixture.swift in Sources */,
 				3B0CEBA521504C2500D07CFA /* APICourse+Fixture.swift in Sources */,
 				7D2DC2FF219A0514008FE29A /* APIDocViewerFixture.swift in Sources */,
@@ -435,6 +442,7 @@
 				3B0CEB752150406400D07CFA /* TTL+Fixture.swift in Sources */,
 				7DCF204A216D6668003AF358 /* Quiz+Fixture.swift in Sources */,
 				7D37BE8F21C8398D0063FAAC /* DiscussionEntryFixture.swift in Sources */,
+				9F6878B322396A7900E559CE /* APIMediaCommentFixture.swift in Sources */,
 				B16F0377215C2CEF0011E952 /* Submission+Fixture.swift in Sources */,
 				B16F0375215C2B340011E952 /* Assignment+Fixture.swift in Sources */,
 				3BAA4179218A3ACE00701E03 /* APIEnrollmentFixture.swift in Sources */,

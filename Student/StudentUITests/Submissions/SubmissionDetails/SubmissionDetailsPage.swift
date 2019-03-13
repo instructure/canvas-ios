@@ -30,4 +30,5 @@ enum SubmissionDetailsPage: String, UITestElement, CaseIterable {
     case urlSubmissionBlurb
     case urlPreview
     case externalToolButton
+    case mediaPlayer
 }

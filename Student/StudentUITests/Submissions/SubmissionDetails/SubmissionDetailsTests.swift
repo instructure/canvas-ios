@@ -219,4 +219,20 @@ class SubmissionDetailsTests: StudentTest {
         page.assertVisible(.externalToolButton)
         page.assertHidden(.emptyView)
     }
+
+    func testMediaSubmission() {
+        let assignment = seedClient.createAssignment(for: course, submissionTypes: [.media_recording])
+        let file = seedClient.uploadFile(url: Bundle(for: SubmissionDetailsTests.self).url(forResource: "test", withExtension: "m4a")!, as: student)
+        seedClient.submit(
+            assignment: assignment,
+            context: ContextModel(.course, id: course.id),
+            as: student,
+            submissionType: .media_recording,
+            mediaCommentID: file.media_entry_id,
+            mediaCommentType: .audio
+        )
+        launch("/courses/\(course.id)/assignments/\(assignment.id)", as: student)
+        AssignmentDetailsPage.tap(.viewSubmissionButton)
+        page.assertVisible(.mediaPlayer)
+    }
 }

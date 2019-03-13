@@ -39,6 +39,8 @@ final public class Submission: NSManagedObject {
     @NSManaged public var previewUrl: URL?
     @NSManaged public var url: URL?
 
+    @NSManaged public var mediaComment: MediaComment?
+
     public var excused: Bool? {
         get { return excusedRaw?.boolValue }
         set { excusedRaw = NSNumber(value: newValue) }
@@ -134,6 +136,10 @@ extension Submission: WriteableModel {
 
         if let submissionHistory = item.submission_history {
             try Submission.save(submissionHistory, in: client)
+        }
+
+        if let mediaComment = item.media_comment {
+            model.mediaComment = try MediaComment.save(mediaComment, in: client)
         }
 
         return model

@@ -16,6 +16,7 @@
 
 import Foundation
 import Core
+import AVKit
 
 public protocol SubmissionDetailsViewProtocol: ErrorViewController, ColoredNavViewProtocol {
     func reload()
@@ -160,6 +161,15 @@ class SubmissionDetailsPresenter {
             return controller
         case .some(.online_url):
             return UrlSubmissionContentViewController.create(submission: submission)
+        case .some(.media_recording):
+            guard let mediaComment = submission.mediaComment else {
+                return nil
+            }
+            let player = AVPlayer(url: mediaComment.url)
+            let controller = AVPlayerViewController()
+            controller.player = player
+            controller.view.accessibilityIdentifier = "SubmissionDetailsPage.mediaPlayer"
+            return controller
         default:
             return nil
         }
