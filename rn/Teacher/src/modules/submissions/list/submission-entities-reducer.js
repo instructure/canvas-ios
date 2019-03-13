@@ -89,7 +89,7 @@ export const submissions: Reducer<SubmissionsState, any> = handleActions({
     let entity = { ...state[id], selectedIndex: payload.index, selectedAttachmentIndex: 0 }
     return {
       ...state,
-      ...{ [id]: entity },
+      [id]: entity,
     }
   },
   [selectFile.toString()]: (state, { payload }) => {
@@ -97,7 +97,7 @@ export const submissions: Reducer<SubmissionsState, any> = handleActions({
     let entity = { ...state[id], selectedAttachmentIndex: payload.index }
     return {
       ...state,
-      ...{ [id]: entity },
+      [id]: entity,
     }
   },
   [gradeSubmission.toString()]: handleAsync({
