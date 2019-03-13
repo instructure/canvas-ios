@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Submission Comments View Controller-->
+        <scene sceneID="ArJ-QW-c1u">
+            <objects>
+                <viewController storyboardIdentifier="SubmissionCommentsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9pN-2b-voW" customClass="SubmissionCommentsViewController" customModule="Student" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="J4c-la-pV3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="z6Z-9B-ukp">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="myComment" rowHeight="100" id="0Ne-yr-TaC" customClass="SubmissionCommentTextCell" customModule="Student" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0Ne-yr-TaC" id="3mt-Xn-QrW">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Un-KA-dQ7" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
+                                                    <rect key="frame" x="212" y="11" width="100" height="19.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="rowTitle"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rci-bN-cmS">
+                                                    <rect key="frame" x="320" y="11" width="40" height="40"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3Ny-Ss-lUj">
+                                                            <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstItem="3Ny-Ss-lUj" firstAttribute="leading" secondItem="Rci-bN-cmS" secondAttribute="leading" id="02e-AT-tuN"/>
+                                                        <constraint firstAttribute="height" constant="40" id="QnQ-NU-Zzk"/>
+                                                        <constraint firstAttribute="width" constant="40" id="g45-JH-394"/>
+                                                        <constraint firstAttribute="trailing" secondItem="3Ny-Ss-lUj" secondAttribute="trailing" id="jgW-2J-0lW"/>
+                                                        <constraint firstAttribute="bottom" secondItem="3Ny-Ss-lUj" secondAttribute="bottom" id="mbL-sT-2Oy"/>
+                                                        <constraint firstItem="3Ny-Ss-lUj" firstAttribute="top" secondItem="Rci-bN-cmS" secondAttribute="top" id="slM-Fv-1iP"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="20"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="March 13 at 10:51 AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dwf-rA-G5m" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
+                                                    <rect key="frame" x="190.5" y="30.5" width="121.5" height="14.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="rowSubtitle"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chatBubble" translatesAutoresizingMaskIntoConstraints="NO" id="6at-Xx-e6I" customClass="IconView" customModule="Student" customModuleProvider="target">
+                                                    <rect key="frame" x="242" y="46" width="118" height="43"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="jWm-AB-N4T"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="electric"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comment Text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jQO-Zk-01K" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
+                                                    <rect key="frame" x="254" y="63" width="94" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textLightest"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="bodySmall"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="6at-Xx-e6I" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3mt-Xn-QrW" secondAttribute="leadingMargin" id="1Hn-8t-iWp"/>
+                                                <constraint firstItem="6at-Xx-e6I" firstAttribute="trailing" secondItem="jQO-Zk-01K" secondAttribute="trailing" constant="12" id="1SK-Mo-Kh7"/>
+                                                <constraint firstItem="Rci-bN-cmS" firstAttribute="leading" secondItem="Dwf-rA-G5m" secondAttribute="trailing" constant="8" id="Fhx-tq-O90"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Rci-bN-cmS" secondAttribute="trailing" id="G6n-l8-Pdd"/>
+                                                <constraint firstItem="jQO-Zk-01K" firstAttribute="leading" secondItem="6at-Xx-e6I" secondAttribute="leading" constant="12" id="QDL-QU-SPg"/>
+                                                <constraint firstItem="6at-Xx-e6I" firstAttribute="top" secondItem="Rci-bN-cmS" secondAttribute="bottom" constant="-5" id="VM8-5I-xlF"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="6at-Xx-e6I" secondAttribute="trailing" id="cHV-hj-oSx"/>
+                                                <constraint firstItem="Dwf-rA-G5m" firstAttribute="top" secondItem="3Un-KA-dQ7" secondAttribute="bottom" id="eqM-i9-9U8"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="6at-Xx-e6I" secondAttribute="bottom" id="gbg-UH-cQO"/>
+                                                <constraint firstItem="3Un-KA-dQ7" firstAttribute="top" secondItem="3mt-Xn-QrW" secondAttribute="topMargin" id="jPN-VI-PbL"/>
+                                                <constraint firstItem="3Un-KA-dQ7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3mt-Xn-QrW" secondAttribute="leadingMargin" id="q6e-Vz-Maf"/>
+                                                <constraint firstItem="6at-Xx-e6I" firstAttribute="bottom" secondItem="jQO-Zk-01K" secondAttribute="bottom" constant="8" id="svM-JY-RTC"/>
+                                                <constraint firstItem="Dwf-rA-G5m" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3mt-Xn-QrW" secondAttribute="leadingMargin" id="wIe-Pu-3wS"/>
+                                                <constraint firstItem="Rci-bN-cmS" firstAttribute="leading" secondItem="3Un-KA-dQ7" secondAttribute="trailing" constant="8" id="wT7-ta-QZR"/>
+                                                <constraint firstItem="jQO-Zk-01K" firstAttribute="top" secondItem="6at-Xx-e6I" secondAttribute="top" constant="17" id="wXK-m1-TVE"/>
+                                                <constraint firstItem="Rci-bN-cmS" firstAttribute="top" secondItem="3mt-Xn-QrW" secondAttribute="topMargin" id="xVX-aZ-pGb"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="authorAvatarView" destination="3Ny-Ss-lUj" id="GX3-Jh-mhB"/>
+                                            <outlet property="authorNameLabel" destination="3Un-KA-dQ7" id="8Uk-jp-05t"/>
+                                            <outlet property="commentLabel" destination="jQO-Zk-01K" id="dFb-A9-V8w"/>
+                                            <outlet property="createdAtLabel" destination="Dwf-rA-G5m" id="hrW-GW-BqP"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="theirComment" rowHeight="100" id="di6-ba-fsx" customClass="SubmissionCommentTextCell" customModule="Student" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="128" width="375" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="di6-ba-fsx" id="Fyz-QS-eeN">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zl7-4v-8Vj" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
+                                                    <rect key="frame" x="63" y="11" width="100" height="19.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="rowTitle"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1fp-ii-xZg">
+                                                    <rect key="frame" x="15" y="11" width="40" height="40"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HXr-EZ-tiT">
+                                                            <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="4h9-hQ-H2d"/>
+                                                        <constraint firstAttribute="bottom" secondItem="HXr-EZ-tiT" secondAttribute="bottom" id="BSM-OP-dyn"/>
+                                                        <constraint firstItem="HXr-EZ-tiT" firstAttribute="leading" secondItem="1fp-ii-xZg" secondAttribute="leading" id="BqP-V8-FxP"/>
+                                                        <constraint firstItem="HXr-EZ-tiT" firstAttribute="top" secondItem="1fp-ii-xZg" secondAttribute="top" id="EBo-3d-7Jy"/>
+                                                        <constraint firstAttribute="trailing" secondItem="HXr-EZ-tiT" secondAttribute="trailing" id="SZK-OF-ZHV"/>
+                                                        <constraint firstAttribute="width" constant="40" id="Zz8-8T-ewJ"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="20"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="March 13 at 10:51 AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5uh-Sb-dHi" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
+                                                    <rect key="frame" x="63" y="30.5" width="121.5" height="14.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="rowSubtitle"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chatBubble" translatesAutoresizingMaskIntoConstraints="NO" id="893-hG-e0V" customClass="IconView" customModule="Student" customModuleProvider="target">
+                                                    <rect key="frame" x="15" y="46" width="118" height="43"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="6G6-Mn-eLP"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="backgroundLight"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="mirrorX" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comment Text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eMn-Vx-0Ll" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
+                                                    <rect key="frame" x="27" y="63" width="94" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="bodySmall"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="1fp-ii-xZg" firstAttribute="top" secondItem="Fyz-QS-eeN" secondAttribute="topMargin" id="1Bo-HV-h1p"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="893-hG-e0V" secondAttribute="bottom" id="32s-kk-vSM"/>
+                                                <constraint firstItem="5uh-Sb-dHi" firstAttribute="top" secondItem="zl7-4v-8Vj" secondAttribute="bottom" id="C4n-Y6-DMt"/>
+                                                <constraint firstItem="eMn-Vx-0Ll" firstAttribute="leading" secondItem="893-hG-e0V" secondAttribute="leading" constant="12" id="D5X-oJ-6Ss"/>
+                                                <constraint firstItem="5uh-Sb-dHi" firstAttribute="leading" secondItem="1fp-ii-xZg" secondAttribute="trailing" constant="8" id="Dc1-6i-v5j"/>
+                                                <constraint firstItem="zl7-4v-8Vj" firstAttribute="top" secondItem="Fyz-QS-eeN" secondAttribute="topMargin" id="I12-fT-FfC"/>
+                                                <constraint firstItem="eMn-Vx-0Ll" firstAttribute="top" secondItem="893-hG-e0V" secondAttribute="top" constant="17" id="J8c-eQ-EOL"/>
+                                                <constraint firstItem="893-hG-e0V" firstAttribute="bottom" secondItem="eMn-Vx-0Ll" secondAttribute="bottom" constant="8" id="KXz-Qr-37n"/>
+                                                <constraint firstItem="893-hG-e0V" firstAttribute="leading" secondItem="Fyz-QS-eeN" secondAttribute="leadingMargin" id="S6B-aM-bSU"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="893-hG-e0V" secondAttribute="trailing" id="SKY-j8-Lrf"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="zl7-4v-8Vj" secondAttribute="trailing" id="TBh-jQ-Rs4"/>
+                                                <constraint firstItem="893-hG-e0V" firstAttribute="trailing" secondItem="eMn-Vx-0Ll" secondAttribute="trailing" constant="12" id="d9a-Ua-eXn"/>
+                                                <constraint firstItem="zl7-4v-8Vj" firstAttribute="leading" secondItem="1fp-ii-xZg" secondAttribute="trailing" constant="8" id="fmK-15-z25"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="5uh-Sb-dHi" secondAttribute="trailing" id="kGy-Pg-vyK"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="1fp-ii-xZg" secondAttribute="leading" id="yYj-7i-M6t"/>
+                                                <constraint firstItem="893-hG-e0V" firstAttribute="top" secondItem="1fp-ii-xZg" secondAttribute="bottom" constant="-5" id="yiz-LU-eGc"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="authorAvatarView" destination="HXr-EZ-tiT" id="ja7-fe-vb8"/>
+                                            <outlet property="authorNameLabel" destination="zl7-4v-8Vj" id="mW0-09-V3x"/>
+                                            <outlet property="commentLabel" destination="eMn-Vx-0Ll" id="FVy-xC-zeC"/>
+                                            <outlet property="createdAtLabel" destination="5uh-Sb-dHi" id="pnm-fb-WY8"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="9pN-2b-voW" id="xgK-34-ZpE"/>
+                                    <outlet property="delegate" destination="9pN-2b-voW" id="QZc-6X-Mzi"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="WpC-Mf-1Fh" firstAttribute="trailing" secondItem="z6Z-9B-ukp" secondAttribute="trailing" id="H5P-6H-p7J"/>
+                            <constraint firstItem="z6Z-9B-ukp" firstAttribute="top" secondItem="WpC-Mf-1Fh" secondAttribute="top" id="TqG-Sv-DpM"/>
+                            <constraint firstItem="WpC-Mf-1Fh" firstAttribute="bottom" secondItem="z6Z-9B-ukp" secondAttribute="bottom" id="oIV-fd-pdd"/>
+                            <constraint firstItem="z6Z-9B-ukp" firstAttribute="leading" secondItem="WpC-Mf-1Fh" secondAttribute="leading" id="vSM-Gr-hxB"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="WpC-Mf-1Fh"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="z6Z-9B-ukp" id="20Y-on-xbo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cYE-Ox-X3q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-254" y="33"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="chatBubble" width="40" height="40"/>
+    </resources>
+</document>

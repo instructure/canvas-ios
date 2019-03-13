@@ -33,4 +33,11 @@ open class IconView: UIImageView {
             }
         }
     }
+
+    @IBInspectable
+    public var mirrorX: Bool = false {
+        didSet {
+            transform = CGAffineTransform(scaleX: -1, y: 1)
+        }
+    }
 }

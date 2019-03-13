@@ -22,7 +22,9 @@ class APISubmissionRequestableTests: CoreTestCase {
     func testGetSubmissionRequest() {
         XCTAssertEqual(GetSubmissionRequest(context: ContextModel(.course, id: "1"), assignmentID: "2", userID: "3").path, "courses/1/assignments/2/submissions/3")
         XCTAssertEqual(GetSubmissionRequest(context: ContextModel(.course, id: "1"), assignmentID: "2", userID: "3").query, [ APIQueryItem.array("include", [
+            "submission_comments",
             "submission_history",
+            "user",
         ]), ])
     }
 
@@ -47,7 +49,7 @@ class APISubmissionRequestableTests: CoreTestCase {
 
     func testGradeSubmissionRequest() {
         let submission = PutSubmissionGradeRequest.Body.Submission(posted_grade: "10")
-        let body = PutSubmissionGradeRequest.Body(submission: submission)
+        let body = PutSubmissionGradeRequest.Body(comment: nil, submission: submission)
         let request = PutSubmissionGradeRequest(courseID: "1", assignmentID: "2", userID: "3", body: body)
 
         XCTAssertEqual(request.path, "courses/1/assignments/2/submissions/3")

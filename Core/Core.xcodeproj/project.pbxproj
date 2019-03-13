@@ -111,6 +111,8 @@
 		7D4D5EB921402CAA0080AC14 /* TestImage.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7D4D5EB621402CA90080AC14 /* TestImage.gif */; };
 		7D54501121BDFB5C0008E75D /* LoginFindSchoolPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D54501021BDFB5C0008E75D /* LoginFindSchoolPresenter.swift */; };
 		7D58FBCA2141B43400705CDF /* APIAccountResults.json in Resources */ = {isa = PBXBuildFile; fileRef = 7D58FBC92141B43300705CDF /* APIAccountResults.json */; };
+		7D5C871F2239A45300D99651 /* GetSubmissionCommentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5C871E2239A45300D99651 /* GetSubmissionCommentsTests.swift */; };
+		7D5C87212239A99E00D99651 /* SubmissionCommentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5C87202239A99E00D99651 /* SubmissionCommentTests.swift */; };
 		7D63F77D215D31A600151E49 /* DynamicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D63F77C215D31A600151E49 /* DynamicButton.swift */; };
 		7D63F784215D3C3D00151E49 /* APIBrandVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D63F783215D3C3D00151E49 /* APIBrandVariables.swift */; };
 		7D63F786215D3CE300151E49 /* APIBrandVariables+Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D63F785215D3CE300151E49 /* APIBrandVariables+Requestable.swift */; };
@@ -168,6 +170,9 @@
 		7DA057522193A30E00A3CFBB /* IconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA057512193A30E00A3CFBB /* IconView.swift */; };
 		7DA20E8F21680DBF00F5FD19 /* UIImageInstIconsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA20E8E21680DBF00F5FD19 /* UIImageInstIconsExtensions.swift */; };
 		7DA20E932168128400F5FD19 /* UIImageInstIconsExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA20E922168128400F5FD19 /* UIImageInstIconsExtensionsTests.swift */; };
+		7DA5C48822385435003CDB4C /* SubmissionComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA5C48722385435003CDB4C /* SubmissionComment.swift */; };
+		7DA5C48A22385645003CDB4C /* SubmissionCommentMediaType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA5C48922385645003CDB4C /* SubmissionCommentMediaType.swift */; };
+		7DA5C48C22385F95003CDB4C /* GetSubmissionComments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA5C48B22385F95003CDB4C /* GetSubmissionComments.swift */; };
 		7DAFB46321A361C400311275 /* LocalizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAFB46221A361C400311275 /* LocalizationManager.swift */; };
 		7DAFB46521A4693B00311275 /* LocalizationManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAFB46421A4693B00311275 /* LocalizationManagerTests.swift */; };
 		7DB0A1B621BF168A009ABB40 /* LoginDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1B521BF168A009ABB40 /* LoginDelegateTests.swift */; };
@@ -258,7 +263,7 @@
 		9FAE410721B6CB7F00FE7F58 /* GetSessionlessLaunchURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAE410621B6CB7F00FE7F58 /* GetSessionlessLaunchURLTests.swift */; };
 		9FAE410A21B6D0A600FE7F58 /* LTITools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAE410921B6D0A600FE7F58 /* LTITools.swift */; };
 		9FCD79D42188DC4E0054293A /* APISubmission+Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCD79D32188DC4E0054293A /* APISubmission+Requestable.swift */; };
-		9FCD79D62188DE8B0054293A /* APISubmission+Requestable+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCD79D52188DE8B0054293A /* APISubmission+Requestable+Tests.swift */; };
+		9FCD79D62188DE8B0054293A /* APISubmissionRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCD79D52188DE8B0054293A /* APISubmissionRequestableTests.swift */; };
 		9FCD79D82188DFD00054293A /* GetSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCD79D72188DFD00054293A /* GetSubmission.swift */; };
 		9FCD79DA2188E3CD0054293A /* GetSubmissionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCD79D92188E3CD0054293A /* GetSubmissionTest.swift */; };
 		9FD504E72180BE1400B395BA /* APIFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD504E52180BE1300B395BA /* APIFile.swift */; };
@@ -672,6 +677,8 @@
 		7D4D5EB621402CA90080AC14 /* TestImage.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = TestImage.gif; sourceTree = "<group>"; };
 		7D54501021BDFB5C0008E75D /* LoginFindSchoolPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFindSchoolPresenter.swift; sourceTree = "<group>"; };
 		7D58FBC92141B43300705CDF /* APIAccountResults.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = APIAccountResults.json; sourceTree = "<group>"; };
+		7D5C871E2239A45300D99651 /* GetSubmissionCommentsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubmissionCommentsTests.swift; sourceTree = "<group>"; };
+		7D5C87202239A99E00D99651 /* SubmissionCommentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentTests.swift; sourceTree = "<group>"; };
 		7D63F77C215D31A600151E49 /* DynamicButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicButton.swift; sourceTree = "<group>"; };
 		7D63F783215D3C3D00151E49 /* APIBrandVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIBrandVariables.swift; sourceTree = "<group>"; };
 		7D63F785215D3CE300151E49 /* APIBrandVariables+Requestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIBrandVariables+Requestable.swift"; sourceTree = "<group>"; };
@@ -729,6 +736,9 @@
 		7DA057512193A30E00A3CFBB /* IconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconView.swift; sourceTree = "<group>"; };
 		7DA20E8E21680DBF00F5FD19 /* UIImageInstIconsExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageInstIconsExtensions.swift; sourceTree = "<group>"; };
 		7DA20E922168128400F5FD19 /* UIImageInstIconsExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageInstIconsExtensionsTests.swift; sourceTree = "<group>"; };
+		7DA5C48722385435003CDB4C /* SubmissionComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionComment.swift; sourceTree = "<group>"; };
+		7DA5C48922385645003CDB4C /* SubmissionCommentMediaType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentMediaType.swift; sourceTree = "<group>"; };
+		7DA5C48B22385F95003CDB4C /* GetSubmissionComments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubmissionComments.swift; sourceTree = "<group>"; };
 		7DAFB46221A361C400311275 /* LocalizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationManager.swift; sourceTree = "<group>"; };
 		7DAFB46421A4693B00311275 /* LocalizationManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationManagerTests.swift; sourceTree = "<group>"; };
 		7DB0A1B521BF168A009ABB40 /* LoginDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDelegateTests.swift; sourceTree = "<group>"; };
@@ -819,7 +829,7 @@
 		9FAE410621B6CB7F00FE7F58 /* GetSessionlessLaunchURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSessionlessLaunchURLTests.swift; sourceTree = "<group>"; };
 		9FAE410921B6D0A600FE7F58 /* LTITools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTITools.swift; sourceTree = "<group>"; };
 		9FCD79D32188DC4E0054293A /* APISubmission+Requestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APISubmission+Requestable.swift"; sourceTree = "<group>"; };
-		9FCD79D52188DE8B0054293A /* APISubmission+Requestable+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APISubmission+Requestable+Tests.swift"; sourceTree = "<group>"; };
+		9FCD79D52188DE8B0054293A /* APISubmissionRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISubmissionRequestableTests.swift; sourceTree = "<group>"; };
 		9FCD79D72188DFD00054293A /* GetSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubmission.swift; sourceTree = "<group>"; };
 		9FCD79D92188E3CD0054293A /* GetSubmissionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubmissionTest.swift; sourceTree = "<group>"; };
 		9FD504E52180BE1300B395BA /* APIFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIFile.swift; sourceTree = "<group>"; };
@@ -1221,6 +1231,7 @@
 				B1A6BC79218A062E000515E3 /* MediaCommentType.swift */,
 				7D47769B21AF3A0200B441CE /* QuizQuestionType.swift */,
 				7DCF2037216D55E6003AF358 /* QuizType.swift */,
+				7DA5C48922385645003CDB4C /* SubmissionCommentMediaType.swift */,
 				7DCF1E9F216BB731003AF358 /* SubmissionType.swift */,
 				7DCF1EB5216BC861003AF358 /* SubmissionWorkflowState.swift */,
 				7DF4FFD4217133AF007E5F81 /* TabType.swift */,
@@ -1350,6 +1361,7 @@
 				B19792FC21769E280000369C /* GroupTests.swift */,
 				B15CA283221E00870014FB02 /* ModuleTests.swift */,
 				B19792FA21769B320000369C /* QuizTests.swift */,
+				7D5C87202239A99E00D99651 /* SubmissionCommentTests.swift */,
 				7D37BE8C21C837840063FAAC /* SubmissionTests.swift */,
 				B19792FE2176A0F00000369C /* TabTests.swift */,
 			);
@@ -1451,7 +1463,7 @@
 				7D80AC2C212C801600C40ECE /* APIOAuthRequestableTests.swift */,
 				7DCF203F216D5EF1003AF358 /* APIQuiz+Requestable+Tests.swift */,
 				7D80AC55212CF41900C40ECE /* APIRequestable+Tests.swift */,
-				9FCD79D52188DE8B0054293A /* APISubmission+Requestable+Tests.swift */,
+				9FCD79D52188DE8B0054293A /* APISubmissionRequestableTests.swift */,
 				7D80AC16212B689E00C40ECE /* APITab+Requestable+Tests.swift */,
 				7D80AC14212B67E100C40ECE /* APIUser+Requestable+Tests.swift */,
 				3B3467D52135B99700F9BC2E /* IDTests.swift */,
@@ -1582,15 +1594,16 @@
 				787BD02021AE5C28000C90A1 /* DiscussionEntry.swift */,
 				3BE2C763218CB53F004B8E5E /* Enrollment.swift */,
 				9FD504EB2180BF1A00B395BA /* File.swift */,
+				B1BB68F121B5CA2A0079C78B /* FileSubmission.swift */,
+				3B69253721A0FD2D0023ED75 /* FileUpload.swift */,
 				7DF4FFCC21711EB3007E5F81 /* Group.swift */,
 				B1E789A321B0EC1A0087FE4A /* LogEvent.swift */,
 				B15CA27D221DFA450014FB02 /* Module.swift */,
 				7DF4001C217509D6007E5F81 /* Quiz.swift */,
 				7DF4FFDE21713919007E5F81 /* Submission.swift */,
+				7DA5C48722385435003CDB4C /* SubmissionComment.swift */,
 				7DF4FFD62171347B007E5F81 /* Tab.swift */,
 				7DF4FFD02171322E007E5F81 /* TTL.swift */,
-				3B69253721A0FD2D0023ED75 /* FileUpload.swift */,
-				B1BB68F121B5CA2A0079C78B /* FileSubmission.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1667,6 +1680,7 @@
 				7DCF2043216D622B003AF358 /* GetQuizzes.swift */,
 				9FAE410421B6CA4C00FE7F58 /* GetSessionlessLaunchURL.swift */,
 				9FCD79D72188DFD00054293A /* GetSubmission.swift */,
+				7DA5C48B22385F95003CDB4C /* GetSubmissionComments.swift */,
 				B195DC44213201DE00797FE4 /* GetUserGroups.swift */,
 				3B69253B21A102E90023ED75 /* QueueFileUpload.swift */,
 				B1BCFF8D21BEC82900F58D0F /* SubmitFileSubmission.swift */,
@@ -1789,6 +1803,7 @@
 				7DCF2045216D652C003AF358 /* GetQuizzesTests.swift */,
 				9FAE410621B6CB7F00FE7F58 /* GetSessionlessLaunchURLTests.swift */,
 				9FCD79D92188E3CD0054293A /* GetSubmissionTest.swift */,
+				7D5C871E2239A45300D99651 /* GetSubmissionCommentsTests.swift */,
 				B195DC5421324DA600797FE4 /* GetUserGroupsTest.swift */,
 				3B69253D21A106430023ED75 /* QueueFileUploadTests.swift */,
 				B171A10A21BA13CF000325D3 /* UpdateFileUploadTests.swift */,
@@ -2135,6 +2150,7 @@
 				B1381F15212E5E4A001F908C /* APIOperation.swift in Sources */,
 				7DCF2030216D521D003AF358 /* QuestionCountViewable.swift in Sources */,
 				7D8262F3212B2E3100BD268D /* APIFavorite+Requestable.swift in Sources */,
+				7DA5C48C22385F95003CDB4C /* GetSubmissionComments.swift in Sources */,
 				7DCF1ECB216BF544003AF358 /* SubmissionViewable.swift in Sources */,
 				7D7110BF213890AD0085C2E5 /* RouteHandler.swift in Sources */,
 				7D80AC05212B461F00C40ECE /* APIUser+Requestable.swift in Sources */,
@@ -2246,6 +2262,7 @@
 				7851D9B32138264800E76EC3 /* GetCustomColors.swift in Sources */,
 				B1EF7ABB21E902DD00D653D7 /* UseCase.swift in Sources */,
 				7DD6948B21960EBD00BA4984 /* DocViewerPresenter.swift in Sources */,
+				7DA5C48A22385645003CDB4C /* SubmissionCommentMediaType.swift in Sources */,
 				7DD6CC6721BCC597004C4BB6 /* LoginFindSchoolViewController.swift in Sources */,
 				B1E789AD21B0F0800087FE4A /* LoggableCell.swift in Sources */,
 				789C9BC12138516300B37AC4 /* UIColorExtensions.swift in Sources */,
@@ -2271,6 +2288,7 @@
 				787BD02121AE5C28000C90A1 /* DiscussionEntry.swift in Sources */,
 				3B69254021A12E020023ED75 /* Int64Extensions.swift in Sources */,
 				3B032CBA2150258F00B570F7 /* PresenterUseCase.swift in Sources */,
+				7DA5C48822385435003CDB4C /* SubmissionComment.swift in Sources */,
 				B15CA277221DE94F0014FB02 /* APIModule.swift in Sources */,
 				B1445307212E5B6E0009D848 /* FetchedResultsController.swift in Sources */,
 				7D1758B42159898D00F88613 /* TitleSubtitleView.swift in Sources */,
@@ -2292,6 +2310,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FAE410721B6CB7F00FE7F58 /* GetSessionlessLaunchURLTests.swift in Sources */,
+				7D5C87212239A99E00D99651 /* SubmissionCommentTests.swift in Sources */,
 				B1A6BC8A218A977D000515E3 /* APIEnrollmentRequestableTests.swift in Sources */,
 				7D80AC5B212DB0B500C40ECE /* URLResponseExtensionsTests.swift in Sources */,
 				3B3467DA2136FFBA00F9BC2E /* APILoginWeb+RequestableTests.swift in Sources */,
@@ -2359,7 +2378,7 @@
 				3B3467D62135B99700F9BC2E /* IDTests.swift in Sources */,
 				7D062AF721249E7700677F66 /* ContextModelTests.swift in Sources */,
 				7DCF1ED8216C060B003AF358 /* SubmissionViewableTests.swift in Sources */,
-				9FCD79D62188DE8B0054293A /* APISubmission+Requestable+Tests.swift in Sources */,
+				9FCD79D62188DE8B0054293A /* APISubmissionRequestableTests.swift in Sources */,
 				7D2DC2F82199F774008FE29A /* DocViewerAnnotationProviderTests.swift in Sources */,
 				B14D55612130B6740066D275 /* TestOperationQueue.swift in Sources */,
 				7D37BE9121C849D10063FAAC /* DocViewerPresenterTests.swift in Sources */,
@@ -2379,6 +2398,7 @@
 				7D4C3A772236FFD2007D6792 /* FileTests.swift in Sources */,
 				B1B6F078219A7D8B00C1575D /* UTITests.swift in Sources */,
 				B1EF7AB721E7E41F00D653D7 /* StoreTests.swift in Sources */,
+				7D5C871F2239A45300D99651 /* GetSubmissionCommentsTests.swift in Sources */,
 				7D80AC56212CF41900C40ECE /* APIRequestable+Tests.swift in Sources */,
 				7D8B78FB215EC9BE005E08F1 /* BrandTests.swift in Sources */,
 				7D062AFB2124A14700677F66 /* ContextTests.swift in Sources */,

@@ -19,7 +19,7 @@ import UIKit
 public extension UIFont {
     public enum Name: String, CaseIterable {
         case body, bodyMedium, bodySmall, bodySmallItalic, button, buttonSmall, caption, cardTitle, cardSubtitle, dotSeparator, heading, label
-        case rowTitle, title, title2, title3, tabBarIconTitle
+        case rowTitle, rowSubtitle, title, title2, title3, tabBarIconTitle
     }
 
     /// Get a named font style, that is dynamically scaled.
@@ -47,6 +47,8 @@ public extension UIFont {
             return UIFontMetrics(forTextStyle: .title1).scaledFont(for: .systemFont(ofSize: 24, weight: .heavy))
         case .label:
             return UIFontMetrics(forTextStyle: .callout).scaledFont(for: .systemFont(ofSize: 16, weight: .medium))
+        case .rowSubtitle:
+            return UIFontMetrics(forTextStyle: .caption1).scaledFont(for: .systemFont(ofSize: 12, weight: .regular))
         case .title:
             return UIFontMetrics(forTextStyle: .title3).scaledFont(for: .systemFont(ofSize: 20, weight: .semibold))
         case .title2:

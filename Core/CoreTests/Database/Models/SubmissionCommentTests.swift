@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2018-present Instructure, Inc.
+// Copyright (C) 2019-present Instructure, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,18 +15,20 @@
 //
 
 import Foundation
+import XCTest
 @testable import Core
 
-extension APISubmission: Fixture {
-    public static var template: Template {
-        return [
-            "id": "1",
-            "assignment_id": "1",
-            "user_id": "2",
-            "late": false,
-            "excused": false,
-            "missing": false,
-            "workflow_state": "unsubmitted",
-        ]
+class SubmissionCommentTests: CoreTestCase {
+    func testMediaType() {
+        let comment = SubmissionComment.make()
+        XCTAssertNil(comment.mediaType)
+        comment.mediaType = .audio
+        XCTAssertEqual(comment.mediaType, .audio)
+        XCTAssertEqual(comment.mediaTypeRaw, "audio")
+    }
+
+    func testAttempt() {
+        XCTAssertNil(SubmissionComment.make().attempt)
+        XCTAssertEqual(SubmissionComment.make([ "id": "submission-1-2" ]).attempt, 2)
     }
 }

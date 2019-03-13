@@ -136,6 +136,11 @@ extension Submission: WriteableModel {
             try Submission.save(submissionHistory, in: client)
         }
 
+        SubmissionComment.save(item, in: client)
+        for comment in item.submission_comments ?? [] {
+            SubmissionComment.save(comment, forSubmission: item.id.value, in: client)
+        }
+
         return model
     }
 }
