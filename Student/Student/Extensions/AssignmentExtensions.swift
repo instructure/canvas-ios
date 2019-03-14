@@ -21,6 +21,10 @@ extension Assignment {
     public var canMakeSubmissions: Bool {
         return submissionTypes.count > 0 &&
             !submissionTypes.contains(.none) && !submissionTypes.contains(.on_paper) &&
-            submissionFiles(appGroup: .student).isEmpty
+            !hasFileSubmission
+    }
+
+    public var hasFileSubmission: Bool {
+        return !submissionFiles(appGroup: .student).isEmpty
     }
 }

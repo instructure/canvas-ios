@@ -189,6 +189,7 @@ class SubmissionFilePresenter {
     @objc
     private func cancelSubmission() {
         // TODO: delete files and dismiss
+
     }
 
     @objc

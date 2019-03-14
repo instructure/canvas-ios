@@ -40,6 +40,10 @@ protocol AssignmentDetailsViewProtocol: ErrorViewController {
 }
 
 class AssignmentDetailsPresenter {
+    enum FileSubmissionState {
+        case pending, failed
+    }
+
     lazy var assignments: Store<GetAssignment> = {
         let useCase = GetAssignment(courseID: courseID, assignmentID: assignmentID, include: [.submission])
         return self.env.subscribe(useCase) { [weak self] in
@@ -50,6 +54,13 @@ class AssignmentDetailsPresenter {
     lazy var courses: Store<GetCourseUseCase> = {
         let useCase = GetCourseUseCase(courseID: courseID)
         return self.env.subscribe(useCase) { [weak self] in
+            self?.update()
+        }
+    }()
+
+    private lazy var fileUploads: Store<GetFileUploads> = {
+        let useCase = GetFileUploads(context: .submission(courseID: courseID, assignmentID: assignmentID))
+        return FileUploader.shared.subscribe(useCase) { [weak self] in
             self?.update()
         }
     }()
@@ -69,6 +80,17 @@ class AssignmentDetailsPresenter {
         .online_upload,
         .online_url,
     ]
+
+    var fileSubmissionState: FileSubmissionState? {
+        let files = assignments.first?.submissionFiles(appGroup: .student) ?? []
+        if files.isEmpty {
+            return nil
+        }
+        if fileUploads.first(where: { files.contains($0.url) && $0.error != nil }) != nil {
+            return .failed
+        }
+        return .pending
+    }
 
     init(env: AppEnvironment = .shared, view: AssignmentDetailsViewProtocol, courseID: String, assignmentID: String, fragment: String? = nil) {
         self.env = env

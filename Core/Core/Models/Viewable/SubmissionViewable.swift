@@ -82,44 +82,4 @@ extension SubmissionViewable {
     public var isExternalToolAssignment: Bool {
         return submissionTypes.contains(.external_tool)
     }
-
-    /* TODO: move these to AssignmentDetailsPresenter
-
-    public var showFileSubmissionStatus: Bool {
-        return fileSubmissionStatus != .none
-    }
-
-    public var fileSubmissionStatusText: String? {
-        switch fileSubmissionStatus {
-        case .failed:
-            return NSLocalizedString("Submission Failed", bundle: .core, comment: "")
-        case .pending:
-            return NSLocalizedString("Submission Uploading...", bundle: .core, comment: "")
-        case .none:
-            return nil
-        }
-    }
-
-    public var fileSubmissionStatusTextColor: UIColor? {
-        switch fileSubmissionStatus {
-        case .failed:
-            return UIColor.named(.textDanger).ensureContrast(against: .white)
-        case .pending:
-            return UIColor.named(.textSuccess).ensureContrast(against: .white)
-        case .none:
-            return nil
-        }
-    }
-
-    public var fileSubmissionButtonText: String? {
-        switch fileSubmissionStatus {
-        case .failed:
-            return NSLocalizedString("Tap to view details", bundle: .core, comment: "")
-        case .pending:
-            return NSLocalizedString("Tap to view progress", bundle: .core, comment: "")
-        case .none:
-            return nil
-        }
-    }
-    */
 }
