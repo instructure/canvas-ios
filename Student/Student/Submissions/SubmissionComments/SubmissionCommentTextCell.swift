@@ -18,7 +18,7 @@ import UIKit
 import Core
 
 class SubmissionCommentTextCell: UITableViewCell {
-    @IBOutlet weak var authorAvatarView: UIImageView?
+    @IBOutlet weak var authorAvatarView: AvatarView?
     @IBOutlet weak var authorNameLabel: DynamicLabel?
     @IBOutlet weak var createdAtLabel: DynamicLabel?
     @IBOutlet weak var commentLabel: DynamicLabel?
@@ -31,7 +31,8 @@ class SubmissionCommentTextCell: UITableViewCell {
             comment.authorName,
             comment.comment
         )
-        authorAvatarView?.load(url: comment.authorAvatarURL)
+        authorAvatarView?.name = comment.authorName
+        authorAvatarView?.url = comment.authorAvatarURL
         authorNameLabel?.text = comment.authorName
         createdAtLabel?.text = DateFormatter.localizedString(from: comment.createdAt, dateStyle: .medium, timeStyle: .short)
         commentLabel?.text = comment.comment

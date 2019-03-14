@@ -95,6 +95,9 @@
 		788152F5212B7482005BA428 /* DashboardGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152F4212B7482005BA428 /* DashboardGroupCell.swift */; };
 		788152FC212B83D0005BA428 /* DashboardSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152FA212B83D0005BA428 /* DashboardSectionHeaderView.swift */; };
 		788FD3D7218D040200C185BD /* ShareAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 788FD3D6218D040200C185BD /* ShareAssets.xcassets */; };
+		7D005F792239DE5A0040CBD7 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D005F782239DE5A0040CBD7 /* AvatarView.swift */; };
+		7D005F7A2239DE5A0040CBD7 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D005F782239DE5A0040CBD7 /* AvatarView.swift */; };
+		7D005F7F2239DE920040CBD7 /* DynamicTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE2ADCC21B70537008D91AB /* DynamicTextField.swift */; };
 		7D067CE021505AF200B78AF2 /* StudentReborn.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D067CDE21505AF200B78AF2 /* StudentReborn.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7D067CE421505B2500B78AF2 /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7110C221389AD90085C2E5 /* Routes.swift */; };
 		7D067CE521505B3500B78AF2 /* DashboardCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152EC212B4FA4005BA428 /* DashboardCourseCell.swift */; };
@@ -588,6 +591,7 @@
 		788152F4212B7482005BA428 /* DashboardGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardGroupCell.swift; sourceTree = "<group>"; };
 		788152FA212B83D0005BA428 /* DashboardSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardSectionHeaderView.swift; sourceTree = "<group>"; };
 		788FD3D6218D040200C185BD /* ShareAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ShareAssets.xcassets; sourceTree = "<group>"; };
+		7D005F782239DE5A0040CBD7 /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
 		7D067CDC21505AF100B78AF2 /* StudentReborn.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StudentReborn.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D067CDE21505AF200B78AF2 /* StudentReborn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StudentReborn.h; sourceTree = "<group>"; };
 		7D067CDF21505AF200B78AF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1108,13 +1112,14 @@
 		7D10194C215EBA530058FDD1 /* IBDesignables */ = {
 			isa = PBXGroup;
 			children = (
+				7D005F782239DE5A0040CBD7 /* AvatarView.swift */,
 				7D0BF3222165315B00859FA1 /* CoreWebView.swift */,
 				7D10194D215EBA7B0058FDD1 /* DividerView.swift */,
 				7D101950215EBB4B0058FDD1 /* DynamicButton.swift */,
 				7D101953215EBB540058FDD1 /* DynamicLabel.swift */,
-				7DA057532193A3A800A3CFBB /* IconView.swift */,
-				B107189721963BC000ED1DC7 /* EmptyView.swift */,
 				3BE2ADCC21B70537008D91AB /* DynamicTextField.swift */,
+				B107189721963BC000ED1DC7 /* EmptyView.swift */,
+				7DA057532193A3A800A3CFBB /* IconView.swift */,
 			);
 			path = IBDesignables;
 			sourceTree = "<group>";
@@ -1833,6 +1838,7 @@
 				7D10194E215EBA7B0058FDD1 /* DividerView.swift in Sources */,
 				3BE2ADCD21B70537008D91AB /* DynamicTextField.swift in Sources */,
 				3B6325DE21ADF49200237CE6 /* UrlSubmissionContentViewController.swift in Sources */,
+				7D005F792239DE5A0040CBD7 /* AvatarView.swift in Sources */,
 				7D79636B22307F2500CCF943 /* SubmissionFilesCell.swift in Sources */,
 				788152DD212B34F2005BA428 /* DashboardViewController.swift in Sources */,
 				3B1B007A219BD9F60045E8A1 /* QuizListPresenter.swift in Sources */,
@@ -1879,6 +1885,7 @@
 				7DA5C49D22386C1E003CDB4C /* SubmissionCommentTextCell.swift in Sources */,
 				7D067CE721505B3500B78AF2 /* DashboardSectionHeaderView.swift in Sources */,
 				3B0B0F64219C8D0A00F04216 /* GradeCircle.swift in Sources */,
+				7D005F7F2239DE920040CBD7 /* DynamicTextField.swift in Sources */,
 				3B0B0F59219C8C9300F04216 /* QuizListViewController.swift in Sources */,
 				7D067CE921505B3500B78AF2 /* DashboardViewController.swift in Sources */,
 				3B0B0F58219C8C7300F04216 /* CourseListViewController.swift in Sources */,
@@ -1893,6 +1900,7 @@
 				7DFEC227223085AB00BE236D /* SubmissionFilesCell.swift in Sources */,
 				3B0B0F6C219C8D2300F04216 /* QuizListPresenter.swift in Sources */,
 				7D0BF3242165315B00859FA1 /* CoreWebView.swift in Sources */,
+				7D005F7A2239DE5A0040CBD7 /* AvatarView.swift in Sources */,
 				7D067CE421505B2500B78AF2 /* Routes.swift in Sources */,
 				3B4B75B1222DE7F3002CCBEC /* CourseNavigationViewController.swift in Sources */,
 				3B692536219F428E0023ED75 /* FilePickerProgressView.swift in Sources */,

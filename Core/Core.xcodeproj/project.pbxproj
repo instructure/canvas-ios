@@ -58,6 +58,7 @@
 		787BD02121AE5C28000C90A1 /* DiscussionEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787BD02021AE5C28000C90A1 /* DiscussionEntry.swift */; };
 		789C9BC12138516300B37AC4 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789C9BC02138516300B37AC4 /* UIColorExtensions.swift */; };
 		789C9BC32138656E00B37AC4 /* OperationQueueExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789C9BC22138656E00B37AC4 /* OperationQueueExtensions.swift */; };
+		7D005F772239CCEF0040CBD7 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D005F762239CCEF0040CBD7 /* AvatarView.swift */; };
 		7D02159F21B88B19009A8E69 /* UITabBarExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D02159E21B88B19009A8E69 /* UITabBarExtensions.swift */; };
 		7D0215A121B88BDC009A8E69 /* UITabBarExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0215A021B88BDC009A8E69 /* UITabBarExtensionsTests.swift */; };
 		7D0215A721BB1750009A8E69 /* LoginStartViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D0215A621BB1750009A8E69 /* LoginStartViewController.storyboard */; };
@@ -614,6 +615,7 @@
 		787BD02021AE5C28000C90A1 /* DiscussionEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionEntry.swift; sourceTree = "<group>"; };
 		789C9BC02138516300B37AC4 /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		789C9BC22138656E00B37AC4 /* OperationQueueExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationQueueExtensions.swift; sourceTree = "<group>"; };
+		7D005F762239CCEF0040CBD7 /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
 		7D02159E21B88B19009A8E69 /* UITabBarExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabBarExtensions.swift; sourceTree = "<group>"; };
 		7D0215A021B88BDC009A8E69 /* UITabBarExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabBarExtensionsTests.swift; sourceTree = "<group>"; };
 		7D0215A621BB1750009A8E69 /* LoginStartViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginStartViewController.storyboard; sourceTree = "<group>"; };
@@ -1275,6 +1277,7 @@
 			children = (
 				B18359A722244E230005A918 /* AccessIconView.swift */,
 				B18359A9222450DE0005A918 /* AccessIconView.xib */,
+				7D005F762239CCEF0040CBD7 /* AvatarView.swift */,
 				7D8B78FC21627887005E08F1 /* CoreWebView.swift */,
 				7D364F2321AE04B20028E3EA /* CoreWebViewController.swift */,
 				7D765023215AEDDD00BB4F38 /* DividerView.swift */,
@@ -2256,6 +2259,7 @@
 				3BE2C764218CB53F004B8E5E /* Enrollment.swift in Sources */,
 				3B3467D821360A7C00F9BC2E /* APILoginWeb+Requestable.swift in Sources */,
 				7D80AC21212B89C500C40ECE /* APIAccount+Requestable.swift in Sources */,
+				7D005F772239CCEF0040CBD7 /* AvatarView.swift in Sources */,
 				7DCF1EA6216BC0F5003AF358 /* CourseWorkflowState.swift in Sources */,
 				7D63F78C215D4BD300151E49 /* Brand.swift in Sources */,
 				7D765024215AEDDE00BB4F38 /* DividerView.swift in Sources */,
