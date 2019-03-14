@@ -27,14 +27,14 @@ class SubmissionCommentTextCell: UITableViewCell {
         accessibilityIdentifier = "SubmissionCommentsElement.textCell.\(comment.id)"
         accessibilityLabel = String.localizedStringWithFormat(
             NSLocalizedString("On %@ %@ commented \"%@\"", bundle: .student, comment: ""),
-            DateFormatter.localizedString(from: comment.createdAt, dateStyle: .medium, timeStyle: .short),
+            DateFormatter.localizedString(from: comment.createdAt, dateStyle: .long, timeStyle: .short),
             comment.authorName,
             comment.comment
         )
         authorAvatarView?.name = comment.authorName
         authorAvatarView?.url = comment.authorAvatarURL
         authorNameLabel?.text = comment.authorName
-        createdAtLabel?.text = DateFormatter.localizedString(from: comment.createdAt, dateStyle: .medium, timeStyle: .short)
+        createdAtLabel?.text = DateFormatter.localizedString(from: comment.createdAt, dateStyle: .long, timeStyle: .short)
         commentLabel?.text = comment.comment
         contentView.transform = CGAffineTransform(scaleX: 1, y: -1)
     }

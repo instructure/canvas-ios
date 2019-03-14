@@ -79,4 +79,19 @@ extension UIViewController {
             return self
         }
     }
+
+    public func unembed() {
+        willMove(toParent: nil)
+        removeFromParent()
+        view.removeFromSuperview()
+        didMove(toParent: nil)
+    }
+
+    public func embed(_ child: UIViewController, in container: UIView) {
+        child.willMove(toParent: self)
+        container.addSubview(child.view)
+        child.view.pin(inside: container)
+        addChild(child)
+        child.didMove(toParent: self)
+    }
 }

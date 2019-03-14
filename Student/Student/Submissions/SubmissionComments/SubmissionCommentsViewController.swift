@@ -51,16 +51,18 @@ extension SubmissionCommentsViewController: UITableViewDataSource, UITableViewDe
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let comment = presenter?.comments[indexPath.row] else { return UITableViewCell() }
-        if let mediaID = comment.mediaID, let mediaURL = comment.mediaURL, let mediaType = comment.mediaType {
-            // TODO: display media comments
-            let cell = UITableViewCell()
-            cell.accessibilityLabel = "\(mediaType) \(mediaID) \(mediaURL)" // get rid of unused variable errors
-            return cell
-        }
+
         if let attempt = comment.attempt {
             // TODO: display submission attachments
             let cell = UITableViewCell()
             cell.accessibilityLabel = "\(attempt)" // get rid of unused variable errors
+            return cell
+        }
+
+        if comment.mediaURL != nil {
+            let reuseID = currentUserID == comment.authorID ? "myMediaComment" : "theirMediaComment"
+            let cell: SubmissionCommentMediaCell = tableView.dequeue(withID: reuseID, for: indexPath)
+            cell.update(comment: comment, parent: self)
             return cell
         }
 

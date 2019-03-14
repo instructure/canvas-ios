@@ -168,6 +168,8 @@
 		7DB0A1C021BF2671009ABB40 /* LoginStartPageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1BF21BF2671009ABB40 /* LoginStartPageTests.swift */; };
 		7DB0A1C221BF288C009ABB40 /* LoginWebPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1C121BF288C009ABB40 /* LoginWebPage.swift */; };
 		7DB0A1C421BF2A20009ABB40 /* LoginFindSchoolPageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1C321BF2A20009ABB40 /* LoginFindSchoolPageTests.swift */; };
+		7DC1C9D6223AB8690083F707 /* SubmissionCommentMediaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC1C9D5223AB8690083F707 /* SubmissionCommentMediaCell.swift */; };
+		7DC1C9DB223AEBD60083F707 /* SubmissionCommentMediaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC1C9D5223AB8690083F707 /* SubmissionCommentMediaCell.swift */; };
 		7DD6947D2194B67100BA4984 /* SubmissionDetailsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6947C2194B67100BA4984 /* SubmissionDetailsPage.swift */; };
 		7DD6947F2194B94500BA4984 /* SubmissionDetailsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6947E2194B94500BA4984 /* SubmissionDetailsTests.swift */; };
 		7DFEC227223085AB00BE236D /* SubmissionFilesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D79636A22307F2500CCF943 /* SubmissionFilesCell.swift */; };
@@ -637,6 +639,7 @@
 		7DB0A1BF21BF2671009ABB40 /* LoginStartPageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStartPageTests.swift; sourceTree = "<group>"; };
 		7DB0A1C121BF288C009ABB40 /* LoginWebPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWebPage.swift; sourceTree = "<group>"; };
 		7DB0A1C321BF2A20009ABB40 /* LoginFindSchoolPageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFindSchoolPageTests.swift; sourceTree = "<group>"; };
+		7DC1C9D5223AB8690083F707 /* SubmissionCommentMediaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentMediaCell.swift; sourceTree = "<group>"; };
 		7DD6947C2194B67100BA4984 /* SubmissionDetailsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsPage.swift; sourceTree = "<group>"; };
 		7DD6947E2194B94500BA4984 /* SubmissionDetailsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsTests.swift; sourceTree = "<group>"; };
 		9F5ADB30218B656400D8C973 /* SubmissionDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsPresenter.swift; sourceTree = "<group>"; };
@@ -1234,6 +1237,7 @@
 		7DA5C49222386374003CDB4C /* SubmissionComments */ = {
 			isa = PBXGroup;
 			children = (
+				7DC1C9D5223AB8690083F707 /* SubmissionCommentMediaCell.swift */,
 				7DA5C49922386501003CDB4C /* SubmissionCommentsPresenter.swift */,
 				7DA5C493223863A2003CDB4C /* SubmissionCommentsViewController.storyboard */,
 				7DA5C495223863C2003CDB4C /* SubmissionCommentsViewController.swift */,
@@ -1830,6 +1834,7 @@
 				7D0BF3232165315B00859FA1 /* CoreWebView.swift in Sources */,
 				9FCD79DD2188E9D90054293A /* SubmissionDetailsViewController.swift in Sources */,
 				3B1B0079219BD9F60045E8A1 /* CourseListViewController.swift in Sources */,
+				7DC1C9D6223AB8690083F707 /* SubmissionCommentMediaCell.swift in Sources */,
 				3B1B0070219BD9F60045E8A1 /* GradeCircle.swift in Sources */,
 				3B692535219F428E0023ED75 /* FilePickerProgressView.swift in Sources */,
 				7D2000432233355F003BE403 /* SubmissionFilesViewController.swift in Sources */,
@@ -1918,6 +1923,7 @@
 				7D067CE621505B3500B78AF2 /* DashboardGroupCell.swift in Sources */,
 				3B0B0F68219C8D1500F04216 /* CourseNavigationPresenter.swift in Sources */,
 				3B67BCB621B5784500055324 /* UrlSubmissionPresenter.swift in Sources */,
+				7DC1C9DB223AEBD60083F707 /* SubmissionCommentMediaCell.swift in Sources */,
 				3B5425FF21B094CC0009D069 /* UrlSubmissionViewController.swift in Sources */,
 				3B0B0F67219C8D1100F04216 /* CourseListCourseCell.swift in Sources */,
 				9F9F4EB421B58AA300842570 /* ExternalToolSubmissionContentViewController.swift in Sources */,

@@ -191,6 +191,150 @@
                                             <outlet property="createdAtLabel" destination="5uh-Sb-dHi" id="pnm-fb-WY8"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="myMediaComment" rowHeight="100" id="2G9-QC-KCR" customClass="SubmissionCommentMediaCell" customModule="Student" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="228" width="375" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2G9-QC-KCR" id="651-00-ovF">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Um-tb-BF2" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
+                                                    <rect key="frame" x="212" y="11" width="100" height="19.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="rowTitle"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zqb-cj-XMP" customClass="AvatarView" customModule="Student" customModuleProvider="target">
+                                                    <rect key="frame" x="320" y="11" width="40" height="40"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="40" id="hBJ-8F-HOS"/>
+                                                        <constraint firstAttribute="height" constant="40" id="uJ3-pH-Wnd"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="name" value="Author Name"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="March 13 at 10:51 AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="brg-4l-HGS" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
+                                                    <rect key="frame" x="190.5" y="30.5" width="121.5" height="14.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="rowSubtitle"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                                <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gRf-P2-RET">
+                                                    <rect key="frame" x="9" y="51" width="357" height="44"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="44" id="S5O-mn-9X6"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="gRf-P2-RET" firstAttribute="leading" secondItem="651-00-ovF" secondAttribute="leadingMargin" constant="-6" id="3VF-cv-OQl"/>
+                                                <constraint firstItem="brg-4l-HGS" firstAttribute="top" secondItem="5Um-tb-BF2" secondAttribute="bottom" id="6Ng-RK-8AL"/>
+                                                <constraint firstItem="zqb-cj-XMP" firstAttribute="top" secondItem="651-00-ovF" secondAttribute="topMargin" id="7yb-b8-Rl6"/>
+                                                <constraint firstItem="5Um-tb-BF2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="651-00-ovF" secondAttribute="leadingMargin" id="LfR-hq-5r8"/>
+                                                <constraint firstItem="zqb-cj-XMP" firstAttribute="leading" secondItem="5Um-tb-BF2" secondAttribute="trailing" constant="8" id="Q2L-iS-sfd"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="gRf-P2-RET" secondAttribute="trailing" constant="-6" id="Sa5-dK-0OV"/>
+                                                <constraint firstItem="gRf-P2-RET" firstAttribute="top" secondItem="zqb-cj-XMP" secondAttribute="bottom" id="VLn-W3-UHB"/>
+                                                <constraint firstItem="5Um-tb-BF2" firstAttribute="top" secondItem="651-00-ovF" secondAttribute="topMargin" id="XvQ-46-hlA"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="zqb-cj-XMP" secondAttribute="trailing" id="ju3-LF-kJD"/>
+                                                <constraint firstItem="zqb-cj-XMP" firstAttribute="leading" secondItem="brg-4l-HGS" secondAttribute="trailing" constant="8" id="rQr-qJ-cRR"/>
+                                                <constraint firstItem="brg-4l-HGS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="651-00-ovF" secondAttribute="leadingMargin" id="yMX-RG-L8S"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="gRf-P2-RET" secondAttribute="bottom" constant="-6" id="zQo-ap-jSa"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="authorAvatarView" destination="zqb-cj-XMP" id="8lr-BD-9OL"/>
+                                            <outlet property="authorNameLabel" destination="5Um-tb-BF2" id="8FE-vZ-fsK"/>
+                                            <outlet property="containerBottomConstraint" destination="zQo-ap-jSa" id="aHU-mz-ZTq"/>
+                                            <outlet property="containerHeightConstraint" destination="S5O-mn-9X6" id="cqx-Sf-sx8"/>
+                                            <outlet property="containerLeadingConstraint" destination="3VF-cv-OQl" id="xDO-s3-Zro"/>
+                                            <outlet property="containerTopConstraint" destination="VLn-W3-UHB" id="y6W-yI-Eij"/>
+                                            <outlet property="containerTrailingConstraint" destination="Sa5-dK-0OV" id="htT-5n-r4U"/>
+                                            <outlet property="containerView" destination="gRf-P2-RET" id="Kxt-5B-uVM"/>
+                                            <outlet property="createdAtLabel" destination="brg-4l-HGS" id="eSa-R1-GxO"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="theirMediaComment" rowHeight="100" id="MSG-Gi-WrB" customClass="SubmissionCommentMediaCell" customModule="Student" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="328" width="375" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MSG-Gi-WrB" id="mEg-Wj-XA5">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MZF-06-BzS" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
+                                                    <rect key="frame" x="63" y="11" width="100" height="19.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="rowTitle"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wqw-4h-NYL" customClass="AvatarView" customModule="Student" customModuleProvider="target">
+                                                    <rect key="frame" x="15" y="11" width="40" height="40"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="He3-Ob-akQ"/>
+                                                        <constraint firstAttribute="width" constant="40" id="v8F-Mf-rWu"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="name" value="Author Name"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="March 13 at 10:51 AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3mI-LK-kPb" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
+                                                    <rect key="frame" x="63" y="30.5" width="121.5" height="14.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="rowSubtitle"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                                <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HOr-G9-8Pg">
+                                                    <rect key="frame" x="9" y="51" width="357" height="44"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="44" id="8MA-9C-Duo"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="HOr-G9-8Pg" secondAttribute="trailing" constant="-6" id="2Bb-UD-AWG"/>
+                                                <constraint firstItem="MZF-06-BzS" firstAttribute="top" secondItem="mEg-Wj-XA5" secondAttribute="topMargin" id="FVc-VR-2Hb"/>
+                                                <constraint firstItem="3mI-LK-kPb" firstAttribute="leading" secondItem="wqw-4h-NYL" secondAttribute="trailing" constant="8" id="KAU-dC-LCU"/>
+                                                <constraint firstItem="3mI-LK-kPb" firstAttribute="top" secondItem="MZF-06-BzS" secondAttribute="bottom" id="LDl-tX-1vP"/>
+                                                <constraint firstItem="wqw-4h-NYL" firstAttribute="top" secondItem="mEg-Wj-XA5" secondAttribute="topMargin" id="Mzu-Qo-z5P"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="3mI-LK-kPb" secondAttribute="trailing" id="Q2E-gg-qDr"/>
+                                                <constraint firstItem="HOr-G9-8Pg" firstAttribute="leading" secondItem="mEg-Wj-XA5" secondAttribute="leadingMargin" constant="-6" id="SKE-BQ-lHH"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="wqw-4h-NYL" secondAttribute="leading" id="TV4-fR-XBe"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="HOr-G9-8Pg" secondAttribute="bottom" constant="-6" id="WBC-9d-DeD"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="MZF-06-BzS" secondAttribute="trailing" id="nff-wc-hXO"/>
+                                                <constraint firstItem="HOr-G9-8Pg" firstAttribute="top" secondItem="wqw-4h-NYL" secondAttribute="bottom" id="oxc-wt-lFu"/>
+                                                <constraint firstItem="MZF-06-BzS" firstAttribute="leading" secondItem="wqw-4h-NYL" secondAttribute="trailing" constant="8" id="sAi-y5-914"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="authorAvatarView" destination="wqw-4h-NYL" id="amK-ZA-t2d"/>
+                                            <outlet property="authorNameLabel" destination="MZF-06-BzS" id="cWy-ls-W6v"/>
+                                            <outlet property="containerBottomConstraint" destination="WBC-9d-DeD" id="OOq-Rf-OzX"/>
+                                            <outlet property="containerHeightConstraint" destination="8MA-9C-Duo" id="MfN-48-Jhi"/>
+                                            <outlet property="containerLeadingConstraint" destination="SKE-BQ-lHH" id="GmV-qN-PJF"/>
+                                            <outlet property="containerTopConstraint" destination="oxc-wt-lFu" id="B4e-Xs-DjU"/>
+                                            <outlet property="containerTrailingConstraint" destination="2Bb-UD-AWG" id="YQX-xi-CpY"/>
+                                            <outlet property="containerView" destination="HOr-G9-8Pg" id="0I6-bR-aov"/>
+                                            <outlet property="createdAtLabel" destination="3mI-LK-kPb" id="pr8-ox-Fcx"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="9pN-2b-voW" id="xgK-34-ZpE"/>
