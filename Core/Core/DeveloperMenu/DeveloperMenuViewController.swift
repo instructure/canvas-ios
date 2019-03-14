@@ -15,10 +15,8 @@
 //
 
 import UIKit
-import Crashlytics
-import Core
 
-class DeveloperMenuViewController: UIViewController {
+public class DeveloperMenuViewController: UIViewController {
 
     enum MenuOptions: String, CaseIterable {
         case crash
@@ -88,21 +86,21 @@ class DeveloperMenuViewController: UIViewController {
 }
 
 extension DeveloperMenuViewController: UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = MenuOptions.allCases[indexPath.row].title()
         return cell
     }
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return MenuOptions.allCases.count
     }
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         switch MenuOptions.allCases[indexPath.row] {
         case .crash:
-            Crashlytics.sharedInstance().throwException()
+            fatalError("Forced a crash")
         case .clearStorage:
             UserDefaults.standard.removePersistentDomain(forName: Bundle.parentBundleID)
             UserDefaults.standard.synchronize()

@@ -14,9 +14,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-import Core
 import UIKit
-import CanvasCore
 
 public struct APITermsOfService: Codable, Equatable {
     let content: String
@@ -31,11 +29,11 @@ struct APITermsOfServiceRequestable: APIRequestable {
     }
 }
 
-class TermsOfServiceViewController: UIViewController {
+public class TermsOfServiceViewController: UIViewController {
     var env: AppEnvironment
-    var webView: CanvasWebView?
+    var webView: CoreWebView?
 
-    init(_ env: AppEnvironment = .shared) {
+    public init(_ env: AppEnvironment = .shared) {
         self.env = env
         super.init(nibName: nil, bundle: nil)
     }
@@ -44,14 +42,14 @@ class TermsOfServiceViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         self.addDoneButton()
 
-        self.title = NSLocalizedString("Terms of Use", bundle: .parent, comment: "")
+        self.title = NSLocalizedString("Terms of Use", bundle: .core, comment: "")
 
-        let web = CanvasWebView()
+        let web = CoreWebView()
         self.view.addSubview(web)
-        web.pinToAllSides(ofView: self.view)
+        web.pin(inside: self.view)
         self.webView = web
 
         self.loadTerms()
@@ -59,14 +57,13 @@ class TermsOfServiceViewController: UIViewController {
 
     func loadTerms() {
         let request = APITermsOfServiceRequestable()
-        self.env.api.makeRequest(request) { [weak self] (response, nil, error) in
+        self.env.api.makeRequest(request) { [weak self] (response, _, error) in
             DispatchQueue.main.async {
                 guard error == nil, let response = response else {
                     self?.showErrorMessage()
                     return
                 }
-
-                self?.webView?.load(source: .html(title: NSLocalizedString("Terms of Use", bundle: .parent, comment: ""), body: response.content, baseURL: nil))
+                self?.webView?.loadHTMLString(response.content)
             }
         }
     }
@@ -75,7 +72,7 @@ class TermsOfServiceViewController: UIViewController {
         let label = DynamicLabel(frame: self.view.frame)
         label.numberOfLines = 2
         label.textAlignment = .center
-        label.text = NSLocalizedString("There was a problem retrieving the Terms of Use.", bundle: .parent, comment: "")
+        label.text = NSLocalizedString("There was a problem retrieving the Terms of Use.", bundle: .core, comment: "")
         self.view.addSubview(label)
     }
 }

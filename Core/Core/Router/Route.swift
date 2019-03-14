@@ -77,11 +77,15 @@ public struct Route: Equatable {
         return Route("/courses/\(courseID)/modules/\(moduleID)")
     }
 
-    public static let support = Route("/support/:type")
+    public static func sendSupport(forType type: String) -> Route {
+        return Route("/support/\(type)")
+    }
 
     public static let developerMenu = Route("/dev-menu")
 
-    public static let termsOfService = Route("/accounts/:accountID/terms_of_service")
+    public static func termsOfService(forAccount accountID: String) -> Route {
+        return Route("/accounts/\(accountID)/terms_of_service")
+    }
 
     public static let anythingElse = Route("*")
 }
