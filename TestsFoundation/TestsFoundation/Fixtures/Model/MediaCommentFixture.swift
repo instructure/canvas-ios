@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2018-present Instructure, Inc.
+// Copyright (C) 2019-present Instructure, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,19 +16,17 @@
 
 import Foundation
 
-enum SubmissionDetailsPage: String, UITestElement, CaseIterable {
-    case emptyAssignmentDueBy
-    case emptySubmitButton
-    case emptyView
-    case attemptPicker
-    case attemptPickerArrow
-    case attemptPickerToggle
-    case onlineTextEntryWebView
-    case discussionWebView
-    case onlineQuizWebView
-    case urlButton
-    case urlSubmissionBlurb
-    case urlPreview
-    case externalToolButton
-    case mediaPlayer
+import Foundation
+@testable import Core
+
+extension MediaComment: Fixture {
+    public static var template: Template {
+        return [
+            "contentType": "video/mp4",
+            "displayName": "Submission",
+            "mediaID": "m-1234567890",
+            "mediaType": "video",
+            "url": URL(string: "https://google.com")!
+        ]
+    }
 }
