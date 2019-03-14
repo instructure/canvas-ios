@@ -224,9 +224,26 @@ public struct SeedClient {
         as teacher: AuthUser,
         grade: String
     ) -> APISubmission {
-        let body = PutSubmissionGradeRequest.Body(submission: PutSubmissionGradeRequest.Body.Submission(posted_grade: grade))
-        let request = PutSubmissionGradeRequest(courseID: course.id, assignmentID: assignment.id.value, userID: userID, body: body)
+        let request = PutSubmissionGradeRequest(courseID: course.id, assignmentID: assignment.id.value, userID: userID, body: .init(
+            comment: nil,
+            submission: .init(posted_grade: grade)
+        ))
         return makeRequest(request, with: teacher.token)
+    }
+
+    @discardableResult
+    public func commentOnSumbission(
+        course: APICourse,
+        assignment: APIAssignment,
+        userID: String,
+        as teacher: AuthUser,
+        comment: String
+    ) -> APISubmissionComment {
+        let request = PutSubmissionGradeRequest(courseID: course.id, assignmentID: assignment.id.value, userID: userID, body: .init(
+            comment: .init(text_comment: comment),
+            submission: nil
+        ))
+        return makeRequest(request, with: teacher.token).submission_comments!.last!
     }
 
     @discardableResult

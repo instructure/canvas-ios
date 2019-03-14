@@ -14,15 +14,18 @@
 // limitations under the License.
 //
 
-import XCTest
-import UIKit
+import Foundation
 @testable import Core
 
-class UITableViewExtensionsTests: XCTestCase {
-    class Cell: UITableViewCell {}
-    func testDequeue() {
-        let view = UITableView(frame: .zero)
-        view.register(Cell.self, forCellReuseIdentifier: "Cell")
-        XCTAssertNoThrow(view.dequeue(for: IndexPath(row: 0, section: 0)) as Cell)
+extension SubmissionComment: Fixture {
+    public static var template: Template {
+        return [
+            "id": "1",
+            "authorID": "1",
+            "authorName": "Steve",
+            "comment": "comment",
+            "createdAt": Date(fromISOString: "2019-03-13T21:00:36Z"),
+            "submissionID": "1",
+        ]
     }
 }

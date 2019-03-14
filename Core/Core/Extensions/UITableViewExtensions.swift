@@ -17,10 +17,11 @@
 import UIKit
 
 extension UITableView {
-    public func dequeue<T: UITableViewCell>(_ type: T.Type, for indexPath: IndexPath) -> T {
-        let name = String(describing: T.self)
-        guard let cell = dequeueReusableCell(withIdentifier: name, for: indexPath) as? T else {
-            fatalError("Could not dequeue \(name) as reusable cell.")
+    /// Returns a reusable table-view cell object of the specified type and adds it to the table.
+    /// This can assume that the reuse identifier matches the type name.
+    public func dequeue<T: UITableViewCell>(_ type: T.Type = T.self, withID identifier: String = String(describing: T.self), for indexPath: IndexPath) -> T {
+        guard let cell = dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? T else {
+            fatalError("Could not dequeue \(identifier) as reusable cell.")
         }
         return cell
     }
