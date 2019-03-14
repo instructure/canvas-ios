@@ -18,7 +18,7 @@ import Foundation
 import CoreData
 
 public protocol FileUploadDelegate {
-    func fileUploader(_ fileUploader: FileUploader, finishedUpload url: URL)
+    func fileUploader(_ fileUploader: FileUploader, url: URL, didCompleteWithError error: Error?)
 }
 
 public class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate, URLSessionDataDelegate {
@@ -34,7 +34,7 @@ public class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate,
 
     // File uploads are not stored in the user's database
     // because they continue across sessions.
-    // Using our own environment ensures that we write and subscribe to the `globalDatabase`
+    // By using a new environment, we write and subscribe to the `globalDatabase`
     let environment = AppEnvironment()
     public var database: Persistence {
         return environment.database
@@ -59,7 +59,7 @@ public class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate,
                 try context.save()
                 self.getTarget(fileUpload, api: environment.api)
             } catch {
-                Logger.shared.error("Failed to save fileUpload \(error) \(#file) \(#line)")
+                self.notify(url: fileURL, error: error)
             }
         }
     }
@@ -84,6 +84,7 @@ public class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate,
                         fileUpload.error = error.localizedDescription
                         _ = try? context.save()
                     }
+                    self.notify(url: url, error: error)
                 }
                 return
             }
@@ -107,7 +108,7 @@ public class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate,
                 try context.save()
                 task.resume()
             } catch {
-                Logger.shared.error("Failed to save fileUpload \(error) \(#file) \(#line)")
+                self.notify(url: file, error: error)
             }
         }
     }
@@ -123,7 +124,8 @@ public class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate,
                 fileUpload.size = Int(totalBytesExpectedToSend)
                 try context.save()
             } catch {
-                Logger.shared.error("Failed to save fileUpload \(error) \(#file) \(#line)")
+                self.notify(url: fileUpload.url, error: error)
+                task.cancel()
             }
         }
     }
@@ -141,9 +143,9 @@ public class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate,
                 try context.save()
                 Logger.shared.log("Uploaded file with id \(file.id)")
             } catch {
-                Logger.shared.error("Failed to save fileUpload \(error) \(#file) \(#line)")
                 fileUpload.error = error.localizedDescription
                 _ = try? context.save()
+                self.notify(url: fileUpload.url, error: error)
             }
         }
     }
@@ -159,12 +161,9 @@ public class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate,
                 fileUpload.error = error
                 fileUpload.completed = error == nil
                 try context.save()
-                let listeners = self.listeners
-                for listener in listeners {
-                    listener.fileUploader(self, finishedUpload: fileUpload.url)
-                }
+                self.notify(url: fileUpload.url, error: nil)
             } catch {
-                Logger.shared.error("Failed to save fileUpload \(error) \(#file) \(#line)")
+                self.notify(url: fileUpload.url, error: error)
             }
         }
     }
@@ -184,5 +183,12 @@ public class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate,
         let taskID = NSPredicate(format: "%K == %d", #keyPath(FileUpload.taskIDRaw), task.taskIdentifier)
         let predicate = NSCompoundPredicate.init(andPredicateWithSubpredicates: [sessionID, taskID])
         return context.fetch(predicate).first
+    }
+
+    private func notify(url: URL, error: Error?) {
+        let listeners = self.listeners
+        for listener in listeners {
+            listener.fileUploader(self, url: url, didCompleteWithError: error)
+        }
     }
 }

@@ -18,12 +18,14 @@ import Foundation
 
 public class SubmissionFileUploadDelegate: FileUploadDelegate {
     public let appGroup: AppGroup
+    let notificationManager: NotificationManager
 
-    public init(appGroup: AppGroup) {
+    public init(appGroup: AppGroup, notificationManager: NotificationManager = .shared) {
         self.appGroup = appGroup
+        self.notificationManager = notificationManager
     }
 
-    public func fileUploader(_ fileUploader: FileUploader, finishedUpload url: URL) {
+    public func fileUploader(_ fileUploader: FileUploader, url: URL, didCompleteWithError error: Error?) {
         fileUploader.database.perform { context in
             guard let fileUpload: FileUpload = context.first(where: #keyPath(FileUpload.url), equals: url as CVarArg) else {
                 return
@@ -36,10 +38,13 @@ public class SubmissionFileUploadDelegate: FileUploadDelegate {
             }
             switch target {
             case let .submission(courseID: courseID, assignmentID: assignmentID):
-                Logger.shared.log("File submission upload finished")
-                 let contextMatch = NSPredicate(format: "%K == %@", #keyPath(FileUpload.contextRaw), target.rawValue)
-                let userMatch = NSPredicate(format: "%K == %@", #keyPath(FileUpload.userRaw), NSNumber(value: user.hashValue))
-                 let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [contextMatch, userMatch])
+                if let error = error {
+                    Logger.shared.error("File upload failed with error \(error.localizedDescription)")
+                    self.sendFailedNotification(courseID: courseID, assignmentID: assignmentID)
+                    return
+                }
+                let files = self.submissionFiles(user: user, courseID: courseID, assignmentID: assignmentID)
+                let predicate = NSPredicate(format: "%K in %@", #keyPath(FileUpload.url), files)
                 let fileUploads: [FileUpload] = context.fetch(predicate)
                 if !fileUploads.isEmpty && fileUploads.allSatisfy({ $0.completed && $0.error == nil }) {
                     let fileIDs = fileUploads.compactMap { $0.fileID }
@@ -52,7 +57,6 @@ public class SubmissionFileUploadDelegate: FileUploadDelegate {
     }
 
     private func submit(fileIDs: [String], as user: KeychainEntry, toAssignment assignmentID: String, inCourse courseID: String) {
-        Logger.shared.log("Submitting \(fileIDs.count) files to assignment \(assignmentID)")
         let environment = AppEnvironment()
         environment.userDidLogin(session: user)
         let useCase = CreateSubmission(
@@ -64,27 +68,51 @@ public class SubmissionFileUploadDelegate: FileUploadDelegate {
         )
         useCase.fetch { _, urlResponse, error in
             if let error = error {
-                // TODO: Send push notification
-                print(error)
+                Logger.shared.error("File submission failed with error \(error.localizedDescription)")
+                self.sendFailedNotification(courseID: courseID, assignmentID: assignmentID)
+                return
             }
             if let httpResponse = urlResponse as? HTTPURLResponse, httpResponse.statusCode == 201 {
                 Logger.shared.log("\(fileIDs.count) files submitted!")
+                self.sendCompletedNotification(courseID: courseID, assignmentID: assignmentID)
                 do {
                     // Delete all the files
-                    let submissionFilesDirectory = self.appGroup.url
-                        .appendingPathComponent(user.documentsPath, isDirectory: true)
-                        .appendingPathComponent("courses/\(courseID)/assignments/\(assignmentID)/file-submission", isDirectory: true)
-                    let submissionFiles = try FileManager.default.contentsOfDirectory(at: submissionFilesDirectory, includingPropertiesForKeys: nil, options: [.skipsSubdirectoryDescendants])
-                    for file in submissionFiles {
+                    for file in self.submissionFiles(user: user, courseID: courseID, assignmentID: assignmentID) {
                         try FileManager.default.removeItem(at: file)
-                        Logger.shared.log("Removed local file submissions")
+                        Logger.shared.log("Removed local file submission")
                     }
                 } catch {
                     Logger.shared.error(error.localizedDescription)
                 }
             } else {
                 Logger.shared.error("Unexpected file submission response")
+                self.sendFailedNotification(courseID: courseID, assignmentID: assignmentID)
             }
+        }
+    }
+
+    private func sendFailedNotification(courseID: String, assignmentID: String) {
+        let route = Route.course(courseID, assignment: assignmentID)
+        let title = NSString.localizedUserNotificationString(forKey: "Assignment submission failed!", arguments: nil)
+        let body = NSString.localizedUserNotificationString(forKey: "Something went wrong with an assignment submission.", arguments: nil)
+        notificationManager.notify(title: title, body: body, route: route)
+    }
+
+    private func sendCompletedNotification(courseID: String, assignmentID: String) {
+        let route = Route.course(courseID, assignment: assignmentID)
+        let title = NSString.localizedUserNotificationString(forKey: "Assignment submitted!", arguments: nil)
+        let body = NSString.localizedUserNotificationString(forKey: "Your files were uploaded and the assignment was submitted successfully.", arguments: nil)
+        notificationManager.notify(title: title, body: body, route: route)
+    }
+
+    private func submissionFiles(user: KeychainEntry, courseID: String, assignmentID: String) -> [URL] {
+        let dir = appGroup.url
+            .appendingPathComponent(user.documentsPath, isDirectory: true)
+            .appendingPathComponent("courses/\(courseID)/assignments/\(assignmentID)/file-submission", isDirectory: true)
+        do {
+            return try FileManager.default.contentsOfDirectory(at: dir, includingPropertiesForKeys: nil, options: [.skipsSubdirectoryDescendants])
+        } catch {
+            return []
         }
     }
 }
