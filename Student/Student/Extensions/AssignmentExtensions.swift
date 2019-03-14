@@ -15,8 +15,12 @@
 //
 
 import Foundation
+import Core
 
-public struct FileUploadTarget: Codable, Equatable {
-    public let upload_url: URL
-    public let upload_params: [String: String]
+extension Assignment {
+    public var canMakeSubmissions: Bool {
+        return submissionTypes.count > 0 &&
+            !submissionTypes.contains(.none) && !submissionTypes.contains(.on_paper) &&
+            submissionFiles(appGroup: .student).isEmpty
+    }
 }

@@ -41,6 +41,10 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
         return frc.fetchedObjects?.last
     }
 
+    public var isEmpty: Bool {
+        return count == 0
+    }
+
     private var next: GetNextRequest<U.Response>?
 
     public private(set) var pending: Bool = false {

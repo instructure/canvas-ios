@@ -75,11 +75,14 @@ export default class Navigator {
       logEvent('webview_content_selected', { url })
       try {
         let { data: { session_url: authenticatedURL } } = await getAuthenticatedSessionURL(url)
+        console.log('SFSafariViewController.open authenticated', url)
         SFSafariViewController.open(authenticatedURL)
       } catch (err) {
+        console.log('SFSafariViewController.open', url)
         SFSafariViewController.open(url)
       }
     } else {
+      console.log('Linking.open', url)
       Linking.openURL(url)
     }
   }

@@ -152,15 +152,7 @@ class AssignmentDetailsPresenter {
         switch type {
         case .online_upload:
             let route = Route.assignmentFileUpload(courseID: courseID, assignmentID: assignmentID)
-            let cancelPrevious = CancelFileSubmission(database: env.database, assignmentID: assignmentID)
-            env.queue.addOperation(cancelPrevious) { [weak self, weak viewController] error in
-                if let error = error {
-                    self?.view?.showError(error)
-                }
-                if let vc = viewController {
-                    self?.env.router.route(to: route, from: vc, options: [.modal, .embedInNav])
-                }
-            }
+            env.router.route(to: route, from: viewController, options: [.modal, .embedInNav])
         case .online_url:
             let route = Route.assignmentUrlSubmission(courseID: courseID, assignmentID: assignmentID, userID: userID ?? "")
             env.router.route(to: route, from: viewController, options: [.modal, .embedInNav])

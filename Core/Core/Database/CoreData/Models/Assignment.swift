@@ -35,7 +35,6 @@ public class Assignment: NSManagedObject {
     @NSManaged public var unlockAt: Date?
     @NSManaged public var lockedForUser: Bool
     @NSManaged public var url: URL?
-    @NSManaged public var fileSubmission: FileSubmission?
 
     public var gradingType: GradingType {
         get { return GradingType(rawValue: gradingTypeRaw) ?? .points }
@@ -99,12 +98,6 @@ extension Assignment {
         }
     }
 
-    public var canMakeSubmissions: Bool {
-        return submissionTypes.count > 0 &&
-            !submissionTypes.contains(.none) && !submissionTypes.contains(.on_paper) &&
-            (fileSubmission == nil || fileSubmission?.submitted == true || fileSubmission?.failed == true)
-    }
-
     public var allowedUTIs: [UTI] {
         var utis: [UTI] = []
 
@@ -129,5 +122,28 @@ extension Assignment {
         }
 
         return utis
+    }
+
+    public func submissionFiles(appGroup: AppGroup) -> [URL] {
+        do {
+            return try FileManager.default.contentsOfDirectory(at: fileSubmissionURL(appGroup: appGroup), includingPropertiesForKeys: nil, options: [.skipsSubdirectoryDescendants])
+        } catch {
+            assertionFailure("failed to read contents of assignment directory")
+            return []
+        }
+    }
+
+    public func fileSubmissionURL(appGroup: AppGroup) -> URL {
+        var url = appGroup.url
+        if let user = Keychain.currentSession {
+            url.appendPathComponent(user.documentsPath, isDirectory: true)
+        }
+        url.appendPathComponent("courses/\(courseID)/assignments/\(id)/file-submission", isDirectory: true)
+        do {
+            try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
+        } catch {
+            assertionFailure("failed to create directory \(url.absoluteString)")
+        }
+        return url
     }
 }

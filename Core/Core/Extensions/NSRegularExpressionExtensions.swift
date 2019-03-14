@@ -16,7 +16,22 @@
 
 import Foundation
 
-public struct FileUploadTarget: Codable, Equatable {
-    public let upload_url: URL
-    public let upload_params: [String: String]
+extension NSRegularExpression {
+    public convenience init(_ pattern: String) {
+        do {
+            try self.init(pattern: pattern)
+        } catch {
+            preconditionFailure("Illegal regular expression: \(pattern).")
+        }
+    }
+
+    public func matches(_ string: String) -> Bool {
+        let range = NSRange(location: 0, length: string.utf16.count)
+        return firstMatch(in: string, options: [], range: range) != nil
+    }
+}
+
+// Allow `switch` on regular expressions
+func ~= (pattern: NSRegularExpression, value: String) -> Bool {
+    return pattern.matches(value)
 }

@@ -156,6 +156,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
 
         submittedLabel?.textColor = UIColor.named(.textSuccess).ensureContrast(against: .white)
 
+/* TODO: Fix this
         if assignment.showFileSubmissionStatus {
             gradeCell?.isHidden = false
             gradeCellDivider?.isHidden = false
@@ -168,6 +169,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
             fileSubmissionButton?.setTitle(assignment.fileSubmissionButtonText, for: .normal)
             return
         }
+ */
 
         guard submission.workflowState != .unsubmitted else {
             hideGradeCell()

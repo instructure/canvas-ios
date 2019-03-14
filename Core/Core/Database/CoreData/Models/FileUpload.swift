@@ -19,67 +19,51 @@ import CoreData
 
 public struct FileInfo: Equatable {
     public var url: URL
-    public var size: Int64
+    public var size: Int
 
-    public init(url: URL, size: Int64) {
+    public init(url: URL, size: Int) {
         self.url = url
         self.size = size
     }
 }
 
 public class FileUpload: NSManagedObject {
-    @NSManaged var contextRaw: String
+    @NSManaged var contextRaw: String?
     @NSManaged public var url: URL
-    @NSManaged public var id: String?
-    @NSManaged public var size: Int64
-    @NSManaged public var bytesSent: Int64
+    @NSManaged public var size: Int
+    @NSManaged public var bytesSent: Int
     @NSManaged public var error: String?
-    @NSManaged private var taskIDRaw: NSNumber?
-    @NSManaged public var backgroundSessionID: String
+    @NSManaged public var taskIDRaw: NSNumber?
+    @NSManaged public var sessionID: String?
     @NSManaged public var completed: Bool
     @NSManaged public var fileID: String?
-    @NSManaged public var submission: FileSubmission?
+    @NSManaged public var userRaw: NSNumber? // KeychainEntry.hashValue
 
-    public var target: FileUploadTarget? {
-        if let submission = submission {
-            return .submission(courseID: submission.assignment.courseID, assignmentID: submission.assignment.id)
-        }
-        switch context.contextType {
-        case .course:
-            return .course(context.id)
-        case .user:
-            return .user(context.id)
-        default:
-            return nil
-        }
+    public var inProgress: Bool {
+        return error == nil && !completed
     }
 
-    public var context: Context {
-        get { return ContextModel(canvasContextID: contextRaw) ?? .currentUser }
-        set { contextRaw = newValue.canvasContextID }
+    public var context: FileUploadContext? {
+        get { return contextRaw.flatMap(FileUploadContext.init) }
+        set { contextRaw = newValue?.rawValue }
     }
 
     public var taskID: Int? {
         get { return taskIDRaw?.intValue }
         set { taskIDRaw = NSNumber(value: newValue) }
     }
-}
 
-extension FileUpload: Scoped {
-    public enum ScopeKeys {
-        case assignment(String)
-        case taskID(backgroundSessionID: String, taskID: Int)
+    public var user: Int? {
+        get { return userRaw?.intValue }
+        set { userRaw = NSNumber(value: newValue) }
     }
 
-    public static func scope(forName name: ScopeKeys) -> Scope {
-        switch name {
-        case let .assignment(assignmentID):
-            return .where(#keyPath(FileUpload.submission.assignment.id), equals: assignmentID)
-        case let .taskID(backgroundSessionID: backgroundSessionID, taskID: taskID):
-            let session = NSPredicate(format: "%K == %@", #keyPath(FileUpload.backgroundSessionID), backgroundSessionID)
-            let task = NSPredicate(format: "%K == %d", #keyPath(FileUpload.taskIDRaw), taskID)
-            let pred = NSCompoundPredicate(andPredicateWithSubpredicates: [session, task])
-            return Scope(predicate: pred, order: [])
-        }
+    public func reset() {
+        bytesSent = 0
+        error = nil
+        taskID = nil
+        sessionID = nil
+        completed = false
+        fileID = nil
     }
 }

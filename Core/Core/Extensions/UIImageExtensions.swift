@@ -15,6 +15,7 @@
 //
 
 import UIKit
+import Foundation
 
 extension UIImage {
     public enum IconName: String, CaseIterable {
@@ -28,12 +29,38 @@ extension UIImage {
         return UIImage(named: name.rawValue, in: .core, compatibleWith: nil)!
     }
 
+    /**
+     Writes the image to the specified URL
+
+     - Parameter url: The url to write the image to.
+     If nil, the image will be written to a temporary directory.
+     The URL is assumed to be a directory.
+
+     - Parameter name: The file name to be used. If not provided,
+     a sensible default will be generated.
+
+     - Returns: The URL that the image was written to.
+
+     - Note: Directories are created for `url` if they don't already exist
+     */
+    public func write(to url: URL? = nil, nameIt name: String? = nil) throws -> URL {
+        let directory = url ?? URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("images", isDirectory: true)
+        let name = name ?? String(Clock.now.timeIntervalSince1970)
+        try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true, attributes: nil)
+        let url = directory.appendingPathComponent(name, isDirectory: false)
+        guard let data = pngData() else {
+            throw NSError.instructureError("Failed to save image")
+        }
+        try data.write(to: url, options: .atomic)
+        return url
+    }
+
     public func temporarilyStoreForSubmission() throws -> FileInfo? {
         let imageSaveName = "\(String(describing: Clock.now.timeIntervalSince1970))-submission.png"
         guard var url: URL = try? URL.temporarySubmissionDirectoryPath() else { return nil }
-        guard let data: Data =  self.pngData() else { return nil }
+        guard let data: Data = self.pngData() else { return nil }
         url.appendPathComponent(imageSaveName)
         try data.write(to: url, options: Data.WritingOptions.atomicWrite)
-        return FileInfo(url: url, size: Int64(data.count))
+        return FileInfo(url: url, size: data.count)
     }
 }

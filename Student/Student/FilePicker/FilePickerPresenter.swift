@@ -22,8 +22,7 @@ typealias CameraCaptureResult = [UIImagePickerController.InfoKey: Any]
 
 protocol FileViewModel {
     var url: URL { get }
-    var size: Int64 { get }
-    var bytesSent: Int64 { get }
+    var size: Int { get }
     var error: String? { get }
 }
 

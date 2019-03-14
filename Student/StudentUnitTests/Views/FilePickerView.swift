@@ -56,7 +56,7 @@ class FilePickerView: FilePickerViewProtocol {
         onUpdate?()
     }
 
-    func updateTransferProgress(_ progress: Float, sent: Int64, expectedToSend: Int64) {
+    func updateTransferProgress(_ progress: Float, sent: Int, expectedToSend: Int) {
         self.progress = progress
         self.bytesSent = sent
         self.expectedToSend = expectedToSend

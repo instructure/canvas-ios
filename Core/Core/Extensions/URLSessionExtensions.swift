@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2018-present Instructure, Inc.
+// Copyright (C) 2019-present Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -15,17 +15,3 @@
 //
 
 import Foundation
-
-public class CancelFileSubmission: OperationSet {
-    public init(database: Persistence, assignmentID: String) {
-        let delete = DatabaseOperation(database: database) { client in
-            let predicate = Assignment.scope(forName: .details(assignmentID)).predicate
-            if let assignment: Assignment = client.fetch(predicate).first {
-                if let fileSubmission = assignment.fileSubmission {
-                    try client.delete(fileSubmission)
-                }
-            }
-        }
-        super.init(operations: [delete])
-    }
-}

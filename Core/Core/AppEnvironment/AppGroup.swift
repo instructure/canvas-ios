@@ -16,7 +16,13 @@
 
 import Foundation
 
-public struct FileUploadTarget: Codable, Equatable {
-    public let upload_url: URL
-    public let upload_params: [String: String]
+public enum AppGroup: String {
+    case student = "group.com.instructure.icanvas"
+
+    public var url: URL {
+        guard let url = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: rawValue) else {
+            preconditionFailure("app group not found \(rawValue)")
+        }
+        return url
+    }
 }

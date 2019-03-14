@@ -17,6 +17,24 @@
 import Foundation
 
 extension URL {
+    public static func directory(forUser user: KeychainEntry, appGroup: AppGroup? = nil) -> URL {
+        let root = appGroup?.url ?? documentsDirectory
+        let host = user.baseURL.host ?? "default"
+        return root
+            .appendingPathComponent(host, isDirectory: true)
+            .appendingPathComponent("users", isDirectory: true)
+            .appendingPathComponent(user.userID, isDirectory: true)
+    }
+
+    public static var documentsDirectory: URL {
+        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+        return URL(fileURLWithPath: path)
+    }
+
+    public static var temporaryDirectory: URL {
+        return URL(fileURLWithPath: NSTemporaryDirectory())
+    }
+
     public static func temporarySubmissionDirectoryPath() throws -> URL {
         var path = URL(fileURLWithPath: NSTemporaryDirectory())
         path.appendPathComponent("submissions")
@@ -24,11 +42,10 @@ extension URL {
         return path
     }
 
-    public func lookupFileSize() -> Int64 {
+    public func lookupFileSize() -> Int {
         guard self.isFileURL else { return 0 }
         let attributes = try? FileManager.default.attributesOfItem(atPath: path)
-        let fileSize = attributes?[FileAttributeKey.size] as? Int64
-        return fileSize ?? 0
+        return attributes?[FileAttributeKey.size] as? Int ?? 0
     }
 
     public func appendingQueryItems(_ items: URLQueryItem...) -> URL {

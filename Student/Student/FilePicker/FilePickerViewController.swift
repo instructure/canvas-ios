@@ -29,7 +29,7 @@ protocol FilePickerViewProtocol: ErrorViewController {
     func presentDocumentPicker(documentTypes: [String])
     func presentCamera()
     func presentLibrary()
-    func updateTransferProgress(_ progress: Float, sent: Int64, expectedToSend: Int64)
+    func updateTransferProgress(_ progress: Float, sent: Int, expectedToSend: Int)
     func updateToolbar(items: [UIBarButtonItem])
     func updateNavigationItems(left: [UIBarButtonItem], right: [UIBarButtonItem])
     func dismiss()
@@ -135,7 +135,7 @@ class FilePickerViewController: UIViewController, FilePickerViewProtocol {
         }
     }
 
-    func updateTransferProgress(_ progress: Float, sent: Int64, expectedToSend: Int64) {
+    func updateTransferProgress(_ progress: Float, sent: Int, expectedToSend: Int) {
         DispatchQueue.main.async {
             let format = NSLocalizedString("Uploading %@ of %@", comment: "")
             self.progressView.text = String.localizedStringWithFormat(format, sent.humanReadableFileSize, expectedToSend.humanReadableFileSize)

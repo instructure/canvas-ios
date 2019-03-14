@@ -136,9 +136,6 @@ export function wrapComponentInProviders (moduleName: string, generator: (props:
 export function route (url: string, additionalProps: Object = {}): ?RouteOptions {
   const baseURL = getSession().baseURL
   const location = new URL(url, baseURL, true)
-  if (url.includes('://') && new URL(baseURL).hostname !== location.hostname) {
-    return
-  }
 
   try {
     const path = location.pathname

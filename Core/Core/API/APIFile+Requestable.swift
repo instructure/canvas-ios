@@ -30,22 +30,25 @@ public struct GetFileRequest: APIRequestable {
 
 // https://canvas.instructure.com/doc/api/file.file_uploads.html - Step 1
 public struct PostFileUploadTargetRequest: APIRequestable {
-    public struct Response: Codable, Equatable {
-        let upload_url: URL
-        let upload_params: [String: String]
-    }
+    public typealias Response = FileUploadTarget
 
     public struct Body: Codable, Equatable {
         let name: String
         let on_duplicate: OnDuplicate
         let parent_folder_id: String?
+
+        public init(name: String, on_duplicate: OnDuplicate, parent_folder_id: String?) {
+            self.name = name
+            self.on_duplicate = on_duplicate
+            self.parent_folder_id = parent_folder_id
+        }
     }
 
     public enum OnDuplicate: String, Codable {
         case rename, overwrite
     }
 
-    public let target: FileUploadTarget
+    public let context: FileUploadContext
     public let body: Body?
     public let method: APIMethod = .post
 
@@ -54,7 +57,7 @@ public struct PostFileUploadTargetRequest: APIRequestable {
     }
 
     public var path: String {
-        switch target {
+        switch context {
         case let .course(courseID):
             let context = ContextModel(.course, id: courseID)
             return "\(context.pathComponent)/files"
@@ -66,42 +69,47 @@ public struct PostFileUploadTargetRequest: APIRequestable {
             return "\(context.pathComponent)/assignments/\(assignmentID)/submissions/self/files"
         }
     }
+
+    public init(context: FileUploadContext, body: Body) {
+        self.context = context
+        self.body = body
+    }
 }
 
 // https://canvas.instructure.com/doc/api/file.file_uploads.html - Step 2
-struct PostFileUploadRequest: APIRequestable {
-    typealias Response = APIFile
+public struct PostFileUploadRequest: APIRequestable {
+    public typealias Response = APIFile
 
-    let fileURL: URL
-    let target: PostFileUploadTargetRequest.Response
-    let boundary: String
+    public let fileURL: URL
+    public let target: FileUploadTarget
+    public let boundary: String
 
-    var body: URL? {
+    public var body: URL? {
         return fileURL
     }
 
-    init(fileURL: URL, target: PostFileUploadTargetRequest.Response, boundary: String = UUID().uuidString) {
+    public init(fileURL: URL, target: FileUploadTarget, boundary: String = UUID().uuidString) {
         self.fileURL = fileURL
         self.target = target
         self.boundary = boundary
     }
 
-    let method: APIMethod = .post
-    var path: String {
+    public let method: APIMethod = .post
+    public var path: String {
         return target.upload_url.absoluteString
     }
-    var headers: [String: String?] {
+    public var headers: [String: String?] {
         let multipart = "multipart/form-data; charset=utf-8; boundary=\"\(boundary)\""
         return [
             HttpHeader.authorization: nil,
             HttpHeader.contentType: multipart,
         ]
     }
-    var cachePolicy: URLRequest.CachePolicy {
+    public var cachePolicy: URLRequest.CachePolicy {
         return .reloadIgnoringLocalAndRemoteCacheData
     }
 
-    func encode(_ body: URL) throws -> Data {
+    public func encode(_ body: URL) throws -> Data {
         let delim = "--\(boundary)\r\n".data(using: .utf8)!
         let params = target.upload_params
 

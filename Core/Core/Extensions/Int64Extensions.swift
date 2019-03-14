@@ -16,7 +16,7 @@
 
 import Foundation
 
-extension Int64 {
+extension Int {
     static let humanReadableFormatter: ByteCountFormatter = {
         let f = ByteCountFormatter()
         f.countStyle = .file
@@ -24,6 +24,6 @@ extension Int64 {
     }()
 
     public var humanReadableFileSize: String {
-        return Int64.humanReadableFormatter.string(fromByteCount: self)
+        return Int.humanReadableFormatter.string(fromByteCount: Int64(self))
     }
 }

@@ -136,6 +136,10 @@ extension Submission: WriteableModel {
             try Submission.save(submissionHistory, in: client)
         }
 
+        if let assignment: Assignment = client.first(where: #keyPath(Assignment.id), equals: item.assignment_id.value) {
+            assignment.submission = model // trigger assignment change notification
+        }
+
         return model
     }
 }

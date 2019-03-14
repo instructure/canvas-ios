@@ -107,6 +107,11 @@ public struct KeychainEntry: Codable, Hashable {
             userEmail: userEmail
         )
     }
+
+    public var documentsPath: String {
+        let host = baseURL.host ?? "default"
+        return "\(host)/users/\(userID)/"
+    }
 }
 
 /// Keychain is a thin layer over the iOS keychain

@@ -15,8 +15,15 @@
 //
 
 import Foundation
+import Core
 
-public struct FileUploadTarget: Codable, Equatable {
-    public let upload_url: URL
-    public let upload_params: [String: String]
+extension FileUploader {
+    static let shared: FileUploader = {
+        let uploader = FileUploader(appGroup: .student)
+
+        let submissionDelegate = SubmissionFileUploadDelegate(appGroup: .student)
+        uploader.addListener(submissionDelegate)
+
+        return uploader
+    }()
 }

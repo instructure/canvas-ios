@@ -97,6 +97,13 @@ public struct URLSessionAPI: API {
     @discardableResult
     public func uploadTask<R>(_ requestable: R, fromFile file: URL) throws -> URLSessionTask where R: APIRequestable {
         let request = try requestable.urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: actAsUserID)
+        if let body = requestable.body {
+            let data = try requestable.encode(body)
+            let name = UUID().uuidString
+            let url = FileManager.default.temporaryDirectory.appendingPathComponent(name)
+            try data.write(to: url)
+            return urlSession.uploadTask(with: request, fromFile: url)
+        }
         return urlSession.uploadTask(with: request, fromFile: file)
     }
 }

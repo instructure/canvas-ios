@@ -46,8 +46,17 @@ extension PersistenceClient {
         return self.fetch(predicate: nil, sortDescriptors: nil)
     }
 
-    func fetch<T>(_ predicate: NSPredicate?) -> [T] {
+    public func fetch<T>(_ predicate: NSPredicate?) -> [T] {
         return self.fetch(predicate: predicate, sortDescriptors: nil)
+    }
+
+    public func first<T>(where key: String, equals value: CVarArg) -> T? {
+        return all(where: key, equals: value).first
+    }
+
+    public func all<T>(where key: String, equals value: CVarArg) -> [T] {
+        let predicate = NSPredicate(format: "%K == %@", key, value)
+        return fetch(predicate)
     }
 }
 
