@@ -381,8 +381,9 @@ function contentForAttempt (attempt: Submission, assignment: Assignment): Array<
   return []
 }
 
-function rowForSubmission (user: User, attempt: Submission, assignment: Assignment): CommentRowData {
+function rowForSubmission (user: User, attempt: Submission, assignment: Assignment, index: number): ?CommentRowData {
   const attemptNumber = attempt.attempt || 0
+  if (attempt.attempt == null) return
   const submittedAt = attempt.submitted_at || ''
 
   const items = contentForAttempt(attempt, assignment)
@@ -397,7 +398,7 @@ function rowForSubmission (user: User, attempt: Submission, assignment: Assignme
       type: 'submission',
       items: items,
       submissionID: attempt.id,
-      attemptIndex: attemptNumber - 1,
+      attemptIndex: index,
     },
     pending: 0,
   }
@@ -406,8 +407,8 @@ function rowForSubmission (user: User, attempt: Submission, assignment: Assignme
 function extractAttempts (submission: SubmissionWithHistory, assignment: Assignment): Array<CommentRowData> {
   if (!submission.submission_history) return []
   return submission.submission_history
-    .filter(attempt => attempt.attempt != null)
-    .map(attempt => rowForSubmission(submission.user, attempt, assignment))
+    .map((attempt, i) => rowForSubmission(submission.user, attempt, assignment, i))
+    .filter(Boolean)
 }
 
 function extractPendingComments (assignments: ?AssignmentContentState, userID): Array<CommentRowData> {

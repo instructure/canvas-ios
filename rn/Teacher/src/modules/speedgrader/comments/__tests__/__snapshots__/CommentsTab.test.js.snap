@@ -1333,7 +1333,7 @@ Object {
     Object {
       "avatarURL": "http://www.fillmurray.com/100/100",
       "contents": Object {
-        "attemptIndex": 6,
+        "attemptIndex": 4,
         "items": Array [
           Object {
             "contentID": "attachment-lti-submission",
@@ -1381,7 +1381,7 @@ Object {
     Object {
       "avatarURL": "http://www.fillmurray.com/100/100",
       "contents": Object {
-        "attemptIndex": 4,
+        "attemptIndex": 6,
         "items": Array [
           Object {
             "contentID": "attachment-discussion-entry",
@@ -1447,7 +1447,7 @@ Object {
     Object {
       "avatarURL": "http://www.fillmurray.com/100/100",
       "contents": Object {
-        "attemptIndex": 3,
+        "attemptIndex": 0,
         "items": Array [
           Object {
             "contentID": "text",
@@ -1471,7 +1471,7 @@ Object {
     Object {
       "avatarURL": "http://www.fillmurray.com/100/100",
       "contents": Object {
-        "attemptIndex": 2,
+        "attemptIndex": 1,
         "items": Array [
           Object {
             "contentID": "url",
@@ -1495,7 +1495,7 @@ Object {
     Object {
       "avatarURL": "http://www.fillmurray.com/100/100",
       "contents": Object {
-        "attemptIndex": 1,
+        "attemptIndex": 2,
         "items": Array [
           Object {
             "contentID": "attachment-111",
@@ -1519,7 +1519,7 @@ Object {
     Object {
       "avatarURL": "http://www.fillmurray.com/100/100",
       "contents": Object {
-        "attemptIndex": 0,
+        "attemptIndex": 3,
         "items": Array [
           Object {
             "contentID": "attachment-media-comment",

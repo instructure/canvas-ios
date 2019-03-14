@@ -40,7 +40,43 @@ public struct APISubmission: Codable, Equatable {
     let late_policy_status: LatePolicyStatus?
     let points_deducted: Double?
 
+    let submission_comments: [APISubmissionComment]? // include[]=submission_comments
     let submission_history: [APISubmission]? // include[]=submission_history
 
     let media_comment: APIMediaComment?
+
+    let user: APISubmissionUser? // include[]=user
+}
+
+public struct APISubmissionUser: Codable, Equatable {
+    let id: String
+    let name: String?
+    let short_name: String
+    let avatar_url: URL?
+}
+
+// https://canvas.instructure.com/doc/api/submissions.html#SubmissionComment
+public struct APISubmissionComment: Codable, Equatable {
+    let id: String
+    let author_id: String
+    let author_name: String
+    let author: APISubmissionCommentAuthor
+    let comment: String
+    let created_at: Date
+    let edited_at: Date?
+    let media_comment: APISubmissionCommentMedia?
+}
+
+public struct APISubmissionCommentAuthor: Codable, Equatable {
+    let id: String
+    let display_name: String
+    let avatar_image_url: URL?
+    let html_url: URL
+}
+
+public struct APISubmissionCommentMedia: Codable, Equatable {
+    let url: URL
+    let media_id: String
+    let media_type: SubmissionCommentMediaType
+    let display_name: String?
 }

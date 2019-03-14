@@ -107,10 +107,12 @@ class SubmissionDetailsPresenterTests: PersistenceTestCase {
         XCTAssertEqual(presenter.selectedFileID, "1")
     }
 
-    func testSelectDrawerTab() {
+    func testSelectDrawerTabComments() {
+        Submission.make(["assignmentID": "1", "userID": "1", "attempt": 2, "attachments": Set([File.make([ "id": "1" ]), File.make([ "id": "2" ])])])
+        presenter.update()
         presenter.select(drawerTab: nil)
-        XCTAssertNil(presenter.selectedDrawerTab)
-        XCTAssertNil(view.embeddedInDrawer)
+        XCTAssertEqual(presenter.selectedDrawerTab, .comments)
+        XCTAssert(view.embeddedInDrawer is SubmissionCommentsViewController)
     }
 
     func testSelectDrawerTabFiles() {
@@ -119,6 +121,13 @@ class SubmissionDetailsPresenterTests: PersistenceTestCase {
         presenter.select(drawerTab: .files)
         XCTAssertEqual(presenter.selectedDrawerTab, .files)
         XCTAssert(view.embeddedInDrawer is SubmissionFilesViewController)
+    }
+
+    func testSelectDrawerTabRubric() {
+        Submission.make(["assignmentID": "1", "userID": "1", "attempt": 2, "attachments": Set([File.make([ "id": "1" ]), File.make([ "id": "2" ])])])
+        presenter.select(drawerTab: .rubric)
+        XCTAssertEqual(presenter.selectedDrawerTab, .rubric)
+        XCTAssertNil(view.embeddedInDrawer)
     }
 
     func testEmbedExternalTool() {

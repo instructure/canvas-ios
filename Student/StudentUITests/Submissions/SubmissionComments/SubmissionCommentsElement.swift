@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2018-present Instructure, Inc.
+// Copyright (C) 2019-present Instructure, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,15 +14,16 @@
 // limitations under the License.
 //
 
-import XCTest
-import UIKit
-@testable import Core
+import Foundation
 
-class UITableViewExtensionsTests: XCTestCase {
-    class Cell: UITableViewCell {}
-    func testDequeue() {
-        let view = UITableView(frame: .zero)
-        view.register(Cell.self, forCellReuseIdentifier: "Cell")
-        XCTAssertNoThrow(view.dequeue(for: IndexPath(row: 0, section: 0)) as Cell)
+struct SubmissionCommentsElement: RawRepresentable, Element {
+    let rawValue: String
+
+    init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    static func textCell(commentID: String) -> SubmissionCommentsElement {
+        return SubmissionCommentsElement(rawValue: "textCell.\(commentID)")
     }
 }

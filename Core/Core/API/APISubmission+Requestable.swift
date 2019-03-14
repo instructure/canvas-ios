@@ -29,7 +29,7 @@ public struct GetSubmissionRequest: APIRequestable {
     }
 
     public var query: [APIQueryItem] {
-        return [ .array("include", [ "submission_history" ]) ]
+        return [ .array("include", [ "submission_comments", "submission_history", "user" ]) ]
     }
 }
 
@@ -64,11 +64,15 @@ public struct CreateSubmissionRequest: APIRequestable {
 struct PutSubmissionGradeRequest: APIRequestable {
     typealias Response = APISubmission
     struct Body: Codable, Equatable {
+        struct Comment: Codable, Equatable {
+            let text_comment: String?
+        }
         struct Submission: Codable, Equatable {
             let posted_grade: String?
         }
 
-        let submission: Submission
+        let comment: Comment?
+        let submission: Submission?
     }
 
     let courseID: String

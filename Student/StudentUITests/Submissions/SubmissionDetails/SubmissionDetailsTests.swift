@@ -82,7 +82,7 @@ class SubmissionDetailsTests: StudentTest {
         page.assertText(.attemptPickerToggle, equals: date1)
     }
 
-    func testPDFSubmission() {
+    func xtestPDFSubmission() {
         let assignment = seedClient.createAssignment(for: course, submissionTypes: [ .online_upload ], allowedExtensions: [ "pdf" ])
         let file = seedClient.uploadFile(url: Bundle(for: SubmissionDetailsTests.self).url(forResource: "empty", withExtension: "pdf")!, for: assignment, as: student)
         let submission = seedClient.submit(assignment: assignment, context: ContextModel(.course, id: course.id), as: student, submissionType: .online_upload, fileIDs: [ file.id.value ])
@@ -105,7 +105,7 @@ class SubmissionDetailsTests: StudentTest {
         // TODO: Test share sheet?
     }
 
-    func testPDFAnnotations() {
+    func xtestPDFAnnotations() {
         let assignment = seedClient.createAssignment(for: course, submissionTypes: [ .online_upload ], allowedExtensions: [ "pdf" ])
         let file = seedClient.uploadFile(url: Bundle(for: SubmissionDetailsTests.self).url(forResource: "empty", withExtension: "pdf")!, for: assignment, as: student)
         seedClient.submit(assignment: assignment, context: ContextModel(.course, id: course.id), as: student, submissionType: .online_upload, fileIDs: [ file.id.value ])

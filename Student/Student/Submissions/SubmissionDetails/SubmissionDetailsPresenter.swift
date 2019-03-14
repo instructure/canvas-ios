@@ -56,7 +56,7 @@ class SubmissionDetailsPresenter {
 
     var selectedAttempt: Int = 0
     var selectedFileID: String?
-    var selectedDrawerTab: Drawer.Tab?
+    var selectedDrawerTab = Drawer.Tab.comments
     var currentAssignment: Assignment?
     var currentFileID: String?
     var currentSubmission: Submission?
@@ -113,7 +113,7 @@ class SubmissionDetailsPresenter {
     }
 
     func select(drawerTab: Drawer.Tab?) {
-        selectedDrawerTab = drawerTab
+        selectedDrawerTab = drawerTab ?? .comments
         view?.embedInDrawer(viewControllerForDrawer())
     }
 
@@ -177,13 +177,22 @@ class SubmissionDetailsPresenter {
     }
 
     func viewControllerForDrawer() -> UIViewController? {
+        guard let submission = currentSubmission else { return nil }
         switch (selectedDrawerTab) {
-        case .some(.files):
+        case .comments:
+            return SubmissionCommentsViewController.create(
+                env: env,
+                context: context,
+                assignmentID: assignmentID,
+                userID: userID,
+                submissionID: submission.id
+            )
+        case .files:
             return SubmissionFilesViewController.create(
-                files: currentSubmission?.attachments?.sorted(by: { $0.id < $1.id }),
+                files: submission.attachments?.sorted(by: { $0.id < $1.id }),
                 presenter: self
             )
-        default:
+        case .rubric:
             return nil
         }
     }
