@@ -18,6 +18,7 @@ import XCTest
 @testable import Student
 import Core
 import TestsFoundation
+import AVKit
 
 class SubmissionDetailsView: SubmissionDetailsViewProtocol {
     var color: UIColor?
@@ -181,6 +182,14 @@ class SubmissionDetailsPresenterTests: PersistenceTestCase {
         presenter.update()
 
         XCTAssert(view.embedded is UrlSubmissionContentViewController)
+    }
+
+    func testEmbedMediaSubmission() {
+        Assignment.make()
+        Submission.make([ "typeRaw": "media_recording", "mediaComment": MediaComment.make() ])
+        presenter.update()
+
+        XCTAssert(view.embedded is AVPlayerViewController)
     }
 
     func testEmbedNothing() {

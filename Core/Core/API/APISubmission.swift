@@ -35,6 +35,7 @@ public struct APISubmission: Codable, Equatable {
     let discussion_entries: [APIDiscussionEntry]?
     let preview_url: URL?
     let url: URL?
+    let media_comment: APIMediaComment?
 
     // late policies
     let late_policy_status: LatePolicyStatus?
