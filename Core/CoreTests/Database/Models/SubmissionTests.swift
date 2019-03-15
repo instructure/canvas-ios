@@ -76,4 +76,71 @@ class SubmissionTests: CoreTestCase {
         let submission = Submission.make(["mediaComment": MediaComment.make()])
         XCTAssertNotNil(submission.mediaComment)
     }
+
+    func testIcon() {
+        let submission = Submission.make()
+        let map: [SubmissionType: UIImage.InstIconName] = [
+            .basic_lti_launch: .lti,
+            .external_tool: .lti,
+            .discussion_topic: .discussion,
+            .online_quiz: .quiz,
+            .online_text_entry: .text,
+            .online_url: .link,
+        ]
+        for (type, icon) in map {
+            submission.type = type
+            XCTAssertEqual(submission.icon, UIImage.icon(icon))
+        }
+        submission.type = .media_recording
+        submission.mediaComment = MediaComment.make(["mediaType": "audio"])
+        XCTAssertEqual(submission.icon, UIImage.icon(.audio))
+        submission.mediaComment?.mediaType = "video"
+        XCTAssertEqual(submission.icon, UIImage.icon(.video))
+
+        submission.type = .online_upload
+        submission.attachments = Set([ File.make([ "mimeClass": "pdf" ]) ])
+        XCTAssertEqual(submission.icon, UIImage.icon(.pdf))
+
+        submission.type = .on_paper
+        XCTAssertNil(submission.icon)
+
+        submission.type = nil
+        XCTAssertNil(submission.icon)
+    }
+
+    func testSubtitle() {
+        let submission = Submission.make([
+            "attempt": 1,
+            "body": "<a style=\"stuff\">Text</z>",
+            "discussionEntries": Set([ DiscussionEntry.make([ "message": "<p>reply<p>" ]) ]),
+            "attachments": Set([ File.make([ "size": 1234 ]) ]),
+            "url": URL(string: "https://instructure.com"),
+        ])
+        let map: [SubmissionType: String] = [
+            .basic_lti_launch: "Attempt 1",
+            .external_tool: "Attempt 1",
+            .discussion_topic: "reply",
+            .online_quiz: "Attempt 1",
+            .online_text_entry: "Text",
+            .online_url: "https://instructure.com",
+        ]
+        for (type, subtitle) in map {
+            submission.type = type
+            XCTAssertEqual(submission.subtitle, subtitle)
+        }
+        submission.type = .media_recording
+        submission.mediaComment = MediaComment.make(["mediaType": "audio"])
+        XCTAssertEqual(submission.subtitle, "Audio")
+        submission.mediaComment?.mediaType = "video"
+        XCTAssertEqual(submission.subtitle, "Video")
+
+        submission.type = .online_upload
+        XCTAssertEqual(submission.subtitle, "1 KB")
+
+        submission.type = .on_paper
+        XCTAssertNil(submission.subtitle)
+
+        submission.type = nil
+        XCTAssertNil(submission.subtitle)
+    }
 }

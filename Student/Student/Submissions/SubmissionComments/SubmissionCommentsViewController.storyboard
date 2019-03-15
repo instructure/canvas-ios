@@ -92,7 +92,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chatBubble" translatesAutoresizingMaskIntoConstraints="NO" id="6at-Xx-e6I" customClass="IconView" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="224.5" y="-5" width="135.5" height="42"/>
+                                                    <rect key="frame" x="242" y="-5" width="118" height="42"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="jWm-AB-N4T"/>
                                                     </constraints>
@@ -101,7 +101,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" text="Comment Text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jQO-Zk-01K" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="236.5" y="12" width="111.5" height="17"/>
+                                                    <rect key="frame" x="254" y="12" width="94" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -191,7 +191,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chatBubble" translatesAutoresizingMaskIntoConstraints="NO" id="893-hG-e0V" customClass="IconView" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="15" y="-5" width="135.5" height="42"/>
+                                                    <rect key="frame" x="15" y="-5" width="118" height="42"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="6G6-Mn-eLP"/>
                                                     </constraints>
@@ -201,7 +201,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" text="Comment Text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eMn-Vx-0Ll" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="27" y="12" width="111.5" height="17"/>
+                                                    <rect key="frame" x="27" y="12" width="94" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -286,6 +286,28 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="containerView" destination="EXe-uL-Kl7" id="JFS-Ct-mNL"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="SubmissionCommentAttemptCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SubmissionCommentAttemptCell" rowHeight="73" id="u2W-dv-awt" customClass="SubmissionCommentAttemptCell" customModule="Student" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="523" width="375" height="73"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="u2W-dv-awt" id="hxE-7s-uYJ">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="73"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="7LK-nm-aak">
+                                                    <rect key="frame" x="15" y="11" width="345" height="51"/>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="7LK-nm-aak" secondAttribute="bottom" id="54q-pt-cC4"/>
+                                                <constraint firstItem="7LK-nm-aak" firstAttribute="top" secondItem="hxE-7s-uYJ" secondAttribute="topMargin" id="Zbz-Nj-ai3"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="7LK-nm-aak" secondAttribute="trailing" id="rbq-Re-rtH"/>
+                                                <constraint firstItem="7LK-nm-aak" firstAttribute="leading" secondItem="hxE-7s-uYJ" secondAttribute="leadingMargin" id="zA7-v6-i0c"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="stackView" destination="7LK-nm-aak" id="ebh-cH-D5B"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
