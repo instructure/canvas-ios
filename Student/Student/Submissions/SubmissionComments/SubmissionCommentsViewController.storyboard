@@ -21,47 +21,78 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="z6Z-9B-ukp">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="m8y-we-Jl9">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="24"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="myComment" rowHeight="100" id="0Ne-yr-TaC" customClass="SubmissionCommentTextCell" customModule="Student" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="100"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="myHeader" rowHeight="64" id="2G9-QC-KCR" userLabel="myHeader" customClass="SubmissionCommentHeaderCell" customModule="Student" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="52" width="375" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0Ne-yr-TaC" id="3mt-Xn-QrW">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2G9-QC-KCR" id="651-00-ovF">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Un-KA-dQ7" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="211" y="11" width="101" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="rowTitle"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </label>
-                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rci-bN-cmS" customClass="AvatarView" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="320" y="11" width="40" height="40"/>
+                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zqb-cj-XMP" customClass="AvatarView" customModule="Student" customModuleProvider="target">
+                                                    <rect key="frame" x="320" y="24" width="40" height="40"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="40" id="QnQ-NU-Zzk"/>
-                                                        <constraint firstAttribute="width" constant="40" id="g45-JH-394"/>
+                                                        <constraint firstAttribute="width" constant="40" id="hBJ-8F-HOS"/>
+                                                        <constraint firstAttribute="height" constant="40" id="uJ3-pH-Wnd"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="name" value="Author Name"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="March 13 at 10:51 AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dwf-rA-G5m" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="147.5" y="31.5" width="164.5" height="20.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Um-tb-BF2" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
+                                                    <rect key="frame" x="219.5" y="28" width="88.5" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold14"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="March 13 at 10:51 AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="brg-4l-HGS" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
+                                                    <rect key="frame" x="183.5" y="45" width="124.5" height="14.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="rowSubtitle"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium12"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="brg-4l-HGS" firstAttribute="top" secondItem="5Um-tb-BF2" secondAttribute="bottom" id="6Ng-RK-8AL"/>
+                                                <constraint firstItem="zqb-cj-XMP" firstAttribute="top" secondItem="651-00-ovF" secondAttribute="topMargin" constant="13" id="7yb-b8-Rl6"/>
+                                                <constraint firstItem="5Um-tb-BF2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="651-00-ovF" secondAttribute="leadingMargin" id="LfR-hq-5r8"/>
+                                                <constraint firstItem="zqb-cj-XMP" firstAttribute="leading" secondItem="5Um-tb-BF2" secondAttribute="trailing" constant="12" id="Q2L-iS-sfd"/>
+                                                <constraint firstAttribute="bottom" secondItem="zqb-cj-XMP" secondAttribute="bottom" id="RYL-Gg-Meh"/>
+                                                <constraint firstItem="5Um-tb-BF2" firstAttribute="top" secondItem="651-00-ovF" secondAttribute="topMargin" constant="17" id="XvQ-46-hlA"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="zqb-cj-XMP" secondAttribute="trailing" id="ju3-LF-kJD"/>
+                                                <constraint firstItem="zqb-cj-XMP" firstAttribute="leading" secondItem="brg-4l-HGS" secondAttribute="trailing" constant="12" id="rQr-qJ-cRR"/>
+                                                <constraint firstItem="brg-4l-HGS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="651-00-ovF" secondAttribute="leadingMargin" id="yMX-RG-L8S"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="authorAvatarView" destination="zqb-cj-XMP" id="8lr-BD-9OL"/>
+                                            <outlet property="authorNameLabel" destination="5Um-tb-BF2" id="8FE-vZ-fsK"/>
+                                            <outlet property="createdAtLabel" destination="brg-4l-HGS" id="eSa-R1-GxO"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="myComment" rowHeight="48" id="0Ne-yr-TaC" customClass="SubmissionCommentTextCell" customModule="Student" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="116" width="375" height="48"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0Ne-yr-TaC" id="3mt-Xn-QrW">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chatBubble" translatesAutoresizingMaskIntoConstraints="NO" id="6at-Xx-e6I" customClass="IconView" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="224.5" y="46" width="135.5" height="43"/>
+                                                    <rect key="frame" x="224.5" y="-5" width="135.5" height="42"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="jWm-AB-N4T"/>
                                                     </constraints>
@@ -69,83 +100,98 @@
                                                         <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="electric"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comment Text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jQO-Zk-01K" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="236.5" y="63" width="111.5" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" text="Comment Text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jQO-Zk-01K" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
+                                                    <rect key="frame" x="236.5" y="12" width="111.5" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textLightest"/>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="bodySmall"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular14"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="6at-Xx-e6I" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3mt-Xn-QrW" secondAttribute="leadingMargin" id="1Hn-8t-iWp"/>
                                                 <constraint firstItem="6at-Xx-e6I" firstAttribute="trailing" secondItem="jQO-Zk-01K" secondAttribute="trailing" constant="12" id="1SK-Mo-Kh7"/>
-                                                <constraint firstItem="Rci-bN-cmS" firstAttribute="leading" secondItem="Dwf-rA-G5m" secondAttribute="trailing" constant="8" id="Fhx-tq-O90"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Rci-bN-cmS" secondAttribute="trailing" id="G6n-l8-Pdd"/>
                                                 <constraint firstItem="jQO-Zk-01K" firstAttribute="leading" secondItem="6at-Xx-e6I" secondAttribute="leading" constant="12" id="QDL-QU-SPg"/>
-                                                <constraint firstItem="6at-Xx-e6I" firstAttribute="top" secondItem="Rci-bN-cmS" secondAttribute="bottom" constant="-5" id="VM8-5I-xlF"/>
+                                                <constraint firstItem="6at-Xx-e6I" firstAttribute="top" secondItem="3mt-Xn-QrW" secondAttribute="top" constant="-5" id="WSq-Ai-vUZ"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="6at-Xx-e6I" secondAttribute="trailing" id="cHV-hj-oSx"/>
-                                                <constraint firstItem="Dwf-rA-G5m" firstAttribute="top" secondItem="3Un-KA-dQ7" secondAttribute="bottom" id="eqM-i9-9U8"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="6at-Xx-e6I" secondAttribute="bottom" id="gbg-UH-cQO"/>
-                                                <constraint firstItem="3Un-KA-dQ7" firstAttribute="top" secondItem="3mt-Xn-QrW" secondAttribute="topMargin" id="jPN-VI-PbL"/>
-                                                <constraint firstItem="3Un-KA-dQ7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3mt-Xn-QrW" secondAttribute="leadingMargin" id="q6e-Vz-Maf"/>
                                                 <constraint firstItem="6at-Xx-e6I" firstAttribute="bottom" secondItem="jQO-Zk-01K" secondAttribute="bottom" constant="8" id="svM-JY-RTC"/>
-                                                <constraint firstItem="Dwf-rA-G5m" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3mt-Xn-QrW" secondAttribute="leadingMargin" id="wIe-Pu-3wS"/>
-                                                <constraint firstItem="Rci-bN-cmS" firstAttribute="leading" secondItem="3Un-KA-dQ7" secondAttribute="trailing" constant="8" id="wT7-ta-QZR"/>
                                                 <constraint firstItem="jQO-Zk-01K" firstAttribute="top" secondItem="6at-Xx-e6I" secondAttribute="top" constant="17" id="wXK-m1-TVE"/>
-                                                <constraint firstItem="Rci-bN-cmS" firstAttribute="top" secondItem="3mt-Xn-QrW" secondAttribute="topMargin" id="xVX-aZ-pGb"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="authorAvatarView" destination="Rci-bN-cmS" id="fCu-Jb-DSL"/>
-                                            <outlet property="authorNameLabel" destination="3Un-KA-dQ7" id="8Uk-jp-05t"/>
                                             <outlet property="commentLabel" destination="jQO-Zk-01K" id="dFb-A9-V8w"/>
-                                            <outlet property="createdAtLabel" destination="Dwf-rA-G5m" id="hrW-GW-BqP"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="theirComment" rowHeight="100" id="di6-ba-fsx" customClass="SubmissionCommentTextCell" customModule="Student" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="128" width="375" height="100"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="theirHeader" rowHeight="64" id="m2a-Fo-JCH" userLabel="theirHeader" customClass="SubmissionCommentHeaderCell" customModule="Student" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="164" width="375" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="di6-ba-fsx" id="Fyz-QS-eeN">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="m2a-Fo-JCH" id="H3o-fz-9OC">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zl7-4v-8Vj" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="63" y="11" width="101" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="rowTitle"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </label>
-                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1fp-ii-xZg" customClass="AvatarView" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="15" y="11" width="40" height="40"/>
+                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f0s-7P-aDs" customClass="AvatarView" customModule="Student" customModuleProvider="target">
+                                                    <rect key="frame" x="15" y="24" width="40" height="40"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="40" id="4h9-hQ-H2d"/>
-                                                        <constraint firstAttribute="width" constant="40" id="Zz8-8T-ewJ"/>
+                                                        <constraint firstAttribute="height" constant="40" id="Ygp-kU-9VW"/>
+                                                        <constraint firstAttribute="width" constant="40" id="nMx-7b-cVU"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="name" value="Author Name"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="March 13 at 10:51 AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5uh-Sb-dHi" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="63" y="31.5" width="164.5" height="20.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Thz-j3-Y3K" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
+                                                    <rect key="frame" x="67" y="28" width="88.5" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold14"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="March 13 at 10:51 AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S2V-PQ-jCT" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
+                                                    <rect key="frame" x="67" y="45" width="124.5" height="14.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="rowSubtitle"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium12"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="f0s-7P-aDs" firstAttribute="top" secondItem="H3o-fz-9OC" secondAttribute="topMargin" constant="13" id="9Mp-Em-WOd"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="f0s-7P-aDs" secondAttribute="leading" id="DYd-wx-U2y"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="S2V-PQ-jCT" secondAttribute="trailing" id="MAQ-Bk-qV3"/>
+                                                <constraint firstItem="S2V-PQ-jCT" firstAttribute="top" secondItem="Thz-j3-Y3K" secondAttribute="bottom" id="NON-yR-vjJ"/>
+                                                <constraint firstItem="S2V-PQ-jCT" firstAttribute="leading" secondItem="f0s-7P-aDs" secondAttribute="trailing" constant="12" id="OBU-i6-zdo"/>
+                                                <constraint firstItem="Thz-j3-Y3K" firstAttribute="leading" secondItem="f0s-7P-aDs" secondAttribute="trailing" constant="12" id="Why-qJ-q59"/>
+                                                <constraint firstAttribute="bottom" secondItem="f0s-7P-aDs" secondAttribute="bottom" id="jRw-zI-hgN"/>
+                                                <constraint firstItem="Thz-j3-Y3K" firstAttribute="top" secondItem="H3o-fz-9OC" secondAttribute="topMargin" constant="17" id="wcA-Te-fcC"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="Thz-j3-Y3K" secondAttribute="trailing" id="yiR-KF-HmB"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="authorAvatarView" destination="f0s-7P-aDs" id="I2z-u3-d4u"/>
+                                            <outlet property="authorNameLabel" destination="Thz-j3-Y3K" id="bYC-RH-U8w"/>
+                                            <outlet property="createdAtLabel" destination="S2V-PQ-jCT" id="7zb-JG-G6E"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="theirComment" rowHeight="48" id="di6-ba-fsx" customClass="SubmissionCommentTextCell" customModule="Student" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="228" width="375" height="48"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="di6-ba-fsx" id="Fyz-QS-eeN">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chatBubble" translatesAutoresizingMaskIntoConstraints="NO" id="893-hG-e0V" customClass="IconView" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="15" y="46" width="135.5" height="43"/>
+                                                    <rect key="frame" x="15" y="-5" width="135.5" height="42"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="6G6-Mn-eLP"/>
                                                     </constraints>
@@ -154,41 +200,92 @@
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="mirrorX" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comment Text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eMn-Vx-0Ll" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="27" y="63" width="111.5" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" text="Comment Text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eMn-Vx-0Ll" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
+                                                    <rect key="frame" x="27" y="12" width="111.5" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="bodySmall"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular14"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="1fp-ii-xZg" firstAttribute="top" secondItem="Fyz-QS-eeN" secondAttribute="topMargin" id="1Bo-HV-h1p"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="893-hG-e0V" secondAttribute="bottom" id="32s-kk-vSM"/>
-                                                <constraint firstItem="5uh-Sb-dHi" firstAttribute="top" secondItem="zl7-4v-8Vj" secondAttribute="bottom" id="C4n-Y6-DMt"/>
                                                 <constraint firstItem="eMn-Vx-0Ll" firstAttribute="leading" secondItem="893-hG-e0V" secondAttribute="leading" constant="12" id="D5X-oJ-6Ss"/>
-                                                <constraint firstItem="5uh-Sb-dHi" firstAttribute="leading" secondItem="1fp-ii-xZg" secondAttribute="trailing" constant="8" id="Dc1-6i-v5j"/>
-                                                <constraint firstItem="zl7-4v-8Vj" firstAttribute="top" secondItem="Fyz-QS-eeN" secondAttribute="topMargin" id="I12-fT-FfC"/>
                                                 <constraint firstItem="eMn-Vx-0Ll" firstAttribute="top" secondItem="893-hG-e0V" secondAttribute="top" constant="17" id="J8c-eQ-EOL"/>
                                                 <constraint firstItem="893-hG-e0V" firstAttribute="bottom" secondItem="eMn-Vx-0Ll" secondAttribute="bottom" constant="8" id="KXz-Qr-37n"/>
                                                 <constraint firstItem="893-hG-e0V" firstAttribute="leading" secondItem="Fyz-QS-eeN" secondAttribute="leadingMargin" id="S6B-aM-bSU"/>
                                                 <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="893-hG-e0V" secondAttribute="trailing" id="SKY-j8-Lrf"/>
-                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="zl7-4v-8Vj" secondAttribute="trailing" id="TBh-jQ-Rs4"/>
                                                 <constraint firstItem="893-hG-e0V" firstAttribute="trailing" secondItem="eMn-Vx-0Ll" secondAttribute="trailing" constant="12" id="d9a-Ua-eXn"/>
-                                                <constraint firstItem="zl7-4v-8Vj" firstAttribute="leading" secondItem="1fp-ii-xZg" secondAttribute="trailing" constant="8" id="fmK-15-z25"/>
-                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="5uh-Sb-dHi" secondAttribute="trailing" id="kGy-Pg-vyK"/>
-                                                <constraint firstAttribute="leadingMargin" secondItem="1fp-ii-xZg" secondAttribute="leading" id="yYj-7i-M6t"/>
-                                                <constraint firstItem="893-hG-e0V" firstAttribute="top" secondItem="1fp-ii-xZg" secondAttribute="bottom" constant="-5" id="yiz-LU-eGc"/>
+                                                <constraint firstItem="893-hG-e0V" firstAttribute="top" secondItem="Fyz-QS-eeN" secondAttribute="top" constant="-5" id="nW6-IQ-5gp"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="authorAvatarView" destination="1fp-ii-xZg" id="lJE-cK-zIr"/>
-                                            <outlet property="authorNameLabel" destination="zl7-4v-8Vj" id="mW0-09-V3x"/>
                                             <outlet property="commentLabel" destination="eMn-Vx-0Ll" id="FVy-xC-zeC"/>
-                                            <outlet property="createdAtLabel" destination="5uh-Sb-dHi" id="pnm-fb-WY8"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SubmissionCommentAudioCell" rowHeight="57" id="MSG-Gi-WrB" customClass="SubmissionCommentAudioCell" customModule="Student" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="276" width="375" height="57"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MSG-Gi-WrB" id="mEg-Wj-XA5">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="57"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HOr-G9-8Pg">
+                                                    <rect key="frame" x="9" y="7" width="357" height="44"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="44" id="8MA-9C-Duo"/>
+                                                    </constraints>
+                                                </view>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Ylg-dn-2U3">
+                                                    <rect key="frame" x="177.5" y="19" width="20" height="20"/>
+                                                </activityIndicatorView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="HOr-G9-8Pg" secondAttribute="trailing" constant="-6" id="2Bb-UD-AWG"/>
+                                                <constraint firstItem="HOr-G9-8Pg" firstAttribute="top" secondItem="mEg-Wj-XA5" secondAttribute="topMargin" constant="-4" id="4O0-CL-378"/>
+                                                <constraint firstItem="Ylg-dn-2U3" firstAttribute="centerX" secondItem="HOr-G9-8Pg" secondAttribute="centerX" id="A3g-hY-XOP"/>
+                                                <constraint firstItem="HOr-G9-8Pg" firstAttribute="leading" secondItem="mEg-Wj-XA5" secondAttribute="leadingMargin" constant="-6" id="SKE-BQ-lHH"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="HOr-G9-8Pg" secondAttribute="bottom" constant="-6" id="WBC-9d-DeD"/>
+                                                <constraint firstItem="Ylg-dn-2U3" firstAttribute="centerY" secondItem="HOr-G9-8Pg" secondAttribute="centerY" id="e7g-s7-9tV"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="containerView" destination="HOr-G9-8Pg" id="0I6-bR-aov"/>
+                                            <outlet property="loadingView" destination="Ylg-dn-2U3" id="iGO-QX-9EQ"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SubmissionCommentVideoCell" rowHeight="190" id="nat-Ap-6Oh" customClass="SubmissionCommentVideoCell" customModule="Student" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="333" width="375" height="190"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nat-Ap-6Oh" id="Z1E-2H-LVT">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="190"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EXe-uL-Kl7">
+                                                    <rect key="frame" x="15" y="13" width="345" height="160"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="160" id="b6R-hj-1cv"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="4"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="EXe-uL-Kl7" secondAttribute="bottom" id="S6y-dE-IGJ"/>
+                                                <constraint firstItem="EXe-uL-Kl7" firstAttribute="leading" secondItem="Z1E-2H-LVT" secondAttribute="leadingMargin" id="dS0-FJ-cSr"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="EXe-uL-Kl7" secondAttribute="trailing" id="llQ-U7-RS0"/>
+                                                <constraint firstItem="EXe-uL-Kl7" firstAttribute="top" secondItem="Z1E-2H-LVT" secondAttribute="topMargin" constant="2" id="orr-Va-Sfr"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="containerView" destination="EXe-uL-Kl7" id="JFS-Ct-mNL"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

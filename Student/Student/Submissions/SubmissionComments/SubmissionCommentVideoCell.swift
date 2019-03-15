@@ -14,20 +14,34 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+import AVKit
 import UIKit
 import Core
 
-class SubmissionCommentTextCell: UITableViewCell {
-    @IBOutlet weak var commentLabel: DynamicLabel?
+class SubmissionCommentVideoCell: UITableViewCell {
+    @IBOutlet weak var containerView: UIView?
 
-    func update(comment: SubmissionComment) {
-        accessibilityIdentifier = "SubmissionCommentsElement.textCell.\(comment.id)"
+    var playerViewController: AVPlayerViewController = {
+        let av = AVPlayerViewController()
+        av.updatesNowPlayingInfoCenter = false
+        return av
+    }()
+
+    deinit {
+        playerViewController.unembed()
+    }
+
+    func update(comment: SubmissionComment, parent: UIViewController) {
+        accessibilityIdentifier = "SubmissionCommentsElement.videoCell.\(comment.id)"
         accessibilityLabel = String.localizedStringWithFormat(
-            NSLocalizedString("On %@ %@ commented \"%@\"", bundle: .student, comment: ""),
+            NSLocalizedString("On %@ %@ left a video comment", bundle: .student, comment: ""),
             DateFormatter.localizedString(from: comment.createdAt, dateStyle: .long, timeStyle: .short),
-            comment.authorName,
-            comment.comment
+            comment.authorName
         )
-        commentLabel?.text = comment.comment
+
+        playerViewController.player = comment.mediaURL.flatMap { AVPlayer(url: $0) }
+        if playerViewController.view?.superview == nil, let view = containerView {
+            parent.embed(playerViewController, in: view)
+        }
     }
 }

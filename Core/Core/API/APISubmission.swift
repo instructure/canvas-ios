@@ -35,6 +35,7 @@ public struct APISubmission: Codable, Equatable {
     let discussion_entries: [APIDiscussionEntry]?
     let preview_url: URL?
     let url: URL?
+    let media_comment: APIMediaComment?
 
     // late policies
     let late_policy_status: LatePolicyStatus?
@@ -42,10 +43,7 @@ public struct APISubmission: Codable, Equatable {
 
     let submission_comments: [APISubmissionComment]? // include[]=submission_comments
     let submission_history: [APISubmission]? // include[]=submission_history
-
-    let media_comment: APIMediaComment?
-
-    let user: APISubmissionUser? // include[]=user
+    var user: APISubmissionUser? // include[]=user
 }
 
 public struct APISubmissionUser: Codable, Equatable {

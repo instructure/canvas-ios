@@ -135,7 +135,10 @@ extension Submission: WriteableModel {
         } ?? [])
 
         if let submissionHistory = item.submission_history {
-            try Submission.save(submissionHistory, in: client)
+            for var submission in submissionHistory {
+                submission.user = item.user
+                try Submission.save(submission, in: client)
+            }
         }
 
         if let mediaComment = item.media_comment {

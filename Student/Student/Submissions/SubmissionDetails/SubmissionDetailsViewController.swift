@@ -84,39 +84,24 @@ class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewPr
     func embed(_ controller: UIViewController?) {
         if let old = contentViewController {
             navigationItem.rightBarButtonItems = []
-            old.willMove(toParent: nil)
-            old.removeFromParent()
-            old.view.removeFromSuperview()
-            old.didMove(toParent: nil)
+            old.unembed()
         }
 
         contentViewController = controller
-        guard let contentView = contentView, let controller = contentViewController, let view = controller.view else { return }
+        guard let contentView = contentView, let controller = contentViewController else { return }
 
-        controller.willMove(toParent: self)
-        contentView.addSubview(view)
-        view.pin(inside: contentView)
-        addChild(controller)
-        controller.didMove(toParent: self)
-        contentViewController = controller
+        embed(controller, in: contentView)
     }
 
     func embedInDrawer(_ controller: UIViewController?) {
         if let old = drawerContentViewController {
-            old.willMove(toParent: nil)
-            old.removeFromParent()
-            old.view.removeFromSuperview()
-            old.didMove(toParent: nil)
+            old.unembed()
         }
 
         drawerContentViewController = controller
-        guard let contentView = drawer?.contentView, let controller = drawerContentViewController, let view = controller.view else { return }
+        guard let contentView = drawer?.contentView, let controller = drawerContentViewController else { return }
 
-        controller.willMove(toParent: self)
-        contentView.addSubview(view)
-        view.pin(inside: contentView)
-        addChild(controller)
-        controller.didMove(toParent: self)
+        embed(controller, in: contentView)
     }
 
     @IBAction func drawerTabChanged(_ sender: UISegmentedControl) {

@@ -20,6 +20,10 @@ public extension UIFont {
     public enum Name: String, CaseIterable {
         case body, bodyMedium, bodySmall, bodySmallItalic, button, buttonSmall, caption, cardTitle, cardSubtitle, dotSeparator, heading, label
         case rowTitle, rowSubtitle, title, title2, title3, tabBarIconTitle
+
+        case regular14
+        case medium12
+        case semibold14
     }
 
     /// Get a named font style, that is dynamically scaled.
@@ -29,8 +33,6 @@ public extension UIFont {
         switch name {
         case .body:
             return UIFontMetrics(forTextStyle: .body).scaledFont(for: .systemFont(ofSize: 16, weight: .regular))
-        case .bodySmall:
-            return UIFontMetrics(forTextStyle: .body).scaledFont(for: .systemFont(ofSize: 14, weight: .regular))
         case .bodyMedium:
             return UIFontMetrics(forTextStyle: .body).scaledFont(for: .systemFont(ofSize: 14, weight: .medium))
         case .bodySmallItalic:
@@ -39,8 +41,6 @@ public extension UIFont {
             return UIFontMetrics(forTextStyle: .caption1).scaledFont(for: .systemFont(ofSize: 12, weight: .semibold))
         case .cardTitle, .rowTitle:
             return UIFontMetrics(forTextStyle: .callout).scaledFont(for: .systemFont(ofSize: 16, weight: .semibold))
-        case .cardSubtitle:
-            return UIFontMetrics(forTextStyle: .callout).scaledFont(for: .systemFont(ofSize: 14, weight: .semibold))
         case .dotSeparator:
             return UIFontMetrics(forTextStyle: .caption2).scaledFont(for: .systemFont(ofSize: 10, weight: .regular))
         case .heading:
@@ -61,6 +61,15 @@ public extension UIFont {
             return UIFontMetrics(forTextStyle: .body).scaledFont(for: .systemFont(ofSize: 14, weight: .semibold))
         case .tabBarIconTitle:
             return UIFontMetrics(forTextStyle: .title3).scaledFont(for: .systemFont(ofSize: 10, weight: .medium))
+
+        case .regular14, .bodySmall:
+            return UIFontMetrics(forTextStyle: .body).scaledFont(for: .systemFont(ofSize: 14, weight: .regular))
+
+        case .medium12:
+            return UIFontMetrics(forTextStyle: .caption1).scaledFont(for: .systemFont(ofSize: 12, weight: .medium))
+
+        case .semibold14, .cardSubtitle:
+            return UIFontMetrics(forTextStyle: .callout).scaledFont(for: .systemFont(ofSize: 14, weight: .semibold))
         }
     }
 }

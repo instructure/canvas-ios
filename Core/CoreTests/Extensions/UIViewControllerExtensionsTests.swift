@@ -52,4 +52,18 @@ class UIViewControllerExtensionsTests: XCTestCase {
         let vc = UIViewController()
         XCTAssertEqual(vc.topMostViewController(), vc)
     }
+
+    func testEmbed() {
+        let parent = UIViewController()
+        let child = UIViewController()
+        parent.embed(child, in: parent.view)
+        XCTAssertEqual(child.parent, parent)
+        XCTAssertEqual(child.view.superview, parent.view)
+        XCTAssertEqual(parent.view.constraints.count, 4)
+
+        child.unembed()
+        XCTAssertNil(child.parent)
+        XCTAssertNil(child.view.superview)
+        XCTAssertEqual(parent.view.constraints.count, 0)
+    }
 }

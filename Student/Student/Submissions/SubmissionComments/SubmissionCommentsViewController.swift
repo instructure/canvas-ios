@@ -46,27 +46,46 @@ extension SubmissionCommentsViewController: SubmissionCommentsViewProtocol {
 
 extension SubmissionCommentsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter?.comments.count ?? 0
+        return (presenter?.comments.count ?? 0) * 2 // header + content
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let comment = presenter?.comments[indexPath.row] else { return UITableViewCell() }
-        if let mediaID = comment.mediaID, let mediaURL = comment.mediaURL, let mediaType = comment.mediaType {
-            // TODO: display media comments
-            let cell = UITableViewCell()
-            cell.accessibilityLabel = "\(mediaType) \(mediaID) \(mediaURL)" // get rid of unused variable errors
+        guard let comment = presenter?.comments[indexPath.row / 2] else { return UITableViewCell() }
+
+        if indexPath.row % 2 == 1 {
+            let reuseID = currentUserID == comment.authorID ? "myHeader" : "theirHeader"
+            let cell: SubmissionCommentHeaderCell = tableView.dequeue(withID: reuseID, for: indexPath)
+            cell.update(comment: comment)
+            cell.transform = CGAffineTransform(scaleX: 1, y: -1)
             return cell
         }
+
         if let attempt = comment.attempt {
             // TODO: display submission attachments
             let cell = UITableViewCell()
-            cell.accessibilityLabel = "\(attempt)" // get rid of unused variable errors
+            cell.textLabel?.text = "Submission attempt \(attempt) TODO"
+            cell.transform = CGAffineTransform(scaleX: 1, y: -1)
+            return cell
+        }
+
+        if comment.mediaURL != nil, comment.mediaType == .some(.audio) {
+            let cell: SubmissionCommentAudioCell = tableView.dequeue(for: indexPath)
+            cell.update(comment: comment, parent: self)
+            cell.transform = CGAffineTransform(scaleX: 1, y: -1)
+            return cell
+        }
+
+        if comment.mediaURL != nil, comment.mediaType == .some(.video) {
+            let cell: SubmissionCommentVideoCell = tableView.dequeue(for: indexPath)
+            cell.update(comment: comment, parent: self)
+            cell.transform = CGAffineTransform(scaleX: 1, y: -1)
             return cell
         }
 
         let reuseID = currentUserID == comment.authorID ? "myComment" : "theirComment"
         let cell: SubmissionCommentTextCell = tableView.dequeue(withID: reuseID, for: indexPath)
         cell.update(comment: comment)
+        cell.transform = CGAffineTransform(scaleX: 1, y: -1)
         return cell
     }
 }
