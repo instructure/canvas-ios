@@ -17,17 +17,17 @@
 import UIKit
 import Core
 
-class SubmissionCommentTextCell: UITableViewCell {
-    @IBOutlet weak var commentLabel: DynamicLabel?
+class SubmissionCommentHeaderCell: UITableViewCell {
+    @IBOutlet weak var authorAvatarView: AvatarView?
+    @IBOutlet weak var authorNameLabel: DynamicLabel?
+    @IBOutlet weak var createdAtLabel: DynamicLabel?
 
     func update(comment: SubmissionComment) {
-        accessibilityIdentifier = "SubmissionCommentsElement.textCell.\(comment.id)"
-        accessibilityLabel = String.localizedStringWithFormat(
-            NSLocalizedString("On %@ %@ commented \"%@\"", bundle: .student, comment: ""),
-            DateFormatter.localizedString(from: comment.createdAt, dateStyle: .long, timeStyle: .short),
-            comment.authorName,
-            comment.comment
-        )
-        commentLabel?.text = comment.comment
+        isAccessibilityElement = false
+        accessibilityElementsHidden = true
+        authorAvatarView?.name = comment.authorName
+        authorAvatarView?.url = comment.authorAvatarURL
+        authorNameLabel?.text = comment.authorName
+        createdAtLabel?.text = DateFormatter.localizedString(from: comment.createdAt, dateStyle: .long, timeStyle: .short)
     }
 }
