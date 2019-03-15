@@ -37,7 +37,9 @@ public class FileUpload: NSManagedObject {
     @NSManaged public var sessionID: String?
     @NSManaged public var completed: Bool
     @NSManaged public var fileID: String?
-    @NSManaged public var userRaw: NSNumber? // KeychainEntry.hashValue
+    @NSManaged public var userID: String?
+    @NSManaged public var baseURL: URL?
+    @NSManaged public var masquerader: URL?
 
     public var inProgress: Bool {
         return error == nil && !completed
@@ -53,9 +55,19 @@ public class FileUpload: NSManagedObject {
         set { taskIDRaw = NSNumber(value: newValue) }
     }
 
-    public var user: Int? {
-        get { return userRaw?.intValue }
-        set { userRaw = NSNumber(value: newValue) }
+    public var user: KeychainEntry? {
+        get {
+            return Keychain.entries.first {
+                $0.userID == userID &&
+                $0.baseURL == baseURL &&
+                $0.masquerader == masquerader
+            }
+        }
+        set {
+            userID = newValue?.userID
+            baseURL = newValue?.baseURL
+            masquerader = newValue?.masquerader
+        }
     }
 
     public func reset() {

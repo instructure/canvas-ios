@@ -30,7 +30,7 @@ public class SubmissionFileUploadDelegate: FileUploadDelegate {
             guard let fileUpload: FileUpload = context.first(where: #keyPath(FileUpload.url), equals: url as CVarArg) else {
                 return
             }
-            guard let user = Keychain.entries.first(where: { $0.hashValue == fileUpload.user }) else {
+            guard let user = Keychain.entries.first(where: { $0 == fileUpload.user }) else {
                 return
             }
             guard let target = fileUpload.context else {

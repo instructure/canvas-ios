@@ -54,7 +54,8 @@ public class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate,
             fileUpload.reset()
             fileUpload.url = fileURL
             fileUpload.context = uploadContext
-            fileUpload.user = environment.currentSession?.hashValue
+            fileUpload.user = environment.currentSession
+
             do {
                 try context.save()
                 self.getTarget(fileUpload, api: environment.api)
@@ -160,6 +161,7 @@ public class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate,
                 let error = fileUpload.error ?? error?.localizedDescription
                 fileUpload.error = error
                 fileUpload.completed = error == nil
+                fileUpload.taskID = nil
                 try context.save()
                 self.notify(url: fileUpload.url, error: nil)
             } catch {

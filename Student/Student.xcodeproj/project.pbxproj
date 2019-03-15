@@ -178,6 +178,7 @@
 		B1A8CD3E223841C600E2242D /* FileUploaderExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A8CD3D223841C600E2242D /* FileUploaderExtensions.swift */; };
 		B1A8CD4322384F9200E2242D /* FileUploaderExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A8CD3D223841C600E2242D /* FileUploaderExtensions.swift */; };
 		B1A8CD512239854200E2242D /* AssignmentExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A8CD502239854200E2242D /* AssignmentExtensions.swift */; };
+		B1A8CD54223AF93100E2242D /* AssignmentExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A8CD502239854200E2242D /* AssignmentExtensions.swift */; };
 		B1AE17A8218771CE002995E6 /* TestsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1AE17A7218771CE002995E6 /* TestsFoundation.framework */; };
 		B1AE17AA218771FA002995E6 /* TestsFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1AE17A7218771CE002995E6 /* TestsFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B1B4C1C62196304E00FA9E0E /* FilePickerViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1B4C1C52196304E00FA9E0E /* FilePickerViewController.storyboard */; };
@@ -1800,6 +1801,7 @@
 				7D067CE621505B3500B78AF2 /* DashboardGroupCell.swift in Sources */,
 				3B0B0F68219C8D1500F04216 /* CourseNavigationPresenter.swift in Sources */,
 				3B67BCB621B5784500055324 /* UrlSubmissionPresenter.swift in Sources */,
+				B1A8CD54223AF93100E2242D /* AssignmentExtensions.swift in Sources */,
 				3B5425FF21B094CC0009D069 /* UrlSubmissionViewController.swift in Sources */,
 				3B0B0F67219C8D1100F04216 /* CourseListCourseCell.swift in Sources */,
 				9F9F4EB421B58AA300842570 /* ExternalToolSubmissionContentViewController.swift in Sources */,
