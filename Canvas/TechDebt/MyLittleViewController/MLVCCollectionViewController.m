@@ -126,7 +126,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     id<MLVCCollectionViewCellViewModel> item = [self.viewModel.collectionController objectAtIndexPath:indexPath];
-    [item collectionViewController:self didSelectItemAtIndexPath:indexPath];
+    [item collectionViewController:self didSelectItemAtIndexPathLegacy:indexPath];
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
