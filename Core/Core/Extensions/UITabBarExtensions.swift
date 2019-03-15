@@ -17,31 +17,23 @@
 import UIKit
 
 extension UITabBar {
-    /// This makes the tabBar (almost) match the style of web's global nav.
-    /// Web hides the border for the active tab, but is on the side where nothing touches it.
-    /// We preserve the border since it's at the bottom of the scrollable area.
+    /// Styles the `UITabBar` to use some elements of the organizations branding colors
     public func useGlobalNavStyle(brand: Brand = Brand.shared) {
-        let size = CGSize(width: 1, height: intrinsicContentSize.height - 1) // minus border
-        let image = UIGraphicsImageRenderer(size: size).image { context in
-            context.cgContext.setFillColor(UIColor.named(.backgroundLightest).cgColor)
-            context.fill(CGRect(x: 0, y: 0, width: size.width, height: size.height))
-        }
-        selectionIndicatorImage = image.resizableImage(withCapInsets: .zero)
-        tintColor = brand.navIconFillActive.ensureContrast(against: .named(.backgroundLightest))
+        let hasEnoughContrast = brand.navBackground.contrast(against: UIColor.named(.backgroundLightest)) >= 3
+        let activeColor = hasEnoughContrast ? brand.navBackground : brand.navTextColor
+        tintColor = activeColor.ensureContrast(against: .named(.backgroundLightest))
 
-        barStyle = brand.navBackground.luminance < 0.5 ? .black : .default
-        barTintColor = brand.navBackground
-        unselectedItemTintColor = brand.navIconFill.ensureContrast(against: brand.navBackground)
+        barStyle = .default
+        barTintColor = .named(.backgroundLightest)
+        unselectedItemTintColor = .named(.textDark)
 
         // There are weird RN view sizing issues with opaque tabBars, so emulate with backgroundColor.
         isTranslucent = true
-        backgroundColor = brand.navBackground
+        backgroundColor = .named(.backgroundLightest)
 
         for item in items ?? [] {
-            item.badgeColor = brand.navBadgeBackground
-            item.setBadgeTextAttributes([.foregroundColor: brand.navBadgeText], for: .normal)
-            item.setTitleTextAttributes([.foregroundColor: brand.navTextColor], for: .normal)
-            item.setTitleTextAttributes([.foregroundColor: brand.navTextColorActive], for: .selected)
+            item.badgeColor = .named(.crimson)
+            item.setBadgeTextAttributes([.foregroundColor: UIColor.named(.textLightest)], for: .normal)
         }
     }
 }
