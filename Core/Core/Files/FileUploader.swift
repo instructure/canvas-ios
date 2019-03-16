@@ -31,24 +31,23 @@ public class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate,
     var backgroundSession: URLSession!
     lazy var backgroundAPI: API = URLSessionAPI(urlSession: backgroundSession)
     var listeners: [FileUploadDelegate] = []
+    public let database: NSPersistentContainer
 
-    // File uploads are not stored in the user's database
-    // because they continue across sessions.
-    // By using a new environment, we write and subscribe to the `globalDatabase`
-    let environment = AppEnvironment()
-    public var database: Persistence {
-        return environment.database
-    }
-
-    public init(appGroup: AppGroup, identifier: String = "file-uploads") {
+    public init(appGroup: AppGroup, identifier: String = "file-uploads", environment: AppEnvironment = .shared) {
         self.identifier = identifier
         let configuration = URLSessionConfiguration.background(withIdentifier: identifier)
         configuration.sharedContainerIdentifier = appGroup.rawValue
+
+        // File uploads are stored in the `globalDatabase`
+        // because they continue across sessions.
+        self.database = environment.globalDatabase
+
         super.init()
         backgroundSession = URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
     }
 
     public func upload(_ fileURL: URL, for uploadContext: FileUploadContext, environment: AppEnvironment = .shared) {
+        Logger.shared.log(#function)
         database.perform { context in
             let fileUpload: FileUpload = context.first(where: #keyPath(FileUpload.url), equals: fileURL as CVarArg) ?? context.insert()
             fileUpload.reset()
@@ -66,6 +65,8 @@ public class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate,
     }
 
     public func subscribe<U: UseCase>(_ useCase: U, callback: @escaping () -> Void) -> Store<U> {
+        let environment = AppEnvironment()
+        environment.database = database
         return environment.subscribe(useCase, callback)
     }
 
@@ -161,7 +162,6 @@ public class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate,
                 let error = fileUpload.error ?? error?.localizedDescription
                 fileUpload.error = error
                 fileUpload.completed = error == nil
-                fileUpload.taskID = nil
                 try context.save()
                 self.notify(url: fileUpload.url, error: nil)
             } catch {
@@ -183,7 +183,9 @@ public class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate,
     private func fileUpload(for task: URLSessionTask, in context: PersistenceClient) -> FileUpload? {
         let sessionID = NSPredicate(format: "%K == %@", #keyPath(FileUpload.sessionID), identifier)
         let taskID = NSPredicate(format: "%K == %d", #keyPath(FileUpload.taskIDRaw), task.taskIdentifier)
-        let predicate = NSCompoundPredicate.init(andPredicateWithSubpredicates: [sessionID, taskID])
+        let notCompleted = NSPredicate(format: "%K == %@", #keyPath(FileUpload.completed), NSNumber(value: false))
+        let notFailed = NSPredicate(format: "%K == nil", #keyPath(FileUpload.error))
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [sessionID, taskID, notCompleted, notFailed])
         return context.fetch(predicate).first
     }
 

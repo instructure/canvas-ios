@@ -49,6 +49,8 @@ public class SubmissionFileUploadDelegate: FileUploadDelegate {
                 if !fileUploads.isEmpty && fileUploads.allSatisfy({ $0.completed && $0.error == nil }) {
                     let fileIDs = fileUploads.compactMap { $0.fileID }
                     self.submit(fileIDs: fileIDs, as: user, toAssignment: assignmentID, inCourse: courseID)
+                } else if let next = fileUploads.first(where: { $0.pending }) {
+                    
                 }
             default:
                 return

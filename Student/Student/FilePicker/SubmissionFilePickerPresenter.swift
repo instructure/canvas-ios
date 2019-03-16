@@ -30,6 +30,7 @@ class SubmissionFilePresenter {
     let assignmentID: String
     let userID: String
     let context: Context
+    let uploader: FileUploader
 
     private lazy var assignments: Store<GetAssignment> = {
         let useCase = GetAssignment(courseID: courseID, assignmentID: assignmentID)
@@ -40,7 +41,7 @@ class SubmissionFilePresenter {
 
     private lazy var fileUploads: Store<GetFileUploads> = {
         let useCase = GetFileUploads(context: .submission(courseID: courseID, assignmentID: assignmentID))
-        return FileUploader.shared.subscribe(useCase) { [weak self] in
+        return uploader.subscribe(useCase) { [weak self] in
             self?.update()
         }
     }()
@@ -123,12 +124,13 @@ class SubmissionFilePresenter {
         return (left: [cancelButton], right: [submitButton])
     }
 
-    init(env: AppEnvironment = .shared, courseID: String, assignmentID: String, userID: String) {
+    init(env: AppEnvironment = .shared, fileUploader: FileUploader = .shared, courseID: String, assignmentID: String, userID: String) {
         self.env = env
         self.courseID = courseID
         self.assignmentID = assignmentID
         self.userID = userID
         context = ContextModel(.course, id: courseID)
+        uploader = fileUploader
     }
 
     func update() {
@@ -177,7 +179,7 @@ class SubmissionFilePresenter {
     @objc
     private func submit() {
         for url in urls {
-            FileUploader.shared.upload(url, for: .submission(courseID: courseID, assignmentID: assignmentID))
+            uploader.upload(url, for: .submission(courseID: courseID, assignmentID: assignmentID))
         }
     }
 
@@ -188,8 +190,12 @@ class SubmissionFilePresenter {
 
     @objc
     private func cancelSubmission() {
-        // TODO: delete files and dismiss
-
+        do {
+            try assignment?.removeSubmissionFiles(appGroup: .student)
+            dismiss()
+        } catch {
+            Logger.shared.error("Failed to remove submission files")
+        }
     }
 
     @objc
@@ -245,8 +251,10 @@ extension SubmissionFilePresenter: FilePickerPresenterProtocol {
             do {
                 // This file name stinks so try to rename it
                 let name = String(Clock.now.timeIntervalSince1970)
-                let url = URL.temporaryDirectory
+                let dir = URL.temporaryDirectory
                     .appendingPathComponent("videos", isDirectory: true)
+                try FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true, attributes: nil)
+                let url = dir
                     .appendingPathComponent(name, isDirectory: false)
                     .appendingPathExtension(videoURL.pathExtension)
                 try FileManager.default.moveItem(at: videoURL, to: url)
@@ -261,7 +269,6 @@ extension SubmissionFilePresenter: FilePickerPresenterProtocol {
     }
 
     func didSelectFile(_ file: FileViewModel) {
-        // The fileSubmission.error is represented by one of the file cells
         if let error = file.error {
             view?.showError(message: error)
         }

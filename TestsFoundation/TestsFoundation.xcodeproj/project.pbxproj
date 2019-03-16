@@ -49,14 +49,13 @@
 		B1A32BE02159A28D0071B41E /* APISubmission+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A32BDF2159A28D0071B41E /* APISubmission+Fixture.swift */; };
 		B1A6BC90218B359F000515E3 /* AuthUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A6BC8F218B359F000515E3 /* AuthUser.swift */; };
 		B1A6BC92218B3733000515E3 /* HealthCheckRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A6BC91218B3733000515E3 /* HealthCheckRequestable.swift */; };
+		B1A8CD58223C19EF00E2242D /* MockFileUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A8CD57223C19EF00E2242D /* MockFileUploader.swift */; };
 		B1AE17A421876036002995E6 /* SeedClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AE17A321876036002995E6 /* SeedClient.swift */; };
 		B1AE17AC218776FE002995E6 /* Randomizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AE17AB218776FE002995E6 /* Randomizer.swift */; };
 		B1C6BF6521BF2C2B00C8C585 /* UIBarButtonItemExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C6BF6421BF2C2B00C8C585 /* UIBarButtonItemExtensions.swift */; };
 		B1E789B821B1B06F0087FE4A /* TestLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E789B721B1B06F0087FE4A /* TestLogger.swift */; };
 		B1E789BA21B1D0D30087FE4A /* LogEventFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E789B921B1D0D30087FE4A /* LogEventFixture.swift */; };
-		B1EE4BC021CC42FB0008E111 /* MockBackgroundAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EE4BBF21CC42FB0008E111 /* MockBackgroundAPIManager.swift */; };
 		B1EE9D0121B8DE0200FCF736 /* FileUploadFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EE9D0021B8DE0200FCF736 /* FileUploadFixture.swift */; };
-		B1EE9D0521B8E5E100FCF736 /* FileSubmissionFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EE9D0421B8E5E100FCF736 /* FileSubmissionFixture.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -104,14 +103,13 @@
 		B1A32BDF2159A28D0071B41E /* APISubmission+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APISubmission+Fixture.swift"; sourceTree = "<group>"; };
 		B1A6BC8F218B359F000515E3 /* AuthUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUser.swift; sourceTree = "<group>"; };
 		B1A6BC91218B3733000515E3 /* HealthCheckRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthCheckRequestable.swift; sourceTree = "<group>"; };
+		B1A8CD57223C19EF00E2242D /* MockFileUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFileUploader.swift; sourceTree = "<group>"; };
 		B1AE17A321876036002995E6 /* SeedClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeedClient.swift; sourceTree = "<group>"; };
 		B1AE17AB218776FE002995E6 /* Randomizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Randomizer.swift; sourceTree = "<group>"; };
 		B1C6BF6421BF2C2B00C8C585 /* UIBarButtonItemExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItemExtensions.swift; sourceTree = "<group>"; };
 		B1E789B721B1B06F0087FE4A /* TestLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestLogger.swift; sourceTree = "<group>"; };
 		B1E789B921B1D0D30087FE4A /* LogEventFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogEventFixture.swift; sourceTree = "<group>"; };
-		B1EE4BBF21CC42FB0008E111 /* MockBackgroundAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBackgroundAPIManager.swift; sourceTree = "<group>"; };
 		B1EE9D0021B8DE0200FCF736 /* FileUploadFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadFixture.swift; sourceTree = "<group>"; };
-		B1EE9D0421B8E5E100FCF736 /* FileSubmissionFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionFixture.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +144,7 @@
 		3B032CFD215037AA00B570F7 /* TestsFoundation */ = {
 			isa = PBXGroup;
 			children = (
+				B1A8CD55223C178D00E2242D /* Files */,
 				B1E789B621B1B0620087FE4A /* Logger */,
 				7D47769621AF354400B441CE /* API */,
 				B1AE17A221875FF4002995E6 /* DataSeeding */,
@@ -220,7 +219,6 @@
 				7D37BE8E21C8398D0063FAAC /* DiscussionEntryFixture.swift */,
 				3BAA4176218A361100701E03 /* EnrollmentFixture.swift */,
 				9F4B53AB2180FFDF0056A557 /* File+Fixture.swift */,
-				B1EE9D0421B8E5E100FCF736 /* FileSubmissionFixture.swift */,
 				B1EE9D0021B8DE0200FCF736 /* FileUploadFixture.swift */,
 				3B032D19215037CA00B570F7 /* Group+Fixture.swift */,
 				B1E789B921B1D0D30087FE4A /* LogEventFixture.swift */,
@@ -264,7 +262,6 @@
 				7D47769921AF396500B441CE /* APIQuiz.swift */,
 				7D47769721AF356200B441CE /* APIQuizRequestable.swift */,
 				B171A10821B9E51F000325D3 /* MockAPI.swift */,
-				B1EE4BBF21CC42FB0008E111 /* MockBackgroundAPIManager.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -291,6 +288,14 @@
 				B1911CEE21C84B1000F42F91 /* MockUserNotificationCenter.swift */,
 			);
 			path = Notifications;
+			sourceTree = "<group>";
+		};
+		B1A8CD55223C178D00E2242D /* Files */ = {
+			isa = PBXGroup;
+			children = (
+				B1A8CD57223C19EF00E2242D /* MockFileUploader.swift */,
+			);
+			path = Files;
 			sourceTree = "<group>";
 		};
 		B1AE17A221875FF4002995E6 /* DataSeeding */ = {
@@ -392,7 +397,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1EE4BC021CC42FB0008E111 /* MockBackgroundAPIManager.swift in Sources */,
 				B1911CEF21C84B1000F42F91 /* MockUserNotificationCenter.swift in Sources */,
 				3B84C392218BB102005946BA /* DateExtensions.swift in Sources */,
 				B1A32BE02159A28D0071B41E /* APISubmission+Fixture.swift in Sources */,
@@ -405,7 +409,6 @@
 				9F4B53AC2180FFDF0056A557 /* File+Fixture.swift in Sources */,
 				3B0CEBA521504C2500D07CFA /* APICourse+Fixture.swift in Sources */,
 				7D2DC2FF219A0514008FE29A /* APIDocViewerFixture.swift in Sources */,
-				B1EE9D0521B8E5E100FCF736 /* FileSubmissionFixture.swift in Sources */,
 				B19792EF21751FBC0000369C /* TestPersistence.swift in Sources */,
 				B16F0371215BD5F10011E952 /* TestRouter.swift in Sources */,
 				B1E789B821B1B06F0087FE4A /* TestLogger.swift in Sources */,
@@ -431,6 +434,7 @@
 				B1AE17AC218776FE002995E6 /* Randomizer.swift in Sources */,
 				B1A6BC90218B359F000515E3 /* AuthUser.swift in Sources */,
 				B12E7EAE2187E02B00D5D58F /* TestHost.swift in Sources */,
+				B1A8CD58223C19EF00E2242D /* MockFileUploader.swift in Sources */,
 				9F4B53AE218100BC0056A557 /* ApiFile+Fixture.swift in Sources */,
 				3B0CEB752150406400D07CFA /* TTL+Fixture.swift in Sources */,
 				7DCF204A216D6668003AF358 /* Quiz+Fixture.swift in Sources */,

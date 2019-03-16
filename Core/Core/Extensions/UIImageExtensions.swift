@@ -41,26 +41,22 @@ extension UIImage {
 
      - Returns: The URL that the image was written to.
 
-     - Note: Directories are created for `url` if they don't already exist
+     - Note: Directories are created for `url` if they don't already exist.
+        Images are written as pngs, therefore, a `png` extension will be given to the name.
+        Any file that exists at the destination URL will be overwritten.
      */
     public func write(to url: URL? = nil, nameIt name: String? = nil) throws -> URL {
         let directory = url ?? URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("images", isDirectory: true)
         let name = name ?? String(Clock.now.timeIntervalSince1970)
         try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true, attributes: nil)
-        let url = directory.appendingPathComponent(name, isDirectory: false)
+        let url = directory.appendingPathComponent(name, isDirectory: false).appendingPathExtension("png")
         guard let data = pngData() else {
             throw NSError.instructureError("Failed to save image")
         }
+        if FileManager.default.fileExists(atPath: url.absoluteString) {
+            try FileManager.default.removeItem(at: url)
+        }
         try data.write(to: url, options: .atomic)
         return url
-    }
-
-    public func temporarilyStoreForSubmission() throws -> FileInfo? {
-        let imageSaveName = "\(String(describing: Clock.now.timeIntervalSince1970))-submission.png"
-        guard var url: URL = try? URL.temporarySubmissionDirectoryPath() else { return nil }
-        guard let data: Data = self.pngData() else { return nil }
-        url.appendPathComponent(imageSaveName)
-        try data.write(to: url, options: Data.WritingOptions.atomicWrite)
-        return FileInfo(url: url, size: data.count)
     }
 }

@@ -31,8 +31,8 @@ class FilePickerView: FilePickerViewProtocol {
     var navigationItems: (left: [UIBarButtonItem], right: [UIBarButtonItem])?
     var dismissed: Bool = false
     var onUpdate: (() -> Void)?
-    var bytesSent: Int64?
-    var expectedToSend: Int64?
+    var bytesSent: Int?
+    var expectedToSend: Int?
 
     func presentCamera() {
         presentCameraCallCount += 1

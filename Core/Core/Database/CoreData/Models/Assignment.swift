@@ -146,4 +146,10 @@ extension Assignment {
         }
         return url
     }
+
+    public func removeSubmissionFiles(appGroup: AppGroup) throws {
+        for file in submissionFiles(appGroup: appGroup) {
+            try FileManager.default.removeItem(at: file)
+        }
+    }
 }

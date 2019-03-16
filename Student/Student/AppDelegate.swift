@@ -50,8 +50,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     }
 
     func application(_ application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping () -> Void) {
-        // TODO: tell FileUpload.shared about the completionHandler
         environment.logger.log(#function)
+        FileUploader.shared.completionHandler = completionHandler
     }
 
     func setupNotifications() {

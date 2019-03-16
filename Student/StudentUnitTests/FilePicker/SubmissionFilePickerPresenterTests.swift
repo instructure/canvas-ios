@@ -24,34 +24,37 @@ class SubmissionFilePickerPresenterTests: PersistenceTestCase {
     let courseID = "1"
     let assignmentID = "2"
     let userID = "3"
-    let useCase = { () -> AsyncOperation in
-        return AsyncBlockOperation { finished in
-            finished(nil)
-        }
-    }
-    lazy var testFile: URL = {
-        let bundle = Bundle(for: type(of: self))
-        return bundle.url(forResource: "Info", withExtension: "plist")!
+    lazy var testImage: UIImage = {
+        return UIImage(named: "TestImage.png", in: Bundle(for: SubmissionFilePickerPresenterTests.self), compatibleWith: nil)!
     }()
+    var testImageURL: URL {
+        return try! testImage.write()
+    }
 
     let view = FilePickerView()
     var presenter: SubmissionFilePresenter!
     let onUpdateExpectation = XCTestExpectation(description: "on update")
+    lazy var uploader = MockFileUploader(appGroup: .student, environment: .shared)
+
+    var assignment: Assignment!
 
     override func setUp() {
         super.setUp()
-        presenter = SubmissionFilePresenter(env: env, courseID: courseID, assignmentID: assignmentID, userID: userID, useCase: useCase)
+        presenter = SubmissionFilePresenter(env: env, fileUploader: uploader, courseID: courseID, assignmentID: assignmentID, userID: userID)
         presenter.view = view
         view.onUpdate = onUpdateExpectation.fulfill
+        assignment = Assignment.make([
+            "id": assignmentID,
+            "courseID": courseID,
+            "allowedExtensions": [],
+            "submissionTypesRaw": [SubmissionType.online_upload.rawValue],
+        ])
+        try! assignment.removeSubmissionFiles(appGroup: .student)
     }
 
     func testSourcesAllowedExtensions() {
-        Assignment.make([
-            "id": assignmentID,
-            "courseID": courseID,
-            "allowedExtensions": ["png", "jpg"],
-            "submissionTypesRaw": [SubmissionType.online_upload.rawValue],
-        ])
+        assignment.allowedExtensions = ["png", "jpg"]
+        try! databaseClient.save()
         presenter.viewIsReady()
         wait(for: [onUpdateExpectation], timeout: 0.1)
         XCTAssertEqual(view.sources?.contains(.camera), true)
@@ -60,12 +63,8 @@ class SubmissionFilePickerPresenterTests: PersistenceTestCase {
     }
 
     func testSourcesAny() {
-        Assignment.make([
-            "id": assignmentID,
-            "courseID": courseID,
-            "allowedExtensions": [],
-            "submissionTypesRaw": [SubmissionType.online_upload.rawValue],
-        ])
+        assignment.allowedExtensions = []
+        try! databaseClient.save()
         presenter.viewIsReady()
         wait(for: [onUpdateExpectation], timeout: 0.1)
         XCTAssertEqual(view.sources?.contains(.camera), true)
@@ -74,12 +73,9 @@ class SubmissionFilePickerPresenterTests: PersistenceTestCase {
     }
 
     func testSourcesExcludesCameraAndLibraryIfPhotosAndVideosNotAllowed() {
-        Assignment.make([
-            "id": assignmentID,
-            "courseID": courseID,
-            "allowedExtensions": ["txt"],
-            "submissionTypesRaw": [SubmissionType.online_upload.rawValue],
-        ])
+        assignment.allowedExtensions = ["txt"]
+        try! databaseClient.save()
+
         presenter.viewIsReady()
         wait(for: [onUpdateExpectation], timeout: 0.1)
         XCTAssertEqual(view.sources?.contains(.camera), false)
@@ -89,12 +85,8 @@ class SubmissionFilePickerPresenterTests: PersistenceTestCase {
     }
 
     func testSourcesIncludesCameraAndLibraryIfAllowsVideos() {
-        Assignment.make([
-            "id": assignmentID,
-            "courseID": courseID,
-            "allowedExtensions": ["mov"],
-            "submissionTypesRaw": [SubmissionType.online_upload.rawValue],
-        ])
+        assignment.allowedExtensions = ["mov"]
+        try! databaseClient.save()
         presenter.viewIsReady()
         wait(for: [onUpdateExpectation], timeout: 0.1)
         XCTAssertEqual(view.sources?.contains(.camera), true)
@@ -102,48 +94,22 @@ class SubmissionFilePickerPresenterTests: PersistenceTestCase {
         XCTAssertEqual(view.sources?.contains(.files), true)
     }
 
-    func testChangedFilesFromServer() {
-        let expectation = XCTestExpectation(description: "changedFiles")
-        let useCase = { () -> AsyncOperation in
-            return DatabaseOperation(database: self.env.database) { client in
-                self.view.onUpdate = expectation.fulfill
-                Assignment.make([
-                    "id": self.assignmentID,
-                    "courseID": self.courseID,
-                    "allowedExtensions": ["png", "jpg"],
-                    "submissionTypesRaw": [SubmissionType.online_upload.rawValue],
-                ], client: client)
-            }
-        }
-        presenter = SubmissionFilePresenter(env: env, courseID: courseID, assignmentID: assignmentID, userID: userID, useCase: useCase)
-        presenter.view = view
+    func testAddCreatesFileSubmission() {
         presenter.viewIsReady()
-        wait(for: [expectation], timeout: 3)
-        XCTAssertEqual(view.sources?.count, 3)
-    }
-
-    func testAddQueuesFileUpload() {
-        Assignment.make(["id": assignmentID])
-        presenter.add(fromURL: testFile)
-        env.queue.waitUntilAllOperationsAreFinished()
-        let fileUploads: [FileUpload] = databaseClient.fetch()
-        XCTAssertEqual(fileUploads.count, 1)
-        XCTAssertNotNil(fileUploads.first?.submission)
+        presenter.add(fromURL: testImageURL)
+        XCTAssert(assignment.hasFileSubmission)
     }
 
     func testAddFromSourceCamera() {
-        Assignment.make(["id": assignmentID])
+        presenter.viewIsReady()
         presenter.add(fromSource: .camera)
         XCTAssertEqual(view.presentCameraCallCount, 1)
     }
 
     func testAddFromSourceFiles() {
-        Assignment.make([
-            "id": assignmentID,
-            "courseID": courseID,
-            "allowedExtensions": ["png", "mov", "mp3", "txt"],
-            "submissionTypesRaw": [SubmissionType.online_upload.rawValue],
-        ])
+        assignment.allowedExtensions = ["png", "mov", "mp3", "txt"]
+        try! databaseClient.save()
+
         presenter.viewIsReady()
         wait(for: [onUpdateExpectation], timeout: 0.1)
         presenter.add(fromSource: .files)
@@ -151,129 +117,63 @@ class SubmissionFilePickerPresenterTests: PersistenceTestCase {
     }
 
     func testAddFromSourceLibrary() {
-        Assignment.make(["id": assignmentID])
         presenter.viewIsReady()
         presenter.add(fromSource: .library)
         XCTAssertEqual(view.presentLibraryCallCount, 1)
     }
 
     func testAddWithCameraResult() {
-        Assignment.make(["id": assignmentID])
-        let expected = URL(fileURLWithPath: "\(NSTemporaryDirectory())submissions/1542303894.0-submission.png")
         Clock.mockNow(Date.isoDateFromString("2018-11-15T17:44:54Z")!)
+        let expected = assignment.fileSubmissionURL(appGroup: .student).appendingPathComponent("1542303894.0.png")
         presenter.viewIsReady()
-        let testImage = UIImage(named: "TestImage.png", in: Bundle(for: SubmissionFilePickerPresenterTests.self), compatibleWith: nil)
         var info: CameraCaptureResult = CameraCaptureResult()
         info[UIImagePickerController.InfoKey.originalImage] = testImage
         let expectation = XCTestExpectation(description: "update files")
         view.onUpdate = expectation.fulfill
         presenter.add(withCameraResult: info)
-        env.queue.waitUntilAllOperationsAreFinished()
         wait(for: [expectation], timeout: 1)
         XCTAssertEqual(view.files?.first?.url, expected)
         XCTAssertEqual(view.files?.first?.size, 17308)
     }
 
     func testCameraDidCaptureVideo() {
-        Assignment.make(["id": assignmentID])
-        let expected = URL(fileURLWithPath: "\(NSTemporaryDirectory())submissions/1542303894.0-submission.MOV")
-        let url = URL(fileURLWithPath: "\(NSTemporaryDirectory())/original.MOV")
+        let url = try! testImage.write(nameIt: "crappy-name")
+        let expected = assignment.fileSubmissionURL(appGroup: .student).appendingPathComponent("1542303894.0.png")
         Clock.mockNow(Date.isoDateFromString("2018-11-15T17:44:54Z")!)
-        let testImage = UIImage(named: "TestImage.png", in: Bundle(for: SubmissionFilePickerPresenterTests.self), compatibleWith: nil)!
-        addTempFile(testImage, toURL: url)
         presenter.viewIsReady()
         var info: CameraCaptureResult = CameraCaptureResult()
         info[UIImagePickerController.InfoKey.mediaURL] = url
         let expectation = XCTestExpectation(description: "on update")
         view.onUpdate = expectation.fulfill
         presenter.add(withCameraResult: info)
-        env.queue.waitUntilAllOperationsAreFinished()
         wait(for: [expectation], timeout: 0.1)
         XCTAssertEqual(view.files?.first?.url, expected)
     }
 
-    func testCancelSubmissionDeletesSubmission() {
-        let assignment = Assignment.make(["id": assignmentID])
-        let submission = FileSubmission.make(["assignment": assignment])
-        XCTAssertEqual(assignment.fileSubmission, submission)
+    func testCancelSubmissionDeletesSubmissionAndDismisses() {
         presenter.viewIsReady()
+        presenter.add(fromURL: testImageURL)
         wait(for: [onUpdateExpectation], timeout: 0.1)
         let cancel = view.navigationItems!.left[0]
         cancel.performAction()
-        env.queue.waitUntilAllOperationsAreFinished()
-        databaseClient.refresh()
-        XCTAssertNil(assignment.fileSubmission)
-    }
-
-    func testSubmitStartsFileUpload() {
-        queueUploadAndSubmit()
-
-        databaseClient.refresh()
-        let fileUploads: [FileUpload] = databaseClient.fetch()
-        XCTAssertEqual(fileUploads.count, 1)
-        XCTAssertEqual(fileUploads.first?.backgroundSessionID, api.identifier)
-        XCTAssertEqual(fileUploads.first?.taskID, 1)
-        XCTAssertEqual(backgroundAPI.uploadMocks.count, 1)
-        XCTAssertEqual(backgroundAPI.uploadMocks.values.first?.resumeCount, 1)
-    }
-
-    func testDismissWhileUploadInProgressDoesNotDeleteSubmission() {
-        let assignment = Assignment.make(["id": assignmentID])
-        let submission = FileSubmission.make(["assignment": assignment, "started": true])
-        XCTAssertEqual(assignment.fileSubmission, submission)
-        presenter.viewIsReady()
-        wait(for: [onUpdateExpectation], timeout: 0.1)
-        let done = view.navigationItems!.right[0]
-        done.performAction()
-        env.queue.waitUntilAllOperationsAreFinished()
-        databaseClient.refresh()
-        XCTAssertNotNil(assignment.fileSubmission)
+        XCTAssertFalse(assignment.hasFileSubmission)
         XCTAssertTrue(view.dismissed)
     }
 
-    func testFileSubmissionError() {
-        let assignment = Assignment.make(["id": assignmentID])
-        let submission = FileSubmission.make(["assignment": assignment, "error": "very special error"])
-        let upload = FileUpload.make(["submission": submission, "error": nil])
-        submission.addToFileUploads(upload)
+    func testSubmitStartsFileUpload() {
         presenter.viewIsReady()
-
-        let expectation = BlockExpectation(description: "files refresh") { self.view.files?.first?.error == "very special error" }
-
-        wait(for: [expectation], timeout: 2)
-    }
-
-    private func queueUploadAndSubmit() {
-        Assignment.make(["id": assignmentID])
-        mockAPI()
-        presenter.viewIsReady()
-        let info = FileInfo(url: testFile, size: 120)
-        presenter.add(withInfo: info)
-        env.queue.waitUntilAllOperationsAreFinished()
-        wait(for: [onUpdateExpectation], timeout: 0.1)
+        presenter.add(fromURL: testImageURL)
+        let uploading = XCTestExpectation(description: "file uploading")
+        view.onUpdate = {
+            if self.uploader.numberOfUploads == 1 {
+                uploading.fulfill()
+            }
+        }
         let submit = view.navigationItems!.right[0]
         submit.performAction()
-        env.queue.waitUntilAllOperationsAreFinished()
+        wait(for: [uploading], timeout: 0.1)
     }
 
-    private func mockAPI() {
-        let body = PostFileUploadTargetRequest.Body(
-            name: testFile.lastPathComponent,
-            on_duplicate: .rename,
-            parent_folder_id: nil
-        )
-        let request = PostFileUploadTargetRequest(
-            target: .submission(courseID: "1", assignmentID: assignmentID),
-            body: body
-        )
-        let response = PostFileUploadTargetRequest.Response.init(upload_url: URL(string: "s3://somewhere.com/bucket/1")!, upload_params: [:])
-        api.mock(request, value: response)
-    }
-
-    @discardableResult
-    private func addTempFile(_ image: UIImage, toURL url: URL) -> Int64 {
-        guard let data = image.pngData() else { return 0 }
-        try? data.write(to: url, options: Data.WritingOptions.atomicWrite)
-        return Int64(data.count)
+    func testCancelFailedSubmission() {
     }
 }

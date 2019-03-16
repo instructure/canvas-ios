@@ -43,26 +43,4 @@ extension FilePickerPresenterProtocol {
         let info = FileInfo(url: url, size: size)
         add(withInfo: info)
     }
-
-    func add(withCameraResult result: CameraCaptureResult) {
-        if let image = result[UIImagePickerController.InfoKey.originalImage] as? UIImage,
-            let tryInfo = try? image.temporarilyStoreForSubmission(),
-            let info = tryInfo {
-            add(withInfo: info)
-        } else if let videoUrl = result[UIImagePickerController.InfoKey.mediaURL] as? URL {
-            do {
-                let readableName = "\(String(describing: Clock.now.timeIntervalSince1970))-submission.\(videoUrl.pathExtension)"
-                let newURL = try URL.temporarySubmissionDirectoryPath().appendingPathComponent(readableName)
-                if FileManager.default.fileExists(atPath: newURL.path) {
-                    try FileManager.default.removeItem(at: newURL)
-                }
-                try FileManager.default.copyItem(at: videoUrl, to: newURL)
-                let size = newURL.lookupFileSize()
-                let info = FileInfo(url: newURL, size: size)
-                add(withInfo: info)
-            } catch {
-                view?.showError(error)
-            }
-        }
-    }
 }
