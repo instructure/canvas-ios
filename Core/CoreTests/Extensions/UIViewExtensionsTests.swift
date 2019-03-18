@@ -77,4 +77,14 @@ class UIViewExtensionsTests: XCTestCase {
         XCTAssertFalse(a.translatesAutoresizingMaskIntoConstraints)
         XCTAssertEqual(b.constraints.count, 2)
     }
+
+    func testAddConstraintsWithVFL() {
+        let a = UIView()
+        let b = UIView()
+        a.addSubview(b)
+        b.addConstraintsWithVFL("V:|-(pad)-[view]", metrics: ["pad": 15])
+        XCTAssertEqual(a.constraints.count, 1)
+        XCTAssertEqual(a.constraints.first?.constant, 15)
+        XCTAssertNil(a.addConstraintsWithVFL("V:|-(pad)-[view]", metrics: ["pad": 15]))
+    }
 }
