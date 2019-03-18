@@ -21,6 +21,7 @@ class SubmissionCommentHeaderCell: UITableViewCell {
     @IBOutlet weak var authorAvatarView: AvatarView?
     @IBOutlet weak var authorNameLabel: DynamicLabel?
     @IBOutlet weak var createdAtLabel: DynamicLabel?
+    @IBOutlet weak var chatBubbleView: IconView?
 
     func update(comment: SubmissionComment) {
         isAccessibilityElement = false
@@ -29,5 +30,6 @@ class SubmissionCommentHeaderCell: UITableViewCell {
         authorAvatarView?.url = comment.authorAvatarURL
         authorNameLabel?.text = comment.authorName
         createdAtLabel?.text = DateFormatter.localizedString(from: comment.createdAt, dateStyle: .long, timeStyle: .short)
+        chatBubbleView?.isHidden = comment.attempt != nil || comment.mediaURL != nil
     }
 }

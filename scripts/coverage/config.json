@@ -3,6 +3,8 @@
     "AppDelegate",
     "Cell.\\w+$",
     "Controller.\\w+$",
+    "Transitioning.\\w+$",
+    "View.\\w+$",
     "\\/Views\\/",
     "Core\/ShareExtension\/",
     "Core\/Use Cases\/SubmitFileSubmission",

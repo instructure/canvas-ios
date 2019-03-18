@@ -26,8 +26,16 @@ class RouteTests: XCTestCase {
         XCTAssertEqual(Route.course("4", user: "5").url.path, "/courses/4/users/5")
     }
 
+    func testCourseAssignments() {
+        XCTAssertEqual(Route.assignments(forCourse: "4").url.path, "/courses/4/assignments")
+    }
+
     func testCourseAssignment() {
         XCTAssertEqual(Route.course("4", assignment: "1").url.path, "/courses/4/assignments/1")
+    }
+
+    func testCourseAssignmentFileUpload() {
+        XCTAssertEqual(Route.assignmentFileUpload(courseID: "4", assignmentID: "1").url.path, "/courses/4/assignments/1/fileupload")
     }
 
     func testGroup() {
@@ -36,5 +44,21 @@ class RouteTests: XCTestCase {
 
     func testQuizzesForCourse() {
         XCTAssertEqual(Route.quizzes(forCourse: "9").url.path, "/courses/9/quizzes")
+    }
+
+    func testModules() {
+        XCTAssertEqual(Route.modules(forCourse: "9").url.path, "/courses/9/modules")
+    }
+
+    func testModule() {
+        XCTAssertEqual(Route.module(forCourse: "9", moduleID: "2").url.path, "/courses/9/modules/2")
+    }
+
+    func testSendSupport() {
+        XCTAssertEqual(Route.sendSupport(forType: "type").url.path, "/support/type")
+    }
+
+    func testTermsOfService() {
+        XCTAssertEqual(Route.termsOfService(forAccount: "1").url.path, "/accounts/1/terms_of_service")
     }
 }

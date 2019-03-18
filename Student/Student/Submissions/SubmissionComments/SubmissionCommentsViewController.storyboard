@@ -65,6 +65,12 @@
                                                         <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium12"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chatBubble" translatesAutoresizingMaskIntoConstraints="NO" id="kFW-ob-ndx" customClass="IconView" customModule="Student" customModuleProvider="target">
+                                                    <rect key="frame" x="320" y="59" width="40" height="40"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="electric"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="brg-4l-HGS" firstAttribute="top" secondItem="5Um-tb-BF2" secondAttribute="bottom" id="6Ng-RK-8AL"/>
@@ -73,18 +79,21 @@
                                                 <constraint firstItem="zqb-cj-XMP" firstAttribute="leading" secondItem="5Um-tb-BF2" secondAttribute="trailing" constant="12" id="Q2L-iS-sfd"/>
                                                 <constraint firstAttribute="bottom" secondItem="zqb-cj-XMP" secondAttribute="bottom" id="RYL-Gg-Meh"/>
                                                 <constraint firstItem="5Um-tb-BF2" firstAttribute="top" secondItem="651-00-ovF" secondAttribute="topMargin" constant="17" id="XvQ-46-hlA"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="kFW-ob-ndx" secondAttribute="trailing" id="acR-uv-lyq"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="zqb-cj-XMP" secondAttribute="trailing" id="ju3-LF-kJD"/>
                                                 <constraint firstItem="zqb-cj-XMP" firstAttribute="leading" secondItem="brg-4l-HGS" secondAttribute="trailing" constant="12" id="rQr-qJ-cRR"/>
                                                 <constraint firstItem="brg-4l-HGS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="651-00-ovF" secondAttribute="leadingMargin" id="yMX-RG-L8S"/>
+                                                <constraint firstItem="kFW-ob-ndx" firstAttribute="top" secondItem="651-00-ovF" secondAttribute="bottom" constant="-5" id="zap-pN-1fX"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="authorAvatarView" destination="zqb-cj-XMP" id="8lr-BD-9OL"/>
                                             <outlet property="authorNameLabel" destination="5Um-tb-BF2" id="8FE-vZ-fsK"/>
+                                            <outlet property="chatBubbleView" destination="kFW-ob-ndx" id="TAx-fW-h2v"/>
                                             <outlet property="createdAtLabel" destination="brg-4l-HGS" id="eSa-R1-GxO"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="myComment" rowHeight="48" id="0Ne-yr-TaC" customClass="SubmissionCommentTextCell" customModule="Student" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="myComment" rowHeight="48" id="0Ne-yr-TaC" customClass="SubmissionCommentTextCell" customModule="Student" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="116" width="375" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0Ne-yr-TaC" id="3mt-Xn-QrW">
@@ -164,10 +173,19 @@
                                                         <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium12"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chatBubble" translatesAutoresizingMaskIntoConstraints="NO" id="2V9-9A-X5r" customClass="IconView" customModule="Student" customModuleProvider="target">
+                                                    <rect key="frame" x="15" y="59" width="40" height="40"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="backgroundLight"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="mirrorX" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="f0s-7P-aDs" firstAttribute="top" secondItem="H3o-fz-9OC" secondAttribute="topMargin" constant="13" id="9Mp-Em-WOd"/>
+                                                <constraint firstItem="2V9-9A-X5r" firstAttribute="leading" secondItem="H3o-fz-9OC" secondAttribute="leadingMargin" id="9UV-0B-nn5"/>
                                                 <constraint firstAttribute="leadingMargin" secondItem="f0s-7P-aDs" secondAttribute="leading" id="DYd-wx-U2y"/>
+                                                <constraint firstItem="2V9-9A-X5r" firstAttribute="top" secondItem="H3o-fz-9OC" secondAttribute="bottom" constant="-5" id="F0H-tz-9ws"/>
                                                 <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="S2V-PQ-jCT" secondAttribute="trailing" id="MAQ-Bk-qV3"/>
                                                 <constraint firstItem="S2V-PQ-jCT" firstAttribute="top" secondItem="Thz-j3-Y3K" secondAttribute="bottom" id="NON-yR-vjJ"/>
                                                 <constraint firstItem="S2V-PQ-jCT" firstAttribute="leading" secondItem="f0s-7P-aDs" secondAttribute="trailing" constant="12" id="OBU-i6-zdo"/>
@@ -180,10 +198,11 @@
                                         <connections>
                                             <outlet property="authorAvatarView" destination="f0s-7P-aDs" id="I2z-u3-d4u"/>
                                             <outlet property="authorNameLabel" destination="Thz-j3-Y3K" id="bYC-RH-U8w"/>
+                                            <outlet property="chatBubbleView" destination="2V9-9A-X5r" id="r2k-ns-n54"/>
                                             <outlet property="createdAtLabel" destination="S2V-PQ-jCT" id="7zb-JG-G6E"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="theirComment" rowHeight="48" id="di6-ba-fsx" customClass="SubmissionCommentTextCell" customModule="Student" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="theirComment" rowHeight="48" id="di6-ba-fsx" customClass="SubmissionCommentTextCell" customModule="Student" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="228" width="375" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="di6-ba-fsx" id="Fyz-QS-eeN">
