@@ -64,7 +64,7 @@ extension AppDelegate: RCTBridgeDelegate {
         // Pages
         let pageParamsToProps = { (parameters: [String: Any]) -> [String: Any]? in
             guard let courseID = try? parameters.stringID("courseID") else { return nil }
-            guard let url: String = try? parameters <| "url" else { return nil }
+            guard let url = try? parameters.stringID("url") else { return nil }
             return [
                 "courseID": courseID,
                 "url": url,
