@@ -26,7 +26,7 @@ class UrlSubmissionContentViewController: UIViewController {
     var submission: Submission?
 
     static func create(submission: Submission?) -> UrlSubmissionContentViewController {
-        let controller = Bundle.loadController(self)
+        let controller = loadFromStoryboard()
         controller.submission = submission
         return controller
     }

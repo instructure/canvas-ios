@@ -22,7 +22,7 @@ class ModuleItemListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     static func create(courseID: String, moduleID: String) -> ModuleItemListViewController {
-        let view = Bundle.loadController(self)
+        let view = loadFromStoryboard()
         return view
     }
 

@@ -27,7 +27,7 @@ public class LogEventListViewController: UIViewController, LogEventListViewProto
     var presenter: LogEventListPresenter?
 
     public static func create(env: AppEnvironment = .shared) -> LogEventListViewController {
-        let controller = Bundle.loadController(self)
+        let controller = loadFromStoryboard()
         controller.env = env
         controller.presenter = LogEventListPresenter(env: env, view: controller)
         return controller

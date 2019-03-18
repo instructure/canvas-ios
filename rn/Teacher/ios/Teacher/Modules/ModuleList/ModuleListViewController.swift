@@ -31,7 +31,7 @@ class ModuleListViewController: UIViewController, ModuleListViewProtocol {
     var color: UIColor?
 
     static func create(courseID: String) -> ModuleListViewController {
-        let view = Bundle.loadController(self)
+        let view = loadFromStoryboard()
         let presenter = ModuleListPresenter(env: .shared, view: view, courseID: courseID)
         view.presenter = presenter
         return view

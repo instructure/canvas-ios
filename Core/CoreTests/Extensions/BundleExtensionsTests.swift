@@ -18,15 +18,6 @@ import XCTest
 @testable import Core
 
 class BundleExtensionsTests: XCTestCase {
-    func testLoadView() {
-        let view = Bundle.loadView(TitleSubtitleView.self)
-        XCTAssertNotNil(view)
-    }
-
-    func testLoadController() {
-        XCTAssertNotNil(Bundle.loadController(DocViewerViewController.self))
-    }
-
     func testIsApp() {
         XCTAssertFalse(Bundle.core.isParentApp)
         XCTAssertFalse(Bundle.core.isStudentApp)

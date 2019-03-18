@@ -51,7 +51,7 @@ class FilePickerViewController: UIViewController, FilePickerViewProtocol {
     var presenter: FilePickerPresenterProtocol?
 
     static func create(env: AppEnvironment = .shared, presenter: FilePickerPresenterProtocol) -> FilePickerViewController {
-        let controller = Bundle.loadController(self)
+        let controller = loadFromStoryboard()
         controller.presenter = presenter
         presenter.view = controller
         return controller

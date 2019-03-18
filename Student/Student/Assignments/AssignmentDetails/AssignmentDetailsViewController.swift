@@ -71,7 +71,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
     var presenter: AssignmentDetailsPresenter?
 
     static func create(env: AppEnvironment = .shared, courseID: String, assignmentID: String, fragment: String? = nil) -> AssignmentDetailsViewController {
-        let controller = Bundle.loadController(self)
+        let controller = loadFromStoryboard()
         controller.presenter = AssignmentDetailsPresenter(env: env, view: controller, courseID: courseID, assignmentID: assignmentID, fragment: fragment)
         return controller
     }

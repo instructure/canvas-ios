@@ -27,6 +27,13 @@ extension ViewLoader where Self: UIView {
         }
         return view
     }
+
+    public func loadFromXib(nibName name: String = String(describing: Self.self)) {
+        guard let view = Bundle(for: Self.self).loadNibNamed(name, owner: self, options: nil)?.first as? UIView else {
+            fatalError("Could not load first view from \(name) xib.")
+        }
+        view.pin(inside: self)
+    }
 }
 
 extension UIView {

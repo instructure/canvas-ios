@@ -39,7 +39,7 @@ class DashboardViewController: UIViewController, DashboardViewProtocol {
     let groupsColumns: CGFloat = 1
 
     static func create(env: AppEnvironment = .shared) -> DashboardViewController {
-        let view = Bundle.loadController(self)
+        let view = loadFromStoryboard()
         view.presenter = DashboardPresenter(env: env, view: view)
         return view
     }

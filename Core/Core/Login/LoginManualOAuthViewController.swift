@@ -25,7 +25,7 @@ class LoginManualOAuthViewController: UIViewController {
     weak var loginDelegate: LoginDelegate?
 
     static func create(authenticationProvider: String?, host: String, loginDelegate: LoginDelegate?) -> LoginManualOAuthViewController {
-        let controller = Bundle.loadController(self)
+        let controller = loadFromStoryboard()
         controller.authenticationProvider = authenticationProvider
         controller.host = host
         controller.loginDelegate = loginDelegate

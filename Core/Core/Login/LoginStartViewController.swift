@@ -37,7 +37,7 @@ class LoginStartViewController: UIViewController, LoginStartViewProtocol {
     var presenter: LoginStartPresenter?
 
     static func create(loginDelegate: LoginDelegate, fromLaunch: Bool) -> LoginStartViewController {
-        let controller = Bundle.loadController(self)
+        let controller = loadFromStoryboard()
         controller.presenter = LoginStartPresenter(loginDelegate: loginDelegate, view: controller)
         controller.loginDelegate = loginDelegate
         controller.shouldAnimateFromLaunchScreen = fromLaunch

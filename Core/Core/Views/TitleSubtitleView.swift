@@ -31,7 +31,7 @@ open class TitleSubtitleView: UIView {
     }
 
     public static func create() -> TitleSubtitleView {
-        let view = Bundle.loadView(self)
+        let view = loadFromXib()
         view.titleLabel?.text = ""
         view.titleLabel?.textColor = .named(.white)
         view.subtitleLabel?.text = ""

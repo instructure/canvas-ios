@@ -38,7 +38,7 @@ class CommentListViewController: UIViewController {
         document: PSPDFDocument,
         metadata: APIDocViewerAnnotationsMetadata
     ) -> CommentListViewController {
-        let controller = Bundle.loadController(self)
+        let controller = loadFromStoryboard()
         controller.annotation = annotation
         controller.comments = comments
         controller.document = document

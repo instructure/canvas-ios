@@ -19,6 +19,10 @@ import UIKit
 @testable import Core
 
 class UIViewExtensionsTests: XCTestCase {
+    func testLoadFromXib() {
+        XCTAssertNoThrow(TitleSubtitleView.loadFromXib())
+    }
+
     func testRoundCorners() {
         let a = UIView(frame: .zero)
         XCTAssertNil(a.layer.mask)

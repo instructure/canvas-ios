@@ -38,7 +38,7 @@ public class DocViewerViewController: UIViewController, DocViewerViewProtocol {
     }
 
     public static func create(filename: String, previewURL: URL?, fallbackURL: URL, navigationItem: UINavigationItem? = nil, env: AppEnvironment = .shared) -> DocViewerViewController {
-        let controller = Bundle.loadController(self)
+        let controller = loadFromStoryboard()
         controller.parentNavigationItem = navigationItem
         controller.presenter = DocViewerPresenter(env: env, view: controller, filename: filename, previewURL: previewURL, fallbackURL: fallbackURL)
         return controller

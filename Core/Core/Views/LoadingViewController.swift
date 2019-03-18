@@ -20,7 +20,7 @@ public class LoadingViewController: UIViewController {
     @IBOutlet weak var logoView: IconView?
 
     public static func create() -> UIViewController {
-        let controller = Bundle.loadController(self)
+        let controller = loadFromStoryboard()
         return controller
     }
 
