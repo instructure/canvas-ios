@@ -16,15 +16,9 @@
 
 import Foundation
 import Core
+import CoreData
 
 class SubmissionFilePresenter {
-    private struct File: FileViewModel {
-        let url: URL
-        let size: Int
-        let bytesSent: Int
-        let error: String?
-    }
-
     let env: AppEnvironment
     let courseID: String
     let assignmentID: String
@@ -39,9 +33,9 @@ class SubmissionFilePresenter {
         }
     }()
 
-    private lazy var fileUploads: Store<GetFileUploads> = {
-        let useCase = GetFileUploads(context: .submission(courseID: courseID, assignmentID: assignmentID))
-        return uploader.subscribe(useCase) { [weak self] in
+    lazy var files: Store<LocalUseCase<File>> = {
+        let scope = Scope.where(#keyPath(File.newSubmission.assignment.id), equals: assignmentID)
+        return env.subscribe(scope: scope) { [weak self] in
             self?.update()
         }
     }()
@@ -52,23 +46,19 @@ class SubmissionFilePresenter {
         return assignments.first
     }
 
-    var urls: [URL] {
-        return assignment?.submissionFiles(appGroup: .student) ?? []
-    }
-
     var inProgress: Bool {
-        return fileUploads.first { $0.inProgress } != nil
+        return files.first { $0.isUploading } != nil
     }
 
     var failed: Bool {
-        return fileUploads.first { $0.error != nil } != nil
+        return files.first { $0.uploadError != nil } != nil
     }
 
     private var documentTypes: [UTI] {
         return assignment?.allowedUTIs ?? []
     }
 
-    private var sources: [FilePickerSource] {
+    var sources: [FilePickerSource] {
         let allowed = documentTypes
         if allowed.contains(.any) {
             return FilePickerSource.allCases
@@ -120,7 +110,7 @@ class SubmissionFilePresenter {
             return (left: [], right: [doneButton])
         }
 
-        submitButton.isEnabled = !urls.isEmpty
+        submitButton.isEnabled = !files.isEmpty
         return (left: [cancelButton], right: [submitButton])
     }
 
@@ -137,11 +127,8 @@ class SubmissionFilePresenter {
         updateBarItems()
         updateFiles()
 
-        // Dismiss once all files have been uploaded
-        let allDone = urls.allSatisfy { url in
-            return fileUploads.first { $0.url == url }?.completed == true
-        }
-        if !urls.isEmpty && allDone {
+        // Dismiss once all files have uploaded
+        if !files.isEmpty && files.allSatisfy({ $0.isUploaded }) {
             dismiss()
         }
     }
@@ -153,16 +140,7 @@ class SubmissionFilePresenter {
     }
 
     private func updateFiles() {
-        let files: [File] = urls.map { url in
-            let fileUpload = self.fileUploads.first { $0.url == url }
-            return File(
-                url: url,
-                size: url.lookupFileSize(),
-                bytesSent: fileUpload?.bytesSent ?? 0,
-                error: fileUpload?.error
-            )
-        }
-        view?.update(files: files, sources: sources)
+        view?.update()
 
         let totalToTransfer: Int = files.reduce(0, {$0 + $1.size})
         let bytesSent = files.reduce(0, {$0 + $1.bytesSent})
@@ -178,8 +156,15 @@ class SubmissionFilePresenter {
 
     @objc
     private func submit() {
-        for url in urls {
-            uploader.upload(url, for: .submission(courseID: courseID, assignmentID: assignmentID))
+        view?.dismiss()
+        for file in files {
+            uploader.upload(file, context: .submission(courseID: courseID, assignmentID: assignmentID)) { [weak self] error in
+                if let error = error {
+                    self?.view?.showError(error)
+                } else {
+                    self?.view?.dismiss()
+                }
+            }
         }
     }
 
@@ -190,11 +175,14 @@ class SubmissionFilePresenter {
 
     @objc
     private func cancelSubmission() {
-        do {
-            try assignment?.removeSubmissionFiles(appGroup: .student)
-            dismiss()
-        } catch {
-            Logger.shared.error("Failed to remove submission files")
+        if let newSubmission = assignment?.newSubmission {
+            uploader.cancel(submission: newSubmission) { [weak self] error in
+                if let error = error {
+                    self?.view?.showError(error)
+                    return
+                }
+                self?.dismiss()
+            }
         }
     }
 
@@ -206,24 +194,26 @@ class SubmissionFilePresenter {
 
 extension SubmissionFilePresenter: FilePickerPresenterProtocol {
     func viewIsReady() {
-        fileUploads.refresh()
         assignments.refresh()
     }
 
     func add(withInfo info: FileInfo) {
-        guard let assignment = assignment else {
-            let error = NSError.instructureError(NSLocalizedString("Could not add file because the assignment does not exist.", comment: ""))
-            self.view?.showError(error)
-            return
-        }
-        do {
-            // move file to assignment submission directory
-            let dir = assignment.fileSubmissionURL(appGroup: .student)
-            let destination = dir.appendingPathComponent(info.url.lastPathComponent, isDirectory: false)
-            try FileManager.default.moveItem(at: info.url, to: destination)
-            update()
-        } catch {
-            self.view?.showError(error)
+        env.database.performBackgroundTask { (context: NSManagedObjectContext) in
+            guard let assignment: Assignment = context.first(where: #keyPath(Assignment.id), equals: self.assignmentID) else {
+                return
+            }
+            let file: File = context.insert()
+            file.localFileURL = info.url
+            file.size = info.size
+            let newSubmission: NewSubmission = assignment.newSubmission ?? context.insert()
+            newSubmission.assignment = assignment
+            newSubmission.files?.insert(file)
+            do {
+                try context.save()
+                context.refresh(assignment, mergeChanges: false)
+            } catch {
+                self.view?.showError(error)
+            }
         }
     }
 
@@ -268,8 +258,8 @@ extension SubmissionFilePresenter: FilePickerPresenterProtocol {
         }
     }
 
-    func didSelectFile(_ file: FileViewModel) {
-        if let error = file.error {
+    func didSelectFile(_ file: File) {
+        if let error = file.uploadError {
             view?.showError(message: error)
         }
     }

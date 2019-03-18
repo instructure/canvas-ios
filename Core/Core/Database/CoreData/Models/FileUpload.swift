@@ -55,10 +55,6 @@ public class FileUpload: NSManagedObject {
         set { taskIDRaw = NSNumber(value: newValue) }
     }
 
-    public var pending: Bool {
-        return taskID == nil && !completed && error == nil
-    }
-
     public var user: KeychainEntry? {
         get {
             return Keychain.entries.first {

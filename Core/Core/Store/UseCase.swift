@@ -185,3 +185,23 @@ extension UseCase where Model: WriteableModel, Response: Collection, Model.JSON 
         try Model.save(response, in: client)
     }
 }
+
+public struct LocalUseCase<T>: UseCase where T: NSManagedObject {
+    public typealias Model = T
+    // Response doesn't matter so this is just a Codable stub
+    public typealias Response = Int
+
+    public let scope: Scope
+
+    public var cacheKey: String?
+
+    public init(scope: Scope) {
+        self.scope = scope
+    }
+
+    public func makeRequest(environment: AppEnvironment, completionHandler: @escaping (Int?, URLResponse?, Error?) -> Void) {
+        completionHandler(1, nil, nil)
+    }
+
+    public func write(response: Int?, urlResponse: URLResponse?, to client: PersistenceClient) throws {}
+}

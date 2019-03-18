@@ -16,15 +16,3 @@
 
 import Foundation
 import Core
-
-extension Assignment {
-    public var canMakeSubmissions: Bool {
-        return submissionTypes.count > 0 &&
-            !submissionTypes.contains(.none) && !submissionTypes.contains(.on_paper) &&
-            !hasFileSubmission
-    }
-
-    public var hasFileSubmission: Bool {
-        return !submissionFiles(appGroup: .student).isEmpty
-    }
-}

@@ -117,10 +117,6 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         presenter?.viewIsReady()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-
     @objc
     func refresh(_ refreshControl: UIRefreshControl) {
         presenter?.refresh()
@@ -155,6 +151,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         }
 
         submittedLabel?.textColor = UIColor.named(.textSuccess).ensureContrast(against: .white)
+        submittedLabel?.text = NSLocalizedString("Successfully submitted!", bundle: .student, comment: "")
 
         if let fileSubmissionState = presenter?.fileSubmissionState {
             gradeCell?.isHidden = false

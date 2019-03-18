@@ -58,9 +58,9 @@ class AssignmentDetailsPresenter {
         }
     }()
 
-    private lazy var fileUploads: Store<GetFileUploads> = {
-        let useCase = GetFileUploads(context: .submission(courseID: courseID, assignmentID: assignmentID))
-        return FileUploader.shared.subscribe(useCase) { [weak self] in
+    lazy var files: Store<LocalUseCase<File>> = {
+        let scope = Scope.where(#keyPath(File.newSubmission.assignment.id), equals: assignmentID)
+        return env.subscribe(scope: scope) { [weak self] in
             self?.update()
         }
     }()
@@ -81,15 +81,16 @@ class AssignmentDetailsPresenter {
         .online_url,
     ]
 
+    var assignment: Assignment? {
+        return assignments.first
+    }
+
     var fileSubmissionState: FileSubmissionState? {
-        let files = assignments.first?.submissionFiles(appGroup: .student) ?? []
         if files.isEmpty {
             return nil
         }
-        if fileUploads.first(where: { files.contains($0.url) && $0.error != nil }) != nil {
-            return .failed
-        }
-        return .pending
+        let failed = files.first { $0.uploadError != nil } != nil
+        return failed ? .failed : .pending
     }
 
     init(env: AppEnvironment = .shared, view: AssignmentDetailsViewProtocol, courseID: String, assignmentID: String, fragment: String? = nil) {
@@ -115,6 +116,7 @@ class AssignmentDetailsPresenter {
     func viewIsReady() {
         courses.refresh()
         assignments.refresh()
+        files.refresh()
     }
 
     func refresh() {

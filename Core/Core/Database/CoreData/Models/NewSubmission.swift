@@ -15,14 +15,17 @@
 //
 
 import Foundation
+import CoreData
 
-public enum AppGroup: String, Codable {
-    case student = "group.com.instructure.icanvas"
+public class NewSubmission: NSManagedObject {
+    @NSManaged public var assignment: Assignment?
+    @NSManaged public var files: Set<File>?
 
-    public var url: URL {
-        guard let url = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: rawValue) else {
-            preconditionFailure("app group not found \(rawValue)")
-        }
-        return url
+    public var failed: Bool {
+        return files?.first { $0.uploadError != nil } != nil
+    }
+
+    public var readyToSubmit: Bool {
+        return !failed && files?.isEmpty == false && files?.allSatisfy { $0.isUploaded } == true
     }
 }

@@ -20,21 +20,17 @@ import MobileCoreServices
 
 typealias CameraCaptureResult = [UIImagePickerController.InfoKey: Any]
 
-protocol FileViewModel {
-    var url: URL { get }
-    var size: Int { get }
-    var error: String? { get }
-}
-
 protocol FilePickerPresenterProtocol: class {
     var view: FilePickerViewProtocol? { get set }
+    var files: Store<LocalUseCase<File>> { get }
+    var sources: [FilePickerSource] { get }
 
     func viewIsReady()
     func add(fromSource source: FilePickerSource)
     func add(withInfo info: FileInfo)
     func add(fromURL url: URL)
     func add(withCameraResult result: CameraCaptureResult)
-    func didSelectFile(_ file: FileViewModel)
+    func didSelectFile(_ file: File)
 }
 
 extension FilePickerPresenterProtocol {

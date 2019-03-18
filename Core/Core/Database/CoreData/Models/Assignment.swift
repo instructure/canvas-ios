@@ -29,6 +29,7 @@ public class Assignment: NSManagedObject {
     @NSManaged public var name: String
     @NSManaged var pointsPossibleRaw: NSNumber?
     @NSManaged public var submission: Submission?
+    @NSManaged public var newSubmission: NewSubmission?
     @NSManaged var submissionTypesRaw: [String]
     @NSManaged public var position: Int
     @NSManaged public var lockAt: Date?
@@ -96,6 +97,11 @@ extension Assignment {
                 self.submission = nil
             }
         }
+    }
+
+    public var canMakeSubmissions: Bool {
+        return submissionTypes.count > 0 &&
+            !submissionTypes.contains(.none) && !submissionTypes.contains(.on_paper)
     }
 
     public var allowedUTIs: [UTI] {

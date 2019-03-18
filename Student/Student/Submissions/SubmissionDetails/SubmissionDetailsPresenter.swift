@@ -105,11 +105,13 @@ class SubmissionDetailsPresenter {
             return controller
         case .some(.online_upload):
             // TODO: switch between multiple attachments in the same submission
-            if let attachment = submission.attachments?.first {
+            if let attachment = submission.attachments?.first,
+                let filename = attachment.filename,
+                let url = attachment.url {
                 return DocViewerViewController.create(
-                    filename: attachment.filename,
+                    filename: filename,
                     previewURL: attachment.previewURL,
-                    fallbackURL: attachment.url,
+                    fallbackURL: url,
                     navigationItem: view?.navigationItem,
                     env: env
                 )

@@ -18,16 +18,16 @@ import Foundation
 import CoreData
 
 final public class File: NSManagedObject {
-    @NSManaged public var id: String
-    @NSManaged public var uuid: String
-    @NSManaged public var folderID: String
-    @NSManaged public var displayName: String
-    @NSManaged public var filename: String
-    @NSManaged public var contentType: String
-    @NSManaged public var url: URL
-    // file size in bytes
+    @NSManaged public var id: String?
+    @NSManaged public var uuid: String?
+    @NSManaged public var folderID: String?
+    @NSManaged public var displayName: String?
+    @NSManaged public var filename: String?
+    @NSManaged public var contentType: String?
+    @NSManaged public var url: URL?
+    /// file size in bytes
     @NSManaged public var size: Int
-    @NSManaged public var createdAt: Date
+    @NSManaged public var createdAt: Date?
     @NSManaged public var updatedAt: Date?
     @NSManaged public var unlockAt: Date?
     @NSManaged public var locked: Bool
@@ -36,7 +36,7 @@ final public class File: NSManagedObject {
     @NSManaged public var hiddenForUser: Bool
     @NSManaged public var thumbnailURL: URL?
     @NSManaged public var modifiedAt: Date?
-    @NSManaged public var mimeClass: String
+    @NSManaged public var mimeClass: String?
     @NSManaged public var mediaEntryID: String?
     @NSManaged public var lockedForUser: Bool
     @NSManaged public var lockInfo: String?
@@ -44,6 +44,23 @@ final public class File: NSManagedObject {
     @NSManaged public var previewURL: URL?
     @NSManaged public var localFileURL: URL?
     @NSManaged public var submission: Submission?
+    @NSManaged public var newSubmission: NewSubmission?
+    @NSManaged public var uploadError: String?
+    @NSManaged public var bytesSent: Int
+    @NSManaged public var taskIDRaw: NSNumber?
+
+    public var taskID: Int? {
+        get { return taskIDRaw?.intValue }
+        set { taskIDRaw = NSNumber(value: newValue) }
+    }
+
+    public var isUploading: Bool {
+        return taskID != nil
+    }
+
+    public var isUploaded: Bool {
+        return id != nil
+    }
 }
 
 extension File: Scoped {

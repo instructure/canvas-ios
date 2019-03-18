@@ -63,7 +63,8 @@ extension UrlSubmissionContentViewController: QLPreviewControllerDataSource {
 
     func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
         if let attachment = submission?.attachments?.first,
-            let cached = URLCache.shared.cachedResponse(for: URLRequest(url: attachment.url)),
+            let url = attachment.url,
+            let cached = URLCache.shared.cachedResponse(for: URLRequest(url: url)),
             let image = UIImage(data: cached.data) {
             if let url = try? image.write() {
                 return url as QLPreviewItem

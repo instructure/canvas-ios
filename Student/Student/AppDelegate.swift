@@ -51,7 +51,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
     func application(_ application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping () -> Void) {
         environment.logger.log(#function)
-        FileUploader.shared.completionHandler = completionHandler
+        let fileUploader = FileUploader(backgroundSessionIdentifier: identifier)
+        fileUploader?.completionHandler = {
+            DispatchQueue.main.async {
+                completionHandler()
+            }
+        }
     }
 
     func setupNotifications() {

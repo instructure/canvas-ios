@@ -275,6 +275,7 @@
 		B10D777021C2E27200BCE822 /* UITableViewCellExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10D776F21C2E27200BCE822 /* UITableViewCellExtensions.swift */; };
 		B115423C21BA1BCC006D1BA3 /* BackgroundURLSessionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B115423B21BA1BCC006D1BA3 /* BackgroundURLSessionManagerTests.swift */; };
 		B115423E21BA3062006D1BA3 /* CancelFileSubmissionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B115423D21BA3062006D1BA3 /* CancelFileSubmissionTests.swift */; };
+		B11BFF4A223D7CCE00243388 /* NewSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11BFF49223D7CCE00243388 /* NewSubmission.swift */; };
 		B11D321721E464AB00F37ABF /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11D321621E464AB00F37ABF /* Store.swift */; };
 		B12A763821914059000693DE /* fileupload.txt in Resources */ = {isa = PBXBuildFile; fileRef = B12A763721914059000693DE /* fileupload.txt */; };
 		B12A763A2191459F000693DE /* file-post-body.txt in Resources */ = {isa = PBXBuildFile; fileRef = B12A76392191459F000693DE /* file-post-body.txt */; };
@@ -834,6 +835,7 @@
 		B10D776F21C2E27200BCE822 /* UITableViewCellExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCellExtensions.swift; sourceTree = "<group>"; };
 		B115423B21BA1BCC006D1BA3 /* BackgroundURLSessionManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundURLSessionManagerTests.swift; sourceTree = "<group>"; };
 		B115423D21BA3062006D1BA3 /* CancelFileSubmissionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelFileSubmissionTests.swift; sourceTree = "<group>"; };
+		B11BFF49223D7CCE00243388 /* NewSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSubmission.swift; sourceTree = "<group>"; };
 		B11D321621E464AB00F37ABF /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		B12A763721914059000693DE /* fileupload.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = fileupload.txt; sourceTree = "<group>"; };
 		B12A76392191459F000693DE /* file-post-body.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "file-post-body.txt"; sourceTree = "<group>"; };
@@ -1589,6 +1591,7 @@
 				7DF4FFD62171347B007E5F81 /* Tab.swift */,
 				7DF4FFD02171322E007E5F81 /* TTL.swift */,
 				3B69253721A0FD2D0023ED75 /* FileUpload.swift */,
+				B11BFF49223D7CCE00243388 /* NewSubmission.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2168,6 +2171,7 @@
 				9FD504E72180BE1400B395BA /* APIFile.swift in Sources */,
 				B18359A822244E230005A918 /* AccessIconView.swift in Sources */,
 				7DF4FFD82171347B007E5F81 /* Tab.swift in Sources */,
+				B11BFF4A223D7CCE00243388 /* NewSubmission.swift in Sources */,
 				3B3467D02135024800F9BC2E /* ErrorViewController.swift in Sources */,
 				7D062AF4212496E600677F66 /* Context.swift in Sources */,
 				7DCF2038216D55E6003AF358 /* QuizType.swift in Sources */,
