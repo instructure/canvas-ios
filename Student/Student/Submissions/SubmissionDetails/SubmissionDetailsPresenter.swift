@@ -60,6 +60,7 @@ class SubmissionDetailsPresenter {
     var currentAssignment: Assignment?
     var currentFileID: String?
     var currentSubmission: Submission?
+    var currentDrawerTab: Drawer.Tab?
 
     init(env: AppEnvironment = .shared, view: SubmissionDetailsViewProtocol, context: Context, assignmentID: String, userID: String) {
         self.context = context
@@ -87,11 +88,13 @@ class SubmissionDetailsPresenter {
         let assignmentChanged = assignment != currentAssignment
         let fileIDChanged = currentFileID != selectedFileID
         let submissionChanged = submission != currentSubmission
+        let drawerTabChanged = selectedDrawerTab != currentDrawerTab
         currentAssignment = assignment
         currentFileID = selectedFileID
         currentSubmission = submission
+        currentDrawerTab = selectedDrawerTab
 
-        if submissionChanged {
+        if drawerTabChanged || (submissionChanged && selectedDrawerTab == .files) {
             view?.embedInDrawer(viewControllerForDrawer())
         }
         if assignmentChanged || fileIDChanged || submissionChanged {
@@ -101,9 +104,9 @@ class SubmissionDetailsPresenter {
         view?.reloadNavBar()
     }
 
-    func select(submissionIndex: Int) {
-        selectedAttempt = submissions[submissionIndex]?.attempt ?? 0
-        selectedFileID = nil
+    func select(attempt: Int, fileID: String? = nil) {
+        selectedAttempt = attempt
+        selectedFileID = fileID
         update()
     }
 
@@ -185,7 +188,8 @@ class SubmissionDetailsPresenter {
                 context: context,
                 assignmentID: assignmentID,
                 userID: userID,
-                submissionID: submission.id
+                submissionID: submission.id,
+                submissionPresenter: self
             )
         case .files:
             return SubmissionFilesViewController.create(

@@ -93,7 +93,7 @@ class SubmissionDetailsPresenterTests: PersistenceTestCase {
     func testSelectAttempt() {
         Submission.make(["assignmentID": "1", "userID": "1", "attempt": 1, "attachments": Set([File.make([ "id": "1" ])])])
         Submission.make(["assignmentID": "1", "userID": "1", "attempt": 2])
-        presenter.select(submissionIndex: 1)
+        presenter.select(attempt: 1)
         XCTAssertEqual(presenter.selectedAttempt, 1)
         XCTAssertEqual(presenter.selectedFileID, "1")
     }
@@ -108,18 +108,30 @@ class SubmissionDetailsPresenterTests: PersistenceTestCase {
     }
 
     func testSelectDrawerTabComments() {
-        Submission.make(["assignmentID": "1", "userID": "1", "attempt": 2, "attachments": Set([File.make([ "id": "1" ]), File.make([ "id": "2" ])])])
+        Submission.make(["assignmentID": "1", "userID": "1", "attempt": 1, "attachments": Set([File.make([ "id": "1" ]), File.make([ "id": "2" ])])])
+        Submission.make(["assignmentID": "1", "userID": "1", "attempt": 2, "attachments": Set([File.make([ "id": "3" ]), File.make([ "id": "4" ])])])
         presenter.update()
         presenter.select(drawerTab: nil)
         XCTAssertEqual(presenter.selectedDrawerTab, .comments)
         XCTAssert(view.embeddedInDrawer is SubmissionCommentsViewController)
+
+        // does not reembed when attempt changes
+        view.embeddedInDrawer = nil
+        presenter.select(attempt: 1)
+        XCTAssertNil(view.embeddedInDrawer)
     }
 
     func testSelectDrawerTabFiles() {
-        Submission.make(["assignmentID": "1", "userID": "1", "attempt": 2, "attachments": Set([File.make([ "id": "1" ]), File.make([ "id": "2" ])])])
+        Submission.make(["assignmentID": "1", "userID": "1", "attempt": 1, "attachments": Set([File.make([ "id": "1" ]), File.make([ "id": "2" ])])])
+        Submission.make(["assignmentID": "1", "userID": "1", "attempt": 2, "attachments": Set([File.make([ "id": "3" ]), File.make([ "id": "4" ])])])
         presenter.update()
         presenter.select(drawerTab: .files)
         XCTAssertEqual(presenter.selectedDrawerTab, .files)
+        XCTAssert(view.embeddedInDrawer is SubmissionFilesViewController)
+
+        // reembeds when attempt changes
+        view.embeddedInDrawer = nil
+        presenter.select(attempt: 1)
         XCTAssert(view.embeddedInDrawer is SubmissionFilesViewController)
     }
 

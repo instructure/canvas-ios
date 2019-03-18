@@ -22,10 +22,19 @@ class SubmissionCommentsViewController: UIViewController {
 
     var currentUserID: String?
     var presenter: SubmissionCommentsPresenter?
+    var submissionPresenter: SubmissionDetailsPresenter?
 
-    static func create(env: AppEnvironment = .shared, context: Context, assignmentID: String, userID: String, submissionID: String) -> SubmissionCommentsViewController {
+    static func create(
+        env: AppEnvironment = .shared,
+        context: Context,
+        assignmentID: String,
+        userID: String,
+        submissionID: String,
+        submissionPresenter: SubmissionDetailsPresenter
+    ) -> SubmissionCommentsViewController {
         let controller = loadFromStoryboard()
         controller.presenter = SubmissionCommentsPresenter(env: env, view: controller, context: context, assignmentID: assignmentID, userID: userID, submissionID: submissionID)
+        controller.submissionPresenter = submissionPresenter
         controller.currentUserID = env.currentSession?.userID
         return controller
     }
@@ -61,9 +70,13 @@ extension SubmissionCommentsViewController: UITableViewDataSource, UITableViewDe
         }
 
         if let attempt = comment.attempt {
-            // TODO: display submission attachments
-            let cell = UITableViewCell()
-            cell.textLabel?.text = "Submission attempt \(attempt) TODO"
+            let submission = submissionPresenter?.submissions.first { $0.attempt == attempt }
+            let cell: SubmissionCommentAttemptCell = tableView.dequeue(for: indexPath)
+            cell.stackView?.alignment = currentUserID == comment.authorID ? .trailing : .leading
+            cell.update(comment: comment, submission: submission) { [weak self] (submission: Submission?, file: File?) in
+                guard let attempt = submission?.attempt else { return }
+                self?.submissionPresenter?.select(attempt: attempt, fileID: file?.id)
+            }
             cell.transform = CGAffineTransform(scaleX: 1, y: -1)
             return cell
         }

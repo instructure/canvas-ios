@@ -142,6 +142,7 @@ extension SubmissionDetailsViewController: UIPickerViewDataSource, UIPickerViewD
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        presenter?.select(submissionIndex: row)
+        guard let attempt = presenter?.submissions[row]?.attempt else { return }
+        presenter?.select(attempt: attempt)
     }
 }

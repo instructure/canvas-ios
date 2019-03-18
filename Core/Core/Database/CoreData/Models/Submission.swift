@@ -16,6 +16,7 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 final public class Submission: NSManagedObject {
     @NSManaged public var assignment: Assignment?
@@ -145,11 +146,64 @@ extension Submission: WriteableModel {
             model.mediaComment = try MediaComment.save(mediaComment, in: client)
         }
 
-        SubmissionComment.save(item, in: client)
+        if item.submission_type != nil, item.submission_type != .none, item.submission_type != .not_graded, item.submission_type != .on_paper {
+            SubmissionComment.save(item, in: client)
+        }
         for comment in item.submission_comments ?? [] {
             SubmissionComment.save(comment, forSubmission: item.id.value, in: client)
         }
 
         return model
+    }
+}
+
+extension Submission {
+    public var icon: UIImage? {
+        guard let type = type else { return nil }
+        switch type {
+        case .basic_lti_launch, .external_tool:
+            return UIImage.icon(.lti)
+        case .discussion_topic:
+            return UIImage.icon(.discussion)
+        case .media_recording:
+            return UIImage.icon(mediaComment?.mediaType == "audio" ? .audio : .video)
+        case .online_quiz:
+            return UIImage.icon(.quiz)
+        case .online_text_entry:
+            return UIImage.icon(.text)
+        case .online_upload:
+            return attachments?.first?.icon
+        case .online_url:
+            return UIImage.icon(.link)
+        case .none, .not_graded, .on_paper:
+            return nil
+        }
+    }
+
+    public var subtitle: String? {
+        guard let type = type else { return nil }
+        switch type {
+        case .basic_lti_launch, .external_tool, .online_quiz:
+            return String.localizedStringWithFormat(
+                NSLocalizedString("Attempt %d", bundle: .core, comment: ""),
+                attempt
+            )
+        case .discussion_topic:
+            return discussionEntriesOrdered.first?.message?.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression)
+        case .media_recording:
+            return mediaComment?.mediaType == "audio"
+                ? NSLocalizedString("Audio", bundle: .core, comment: "")
+                : NSLocalizedString("Video", bundle: .core, comment: "")
+        case .online_text_entry:
+            return body?.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression)
+        case .online_upload:
+            return (attachments?.first?.size).flatMap {
+                ByteCountFormatter.string(fromByteCount: Int64($0), countStyle: .file)
+            }
+        case .online_url:
+            return url?.absoluteString
+        case .none, .not_graded, .on_paper:
+            return nil
+        }
     }
 }
