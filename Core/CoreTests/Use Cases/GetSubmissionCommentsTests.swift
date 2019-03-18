@@ -42,8 +42,8 @@ class GetSubmissionCommentsTests: CoreTestCase {
             "assignment_id": "2",
             "user_id": "3",
             "submission_history": [
-                APISubmission.fixture([ "attempt": 2, "assignment_id": "2", "user_id": "3" ]),
-                APISubmission.fixture([ "attempt": 1, "assignment_id": "2", "user_id": "3" ]),
+                APISubmission.fixture([ "attempt": 2, "assignment_id": "2", "user_id": "3", "submission_type": "online_text_entry" ]),
+                APISubmission.fixture([ "attempt": 1, "assignment_id": "2", "user_id": "3", "submission_type": "online_text_entry" ]),
             ],
             "submission_comments": [
                 APISubmissionComment.fixture([ "id": "1" ]),
