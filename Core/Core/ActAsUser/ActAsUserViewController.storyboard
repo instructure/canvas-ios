@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Act As User View Controller-->
+        <scene sceneID="T5z-Qq-JC6">
+            <objects>
+                <viewController storyboardIdentifier="ActAsUserViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="eTc-ad-JU7" customClass="ActAsUserViewController" customModule="Core" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="l4j-dP-MJy">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WhitePanda" translatesAutoresizingMaskIntoConstraints="NO" id="Wh2-2E-oaG" userLabel="WhitePanda">
+                                <rect key="frame" x="145.5" y="52" width="84" height="102"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="84" id="ABu-95-Zpf"/>
+                                    <constraint firstAttribute="height" constant="102" id="sK1-RZ-GYM"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RedPanda" translatesAutoresizingMaskIntoConstraints="NO" id="MjF-JB-cw1" userLabel="RedPanda">
+                                <rect key="frame" x="68.5" y="80" width="74" height="103"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="74" id="koA-qu-meO"/>
+                                    <constraint firstAttribute="height" constant="103" id="shV-eP-j6C"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mTK-Fr-qAy" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="24" y="194" width="327" height="117"/>
+                                <string key="text">"Act as" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="bodySmall"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Domain" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6xX-3o-bah">
+                                <rect key="frame" x="24" y="397" width="327" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="0yr-6x-HjI"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mg4-4P-trV" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="24" y="459" width="327" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="imF-jn-8fZ"/>
+                                </constraints>
+                                <state key="normal" title="Act as User"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="backgroundColorName" value="backgroundInfo"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="white"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="button"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="actAsUserPressed:" destination="eTc-ad-JU7" eventType="touchUpInside" id="5AI-Sn-o63"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User ID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pNc-qE-1zq">
+                                <rect key="frame" x="24" y="335" width="327" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="aAq-92-lnj"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="pNc-qE-1zq" firstAttribute="leading" secondItem="OE2-pQ-Lzd" secondAttribute="leading" constant="24" id="2Rt-7T-OG1"/>
+                            <constraint firstItem="OE2-pQ-Lzd" firstAttribute="trailing" secondItem="mTK-Fr-qAy" secondAttribute="trailing" constant="24" id="8gn-W0-ahW"/>
+                            <constraint firstItem="OE2-pQ-Lzd" firstAttribute="trailing" secondItem="Mg4-4P-trV" secondAttribute="trailing" constant="24" id="8xx-Rx-9Ld"/>
+                            <constraint firstItem="Mg4-4P-trV" firstAttribute="leading" secondItem="OE2-pQ-Lzd" secondAttribute="leading" constant="24" id="9Hv-c7-7Bs"/>
+                            <constraint firstItem="6xX-3o-bah" firstAttribute="top" secondItem="pNc-qE-1zq" secondAttribute="bottom" constant="12" id="9dP-P5-XEn"/>
+                            <constraint firstItem="pNc-qE-1zq" firstAttribute="top" secondItem="mTK-Fr-qAy" secondAttribute="bottom" constant="24" id="DNe-pz-qfP"/>
+                            <constraint firstItem="Wh2-2E-oaG" firstAttribute="top" secondItem="OE2-pQ-Lzd" secondAttribute="top" constant="32" id="Erh-s6-fvV"/>
+                            <constraint firstItem="OE2-pQ-Lzd" firstAttribute="trailing" secondItem="6xX-3o-bah" secondAttribute="trailing" constant="24" id="GCZ-7v-Khg"/>
+                            <constraint firstItem="Wh2-2E-oaG" firstAttribute="leading" secondItem="MjF-JB-cw1" secondAttribute="trailing" constant="3" id="YlU-jr-uWJ"/>
+                            <constraint firstItem="mTK-Fr-qAy" firstAttribute="top" secondItem="Wh2-2E-oaG" secondAttribute="bottom" constant="40" id="Z1h-GH-jJT"/>
+                            <constraint firstItem="OE2-pQ-Lzd" firstAttribute="trailing" secondItem="pNc-qE-1zq" secondAttribute="trailing" constant="24" id="bIf-6H-ehQ"/>
+                            <constraint firstItem="MjF-JB-cw1" firstAttribute="top" secondItem="OE2-pQ-Lzd" secondAttribute="top" constant="60" id="eaH-ei-oSA"/>
+                            <constraint firstItem="Wh2-2E-oaG" firstAttribute="centerX" secondItem="l4j-dP-MJy" secondAttribute="centerX" id="iHE-SD-WP0"/>
+                            <constraint firstItem="mTK-Fr-qAy" firstAttribute="leading" secondItem="OE2-pQ-Lzd" secondAttribute="leading" constant="24" id="rGy-8Y-g3S"/>
+                            <constraint firstItem="Mg4-4P-trV" firstAttribute="top" secondItem="6xX-3o-bah" secondAttribute="bottom" constant="12" id="tDB-tm-XZH"/>
+                            <constraint firstItem="6xX-3o-bah" firstAttribute="leading" secondItem="OE2-pQ-Lzd" secondAttribute="leading" constant="24" id="zW6-MV-5Fy"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="OE2-pQ-Lzd"/>
+                    </view>
+                    <connections>
+                        <outlet property="actAsUserButton" destination="Mg4-4P-trV" id="fGc-ZV-nkE"/>
+                        <outlet property="actAsUserDescription" destination="mTK-Fr-qAy" id="oUu-Xv-Z5Z"/>
+                        <outlet property="domainTextField" destination="6xX-3o-bah" id="ZUD-1Q-70f"/>
+                        <outlet property="redPanda" destination="MjF-JB-cw1" id="dJm-4X-gTd"/>
+                        <outlet property="redPandaTopConstraint" destination="eaH-ei-oSA" id="vDK-B3-C6J"/>
+                        <outlet property="redPandaTrailingConstraint" destination="YlU-jr-uWJ" id="uXG-yO-3On"/>
+                        <outlet property="userIDTextField" destination="pNc-qE-1zq" id="nup-Hj-MdW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oaO-rZ-0cv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="161" y="153"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="RedPanda" width="74" height="103"/>
+        <image name="WhitePanda" width="84" height="103"/>
+    </resources>
+</document>

@@ -87,5 +87,7 @@ public struct Route: Equatable {
         return Route("/accounts/\(accountID)/terms_of_service")
     }
 
+    public static let actAsUser = Route("/act-as-user")
+
     public static let anythingElse = Route("*")
 }

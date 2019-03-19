@@ -19,24 +19,29 @@ import UIKit
 private let drawerTransitioningDelegate = DrawerTransitioningDelegate()
 
 public protocol ProfilePresenterProtocol: class {
-    var view: ProfileViewController? { get set }
+    var view: ProfileViewControllerProtocol? { get set }
     var cells: [ProfileViewCell] { get }
     func didTapVersion()
+    func viewIsReady()
 }
+
+public protocol ProfileViewControllerProtocol: class {
+    func reload()
+    func show(_ route: Route, options: Core.Router.RouteOptions?)
+    func show(_ route: String, options: Core.Router.RouteOptions?)
+    func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)?)}
 
 public struct ProfileViewCell {
     let name: String
-    let hidden: Bool
     let block: () -> Void
 
-    public init(name: String, hidden: Bool, block: @escaping () -> Void) {
+    public init(name: String, block: @escaping () -> Void) {
         self.name = name
-        self.hidden = hidden
         self.block = block
     }
 }
 
-public class ProfileViewController: UIViewController {
+public class ProfileViewController: UIViewController, ProfileViewControllerProtocol {
 
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
@@ -69,6 +74,11 @@ public class ProfileViewController: UIViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.tableFooterView = UIView()
         tableView.delegate = self
+        presenter?.viewIsReady()
+    }
+
+    public func reload() {
+        self.tableView.reloadData()
     }
 
     public func show(_ route: Route, options: Core.Router.RouteOptions? = nil) {
@@ -94,7 +104,6 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         cell.contentView.backgroundColor = UIColor.named(.white)
         cell.textLabel?.textColor = UIColor.named(.textDarkest)
         cell.textLabel?.text = presenter?.cells[indexPath.row].name
-        cell.isHidden = presenter?.cells[indexPath.row].hidden ?? false
         return cell
     }
 
@@ -111,6 +120,5 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
 extension ProfileViewController {
     @IBAction func didTapVersion(_ sender: UITapGestureRecognizer) {
         presenter?.didTapVersion()
-        tableView.reloadData()
     }
 }

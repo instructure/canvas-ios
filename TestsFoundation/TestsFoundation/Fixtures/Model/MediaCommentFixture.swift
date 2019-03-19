@@ -15,8 +15,6 @@
 //
 
 import Foundation
-
-import Foundation
 @testable import Core
 
 extension MediaComment: Fixture {

@@ -9,6 +9,7 @@
     "Core\/ShareExtension\/",
     "Core\/Use Cases\/SubmitFileSubmission",
     "OperationQueueExtensions.swift",
+    "DrawerTransitioning.swift",
     "Pods\\/",
     "Student\/Courses\/CourseList\/",
     "Student\/Dashboard\/"

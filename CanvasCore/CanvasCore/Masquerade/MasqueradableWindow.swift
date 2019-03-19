@@ -149,7 +149,10 @@ class MasqueradeOverlay: UIView {
         let title = NSLocalizedString("Stop acting as...", tableName: nil, bundle: .core, value: "Stop acting as...", comment: "")
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let ok = UIAlertAction(title: NSLocalizedString("OK", tableName: nil, bundle: .core, value: "OK", comment: ""), style: .default) { _ in
-            NativeLoginManager.shared().stopMasquerding()
+            // Parent no longer has a RNBridge so the old method doesn't work
+            NativeLoginManager.shared().shouldCleanupOnNextLogoutEvent = true
+            CanvasKeymaster.the().stopMasquerading()
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "MasqueradeDidEnd"), object: nil)
         }
         let cancelTitle = NSLocalizedString("Cancel", tableName: nil, bundle: .core, value: "Cancel", comment: "")
         let cancel = UIAlertAction(title: cancelTitle, style: .cancel, handler: nil)
