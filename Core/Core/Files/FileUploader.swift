@@ -67,9 +67,6 @@ public class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate,
     var backgroundSession: URLSession!
     lazy var backgroundAPI: API = URLSessionAPI(urlSession: backgroundSession)
 
-    lazy var taskContext: NSManagedObjectContext = database.newBackgroundContext()
-    lazy var submissionContext: NSManagedObjectContext = database.newBackgroundContext()
-
     /// Completion handler that should be called once all background tasks have finished.
     ///
     /// See UIApplicationDelegate.application(application:handleEventsForBackgroundURLSession:completionHandler:)
@@ -118,16 +115,14 @@ public class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate,
             return
         }
         let objectID = file.objectID
-        getTarget(context: context, name: url.lastPathComponent) { [weak self] target, error in
-            guard let self = self else { return }
+        getTarget(context: context, name: url.lastPathComponent) { target, error in
             if let error = error {
                 callback(error)
                 return
             }
             var task: URLSessionTask?
             var error: Error?
-            let context = self.taskContext
-            context.performAndWait {
+            self.performAndWait { context in
                 guard let target = target, let file = context.object(with: objectID) as? File else {
                     callback(defaultError)
                     return
@@ -143,6 +138,7 @@ public class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate,
                 }
             }
             if error == nil {
+                Logger.shared.log("Starting upload \(String(describing: task?.taskIdentifier))")
                 task?.resume()
             }
             callback(error)
@@ -160,8 +156,7 @@ public class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate,
 
     public func cancel(submission: NewSubmission, completionHandler: @escaping (Error?) -> Void) {
         let objectID = submission.objectID
-        let context = taskContext
-        context.performAndWait {
+        performAndWait { context in
             guard let newSubmission = context.object(with: objectID) as? NewSubmission else {
                 completionHandler(nil)
                 return
@@ -186,8 +181,7 @@ public class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate,
 
     public func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
         Logger.shared.log()
-        let context = taskContext
-        context.performAndWait {
+        performAndWait { context in
             guard let file: File = context.first(where: #keyPath(File.taskIDRaw), equals: NSNumber(value: task.taskIdentifier)) else {
                 return
             }
@@ -203,8 +197,7 @@ public class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate,
 
     public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
         Logger.shared.log()
-        let context = taskContext
-        context.performAndWait {
+        performAndWait { context in
             guard let file: File = context.first(where: #keyPath(File.taskIDRaw), equals: NSNumber(value: dataTask.taskIdentifier)) else {
                 return
             }
@@ -212,7 +205,8 @@ public class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate,
                 let decoder = JSONDecoder()
                 decoder.dateDecodingStrategy = .iso8601
                 let response = try decoder.decode(APIFile.self, from: data)
-                try file.update(fromApiModel: response, in: context)
+                Logger.shared.log("Created a file with id \(response.id)")
+                try file.update(fromAPIModel: response)
             } catch {
                 file.uploadError = error.localizedDescription
                 Logger.shared.error(error)
@@ -230,24 +224,39 @@ public class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate,
         if let error = error {
             Logger.shared.error(error)
         }
-        let context = taskContext
-        context.performAndWait {
+        // var objectID: NSManagedObjectID?
+        performAndWait { context in
             guard let file: File = context.first(where: #keyPath(File.taskIDRaw), equals: NSNumber(value: task.taskIdentifier)) else {
                 return
             }
+            // objectID = file.objectID
             file.uploadError = error?.localizedDescription ?? file.uploadError
             file.taskID = nil
+            _ = file.newSubmission
             do {
                 try context.save()
             } catch {
                 Logger.shared.error(error)
             }
-
-            if let newSubmission = file.newSubmission {
-                self.submit(newSubmission)
-                context.refresh(newSubmission, mergeChanges: false)
+        }
+        performAndWait { context in
+            guard let file: File = context.first(where: #keyPath(File.taskIDRaw), equals: NSNumber(value: task.taskIdentifier)) else {
+                return
+            }
+            if let assignmentID = file.newSubmission?.assignment?.id {
+                print("assignmentID \(assignmentID)")
             }
         }
+//        performAndWait { context in
+//            guard let objectID = objectID, let file = context.object(with: objectID) as? File else { return }
+//            if let assignmentID = file.newSubmission?.assignment?.id {
+//                print("assignmentID \(assignmentID)")
+//            }
+//            context.refresh(file, mergeChanges: false)
+//        }
+//        if let objectID = objectID {
+//            submit(file: objectID)
+//        }
     }
 
     public func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
@@ -264,67 +273,80 @@ public class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate,
             callback(target, error)
         }
     }
+
+    private func performAndWait(block: (NSManagedObjectContext) -> Void) {
+        let context = database.newBackgroundContext()
+        context.performAndWait {
+            block(context)
+        }
+    }
 }
 
 // MARK: - Submissions
 extension FileUploader {
-    private func submit(_ newSubmission: NewSubmission) {
-        let files = newSubmission.files ?? []
-        let ready = files.allSatisfy { $0.isUploaded } == true
-        guard ready else { return }
-        guard let assignment = newSubmission.assignment else { return }
+    private func submit(file objectID: NSManagedObjectID) {
+        var request: CreateSubmissionRequest?
+        performAndWait { context in
+            guard let file = context.object(with: objectID) as? File else { return }
+            guard let newSubmission = file.newSubmission else { return }
+            guard let assignment = newSubmission.assignment else { return }
 
-        let fileIDs = newSubmission.files?.compactMap { $0.id } ?? []
-        let courseID = assignment.courseID
-        let assignmentID = assignment.id
-        let submission = CreateSubmissionRequest.Body.Submission(
-            text_comment: nil,
-            submission_type: .online_upload,
-            body: nil,
-            url: nil,
-            file_ids: fileIDs,
-            media_comment_id: nil,
-            media_comment_type: nil
-        )
-        let request = CreateSubmissionRequest(
-            context: ContextModel(.course, id: courseID),
-            assignmentID: assignmentID,
-            body: .init(submission: submission)
-        )
+            let files = newSubmission.files ?? []
+            let ready = files.allSatisfy { $0.isUploaded } == true
+            guard ready else { return }
 
-        let objectID = newSubmission.objectID
-        taskContext.refresh(assignment, mergeChanges: false)
-        Logger.shared.log("Submitting \(fileIDs.count) files")
-        self.api.makeRequest(request) { response, urlResponse, error in
-            let context = self.submissionContext
-            context.performAndWait {
-                guard let newSubmission = context.object(with: objectID) as? NewSubmission else { return }
-                guard let assignment = newSubmission.assignment else { return }
-                let success = (urlResponse as? HTTPURLResponse)?.statusCode == 201
-                if success {
-                    Logger.shared.log("Created file submission!")
-                    context.delete(newSubmission)
-                    self.sendCompletedNotification(courseID: assignment.courseID, assignmentID: assignment.id)
-                } else {
-                    Logger.shared.log("Failed to create file submission.")
-                    if let file = newSubmission.files?.first {
-                        let message = error?.localizedDescription ?? NSLocalizedString("Submission failed.", comment: "")
-                        file.uploadError = message
-                        context.refresh(file, mergeChanges: false)
-                    }
-                    self.sendCompletedNotification(courseID: assignment.courseID, assignmentID: assignment.id)
-                }
-                do {
-                    context.refresh(assignment, mergeChanges: false)
-                    if let response = response {
-                        try Submission.save(response, in: context)
-                    }
-                    try context.save()
-                } catch {
-                    Logger.shared.error(error)
-                }
+            let fileIDs = files.compactMap { $0.id }
+            Logger.shared.log("Submitting \(fileIDs.count) files")
+            let courseID = assignment.courseID
+            let assignmentID = assignment.id
+            let submission = CreateSubmissionRequest.Body.Submission(
+                text_comment: nil,
+                submission_type: .online_upload,
+                body: nil,
+                url: nil,
+                file_ids: fileIDs,
+                media_comment_id: nil,
+                media_comment_type: nil
+            )
+            request = CreateSubmissionRequest(
+                context: ContextModel(.course, id: courseID),
+                assignmentID: assignmentID,
+                body: .init(submission: submission)
+            )
+        }
+        if let request = request {
+            self.api.makeRequest(request) { response, urlResponse, error in
+                self.handle(fileSubmitted: objectID, response: response, urlResponse: urlResponse, error: error)
             }
         }
+    }
+
+    private func handle(fileSubmitted fileObjectID: NSManagedObjectID, response: APISubmission?, urlResponse: URLResponse?, error: Error?) {
+        self.performAndWait { context in
+            guard let file = context.object(with: fileObjectID) as? File else { return }
+            guard let newSubmission = file.newSubmission else { return }
+            guard let assignment = newSubmission.assignment else { return }
+            let success = (urlResponse as? HTTPURLResponse)?.statusCode == 201
+            if success {
+                Logger.shared.log("Created file submission!")
+                context.delete(newSubmission)
+                self.sendCompletedNotification(courseID: assignment.courseID, assignmentID: assignment.id)
+            } else {
+                Logger.shared.log("Failed to create file submission.")
+                let message = error?.localizedDescription ?? NSLocalizedString("Submission failed.", comment: "")
+                file.uploadError = message
+                self.sendCompletedNotification(courseID: assignment.courseID, assignmentID: assignment.id)
+            }
+            do {
+                if let response = response {
+                    try Submission.save(response, in: context)
+                }
+                try context.save()
+            } catch {
+                Logger.shared.error(error)
+            }
+        }
+
     }
 
     private func sendFailedNotification(courseID: String, assignmentID: String) {

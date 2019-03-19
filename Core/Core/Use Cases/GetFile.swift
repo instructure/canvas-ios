@@ -32,6 +32,6 @@ public class GetFile: DetailUseCase<GetFileRequest, File> {
     }
 
     override func updateModel(_ model: File, using item: APIFile, in client: PersistenceClient) throws {
-        try model.update(fromApiModel: item, in: client)
+        try model.update(fromAPIModel: item)
     }
 }

@@ -17,5 +17,12 @@
 import Foundation
 @testable import Core
 
-public class MockFileUploader: FileUploader {
+extension FileUploadTarget: Fixture {
+    public static var template: Template = [
+        "upload_url": "https://canvas.s3.bucket.com/bucket/1",
+        "upload_params": [
+            "param1": "foo",
+            "param2": "bar"
+        ]
+    ]
 }

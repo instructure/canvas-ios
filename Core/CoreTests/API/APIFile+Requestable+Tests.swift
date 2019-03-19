@@ -32,7 +32,7 @@ class PostFileUploadTargetRequestTests: XCTestCase {
             parent_folder_id: nil
         )
         let request = PostFileUploadTargetRequest(
-            target: .submission(courseID: "1", assignmentID: "2"),
+            context: .submission(courseID: "1", assignmentID: "2"),
             body: body
         )
         XCTAssertEqual(request.method, .post)
@@ -46,7 +46,7 @@ class PostFileUploadTargetRequestTests: XCTestCase {
             parent_folder_id: nil
         )
         let request = PostFileUploadTargetRequest(
-            target: .submission(courseID: "1", assignmentID: "2"),
+            context: .submission(courseID: "1", assignmentID: "2"),
             body: body
         )
         XCTAssertEqual(request.path, "courses/1/assignments/2/submissions/self/files")
@@ -59,7 +59,7 @@ class PostFileUploadTargetRequestTests: XCTestCase {
             parent_folder_id: nil
         )
         let request = PostFileUploadTargetRequest(
-            target: .course("1"),
+            context: .course("1"),
             body: body
         )
         XCTAssertEqual(request.path, "courses/1/files")
@@ -72,7 +72,7 @@ class PostFileUploadTargetRequestTests: XCTestCase {
             parent_folder_id: nil
         )
         let request = PostFileUploadTargetRequest(
-            target: .user("1"),
+            context: .user("1"),
             body: body
         )
         XCTAssertEqual(request.path, "users/1/files")
@@ -85,7 +85,7 @@ class PostFileUploadTargetRequestTests: XCTestCase {
             parent_folder_id: nil
         )
         let request = PostFileUploadTargetRequest(
-            target: .myFiles,
+            context: .myFiles,
             body: body
         )
         XCTAssertEqual(request.path, "users/self/files")

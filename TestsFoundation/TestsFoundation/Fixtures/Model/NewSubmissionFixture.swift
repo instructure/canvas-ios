@@ -17,5 +17,8 @@
 import Foundation
 @testable import Core
 
-public class MockFileUploader: FileUploader {
+extension NewSubmission: Fixture {
+    public static let template: Template = [
+        "assignment": nil,
+    ]
 }

@@ -35,13 +35,6 @@ extension URL {
         return URL(fileURLWithPath: NSTemporaryDirectory())
     }
 
-    public static func temporarySubmissionDirectoryPath() throws -> URL {
-        var path = URL(fileURLWithPath: NSTemporaryDirectory())
-        path.appendPathComponent("submissions")
-        try FileManager.default.createDirectory(at: path, withIntermediateDirectories: true, attributes: nil)
-        return path
-    }
-
     public func lookupFileSize() -> Int {
         guard self.isFileURL else { return 0 }
         let attributes = try? FileManager.default.attributesOfItem(atPath: path)

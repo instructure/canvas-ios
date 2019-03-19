@@ -32,17 +32,6 @@ class UIImageExtensionsTests: XCTestCase {
         }
     }
 
-    func testTemporarilyStoreForSubmission() {
-        //  when
-        let fileInfo = try! image.temporarilyStoreForSubmission()
-        let files = try? FileManager.default.contentsOfDirectory(at: path, includingPropertiesForKeys: nil)
-        let data = try? Data(contentsOf: files!.first!)
-
-        //  then
-        XCTAssertEqual(files?.first, fileInfo?.url)
-        XCTAssertEqual(image.pngData(), data)
-    }
-
     func testIconNamed() {
         for name in UIImage.IconName.allCases {
             XCTAssertEqual(UIImage.icon(name), UIImage(named: "\(name)", in: .core, compatibleWith: nil))

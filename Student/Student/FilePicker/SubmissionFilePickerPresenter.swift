@@ -46,9 +46,7 @@ class SubmissionFilePresenter {
         return assignments.first
     }
 
-    var inProgress: Bool {
-        return files.first { $0.isUploading } != nil
-    }
+    var inProgress: Bool = false
 
     var failed: Bool {
         return files.first { $0.uploadError != nil } != nil
@@ -124,13 +122,16 @@ class SubmissionFilePresenter {
     }
 
     func update() {
+        // Dismiss once all files have uploaded
+        let inProgress = files.first { $0.isUploading } != nil
+        if self.inProgress && !inProgress {
+            dismiss()
+            return
+        }
+
+        self.inProgress = inProgress
         updateBarItems()
         updateFiles()
-
-        // Dismiss once all files have uploaded
-        if !files.isEmpty && files.allSatisfy({ $0.isUploaded }) {
-            dismiss()
-        }
     }
 
     private func updateBarItems() {
@@ -198,19 +199,20 @@ extension SubmissionFilePresenter: FilePickerPresenterProtocol {
     }
 
     func add(withInfo info: FileInfo) {
-        env.database.performBackgroundTask { (context: NSManagedObjectContext) in
+        let context = env.database.viewContext
+        context.performAndWait {
             guard let assignment: Assignment = context.first(where: #keyPath(Assignment.id), equals: self.assignmentID) else {
                 return
             }
-            let file: File = context.insert()
-            file.localFileURL = info.url
-            file.size = info.size
-            let newSubmission: NewSubmission = assignment.newSubmission ?? context.insert()
-            newSubmission.assignment = assignment
-            newSubmission.files?.insert(file)
             do {
+                let file: File = context.insert()
+                file.localFileURL = info.url
+                file.size = info.size
+                let newSubmission: NewSubmission = assignment.newSubmission ?? context.insert()
+                newSubmission.assignment = assignment
+                newSubmission.files?.insert(file)
                 try context.save()
-                context.refresh(assignment, mergeChanges: false)
+                context.refreshAllObjects()
             } catch {
                 self.view?.showError(error)
             }

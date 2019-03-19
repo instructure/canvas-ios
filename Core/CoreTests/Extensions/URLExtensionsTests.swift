@@ -28,28 +28,6 @@ class URLExtensionsTests: XCTestCase {
         XCTAssertNoThrow( try FileManager.default.removeItem(at: path) )
     }
 
-    func testTemporarySubmissionDirectoryPath() {
-        //  when
-        let result = try? URL.temporarySubmissionDirectoryPath()
-
-        //  then
-        XCTAssertEqual(result, path)
-    }
-
-    func testTemporarySubmissionDirectoryPathWithExistingFolder() {
-
-        //  given
-        _ = try? URL.temporarySubmissionDirectoryPath()
-        let files = try? FileManager.default.contentsOfDirectory(at: URL(fileURLWithPath: NSTemporaryDirectory()), includingPropertiesForKeys: nil)
-        XCTAssertTrue((files?.contains(path))!)
-
-        //  when
-        let result = try? URL.temporarySubmissionDirectoryPath()
-
-        //  then
-        XCTAssertEqual(result, path)
-    }
-
     func testLookupFileSize() {
         let url = Bundle(for: URLExtensionsTests.self).url(forResource: "Info", withExtension: "plist")
         XCTAssertGreaterThan(url!.lookupFileSize(), 500)
