@@ -36,9 +36,9 @@ class QuizListViewController: UITableViewController, QuizListViewProtocol {
     var hasAppeared = false
 
     static func create(env: AppEnvironment = .shared, courseID: String) -> QuizListViewController {
-        let view = Bundle.loadController(self)
+        let view = loadFromStoryboard()
         view.presenter = QuizListPresenter(env: env, view: view, courseID: courseID)
-        view.emptyView = Bundle.loadView(QuizListEmptyView.self)
+        view.emptyView = QuizListEmptyView.loadFromXib()
         return view
     }
 
@@ -79,7 +79,7 @@ class QuizListViewController: UITableViewController, QuizListViewProtocol {
     }
 
     func showError(_ error: Error) {
-        let errorView = Bundle.loadView(QuizListEmptyView.self)
+        let errorView = QuizListEmptyView.loadFromXib()
         errorView.label?.text = NSLocalizedString("Something went wrong while loading the quizzes.", bundle: .student, comment: "")
         errorView.label?.textColor = .named(.textDanger)
         tableView.backgroundView = errorView

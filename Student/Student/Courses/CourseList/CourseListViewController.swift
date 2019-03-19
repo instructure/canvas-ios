@@ -37,7 +37,7 @@ class CourseListViewController: UIViewController, CourseListViewProtocol {
     @IBOutlet weak var collectionView: UICollectionView?
 
     static func create(env: AppEnvironment = .shared) -> CourseListViewController {
-        let view = Bundle.loadController(self)
+        let view = loadFromStoryboard()
         view.presenter = CourseListPresenter(env: env, view: view)
         return view
     }

@@ -64,6 +64,6 @@ open class EmptyView: UIView {
 
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        Bundle.loadView(for: self)
+        loadFromXib()
     }
 }

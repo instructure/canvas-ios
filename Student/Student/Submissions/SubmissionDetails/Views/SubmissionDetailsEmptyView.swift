@@ -35,7 +35,7 @@ class SubmissionDetailsEmptyView: UIView {
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        Bundle.loadView(for: self)
+        loadFromXib()
         headingLabel?.text = NSLocalizedString("No Submission", bundle: .student, comment: "")
         submitButton?.setTitle(NSLocalizedString("Submit Assignment", bundle: .student, comment: ""), for: .normal)
     }

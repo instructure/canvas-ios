@@ -26,7 +26,7 @@ class ExternalToolSubmissionContentViewController: UIViewController {
     var assignment: Assignment?
 
     static func create(env: AppEnvironment, assignment: Assignment?) -> ExternalToolSubmissionContentViewController {
-        let controller = Bundle.loadController(self)
+        let controller = loadFromStoryboard()
         controller.assignment = assignment
         controller.env = env
         return controller

@@ -45,7 +45,7 @@ class LoginFindSchoolViewController: UIViewController, LoginFindSchoolViewProtoc
     )
 
     static func create(loginDelegate: LoginDelegate?, method: AuthenticationMethod) -> LoginFindSchoolViewController {
-        let controller = Bundle.loadController(self)
+        let controller = loadFromStoryboard()
         controller.presenter = LoginFindSchoolPresenter(loginDelegate: loginDelegate, method: method, view: controller)
         return controller
     }
