@@ -26,7 +26,6 @@ extension NSPersistentContainer {
         let isUITest = ProcessInfo.isUITest
         // VTS: The code block below breaks Firebase Test Lab.
         if !isUITest, let url = databaseURL(for: appGroup, session: session) {
-            print("creating database with url \(url)")
             container.persistentStoreDescriptions = [ NSPersistentStoreDescription(url: url) ]
         }
 

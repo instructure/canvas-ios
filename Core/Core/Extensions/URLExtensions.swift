@@ -17,20 +17,6 @@
 import Foundation
 
 extension URL {
-    public static func directory(forUser user: KeychainEntry, appGroup: AppGroup? = nil) -> URL {
-        let root = appGroup?.url ?? documentsDirectory
-        let host = user.baseURL.host ?? "default"
-        return root
-            .appendingPathComponent(host, isDirectory: true)
-            .appendingPathComponent("users", isDirectory: true)
-            .appendingPathComponent(user.userID, isDirectory: true)
-    }
-
-    public static var documentsDirectory: URL {
-        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-        return URL(fileURLWithPath: path)
-    }
-
     public static var temporaryDirectory: URL {
         return URL(fileURLWithPath: NSTemporaryDirectory())
     }

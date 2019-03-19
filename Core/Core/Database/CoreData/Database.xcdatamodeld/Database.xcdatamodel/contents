@@ -82,20 +82,6 @@
         <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="submission" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Submission" inverseName="attachments" inverseEntity="Submission" syncable="YES"/>
     </entity>
-    <entity name="FileUpload" representedClassName="Core.FileUpload" syncable="YES">
-        <attribute name="baseURL" optional="YES" attributeType="URI" syncable="YES"/>
-        <attribute name="bytesSent" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="completed" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="contextRaw" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="error" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="fileID" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="masquerader" optional="YES" attributeType="URI" syncable="YES"/>
-        <attribute name="sessionID" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="size" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="taskIDRaw" optional="YES" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="url" optional="YES" attributeType="URI" syncable="YES"/>
-        <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
-    </entity>
     <entity name="Group" representedClassName="Core.Group" syncable="YES">
         <attribute name="avatarURL" optional="YES" attributeType="URI" syncable="YES"/>
         <attribute name="concluded" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
@@ -171,7 +157,6 @@
         <element name="DiscussionEntry" positionX="-513.66796875" positionY="535.73828125" width="128" height="150"/>
         <element name="Enrollment" positionX="-578.41796875" positionY="2.78125" width="128" height="150"/>
         <element name="File" positionX="-162.1640625" positionY="69.79296875" width="128" height="495"/>
-        <element name="FileUpload" positionX="71.29296875" positionY="-75.4921875" width="128" height="225"/>
         <element name="Group" positionX="-366.25" positionY="-174.85546875" width="128" height="135"/>
         <element name="LogEvent" positionX="-743.51953125" positionY="192.92578125" width="128" height="90"/>
         <element name="Module" positionX="-737.4140625" positionY="20.87890625" width="128" height="120"/>

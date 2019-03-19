@@ -16,41 +16,12 @@
 
 import Foundation
 
-public enum FileUploadContext: RawRepresentable {
+public enum FileUploadContext {
     case course(String)
     case user(String)
     case submission(courseID: String, assignmentID: String)
 
     public static var myFiles: FileUploadContext {
         return .user("self")
-    }
-
-    public var rawValue: String {
-        switch self {
-        case let .course(courseID):
-            return "course_\(courseID)"
-        case let .user(userID):
-            return "user_\(userID)"
-        case let .submission(courseID: courseID, assignmentID: assignmentID):
-            return "submission_\(courseID)_\(assignmentID)"
-        }
-    }
-
-    public init?(rawValue: String) {
-        switch rawValue {
-        case NSRegularExpression("course_[0-9~]*$"):
-            let courseID = String(rawValue.split(separator: "_")[0])
-            self = .course(courseID)
-        case NSRegularExpression("user_[0-9~]*$"):
-            let userID = String(rawValue.split(separator: "_")[0])
-            self = .user(userID)
-        case NSRegularExpression("submission_[0-9~]*_[0-9~]*$"):
-            let components = rawValue.split(separator: "_").map(String.init)
-            let courseID = components[1]
-            let assignmentID = components[2]
-            self = .submission(courseID: courseID, assignmentID: assignmentID)
-        default:
-            return nil
-        }
     }
 }

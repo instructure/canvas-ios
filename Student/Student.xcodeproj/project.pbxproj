@@ -177,8 +177,6 @@
 		B198973821889A72009B0996 /* TokenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B198973721889A72009B0996 /* TokenProvider.swift */; };
 		B1A8CD3E223841C600E2242D /* FileUploaderExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A8CD3D223841C600E2242D /* FileUploaderExtensions.swift */; };
 		B1A8CD4322384F9200E2242D /* FileUploaderExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A8CD3D223841C600E2242D /* FileUploaderExtensions.swift */; };
-		B1A8CD512239854200E2242D /* AssignmentExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A8CD502239854200E2242D /* AssignmentExtensions.swift */; };
-		B1A8CD54223AF93100E2242D /* AssignmentExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A8CD502239854200E2242D /* AssignmentExtensions.swift */; };
 		B1AE17A8218771CE002995E6 /* TestsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1AE17A7218771CE002995E6 /* TestsFoundation.framework */; };
 		B1AE17AA218771FA002995E6 /* TestsFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1AE17A7218771CE002995E6 /* TestsFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B1B4C1C62196304E00FA9E0E /* FilePickerViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1B4C1C52196304E00FA9E0E /* FilePickerViewController.storyboard */; };
@@ -623,7 +621,6 @@
 		B191F4C721613E520045506F /* TestHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHost.swift; sourceTree = "<group>"; };
 		B198973721889A72009B0996 /* TokenProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenProvider.swift; sourceTree = "<group>"; };
 		B1A8CD3D223841C600E2242D /* FileUploaderExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploaderExtensions.swift; sourceTree = "<group>"; };
-		B1A8CD502239854200E2242D /* AssignmentExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentExtensions.swift; sourceTree = "<group>"; };
 		B1AE17A7218771CE002995E6 /* TestsFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TestsFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1B4C1C52196304E00FA9E0E /* FilePickerViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FilePickerViewController.storyboard; sourceTree = "<group>"; };
 		B1B6F06E219A1B2F00C1575D /* SubmissionFilePickerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionFilePickerPresenter.swift; sourceTree = "<group>"; };
@@ -1132,9 +1129,8 @@
 			isa = PBXGroup;
 			children = (
 				7D979CD3215BE3E300567627 /* BundleExtensions.swift */,
-				3B3436E7215EF0FB009EF87F /* UIImageExtensions.swift */,
 				B1A8CD3D223841C600E2242D /* FileUploaderExtensions.swift */,
-				B1A8CD502239854200E2242D /* AssignmentExtensions.swift */,
+				3B3436E7215EF0FB009EF87F /* UIImageExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1687,7 +1683,6 @@
 				3BE2C78021938BFD004B8E5E /* FilePickerPresenter.swift in Sources */,
 				3B1B006B219BD9F60045E8A1 /* AssignmentDetailsPresenter.swift in Sources */,
 				3B1B007D219BD9F60045E8A1 /* QuizListViewController.swift in Sources */,
-				B1A8CD512239854200E2242D /* AssignmentExtensions.swift in Sources */,
 				3B1B0067219BD9F60045E8A1 /* AssignmentListViewController.swift in Sources */,
 				7D10A49221B5E3CC0040C311 /* RootViewController.swift in Sources */,
 				B107189821963BC000ED1DC7 /* EmptyView.swift in Sources */,
@@ -1801,7 +1796,6 @@
 				7D067CE621505B3500B78AF2 /* DashboardGroupCell.swift in Sources */,
 				3B0B0F68219C8D1500F04216 /* CourseNavigationPresenter.swift in Sources */,
 				3B67BCB621B5784500055324 /* UrlSubmissionPresenter.swift in Sources */,
-				B1A8CD54223AF93100E2242D /* AssignmentExtensions.swift in Sources */,
 				3B5425FF21B094CC0009D069 /* UrlSubmissionViewController.swift in Sources */,
 				3B0B0F67219C8D1100F04216 /* CourseListCourseCell.swift in Sources */,
 				9F9F4EB421B58AA300842570 /* ExternalToolSubmissionContentViewController.swift in Sources */,

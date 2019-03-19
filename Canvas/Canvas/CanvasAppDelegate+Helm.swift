@@ -46,7 +46,6 @@ extension AppDelegate: RCTBridgeDelegate {
         registerScreen("/files/:fileID")
         registerScreen("/files/:fileID/download")
         registerScreen("/:context/:contextID/files/:fileID")
-        registerScreen("/:context/:contextID/files/:fileID/*filename")
         registerScreen("/:context/:contextID/files/:fileID/download")
 
         registerScreen("/courses/:courseID/assignments/syllabus")

@@ -107,18 +107,35 @@ class FileUploaderTests: CoreTestCase {
         fileUploader.urlSession(session, dataTask: task, didReceive: data)
         wait(for: [received], timeout: 0.1)
 
-        // complete
+        // completed and submitted
+        let submission = CreateSubmissionRequest.Body.Submission(
+            text_comment: nil,
+            submission_type: .online_upload,
+            body: nil,
+            url: nil,
+            file_ids: nil,
+            media_comment_id: nil,
+            media_comment_type: nil
+        )
+        let submissionRequest = CreateSubmissionRequest(
+            context: ContextModel(.course, id: courseID),
+            assignmentID: assignmentID,
+            body: .init(submission: submission)
+        )
+        api.mock(submissionRequest, value: APISubmission.make(), response: nil, error: nil)
         XCTAssertNotNil(file?.taskID)
+        XCTAssertNotNil(file?.assignmentID)
         let completed = XCTestExpectation(description: "task completed")
+        let submitted = XCTestExpectation(description: "submitted")
         onUpdate = {
             if self.file?.taskID == nil {
                 completed.fulfill()
             }
+            if self.file?.assignmentID == nil {
+                submitted.fulfill()
+            }
         }
         fileUploader.urlSession(session, task: task, didCompleteWithError: nil)
-        wait(for: [completed], timeout: 0.1)
-
-        // submitted
-        XCTAssertNotNil(file?.assignmentID)
+        wait(for: [completed, submitted], timeout: 0.1)
     }
 }

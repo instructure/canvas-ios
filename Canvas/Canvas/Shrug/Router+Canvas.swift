@@ -206,7 +206,6 @@ extension TechDebt.Router {
             return downloadFile(parameters, sender)
         }
         addRoute("/courses/:courseID/files/:fileIdent/download", handler: downloadFile)
-        addRoute("/courses/:courseID/files/:fileIdent/*filename", handler: downloadFile)
         addRoute("/users/:userID/files/:fileIdent", handler: downloadFile)
         addRoute("/users/:userID/files/:fileIdent/download", handler: downloadFile)
         addRoute("/files/:fileIdent/download", handler: downloadFile)
