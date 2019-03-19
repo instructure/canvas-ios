@@ -16,7 +16,7 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
     ]
   }
   subtitle="Learn React Native"
-  title="Donald Trump"
+  title="The Donald"
 >
   <list>
     <item>
@@ -225,7 +225,7 @@ exports[`ContextCard renders 1`] = `
     ]
   }
   subtitle="Learn React Native"
-  title="Donald Trump"
+  title="The Donald"
 >
   <list>
     <item>
@@ -456,7 +456,7 @@ exports[`ContextCard renders for a non student 1`] = `
     ]
   }
   subtitle="Learn React Native"
-  title="Donald Trump"
+  title="The Donald"
 >
   <list />
 </Screen>
@@ -478,7 +478,7 @@ exports[`ContextCard renders for a user that cannot send messages 1`] = `
     ]
   }
   subtitle="Learn React Native"
-  title="Donald Trump"
+  title="The Donald"
 >
   <list />
 </Screen>
@@ -489,7 +489,7 @@ exports[`ContextCard renders for a user that cannot send messages 2`] = `
   navBarStyle="dark"
   rightBarButtons={Array []}
   subtitle="Learn React Native"
-  title="Donald Trump"
+  title="The Donald"
 >
   <list>
     <item>
@@ -698,7 +698,7 @@ exports[`ContextCard renders for a user that cannot view analytics 1`] = `
     ]
   }
   subtitle="Learn React Native"
-  title="Donald Trump"
+  title="The Donald"
 >
   <list />
 </Screen>
@@ -720,7 +720,7 @@ exports[`ContextCard renders if there is no enrollment 1`] = `
     ]
   }
   subtitle="Learn React Native"
-  title="Donald Trump"
+  title="The Donald"
 >
   <list>
     <item>
@@ -929,7 +929,7 @@ exports[`ContextCard renders if there is no section in the enrollment 1`] = `
     ]
   }
   subtitle="Learn React Native"
-  title="Donald Trump"
+  title="The Donald"
 >
   <list>
     <item>
@@ -1138,7 +1138,7 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
     ]
   }
   subtitle="Learn React Native"
-  title="Donald Trump"
+  title="The Donald"
 >
   <list>
     <item>
