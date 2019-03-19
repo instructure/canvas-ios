@@ -35,7 +35,7 @@ class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewPr
     @IBOutlet weak var picker: UIPickerView?
 
     static func create(env: AppEnvironment = .shared, context: Context, assignmentID: String, userID: String) -> SubmissionDetailsViewController {
-        let controller: SubmissionDetailsViewController = loadFromStoryboard()
+        let controller = loadFromStoryboard()
         controller.presenter = SubmissionDetailsPresenter(env: env, view: controller, context: context, assignmentID: assignmentID, userID: userID)
         controller.env = env
         return controller
