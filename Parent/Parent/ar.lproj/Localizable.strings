@@ -64,17 +64,11 @@
 /* Percent value is under 0 */
 "Cannot use percent that is less than 0" = "لا يمكن استخدام نسبة مئوية أقل من 0";
 
-/* Cancel the question/suggestion form */
-"Casual question or suggestion" = "مجرد سؤال عابر أو اقتراح";
-
 /* Empty Alerts Text */
 "Caught up on Alerts" = "لا توجد تنبيهات عالقة";
 
 /* No comment provided by engineer. */
 "Choose a student" = "اختر طالبًا";
-
-/* title for status selection field */
-"Choose One" = "اختيار واحد";
 
 /* Close Button Title */
 "Close" = "إغلاق";
@@ -94,9 +88,6 @@
 /* No comment provided by engineer. */
 "Current student: %@, tap to switch students" = "الطالب الحالي: %@، اضغط لتبديل الطلاب";
 
-/* Title for field */
-"Describe your problem" = "قم بوصف مشكلتك";
-
 /* No comment provided by engineer. */
 "Discussion" = "النقاش";
 
@@ -115,23 +106,11 @@
 /* No comment provided by engineer. */
 "Excused" = "غير إجباري";
 
-/* Status level for issue being reported */
-"Extremely critical emergency" = "حالة طارئة حرجة للغاية";
-
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "لا يمكن أن تكون أعلى درجة للمهمة أقل من أدنى درجة للمهمة";
 
 /* High Course Grade too Low */
 "High course grade cannot be lower than low course grade" = "لا يمكن أن تكون أعلى درجة للمساق أقل من أدنى درجة للمساق";
-
-/* Status level for issue being reported */
-"I can't get things done until fixed" = "لا يمكنني إنجاز الأشياء قبل أن يتم إصلاحها";
-
-/* Status level for issue being reported */
-"I need help but it's not urgent" = "أحتاج للمساعدة لكن الأمر ليس مستعجلاً";
-
-/* Impact Title */
-"Impact:" = "التأثير:";
 
 /* No comment provided by engineer. */
 "In-Class" = "في الصف";
@@ -141,9 +120,6 @@
 
 /* Title for an alert view */
 "Invalid Input" = "إدخال غير صالح";
-
-/* Support Ticket Invalid Input Message */
-"Invalid Input.  Check fields and try again." = "إدخال غير صالح.  تحقق من الحقول وحاول مرة أخرى.";
 
 /* Last Week Button Accessibility Label */
 "Last Week" = "الأسبوع الماضي";
@@ -214,26 +190,14 @@
 /* No comment provided by engineer. */
 "Quiz" = "الاختبار الموجز";
 
-/* Support Ticket Creation Failed */
-"Request Failed!  Check network and try again!" = "فشل الطلب!  تحقق من الشبكة وحاول مرة أخرى!";
-
 /* Not Found Error Message */
 "Resource not found.  Please try again." = "لم يتم العثور على المورد. يرجى إعادة المحاولة.";
-
-/* Select Impact Placeholder */
-"Select Impact" = "تحديد التأثير";
 
 /* Server Error Title */
 "Server Error" = "خطأ في الخادم";
 
 /* No comment provided by engineer. */
 "Settings" = "إعدادات";
-
-/* Status level for issue being reported */
-"Something is broken but I can work around it" = "شيء ما معطل لكن أستطيع تدبير أموري";
-
-/* Title for the subject field */
-"Subject" = "الموضوع";
 
 /* No comment provided by engineer. */
 "Submitted" = "تم الإرسال";
@@ -249,9 +213,6 @@
 
 /* Directions in the admin view */
 "Tap to start viewing Canvas as another person." = "انقر لبدء عرض Canvas كشخص آخر.";
-
-/* Support Ticket Created Successfully */
-"Thanks, your request was received!" = "شكراً، تم استلام طلبك!";
 
 /* Error message */
 "There are no actions for this item" = "لا توجد أي عملية لهذا العنصر";
@@ -274,12 +235,6 @@
 /* Unknown T`hreshold Description */
 "Unknown" = "غير معروف";
 
-/* Default name given a user until we find their real name */
-"Unknown User" = "مستخدم غير معروف";
-
-/* Default user name, the computer-friendly version of their name, until we find their real user name */
-"Unknown User Name" = "اسم المستخدم غير معروف";
-
 /* No comment provided by engineer. */
 "Unread" = "غير مقروء";
 
@@ -289,15 +244,9 @@
 /* Header title of admin view */
 "Welcome!" = "مرحبًا!";
 
-/* Title for field */
-"What can we do better?" = "ماذا يمكننا فعله لتطوير أداءنا؟";
-
 /* Not Authorized Error Message */
 "You are unauthorized to access this information.  Check your user permissions and try again." = "غير مخول لك بالوصول إلى هذه المعلومات. تحقق من أذونات المستخدم وأعد المحاولة.";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "يجب السماح بالإعلامات في الإعدادات لتعيين التذكيرات.";
-
-/* Title for the email field */
-"Your Email" = "بريدك الإلكتروني";
 

@@ -16,11 +16,13 @@
 
 import Foundation
 import Core
+import AVKit
 
-public protocol SubmissionDetailsViewProtocol: class {
+public protocol SubmissionDetailsViewProtocol: ErrorViewController, ColoredNavViewProtocol {
     func reload()
     func reloadNavBar()
-    func embed()
+    func embed(_ controller: UIViewController?)
+    func embedInDrawer(_ controller: UIViewController?)
     var navigationItem: UINavigationItem { get }
 }
 
@@ -34,25 +36,31 @@ class SubmissionDetailsPresenter {
     lazy var submissions: Store<GetSubmission> = {
         let useCase = GetSubmission(context: context, assignmentID: assignmentID, userID: userID)
         return env.subscribe(useCase) { [weak self] in
-            self?.view?.embed()
-            self?.view?.reload()
+            self?.update()
         }
     }()
 
     lazy var assignment: Store<GetAssignment> = {
         let useCase = GetAssignment(courseID: context.id, assignmentID: assignmentID)
         return env.subscribe(useCase) { [weak self] in
-            self?.view?.reload()
-            self?.view?.reloadNavBar()
+            self?.update()
         }
     }()
 
     lazy var course: Store<GetCourseUseCase> = {
         let useCase = GetCourseUseCase(courseID: context.id)
         return env.subscribe(useCase) { [weak self] in
-            self?.view?.reloadNavBar()
+            self?.update()
         }
     }()
+
+    var selectedAttempt: Int = 0
+    var selectedFileID: String?
+    var selectedDrawerTab = Drawer.Tab.comments
+    var currentAssignment: Assignment?
+    var currentFileID: String?
+    var currentSubmission: Submission?
+    var currentDrawerTab: Drawer.Tab?
 
     init(env: AppEnvironment = .shared, view: SubmissionDetailsViewProtocol, context: Context, assignmentID: String, userID: String) {
         self.context = context
@@ -64,22 +72,56 @@ class SubmissionDetailsPresenter {
 
     func viewIsReady() {
         submissions.refresh(force: true)
-        assignment.refresh(force: true)
-        course.refresh(force: false)
+        assignment.refresh()
+        course.refresh()
+        view?.reloadNavBar()
     }
 
-    func submissionFor(attempt: Int) -> Submission? {
-        guard submissions.count > 0 else {
-            return nil
+    func update() {
+        let assignment = self.assignment.first
+        let submission = submissions.filter({ $0.attempt == selectedAttempt }).first ?? submissions.first
+        selectedAttempt = submission?.attempt ?? selectedAttempt
+        if submission?.attachments?.contains(where: { $0.id == selectedFileID }) != true {
+            selectedFileID = submission?.attachments?.sorted(by: File.idCompare).first?.id
         }
-        if attempt == 0 {
-            return submissions.first
+
+        let assignmentChanged = assignment != currentAssignment
+        let fileIDChanged = currentFileID != selectedFileID
+        let submissionChanged = submission != currentSubmission
+        let drawerTabChanged = selectedDrawerTab != currentDrawerTab
+        currentAssignment = assignment
+        currentFileID = selectedFileID
+        currentSubmission = submission
+        currentDrawerTab = selectedDrawerTab
+
+        if drawerTabChanged || (submissionChanged && selectedDrawerTab == .files) {
+            view?.embedInDrawer(viewControllerForDrawer())
         }
-        return submissions.filter({ $0.attempt == attempt }).first
+        if assignmentChanged || fileIDChanged || submissionChanged {
+            view?.embed(viewControllerForContent())
+        }
+        view?.reload()
+        view?.reloadNavBar()
     }
 
-    func viewControllerFor(attempt: Int) -> UIViewController? {
-        guard let submission = self.submissionFor(attempt: attempt), let assignment = assignment.first else {
+    func select(attempt: Int, fileID: String? = nil) {
+        selectedAttempt = attempt
+        selectedFileID = fileID
+        update()
+    }
+
+    func select(fileID: String) {
+        selectedFileID = fileID
+        update()
+    }
+
+    func select(drawerTab: Drawer.Tab?) {
+        selectedDrawerTab = drawerTab ?? .comments
+        view?.embedInDrawer(viewControllerForDrawer())
+    }
+
+    func viewControllerForContent() -> UIViewController? {
+        guard let submission = currentSubmission, let assignment = assignment.first else {
             return nil
         }
 
@@ -92,7 +134,7 @@ class SubmissionDetailsPresenter {
         switch submission.type {
         case .some(.online_quiz):
             if let quizID = assignment.quizID,
-                let url = URL(string: "/courses/\(assignment.courseID)/quizzes/\(quizID)/history?version=\(attempt)&headless=1", relativeTo: env.api.baseURL) {
+                let url = URL(string: "/courses/\(assignment.courseID)/quizzes/\(quizID)/history?version=\(selectedAttempt)&headless=1", relativeTo: env.api.baseURL) {
                 let controller = CoreWebViewController(env: env)
                 controller.webView.accessibilityIdentifier = "SubmissionDetailsPage.onlineQuizWebView"
                 controller.webView.load(URLRequest(url: url))
@@ -104,8 +146,7 @@ class SubmissionDetailsPresenter {
             controller.webView.loadHTMLString(submission.body ?? "")
             return controller
         case .some(.online_upload):
-            // TODO: switch between multiple attachments in the same submission
-            if let attachment = submission.attachments?.first,
+            if let attachment = submission.attachments?.first(where: { $0.id == selectedFileID }),
                 let filename = attachment.filename,
                 let url = attachment.url {
                 return DocViewerViewController.create(
@@ -125,10 +166,40 @@ class SubmissionDetailsPresenter {
             return controller
         case .some(.online_url):
             return UrlSubmissionContentViewController.create(submission: submission)
+        case .some(.media_recording):
+            guard let mediaComment = submission.mediaComment else {
+                return nil
+            }
+            let player = AVPlayer(url: mediaComment.url)
+            let controller = AVPlayerViewController()
+            controller.player = player
+            controller.view.accessibilityIdentifier = "SubmissionDetailsPage.mediaPlayer"
+            return controller
         default:
             return nil
         }
         return nil
     }
 
+    func viewControllerForDrawer() -> UIViewController? {
+        guard let submission = currentSubmission else { return nil }
+        switch (selectedDrawerTab) {
+        case .comments:
+            return SubmissionCommentsViewController.create(
+                env: env,
+                context: context,
+                assignmentID: assignmentID,
+                userID: userID,
+                submissionID: submission.id,
+                submissionPresenter: self
+            )
+        case .files:
+            return SubmissionFilesViewController.create(
+                files: submission.attachments?.sorted(by: File.idCompare),
+                presenter: self
+            )
+        case .rubric:
+            return nil
+        }
+    }
 }

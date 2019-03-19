@@ -348,28 +348,31 @@
     "message": "No se pudo iniciar la grabación"
   },
   "count_plural_0_0_students_one_student_other_studen_801f8933": {
-    "message": "{ count, plural,     =0 {0 alumnos}    one {# alumno}  other {# alumnos}}"
+    "message": "{ count, plural,\n     =0 {0 alumnos}\n    one {# alumno}\n  other {# alumnos}\n}"
   },
   "count_plural_one_like_other_likes_338617e5": {
     "message": "{ count, plural,\n    one {# me gusta}\n  other {# me gusta}\n}"
   },
   "count_plural_one_needs_grading_other_need_grading_45cd88a4": {
-    "message": "{ count, plural,    one {Necesita calificación} other {necesitan ser calificados}}"
+    "message": "{ count, plural,\n    one {Necesita calificación}\n other {necesitan ser calificados}\n}"
   },
   "count_plural_one_needs_grading_other_need_grading_7eba188e": {
-    "message": "{ count, plural,    one {# necesita calificación} other {# necesitan calificación}}"
+    "message": "{ count, plural,\n    one {# necesita calificación}\n other {# necesitan calificación}\n}"
   },
   "count_plural_one_pt_other_pts_c5a3bced": {
-    "message": "{ count, plural,    one {# pto.} other {# ptos.}}"
+    "message": "{ count, plural,\n    one {# pto.}\n other {# ptos.}\n}",
+    "description": "Number of points possible"
   },
   "count_plural_one_question_other_questions_309aafa": {
-    "message": "{ count, plural,    one {# pregunta} other {# preguntas}}"
+    "message": "{ count, plural,\n    one {# pregunta}\n other {# preguntas}\n}"
   },
   "count_plural_one_reply_other_replies_dbf1832a": {
-    "message": "{ count, plural,    one {# respuesta} other {# respuestas}}"
+    "message": "{ count, plural,\n    one {# respuesta}\n other {# respuestas}\n}",
+    "description": "Number of replies"
   },
   "count_plural_one_there_is_assignee_without_a_grade_15facb89": {
-    "message": "{ count, plural,    one {Hay # asignado sin una calificación.} other {Hay # asignados sin calificaciones.}}"
+    "message": "{ count, plural,\n    one {Hay # asignado sin una calificación.}\n other {Hay # asignados sin calificaciones.}\n}",
+    "description": "Number of assignees without grades."
   },
   "count_students_4ae780ca": {
     "message": "{ count } alumnos"
@@ -858,7 +861,7 @@
     "message": "Minutos"
   },
   "minutes_plural_one_minute_other_minutes_e2adacfe": {
-    "message": "{ minutes, plural,    one {# minuto} other {# minutos}}"
+    "message": "{ minutes, plural,\n    one {# minuto}\n other {# minutos}\n}"
   },
   "missing_1a256b3b": {
     "message": "Falta"
@@ -885,7 +888,7 @@
     "message": "Nombre"
   },
   "name_count_plural_one_other_other_others_f47e51c3": {
-    "message": "{ name } + { count, plural,    one {# otro}  other {# otros}}"
+    "message": "{ name } + { count, plural,\n    one {# otro}\n  other {# otros}\n}"
   },
   "names_count_more_643849d3": {
     "message": "{ names } + { count } más"
@@ -993,7 +996,7 @@
     "message": "Nada más que hacer."
   },
   "number_plural_one_minute_other_minutes_648ec0e1": {
-    "message": "{ number, plural,    one {# Minuto} other {# Minutos}}"
+    "message": "{ number, plural,\n    one {# Minuto}\n other {# Minutos}\n}"
   },
   "observer_248a192e": {
     "message": "Observador"
@@ -1269,7 +1272,7 @@
     "message": "Buscando..."
   },
   "seconds_plural_one_second_other_seconds_d33cf6e3": {
-    "message": "{ seconds, plural,    one {# segundo} other {# segundos}}"
+    "message": "{ seconds, plural,\n    one {# segundo}\n other {# segundos}\n}"
   },
   "section_sectionname_a455be11": {
     "message": "Sección: { sectionName }"
@@ -1552,6 +1555,9 @@
   },
   "this_group_does_not_have_a_submission_for_this_ass_ca275999": {
     "message": "Este grupo no ha realizado ninguna presentación para esta tarea."
+  },
+  "this_is_a_media_comment_2e395230": {
+    "message": "Este es un comentario de medios"
   },
   "this_is_your_personal_color_setting_only_you_will__e47dba70": {
     "message": "Esta es su configuración de color personal. Solo usted verá este color para el curso."

@@ -23,15 +23,17 @@ class UITabBarExtensionsTests: XCTestCase {
         let tabBar = UITabBar()
         tabBar.items = [ UITabBarItem(title: "", image: nil, selectedImage: nil) ]
         tabBar.useGlobalNavStyle()
-        XCTAssertNotNil(tabBar.selectionIndicatorImage)
-        XCTAssertEqual(tabBar.tintColor, Brand.shared.navIconFillActive)
-        XCTAssertEqual(tabBar.barTintColor, Brand.shared.navBackground)
-        XCTAssertEqual(tabBar.unselectedItemTintColor, Brand.shared.navIconFill)
-        XCTAssertEqual(tabBar.items?.first?.badgeColor, Brand.shared.navBadgeBackground)
-        XCTAssertEqual(tabBar.barStyle, .black)
-
-        let shiny = Brand(response: APIBrandVariables.make([ "ic-brand-global-nav-bgd": "#ffffff" ]))
-        tabBar.useGlobalNavStyle(brand: shiny)
+        XCTAssertEqual(tabBar.tintColor, Brand.shared.navBackground)
+        XCTAssertEqual(tabBar.barTintColor, UIColor.named(.backgroundLightest))
+        XCTAssertEqual(tabBar.unselectedItemTintColor, UIColor.named(.textDark))
+        XCTAssertEqual(tabBar.items?.first?.badgeColor, UIColor.named(.crimson))
         XCTAssertEqual(tabBar.barStyle, .default)
+
+        let shiny = Brand(response: APIBrandVariables.make([
+            "ic-brand-global-nav-bgd": "#ffffff",
+            "ic-brand-global-nav-menu-item__text-color": "#333",
+        ]))
+        tabBar.useGlobalNavStyle(brand: shiny)
+        XCTAssertEqual(tabBar.tintColor, shiny.navTextColor)
     }
 }

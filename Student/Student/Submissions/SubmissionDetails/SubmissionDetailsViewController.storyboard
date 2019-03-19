@@ -22,8 +22,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OAc-d9-7i7">
-                                <rect key="frame" x="0.0" y="39" width="375" height="564"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OAc-d9-7i7">
+                                <rect key="frame" x="0.0" y="39" width="375" height="514"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Iq-2N-D4G" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
@@ -105,6 +105,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="contentView" destination="OAc-d9-7i7" id="xfM-xF-980"/>
+                        <outlet property="drawer" destination="ac8-45-rao" id="r8P-vQ-czH"/>
                         <outlet property="emptyView" destination="pNE-3D-zl2" id="WQS-H9-pBe"/>
                         <outlet property="picker" destination="z8l-gf-K01" id="K9b-dG-QGh"/>
                         <outlet property="pickerButton" destination="9Iq-2N-D4G" id="9io-yg-ETE"/>

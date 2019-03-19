@@ -18,6 +18,10 @@ import Foundation
 import CoreData
 
 final public class File: NSManagedObject {
+    public static var idCompare: (File, File) -> Bool = {
+        return $0.id ?? "" < $1.id ?? ""
+    }
+
     @NSManaged public var id: String?
     @NSManaged public var uuid: String?
     @NSManaged public var folderID: String?
@@ -134,5 +138,20 @@ extension File: WriteableModel {
         let model: File = client.fetch(predicate).first ?? client.insert()
         try model.update(fromAPIModel: item)
         return model
+    }
+
+    public var icon: UIImage? {
+        switch mimeClass {
+        case "audio":
+            return UIImage.icon(.audio)
+        case "video":
+            return UIImage.icon(.video)
+        case "pdf":
+            return UIImage.icon(.pdf)
+        case "doc":
+            return UIImage.icon(.document)
+        default:
+            return UIImage.icon(.document)
+        }
     }
 }

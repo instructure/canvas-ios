@@ -194,7 +194,8 @@ extension Router {
 
     func profilePageHandler() -> RouteHandler {
         return { _ in
-            return ProfileViewController.create()
+            let controller = ProfileViewController.create(presenter: ProfilePresenter())
+            return controller
         }
     }
 
@@ -401,7 +402,7 @@ let router = Core.Router(routes: [
         let vc = Parent.Router.sharedInstance.matchURL(Router.sharedInstance.settingsRoute())
         return vc
     },
-    Core.RouteHandler(.support, name: "support") { _, params in
+    Core.RouteHandler(.sendSupport(forType: ":type"), name: "support") { _, params in
         guard let type = params["type"] else {
             return nil
         }
@@ -415,7 +416,7 @@ let router = Core.Router(routes: [
         }
         return UINavigationController(rootViewController: controller)
     },
-    Core.RouteHandler(.termsOfService, name: "terms_of_service") { _, params in
+    Core.RouteHandler(.termsOfService(forAccount: ":accountID"), name: "terms_of_service") { _, params in
         guard let accountID = params["accountID"] else {
             return nil
         }

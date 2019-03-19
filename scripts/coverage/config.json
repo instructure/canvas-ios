@@ -3,9 +3,12 @@
     "AppDelegate",
     "Cell.\\w+$",
     "Controller.\\w+$",
+    "Transitioning.\\w+$",
+    "View.\\w+$",
     "\\/Views\\/",
     "Core\/ShareExtension\/",
     "Core\/Use Cases\/SubmitFileSubmission",
+    "OperationQueueExtensions.swift",
     "Pods\\/",
     "Student\/Courses\/CourseList\/",
     "Student\/Dashboard\/"

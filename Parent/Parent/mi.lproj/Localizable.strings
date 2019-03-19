@@ -64,17 +64,11 @@
 /* Percent value is under 0 */
 "Cannot use percent that is less than 0" = "Kāore e taea te whakamahi te ōrau e he iti iho i te 0";
 
-/* Cancel the question/suggestion form */
-"Casual question or suggestion" = "pātai tūao whakāro puaki rānei ";
-
 /* Empty Alerts Text */
 "Caught up on Alerts" = "Mau ake i runga i Matohi";
 
 /* No comment provided by engineer. */
 "Choose a student" = "Tīpako he ākonga";
-
-/* title for status selection field */
-"Choose One" = "Kōwhiria Kotahi";
 
 /* Close Button Title */
 "Close" = "Katia";
@@ -94,9 +88,6 @@
 /* No comment provided by engineer. */
 "Current student: %@, tap to switch students" = "Ākonga o ināianei: %@, pātō ki te huri ngā ākonga";
 
-/* Title for field */
-"Describe your problem" = "Whakāhuatia tō raruraru";
-
 /* No comment provided by engineer. */
 "Discussion" = "Kōrerorero";
 
@@ -115,23 +106,11 @@
 /* No comment provided by engineer. */
 "Excused" = "Whakawātea";
 
-/* Status level for issue being reported */
-"Extremely critical emergency" = "whawhati tata tino nui";
-
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "e kore e taea te whakataunga teitei kōeke e raro atu kōeke whakatuanga iti";
 
 /* High Course Grade too Low */
 "High course grade cannot be lower than low course grade" = "e kore e taea te kōeke akoranga tiketike e raro atu kōeke akoranga iti";
-
-/* Status level for issue being reported */
-"I can't get things done until fixed" = "Kaore e taea te  whakamahi e ahau kiia oti rānō";
-
-/* Status level for issue being reported */
-"I need help but it's not urgent" = "E hiahia āwhina ana ahau ēngari kaore kōhukihuki";
-
-/* Impact Title */
-"Impact:" = "pānga:";
 
 /* No comment provided by engineer. */
 "In-Class" = "I roto i te-Akomanga";
@@ -141,9 +120,6 @@
 
 /* Title for an alert view */
 "Invalid Input" = "Tāuru muhu";
-
-/* Support Ticket Invalid Input Message */
-"Invalid Input.  Check fields and try again." = "Whakauru koremana.  Tirohia ngā whīra me te ngana anō.";
 
 /* Last Week Button Accessibility Label */
 "Last Week" = "Wiki Whakamutunga";
@@ -214,26 +190,14 @@
 /* No comment provided by engineer. */
 "Quiz" = "Quiz";
 
-/* Support Ticket Creation Failed */
-"Request Failed!  Check network and try again!" = "I rāhua te tono!  Tirohia te whatunga ka ngana anō!";
-
 /* Not Found Error Message */
 "Resource not found.  Please try again." = "Rauemi kore i kitea. Tēnā koa ngana anō.";
-
-/* Select Impact Placeholder */
-"Select Impact" = "Tīpako Pānga";
 
 /* Server Error Title */
 "Server Error" = "Hapa Tūmau";
 
 /* No comment provided by engineer. */
 "Settings" = "Ngā Tautuhinga";
-
-/* Status level for issue being reported */
-"Something is broken but I can work around it" = "Kua pakaru tētahi mea ēngari ka taea e ahau te mahi a tawhio noa ";
-
-/* Title for the subject field */
-"Subject" = "Kaupapa";
 
 /* No comment provided by engineer. */
 "Submitted" = "Kua tukuna";
@@ -249,9 +213,6 @@
 
 /* Directions in the admin view */
 "Tap to start viewing Canvas as another person." = "Patopato ki te tīmata ki te tiro Canvas he tangata atu kē.";
-
-/* Support Ticket Created Successfully */
-"Thanks, your request was received!" = "Ngā Mihi, kua tae mai tō tono!";
 
 /* Error message */
 "There are no actions for this item" = "Kāore he mahi hoki mo tēnei tūemi";
@@ -274,12 +235,6 @@
 /* Unknown T`hreshold Description */
 "Unknown" = "Kaore e mōhiotia";
 
-/* Default name given a user until we find their real name */
-"Unknown User" = "Kaiwhakamahi kaore e mōhiotia";
-
-/* Default user name, the computer-friendly version of their name, until we find their real user name */
-"Unknown User Name" = "Ingoa Kaiwhakamahi tē mōhiotia";
-
 /* No comment provided by engineer. */
 "Unread" = "kia pānuitia";
 
@@ -289,15 +244,9 @@
 /* Header title of admin view */
 "Welcome!" = "Nau Mai!";
 
-/* Title for field */
-"What can we do better?" = "Me pēhea e whakapiki ake ai te mahi e mātou";
-
 /* Not Authorized Error Message */
 "You are unauthorized to access this information.  Check your user permissions and try again." = "Kaore koe e manahia ki te uru i tēnei mōhiohio. Tirohia tō whakāetanga kaiwhakamahi, me te ngana anō.";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Me tukua e koe ngā whakamōhiotanga i roto i ngā Tautuhinga ki te whakatau ngā whakamaharatanga.";
-
-/* Title for the email field */
-"Your Email" = "Tō īmēra";
 

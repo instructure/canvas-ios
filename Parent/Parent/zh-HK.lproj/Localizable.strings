@@ -64,17 +64,11 @@
 /* Percent value is under 0 */
 "Cannot use percent that is less than 0" = "無法使用小於0的百分比數字";
 
-/* Cancel the question/suggestion form */
-"Casual question or suggestion" = "隨意的問題或建議";
-
 /* Empty Alerts Text */
 "Caught up on Alerts" = "趕上提示的進度";
 
 /* No comment provided by engineer. */
 "Choose a student" = "選取一個學生";
-
-/* title for status selection field */
-"Choose One" = "選擇一個";
 
 /* Close Button Title */
 "Close" = "關閉";
@@ -94,9 +88,6 @@
 /* No comment provided by engineer. */
 "Current student: %@, tap to switch students" = "目前的學生：%@，點選以轉換學生";
 
-/* Title for field */
-"Describe your problem" = "描述您的問題";
-
 /* No comment provided by engineer. */
 "Discussion" = "討論";
 
@@ -115,23 +106,11 @@
 /* No comment provided by engineer. */
 "Excused" = "已豁免";
 
-/* Status level for issue being reported */
-"Extremely critical emergency" = "萬分危急的緊急情況";
-
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "高的任務評分不可低於低的任務評分";
 
 /* High Course Grade too Low */
 "High course grade cannot be lower than low course grade" = "高的課程評分不可低於低的課程評分";
-
-/* Status level for issue being reported */
-"I can't get things done until fixed" = "在問題得到修復之前我無法完成工作";
-
-/* Status level for issue being reported */
-"I need help but it's not urgent" = "我需要支援但情況並不緊急";
-
-/* Impact Title */
-"Impact:" = "影響：";
 
 /* No comment provided by engineer. */
 "In-Class" = "課堂內的";
@@ -141,9 +120,6 @@
 
 /* Title for an alert view */
 "Invalid Input" = "無效的導入";
-
-/* Support Ticket Invalid Input Message */
-"Invalid Input.  Check fields and try again." = "無效的輸入。請檢查欄位並重試。";
 
 /* Last Week Button Accessibility Label */
 "Last Week" = "上週";
@@ -214,26 +190,14 @@
 /* No comment provided by engineer. */
 "Quiz" = "測驗";
 
-/* Support Ticket Creation Failed */
-"Request Failed!  Check network and try again!" = "請求失敗！請檢查網路並重試！";
-
 /* Not Found Error Message */
 "Resource not found.  Please try again." = "資源未找到。請重試。";
-
-/* Select Impact Placeholder */
-"Select Impact" = "選擇影響的種類";
 
 /* Server Error Title */
 "Server Error" = "伺服器錯誤";
 
 /* No comment provided by engineer. */
 "Settings" = "設定";
-
-/* Status level for issue being reported */
-"Something is broken but I can work around it" = "出現某些故障但我能解決它";
-
-/* Title for the subject field */
-"Subject" = "主題";
 
 /* No comment provided by engineer. */
 "Submitted" = "已提交";
@@ -249,9 +213,6 @@
 
 /* Directions in the admin view */
 "Tap to start viewing Canvas as another person." = "點選以開始作為另一個人檢視 Canvas。";
-
-/* Support Ticket Created Successfully */
-"Thanks, your request was received!" = "謝謝，您的請求已經被接收！";
 
 /* Error message */
 "There are no actions for this item" = "無法對此項目進行操作";
@@ -274,12 +235,6 @@
 /* Unknown T`hreshold Description */
 "Unknown" = "未知";
 
-/* Default name given a user until we find their real name */
-"Unknown User" = "未知使用者";
-
-/* Default user name, the computer-friendly version of their name, until we find their real user name */
-"Unknown User Name" = "未知使用者名稱";
-
 /* No comment provided by engineer. */
 "Unread" = "未讀";
 
@@ -289,15 +244,9 @@
 /* Header title of admin view */
 "Welcome!" = "歡迎！";
 
-/* Title for field */
-"What can we do better?" = "我們有何可改進之處？";
-
 /* Not Authorized Error Message */
 "You are unauthorized to access this information.  Check your user permissions and try again." = "您未獲得存取此資訊的權限。請核對您的使用者許可並重試。";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "您必須允許設定內的通知，方可設定提醒。";
-
-/* Title for the email field */
-"Your Email" = "您的電子郵件";
 

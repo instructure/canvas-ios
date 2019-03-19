@@ -23,6 +23,6 @@ class UITableViewExtensionsTests: XCTestCase {
     func testDequeue() {
         let view = UITableView(frame: .zero)
         view.register(Cell.self, forCellReuseIdentifier: "Cell")
-        XCTAssertNoThrow(view.dequeue(Cell.self, for: IndexPath(row: 0, section: 0)))
+        XCTAssertNoThrow(view.dequeue(for: IndexPath(row: 0, section: 0)) as Cell)
     }
 }

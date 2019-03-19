@@ -348,28 +348,31 @@
     "message": "Kunne ikke starte opptaket"
   },
   "count_plural_0_0_students_one_student_other_studen_801f8933": {
-    "message": "{ count, plural,     =0 {0 studenter}    one {# student}  other {# studenter}}"
+    "message": "{ count, plural,\n     =0 {0 studenter}\n    one {# student}\n  other {# studenter}\n}"
   },
   "count_plural_one_like_other_likes_338617e5": {
     "message": "{ count, plural,\n    one {# liker}\n  other {# liker}\n}"
   },
   "count_plural_one_needs_grading_other_need_grading_45cd88a4": {
-    "message": "{ count, plural,    one {Trenger karakter} other {Trenger karaktersetting}}"
+    "message": "{ count, plural,\n    one {Trenger karakter}\n other {Trenger karaktersetting}\n}"
   },
   "count_plural_one_needs_grading_other_need_grading_7eba188e": {
-    "message": "{ count, plural,    one {# Trenger karaktersetting} other {# Trenger karaktersetting}}"
+    "message": "{ count, plural,\n    one {# Trenger karaktersetting}\n other {# Trenger karaktersetting}\n}"
   },
   "count_plural_one_pt_other_pts_c5a3bced": {
-    "message": "{ count, plural,    one {# pt} other {# poeng/p}}"
+    "message": "{ count, plural,\n    one {# pt}\n other {# poeng/p}\n}",
+    "description": "Number of points possible"
   },
   "count_plural_one_question_other_questions_309aafa": {
-    "message": "{ count, plural,    one {# Spørsmål} other {# Spørsmål}}"
+    "message": "{ count, plural,\n    one {# Spørsmål}\n other {# Spørsmål}\n}"
   },
   "count_plural_one_reply_other_replies_dbf1832a": {
-    "message": "{ count, plural,    one {# Svar} other {# Svar}}"
+    "message": "{ count, plural,\n    one {# Svar}\n other {# Svar}\n}",
+    "description": "Number of replies"
   },
   "count_plural_one_there_is_assignee_without_a_grade_15facb89": {
-    "message": "{ count, plural,    one {Det er # oppgavetaker uten karakter.} other {Det er # oppgavetakere uten karakterer.}}"
+    "message": "{ count, plural,\n    one {Det er # oppgavetaker uten karakter.}\n other {Det er # oppgavetakere uten karakterer.}\n}",
+    "description": "Number of assignees without grades."
   },
   "count_students_4ae780ca": {
     "message": "{ count } studenter"
@@ -858,7 +861,7 @@
     "message": "Minutter"
   },
   "minutes_plural_one_minute_other_minutes_e2adacfe": {
-    "message": "{ minutes, plural,    one {# minutt} other {# minutter}}"
+    "message": "{ minutes, plural,\n    one {# minutt}\n other {# minutter}\n}"
   },
   "missing_1a256b3b": {
     "message": "Mangler"
@@ -885,7 +888,7 @@
     "message": "Navn"
   },
   "name_count_plural_one_other_other_others_f47e51c3": {
-    "message": "{ name } + { count, plural,    one {# annen}  other {# andre}}"
+    "message": "{ name } + { count, plural,\n    one {# annen}\n  other {# andre}\n}"
   },
   "names_count_more_643849d3": {
     "message": "{ names } + { count } mer"
@@ -993,7 +996,7 @@
     "message": "Ingenting mer å gjøre."
   },
   "number_plural_one_minute_other_minutes_648ec0e1": {
-    "message": "{ number, plural,    one {# Minutt} other {# Minutter}}"
+    "message": "{ number, plural,\n    one {# Minutt}\n other {# Minutter}\n}"
   },
   "observer_248a192e": {
     "message": "Observatør"
@@ -1269,7 +1272,7 @@
     "message": "Søker..."
   },
   "seconds_plural_one_second_other_seconds_d33cf6e3": {
-    "message": "{ seconds, plural,    one {# sekund} other {# sekunder}}"
+    "message": "{ seconds, plural,\n    one {# sekund}\n other {# sekunder}\n}"
   },
   "section_sectionname_a455be11": {
     "message": "Avsnitt: { sectionName }"
@@ -1552,6 +1555,9 @@
   },
   "this_group_does_not_have_a_submission_for_this_ass_ca275999": {
     "message": "Denne gruppen har ikke en innlevering for denne oppgaven."
+  },
+  "this_is_a_media_comment_2e395230": {
+    "message": "Dette er en mediekommentar"
   },
   "this_is_your_personal_color_setting_only_you_will__e47dba70": {
     "message": "Dette er din personlige fargeinnstilling. Bare du vil se denne fargen for emnet."

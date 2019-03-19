@@ -32,6 +32,7 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zQw-tB-yGY" userLabel="Gripper">
                             <rect key="frame" x="188.5" y="4" width="36" height="4"/>
                             <color key="backgroundColor" name="backgroundMedium"/>
+                            <accessibility key="accessibilityConfiguration" identifier="SubmissionDetailsElement.drawerGripper"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="4" id="tcd-LV-eYZ"/>
                                 <constraint firstAttribute="width" constant="36" id="woM-iG-Hxv"/>

@@ -27,7 +27,7 @@
     "message": "Kontot har inga användarvillkor"
   },
   "act_as_is_essentially_logging_in_as_this_user_with_7870ece0": {
-    "message": "\"Act as\" loggar huvudsakligen in som den här användaren utan lösenord.Du kommer att kunna vidta åtgärder som om du var den här användaren, och från andra användares synpunkter som om den här användaren utförde dem.I historik-loggar registreras dock att du var den som utförde åtgärderna på den här användarens vägnar."
+    "message": "\"Att uppträda som\", loggar huvudsakligen in som den här användaren utan lösenord. Du kommer att kunna vidta åtgärder som om du var den här användaren, och från andra användares synpunkter som om den här användaren utförde dem. I historik-loggar registreras dock att du var den som utförde åtgärderna på den här användarens vägnar."
   },
   "act_as_user_d7ef0e48": {
     "message": "Agera som användare"
@@ -63,7 +63,7 @@
     "message": "Lägg till fil"
   },
   "add_item_75b67d07": {
-    "message": "Lägg till föremål"
+    "message": "Lägg till objekt"
   },
   "add_media_cfa37b54": {
     "message": "Lägg till media"
@@ -96,7 +96,7 @@
     "message": "Alla betygsperioder"
   },
   "all_in_e5ddaee0": {
-    "message": "All in"
+    "message": "Alla i"
   },
   "all_people_16d90b41": {
     "message": "Alla människor"
@@ -348,28 +348,31 @@
     "message": "Kunde inte spelas in"
   },
   "count_plural_0_0_students_one_student_other_studen_801f8933": {
-    "message": "{ count, plural,     =0 {0 studenter}    one {# student}  other {# students}}"
+    "message": "{ count, plural,\n     =0 {0 studenter}\n    one {# student}\n  other {# students}\n}"
   },
   "count_plural_one_like_other_likes_338617e5": {
     "message": "{ count, plural,\n    one {# gilla-markering}\n  other {# gilla-markeringar}\n}"
   },
   "count_plural_one_needs_grading_other_need_grading_45cd88a4": {
-    "message": "{ count, plural,    one {Behöver betygsättning} other {Behöver betygsättas}}"
+    "message": "{ count, plural,\n    one {Behöver betygsättning}\n other {Behöver betygsättas}\n}"
   },
   "count_plural_one_needs_grading_other_need_grading_7eba188e": {
-    "message": "{ count, plural,    one {# Behöver betygsättas} other {# Behöver betygsättas}}"
+    "message": "{ count, plural,\n    one {# Behöver betygsättas}\n other {# Behöver betygsättas}\n}"
   },
   "count_plural_one_pt_other_pts_c5a3bced": {
-    "message": "{ count, plural,    one {# poäng} other {# poäng}}"
+    "message": "{ count, plural,\n    one {# poäng}\n other {# poäng}\n}",
+    "description": "Number of points possible"
   },
   "count_plural_one_question_other_questions_309aafa": {
-    "message": "{ count, plural,    one {# Fråga} other {# Frågor}}"
+    "message": "{ count, plural,\n    one {# Fråga}\n other {# Frågor}\n}"
   },
   "count_plural_one_reply_other_replies_dbf1832a": {
-    "message": "{ count, plural,    one {# Svar} other {# Svar}}"
+    "message": "{ count, plural,\n    one {# Svar}\n other {# Svar}\n}",
+    "description": "Number of replies"
   },
   "count_plural_one_there_is_assignee_without_a_grade_15facb89": {
-    "message": "{ count, plural,    one {Det finns en # sökande utan betyg.} other {Det finns # sökanden utan poäng.}}"
+    "message": "{ count, plural,\n    one {Det finns en # sökande utan betyg.}\n other {Det finns # sökanden utan poäng.}\n}",
+    "description": "Number of assignees without grades."
   },
   "count_students_4ae780ca": {
     "message": "{ count } studenter"
@@ -858,7 +861,7 @@
     "message": "Minuter"
   },
   "minutes_plural_one_minute_other_minutes_e2adacfe": {
-    "message": "{ minutes, plural,    one {# minut} other {# minuter}}"
+    "message": "{ minutes, plural,\n    one {# minut}\n other {# minuter}\n}"
   },
   "missing_1a256b3b": {
     "message": "Saknas"
@@ -885,7 +888,7 @@
     "message": "Namn"
   },
   "name_count_plural_one_other_other_others_f47e51c3": {
-    "message": "{ name } + { count, plural,    one {# övriga}  other {# övriga}}"
+    "message": "{ name } + { count, plural,\n    one {# övriga}\n  other {# övriga}\n}"
   },
   "names_count_more_643849d3": {
     "message": "{ names } + { count } mer"
@@ -993,7 +996,7 @@
     "message": "Ingenting mer att göra"
   },
   "number_plural_one_minute_other_minutes_648ec0e1": {
-    "message": "{ number, plural,    one {# Minut} other {# Minuter}}"
+    "message": "{ number, plural,\n    one {# Minut}\n other {# Minuter}\n}"
   },
   "observer_248a192e": {
     "message": "Observatör"
@@ -1071,7 +1074,7 @@
     "message": "Sidornas framsida"
   },
   "pass_8abee039": {
-    "message": "Pass"
+    "message": "Godkänd"
   },
   "past_enrollments_a846da48": {
     "message": "Tidigare registreringar"
@@ -1269,7 +1272,7 @@
     "message": "Söker..."
   },
   "seconds_plural_one_second_other_seconds_d33cf6e3": {
-    "message": "{ seconds, plural,    one {# sekund} other {# sekunder}}"
+    "message": "{ seconds, plural,\n    one {# sekund}\n other {# sekunder}\n}"
   },
   "section_sectionname_a455be11": {
     "message": "Sektion: { sectionName }"
@@ -1524,7 +1527,7 @@
     "message": "Det uppstod ett oväntat fel."
   },
   "there_was_an_unexpected_error_please_try_again_5e08774e": {
-    "message": "Det uppstod ett oväntat fel Vänligen försök igen."
+    "message": "Det uppstod ett oväntat fel. Vänligen försök igen."
   },
   "this_action_can_not_be_undone_eb8a297b": {
     "message": "Åtgärden kan inte göras ogjord"
@@ -1552,6 +1555,9 @@
   },
   "this_group_does_not_have_a_submission_for_this_ass_ca275999": {
     "message": "Denna grupp har ingen inlämning för denna uppgift."
+  },
+  "this_is_a_media_comment_2e395230": {
+    "message": "Detta är en mediekommentar"
   },
   "this_is_your_personal_color_setting_only_you_will__e47dba70": {
     "message": "Detta är din personliga färg-inställning. Endast du kommer att se denna färgen för kursen. "

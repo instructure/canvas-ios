@@ -224,9 +224,26 @@ public struct SeedClient {
         as teacher: AuthUser,
         grade: String
     ) -> APISubmission {
-        let body = PutSubmissionGradeRequest.Body(submission: PutSubmissionGradeRequest.Body.Submission(posted_grade: grade))
-        let request = PutSubmissionGradeRequest(courseID: course.id, assignmentID: assignment.id.value, userID: userID, body: body)
+        let request = PutSubmissionGradeRequest(courseID: course.id, assignmentID: assignment.id.value, userID: userID, body: .init(
+            comment: nil,
+            submission: .init(posted_grade: grade)
+        ))
         return makeRequest(request, with: teacher.token)
+    }
+
+    @discardableResult
+    public func commentOnSumbission(
+        course: APICourse,
+        assignment: APIAssignment,
+        userID: String,
+        as teacher: AuthUser,
+        comment: String
+    ) -> APISubmissionComment {
+        let request = PutSubmissionGradeRequest(courseID: course.id, assignmentID: assignment.id.value, userID: userID, body: .init(
+            comment: .init(text_comment: comment),
+            submission: nil
+        ))
+        return makeRequest(request, with: teacher.token).submission_comments!.last!
     }
 
     @discardableResult
@@ -245,12 +262,26 @@ public struct SeedClient {
     @discardableResult
     public func uploadFile(
         url: URL,
+        named name: String? = nil,
         for assignment: APIAssignment,
         as user: AuthUser
     ) -> APIFile {
         let target = makeRequest(PostFileUploadTargetRequest(
            context: .submission(courseID: assignment.course_id.value, assignmentID: assignment.id.value),
-           body: .init(name: url.lastPathComponent, on_duplicate: .rename, parent_folder_id: nil)
+           body: .init(name: name ?? url.lastPathComponent, on_duplicate: .rename, parent_folder_id: nil)
+        ), with: user.token)
+        return makeRequest(PostFileUploadRequest(fileURL: url, target: target), with: user.token)
+    }
+
+    @discardableResult
+    public func uploadFile(
+        url: URL,
+        named name: String? = nil,
+        as user: AuthUser
+    ) -> APIFile {
+        let target = makeRequest(PostFileUploadTargetRequest(
+            context: .myFiles,
+            body: .init(name: name ?? url.lastPathComponent, on_duplicate: .rename, parent_folder_id: nil)
         ), with: user.token)
         return makeRequest(PostFileUploadRequest(fileURL: url, target: target), with: user.token)
     }

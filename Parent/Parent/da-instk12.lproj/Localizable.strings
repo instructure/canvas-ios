@@ -64,17 +64,11 @@
 /* Percent value is under 0 */
 "Cannot use percent that is less than 0" = "Kan ikke benytte en procent, der er mindre end 0";
 
-/* Cancel the question/suggestion form */
-"Casual question or suggestion" = "Uformelt spørgsmål eller forslag";
-
 /* Empty Alerts Text */
 "Caught up on Alerts" = "Ajourført med alarmer";
 
 /* No comment provided by engineer. */
 "Choose a student" = "Vælg en elev";
-
-/* title for status selection field */
-"Choose One" = "Vælg en";
 
 /* Close Button Title */
 "Close" = "Luk";
@@ -94,9 +88,6 @@
 /* No comment provided by engineer. */
 "Current student: %@, tap to switch students" = "Nuværende elev: %@, tryk for at skifte elev";
 
-/* Title for field */
-"Describe your problem" = "Beskriv dit problem";
-
 /* No comment provided by engineer. */
 "Discussion" = "Diskussion";
 
@@ -115,23 +106,11 @@
 /* No comment provided by engineer. */
 "Excused" = "Undskyldt";
 
-/* Status level for issue being reported */
-"Extremely critical emergency" = "Ekstrem kritisk nødsituation";
-
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "Høj opgavevurdering kan ikke være lavere end lav opgavevurdering";
 
 /* High Course Grade too Low */
 "High course grade cannot be lower than low course grade" = "Høj fagvurdering kan ikke være lavere end lav fagvurdering";
-
-/* Status level for issue being reported */
-"I can't get things done until fixed" = "Jeg kan ikke udføre ting, før det er fikset";
-
-/* Status level for issue being reported */
-"I need help but it's not urgent" = "Jeg behøver hjælp, men det er ikke en hastesag";
-
-/* Impact Title */
-"Impact:" = "Indvirkning:";
 
 /* No comment provided by engineer. */
 "In-Class" = "I klasse";
@@ -141,9 +120,6 @@
 
 /* Title for an alert view */
 "Invalid Input" = "Ugyldigt input";
-
-/* Support Ticket Invalid Input Message */
-"Invalid Input.  Check fields and try again." = "Ugyldigt input.  Tjek netværk og prøv igen.";
 
 /* Last Week Button Accessibility Label */
 "Last Week" = "Sidste uge";
@@ -214,26 +190,14 @@
 /* No comment provided by engineer. */
 "Quiz" = "Quiz";
 
-/* Support Ticket Creation Failed */
-"Request Failed!  Check network and try again!" = "Forespørgsel mislykkedes!  Tjek netværk og prøv igen!";
-
 /* Not Found Error Message */
 "Resource not found.  Please try again." = "Resurse ikke fundet.  Prøv venligst igen.";
-
-/* Select Impact Placeholder */
-"Select Impact" = "Vælg virkning";
 
 /* Server Error Title */
 "Server Error" = "Server fejl";
 
 /* No comment provided by engineer. */
 "Settings" = "Indstillinger";
-
-/* Status level for issue being reported */
-"Something is broken but I can work around it" = "Noget virker ikke, men jeg kan klare mig";
-
-/* Title for the subject field */
-"Subject" = "Fag";
 
 /* No comment provided by engineer. */
 "Submitted" = "Afleveret";
@@ -249,9 +213,6 @@
 
 /* Directions in the admin view */
 "Tap to start viewing Canvas as another person." = "Tryk for at begynde at se Canvas som en anden person.";
-
-/* Support Ticket Created Successfully */
-"Thanks, your request was received!" = "Tak, din anmodning er modtaget!";
 
 /* Error message */
 "There are no actions for this item" = "Der er ingen handlinger for dette element";
@@ -274,12 +235,6 @@
 /* Unknown T`hreshold Description */
 "Unknown" = "Ukendt";
 
-/* Default name given a user until we find their real name */
-"Unknown User" = "Ukendt bruger";
-
-/* Default user name, the computer-friendly version of their name, until we find their real user name */
-"Unknown User Name" = "Ukendt brugernavn";
-
 /* No comment provided by engineer. */
 "Unread" = "Ulæst";
 
@@ -289,15 +244,9 @@
 /* Header title of admin view */
 "Welcome!" = "Velkommen!";
 
-/* Title for field */
-"What can we do better?" = "Hvad kan vi gøre bedre?";
-
 /* Not Authorized Error Message */
 "You are unauthorized to access this information.  Check your user permissions and try again." = "Du er ikke autoriseret for adgang til denne information.  Tjek dine brugertilladelser og prøv igen.";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Du skal tillade meddelelser i Indstillinger for at indstille påmindelser.";
-
-/* Title for the email field */
-"Your Email" = "Din e-mail";
 
