@@ -34,7 +34,7 @@ class SubmissionFilePickerPresenterTests: PersistenceTestCase {
     let view = FilePickerView()
     var presenter: SubmissionFilePresenter!
     let onUpdateExpectation = XCTestExpectation(description: "on update")
-    lazy var uploader = MockFileUploader(appGroup: .student, environment: .shared)
+    let uploader = MockFileUploader()
 
     var assignment: Assignment!
 
@@ -42,6 +42,7 @@ class SubmissionFilePickerPresenterTests: PersistenceTestCase {
         super.setUp()
         presenter = SubmissionFilePresenter(env: env, fileUploader: uploader, courseID: courseID, assignmentID: assignmentID, userID: userID)
         presenter.view = view
+        view.presenter = presenter
         view.onUpdate = onUpdateExpectation.fulfill
         assignment = Assignment.make([
             "id": assignmentID,
@@ -49,7 +50,6 @@ class SubmissionFilePickerPresenterTests: PersistenceTestCase {
             "allowedExtensions": [],
             "submissionTypesRaw": [SubmissionType.online_upload.rawValue],
         ])
-        try! assignment.removeSubmissionFiles(appGroup: .student)
     }
 
     func testSourcesAllowedExtensions() {
@@ -97,7 +97,7 @@ class SubmissionFilePickerPresenterTests: PersistenceTestCase {
     func testAddCreatesFileSubmission() {
         presenter.viewIsReady()
         presenter.add(fromURL: testImageURL)
-        XCTAssert(assignment.hasFileSubmission)
+        XCTAssertEqual(presenter.files.count, 1)
     }
 
     func testAddFromSourceCamera() {
@@ -124,7 +124,7 @@ class SubmissionFilePickerPresenterTests: PersistenceTestCase {
 
     func testAddWithCameraResult() {
         Clock.mockNow(Date.isoDateFromString("2018-11-15T17:44:54Z")!)
-        let expected = assignment.fileSubmissionURL(appGroup: .student).appendingPathComponent("1542303894.0.png")
+        let expected = URL.temporaryDirectory.appendingPathComponent("images").appendingPathComponent("1542303894.0.png")
         presenter.viewIsReady()
         var info: CameraCaptureResult = CameraCaptureResult()
         info[UIImagePickerController.InfoKey.originalImage] = testImage
@@ -132,13 +132,13 @@ class SubmissionFilePickerPresenterTests: PersistenceTestCase {
         view.onUpdate = expectation.fulfill
         presenter.add(withCameraResult: info)
         wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(view.files?.first?.url, expected)
+        XCTAssertEqual(view.files?.first?.localFileURL, expected)
         XCTAssertEqual(view.files?.first?.size, 17308)
     }
 
     func testCameraDidCaptureVideo() {
         let url = try! testImage.write(nameIt: "crappy-name")
-        let expected = assignment.fileSubmissionURL(appGroup: .student).appendingPathComponent("1542303894.0.png")
+        let expected = URL.temporaryDirectory.appendingPathComponent("videos").appendingPathComponent("1542303894.0.png")
         Clock.mockNow(Date.isoDateFromString("2018-11-15T17:44:54Z")!)
         presenter.viewIsReady()
         var info: CameraCaptureResult = CameraCaptureResult()
@@ -147,33 +147,31 @@ class SubmissionFilePickerPresenterTests: PersistenceTestCase {
         view.onUpdate = expectation.fulfill
         presenter.add(withCameraResult: info)
         wait(for: [expectation], timeout: 0.1)
-        XCTAssertEqual(view.files?.first?.url, expected)
+        XCTAssertEqual(view.files?.first?.localFileURL, expected)
     }
 
-    func testCancelSubmissionDeletesSubmissionAndDismisses() {
+    func testCancelSubmissionDeletesFilesAndDismisses() {
         presenter.viewIsReady()
         presenter.add(fromURL: testImageURL)
         wait(for: [onUpdateExpectation], timeout: 0.1)
         let cancel = view.navigationItems!.left[0]
         cancel.performAction()
-        XCTAssertFalse(assignment.hasFileSubmission)
+        XCTAssert(presenter.files.isEmpty)
         XCTAssertTrue(view.dismissed)
     }
 
     func testSubmitStartsFileUpload() {
         presenter.viewIsReady()
         presenter.add(fromURL: testImageURL)
+        wait(for: [onUpdateExpectation], timeout: 0.1)
         let uploading = XCTestExpectation(description: "file uploading")
         view.onUpdate = {
-            if self.uploader.numberOfUploads == 1 {
+            if self.uploader.uploads.count == 1 {
                 uploading.fulfill()
             }
         }
         let submit = view.navigationItems!.right[0]
         submit.performAction()
         wait(for: [uploading], timeout: 0.1)
-    }
-
-    func testCancelFailedSubmission() {
     }
 }

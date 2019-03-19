@@ -34,7 +34,7 @@ class SubmissionFilePresenter {
     }()
 
     lazy var files: Store<LocalUseCase<File>> = {
-        let scope = Scope.where(#keyPath(File.newSubmission.assignment.id), equals: assignmentID)
+        let scope = Scope.where(#keyPath(File.assignmentID), equals: assignmentID)
         return env.subscribe(scope: scope) { [weak self] in
             self?.update()
         }
@@ -176,13 +176,17 @@ class SubmissionFilePresenter {
 
     @objc
     private func cancelSubmission() {
-        if let newSubmission = assignment?.newSubmission {
-            uploader.cancel(submission: newSubmission) { [weak self] error in
-                if let error = error {
-                    self?.view?.showError(error)
-                    return
-                }
-                self?.dismiss()
+        let context = env.database.viewContext
+        context.performAndWait {
+            for file in self.files {
+                self.uploader.cancel(file)
+                context.delete(file)
+            }
+            do {
+                try context.save()
+                self.dismiss()
+            } catch {
+                self.view?.showError(error)
             }
         }
     }
@@ -201,18 +205,12 @@ extension SubmissionFilePresenter: FilePickerPresenterProtocol {
     func add(withInfo info: FileInfo) {
         let context = env.database.viewContext
         context.performAndWait {
-            guard let assignment: Assignment = context.first(where: #keyPath(Assignment.id), equals: self.assignmentID) else {
-                return
-            }
             do {
                 let file: File = context.insert()
                 file.localFileURL = info.url
                 file.size = info.size
-                let newSubmission: NewSubmission = assignment.newSubmission ?? context.insert()
-                newSubmission.assignment = assignment
-                newSubmission.files?.insert(file)
+                file.prepareForSubmission(courseID: self.courseID, assignmentID: self.assignmentID)
                 try context.save()
-                context.refreshAllObjects()
             } catch {
                 self.view?.showError(error)
             }
@@ -243,12 +241,14 @@ extension SubmissionFilePresenter: FilePickerPresenterProtocol {
             do {
                 // This file name stinks so try to rename it
                 let name = String(Clock.now.timeIntervalSince1970)
-                let dir = URL.temporaryDirectory
-                    .appendingPathComponent("videos", isDirectory: true)
+                let dir = URL.temporaryDirectory.appendingPathComponent("videos")
                 try FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true, attributes: nil)
                 let url = dir
                     .appendingPathComponent(name, isDirectory: false)
                     .appendingPathExtension(videoURL.pathExtension)
+                if FileManager.default.fileExists(atPath: url.path) {
+                    try FileManager.default.removeItem(at: url)
+                }
                 try FileManager.default.moveItem(at: videoURL, to: url)
                 add(fromURL: url)
             } catch {

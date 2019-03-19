@@ -44,10 +44,21 @@ final public class File: NSManagedObject {
     @NSManaged public var previewURL: URL?
     @NSManaged public var localFileURL: URL?
     @NSManaged public var submission: Submission?
-    @NSManaged public var newSubmission: NewSubmission?
     @NSManaged public var uploadError: String?
     @NSManaged public var bytesSent: Int
     @NSManaged public var taskIDRaw: NSNumber?
+
+    /// The course ID of the assignment for which this file is meant to be submitted
+    ///
+    /// Should only be set in the case of a submission.
+    /// Set using `prepareForSubmission(courseID:assignmentID:)`
+    @NSManaged public private(set) var courseID: String?
+
+    /// The assignment ID of the assignment for which this file is meant to be submitted
+    ///
+    /// Should only be set in the case of a submission.
+    /// Set using `prepareForSubmission(courseID:assignmentID:)`
+    @NSManaged public private(set) var assignmentID: String?
 
     public var taskID: Int? {
         get { return taskIDRaw?.intValue }
@@ -60,6 +71,18 @@ final public class File: NSManagedObject {
 
     public var isUploaded: Bool {
         return id != nil
+    }
+
+    /// Prepares file for submission, creating reference to assignment via `assignmentID`.
+    public func prepareForSubmission(courseID: String, assignmentID: String) {
+        self.courseID = courseID
+        self.assignmentID = assignmentID
+    }
+
+    /// Marks the file as unsubmitted, removing reference to assignment.
+    public func markSubmitted() {
+        self.courseID = nil
+        self.assignmentID = nil
     }
 }
 

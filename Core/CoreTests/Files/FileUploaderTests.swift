@@ -56,19 +56,17 @@ class FileUploaderTests: CoreTestCase {
         files.refresh()
     }
 
-    func testSubmit() {
+    func testSubmissionFlow() {
+        let courseID = "1"
+        let assignmentID = "2"
         let url = Bundle.main.url(forResource: "Info", withExtension: "plist")!
         databaseClient.performAndWait {
             let file = File.make()
             file.id = nil
             file.taskID = nil
             file.localFileURL = url
-            let newSubmission = NewSubmission.make()
-//            let assignment = Assignment.make()
-//            assignment.newSubmission = newSubmission
-            file.newSubmission = newSubmission
+            file.prepareForSubmission(courseID: courseID, assignmentID: assignmentID)
             try! databaseClient.save()
-            databaseClient.refresh(file, mergeChanges: false)
         }
 
         let context = FileUploadContext.submission(courseID: "1", assignmentID: "2")
@@ -121,6 +119,6 @@ class FileUploaderTests: CoreTestCase {
         wait(for: [completed], timeout: 0.1)
 
         // submitted
-        XCTAssertNotNil(file?.newSubmission)
+        XCTAssertNotNil(file?.assignmentID)
     }
 }

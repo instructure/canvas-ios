@@ -32,9 +32,7 @@
 		3B5369E2219CDD3500D3F62E /* URLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5369E1219CDD3500D3F62E /* URLExtensions.swift */; };
 		3B5369E4219D0FD000D3F62E /* URLExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5369E3219D0FD000D3F62E /* URLExtensionsTests.swift */; };
 		3B5425FC21B074500009D069 /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5425FB21B074500009D069 /* UIViewControllerExtensions.swift */; };
-		3B67BCB521B1F2C900055324 /* CreateFileSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B67BCB421B1F2C900055324 /* CreateFileSubmission.swift */; };
 		3B67BCB821B5E72000055324 /* CreateSubmissionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B67BCB721B5E72000055324 /* CreateSubmissionTests.swift */; };
-		3B69253A21A1012D0023ED75 /* FileUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B69253721A0FD2D0023ED75 /* FileUpload.swift */; };
 		3B69254021A12E020023ED75 /* Int64Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B69253F21A12E020023ED75 /* Int64Extensions.swift */; };
 		3B84C38D218B9A84005946BA /* AssignmentDates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B84C38C218B9A84005946BA /* AssignmentDates.swift */; };
 		3B84C38F218B9B51005946BA /* AssignmentDatesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B84C38E218B9B51005946BA /* AssignmentDatesTests.swift */; };
@@ -272,7 +270,6 @@
 		9FE84DDE2150281300B95A68 /* GetContextTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE84DDD2150281300B95A68 /* GetContextTabs.swift */; };
 		9FE84DE2215037A000B95A68 /* GetContextTabsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE84DE1215037A000B95A68 /* GetContextTabsTest.swift */; };
 		B10D777021C2E27200BCE822 /* UITableViewCellExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10D776F21C2E27200BCE822 /* UITableViewCellExtensions.swift */; };
-		B11BFF4A223D7CCE00243388 /* NewSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11BFF49223D7CCE00243388 /* NewSubmission.swift */; };
 		B11D321721E464AB00F37ABF /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11D321621E464AB00F37ABF /* Store.swift */; };
 		B12A763821914059000693DE /* fileupload.txt in Resources */ = {isa = PBXBuildFile; fileRef = B12A763721914059000693DE /* fileupload.txt */; };
 		B12A763A2191459F000693DE /* file-post-body.txt in Resources */ = {isa = PBXBuildFile; fileRef = B12A76392191459F000693DE /* file-post-body.txt */; };
@@ -344,7 +341,6 @@
 		B1A8CD3C2237698F00E2242D /* URLSessionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A8CD3B2237698F00E2242D /* URLSessionExtensions.swift */; };
 		B1A8CD452238AA1000E2242D /* NSRegularExpressionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A8CD442238AA1000E2242D /* NSRegularExpressionExtensions.swift */; };
 		B1A8CD492239513200E2242D /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A8CD482239513200E2242D /* AppGroup.swift */; };
-		B1A8CD4D22396E8600E2242D /* GetFileUploads.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A8CD4C22396E8600E2242D /* GetFileUploads.swift */; };
 		B1A8CD532239A10500E2242D /* SubmissionFileUploadDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A8CD522239A10500E2242D /* SubmissionFileUploadDelegate.swift */; };
 		B1AE17AE21877C37002995E6 /* APIEnrollment+Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AE17AD21877C36002995E6 /* APIEnrollment+Requestable.swift */; };
 		B1B42C1622403AFD0087399A /* FileUploaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B42C1522403AFD0087399A /* FileUploaderTests.swift */; };
@@ -440,9 +436,7 @@
 		3B5369E1219CDD3500D3F62E /* URLExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLExtensions.swift; sourceTree = "<group>"; };
 		3B5369E3219D0FD000D3F62E /* URLExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLExtensionsTests.swift; sourceTree = "<group>"; };
 		3B5425FB21B074500009D069 /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
-		3B67BCB421B1F2C900055324 /* CreateFileSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFileSubmission.swift; sourceTree = "<group>"; };
 		3B67BCB721B5E72000055324 /* CreateSubmissionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSubmissionTests.swift; sourceTree = "<group>"; };
-		3B69253721A0FD2D0023ED75 /* FileUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUpload.swift; sourceTree = "<group>"; };
 		3B69253F21A12E020023ED75 /* Int64Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int64Extensions.swift; sourceTree = "<group>"; };
 		3B84C38C218B9A84005946BA /* AssignmentDates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDates.swift; sourceTree = "<group>"; };
 		3B84C38E218B9B51005946BA /* AssignmentDatesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDatesTests.swift; sourceTree = "<group>"; };
@@ -826,7 +820,6 @@
 		9FE84DDD2150281300B95A68 /* GetContextTabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetContextTabs.swift; sourceTree = "<group>"; };
 		9FE84DE1215037A000B95A68 /* GetContextTabsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetContextTabsTest.swift; sourceTree = "<group>"; };
 		B10D776F21C2E27200BCE822 /* UITableViewCellExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCellExtensions.swift; sourceTree = "<group>"; };
-		B11BFF49223D7CCE00243388 /* NewSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSubmission.swift; sourceTree = "<group>"; };
 		B11D321621E464AB00F37ABF /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		B12A763721914059000693DE /* fileupload.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = fileupload.txt; sourceTree = "<group>"; };
 		B12A76392191459F000693DE /* file-post-body.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "file-post-body.txt"; sourceTree = "<group>"; };
@@ -897,7 +890,6 @@
 		B1A8CD3B2237698F00E2242D /* URLSessionExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionExtensions.swift; sourceTree = "<group>"; };
 		B1A8CD442238AA1000E2242D /* NSRegularExpressionExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSRegularExpressionExtensions.swift; sourceTree = "<group>"; };
 		B1A8CD482239513200E2242D /* AppGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroup.swift; sourceTree = "<group>"; };
-		B1A8CD4C22396E8600E2242D /* GetFileUploads.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFileUploads.swift; sourceTree = "<group>"; };
 		B1A8CD522239A10500E2242D /* SubmissionFileUploadDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionFileUploadDelegate.swift; sourceTree = "<group>"; };
 		B1AE17AD21877C36002995E6 /* APIEnrollment+Requestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIEnrollment+Requestable.swift"; sourceTree = "<group>"; };
 		B1B42C1522403AFD0087399A /* FileUploaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploaderTests.swift; sourceTree = "<group>"; };
@@ -1577,8 +1569,6 @@
 				7DF4FFDE21713919007E5F81 /* Submission.swift */,
 				7DF4FFD62171347B007E5F81 /* Tab.swift */,
 				7DF4FFD02171322E007E5F81 /* TTL.swift */,
-				3B69253721A0FD2D0023ED75 /* FileUpload.swift */,
-				B11BFF49223D7CCE00243388 /* NewSubmission.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1637,7 +1627,6 @@
 			isa = PBXGroup;
 			children = (
 				B195DC5F2132659800797FE4 /* Base */,
-				3B67BCB421B1F2C900055324 /* CreateFileSubmission.swift */,
 				3B4B75C6222F09C7002CCBEC /* CreateSubmission.swift */,
 				9FD504EF2180C17C00B395BA /* DownloadFile.swift */,
 				B1A32BE5215A81350071B41E /* GetAssignment.swift */,
@@ -1649,7 +1638,6 @@
 				B1EA5AEA212E641900DABC5F /* GetCourses.swift */,
 				7851D9B22138264800E76EC3 /* GetCustomColors.swift */,
 				9FD504ED2180C17400B395BA /* GetFile.swift */,
-				B1A8CD4C22396E8600E2242D /* GetFileUploads.swift */,
 				9FE84DD9214FE06300B95A68 /* GetGroup.swift */,
 				B15CA270221DE1C80014FB02 /* GetModules.swift */,
 				7DCF2043216D622B003AF358 /* GetQuizzes.swift */,
@@ -2079,7 +2067,6 @@
 				9FD504F22180C5F600B395BA /* AsyncBlockOperation.swift in Sources */,
 				78151DCB21AE75D400692862 /* APIDiscussion.swift in Sources */,
 				3BE2ADCB21B704F1008D91AB /* DynamicTextField.swift in Sources */,
-				3B69253A21A1012D0023ED75 /* FileUpload.swift in Sources */,
 				7DD6CC6521BCC101004C4BB6 /* LoginNavigationController.swift in Sources */,
 				B1911CF121C851AD00F42F91 /* ProcessInfoExtensions.swift in Sources */,
 				B1B6F071219A1F2800C1575D /* UTI.swift in Sources */,
@@ -2108,7 +2095,6 @@
 				B1A6BC80218A32F3000515E3 /* APIAssignmentOverride+Requestable.swift in Sources */,
 				B1A32BDC21599F1C0071B41E /* APISubmission.swift in Sources */,
 				B19792F3217634D30000369C /* Scope.swift in Sources */,
-				B1A8CD4D22396E8600E2242D /* GetFileUploads.swift in Sources */,
 				B1E789AF21B0F9370087FE4A /* Logger.swift in Sources */,
 				B1A32BD821599C610071B41E /* APIAssignment.swift in Sources */,
 				B195DC45213201DE00797FE4 /* GetUserGroups.swift in Sources */,
@@ -2161,7 +2147,6 @@
 				9FD504E72180BE1400B395BA /* APIFile.swift in Sources */,
 				B18359A822244E230005A918 /* AccessIconView.swift in Sources */,
 				7DF4FFD82171347B007E5F81 /* Tab.swift in Sources */,
-				B11BFF4A223D7CCE00243388 /* NewSubmission.swift in Sources */,
 				3B3467D02135024800F9BC2E /* ErrorViewController.swift in Sources */,
 				7D062AF4212496E600677F66 /* Context.swift in Sources */,
 				7DCF2038216D55E6003AF358 /* QuizType.swift in Sources */,
@@ -2258,7 +2243,6 @@
 				B1EA5AEB212E641900DABC5F /* GetCourses.swift in Sources */,
 				7D0215AE21BB2D68009A8E69 /* LoginPreviousUserCell.swift in Sources */,
 				7DF4FFE021713919007E5F81 /* Submission.swift in Sources */,
-				3B67BCB521B1F2C900055324 /* CreateFileSubmission.swift in Sources */,
 				B1A8CD3722375D6400E2242D /* FileUploadTarget.swift in Sources */,
 				3B346755213052C700F9BC2E /* NSErrorExtensions.swift in Sources */,
 				7D8262EF212B228F00BD268D /* APICourse+Requestable.swift in Sources */,

@@ -29,7 +29,6 @@ public class Assignment: NSManagedObject {
     @NSManaged public var name: String
     @NSManaged var pointsPossibleRaw: NSNumber?
     @NSManaged public var submission: Submission?
-    @NSManaged public var newSubmission: NewSubmission?
     @NSManaged var submissionTypesRaw: [String]
     @NSManaged public var position: Int
     @NSManaged public var lockAt: Date?
@@ -128,34 +127,5 @@ extension Assignment {
         }
 
         return utis
-    }
-
-    public func submissionFiles(appGroup: AppGroup) -> [URL] {
-        do {
-            return try FileManager.default.contentsOfDirectory(at: fileSubmissionURL(appGroup: appGroup), includingPropertiesForKeys: nil, options: [.skipsSubdirectoryDescendants])
-        } catch {
-            assertionFailure("failed to read contents of assignment directory")
-            return []
-        }
-    }
-
-    public func fileSubmissionURL(appGroup: AppGroup) -> URL {
-        var url = appGroup.url
-        if let user = Keychain.currentSession {
-            url.appendPathComponent(user.documentsPath, isDirectory: true)
-        }
-        url.appendPathComponent("courses/\(courseID)/assignments/\(id)/file-submission", isDirectory: true)
-        do {
-            try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
-        } catch {
-            assertionFailure("failed to create directory \(url.absoluteString)")
-        }
-        return url
-    }
-
-    public func removeSubmissionFiles(appGroup: AppGroup) throws {
-        for file in submissionFiles(appGroup: appGroup) {
-            try FileManager.default.removeItem(at: file)
-        }
     }
 }

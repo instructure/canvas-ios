@@ -17,12 +17,14 @@
 import Foundation
 @testable import Student
 import UIKit
+@testable import Core
 
 class FilePickerView: FilePickerViewProtocol {
+    var presenter: FilePickerPresenterProtocol?
     var navigationController: UINavigationController?
     var presentCameraCallCount = 0
     var presentLibraryCallCount = 0
-    var files: [FileViewModel]?
+    var files: Store<LocalUseCase<File>>?
     var sources: [FilePickerSource]?
     var presentedDocumentTypes: [String]?
     var error: Error?
@@ -50,9 +52,9 @@ class FilePickerView: FilePickerViewProtocol {
         self.error = error
     }
 
-    func update(files: [FileViewModel], sources: [FilePickerSource]) {
-        self.files = files
-        self.sources = sources
+    func update() {
+        self.files = presenter?.files
+        self.sources = presenter?.sources
         onUpdate?()
     }
 

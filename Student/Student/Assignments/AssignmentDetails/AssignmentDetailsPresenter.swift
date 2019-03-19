@@ -59,7 +59,7 @@ class AssignmentDetailsPresenter {
     }()
 
     lazy var files: Store<LocalUseCase<File>> = {
-        let scope = Scope.where(#keyPath(File.newSubmission.assignment.id), equals: assignmentID)
+        let scope = Scope.where(#keyPath(File.assignmentID), equals: assignmentID)
         return env.subscribe(scope: scope) { [weak self] in
             self?.update()
         }
@@ -145,7 +145,15 @@ class AssignmentDetailsPresenter {
 
     func showSubmitAssignmentButton(assignment: Assignment?, course: Course?) {
         guard let assignment = assignment, let course = course else { return }
-        if assignment.canMakeSubmissions && assignment.isOpenForSubmissions() && course.enrollments?.hasRole(.student) ?? false {
+        let canMakeSubmission = assignment.canMakeSubmissions
+        let isOpen = assignment.isOpenForSubmissions()
+        let amStudent = course.enrollments?.hasRole(.student) ?? false
+        let filesUploading = !files.isEmpty
+        let canSubmit = canMakeSubmission
+            && isOpen
+            && amStudent
+            && !filesUploading
+        if canSubmit {
             let title = assignment.submission?.workflowState == .unsubmitted
                 ? NSLocalizedString("Submit Assignment", comment: "")
                 : NSLocalizedString("Resubmit Assignment", comment: "")

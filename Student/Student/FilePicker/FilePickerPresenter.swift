@@ -20,6 +20,16 @@ import MobileCoreServices
 
 typealias CameraCaptureResult = [UIImagePickerController.InfoKey: Any]
 
+public struct FileInfo: Equatable {
+    public var url: URL
+    public var size: Int
+
+    public init(url: URL, size: Int) {
+        self.url = url
+        self.size = size
+    }
+}
+
 protocol FilePickerPresenterProtocol: class {
     var view: FilePickerViewProtocol? { get set }
     var files: Store<LocalUseCase<File>> { get }

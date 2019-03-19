@@ -154,27 +154,6 @@ public class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate,
         }
     }
 
-    public func cancel(submission: NewSubmission, completionHandler: @escaping (Error?) -> Void) {
-        let objectID = submission.objectID
-        performAndWait { context in
-            guard let newSubmission = context.object(with: objectID) as? NewSubmission else {
-                completionHandler(nil)
-                return
-            }
-            let files = newSubmission.files ?? []
-            for file in files {
-                cancel(file)
-            }
-            context.delete(newSubmission)
-            do {
-                try context.save()
-                completionHandler(nil)
-            } catch {
-                completionHandler(error)
-            }
-        }
-    }
-
     public func addListener(_ listener: FileUploaderDelegate) {
         listeners.append(listener)
     }
@@ -224,39 +203,21 @@ public class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate,
         if let error = error {
             Logger.shared.error(error)
         }
-        // var objectID: NSManagedObjectID?
         performAndWait { context in
             guard let file: File = context.first(where: #keyPath(File.taskIDRaw), equals: NSNumber(value: task.taskIdentifier)) else {
                 return
             }
-            // objectID = file.objectID
             file.uploadError = error?.localizedDescription ?? file.uploadError
             file.taskID = nil
-            _ = file.newSubmission
             do {
                 try context.save()
             } catch {
                 Logger.shared.error(error)
             }
-        }
-        performAndWait { context in
-            guard let file: File = context.first(where: #keyPath(File.taskIDRaw), equals: NSNumber(value: task.taskIdentifier)) else {
-                return
-            }
-            if let assignmentID = file.newSubmission?.assignment?.id {
-                print("assignmentID \(assignmentID)")
+            if let assignmentID = file.assignmentID, let courseID = file.courseID {
+                self.submit(assignmentID: assignmentID, courseID: courseID)
             }
         }
-//        performAndWait { context in
-//            guard let objectID = objectID, let file = context.object(with: objectID) as? File else { return }
-//            if let assignmentID = file.newSubmission?.assignment?.id {
-//                print("assignmentID \(assignmentID)")
-//            }
-//            context.refresh(file, mergeChanges: false)
-//        }
-//        if let objectID = objectID {
-//            submit(file: objectID)
-//        }
     }
 
     public func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
@@ -284,21 +245,14 @@ public class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate,
 
 // MARK: - Submissions
 extension FileUploader {
-    private func submit(file objectID: NSManagedObjectID) {
-        var request: CreateSubmissionRequest?
+    private func submit(assignmentID: String, courseID: String) {
         performAndWait { context in
-            guard let file = context.object(with: objectID) as? File else { return }
-            guard let newSubmission = file.newSubmission else { return }
-            guard let assignment = newSubmission.assignment else { return }
-
-            let files = newSubmission.files ?? []
+            let files: [File] = context.all(where: #keyPath(File.assignmentID), equals: assignmentID)
             let ready = files.allSatisfy { $0.isUploaded } == true
             guard ready else { return }
 
             let fileIDs = files.compactMap { $0.id }
             Logger.shared.log("Submitting \(fileIDs.count) files")
-            let courseID = assignment.courseID
-            let assignmentID = assignment.id
             let submission = CreateSubmissionRequest.Body.Submission(
                 text_comment: nil,
                 submission_type: .online_upload,
@@ -308,34 +262,34 @@ extension FileUploader {
                 media_comment_id: nil,
                 media_comment_type: nil
             )
-            request = CreateSubmissionRequest(
+            let request = CreateSubmissionRequest(
                 context: ContextModel(.course, id: courseID),
                 assignmentID: assignmentID,
                 body: .init(submission: submission)
             )
-        }
-        if let request = request {
-            self.api.makeRequest(request) { response, urlResponse, error in
-                self.handle(fileSubmitted: objectID, response: response, urlResponse: urlResponse, error: error)
+
+            self.api.makeRequest(request) { response, _, error in
+                self.handle(fileIDs: fileIDs, courseID: courseID, assignmentID: assignmentID, response: response, error: error)
             }
         }
     }
 
-    private func handle(fileSubmitted fileObjectID: NSManagedObjectID, response: APISubmission?, urlResponse: URLResponse?, error: Error?) {
+    private func handle(fileIDs: [String], courseID: String, assignmentID: String, response: APISubmission?, error: Error?) {
         self.performAndWait { context in
-            guard let file = context.object(with: fileObjectID) as? File else { return }
-            guard let newSubmission = file.newSubmission else { return }
-            guard let assignment = newSubmission.assignment else { return }
-            let success = (urlResponse as? HTTPURLResponse)?.statusCode == 201
+            let predicate = NSPredicate(format: "%K in %@", #keyPath(File.id), fileIDs)
+            let files: [File] = context.fetch(predicate)
+            let success = error == nil && response != nil
             if success {
                 Logger.shared.log("Created file submission!")
-                context.delete(newSubmission)
-                self.sendCompletedNotification(courseID: assignment.courseID, assignmentID: assignment.id)
+                for file in files {
+                    file.markSubmitted()
+                }
+                self.sendCompletedNotification(courseID: courseID, assignmentID: assignmentID)
             } else {
                 Logger.shared.log("Failed to create file submission.")
                 let message = error?.localizedDescription ?? NSLocalizedString("Submission failed.", comment: "")
-                file.uploadError = message
-                self.sendCompletedNotification(courseID: assignment.courseID, assignmentID: assignment.id)
+                files.first?.uploadError = message
+                self.sendCompletedNotification(courseID: courseID, assignmentID: assignmentID)
             }
             do {
                 if let response = response {
@@ -346,7 +300,6 @@ extension FileUploader {
                 Logger.shared.error(error)
             }
         }
-
     }
 
     private func sendFailedNotification(courseID: String, assignmentID: String) {
