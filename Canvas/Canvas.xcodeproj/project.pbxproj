@@ -3309,6 +3309,9 @@
 							com.apple.SafariKeychain = {
 								enabled = 0;
 							};
+							com.apple.Siri = {
+								enabled = 1;
+							};
 							com.apple.iCloud = {
 								enabled = 1;
 							};
