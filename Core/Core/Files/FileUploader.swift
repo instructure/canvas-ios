@@ -17,12 +17,15 @@
 import Foundation
 import CoreData
 
-public protocol FileUploaderDelegate {
-    func fileUploader(_ fileUploader: FileUploader, finishedUploadingFile file: File, inContext context: NSManagedObjectContext)
+/// Errors most likely caused by our code.
+enum FileUploaderError: Error {
+    case urlNotFound
+    case invalidTarget
+    case fileNotFound
 }
 
 public class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate, URLSessionDataDelegate {
-    fileprivate struct Session: Codable {
+    struct Session: Codable {
         let bundleID: String
         let appGroup: String?
         let userID: String
@@ -72,8 +75,6 @@ public class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate,
     /// See UIApplicationDelegate.application(application:handleEventsForBackgroundURLSession:completionHandler:)
     public var completionHandler: (() -> Void)?
 
-    private var listeners: [FileUploaderDelegate] = []
-
     /// Initialize from background.
     public convenience init?(backgroundSessionIdentifier id: String) {
         guard let session = Session(identifier: id), let user = Keychain.entries.first(where: { $0 == session }) else {
@@ -109,9 +110,8 @@ public class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate,
 
     public func upload(_ file: File, context: FileUploadContext, callback: @escaping (Error?) -> Void) {
         Logger.shared.log()
-        let defaultError = NSError.instructureError(NSLocalizedString("Could not upload file", comment: ""))
         guard let url = file.localFileURL else {
-            callback(defaultError)
+            callback(FileUploaderError.urlNotFound)
             return
         }
         let objectID = file.objectID
@@ -123,8 +123,12 @@ public class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate,
             var task: URLSessionTask?
             var error: Error?
             self.performAndWait { context in
-                guard let target = target, let file = context.object(with: objectID) as? File else {
-                    callback(defaultError)
+                guard let target = target else {
+                    callback(FileUploaderError.invalidTarget)
+                    return
+                }
+                guard let file = context.object(with: objectID) as? File else {
+                    callback(FileUploaderError.fileNotFound)
                     return
                 }
                 do {
@@ -152,10 +156,6 @@ public class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate,
         backgroundSession.getAllTasks { tasks in
             tasks.first { $0.taskIdentifier == taskID }?.cancel()
         }
-    }
-
-    public func addListener(_ listener: FileUploaderDelegate) {
-        listeners.append(listener)
     }
 
     public func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
@@ -289,7 +289,7 @@ extension FileUploader {
                 Logger.shared.log("Failed to create file submission.")
                 let message = error?.localizedDescription ?? NSLocalizedString("Submission failed.", comment: "")
                 files.first?.uploadError = message
-                self.sendCompletedNotification(courseID: courseID, assignmentID: assignmentID)
+                self.sendFailedNotification(courseID: courseID, assignmentID: assignmentID)
             }
             do {
                 if let response = response {

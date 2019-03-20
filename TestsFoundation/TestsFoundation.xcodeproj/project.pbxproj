@@ -46,7 +46,7 @@
 		B16F0375215C2B340011E952 /* Assignment+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16F0374215C2B340011E952 /* Assignment+Fixture.swift */; };
 		B16F0377215C2CEF0011E952 /* Submission+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16F0376215C2CEF0011E952 /* Submission+Fixture.swift */; };
 		B171A10921B9E51F000325D3 /* MockAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B171A10821B9E51F000325D3 /* MockAPI.swift */; };
-		B1911CEF21C84B1000F42F91 /* MockUserNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1911CEE21C84B1000F42F91 /* MockUserNotificationCenter.swift */; };
+		B1911CEF21C84B1000F42F91 /* MockNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1911CEE21C84B1000F42F91 /* MockNotificationManager.swift */; };
 		B19792EF21751FBC0000369C /* TestPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19792EE21751FBC0000369C /* TestPersistence.swift */; };
 		B19792F521767B830000369C /* Color+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19792F421767B830000369C /* Color+Fixture.swift */; };
 		B1A32BDE2159A1D70071B41E /* APIAssignmentFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A32BDD2159A1D70071B41E /* APIAssignmentFixture.swift */; };
@@ -103,7 +103,7 @@
 		B16F0374215C2B340011E952 /* Assignment+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Assignment+Fixture.swift"; sourceTree = "<group>"; };
 		B16F0376215C2CEF0011E952 /* Submission+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Submission+Fixture.swift"; sourceTree = "<group>"; };
 		B171A10821B9E51F000325D3 /* MockAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPI.swift; sourceTree = "<group>"; };
-		B1911CEE21C84B1000F42F91 /* MockUserNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserNotificationCenter.swift; sourceTree = "<group>"; };
+		B1911CEE21C84B1000F42F91 /* MockNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNotificationManager.swift; sourceTree = "<group>"; };
 		B19792EE21751FBC0000369C /* TestPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPersistence.swift; sourceTree = "<group>"; };
 		B19792F421767B830000369C /* Color+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Fixture.swift"; sourceTree = "<group>"; };
 		B1A32BDD2159A1D70071B41E /* APIAssignmentFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAssignmentFixture.swift; sourceTree = "<group>"; };
@@ -302,7 +302,7 @@
 		B1911CED21C84AF700F42F91 /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
-				B1911CEE21C84B1000F42F91 /* MockUserNotificationCenter.swift */,
+				B1911CEE21C84B1000F42F91 /* MockNotificationManager.swift */,
 			);
 			path = Notifications;
 			sourceTree = "<group>";
@@ -406,7 +406,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1911CEF21C84B1000F42F91 /* MockUserNotificationCenter.swift in Sources */,
+				B1911CEF21C84B1000F42F91 /* MockNotificationManager.swift in Sources */,
 				3B84C392218BB102005946BA /* DateExtensions.swift in Sources */,
 				B1A32BE02159A28D0071B41E /* APISubmissionFixture.swift in Sources */,
 				3B0CEBA321504C2500D07CFA /* APITabFixture.swift in Sources */,

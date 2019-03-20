@@ -160,10 +160,9 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         _ center: UNUserNotificationCenter,
         didReceive response: UNNotificationResponse,
         withCompletionHandler completionHandler: @escaping () -> Void) {
-        if let urlString = response.notification.request.content.userInfo[NotificationManager.RouteURLKey] as? String,
-            let url = URL(string: urlString),
+        if let route = response.notification.route,
             let topVC = topMostViewController() {
-            router.route(to: url, from: topVC, options: [.modal, .embedInNav, .addDoneButton])
+            router.route(to: route, from: topVC, options: [.modal, .embedInNav, .addDoneButton])
         }
         completionHandler()
     }

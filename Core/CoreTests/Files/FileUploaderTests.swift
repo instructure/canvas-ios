@@ -21,7 +21,15 @@ import XCTest
 
 class FileUploaderTests: CoreTestCase {
     class MockURLSession: URLSession {
-        override func finishTasksAndInvalidate() {}
+        var finishedAndInvalidated = false
+        override func finishTasksAndInvalidate() {
+            finishedAndInvalidated = true
+        }
+
+        var tasks: [URLSessionTask] = []
+        override func getAllTasks(completionHandler: @escaping ([URLSessionTask]) -> Void) {
+            completionHandler(tasks)
+        }
     }
 
     let session = MockURLSession()
@@ -35,6 +43,8 @@ class FileUploaderTests: CoreTestCase {
         userID: "1",
         userName: "user"
     )
+    let courseID = "1"
+    let assignmentID = "2"
 
     var onUpdate: (() -> Void)?
 
@@ -56,9 +66,25 @@ class FileUploaderTests: CoreTestCase {
         files.refresh()
     }
 
+    private func mockSubmission() {
+        let submission = CreateSubmissionRequest.Body.Submission(
+            text_comment: nil,
+            submission_type: .online_upload,
+            body: nil,
+            url: nil,
+            file_ids: nil,
+            media_comment_id: nil,
+            media_comment_type: nil
+        )
+        let submissionRequest = CreateSubmissionRequest(
+            context: ContextModel(.course, id: courseID),
+            assignmentID: assignmentID,
+            body: .init(submission: submission)
+        )
+        api.mock(submissionRequest, value: APISubmission.make(), response: nil, error: nil)
+    }
+
     func testSubmissionFlow() {
-        let courseID = "1"
-        let assignmentID = "2"
         let url = Bundle.main.url(forResource: "Info", withExtension: "plist")!
         databaseClient.performAndWait {
             let file = File.make()
@@ -108,21 +134,7 @@ class FileUploaderTests: CoreTestCase {
         wait(for: [received], timeout: 0.1)
 
         // completed and submitted
-        let submission = CreateSubmissionRequest.Body.Submission(
-            text_comment: nil,
-            submission_type: .online_upload,
-            body: nil,
-            url: nil,
-            file_ids: nil,
-            media_comment_id: nil,
-            media_comment_type: nil
-        )
-        let submissionRequest = CreateSubmissionRequest(
-            context: ContextModel(.course, id: courseID),
-            assignmentID: assignmentID,
-            body: .init(submission: submission)
-        )
-        api.mock(submissionRequest, value: APISubmission.make(), response: nil, error: nil)
+        mockSubmission()
         XCTAssertNotNil(file?.taskID)
         XCTAssertNotNil(file?.assignmentID)
         let completed = XCTestExpectation(description: "task completed")
@@ -137,5 +149,69 @@ class FileUploaderTests: CoreTestCase {
         }
         fileUploader.urlSession(session, task: task, didCompleteWithError: nil)
         wait(for: [completed, submitted], timeout: 0.1)
+    }
+
+    func testCancel() {
+        let session = MockURLSession()
+        let task = MockAPITask(taskIdentifier: 1)
+        session.tasks = [task]
+        fileUploader.backgroundSession = session
+        let file = File.make()
+        file.taskID = 1
+        fileUploader.cancel(file)
+        XCTAssertEqual(task.cancelCount, 1)
+    }
+
+    func testInitIdentifier() {
+        Keychain.addEntry(user)
+        let session = FileUploader.Session(bundleID: "core-tests", appGroup: nil, userID: user.userID, baseURL: user.baseURL, actAsUserID: user.actAsUserID)
+        let identifier = session.identifier
+        let uploader = FileUploader(backgroundSessionIdentifier: identifier)
+        XCTAssertNotNil(uploader)
+    }
+
+    func testSendsSubmittedNotification() {
+        mockSubmission()
+        let notifications = MockNotificationManager()
+        fileUploader.notificationManager = notifications
+        let task = MockAPITask(taskIdentifier: 1)
+        File.make(["taskIDRaw": task.taskIdentifier, "assignmentID": assignmentID, "courseID": courseID])
+        let expectation = XCTestExpectation(description: "notification sent")
+        onUpdate = {
+            if !notifications.mock.requests.isEmpty {
+                expectation.fulfill()
+            }
+        }
+        fileUploader.urlSession(session, task: task, didCompleteWithError: nil)
+        wait(for: [expectation], timeout: 0.1)
+        let notification = notifications.mock.requests.first
+        XCTAssertEqual(notification?.content.title, "Assignment submitted!")
+        XCTAssertEqual(notification?.route, Route("/courses/1/assignments/2"))
+    }
+
+    func testSendsFailedNotification() {
+        let notifications = MockNotificationManager()
+        fileUploader.notificationManager = notifications
+        let task = MockAPITask(taskIdentifier: 1)
+        File.make(["taskIDRaw": task.taskIdentifier, "assignmentID": assignmentID, "courseID": courseID])
+        let expectation = XCTestExpectation(description: "notification sent")
+        onUpdate = {
+            if !notifications.mock.requests.isEmpty {
+                expectation.fulfill()
+            }
+        }
+        fileUploader.urlSession(session, task: task, didCompleteWithError: nil)
+        wait(for: [expectation], timeout: 0.1)
+        let notification = notifications.mock.requests.first
+        XCTAssertEqual(notification?.content.title, "Assignment submission failed!")
+        XCTAssertEqual(notification?.route, Route("/courses/1/assignments/2"))
+    }
+
+    func testURLSessionDidFinishEvents() {
+        let expectation = XCTestExpectation(description: "completion handler was called")
+        fileUploader.completionHandler = expectation.fulfill
+        fileUploader.urlSessionDidFinishEvents(forBackgroundURLSession: session)
+        wait(for: [expectation], timeout: 0.1)
+        XCTAssertTrue(session.finishedAndInvalidated)
     }
 }
