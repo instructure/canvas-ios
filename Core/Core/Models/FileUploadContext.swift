@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2019-present Instructure, Inc.
+// Copyright (C) 2018-present Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -16,7 +16,12 @@
 
 import Foundation
 
-public struct FileUploadTarget: Codable, Equatable {
-    public let upload_url: URL
-    public let upload_params: [String: String]
+public enum FileUploadContext {
+    case course(String)
+    case user(String)
+    case submission(courseID: String, assignmentID: String)
+
+    public static var myFiles: FileUploadContext {
+        return .user("self")
+    }
 }

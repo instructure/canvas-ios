@@ -16,12 +16,25 @@
 
 import Foundation
 @testable import Core
+import UserNotifications
 
-extension FileSubmission: Fixture {
-    public static var template: Template {
-        return [
-            "userID": "1",
-            "assignment": Assignment.make(),
-        ]
+public class MockNotificationManager: NotificationManager {
+    public var mock: MockUserNotificationCenter
+
+    public init() {
+        mock = MockUserNotificationCenter()
+        super.init(notificationCenter: mock, logger: TestLogger())
+    }
+}
+
+public class MockUserNotificationCenter: UserNotificationCenterProtocol {
+    public var requests: [UNNotificationRequest] = []
+    public var error: Error?
+
+    public init() {}
+
+    public func add(_ request: UNNotificationRequest, withCompletionHandler completionHandler: ((Error?) -> Void)?) {
+        requests.append(request)
+        completionHandler?(error)
     }
 }

@@ -16,12 +16,13 @@
 
 import Foundation
 import UIKit
+import Core
 
 class FilePickerCell: UITableViewCell {
-    var file: FileViewModel? {
+    var file: File? {
         didSet {
-            nameLabel.text = file?.url.lastPathComponent
-            if file?.error != nil {
+            nameLabel.text = file?.localFileURL?.lastPathComponent
+            if file?.uploadError != nil {
                 isUserInteractionEnabled = true
                 errorIcon.isHidden = false
                 subtitleLabel.text = NSLocalizedString("Failed upload", bundle: .core, value: "", comment: "")

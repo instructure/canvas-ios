@@ -25,11 +25,11 @@ enum FilePickerSource: CaseIterable {
 }
 
 protocol FilePickerViewProtocol: ErrorViewController {
-    func update(files: [FileViewModel], sources: [FilePickerSource])
+    func update()
     func presentDocumentPicker(documentTypes: [String])
     func presentCamera()
     func presentLibrary()
-    func updateTransferProgress(_ progress: Float, sent: Int64, expectedToSend: Int64)
+    func updateTransferProgress(_ progress: Float, sent: Int, expectedToSend: Int)
     func updateToolbar(items: [UIBarButtonItem])
     func updateNavigationItems(left: [UIBarButtonItem], right: [UIBarButtonItem])
     func dismiss()
@@ -46,7 +46,6 @@ class FilePickerViewController: UIViewController, FilePickerViewProtocol {
     @IBOutlet weak var sourcesView: UIView!
     @IBOutlet weak var dividerView: UIView!
     var submitButton: UIBarButtonItem?
-    var files = [FileViewModel]()
 
     var presenter: FilePickerPresenterProtocol?
 
@@ -69,13 +68,14 @@ class FilePickerViewController: UIViewController, FilePickerViewProtocol {
         navigationController?.navigationBar.useModalStyle()
     }
 
-    func update(files: [FileViewModel], sources: [FilePickerSource]) {
+    func update() {
         DispatchQueue.main.async {
-            self.emptyView.isHidden = !files.isEmpty
+            let files = self.presenter?.files
+            let sources = self.presenter?.sources ?? []
+            self.emptyView.isHidden = files?.isEmpty != true
             self.cameraView.isHidden = !sources.contains(.camera)
             self.libraryView.isHidden = !sources.contains(.library)
 
-            self.files = files
             self.tableView.reloadData()
         }
     }
@@ -135,7 +135,7 @@ class FilePickerViewController: UIViewController, FilePickerViewProtocol {
         }
     }
 
-    func updateTransferProgress(_ progress: Float, sent: Int64, expectedToSend: Int64) {
+    func updateTransferProgress(_ progress: Float, sent: Int, expectedToSend: Int) {
         DispatchQueue.main.async {
             let format = NSLocalizedString("Uploading %@ of %@", comment: "")
             self.progressView.text = String.localizedStringWithFormat(format, sent.humanReadableFileSize, expectedToSend.humanReadableFileSize)
@@ -202,18 +202,20 @@ extension FilePickerViewController: UIImagePickerControllerDelegate, UINavigatio
 
 extension FilePickerViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return files.count
+        return presenter?.files.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(FilePickerCell.self, for: indexPath)
-        cell.file = files[indexPath.row]
+        cell.file = presenter?.files[indexPath]
 
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presenter?.didSelectFile(files[indexPath.row])
+        if let file = presenter?.files[indexPath] {
+            presenter?.didSelectFile(file)
+        }
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }

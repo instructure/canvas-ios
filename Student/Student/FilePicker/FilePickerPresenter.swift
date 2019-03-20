@@ -20,22 +20,27 @@ import MobileCoreServices
 
 typealias CameraCaptureResult = [UIImagePickerController.InfoKey: Any]
 
-protocol FileViewModel {
-    var url: URL { get }
-    var size: Int64 { get }
-    var bytesSent: Int64 { get }
-    var error: String? { get }
+public struct FileInfo: Equatable {
+    public var url: URL
+    public var size: Int
+
+    public init(url: URL, size: Int) {
+        self.url = url
+        self.size = size
+    }
 }
 
 protocol FilePickerPresenterProtocol: class {
     var view: FilePickerViewProtocol? { get set }
+    var files: Store<LocalUseCase<File>> { get }
+    var sources: [FilePickerSource] { get }
 
     func viewIsReady()
     func add(fromSource source: FilePickerSource)
     func add(withInfo info: FileInfo)
     func add(fromURL url: URL)
     func add(withCameraResult result: CameraCaptureResult)
-    func didSelectFile(_ file: FileViewModel)
+    func didSelectFile(_ file: File)
 }
 
 extension FilePickerPresenterProtocol {
@@ -43,27 +48,5 @@ extension FilePickerPresenterProtocol {
         let size = url.lookupFileSize()
         let info = FileInfo(url: url, size: size)
         add(withInfo: info)
-    }
-
-    func add(withCameraResult result: CameraCaptureResult) {
-        if let image = result[UIImagePickerController.InfoKey.originalImage] as? UIImage,
-            let tryInfo = try? image.temporarilyStoreForSubmission(),
-            let info = tryInfo {
-            add(withInfo: info)
-        } else if let videoUrl = result[UIImagePickerController.InfoKey.mediaURL] as? URL {
-            do {
-                let readableName = "\(String(describing: Clock.now.timeIntervalSince1970))-submission.\(videoUrl.pathExtension)"
-                let newURL = try URL.temporarySubmissionDirectoryPath().appendingPathComponent(readableName)
-                if FileManager.default.fileExists(atPath: newURL.path) {
-                    try FileManager.default.removeItem(at: newURL)
-                }
-                try FileManager.default.copyItem(at: videoUrl, to: newURL)
-                let size = newURL.lookupFileSize()
-                let info = FileInfo(url: newURL, size: size)
-                add(withInfo: info)
-            } catch {
-                view?.showError(error)
-            }
-        }
     }
 }

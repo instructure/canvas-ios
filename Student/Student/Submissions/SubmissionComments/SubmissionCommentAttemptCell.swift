@@ -32,7 +32,7 @@ class SubmissionCommentAttemptCell: UITableViewCell {
         self.onFileTap = onFileTap
 
         for view in stackView?.arrangedSubviews ?? [] { view.removeFromSuperview() }
-        if submission?.type == .online_upload, let files = submission?.attachments?.sorted(by: { $0.id < $1.id }) {
+        if submission?.type == .online_upload, let files = submission?.attachments?.sorted(by: File.idCompare) {
             for file in files {
                 let view = SubmissionCommentFileView.loadFromXib()
                 view.update(file: file)

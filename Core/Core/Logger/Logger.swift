@@ -46,12 +46,16 @@ public class Logger: LoggerProtocol {
         self.queue = OperationQueue()
     }
 
-    public func log(_ message: String) {
+    public func log(_ message: String = #function) {
         logEvent(.log, message: message)
     }
 
     public func error(_ message: String) {
         logEvent(.error, message: message)
+    }
+
+    public func error(_ error: Error) {
+        logEvent(.error, message: error.localizedDescription)
     }
 
     private func logEvent(_ type: LoggableType, message: String) {

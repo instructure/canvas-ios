@@ -20,7 +20,6 @@ public protocol SubmissionViewable {
     var submission: Submission? { get }
     var submissionTypes: [SubmissionType] { get }
     var allowedExtensions: [String] { get }
-    var fileSubmission: FileSubmission? { get }
 }
 
 extension SubmissionViewable {
@@ -82,39 +81,5 @@ extension SubmissionViewable {
 
     public var isExternalToolAssignment: Bool {
         return submissionTypes.contains(.external_tool)
-    }
-
-    public var showFileSubmissionStatus: Bool {
-        return fileSubmission?.submitted == false
-    }
-
-    public var fileSubmissionStatusText: String? {
-        guard let fileSubmission = fileSubmission else {
-            return nil
-        }
-        if fileSubmission.failed {
-            return NSLocalizedString("Submission Failed", bundle: .core, comment: "")
-        }
-        return NSLocalizedString("Submission Uploading...", bundle: .core, comment: "")
-    }
-
-    public var fileSubmissionStatusTextColor: UIColor? {
-        guard let fileSubmission = fileSubmission else {
-            return nil
-        }
-        if fileSubmission.failed {
-            return UIColor.named(.textDanger).ensureContrast(against: .white)
-        }
-        return UIColor.named(.textSuccess).ensureContrast(against: .white)
-    }
-
-    public var fileSubmissionButtonText: String? {
-        guard let fileSubmission = fileSubmission else {
-            return nil
-        }
-        if fileSubmission.failed {
-            return NSLocalizedString("Tap to view details", bundle: .core, comment: "")
-        }
-        return NSLocalizedString("Tap to view progress", bundle: .core, comment: "")
     }
 }

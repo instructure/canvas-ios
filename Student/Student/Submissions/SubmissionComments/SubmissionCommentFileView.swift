@@ -32,10 +32,11 @@ class SubmissionCommentFileView: UIControl {
     }
 
     func update(file: File) {
-        accessibilityIdentifier = "SubmissionCommentsElement.fileView.\(file.id)"
+        let id = file.id ?? ""
+        accessibilityIdentifier = "SubmissionCommentsElement.fileView.\(id)"
         accessibilityLabel = String.localizedStringWithFormat(
             NSLocalizedString("View file %@ %@", bundle: .student, comment: ""),
-            file.displayName,
+            file.displayName ?? "",
             ByteCountFormatter.string(fromByteCount: Int64(file.size), countStyle: .file)
         )
         iconView?.image = file.icon

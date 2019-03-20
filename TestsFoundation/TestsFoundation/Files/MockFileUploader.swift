@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2018-present Instructure, Inc.
+// Copyright (C) 2019-present Instructure, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,12 +17,17 @@
 import Foundation
 @testable import Core
 
-extension FileUpload: Fixture {
-    public static var template: Template {
-        return [
-            "contextRaw": "course_1",
-            "url": URL(fileURLWithPath: "/"),
-            "size": 2048,
-        ]
+public class MockFileUploader: FileUploader {
+    public var uploads: [File] = []
+    public var error: Error?
+
+    public convenience init(environment: AppEnvironment = .shared) {
+        self.init(bundleID: "tests", appGroup: nil, environment: environment)
+        self.uploads = []
+    }
+
+    public override func upload(_ file: File, context: FileUploadContext, callback: @escaping (Error?) -> Void) {
+        uploads.append(file)
+        callback(error)
     }
 }

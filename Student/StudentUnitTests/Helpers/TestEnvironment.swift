@@ -26,6 +26,5 @@ func testEnvironment() -> AppEnvironment {
     env.globalDatabase = singleSharedTestDatabase
     env.router = TestRouter()
     env.logger = TestLogger()
-    env.backgroundAPIManager = MockBackgroundURLSessionManager(database: env.database)
     return env
 }

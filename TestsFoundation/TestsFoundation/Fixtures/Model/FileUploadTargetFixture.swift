@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2018-present Instructure, Inc.
+// Copyright (C) 2019-present Instructure, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,19 +15,14 @@
 //
 
 import Foundation
-import XCTest
 @testable import Core
 
-class CancelFileSubmissionTests: CoreTestCase {
-    func testItDeletesFileSubmission() {
-        let fileSubmission = FileSubmission.make()
-        let assignment = fileSubmission.assignment
-        XCTAssertNotNil(assignment.fileSubmission)
-
-        let cancel = CancelFileSubmission(database: database, assignmentID: assignment.id)
-        addOperationAndWait(cancel)
-
-        databaseClient.refresh()
-        XCTAssertNil(assignment.fileSubmission)
-    }
+extension FileUploadTarget: Fixture {
+    public static var template: Template = [
+        "upload_url": "https://canvas.s3.bucket.com/bucket/1",
+        "upload_params": [
+            "param1": "foo",
+            "param2": "bar"
+        ]
+    ]
 }

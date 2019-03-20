@@ -19,6 +19,6 @@ import XCTest
 
 class Int64ExtensionsTests: XCTestCase {
     func testHumanReadableFileSize() {
-        XCTAssertEqual(Int64(1).humanReadableFileSize, "1 byte")
+        XCTAssertEqual(1.humanReadableFileSize, "1 byte")
     }
 }

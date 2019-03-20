@@ -117,10 +117,6 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         presenter?.viewIsReady()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-
     @objc
     func refresh(_ refreshControl: UIRefreshControl) {
         presenter?.refresh()
@@ -155,17 +151,25 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         }
 
         submittedLabel?.textColor = UIColor.named(.textSuccess).ensureContrast(against: .white)
+        submittedLabel?.text = NSLocalizedString("Successfully submitted!", bundle: .student, comment: "")
 
-        if assignment.showFileSubmissionStatus {
+        if let fileSubmissionState = presenter?.fileSubmissionState {
             gradeCell?.isHidden = false
             gradeCellDivider?.isHidden = false
             gradedView?.isHidden = true
             submittedView?.isHidden = false
             fileSubmissionButton?.isHidden = false
             submittedDetailsLabel?.isHidden = true
-            submittedLabel?.text = assignment.fileSubmissionStatusText
-            submittedLabel?.textColor = assignment.fileSubmissionStatusTextColor
-            fileSubmissionButton?.setTitle(assignment.fileSubmissionButtonText, for: .normal)
+            switch fileSubmissionState {
+            case .failed:
+                submittedLabel?.text = NSLocalizedString("Submission Failed", bundle: .core, comment: "")
+                submittedLabel?.textColor = UIColor.named(.textDanger).ensureContrast(against: .white)
+                fileSubmissionButton?.setTitle(NSLocalizedString("Tap to view details", bundle: .core, comment: ""), for: .normal)
+            case .pending:
+                submittedLabel?.text = NSLocalizedString("Submission Uploading...", bundle: .core, comment: "")
+                submittedLabel?.textColor = UIColor.named(.textSuccess).ensureContrast(against: .white)
+                fileSubmissionButton?.setTitle(NSLocalizedString("Tap to view progress", bundle: .core, comment: ""), for: .normal)
+            }
             return
         }
 

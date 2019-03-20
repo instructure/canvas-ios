@@ -61,3 +61,19 @@ public class NotificationManager {
         }
     }
 }
+
+extension UNNotificationRequest {
+    public var route: Route? {
+        guard let path = content.userInfo[NotificationManager.RouteURLKey] as? String else {
+            return nil
+        }
+
+        return Route(path)
+    }
+}
+
+extension UNNotification {
+    public var route: Route? {
+        return request.route
+    }
+}
