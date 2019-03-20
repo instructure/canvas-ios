@@ -37,8 +37,8 @@ public class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate,
             self.actAsUserID = actAsUserID
         }
 
-        init?(string: String) {
-            guard let data = Data(base64Encoded: string) else {
+        init?(identifier: String) {
+            guard let data = Data(base64Encoded: identifier) else {
                 return nil
             }
             do {
@@ -76,7 +76,7 @@ public class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate,
 
     /// Initialize from background.
     public convenience init?(backgroundSessionIdentifier id: String) {
-        guard let session = Session(string: id), let user = Keychain.entries.first(where: { $0 == session }) else {
+        guard let session = Session(identifier: id), let user = Keychain.entries.first(where: { $0 == session }) else {
             return nil
         }
         let api = URLSessionAPI(accessToken: user.accessToken, actAsUserID: user.actAsUserID, baseURL: user.baseURL)
