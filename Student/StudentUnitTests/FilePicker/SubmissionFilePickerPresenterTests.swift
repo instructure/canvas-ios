@@ -170,8 +170,52 @@ class SubmissionFilePickerPresenterTests: PersistenceTestCase {
                 uploading.fulfill()
             }
         }
+        let dismissed = XCTestExpectation(description: "view dismissed")
+        view.onDismissed = dismissed.fulfill
         let submit = view.navigationItems!.right[0]
         submit.performAction()
-        wait(for: [uploading], timeout: 0.1)
+        wait(for: [uploading, dismissed], timeout: 0.1)
+    }
+
+    func testSubmitShowsUploadError() {
+        uploader.error = NSError.instructureError("error")
+        presenter.viewIsReady()
+        presenter.add(fromURL: testImageURL)
+        wait(for: [onUpdateExpectation], timeout: 0.1)
+        let uploading = XCTestExpectation(description: "file uploading")
+        view.onUpdate = {
+            if self.uploader.uploads.count == 1 {
+                uploading.fulfill()
+            }
+        }
+        let error = XCTestExpectation(description: "view error")
+        view.onError = error.fulfill
+        let submit = view.navigationItems!.right[0]
+        submit.performAction()
+        wait(for: [uploading, error], timeout: 0.1)
+    }
+
+    func testSelectFileShowsError() {
+        let file = File.make()
+        file.uploadError = "Something went wrong"
+        let expectation = XCTestExpectation(description: "view onError")
+        view.onError = expectation.fulfill
+        presenter.didSelectFile(file)
+        wait(for: [expectation], timeout: 0.1)
+        XCTAssertEqual(view.error?.localizedDescription, "Something went wrong")
+    }
+
+    func testInProgressMinimum() {
+        File.make(["bytesSent": 0, "assignmentID": assignmentID, "taskIDRaw": 1])
+        presenter.viewIsReady()
+        wait(for: [onUpdateExpectation], timeout: 0.1)
+        XCTAssertEqual(view.progress, 0.02)
+    }
+
+    func testInProgressMaximum() {
+        File.make(["bytesSent": 1, "size": 1, "assignmentID": assignmentID, "taskIDRaw": 1])
+        presenter.viewIsReady()
+        wait(for: [onUpdateExpectation], timeout: 0.1)
+        XCTAssertEqual(view.progress, 0.98)
     }
 }

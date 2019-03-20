@@ -157,7 +157,6 @@ class SubmissionFilePresenter {
 
     @objc
     private func submit() {
-        view?.dismiss()
         for file in files {
             uploader.upload(file, context: .submission(courseID: courseID, assignmentID: assignmentID)) { [weak self] error in
                 if let error = error {

@@ -19,6 +19,7 @@ import Foundation
 
 public class MockFileUploader: FileUploader {
     public var uploads: [File] = []
+    public var error: Error?
 
     public convenience init(environment: AppEnvironment = .shared) {
         self.init(bundleID: "tests", appGroup: nil, environment: environment)
@@ -27,5 +28,6 @@ public class MockFileUploader: FileUploader {
 
     public override func upload(_ file: File, context: FileUploadContext, callback: @escaping (Error?) -> Void) {
         uploads.append(file)
+        callback(error)
     }
 }

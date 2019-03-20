@@ -35,6 +35,8 @@ class FilePickerView: FilePickerViewProtocol {
     var onUpdate: (() -> Void)?
     var bytesSent: Int?
     var expectedToSend: Int?
+    var onDismissed: (() -> Void)?
+    var onError: (() -> Void)?
 
     func presentCamera() {
         presentCameraCallCount += 1
@@ -50,6 +52,11 @@ class FilePickerView: FilePickerViewProtocol {
 
     func showError(_ error: Error) {
         self.error = error
+        onError?()
+    }
+
+    func showError(message: String) {
+        showError(NSError.instructureError(message))
     }
 
     func update() {
@@ -78,5 +85,6 @@ class FilePickerView: FilePickerViewProtocol {
 
     func dismiss() {
         dismissed = true
+        onDismissed?()
     }
 }
