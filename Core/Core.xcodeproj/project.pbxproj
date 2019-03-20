@@ -352,7 +352,6 @@
 		B1A6BC8C218A9843000515E3 /* APILatePolicyRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A6BC8B218A9843000515E3 /* APILatePolicyRequestableTests.swift */; };
 		B1A8CD3722375D6400E2242D /* FileUploadTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A8CD3622375D6400E2242D /* FileUploadTarget.swift */; };
 		B1A8CD3A223766FA00E2242D /* FileUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A8CD39223766FA00E2242D /* FileUploader.swift */; };
-		B1A8CD492239513200E2242D /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A8CD482239513200E2242D /* AppGroup.swift */; };
 		B1AE17AE21877C37002995E6 /* APIEnrollment+Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AE17AD21877C36002995E6 /* APIEnrollment+Requestable.swift */; };
 		B1B42C1622403AFD0087399A /* FileUploaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B42C1522403AFD0087399A /* FileUploaderTests.swift */; };
 		B1B4C1C9219631AC00FA9E0E /* EmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1B4C1C8219631AC00FA9E0E /* EmptyView.xib */; };
@@ -916,7 +915,6 @@
 		B1A6BC8B218A9843000515E3 /* APILatePolicyRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APILatePolicyRequestableTests.swift; sourceTree = "<group>"; };
 		B1A8CD3622375D6400E2242D /* FileUploadTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadTarget.swift; sourceTree = "<group>"; };
 		B1A8CD39223766FA00E2242D /* FileUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploader.swift; sourceTree = "<group>"; };
-		B1A8CD482239513200E2242D /* AppGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroup.swift; sourceTree = "<group>"; };
 		B1AE17AD21877C36002995E6 /* APIEnrollment+Requestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIEnrollment+Requestable.swift"; sourceTree = "<group>"; };
 		B1B42C1522403AFD0087399A /* FileUploaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploaderTests.swift; sourceTree = "<group>"; };
 		B1B4C1C8219631AC00FA9E0E /* EmptyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyView.xib; sourceTree = "<group>"; };
@@ -1103,7 +1101,6 @@
 				B17F23B02137981B00771F86 /* Clock.swift */,
 				7DD6948E2196891200BA4984 /* Secret.swift */,
 				7DAFB46221A361C400311275 /* LocalizationManager.swift */,
-				B1A8CD482239513200E2242D /* AppGroup.swift */,
 				B1C783EC2241E39B00DD89A9 /* UUID.swift */,
 			);
 			path = AppEnvironment;
@@ -2277,7 +2274,6 @@
 				7D8262F9212B3B2000BD268D /* APISection.swift in Sources */,
 				3B4B75C7222F09C7002CCBEC /* CreateSubmission.swift in Sources */,
 				B195DC512132257500797FE4 /* GetCourse.swift in Sources */,
-				B1A8CD492239513200E2242D /* AppGroup.swift in Sources */,
 				7D29D2FF218A4FEA0036437C /* PSPDFAnnotationExtension.swift in Sources */,
 				7D80AC0E212B4D4100C40ECE /* APIFavorite.swift in Sources */,
 				7DF9BF04215191840099026B /* BundleExtensions.swift in Sources */,
