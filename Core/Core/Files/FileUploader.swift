@@ -248,7 +248,7 @@ extension FileUploader {
     private func submit(assignmentID: String, courseID: String) {
         performAndWait { context in
             let files: [File] = context.all(where: #keyPath(File.assignmentID), equals: assignmentID)
-            let ready = files.allSatisfy { $0.isUploaded } == true
+            let ready = files.allSatisfy { $0.isUploaded }
             guard ready else { return }
 
             let fileIDs = files.compactMap { $0.id }
