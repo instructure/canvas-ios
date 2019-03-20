@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2018-present Instructure, Inc.
+// Copyright (C) 2019-present Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -51,6 +51,24 @@ extension NSPersistentContainer {
         }
         return folder.appendingPathComponent(fileName)
     }
+
+    public func clearAllRecords() throws {
+        try persistentStoreCoordinator.managedObjectModel.entities.forEach { (entity) in
+            if let name = entity.name {
+                let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: name)
+                let request = NSBatchDeleteRequest(fetchRequest: fetch)
+                try viewContext.execute(request)
+            }
+        }
+        try viewContext.save()
+    }
+
+    public func fetchedResultsController<T>(predicate: NSPredicate? = nil, sortDescriptors: [NSSortDescriptor], sectionNameKeyPath: String? = nil) -> NSFetchedResultsController<T> {
+        let request = NSFetchRequest<T>(entityName: String(describing: T.self))
+        request.predicate = predicate ?? NSPredicate(value: true)
+        request.sortDescriptors = sortDescriptors
+        return NSFetchedResultsController(fetchRequest: request, managedObjectContext: viewContext, sectionNameKeyPath: sectionNameKeyPath, cacheName: nil)
+    }
 }
 
 extension NSPersistentContainer: Persistence {
@@ -70,28 +88,10 @@ extension NSPersistentContainer: Persistence {
         return viewContext
     }
 
-    public func clearAllRecords() throws {
-        try persistentStoreCoordinator.managedObjectModel.entities.forEach { (entity) in
-            if let name = entity.name {
-                let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: name)
-                let request = NSBatchDeleteRequest(fetchRequest: fetch)
-                try viewContext.execute(request)
-            }
-        }
-        try viewContext.save()
-    }
-
     public func fetchedResultsController<T>(predicate: NSPredicate, sortDescriptors: [NSSortDescriptor], sectionNameKeyPath: String?) -> FetchedResultsController<T> {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: String(describing: T.self))
         request.predicate = predicate
         request.sortDescriptors = sortDescriptors
         return CoreDataFetchedResultsController(fetchRequest: request, managedObjectContext: viewContext, sectionNameKeyPath: sectionNameKeyPath)
-    }
-
-    public func fetchedResultsController<T>(predicate: NSPredicate? = nil, sortDescriptors: [NSSortDescriptor], sectionNameKeyPath: String? = nil) -> NSFetchedResultsController<T> {
-        let request = NSFetchRequest<T>(entityName: String(describing: T.self))
-        request.predicate = predicate ?? NSPredicate(value: true)
-        request.sortDescriptors = sortDescriptors
-        return NSFetchedResultsController(fetchRequest: request, managedObjectContext: viewContext, sectionNameKeyPath: sectionNameKeyPath, cacheName: nil)
     }
 }

@@ -30,7 +30,7 @@ public protocol API {
     func makeDownloadRequest(_ url: URL, callback: @escaping (URL?, URLResponse?, Error?) -> Void) -> URLSessionTask?
 
     @discardableResult
-    func uploadTask<R: APIRequestable>(_ requestable: R, fromFile file: URL) throws -> URLSessionTask
+    func uploadTask<R: APIRequestable>(_ requestable: R, fromFile file: URL) throws -> URLSessionTask where R.Body == URL
 }
 
 public struct URLSessionAPI: API {
@@ -95,15 +95,13 @@ public struct URLSessionAPI: API {
     }
 
     @discardableResult
-    public func uploadTask<R>(_ requestable: R, fromFile file: URL) throws -> URLSessionTask where R: APIRequestable {
+    public func uploadTask<R>(_ requestable: R, fromFile file: URL) throws -> URLSessionTask where R: APIRequestable, R.Body == URL {
         let request = try requestable.urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: actAsUserID)
-        if let body = requestable.body {
-            let data = try requestable.encode(body)
-            let name = UUID().uuidString
-            let url = FileManager.default.temporaryDirectory.appendingPathComponent(name)
-            try data.write(to: url)
-            return urlSession.uploadTask(with: request, fromFile: url)
-        }
-        return urlSession.uploadTask(with: request, fromFile: file)
+        let data = try requestable.encode(file)
+        let dir = URL.temporaryDirectory.appendingPathComponent(UUID.string, isDirectory: true)
+        try FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true, attributes: nil)
+        let url = dir.appendingPathComponent(file.lastPathComponent)
+        try data.write(to: url)
+        return urlSession.uploadTask(with: request, fromFile: url)
     }
 }

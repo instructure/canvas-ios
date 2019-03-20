@@ -62,6 +62,17 @@ class APITests: XCTestCase {
         ]
     }
 
+    struct UploadFile: APIRequestable {
+        typealias Response = APINoContent
+        typealias Body = URL
+
+        let body: URL
+        let path = "/file-upload"
+        func encode(_ body: URL) throws -> Data {
+            return body.path.data(using: .utf8)!
+        }
+    }
+
     func testIdentifier() {
         let api = URLSessionAPI()
         XCTAssertEqual(api.identifier, api.urlSession.configuration.identifier)
@@ -145,6 +156,19 @@ class APITests: XCTestCase {
     }
 
     func testMakeUploadRequest() {
-        XCTAssertNoThrow(try URLSessionAPI().uploadTask(GetNoContent(), fromFile: URL(string: "/")!))
+        let url = URL(fileURLWithPath: "/file.png")
+        let request = UploadFile(body: url)
+        XCTAssertNoThrow(try URLSessionAPI().uploadTask(request, fromFile: url))
+    }
+
+    func testMakeUploadRequestEncodesToFile() {
+        UUID.mock("test")
+        let url = URL(fileURLWithPath: "/file.png")
+        let request = UploadFile(body: url)
+        try! URLSessionAPI().uploadTask(request, fromFile: url)
+        let file = URL.temporaryDirectory.appendingPathComponent("test", isDirectory: true).appendingPathComponent("file.png")
+        XCTAssert(FileManager.default.fileExists(atPath: file.path))
+        let value = String(data: try! Data(contentsOf: file), encoding: .utf8)
+        XCTAssertEqual(value, "/file.png")
     }
 }

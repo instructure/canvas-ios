@@ -35,4 +35,37 @@ class FileTests: CoreTestCase {
         XCTAssertEqual(File.make([ "mimeClass": "doc" ]).icon, UIImage.icon(.document))
         XCTAssertEqual(File.make([ "mimeClass": "bogus" ]).icon, UIImage.icon(.document))
     }
+
+    func testIsUploading() {
+        let file = File.make()
+        file.taskID = nil
+        XCTAssertFalse(file.isUploading)
+
+        file.taskID = 1
+        XCTAssertTrue(file.isUploading)
+    }
+
+    func testIsUploaded() {
+        let file = File.make()
+        file.id = nil
+        XCTAssertFalse(file.isUploaded)
+
+        file.id = "1"
+        XCTAssertTrue(file.isUploaded)
+    }
+
+    func testPrepareForSubmission() {
+        let file = File.make()
+        file.prepareForSubmission(courseID: "11", assignmentID: "22")
+        XCTAssertEqual(file.courseID, "11")
+        XCTAssertEqual(file.assignmentID, "22")
+    }
+
+    func testMarkSubmitted() {
+        let file = File.make()
+        file.prepareForSubmission(courseID: "1", assignmentID: "2")
+        file.markSubmitted()
+        XCTAssertNil(file.courseID)
+        XCTAssertNil(file.assignmentID)
+    }
 }

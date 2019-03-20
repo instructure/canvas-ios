@@ -35,28 +35,15 @@ public protocol PersistenceClient {
     func refresh()
 }
 
-extension Persistence {
-    func fetchedResultsController<T>(predicate: NSPredicate? = nil, sortDescriptors: [NSSortDescriptor], sectionNameKeyPath: String? = nil) -> FetchedResultsController<T> {
-        return fetchedResultsController(predicate: predicate ?? .all, sortDescriptors: sortDescriptors, sectionNameKeyPath: sectionNameKeyPath)
+extension PersistenceClient {
+    public func fetch<T>(_ predicate: NSPredicate? = nil) -> [T] {
+        return fetch(predicate: nil, sortDescriptors: nil)
     }
 }
 
-extension PersistenceClient {
-    public func fetch<T>() -> [T] {
-        return self.fetch(predicate: nil, sortDescriptors: nil)
-    }
-
-    public func fetch<T>(_ predicate: NSPredicate?) -> [T] {
-        return self.fetch(predicate: predicate, sortDescriptors: nil)
-    }
-
-    public func first<T>(where key: String, equals value: CVarArg) -> T? {
-        return all(where: key, equals: value).first
-    }
-
-    public func all<T>(where key: String, equals value: CVarArg) -> [T] {
-        let predicate = NSPredicate(format: "%K == %@", key, value)
-        return fetch(predicate)
+extension Persistence {
+    func fetchedResultsController<T>(predicate: NSPredicate? = nil, sortDescriptors: [NSSortDescriptor], sectionNameKeyPath: String? = nil) -> FetchedResultsController<T> {
+        return fetchedResultsController(predicate: predicate ?? .all, sortDescriptors: sortDescriptors, sectionNameKeyPath: sectionNameKeyPath)
     }
 }
 

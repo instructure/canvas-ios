@@ -37,4 +37,39 @@ class UIImageExtensionsTests: XCTestCase {
             XCTAssertEqual(UIImage.icon(name), UIImage(named: "\(name)", in: .core, compatibleWith: nil))
         }
     }
+
+    func testWriteDefaults() {
+        let now = Date()
+        Clock.mockNow(now)
+        XCTAssertNoThrow(try image.write())
+        let file = URL.temporaryDirectory.appendingPathComponent("images/1553053727.1349812.png")
+        XCTAssertTrue(FileManager.default.fileExists(atPath: file.path))
+    }
+
+    func testWriteToURL() {
+        let url = URL.temporaryDirectory.appendingPathComponent("my-images", isDirectory: true)
+        try! image.write(to: url)
+        XCTAssertTrue(FileManager.default.fileExists(atPath: url.path))
+    }
+
+    func testWriteWithName() {
+        try! image.write(nameIt: "poop")
+        let file = URL.temporaryDirectory.appendingPathComponent("images/poop.png")
+        XCTAssertTrue(FileManager.default.fileExists(atPath: file.path))
+    }
+
+    func testWriteToURLWithName() {
+        let url = URL.temporaryDirectory.appendingPathComponent("my-images/poop.png")
+        try! image.write(to: url, nameIt: "poop")
+        XCTAssertTrue(FileManager.default.fileExists(atPath: url.path))
+    }
+
+    func testWriteOverwritesExistingFile() {
+        let tmp = URL.temporaryDirectory
+        let file = tmp.appendingPathComponent("hey.png")
+        try! "hey".write(to: file, atomically: true, encoding: .utf8)
+        try! image.write(to: tmp, nameIt: "hey")
+        XCTAssertNotNil(UIImage(contentsOfFile: file.path))
+        XCTAssertThrowsError(try String(contentsOf: file))
+    }
 }

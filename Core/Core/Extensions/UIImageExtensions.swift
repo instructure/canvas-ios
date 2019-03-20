@@ -45,8 +45,9 @@ extension UIImage {
         Images are written as pngs, therefore, a `png` extension will be given to the name.
         Any file that exists at the destination URL will be overwritten.
      */
+    @discardableResult
     public func write(to url: URL? = nil, nameIt name: String? = nil) throws -> URL {
-        let directory = url ?? URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("images", isDirectory: true)
+        let directory = url ?? URL.temporaryDirectory.appendingPathComponent("images", isDirectory: true)
         let name = name ?? String(Clock.now.timeIntervalSince1970)
         try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true, attributes: nil)
         let url = directory.appendingPathComponent(name, isDirectory: false).appendingPathExtension("png")

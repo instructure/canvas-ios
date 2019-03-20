@@ -18,5 +18,5 @@ import Foundation
 import Core
 
 extension FileUploader {
-    static let shared = FileUploader(bundleID: Bundle.studentBundleID, appGroup: .student)
+    static let shared = FileUploader(bundleID: Bundle.studentBundleID, appGroup: Bundle.main.appGroupID())
 }

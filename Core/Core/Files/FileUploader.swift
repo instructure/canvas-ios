@@ -24,12 +24,12 @@ public protocol FileUploaderDelegate {
 public class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate, URLSessionDataDelegate {
     fileprivate struct Session: Codable {
         let bundleID: String
-        let appGroup: AppGroup?
+        let appGroup: String?
         let userID: String
         let baseURL: URL
         let actAsUserID: String?
 
-        init(bundleID: String, appGroup: AppGroup?, userID: String, baseURL: URL, actAsUserID: String?) {
+        init(bundleID: String, appGroup: String?, userID: String, baseURL: URL, actAsUserID: String?) {
             self.bundleID = bundleID
             self.appGroup = appGroup
             self.userID = userID
@@ -80,12 +80,12 @@ public class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate,
             return nil
         }
         let api = URLSessionAPI(accessToken: user.accessToken, actAsUserID: user.actAsUserID, baseURL: user.baseURL)
-        let database = NSPersistentContainer.create(appGroup: session.appGroup?.rawValue, session: user)
+        let database = NSPersistentContainer.create(appGroup: session.appGroup, session: user)
         self.init(identifier: session.identifier, api: api, database: database, appGroup: session.appGroup)
     }
 
     /// Initialize from foreground.
-    public convenience init(bundleID: String, appGroup: AppGroup?, environment: AppEnvironment = .shared) {
+    public convenience init(bundleID: String, appGroup: String?, environment: AppEnvironment = .shared) {
         guard let user = environment.currentSession else {
             self.init(identifier: "\(bundleID).fileuploads", api: URLSessionAPI(), database: .create(), appGroup: appGroup)
             return
@@ -97,12 +97,12 @@ public class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate,
         self.init(identifier: identifier, api: api, database: database, appGroup: appGroup)
     }
 
-    private init(identifier: String, api: API, database: NSPersistentContainer, appGroup: AppGroup?) {
+    private init(identifier: String, api: API, database: NSPersistentContainer, appGroup: String?) {
         Logger.shared.log("Creating file uploader with identifier \(identifier)")
         self.api = api
         self.database = database
         let configuration = URLSessionConfiguration.background(withIdentifier: identifier)
-        configuration.sharedContainerIdentifier = appGroup?.rawValue
+        configuration.sharedContainerIdentifier = appGroup
         super.init()
         backgroundSession = URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
     }

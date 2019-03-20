@@ -82,16 +82,15 @@ public struct PostFileUploadRequest: APIRequestable {
 
     public let fileURL: URL
     public let target: FileUploadTarget
-    public let boundary: String
+    public let boundary = UUID.string
 
-    public var body: URL? {
+    public var body: URL {
         return fileURL
     }
 
-    public init(fileURL: URL, target: FileUploadTarget, boundary: String = UUID().uuidString) {
+    public init(fileURL: URL, target: FileUploadTarget) {
         self.fileURL = fileURL
         self.target = target
-        self.boundary = boundary
     }
 
     public let method: APIMethod = .post

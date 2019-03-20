@@ -16,6 +16,24 @@
 
 import Foundation
 
-public enum AppGroup: String, Codable {
-    case student = "group.com.instructure.icanvas"
+public class UUID {
+    private static let shared = UUID()
+    private var string: String?
+
+    public static func mock(_ string: String) {
+        shared.string = string
+    }
+
+    public static func reset() {
+        shared.string = nil
+    }
+
+    public static var string: String {
+        #if DEBUG
+        if let uuid = shared.string {
+            return uuid
+        }
+        #endif
+        return Foundation.UUID().uuidString
+    }
 }

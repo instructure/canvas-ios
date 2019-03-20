@@ -109,11 +109,12 @@ class PostFileUploadRequestTests: XCTestCase {
     }
 
     func testPostFileUploadRequest() throws {
+        UUID.mock("3klfenalksjflkjoi9auf89eshajsnl3kjnwal")
         let target = PostFileUploadTargetRequest.Response(
             upload_url: URL(string: "s3://some/bucket/")!,
             upload_params: ["filename": "fileupload.txt"]
         )
-        let requestable = PostFileUploadRequest(fileURL: fileURL, target: target, boundary: "3klfenalksjflkjoi9auf89eshajsnl3kjnwal")
+        let requestable = PostFileUploadRequest(fileURL: fileURL, target: target)
 
         XCTAssertEqual(requestable.path, "s3://some/bucket/")
         XCTAssertEqual(requestable.method, .post)
@@ -124,18 +125,17 @@ class PostFileUploadRequestTests: XCTestCase {
         ])
     }
 
-    func testPostFileUploadRequestBody() throws {
+    func testPostFileUploadRequestEncode() throws {
+        UUID.mock("3klfenalksjflkjoi9auf89eshajsnl3kjnwal")
         let target = PostFileUploadTargetRequest.Response(
             upload_url: URL(string: "s3://some/bucket/")!,
             upload_params: ["filename": "fileupload.txt"]
         )
-        let requestable = PostFileUploadRequest(fileURL: fileURL, target: target, boundary: "3klfenalksjflkjoi9auf89eshajsnl3kjnwal")
-        let baseURL = URL(string: "https://cgnuonline-eniversity.edu")!
-        let request = try requestable.urlRequest(relativeTo: baseURL, accessToken: nil, actAsUserID: nil)
-        let data = request.httpBody
+        let requestable = PostFileUploadRequest(fileURL: fileURL, target: target)
+        let data = try! requestable.encode(requestable.body)
 
         XCTAssertNotNil(data)
-        let body = String(data: data!, encoding: .utf8)!
+        let body = String(data: data, encoding: .utf8)!
         let expected = try expectedPostBody()
         XCTAssertEqual(body, expected)
     }

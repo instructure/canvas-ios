@@ -153,7 +153,8 @@ extension Submission: WriteableModel {
             SubmissionComment.save(comment, forSubmission: item.id.value, in: client)
         }
 
-        if let assignment: Assignment = client.first(where: #keyPath(Assignment.id), equals: item.assignment_id.value) {
+        let assignmentPredicate = NSPredicate(format: "%K == %@", #keyPath(Assignment.id), item.assignment_id.value)
+        if let assignment: Assignment = client.fetch(assignmentPredicate).first {
             assignment.submission = model // trigger assignment change notification
         }
 
