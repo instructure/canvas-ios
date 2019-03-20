@@ -39,10 +39,10 @@ class UIImageExtensionsTests: XCTestCase {
     }
 
     func testWriteDefaults() {
-        let now = Date()
+        let now = Date.isoDateFromString("2018-11-15T17:44:54Z")!
         Clock.mockNow(now)
         XCTAssertNoThrow(try image.write())
-        let file = URL.temporaryDirectory.appendingPathComponent("images/1553053727.1349812.png")
+        let file = URL.temporaryDirectory.appendingPathComponent("images/1542303894.0.png")
         XCTAssertTrue(FileManager.default.fileExists(atPath: file.path))
     }
 
