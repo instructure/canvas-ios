@@ -37,7 +37,7 @@ public protocol PersistenceClient {
 
 extension PersistenceClient {
     public func fetch<T>(_ predicate: NSPredicate? = nil) -> [T] {
-        return fetch(predicate: nil, sortDescriptors: nil)
+        return fetch(predicate: predicate, sortDescriptors: nil)
     }
 }
 
