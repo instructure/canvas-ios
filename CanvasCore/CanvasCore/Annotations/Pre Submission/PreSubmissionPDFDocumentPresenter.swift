@@ -80,6 +80,13 @@ open class PreSubmissionPDFDocumentPresenter: NSObject {
     @objc func stylePSPDFKit() {
         let styleManager = PSPDFKit.sharedInstance.styleManager
         styleManager.setupDefaultStylesIfNeeded()
+
+        let textColorPresets = CanvadocsAnnotationColor.allCases.map { return PSPDFColorPreset(color: $0.color, fill: .white, alpha: 1) }
+        let textFillPresets = CanvadocsAnnotationColor.allCases.map { return PSPDFColorPreset(color: $0.color, fill: .clear, alpha: 1) }
+        let textPresets = textColorPresets + textFillPresets
+        styleManager.setPresets(textPresets, forKey: AnnotationStateVariantID(rawValue: AnnotationString.freeText.rawValue), type: .colorPreset)
+        styleManager.setLastUsedValue(UIColor.black, forProperty: "color", forKey: AnnotationStateVariantID(rawValue: AnnotationString.freeText.rawValue))
+        styleManager.setLastUsedValue(UIColor.clear, forProperty: "fillColor", forKey: AnnotationStateVariantID(rawValue: AnnotationString.freeText.rawValue))
     }
 
     @objc open func getPDFViewController() -> UIViewController {

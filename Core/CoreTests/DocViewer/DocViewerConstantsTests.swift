@@ -42,5 +42,20 @@ class DocViewerConstantsTests: XCTestCase {
            "color",
            forKey: AnnotationStateVariantID(rawValue: AnnotationString.ink.rawValue)
         ) as? UIColor, DocViewerAnnotationColor.red.color)
+        XCTAssertEqual(PSPDFKit.sharedInstance.styleManager.lastUsedProperty(
+            "fillColor",
+            forKey: AnnotationStateVariantID(rawValue: AnnotationString.freeText.rawValue)
+        ) as? UIColor, .clear)
+        XCTAssertEqual(PSPDFKit.sharedInstance.styleManager.lastUsedProperty(
+            "color",
+            forKey: AnnotationStateVariantID(rawValue: AnnotationString.freeText.rawValue)
+        ) as? UIColor, .black)
+        let textPresets = PSPDFKit.sharedInstance.styleManager.presets(forKey: AnnotationStateVariantID(rawValue: AnnotationString.freeText.rawValue), type: .colorPreset) as? [PSPDFColorPreset]
+        XCTAssertNotNil(textPresets)
+        XCTAssertEqual(textPresets?.count, DocViewerAnnotationColor.allCases.count * 2)
+        for annotationColor in DocViewerAnnotationColor.allCases {
+            XCTAssertTrue(textPresets?.contains { $0.color == annotationColor.color && $0.fillColor?.hexString == UIColor.white.hexString } == true)
+            XCTAssertTrue(textPresets?.contains { $0.color == annotationColor.color && $0.fillColor == nil } == true)
+        }
     }
 }
