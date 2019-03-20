@@ -17,6 +17,7 @@
 import Foundation
 
 public enum PermissionName: String {
+
     // Account level
     case becomeUser = "become_user"
     case importSis = "import_sis"

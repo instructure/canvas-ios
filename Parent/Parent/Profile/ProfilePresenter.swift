@@ -44,10 +44,7 @@ public class ProfilePresenter: ProfilePresenterProtocol {
             return true
         }
 
-        guard let becomeUser = self.permissions.first?.becomeUser else {
-            return false
-        }
-        return becomeUser
+        return self.permissions.first?.becomeUser ?? false
     }
 
     public var cells: [ProfileViewCell] {

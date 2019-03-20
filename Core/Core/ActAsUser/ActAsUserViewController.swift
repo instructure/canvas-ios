@@ -57,7 +57,7 @@ public class ActAsUserViewController: UIViewController {
         userIDTextField.addTarget(self, action: #selector(enterPressed), for: .editingDidEndOnExit)
 
         redPanda.transform = redPanda.transform.rotated(by: .pi / -6).translatedBy(x: 0, y: 0)
-        actAsUserButton.roundCorners(corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 5)
+        actAsUserButton.layer.cornerRadius = 5
         animatePanda()
     }
 
@@ -117,7 +117,7 @@ public class ActAsUserViewController: UIViewController {
 extension ActAsUserViewController {
     @objc
     func updateActAsUserButtonDisabledStatus() {
-        self.actAsUserButton.isEnabled = domainTextField.text?.count ?? 0 > 0 && userIDTextField.text?.count ?? 0 > 0
+        self.actAsUserButton.isEnabled = domainTextField.text?.isEmpty == false && userIDTextField.text?.isEmpty == false
     }
 
     @objc

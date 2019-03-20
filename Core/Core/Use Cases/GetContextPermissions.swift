@@ -28,7 +28,7 @@ public struct GetContextPermissions: APIUseCase {
     }
 
     public var cacheKey: String? {
-        return "get-\(context.canvasContextID)-permissions-\(permissions.map({ $0.rawValue }).joined(separator: ","))"
+        return "get-\(context.canvasContextID)-permissions-\(permissions.map({ $0.rawValue }).sorted().joined(separator: ","))"
     }
 
     public var request: GetContextPermissionsRequest {
