@@ -44,7 +44,15 @@ extension NSPersistentContainer {
     }
 
     public static func databaseURL(for appGroup: String?, session: KeychainEntry?) -> URL? {
-        guard let appGroup = appGroup, let folder = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroup) else { return nil }
+        var folder = URL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])
+
+        if let appGroup = appGroup {
+            guard let appGroupFolder = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroup) else {
+                preconditionFailure("App Group does not exist")
+            }
+            folder = appGroupFolder
+        }
+
         var fileName = "Database.sqlite"
         if let host = session?.baseURL.host, let userID = session?.userID {
             fileName = "Database-\(host)-\(userID).sqlite"

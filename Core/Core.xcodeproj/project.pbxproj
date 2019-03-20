@@ -280,6 +280,8 @@
 		9FBE536D223C32E7001EC40C /* Permissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBE536C223C32E7001EC40C /* Permissions.swift */; };
 		9FBFE6D322412B9E002B3796 /* ActAsUserViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FBFE6D222412B9E002B3796 /* ActAsUserViewController.storyboard */; };
 		9FBFE6D522412BC0002B3796 /* ActAsUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBFE6D422412BC0002B3796 /* ActAsUserViewController.swift */; };
+		9FBFE6DF22428990002B3796 /* WrongAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBFE6DE22428990002B3796 /* WrongAppViewController.swift */; };
+		9FBFE6E1224289A6002B3796 /* WrongAppViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FBFE6E0224289A6002B3796 /* WrongAppViewController.storyboard */; };
 		9FCD79D42188DC4E0054293A /* APISubmission+Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCD79D32188DC4E0054293A /* APISubmission+Requestable.swift */; };
 		9FCD79D62188DE8B0054293A /* APISubmissionRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCD79D52188DE8B0054293A /* APISubmissionRequestableTests.swift */; };
 		9FCD79D82188DFD00054293A /* GetSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCD79D72188DFD00054293A /* GetSubmission.swift */; };
@@ -856,6 +858,8 @@
 		9FBE536C223C32E7001EC40C /* Permissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Permissions.swift; sourceTree = "<group>"; };
 		9FBFE6D222412B9E002B3796 /* ActAsUserViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ActAsUserViewController.storyboard; sourceTree = "<group>"; };
 		9FBFE6D422412BC0002B3796 /* ActAsUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActAsUserViewController.swift; sourceTree = "<group>"; };
+		9FBFE6DE22428990002B3796 /* WrongAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrongAppViewController.swift; sourceTree = "<group>"; };
+		9FBFE6E0224289A6002B3796 /* WrongAppViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WrongAppViewController.storyboard; sourceTree = "<group>"; };
 		9FCD79D32188DC4E0054293A /* APISubmission+Requestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APISubmission+Requestable.swift"; sourceTree = "<group>"; };
 		9FCD79D52188DE8B0054293A /* APISubmissionRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISubmissionRequestableTests.swift; sourceTree = "<group>"; };
 		9FCD79D72188DFD00054293A /* GetSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubmission.swift; sourceTree = "<group>"; };
@@ -1034,9 +1038,6 @@
 		2C964830211E2F1A002C3255 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				2C964831211E2F1A002C3255 /* Core.h */,
-				2C964832211E2F1A002C3255 /* Info.plist */,
-				7D101948215E8E5F0058FDD1 /* Assets.xcassets */,
 				9FBFE6D122412B71002B3796 /* ActAsUser */,
 				7D8262E9212B1A4F00BD268D /* API */,
 				2C96485C211E36FF002C3255 /* AppEnvironment */,
@@ -1069,6 +1070,7 @@
 				9FBE5359223ADA4D001EC40C /* TermsOfService */,
 				B1445309212E5B8E0009D848 /* Use Cases */,
 				7D1758B12159894C00F88613 /* Views */,
+				9FBFE6DD22428966002B3796 /* WrongApp */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -1711,6 +1713,15 @@
 			path = ActAsUser;
 			sourceTree = "<group>";
 		};
+		9FBFE6DD22428966002B3796 /* WrongApp */ = {
+			isa = PBXGroup;
+			children = (
+				9FBFE6DE22428990002B3796 /* WrongAppViewController.swift */,
+				9FBFE6E0224289A6002B3796 /* WrongAppViewController.storyboard */,
+			);
+			path = WrongApp;
+			sourceTree = "<group>";
+		};
 		B11D321521E4649B00F37ABF /* Store */ = {
 			isa = PBXGroup;
 			children = (
@@ -1745,7 +1756,6 @@
 			isa = PBXGroup;
 			children = (
 				B195DC5F2132659800797FE4 /* Base */,
-				3B4B75C6222F09C7002CCBEC /* CreateSubmission.swift */,
 				9FD504EF2180C17C00B395BA /* DownloadFile.swift */,
 				B1A32BE5215A81350071B41E /* GetAssignment.swift */,
 				3BF5C54E2187800B0081A858 /* GetAssignments.swift */,
@@ -1763,10 +1773,6 @@
 				9FCD79D72188DFD00054293A /* GetSubmission.swift */,
 				7DA5C48B22385F95003CDB4C /* GetSubmissionComments.swift */,
 				B195DC44213201DE00797FE4 /* GetUserGroups.swift */,
-				3B69253B21A102E90023ED75 /* QueueFileUpload.swift */,
-				B1BCFF8D21BEC82900F58D0F /* SubmitFileSubmission.swift */,
-				B120D9D821B794BA00D93F39 /* UpdateFileUpload.swift */,
-				B120D9D621B7946F00D93F39 /* UploadFile.swift */,
 				3B4B75C6222F09C7002CCBEC /* CreateSubmission.swift */,
 				9F1CEA6022401425000BB98F /* GetContextPermissions.swift */,
 			);
@@ -1901,9 +1907,6 @@
 				9FCD79D92188E3CD0054293A /* GetSubmissionTest.swift */,
 				7D5C871E2239A45300D99651 /* GetSubmissionCommentsTests.swift */,
 				B195DC5421324DA600797FE4 /* GetUserGroupsTest.swift */,
-				3B69253D21A106430023ED75 /* QueueFileUploadTests.swift */,
-				B171A10A21BA13CF000325D3 /* UpdateFileUploadTests.swift */,
-				B17DFABF21B8855D008B9FA9 /* UploadFileTests.swift */,
 				9F1CEA6222401AF1000BB98F /* GetContextPermissionsTests.swift */,
 			);
 			path = "Use Cases";
@@ -2112,6 +2115,7 @@
 				7DD694892195F7A200BA4984 /* DocViewerViewController.storyboard in Resources */,
 				B1E789AB21B0EF130087FE4A /* LogEventListViewController.storyboard in Resources */,
 				7D1758B621598CA400F88613 /* TitleSubtitleView.xib in Resources */,
+				9FBFE6E1224289A6002B3796 /* WrongAppViewController.storyboard in Resources */,
 				9F8C3291223ACBA500D53F84 /* ProfileViewController.xib in Resources */,
 				7DD752A321BEFA8F00E26260 /* LoginManualOAuthViewController.storyboard in Resources */,
 				9FBE5356223AD1A4001EC40C /* DeveloperMenuViewController.storyboard in Resources */,
@@ -2210,7 +2214,6 @@
 				9FBE5369223C2522001EC40C /* PermissionName.swift in Sources */,
 				B17F23AB213788BC00771F86 /* TTLOperation.swift in Sources */,
 				B1911CE921C8460000F42F91 /* NotificationManager.swift in Sources */,
-				3B69253C21A102E90023ED75 /* QueueFileUpload.swift in Sources */,
 				9FBE536D223C32E7001EC40C /* Permissions.swift in Sources */,
 				7D29D2F7218A29FE0036437C /* DocViewerAnnotationToolbar.swift in Sources */,
 				9FAA5900223A98A300FEC3F8 /* DrawerTransitioning.swift in Sources */,
@@ -2260,6 +2263,7 @@
 				7D80AC05212B461F00C40ECE /* APIUser+Requestable.swift in Sources */,
 				B195DC4F2132232F00797FE4 /* DetailUseCase.swift in Sources */,
 				7D8262EB212B1A7B00BD268D /* APIRequestable.swift in Sources */,
+				9FBFE6DF22428990002B3796 /* WrongAppViewController.swift in Sources */,
 				7D63F784215D3C3D00151E49 /* APIBrandVariables.swift in Sources */,
 				9FAE410A21B6D0A600FE7F58 /* LTITools.swift in Sources */,
 				7DD6948521951FD700BA4984 /* UIViewExtensions.swift in Sources */,

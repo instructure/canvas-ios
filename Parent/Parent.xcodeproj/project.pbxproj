@@ -126,6 +126,7 @@
 		78A84A0E209BB7A000921C9B /* ParentAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7835A5E6209B6F4C00C9220B /* ParentAppDelegate.swift */; };
 		78AD913321C8184F0075FBCF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78AD913221C8184F0075FBCF /* GoogleService-Info.plist */; };
 		7D0215A521BAE863009A8E69 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D0215A421BAE863009A8E69 /* Core.framework */; };
+		9F6B43E42243ECD9003C758B /* DashboardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6B43E32243ECD9003C758B /* DashboardPresenter.swift */; };
 		9FAA5905223A999700FEC3F8 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAA5904223A999700FEC3F8 /* ProfilePresenter.swift */; };
 		9FBFE6D82241747B002B3796 /* ActAsUserPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBFE6D72241747B002B3796 /* ActAsUserPresenter.swift */; };
 		9FC676A3222832C700945F64 /* CKIClientExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC676A2222832C700945F64 /* CKIClientExtensions.swift */; };
@@ -826,6 +827,7 @@
 		9F5A3D362048745B00F6EDCE /* DiscussionKit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DiscussionKit.xcdatamodel; sourceTree = "<group>"; };
 		9F5A3D392048745B00F6EDCE /* DiscussionTopicAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionTopicAPI.swift; sourceTree = "<group>"; };
 		9F5A3D3B2048745B00F6EDCE /* Session+DiscussionKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session+DiscussionKit.swift"; sourceTree = "<group>"; };
+		9F6B43E32243ECD9003C758B /* DashboardPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardPresenter.swift; sourceTree = "<group>"; };
 		9FAA5904223A999700FEC3F8 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		9FBFE6D72241747B002B3796 /* ActAsUserPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActAsUserPresenter.swift; sourceTree = "<group>"; };
 		9FC676A2222832C700945F64 /* CKIClientExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKIClientExtensions.swift; sourceTree = "<group>"; };
@@ -989,6 +991,7 @@
 				5E0F9A5B1C739E6A00BB7707 /* DashboardTabView */,
 				2CB69BD11D91CE4A0059C5A5 /* DashboardViewController.storyboard */,
 				5E0F9A5F1C739E6A00BB7707 /* DashboardViewController.swift */,
+				9F6B43E32243ECD9003C758B /* DashboardPresenter.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -1093,7 +1096,6 @@
 		5E64417E1C3EE2E0003D7397 = {
 			isa = PBXGroup;
 			children = (
-				9FBFE6D622417463002B3796 /* ActAsUser */,
 				785AC17E20CEDAD300C28E46 /* Settings.bundle */,
 				5E6441891C3EE2E0003D7397 /* Parent */,
 				5E7790AF1C46CBA100429BF8 /* Frameworks */,
@@ -1113,6 +1115,7 @@
 		5E6441891C3EE2E0003D7397 /* Parent */ = {
 			isa = PBXGroup;
 			children = (
+				9FBFE6D622417463002B3796 /* ActAsUser */,
 				497C48C51F91539700A3BC06 /* Airwolf */,
 				B5CB1B631DC15AD800FE9C93 /* ArmchairLocalizable.strings */,
 				5E6441911C3EE2E0003D7397 /* Assets.xcassets */,
@@ -1647,6 +1650,7 @@
 				5EF946291CAD76C400D10247 /* TableEmptyView.swift in Sources */,
 				5E41048B1C99E08B0021567C /* UIImage+Resize.swift in Sources */,
 				497C48C21F912BD100A3BC06 /* Alert+Network.swift in Sources */,
+				9F6B43E42243ECD9003C758B /* DashboardPresenter.swift in Sources */,
 				4948BE691F915D330035BAFD /* Bundle+Parent.swift in Sources */,
 				5E5EE0FF1D0218C700FB0BA5 /* Router+Errors.swift in Sources */,
 				497C48E21F9153D100A3BC06 /* Airwolf.xcdatamodeld in Sources */,
