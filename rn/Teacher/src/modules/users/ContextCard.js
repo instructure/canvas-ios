@@ -90,7 +90,7 @@ export class ContextCard extends Component<ContextCardProps> {
               height={80}
             />
             <View style={styles.userText}>
-              <Text style={styles.userName}>{user.name}</Text>
+              <Text style={styles.userName}>{user.short_name}</Text>
               { user.primary_email &&
                 <SubTitle>{user.primary_email}</SubTitle>
               }
@@ -196,7 +196,7 @@ export class ContextCard extends Component<ContextCardProps> {
 
     return (
       <Screen
-        title={user.name}
+        title={user.short_name}
         subtitle={course.name}
         {...screenProps }
       >
