@@ -54,7 +54,7 @@ extension UIImage {
         guard let data = pngData() else {
             throw NSError.instructureError("Failed to save image")
         }
-        if FileManager.default.fileExists(atPath: url.absoluteString) {
+        if FileManager.default.fileExists(atPath: url.path) {
             try FileManager.default.removeItem(at: url)
         }
         try data.write(to: url, options: .atomic)
