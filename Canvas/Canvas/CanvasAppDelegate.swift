@@ -361,32 +361,6 @@ extension AppDelegate: NativeLoginManagerDelegate {
     }
 }
 
-extension AppDelegate: BackgroundURLSessionDelegateEventHandler {
-    func urlSessionDidFinishEvent(forBackgroundURLSession session: URLSession) {
-        environment.logger.log(#function)
-        if let userID = TheKeymaster.currentClient?.currentUser?.id {
-            let createSubmissions = CreateFileSubmissions(env: environment, userID: userID)
-            environment.queue.addOperation(createSubmissions)
-        }
-    }
-
-    func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
-        environment.logger.log("app delegate \(#function)")
-        let operation = OperationSet()
-        for client in FXKeychain.shared().clients() {
-            guard let entry = client.keychainEntry else {
-                continue
-            }
-            let env = AppEnvironment()
-            env.userDidLogin(session: entry)
-            let createSubmissions = CreateFileSubmissions(env: env, userID: entry.userID)
-            operation.addOperation(createSubmissions)
-        }
-        environment.queue.addOperations([operation], waitUntilFinished: true)
-        environment.backgroundAPIManager.complete(session: session)
-    }
-}
-
 //  MARK: - Handle siri notifications
 extension AppDelegate {
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
