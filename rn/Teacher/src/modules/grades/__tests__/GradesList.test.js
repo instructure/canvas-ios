@@ -112,6 +112,8 @@ describe('mapStateToProps', () => {
       }],
       currentGradingPeriodID: gradingPeriodTwo.id,
       courseColor: 'blueish',
+      courseCode: 'rn 101',
+      showGrades: true,
     })
   })
 

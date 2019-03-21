@@ -52,6 +52,7 @@ export function mapStateToProps ({ entities }: AppState, { courseID, navigator }
   const courseColor = course.color
   const courseName = course.course.name
   const courseCode = course.course.course_code
+  const showGrades = true
   const { refs, pending, error } = course.assignmentGroups
   const groupsByID: AssignmentGroupsState = entities.assignmentGroups
   const assignmentGroupsState = refs
@@ -106,6 +107,7 @@ export function mapStateToProps ({ entities }: AppState, { courseID, navigator }
     currentScore,
     showTotalScore: true,
     courseCode,
+    showGrades,
   }
 }
 
