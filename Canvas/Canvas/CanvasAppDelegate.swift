@@ -360,3 +360,15 @@ extension AppDelegate: NativeLoginManagerDelegate {
         }, completion:nil)
     }
 }
+
+//  MARK: - Handle siri notifications
+extension AppDelegate {
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        if let path = userActivity.userInfo?["url"] as? String, let url = URL(string: path) {
+            openCanvasURL(url)
+            return true
+        }
+        return false
+    }
+}
+

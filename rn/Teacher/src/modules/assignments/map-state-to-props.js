@@ -36,6 +36,8 @@ export type AssignmentListDataProps = {
   currentScore?: ?number,
   showTotalScore: boolean,
   doNotSelectFirstItem?: boolean,
+  courseCode?: string,
+  showGrades?: boolean,
 }
 
 export type AssignmentListProps = AssignmentListDataProps

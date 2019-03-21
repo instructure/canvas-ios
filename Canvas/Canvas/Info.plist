@@ -112,6 +112,7 @@
 	<key>NSUserActivityTypes</key>
 	<array>
 		<string>com.instructure.icanvas.watchApp</string>
+		<string>com.instructure.siri.shortcut.getgrades</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
