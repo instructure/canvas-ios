@@ -127,6 +127,7 @@
 		78AD913321C8184F0075FBCF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78AD913221C8184F0075FBCF /* GoogleService-Info.plist */; };
 		7D0215A521BAE863009A8E69 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D0215A421BAE863009A8E69 /* Core.framework */; };
 		9FAA5905223A999700FEC3F8 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAA5904223A999700FEC3F8 /* ProfilePresenter.swift */; };
+		9FBFE6D82241747B002B3796 /* ActAsUserPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBFE6D72241747B002B3796 /* ActAsUserPresenter.swift */; };
 		9FC676A3222832C700945F64 /* CKIClientExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC676A2222832C700945F64 /* CKIClientExtensions.swift */; };
 		B11A2CF720E42D9500A2DBDD /* AccountNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11A2CF620E42D9500A2DBDD /* AccountNotificationViewController.swift */; };
 		B5CB1B611DC15AD800FE9C93 /* ArmchairLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5CB1B631DC15AD800FE9C93 /* ArmchairLocalizable.strings */; };
@@ -826,6 +827,7 @@
 		9F5A3D392048745B00F6EDCE /* DiscussionTopicAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionTopicAPI.swift; sourceTree = "<group>"; };
 		9F5A3D3B2048745B00F6EDCE /* Session+DiscussionKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session+DiscussionKit.swift"; sourceTree = "<group>"; };
 		9FAA5904223A999700FEC3F8 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
+		9FBFE6D72241747B002B3796 /* ActAsUserPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActAsUserPresenter.swift; sourceTree = "<group>"; };
 		9FC676A2222832C700945F64 /* CKIClientExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKIClientExtensions.swift; sourceTree = "<group>"; };
 		B11A2CF620E42D9500A2DBDD /* AccountNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNotificationViewController.swift; sourceTree = "<group>"; };
 		B18020AC21556E7500AB2F03 /* PSPDFKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKitUI.framework; path = "../ios-frameworks/PSPDFKitUI.framework"; sourceTree = "<group>"; };
@@ -1091,6 +1093,7 @@
 		5E64417E1C3EE2E0003D7397 = {
 			isa = PBXGroup;
 			children = (
+				9FBFE6D622417463002B3796 /* ActAsUser */,
 				785AC17E20CEDAD300C28E46 /* Settings.bundle */,
 				5E6441891C3EE2E0003D7397 /* Parent */,
 				5E7790AF1C46CBA100429BF8 /* Frameworks */,
@@ -1282,6 +1285,14 @@
 				9FAA5904223A999700FEC3F8 /* ProfilePresenter.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		9FBFE6D622417463002B3796 /* ActAsUser */ = {
+			isa = PBXGroup;
+			children = (
+				9FBFE6D72241747B002B3796 /* ActAsUserPresenter.swift */,
+			);
+			path = ActAsUser;
 			sourceTree = "<group>";
 		};
 		E2CB0046CD9881A39071A512 /* Pods */ = {
@@ -1631,6 +1642,7 @@
 				61B536F71C9B77900052B8CB /* CourseSyllabusViewController.swift in Sources */,
 				61D6A84D1C8F84E400370117 /* AlertsListViewController.swift in Sources */,
 				5E0F9A6C1C739E6A00BB7707 /* CalendarEventCellViewModel.swift in Sources */,
+				9FBFE6D82241747B002B3796 /* ActAsUserPresenter.swift in Sources */,
 				497C48C31F912BD100A3BC06 /* ObserverAlertKit.xcdatamodeld in Sources */,
 				5EF946291CAD76C400D10247 /* TableEmptyView.swift in Sources */,
 				5E41048B1C99E08B0021567C /* UIImage+Resize.swift in Sources */,

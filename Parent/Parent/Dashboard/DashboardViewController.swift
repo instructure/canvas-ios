@@ -21,10 +21,11 @@ import Result
 import CoreData
 import ReactiveSwift
 import CanvasCore
+import Core
 
 typealias DashboardSettingsAction = (_ session: Session)->Void
 typealias DashboardSelectCalendarEventAction = (_ session: Session, _ observeeID: String, _ calendarEvent: CalendarEvent)->Void
-typealias DashboardSelectCourseAction = (_ session: Session, _ observeeID: String, _ course: Course)->Void
+typealias DashboardSelectCourseAction = (_ session: Session, _ observeeID: String, _ course: CanvasCore.Course)->Void
 typealias DashboardSelectAlertAction = (_ session: Session, _ observeeID: String, _ alert: Alert)->Void
 
 let DrawerTransition = DrawerTransitionDelegate()
@@ -307,8 +308,7 @@ class DashboardViewController: UIViewController {
         adminViewController = storyboard.instantiateViewController(withIdentifier: "vc") as? AdminViewController
         
         adminViewController.actAsUserHandler = {
-            let navigatorOptions: [String: Any] = ["modal": true, "modalPresentationStyle": "formsheet", "showDismissButton": true, "embedInNavigationController": true]
-            HelmManager.shared.present("/masquerade", withProps: [:], options: navigatorOptions)
+            AppEnvironment.shared.router.route(to: .actAsUser, from: self, options: [.modal, .embedInNav])
         }
         
         pageViewController?.setViewControllers([adminViewController], direction: .reverse, animated: false, completion: { _ in })

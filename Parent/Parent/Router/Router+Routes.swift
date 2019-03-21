@@ -423,6 +423,9 @@ let router = Core.Router(routes: [
         let vc = TermsOfServiceViewController(AppEnvironment.shared)
         return vc
     },
+    Core.RouteHandler(.actAsUser, name: "act_as_user") { _, _ in
+        return ActAsUserViewController.create(presenter: ActAsUserPresenter())
+    },
     Core.RouteHandler(.developerMenu, name: "dev_menu") { _, _ in
         return DeveloperMenuViewController.create()
     },

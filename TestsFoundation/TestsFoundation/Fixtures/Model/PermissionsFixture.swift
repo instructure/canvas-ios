@@ -17,14 +17,8 @@
 import Foundation
 @testable import Core
 
-extension MediaComment: Fixture {
+extension Permissions: Fixture {
     public static var template: Template {
-        return [
-            "contentType": "video/mp4",
-            "displayName": "Submission",
-            "mediaID": "m-1234567890",
-            "mediaTypeRaw": "video",
-            "url": URL(string: "https://google.com")!
-        ]
+        return [ "context": "account_1" ]
     }
 }
