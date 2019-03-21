@@ -276,11 +276,13 @@ extension ParentAppDelegate: NativeLoginManagerDelegate {
             return
         }
 
-        let masquerader = client.originalBaseURL != nil
-            ? client.originalBaseURL
+        var masquerader: URL? = nil
+        if let originalUserID = client.originalIDOfMasqueradingUser, let baseURL = client.originalBaseURL ?? client.baseURL {
+            masquerader = baseURL
                 .appendingPathComponent("users")
-                .appendingPathComponent(client.originalIDOfMasqueradingUser ?? "")
-            : nil
+                .appendingPathComponent(originalUserID)
+        }
+
 
         let entry = KeychainEntry(accessToken: token, baseURL: client.authSession.baseURL, expiresAt: nil, locale: "en", masquerader: masquerader, refreshToken: nil, userAvatarURL: client.authSession.user.avatarURL, userID: client.authSession.user.id, userName: client.authSession.user.name)
         self.didLogin(entry)
