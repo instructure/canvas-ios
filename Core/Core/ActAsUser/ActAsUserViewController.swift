@@ -20,7 +20,7 @@ public protocol ActAsUserPresenterProtocol: class {
     func didSubmit(domain: String, userID: String, completion: @escaping (Error?) -> Void)
 }
 
-public class ActAsUserViewController: UIViewController {
+public class ActAsUserViewController: UITableViewController {
     var env: AppEnvironment?
     var presenter: ActAsUserPresenterProtocol?
 
