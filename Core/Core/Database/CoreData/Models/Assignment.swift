@@ -35,7 +35,6 @@ public class Assignment: NSManagedObject {
     @NSManaged public var unlockAt: Date?
     @NSManaged public var lockedForUser: Bool
     @NSManaged public var url: URL?
-    @NSManaged public var fileSubmission: FileSubmission?
 
     public var gradingType: GradingType {
         get { return GradingType(rawValue: gradingTypeRaw) ?? .points }
@@ -101,8 +100,7 @@ extension Assignment {
 
     public var canMakeSubmissions: Bool {
         return submissionTypes.count > 0 &&
-            !submissionTypes.contains(.none) && !submissionTypes.contains(.on_paper) &&
-            (fileSubmission == nil || fileSubmission?.submitted == true || fileSubmission?.failed == true)
+            !submissionTypes.contains(.none) && !submissionTypes.contains(.on_paper)
     }
 
     public var allowedUTIs: [UTI] {

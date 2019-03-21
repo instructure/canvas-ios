@@ -18,6 +18,7 @@ import XCTest
 import Core
 import TestsFoundation
 import CoreData
+@testable import Student
 
 class PersistenceTestCase: XCTestCase {
     var database: NSPersistentContainer {
@@ -28,9 +29,6 @@ class PersistenceTestCase: XCTestCase {
     }
 
     var api = MockAPI()
-    var backgroundAPI: MockAPI {
-        return env.backgroundAPI as! MockAPI
-    }
     var queue = OperationQueue()
     var router = TestRouter()
     var env = testEnvironment()

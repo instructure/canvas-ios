@@ -22,18 +22,15 @@ class SubmissionViewableTests: XCTestCase {
         let submission: Submission?
         let submissionTypes: [SubmissionType]
         let allowedExtensions: [String]
-        let fileSubmission: FileSubmission?
 
         init(
             submission: Submission? = Submission.make(),
             submissionTypes: [SubmissionType] = [.online_text_entry],
-            allowedExtensions: [String] = [],
-            fileSubmission: FileSubmission? = nil
+            allowedExtensions: [String] = []
         ) {
             self.submission = submission
             self.submissionTypes = submissionTypes
             self.allowedExtensions = allowedExtensions
-            self.fileSubmission = fileSubmission
         }
     }
 
@@ -101,65 +98,5 @@ class SubmissionViewableTests: XCTestCase {
     func testIsSubmittable() {
         XCTAssertTrue(Model(submissionTypes: [.online_text_entry]).isSubmittable)
         XCTAssertFalse(Model(submissionTypes: [.none]).isSubmittable)
-    }
-
-    func testShowFileSubmissionStatusTrue() {
-        let model = Model(fileSubmission: FileSubmission.make(["submitted": false]))
-        XCTAssertTrue(model.showFileSubmissionStatus)
-    }
-
-    func testShowFileSubmissionStatusFalseNoFileSubmission() {
-        let model = Model(fileSubmission: nil)
-        XCTAssertFalse(model.showFileSubmissionStatus)
-    }
-
-    func testShowFileSubmissionStatusFalseSubmitted() {
-        let model = Model(fileSubmission: FileSubmission.make(["submitted": true]))
-        XCTAssertFalse(model.showFileSubmissionStatus)
-    }
-
-    func testFileSubmissionStatusTextNil() {
-        let model = Model(fileSubmission: nil)
-        XCTAssertNil(model.fileSubmissionStatusText)
-    }
-
-    func testFileSubmissionStatusTextFailed() {
-        let model = Model(fileSubmission: FileSubmission.make(["error": "error"]))
-        XCTAssertEqual(model.fileSubmissionStatusText, "Submission Failed")
-    }
-
-    func testFileSubmissionStatusTextUploading() {
-        let model = Model(fileSubmission: FileSubmission.make(["error": nil]))
-        XCTAssertEqual(model.fileSubmissionStatusText, "Submission Uploading...")
-    }
-
-    func testFileSubmissionStatusTextColorNil() {
-        let model = Model(fileSubmission: nil)
-        XCTAssertNil(model.fileSubmissionStatusTextColor)
-    }
-
-    func testFileSubmissionStatusTextColorFailed() {
-        let model = Model(fileSubmission: FileSubmission.make(["error": "error"]))
-        XCTAssertEqual(model.fileSubmissionStatusTextColor, UIColor.named(.textDanger))
-    }
-
-    func testFileSubmissionStatusTextColorUploading() {
-        let model = Model(fileSubmission: FileSubmission.make(["error": nil]))
-        XCTAssertEqual(model.fileSubmissionStatusTextColor, UIColor.named(.textSuccess))
-    }
-
-    func testFileSubmissionStatusButtonTextNil() {
-        let model = Model(fileSubmission: nil)
-        XCTAssertNil(model.fileSubmissionButtonText)
-    }
-
-    func testFileSubmissionStatusButtonTextFailed() {
-        let model = Model(fileSubmission: FileSubmission.make(["error": "error"]))
-        XCTAssertEqual(model.fileSubmissionButtonText, "Tap to view details")
-    }
-
-    func testFileSubmissionStatusButtonTextUploading() {
-        let model = Model(fileSubmission: FileSubmission.make(["error": nil]))
-        XCTAssertEqual(model.fileSubmissionButtonText, "Tap to view progress")
     }
 }

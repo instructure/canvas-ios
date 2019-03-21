@@ -24,13 +24,10 @@ class CoreTestCase: XCTestCase {
     var database: NSPersistentContainer {
         return TestsFoundation.singleSharedTestDatabase
     }
-    var databaseClient: PersistenceClient {
-        return database.mainClient
+    var databaseClient: NSManagedObjectContext {
+        return database.viewContext
     }
     var api = MockAPI()
-    var backgroundAPI: MockAPI {
-        return environment.backgroundAPI as! MockAPI
-    }
     var queue = OperationQueue()
     var router = TestRouter()
     var logger = TestLogger()
@@ -52,7 +49,6 @@ class CoreTestCase: XCTestCase {
         TestsFoundation.singleSharedTestDatabase = resetSingleSharedTestDatabase()
         environment = AppEnvironment.shared
         environment.api = api
-        environment.backgroundAPIManager = MockBackgroundURLSessionManager(database: database)
         environment.globalDatabase = database
         environment.database = database
         queue = environment.queue

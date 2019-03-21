@@ -20,10 +20,10 @@ import UIKit
 import PSPDFKit
 import PSPDFKitUI
 
-let standardCanvadocsColors: [UIColor] = CanvadocsAnnotationColor.allColors.map { $0.color }
-let highlightCanvadocsColors: [UIColor] = CanvadocsHighlightColor.allColors.map { $0.color }
+let standardCanvadocsColors: [UIColor] = CanvadocsAnnotationColor.allCases.map { $0.color }
+let highlightCanvadocsColors: [UIColor] = CanvadocsHighlightColor.allCases.map { $0.color }
 
-enum CanvadocsAnnotationColor: String {
+enum CanvadocsAnnotationColor: String, CaseIterable {
     case red = "#EE0612"
     case orange = "#FC5E13"
     case yellow = "#FCB900"
@@ -34,24 +34,20 @@ enum CanvadocsAnnotationColor: String {
     case pink = "#C31FA8"
     case purple = "#741865"
     case darkGray = "#363636"
-    
-    static var allColors: [CanvadocsAnnotationColor] = [.red, .orange, .yellow, .brown, .green, .darkBlue, .blue, .pink, .purple, .darkGray]
-    
+
     var color: UIColor {
         return UIColor.colorFromHexString(self.rawValue)!
     }
 }
 
-enum CanvadocsHighlightColor: String {
+enum CanvadocsHighlightColor: String, CaseIterable {
     case red = "#FF9999"
     case orange = "#FFC166"
     case yellow = "#FCE680"
     case green = "#99EBA4"
     case blue = "#80D0FF"
     case pink = "#FFB9F1"
-    
-    static var allColors: [CanvadocsHighlightColor] = [.red, .orange, .yellow, .green, .blue, .pink]
-    
+
     var color: UIColor {
         return UIColor.colorFromHexString(self.rawValue)!
     }

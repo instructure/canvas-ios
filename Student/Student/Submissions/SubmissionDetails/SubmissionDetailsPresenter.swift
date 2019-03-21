@@ -82,7 +82,7 @@ class SubmissionDetailsPresenter {
         let submission = submissions.filter({ $0.attempt == selectedAttempt }).first ?? submissions.first
         selectedAttempt = submission?.attempt ?? selectedAttempt
         if submission?.attachments?.contains(where: { $0.id == selectedFileID }) != true {
-            selectedFileID = submission?.attachments?.sorted(by: { $0.id < $1.id }).first?.id
+            selectedFileID = submission?.attachments?.sorted(by: File.idCompare).first?.id
         }
 
         let assignmentChanged = assignment != currentAssignment
@@ -146,11 +146,13 @@ class SubmissionDetailsPresenter {
             controller.webView.loadHTMLString(submission.body ?? "")
             return controller
         case .some(.online_upload):
-            if let attachment = submission.attachments?.first(where: { $0.id == selectedFileID }) {
+            if let attachment = submission.attachments?.first(where: { $0.id == selectedFileID }),
+                let filename = attachment.filename,
+                let url = attachment.url {
                 return DocViewerViewController.create(
-                    filename: attachment.filename,
+                    filename: filename,
                     previewURL: attachment.previewURL,
-                    fallbackURL: attachment.url,
+                    fallbackURL: url,
                     navigationItem: view?.navigationItem,
                     env: env
                 )
@@ -193,7 +195,7 @@ class SubmissionDetailsPresenter {
             )
         case .files:
             return SubmissionFilesViewController.create(
-                files: submission.attachments?.sorted(by: { $0.id < $1.id }),
+                files: submission.attachments?.sorted(by: File.idCompare),
                 presenter: self
             )
         case .rubric:

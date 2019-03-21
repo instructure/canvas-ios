@@ -54,13 +54,16 @@ extension SubmissionFilesViewController: UITableViewDataSource, UITableViewDeleg
             cell.iconView?.image = file.icon
         }
         cell.checkView?.isHidden = (file.id != presenter?.selectedFileID)
-        cell.checkView?.accessibilityIdentifier = "SubmissionFilesElement.cell.\(file.id).checkView"
-        cell.accessibilityIdentifier = "SubmissionFilesElement.cell.\(file.id)"
+        let fileID = file.id ?? ""
+        cell.checkView?.accessibilityIdentifier = "SubmissionFilesElement.cell.\(fileID).checkView"
+        cell.accessibilityIdentifier = "SubmissionFilesElement.cell.\(fileID)"
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presenter?.select(fileID: files[indexPath.row].id)
+        if let id = files[indexPath.row].id {
+            presenter?.select(fileID: id)
+        }
         tableView.reloadData()
     }
 }

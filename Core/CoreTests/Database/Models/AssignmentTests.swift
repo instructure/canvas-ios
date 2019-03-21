@@ -141,35 +141,6 @@ class AssignmentTests: CoreTestCase {
         XCTAssertFalse(result)
     }
 
-    func testCanMakeSubmissionWhenFileSubmissionNil() {
-        let a = Assignment.make()
-        a.submissionTypes = [.online_upload]
-        a.fileSubmission = nil
-
-        XCTAssertTrue(a.canMakeSubmissions)
-    }
-
-    func testCanMakeSubmissionWhenFileSubmissionSubmitted() {
-        let a = Assignment.make()
-        a.submissionTypes = [.online_upload]
-        a.fileSubmission = FileSubmission.make(["submitted": true])
-        XCTAssertTrue(a.canMakeSubmissions)
-    }
-
-    func testCanMakeSubmissionWhenFileSubmissionFailed() {
-        let a = Assignment.make()
-        a.submissionTypes = [.online_upload]
-        a.fileSubmission = FileSubmission.make(["error": "some error"])
-        XCTAssertTrue(a.canMakeSubmissions)
-    }
-
-    func testCanMakeSubmissionFalseWhenFileSubmissionInProgress() {
-        let a = Assignment.make()
-        a.submissionTypes = [.online_upload]
-        a.fileSubmission = FileSubmission.make(["submitted": false, "error": nil])
-        XCTAssertFalse(a.canMakeSubmissions)
-    }
-
     func testAllowedUTIsNoneIsEmpty() {
         let a = Assignment.make()
         a.submissionTypes = [.none]

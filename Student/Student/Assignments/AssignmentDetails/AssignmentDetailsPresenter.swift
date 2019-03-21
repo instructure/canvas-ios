@@ -40,6 +40,10 @@ protocol AssignmentDetailsViewProtocol: ErrorViewController {
 }
 
 class AssignmentDetailsPresenter {
+    enum FileSubmissionState {
+        case pending, failed
+    }
+
     lazy var assignments: Store<GetAssignment> = {
         let useCase = GetAssignment(courseID: courseID, assignmentID: assignmentID, include: [.submission])
         return self.env.subscribe(useCase) { [weak self] in
@@ -50,6 +54,13 @@ class AssignmentDetailsPresenter {
     lazy var courses: Store<GetCourseUseCase> = {
         let useCase = GetCourseUseCase(courseID: courseID)
         return self.env.subscribe(useCase) { [weak self] in
+            self?.update()
+        }
+    }()
+
+    lazy var files: Store<LocalUseCase<File>> = {
+        let scope = Scope.where(#keyPath(File.assignmentID), equals: assignmentID)
+        return env.subscribe(scope: scope) { [weak self] in
             self?.update()
         }
     }()
@@ -69,6 +80,18 @@ class AssignmentDetailsPresenter {
         .online_upload,
         .online_url,
     ]
+
+    var assignment: Assignment? {
+        return assignments.first
+    }
+
+    var fileSubmissionState: FileSubmissionState? {
+        if files.isEmpty {
+            return nil
+        }
+        let failed = files.first { $0.uploadError != nil } != nil
+        return failed ? .failed : .pending
+    }
 
     init(env: AppEnvironment = .shared, view: AssignmentDetailsViewProtocol, courseID: String, assignmentID: String, fragment: String? = nil) {
         self.env = env
@@ -93,6 +116,7 @@ class AssignmentDetailsPresenter {
     func viewIsReady() {
         courses.refresh()
         assignments.refresh()
+        files.refresh()
     }
 
     func refresh() {
@@ -121,7 +145,15 @@ class AssignmentDetailsPresenter {
 
     func showSubmitAssignmentButton(assignment: Assignment?, course: Course?) {
         guard let assignment = assignment, let course = course else { return }
-        if assignment.canMakeSubmissions && assignment.isOpenForSubmissions() && course.enrollments?.hasRole(.student) ?? false {
+        let canMakeSubmission = assignment.canMakeSubmissions
+        let isOpen = assignment.isOpenForSubmissions()
+        let amStudent = course.enrollments?.hasRole(.student) ?? false
+        let filesUploading = !files.isEmpty
+        let canSubmit = canMakeSubmission
+            && isOpen
+            && amStudent
+            && !filesUploading
+        if canSubmit {
             let title = assignment.submission?.workflowState == .unsubmitted
                 ? NSLocalizedString("Submit Assignment", comment: "")
                 : NSLocalizedString("Resubmit Assignment", comment: "")
@@ -152,15 +184,7 @@ class AssignmentDetailsPresenter {
         switch type {
         case .online_upload:
             let route = Route.assignmentFileUpload(courseID: courseID, assignmentID: assignmentID)
-            let cancelPrevious = CancelFileSubmission(database: env.database, assignmentID: assignmentID)
-            env.queue.addOperation(cancelPrevious) { [weak self, weak viewController] error in
-                if let error = error {
-                    self?.view?.showError(error)
-                }
-                if let vc = viewController {
-                    self?.env.router.route(to: route, from: vc, options: [.modal, .embedInNav])
-                }
-            }
+            env.router.route(to: route, from: viewController, options: [.modal, .embedInNav])
         case .online_url:
             let route = Route.assignmentUrlSubmission(courseID: courseID, assignmentID: assignmentID, userID: userID ?? "")
             env.router.route(to: route, from: viewController, options: [.modal, .embedInNav])

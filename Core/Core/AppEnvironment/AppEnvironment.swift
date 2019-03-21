@@ -23,10 +23,6 @@ public protocol AppEnvironmentDelegate {
 
 open class AppEnvironment {
     public var api: API
-    public var backgroundAPIManager: BackgroundURLSessionManager
-    open var backgroundAPI: API {
-        return backgroundAPIManager.backgroundAPI
-    }
     public var database: NSPersistentContainer
     public var globalDatabase: NSPersistentContainer = NSPersistentContainer.create()
     public var logger: LoggerProtocol
@@ -37,7 +33,6 @@ open class AppEnvironment {
     public init() {
         self.database = globalDatabase
         self.api = URLSessionAPI()
-        self.backgroundAPIManager = BackgroundURLSessionManager(database: globalDatabase)
         self.router = Router(routes: [])
         self.logger = Logger.shared
     }
@@ -47,8 +42,6 @@ open class AppEnvironment {
         database = NSPersistentContainer.create(session: session)
         api = URLSessionAPI(accessToken: session.accessToken, actAsUserID: session.actAsUserID, baseURL: session.baseURL)
         currentSession = session
-        backgroundAPIManager.session = session
-        backgroundAPIManager.database = database
         Logger.shared.database = database
     }
 
@@ -59,8 +52,6 @@ open class AppEnvironment {
         database = globalDatabase
         api = URLSessionAPI()
         currentSession = nil
-        backgroundAPIManager.session = session
-        backgroundAPIManager.database = database
         Logger.shared.database = database
     }
 
@@ -73,5 +64,10 @@ open class AppEnvironment {
 
     public func subscribe<U>(_ useCase: U, _ callback: @escaping Store<U>.EventHandler) -> Store<U> where U: UseCase {
         return Store(env: self, useCase: useCase, eventHandler: callback)
+    }
+
+    public func subscribe<Model>(scope: Scope, _ callback: @escaping Store<LocalUseCase<Model>>.EventHandler) -> Store<LocalUseCase<Model>> {
+        let useCase = LocalUseCase<Model>(scope: scope)
+        return subscribe(useCase, callback)
     }
 }

@@ -267,7 +267,7 @@ public struct SeedClient {
         as user: AuthUser
     ) -> APIFile {
         let target = makeRequest(PostFileUploadTargetRequest(
-           target: .submission(courseID: assignment.course_id.value, assignmentID: assignment.id.value),
+           context: .submission(courseID: assignment.course_id.value, assignmentID: assignment.id.value),
            body: .init(name: name ?? url.lastPathComponent, on_duplicate: .rename, parent_folder_id: nil)
         ), with: user.token)
         return makeRequest(PostFileUploadRequest(fileURL: url, target: target), with: user.token)
@@ -280,7 +280,7 @@ public struct SeedClient {
         as user: AuthUser
     ) -> APIFile {
         let target = makeRequest(PostFileUploadTargetRequest(
-            target: .myFiles,
+            context: .myFiles,
             body: .init(name: name ?? url.lastPathComponent, on_duplicate: .rename, parent_folder_id: nil)
         ), with: user.token)
         return makeRequest(PostFileUploadRequest(fileURL: url, target: target), with: user.token)

@@ -17,18 +17,14 @@
 import Foundation
 
 extension URL {
-    public static func temporarySubmissionDirectoryPath() throws -> URL {
-        var path = URL(fileURLWithPath: NSTemporaryDirectory())
-        path.appendPathComponent("submissions")
-        try FileManager.default.createDirectory(at: path, withIntermediateDirectories: true, attributes: nil)
-        return path
+    public static var temporaryDirectory: URL {
+        return URL(fileURLWithPath: NSTemporaryDirectory())
     }
 
-    public func lookupFileSize() -> Int64 {
+    public func lookupFileSize() -> Int {
         guard self.isFileURL else { return 0 }
         let attributes = try? FileManager.default.attributesOfItem(atPath: path)
-        let fileSize = attributes?[FileAttributeKey.size] as? Int64
-        return fileSize ?? 0
+        return attributes?[FileAttributeKey.size] as? Int ?? 0
     }
 
     public func appendingQueryItems(_ items: URLQueryItem...) -> URL {

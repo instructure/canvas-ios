@@ -35,19 +35,15 @@ public protocol PersistenceClient {
     func refresh()
 }
 
-extension Persistence {
-    func fetchedResultsController<T>(predicate: NSPredicate? = nil, sortDescriptors: [NSSortDescriptor], sectionNameKeyPath: String? = nil) -> FetchedResultsController<T> {
-        return fetchedResultsController(predicate: predicate ?? .all, sortDescriptors: sortDescriptors, sectionNameKeyPath: sectionNameKeyPath)
+extension PersistenceClient {
+    public func fetch<T>(_ predicate: NSPredicate? = nil) -> [T] {
+        return fetch(predicate: predicate, sortDescriptors: nil)
     }
 }
 
-extension PersistenceClient {
-    public func fetch<T>() -> [T] {
-        return self.fetch(predicate: nil, sortDescriptors: nil)
-    }
-
-    func fetch<T>(_ predicate: NSPredicate?) -> [T] {
-        return self.fetch(predicate: predicate, sortDescriptors: nil)
+extension Persistence {
+    func fetchedResultsController<T>(predicate: NSPredicate? = nil, sortDescriptors: [NSSortDescriptor], sectionNameKeyPath: String? = nil) -> FetchedResultsController<T> {
+        return fetchedResultsController(predicate: predicate ?? .all, sortDescriptors: sortDescriptors, sectionNameKeyPath: sectionNameKeyPath)
     }
 }
 

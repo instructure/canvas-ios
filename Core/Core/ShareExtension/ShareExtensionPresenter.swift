@@ -16,9 +16,6 @@
 
 import Foundation
 
-extension Assignment: ShareExtensionViewModel {
-}
-
 struct SubmissionAction: Equatable {
     var title = ""
     var route: Route?
@@ -69,7 +66,6 @@ class ShareExtensionPresenter {
                     userID = submission.userID
                 }
                 view?.update(course: course, assignment: assignment)
-                showSubmitAssignmentButton(assignment: assignment, course: course)
             }
         }
     }
@@ -78,15 +74,5 @@ class ShareExtensionPresenter {
         assignments.refresh()
         courses.refresh()
         update()
-    }
-
-    func showSubmitAssignmentButton(assignment: Assignment?, course: Course?) {
-        guard let assignment = assignment, let course = course else { return }
-        if assignment.canMakeSubmissions && assignment.isOpenForSubmissions() && course.enrollments?.hasRole(.student) ?? false {
-            let isOnlineUpload = assignment.submissionTypes.contains(SubmissionType.online_upload)
-            let submissionCount = assignment.submission?.attempt ?? 0
-            let title = submissionCount > 0 ? NSLocalizedString("Resubmit Assignment", comment: "") : NSLocalizedString("Submit Assignment", comment: "")
-            view?.showSubmitAssignmentButton(isEnabled: isOnlineUpload, buttonTitle: title)
-        }
     }
 }

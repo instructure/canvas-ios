@@ -16,63 +16,47 @@
 
 import Foundation
 import Core
+import CoreData
 
-class SubmissionFilePresenter: FilePickerPresenterProtocol, FetchedResultsControllerDelegate {
-    /// Used to represent fileSubmission error on file row
-    private struct FileRow: FileViewModel {
-        let url: URL
-        let size: Int64
-        let bytesSent: Int64
-        let error: String?
-    }
-
+class SubmissionFilePresenter {
     let env: AppEnvironment
     let courseID: String
     let assignmentID: String
     let userID: String
-    private let assignmentController: FetchedResultsController<Assignment>
-    private let fileSubmissionController: FetchedResultsController<FileSubmission>
-    private let useCase: () -> AsyncOperation
-    private let frc: FetchedResultsController<FileUpload>
     let context: Context
+    let uploader: FileUploader
+
+    private lazy var assignments: Store<GetAssignment> = {
+        let useCase = GetAssignment(courseID: courseID, assignmentID: assignmentID)
+        return env.subscribe(useCase) { [weak self] in
+            self?.update()
+        }
+    }()
+
+    lazy var files: Store<LocalUseCase<File>> = {
+        let scope = Scope.where(#keyPath(File.assignmentID), equals: assignmentID)
+        return env.subscribe(scope: scope) { [weak self] in
+            self?.update()
+        }
+    }()
 
     weak var view: FilePickerViewProtocol?
 
-    private var files: [FileViewModel] {
-        let files: [FileViewModel] = frc.fetchedObjects ?? [] as [FileViewModel]
-        if let error = fileSubmission?.error, let file = files.first {
-            // Stick the fileSubmission's error on the first file so the ui shows it.
-            let errorFile = FileRow(url: file.url, size: file.size, bytesSent: file.bytesSent, error: file.error ?? error)
-            return [errorFile] + Array(files[1..<files.count])
-        }
-        return files
+    var assignment: Assignment? {
+        return assignments.first
     }
 
-    private var fileSubmission: FileSubmission? {
-        return fileSubmissionController.fetchedObjects?.first
-    }
+    var inProgress: Bool = false
 
-    private var assignment: Assignment? {
-        return assignmentController.fetchedObjects?.first
-    }
-
-    private var inProgress: Bool {
-        return fileSubmission?.inProgress == true
-    }
-
-    private var failed: Bool {
-        return fileSubmission?.failed == true
-    }
-
-    private var submitted: Bool {
-        return fileSubmission?.submitted == true
+    var failed: Bool {
+        return files.first { $0.uploadError != nil } != nil
     }
 
     private var documentTypes: [UTI] {
         return assignment?.allowedUTIs ?? []
     }
 
-    private var sources: [FilePickerSource] {
+    var sources: [FilePickerSource] {
         let allowed = documentTypes
         if allowed.contains(.any) {
             return FilePickerSource.allCases
@@ -128,35 +112,108 @@ class SubmissionFilePresenter: FilePickerPresenterProtocol, FetchedResultsContro
         return (left: [cancelButton], right: [submitButton])
     }
 
-    init(env: AppEnvironment = .shared, courseID: String, assignmentID: String, userID: String, useCase: (() -> AsyncOperation)? = nil) {
+    init(env: AppEnvironment = .shared, fileUploader: FileUploader = .shared, courseID: String, assignmentID: String, userID: String) {
         self.env = env
         self.courseID = courseID
         self.assignmentID = assignmentID
         self.userID = userID
-
-        self.assignmentController = env.subscribe(Assignment.self, .details(assignmentID))
-        self.fileSubmissionController = env.subscribe(FileSubmission.self, .assignment(assignmentID))
-        self.useCase = useCase ?? { return PresenterUseCase() }
         context = ContextModel(.course, id: courseID)
-        frc = env.subscribe(FileUpload.self, .assignment(assignmentID))
-        frc.delegate = self
-
-        assignmentController.delegate = self
-        fileSubmissionController.delegate = self
+        uploader = fileUploader
     }
 
+    func update() {
+        // Dismiss once all files have uploaded
+        let inProgress = files.first { $0.isUploading } != nil
+        if self.inProgress && !inProgress {
+            dismiss()
+            return
+        }
+
+        self.inProgress = inProgress
+        updateBarItems()
+        updateFiles()
+    }
+
+    private func updateBarItems() {
+        view?.updateToolbar(items: toolbarItems)
+        let nav = navigationItems
+        view?.updateNavigationItems(left: nav.left, right: nav.right)
+    }
+
+    private func updateFiles() {
+        view?.update()
+
+        let totalToTransfer: Int = files.reduce(0, {$0 + $1.size})
+        let bytesSent = files.reduce(0, {$0 + $1.bytesSent})
+        var progress = Float(bytesSent) / Float(totalToTransfer)
+        if inProgress {
+            progress = min(0.98, progress)
+            progress = max(0.02, progress)
+        } else if failed {
+            progress = 0
+        }
+        view?.updateTransferProgress(progress, sent: bytesSent, expectedToSend: totalToTransfer)
+    }
+
+    @objc
+    private func submit() {
+        for file in files {
+            uploader.upload(file, context: .submission(courseID: courseID, assignmentID: assignmentID)) { [weak self] error in
+                if let error = error {
+                    self?.view?.showError(error)
+                } else {
+                    self?.view?.dismiss()
+                }
+            }
+        }
+    }
+
+    @objc
+    private func dismiss() {
+        view?.dismiss()
+    }
+
+    @objc
+    private func cancelSubmission() {
+        let context = env.database.viewContext
+        context.performAndWait {
+            for file in self.files {
+                self.uploader.cancel(file)
+                context.delete(file)
+            }
+            do {
+                try context.save()
+                self.dismiss()
+            } catch {
+                self.view?.showError(error)
+            }
+        }
+    }
+
+    @objc
+    private func retry() {
+        // TODO: retry
+    }
+}
+
+extension SubmissionFilePresenter: FilePickerPresenterProtocol {
     func viewIsReady() {
-        assignmentController.performFetch()
-        frc.performFetch()
-        fileSubmissionController.performFetch()
-        refreshBarItems()
-        refreshFiles()
-        loadData()
+        assignments.refresh()
     }
 
     func add(withInfo info: FileInfo) {
-        let op = QueueFileUpload(fileInfo: info, context: context, assignmentID: assignmentID, userID: userID, env: env)
-        env.queue.addOperation(op)
+        let context = env.database.viewContext
+        context.performAndWait {
+            do {
+                let file: File = context.insert()
+                file.localFileURL = info.url
+                file.size = info.size
+                file.prepareForSubmission(courseID: self.courseID, assignmentID: self.assignmentID)
+                try context.save()
+            } catch {
+                self.view?.showError(error)
+            }
+        }
     }
 
     func add(fromSource source: FilePickerSource) {
@@ -171,86 +228,40 @@ class SubmissionFilePresenter: FilePickerPresenterProtocol, FetchedResultsContro
         }
     }
 
-    private func loadData() {
-        let operation = useCase()
-        env.queue.addOperation(operation, errorHandler: { [weak self] error in
-            if let error = error {
-                self?.view?.showError(error)
+    func add(withCameraResult result: CameraCaptureResult) {
+        if let image = result[.originalImage] as? UIImage {
+            do {
+                let url = try image.write()
+                add(fromURL: url)
+            } catch {
+                view?.showError(error)
             }
-        })
-    }
-
-    func controllerDidChangeContent<T>(_ controller: FetchedResultsController<T>) {
-        if (controller == fileSubmissionController && submitted) {
-            view?.dismiss()
-            return
+        } else if let videoURL = result[.mediaURL] as? URL {
+            do {
+                // This file name stinks so try to rename it
+                let name = String(Clock.now.timeIntervalSince1970)
+                let dir = URL.temporaryDirectory.appendingPathComponent("videos")
+                try FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true, attributes: nil)
+                let url = dir
+                    .appendingPathComponent(name, isDirectory: false)
+                    .appendingPathExtension(videoURL.pathExtension)
+                if FileManager.default.fileExists(atPath: url.path) {
+                    try FileManager.default.removeItem(at: url)
+                }
+                try FileManager.default.moveItem(at: videoURL, to: url)
+                add(fromURL: url)
+            } catch {
+                add(fromURL: videoURL)
+            }
+        } else {
+            let error = NSError.instructureError(NSLocalizedString("Failed to locate camera result", comment: ""))
+            view?.showError(error)
         }
-
-        refreshFiles()
-        refreshBarItems()
     }
 
-    func didSelectFile(_ file: FileViewModel) {
-        // The fileSubmission.error is represented by one of the file cells
-        if let error = file.error ?? fileSubmission?.error {
+    func didSelectFile(_ file: File) {
+        if let error = file.uploadError {
             view?.showError(message: error)
         }
     }
-
-    private func refreshBarItems() {
-        view?.updateToolbar(items: toolbarItems)
-        let nav = navigationItems
-        view?.updateNavigationItems(left: nav.left, right: nav.right)
-    }
-
-    private func refreshFiles() {
-        view?.update(files: files, sources: sources)
-
-        let totalToTransfer: Int64 = files.reduce(0, {$0 + $1.size})
-        let bytesSent = files.reduce(0, {$0 + $1.bytesSent})
-        var progress = Float(bytesSent) / Float(totalToTransfer)
-        if inProgress {
-            progress = min(0.98, progress)
-            progress = max(0.02, progress)
-        } else if failed {
-            progress = 0
-        }
-        view?.updateTransferProgress(progress, sent: bytesSent, expectedToSend: totalToTransfer)
-    }
-
-    @objc
-    private func submit() {
-        let submit = SubmitFileSubmission(env: env, assignmentID: assignmentID)
-        env.queue.addOperation(submit) { [weak self] error in
-            if let error = error {
-                self?.view?.showError(error)
-            } else {
-                self?.view?.dismiss()
-            }
-        }
-    }
-
-    @objc
-    private func dismiss() {
-        view?.dismiss()
-    }
-
-    @objc
-    private func cancelSubmission() {
-        let cancel = CancelFileSubmission(database: env.database, assignmentID: assignmentID)
-        env.queue.addOperation(cancel) { [weak self] error in
-            if let error = error {
-                self?.view?.showError(error)
-            } else {
-                self?.view?.dismiss()
-            }
-        }
-    }
-
-    @objc
-    private func retry() {
-        // TODO: retry
-    }
 }
-
-extension FileUpload: FileViewModel {}

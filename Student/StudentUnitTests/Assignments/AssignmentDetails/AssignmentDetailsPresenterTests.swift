@@ -198,31 +198,10 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         XCTAssertEqual(resultingButtonTitle, "Resubmit Assignment")
     }
 
-    func testSubmitOnlineUploadCancelsFileUpload() {
-        let assignment = Assignment.make(["id": "1"])
-        FileSubmission.make(["assignment": assignment])
-        let expectation = BlockExpectation(description: "files refresh") {
-            self.databaseClient.refresh()
-            return assignment.fileSubmission == nil
-        }
-
-        presenter.submit(.online_upload, from: UIViewController())
-        queue.waitUntilAllOperationsAreFinished()
-
-        wait(for: [expectation], timeout: 1)
-    }
-
     func testSubmitOnlineUpload() {
-        let assignment = Assignment.make(["id": "1"])
-        FileSubmission.make(["assignment": assignment])
-        let expectation = BlockExpectation(description: "main queue") {
-            return self.router.lastRoutedTo(.assignmentFileUpload(courseID: "1", assignmentID: "1"))
-        }
-
-        let vc = UIViewController()
-        presenter.submit(.online_upload, from: vc)
-
-        wait(for: [expectation], timeout: 1)
+        Assignment.make(["id": "1"])
+        presenter.submit(.online_upload, from: UIViewController())
+        XCTAssert(router.lastRoutedTo(.assignmentFileUpload(courseID: "1", assignmentID: "1")))
     }
 
     func testSubmitOnlineURL() {

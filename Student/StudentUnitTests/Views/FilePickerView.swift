@@ -17,12 +17,14 @@
 import Foundation
 @testable import Student
 import UIKit
+@testable import Core
 
 class FilePickerView: FilePickerViewProtocol {
+    var presenter: FilePickerPresenterProtocol?
     var navigationController: UINavigationController?
     var presentCameraCallCount = 0
     var presentLibraryCallCount = 0
-    var files: [FileViewModel]?
+    var files: Store<LocalUseCase<File>>?
     var sources: [FilePickerSource]?
     var presentedDocumentTypes: [String]?
     var error: Error?
@@ -31,8 +33,10 @@ class FilePickerView: FilePickerViewProtocol {
     var navigationItems: (left: [UIBarButtonItem], right: [UIBarButtonItem])?
     var dismissed: Bool = false
     var onUpdate: (() -> Void)?
-    var bytesSent: Int64?
-    var expectedToSend: Int64?
+    var bytesSent: Int?
+    var expectedToSend: Int?
+    var onDismissed: (() -> Void)?
+    var onError: (() -> Void)?
 
     func presentCamera() {
         presentCameraCallCount += 1
@@ -48,15 +52,20 @@ class FilePickerView: FilePickerViewProtocol {
 
     func showError(_ error: Error) {
         self.error = error
+        onError?()
     }
 
-    func update(files: [FileViewModel], sources: [FilePickerSource]) {
-        self.files = files
-        self.sources = sources
+    func showError(message: String) {
+        showError(NSError.instructureError(message))
+    }
+
+    func update() {
+        self.files = presenter?.files
+        self.sources = presenter?.sources
         onUpdate?()
     }
 
-    func updateTransferProgress(_ progress: Float, sent: Int64, expectedToSend: Int64) {
+    func updateTransferProgress(_ progress: Float, sent: Int, expectedToSend: Int) {
         self.progress = progress
         self.bytesSent = sent
         self.expectedToSend = expectedToSend
@@ -76,5 +85,6 @@ class FilePickerView: FilePickerViewProtocol {
 
     func dismiss() {
         dismissed = true
+        onDismissed?()
     }
 }

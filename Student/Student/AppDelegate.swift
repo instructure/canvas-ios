@@ -26,7 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     lazy var environment: AppEnvironment = {
         let env = AppEnvironment.shared
         env.router = Student.router
-        env.backgroundAPIManager.eventsHandler = self
         return env
     }()
 
@@ -51,9 +50,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     }
 
     func application(_ application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping () -> Void) {
-        environment.backgroundAPIManager.create(withIdentifier: identifier)
-        environment.backgroundAPIManager.add(completionHandler: completionHandler, forIdentifier: identifier)
         environment.logger.log(#function)
+        let fileUploader = FileUploader(backgroundSessionIdentifier: identifier)
+        fileUploader?.completionHandler = {
+            DispatchQueue.main.async {
+                completionHandler()
+            }
+        }
     }
 
     func setupNotifications() {
@@ -146,31 +149,6 @@ extension AppDelegate {
             exit(EXIT_SUCCESS)
         }
     }
-}
-
-extension AppDelegate: BackgroundURLSessionDelegateEventHandler {
-    func urlSessionDidFinishEvent(forBackgroundURLSession session: URLSession) {
-        environment.logger.log(#function)
-        guard let currentUser = Keychain.currentSession else {
-            return
-        }
-        let createSubmissions = CreateFileSubmissions(env: environment, userID: currentUser.userID)
-        environment.queue.addOperation(createSubmissions)
-    }
-
-    func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
-        environment.logger.log("app delegate, \(#function)")
-        let operation = OperationSet()
-        for entry in Keychain.entries {
-            let env = AppEnvironment()
-            env.router = Student.router
-            env.userDidLogin(session: entry)
-            environment.logger.log("finishing events for user \(entry.userID)")
-            operation.addOperation(CreateFileSubmissions(env: env, userID: entry.userID))
-        }
-        environment.queue.addOperations([operation], waitUntilFinished: true)
-        environment.backgroundAPIManager.complete(session: session)
-    }
 
     func topMostViewController() -> UIViewController? {
         return window.rootViewController?.topMostViewController()
@@ -182,10 +160,9 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         _ center: UNUserNotificationCenter,
         didReceive response: UNNotificationResponse,
         withCompletionHandler completionHandler: @escaping () -> Void) {
-        if let urlString = response.notification.request.content.userInfo[NotificationManager.RouteURLKey] as? String,
-            let url = URL(string: urlString),
+        if let route = response.notification.route,
             let topVC = topMostViewController() {
-            router.route(to: url, from: topVC, options: [.modal, .embedInNav, .addDoneButton])
+            router.route(to: route, from: topVC, options: [.modal, .embedInNav, .addDoneButton])
         }
         completionHandler()
     }
