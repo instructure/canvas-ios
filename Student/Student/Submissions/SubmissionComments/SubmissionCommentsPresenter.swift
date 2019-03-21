@@ -55,4 +55,12 @@ class SubmissionCommentsPresenter {
     func update() {
         view?.reload()
     }
+
+    func addComment(text: String) {
+        // TODO
+    }
+
+    func addMediaComment(type: MediaCommentType, url: URL) {
+        // TODO
+    }
 }

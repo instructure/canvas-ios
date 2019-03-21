@@ -92,9 +92,9 @@ class SubmissionTests: CoreTestCase {
             XCTAssertEqual(submission.icon, UIImage.icon(icon))
         }
         submission.type = .media_recording
-        submission.mediaComment = MediaComment.make(["mediaType": "audio"])
+        submission.mediaComment = MediaComment.make(["mediaTypeRaw": "audio"])
         XCTAssertEqual(submission.icon, UIImage.icon(.audio))
-        submission.mediaComment?.mediaType = "video"
+        submission.mediaComment?.mediaType = .video
         XCTAssertEqual(submission.icon, UIImage.icon(.video))
 
         submission.type = .online_upload
@@ -129,9 +129,9 @@ class SubmissionTests: CoreTestCase {
             XCTAssertEqual(submission.subtitle, subtitle)
         }
         submission.type = .media_recording
-        submission.mediaComment = MediaComment.make(["mediaType": "audio"])
+        submission.mediaComment = MediaComment.make(["mediaTypeRaw": "audio"])
         XCTAssertEqual(submission.subtitle, "Audio")
-        submission.mediaComment?.mediaType = "video"
+        submission.mediaComment?.mediaType = .video
         XCTAssertEqual(submission.subtitle, "Video")
 
         submission.type = .online_upload
