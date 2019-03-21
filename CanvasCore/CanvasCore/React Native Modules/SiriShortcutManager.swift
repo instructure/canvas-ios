@@ -36,7 +36,8 @@ public class SiriShortcutManager: NSObject {
     @objc
     public func donateSiriShortcut(_ userInfo: [String: Any]) {
         guard let identifier = userInfo["identifier"] as? String,
-              let shortcutType = ShortcutType(rawValue: identifier) else { return }
+              let shortcutType = ShortcutType(rawValue: identifier),
+              let _ = userInfo["name"] as? String else { return }
 
         let activity = NSUserActivity(activityType: identifier)
         activity.userInfo = userInfo
