@@ -99,7 +99,7 @@
         <attribute name="contentType" attributeType="String" syncable="YES"/>
         <attribute name="displayName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="mediaID" attributeType="String" syncable="YES"/>
-        <attribute name="mediaType" attributeType="String" syncable="YES"/>
+        <attribute name="mediaTypeRaw" attributeType="String" syncable="YES"/>
         <attribute name="url" attributeType="URI" syncable="YES"/>
         <relationship name="submission" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Submission" inverseName="mediaComment" inverseEntity="Submission" syncable="YES"/>
     </entity>
@@ -182,12 +182,12 @@
         <element name="File" positionX="-162.1640625" positionY="69.79296875" width="128" height="495"/>
         <element name="Group" positionX="-366.25" positionY="-174.85546875" width="128" height="135"/>
         <element name="LogEvent" positionX="-743.51953125" positionY="192.92578125" width="128" height="90"/>
+        <element name="MediaComment" positionX="-369" positionY="-18" width="128" height="135"/>
         <element name="Module" positionX="-737.4140625" positionY="20.87890625" width="128" height="120"/>
         <element name="Quiz" positionX="-739.01953125" positionY="295.05078125" width="128" height="195"/>
         <element name="Submission" positionX="-336.34765625" positionY="298.6875" width="128" height="330"/>
-        <element name="MediaComment" positionX="-369" positionY="-18" width="128" height="135"/>
+        <element name="SubmissionComment" positionX="-369" positionY="-18" width="128" height="225"/>
         <element name="Tab" positionX="108.015625" positionY="177.67578125" width="128" height="165"/>
         <element name="TTL" positionX="-173.30859375" positionY="-128.48046875" width="128" height="75"/>
-        <element name="SubmissionComment" positionX="-369" positionY="-18" width="128" height="225"/>
     </elements>
 </model>

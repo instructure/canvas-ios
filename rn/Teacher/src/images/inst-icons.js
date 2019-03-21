@@ -18,9 +18,9 @@
 // @flow
 
 export type InstIconName =
-  'alerts' | 'announcement' | 'arrowOpenLeft' | 'arrowOpenRight' | 'assignment' | 'audio' | 'box' |
-  'calendarMonth' | 'check' | 'complete' | 'courses' | 'dashboard' | 'discussion' | 'document' |
-  'email' | 'empty' | 'folder' | 'gradebook' | 'group' | 'hamburger' | 'highlighter' |
+  'add' | 'alerts' | 'announcement' | 'arrowOpenLeft' | 'arrowOpenRight' | 'assignment' | 'audio' |
+  'box' | 'calendarMonth' | 'check' | 'complete' | 'courses' | 'dashboard' | 'discussion' |
+  'document' | 'email' | 'empty' | 'folder' | 'gradebook' | 'group' | 'hamburger' | 'highlighter' |
   'instructure' | 'link' | 'lock' | 'lti' | 'marker' | 'miniArrowDown' | 'miniArrowUp' | 'module' |
   'more' | 'no' | 'outcomes' | 'paint' | 'pdf' | 'prerequisite' | 'question' | 'quiz' | 'refresh' |
   'rubric' | 'settings' | 'star' | 'strikethrough' | 'text' | 'trash' | 'trouble' | 'unlock' |

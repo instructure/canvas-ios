@@ -68,6 +68,7 @@
 		7D101947215E87D40058FDD1 /* defaultHeaderImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D101946215E87D40058FDD1 /* defaultHeaderImage.png */; };
 		7D101949215E8E5F0058FDD1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D101948215E8E5F0058FDD1 /* Assets.xcassets */; };
 		7D10194B215E97D90058FDD1 /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D10194A215E97D90058FDD1 /* UIImageExtensions.swift */; };
+		7D1219242243340200D3BF5C /* KeyboardTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1219232243340200D3BF5C /* KeyboardTransitioning.swift */; };
 		7D1758B42159898D00F88613 /* TitleSubtitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1758B32159898C00F88613 /* TitleSubtitleView.swift */; };
 		7D1758B621598CA400F88613 /* TitleSubtitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D1758B521598CA400F88613 /* TitleSubtitleView.xib */; };
 		7D1758C1215A8F5600F88613 /* ListFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1758C0215A8F5600F88613 /* ListFormatter.swift */; };
@@ -168,7 +169,6 @@
 		7DA20E8F21680DBF00F5FD19 /* UIImageInstIconsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA20E8E21680DBF00F5FD19 /* UIImageInstIconsExtensions.swift */; };
 		7DA20E932168128400F5FD19 /* UIImageInstIconsExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA20E922168128400F5FD19 /* UIImageInstIconsExtensionsTests.swift */; };
 		7DA5C48822385435003CDB4C /* SubmissionComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA5C48722385435003CDB4C /* SubmissionComment.swift */; };
-		7DA5C48A22385645003CDB4C /* SubmissionCommentMediaType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA5C48922385645003CDB4C /* SubmissionCommentMediaType.swift */; };
 		7DA5C48C22385F95003CDB4C /* GetSubmissionComments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA5C48B22385F95003CDB4C /* GetSubmissionComments.swift */; };
 		7DAFB46321A361C400311275 /* LocalizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAFB46221A361C400311275 /* LocalizationManager.swift */; };
 		7DAFB46521A4693B00311275 /* LocalizationManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAFB46421A4693B00311275 /* LocalizationManagerTests.swift */; };
@@ -233,10 +233,12 @@
 		7DDC450D215BF14A003F3209 /* DynamicLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDC450C215BF14A003F3209 /* DynamicLabelTests.swift */; };
 		7DDC450F215BF4AA003F3209 /* UIFontExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDC450E215BF4AA003F3209 /* UIFontExtensionsTests.swift */; };
 		7DDC4511215BF7AA003F3209 /* BundleExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDC4510215BF7AA003F3209 /* BundleExtensionsTests.swift */; };
+		7DDC81442242E2B2000DD25A /* AudioRecorderViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DDC81432242E2B2000DD25A /* AudioRecorderViewController.storyboard */; };
+		7DDC81462242E2C7000DD25A /* AudioRecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDC81452242E2C7000DD25A /* AudioRecorderViewController.swift */; };
 		7DF4001B2174FA24007E5F81 /* UITableViewExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF4001A2174FA24007E5F81 /* UITableViewExtensionsTests.swift */; };
 		7DF4001E217509D6007E5F81 /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF4001C217509D6007E5F81 /* Quiz.swift */; };
 		7DF4FFBF21700133007E5F81 /* TabViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF4FFBE21700133007E5F81 /* TabViewable.swift */; };
-		7DF4FFC121700BCE007E5F81 /* TabViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF4FFC021700BCE007E5F81 /* TabViewable.swift */; };
+		7DF4FFC121700BCE007E5F81 /* TabViewableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF4FFC021700BCE007E5F81 /* TabViewableTests.swift */; };
 		7DF4FFC6217113DA007E5F81 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF4FFC4217113DA007E5F81 /* Color.swift */; };
 		7DF4FFCA217116BC007E5F81 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF4FFC8217116BC007E5F81 /* Course.swift */; };
 		7DF4FFCE21711EB3007E5F81 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF4FFCC21711EB3007E5F81 /* Group.swift */; };
@@ -622,6 +624,7 @@
 		7D101946215E87D40058FDD1 /* defaultHeaderImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultHeaderImage.png; sourceTree = "<group>"; };
 		7D101948215E8E5F0058FDD1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7D10194A215E97D90058FDD1 /* UIImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtensions.swift; sourceTree = "<group>"; };
+		7D1219232243340200D3BF5C /* KeyboardTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardTransitioning.swift; sourceTree = "<group>"; };
 		7D1758B32159898C00F88613 /* TitleSubtitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSubtitleView.swift; sourceTree = "<group>"; };
 		7D1758B521598CA400F88613 /* TitleSubtitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TitleSubtitleView.xib; sourceTree = "<group>"; };
 		7D1758C0215A8F5600F88613 /* ListFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFormatter.swift; sourceTree = "<group>"; };
@@ -732,7 +735,6 @@
 		7DA20E8E21680DBF00F5FD19 /* UIImageInstIconsExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageInstIconsExtensions.swift; sourceTree = "<group>"; };
 		7DA20E922168128400F5FD19 /* UIImageInstIconsExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageInstIconsExtensionsTests.swift; sourceTree = "<group>"; };
 		7DA5C48722385435003CDB4C /* SubmissionComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionComment.swift; sourceTree = "<group>"; };
-		7DA5C48922385645003CDB4C /* SubmissionCommentMediaType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentMediaType.swift; sourceTree = "<group>"; };
 		7DA5C48B22385F95003CDB4C /* GetSubmissionComments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubmissionComments.swift; sourceTree = "<group>"; };
 		7DAFB46221A361C400311275 /* LocalizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationManager.swift; sourceTree = "<group>"; };
 		7DAFB46421A4693B00311275 /* LocalizationManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationManagerTests.swift; sourceTree = "<group>"; };
@@ -797,10 +799,12 @@
 		7DDC450C215BF14A003F3209 /* DynamicLabelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicLabelTests.swift; sourceTree = "<group>"; };
 		7DDC450E215BF4AA003F3209 /* UIFontExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtensionsTests.swift; sourceTree = "<group>"; };
 		7DDC4510215BF7AA003F3209 /* BundleExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtensionsTests.swift; sourceTree = "<group>"; };
+		7DDC81432242E2B2000DD25A /* AudioRecorderViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AudioRecorderViewController.storyboard; sourceTree = "<group>"; };
+		7DDC81452242E2C7000DD25A /* AudioRecorderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorderViewController.swift; sourceTree = "<group>"; };
 		7DF4001A2174FA24007E5F81 /* UITableViewExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewExtensionsTests.swift; sourceTree = "<group>"; };
 		7DF4001C217509D6007E5F81 /* Quiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
 		7DF4FFBE21700133007E5F81 /* TabViewable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewable.swift; sourceTree = "<group>"; };
-		7DF4FFC021700BCE007E5F81 /* TabViewable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewable.swift; sourceTree = "<group>"; };
+		7DF4FFC021700BCE007E5F81 /* TabViewableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewableTests.swift; sourceTree = "<group>"; };
 		7DF4FFC4217113DA007E5F81 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		7DF4FFC8217116BC007E5F81 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		7DF4FFCC21711EB3007E5F81 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
@@ -1010,19 +1014,19 @@
 		2C964830211E2F1A002C3255 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				9FBE5359223ADA4D001EC40C /* TermsOfService */,
-				2C964831211E2F1A002C3255 /* Core.h */,
-				2C964832211E2F1A002C3255 /* Info.plist */,
-				7D101948215E8E5F0058FDD1 /* Assets.xcassets */,
 				7D8262E9212B1A4F00BD268D /* API */,
 				2C96485C211E36FF002C3255 /* AppEnvironment */,
+				7D101948215E8E5F0058FDD1 /* Assets.xcassets */,
+				7DDC81422242E269000DD25A /* AudioRecorder */,
 				3B3467C52134953800F9BC2E /* Constants */,
+				2C964831211E2F1A002C3255 /* Core.h */,
 				B14452FA212E5B6E0009D848 /* Database */,
 				9FBE5354223AD16F001EC40C /* DeveloperMenu */,
 				7D29D2F5218A29B10036437C /* DocViewer */,
 				7D80AC06212B46D500C40ECE /* Extensions */,
 				B1A8CD38223766EA00E2242D /* Files */,
 				3B47227E2137972200BF6FF3 /* Frameworks */,
+				2C964832211E2F1A002C3255 /* Info.plist */,
 				5BF786A8218599B600471A5F /* InfoPlist.strings */,
 				DFE1FF1B212F5E0A003F27AA /* Keychain */,
 				7DCF1ECE216BFE5D003AF358 /* Localizable.strings */,
@@ -1038,6 +1042,7 @@
 				2C964858211E3049002C3255 /* Router */,
 				7836B0CD219901B800FA25AE /* ShareExtension */,
 				B11D321521E4649B00F37ABF /* Store */,
+				9FBE5359223ADA4D001EC40C /* TermsOfService */,
 				B1445309212E5B8E0009D848 /* Use Cases */,
 				7D1758B12159894C00F88613 /* Views */,
 			);
@@ -1233,7 +1238,6 @@
 				B1A6BC79218A062E000515E3 /* MediaCommentType.swift */,
 				7D47769B21AF3A0200B441CE /* QuizQuestionType.swift */,
 				7DCF2037216D55E6003AF358 /* QuizType.swift */,
-				7DA5C48922385645003CDB4C /* SubmissionCommentMediaType.swift */,
 				7DCF1E9F216BB731003AF358 /* SubmissionType.swift */,
 				7DCF1EB5216BC861003AF358 /* SubmissionWorkflowState.swift */,
 				7DF4FFD4217133AF007E5F81 /* TabType.swift */,
@@ -1285,6 +1289,7 @@
 				B1B4C1CA219631B700FA9E0E /* EmptyView.swift */,
 				B1B4C1C8219631AC00FA9E0E /* EmptyView.xib */,
 				7DA057512193A30E00A3CFBB /* IconView.swift */,
+				7D1219232243340200D3BF5C /* KeyboardTransitioning.swift */,
 				7D1758C0215A8F5600F88613 /* ListFormatter.swift */,
 				7DD6CC6C21BD6DCD004C4BB6 /* LoadingViewController.storyboard */,
 				7DD6CC6A21BD6DB1004C4BB6 /* LoadingViewController.swift */,
@@ -1585,9 +1590,18 @@
 				7DCF203D216D5C4C003AF358 /* LockStatusViewable.swift */,
 				7DCF2031216D530D003AF358 /* QuestionCountViewableTests.swift */,
 				7DCF1ED7216C060B003AF358 /* SubmissionViewableTests.swift */,
-				7DF4FFC021700BCE007E5F81 /* TabViewable.swift */,
+				7DF4FFC021700BCE007E5F81 /* TabViewableTests.swift */,
 			);
 			path = Viewable;
+			sourceTree = "<group>";
+		};
+		7DDC81422242E269000DD25A /* AudioRecorder */ = {
+			isa = PBXGroup;
+			children = (
+				7DDC81432242E2B2000DD25A /* AudioRecorderViewController.storyboard */,
+				7DDC81452242E2C7000DD25A /* AudioRecorderViewController.swift */,
+			);
+			path = AudioRecorder;
 			sourceTree = "<group>";
 		};
 		7DF4FFC3217113B5007E5F81 /* Models */ = {
@@ -2039,6 +2053,7 @@
 			files = (
 				7D0215A721BB1750009A8E69 /* LoginStartViewController.storyboard in Resources */,
 				B1B4C1C9219631AC00FA9E0E /* EmptyView.xib in Resources */,
+				7DDC81442242E2B2000DD25A /* AudioRecorderViewController.storyboard in Resources */,
 				5BF786A6218599B600471A5F /* InfoPlist.strings in Resources */,
 				7DFFAB1A219DDB22003E71F8 /* CommentListViewController.storyboard in Resources */,
 				B18359AA222450DE0005A918 /* AccessIconView.xib in Resources */,
@@ -2226,6 +2241,7 @@
 				7D29D309218A5E810036437C /* APIDocViewerRequestable.swift in Sources */,
 				9F6878AF223951EE00E559CE /* APIMediaComment.swift in Sources */,
 				7D29D307218A592B0036437C /* APIDocViewer.swift in Sources */,
+				7DDC81462242E2C7000DD25A /* AudioRecorderViewController.swift in Sources */,
 				9FCD79D82188DFD00054293A /* GetSubmission.swift in Sources */,
 				7D8262F5212B300F00BD268D /* APIGroup+Requestable.swift in Sources */,
 				7D80AC29212C76E600C40ECE /* APIOAuthRequestable.swift in Sources */,
@@ -2246,6 +2262,7 @@
 				B14FE5D12134E9D200328CD7 /* DatabaseOperation.swift in Sources */,
 				3B84C38D218B9A84005946BA /* AssignmentDates.swift in Sources */,
 				7D4D5EB2213F2A200080AC14 /* UIImageViewExtensions.swift in Sources */,
+				7D1219242243340200D3BF5C /* KeyboardTransitioning.swift in Sources */,
 				7836B0D22199021500FA25AE /* ShareExtensionViewController.swift in Sources */,
 				9FAE40FF21B6C54700FE7F58 /* APIExternalTool+Requestable.swift in Sources */,
 				7DF4FFC6217113DA007E5F81 /* Color.swift in Sources */,
@@ -2300,7 +2317,6 @@
 				7851D9B32138264800E76EC3 /* GetCustomColors.swift in Sources */,
 				B1EF7ABB21E902DD00D653D7 /* UseCase.swift in Sources */,
 				7DD6948B21960EBD00BA4984 /* DocViewerPresenter.swift in Sources */,
-				7DA5C48A22385645003CDB4C /* SubmissionCommentMediaType.swift in Sources */,
 				7DD6CC6721BCC597004C4BB6 /* LoginFindSchoolViewController.swift in Sources */,
 				B1E789AD21B0F0800087FE4A /* LoggableCell.swift in Sources */,
 				789C9BC12138516300B37AC4 /* UIColorExtensions.swift in Sources */,
@@ -2459,7 +2475,7 @@
 				B1E789BD21B1D3D50087FE4A /* LogEventListPresenterTests.swift in Sources */,
 				B133A78A221F59A3000E393E /* ColorTests.swift in Sources */,
 				7D7110CC2139AB310085C2E5 /* URLComponentsExtensionsTests.swift in Sources */,
-				7DF4FFC121700BCE007E5F81 /* TabViewable.swift in Sources */,
+				7DF4FFC121700BCE007E5F81 /* TabViewableTests.swift in Sources */,
 				B19792FB21769B320000369C /* QuizTests.swift in Sources */,
 				7DCF1EA4216BBCFB003AF358 /* GradingTypeTests.swift in Sources */,
 				7DCF203A216D5712003AF358 /* QuizTypeTests.swift in Sources */,
