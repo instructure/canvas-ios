@@ -21,6 +21,7 @@ const run = (cmd) => execSync(cmd, { stdio: 'inherit' })
 // https://github.com/instructure/instructure-ui/tree/master/packages/ui-icons/src/__svg__/Line
 // https://github.com/instructure/instructure-ui/tree/master/packages/ui-icons/src/__svg__/Solid
 const whitelist = [
+  'add',
   'alerts',
   'announcement',
   'arrow-open-left',

@@ -75,6 +75,6 @@ public struct APISubmissionCommentAuthor: Codable, Equatable {
 public struct APISubmissionCommentMedia: Codable, Equatable {
     let url: URL
     let media_id: String
-    let media_type: SubmissionCommentMediaType
+    let media_type: MediaCommentType
     let display_name: String?
 }

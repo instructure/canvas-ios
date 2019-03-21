@@ -27,11 +27,11 @@ extension TabViewable {
         //     return .icon(.attendance)
         // }
         if id.contains("external_tool") {
-            return .icon(.lti, .solid)
+            return .icon(.lti, .line)
         }
         switch id {
         case "announcements":  return .icon(.announcement, .line)
-        case "application":    return .icon(.lti, .solid)
+        case "application":    return .icon(.lti, .line)
         case "assignments":    return .icon(.assignment, .line)
         case "attendance":     return .icon(.attendance)
         case "collaborations": return .icon(.collaborations)
@@ -47,7 +47,7 @@ extension TabViewable {
         case "quizzes":        return .icon(.quiz, .line)
         case "settings":       return .icon(.settings, .line)
         case "syllabus":       return .icon(.rubric, .line)
-        case "tools":          return .icon(.lti, .solid)
+        case "tools":          return .icon(.lti, .line)
         case "user":           return .icon(.user, .line)
         default:               return .icon(.courses, .line)
         }

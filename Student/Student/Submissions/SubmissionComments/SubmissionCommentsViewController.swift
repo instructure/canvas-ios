@@ -18,9 +18,20 @@ import UIKit
 import Core
 
 class SubmissionCommentsViewController: UIViewController {
+    @IBOutlet weak var addCommentBorderView: UIView?
+    @IBOutlet weak var addCommentButton: DynamicButton?
+    @IBOutlet weak var addCommentPlaceholder: DynamicLabel?
+    @IBOutlet weak var addCommentTextView: UITextView?
+    @IBOutlet weak var addCommentView: UIView?
+    @IBOutlet weak var addMediaButton: DynamicButton?
+    @IBOutlet weak var addMediaHeight: NSLayoutConstraint?
+    @IBOutlet weak var addMediaView: UIView?
+    @IBOutlet weak var emptyLabel: DynamicLabel?
+    @IBOutlet weak var keyboardSpace: NSLayoutConstraint?
     @IBOutlet weak var tableView: UITableView?
 
     var currentUserID: String?
+    var keyboard: KeyboardTransitioning?
     var presenter: SubmissionCommentsPresenter?
     var submissionPresenter: SubmissionDetailsPresenter?
 
@@ -41,14 +52,119 @@ class SubmissionCommentsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        addCommentBorderView?.backgroundColor = .named(.backgroundLightest)
+        addCommentBorderView?.layer.borderColor = UIColor.named(.borderMedium).cgColor
+        addCommentBorderView?.layer.borderWidth = 1 / UIScreen.main.scale
+        addCommentButton?.accessibilityLabel = NSLocalizedString("Send comment", bundle: .student, comment: "")
+        addCommentTextView?.accessibilityLabel = NSLocalizedString("Add a comment or reply to previous comments", bundle: .student, comment: "")
+        addCommentTextView?.font = .scaledNamedFont(.regular14)
+        addCommentTextView?.adjustsFontForContentSizeCategory = true
+        addCommentTextView?.textColor = .named(.textDarkest)
+        emptyLabel?.isHidden = true
+        emptyLabel?.text = NSLocalizedString("Have questions? Use this area to message your instructor about this assignment.", bundle: .student, comment: "")
         tableView?.transform = CGAffineTransform(scaleX: 1, y: -1)
 
+        setInsets()
         presenter?.viewIsReady()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        keyboard = KeyboardTransitioning(view: view, space: keyboardSpace)
+    }
+
+    func setInsets() {
+        // Remember top & bottom are flipped by the transform.
+        tableView?.contentInset = UIEdgeInsets(top: addCommentView?.frame.height ?? 0, left: 0, bottom: 0, right: 0)
+        tableView?.scrollIndicatorInsets = UIEdgeInsets(top: addCommentView?.frame.height ?? 0, left: 0, bottom: 0, right: 0)
+    }
+
+    @IBAction func addCommentButtonPressed(_ sender: UIButton) {
+        guard let textView = addCommentTextView, let text = addCommentTextView?.text.trimmingCharacters(in: .whitespacesAndNewlines), !text.isEmpty else { return }
+        presenter?.addComment(text: text)
+        textView.text = ""
+        textViewDidChange(textView)
+    }
+
+    @IBAction func addMediaButtonPressed(_ sender: UIButton) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Record Audio", bundle: .student, comment: ""), style: .default) { [weak self] _ in
+            AudioRecorderViewController.requestPermission { allowed in
+                if allowed {
+                    let controller = AudioRecorderViewController.create()
+                    controller.delegate = self
+                    self?.showMediaController(controller)
+                } else {
+                    self?.showPermissionError(NSLocalizedString("You must enable Microphone permissions in Settings to record audio.", bundle: .student, comment: ""))
+                }
+            }
+        })
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Record Video", bundle: .student, comment: ""), style: .default) { _ in
+            // TODO
+        })
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", bundle: .student, comment: ""), style: .cancel))
+        present(alert, animated: true)
+    }
+
+    func showPermissionError(_ message: String) {
+        let title = NSLocalizedString("Permission Needed", bundle: .student, comment: "")
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", bundle: .student, comment: ""), style: .cancel))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Settings", bundle: .student, comment: ""), style: .default) { _ in
+            guard let url = URL(string: "app-settings:") else { return }
+            UIApplication.shared.open(url)
+        })
+        present(alert, animated: true)
+    }
+
+    func showMediaController(_ controller: UIViewController) {
+        guard let container = addMediaView else { return }
+        addCommentTextView?.resignFirstResponder()
+        controller.view.alpha = 0
+        embed(controller, in: container)
+        UIView.animate(withDuration: 0.275, animations: {
+            controller.view.alpha = 1
+            self.addCommentBorderView?.alpha = 0
+            self.addMediaButton?.alpha = 0
+            self.addMediaHeight?.constant = 240
+            self.view.layoutIfNeeded()
+            self.setInsets()
+        }, completion: { _ in
+            self.addCommentBorderView?.isHidden = true
+            self.addMediaButton?.isHidden = true
+        })
+    }
+
+    func hideMediaController(_ controller: UIViewController) {
+        addCommentBorderView?.isHidden = false
+        addMediaButton?.isHidden = false
+        UIView.animate(withDuration: 0.275, animations: {
+            controller.view.alpha = 0
+            self.addCommentBorderView?.alpha = 1
+            self.addMediaButton?.alpha = 1
+            self.addMediaHeight?.constant = 0
+            self.view.layoutIfNeeded()
+            self.setInsets()
+        }, completion: { _ in
+            controller.unembed()
+        })
+    }
+}
+
+extension SubmissionCommentsViewController: AudioRecorderDelegate {
+    func cancel(_ controller: AudioRecorderViewController) {
+        hideMediaController(controller)
+    }
+
+    func send(_ controller: AudioRecorderViewController, url: URL) {
+        presenter?.addMediaComment(type: .audio, url: url)
+        hideMediaController(controller)
     }
 }
 
 extension SubmissionCommentsViewController: SubmissionCommentsViewProtocol {
     func reload() {
+        emptyLabel?.isHidden = presenter?.comments.count != 0
         tableView?.reloadData()
     }
 }
@@ -100,5 +216,13 @@ extension SubmissionCommentsViewController: UITableViewDataSource, UITableViewDe
         cell.update(comment: comment)
         cell.transform = CGAffineTransform(scaleX: 1, y: -1)
         return cell
+    }
+}
+
+extension SubmissionCommentsViewController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        addCommentButton?.isEnabled = !(textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+        addCommentPlaceholder?.isHidden = !textView.text.isEmpty
+        setInsets()
     }
 }

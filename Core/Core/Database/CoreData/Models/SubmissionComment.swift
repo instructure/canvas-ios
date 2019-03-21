@@ -31,8 +31,8 @@ final public class SubmissionComment: NSManagedObject {
     @NSManaged public var mediaURL: URL?
     @NSManaged public var submissionID: String
 
-    public var mediaType: SubmissionCommentMediaType? {
-        get { return mediaTypeRaw.flatMap { SubmissionCommentMediaType(rawValue: $0) } }
+    public var mediaType: MediaCommentType? {
+        get { return mediaTypeRaw.flatMap { MediaCommentType(rawValue: $0) } }
         set { mediaTypeRaw = newValue?.rawValue }
     }
 

@@ -171,7 +171,7 @@ extension Submission {
         case .discussion_topic:
             return UIImage.icon(.discussion)
         case .media_recording:
-            return UIImage.icon(mediaComment?.mediaType == "audio" ? .audio : .video)
+            return UIImage.icon(mediaComment?.mediaType == .audio ? .audio : .video)
         case .online_quiz:
             return UIImage.icon(.quiz)
         case .online_text_entry:
@@ -196,7 +196,7 @@ extension Submission {
         case .discussion_topic:
             return discussionEntriesOrdered.first?.message?.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression)
         case .media_recording:
-            return mediaComment?.mediaType == "audio"
+            return mediaComment?.mediaType == .audio
                 ? NSLocalizedString("Audio", bundle: .core, comment: "")
                 : NSLocalizedString("Video", bundle: .core, comment: "")
         case .online_text_entry:
