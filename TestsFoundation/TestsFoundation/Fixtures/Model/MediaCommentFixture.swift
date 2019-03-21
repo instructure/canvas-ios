@@ -25,7 +25,7 @@ extension MediaComment: Fixture {
             "contentType": "video/mp4",
             "displayName": "Submission",
             "mediaID": "m-1234567890",
-            "mediaType": "video",
+            "mediaTypeRaw": "video",
             "url": URL(string: "https://google.com")!
         ]
     }
