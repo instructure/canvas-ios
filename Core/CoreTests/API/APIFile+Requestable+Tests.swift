@@ -132,7 +132,7 @@ class PostFileUploadRequestTests: XCTestCase {
             upload_params: ["filename": "fileupload.txt"]
         )
         let requestable = PostFileUploadRequest(fileURL: fileURL, target: target)
-        let data = try! requestable.encode(requestable.body)
+        let data = try! requestable.encode(requestable.body!)
 
         XCTAssertNotNil(data)
         let body = String(data: data, encoding: .utf8)!
