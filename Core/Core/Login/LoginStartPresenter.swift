@@ -70,6 +70,10 @@ class LoginStartPresenter {
             }
             self?.loadEntries()
         }
+
+        AppleManagedAppConfiguration.shared.onDemoEnabled { [weak self] demo in
+            self?.showLoginForHost(demo.host, method: .canvasLogin)
+        }
     }
 
     func loadEntries() {
@@ -121,5 +125,15 @@ class LoginStartPresenter {
     func removePreviousLogin(_ entry: KeychainEntry) {
         // View has already updated itself.
         loginDelegate?.userDidLogout(keychainEntry: entry)
+    }
+
+    func showLoginForHost(_ host: String, method: AuthenticationMethod = .normalLogin) {
+        let controller = LoginWebViewController.create(
+            authenticationProvider: nil,
+            host: host,
+            loginDelegate: loginDelegate,
+            method: .canvasLogin
+        )
+        view?.show(controller, sender: nil)
     }
 }

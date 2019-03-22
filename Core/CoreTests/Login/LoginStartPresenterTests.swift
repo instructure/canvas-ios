@@ -111,6 +111,15 @@ class LoginStartPresenterTests: XCTestCase {
         presenter.removePreviousLogin(entry)
         XCTAssertEqual(loggedOut, entry)
     }
+
+    func testAppleDemoShowsLogin() {
+        let presenter = LoginStartPresenter(loginDelegate: self, view: self)
+        presenter.viewIsReady()
+        AppleManagedAppConfiguration.mockDefaults()
+        XCTAssertNotNil(shown)
+        let login = shown as? LoginWebViewController
+        XCTAssertNotNil(login)
+    }
 }
 
 extension LoginStartPresenterTests: LoginStartViewProtocol {

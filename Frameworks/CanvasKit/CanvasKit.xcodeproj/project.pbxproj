@@ -238,6 +238,8 @@
 		B115424121BB1E13006D1BA3 /* CKIPermissions.h in Headers */ = {isa = PBXBuildFile; fileRef = B115423F21BB1E12006D1BA3 /* CKIPermissions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B115424221BB1E13006D1BA3 /* CKIPermissions.m in Sources */ = {isa = PBXBuildFile; fileRef = B115424021BB1E12006D1BA3 /* CKIPermissions.m */; };
 		B14E029B21AC900A00328622 /* Pods_defaults_CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73FDCB1E035EF6A93E758F42 /* Pods_defaults_CanvasKit.framework */; };
+		B1BEB2C3224555F700E893A4 /* CKManagedAppConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = B1BEB2C1224555F700E893A4 /* CKManagedAppConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B1BEB2C4224555F700E893A4 /* CKManagedAppConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BEB2C2224555F700E893A4 /* CKManagedAppConfiguration.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -529,6 +531,8 @@
 		9FE0B5321FBB7710003826AA /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B115423F21BB1E12006D1BA3 /* CKIPermissions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CKIPermissions.h; sourceTree = "<group>"; };
 		B115424021BB1E12006D1BA3 /* CKIPermissions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CKIPermissions.m; sourceTree = "<group>"; };
+		B1BEB2C1224555F700E893A4 /* CKManagedAppConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CKManagedAppConfiguration.h; sourceTree = "<group>"; };
+		B1BEB2C2224555F700E893A4 /* CKManagedAppConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CKManagedAppConfiguration.m; sourceTree = "<group>"; };
 		DFC0045B1D1838536E5DC07E /* Pods-defaults-CanvasKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasKit.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-CanvasKit/Pods-defaults-CanvasKit.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -608,6 +612,8 @@
 				499D18AE1C8644A3005A86D2 /* NSValueTransformer+CKIPredefinedTransformerAdditions.m */,
 				2C7041A3203CD7D300745253 /* UIAlertController+Show.h */,
 				2C7041A4203CD7D300745253 /* UIAlertController+Show.m */,
+				B1BEB2C1224555F700E893A4 /* CKManagedAppConfiguration.h */,
+				B1BEB2C2224555F700E893A4 /* CKManagedAppConfiguration.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1025,6 +1031,7 @@
 				499D1BBB1C864835005A86D2 /* metamacros.h in Headers */,
 				499D19851C8644A3005A86D2 /* NSArray+CKIAdditions.h in Headers */,
 				499D19891C8644A3005A86D2 /* NSHTTPURLResponse+Pagination.h in Headers */,
+				B1BEB2C3224555F700E893A4 /* CKManagedAppConfiguration.h in Headers */,
 				499D1A521C8644A3005A86D2 /* CKIMediaServer.h in Headers */,
 				499D19831C8644A3005A86D2 /* CKIMediaFileUploadTokenParser.h in Headers */,
 				499D198B1C8644A3005A86D2 /* NSString+CKIAdditions.h in Headers */,
@@ -1065,6 +1072,7 @@
 				TargetAttributes = {
 					499D18861C8643E6005A86D2 = {
 						CreatedOnToolsVersion = 7.2.1;
+						LastSwiftMigration = 1010;
 						ProvisioningStyle = Manual;
 					};
 				};
@@ -1218,6 +1226,7 @@
 				499D19DD1C8644A3005A86D2 /* CKIPollSession.m in Sources */,
 				499D1A391C8644A3005A86D2 /* CKIClient+CKIPollChoice.m in Sources */,
 				499D19ED1C8644A3005A86D2 /* CKISubmission+TextEntrySubmissionHTMLFile.m in Sources */,
+				B1BEB2C4224555F700E893A4 /* CKManagedAppConfiguration.m in Sources */,
 				499D1A0F1C8644A3005A86D2 /* CKIClient+CKIAssignment.m in Sources */,
 				3B2940171E7209AA00F2E49C /* CKIBrand.m in Sources */,
 				499D1A4B1C8644A3005A86D2 /* CKIClient+CKITodoItem.m in Sources */,
@@ -1434,6 +1443,7 @@
 			baseConfigurationReference = 04B7BBDCB828F414AA45D2B6 /* Pods-defaults-CanvasKit.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
@@ -1452,6 +1462,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.CanvasKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -1461,6 +1473,7 @@
 			baseConfigurationReference = DFC0045B1D1838536E5DC07E /* Pods-defaults-CanvasKit.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
@@ -1479,6 +1492,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.CanvasKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;

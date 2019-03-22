@@ -19,14 +19,18 @@
 @import ReactiveObjC;
 #import "CKIClient.h"
 #import "UIAlertController+Show.h"
+#import "CKManagedAppConfiguration.h"
 
-@interface CKILoginViewController () <WKNavigationDelegate, NSURLSessionTaskDelegate, WKUIDelegate>
+@interface CKILoginViewController () <WKNavigationDelegate, NSURLSessionTaskDelegate, WKUIDelegate, CKManagedAppConfigurationDelegate>
 @property (nonatomic, copy) NSURLRequest *request;
 @property (nonatomic) CKIAuthenticationMethod method;
 @property (nonatomic, copy) void(^completionHandler)(NSURLSessionAuthChallengeDisposition, NSURLCredential *);
+@property (nonatomic, strong) CKManagedAppConfiguration *managedAppConfig;
 @end
 
-@implementation CKILoginViewController
+@implementation CKILoginViewController {
+    BOOL submittedDemo;
+}
 
 - (id)initWithRequest:(NSURLRequest *)request method:(CKIAuthenticationMethod)method
 {
@@ -72,6 +76,9 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
     [self.navigationController.navigationBar setTranslucent:NO];
+
+    self.managedAppConfig = [CKManagedAppConfiguration new];
+    self.managedAppConfig.delegate = self;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -209,6 +216,11 @@ static UIImage *_loadingImage = nil;
     decisionHandler(WKNavigationActionPolicyAllow);
 }
 
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
+{
+    [self.managedAppConfig beginObserving];
+}
+
 #pragma mark - WKUIDelegate
 
 - (WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures
@@ -254,6 +266,28 @@ static UIImage *_loadingImage = nil;
     }
     
     return UIInterfaceOrientationMaskAll;
+}
+
+#pragma mark - Managed App Config
+
+- (void)managedAppConfigurationDidChange:(CKManagedAppConfiguration *)configuration
+{
+    if (submittedDemo) {
+        return;
+    }
+    if (configuration.demoEnabled && configuration.username && configuration.password) {
+        submittedDemo = YES;
+        [self injectValue:configuration.username forInputNamed:@"pseudonym_session[unique_id]"];
+        [self injectValue:configuration.password forInputNamed:@"pseudonym_session[password]"];
+        NSString *submit = @"document.querySelector('#login_form').submit()";
+        [self.webView evaluateJavaScript:submit completionHandler:nil];
+    }
+}
+
+- (void)injectValue:(NSString *)value forInputNamed:(NSString *)name
+{
+    NSString *script = [NSString stringWithFormat:@"document.querySelector('input[name=\"%@\"]').value = \"%@\"", name, value];
+    [self.webView evaluateJavaScript:script completionHandler:nil];
 }
     
 @end

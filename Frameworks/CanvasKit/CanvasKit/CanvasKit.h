@@ -144,3 +144,4 @@ FOUNDATION_EXPORT const unsigned char CanvasKitVersionString[];
 #pragma mark - Utilities
 
 #import <CanvasKit/NSDictionary+DictionaryByAddingObjectsFromDictionary.h>
+#import <CanvasKit/CKManagedAppConfiguration.h>
