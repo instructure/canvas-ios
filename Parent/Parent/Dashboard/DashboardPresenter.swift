@@ -36,4 +36,18 @@ class DashboardPresenter {
     func viewIsReady() {
         permissions.refresh(force: true)
     }
+
+    func showActAsUserScreen() {
+        guard let view = view else {
+            return
+        }
+        env.router.route(to: .actAsUser, from: view, options: [.modal, .embedInNav])
+    }
+
+    func showWrongAppScreen() {
+        guard let view = view else {
+            return
+        }
+        env.router.route(to: .wrongApp, from: view, options: [.modal, .embedInNav])
+    }
 }

@@ -295,15 +295,15 @@ class DashboardViewController: UIViewController {
         let storyboard = UIStoryboard(name: "AdminViewController", bundle: nil)
         adminViewController = storyboard.instantiateViewController(withIdentifier: "vc") as? AdminViewController
         
-        adminViewController.actAsUserHandler = {
-            AppEnvironment.shared.router.route(to: .actAsUser, from: self, options: [.modal, .embedInNav])
+        adminViewController.actAsUserHandler = { [weak self] in
+            self?.presenter?.showActAsUserScreen()
         }
         
         pageViewController?.setViewControllers([adminViewController], direction: .reverse, animated: false, completion: { _ in })
     }
     
     @objc func showNotAParentView() {
-        AppEnvironment.shared.router.route(to: .wrongApp, from: self, options: [.modal, .embedInNav])
+        presenter?.showWrongAppScreen()
     }
     
     // ---------------------------------------------
