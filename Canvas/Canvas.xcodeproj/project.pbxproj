@@ -26,9 +26,7 @@
 		2C8E356E20939C2D0071ED94 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2C8E356D20939C2D0071ED94 /* Settings.bundle */; };
 		2CE205B820EBF690002A6A64 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CE205B720EBF68F002A6A64 /* GoogleService-Info.plist */; };
 		3B0107A41FBBA7C600062DB2 /* GradeWidgetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B0107A31FBBA7C600062DB2 /* GradeWidgetCell.xib */; };
-		3B1642C31FBA0426006C55D2 /* CanvasKeymaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B1642C51FBA0426006C55D2 /* CanvasKeymaster.framework */; };
 		3B6DCCA71FB502CE005EE8D2 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6DCCA61FB502CE005EE8D2 /* NotificationCenter.framework */; };
-		3B6DCCAA1FB502CE005EE8D2 /* GradesTodayWidgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6DCCA91FB502CE005EE8D2 /* GradesTodayWidgetViewController.swift */; };
 		3B6DCCAD1FB502CE005EE8D2 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B6DCCAB1FB502CE005EE8D2 /* MainInterface.storyboard */; };
 		3B6DCCB11FB502CE005EE8D2 /* GradesWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3B6DCCA51FB502CD005EE8D2 /* GradesWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		490687951D02151E0072DBEA /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490687911D02151E0072DBEA /* SettingsViewController.swift */; };
@@ -603,6 +601,9 @@
 		7DC912EB1FE1CC9200A76B14 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7DC912ED1FE1CC9200A76B14 /* InfoPlist.strings */; };
 		8F363586CEA2A05378002836 /* Pods_GradesWidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 651295DCB22A2B02F381D94B /* Pods_GradesWidget.framework */; };
 		9C50D612DA6414266300170B /* Pods_defaults_CanvasKit1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2AB6A9FA96CE49682022ACB /* Pods_defaults_CanvasKit1.framework */; };
+		9F00A5692245593200C0CC32 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1D7E04213743D300F7CCFE /* Core.framework */; };
+		9F00A56B2245599800C0CC32 /* GradesTodayWidgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F00A56A2245599800C0CC32 /* GradesTodayWidgetViewController.swift */; };
+		9F00A56D22455BD500C0CC32 /* GradesTodayWidgetPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F00A56C22455BD500C0CC32 /* GradesTodayWidgetPresenter.swift */; };
 		9F61B52C205985A5009C0B13 /* CanvasAppDelegate+Helm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F61B52B205985A5009C0B13 /* CanvasAppDelegate+Helm.swift */; };
 		ACC968801D245768006AEAB1 /* Page+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC9687F1D245768006AEAB1 /* Page+ViewModel.swift */; };
 		B15738001D94C38C00ADBB85 /* ModuleItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15737FF1D94C38C00ADBB85 /* ModuleItemDetailViewController.swift */; };
@@ -610,17 +611,11 @@
 		B159CA682154023600DA6044 /* PSPDFKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B159CA5E2153F0F700DA6044 /* PSPDFKitUI.framework */; };
 		B177E6FD1E2EC8BA00D7477D /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B177E6FF1E2EC8BA00D7477D /* Settings.storyboard */; };
 		B177E7091E2ECAB900D7477D /* CBIGradeDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B177E70B1E2ECAB900D7477D /* CBIGradeDetailView.xib */; };
-		B19CE9D1200691460001EB54 /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19CE9D0200691460001EB54 /* CustomColors.swift */; };
 		B1CB84F01D076025004D2265 /* CKRichTextInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1CB84EC1D076025004D2265 /* CKRichTextInputView.xib */; };
 		B1CB84F11D076025004D2265 /* ExpandingComment.css in Resources */ = {isa = PBXBuildFile; fileRef = B1CB84ED1D076025004D2265 /* ExpandingComment.css */; };
 		B1CB84F21D076025004D2265 /* ExpandingComment.html in Resources */ = {isa = PBXBuildFile; fileRef = B1CB84EE1D076025004D2265 /* ExpandingComment.html */; };
 		B1CB84F31D076026004D2265 /* ExpandingComment.js in Resources */ = {isa = PBXBuildFile; fileRef = B1CB84EF1D076025004D2265 /* ExpandingComment.js */; };
 		B1EE4BBE21CC14780008E111 /* CKIClientExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EE4BBD21CC14780008E111 /* CKIClientExtensions.swift */; };
-		B1FAE07220056CDA00CDA09C /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FAE07120056CDA00CDA09C /* Course.swift */; };
-		B1FAE07420056CE600CDA09C /* Courses.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FAE07320056CE600CDA09C /* Courses.swift */; };
-		B1FAE07620056CEE00CDA09C /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FAE07520056CEE00CDA09C /* Colors.swift */; };
-		B1FAE07820056DCC00CDA09C /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FAE07720056DCC00CDA09C /* Result.swift */; };
-		B1FAE07B2005771A00CDA09C /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FAE07A2005771A00CDA09C /* UIColor+Hex.swift */; };
 		B5A790BB1D8C743400ACA9FE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5A790A61D8C743400ACA9FE /* Localizable.strings */; };
 		B5E212D31D88856B009D8C07 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5E212D51D88856B009D8C07 /* Localizable.strings */; };
 		B5F122C91D8C4D6C0045063A /* Canvas.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 49642BCA1CF4C66200238B3F /* Canvas.entitlements */; };
@@ -732,7 +727,6 @@
 		3B1642C51FBA0426006C55D2 /* CanvasKeymaster.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CanvasKeymaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B6DCCA51FB502CD005EE8D2 /* GradesWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = GradesWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B6DCCA61FB502CE005EE8D2 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
-		3B6DCCA91FB502CE005EE8D2 /* GradesTodayWidgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesTodayWidgetViewController.swift; sourceTree = "<group>"; };
 		3B6DCCAC1FB502CE005EE8D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		3B6DCCAE1FB502CE005EE8D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B90C1FF1FBE282F00A32303 /* GradesWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GradesWidget.entitlements; sourceTree = "<group>"; };
@@ -1445,6 +1439,8 @@
 		873A063BCDC8884CD0C89EAD /* Pods-CanvasTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CanvasTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-CanvasTests/Pods-CanvasTests.release.xcconfig"; sourceTree = "<group>"; };
 		962C895A87C658B3F80897FF /* Pods-TechDebt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TechDebt.release.xcconfig"; path = "../Pods/Target Support Files/Pods-TechDebt/Pods-TechDebt.release.xcconfig"; sourceTree = "<group>"; };
 		99747510483FA8853301B9F5 /* Pods-defaults-CanvasTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasTests/Pods-defaults-CanvasTests.release.xcconfig"; sourceTree = "<group>"; };
+		9F00A56A2245599800C0CC32 /* GradesTodayWidgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesTodayWidgetViewController.swift; sourceTree = "<group>"; };
+		9F00A56C22455BD500C0CC32 /* GradesTodayWidgetPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesTodayWidgetPresenter.swift; sourceTree = "<group>"; };
 		9F61B52B205985A5009C0B13 /* CanvasAppDelegate+Helm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CanvasAppDelegate+Helm.swift"; sourceTree = "<group>"; };
 		A025F6634B44F7120D41717E /* Pods_defaults_common_tests_CanvasTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_common_tests_CanvasTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A13903D63AE70A2926A48F10 /* Pods-defaults-common_ui_tests-StudentUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_ui_tests-StudentUITests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-common_ui_tests-StudentUITests/Pods-defaults-common_ui_tests-StudentUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -1582,18 +1578,12 @@
 		B177E7641E2ECD1B00D7477D /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Settings.strings; sourceTree = "<group>"; };
 		B177E7651E2ECD2E00D7477D /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/CBIGradeDetailView.strings; sourceTree = "<group>"; };
 		B177E7681E2ECD3200D7477D /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Settings.strings; sourceTree = "<group>"; };
-		B19CE9D0200691460001EB54 /* CustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColors.swift; sourceTree = "<group>"; };
 		B1CB84EC1D076025004D2265 /* CKRichTextInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CKRichTextInputView.xib; sourceTree = "<group>"; };
 		B1CB84ED1D076025004D2265 /* ExpandingComment.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = ExpandingComment.css; sourceTree = "<group>"; };
 		B1CB84EE1D076025004D2265 /* ExpandingComment.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ExpandingComment.html; sourceTree = "<group>"; };
 		B1CB84EF1D076025004D2265 /* ExpandingComment.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = ExpandingComment.js; sourceTree = "<group>"; };
 		B1E3D6E01D8305D900B4AC11 /* ModulesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ModulesTableViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		B1EE4BBD21CC14780008E111 /* CKIClientExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKIClientExtensions.swift; sourceTree = "<group>"; };
-		B1FAE07120056CDA00CDA09C /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
-		B1FAE07320056CE600CDA09C /* Courses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Courses.swift; sourceTree = "<group>"; };
-		B1FAE07520056CEE00CDA09C /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
-		B1FAE07720056DCC00CDA09C /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
-		B1FAE07A2005771A00CDA09C /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		B1FF7EDE1D8758720069C9BE /* ModuleViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleViewModel.swift; sourceTree = "<group>"; };
 		B5A790A71D8C743400ACA9FE /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B5A790A81D8C743400ACA9FE /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1650,7 +1640,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B1642C31FBA0426006C55D2 /* CanvasKeymaster.framework in Frameworks */,
+				9F00A5692245593200C0CC32 /* Core.framework in Frameworks */,
 				3B6DCCA71FB502CE005EE8D2 /* NotificationCenter.framework in Frameworks */,
 				8F363586CEA2A05378002836 /* Pods_GradesWidget.framework in Frameworks */,
 			);
@@ -1713,11 +1703,9 @@
 			children = (
 				7DC912ED1FE1CC9200A76B14 /* InfoPlist.strings */,
 				7DC912E81FE1CC9200A76B14 /* Localizable.strings */,
-				B1FAE0792005770900CDA09C /* Helpers */,
-				B1FAE06F20056C2500CDA09C /* Model */,
-				B1FAE06E20056C1F00CDA09C /* Network */,
 				3B90C1FF1FBE282F00A32303 /* GradesWidget.entitlements */,
-				3B6DCCA91FB502CE005EE8D2 /* GradesTodayWidgetViewController.swift */,
+				9F00A56A2245599800C0CC32 /* GradesTodayWidgetViewController.swift */,
+				9F00A56C22455BD500C0CC32 /* GradesTodayWidgetPresenter.swift */,
 				3B6DCCAB1FB502CE005EE8D2 /* MainInterface.storyboard */,
 				3B6DCCAE1FB502CE005EE8D2 /* Info.plist */,
 				3B0107A31FBBA7C600062DB2 /* GradeWidgetCell.xib */,
@@ -2946,33 +2934,6 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		B1FAE06E20056C1F00CDA09C /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				B1FAE07320056CE600CDA09C /* Courses.swift */,
-				B1FAE07520056CEE00CDA09C /* Colors.swift */,
-				B1FAE07720056DCC00CDA09C /* Result.swift */,
-			);
-			path = Network;
-			sourceTree = "<group>";
-		};
-		B1FAE06F20056C2500CDA09C /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				B1FAE07120056CDA00CDA09C /* Course.swift */,
-				B19CE9D0200691460001EB54 /* CustomColors.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		B1FAE0792005770900CDA09C /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				B1FAE07A2005771A00CDA09C /* UIColor+Hex.swift */,
-			);
-			path = Helpers;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -3783,13 +3744,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1FAE07220056CDA00CDA09C /* Course.swift in Sources */,
-				B1FAE07820056DCC00CDA09C /* Result.swift in Sources */,
-				B19CE9D1200691460001EB54 /* CustomColors.swift in Sources */,
-				B1FAE07620056CEE00CDA09C /* Colors.swift in Sources */,
-				B1FAE07B2005771A00CDA09C /* UIColor+Hex.swift in Sources */,
-				3B6DCCAA1FB502CE005EE8D2 /* GradesTodayWidgetViewController.swift in Sources */,
-				B1FAE07420056CE600CDA09C /* Courses.swift in Sources */,
+				9F00A56B2245599800C0CC32 /* GradesTodayWidgetViewController.swift in Sources */,
+				9F00A56D22455BD500C0CC32 /* GradesTodayWidgetPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

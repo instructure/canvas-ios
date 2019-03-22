@@ -17,7 +17,7 @@
 import XCTest
 @testable import Core
 
-class EnrollmentTests: XCTestCase {
+class EnrollmentTests: CoreTestCase {
     func testEnrollmentStateInitRawValue() {
         // Converting to & from String is needed by database models
         XCTAssertEqual(EnrollmentState(rawValue: "invited"), .invited)
@@ -28,6 +28,23 @@ class EnrollmentTests: XCTestCase {
         // Converting to & from String is needed by database models
         XCTAssertEqual(EnrollmentRole(rawValue: "StudentEnrollment"), .student)
         XCTAssertEqual(EnrollmentRole.student.rawValue, "StudentEnrollment")
+    }
+
+    func testUpdateFromAPI() {
+        let apiEnrollment = APIEnrollment.make()
+
+        let model: Enrollment = databaseClient.insert()
+        XCTAssertNoThrow(try! model.update(fromApiModel: apiEnrollment, course: nil, in: databaseClient))
+
+        XCTAssertEqual(model.role, .student)
+        XCTAssertEqual(model.roleID, apiEnrollment.role_id)
+        XCTAssertEqual(model.state, apiEnrollment.enrollment_state)
+        XCTAssertEqual(model.userID, apiEnrollment.user_id)
+        XCTAssertEqual(model.multipleGradingPeriodsEnabled, apiEnrollment.multiple_grading_periods_enabled)
+        XCTAssertEqual(model.computedCurrentScore, apiEnrollment.computed_current_score)
+        XCTAssertEqual(model.computedFinalScore, apiEnrollment.computed_final_score)
+        XCTAssertEqual(model.currentPeriodComputedCurrentScore, apiEnrollment.current_period_computed_current_score)
+        XCTAssertEqual(model.currentPeriodComputedFinalScore, apiEnrollment.current_period_computed_final_score)
     }
 
     func testHasRole() {

@@ -26,19 +26,19 @@ extension Enrollment: Fixture {
             "userID": "1",
             "stateRaw": "active",
             "canvasContextID": "course_1",
-//            "computed_current_score": 74.38,
-//            "computed_final_score": 49.03,
-//            "computed_current_grade": null,
-//            "computed_final_grade": null,
+            "computedCurrentScoreRaw": 74.38,
+            "computedFinalScoreRaw": 49.03,
+            "computedCurrentGrade": nil,
+            "computedFinalGrade": nil,
 //            "has_grading_periods": true,
 //            "multiple_grading_periods_enabled": true,
 //            "totals_for_all_grading_periods_option": true,
 //            "current_grading_period_title": "Forever",
 //            "current_grading_period_id": "1",
-//            "current_period_computed_current_score": 74.38,
-//            "current_period_computed_final_score": 49.03,
-//            "current_period_computed_current_grade": null,
-//            "current_period_computed_final_grade": null
+            "currentPeriodComputedCurrentScoreRaw": 74.38,
+            "currentPeriodComputedFinalScoreRaw": 49.03,
+            "currentPeriodComputedCurrentGrade": nil,
+            "currentPeriodComputedFinalGrade": nil
         ]
     }
 }
