@@ -38,11 +38,6 @@ extension NSPersistentContainer {
         return container
     }
 
-    public static func destroy(appGroup: String? = Bundle.main.appGroupID(), session: KeychainEntry? = nil) throws {
-        guard let url = databaseURL(for: appGroup, session: session) else { return }
-        try FileManager.default.removeItem(at: url)
-    }
-
     public static func databaseURL(for appGroup: String?, session: KeychainEntry?) -> URL? {
         var folder = URL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])
 
@@ -69,6 +64,18 @@ extension NSPersistentContainer {
             }
         }
         try viewContext.save()
+    }
+
+    public func destroy() {
+        do {
+            for url in persistentStoreCoordinator.persistentStores.compactMap({ $0.url }) {
+                try persistentStoreCoordinator.destroyPersistentStore(at: url, ofType: NSSQLiteStoreType, options: nil)
+            }
+        } catch {
+            // It's not the worst thing ever if we can't destroy the db
+            // because it is scoped to the user
+            print(error)
+        }
     }
 
     public func fetchedResultsController<T>(predicate: NSPredicate? = nil, sortDescriptors: [NSSortDescriptor], sectionNameKeyPath: String? = nil) -> NSFetchedResultsController<T> {
