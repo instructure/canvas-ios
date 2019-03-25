@@ -20,28 +20,52 @@ import XCTest
 import TestsFoundation
 
 class SubmissionCommentsTests: StudentTest {
-    lazy var assignment: APIAssignment = seedClient.createAssignment(for: course, submissionTypes: [ .online_upload ], allowedExtensions: [ "pdf" ])
-    lazy var course: APICourse = seedClient.createCourse()
-    lazy var student: AuthUser = createStudent(in: course)
-    lazy var teacher: AuthUser = createTeacher(in: course)
+    lazy var course: APICourse = {
+        let course = APICourse.make()
+        mockData(GetCourseRequest(courseID: course.id), value: course)
+        return course
+    }()
+
+    lazy var assignment: APIAssignment = {
+        let assignment = APIAssignment.make([
+            "submission_types": [ "online_upload" ],
+            "allowed_extensions": [ "pdf" ],
+        ])
+        mockData(GetAssignmentRequest(courseID: course.id, assignmentID: assignment.id.value, include: []), value: assignment)
+        return assignment
+    }()
 
     func testCommentsList() {
-        let file1 = seedClient.uploadFile(url: Bundle(for: SubmissionFilesTests.self).url(forResource: "empty", withExtension: "pdf")!, named: "File 1", for: assignment, as: student)
-        let file2 = seedClient.uploadFile(url: Bundle(for: SubmissionFilesTests.self).url(forResource: "empty", withExtension: "pdf")!, named: "File 2", for: assignment, as: student)
-        seedClient.submit(
-            assignment: assignment,
-            context: ContextModel(.course, id: course.id),
-            as: student,
-            submissionType: .online_upload,
-            fileIDs: [ file1.id.value, file2.id.value ]
-        )
-        let comment1 = seedClient.commentOnSumbission(course: course, assignment: assignment, userID: student.id, as: teacher, comment: "This document is completely empty")
-        let comment2 = seedClient.commentOnSumbission(course: course, assignment: assignment, userID: student.id, as: student, comment: "Oops, I meant a different file")
-        launch("/courses/\(course.id)/assignments/\(assignment.id)/submissions/\(student.id)", as: student)
+        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make([
+            "id": "1",
+            "attempt": 1,
+            "user_id": "1",
+            "submission_type": "online_upload",
+            "attachments": [
+                APIFile.fixture([ "id": "1", "display_name": "File 1" ]),
+                APIFile.fixture([ "id": "2", "display_name": "File 2" ]),
+            ],
+            "submission_comments": [
+                APISubmissionComment.fixture([
+                    "id": "1",
+                    "comment": "This document is completely empty",
+                    "author_id": "2",
+                    "author": APISubmissionCommentAuthor.fixture([ "display_name": "Teacher" ]),
+                ]),
+                APISubmissionComment.fixture([
+                    "id": "2",
+                    "comment": "Oops, I meant a different file",
+                    "author_id": "1",
+                    "author": APISubmissionCommentAuthor.fixture([ "display_name": "Student" ]),
+                ]),
+            ],
+        ]))
+
+        show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
         SubmissionDetailsElement.drawerFilesButton.tap()
         SubmissionDetailsElement.drawerCommentsButton.tap()
 
-        XCTAssertTrue(SubmissionCommentsElement.textCell(commentID: comment1.id).isVisible)
-        XCTAssertTrue(SubmissionCommentsElement.textCell(commentID: comment2.id).isVisible)
+        XCTAssertTrue(SubmissionCommentsElement.textCell(commentID: "1").isVisible)
+        XCTAssertTrue(SubmissionCommentsElement.textCell(commentID: "2").isVisible)
     }
 }

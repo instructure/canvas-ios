@@ -27,7 +27,6 @@ class DocViewerSession: NSObject, URLSessionTaskDelegate {
     var sessionID: String?
     var sessionURL: URL?
     var task: URLSessionTask?
-    lazy var noFollowSession: URLSession? = URLSession(configuration: .ephemeral, delegate: self, delegateQueue: nil)
 
     init(callback: @escaping () -> Void) {
         self.callback = callback
@@ -42,20 +41,10 @@ class DocViewerSession: NSObject, URLSessionTaskDelegate {
         task?.cancel()
     }
 
-    func urlSession(
-        _ session: URLSession,
-        task: URLSessionTask,
-        willPerformHTTPRedirection response: HTTPURLResponse,
-        newRequest request: URLRequest,
-        completionHandler: @escaping (URLRequest?) -> Void
-    ) {
-        completionHandler(nil)
-    }
-
     func load(url: URL, accessToken: String) {
         var request = URLRequest(url: url)
         request.addValue("Bearer \(accessToken)", forHTTPHeaderField: HttpHeader.authorization)
-        task = noFollowSession?.dataTask(with: request) { [weak self] _, response, error in
+        task = NoFollowRedirect.session.dataTask(with: request) { [weak self] _, response, error in
             self?.error = error
             if let url = (response as? HTTPURLResponse)?.allHeaderFields["Location"] as? String {
                 var components = URLComponents.parse(url)
@@ -65,8 +54,6 @@ class DocViewerSession: NSObject, URLSessionTaskDelegate {
             } else {
                 self?.loadMetadata(sessionURL: nil)
             }
-            self?.noFollowSession?.invalidateAndCancel()
-            self?.noFollowSession = nil
         }
         task?.resume()
     }
@@ -117,5 +104,23 @@ class DocViewerSession: NSObject, URLSessionTaskDelegate {
             }
             if self?.annotations != nil { self?.notify() }
         }
+    }
+}
+
+class NoFollowRedirect: NSObject, URLSessionTaskDelegate {
+    static var session = URLSession(configuration: .ephemeral, delegate: NoFollowRedirect(), delegateQueue: nil)
+
+    private override init() {
+        super.init()
+    }
+
+    func urlSession(
+        _ session: URLSession,
+        task: URLSessionTask,
+        willPerformHTTPRedirection response: HTTPURLResponse,
+        newRequest request: URLRequest,
+        completionHandler: @escaping (URLRequest?) -> Void
+    ) {
+        completionHandler(nil)
     }
 }

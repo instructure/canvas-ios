@@ -39,7 +39,7 @@ class LoginWebPresenter {
     var mobileVerifyModel: APIVerifyClient?
     var authenticationProvider: String?
     var host = ""
-    var session: URLSession = URLSession.shared
+    var session: URLSession = URLSessionAPI.defaultURLSession
     weak var loginDelegate: LoginDelegate?
     var method = AuthenticationMethod.normalLogin
     var task: URLSessionTask?

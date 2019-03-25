@@ -23,7 +23,27 @@ struct SubmissionCommentsElement: RawRepresentable, Element {
         self.rawValue = rawValue
     }
 
+    static func attemptCell(submissionID: String, attempt: Int) -> SubmissionCommentsElement {
+        return SubmissionCommentsElement(rawValue: "attemptCell.submission-\(submissionID)-\(attempt)")
+    }
+
+    static func attemptView(attempt: Int) -> SubmissionCommentsElement {
+        return SubmissionCommentsElement(rawValue: "attemptView.\(attempt)")
+    }
+
+    static func audioCell(commentID: String) -> SubmissionCommentsElement {
+        return SubmissionCommentsElement(rawValue: "audioCell.\(commentID)")
+    }
+
+    static func fileView(fileID: Int) -> SubmissionCommentsElement {
+        return SubmissionCommentsElement(rawValue: "fileView.\(fileID)")
+    }
+
     static func textCell(commentID: String) -> SubmissionCommentsElement {
         return SubmissionCommentsElement(rawValue: "textCell.\(commentID)")
+    }
+
+    static func videoCell(commentID: String) -> SubmissionCommentsElement {
+        return SubmissionCommentsElement(rawValue: "videoCell.\(commentID)")
     }
 }

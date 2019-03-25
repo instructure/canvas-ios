@@ -24,10 +24,10 @@ class FilePickerPageTests: StudentTest {
 
 class SubmissionFilePickerPageTests: FilePickerPageTests {
     func testEmptyState() {
-        let course = seedClient.createCourse()
-        let assignment = seedClient.createAssignment(for: course, submissionTypes: [.online_upload])
-        let student = createStudent(in: course)
-        launch("/courses/\(course.id)/assignments/\(assignment.id)/fileupload", as: student)
+        let assignment = APIAssignment.make()
+        mockData(GetAssignmentRequest(courseID: "1", assignmentID: "1", include: []), value: assignment)
+
+        show("/courses/\(assignment.course_id)/assignments/\(assignment.id)/fileupload")
         page.assertExists(.emptyView)
         page.assertExists(.cameraButton)
         page.assertExists(.libraryButton)
@@ -35,14 +35,13 @@ class SubmissionFilePickerPageTests: FilePickerPageTests {
     }
 
     func testHidesCameraAndLibraryIfNotAllowed() {
-        let course = seedClient.createCourse()
-        let assignment = seedClient.createAssignment(
-            for: course,
-            submissionTypes: [.online_upload],
-            allowedExtensions: ["txt"]
-        )
-        let student = createStudent(in: course)
-        launch("/courses/\(course.id)/assignments/\(assignment.id)/fileupload", as: student)
+        let assignment = APIAssignment.make([
+            "submission_types": [ "online_upload" ],
+            "allowed_extensions": [ "txt" ],
+        ])
+        mockData(GetAssignmentRequest(courseID: "1", assignmentID: "1", include: []), value: assignment)
+
+        show("/courses/\(assignment.course_id)/assignments/\(assignment.id)/fileupload")
         page.assertExists(.filesButton)
         page.assertHidden(.cameraButton)
         page.assertHidden(.libraryButton)

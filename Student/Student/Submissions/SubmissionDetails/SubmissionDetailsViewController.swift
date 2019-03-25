@@ -50,7 +50,7 @@ class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewPr
     }
 
     func reload() {
-        guard let presenter = presenter, let assignment = presenter.assignment.first else {
+        guard let presenter = presenter, let assignment = presenter.currentAssignment else {
             return
         }
         picker?.reloadAllComponents()

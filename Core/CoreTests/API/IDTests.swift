@@ -61,17 +61,17 @@ class IDTests: XCTestCase {
     }
 
     func testEncodeAndDecodeTogether() {
-        let group = APIGroup.make(["id": "2"])
-        let encoded = try! JSONEncoder().encode(group)
-        let decoded = try! JSONDecoder().decode(APIGroup.self, from: encoded)
+        let object = APIAssignment.make(["id": "2"])
+        let encoded = try! JSONEncoder().encode(object)
+        let decoded = try! JSONDecoder().decode(APIAssignment.self, from: encoded)
         XCTAssertEqual(decoded.id, "2")
         XCTAssertEqual(decoded.id.value, "2")
     }
 
     func testEncodeAndDecodeEmpty() {
-        let group = APIGroup.make(["id": ""])
-        let encoded = try! JSONEncoder().encode(group)
-        let decoded = try! JSONDecoder().decode(APIGroup.self, from: encoded)
+        let object = APIAssignment.make(["id": ""])
+        let encoded = try! JSONEncoder().encode(object)
+        let decoded = try! JSONDecoder().decode(APIAssignment.self, from: encoded)
         XCTAssertEqual(decoded.id, "")
     }
 }

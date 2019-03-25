@@ -23,7 +23,7 @@ protocol LoginFindSchoolViewProtocol: class {
 
 class LoginFindSchoolPresenter {
     var accounts = [APIAccountResults]()
-    var api: API = URLSessionAPI(urlSession: URLSession.shared)
+    var api: API = URLSessionAPI()
     let method: AuthenticationMethod
     weak var loginDelegate: LoginDelegate?
     var searchTask: URLSessionTask?
