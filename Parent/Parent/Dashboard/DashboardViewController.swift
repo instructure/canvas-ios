@@ -63,6 +63,7 @@ class DashboardViewController: UIViewController {
     @objc var viewControllers: [UIViewController]!
 
     @objc var session: Session!
+    var presenter: DashboardPresenter?
     
     @objc var selectCourseAction: DashboardSelectCourseAction? = nil
     @objc var selectCalendarEventAction: DashboardSelectCalendarEventAction? = nil
@@ -94,6 +95,7 @@ class DashboardViewController: UIViewController {
     var studentCountObserver: ManagedObjectCountObserver<Student>!
     @objc var adminViewController: AdminViewController!
     var viewState = DashboardViewState()
+    var shownNotAParent = false
     
     // ---------------------------------------------
     // MARK: - Initializers
@@ -104,11 +106,7 @@ class DashboardViewController: UIViewController {
             fatalError("Initial ViewController is not of type DashboardViewController")
         }
         controller.session = session
-        do {
-            try controller.setup()
-        } catch let error as NSError {
-            print(error)
-        }
+        controller.presenter = DashboardPresenter(view: controller)
         
         return controller
     }
@@ -148,6 +146,7 @@ class DashboardViewController: UIViewController {
         }
         
         self.studentInfoContainer.isHidden = true
+        presenter?.viewIsReady()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -159,6 +158,14 @@ class DashboardViewController: UIViewController {
         super.viewDidAppear(animated)
         DispatchQueue.main.async {
             StartupManager.shared.markStartupFinished()
+        }
+        // doing this in viewDidAppear since there is a chance we might present
+        // and in viewDidLoad it was possible for the view to try to present
+        // prior to the view being in the hierarchy
+        do {
+            try self.setup()
+        } catch let error as NSError {
+            print(error)
         }
     }
     
@@ -209,33 +216,8 @@ class DashboardViewController: UIViewController {
                 }
             }
         }
-        
-        canUserMasquerade()
+
         try retrieveStudents()
-    }
-    
-    @objc func canUserMasquerade() {
-        if viewState.isSiteAdmin {
-            return
-        }
-        
-        var backgroundTask: UIBackgroundTaskIdentifier = UIBackgroundTaskIdentifier.invalid
-        backgroundTask = UIApplication.shared.beginBackgroundTask(withName: "become user permissions") { backgroundTask = UIBackgroundTaskIdentifier.invalid }
-        
-        APIBridge.shared().call("becomeUserPermissions", args: ["self"]) { [weak self] response, _ in
-            guard let data = response as? [String: Any], let canBecomeUser = data["become_user"] as? Bool, canBecomeUser == true else {
-                UIApplication.shared.endBackgroundTask(convertToUIBackgroundTaskIdentifier(backgroundTask.rawValue))
-                return
-            }
-            
-            self?.viewState.isSiteAdmin = true
-            
-            DispatchQueue.main.async {
-                self?.updateMainView()
-            }
-            
-            UIApplication.shared.endBackgroundTask(convertToUIBackgroundTaskIdentifier(backgroundTask.rawValue))
-        }
     }
     
     @objc func retrieveStudents() throws {
@@ -251,16 +233,22 @@ class DashboardViewController: UIViewController {
         }
     }
     
-    
-    @objc func updateMainView() {
-        guard viewState.isSiteAdmin || viewState.isValidObserver else {
-            return showNotAParentView()
+    @objc public func updateMainView() {
+        if (!viewState.isValidObserver &&
+            !viewState.isSiteAdmin &&
+            presenter?.permissions.pending == false &&
+            presenter?.permissions.first?.becomeUser != true) {
+            if !shownNotAParent {
+                showNotAParentView()
+                shownNotAParent = true
+            }
+            return
         }
-        
+
         self.studentInfoContainer.isHidden = false
         setupTabs()
 
-        if viewState.isSiteAdmin && viewState.studentCount == 0 {
+        if (viewState.isSiteAdmin || presenter?.permissions.first?.becomeUser == true) && viewState.studentCount == 0 {
             showSiteAdminViews()
         }
         
@@ -307,25 +295,15 @@ class DashboardViewController: UIViewController {
         let storyboard = UIStoryboard(name: "AdminViewController", bundle: nil)
         adminViewController = storyboard.instantiateViewController(withIdentifier: "vc") as? AdminViewController
         
-        adminViewController.actAsUserHandler = {
-            AppEnvironment.shared.router.route(to: .actAsUser, from: self, options: [.modal, .embedInNav])
+        adminViewController.actAsUserHandler = { [weak self] in
+            self?.presenter?.showActAsUserScreen()
         }
         
         pageViewController?.setViewControllers([adminViewController], direction: .reverse, animated: false, completion: { _ in })
     }
     
     @objc func showNotAParentView() {
-        let vc =  HelmViewController( moduleName: "/parent/notAParent", props: [:] )
-        showViewController(vc)
-    }
-    
-    //  MARK: - Helpers
-    @objc func showViewController(_ viewController: UIViewController) {
-        viewController.willMove(toParent: self)
-        addChild(viewController)
-        view.addSubview(viewController.view)
-        viewController.didMove(toParent: self)
-        viewController.view.pinToAllSidesOfSuperview()
+        presenter?.showWrongAppScreen()
     }
     
     // ---------------------------------------------

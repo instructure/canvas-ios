@@ -29,6 +29,8 @@ let ParentAppRefresherTTL: TimeInterval = 5.minutes
 @UIApplicationMain
 class ParentAppDelegate: UIResponder, UIApplicationDelegate {
 
+    var environment: AppEnvironment!
+
     var window: UIWindow?
     var legacySession: Session?
     var session: KeychainEntry?
@@ -51,8 +53,8 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
     let hasFirebase = FirebaseOptions.defaultOptions()?.apiKey != nil
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
-        AppEnvironment.shared.router = Parent.router
+        environment = AppEnvironment.shared
+        environment.router = Parent.router
 
         setupCrashlytics()
         ResetAppIfNecessary()
@@ -227,7 +229,7 @@ extension ParentAppDelegate: NativeLoginManagerDelegate {
         }
         Keychain.currentSession = session
         Keychain.addEntry(session)
-        AppEnvironment.shared.userDidLogin(session: session)
+        environment.userDidLogin(session: session)
 
         // UX requires that students are given color schemes in a specific order.
         // The method call below ensures that we always start with the first color scheme.
@@ -291,6 +293,9 @@ extension ParentAppDelegate: NativeLoginManagerDelegate {
     func didLogout(_ controller: UIViewController) {
         guard let window = self.window else { return }
         Keychain.clearEntries()
+        if let session = session {
+            environment.userDidLogout(session: session)
+        }
         UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: {
             window.rootViewController = controller
         }, completion:nil)
