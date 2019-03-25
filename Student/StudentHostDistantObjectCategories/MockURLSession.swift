@@ -79,8 +79,13 @@ class MockURLSession: URLSession {
         guard let message = try? JSONDecoder().decode(MockDownloadMessage.self, from: data) else {
             fatalError("Could not decode mocking request")
         }
+        var url: URL?
+        if let data = message.data {
+            url = URL.temporaryDirectory.appendingPathComponent(UUID.string)
+            try? data.write(to: url!)
+        }
         downloadMocks[message.url] = MockDownload(
-            url: message.data,
+            url: url,
             response: message.response?.http,
             error: message.error.flatMap { NSError.instructureError($0) }
         )
