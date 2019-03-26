@@ -17,20 +17,31 @@
 import Foundation
 @testable import Core
 
-private let key = "com.apple.configuration.managed"
-
 extension MDMManager {
-    static func mockDefaults() {
+    static func mockAppleDefaults() {
+        let key = MDMProvider.apple.rawValue
         let defaults: [String: Any] = [
             "enableDemo": true,
             "username": "apple",
             "password": "titaniumium",
         ]
-        let key = "com.apple.configuration.managed"
+        UserDefaults.standard.set(defaults, forKey: key)
+    }
+
+    static func mockDefaults() {
+        let key = MDMProvider.instructure.rawValue
+        let defaults: [String: Any] = [
+            "enableLogin": true,
+            "host": "canvas.instructure.com",
+            "username": "canvas",
+            "password": "password",
+        ]
         UserDefaults.standard.set(defaults, forKey: key)
     }
 
     static func reset() {
-        UserDefaults.standard.set(nil, forKey: key)
+        MDMProvider.allCases.forEach {
+            UserDefaults.standard.set(nil, forKey: $0.rawValue)
+        }
     }
 }

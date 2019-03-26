@@ -24,7 +24,7 @@ class MDMManagerTests: XCTestCase {
         MDMManager.reset()
     }
 
-    func testOnLoginConfigured() {
+    func testAppleOnLoginConfigured() {
         var login: MDMLogin?
         let expectation = XCTestExpectation(description: "on login configured")
         MDMManager.shared.onLoginConfigured {
@@ -34,10 +34,28 @@ class MDMManagerTests: XCTestCase {
         MDMManager.mockDefaults()
         NotificationCenter.default.post(name: UserDefaults.didChangeNotification, object: nil)
         wait(for: [expectation], timeout: 0.1)
-        XCTAssertEqual(login?.host, "pcraighill.instructure.com")
+        XCTAssertEqual(login?.host, "canvas.instructure.com")
+        XCTAssertEqual(login?.username, "canvas")
+        XCTAssertEqual(login?.password, "password")
+        XCTAssertNotNil(MDMManager.shared.login)
+    }
+
+    func testInstructureOnLoginConfigured() {
+        var login: MDMLogin?
+        let expectation = XCTestExpectation(description: "on login configured")
+        MDMManager.shared.onLoginConfigured {
+            login = $0
+            expectation.fulfill()
+        }
+        MDMManager.mockAppleDefaults()
+        NotificationCenter.default.post(name: UserDefaults.didChangeNotification, object: nil)
+        wait(for: [expectation], timeout: 0.1)
+        XCTAssertNotNil(login?.host)
+        XCTAssertEqual(login?.host, Secret.appleDemoHost.string)
         XCTAssertEqual(login?.username, "apple")
         XCTAssertEqual(login?.password, "titaniumium")
         XCTAssertNotNil(MDMManager.shared.login)
+
     }
 
     func testOnDemoEnabledOnlyCalledOnce() {
