@@ -20,7 +20,7 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>Reset Cache on Next Launch</string>
+			<string>Reset cache on next launch</string>
 			<key>Key</key>
 			<string>reset_cache_on_next_launch</string>
 			<key>DefaultValue</key>

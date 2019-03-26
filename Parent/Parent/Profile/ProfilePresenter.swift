@@ -19,52 +19,108 @@ import Core
 import CanvasKeymaster
 
 public class ProfilePresenter: ProfilePresenterProtocol {
+    let env: AppEnvironment
+    public weak var view: ProfileViewControllerProtocol?
+
     #if DEBUG
     var showDevMenu = true
     #else
     var showDevMenu = UserDefaults.standard.bool(forKey: "showDevMenu")
     #endif
 
-    public weak var view: ProfileViewController?
+    lazy var permissions: Store<GetContextPermissions> = {
+        let useCase = GetContextPermissions(context: ContextModel(.account, id: "self"), permissions: [.becomeUser])
+        return env.subscribe(useCase) { [weak self] in
+            self?.view?.reload()
+        }
+    }()
+
+    var canMasquerade: Bool {
+        if env.currentSession?.actAsUserID != nil {
+            return false
+        }
+
+        if env.api.baseURL.absoluteString.contains("siteadmin.instructure.com") {
+            return true
+        }
+
+        return self.permissions.first?.becomeUser ?? false
+    }
+
     public var cells: [ProfileViewCell] {
-        return [
+        var cells: [ProfileViewCell] = []
+
+        if self.canMasquerade {
+            cells.append(ProfileViewCell(
+                name: NSLocalizedString("Act as User", bundle: .parent, comment: ""),
+                block: { [weak self] in
+                    self?.view?.show(.actAsUser, options: [.modal, .embedInNav])
+                }
+            ))
+        }
+
+        cells.append(contentsOf: [
             ProfileViewCell(
                 name: NSLocalizedString("Manage Children", bundle: .parent, comment: ""),
-                hidden: false,
                 block: { [weak self] in
-                    self?.view?.show(.profileObservees)
+                    self?.view?.show(.profileObservees, options: nil)
                 }
             ),
             ProfileViewCell(
                 name: NSLocalizedString("Help", bundle: .parent, comment: ""),
-                hidden: false,
                 block: { [weak self] in
                     self?.showHelpMenu()
                 }
             ),
             ProfileViewCell(
                 name: NSLocalizedString("Change User", bundle: .parent, comment: ""),
-                hidden: false,
-                block: { CanvasKeymaster.the().switchUser() }
+                block: {
+                    CanvasKeymaster.the().switchUser()
+                    NotificationCenter.default.post(name: Notification.Name(rawValue: "MasqueradeDidEnd"), object: nil)
+                }
             ),
             ProfileViewCell(
                 name: NSLocalizedString("Log Out", bundle: .parent, comment: ""),
-                hidden: false,
-                block: { CanvasKeymaster.the().logout() }
-            ),
-            ProfileViewCell(
+                block: {
+                    CanvasKeymaster.the().logout()
+                    NotificationCenter.default.post(name: Notification.Name(rawValue: "MasqueradeDidEnd"), object: nil)
+                }
+            )
+        ])
+
+        if env.currentSession?.actAsUserID != nil {
+            cells.append(ProfileViewCell(
+                name: NSLocalizedString("Stop Act as User", bundle: .parent, comment: ""),
+                block: {
+                    CanvasKeymaster.the().stopMasquerading()
+                    NotificationCenter.default.post(name: Notification.Name(rawValue: "MasqueradeDidEnd"), object: nil)
+                }
+            ))
+        }
+
+        if showDevMenu {
+            cells.append(ProfileViewCell(
                 name: NSLocalizedString("Developer Menu", bundle: .parent, comment: ""),
-                hidden: !showDevMenu,
                 block: { [weak self] in
                     self?.view?.show(.developerMenu, options: [.modal, .embedInNav ])
                 }
-            )
-        ]
+            ))
+        }
+        return cells
+    }
+
+    init(env: AppEnvironment = .shared) {
+        self.env = env
+    }
+
+    public func viewIsReady() {
+        permissions.refresh(force: true)
     }
 
     public func didTapVersion() {
         showDevMenu = true
         UserDefaults.standard.set(true, forKey: "showDevMenu")
+        self.view?.reload()
     }
 
     func showHelpMenu() {
@@ -88,6 +144,6 @@ public class ProfilePresenter: ProfilePresenterProtocol {
 
         helpMenu.addAction(UIAlertAction(title: NSLocalizedString("Cancel", bundle: .parent, comment: ""), style: .cancel))
 
-        view?.present(helpMenu, animated: true)
+        view?.present(helpMenu, animated: true, completion: nil)
     }
 }

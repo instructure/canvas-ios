@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Audio Recorder View Controller-->
+        <scene sceneID="THA-Nh-EZM">
+            <objects>
+                <viewController storyboardIdentifier="AudioRecorderViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="NAp-rK-X0s" customClass="AudioRecorderViewController" customModule="Core" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mbJ-rF-8Pv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="240"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7t0-2n-BON" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="4" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="LPr-Tk-JN4"/>
+                                    <constraint firstAttribute="width" constant="40" id="aCd-e9-kBA"/>
+                                </constraints>
+                                <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="trashLine"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="clear:" destination="NAp-rK-X0s" eventType="touchUpInside" id="lNX-lP-SbM"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7hp-Ut-gdC" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="40" y="12" width="295" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular20"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P04-42-aRA" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="335" y="4" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="P9T-eT-hQJ"/>
+                                    <constraint firstAttribute="height" constant="40" id="xK5-mz-Ohg"/>
+                                </constraints>
+                                <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                                <state key="normal" title="Button"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="xLine"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="cancel:" destination="NAp-rK-X0s" eventType="touchUpInside" id="0b3-Ku-gbG"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="azE-St-Zbf">
+                                <rect key="frame" x="147.5" y="80" width="80" height="80"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dva-oH-EXJ" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                        <rect key="frame" x="8" y="8" width="64" height="64"/>
+                                        <color key="backgroundColor" red="0.93333333333333335" green="0.023529411764705882" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="AudioRecorderElement.recordButton"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="64" id="L1H-te-9Be"/>
+                                            <constraint firstAttribute="height" constant="64" id="NSv-6z-9Jw"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="32"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="backgroundColorName" value="crimson"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="record:" destination="NAp-rK-X0s" eventType="touchUpInside" id="iLI-3Q-zrT"/>
+                                        </connections>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="05Z-o3-ZC0" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                        <rect key="frame" x="24" y="24" width="32" height="32"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="AudioRecorderElement.stopButton"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="8Up-6a-nNh"/>
+                                            <constraint firstAttribute="width" constant="32" id="wf9-u5-yB3"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="backgroundColorName" value="crimson"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="stop:" destination="NAp-rK-X0s" eventType="touchUpInside" id="nRK-y3-sTv"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="05Z-o3-ZC0" firstAttribute="centerX" secondItem="azE-St-Zbf" secondAttribute="centerX" id="VfA-Dy-JlV"/>
+                                    <constraint firstAttribute="width" constant="80" id="Xpf-Vv-WQY"/>
+                                    <constraint firstItem="dva-oH-EXJ" firstAttribute="centerX" secondItem="azE-St-Zbf" secondAttribute="centerX" id="YJB-RH-vdH"/>
+                                    <constraint firstItem="05Z-o3-ZC0" firstAttribute="centerY" secondItem="azE-St-Zbf" secondAttribute="centerY" id="bK3-ec-M9V"/>
+                                    <constraint firstItem="dva-oH-EXJ" firstAttribute="centerY" secondItem="azE-St-Zbf" secondAttribute="centerY" id="c9X-V1-hVt"/>
+                                    <constraint firstAttribute="height" constant="80" id="y8V-D2-mm7"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="40"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HYf-Ke-XMw" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="131.5" y="99" width="112" height="42"/>
+                                <inset key="contentEdgeInsets" minX="38" minY="12" maxX="38" maxY="12"/>
+                                <state key="normal" title="Send"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="backgroundColorName" value="buttonPrimaryBackground"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="buttonPrimaryText"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="send:" destination="NAp-rK-X0s" eventType="touchUpInside" id="TTt-a7-pMK"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="azE-St-Zbf" firstAttribute="centerX" secondItem="mbJ-rF-8Pv" secondAttribute="centerX" id="32u-9x-Oml"/>
+                            <constraint firstItem="7hp-Ut-gdC" firstAttribute="leading" secondItem="7t0-2n-BON" secondAttribute="trailing" id="Mse-ez-FwT"/>
+                            <constraint firstItem="HYf-Ke-XMw" firstAttribute="centerY" secondItem="mbJ-rF-8Pv" secondAttribute="centerY" id="QeN-tu-9IL"/>
+                            <constraint firstItem="azE-St-Zbf" firstAttribute="centerY" secondItem="mbJ-rF-8Pv" secondAttribute="centerY" id="QhB-YZ-7Au"/>
+                            <constraint firstAttribute="trailing" secondItem="P04-42-aRA" secondAttribute="trailing" id="SXm-Hh-t2s"/>
+                            <constraint firstItem="P04-42-aRA" firstAttribute="top" secondItem="mbJ-rF-8Pv" secondAttribute="top" constant="4" id="TBa-Jd-pVJ"/>
+                            <constraint firstItem="7hp-Ut-gdC" firstAttribute="top" secondItem="vd2-8i-O1Q" secondAttribute="top" constant="12" id="V8O-Be-FpN"/>
+                            <constraint firstItem="P04-42-aRA" firstAttribute="leading" secondItem="7hp-Ut-gdC" secondAttribute="trailing" id="Y48-XC-gUo"/>
+                            <constraint firstItem="HYf-Ke-XMw" firstAttribute="centerX" secondItem="mbJ-rF-8Pv" secondAttribute="centerX" id="eQf-tr-dsK"/>
+                            <constraint firstItem="7t0-2n-BON" firstAttribute="leading" secondItem="mbJ-rF-8Pv" secondAttribute="leading" id="iP4-jB-td8"/>
+                            <constraint firstItem="7t0-2n-BON" firstAttribute="top" secondItem="mbJ-rF-8Pv" secondAttribute="top" constant="4" id="m5D-tN-wTr"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="vd2-8i-O1Q"/>
+                    </view>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="240"/>
+                    <connections>
+                        <outlet property="borderView" destination="azE-St-Zbf" id="0Z0-ie-sE4"/>
+                        <outlet property="cancelButton" destination="P04-42-aRA" id="Zmo-rI-Fw7"/>
+                        <outlet property="clearButton" destination="7t0-2n-BON" id="tLY-FM-wIp"/>
+                        <outlet property="recordButton" destination="dva-oH-EXJ" id="hgi-D3-52Z"/>
+                        <outlet property="sendButton" destination="HYf-Ke-XMw" id="3bN-H4-sgE"/>
+                        <outlet property="stopButton" destination="05Z-o3-ZC0" id="zLU-Ia-K05"/>
+                        <outlet property="timeLabel" destination="7hp-Ut-gdC" id="sEb-gT-7MV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VXd-M9-tLj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="20" y="-134"/>
+        </scene>
+    </scenes>
+</document>

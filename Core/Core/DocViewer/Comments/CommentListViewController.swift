@@ -30,6 +30,7 @@ class CommentListViewController: UIViewController {
     var annotation = PSPDFAnnotation()
     var comments = [DocViewerCommentReplyAnnotation]()
     var document: PSPDFDocument?
+    var keyboard: KeyboardTransitioning?
     var metadata: APIDocViewerAnnotationsMetadata?
 
     static func create(
@@ -68,16 +69,15 @@ class CommentListViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        keyboard = KeyboardTransitioning(view: view, space: keyboardSpace) { [weak self] in
+            if let self = self, !self.comments.isEmpty {
+                self.tableView?.scrollToRow(at: IndexPath(row: self.comments.count - 1, section: 0), at: .bottom, animated: false)
+            }
+        }
 
         if replyView?.isHidden == false {
             replyTextView?.becomeFirstResponder()
         }
-    }
-
-    deinit {
-        NotificationCenter.default.removeObserver(self)
     }
 
     func setInsets() {
@@ -145,43 +145,5 @@ extension CommentListViewController: UITextViewDelegate {
         replyButton?.isEnabled = !(textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
         replyPlaceholder?.isHidden = !textView.text.isEmpty
         setInsets()
-    }
-}
-
-extension CommentListViewController {
-    @objc func keyboardWillShow(_ notification: Notification) {
-        guard
-            let info = notification.userInfo as? [String: Any],
-            let keyboardHeight = (info[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect)?.height,
-            let animationCurve = info[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt,
-            let animationDuration = info[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval
-        else { return }
-
-        // We do this before the animation and again during the animation, which forces the tableView to first figure out how big it is (cuz esimatedRowHeight)
-        // and then again to do the animation once it actually knows
-        if !comments.isEmpty {
-            tableView?.scrollToRow(at: IndexPath(row: comments.count - 1, section: 0), at: .bottom, animated: false)
-        }
-
-        keyboardSpace?.constant = keyboardHeight
-        UIView.animate(withDuration: animationDuration, delay: 0, options: .init(rawValue: animationCurve), animations: {
-            self.view.layoutIfNeeded()
-            if !self.comments.isEmpty {
-                self.tableView?.scrollToRow(at: IndexPath(row: self.comments.count - 1, section: 0), at: .bottom, animated: false)
-            }
-        }, completion: nil)
-    }
-
-    @objc func keyboardWillHide(_ notification: Notification) {
-        guard
-            let info = notification.userInfo as? [String: Any],
-            let animationCurve = info[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt,
-            let animationDuration = info[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval
-        else { return }
-
-        keyboardSpace?.constant = 0
-        UIView.animate(withDuration: animationDuration, delay: 0, options: .init(rawValue: animationCurve), animations: {
-            self.view.layoutIfNeeded()
-        }, completion: nil)
     }
 }

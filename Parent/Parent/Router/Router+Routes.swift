@@ -423,6 +423,12 @@ let router = Core.Router(routes: [
         let vc = TermsOfServiceViewController(AppEnvironment.shared)
         return vc
     },
+    Core.RouteHandler(.actAsUser, name: "act_as_user") { _, _ in
+        return ActAsUserViewController.create(presenter: ActAsUserPresenter())
+    },
+    Core.RouteHandler(.wrongApp, name: "wrongApp") { _, _ in
+        return WrongAppViewController.create(app: .parent, delegate: WrongAppDelegate.shared)
+    },
     Core.RouteHandler(.developerMenu, name: "dev_menu") { _, _ in
         return DeveloperMenuViewController.create()
     },
@@ -438,4 +444,16 @@ let router = Core.Router(routes: [
 
 public class ResetTransitionDelegate: NSObject, UIViewControllerTransitioningDelegate {
     public static let shared = ResetTransitionDelegate()
+}
+
+public class WrongAppDelegate: WrongAppViewControllerDelegate {
+    public static let shared = WrongAppDelegate()
+
+    public func loginAgainPressed() {
+        CanvasKeymaster.the().logout()
+    }
+
+    public func openURL(_ url: URL) {
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
 }

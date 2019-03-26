@@ -50,6 +50,8 @@
 		3BBEAA4920472704004D334C /* PageViewEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBEAA4820472704004D334C /* PageViewEvent.swift */; };
 		3BBEAA4B20472984004D334C /* Persistency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBEAA4A20472984004D334C /* Persistency.swift */; };
 		3BC7CEC620113F5B001DFF8C /* CKIClient+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC7CEC520113F5B001DFF8C /* CKIClient+Extensions.swift */; };
+		3BD3220E2242E2F60036C764 /* SiriShortcutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3220C2242E2F60036C764 /* SiriShortcutManager.swift */; };
+		3BD3220F2242E2F60036C764 /* SiriShortcutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3220D2242E2F60036C764 /* SiriShortcutManager.m */; };
 		3BD43DE91FD20597001A6B34 /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD43DE81FD20597001A6B34 /* EmptyViewController.swift */; };
 		3BD715A620B7562500F5A422 /* PageViewEventRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD715A520B7562500F5A422 /* PageViewEventRequestManager.swift */; };
 		3BDE87761FD76BE600912CB3 /* UISplitViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDE87751FD76BE600912CB3 /* UISplitViewControllerExtensions.swift */; };
@@ -584,6 +586,8 @@
 		3BBEAA4820472704004D334C /* PageViewEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewEvent.swift; sourceTree = "<group>"; };
 		3BBEAA4A20472984004D334C /* Persistency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistency.swift; sourceTree = "<group>"; };
 		3BC7CEC520113F5B001DFF8C /* CKIClient+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CKIClient+Extensions.swift"; sourceTree = "<group>"; };
+		3BD3220C2242E2F60036C764 /* SiriShortcutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SiriShortcutManager.swift; sourceTree = "<group>"; };
+		3BD3220D2242E2F60036C764 /* SiriShortcutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SiriShortcutManager.m; sourceTree = "<group>"; };
 		3BD43DE81FD20597001A6B34 /* EmptyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewController.swift; sourceTree = "<group>"; };
 		3BD715A520B7562500F5A422 /* PageViewEventRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewEventRequestManager.swift; sourceTree = "<group>"; };
 		3BDE87751FD76BE600912CB3 /* UISplitViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISplitViewControllerExtensions.swift; sourceTree = "<group>"; };
@@ -1710,6 +1714,8 @@
 		494AE08C1F8439A8001A8F31 /* React Native Modules */ = {
 			isa = PBXGroup;
 			children = (
+				3BD3220D2242E2F60036C764 /* SiriShortcutManager.m */,
+				3BD3220C2242E2F60036C764 /* SiriShortcutManager.swift */,
 				B1411D581FE8244A00CD4967 /* NativeNotificationCenter */,
 				494AE0A51F843A8A001A8F31 /* A11yGroupManager.m */,
 				494AE0901F843A01001A8F31 /* DrawerHandleViewManager.h */,
@@ -3187,6 +3193,7 @@
 				49301FEA1F901854006BD777 /* SimpleErrorExtension.swift in Sources */,
 				49301FC21F901260006BD777 /* SuchActivity.xcdatamodeld in Sources */,
 				49CE972C1F8FFEA600121A43 /* Assignment+Details.swift in Sources */,
+				3BD3220F2242E2F60036C764 /* SiriShortcutManager.m in Sources */,
 				49698D7E1F8FA2D000E38B78 /* AttendanceViewController.swift in Sources */,
 				4930204C1F902364006BD777 /* Accumulate.swift in Sources */,
 				4961F5A81F8FB2A90093EC86 /* SmallModalNavigationController.swift in Sources */,
@@ -3205,6 +3212,7 @@
 				4961F53F1F8FAD9A0093EC86 /* UIWebView+PostProcessing.swift in Sources */,
 				4961F5191F8FAC440093EC86 /* Graphic.swift in Sources */,
 				49CE974F1F8FFEA600121A43 /* RubricCriterion.swift in Sources */,
+				3BD3220E2242E2F60036C764 /* SiriShortcutManager.swift in Sources */,
 				494AE0A61F843A8A001A8F31 /* A11yGroupManager.m in Sources */,
 				49CE96E71F8FFC4400121A43 /* Module+Network.swift in Sources */,
 				49CE97461F8FFEA600121A43 /* AssignmentGroup+Network.swift in Sources */,

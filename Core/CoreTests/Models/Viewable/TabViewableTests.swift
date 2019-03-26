@@ -24,7 +24,7 @@ class TabViewableTests: XCTestCase {
 
     func testIcon() {
         XCTAssertEqual(Model(id: "announcements").icon, .icon(.announcement, .line))
-        XCTAssertEqual(Model(id: "application").icon, .icon(.lti, .solid))
+        XCTAssertEqual(Model(id: "application").icon, .icon(.lti, .line))
         XCTAssertEqual(Model(id: "assignments").icon, .icon(.assignment, .line))
         XCTAssertEqual(Model(id: "attendance").icon, .icon(.attendance))
         XCTAssertEqual(Model(id: "collaborations").icon, .icon(.collaborations))
@@ -40,9 +40,9 @@ class TabViewableTests: XCTestCase {
         XCTAssertEqual(Model(id: "quizzes").icon, .icon(.quiz, .line))
         XCTAssertEqual(Model(id: "settings").icon, .icon(.settings, .line))
         XCTAssertEqual(Model(id: "syllabus").icon, .icon(.rubric, .line))
-        XCTAssertEqual(Model(id: "tools").icon, .icon(.lti, .solid))
+        XCTAssertEqual(Model(id: "tools").icon, .icon(.lti, .line))
         XCTAssertEqual(Model(id: "user").icon, .icon(.user, .line))
-        XCTAssertEqual(Model(id: "context_external_tool_1").icon, .icon(.lti, .solid))
+        XCTAssertEqual(Model(id: "context_external_tool_1").icon, .icon(.lti, .line))
         XCTAssertEqual(Model(id: "1234").icon, .icon(.courses, .line))
     }
 }

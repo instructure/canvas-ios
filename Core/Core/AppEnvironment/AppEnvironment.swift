@@ -46,9 +46,9 @@ open class AppEnvironment {
     }
 
     public func userDidLogout(session: KeychainEntry) {
-        try? NSPersistentContainer.destroy(session: session)
         guard session == currentSession else { return }
         Keychain.currentSession = nil
+        database.destroy()
         database = globalDatabase
         api = URLSessionAPI()
         currentSession = nil

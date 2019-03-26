@@ -62,7 +62,7 @@ type State = {
   selectedRowID: ?string,
 }
 
-const { NativeAccessibility } = NativeModules
+const { NativeAccessibility, SiriShortcutManager } = NativeModules
 
 export class AssignmentList extends Component<AssignmentListProps, State> {
   state: State
@@ -271,6 +271,10 @@ export class AssignmentList extends Component<AssignmentListProps, State> {
       this.selectFirstListItemIfNecessary()
     } else {
       this.data = this.prepareListData()
+    }
+
+    if (this.props.showGrades) {
+      SiriShortcutManager.donateSiriShortcut({ 'identifier': 'com.instructure.siri.shortcut.getgrades', 'url': `/courses/${this.props.courseID}/grades`, 'name': this.props.courseCode })
     }
 
     return (

@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2019-present Instructure, Inc.
+// Copyright (C) 2017-present Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -14,8 +14,18 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-import Foundation
+#import <Foundation/Foundation.h>
+#import <CanvasCore/CanvasCore-Swift.h>
+@import React;
 
-public enum SubmissionCommentMediaType: String, Codable {
-    case audio, video
-}
+@interface SiriShortcutManager (React) <RCTBridgeModule>
+@end
+
+@implementation SiriShortcutManager (React)
+RCT_EXPORT_MODULE(SiriShortcutManager);
+RCT_EXTERN_METHOD(donateSiriShortcut:);
+
+- (dispatch_queue_t)methodQueue { return dispatch_get_main_queue(); }
++ (BOOL)requiresMainQueueSetup { return YES; }
+
+@end
