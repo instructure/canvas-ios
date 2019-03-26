@@ -21,5 +21,6 @@ public protocol TestHost {
     func reset()
     func logIn(domain: String, token: String)
     func show(_ route: String)
-    func getToken(host: String, id: String, password: String, callback: @escaping (String) -> Void) -> NSObjectProtocol
+    func mockData(_ data: Data)
+    func mockDownload(_ data: Data)
 }

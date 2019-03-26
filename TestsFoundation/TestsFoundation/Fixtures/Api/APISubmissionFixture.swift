@@ -22,11 +22,11 @@ extension APISubmission: Fixture {
         return [
             "id": "1",
             "assignment_id": "1",
-            "user_id": "2",
+            "user_id": "1",
             "late": false,
             "excused": false,
             "missing": false,
-            "workflow_state": "unsubmitted",
+            "workflow_state": "submitted",
             "submitted_at": "2019-03-13T21:00:00Z",
         ]
     }

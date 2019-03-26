@@ -43,17 +43,18 @@ public struct URLSessionAPI: API {
         return urlSession.configuration.identifier
     }
 
-    public static var defaultUrlSessionConfiguration: URLSessionConfiguration {
+    public static var cachingURLSession = URLSession.shared
+    public static var defaultURLSession: URLSession = {
         let configuration = URLSessionConfiguration.ephemeral
         configuration.urlCache = nil
-        return configuration
-    }
+        return URLSession(configuration: configuration)
+    }()
 
     public init(
         accessToken: String? = nil,
         actAsUserID: String? = nil,
         baseURL: URL? = nil,
-        urlSession: URLSession = URLSession(configuration: URLSessionAPI.defaultUrlSessionConfiguration)
+        urlSession: URLSession = URLSessionAPI.defaultURLSession
     ) {
         self.accessToken = accessToken
         self.actAsUserID = actAsUserID

@@ -27,7 +27,7 @@ class GetGroupTest: CoreTestCase {
 
         let groups: [Group] = databaseClient.fetch(predicate: nil, sortDescriptors: nil)
         XCTAssertEqual(groups.count, 1)
-        XCTAssertEqual(groups.first?.id, response.id.value)
+        XCTAssertEqual(groups.first?.id, response.id)
         XCTAssertEqual(groups.first?.name, response.name)
     }
 

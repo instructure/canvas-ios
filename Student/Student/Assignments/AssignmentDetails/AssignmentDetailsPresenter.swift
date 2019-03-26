@@ -44,26 +44,21 @@ class AssignmentDetailsPresenter {
         case pending, failed
     }
 
-    lazy var assignments: Store<GetAssignment> = {
-        let useCase = GetAssignment(courseID: courseID, assignmentID: assignmentID, include: [.submission])
-        return self.env.subscribe(useCase) { [weak self] in
-            self?.update()
-        }
-    }()
+    lazy var assignments = env.subscribe(GetAssignment(courseID: courseID, assignmentID: assignmentID, include: [.submission])) { [weak self] in
+        self?.update()
+    }
 
-    lazy var courses: Store<GetCourseUseCase> = {
-        let useCase = GetCourseUseCase(courseID: courseID)
-        return self.env.subscribe(useCase) { [weak self] in
-            self?.update()
-        }
-    }()
+    lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
+        self?.update()
+    }
 
-    lazy var files: Store<LocalUseCase<File>> = {
-        let scope = Scope.where(#keyPath(File.assignmentID), equals: assignmentID)
-        return env.subscribe(scope: scope) { [weak self] in
-            self?.update()
-        }
-    }()
+    lazy var courses = env.subscribe(GetCourseUseCase(courseID: courseID)) { [weak self] in
+        self?.update()
+    }
+
+    lazy var files: Store<LocalUseCase<File>> = env.subscribe(scope: Scope.where(#keyPath(File.assignmentID), equals: assignmentID)) { [weak self] in
+        self?.update()
+    }
 
     let env: AppEnvironment
     weak var view: AssignmentDetailsViewProtocol?
@@ -114,6 +109,7 @@ class AssignmentDetailsPresenter {
     }
 
     func viewIsReady() {
+        colors.refresh()
         courses.refresh()
         assignments.refresh()
         files.refresh()

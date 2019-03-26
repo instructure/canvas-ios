@@ -120,7 +120,7 @@ public class ImageLoader {
             imageFrom(data: cached.data, response: cached.response as? HTTPURLResponse)
             return nil
         }
-        task = URLSession.shared.dataTask(with: request) { data, response, error in
+        task = URLSessionAPI.cachingURLSession.dataTask(with: request) { data, response, error in
             self.task = nil
             if let data = data, error == nil {
                 if let response = response {

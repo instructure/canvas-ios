@@ -30,11 +30,11 @@ public final class Group: NSManagedObject, Context, WriteableModel {
 
     @discardableResult
     public static func save(_ item: APIGroup, in context: PersistenceClient) throws -> Group {
-        let predicate = NSPredicate(format: "%K == %@", #keyPath(Group.id), item.id.value)
+        let predicate = NSPredicate(format: "%K == %@", #keyPath(Group.id), item.id)
         let model: Group = context.fetch(predicate).first ?? context.insert()
         model.avatarURL = item.avatar_url
         model.courseID = item.course_id?.value
-        model.id = item.id.value
+        model.id = item.id
         model.name = item.name
         model.concluded = item.concluded
         model.showOnDashboard = !item.concluded

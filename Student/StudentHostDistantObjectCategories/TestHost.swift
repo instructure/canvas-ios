@@ -18,16 +18,16 @@ import Foundation
 import UIKit
 @testable import Core
 @testable import Student
-import WebKit
 
 // https://github.com/google/EarlGrey/blob/earlgrey2/docs/swift-white-boxing.md
 
 @objc
 protocol TestHost {
-    func getToken(host: String, id: String, password: String, callback: @escaping (String) -> Void) -> NSObjectProtocol
     func reset()
     func logIn(domain: String, token: String)
     func show(_ route: String)
+    func mockData(_ data: Data)
+    func mockDownload(_ data: Data)
 }
 
 extension GREYHostApplicationDistantObject: TestHost {
@@ -43,6 +43,7 @@ extension GREYHostApplicationDistantObject: TestHost {
         resetNavigationStack()
         resetDatabase()
         setScreenshotDir()
+        MockURLSession.reset()
     }
 
     private func resetNavigationStack() {
@@ -102,8 +103,11 @@ extension GREYHostApplicationDistantObject: TestHost {
         GREYConfiguration.shared.setValue(screenshotDir, forConfigKey: GREYConfigKey.artifactsDirLocation)
     }
 
-    func getToken(host: String, id: String, password: String, callback: @escaping (String) -> Void) -> NSObjectProtocol {
-        // Must return the TokenProvider in order to retain the reference
-        return TokenProvider(host: host, loginID: id, password: password, callback: callback)
+    func mockData(_ data: Data) {
+        MockURLSession.mockData(data)
+    }
+
+    func mockDownload(_ data: Data) {
+        MockURLSession.mockDownload(data)
     }
 }

@@ -19,23 +19,16 @@ import Foundation
 import TestsFoundation
 
 class UrlSubmissionPageTests: StudentTest {
-
     let page = UrlSubmissionPage.self
-    let assignmentDetailsPage = AssignmentDetailsPage.self
-
-    lazy var course: APICourse = {
-        return seedClient.createCourse()
-    }()
-    lazy var teacher: AuthUser = {
-        return createTeacher(in: course)
-    }()
-    lazy var student: AuthUser = {
-        return createStudent(in: course)
-    }()
 
     func testSumbitUrl() {
-        let assignment = seedClient.createAssignment(for: course, submissionTypes: [.online_url])
-        launch("/courses/\(course.id)/assignments/\(assignment.id)/submissions/\(student.id)/urlsubmission", as: student)
+        let course = APICourse.make()
+        mockData(GetCourseRequest(courseID: course.id), value: course)
+        let assignment = APIAssignment.make([ "submission_types": [ "online_url" ] ])
+        mockData(GetAssignmentRequest(courseID: course.id, assignmentID: assignment.id.value, include: []), value: assignment)
+        mockData(CreateSubmissionRequest(context: course, assignmentID: assignment.id.value, body: nil), noCallback: true)
+
+        show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1/urlsubmission")
         page.assertVisible(.url)
         page.assertVisible(.preview)
         page.assertHidden(.loadingView)
@@ -45,12 +38,15 @@ class UrlSubmissionPageTests: StudentTest {
         page.assertExists(.loadingView)
         page.assertVisible(.loadingView)
 
-        // for some reason navigating directly to the submission details page is not loading the submission
-        launch("/courses/\(course.id)/assignments/\(assignment.id)", as: student)
-        AssignmentDetailsPage.tap(.viewSubmissionButton)
+        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make([
+            "assignment_id": assignment.id.value,
+            "user_id": "1",
+            "submission_type": "online_url",
+            "url": "http://www.amazon.com",
+        ]))
 
-        let submission = SubmissionDetailsPage.self
-        submission.assertExists(.urlButton)
-        submission.assertText(.urlButton, equals: "http://www.amazon.com")
+        show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
+        SubmissionDetailsPage.waitToExist(.urlButton, timeout: 5)
+        SubmissionDetailsPage.assertText(.urlButton, equals: "http://www.amazon.com")
     }
 }

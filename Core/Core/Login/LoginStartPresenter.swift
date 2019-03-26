@@ -26,7 +26,7 @@ class LoginStartPresenter {
     var method = AuthenticationMethod.normalLogin
     weak var loginDelegate: LoginDelegate?
     weak var view: LoginStartViewProtocol?
-    var session = URLSession.shared
+    var session = URLSessionAPI.defaultURLSession
 
     init(loginDelegate: LoginDelegate?, view: LoginStartViewProtocol) {
         self.loginDelegate = loginDelegate

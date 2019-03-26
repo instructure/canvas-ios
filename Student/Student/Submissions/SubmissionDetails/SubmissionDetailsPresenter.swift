@@ -121,7 +121,7 @@ class SubmissionDetailsPresenter {
     }
 
     func viewControllerForContent() -> UIViewController? {
-        guard let submission = currentSubmission, let assignment = assignment.first else {
+        guard let submission = currentSubmission, let assignment = currentAssignment else {
             return nil
         }
 
