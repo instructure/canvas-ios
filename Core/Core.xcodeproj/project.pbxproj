@@ -392,7 +392,7 @@
 		B1EA5AF8212E6A6D00DABC5F /* OperationSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EA5AF7212E6A6D00DABC5F /* OperationSet.swift */; };
 		B1EF7AB721E7E41F00D653D7 /* StoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EF7AB621E7E41F00D653D7 /* StoreTests.swift */; };
 		B1EF7ABB21E902DD00D653D7 /* UseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EF7ABA21E902DD00D653D7 /* UseCase.swift */; };
-		B1F3780A22498AF1000B7CAA /* AppleManagedAppConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F3780922498AF1000B7CAA /* AppleManagedAppConfigurationTests.swift */; };
+		B1F3780A22498AF1000B7CAA /* MDMManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F3780922498AF1000B7CAA /* MDMManagerTests.swift */; };
 		B1F3780C22499037000B7CAA /* MockMDMManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F3780B22499037000B7CAA /* MockMDMManager.swift */; };
 		DFE1FF1D212F5E1A003F27AA /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE1FF1C212F5E1A003F27AA /* Keychain.swift */; };
 		DFE1FF20212F5E41003F27AA /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE1FF1F212F5E41003F27AA /* KeychainTests.swift */; };
@@ -973,7 +973,7 @@
 		B1EA5AFA212E6E5800DABC5F /* MockDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDatabase.swift; sourceTree = "<group>"; };
 		B1EF7AB621E7E41F00D653D7 /* StoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreTests.swift; sourceTree = "<group>"; };
 		B1EF7ABA21E902DD00D653D7 /* UseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCase.swift; sourceTree = "<group>"; };
-		B1F3780922498AF1000B7CAA /* AppleManagedAppConfigurationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleManagedAppConfigurationTests.swift; sourceTree = "<group>"; };
+		B1F3780922498AF1000B7CAA /* MDMManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDMManagerTests.swift; sourceTree = "<group>"; };
 		B1F3780B22499037000B7CAA /* MockMDMManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMDMManager.swift; sourceTree = "<group>"; };
 		DFE1FF1C212F5E1A003F27AA /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		DFE1FF1F212F5E41003F27AA /* KeychainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTests.swift; sourceTree = "<group>"; };
@@ -1604,7 +1604,7 @@
 				7D8B78FA215EC9BE005E08F1 /* BrandTests.swift */,
 				7DAFB46421A4693B00311275 /* LocalizationManagerTests.swift */,
 				7D2DC2F32199EC93008FE29A /* SecretTests.swift */,
-				B1F3780922498AF1000B7CAA /* AppleManagedAppConfigurationTests.swift */,
+				B1F3780922498AF1000B7CAA /* MDMManagerTests.swift */,
 			);
 			path = AppEnvironment;
 			sourceTree = "<group>";
@@ -2450,7 +2450,7 @@
 				7D63F78E215D7B8100151E49 /* DynamicButtonTests.swift in Sources */,
 				7D37BE8821C824DA0063FAAC /* UIViewControllerExtensionsTests.swift in Sources */,
 				B14FE5D92134F68800328CD7 /* CoreTestCase.swift in Sources */,
-				B1F3780A22498AF1000B7CAA /* AppleManagedAppConfigurationTests.swift in Sources */,
+				B1F3780A22498AF1000B7CAA /* MDMManagerTests.swift in Sources */,
 				3B67BCB821B5E72000055324 /* CreateSubmissionTests.swift in Sources */,
 				B19792F7217697E30000369C /* AssignmentTests.swift in Sources */,
 				7DF9BF082152AEF10099026B /* UIColorExtensionsTests.swift in Sources */,

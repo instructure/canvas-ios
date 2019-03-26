@@ -18,7 +18,7 @@ import Foundation
 @testable import Core
 import XCTest
 
-class AppleManagedAppConfigurationTests: XCTestCase {
+class MDMManagerTests: XCTestCase {
     override func setUp() {
         super.setUp()
         MDMManager.reset()
