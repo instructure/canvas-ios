@@ -54,4 +54,6 @@
 */
 @property (nonatomic) BOOL allowsFreeFormCriterionComments;
 
+@property (nonatomic) BOOL hidePoints;
+
 @end
