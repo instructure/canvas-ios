@@ -178,10 +178,10 @@ class LoginWebPresenterTests: XCTestCase {
 
     func testWebViewFinishedLoading() {
         let expectation = XCTestExpectation(description: "demo enabled")
-        AppleManagedAppConfiguration.shared.onDemoEnabled { _ in
+        MDMManager.shared.onLoginConfigured { _ in
             expectation.fulfill()
         }
-        AppleManagedAppConfiguration.mockDefaults()
+        MDMManager.mockDefaults()
         presenter.viewIsReady()
         presenter.webViewFinishedLoading()
         XCTAssertEqual(scripts.count, 3)

@@ -45,7 +45,7 @@ class LoginWebPresenter {
     var method = AuthenticationMethod.normalLogin
     var task: URLSessionTask?
     weak var view: LoginWebViewProtocol?
-    var submittedDemo = false
+    var submittedMDMLogin = false
 
     init(authenticationProvider: String?, host: String, loginDelegate: LoginDelegate?, method: AuthenticationMethod, view: LoginWebViewProtocol) {
         self.authenticationProvider = authenticationProvider
@@ -138,9 +138,9 @@ class LoginWebPresenter {
     }
 
     func webViewFinishedLoading() {
-        if let demo = AppleManagedAppConfiguration.shared.demo, !submittedDemo {
-            submittedDemo = true
-            submitDemo(demo)
+        if let login = MDMManager.shared.login, !submittedMDMLogin {
+            submittedMDMLogin = true
+            submitLogin(login)
         }
     }
 
@@ -149,9 +149,9 @@ class LoginWebPresenter {
         return value
     }
 
-    private func submitDemo(_ demo: AppleManagedAppConfiguration.Demo) {
-        let username = "document.querySelector('input[name=\"pseudonym_session[unique_id]\"]').value = \"\(demo.username)\""
-        let password = "document.querySelector('input[name=\"pseudonym_session[password]\"]').value = \"\(demo.password)\""
+    private func submitLogin(_ login: MDMLogin) {
+        let username = "document.querySelector('input[name=\"pseudonym_session[unique_id]\"]').value = \"\(login.username)\""
+        let password = "document.querySelector('input[name=\"pseudonym_session[password]\"]').value = \"\(login.password)\""
         let submit = "document.querySelector('#login_form').submit()"
         view?.evaluateJavaScript(username)
         view?.evaluateJavaScript(password)

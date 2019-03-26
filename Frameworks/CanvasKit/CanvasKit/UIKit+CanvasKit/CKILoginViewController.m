@@ -19,17 +19,16 @@
 @import ReactiveObjC;
 #import "CKIClient.h"
 #import "UIAlertController+Show.h"
-#import "CKManagedAppConfiguration.h"
+@import Core;
 
-@interface CKILoginViewController () <WKNavigationDelegate, NSURLSessionTaskDelegate, WKUIDelegate, CKManagedAppConfigurationDelegate>
+@interface CKILoginViewController () <WKNavigationDelegate, NSURLSessionTaskDelegate, WKUIDelegate>
 @property (nonatomic, copy) NSURLRequest *request;
 @property (nonatomic) CKIAuthenticationMethod method;
 @property (nonatomic, copy) void(^completionHandler)(NSURLSessionAuthChallengeDisposition, NSURLCredential *);
-@property (nonatomic, strong) CKManagedAppConfiguration *managedAppConfig;
 @end
 
 @implementation CKILoginViewController {
-    BOOL submittedDemo;
+    BOOL submittedMDMLogin;
 }
 
 - (id)initWithRequest:(NSURLRequest *)request method:(CKIAuthenticationMethod)method
@@ -76,9 +75,6 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
     [self.navigationController.navigationBar setTranslucent:NO];
-
-    self.managedAppConfig = [CKManagedAppConfiguration new];
-    self.managedAppConfig.delegate = self;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -218,7 +214,11 @@ static UIImage *_loadingImage = nil;
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
 {
-    [self.managedAppConfig beginObserving];
+    MDMLogin *login = MDMManager.shared.login;
+    if (login && !submittedMDMLogin) {
+        submittedMDMLogin = YES;
+        [self submitLogin:login];
+    }
 }
 
 #pragma mark - WKUIDelegate
@@ -270,18 +270,12 @@ static UIImage *_loadingImage = nil;
 
 #pragma mark - Managed App Config
 
-- (void)managedAppConfigurationDidChange:(CKManagedAppConfiguration *)configuration
+- (void)submitLogin:(MDMLogin *)login
 {
-    if (submittedDemo) {
-        return;
-    }
-    if (configuration.demoEnabled && configuration.username && configuration.password) {
-        submittedDemo = YES;
-        [self injectValue:configuration.username forInputNamed:@"pseudonym_session[unique_id]"];
-        [self injectValue:configuration.password forInputNamed:@"pseudonym_session[password]"];
-        NSString *submit = @"document.querySelector('#login_form').submit()";
-        [self.webView evaluateJavaScript:submit completionHandler:nil];
-    }
+    [self injectValue:login.username forInputNamed:@"pseudonym_session[unique_id]"];
+    [self injectValue:login.password forInputNamed:@"pseudonym_session[password]"];
+    NSString *submit = @"document.querySelector('#login_form').submit()";
+    [self.webView evaluateJavaScript:submit completionHandler:nil];
 }
 
 - (void)injectValue:(NSString *)value forInputNamed:(NSString *)name

@@ -115,7 +115,7 @@ class LoginStartPresenterTests: XCTestCase {
     func testAppleDemoShowsLogin() {
         let presenter = LoginStartPresenter(loginDelegate: self, view: self)
         presenter.viewIsReady()
-        AppleManagedAppConfiguration.mockDefaults()
+        MDMManager.mockDefaults()
         XCTAssertNotNil(shown)
         let login = shown as? LoginWebViewController
         XCTAssertNotNil(login)

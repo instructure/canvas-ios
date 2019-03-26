@@ -28,10 +28,11 @@
 #import "CKMDomainHelpViewController.h"
 #import "CKMDomainPickerViewController.h"
 #import "CKMLocationSchoolSuggester.h"
+@import Core;
 
 static BOOL PerformedStartupAnimation = NO;
 
-@interface CKMDomainPickerViewController () <UITextFieldDelegate, UIGestureRecognizerDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate, CKMDomainSearchViewControllerDelegate, CKManagedAppConfigurationDelegate>
+@interface CKMDomainPickerViewController () <UITextFieldDelegate, UIGestureRecognizerDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate, CKMDomainSearchViewControllerDelegate>
 
 // UI
 @property (nonatomic, weak) IBOutlet UIImageView *logoImageView;
@@ -58,8 +59,6 @@ static BOOL PerformedStartupAnimation = NO;
 // Data from the preload-account-info.plist file
 // Used to bypass mobileverify during development
 @property (nonatomic) NSDictionary *preloadedAccountInfo;
-
-@property (nonatomic, strong) CKManagedAppConfiguration *managedAppConfig;
 
 @end
 
@@ -106,8 +105,10 @@ static BOOL PerformedStartupAnimation = NO;
         [self.customLoginButton setTitle:self.preloadedAccountInfo[@"base_url"] forState:UIControlStateNormal];
     }
 
-    self.managedAppConfig = [CKManagedAppConfiguration new];
-    self.managedAppConfig.delegate = self;
+    [MDMManager.shared onLoginConfiguredWithCallback:^(MDMLogin * _Nonnull login) {
+        CKIAccountDomain *domain = [[CKIAccountDomain alloc] initWithDomain:login.host];
+        [self sendDomain:domain];
+    }];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -118,7 +119,6 @@ static BOOL PerformedStartupAnimation = NO;
         PerformedStartupAnimation = YES;
     }
     UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil);
-    [self.managedAppConfig beginObserving];
 }
 
 #pragma mark - Setup
@@ -359,19 +359,6 @@ static NSString *const CanvasNetworkDomain = @"learn.canvas.net";
 - (IBAction)actionParentNeedsHelp:(id)sender {
     NSString *subject = [NSString stringWithFormat:@"[Parent Login Issue] %@", NSLocalizedString(@"Trouble logging in", @"")];
     [SupportTicketViewController presentFromViewController:self supportTicketType:SupportTicketTypeProblem defaultSubject:subject];
-}
-
-#pragma mark - Managed App Config
-- (void)managedAppConfigurationDidChange:(CKManagedAppConfiguration *)configuration
-{
-    // Only do this once.
-    static dispatch_once_t onceToken;
-    dispatch_once (&onceToken, ^{
-        if (configuration.demoEnabled && configuration.domain) {
-            CKIAccountDomain *domain = [[CKIAccountDomain alloc] initWithDomain:configuration.domain];
-            [self sendDomain:domain];
-        }
-    });
 }
 
 @end

@@ -71,8 +71,8 @@ class LoginStartPresenter {
             self?.loadEntries()
         }
 
-        AppleManagedAppConfiguration.shared.onDemoEnabled { [weak self] demo in
-            self?.showLoginForHost(demo.host, method: .canvasLogin)
+        MDMManager.shared.onLoginConfigured { [weak self] login in
+            self?.showLoginForHost(login.host, method: .canvasLogin)
         }
     }
 

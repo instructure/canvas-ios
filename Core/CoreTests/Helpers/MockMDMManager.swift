@@ -17,7 +17,9 @@
 import Foundation
 @testable import Core
 
-extension AppleManagedAppConfiguration {
+private let key = "com.apple.configuration.managed"
+
+extension MDMManager {
     static func mockDefaults() {
         let defaults: [String: Any] = [
             "enableDemo": true,
@@ -26,5 +28,9 @@ extension AppleManagedAppConfiguration {
         ]
         let key = "com.apple.configuration.managed"
         UserDefaults.standard.set(defaults, forKey: key)
+    }
+
+    static func reset() {
+        UserDefaults.standard.set(nil, forKey: key)
     }
 }
