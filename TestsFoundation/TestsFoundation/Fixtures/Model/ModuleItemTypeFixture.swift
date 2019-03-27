@@ -15,19 +15,11 @@
 //
 
 import Foundation
-@testable import Core
-import XCTest
-import TestsFoundation
+import Core
 
-class APIModuleItemTests: XCTestCase {
-    let encoder = JSONEncoder()
-    let decoder = JSONDecoder()
-
-    func testCodableContent() {
-        let file = try! decoder.decode(APIModuleItem.self, from: try! encoder.encode(APIModuleItem.make(["type": "File", "content_id": "1"])))
-        XCTAssertEqual(file.content, .file("1"))
-        let subheader = try! decoder.decode(APIModuleItem.self, from: try! encoder.encode(APIModuleItem.make(["type": "SubHeader", "content_id": "1"])))
-        XCTAssertEqual(subheader.content, .subHeader)
-
-    }
+extension ModuleItemType: Fixture {
+    public static let template: Template = [
+        "type": "assignment",
+        "content_id": "1"
+    ]
 }

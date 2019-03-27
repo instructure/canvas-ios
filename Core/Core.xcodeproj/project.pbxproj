@@ -393,6 +393,7 @@
 		B1EF7ABB21E902DD00D653D7 /* UseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EF7ABA21E902DD00D653D7 /* UseCase.swift */; };
 		B1F1328A224BAD43002C0555 /* ModuleItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F13289224BAD43002C0555 /* ModuleItemType.swift */; };
 		B1F1328C224BB383002C0555 /* APIModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F1328B224BB383002C0555 /* APIModuleTests.swift */; };
+		B1F13290224BBFC0002C0555 /* ModuleItemTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F1328F224BBFC0002C0555 /* ModuleItemTypeTests.swift */; };
 		DFE1FF1D212F5E1A003F27AA /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE1FF1C212F5E1A003F27AA /* Keychain.swift */; };
 		DFE1FF20212F5E41003F27AA /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE1FF1F212F5E41003F27AA /* KeychainTests.swift */; };
 		DFE1FF28212F69B3003F27AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE1FF27212F69B3003F27AA /* AppDelegate.swift */; };
@@ -973,6 +974,7 @@
 		B1EF7ABA21E902DD00D653D7 /* UseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCase.swift; sourceTree = "<group>"; };
 		B1F13289224BAD43002C0555 /* ModuleItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemType.swift; sourceTree = "<group>"; };
 		B1F1328B224BB383002C0555 /* APIModuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModuleTests.swift; sourceTree = "<group>"; };
+		B1F1328F224BBFC0002C0555 /* ModuleItemTypeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemTypeTests.swift; sourceTree = "<group>"; };
 		DFE1FF1C212F5E1A003F27AA /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		DFE1FF1F212F5E41003F27AA /* KeychainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTests.swift; sourceTree = "<group>"; };
 		DFE1FF25212F69B3003F27AA /* CoreTester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreTester.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1397,13 +1399,14 @@
 				7DC4A554222EF87300FA03DC /* DiscussionEntryTests.swift */,
 				7D4C3A762236FFD2007D6792 /* FileTests.swift */,
 				B19792FC21769E280000369C /* GroupTests.swift */,
+				9F6878B622397E8F00E559CE /* MediaCommentTests.swift */,
+				B1F1328F224BBFC0002C0555 /* ModuleItemTypeTests.swift */,
 				B15CA283221E00870014FB02 /* ModuleTests.swift */,
+				9F1CEA5E22400DC0000BB98F /* PermissionsTests.swift */,
 				B19792FA21769B320000369C /* QuizTests.swift */,
 				7D5C87202239A99E00D99651 /* SubmissionCommentTests.swift */,
 				7D37BE8C21C837840063FAAC /* SubmissionTests.swift */,
 				B19792FE2176A0F00000369C /* TabTests.swift */,
-				9F6878B622397E8F00E559CE /* MediaCommentTests.swift */,
-				9F1CEA5E22400DC0000BB98F /* PermissionsTests.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2457,6 +2460,7 @@
 				7DDC450F215BF4AA003F3209 /* UIFontExtensionsTests.swift in Sources */,
 				7D2DC2F62199F27B008FE29A /* DocViewerPointAnnotationTests.swift in Sources */,
 				9FD504F42180DC7B00B395BA /* AsyncBlockOperationTest.swift in Sources */,
+				B1F13290224BBFC0002C0555 /* ModuleItemTypeTests.swift in Sources */,
 				7DCF1ED4216C05A0003AF358 /* DueViewableTests.swift in Sources */,
 				7DD6947B21949DC900BA4984 /* IconViewTests.swift in Sources */,
 				7D80AC15212B67E100C40ECE /* APIUser+Requestable+Tests.swift in Sources */,
