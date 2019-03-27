@@ -67,33 +67,7 @@ public struct APIModuleItem: Codable, Equatable {
         htmlURL = try container.decode(URL.self, forKey: .htmlURL)
         url = try container.decodeIfPresent(URL.self, forKey: .url)
         published = try container.decodeIfPresent(Bool.self, forKey: .published)
-        let type = try container.decode(APIModuleItemType.self, forKey: .type)
-        switch type {
-        case .file:
-            let id = try container.decode(ID.self, forKey: .content_id)
-            content = .file(id.value)
-        case .page:
-            let slug = try container.decode(String.self, forKey: .page_url)
-            content = .page(slug)
-        case .discussion:
-            let id = try container.decode(ID.self, forKey: .content_id)
-            content = .discussion(id.value)
-        case .assignment:
-            let id = try container.decode(ID.self, forKey: .content_id)
-            content = .assignment(id.value)
-        case .quiz:
-            let id = try container.decode(ID.self, forKey: .content_id)
-            content = .quiz(id.value)
-        case .subHeader:
-            content = .subHeader
-        case .externalURL:
-            let url = try container.decode(URL.self, forKey: .external_url)
-            content = .externalURL(url)
-        case .externalTool:
-            let id = try container.decode(ID.self, forKey: .content_id)
-            let url = try container.decode(URL.self, forKey: .external_url)
-            content = .externalTool(id.value, url)
-        }
+        content = try ModuleItemType(from: decoder)
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -106,32 +80,7 @@ public struct APIModuleItem: Codable, Equatable {
         try container.encode(htmlURL, forKey: .htmlURL)
         try container.encode(url, forKey: .url)
         try container.encode(published, forKey: .published)
-        switch content {
-        case .file(let id):
-            try container.encode(id, forKey: .content_id)
-            try container.encode(APIModuleItemType.file, forKey: .type)
-        case .page(let slug):
-            try container.encode(slug, forKey: .page_url)
-            try container.encode(APIModuleItemType.page, forKey: .type)
-        case .discussion(let id):
-            try container.encode(id, forKey: .content_id)
-            try container.encode(APIModuleItemType.discussion, forKey: .type)
-        case .assignment(let id):
-            try container.encode(id, forKey: .content_id)
-            try container.encode(APIModuleItemType.assignment, forKey: .type)
-        case .quiz(let id):
-            try container.encode(id, forKey: .content_id)
-            try container.encode(APIModuleItemType.quiz, forKey: .type)
-        case .subHeader:
-            try container.encode(APIModuleItemType.subHeader, forKey: .type)
-        case .externalURL(let url):
-            try container.encode(url, forKey: .external_url)
-            try container.encode(APIModuleItemType.externalURL, forKey: .type)
-        case .externalTool(let id, let url):
-            try container.encode(id, forKey: .content_id)
-            try container.encode(url, forKey: .external_url)
-            try container.encode(APIModuleItemType.externalTool, forKey: .type)
-        }
+        try content.encode(to: encoder)
     }
 }
 enum APIModuleItemType: String, Codable {
