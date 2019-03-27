@@ -23,9 +23,6 @@ import UIKit
 /// show the secrets in plain text. It must be possible to discover the secrets, or the app couldn't
 /// use them, but it should be non-trivial.
 public enum Secret {
-    /// The Canvas API token used to create resources for UI tests.
-    case dataSeedingAdminToken
-
     /// The value passed to `PSPDFKit.setLicenseKey` for the student app.
     case studentPSPDFKitLicense
 

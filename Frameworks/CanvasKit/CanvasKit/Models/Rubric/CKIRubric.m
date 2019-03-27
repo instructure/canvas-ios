@@ -31,7 +31,8 @@
     NSDictionary *keyPaths = @{
             @"title": @"title",
             @"pointsPossible": @"points_possible",
-            @"allowsFreeFormCriterionComments": @"free_form_criterion_comments"
+            @"allowsFreeFormCriterionComments": @"free_form_criterion_comments",
+            @"hidePoints": @"hide_points"
     };
     NSDictionary *superPaths = [super JSONKeyPathsByPropertyKey];
     return [superPaths dictionaryByAddingObjectsFromDictionary:keyPaths];

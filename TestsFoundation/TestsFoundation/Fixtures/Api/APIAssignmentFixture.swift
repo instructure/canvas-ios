@@ -27,13 +27,13 @@ extension APIAssignment: Fixture {
             "points_possible": 10,
             "due_at": nil,
             "html_url": "https://canvas.instructure.com/courses/1/assignments/1",
-            "grading_type": "pass_fail",
-            "submission_types": ["on_paper"],
-            "submission": APISubmission.template,
+            "grading_type": "points",
+            "submission_types": ["online_text_entry"],
+            "submission": APISubmission.fixture([
+                "workflow_state": "unsubmitted",
+            ]),
             "position": 0,
             "lockedForUser": false,
-            "unlock_at": "2018-10-26T06:00:00Z",
-            "lock_at": "2018-11-10T06:59:59Z",
         ]
     }
 }

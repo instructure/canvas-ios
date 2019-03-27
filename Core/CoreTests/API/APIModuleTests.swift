@@ -16,27 +16,18 @@
 
 import Foundation
 @testable import Core
+import XCTest
+import TestsFoundation
 
-extension APIModule: Fixture {
-    public static let template: Template = [
-        "id": "1",
-        "name": "Module 1",
-        "position": 1,
-        "published": true,
-        "workflow_state": "active"
-    ]
-}
+class APIModuleItemTests: XCTestCase {
+    let encoder = JSONEncoder()
+    let decoder = JSONDecoder()
 
-extension APIModuleItem: Fixture {
-    public static let template: Template = [
-        "id": "1",
-        "module_id": "1",
-        "position": 1,
-        "title": "Module Item 1",
-        "indent": 0,
-        "type": "Assignment",
-        "content_id": "1",
-        "html_url": "https://canvas.example.edu/courses/222/modules/items/768",
-        "url": "https://canvas.example.edu/api/v1/courses/222/assignments/987"
-    ]
+    func testCodableContent() {
+        let file = try! decoder.decode(APIModuleItem.self, from: try! encoder.encode(APIModuleItem.make(["type": "File", "content_id": "1"])))
+        XCTAssertEqual(file.content, .file("1"))
+        let subheader = try! decoder.decode(APIModuleItem.self, from: try! encoder.encode(APIModuleItem.make(["type": "SubHeader", "content_id": "1"])))
+        XCTAssertEqual(subheader.content, .subHeader)
+
+    }
 }

@@ -18,11 +18,6 @@ import XCTest
 import TestsFoundation
 
 class StudentUITestsEG2: StudentTest {
-    func testHealthCheck() {
-        let result = seedClient.healthCheck()
-        XCTAssertTrue(result.healthy)
-    }
-
     func testExample() {
       EarlGrey.selectElement(with: grey_keyWindow())
         .perform(grey_tap())

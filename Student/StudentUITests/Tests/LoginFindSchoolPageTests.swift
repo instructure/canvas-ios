@@ -26,7 +26,7 @@ class LoginFindSchoolPageTests: StudentTest {
         LoginStartPage.tap(.findSchoolButton)
         page.waitToExist(.searchField, timeout: 5)
 
-        page.typeText("mobileqa.test.instructure.com\n", in: .searchField)
+        page.typeText("test\n", in: .searchField)
         LoginWebPage.waitToExist(.webView, timeout: 5)
 
         LoginWebPage.assertVisible(.webView)
@@ -40,22 +40,26 @@ class LoginFindSchoolPageTests: StudentTest {
         LoginFindAccountResult.waitToExist(.emptyCell, timeout: 5)
         LoginFindAccountResult.assertText(.emptyCell, equals: "How do I find my school?")
 
-        page.typeText("nothing-matches-this", in: .searchField)
+        page.typeText("zxzx", in: .searchField)
         LoginFindAccountResult.waitToExist(.emptyCell, timeout: 5)
 
         LoginFindAccountResult.assertText(.emptyCell, equals: "Can’t find your school? Try typing the full school URL. Tap here for help.")
     }
 
     func testFoundResults() {
+        mockData(GetAccountsSearchRequest(searchTerm: "cgnu"), value: [
+            APIAccountResults.make([ "name": "Crazy Go Nuts University", "domain": "http://cgnuonline-eniversity.edu" ]),
+        ])
+
         show(Route.login.url.path)
         LoginStartPage.tap(.findSchoolButton)
         page.waitToExist(.searchField, timeout: 5)
 
-        page.typeText("byu", in: .searchField)
-        let item = LoginFindAccountResult.item(host: "byu.instructure.com")
+        page.typeText("cgnu", in: .searchField)
+        let item = LoginFindAccountResult.item(host: "http://cgnuonline-eniversity.edu")
         LoginFindAccountResult.waitToExist(item, timeout: 5)
 
-        LoginFindAccountResult.assertText(item, equals: "Brigham Young University")
+        LoginFindAccountResult.assertText(item, equals: "Crazy Go Nuts University")
         LoginFindAccountResult.tap(item)
         LoginWebPage.waitToExist(.webView, timeout: 5)
 
