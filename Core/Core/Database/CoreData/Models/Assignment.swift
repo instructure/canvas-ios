@@ -23,6 +23,7 @@ public class Assignment: NSManagedObject {
     @NSManaged public var quizID: String?
     @NSManaged public var details: String?
     @NSManaged public var dueAt: Date?
+    @NSManaged public var gradedIndividually: Bool
     @NSManaged var gradingTypeRaw: String
     @NSManaged public var htmlURL: URL
     @NSManaged public var id: String
@@ -80,6 +81,7 @@ extension Assignment {
         dueAt = item.due_at
         htmlURL = item.html_url
         gradingType = item.grading_type
+        gradedIndividually = item.grade_group_students_individually ?? true
         submissionTypes = item.submission_types
         allowedExtensions = item.allowed_extensions ?? []
         position = item.position
