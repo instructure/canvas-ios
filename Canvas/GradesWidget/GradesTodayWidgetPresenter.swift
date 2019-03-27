@@ -42,8 +42,8 @@ class GradesTodayWidgetPresenter {
     }
 
     func viewIsReady() {
-        courses.refresh(force: true)
-        colors.refresh(force: true)
+        courses.refresh(force: false)
+        colors.refresh(force: false)
     }
 
 }

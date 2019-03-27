@@ -72,6 +72,11 @@ class GradesTodayWidgetViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
 
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        print("Grades WIDGET MEMORY WARNING")
+    }
+
     override func viewDidLoad() {
         view.backgroundColor = UIColor.clear
         extensionContext?.widgetLargestAvailableDisplayMode = .expanded
@@ -123,6 +128,16 @@ class GradesTodayWidgetViewController: UIViewController {
 }
 
 extension GradesTodayWidgetViewController: UITableViewDataSource {
+    static let scoreFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .percent
+        formatter.decimalSeparator = "."
+        formatter.multiplier = 1
+        formatter.maximumFractionDigits = 3
+        formatter.roundingMode = .down
+        return formatter
+    }()
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if error != nil {
             return 1
@@ -180,16 +195,9 @@ extension GradesTodayWidgetViewController: UITableViewDataSource {
             ? enrollment.currentPeriodComputedCurrentGrade
             : enrollment.computedCurrentGrade
 
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .percent
-        formatter.decimalSeparator = "."
-        formatter.multiplier = 1
-        formatter.maximumFractionDigits = 3
-        formatter.roundingMode = .down
-
         guard let score = enrollment.multipleGradingPeriodsEnabled
             ? enrollment.currentPeriodComputedCurrentScore
-            : enrollment.computedCurrentScore, let scoreString = formatter.string(from: NSNumber(value: score)) else {
+            : enrollment.computedCurrentScore, let scoreString = GradesTodayWidgetViewController.scoreFormatter.string(from: NSNumber(value: score)) else {
             return grade ?? "N/A"
         }
 
