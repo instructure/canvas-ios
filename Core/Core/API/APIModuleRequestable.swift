@@ -26,4 +26,10 @@ public struct GetModulesRequest: APIRequestable {
         let context = ContextModel(.course, id: courseID)
         return "\(context.pathComponent)/modules"
     }
+
+    public var query: [APIQueryItem] {
+        return [
+            .include([ "items" ]),
+        ]
+    }
 }

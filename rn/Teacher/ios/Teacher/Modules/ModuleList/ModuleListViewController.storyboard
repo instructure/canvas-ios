@@ -29,23 +29,27 @@
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="idp-ZT-sKj" customClass="DynamicLabel" customModule="Teacher" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="16" width="318" height="11.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="rowTitle"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" distribution="fillProportionally" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="rv6-mL-EtC">
+                                                    <rect key="frame" x="16" y="16" width="282" height="128"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <subviews>
+                                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pZm-kM-hyj" customClass="AccessIconView" customModule="Teacher" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </view>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="idp-ZT-sKj" customClass="DynamicLabel" customModule="Teacher" customModuleProvider="target">
+                                                            <rect key="frame" x="240" y="0.0" width="42" height="128"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="rowTitle"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="idp-ZT-sKj" secondAttribute="bottom" constant="16" id="FMF-a5-JhB"/>
-                                                <constraint firstItem="idp-ZT-sKj" firstAttribute="leading" secondItem="UBc-rt-n2v" secondAttribute="leading" constant="16" id="Hdk-Rf-rf1"/>
-                                                <constraint firstItem="idp-ZT-sKj" firstAttribute="top" secondItem="UBc-rt-n2v" secondAttribute="top" constant="16" id="ItO-f9-ZJy"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="idp-ZT-sKj" secondAttribute="trailing" id="f74-Aq-tBS"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="fullDivider" value="YES"/>

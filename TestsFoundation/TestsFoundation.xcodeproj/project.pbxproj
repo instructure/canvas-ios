@@ -59,6 +59,7 @@
 		B1C6BF6521BF2C2B00C8C585 /* UIBarButtonItemExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C6BF6421BF2C2B00C8C585 /* UIBarButtonItemExtensions.swift */; };
 		B1E789B821B1B06F0087FE4A /* TestLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E789B721B1B06F0087FE4A /* TestLogger.swift */; };
 		B1E789BA21B1D0D30087FE4A /* LogEventFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E789B921B1D0D30087FE4A /* LogEventFixture.swift */; };
+		B1F13292224BC016002C0555 /* ModuleItemTypeFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F13291224BC016002C0555 /* ModuleItemTypeFixture.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -116,6 +117,7 @@
 		B1C6BF6421BF2C2B00C8C585 /* UIBarButtonItemExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItemExtensions.swift; sourceTree = "<group>"; };
 		B1E789B721B1B06F0087FE4A /* TestLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestLogger.swift; sourceTree = "<group>"; };
 		B1E789B921B1D0D30087FE4A /* LogEventFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogEventFixture.swift; sourceTree = "<group>"; };
+		B1F13291224BC016002C0555 /* ModuleItemTypeFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemTypeFixture.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,17 +228,18 @@
 				7D37BE8E21C8398D0063FAAC /* DiscussionEntryFixture.swift */,
 				3BAA4176218A361100701E03 /* EnrollmentFixture.swift */,
 				9F4B53AB2180FFDF0056A557 /* File+Fixture.swift */,
+				B1B42C1722404AB20087399A /* FileUploadTargetFixture.swift */,
 				3B032D19215037CA00B570F7 /* Group+Fixture.swift */,
 				B1E789B921B1D0D30087FE4A /* LogEventFixture.swift */,
+				9F6878B42239701F00E559CE /* MediaCommentFixture.swift */,
 				B15CA27F221DFED00014FB02 /* ModuleFixture.swift */,
+				B1F13291224BC016002C0555 /* ModuleItemTypeFixture.swift */,
+				9F1CEA5C22400CE0000BB98F /* PermissionsFixture.swift */,
 				7DCF2049216D6668003AF358 /* Quiz+Fixture.swift */,
 				B16F0376215C2CEF0011E952 /* Submission+Fixture.swift */,
 				7D5C87222239A9EE00D99651 /* SubmissionCommentFixture.swift */,
 				3B0CEB7D2150445100D07CFA /* Tab+Fixture.swift */,
 				3B032D17215037C900B570F7 /* TTL+Fixture.swift */,
-				B1B42C1722404AB20087399A /* FileUploadTargetFixture.swift */,
-				9F6878B42239701F00E559CE /* MediaCommentFixture.swift */,
-				9F1CEA5C22400CE0000BB98F /* PermissionsFixture.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -407,6 +410,7 @@
 				3B5757D721629C5D0014F6A2 /* MockUseCase.swift in Sources */,
 				7DB0A1C921C07F39009ABB40 /* APIUserFixture.swift in Sources */,
 				9F6878B52239701F00E559CE /* MediaCommentFixture.swift in Sources */,
+				B1F13292224BC016002C0555 /* ModuleItemTypeFixture.swift in Sources */,
 				9F4B53AC2180FFDF0056A557 /* File+Fixture.swift in Sources */,
 				3B0CEBA521504C2500D07CFA /* APICourseFixture.swift in Sources */,
 				7D2DC2FF219A0514008FE29A /* APIDocViewerFixture.swift in Sources */,
