@@ -19,7 +19,13 @@ import Foundation
 import XCTest
 
 class APIModuleRequestableTests: XCTestCase {
-    func testGetModulesRequest() {
+    func testGetModulesRequestPath() {
         XCTAssertEqual(GetModulesRequest(courseID: "1").path, "courses/1/modules")
+    }
+
+    func testGetModulesRequestQuery() {
+        XCTAssertEqual(GetModulesRequest(courseID: "1").queryItems, [
+            URLQueryItem(name: "include[]", value: "items"),
+        ])
     }
 }

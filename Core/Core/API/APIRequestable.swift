@@ -24,6 +24,7 @@ public enum APIQueryItem: Equatable {
     case name(String)
     case value(String, String)
     case array(String, [String])
+    case include([String])
 
     func toURLQueryItems() -> [URLQueryItem] {
         switch self {
@@ -33,6 +34,8 @@ public enum APIQueryItem: Equatable {
             return [URLQueryItem(name: name, value: value)]
         case .array(let name, let array):
             return array.map({ value in URLQueryItem(name: "\(name)[]", value: value) })
+        case .include(let includes):
+            return APIQueryItem.array("include", includes).toURLQueryItems()
         }
     }
 }
