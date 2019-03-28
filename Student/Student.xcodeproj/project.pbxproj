@@ -71,6 +71,12 @@
 		3B67BCB621B5784500055324 /* UrlSubmissionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B54260421B1D08B0009D069 /* UrlSubmissionPresenter.swift */; };
 		3B692535219F428E0023ED75 /* FilePickerProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B692534219F428E0023ED75 /* FilePickerProgressView.swift */; };
 		3B692536219F428E0023ED75 /* FilePickerProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B692534219F428E0023ED75 /* FilePickerProgressView.swift */; };
+		3BBCF833224BFF29004B519D /* SyllabusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBCF832224BFF29004B519D /* SyllabusViewController.swift */; };
+		3BBCF834224BFF29004B519D /* SyllabusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBCF832224BFF29004B519D /* SyllabusViewController.swift */; };
+		3BBCF839224C142C004B519D /* SyllabusPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBCF838224C142C004B519D /* SyllabusPresenter.swift */; };
+		3BBCF83A224C142C004B519D /* SyllabusPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBCF838224C142C004B519D /* SyllabusPresenter.swift */; };
+		3BBCF848224C19A2004B519D /* SyllabusViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BBCF847224C19A2004B519D /* SyllabusViewController.storyboard */; };
+		3BBCF849224C19A2004B519D /* SyllabusViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BBCF847224C19A2004B519D /* SyllabusViewController.storyboard */; };
 		3BE1307221ADFFDD001D4582 /* UrlSubmissionContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6325DD21ADF49200237CE6 /* UrlSubmissionContentViewController.swift */; };
 		3BE1307421AE0074001D4582 /* UrlSubmissionContentViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BE1307321AE0074001D4582 /* UrlSubmissionContentViewController.storyboard */; };
 		3BE1307521AE0074001D4582 /* UrlSubmissionContentViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BE1307321AE0074001D4582 /* UrlSubmissionContentViewController.storyboard */; };
@@ -431,6 +437,9 @@
 		3B6065F92194EEF800D04D53 /* PersistenceTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceTestCase.swift; sourceTree = "<group>"; };
 		3B6325DD21ADF49200237CE6 /* UrlSubmissionContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlSubmissionContentViewController.swift; sourceTree = "<group>"; };
 		3B692534219F428E0023ED75 /* FilePickerProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePickerProgressView.swift; sourceTree = "<group>"; };
+		3BBCF832224BFF29004B519D /* SyllabusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusViewController.swift; sourceTree = "<group>"; };
+		3BBCF838224C142C004B519D /* SyllabusPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusPresenter.swift; sourceTree = "<group>"; };
+		3BBCF847224C19A2004B519D /* SyllabusViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SyllabusViewController.storyboard; sourceTree = "<group>"; };
 		3BE1307321AE0074001D4582 /* UrlSubmissionContentViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UrlSubmissionContentViewController.storyboard; sourceTree = "<group>"; };
 		3BE2ADC621B6F6E1008D91AB /* UrlSubmissionPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlSubmissionPage.swift; sourceTree = "<group>"; };
 		3BE2ADC821B6F72D008D91AB /* UrlSubmissionPageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlSubmissionPageTests.swift; sourceTree = "<group>"; };
@@ -902,6 +911,7 @@
 		3B1B004F219BD9F50045E8A1 /* Courses */ = {
 			isa = PBXGroup;
 			children = (
+				3BBCF82D224BFF0A004B519D /* Syllabus */,
 				3B1B0050219BD9F50045E8A1 /* CourseNavigation */,
 				3B1B0054219BD9F50045E8A1 /* CourseList */,
 			);
@@ -1084,6 +1094,16 @@
 				B10D777121C2EA5B00BCE822 /* BlockExpectation.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		3BBCF82D224BFF0A004B519D /* Syllabus */ = {
+			isa = PBXGroup;
+			children = (
+				3BBCF832224BFF29004B519D /* SyllabusViewController.swift */,
+				3BBCF838224C142C004B519D /* SyllabusPresenter.swift */,
+				3BBCF847224C19A2004B519D /* SyllabusViewController.storyboard */,
+			);
+			path = Syllabus;
 			sourceTree = "<group>";
 		};
 		78761D85218B8C2A0042E5D2 /* StudentShare */ = {
@@ -1710,6 +1730,7 @@
 				3B54260121B094DF0009D069 /* UrlSubmissionViewController.storyboard in Resources */,
 				2C5C6996211DFFAE00D9AD15 /* Assets.xcassets in Resources */,
 				9FCD79DF2188EAC40054293A /* SubmissionDetailsViewController.storyboard in Resources */,
+				3BBCF848224C19A2004B519D /* SyllabusViewController.storyboard in Resources */,
 				7DD9E641223C4E4400B45A7E /* SubmissionCommentFileView.xib in Resources */,
 				9FDDE2E2218CCBF5002B71F0 /* Drawer.xib in Resources */,
 				7D79636D22307FC000CCF943 /* SubmissionFilesViewController.storyboard in Resources */,
@@ -1764,6 +1785,7 @@
 				7D09E5B821935933006150FA /* SubmissionDetailsEmptyView.xib in Resources */,
 				7DA61A5E216561A90085BAE8 /* Localizable.stringsdict in Resources */,
 				3B0B0F6D219C8D2300F04216 /* QuizListViewController.storyboard in Resources */,
+				3BBCF849224C19A2004B519D /* SyllabusViewController.storyboard in Resources */,
 				3B0B0F72219C8D3100F04216 /* QuizListEmptyView.xib in Resources */,
 				7D09E5AA2192156A006150FA /* Assets.xcassets in Resources */,
 				9FA7C360219C92A6001F3BC7 /* Drawer.xib in Resources */,
@@ -1855,6 +1877,7 @@
 				3B1B007F219BD9F60045E8A1 /* QuizListEmptyView.swift in Sources */,
 				7D101954215EBB540058FDD1 /* DynamicLabel.swift in Sources */,
 				7D979CD4215BE3E300567627 /* BundleExtensions.swift in Sources */,
+				3BBCF839224C142C004B519D /* SyllabusPresenter.swift in Sources */,
 				3B1B0068219BD9F60045E8A1 /* AssignmentListPresenter.swift in Sources */,
 				7DA5C49A22386501003CDB4C /* SubmissionCommentsPresenter.swift in Sources */,
 				7D7110C321389AD90085C2E5 /* Routes.swift in Sources */,
@@ -1900,6 +1923,7 @@
 				3B3785BF222DC0B90047DAE4 /* CourseNavigationViewController.swift in Sources */,
 				7D20F61621C3142E00B77E5E /* CourseListPresenter.swift in Sources */,
 				3B1B0064219BD9F60045E8A1 /* GroupNavigationViewController.swift in Sources */,
+				3BBCF833224BFF29004B519D /* SyllabusViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1961,6 +1985,7 @@
 				7D005F7A2239DE5A0040CBD7 /* AvatarView.swift in Sources */,
 				7D067CE421505B2500B78AF2 /* Routes.swift in Sources */,
 				7DD9E623223C1B9500B45A7E /* SubmissionCommentHeaderCell.swift in Sources */,
+				3BBCF83A224C142C004B519D /* SyllabusPresenter.swift in Sources */,
 				3B4B75B1222DE7F3002CCBEC /* CourseNavigationViewController.swift in Sources */,
 				3B692536219F428E0023ED75 /* FilePickerProgressView.swift in Sources */,
 				B10D777621C2F14900BCE822 /* FilePickerCell.swift in Sources */,
@@ -1978,6 +2003,7 @@
 				3B0B0F68219C8D1500F04216 /* CourseNavigationPresenter.swift in Sources */,
 				7DEE316F223C09120042FE2A /* SubmissionCommentVideoCell.swift in Sources */,
 				3B67BCB621B5784500055324 /* UrlSubmissionPresenter.swift in Sources */,
+				3BBCF834224BFF29004B519D /* SyllabusViewController.swift in Sources */,
 				7DC1C9DB223AEBD60083F707 /* SubmissionCommentAudioCell.swift in Sources */,
 				3B5425FF21B094CC0009D069 /* UrlSubmissionViewController.swift in Sources */,
 				3B0B0F67219C8D1100F04216 /* CourseListCourseCell.swift in Sources */,

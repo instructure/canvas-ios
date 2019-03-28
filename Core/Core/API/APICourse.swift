@@ -37,7 +37,7 @@ public struct APICourse: Codable, Equatable {
     // let total_students: Int? // include[]=total_students
     // let calendar: ?
     let default_view: CourseDefaultView?
-    // let syllabus_body: String? // include[]=syllabus_body
+    let syllabus_body: String? // include[]=syllabus_body
     // let needs_grading_count: Int? // include[]=needs_grading_count
     let term: Term? // include[]=term
     // let course_progress: ?

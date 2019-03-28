@@ -47,22 +47,47 @@ public struct GetCoursesRequest: APIRequestable {
 public struct GetCourseRequest: APIRequestable {
     public typealias Response = APICourse
 
+    public enum Include: String, CaseIterable {
+        case courseImage = "course_image"
+        case currentGradingPeriodScores = "current_grading_period_scores"
+        case favorites
+        case permissions
+        case sections
+        case term
+        case totalScores = "total_scores"
+        case syllabusBody = "syllabus_body"
+    }
+
     let courseID: String
+    public static let defaultIncludes = [
+        Include.courseImage,
+        Include.currentGradingPeriodScores,
+        Include.favorites,
+        Include.permissions,
+        Include.sections,
+        Include.term,
+        Include.totalScores,
+    ]
+
+    var include: [Include] = defaultIncludes
+
+    init(courseID: String, include: [Include] = defaultIncludes) {
+        self.courseID = courseID
+        self.include = include
+    }
 
     public var path: String {
         return ContextModel(.course, id: courseID).pathComponent
     }
-    public let query: [APIQueryItem] = [
-        .array("include", [
-            "course_image",
-            "current_grading_period_scores",
-            "favorites",
-            "permissions",
-            "sections",
-            "term",
-            "total_scores",
-        ]),
-    ]
+
+    public var query: [APIQueryItem] {
+        var query: [APIQueryItem] = []
+
+        if !include.isEmpty {
+            query.append(.array("include", include.map { $0.rawValue }))
+        }
+        return query
+    }
 }
 
 struct APICourseParameters: Codable, Equatable {

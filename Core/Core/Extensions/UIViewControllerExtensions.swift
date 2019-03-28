@@ -87,11 +87,14 @@ extension UIViewController {
         didMove(toParent: nil)
     }
 
-    public func embed(_ child: UIViewController, in container: UIView) {
-        child.willMove(toParent: self)
-        container.addSubview(child.view)
-        child.view.pin(inside: container)
+    public func embed(_ child: UIViewController, in container: UIView, constraintHandler: ((UIViewController, UIView) -> Void)? = nil) {
         addChild(child)
+        container.addSubview(child.view)
+        if let constraintHandler = constraintHandler {
+            constraintHandler(child, container)
+        } else {
+            child.view.pin(inside: container)
+        }
         child.didMove(toParent: self)
     }
 }

@@ -31,6 +31,11 @@ public let router = Router(routes: [
         return CourseNavigationViewController(courseID: courseID)
     },
 
+    RouteHandler(.syllabus(courseID: ":courseID"), name: "syllabus") { _, params in
+        guard let courseID = params["courseID"] else { return nil }
+        return SyllabusViewController.create(courseID: courseID)
+    },
+
     RouteHandler(.course(":courseID", assignment: ":assignmentID"), name: "course_assignment") { url, params in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
         return AssignmentDetailsViewController.create(courseID: courseID, assignmentID: assignmentID, fragment: url.fragment)
