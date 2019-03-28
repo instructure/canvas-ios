@@ -79,7 +79,7 @@ extension Course {
         return formatter
     }()
 
-    public var widgetDisplayGrade: String {
+    public var displayGrade: String {
         guard let enrollments = self.enrollments, let enrollment = enrollments.filter({ $0.role == .student }).first else {
             return ""
         }
@@ -94,11 +94,11 @@ extension Course {
             grade = enrollment.computedFinalGrade
             score = enrollment.computedFinalScore
         } else if enrollment.multipleGradingPeriodsEnabled && enrollment.totalsForAllGradingPeriodsOption == false {
-            return "N/A"
+            return NSLocalizedString("N/A", bundle: .core, comment: "")
         }
 
         guard let scoreNotNil = score, let scoreString = Course.scoreFormatter.string(from: NSNumber(value: scoreNotNil)) else {
-                return grade ?? "N/A"
+                return grade ?? NSLocalizedString("N/A", bundle: .core, comment: "")
         }
 
         if let grade = grade {

@@ -152,7 +152,7 @@ extension GradesTodayWidgetViewController: UITableViewDataSource {
         }
 
         cell.courseNameLabel?.text = course.name
-        cell.gradeLabel?.text = course.widgetDisplayGrade
+        cell.gradeLabel?.text = course.displayGrade
         cell.dotView.layer.cornerRadius = cell.dotView.bounds.size.height / 2
         cell.dotView.backgroundColor = course.color
         return cell

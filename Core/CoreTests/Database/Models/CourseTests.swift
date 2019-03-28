@@ -87,21 +87,21 @@ class CourseTests: CoreTestCase {
 
     func testWidgetDisplayGradeNoEnrollments() {
         let c = Course.make()
-        XCTAssertEqual(c.widgetDisplayGrade, "")
+        XCTAssertEqual(c.displayGrade, "")
     }
 
     func testWidgetDisplayGradeNoStudentEnrollments() {
         let c = Course.make()
         let e = Enrollment.make(["roleRaw": "TeacherEnrollment"])
         c.enrollments = [e]
-        XCTAssertEqual(c.widgetDisplayGrade, "")
+        XCTAssertEqual(c.displayGrade, "")
     }
 
     func testWidgetDisplayGradeScore() {
         let c = Course.make()
         let e = Enrollment.make(["computedCurrentScoreRaw": 40.05])
         c.enrollments = [e]
-        XCTAssertEqual(c.widgetDisplayGrade, "40.05%")
+        XCTAssertEqual(c.displayGrade, "40.05%")
     }
 
     func testWidgetDisplayGradeScoreAndGrade() {
@@ -111,7 +111,7 @@ class CourseTests: CoreTestCase {
             "computedCurrentGrade": "F-",
         ])
         c.enrollments = [e]
-        XCTAssertEqual(c.widgetDisplayGrade, "40.05% - F-")
+        XCTAssertEqual(c.displayGrade, "40.05% - F-")
     }
 
     func testWidgetDisplayGradeNoScoreWithGrade() {
@@ -121,7 +121,7 @@ class CourseTests: CoreTestCase {
             "computedCurrentGrade": "B+",
         ])
         c.enrollments = [e]
-        XCTAssertEqual(c.widgetDisplayGrade, "B+")
+        XCTAssertEqual(c.displayGrade, "B+")
     }
 
     func testWidgetDisplayGradeNoScoreNoGrade() {
@@ -131,7 +131,7 @@ class CourseTests: CoreTestCase {
             "computedCurrentGrade": nil,
         ])
         c.enrollments = [e]
-        XCTAssertEqual(c.widgetDisplayGrade, "N/A")
+        XCTAssertEqual(c.displayGrade, "N/A")
     }
 
     func testWidgetDisplayGradeInCurrentMGP() {
@@ -143,7 +143,7 @@ class CourseTests: CoreTestCase {
             "currentPeriodComputedCurrentGrade": "A-",
         ])
         c.enrollments = [e]
-        XCTAssertEqual(c.widgetDisplayGrade, "90% - A-")
+        XCTAssertEqual(c.displayGrade, "90% - A-")
     }
 
     func testWidgetDisplayGradeNotInCurrentMGPWithTotals() {
@@ -156,7 +156,7 @@ class CourseTests: CoreTestCase {
             "computedFinalGrade": "B",
         ])
         c.enrollments = [e]
-        XCTAssertEqual(c.widgetDisplayGrade, "85% - B")
+        XCTAssertEqual(c.displayGrade, "85% - B")
     }
 
     func testWidgetDisplayGradeNotInCurrentMGPWithoutTotals() {
@@ -167,7 +167,7 @@ class CourseTests: CoreTestCase {
             "totalsForAllGradingPeriodsOption": false,
         ])
         c.enrollments = [e]
-        XCTAssertEqual(c.widgetDisplayGrade, "N/A")
+        XCTAssertEqual(c.displayGrade, "N/A")
     }
 
 }
