@@ -22,7 +22,9 @@ public struct GetModules: APIUseCase {
     public let courseID: String
 
     public var scope: Scope {
-        return .where(#keyPath(Module.courseID), equals: courseID, orderBy: #keyPath(Module.position))
+        let position = NSSortDescriptor(key: #keyPath(Module.position), ascending: true)
+        let predicate = NSPredicate(format: "%K == %@", #keyPath(Module.courseID), courseID)
+        return Scope(predicate: predicate, order: [position], sectionNameKeyPath: nil)
     }
 
     public var cacheKey: String? {

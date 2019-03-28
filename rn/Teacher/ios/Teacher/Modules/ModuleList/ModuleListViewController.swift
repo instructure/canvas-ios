@@ -20,6 +20,10 @@ import Core
 protocol ModuleListViewProtocol: ErrorViewController, ColoredNavViewProtocol {
     func reloadModules()
     func reloadCourse()
+    func showPending()
+    func hidePending()
+    func scrollToRow(at indexPath: IndexPath)
+    func reloadModuleInSection(_ section: Int)
 }
 
 class ModuleListViewController: UIViewController, ModuleListViewProtocol {
@@ -30,9 +34,9 @@ class ModuleListViewController: UIViewController, ModuleListViewProtocol {
     var presenter: ModuleListPresenter?
     var color: UIColor?
 
-    static func create(courseID: String) -> ModuleListViewController {
+    static func create(courseID: String, moduleID: String? = nil) -> ModuleListViewController {
         let view = loadFromStoryboard()
-        let presenter = ModuleListPresenter(env: .shared, view: view, courseID: courseID)
+        let presenter = ModuleListPresenter(env: .shared, view: view, courseID: courseID, moduleID: moduleID)
         view.presenter = presenter
         return view
     }
@@ -45,6 +49,8 @@ class ModuleListViewController: UIViewController, ModuleListViewProtocol {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = UIView()
+        tableView.sectionHeaderHeight = UITableView.automaticDimension
+        tableView.estimatedSectionHeaderHeight = 54
 
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
@@ -54,9 +60,6 @@ class ModuleListViewController: UIViewController, ModuleListViewProtocol {
     }
 
     func reloadModules() {
-        if presenter?.modules.pending == false {
-            tableView.refreshControl?.endRefreshing()
-        }
         tableView.reloadData()
     }
 
@@ -66,30 +69,79 @@ class ModuleListViewController: UIViewController, ModuleListViewProtocol {
 
     @objc
     func refresh() {
-        tableView.refreshControl?.beginRefreshing()
         presenter?.forceRefresh()
+    }
+
+    func showPending() {
+        tableView.refreshControl?.beginRefreshing()
+    }
+
+    func hidePending() {
+        tableView.refreshControl?.endRefreshing()
+    }
+
+    func scrollToRow(at indexPath: IndexPath) {
+        tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+    }
+
+    func reloadModuleInSection(_ section: Int) {
+        tableView.reloadSections([section], with: .automatic)
     }
 }
 
-extension ModuleListViewController: UITableViewDataSource {
+extension ModuleListViewController: UITableViewDataSource { 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return presenter?.modules.numberOfSections ?? 0
+        return presenter?.modules.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter?.modules.numberOfObjects(inSection: section) ?? 0
+        return presenter?.numberOfRows(inSection: section) ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeue(ModuleListCell.self, for: indexPath)
-        cell.module = presenter?.modules[indexPath]
-        return cell
+        let item = presenter?.modules[indexPath.section]?.items[indexPath.row]
+        switch item?.type {
+        case .subHeader?:
+            let cell: ModuleItemSubHeaderCell = tableView.dequeue(for: indexPath)
+            cell.label.text = item?.title
+            cell.isUserInteractionEnabled = false
+            cell.accessoryType = .none
+            return cell
+        default:
+            let cell: ModuleItemCell = tableView.dequeue(for: indexPath)
+            cell.item = item
+            cell.accessoryType = .disclosureIndicator
+            return cell
+        }
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let name = presenter?.modules[section]?.name else {
+            return nil
+        }
+        let header = ModuleSectionHeaderView()
+        header.title = name
+        header.onTap = {
+            self.presenter?.tappedSection(section)
+        }
+        let expanded = presenter?.isSectionExpanded(section) == true
+        header.collapsableIndicator.setCollapsed(!expanded, animated: true)
+        return header
     }
 }
 
 extension ModuleListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let module = presenter?.modules[indexPath] else { return }
-        router.route(to: .module(forCourse: module.courseID, moduleID: module.id), from: self)
+        tableView.deselectRow(at: indexPath, animated: true)
+        guard let item = presenter?.modules[indexPath.section]?.items[indexPath.row] else { return }
+        presenter?.showItem(item)
+    }
+}
+
+extension ModuleListViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.isEndReached {
+            presenter?.getNextPage()
+        }
     }
 }

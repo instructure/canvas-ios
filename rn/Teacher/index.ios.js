@@ -112,6 +112,7 @@ const loginHandler = async ({
   })
 
   Linking.addEventListener('url', (event) => {
+    console.log('event', event)
     const navigator = new Navigator('')
     navigator.show(event.url, {
       modal: true,

@@ -369,6 +369,8 @@
 		B1A6BC88218A94FA000515E3 /* APIAssignmentOverrideRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A6BC87218A94FA000515E3 /* APIAssignmentOverrideRequestableTests.swift */; };
 		B1A6BC8A218A977D000515E3 /* APIEnrollmentRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A6BC89218A977D000515E3 /* APIEnrollmentRequestableTests.swift */; };
 		B1A6BC8C218A9843000515E3 /* APILatePolicyRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A6BC8B218A9843000515E3 /* APILatePolicyRequestableTests.swift */; };
+		B1A890B8224ED64B00CEE000 /* UIScrollViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A890B7224ED64B00CEE000 /* UIScrollViewExtensions.swift */; };
+		B1A890BA224ED6A300CEE000 /* UIScrollViewExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A890B9224ED6A300CEE000 /* UIScrollViewExtensionsTests.swift */; };
 		B1A8CD3722375D6400E2242D /* FileUploadTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A8CD3622375D6400E2242D /* FileUploadTarget.swift */; };
 		B1A8CD3A223766FA00E2242D /* FileUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A8CD39223766FA00E2242D /* FileUploader.swift */; };
 		B1AE17AE21877C37002995E6 /* APIEnrollment+Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AE17AD21877C36002995E6 /* APIEnrollment+Requestable.swift */; };
@@ -397,13 +399,13 @@
 		B1EA5AF8212E6A6D00DABC5F /* OperationSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EA5AF7212E6A6D00DABC5F /* OperationSet.swift */; };
 		B1EF7AB721E7E41F00D653D7 /* StoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EF7AB621E7E41F00D653D7 /* StoreTests.swift */; };
 		B1EF7ABB21E902DD00D653D7 /* UseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EF7ABA21E902DD00D653D7 /* UseCase.swift */; };
-		B1F3780A22498AF1000B7CAA /* MDMManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F3780922498AF1000B7CAA /* MDMManagerTests.swift */; };
-		B1F3780C22499037000B7CAA /* MockMDMManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F3780B22499037000B7CAA /* MockMDMManager.swift */; };
 		B1F1328A224BAD43002C0555 /* ModuleItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F13289224BAD43002C0555 /* ModuleItemType.swift */; };
 		B1F1328C224BB383002C0555 /* APIModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F1328B224BB383002C0555 /* APIModuleTests.swift */; };
 		B1F1328E224BBBC7002C0555 /* ModuleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F1328D224BBBC7002C0555 /* ModuleItem.swift */; };
 		B1F13290224BBFC0002C0555 /* ModuleItemTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F1328F224BBFC0002C0555 /* ModuleItemTypeTests.swift */; };
 		B1F13294224BC656002C0555 /* ModuleItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F13293224BC656002C0555 /* ModuleItemTests.swift */; };
+		B1F3780A22498AF1000B7CAA /* MDMManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F3780922498AF1000B7CAA /* MDMManagerTests.swift */; };
+		B1F3780C22499037000B7CAA /* MockMDMManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F3780B22499037000B7CAA /* MockMDMManager.swift */; };
 		DFE1FF1D212F5E1A003F27AA /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE1FF1C212F5E1A003F27AA /* Keychain.swift */; };
 		DFE1FF20212F5E41003F27AA /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE1FF1F212F5E41003F27AA /* KeychainTests.swift */; };
 		DFE1FF28212F69B3003F27AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE1FF27212F69B3003F27AA /* AppDelegate.swift */; };
@@ -959,6 +961,8 @@
 		B1A6BC87218A94FA000515E3 /* APIAssignmentOverrideRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAssignmentOverrideRequestableTests.swift; sourceTree = "<group>"; };
 		B1A6BC89218A977D000515E3 /* APIEnrollmentRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnrollmentRequestableTests.swift; sourceTree = "<group>"; };
 		B1A6BC8B218A9843000515E3 /* APILatePolicyRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APILatePolicyRequestableTests.swift; sourceTree = "<group>"; };
+		B1A890B7224ED64B00CEE000 /* UIScrollViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScrollViewExtensions.swift; sourceTree = "<group>"; };
+		B1A890B9224ED6A300CEE000 /* UIScrollViewExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScrollViewExtensionsTests.swift; sourceTree = "<group>"; };
 		B1A8CD3622375D6400E2242D /* FileUploadTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadTarget.swift; sourceTree = "<group>"; };
 		B1A8CD39223766FA00E2242D /* FileUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploader.swift; sourceTree = "<group>"; };
 		B1AE17AD21877C36002995E6 /* APIEnrollment+Requestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIEnrollment+Requestable.swift"; sourceTree = "<group>"; };
@@ -988,13 +992,13 @@
 		B1EA5AFA212E6E5800DABC5F /* MockDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDatabase.swift; sourceTree = "<group>"; };
 		B1EF7AB621E7E41F00D653D7 /* StoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreTests.swift; sourceTree = "<group>"; };
 		B1EF7ABA21E902DD00D653D7 /* UseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCase.swift; sourceTree = "<group>"; };
-		B1F3780922498AF1000B7CAA /* MDMManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDMManagerTests.swift; sourceTree = "<group>"; };
-		B1F3780B22499037000B7CAA /* MockMDMManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMDMManager.swift; sourceTree = "<group>"; };
 		B1F13289224BAD43002C0555 /* ModuleItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemType.swift; sourceTree = "<group>"; };
 		B1F1328B224BB383002C0555 /* APIModuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModuleTests.swift; sourceTree = "<group>"; };
 		B1F1328D224BBBC7002C0555 /* ModuleItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItem.swift; sourceTree = "<group>"; };
 		B1F1328F224BBFC0002C0555 /* ModuleItemTypeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemTypeTests.swift; sourceTree = "<group>"; };
 		B1F13293224BC656002C0555 /* ModuleItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemTests.swift; sourceTree = "<group>"; };
+		B1F3780922498AF1000B7CAA /* MDMManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDMManagerTests.swift; sourceTree = "<group>"; };
+		B1F3780B22499037000B7CAA /* MockMDMManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMDMManager.swift; sourceTree = "<group>"; };
 		DFE1FF1C212F5E1A003F27AA /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		DFE1FF1F212F5E41003F27AA /* KeychainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTests.swift; sourceTree = "<group>"; };
 		DFE1FF25212F69B3003F27AA /* CoreTester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreTester.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1497,14 +1501,15 @@
 				7DA20E8E21680DBF00F5FD19 /* UIImageInstIconsExtensions.swift */,
 				7D4D5EB1213F2A200080AC14 /* UIImageViewExtensions.swift */,
 				7D8FDFB52187B62A0067557E /* UINavigationBarExtensions.swift */,
+				B1A890B7224ED64B00CEE000 /* UIScrollViewExtensions.swift */,
 				7D02159E21B88B19009A8E69 /* UITabBarExtensions.swift */,
+				B10D776F21C2E27200BCE822 /* UITableViewCellExtensions.swift */,
 				7DCF202C216D461B003AF358 /* UITableViewExtensions.swift */,
 				3B5425FB21B074500009D069 /* UIViewControllerExtensions.swift */,
 				7DD6948421951FD700BA4984 /* UIViewExtensions.swift */,
 				7D7110C92139A57A0085C2E5 /* URLComponentsExtensions.swift */,
 				3B5369E1219CDD3500D3F62E /* URLExtensions.swift */,
 				7D80AC57212DAE4C00C40ECE /* URLResponseExtensions.swift */,
-				B10D776F21C2E27200BCE822 /* UITableViewCellExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1530,7 +1535,6 @@
 				7D86285A224C05BB003A37DC /* APIMediaCommentRequestableTests.swift */,
 				B15CA274221DE8E50014FB02 /* APIModuleRequestableTests.swift */,
 				B1F1328B224BB383002C0555 /* APIModuleTests.swift */,
-				9FBE536A223C2B9F001EC40C /* APIPermissionsRequestableTests.swift */,
 				7D80AC2C212C801600C40ECE /* APIOAuthRequestableTests.swift */,
 				9FBE536A223C2B9F001EC40C /* APIPermissionsRequestableTests.swift */,
 				7DCF203F216D5EF1003AF358 /* APIQuiz+Requestable+Tests.swift */,
@@ -1567,6 +1571,7 @@
 				7D7110CB2139AB310085C2E5 /* URLComponentsExtensionsTests.swift */,
 				3B5369E3219D0FD000D3F62E /* URLExtensionsTests.swift */,
 				7D80AC5A212DB0B500C40ECE /* URLResponseExtensionsTests.swift */,
+				B1A890B9224ED6A300CEE000 /* UIScrollViewExtensionsTests.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2349,6 +2354,7 @@
 				7D8262F5212B300F00BD268D /* APIGroup+Requestable.swift in Sources */,
 				7D80AC29212C76E600C40ECE /* APIOAuthRequestable.swift in Sources */,
 				7D29D31C218B87050036437C /* DocViewerAnnotationProvider.swift in Sources */,
+				B1A890B8224ED64B00CEE000 /* UIScrollViewExtensions.swift in Sources */,
 				7D364F2421AE04B20028E3EA /* CoreWebViewController.swift in Sources */,
 				7DF4FFCE21711EB3007E5F81 /* Group.swift in Sources */,
 				7D8262FB212B3B3000BD268D /* APIEnrollment.swift in Sources */,
@@ -2578,6 +2584,7 @@
 				B19792FD21769E280000369C /* GroupTests.swift in Sources */,
 				7D37BE8621C81C9A0063FAAC /* UserAgentTests.swift in Sources */,
 				7DCF203E216D5C4C003AF358 /* LockStatusViewable.swift in Sources */,
+				B1A890BA224ED6A300CEE000 /* UIScrollViewExtensionsTests.swift in Sources */,
 				7D1758C4215A995200F88613 /* ListFormatterTests.swift in Sources */,
 				9FAE410321B6C88000FE7F58 /* APIExternalToolRequestableTests.swift in Sources */,
 				B1F13294224BC656002C0555 /* ModuleItemTests.swift in Sources */,

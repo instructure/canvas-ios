@@ -15,9 +15,7 @@
 //
 
 import Foundation
-import UIKit
-import Core
 
-class ModuleItemCell: UITableViewCell {
-    @IBOutlet weak var accessIconView: AccessIconView!
+class ModuleItemSubHeaderCell: UITableViewCell {
+    @IBOutlet weak var label: UILabel!
 }

@@ -18,15 +18,20 @@ import Foundation
 
 // https://canvas.instructure.com/doc/api/modules.html#Module
 public struct APIModule: Codable, Equatable {
-    let id: ID
-    let name: String
-    let position: Int
-    let published: Bool
-    let items: [APIModuleItem]?
+    public let id: ID
+    public let name: String
+    /// the position of this module in the course (1-based)
+    public let position: Int
+    public let published: Bool
+    public let items: [APIModuleItem]?
 }
 
 // https://canvas.instructure.com/doc/api/modules.html#ModuleItem
 public struct APIModuleItem: Codable, Equatable {
+    struct ContentDetails: Codable, Equatable {
+        let due_at: Date?
+    }
+
     let id: ID
     let module_id: ID
     /// The position of this item in the module (1-based)
@@ -35,11 +40,12 @@ public struct APIModuleItem: Codable, Equatable {
     /// 0-based indent level; module items may be indented to show a hierarchy
     let indent: Int
     let content: ModuleItemType
-    let html_url: URL
+    let html_url: URL?
     /// (Optional) link to the Canvas API object, if applicable
     let url: URL?
     /// Only present if the caller has permission to view unpublished items
     let published: Bool?
+    let content_details: ContentDetails // include[]=content_details
 
     public enum CodingKeys: String, CodingKey {
         case id
@@ -51,6 +57,7 @@ public struct APIModuleItem: Codable, Equatable {
         case url
         case published
         case content
+        case content_details
     }
 
     public init(from decoder: Decoder) throws {
@@ -60,10 +67,11 @@ public struct APIModuleItem: Codable, Equatable {
         position = try container.decode(Int.self, forKey: .position)
         title = try container.decode(String.self, forKey: .title)
         indent = try container.decode(Int.self, forKey: .indent)
-        html_url = try container.decode(URL.self, forKey: .html_url)
+        html_url = try container.decodeIfPresent(URL.self, forKey: .html_url)
         url = try container.decodeIfPresent(URL.self, forKey: .url)
         published = try container.decodeIfPresent(Bool.self, forKey: .published)
         content = try ModuleItemType(from: decoder)
+        content_details = try container.decode(ContentDetails.self, forKey: .content_details)
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -76,6 +84,7 @@ public struct APIModuleItem: Codable, Equatable {
         try container.encode(html_url, forKey: .html_url)
         try container.encode(url, forKey: .url)
         try container.encode(published, forKey: .published)
+        try container.encode(content_details, forKey: .content_details)
         try content.encode(to: encoder)
     }
 }

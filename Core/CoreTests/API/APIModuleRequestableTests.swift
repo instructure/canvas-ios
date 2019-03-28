@@ -26,6 +26,7 @@ class APIModuleRequestableTests: XCTestCase {
     func testGetModulesRequestQuery() {
         XCTAssertEqual(GetModulesRequest(courseID: "1").queryItems, [
             URLQueryItem(name: "include[]", value: "items"),
+            URLQueryItem(name: "include[]", value: "content_details"),
         ])
     }
 }

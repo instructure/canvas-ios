@@ -35,7 +35,10 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
     public let eventHandler: EventHandler
 
     public var count: Int {
-        return numberOfObjects(inSection: 0)
+        guard let sections = frc.sections, sections.count > 0 else {
+            return 0
+        }
+        return sections[0].numberOfObjects
     }
 
     public var numberOfSections: Int {
@@ -48,6 +51,10 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
 
     public var last: U.Model? {
         return frc.fetchedObjects?.last
+    }
+
+    public var sections: [NSFetchedResultsSectionInfo]? {
+        return frc.sections
     }
 
     public var isEmpty: Bool {
@@ -79,7 +86,11 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
         super.init()
 
         frc.delegate = self
-        try? frc.performFetch()
+        do {
+            try frc.performFetch()
+        } catch {
+            assertionFailure("Failed to performFetch \(error)")
+        }
     }
 
     private func notify() {
@@ -100,9 +111,9 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
         return frc.sections?[section].numberOfObjects ?? 0
     }
 
-    public func refresh(force: Bool = false) {
+    public func refresh(force: Bool = false, callback: ((U.Response?) -> Void)? = nil) {
         pending = true
-        useCase.fetch(environment: env, force: force) { [weak self] _, urlResponse, error in
+        useCase.fetch(environment: env, force: force) { [weak self] response, urlResponse, error in
             self?.pending = false
             if let error = error {
                 self?.error = error
@@ -110,20 +121,46 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
             if let urlResponse = urlResponse {
                 self?.next = self?.useCase.getNext(from: urlResponse)
             }
+            DispatchQueue.main.async {
+                callback?(response)
+            }
         }
     }
 
-    public func getNextPage() {
+    public func exhaust(while condition: @escaping (U.Response) -> Bool) {
+        refresh(force: true) { [weak self] response in
+            if let response = response, condition(response) {
+                self?.exhaustNext(while: condition)
+            }
+        }
+    }
+
+    private func exhaustNext(while condition: @escaping (U.Response) -> Bool) {
+        getNextPage { [weak self] response in
+            if let response = response, condition(response) {
+                self?.exhaustNext(while: condition)
+            }
+        }
+    }
+
+    public func getNextPage(_ callback: ((U.Response?) -> Void)? = nil) {
         guard let next = next else {
+            DispatchQueue.main.async {
+                callback?(nil)
+            }
             return
         }
         let useCase = GetNextUseCase(parent: self.useCase, request: next)
-        useCase.fetch(environment: env, force: true) { [weak self] _, urlResponse, error in
+        useCase.fetch(environment: env, force: true) { [weak self] response, urlResponse, error in
             if let error = error {
                 self?.error = error
             }
+            self?.next = nil
             if let urlResponse = urlResponse {
                 self?.next = self?.useCase.getNext(from: urlResponse)
+            }
+            DispatchQueue.main.async {
+                callback?(response)
             }
         }
     }

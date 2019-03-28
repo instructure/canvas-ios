@@ -35,16 +35,21 @@ open class AccessIconView: UIView {
     public var state: State? {
         didSet {
             switch state {
-            case .some(.published):
+            case .published?:
                 statusIconView.image = .icon(.publish)
                 statusIconView.tintColor = UIColor.named(.backgroundSuccess).ensureContrast(against: .white)
-            case .some(.unpublished):
+            case .unpublished?:
                 statusIconView.image = .icon(.unpublish)
                 statusIconView.tintColor = UIColor.named(.ash)
-            case .none:
+            case nil:
                 statusIconView.isHidden = true
             }
         }
+    }
+
+    public var published: Bool {
+        get { return state == .published }
+        set { state = newValue ? .published : .unpublished }
     }
 
     open override func awakeFromNib() {

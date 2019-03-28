@@ -15,15 +15,7 @@
 //
 
 import Foundation
-import UIKit
 import Core
 
-class ModuleListCell: UITableViewCell {
-    @IBOutlet weak var nameLabel: UILabel!
-
-    var module: Module? {
-        didSet {
-            nameLabel.text = module?.name
-        }
-    }
-}
+@IBDesignable
+class DividerView: Core.DividerView {}

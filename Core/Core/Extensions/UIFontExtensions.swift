@@ -24,6 +24,7 @@ public extension UIFont {
         case regular14, regular20, regular30
         case medium12
         case semibold14, semibold16
+        case bold24
     }
 
     /// Get a named font style, that is dynamically scaled.
@@ -74,6 +75,9 @@ public extension UIFont {
             return UIFontMetrics(forTextStyle: .callout).scaledFont(for: .systemFont(ofSize: 14, weight: .semibold))
         case .semibold16, .button:
             return UIFontMetrics(forTextStyle: .callout).scaledFont(for: .systemFont(ofSize: 16, weight: .semibold))
+
+        case .bold24:
+            return UIFontMetrics(forTextStyle: .headline).scaledFont(for: .systemFont(ofSize: 24, weight: .bold))
         }
     }
 }

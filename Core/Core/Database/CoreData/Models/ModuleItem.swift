@@ -22,15 +22,18 @@ private let decoder = JSONDecoder()
 
 public class ModuleItem: NSManagedObject {
     @NSManaged public var id: String
-    @NSManaged public var moduleID: String
     @NSManaged public var courseID: String
+    @NSManaged public var moduleID: String
     @NSManaged public var position: Int
     @NSManaged public var title: String
     @NSManaged public var indent: Int
-    @NSManaged public var htmlURL: URL
+    @NSManaged public var htmlURL: URL?
     @NSManaged public var url: URL?
     @NSManaged public var published: Bool
     @NSManaged public var typeRaw: Data?
+    @NSManaged public var module: Module?
+    @NSManaged public var dueAt: Date?
+
     public var type: ModuleItemType? {
         get {
             if let data = typeRaw {
@@ -55,6 +58,7 @@ public class ModuleItem: NSManagedObject {
         model.published = item.published ?? false
         model.type = item.content
         model.courseID = courseID
+        model.dueAt = item.content_details.due_at
         return model
     }
 }

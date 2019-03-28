@@ -15,21 +15,23 @@
 //
 
 import Foundation
+import XCTest
 
-// https://canvas.instructure.com/doc/api/modules.html#method.context_modules_api.index
-public struct GetModulesRequest: APIRequestable {
-    public typealias Response = [APIModule]
+class UIScrollViewExtensionsTests: XCTestCase {
+    func testIsEndReached() {
+        let scrollView = UIScrollView()
+        scrollView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+        scrollView.contentSize = CGSize(width: 100, height: 300)
+        scrollView.contentOffset.y = 0
+        XCTAssertFalse(scrollView.isEndReached)
 
-    public let courseID: String
+        scrollView.contentOffset.y = 50
+        XCTAssertFalse(scrollView.isEndReached)
 
-    public var path: String {
-        let context = ContextModel(.course, id: courseID)
-        return "\(context.pathComponent)/modules"
-    }
+        scrollView.contentOffset.y = 100
+        XCTAssertFalse(scrollView.isEndReached)
 
-    public var query: [APIQueryItem] {
-        return [
-            .include([ "items", "content_details" ]),
-        ]
+        scrollView.contentOffset.y = 200
+        XCTAssertTrue(scrollView.isEndReached)
     }
 }
