@@ -33,7 +33,7 @@ class SubmissionCommentFileView: UIControl {
 
     func update(file: File) {
         let id = file.id ?? ""
-        accessibilityIdentifier = "SubmissionCommentsElement.fileView.\(id)"
+        accessibilityIdentifier = "SubmissionComments.fileView.\(id)"
         accessibilityLabel = String.localizedStringWithFormat(
             NSLocalizedString("View file %@ %@", bundle: .student, comment: ""),
             file.displayName ?? "",
@@ -45,7 +45,7 @@ class SubmissionCommentFileView: UIControl {
     }
 
     func update(submission: Submission) {
-        accessibilityIdentifier = "SubmissionCommentsElement.attemptView.\(submission.attempt)"
+        accessibilityIdentifier = "SubmissionComments.attemptView.\(submission.attempt)"
         accessibilityLabel = String.localizedStringWithFormat(
             NSLocalizedString("View submission attempt %d", bundle: .student, comment: ""),
             submission.attempt

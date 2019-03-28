@@ -89,6 +89,13 @@ class StudentTest: XCTestCase {
         }
     }
 
+    func allowAccessToMicrophone() {
+        let alert = app!.alerts["“Student” Would Like to Access the Microphone"]
+        if alert.exists {
+            alert.buttons["OK"].tap()
+        }
+    }
+
     func mockData<R: APIRequestable>(
         _ requestable: R,
         value: R.Response? = nil,
@@ -101,6 +108,24 @@ class StudentTest: XCTestCase {
         XCTAssertNoThrow(try host.mockData(MockURLSession.mockData(
             requestable,
             value: value,
+            response: response,
+            error: error,
+            noCallback: noCallback
+        )), file: file, line: line)
+    }
+
+    func mockEncodedData<R: APIRequestable>(
+        _ requestable: R,
+        data: Data? = nil,
+        response: HTTPURLResponse? = nil,
+        error: String? = nil,
+        noCallback: Bool = false,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) {
+        XCTAssertNoThrow(try host.mockData(MockURLSession.mockEncodedData(
+            requestable,
+            data: data,
             response: response,
             error: error,
             noCallback: noCallback

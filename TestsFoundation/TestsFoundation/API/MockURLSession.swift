@@ -33,6 +33,18 @@ public class MockURLSession {
         return try mockData(request, data: data, response: response, error: error, noCallback: noCallback)
     }
 
+    public static func mockEncodedData<R: APIRequestable>(
+        _ requestable: R,
+        data: Data? = nil,
+        response: HTTPURLResponse? = nil,
+        error: String? = nil,
+        noCallback: Bool = false
+    ) throws -> Data {
+        let api = URLSessionAPI()
+        let request = try requestable.urlRequest(relativeTo: api.baseURL, accessToken: api.accessToken, actAsUserID: api.actAsUserID)
+        return try mockData(request, data: data, response: response, error: error, noCallback: noCallback)
+    }
+
     public static func mockData(
         _ request: URLRequest,
         data: Data? = nil,

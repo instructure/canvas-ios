@@ -21,7 +21,7 @@ public extension UIFont {
         case body, bodyMedium, bodySmall, bodySmallItalic, button, buttonSmall, caption, cardTitle, cardSubtitle, dotSeparator, heading, label
         case rowTitle, rowSubtitle, title, title2, title3, tabBarIconTitle
 
-        case regular14, regular20
+        case regular14, regular20, regular30
         case medium12
         case semibold14, semibold16
     }
@@ -64,6 +64,8 @@ public extension UIFont {
             return UIFontMetrics(forTextStyle: .body).scaledFont(for: .systemFont(ofSize: 14, weight: .regular))
         case .regular20:
             return UIFontMetrics(forTextStyle: .title3).scaledFont(for: .systemFont(ofSize: 20, weight: .regular))
+        case .regular30:
+            return UIFontMetrics(forTextStyle: .title1).scaledFont(for: .systemFont(ofSize: 30, weight: .regular))
 
         case .medium12:
             return UIFontMetrics(forTextStyle: .caption1).scaledFont(for: .systemFont(ofSize: 12, weight: .medium))

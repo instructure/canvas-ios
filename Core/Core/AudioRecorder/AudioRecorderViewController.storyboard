@@ -20,6 +20,7 @@
                         <subviews>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7t0-2n-BON" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="4" width="40" height="40"/>
+                                <accessibility key="accessibilityConfiguration" identifier="AudioRecorder.clearButton"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="LPr-Tk-JN4"/>
                                     <constraint firstAttribute="width" constant="40" id="aCd-e9-kBA"/>
@@ -35,6 +36,7 @@
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7hp-Ut-gdC" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
                                 <rect key="frame" x="40" y="12" width="295" height="21"/>
+                                <accessibility key="accessibilityConfiguration" identifier="AudioRecorder.timeLabel"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -45,6 +47,7 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P04-42-aRA" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
                                 <rect key="frame" x="335" y="4" width="40" height="40"/>
+                                <accessibility key="accessibilityConfiguration" identifier="AudioRecorder.cancelButton"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="P9T-eT-hQJ"/>
                                     <constraint firstAttribute="height" constant="40" id="xK5-mz-Ohg"/>
@@ -65,7 +68,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dva-oH-EXJ" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
                                         <rect key="frame" x="8" y="8" width="64" height="64"/>
                                         <color key="backgroundColor" red="0.93333333333333335" green="0.023529411764705882" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <accessibility key="accessibilityConfiguration" identifier="AudioRecorderElement.recordButton"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="AudioRecorder.recordButton"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="64" id="L1H-te-9Be"/>
                                             <constraint firstAttribute="height" constant="64" id="NSv-6z-9Jw"/>
@@ -82,7 +85,7 @@
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="05Z-o3-ZC0" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
                                         <rect key="frame" x="24" y="24" width="32" height="32"/>
-                                        <accessibility key="accessibilityConfiguration" identifier="AudioRecorderElement.stopButton"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="AudioRecorder.stopButton"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="8Up-6a-nNh"/>
                                             <constraint firstAttribute="width" constant="32" id="wf9-u5-yB3"/>
@@ -115,6 +118,7 @@
                             </view>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HYf-Ke-XMw" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
                                 <rect key="frame" x="131.5" y="99" width="112" height="42"/>
+                                <accessibility key="accessibilityConfiguration" identifier="AudioRecorder.sendButton"/>
                                 <inset key="contentEdgeInsets" minX="38" minY="12" maxX="38" maxY="12"/>
                                 <state key="normal" title="Send"/>
                                 <userDefinedRuntimeAttributes>

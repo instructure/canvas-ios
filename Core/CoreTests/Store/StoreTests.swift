@@ -14,6 +14,7 @@
 // limitations under the License.
 //
 
+import CoreData
 import Foundation
 import XCTest
 @testable import Core
@@ -318,5 +319,35 @@ class StoreTests: CoreTestCase {
         let store = Store(env: environment, useCase: useCase) { }
 
         XCTAssertEqual(store.last, two)
+    }
+
+    func testChanges() {
+        let use = TestUseCase(courses: nil, requestError: nil, writeError: nil, urlResponse: nil)
+        let store = Store(env: environment, useCase: use) { }
+        let frc: NSFetchedResultsController<Course> = environment.database.fetchedResultsController(
+            predicate: use.scope.predicate,
+            sortDescriptors: use.scope.order,
+            sectionNameKeyPath: use.scope.sectionNameKeyPath
+        )
+        try? frc.performFetch()
+        let frc2 = frc as! NSFetchedResultsController<NSFetchRequestResult>
+        store.changes = [.insertSection(0)]
+        store.controllerWillChangeContent(frc2)
+        XCTAssertEqual(store.changes, [])
+        store.controller(frc2, didChange: frc.sections![0], atSectionIndex: 0, for: .insert)
+        store.controller(frc2, didChange: frc.sections![0], atSectionIndex: 0, for: .delete)
+        store.controller(frc2, didChange: [], at: nil, for: .insert, newIndexPath: IndexPath(row: 1, section: 2))
+        store.controller(frc2, didChange: [], at: IndexPath(row: 2, section: 3), for: .update, newIndexPath: nil)
+        store.controller(frc2, didChange: [], at: IndexPath(row: 3, section: 4), for: .delete, newIndexPath: nil)
+        store.controller(frc2, didChange: [], at: IndexPath(row: 4, section: 5), for: .move, newIndexPath: IndexPath(row: 5, section: 6))
+        XCTAssertEqual(store.changes, [
+            .insertSection(0),
+            .deleteSection(0),
+            .insertRow(IndexPath(row: 1, section: 2)),
+            .updateRow(IndexPath(row: 2, section: 3)),
+            .deleteRow(IndexPath(row: 3, section: 4)),
+            .deleteRow(IndexPath(row: 4, section: 5)),
+            .insertRow(IndexPath(row: 5, section: 6)),
+        ])
     }
 }
