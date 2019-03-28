@@ -238,6 +238,9 @@
 		B115424121BB1E13006D1BA3 /* CKIPermissions.h in Headers */ = {isa = PBXBuildFile; fileRef = B115423F21BB1E12006D1BA3 /* CKIPermissions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B115424221BB1E13006D1BA3 /* CKIPermissions.m in Sources */ = {isa = PBXBuildFile; fileRef = B115424021BB1E12006D1BA3 /* CKIPermissions.m */; };
 		B14E029B21AC900A00328622 /* Pods_defaults_CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73FDCB1E035EF6A93E758F42 /* Pods_defaults_CanvasKit.framework */; };
+		B1F3781E224AACD9000B7CAA /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F3781D224AACD9000B7CAA /* Core.framework */; };
+		B1F37821224AAD00000B7CAA /* PSPDFKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F3781F224AAD00000B7CAA /* PSPDFKitUI.framework */; };
+		B1F37822224AAD00000B7CAA /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F37820224AAD00000B7CAA /* PSPDFKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -529,6 +532,9 @@
 		9FE0B5321FBB7710003826AA /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B115423F21BB1E12006D1BA3 /* CKIPermissions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CKIPermissions.h; sourceTree = "<group>"; };
 		B115424021BB1E12006D1BA3 /* CKIPermissions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CKIPermissions.m; sourceTree = "<group>"; };
+		B1F3781D224AACD9000B7CAA /* Core.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1F3781F224AAD00000B7CAA /* PSPDFKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKitUI.framework; path = ../../Carthage/Build/iOS/PSPDFKitUI.framework; sourceTree = "<group>"; };
+		B1F37820224AAD00000B7CAA /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../../Carthage/Build/iOS/PSPDFKit.framework; sourceTree = "<group>"; };
 		DFC0045B1D1838536E5DC07E /* Pods-defaults-CanvasKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasKit.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-CanvasKit/Pods-defaults-CanvasKit.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -538,6 +544,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B14E029B21AC900A00328622 /* Pods_defaults_CanvasKit.framework in Frameworks */,
+				B1F3781E224AACD9000B7CAA /* Core.framework in Frameworks */,
+				B1F37821224AAD00000B7CAA /* PSPDFKitUI.framework in Frameworks */,
+				B1F37822224AAD00000B7CAA /* PSPDFKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -886,6 +895,9 @@
 		499D1BAA1C8645F4005A86D2 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				B1F37820224AAD00000B7CAA /* PSPDFKit.framework */,
+				B1F3781F224AAD00000B7CAA /* PSPDFKitUI.framework */,
+				B1F3781D224AACD9000B7CAA /* Core.framework */,
 			);
 			name = Dependencies;
 			sourceTree = "<group>";
@@ -1065,6 +1077,7 @@
 				TargetAttributes = {
 					499D18861C8643E6005A86D2 = {
 						CreatedOnToolsVersion = 7.2.1;
+						LastSwiftMigration = 1010;
 						ProvisioningStyle = Manual;
 					};
 				};
@@ -1434,6 +1447,7 @@
 			baseConfigurationReference = 04B7BBDCB828F414AA45D2B6 /* Pods-defaults-CanvasKit.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
@@ -1452,6 +1466,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.CanvasKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -1461,6 +1477,7 @@
 			baseConfigurationReference = DFC0045B1D1838536E5DC07E /* Pods-defaults-CanvasKit.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
@@ -1479,6 +1496,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.CanvasKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;

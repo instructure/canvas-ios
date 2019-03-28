@@ -51,6 +51,10 @@ class LoginWebViewController: UIViewController, LoginWebViewProtocol {
     func loadRequest(_ request: URLRequest) {
         webView.load(request)
     }
+
+    func evaluateJavaScript(_ script: String) {
+        webView.evaluateJavaScript(script, completionHandler: nil)
+    }
 }
 
 extension LoginWebViewController: WKNavigationDelegate {
@@ -59,8 +63,12 @@ extension LoginWebViewController: WKNavigationDelegate {
             return decisionHandler(.allow)
         }
 
-        let action = presenter?.navigationActionPolicyForUrl(url: url) ?? .cancel
+        let action = presenter?.navigationActionPolicyForURL(url: url) ?? .cancel
         decisionHandler(action)
+    }
+
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        presenter?.webViewFinishedLoading()
     }
 }
 

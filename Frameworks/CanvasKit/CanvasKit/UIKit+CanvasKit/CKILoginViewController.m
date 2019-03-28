@@ -19,6 +19,7 @@
 @import ReactiveObjC;
 #import "CKIClient.h"
 #import "UIAlertController+Show.h"
+@import Core;
 
 @interface CKILoginViewController () <WKNavigationDelegate, NSURLSessionTaskDelegate, WKUIDelegate>
 @property (nonatomic, copy) NSURLRequest *request;
@@ -26,7 +27,9 @@
 @property (nonatomic, copy) void(^completionHandler)(NSURLSessionAuthChallengeDisposition, NSURLCredential *);
 @end
 
-@implementation CKILoginViewController
+@implementation CKILoginViewController {
+    BOOL submittedMDMLogin;
+}
 
 - (id)initWithRequest:(NSURLRequest *)request method:(CKIAuthenticationMethod)method
 {
@@ -209,6 +212,15 @@ static UIImage *_loadingImage = nil;
     decisionHandler(WKNavigationActionPolicyAllow);
 }
 
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
+{
+    MDMLogin *login = MDMManager.shared.login;
+    if (login && !submittedMDMLogin) {
+        submittedMDMLogin = YES;
+        [self submitLogin:login];
+    }
+}
+
 #pragma mark - WKUIDelegate
 
 - (WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures
@@ -254,6 +266,22 @@ static UIImage *_loadingImage = nil;
     }
     
     return UIInterfaceOrientationMaskAll;
+}
+
+#pragma mark - Managed App Config
+
+- (void)submitLogin:(MDMLogin *)login
+{
+    [self injectValue:login.username forInputNamed:@"pseudonym_session[unique_id]"];
+    [self injectValue:login.password forInputNamed:@"pseudonym_session[password]"];
+    NSString *submit = @"document.querySelector('#login_form').submit()";
+    [self.webView evaluateJavaScript:submit completionHandler:nil];
+}
+
+- (void)injectValue:(NSString *)value forInputNamed:(NSString *)name
+{
+    NSString *script = [NSString stringWithFormat:@"document.querySelector('input[name=\"%@\"]').value = \"%@\"", name, value];
+    [self.webView evaluateJavaScript:script completionHandler:nil];
 }
     
 @end

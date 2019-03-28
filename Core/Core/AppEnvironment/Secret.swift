@@ -32,6 +32,9 @@ public enum Secret {
     /// The value used for testing that Secret is working properly.
     case testSecret
 
+    /// The host used by Apple App Store reviews
+    case appleDemoHost
+
     public var string: String? {
         guard let data = NSDataAsset(name: String(describing: self), bundle: .core)?.data else { return nil }
         let mixer = [UInt8]("\(String(describing: self))+\(Bundle.core.bundleIdentifier ?? "")".utf8)

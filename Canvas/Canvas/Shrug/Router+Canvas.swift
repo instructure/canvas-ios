@@ -407,7 +407,7 @@ extension TechDebt.Router {
             }
             return nil
         }
-        
+
         addContextRoute([.course], subPath: "users/:userID") { (contextID, parameters) -> UIViewController? in
             guard let userID = try? parameters.stringID("userID") else { return nil }
             let props = ["userID": userID, "courseID": contextID.id]
