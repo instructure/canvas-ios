@@ -60,6 +60,7 @@
 		B1E789B821B1B06F0087FE4A /* TestLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E789B721B1B06F0087FE4A /* TestLogger.swift */; };
 		B1E789BA21B1D0D30087FE4A /* LogEventFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E789B921B1D0D30087FE4A /* LogEventFixture.swift */; };
 		B1F13292224BC016002C0555 /* ModuleItemTypeFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F13291224BC016002C0555 /* ModuleItemTypeFixture.swift */; };
+		B1F13296224BFE03002C0555 /* ModuleItemFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F13295224BFE03002C0555 /* ModuleItemFixture.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -118,6 +119,7 @@
 		B1E789B721B1B06F0087FE4A /* TestLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestLogger.swift; sourceTree = "<group>"; };
 		B1E789B921B1D0D30087FE4A /* LogEventFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogEventFixture.swift; sourceTree = "<group>"; };
 		B1F13291224BC016002C0555 /* ModuleItemTypeFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemTypeFixture.swift; sourceTree = "<group>"; };
+		B1F13295224BFE03002C0555 /* ModuleItemFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemFixture.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,6 +242,7 @@
 				7D5C87222239A9EE00D99651 /* SubmissionCommentFixture.swift */,
 				3B0CEB7D2150445100D07CFA /* Tab+Fixture.swift */,
 				3B032D17215037C900B570F7 /* TTL+Fixture.swift */,
+				B1F13295224BFE03002C0555 /* ModuleItemFixture.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 				3B0CEBA521504C2500D07CFA /* APICourseFixture.swift in Sources */,
 				7D2DC2FF219A0514008FE29A /* APIDocViewerFixture.swift in Sources */,
 				B19792EF21751FBC0000369C /* TestPersistence.swift in Sources */,
+				B1F13296224BFE03002C0555 /* ModuleItemFixture.swift in Sources */,
 				7D5C87232239A9EE00D99651 /* SubmissionCommentFixture.swift in Sources */,
 				9F1CEA5B22400A1D000BB98F /* APIPermissions.swift in Sources */,
 				B16F0371215BD5F10011E952 /* TestRouter.swift in Sources */,

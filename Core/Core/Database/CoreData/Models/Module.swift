@@ -38,6 +38,10 @@ public class Module: NSManagedObject {
         module.name = item.name
         module.position = item.position
         module.published = item.published
+        let items = item.items ?? []
+        for item in items {
+            ModuleItem.save(item, forCourse: courseID, in: context)
+        }
         return module
     }
 }
