@@ -30,22 +30,15 @@ public class ModuleItem: NSManagedObject {
     @NSManaged public var url: URL?
     @NSManaged public var published: Bool
     @NSManaged public var module: Module?
-    @NSManaged public var primitiveType: Data?
+    @NSManaged public var typeRaw: Data?
     public var type: ModuleItemType? {
         get {
-            willAccessValue(forKey: "type")
-            var type: ModuleItemType?
-            if let data = primitiveType {
-                type = try? decoder.decode(ModuleItemType.self, from: data)
+            if let data = typeRaw {
+                return try? decoder.decode(ModuleItemType.self, from: data)
             }
-            didAccessValue(forKey: "type")
-            return type
+            return nil
         }
-        set {
-            willChangeValue(forKey: "type")
-            primitiveType = try? encoder.encode(newValue)
-            didChangeValue(forKey: "type")
-        }
+        set { typeRaw = try? encoder.encode(newValue) }
     }
 
     public static func save(_ item: APIModuleItem, in context: PersistenceClient) -> ModuleItem {

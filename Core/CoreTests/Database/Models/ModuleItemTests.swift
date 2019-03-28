@@ -33,7 +33,7 @@ class ModuleItemTests: CoreTestCase {
     }
 
     func testType() {
-        ModuleItem.make(["id": "1", "type": ModuleItemType.assignment("1").data])
+        ModuleItem.make(["id": "1", "typeRaw": ModuleItemType.assignment("1").data])
         let item: ModuleItem = databaseClient.fetch().first!
         XCTAssertEqual(item.id, "1")
         XCTAssertEqual(item.type, .assignment("1"))

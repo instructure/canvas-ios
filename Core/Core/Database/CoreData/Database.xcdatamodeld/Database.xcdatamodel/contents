@@ -119,7 +119,7 @@
         <attribute name="position" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="published" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
-        <attribute name="type" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="typeRaw" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="URI" syncable="YES"/>
         <relationship name="module" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Module" inverseName="items" inverseEntity="Module" syncable="YES"/>
     </entity>
@@ -268,12 +268,12 @@
         <element name="LogEvent" positionX="-743.51953125" positionY="192.92578125" width="128" height="90"/>
         <element name="MediaComment" positionX="-369" positionY="-18" width="128" height="135"/>
         <element name="Module" positionX="-369" positionY="-18" width="128" height="135"/>
+        <element name="ModuleItem" positionX="-540" positionY="-27" width="128" height="195"/>
         <element name="Permissions" positionX="-369" positionY="-18" width="128" height="1080"/>
         <element name="Quiz" positionX="-26.7890625" positionY="226.0703125" width="128" height="195"/>
         <element name="Submission" positionX="-312.484375" positionY="260.38671875" width="128" height="360"/>
         <element name="SubmissionComment" positionX="-369" positionY="-18" width="128" height="225"/>
         <element name="Tab" positionX="108.015625" positionY="177.67578125" width="128" height="165"/>
         <element name="TTL" positionX="-173.30859375" positionY="-128.48046875" width="128" height="75"/>
-        <element name="ModuleItem" positionX="-540" positionY="-27" width="128" height="195"/>
     </elements>
 </model>

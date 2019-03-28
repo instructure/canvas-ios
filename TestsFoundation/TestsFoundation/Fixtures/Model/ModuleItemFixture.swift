@@ -27,7 +27,7 @@ extension ModuleItem: Fixture {
         "indent": 0,
         "htmlURL": URL(string: "https://canvas.example.edu/courses/222/modules/items/768")!,
         "url": URL(string: "https://canvas.example.edu/api/v1/courses/222/assignments/987")!,
-        "type": ModuleItemType.assignment("1").data,
+        "typeRaw": ModuleItemType.assignment("1").data,
     ]
 }
 
