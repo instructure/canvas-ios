@@ -23,13 +23,13 @@ private let decoder = JSONDecoder()
 public class ModuleItem: NSManagedObject {
     @NSManaged public var id: String
     @NSManaged public var moduleID: String
+    @NSManaged public var courseID: String
     @NSManaged public var position: Int
     @NSManaged public var title: String
     @NSManaged public var indent: Int
     @NSManaged public var htmlURL: URL
     @NSManaged public var url: URL?
     @NSManaged public var published: Bool
-    @NSManaged public var module: Module?
     @NSManaged public var typeRaw: Data?
     public var type: ModuleItemType? {
         get {
@@ -41,7 +41,8 @@ public class ModuleItem: NSManagedObject {
         set { typeRaw = try? encoder.encode(newValue) }
     }
 
-    public static func save(_ item: APIModuleItem, in context: PersistenceClient) -> ModuleItem {
+    @discardableResult
+    public static func save(_ item: APIModuleItem, forCourse courseID: String, in context: PersistenceClient) -> ModuleItem {
         let predicate = NSPredicate(format: "%K == %@", #keyPath(ModuleItem.id), item.id.value)
         let model: ModuleItem = context.fetch(predicate).first ?? context.insert()
         model.id = item.id.value
@@ -53,6 +54,7 @@ public class ModuleItem: NSManagedObject {
         model.url = item.url
         model.published = item.published ?? false
         model.type = item.content
+        model.courseID = courseID
         return model
     }
 }

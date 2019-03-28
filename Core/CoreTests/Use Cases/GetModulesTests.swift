@@ -52,6 +52,8 @@ class GetModulesTests: CoreTestCase {
         let module: Module = databaseClient.fetch().first!
         XCTAssertEqual(module.id, item.id.value)
         XCTAssertEqual(module.courseID, "1")
-        XCTAssertEqual(module.items?.count, 1)
+        let moduleItem: ModuleItem = databaseClient.fetch().first!
+        XCTAssertEqual(moduleItem.moduleID, module.id)
+        XCTAssertEqual(moduleItem.courseID, "1")
     }
 }

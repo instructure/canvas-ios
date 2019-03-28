@@ -24,6 +24,7 @@ extension ModuleItem: Fixture {
         "position": 1,
         "published": true,
         "moduleID": "1",
+        "courseID": "1",
         "indent": 0,
         "htmlURL": URL(string: "https://canvas.example.edu/courses/222/modules/items/768")!,
         "url": URL(string: "https://canvas.example.edu/api/v1/courses/222/assignments/987")!,

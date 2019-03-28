@@ -21,7 +21,7 @@ import XCTest
 class ModuleItemTests: CoreTestCase {
     func testSave() {
         let item = APIModuleItem.make()
-        let model = ModuleItem.save(item, in: databaseClient)
+        let model = ModuleItem.save(item, forCourse: "1", in: databaseClient)
         XCTAssertEqual(model.id, item.id.value)
         XCTAssertEqual(model.title, item.title)
         XCTAssertEqual(model.moduleID, item.module_id.value)
@@ -30,6 +30,7 @@ class ModuleItemTests: CoreTestCase {
         XCTAssertEqual(model.htmlURL, item.html_url)
         XCTAssertEqual(model.url, item.url)
         XCTAssertEqual(model.type, item.content)
+        XCTAssertEqual(model.courseID, "1")
     }
 
     func testType() {
@@ -41,12 +42,12 @@ class ModuleItemTests: CoreTestCase {
 
     func testSavePublished() {
         let published = APIModuleItem.make(["published": true])
-        XCTAssertTrue(ModuleItem.save(published, in: databaseClient).published)
+        XCTAssertTrue(ModuleItem.save(published, forCourse: "1", in: databaseClient).published)
 
         let notPublished = APIModuleItem.make(["published": false])
-        XCTAssertFalse(ModuleItem.save(notPublished, in: databaseClient).published)
+        XCTAssertFalse(ModuleItem.save(notPublished, forCourse: "1", in: databaseClient).published)
 
         let empty = APIModuleItem.make(["published": nil])
-        XCTAssertFalse(ModuleItem.save(empty, in: databaseClient).published)
+        XCTAssertFalse(ModuleItem.save(empty, forCourse: "1", in: databaseClient).published)
     }
 }

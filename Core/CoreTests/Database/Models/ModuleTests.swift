@@ -42,8 +42,10 @@ class ModuleTests: CoreTestCase {
         ])
         Module.save(module, forCourse: "1", in: databaseClient)
 
-        let result: [Module] = databaseClient.fetch()
-        XCTAssertEqual(result.count, 1)
-        XCTAssertEqual(result.first?.items?.count, 2)
+        let modules: [Module] = databaseClient.fetch()
+        XCTAssertEqual(modules.count, 1)
+
+        let moduleItems: [ModuleItem] = databaseClient.fetch()
+        XCTAssertEqual(moduleItems.count, 2)
     }
 }
