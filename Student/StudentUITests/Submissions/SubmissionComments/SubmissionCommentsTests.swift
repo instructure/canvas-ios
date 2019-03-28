@@ -65,7 +65,52 @@ class SubmissionCommentsTests: StudentTest {
         SubmissionDetailsElement.drawerFilesButton.tap()
         SubmissionDetailsElement.drawerCommentsButton.tap()
 
-        XCTAssertTrue(SubmissionCommentsElement.textCell(commentID: "1").isVisible)
-        XCTAssertTrue(SubmissionCommentsElement.textCell(commentID: "2").isVisible)
+        XCTAssertTrue(SubmissionComments.textCell(commentID: "1").isVisible)
+        XCTAssertTrue(SubmissionComments.textCell(commentID: "2").isVisible)
+    }
+
+    func testAudioRecording() {
+        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make())
+        mockData(GetMediaServiceRequest(), value: APIMediaService(domain: "canvas.instructure.com"))
+        mockData(PostMediaSessionRequest(), value: APIMediaSession(ks: "k"))
+        mockEncodedData(PostMediaUploadTokenRequest(body: .init(ks: "k")), data: "<id>t</id>".data(using: .utf8))
+        mockData(PostMediaUploadRequest(fileURL: URL(string: "data:text/plain,")!, type: .audio, ks: "k", token: "t"))
+        mockEncodedData(PostMediaIDRequest(ks: "k", token: "t", type: .audio), data: "<id>2</id>".data(using: .utf8))
+        mockData(PutSubmissionGradeRequest(
+            courseID: course.id,
+            assignmentID: assignment.id.value,
+            userID: "1",
+            body: nil
+        ), value: APISubmission.make([
+            "submission_comments": [ APISubmissionComment.fixture([
+                "id": "42",
+                "media_comment": [
+                    "url": "data:text/plain,",
+                    "media_id": "23",
+                    "media_type": "audio",
+                ],
+            ]), ],
+        ]))
+
+        show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
+        SubmissionDetailsElement.drawerFilesButton.tap()
+        SubmissionDetailsElement.drawerCommentsButton.tap()
+
+        SubmissionComments.addMediaButton.tap()
+        Alert.button(label: "Record Audio").tap()
+        allowAccessToMicrophone() // Need to manually grant access in simulator once.
+        AudioRecorder.recordButton.tap()
+        AudioRecorder.stopButton.tap()
+        AudioRecorder.clearButton.tap()
+        AudioRecorder.cancelButton.tap()
+        XCTAssertFalse(AudioRecorder.cancelButton.isVisible)
+
+        SubmissionComments.addMediaButton.tap()
+        Alert.button(label: "Record Audio").tap()
+        allowAccessToMicrophone()
+        AudioRecorder.recordButton.tap()
+        AudioRecorder.stopButton.tap()
+        AudioRecorder.sendButton.tap()
+        XCTAssertTrue(SubmissionComments.audioCell(commentID: "42").isVisible)
     }
 }

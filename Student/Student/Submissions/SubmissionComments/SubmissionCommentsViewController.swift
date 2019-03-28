@@ -17,7 +17,7 @@
 import UIKit
 import Core
 
-class SubmissionCommentsViewController: UIViewController {
+class SubmissionCommentsViewController: UIViewController, ErrorViewController {
     @IBOutlet weak var addCommentBorderView: UIView?
     @IBOutlet weak var addCommentButton: DynamicButton?
     @IBOutlet weak var addCommentPlaceholder: DynamicLabel?
@@ -165,7 +165,35 @@ extension SubmissionCommentsViewController: AudioRecorderDelegate {
 extension SubmissionCommentsViewController: SubmissionCommentsViewProtocol {
     func reload() {
         emptyLabel?.isHidden = presenter?.comments.count != 0
-        tableView?.reloadData()
+        guard let changes = presenter?.comments.changes else {
+            tableView?.reloadData()
+            return
+        }
+        tableView?.performBatchUpdates({
+            for change in changes {
+                switch change {
+                case .insertSection(let section):
+                    tableView?.insertSections([section], with: .automatic)
+                case .deleteSection(let section):
+                    tableView?.deleteSections([section], with: .automatic)
+                case .insertRow(let row):
+                    tableView?.insertRows(at: [
+                        IndexPath(row: row.row * 2, section: row.section),
+                        IndexPath(row: row.row * 2 + 1, section: row.section),
+                    ], with: .automatic)
+                case .updateRow(let row):
+                    tableView?.reloadRows(at: [
+                        IndexPath(row: row.row * 2, section: row.section),
+                        IndexPath(row: row.row * 2 + 1, section: row.section),
+                    ], with: .automatic)
+                case .deleteRow(let row):
+                    tableView?.deleteRows(at: [
+                        IndexPath(row: row.row * 2, section: row.section),
+                        IndexPath(row: row.row * 2 + 1, section: row.section),
+                    ], with: .automatic)
+                }
+            }
+        })
     }
 }
 

@@ -5,6 +5,7 @@
         <attribute name="courseID" attributeType="String" syncable="YES"/>
         <attribute name="details" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="dueAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="gradedIndividually" optional="YES" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="gradingTypeRaw" attributeType="String" syncable="YES"/>
         <attribute name="htmlURL" attributeType="URI" syncable="YES"/>
         <attribute name="id" attributeType="String" syncable="YES"/>
@@ -258,7 +259,7 @@
         <attribute name="lastRefresh" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="300"/>
+        <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="315"/>
         <element name="Color" positionX="-177.3046875" positionY="-36" width="128" height="75"/>
         <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="150"/>
         <element name="DiscussionEntry" positionX="-513.66796875" positionY="535.73828125" width="128" height="150"/>
@@ -267,8 +268,8 @@
         <element name="Group" positionX="-366.25" positionY="-174.85546875" width="128" height="135"/>
         <element name="LogEvent" positionX="-743.51953125" positionY="192.92578125" width="128" height="90"/>
         <element name="MediaComment" positionX="-369" positionY="-18" width="128" height="135"/>
-        <element name="Module" positionX="-369" positionY="-18" width="128" height="135"/>
         <element name="ModuleItem" positionX="-540" positionY="-27" width="128" height="195"/>
+        <element name="Module" positionX="-369" positionY="-18" width="128" height="120"/>
         <element name="Permissions" positionX="-369" positionY="-18" width="128" height="1080"/>
         <element name="Quiz" positionX="-26.7890625" positionY="226.0703125" width="128" height="195"/>
         <element name="Submission" positionX="-312.484375" positionY="260.38671875" width="128" height="360"/>

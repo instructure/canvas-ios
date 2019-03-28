@@ -26,6 +26,7 @@ class LoginWebPresenterTests: XCTestCase {
     var resultingError: Error?
     var resultingRequest: URLRequest?
     var navigationController: UINavigationController?
+    var scripts: [String] = []
 
     override func setUp() {
         super.setUp()
@@ -48,7 +49,7 @@ class LoginWebPresenterTests: XCTestCase {
         let url = URL(string: "about:blank")!
 
         //  when
-        let result = presenter.navigationActionPolicyForUrl(url: url)
+        let result = presenter.navigationActionPolicyForURL(url: url)
 
         //  then
         XCTAssertEqual(result, .cancel)
@@ -58,7 +59,7 @@ class LoginWebPresenterTests: XCTestCase {
         //  given
         let url = URL(string: "https://community.canvaslms.com")!
         //  when
-        let result = presenter.navigationActionPolicyForUrl(url: url)
+        let result = presenter.navigationActionPolicyForURL(url: url)
         //  then
         XCTAssertEqual(result, .cancel)
     }
@@ -87,7 +88,7 @@ class LoginWebPresenterTests: XCTestCase {
         MockURLProtocolSupport.responses.append(MockURLProtocolSupport.responseWithStatusCode(200, responseData: responseData))
 
         //  when
-        let result = presenter.navigationActionPolicyForUrl(url: url)
+        let result = presenter.navigationActionPolicyForURL(url: url)
         wait(for: [expectation], timeout: 0.1)
 
         //  then
@@ -100,7 +101,7 @@ class LoginWebPresenterTests: XCTestCase {
         let expectedCode = "OAUTH_CODE"
         let url = URL(string: "/canvas/login?bar=foo&code=\(expectedCode)")!
         //  when
-        let result = presenter.navigationActionPolicyForUrl(url: url)
+        let result = presenter.navigationActionPolicyForURL(url: url)
         //  then
         XCTAssertEqual(result, .allow)
     }
@@ -111,7 +112,7 @@ class LoginWebPresenterTests: XCTestCase {
         let url = URL(string: "/canvas/login?error=\(error)")!
 
         //  when
-        let result = presenter.navigationActionPolicyForUrl(url: url)
+        let result = presenter.navigationActionPolicyForURL(url: url)
         wait(for: [expectation], timeout: 0.1)
         //  then
         XCTAssertEqual(result, .cancel)
@@ -120,7 +121,7 @@ class LoginWebPresenterTests: XCTestCase {
 
     func testFetchClientIDAndFetchAuthToken() {
         presenter.mobileVerifyModel = nil
-        let expectedRequest = defuaultRequest()
+        let expectedRequest = defaultRequest()
         let expectedClientID = "1"
         let expectedToken = "token"
         let responseData: [String: Any] = [
@@ -157,7 +158,7 @@ class LoginWebPresenterTests: XCTestCase {
         resultingError = nil
 
         expectation = XCTestExpectation(description: "expectation")
-        let action =  presenter.navigationActionPolicyForUrl(url: URL(string: "/canvas/login?code=1234")!)
+        let action =  presenter.navigationActionPolicyForURL(url: URL(string: "/canvas/login?code=1234")!)
         wait(for: [expectation], timeout: 0.1)
 
         XCTAssertEqual(action, .cancel)
@@ -175,7 +176,24 @@ class LoginWebPresenterTests: XCTestCase {
         XCTAssertEqual(resultingRequest, expectedRequest)
     }
 
-    func defuaultRequest() -> URLRequest {
+    func testWebViewFinishedLoading() {
+        let expectation = XCTestExpectation(description: "demo enabled")
+        MDMManager.shared.onLoginConfigured { _ in
+            expectation.fulfill()
+        }
+        MDMManager.mockDefaults()
+        presenter.viewIsReady()
+        presenter.webViewFinishedLoading()
+        XCTAssertEqual(scripts.count, 3)
+        let username = scripts[0]
+        let password = scripts[1]
+        let submit = scripts[2]
+        XCTAssertEqual(username, "document.querySelector('input[name=\"pseudonym_session[unique_id]\"]').value = \"canvas\"")
+        XCTAssertEqual(password, "document.querySelector('input[name=\"pseudonym_session[password]\"]').value = \"password\"")
+        XCTAssertEqual(submit, "document.querySelector('#login_form').submit()")
+    }
+
+    func defaultRequest() -> URLRequest {
         let host = "https://localhost"
         let url = URL(string: host)!
         let mobileVerify = APIVerifyClient(authorized: true, base_url: url, client_id: "1", client_secret: "secret")
@@ -210,5 +228,9 @@ extension LoginWebPresenterTests: LoginWebViewProtocol, LoginDelegate {
     func showError(_ error: Error) {
         resultingError = error
         expectation.fulfill()
+    }
+
+    func evaluateJavaScript(_ script: String) {
+        scripts.append(script)
     }
 }

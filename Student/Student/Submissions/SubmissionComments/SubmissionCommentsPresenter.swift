@@ -19,6 +19,7 @@ import Core
 
 protocol SubmissionCommentsViewProtocol: class {
     func reload()
+    func showError(_ error: Error)
 }
 
 class SubmissionCommentsPresenter {
@@ -34,9 +35,11 @@ class SubmissionCommentsPresenter {
         assignmentID: assignmentID,
         userID: userID,
         submissionID: submissionID
-    )) {
-        self.update()
+    )) { [weak self] in
+        self?.update()
     }
+
+    lazy var assignment = env.subscribe(GetAssignment(courseID: context.id, assignmentID: assignmentID)) {}
 
     init(env: AppEnvironment = .shared, view: SubmissionCommentsViewProtocol, context: Context, assignmentID: String, userID: String, submissionID: String) {
         self.assignmentID = assignmentID
@@ -48,6 +51,7 @@ class SubmissionCommentsPresenter {
     }
 
     func viewIsReady() {
+        assignment.refresh()
         comments.refresh()
         view?.reload()
     }
@@ -61,6 +65,18 @@ class SubmissionCommentsPresenter {
     }
 
     func addMediaComment(type: MediaCommentType, url: URL) {
-        // TODO
+        UploadMediaComment(
+            courseID: context.id,
+            assignmentID: assignmentID,
+            userID: userID,
+            submissionID: submissionID,
+            isGroup: assignment.first?.gradedIndividually == false,
+            type: type,
+            url: url
+        ).fetch(environment: env) { [weak self] comment, error in
+            if error != nil || comment == nil {
+                self?.view?.showError(error ?? NSError.instructureError(NSLocalizedString("Could not save the comment", bundle: .student, comment: "")))
+            }
+        }
     }
 }

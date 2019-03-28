@@ -28,6 +28,7 @@
 #import "CKMDomainHelpViewController.h"
 #import "CKMDomainPickerViewController.h"
 #import "CKMLocationSchoolSuggester.h"
+@import Core;
 
 static BOOL PerformedStartupAnimation = NO;
 
@@ -103,6 +104,11 @@ static BOOL PerformedStartupAnimation = NO;
         self.customLoginButton.hidden = [self.preloadedAccountInfo[@"client_secret"] length] == 0;
         [self.customLoginButton setTitle:self.preloadedAccountInfo[@"base_url"] forState:UIControlStateNormal];
     }
+
+    [MDMManager.shared onLoginConfiguredWithCallback:^(MDMLogin * _Nonnull login) {
+        CKIAccountDomain *domain = [[CKIAccountDomain alloc] initWithDomain:login.host];
+        [self sendDomain:domain];
+    }];
 }
 
 - (void)viewDidAppear:(BOOL)animated

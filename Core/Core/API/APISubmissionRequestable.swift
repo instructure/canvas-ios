@@ -65,7 +65,24 @@ struct PutSubmissionGradeRequest: APIRequestable {
     typealias Response = APISubmission
     struct Body: Codable, Equatable {
         struct Comment: Codable, Equatable {
+            let group_comment: Bool
+            let media_comment_id: String?
+            let media_comment_type: MediaCommentType?
             let text_comment: String?
+
+            init(text: String, forGroup: Bool = false) {
+                group_comment = forGroup
+                media_comment_id = nil
+                media_comment_type = nil
+                text_comment = text
+            }
+
+            init(mediaID: String, type: MediaCommentType, forGroup: Bool = false) {
+                group_comment = forGroup
+                media_comment_id = mediaID
+                media_comment_type = type
+                text_comment = forGroup ? NSLocalizedString("This is a media comment", bundle: .core, comment: "") : nil
+            }
         }
         struct Submission: Codable, Equatable {
             let posted_grade: String?

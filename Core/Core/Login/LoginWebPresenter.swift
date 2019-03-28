@@ -32,6 +32,7 @@ struct LoginParams {
 
 protocol LoginWebViewProtocol: ErrorViewController {
     func loadRequest(_ request: URLRequest)
+    func evaluateJavaScript(_ script: String)
     func show(_ vc: UIViewController, sender: Any?)
 }
 
@@ -44,6 +45,7 @@ class LoginWebPresenter {
     var method = AuthenticationMethod.normalLogin
     var task: URLSessionTask?
     weak var view: LoginWebViewProtocol?
+    var submittedMDMLogin = false
 
     init(authenticationProvider: String?, host: String, loginDelegate: LoginDelegate?, method: AuthenticationMethod, view: LoginWebViewProtocol) {
         self.authenticationProvider = authenticationProvider
@@ -83,7 +85,7 @@ class LoginWebPresenter {
         }
     }
 
-    func navigationActionPolicyForUrl(url: URL) -> WKNavigationActionPolicy {
+    func navigationActionPolicyForURL(url: URL) -> WKNavigationActionPolicy {
         guard let components = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
             return .allow
         }
@@ -135,8 +137,24 @@ class LoginWebPresenter {
         return .allow
     }
 
+    func webViewFinishedLoading() {
+        if let login = MDMManager.shared.login, !submittedMDMLogin {
+            submittedMDMLogin = true
+            submitLogin(login)
+        }
+    }
+
     private func codeFromQueryItems(_ queryItems: [URLQueryItem]?) -> String? {
         guard queryItems?.first?.name == "code", let value = queryItems?.first?.value, !value.isEmpty else { return nil }
         return value
+    }
+
+    private func submitLogin(_ login: MDMLogin) {
+        let username = "document.querySelector('input[name=\"pseudonym_session[unique_id]\"]').value = \"\(login.username)\""
+        let password = "document.querySelector('input[name=\"pseudonym_session[password]\"]').value = \"\(login.password)\""
+        let submit = "document.querySelector('#login_form').submit()"
+        view?.evaluateJavaScript(username)
+        view?.evaluateJavaScript(password)
+        view?.evaluateJavaScript(submit)
     }
 }
