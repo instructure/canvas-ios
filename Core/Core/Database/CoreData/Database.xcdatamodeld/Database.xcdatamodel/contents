@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18D109" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18E226" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Assignment" representedClassName="Core.Assignment" syncable="YES">
         <attribute name="allowedExtensions" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="courseID" attributeType="String" syncable="YES"/>
@@ -47,6 +47,7 @@
         <attribute name="computedCurrentScoreRaw" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="computedFinalGrade" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="computedFinalScoreRaw" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="currentGradingPeriodID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="currentPeriodComputedCurrentGrade" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="currentPeriodComputedCurrentScoreRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="currentPeriodComputedFinalGrade" optional="YES" attributeType="String" syncable="YES"/>
@@ -55,6 +56,7 @@
         <attribute name="roleID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="roleRaw" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="stateRaw" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="totalsForAllGradingPeriodsOption" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="typeRaw" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="enrollments" inverseEntity="Course" syncable="YES"/>
@@ -258,7 +260,7 @@
         <element name="Color" positionX="-177.3046875" positionY="-36" width="128" height="75"/>
         <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="150"/>
         <element name="DiscussionEntry" positionX="-513.66796875" positionY="535.73828125" width="128" height="150"/>
-        <element name="Enrollment" positionX="-578.41796875" positionY="2.78125" width="128" height="285"/>
+        <element name="Enrollment" positionX="-578.41796875" positionY="2.78125" width="128" height="315"/>
         <element name="File" positionX="-162.1640625" positionY="69.79296875" width="128" height="495"/>
         <element name="Group" positionX="-366.25" positionY="-174.85546875" width="128" height="135"/>
         <element name="LogEvent" positionX="-743.51953125" positionY="192.92578125" width="128" height="90"/>

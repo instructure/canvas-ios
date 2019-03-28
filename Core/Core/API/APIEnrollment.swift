@@ -56,7 +56,7 @@ struct APIEnrollment: Codable, Equatable {
     // let unposted_final_score: String?
     // let has_grading_periods: Bool?
     let multiple_grading_periods_enabled: Bool?
-    // let totals_for_all_grading_periods_option: Bool?
+    let totals_for_all_grading_periods_option: Bool?
     // let current_grading_period_title: String?
     let current_grading_period_id: String?
     let current_period_computed_current_score: Double?

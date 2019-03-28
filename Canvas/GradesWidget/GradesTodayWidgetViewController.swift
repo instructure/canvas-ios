@@ -128,16 +128,6 @@ class GradesTodayWidgetViewController: UIViewController {
 }
 
 extension GradesTodayWidgetViewController: UITableViewDataSource {
-    static let scoreFormatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .percent
-        formatter.decimalSeparator = "."
-        formatter.multiplier = 1
-        formatter.maximumFractionDigits = 3
-        formatter.roundingMode = .down
-        return formatter
-    }()
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if error != nil {
             return 1
@@ -162,9 +152,9 @@ extension GradesTodayWidgetViewController: UITableViewDataSource {
         }
 
         cell.courseNameLabel?.text = course.name
-        cell.gradeLabel?.text = displayGrade(for: course)
+        cell.gradeLabel?.text = course.widgetDisplayGrade
         cell.dotView.layer.cornerRadius = cell.dotView.bounds.size.height / 2
-        cell.dotView.backgroundColor = colorForCourse(course: course) ?? .gray
+        cell.dotView.backgroundColor = course.color
         return cell
     }
 
@@ -178,45 +168,16 @@ extension GradesTodayWidgetViewController: UITableViewDataSource {
         cell.textLabel!.numberOfLines = 0
         return cell
     }
-
-    func colorForCourse(course: Core.Course) -> UIColor? {
-        guard let color = presenter.colors.filter({ $0.canvasContextID == course.canvasContextID }).first else {
-            return nil
-        }
-        return color.color
-    }
-
-    func displayGrade(for course: Core.Course) -> String {
-        guard let enrollments = course.enrollments, let enrollment = enrollments.filter({ $0.role == .student }).first else {
-            return ""
-        }
-        
-        let grade = enrollment.multipleGradingPeriodsEnabled
-            ? enrollment.currentPeriodComputedCurrentGrade
-            : enrollment.computedCurrentGrade
-
-        guard let score = enrollment.multipleGradingPeriodsEnabled
-            ? enrollment.currentPeriodComputedCurrentScore
-            : enrollment.computedCurrentScore, let scoreString = GradesTodayWidgetViewController.scoreFormatter.string(from: NSNumber(value: score)) else {
-            return grade ?? "N/A"
-        }
-
-        if let grade = grade {
-            return "\(scoreString) - \(grade)"
-        }
-
-        return scoreString
-    }
 }
 
 extension GradesTodayWidgetViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        guard let course = presenter.courses[indexPath.row], let host = AppEnvironment.shared.currentSession?.baseURL else {
+        guard let course = presenter.courses[indexPath.row], let host = AppEnvironment.shared.currentSession?.baseURL.host else {
             extensionContext?.open(URL(string: "canvas-courses://")!, completionHandler: nil)
             return
         }
-        extensionContext?.open(URL(string: "canvas-courses://\(host)/courses/\(course.id)")!, completionHandler: nil)
+        extensionContext?.open(URL(string: "canvas-courses://\(host)/courses/\(course.id)/grades")!, completionHandler: nil)
     }
 }
 

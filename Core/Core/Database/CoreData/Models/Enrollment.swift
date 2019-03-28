@@ -24,6 +24,8 @@ final public class Enrollment: NSManagedObject {
     @NSManaged public var stateRaw: String?
     @NSManaged public var userID: String?
     @NSManaged public var multipleGradingPeriodsEnabled: Bool
+    @NSManaged public var currentGradingPeriodID: String?
+    @NSManaged public var totalsForAllGradingPeriodsOption: Bool
     @NSManaged public var course: Course?
 
     @NSManaged public var computedCurrentScoreRaw: NSNumber?
@@ -78,6 +80,8 @@ extension Enrollment {
         state = item.enrollment_state
         userID = item.user_id
         multipleGradingPeriodsEnabled = item.multiple_grading_periods_enabled ?? false
+        currentGradingPeriodID = item.current_grading_period_id
+        totalsForAllGradingPeriodsOption = item.totals_for_all_grading_periods_option ?? false
 
         computedCurrentScore = item.computed_current_score
         computedCurrentGrade = item.computed_current_grade
