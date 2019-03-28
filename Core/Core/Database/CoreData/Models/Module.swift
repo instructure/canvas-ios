@@ -23,6 +23,7 @@ public class Module: NSManagedObject {
     @NSManaged public var position: Int
     @NSManaged public var courseID: String
     @NSManaged public var published: Bool
+    @NSManaged public var items: Set<ModuleItem>?
 
     @discardableResult
     public static func save(_ items: [APIModule], forCourse courseID: String, in context: PersistenceClient) -> [Module] {
@@ -38,6 +39,7 @@ public class Module: NSManagedObject {
         module.name = item.name
         module.position = item.position
         module.published = item.published
+        module.items = Set(item.items?.map { ModuleItem.save($0, in: context) } ?? [])
         return module
     }
 }
