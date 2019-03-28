@@ -5,6 +5,7 @@
         <attribute name="courseID" attributeType="String" syncable="YES"/>
         <attribute name="details" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="dueAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="gradedIndividually" optional="YES" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="gradingTypeRaw" attributeType="String" syncable="YES"/>
         <attribute name="htmlURL" attributeType="URI" syncable="YES"/>
         <attribute name="id" attributeType="String" syncable="YES"/>
@@ -256,7 +257,7 @@
         <attribute name="lastRefresh" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="300"/>
+        <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="315"/>
         <element name="Color" positionX="-177.3046875" positionY="-36" width="128" height="75"/>
         <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="150"/>
         <element name="DiscussionEntry" positionX="-513.66796875" positionY="535.73828125" width="128" height="150"/>

@@ -21,7 +21,7 @@ class SubmissionCommentTextCell: UITableViewCell {
     @IBOutlet weak var commentLabel: DynamicLabel?
 
     func update(comment: SubmissionComment) {
-        accessibilityIdentifier = "SubmissionCommentsElement.textCell.\(comment.id)"
+        accessibilityIdentifier = "SubmissionComments.textCell.\(comment.id)"
         accessibilityLabel = String.localizedStringWithFormat(
             NSLocalizedString("On %@ %@ commented \"%@\"", bundle: .student, comment: ""),
             DateFormatter.localizedString(from: comment.createdAt, dateStyle: .long, timeStyle: .short),

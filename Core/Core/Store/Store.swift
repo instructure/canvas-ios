@@ -17,11 +17,20 @@
 import Foundation
 import CoreData
 
+public enum StoreChange: Equatable {
+    case insertSection(Int)
+    case deleteSection(Int)
+    case insertRow(IndexPath)
+    case updateRow(IndexPath)
+    case deleteRow(IndexPath)
+}
+
 public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
     public typealias EventHandler = () -> Void
 
     public let env: AppEnvironment
     private let frc: NSFetchedResultsController<U.Model>
+    public var changes = [StoreChange]()
     public let useCase: U
     public let eventHandler: EventHandler
 
@@ -116,6 +125,41 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
             if let urlResponse = urlResponse {
                 self?.next = self?.useCase.getNext(from: urlResponse)
             }
+        }
+    }
+
+    @objc
+    public func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        changes = []
+    }
+
+    @objc
+    public func controller(
+        _ controller: NSFetchedResultsController<NSFetchRequestResult>,
+        didChange sectionInfo: NSFetchedResultsSectionInfo,
+        atSectionIndex sectionIndex: Int,
+        for type: NSFetchedResultsChangeType
+    ) {
+        changes.append(type == .delete ? .deleteSection(sectionIndex) : .insertSection(sectionIndex))
+    }
+
+    @objc
+    public func controller(
+        _ controller: NSFetchedResultsController<NSFetchRequestResult>,
+        didChange anObject: Any,
+        at indexPath: IndexPath?,
+        for type: NSFetchedResultsChangeType,
+        newIndexPath: IndexPath?
+    ) {
+        if type == .insert, let index = newIndexPath {
+            changes.append(.insertRow(index))
+        } else if type == .delete, let index = indexPath {
+            changes.append(.deleteRow(index))
+        } else if type == .update, let index = indexPath {
+            changes.append(.updateRow(index))
+        } else if type == .move, let old = indexPath, let index = newIndexPath {
+            changes.append(.deleteRow(old))
+            changes.append(.insertRow(index))
         }
     }
 

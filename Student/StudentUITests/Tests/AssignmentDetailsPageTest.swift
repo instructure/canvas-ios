@@ -24,27 +24,31 @@ class AssignmentDetailsPageTest: StudentTest {
     let submissionDetailsPage = SubmissionDetailsPage.self
 
     lazy var course: APICourse = {
-        return seedClient.createCourse()
+        let course = APICourse.make()
+        mockData(GetCourseRequest(courseID: course.id), value: course)
+        return course
     }()
-    lazy var teacher: AuthUser = {
-        return createTeacher(in: course)
-    }()
-    lazy var student: AuthUser = {
-        return createStudent(in: course)
-    }()
+
+    func mockAssignment(_ assignment: APIAssignment) -> APIAssignment {
+        mockData(GetAssignmentRequest(courseID: course.id, assignmentID: assignment.id.value, include: [.submission]), value: assignment)
+        return assignment
+    }
 
     func testUnsubmittedUpload() {
-        seedClient.updateCustomColor(user: student, context: ContextModel(.course, id: course.id), hexcode: "123456")
-        let assignment = seedClient.createAssignment(
-            for: course,
-            description: "A description",
-            pointsPossible: 12.3,
-            dueAt: DateComponents(calendar: Calendar.current, year: 2035, month: 1, day: 1, hour: 8).date,
-            submissionTypes: [.online_upload],
-            allowedExtensions: ["doc", "docx", "pdf"]
-        )
-        launch("/courses/\(course.id)/assignments/\(assignment.id)", as: student)
+        mockData(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [
+            course.canvasContextID: "#123456",
+        ]))
+        host.logIn(domain: "canvas.instructure.com", token: "")
+        let assignment = mockAssignment(APIAssignment.make([
+            "description": "A description",
+            "points_possible": 12.3,
+            "due_at": DateComponents(calendar: Calendar.current, year: 2035, month: 1, day: 1, hour: 8).date,
+            "submission_types": [ "online_upload" ],
+            "allowed_extensions": [ "doc", "docx", "pdf" ],
+        ]))
 
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
+        page.waitToExist(.allowedExtensions, timeout: 5)
         NavBar.assertText(.title, equals: "Assignment Details")
         NavBar.assertText(.subtitle, equals: course.name!)
         XCTAssertEqual(navBarColorHex(), "#123456")
@@ -64,18 +68,17 @@ class AssignmentDetailsPageTest: StudentTest {
     }
 
     func testUnsubmittedDiscussion() {
-        let discussion = seedClient.createGradedDiscussionTopic(
-            for: course,
-            title: "Discuss this",
-            message: "Say it like you mean it",
-            pointsPossible: 15.1,
-            dueAt: DateComponents(calendar: Calendar.current, year: 2035, month: 1, day: 1, hour: 8).date
-        )
+        let assignment = mockAssignment(APIAssignment.make([
+            "name": "Discuss this",
+            "description": "Say it like you mean it",
+            "points_possible": 15.1,
+            "due_at": DateComponents(calendar: Calendar.current, year: 2035, month: 1, day: 1, hour: 8).date,
+            "submission_types": [ "discussion_topic" ],
+        ]))
 
-        XCTAssertNotNil(discussion.assignment_id)
-        launch("/courses/\(course.id)/assignments/\(discussion.assignment_id!)", as: student)
-
-        page.assertText(.name, equals: discussion.title!)
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
+        page.waitToExist(.submissionTypes, timeout: 5)
+        page.assertText(.name, equals: assignment.name)
         page.assertText(.points, equals: "15.1 pts")
         page.assertText(.status, equals: "Not Submitted")
         page.assertText(.due, equals: "Jan 1, 2035 at 8:00 AM")
@@ -86,132 +89,171 @@ class AssignmentDetailsPageTest: StudentTest {
         page.assertText(.submitAssignmentButton, equals: "Submit Assignment")
 
         let description = app?.webViews.staticTexts.firstMatch.label
-        XCTAssertEqual(description, discussion.message!)
+        XCTAssertEqual(description, assignment.description)
     }
 
-    func xtestSubmittedDiscussion() {
-        let discussion = seedClient.createGradedDiscussionTopic(for: course)
-        seedClient.createDiscussionEntry(discussion, context: ContextModel(.course, id: course.id), message: "My discussion entry", as: student)
-
-        XCTAssertNotNil(discussion.assignment_id)
-        launch("/courses/\(course.id)/assignments/\(discussion.assignment_id!)", as: student)
-
-        page.assertText(.name, equals: discussion.title!)
+    func testSubmittedDiscussion() {
+        let assignment = mockAssignment(APIAssignment.make([
+            "submission_types": [ "discussion_topic" ],
+            "submission": APISubmission.fixture([
+                "discussion_entries": [ APIDiscussionEntry.fixture([
+                    "message": "My discussion entry",
+                ]), ],
+            ]),
+        ]))
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
+        page.assertText(.name, equals: assignment.name)
         page.assertVisible(.submittedText)
         page.assertVisible(.gradeCell)
         page.assertText(.submitAssignmentButton, equals: "Resubmit Assignment")
-
-        let description = app?.webViews.staticTexts.firstMatch.label
-        XCTAssertEqual(description, discussion.message!)
     }
 
     func testResubmitAssignmentButton() {
-        let assignment = seedClient.createAssignment(for: course)
-        seedClient.submit(assignment: assignment, context: ContextModel(.course, id: course.id), as: student)
-        launch("/courses/\(course.id)/assignments/\(assignment.id)", as: student)
-
+        let assignment = mockAssignment(APIAssignment.make([
+            "submission_types": [ "online_upload" ],
+            "submission": APISubmission.fixture(),
+        ]))
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
         page.assertText(.submitAssignmentButton, equals: "Resubmit Assignment")
     }
 
     func testSubmitAssignmentButton() {
-        let assignment = seedClient.createAssignment(for: course, submissionTypes: [.online_upload])
-        launch("/courses/\(course.id)/assignments/\(assignment.id)", as: student)
+        let assignment = mockAssignment(APIAssignment.make([
+            "submission_types": [ "online_upload" ],
+        ]))
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
         page.assertText(.submitAssignmentButton, equals: "Submit Assignment")
     }
 
     func testNoSubmitAssignmentButtonShows() {
-        let assignment = seedClient.createAssignment(for: course, submissionTypes: [.none])
-        launch("/courses/\(course.id)/assignments/\(assignment.id)", as: student)
+        let assignment = mockAssignment(APIAssignment.make([
+            "submission_types": [ "none" ],
+        ]))
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
         page.assertHidden(.submitAssignmentButton)
     }
 
     func testNoSubmitAssignmentButtonShowsWhenLockAtLessThanNow() {
-        let assignment = seedClient.createAssignment(for: course, lockAt: Date().addDays(-1))
-        launch("/courses/\(course.id)/assignments/\(assignment.id)", as: student)
+        let assignment = mockAssignment(APIAssignment.make([
+            "lock_at": Date().addDays(-1),
+        ]))
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
         page.assertHidden(.submitAssignmentButton)
     }
 
     func testNoSubmitAssignmentButtonShowsWhenUnLockAtGreaterThanNow() {
-        let assignment = seedClient.createAssignment(for: course, unlockAt: Date().addDays(1))
-        launch("/courses/\(course.id)/assignments/\(assignment.id)", as: student)
+        let assignment = mockAssignment(APIAssignment.make([
+            "unlock_at": Date().addDays(1),
+        ]))
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
         page.assertHidden(.submitAssignmentButton)
     }
 
     func testNoSubmitAssignmentButtonShowsUserNotStudentEnrollment() {
-        let assignment = seedClient.createAssignment(for: course, submissionTypes: [.online_upload])
-        launch("/courses/\(course.id)/assignments/\(assignment.id)", as: teacher)
+        mockData(GetCourseRequest(courseID: course.id), value: APICourse.make([ "enrollments": [] ]))
+        let assignment = mockAssignment(APIAssignment.make([
+            "submission_types": [ "online_upload" ],
+        ]))
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
         page.assertHidden(.submitAssignmentButton)
     }
 
     func testTappingSubmitButtonShowsFileUploadOption() {
-        let assignment = seedClient.createAssignment(for: course, submissionTypes: [.online_upload, .online_url])
-        launch("/courses/\(course.id)/assignments/\(assignment.id)", as: student)
+        let assignment = mockAssignment(APIAssignment.make([
+            "submission_types": [ "online_upload", "online_url" ],
+        ]))
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
+        page.waitToExist(.submitAssignmentButton, timeout: 5)
         page.tap(.submitAssignmentButton)
         page.assertAlertActionExists("File Upload")
     }
 
     func testCancelSubmitAction() {
-        let assignment = seedClient.createAssignment(for: course, submissionTypes: [.online_upload, .online_url])
-        launch("/courses/\(course.id)/assignments/\(assignment.id)", as: student)
+        let assignment = mockAssignment(APIAssignment.make([
+            "submission_types": [ "online_upload", "online_url" ],
+        ]))
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
         page.tap(.submitAssignmentButton)
         page.tapAlertAction("Cancel")
         page.assertAlertHidden()
     }
 
     func testGradeCellShowsSubmittedTextWhenNotGraded() {
-        let assignment = seedClient.createAssignment(for: course)
-        seedClient.submit(assignment: assignment, context: ContextModel(.course, id: course.id), as: student)
-        launch("/courses/\(course.id)/assignments/\(assignment.id)", as: student)
-
+        let assignment = mockAssignment(APIAssignment.make([
+            "submission": APISubmission.fixture(),
+        ]))
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
         page.assertVisible(.submittedText)
         page.assertText(.submittedText, equals: "Successfully submitted!")
     }
 
     func testGradeCellShowsDialWhenGraded() {
-        let assignment = seedClient.createAssignment(for: course, pointsPossible: 100)
-        seedClient.submit(assignment: assignment, context: ContextModel(.course, id: course.id), as: student)
-        seedClient.gradeSubmission(course: course, assignment: assignment, userID: student.id, as: teacher, grade: "90")
-        launch("/courses/\(course.id)/assignments/\(assignment.id)", as: student)
+        let assignment = mockAssignment(APIAssignment.make([
+            "points_possible": 100,
+            "submission": APISubmission.fixture([
+                "grade": "90",
+                "score": 90,
+            ]),
+        ]))
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
         page.select(.gradeCircle).assertText(equals: "90 out of 100 points possible")
     }
 
     func testDisplayGradeAs() {
-        let assignment = seedClient.createAssignment(for: course, pointsPossible: 10, gradingType: .percent)
-        seedClient.submit(assignment: assignment, context: ContextModel(.course, id: course.id), as: student)
-        seedClient.gradeSubmission(course: course, assignment: assignment, userID: student.id, as: teacher, grade: "80%")
-        launch("/courses/\(course.id)/assignments/\(assignment.id)", as: student)
+        let assignment = mockAssignment(APIAssignment.make([
+            "points_possible": 10,
+            "grading_type": "percent",
+            "submission": APISubmission.fixture([
+                "grade": "80%",
+                "score": 8,
+            ]),
+        ]))
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
         page.select(.gradeCircle).assertText(equals: "8 out of 10 points possible")
         page.select(.gradeDisplayGrade).assertText(equals: "80%")
     }
 
     func testGradeCellShowsLatePenalty() {
-        seedClient.createLatePolicy(for: course, as: teacher, lateSubmissionDeductionEnabled: true, lateSubmissionDeduction: 5, lateSubmissionInterval: .day)
-        let dueDate = Date(timeIntervalSinceNow: -10000) // less than 1 day should deduct 5 points
-        let assignment = seedClient.createAssignment(for: course, pointsPossible: 100, dueAt: dueDate)
-        seedClient.submit(assignment: assignment, context: ContextModel(.course, id: course.id), as: student)
-        seedClient.gradeSubmission(course: course, assignment: assignment, userID: student.id, as: teacher, grade: "90")
-        launch("/courses/\(course.id)/assignments/\(assignment.id)", as: student)
+        let assignment = mockAssignment(APIAssignment.make([
+            "due_at": Date(timeIntervalSinceNow: -10000), // less than 1 day should deduct 5 points
+            "points_possible": 100,
+            "submission": APISubmission.fixture([
+                "late": true,
+                "late_policy_status": "late",
+                "points_deducted": 5,
+                "grade": "85",
+                "score": 85,
+            ]),
+        ]))
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
         page.select(.gradeLatePenalty).assertText(equals: "Late penalty (-5 pts)")
     }
 
     func testViewSubmissionButtonWorksWithNoSubmission() {
-        let assignment = seedClient.createAssignment(for: course, pointsPossible: 10, gradingType: .points)
-        launch("/courses/\(course.id)/assignments/\(assignment.id)", as: student)
+        let assignment = mockAssignment(APIAssignment.make([
+            "points_possible": 10,
+        ]))
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
+        page.waitToExist(.viewSubmissionButton, timeout: 5)
         page.tap(.viewSubmissionButton)
         submissionDetailsPage.assertExists(.emptySubmitButton)
     }
 
     func testSubmissionButtonNavigatesToSubmission() {
-        let assignment = seedClient.createAssignment(for: course, pointsPossible: 10, gradingType: .points)
-        seedClient.submit(assignment: assignment, context: ContextModel(.course, id: course.id), as: student)
-        launch("/courses/\(course.id)/assignments/\(assignment.id)", as: student)
+        let assignment = mockAssignment(APIAssignment.make([
+            "points_possible": 10,
+            "submission": APISubmission.fixture(),
+        ]))
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
         page.tap(.viewSubmissionButton)
         submissionDetailsPage.assertVisible(.attemptPickerToggle)
     }
 
     func testSubmitUrlSubmission() {
-        let assignment = seedClient.createAssignment(for: course, submissionTypes: [.online_url])
-        launch("/courses/\(course.id)/assignments/\(assignment.id)", as: student)
+        let assignment = mockAssignment(APIAssignment.make([
+            "submission_types": [ "online_url" ],
+        ]))
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
         page.assertText(.submitAssignmentButton, equals: "Submit Assignment")
         page.tap(.submitAssignmentButton)
         page.assertHidden(.submitAssignmentButton)
@@ -219,15 +261,17 @@ class AssignmentDetailsPageTest: StudentTest {
 
     func testSubmitOnlineUpload() {
         #if !(targetEnvironment(simulator))
-        let assignment = seedClient.createAssignment(for: course, submissionTypes: [.online_upload])
-        launch("/courses/\(course.id)/assignments/\(assignment.id)", as: student)
+        let assignment = mockAssignment(APIAssignment.make([
+            "submission_types": [ "online_upload" ],
+        ]))
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
         page.tap(.submitAssignmentButton)
         filePicker.assertEnabled(.submitButton, false)
         filePicker.tap(.cameraButton)
         capturePhoto()
         filePicker.assertEnabled(.submitButton, true)
         filePicker.tap(.submitButton)
-        filePicker.assertExists(.submitButton, false)
+        // filePicker.assertExists(.submitButton, false)
         #endif
     }
 }

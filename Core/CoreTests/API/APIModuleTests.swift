@@ -15,15 +15,19 @@
 //
 
 import Foundation
+@testable import Core
+import XCTest
+import TestsFoundation
 
-struct SubmissionCommentsElement: RawRepresentable, Element {
-    let rawValue: String
+class APIModuleItemTests: XCTestCase {
+    let encoder = JSONEncoder()
+    let decoder = JSONDecoder()
 
-    init(rawValue: String) {
-        self.rawValue = rawValue
-    }
+    func testCodableContent() {
+        let file = try! decoder.decode(APIModuleItem.self, from: try! encoder.encode(APIModuleItem.make(["type": "File", "content_id": "1"])))
+        XCTAssertEqual(file.content, .file("1"))
+        let subheader = try! decoder.decode(APIModuleItem.self, from: try! encoder.encode(APIModuleItem.make(["type": "SubHeader", "content_id": "1"])))
+        XCTAssertEqual(subheader.content, .subHeader)
 
-    static func textCell(commentID: String) -> SubmissionCommentsElement {
-        return SubmissionCommentsElement(rawValue: "textCell.\(commentID)")
     }
 }

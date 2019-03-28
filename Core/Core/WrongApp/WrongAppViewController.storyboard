@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Wrong App View Controller-->
+        <scene sceneID="IvX-mc-7gb">
+            <objects>
+                <viewController storyboardIdentifier="WrongAppViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="SeY-Yw-TuA" customClass="WrongAppViewController" customModule="Core" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Mia-U3-mIC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not a teacher?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Dc-kg-Sjs" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="40" y="100" width="295" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular30"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="One of our other apps might be a better fit. Tap one to visit the App Store." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n3N-sW-osm" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="40" y="144" width="295" height="61"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="body"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IuO-5m-HLd">
+                                <rect key="frame" x="145" y="481" width="85" height="30"/>
+                                <state key="normal" title="Log In Again"/>
+                                <connections>
+                                    <action selector="loginAgainButtonPressed:" destination="SeY-Yw-TuA" eventType="touchUpInside" id="3yE-eU-Q2W"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B4e-wu-5ca">
+                                <rect key="frame" x="136.5" y="531" width="102" height="30"/>
+                                <state key="normal" title="Canvas Guides"/>
+                                <connections>
+                                    <action selector="canvasGuidesButtonPressed:" destination="SeY-Yw-TuA" eventType="touchUpInside" id="nLX-zL-5WY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mxl-oI-dZp">
+                                <rect key="frame" x="72" y="285" width="231" height="48"/>
+                                <state key="normal" title="Button" image="Canvas-Student"/>
+                                <connections>
+                                    <action selector="firstButtonPressed:" destination="SeY-Yw-TuA" eventType="touchUpInside" id="wV1-Da-tH3"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ez-Ck-ewF">
+                                <rect key="frame" x="72" y="373" width="231" height="48"/>
+                                <state key="normal" title="Button" image="Canvas-Parent"/>
+                                <connections>
+                                    <action selector="secondButtonPressed:" destination="SeY-Yw-TuA" eventType="touchUpInside" id="DoM-xP-Kwl"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="n3N-sW-osm" firstAttribute="leading" secondItem="REg-ep-Zn3" secondAttribute="leading" constant="40" id="0Af-aT-0C1"/>
+                            <constraint firstItem="1ez-Ck-ewF" firstAttribute="top" secondItem="Mxl-oI-dZp" secondAttribute="bottom" constant="40" id="5dp-XY-f7g"/>
+                            <constraint firstItem="1ez-Ck-ewF" firstAttribute="centerX" secondItem="Mia-U3-mIC" secondAttribute="centerX" id="6SX-UJ-Fjk"/>
+                            <constraint firstItem="REg-ep-Zn3" firstAttribute="trailing" secondItem="5Dc-kg-Sjs" secondAttribute="trailing" constant="40" id="77T-LC-4Gs"/>
+                            <constraint firstItem="Mxl-oI-dZp" firstAttribute="top" secondItem="n3N-sW-osm" secondAttribute="bottom" constant="80" id="7pQ-p1-EzD"/>
+                            <constraint firstItem="Mxl-oI-dZp" firstAttribute="centerX" secondItem="Mia-U3-mIC" secondAttribute="centerX" id="7yi-Kq-Kai"/>
+                            <constraint firstItem="B4e-wu-5ca" firstAttribute="centerX" secondItem="Mia-U3-mIC" secondAttribute="centerX" id="BvV-Sf-rBm"/>
+                            <constraint firstItem="5Dc-kg-Sjs" firstAttribute="centerX" secondItem="Mia-U3-mIC" secondAttribute="centerX" id="Bxo-de-QS0"/>
+                            <constraint firstItem="REg-ep-Zn3" firstAttribute="trailing" secondItem="n3N-sW-osm" secondAttribute="trailing" constant="40" id="DTU-8k-ihr"/>
+                            <constraint firstItem="5Dc-kg-Sjs" firstAttribute="leading" secondItem="REg-ep-Zn3" secondAttribute="leading" constant="40" id="ETF-Y9-U2W"/>
+                            <constraint firstItem="IuO-5m-HLd" firstAttribute="top" secondItem="1ez-Ck-ewF" secondAttribute="bottom" constant="60" id="Fvy-A7-lL5"/>
+                            <constraint firstItem="n3N-sW-osm" firstAttribute="centerX" secondItem="Mia-U3-mIC" secondAttribute="centerX" id="LaJ-Vh-jjg"/>
+                            <constraint firstItem="IuO-5m-HLd" firstAttribute="centerX" secondItem="Mia-U3-mIC" secondAttribute="centerX" id="iVS-24-zid"/>
+                            <constraint firstItem="5Dc-kg-Sjs" firstAttribute="top" secondItem="REg-ep-Zn3" secondAttribute="top" constant="80" id="rfr-ev-zdK"/>
+                            <constraint firstItem="n3N-sW-osm" firstAttribute="top" secondItem="5Dc-kg-Sjs" secondAttribute="bottom" constant="8" id="vTR-yt-f1h"/>
+                            <constraint firstItem="B4e-wu-5ca" firstAttribute="top" secondItem="IuO-5m-HLd" secondAttribute="bottom" constant="20" id="yOd-Jt-t8n"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="REg-ep-Zn3"/>
+                    </view>
+                    <connections>
+                        <outlet property="canvasGuidesButton" destination="B4e-wu-5ca" id="YVW-S3-feF"/>
+                        <outlet property="firstAppButton" destination="Mxl-oI-dZp" id="UCT-MM-OGg"/>
+                        <outlet property="loginButton" destination="IuO-5m-HLd" id="iHd-QD-hqV"/>
+                        <outlet property="messageDescription" destination="n3N-sW-osm" id="3wI-xh-SGd"/>
+                        <outlet property="messageTitle" destination="5Dc-kg-Sjs" id="OqT-p2-fnw"/>
+                        <outlet property="secondAppButton" destination="1ez-Ck-ewF" id="AWL-jU-Otj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="shG-dk-HEr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="117.59999999999999" y="137.18140929535232"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Canvas-Parent" width="177" height="48"/>
+        <image name="Canvas-Student" width="177" height="48"/>
+    </resources>
+</document>

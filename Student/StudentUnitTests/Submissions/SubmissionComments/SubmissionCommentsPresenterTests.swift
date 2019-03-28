@@ -24,6 +24,11 @@ class SubmissionCommentsView: SubmissionCommentsViewProtocol {
     func reload() {
         didReload = true
     }
+
+    var error: Error?
+    func showError(_ error: Error) {
+        self.error = error
+    }
 }
 
 class SubmissionCommentsPresenterTests: PersistenceTestCase {
@@ -44,5 +49,10 @@ class SubmissionCommentsPresenterTests: PersistenceTestCase {
     func testUpdate() {
         presenter.update()
         XCTAssertTrue(view.didReload)
+    }
+
+    func testAddMediaComment() {
+        presenter.addMediaComment(type: .audio, url: URL(string: "/")!)
+        XCTAssertNotNil(view.error)
     }
 }

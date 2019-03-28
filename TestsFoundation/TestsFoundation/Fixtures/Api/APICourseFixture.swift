@@ -33,3 +33,7 @@ extension APICourse: Fixture {
         ]
     }
 }
+
+extension APICourse: Context {
+    public var contextType: ContextType { return .course }
+}

@@ -47,7 +47,7 @@ class APISubmissionRequestableTests: CoreTestCase {
         XCTAssertEqual(request.body?.submission.text_comment, "a comment")
     }
 
-    func testGradeSubmissionRequest() {
+    func testPutSubmissionGradeRequest() {
         let submission = PutSubmissionGradeRequest.Body.Submission(posted_grade: "10")
         let body = PutSubmissionGradeRequest.Body(comment: nil, submission: submission)
         let request = PutSubmissionGradeRequest(courseID: "1", assignmentID: "2", userID: "3", body: body)
@@ -55,5 +55,11 @@ class APISubmissionRequestableTests: CoreTestCase {
         XCTAssertEqual(request.path, "courses/1/assignments/2/submissions/3")
         XCTAssertEqual(request.method, .put)
         XCTAssertEqual(request.body, body)
+    }
+
+    func testPutSubmissionGradeRequestComment() {
+        XCTAssertEqual(PutSubmissionGradeRequest.Body.Comment(text: "comment").text_comment, "comment")
+        XCTAssertEqual(PutSubmissionGradeRequest.Body.Comment(mediaID: "1", type: .audio, forGroup: true).text_comment, "This is a media comment")
+        XCTAssertNil(PutSubmissionGradeRequest.Body.Comment(mediaID: "1", type: .audio).text_comment)
     }
 }

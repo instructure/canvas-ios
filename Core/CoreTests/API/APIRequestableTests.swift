@@ -22,6 +22,7 @@ class APIQueryItemTests: XCTestCase {
         XCTAssertEqual(APIQueryItem.name("param").toURLQueryItems(), [URLQueryItem(name: "param", value: nil)])
         XCTAssertEqual(APIQueryItem.value("a", "b").toURLQueryItems(), [URLQueryItem(name: "a", value: "b")])
         XCTAssertEqual(APIQueryItem.array("include", [ "a", "b" ]).toURLQueryItems(), [URLQueryItem(name: "include[]", value: "a"), URLQueryItem(name: "include[]", value: "b")])
+        XCTAssertEqual(APIQueryItem.include([ "a", "b" ]).toURLQueryItems(), [URLQueryItem(name: "include[]", value: "a"), URLQueryItem(name: "include[]", value: "b")])
     }
 }
 
@@ -55,6 +56,16 @@ class APIRequestableTests: XCTestCase {
         let body: Body? = DateHaver()
         let method: APIMethod = .post
         let path = "post"
+    }
+
+    struct PostForm: APIRequestable {
+        typealias Response = DateHaver
+        let path = "form"
+        let form: APIFormData? = [
+            "string": .string("abcde"),
+            "data": .data(filename: "data.txt", type: "text/plain", data: "hi".data(using: .utf8)!),
+            "file": .file(filename: "file.gif", type: "image/gif", at: URL(string: "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==")!),
+        ]
     }
 
     struct UploadBody: APIRequestable {
@@ -148,5 +159,14 @@ class APIRequestableTests: XCTestCase {
         let expected = try requestable.encode("hello")
         let request = try requestable.urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: nil)
         XCTAssertEqual(request.httpBody, expected)
+    }
+
+    func testFormData() throws {
+        UUID.mock("xxzzxx")
+        let requestable = PostForm()
+        let expected = try requestable.encodeFormData(boundary: UUID.string, form: requestable.form!)
+        let request = try requestable.urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: nil)
+        XCTAssertEqual(request.httpBody, expected)
+        XCTAssertEqual(request.allHTTPHeaderFields?[HttpHeader.contentType], "multipart/form-data; charset=utf-8; boundary=\"xxzzxx\"")
     }
 }

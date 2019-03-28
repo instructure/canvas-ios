@@ -20,31 +20,41 @@ import XCTest
 import TestsFoundation
 
 class SubmissionFilesTests: StudentTest {
-    lazy var course: APICourse = seedClient.createCourse()
-    lazy var student: AuthUser = createStudent(in: course)
-    lazy var assignment: APIAssignment = seedClient.createAssignment(for: course, submissionTypes: [ .online_upload ], allowedExtensions: [ "pdf" ])
+    lazy var course: APICourse = {
+        let course = APICourse.make()
+        mockData(GetCourseRequest(courseID: course.id), value: course)
+        return course
+    }()
+
+    lazy var assignment: APIAssignment = {
+        let assignment = APIAssignment.make([
+            "body": "hi",
+        ])
+        mockData(GetAssignmentRequest(courseID: course.id, assignmentID: assignment.id.value, include: []), value: assignment)
+        return assignment
+    }()
 
     func testFilesList() {
-        let file1 = seedClient.uploadFile(url: Bundle(for: SubmissionFilesTests.self).url(forResource: "empty", withExtension: "pdf")!, named: "File 1", for: assignment, as: student)
-        let file2 = seedClient.uploadFile(url: Bundle(for: SubmissionFilesTests.self).url(forResource: "empty", withExtension: "pdf")!, named: "File 2", for: assignment, as: student)
-        seedClient.submit(
-            assignment: assignment,
-            context: ContextModel(.course, id: course.id),
-            as: student,
-            submissionType: .online_upload,
-            fileIDs: [ file1.id.value, file2.id.value ]
-        )
-        launch("/courses/\(course.id)/assignments/\(assignment.id)/submissions/\(student.id)", as: student)
+        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make([
+            "user_id": "1",
+            "submission_type": "online_upload",
+            "attachments": [
+                APIFile.fixture([ "id": "1", "display_name": "File 1" ]),
+                APIFile.fixture([ "id": "2", "display_name": "File 2" ]),
+            ],
+        ]))
+
+        show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
         SubmissionDetailsElement.drawerFilesButton.tap()
 
-        XCTAssertTrue(SubmissionFilesElement.cell(fileID: file1.id.value).isVisible)
-        XCTAssertTrue(SubmissionFilesElement.checkView(fileID: file1.id.value).isVisible)
-        XCTAssertTrue(SubmissionFilesElement.cell(fileID: file2.id.value).isVisible)
-        XCTAssertFalse(SubmissionFilesElement.checkView(fileID: file2.id.value).isVisible)
+        XCTAssertTrue(SubmissionFilesElement.cell(fileID: "1").isVisible)
+        XCTAssertTrue(SubmissionFilesElement.checkView(fileID: "1").isVisible)
+        XCTAssertTrue(SubmissionFilesElement.cell(fileID: "2").isVisible)
+        XCTAssertFalse(SubmissionFilesElement.checkView(fileID: "2").isVisible)
 
-        SubmissionFilesElement.cell(fileID: file2.id.value).tap()
+        SubmissionFilesElement.cell(fileID: "2").tap()
 
-        XCTAssertFalse(SubmissionFilesElement.checkView(fileID: file1.id.value).isVisible)
-        XCTAssertTrue(SubmissionFilesElement.checkView(fileID: file2.id.value).isVisible)
+        XCTAssertFalse(SubmissionFilesElement.checkView(fileID: "1").isVisible)
+        XCTAssertTrue(SubmissionFilesElement.checkView(fileID: "2").isVisible)
     }
 }

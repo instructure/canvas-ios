@@ -28,10 +28,6 @@ class StudentTest: XCTestCase {
             to: TestHost.self)
     }
 
-    lazy var seedClient: SeedClient = {
-        return SeedClient(host: host)
-    }()
-
     override func setUp() {
         super.setUp()
         continueAfterFailure = false
@@ -45,11 +41,8 @@ class StudentTest: XCTestCase {
             app!.launch()
         }
         host.reset()
-    }
-
-    func launch(_ route: String, as user: AuthUser) {
-        host.logIn(domain: seedClient.baseURL.host!, token: user.token)
-        show(route)
+        sleep(1) // FIXME: Remove this and fix flakiness better.
+        // This sleep helps ensure old views got cleaned up, so EG2 doesn't find them accidentally.
     }
 
     func show(_ route: String) {
@@ -79,35 +72,6 @@ class StudentTest: XCTestCase {
         return "#\(String(num, radix: 16))".replacingOccurrences(of: "#ff", with: "#")
     }
 
-    func createUser() -> AuthUser {
-        let user = seedClient.createUser()
-        let token = getToken(user: user)
-        return AuthUser(token: token, user: user)
-    }
-
-    func createTeacher(in course: APICourse) -> AuthUser {
-        let user = seedClient.createTeacher(in: course)
-        let token = getToken(user: user)
-        return AuthUser(token: token, user: user)
-    }
-
-    func createStudent(in course: APICourse) -> AuthUser {
-        let user = seedClient.createStudent(in: course)
-        let token = getToken(user: user)
-        return AuthUser(token: token, user: user)
-    }
-
-    func getToken(user: APIUser) -> String {
-        let expectation = XCTestExpectation(description: "get token")
-        var token: String!
-        _ = seedClient.getToken(email: user.login_id!, password: "password") { tkn in
-            token = tkn
-            expectation.fulfill()
-        }
-        wait(for: [expectation], timeout: 10)
-        return token
-    }
-
     func capturePhoto() {
         allowAccessToCamera()
         app!.buttons["PhotoCapture"].tap()
@@ -123,5 +87,82 @@ class StudentTest: XCTestCase {
         if alert.exists {
             alert.buttons["OK"].tap()
         }
+    }
+
+    func allowAccessToMicrophone() {
+        let alert = app!.alerts["“Student” Would Like to Access the Microphone"]
+        if alert.exists {
+            alert.buttons["OK"].tap()
+        }
+    }
+
+    func mockData<R: APIRequestable>(
+        _ requestable: R,
+        value: R.Response? = nil,
+        response: HTTPURLResponse? = nil,
+        error: String? = nil,
+        noCallback: Bool = false,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) {
+        XCTAssertNoThrow(try host.mockData(MockURLSession.mockData(
+            requestable,
+            value: value,
+            response: response,
+            error: error,
+            noCallback: noCallback
+        )), file: file, line: line)
+    }
+
+    func mockEncodedData<R: APIRequestable>(
+        _ requestable: R,
+        data: Data? = nil,
+        response: HTTPURLResponse? = nil,
+        error: String? = nil,
+        noCallback: Bool = false,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) {
+        XCTAssertNoThrow(try host.mockData(MockURLSession.mockEncodedData(
+            requestable,
+            data: data,
+            response: response,
+            error: error,
+            noCallback: noCallback
+        )), file: file, line: line)
+    }
+
+    func mockDataRequest(
+        _ request: URLRequest,
+        data: Data? = nil,
+        response: HTTPURLResponse? = nil,
+        error: String? = nil,
+        noCallback: Bool = false,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) {
+        XCTAssertNoThrow(try host.mockData(MockURLSession.mockData(
+            request,
+            data: data,
+            response: response,
+            error: error,
+            noCallback: noCallback
+        )), file: file, line: line)
+    }
+
+    func mockDownload(
+        _ url: URL,
+        data: URL? = nil,
+        response: HTTPURLResponse? = nil,
+        error: String? = nil,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) {
+        XCTAssertNoThrow(try host.mockDownload(MockURLSession.mockDownload(
+            url,
+            data: data,
+            response: response,
+            error: error
+        )), file: file, line: line)
     }
 }

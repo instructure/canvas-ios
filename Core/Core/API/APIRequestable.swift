@@ -24,6 +24,7 @@ public enum APIQueryItem: Equatable {
     case name(String)
     case value(String, String)
     case array(String, [String])
+    case include([String])
 
     func toURLQueryItems() -> [URLQueryItem] {
         switch self {
@@ -33,8 +34,18 @@ public enum APIQueryItem: Equatable {
             return [URLQueryItem(name: name, value: value)]
         case .array(let name, let array):
             return array.map({ value in URLQueryItem(name: "\(name)[]", value: value) })
+        case .include(let includes):
+            return APIQueryItem.array("include", includes).toURLQueryItems()
         }
     }
+}
+
+public typealias APIFormData = [String: APIFormDatum]
+
+public enum APIFormDatum: Equatable {
+    case string(String)
+    case data(filename: String, type: String, data: Data)
+    case file(filename: String, type: String, at: URL)
 }
 
 // These errors are all definitely mistakes in our app code
@@ -51,6 +62,7 @@ public protocol APIRequestable {
     var headers: [String: String?] { get }
     var path: String { get }
     var query: [APIQueryItem] { get }
+    var form: APIFormData? { get }
     var body: Body? { get }
     var cachePolicy: URLRequest.CachePolicy { get }
 
@@ -71,6 +83,9 @@ extension APIRequestable {
     }
     public var queryItems: [URLQueryItem] {
         return query.flatMap({ q in q.toURLQueryItems() })
+    }
+    public var form: APIFormData? {
+        return nil
     }
     public var body: Body? {
         return nil
@@ -99,7 +114,11 @@ extension APIRequestable {
         request = URLRequest(url: url, cachePolicy: cachePolicy)
         request.httpMethod = method.rawValue.uppercased()
 
-        if let body = self.body {
+        if let form = self.form {
+            let boundary = UUID.string
+            request.httpBody = try encodeFormData(boundary: boundary, form: form)
+            request.setValue("multipart/form-data; charset=utf-8; boundary=\"\(boundary)\"", forHTTPHeaderField: HttpHeader.contentType)
+        } else if let body = self.body {
             request.httpBody = try encode(body)
             request.setValue("application/json", forHTTPHeaderField: HttpHeader.contentType)
         }
@@ -133,6 +152,30 @@ extension APIRequestable {
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
         return try encoder.encode(body)
+    }
+
+    public func encodeFormData(boundary: String, form: APIFormData) throws -> Data {
+        var data = Data()
+        let delimiter = "--\(boundary)\r\n".data(using: .utf8)!
+
+        for (key, value) in form {
+            data += delimiter
+            data += "Content-Disposition: form-data; name=\"\(key)\"".data(using: .utf8)!
+            switch value {
+            case .string(let string):
+                data += "\r\n\r\n\(string)".data(using: .utf8)!
+            case .data(filename: let filename, type: let type, data: let contents):
+                data += "; filename=\"\(filename)\"\r\nContent-Type: \(type)\r\n\r\n".data(using: .utf8)!
+                data += contents
+            case .file(filename: let filename, type: let type, at: let url):
+                data += "; filename=\"\(filename)\"\r\nContent-Type: \(type)\r\n\r\n".data(using: .utf8)!
+                data += try Data(contentsOf: url)
+            }
+            data += "\r\n".data(using: .utf8)!
+        }
+
+        data += "--\(boundary)--\r\n".data(using: .utf8)!
+        return data
     }
 }
 

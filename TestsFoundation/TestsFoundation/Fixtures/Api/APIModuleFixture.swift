@@ -26,3 +26,17 @@ extension APIModule: Fixture {
         "workflow_state": "active"
     ]
 }
+
+extension APIModuleItem: Fixture {
+    public static let template: Template = [
+        "id": "1",
+        "module_id": "1",
+        "position": 1,
+        "title": "Module Item 1",
+        "indent": 0,
+        "type": "Assignment",
+        "content_id": "1",
+        "html_url": "https://canvas.example.edu/courses/222/modules/items/768",
+        "url": "https://canvas.example.edu/api/v1/courses/222/assignments/987"
+    ]
+}

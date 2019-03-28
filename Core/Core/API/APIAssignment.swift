@@ -27,6 +27,7 @@ public struct APIAssignment: Codable, Equatable {
     let due_at: Date?
     let html_url: URL
     let submission: APISubmission?
+    let grade_group_students_individually: Bool?
     let grading_type: GradingType
     let submission_types: [SubmissionType]
     let allowed_extensions: [String]?

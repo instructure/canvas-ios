@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2018-present Instructure, Inc.
+// Copyright (C) 2019-present Instructure, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,24 +15,7 @@
 //
 
 import Foundation
-import Core
 
-public struct APIHealthCheck: Codable, Equatable {
-    public enum Status: String, Codable {
-        case healthy = "canvas ok"
-    }
-
-    public let status: Status
-    public var healthy: Bool {
-        return status == .healthy
-    }
-}
-
-public struct GetHealthCheckRequest: APIRequestable {
-    public typealias Response = APIHealthCheck
-
-    public let path = "/health_check"
-    public let headers: [String : String?] = [
-        HttpHeader.accept: "application/json"
-    ]
+enum AudioRecorder: String, Element {
+    case cancelButton, clearButton, recordButton, sendButton, stopButton, timeLabel
 }

@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2018-present Instructure, Inc.
+// Copyright (C) 2019-present Instructure, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,18 +15,14 @@
 //
 
 import Foundation
-@testable import Core
 
-public struct AuthUser {
-    public let token: String
-    public let user: APIUser
+struct Alert: Element {
+    let greyInteraction: GREYInteraction
 
-    public var id: String {
-        return user.id
-    }
-
-    public init(token: String, user: APIUser) {
-        self.token = token
-        self.user = user
+    static func button(label: String) -> Alert {
+        return Alert(greyInteraction: EarlGrey.selectElement(with: grey_allOf([
+            grey_accessibilityLabel(label),
+            grey_kindOfClass(NSClassFromString("_UIAlertControllerActionView")!),
+        ])).atIndex(0))
     }
 }

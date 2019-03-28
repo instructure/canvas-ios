@@ -23,51 +23,78 @@ class SubmissionDetailsTests: StudentTest {
     let assignmentDetailsPage = AssignmentDetailsPage.self
 
     lazy var course: APICourse = {
-        return seedClient.createCourse()
+        let course = APICourse.make()
+        mockData(GetCourseRequest(courseID: course.id), value: course)
+        return course
     }()
-    lazy var teacher: AuthUser = {
-        return createTeacher(in: course)
-    }()
-    lazy var student: AuthUser = {
-        return createStudent(in: course)
-    }()
+
+    func mockAssignment(_ assignment: APIAssignment) -> APIAssignment {
+        mockData(GetAssignmentRequest(courseID: course.id, assignmentID: assignment.id.value, include: []), value: assignment)
+        return assignment
+    }
 
     func testNoSubmission() {
-        let dueAt = DateComponents(calendar: Calendar.current, year: 2018, month: 10, day: 31, hour: 22, minute: 0).date!
-        let assignment = seedClient.createAssignment(for: course, dueAt: dueAt)
-        launch("/courses/\(course.id)/assignments/\(assignment.id)", as: student)
-        AssignmentDetailsPage.tap(.viewSubmissionButton)
+        let dueAt = DateComponents(calendar: Calendar.current, year: 2018, month: 10, day: 31, hour: 22, minute: 0).date
+        let assignment = mockAssignment(APIAssignment.make([ "due_at": dueAt ]))
+        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make([
+            "workflow_state": "unsubmitted",
+        ]))
+        show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
 
+        page.waitToExist(.emptyAssignmentDueBy, timeout: 5)
         page.assertText(.emptyAssignmentDueBy, equals: "This assignment was due by October 31, 2018 at 10:00 PM")
         page.assertVisible(.emptySubmitButton)
     }
 
     func testOneSubmission() {
-        let assignment = seedClient.createAssignment(for: course)
-        let submission = seedClient.submit(assignment: assignment, context: ContextModel(.course, id: course.id), as: student)
-        launch("/courses/\(course.id)/assignments/\(assignment.id)", as: student)
-        AssignmentDetailsPage.tap(.viewSubmissionButton)
+        let assignment = mockAssignment(APIAssignment.make())
+        let submittedAt = DateComponents(calendar: Calendar.current, year: 2018, month: 10, day: 31, hour: 22, minute: 0).date!
+        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make([
+            "body": "hi",
+            "submission_type": "online_text_entry",
+            "submitted_at": submittedAt,
+        ]))
 
+        show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
+
+        page.waitToExist(.onlineTextEntryWebView, timeout: 5)
         page.assertHidden(.emptyView)
         page.assertHidden(.attemptPicker)
         page.assertHidden(.attemptPickerArrow)
         page.assertVisible(.attemptPickerToggle)
         page.assertEnabled(.attemptPickerToggle, false)
-        page.assertText(.attemptPickerToggle, equals: DateFormatter.localizedString(from: submission.submitted_at!, dateStyle: .medium, timeStyle: .short))
+        page.assertText(.attemptPickerToggle, equals: DateFormatter.localizedString(from: submittedAt, dateStyle: .medium, timeStyle: .short))
         page.assertVisible(.onlineTextEntryWebView)
         let body = app?.webViews.staticTexts.firstMatch.label
-        XCTAssertEqual(body, submission.body)
+        XCTAssertEqual(body, "hi")
     }
 
-    func xtestManySubmissions() { // Too flaky
-        let assignment = seedClient.createAssignment(for: course)
-        let submission1 = seedClient.submit(assignment: assignment, context: ContextModel(.course, id: course.id), as: student)
-        let submission2 = seedClient.resubmit(assignment: assignment, context: ContextModel(.course, id: course.id), as: student, comment: "Oops, I meant this one.")
-        launch("/courses/\(course.id)/assignments/\(assignment.id)", as: student)
-        AssignmentDetailsPage.tap(.viewSubmissionButton)
+    func testManySubmissions() {
+        let assignment = mockAssignment(APIAssignment.make())
+        let submittedAt1 = DateComponents(calendar: Calendar.current, year: 2018, month: 10, day: 31, hour: 22, minute: 0).date!
+        let submittedAt2 = DateComponents(calendar: Calendar.current, year: 2018, month: 11, day: 1, hour: 22, minute: 0).date!
+        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make([
+            "attempt": 2,
+            "submission_history": [
+                APISubmission.fixture([
+                    "attempt": 1,
+                    "body": "one",
+                    "submission_type": "online_text_entry",
+                    "submitted_at": submittedAt1,
+                ]),
+                APISubmission.fixture([
+                    "attempt": 2,
+                    "body": "two",
+                    "submission_type": "online_text_entry",
+                    "submitted_at": submittedAt2,
+                ]),
+            ],
+        ]))
 
-        let date1 = DateFormatter.localizedString(from: submission1.submitted_at!, dateStyle: .medium, timeStyle: .short)
-        let date2 = DateFormatter.localizedString(from: submission2.submitted_at!, dateStyle: .medium, timeStyle: .short)
+        show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
+
+        let date1 = DateFormatter.localizedString(from: submittedAt1, dateStyle: .medium, timeStyle: .short)
+        let date2 = DateFormatter.localizedString(from: submittedAt2, dateStyle: .medium, timeStyle: .short)
 
         page.assertHidden(.emptyView)
         page.assertHidden(.attemptPicker)
@@ -82,17 +109,31 @@ class SubmissionDetailsTests: StudentTest {
         page.assertText(.attemptPickerToggle, equals: date1)
     }
 
-    func xtestPDFSubmission() {
-        let assignment = seedClient.createAssignment(for: course, submissionTypes: [ .online_upload ], allowedExtensions: [ "pdf" ])
-        let file = seedClient.uploadFile(url: Bundle(for: SubmissionDetailsTests.self).url(forResource: "empty", withExtension: "pdf")!, for: assignment, as: student)
-        let submission = seedClient.submit(assignment: assignment, context: ContextModel(.course, id: course.id), as: student, submissionType: .online_upload, fileIDs: [ file.id.value ])
-        let session = seedClient.createDocViewerSession(for: submission.attachments![0], as: student)
-        seedClient.pollForDocViewerMetadata(session: session)
+    func testPDFSubmission() {
+        let url = Bundle(for: SubmissionDetailsTests.self).url(forResource: "empty", withExtension: "pdf")
+        let previewURL = URL(string: "https://preview.url")!
+        let sessionURL = URL(string: "https://doc.viewer/session/123")!
+        let downloadURL = URL(string: "https://doc.viewer/session/123/download")!
+        let assignment = mockAssignment(APIAssignment.make([ "submission_types": [ "online_upload" ] ]))
+        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make([
+            "submission_type": "online_upload",
+            "attachments": [ APIFile.fixture([
+                "preview_url": previewURL.absoluteString,
+            ]), ],
+        ]))
+        mockDataRequest(URLRequest(url: previewURL), response: HTTPURLResponse(
+            url: previewURL, statusCode: 301, httpVersion: nil, headerFields: [
+                "Location": "\(sessionURL.absoluteString)/view",
+            ]
+        ))
+        mockData(GetDocViewerMetadataRequest(path: sessionURL.absoluteString), value: APIDocViewerMetadata.make([
+            "urls": APIDocViewerURLsMetadata.fixture([ "pdf_download": downloadURL.absoluteString ]),
+        ]))
+        mockDownload(downloadURL, data: url)
 
-        launch("/courses/\(course.id)/assignments/\(assignment.id)", as: student)
-        AssignmentDetailsPage.tap(.viewSubmissionButton)
+        show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
 
-        PSPDFDoc.waitToExist(.view, timeout: 15.0)
+        PSPDFDoc.waitToExist(.view, timeout: 5)
         PSPDFDoc.assertVisible(.view)
 
         DocViewer.assertVisible(.searchButton)
@@ -105,33 +146,51 @@ class SubmissionDetailsTests: StudentTest {
         // TODO: Test share sheet?
     }
 
-    func xtestPDFAnnotations() {
-        let assignment = seedClient.createAssignment(for: course, submissionTypes: [ .online_upload ], allowedExtensions: [ "pdf" ])
-        let file = seedClient.uploadFile(url: Bundle(for: SubmissionDetailsTests.self).url(forResource: "empty", withExtension: "pdf")!, for: assignment, as: student)
-        seedClient.submit(assignment: assignment, context: ContextModel(.course, id: course.id), as: student, submissionType: .online_upload, fileIDs: [ file.id.value ])
+    func testPDFAnnotations() {
+        let url = Bundle(for: SubmissionDetailsTests.self).url(forResource: "empty", withExtension: "pdf")
+        let previewURL = URL(string: "https://preview.url")!
+        let sessionURL = URL(string: "https://canvas.instructure.com/session/123")!
+        let downloadURL = URL(string: "https://canvas.instructure.com/session/123/download")!
+        let assignment = mockAssignment(APIAssignment.make([ "submission_types": [ "online_upload" ] ]))
+        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make([
+            "submission_type": "online_upload",
+            "attachments": [ APIFile.fixture([
+                "preview_url": previewURL.absoluteString,
+            ]), ],
+        ]))
+        mockDataRequest(URLRequest(url: previewURL), response: HTTPURLResponse(
+            url: previewURL, statusCode: 301, httpVersion: nil, headerFields: [
+                "Location": "\(sessionURL.absoluteString)/view",
+            ]
+        ))
+        mockData(GetDocViewerMetadataRequest(path: sessionURL.absoluteString), value: APIDocViewerMetadata.make([
+            "annotations": APIDocViewerAnnotationsMetadata.fixture([
+                "permissions": "readwrite",
+            ]),
+            "urls": APIDocViewerURLsMetadata.fixture([ "pdf_download": downloadURL.absoluteString ]),
+        ]))
+        mockData(GetDocViewerAnnotationsRequest(sessionID: sessionURL.lastPathComponent), value: APIDocViewerAnnotations(data: [
+            APIDocViewerAnnotation.make([
+                "id": "1",
+                "user_name": "Student",
+                "type": APIDocViewerAnnotationType.text.rawValue,
+                "color": DocViewerAnnotationColor.green.rawValue,
+                "rect": [ [ 0, (11 * 72) - 240 ], [ 170, (11 * 72) ] ],
+            ]),
+            APIDocViewerAnnotation.make([
+                "id": "2",
+                "user_id": "2",
+                "user_name": "Teacher",
+                "type": APIDocViewerAnnotationType.commentReply.rawValue,
+                "contents": "Why is the document empty?",
+                "inreplyto": "1",
+            ]),
+        ]))
+        mockDownload(downloadURL, data: url)
 
-        let submission = seedClient.makeRequest(GetSubmissionRequest(context: ContextModel(.course, id: course.id), assignmentID: assignment.id.value, userID: student.id), with: teacher.token)
-        let session = seedClient.createDocViewerSession(for: submission.attachments![0], as: teacher)
-        let metadata = seedClient.pollForDocViewerMetadata(session: session)
-        let point = seedClient.createAnnotation(APIDocViewerAnnotation.make([
-            "id": UUID().uuidString,
-            "user_name": metadata.annotations?.user_name,
-            "type": APIDocViewerAnnotationType.text.rawValue,
-            "color": DocViewerAnnotationColor.green.rawValue,
-            "rect": [ [ 0, (11 * 72) - 240 ], [ 170, (11 * 72) ] ],
-        ]), on: session)
-        let comment = seedClient.createAnnotation(APIDocViewerAnnotation.make([
-            "id": UUID().uuidString,
-            "user_name": metadata.annotations?.user_name,
-            "type": APIDocViewerAnnotationType.commentReply.rawValue,
-            "contents": "Why is the document empty?",
-            "inreplyto": point.id,
-        ]), on: session)
+        show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
 
-        launch("/courses/\(course.id)/assignments/\(assignment.id)", as: student)
-        AssignmentDetailsPage.tap(.viewSubmissionButton)
-
-        PSPDFDoc.waitToExist(.view, timeout: 15.0)
+        PSPDFDoc.waitToExist(.view, timeout: 5)
 
         // 😱 PSPDFAnnotations are not in the accessibility tree
         PSPDFDoc.tap(.view, at: CGPoint(x: 32, y: 32))
@@ -139,8 +198,8 @@ class SubmissionDetailsTests: StudentTest {
 
         CommentListPage.assertVisible(.tableView)
 
-        CommentListItem.assertVisible(.item(comment.id))
-        CommentListItem.assertHidden(.deleteButton(comment.id))
+        CommentListItem.assertVisible(.item("2"))
+        CommentListItem.assertHidden(.deleteButton("2"))
 
         CommentListPage.assertEnabled(.replyButton, false)
         CommentListPage.typeText("I don't know.", in: .replyTextView)
@@ -158,39 +217,39 @@ class SubmissionDetailsTests: StudentTest {
     }
 
     func testDiscussionSubmission() {
-        let discussion = seedClient.createGradedDiscussionTopic(
-            for: course,
-            title: "Discuss this",
-            message: "Say it like you mean it",
-            pointsPossible: 15.5,
-            dueAt: DateComponents(calendar: Calendar.current, year: 2035, month: 1, day: 1, hour: 8).date
-        )
-        let context = ContextModel(.course, id: course.id)
-        let entry = seedClient.createDiscussionEntry(discussion, context: context, message: "First entry", as: student)
-        seedClient.createDiscussionEntry(discussion, context: context, message: "Second entry", as: student)
+        let assignment = mockAssignment(APIAssignment.make([ "submission_types": [ "discussion_topic" ] ]))
+        let submittedAt = DateComponents(calendar: Calendar.current, year: 2018, month: 10, day: 31, hour: 22, minute: 0).date!
+        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make([
+            "submission_type": "discussion_topic",
+            "submitted_at": submittedAt,
+            "preview_url": "https://canvas.instructure.com",
+            "discussion_entries": [
+                APIDiscussionEntry.fixture([ "id": "1", "message": "First entry" ]),
+                APIDiscussionEntry.fixture([ "id": "2", "message": "Second entry" ]),
+            ],
+        ]))
 
-        launch("/courses/\(course.id)/assignments/\(discussion.assignment_id!.value)", as: student)
-        AssignmentDetailsPage.tap(.viewSubmissionButton)
+        show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
 
         page.assertHidden(.emptyView)
         page.assertHidden(.attemptPicker)
         page.assertHidden(.attemptPickerArrow)
         page.assertVisible(.attemptPickerToggle)
         page.assertEnabled(.attemptPickerToggle, false)
-        page.assertText(.attemptPickerToggle, equals: DateFormatter.localizedString(from: entry.created_at!, dateStyle: .medium, timeStyle: .short))
+        page.assertText(.attemptPickerToggle, equals: DateFormatter.localizedString(from: submittedAt, dateStyle: .medium, timeStyle: .short))
         page.assertVisible(.discussionWebView)
     }
 
     func testQuizSubmission() {
-        let (quiz, questions) = seedClient.createQuiz(in: course, as: teacher, questions: [
-            (question_name: "Question 1", question_text: "Who?", question_type: .short_answer_question, points_possible: 1),
-        ])
-        seedClient.takeQuiz(quiz, in: course, as: student, answers: [
-            questions[0].id: .string("He who shall not be named."),
-        ])
-        let assignment = seedClient.makeRequest(GetAssignmentsRequest(courseID: course.id), with: student.token).first { $0.quiz_id?.value == quiz.id }
-        launch("/courses/\(course.id)/assignments/\(assignment!.id)", as: student)
-        AssignmentDetailsPage.tap(.viewSubmissionButton)
+        let assignment = mockAssignment(APIAssignment.make([
+            "submission_types": [ "online_quiz" ],
+            "quiz_id": "1",
+        ]))
+        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make([
+            "submission_type": "online_quiz",
+        ]))
+
+        show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
 
         page.assertHidden(.emptyView)
         page.assertVisible(.onlineQuizWebView)
@@ -198,11 +257,16 @@ class SubmissionDetailsTests: StudentTest {
 
     func testUrlSubmission() {
         let url = URL(string: "https://www.instructure.com/")!
-        let assignment = seedClient.createAssignment(for: course, submissionTypes: [.online_url])
-        seedClient.submit(assignment: assignment, context: ContextModel(.course, id: course.id), as: student, submissionType: .online_url, url: url)
-        launch("/courses/\(course.id)/assignments/\(assignment.id)", as: student)
-        AssignmentDetailsPage.tap(.viewSubmissionButton)
+        let assignment = mockAssignment(APIAssignment.make([ "submission_types": [ "online_url" ] ]))
+        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make([
+            "submission_type": "online_url",
+            "url": url.absoluteString,
+            "attachments": [ APIFile.fixture() ],
+        ]))
 
+        show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
+
+        page.waitToExist(.urlSubmissionBlurb, timeout: 5)
         page.assertVisible(.urlSubmissionBlurb)
         page.assertVisible(.urlButton)
         page.assertVisible(.urlPreview)
@@ -212,27 +276,28 @@ class SubmissionDetailsTests: StudentTest {
     }
 
     func testExternalToolSubmission() {
-        let assignment = seedClient.createAssignment(for: course, submissionTypes: [.external_tool])
-        launch("/courses/\(course.id)/assignments/\(assignment.id)", as: student)
-        AssignmentDetailsPage.tap(.viewSubmissionButton)
+        let assignment = mockAssignment(APIAssignment.make([ "submission_types": [ "external_tool" ] ]))
+        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make())
 
+        show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
+
+        page.waitToExist(.externalToolButton, timeout: 5)
         page.assertVisible(.externalToolButton)
         page.assertHidden(.emptyView)
     }
 
     func testMediaSubmission() {
-        let assignment = seedClient.createAssignment(for: course, submissionTypes: [.media_recording])
-        let file = seedClient.uploadFile(url: Bundle(for: SubmissionDetailsTests.self).url(forResource: "test", withExtension: "m4a")!, as: student)
-        seedClient.submit(
-            assignment: assignment,
-            context: ContextModel(.course, id: course.id),
-            as: student,
-            submissionType: .media_recording,
-            mediaCommentID: file.media_entry_id,
-            mediaCommentType: .audio
-        )
-        launch("/courses/\(course.id)/assignments/\(assignment.id)", as: student)
-        AssignmentDetailsPage.tap(.viewSubmissionButton)
+        let url = Bundle(for: SubmissionDetailsTests.self).url(forResource: "test", withExtension: "m4a")!
+        let assignment = mockAssignment(APIAssignment.make([ "submission_types": [ "media_recording" ] ]))
+        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make([
+            "submission_type": "media_recording",
+            "media_comment": APIMediaComment.fixture([
+                "media_type": "audio",
+                "url": url.absoluteString,
+            ]),
+        ]))
+
+        show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
         page.assertVisible(.mediaPlayer)
     }
 }

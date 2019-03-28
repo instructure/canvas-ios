@@ -33,17 +33,17 @@ class DocViewerSessionTests: CoreTestCase {
         override func invalidateAndCancel() {}
     }
 
-    func testNoFollowSession() {
-        let session = DocViewerSession {}
-        XCTAssert(session.noFollowSession?.delegate === session)
+    let noFollowSession = NoFollowRedirect.session
+    override func tearDown() {
+        super.tearDown()
+        NoFollowRedirect.session = noFollowSession
     }
 
     func testRedirect() {
-        let session = DocViewerSession {}
         let expectation = XCTestExpectation(description: "handler called")
         let url = URL(string: "/")!
-        session.urlSession(
-            session.noFollowSession!,
+        (NoFollowRedirect.session.delegate as? NoFollowRedirect)?.urlSession(
+            NoFollowRedirect.session,
             task: MockTask(),
             willPerformHTTPRedirection: HTTPURLResponse(url: url, mimeType: nil, expectedContentLength: 0, textEncodingName: nil),
             newRequest: URLRequest(url: url)
@@ -66,7 +66,7 @@ class DocViewerSessionTests: CoreTestCase {
         let session = DocViewerSession {}
         let networkMock = MockURLSession()
         session.api = api
-        session.noFollowSession = networkMock
+        NoFollowRedirect.session = networkMock
         session.load(url: URL(string: "/")!, accessToken: "a")
         XCTAssertNotNil(networkMock.handler)
 
@@ -80,7 +80,7 @@ class DocViewerSessionTests: CoreTestCase {
     func testLoadFailure() {
         let session = DocViewerSession {}
         let networkMock = MockURLSession()
-        session.noFollowSession = networkMock
+        NoFollowRedirect.session = networkMock
         session.load(url: URL(string: "/")!, accessToken: "a")
         XCTAssertNotNil(networkMock.handler)
 

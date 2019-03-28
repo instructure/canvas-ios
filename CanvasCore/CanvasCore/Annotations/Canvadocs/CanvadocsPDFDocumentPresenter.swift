@@ -232,6 +232,12 @@ extension CanvadocsPDFDocumentPresenter: PSPDFViewControllerDelegate {
             return realMenuItems
         }
 
+        //  disable long press menu, which was causing another toolbar to be displayed
+        if annotations == nil || annotations?.isEmpty == true {
+            return []
+        }
+
+
         return menuItems.filter {
             guard let identifier = $0.identifier else { return true }
             return !DisabledMenuItems.contains(identifier)
