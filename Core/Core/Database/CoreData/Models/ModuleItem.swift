@@ -41,7 +41,11 @@ public class ModuleItem: NSManagedObject {
             didAccessValue(forKey: "type")
             return type
         }
-        set { primitiveType = try? encoder.encode(newValue) }
+        set {
+            willChangeValue(forKey: "type")
+            primitiveType = try? encoder.encode(newValue)
+            didChangeValue(forKey: "type")
+        }
     }
 
     public static func save(_ item: APIModuleItem, in context: PersistenceClient) -> ModuleItem {
