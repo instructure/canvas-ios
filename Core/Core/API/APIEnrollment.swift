@@ -46,16 +46,17 @@ struct APIEnrollment: Codable, Equatable {
     // let html_url: String
     let grades: Grades?
     // let user: APIUser
-    // let computed_current_score: Double?
-    // let computed_final_score: Double?
+    let computed_current_score: Double?
+    let computed_final_score: Double?
     let computed_current_grade: String?
-    // let computed_final_grade: String?
+    let computed_final_grade: String?
     // let unposted_current_grade: String?
     // let unposted_final_grade: String?
     // let unposted_current_score: String?
     // let unposted_final_score: String?
     // let has_grading_periods: Bool?
-    // let totals_for_all_grading_periods_option: Bool?
+    let multiple_grading_periods_enabled: Bool?
+    let totals_for_all_grading_periods_option: Bool?
     // let current_grading_period_title: String?
     let current_grading_period_id: String?
     let current_period_computed_current_score: Double?

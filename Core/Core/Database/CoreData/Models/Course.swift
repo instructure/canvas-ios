@@ -68,6 +68,45 @@ extension Course {
         let color = try? managedObjectContext?.fetch(request).first
         return color??.color ?? .named(.ash)
     }
+
+    static let scoreFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .percent
+        formatter.decimalSeparator = "."
+        formatter.multiplier = 1
+        formatter.maximumFractionDigits = 3
+        formatter.roundingMode = .down
+        return formatter
+    }()
+
+    public var displayGrade: String {
+        guard let enrollments = self.enrollments, let enrollment = enrollments.filter({ $0.role == .student }).first else {
+            return ""
+        }
+
+        var grade = enrollment.computedCurrentGrade
+        var score = enrollment.computedCurrentScore
+
+        if enrollment.multipleGradingPeriodsEnabled && enrollment.currentGradingPeriodID != nil {
+            grade = enrollment.currentPeriodComputedCurrentGrade
+            score = enrollment.currentPeriodComputedCurrentScore
+        } else if enrollment.multipleGradingPeriodsEnabled && enrollment.totalsForAllGradingPeriodsOption {
+            grade = enrollment.computedFinalGrade
+            score = enrollment.computedFinalScore
+        } else if enrollment.multipleGradingPeriodsEnabled && enrollment.totalsForAllGradingPeriodsOption == false {
+            return NSLocalizedString("N/A", bundle: .core, comment: "")
+        }
+
+        guard let scoreNotNil = score, let scoreString = Course.scoreFormatter.string(from: NSNumber(value: scoreNotNil)) else {
+                return grade ?? NSLocalizedString("N/A", bundle: .core, comment: "")
+        }
+
+        if let grade = grade {
+            return "\(scoreString) - \(grade)"
+        }
+
+        return scoreString
+    }
 }
 
 extension Course: Scoped {

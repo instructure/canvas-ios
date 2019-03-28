@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2017-present Instructure, Inc.
+// Copyright (C) 2019-present Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -16,30 +16,18 @@
 
 import UIKit
 import NotificationCenter
-import Foundation
-import CanvasKeymaster
+import Core
 
-let MAX_NUM_COURSES = 9
-let MAX_NUM_RETRIES = 3
 let COURSE_ROW_HEIGHT: CGFloat = 55
 let DEFAULT_ERROR_MESSAGE = NSLocalizedString("Failed to load grades", comment: "")
 
-private extension CanvasKeymaster {
-    static func multipleClientsAreLoggedIn() -> Bool {
-        return CanvasKeymaster.the().numberOfClients > 1
-    }
-}
-
 enum GradesWidgetError: Error {
-    case multipleClientsLoggedIn
     case notLoggedIn
     case noFavoritedCourses
     case deviceLocked
 
     var localizedDescription: String {
         switch self {
-        case .multipleClientsLoggedIn:
-            return NSLocalizedString("More than one user is logged into Canvas Student. To view your grades, launch the app.", comment: "")
         case .notLoggedIn:
             return NSLocalizedString("Log in with Canvas", comment: "")
         case .noFavoritedCourses:
@@ -48,10 +36,6 @@ enum GradesWidgetError: Error {
             return NSLocalizedString("Unlock your device to view your grades.", comment: "")
         }
     }
-}
-
-func isRetryable(_ error: Error) -> Bool {
-    return !(error is DecodingError) && !(error is NetworkError)
 }
 
 func isDeviceLocked() -> Bool {
@@ -80,25 +64,23 @@ func isDeviceLocked() -> Bool {
 
 class GradesTodayWidgetViewController: UIViewController {
 
-    var courses: [Course] = [] {
-        didSet {
-            if courses.count > 0 {
-                preferredContentSize = CGSize(width: 0, height: CGFloat(courses.count) * tableView.estimatedRowHeight)
-            } else {
-                self.showError(GradesWidgetError.noFavoritedCourses)
-                preferredContentSize = CGSize(width: 0, height: tableView.estimatedRowHeight)
-            }
-        }
-    }
-    var colors: CustomColors?
+    lazy var presenter: GradesTodayWidgetPresenter = {
+        return GradesTodayWidgetPresenter(view: self)
+    }()
+
     var error: Error?
-    var colorRetries: Int = 0
-    var courseRetries: Int = 0
 
-    var client: CKIClient?
+    @IBOutlet var tableView: UITableView!
 
-    lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .plain)
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        print("Grades WIDGET MEMORY WARNING")
+    }
+
+    override func viewDidLoad() {
+        view.backgroundColor = UIColor.clear
+        extensionContext?.widgetLargestAvailableDisplayMode = .expanded
+
         tableView.backgroundColor = UIColor.clear
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
@@ -106,109 +88,36 @@ class GradesTodayWidgetViewController: UIViewController {
         tableView.showsVerticalScrollIndicator = false
         tableView.estimatedRowHeight = COURSE_ROW_HEIGHT
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.tableFooterView = UIView(frame: .zero)
 
-        // Cells
         let nib = UINib(nibName: String(describing: GradeWidgetCell.self), bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "cell")
 
-        return tableView
-    }()
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        print("GRADES WIDGET MEMORY WARNING")
+        login()
     }
 
-    //  MARK: - view
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        showError(nil)
-        view.backgroundColor = UIColor.clear
-        extensionContext?.widgetLargestAvailableDisplayMode = .expanded
-
-        layoutTableView()
-        logIn()
-    }
-
-    func layoutTableView() {
-        view.addSubview(tableView)
-        view.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|[tableView]|",
-            options: NSLayoutConstraint.FormatOptions(rawValue: 0),
-            metrics: nil,
-            views: ["tableView": tableView])
-        )
-        view.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|[tableView]|",
-            options: NSLayoutConstraint.FormatOptions(rawValue: 0),
-            metrics: nil,
-            views: ["tableView": tableView])
-        )
-    }
-
-    func logIn() {
+    func login() {
         if isDeviceLocked() {
             return showError(GradesWidgetError.deviceLocked)
         }
 
-        if CanvasKeymaster.multipleClientsAreLoggedIn() {
-            return showError(GradesWidgetError.multipleClientsLoggedIn)
+        guard let mostRecentKeyChain = Keychain.mostRecentSession else {
+            return showError(GradesWidgetError.notLoggedIn)
         }
-
-        showError(GradesWidgetError.notLoggedIn)
-        CanvasKeymaster.the().signalForLogin.take(1).subscribeNext { [weak self] (client) in
-            guard let client = client else {
-                return
-            }
-            self?.showError(nil)
-            self?.reloadData(client)
-        }
+        AppEnvironment.shared.userDidLogin(session: mostRecentKeyChain)
+        presenter.viewIsReady()
     }
 
-    func reloadData(_ client: CKIClient) {
-        reloadCourses(client)
-        reloadColors(client)
-    }
+    func reload() {
+        showError(nil)
 
-    func reloadCourses(_ client: CKIClient) {
-        getCourses(client: client) { [weak self] result in
-            DispatchQueue.main.async {
-                switch result {
-                case .completed(let courses):
-                    self?.showError(nil)
-                    self?.courses = Array(courses.prefix(MAX_NUM_COURSES))
-                    self?.tableView.reloadData()
-                case .failed(let error):
-                    if isRetryable(error), let retries = self?.courseRetries, retries < MAX_NUM_RETRIES {
-                        self?.courseRetries += 1
-                        self?.reloadCourses(client)
-                    } else {
-                        self?.showError(error)
-                    }
-                }
-            }
+        if presenter.courses.error != nil {
+            showError(presenter.courses.error)
         }
-    }
 
-    func reloadColors(_ client: CKIClient) {
-        getCourseColors(client: client) { [weak self] result in
-            DispatchQueue.main.async {
-                switch result {
-                case .completed(let colors):
-                    self?.colors = colors
-                    self?.tableView.reloadData()
-                case .failed(let error):
-                    if isRetryable(error), let retries = self?.colorRetries, retries < MAX_NUM_RETRIES {
-                        self?.colorRetries += 1
-                        self?.reloadColors(client)
-                    } else {
-                        self?.showError(error)
-                    }
-                }
-            }
+        if presenter.courses.count == 0 && presenter.courses.pending == false {
+            showError(GradesWidgetError.noFavoritedCourses)
         }
+        tableView.reloadData()
     }
 
     func showError(_ error: Error?) {
@@ -218,22 +127,12 @@ class GradesTodayWidgetViewController: UIViewController {
     }
 }
 
-extension GradesTodayWidgetViewController: NCWidgetProviding {
-    func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
-        completionHandler(NCUpdateResult.newData)
-    }
-
-    func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
-        preferredContentSize = activeDisplayMode == .expanded ? CGSize(width: 0, height: CGFloat(courses.count) * tableView.estimatedRowHeight) : maxSize
-    }
-}
-
 extension GradesTodayWidgetViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if error != nil {
             return 1
         }
-        return courses.count
+        return presenter.courses.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -248,23 +147,15 @@ extension GradesTodayWidgetViewController: UITableViewDataSource {
         cell.courseNameLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
         cell.gradeLabel?.font = UIFont.preferredFont(forTextStyle: .body)
 
-        let course = courses[indexPath.row]
+        guard let course = presenter.courses[indexPath.row] else {
+            fatalError("Course failed to load")
+        }
 
         cell.courseNameLabel?.text = course.name
         cell.gradeLabel?.text = course.displayGrade
         cell.dotView.layer.cornerRadius = cell.dotView.bounds.size.height / 2
-        cell.dotView.backgroundColor = color(for: course) ?? .gray
+        cell.dotView.backgroundColor = course.color
         return cell
-    }
-
-    func color(for course: Course) -> UIColor? {
-        guard let colors = colors else { return nil }
-        for color in colors.customColors {
-            if color.context == Context.course && course.id == color.id {
-                return UIColor.colorFromHexString(color.color)
-            }
-        }
-        return nil
     }
 
     func errorCell(_ error: Error) -> UITableViewCell {
@@ -282,14 +173,21 @@ extension GradesTodayWidgetViewController: UITableViewDataSource {
 extension GradesTodayWidgetViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        guard error == nil else {
+        guard let course = presenter.courses[indexPath.row], let host = AppEnvironment.shared.currentSession?.baseURL.host else {
             extensionContext?.open(URL(string: "canvas-courses://")!, completionHandler: nil)
             return
         }
-
-        guard let client = CanvasKeymaster.the().currentClient, let host = client.baseURL?.host else { return }
-        let course = courses[indexPath.row]
         extensionContext?.open(URL(string: "canvas-courses://\(host)/courses/\(course.id)/grades")!, completionHandler: nil)
+    }
+}
+
+extension GradesTodayWidgetViewController: NCWidgetProviding {
+    func widgetPerformUpdate(completionHandler: @escaping (NCUpdateResult) -> Void) {
+        completionHandler(.newData)
+    }
+
+    func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
+        preferredContentSize = activeDisplayMode == .expanded ? CGSize(width: 0, height: CGFloat(presenter.courses.count) * tableView.estimatedRowHeight) : maxSize
     }
 }
 

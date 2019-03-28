@@ -39,7 +39,6 @@
 		3BE2ADCB21B704F1008D91AB /* DynamicTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE2ADCA21B704F1008D91AB /* DynamicTextField.swift */; };
 		3BE2C760218CB50B004B8E5E /* ColoredNavViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE2C75F218CB50B004B8E5E /* ColoredNavViewProtocol.swift */; };
 		3BE2C764218CB53F004B8E5E /* Enrollment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE2C763218CB53F004B8E5E /* Enrollment.swift */; };
-		3BE2C766218CB56E004B8E5E /* EnrollmentRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE2C765218CB56E004B8E5E /* EnrollmentRole.swift */; };
 		3BE2C76F219335FA004B8E5E /* ColoredNavViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE2C76E219335FA004B8E5E /* ColoredNavViewProtocol.swift */; };
 		3BF5C54F218780140081A858 /* GetAssignments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF5C54E2187800B0081A858 /* GetAssignments.swift */; };
 		3BF5C55321879A430081A858 /* GetAssignmentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF5C55221879A430081A858 /* GetAssignmentsTests.swift */; };
@@ -265,6 +264,7 @@
 		9F6878B1223952FB00E559CE /* MediaComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6878B0223952FB00E559CE /* MediaComment.swift */; };
 		9F6878B722397E8F00E559CE /* MediaCommentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6878B622397E8F00E559CE /* MediaCommentTests.swift */; };
 		9F7DF8172136EEE400966382 /* OperationSetTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7DF8162136EEE400966382 /* OperationSetTest.swift */; };
+		9F88ED01224A742F00DCCA09 /* EnrollmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F88ED00224A742F00DCCA09 /* EnrollmentTests.swift */; };
 		9F8C3291223ACBA500D53F84 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FAA58FB223A987600FEC3F8 /* ProfileViewController.xib */; };
 		9FAA58FF223A98A000FEC3F8 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAA58FD223A987600FEC3F8 /* ProfileViewController.swift */; };
 		9FAA5900223A98A300FEC3F8 /* DrawerTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAA58FC223A987600FEC3F8 /* DrawerTransitioning.swift */; };
@@ -299,6 +299,7 @@
 		9FD504F22180C5F600B395BA /* AsyncBlockOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD504F12180C5F600B395BA /* AsyncBlockOperation.swift */; };
 		9FD504F42180DC7B00B395BA /* AsyncBlockOperationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD504F32180DC7B00B395BA /* AsyncBlockOperationTest.swift */; };
 		9FD504F62180FC7200B395BA /* GetFileTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD504F52180FC7200B395BA /* GetFileTest.swift */; };
+		9FE6D44C2249541E00EFFF5C /* EnrollmentRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE6D44B2249541E00EFFF5C /* EnrollmentRole.swift */; };
 		9FE84DDA214FE06300B95A68 /* GetGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE84DD9214FE06300B95A68 /* GetGroup.swift */; };
 		9FE84DDC214FE5C500B95A68 /* GetGroupTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE84DDB214FE5C500B95A68 /* GetGroupTest.swift */; };
 		9FE84DDE2150281300B95A68 /* GetContextTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE84DDD2150281300B95A68 /* GetContextTabs.swift */; };
@@ -481,7 +482,6 @@
 		3BE2ADCA21B704F1008D91AB /* DynamicTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicTextField.swift; sourceTree = "<group>"; };
 		3BE2C75F218CB50B004B8E5E /* ColoredNavViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColoredNavViewProtocol.swift; sourceTree = "<group>"; };
 		3BE2C763218CB53F004B8E5E /* Enrollment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enrollment.swift; sourceTree = "<group>"; };
-		3BE2C765218CB56E004B8E5E /* EnrollmentRole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnrollmentRole.swift; sourceTree = "<group>"; };
 		3BE2C76E219335FA004B8E5E /* ColoredNavViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColoredNavViewProtocol.swift; sourceTree = "<group>"; };
 		3BF5C54E2187800B0081A858 /* GetAssignments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetAssignments.swift; sourceTree = "<group>"; };
 		3BF5C55221879A430081A858 /* GetAssignmentsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetAssignmentsTests.swift; sourceTree = "<group>"; };
@@ -853,6 +853,7 @@
 		9F6878B0223952FB00E559CE /* MediaComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaComment.swift; sourceTree = "<group>"; };
 		9F6878B622397E8F00E559CE /* MediaCommentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaCommentTests.swift; sourceTree = "<group>"; };
 		9F7DF8162136EEE400966382 /* OperationSetTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationSetTest.swift; sourceTree = "<group>"; };
+		9F88ED00224A742F00DCCA09 /* EnrollmentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnrollmentTests.swift; sourceTree = "<group>"; };
 		9FAA58FB223A987600FEC3F8 /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
 		9FAA58FC223A987600FEC3F8 /* DrawerTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerTransitioning.swift; sourceTree = "<group>"; };
 		9FAA58FD223A987600FEC3F8 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -887,6 +888,7 @@
 		9FD504F12180C5F600B395BA /* AsyncBlockOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncBlockOperation.swift; sourceTree = "<group>"; };
 		9FD504F32180DC7B00B395BA /* AsyncBlockOperationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncBlockOperationTest.swift; sourceTree = "<group>"; };
 		9FD504F52180FC7200B395BA /* GetFileTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFileTest.swift; sourceTree = "<group>"; };
+		9FE6D44B2249541E00EFFF5C /* EnrollmentRole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnrollmentRole.swift; sourceTree = "<group>"; };
 		9FE84DD9214FE06300B95A68 /* GetGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGroup.swift; sourceTree = "<group>"; };
 		9FE84DDB214FE5C500B95A68 /* GetGroupTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGroupTest.swift; sourceTree = "<group>"; };
 		9FE84DDD2150281300B95A68 /* GetContextTabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetContextTabs.swift; sourceTree = "<group>"; };
@@ -1277,7 +1279,7 @@
 				7D062AF82124A0F400677F66 /* ContextModel.swift */,
 				7DCF1EA9216BC1A5003AF358 /* CourseDefaultView.swift */,
 				7DCF1EA5216BC0F5003AF358 /* CourseWorkflowState.swift */,
-				3BE2C765218CB56E004B8E5E /* EnrollmentRole.swift */,
+				9FE6D44B2249541E00EFFF5C /* EnrollmentRole.swift */,
 				7DCF1EAD216BC48F003AF358 /* EnrollmentState.swift */,
 				B1BB68F321B5F0C90079C78B /* FileUploadContext.swift */,
 				B1A8CD3622375D6400E2242D /* FileUploadTarget.swift */,
@@ -1408,6 +1410,7 @@
 		7D37BE8921C82A100063FAAC /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				9F88ED00224A742F00DCCA09 /* EnrollmentTests.swift */,
 				3B84C38E218B9B51005946BA /* AssignmentDatesTests.swift */,
 				B19792F6217697E30000369C /* AssignmentTests.swift */,
 				B133A789221F59A3000E393E /* ColorTests.swift */,
@@ -1785,7 +1788,6 @@
 			isa = PBXGroup;
 			children = (
 				B195DC5F2132659800797FE4 /* Base */,
-				3B4B75C6222F09C7002CCBEC /* CreateSubmission.swift */,
 				9FD504EF2180C17C00B395BA /* DownloadFile.swift */,
 				B1A32BE5215A81350071B41E /* GetAssignment.swift */,
 				3BF5C54E2187800B0081A858 /* GetAssignments.swift */,
@@ -1804,6 +1806,8 @@
 				9FCD79D72188DFD00054293A /* GetSubmission.swift */,
 				7DA5C48B22385F95003CDB4C /* GetSubmissionComments.swift */,
 				B195DC44213201DE00797FE4 /* GetUserGroups.swift */,
+				3B4B75C6222F09C7002CCBEC /* CreateSubmission.swift */,
+				9F1CEA6022401425000BB98F /* GetContextPermissions.swift */,
 				7D92D656224ACC7A0015B368 /* UploadMediaComment.swift */,
 			);
 			path = "Use Cases";
@@ -2279,6 +2283,7 @@
 				7D80AC2B212C77C600C40ECE /* APIOAuth.swift in Sources */,
 				7D20F61921C3166800B77E5E /* UICollectionViewExtensions.swift in Sources */,
 				B1E789B121B199E40087FE4A /* LogEventListPresenter.swift in Sources */,
+				9FE6D44C2249541E00EFFF5C /* EnrollmentRole.swift in Sources */,
 				3B5425FC21B074500009D069 /* UIViewControllerExtensions.swift in Sources */,
 				B1A6BC82218A5066000515E3 /* APILatePolicy.swift in Sources */,
 				7D7110CA2139A57A0085C2E5 /* URLComponentsExtensions.swift in Sources */,
@@ -2421,7 +2426,6 @@
 				7DCF203C216D5AE2003AF358 /* LockStatusViewable.swift in Sources */,
 				7D0215AB21BB18C6009A8E69 /* LoginDelegate.swift in Sources */,
 				7DF4FFE521714952007E5F81 /* NSNumberExtensions.swift in Sources */,
-				3BE2C766218CB56E004B8E5E /* EnrollmentRole.swift in Sources */,
 				7DCF1EB6216BC861003AF358 /* SubmissionWorkflowState.swift in Sources */,
 				2C96485E211E3723002C3255 /* AppEnvironment.swift in Sources */,
 				B1AE17AE21877C37002995E6 /* APIEnrollment+Requestable.swift in Sources */,
@@ -2537,6 +2541,7 @@
 				7DD694812194CE8C00BA4984 /* DateExtensionsTests.swift in Sources */,
 				3B472274213795E500BF6FF3 /* PersistenceTests.swift in Sources */,
 				7DCF1EA2216BB7E4003AF358 /* SubmissionTypeTests.swift in Sources */,
+				9F88ED01224A742F00DCCA09 /* EnrollmentTests.swift in Sources */,
 				7D979CCA215BDFD500567627 /* DividerViewTests.swift in Sources */,
 				9F1CEA5F22400DC0000BB98F /* PermissionsTests.swift in Sources */,
 				9F7DF8172136EEE400966382 /* OperationSetTest.swift in Sources */,

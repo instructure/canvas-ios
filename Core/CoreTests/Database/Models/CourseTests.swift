@@ -84,4 +84,90 @@ class CourseTests: CoreTestCase {
         XCTAssertNotNil(resultEnrollment)
         XCTAssertEqual(resultEnrollment?.canvasContextID, "course_1")
     }
+
+    func testWidgetDisplayGradeNoEnrollments() {
+        let c = Course.make()
+        XCTAssertEqual(c.displayGrade, "")
+    }
+
+    func testWidgetDisplayGradeNoStudentEnrollments() {
+        let c = Course.make()
+        let e = Enrollment.make(["roleRaw": "TeacherEnrollment"])
+        c.enrollments = [e]
+        XCTAssertEqual(c.displayGrade, "")
+    }
+
+    func testWidgetDisplayGradeScore() {
+        let c = Course.make()
+        let e = Enrollment.make(["computedCurrentScoreRaw": 40.05])
+        c.enrollments = [e]
+        XCTAssertEqual(c.displayGrade, "40.05%")
+    }
+
+    func testWidgetDisplayGradeScoreAndGrade() {
+        let c = Course.make()
+        let e = Enrollment.make([
+            "computedCurrentScoreRaw": 40.05,
+            "computedCurrentGrade": "F-",
+        ])
+        c.enrollments = [e]
+        XCTAssertEqual(c.displayGrade, "40.05% - F-")
+    }
+
+    func testWidgetDisplayGradeNoScoreWithGrade() {
+        let c = Course.make()
+        let e = Enrollment.make([
+            "computedCurrentScoreRaw": nil,
+            "computedCurrentGrade": "B+",
+        ])
+        c.enrollments = [e]
+        XCTAssertEqual(c.displayGrade, "B+")
+    }
+
+    func testWidgetDisplayGradeNoScoreNoGrade() {
+        let c = Course.make()
+        let e = Enrollment.make([
+            "computedCurrentScoreRaw": nil,
+            "computedCurrentGrade": nil,
+        ])
+        c.enrollments = [e]
+        XCTAssertEqual(c.displayGrade, "N/A")
+    }
+
+    func testWidgetDisplayGradeInCurrentMGP() {
+        let c = Course.make()
+        let e = Enrollment.make([
+            "multipleGradingPeriodsEnabled": true,
+            "currentGradingPeriodID": "1",
+            "currentPeriodComputedCurrentScoreRaw": 90,
+            "currentPeriodComputedCurrentGrade": "A-",
+        ])
+        c.enrollments = [e]
+        XCTAssertEqual(c.displayGrade, "90% - A-")
+    }
+
+    func testWidgetDisplayGradeNotInCurrentMGPWithTotals() {
+        let c = Course.make()
+        let e = Enrollment.make([
+            "multipleGradingPeriodsEnabled": true,
+            "currentGradingPeriodID": nil,
+            "totalsForAllGradingPeriodsOption": true,
+            "computedFinalScoreRaw": 85,
+            "computedFinalGrade": "B",
+        ])
+        c.enrollments = [e]
+        XCTAssertEqual(c.displayGrade, "85% - B")
+    }
+
+    func testWidgetDisplayGradeNotInCurrentMGPWithoutTotals() {
+        let c = Course.make()
+        let e = Enrollment.make([
+            "multipleGradingPeriodsEnabled": true,
+            "currentGradingPeriodID": nil,
+            "totalsForAllGradingPeriodsOption": false,
+        ])
+        c.enrollments = [e]
+        XCTAssertEqual(c.displayGrade, "N/A")
+    }
+
 }
