@@ -56,8 +56,6 @@ public class AudioRecorderViewController: UIViewController, ErrorViewController 
         cancelButton?.accessibilityLabel = NSLocalizedString("Cancel", bundle: .core, comment: "")
         clearButton?.accessibilityLabel = NSLocalizedString("Clear recording", bundle: .core, comment: "")
         player.accessibilityPrefix = "AudioRecorder."
-        player.backgroundColor = nil
-        player.color = .named(.textDark)
         if let view = playerView { embed(player, in: view) }
         recordButton?.accessibilityLabel = NSLocalizedString("Start recording", bundle: .core, comment: "")
         sendButton?.setTitle(NSLocalizedString("Send", bundle: .core, comment: ""), for: .normal)
@@ -119,6 +117,7 @@ public class AudioRecorderViewController: UIViewController, ErrorViewController 
         try? FileManager.default.removeItem(at: url)
         borderView?.isHidden = false
         clearButton?.isHidden = true
+        player.load(url: nil)
         playerView?.isHidden = true
         recordButton?.isHidden = false
         sendButton?.isHidden = true

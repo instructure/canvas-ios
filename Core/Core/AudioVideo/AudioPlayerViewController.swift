@@ -48,10 +48,10 @@ public class AudioPlayerViewController: UIViewController {
     public var accessibilityPrefix: String = "AudioPlayer." {
         didSet {
             currentTimeLabel?.accessibilityIdentifier = currentTimeLabel?.accessibilityIdentifier?.replacingOccurrences(of: oldValue, with: accessibilityPrefix)
-            loadingView?.accessibilityIdentifier = currentTimeLabel?.accessibilityIdentifier?.replacingOccurrences(of: oldValue, with: accessibilityPrefix)
-            playPauseButton?.accessibilityIdentifier = currentTimeLabel?.accessibilityIdentifier?.replacingOccurrences(of: oldValue, with: accessibilityPrefix)
-            remainingTimeLabel?.accessibilityIdentifier = currentTimeLabel?.accessibilityIdentifier?.replacingOccurrences(of: oldValue, with: accessibilityPrefix)
-            timeSlider?.accessibilityIdentifier = currentTimeLabel?.accessibilityIdentifier?.replacingOccurrences(of: oldValue, with: accessibilityPrefix)
+            loadingView?.accessibilityIdentifier = loadingView?.accessibilityIdentifier?.replacingOccurrences(of: oldValue, with: accessibilityPrefix)
+            playPauseButton?.accessibilityIdentifier = playPauseButton?.accessibilityIdentifier?.replacingOccurrences(of: oldValue, with: accessibilityPrefix)
+            remainingTimeLabel?.accessibilityIdentifier = remainingTimeLabel?.accessibilityIdentifier?.replacingOccurrences(of: oldValue, with: accessibilityPrefix)
+            timeSlider?.accessibilityIdentifier = timeSlider?.accessibilityIdentifier?.replacingOccurrences(of: oldValue, with: accessibilityPrefix)
         }
     }
 
@@ -74,6 +74,7 @@ public class AudioPlayerViewController: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
+        backgroundColor = .named(.backgroundDarkest)
         playPauseButton?.accessibilityLabel = NSLocalizedString("Play", bundle: .core, comment: "")
         currentTimeLabel?.accessibilityLabel = NSLocalizedString("Time elapsed", bundle: .core, comment: "")
         loadingView?.accessibilityIdentifier = "AudioPlayer.loadingView"
@@ -82,12 +83,13 @@ public class AudioPlayerViewController: UIViewController {
         timeSlider?.accessibilityLabel = NSLocalizedString("Current position", bundle: .core, comment: "")
     }
 
-    public func load(url: URL) {
+    public func load(url: URL?) {
         currentTimeLabel?.text = NSLocalizedString("--:--", bundle: .core, comment: "")
         remainingTimeLabel?.text = NSLocalizedString("--:--", bundle: .core, comment: "")
         loadingView?.startAnimating()
         playPauseButton?.alpha = 0
         playPauseButton?.isEnabled = false
+        guard let url = url else { return }
         URLSessionAPI.cachingURLSession.dataTask(with: url) { [weak self] data, _, error in
             guard error == nil, let data = data else {
                 DispatchQueue.main.async { self?.showError(error ?? NSError.internalError()) }

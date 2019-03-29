@@ -32,6 +32,7 @@ class SubmissionCommentAudioCell: UITableViewCell {
         )
 
         guard let mediaURL = comment.mediaURL else { return } // The cell should always have a valid mediaURL
+        player.accessibilityPrefix = "SubmissionComments.audioCell.\(comment.id)."
         player.load(url: mediaURL)
         if player.view?.superview == nil, let view = containerView {
             parent.embed(player, in: view)

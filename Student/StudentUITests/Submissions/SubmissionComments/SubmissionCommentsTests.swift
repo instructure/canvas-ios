@@ -35,16 +35,52 @@ class SubmissionCommentsTests: StudentTest {
         return assignment
     }()
 
-    func testCommentsList() {
+    func testFileComments() {
         mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make([
             "id": "1",
             "attempt": 1,
             "user_id": "1",
+            "user": [ "id": "1", "short_name": "Student" ],
             "submission_type": "online_upload",
             "attachments": [
                 APIFile.fixture([ "id": "1", "display_name": "File 1" ]),
                 APIFile.fixture([ "id": "2", "display_name": "File 2" ]),
             ],
+        ]))
+
+        show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
+        SubmissionDetailsElement.drawerFilesButton.tap()
+        SubmissionDetailsElement.drawerCommentsButton.tap()
+
+        XCTAssertTrue(SubmissionComments.attemptCell(submissionID: "1", attempt: 1).isVisible)
+        XCTAssertTrue(SubmissionComments.fileView(fileID: "1").isVisible)
+        XCTAssertTrue(SubmissionComments.fileView(fileID: "2").isVisible)
+    }
+
+    func testAttemptComments() {
+        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make([
+            "id": "1",
+            "attempt": 1,
+            "user_id": "1",
+            "user": [ "id": "1", "short_name": "Student" ],
+            "submission_type": "online_quiz",
+        ]))
+
+        show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
+        SubmissionDetailsElement.drawerFilesButton.tap()
+        SubmissionDetailsElement.drawerCommentsButton.tap()
+
+        XCTAssertTrue(SubmissionComments.attemptCell(submissionID: "1", attempt: 1).isVisible)
+        XCTAssertTrue(SubmissionComments.attemptView(attempt: 1).isVisible)
+    }
+
+    func testTextComments() {
+        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make([
+            "id": "1",
+            "attempt": 1,
+            "user_id": "1",
+            "submission_type": "online_upload",
+            "attachments": [],
             "submission_comments": [
                 APISubmissionComment.fixture([
                     "id": "1",
@@ -67,6 +103,47 @@ class SubmissionCommentsTests: StudentTest {
 
         XCTAssertTrue(SubmissionComments.textCell(commentID: "1").isVisible)
         XCTAssertTrue(SubmissionComments.textCell(commentID: "2").isVisible)
+    }
+
+    func testAudioComments() {
+        let testm4a = Bundle(for: SubmissionCommentsTests.self).url(forResource: "test", withExtension: "m4a")!
+        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make([
+            "id": "1",
+            "attempt": 1,
+            "user_id": "1",
+            "submission_type": "online_upload",
+            "attachments": [],
+            "submission_comments": [
+                APISubmissionComment.fixture([
+                    "id": "1",
+                    "author_id": "2",
+                    "author": APISubmissionCommentAuthor.fixture([ "display_name": "Teacher" ]),
+                    "media_comment": APIMediaComment.fixture([
+                        "media_type": "audio",
+                        "url": testm4a.absoluteString,
+                    ]),
+                ]),
+                APISubmissionComment.fixture([
+                    "id": "2",
+                    "author_id": "1",
+                    "author": APISubmissionCommentAuthor.fixture([ "display_name": "Student" ]),
+                    "media_comment": APIMediaComment.fixture([
+                        "media_type": "audio",
+                        "url": testm4a.absoluteString,
+                    ]),
+                ]),
+            ],
+        ]))
+        mockDataRequest(URLRequest(url: testm4a), data: try! Data(contentsOf: testm4a))
+
+        show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
+        SubmissionDetailsElement.drawerFilesButton.tap()
+        SubmissionDetailsElement.drawerCommentsButton.tap()
+
+        XCTAssertTrue(SubmissionComments.audioCell(commentID: "1").isVisible)
+        XCTAssertTrue(SubmissionComments.audioCell(commentID: "2").isVisible)
+        SubmissionComments.audioCellPlayPauseButton(commentID: "1").tap()
+        SubmissionComments.audioCellPlayPauseButton(commentID: "2").tap()
     }
 
     func testAudioRecording() {

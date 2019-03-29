@@ -54,8 +54,8 @@ class SubmissionCommentsPresenterTests: PersistenceTestCase {
     }
 
     func testAddMediaComment() {
-        presenter.addMediaComment(type: .audio, url: URL(string: "/")!)
         view.expectError = expectation(description: "error")
+        presenter.addMediaComment(type: .audio, url: URL(string: "/")!)
         wait(for: [view.expectError!], timeout: 5)
         XCTAssertNotNil(view.error)
     }

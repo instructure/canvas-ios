@@ -18,24 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="240"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7t0-2n-BON" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="4" width="40" height="40"/>
-                                <accessibility key="accessibilityConfiguration" identifier="AudioRecorder.clearButton"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="LPr-Tk-JN4"/>
-                                    <constraint firstAttribute="width" constant="40" id="aCd-e9-kBA"/>
-                                </constraints>
-                                <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="trashLine"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="clear:" destination="NAp-rK-X0s" eventType="primaryActionTriggered" id="Nzc-Dg-319"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7hp-Ut-gdC" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="40" y="12" width="295" height="24"/>
+                                <rect key="frame" x="48" y="16" width="279" height="24"/>
                                 <accessibility key="accessibilityConfiguration" identifier="AudioRecorder.timeLabel"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -46,7 +30,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P04-42-aRA" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="335" y="4" width="40" height="40"/>
+                                <rect key="frame" x="327" y="8" width="40" height="40"/>
                                 <accessibility key="accessibilityConfiguration" identifier="AudioRecorder.cancelButton"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="P9T-eT-hQJ"/>
@@ -117,7 +101,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jJc-OK-0DG">
-                                <rect key="frame" x="-4" y="80" width="383" height="32"/>
+                                <rect key="frame" x="16" y="104" width="343" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="9sm-v0-84v"/>
                                 </constraints>
@@ -127,8 +111,25 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="13i-Ay-AxK" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="16" y="182" width="163.5" height="42"/>
+                                <accessibility key="accessibilityConfiguration" identifier="AudioRecorder.clearButton"/>
+                                <inset key="contentEdgeInsets" minX="38" minY="12" maxX="38" maxY="12"/>
+                                <state key="normal" title="Delete"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="backgroundColorName" value="buttonSecondaryBackground"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="buttonSecondaryText"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="clear:" destination="NAp-rK-X0s" eventType="primaryActionTriggered" id="3mN-KB-S1s"/>
+                                </connections>
+                            </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HYf-Ke-XMw" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="130" y="122" width="115" height="44"/>
+                                <rect key="frame" x="195.5" y="180" width="163.5" height="44"/>
                                 <accessibility key="accessibilityConfiguration" identifier="AudioRecorder.sendButton"/>
                                 <inset key="contentEdgeInsets" minX="38" minY="12" maxX="38" maxY="12"/>
                                 <state key="normal" title="Send"/>
@@ -148,19 +149,21 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="azE-St-Zbf" firstAttribute="centerX" secondItem="mbJ-rF-8Pv" secondAttribute="centerX" id="32u-9x-Oml"/>
-                            <constraint firstItem="7hp-Ut-gdC" firstAttribute="leading" secondItem="7t0-2n-BON" secondAttribute="trailing" id="Mse-ez-FwT"/>
-                            <constraint firstItem="HYf-Ke-XMw" firstAttribute="centerY" secondItem="mbJ-rF-8Pv" secondAttribute="centerY" constant="24" id="QeN-tu-9IL"/>
+                            <constraint firstAttribute="trailing" secondItem="HYf-Ke-XMw" secondAttribute="trailing" constant="16" id="HsO-bH-mcp"/>
                             <constraint firstItem="azE-St-Zbf" firstAttribute="centerY" secondItem="mbJ-rF-8Pv" secondAttribute="centerY" id="QhB-YZ-7Au"/>
-                            <constraint firstAttribute="trailing" secondItem="P04-42-aRA" secondAttribute="trailing" id="SXm-Hh-t2s"/>
-                            <constraint firstItem="P04-42-aRA" firstAttribute="top" secondItem="mbJ-rF-8Pv" secondAttribute="top" constant="4" id="TBa-Jd-pVJ"/>
-                            <constraint firstItem="7hp-Ut-gdC" firstAttribute="top" secondItem="vd2-8i-O1Q" secondAttribute="top" constant="12" id="V8O-Be-FpN"/>
+                            <constraint firstAttribute="trailing" secondItem="P04-42-aRA" secondAttribute="trailing" constant="8" id="SXm-Hh-t2s"/>
+                            <constraint firstItem="P04-42-aRA" firstAttribute="top" secondItem="mbJ-rF-8Pv" secondAttribute="top" constant="8" id="TBa-Jd-pVJ"/>
+                            <constraint firstItem="7hp-Ut-gdC" firstAttribute="top" secondItem="mbJ-rF-8Pv" secondAttribute="top" constant="16" id="V8O-Be-FpN"/>
                             <constraint firstItem="P04-42-aRA" firstAttribute="leading" secondItem="7hp-Ut-gdC" secondAttribute="trailing" id="Y48-XC-gUo"/>
-                            <constraint firstItem="HYf-Ke-XMw" firstAttribute="centerX" secondItem="mbJ-rF-8Pv" secondAttribute="centerX" id="eQf-tr-dsK"/>
-                            <constraint firstItem="7t0-2n-BON" firstAttribute="leading" secondItem="mbJ-rF-8Pv" secondAttribute="leading" id="iP4-jB-td8"/>
-                            <constraint firstItem="jJc-OK-0DG" firstAttribute="centerY" secondItem="mbJ-rF-8Pv" secondAttribute="centerY" constant="-24" id="jEE-KO-RSk"/>
-                            <constraint firstItem="vd2-8i-O1Q" firstAttribute="trailing" secondItem="jJc-OK-0DG" secondAttribute="trailing" constant="-4" id="k3M-bY-JU1"/>
-                            <constraint firstItem="7t0-2n-BON" firstAttribute="top" secondItem="mbJ-rF-8Pv" secondAttribute="top" constant="4" id="m5D-tN-wTr"/>
-                            <constraint firstItem="jJc-OK-0DG" firstAttribute="leading" secondItem="vd2-8i-O1Q" secondAttribute="leading" constant="-4" id="tQf-jS-qv2"/>
+                            <constraint firstItem="vd2-8i-O1Q" firstAttribute="bottom" secondItem="13i-Ay-AxK" secondAttribute="bottom" constant="16" id="cQv-kV-4OV"/>
+                            <constraint firstItem="jJc-OK-0DG" firstAttribute="centerY" secondItem="mbJ-rF-8Pv" secondAttribute="centerY" id="jEE-KO-RSk"/>
+                            <constraint firstAttribute="trailing" secondItem="jJc-OK-0DG" secondAttribute="trailing" constant="16" id="k3M-bY-JU1"/>
+                            <constraint firstItem="HYf-Ke-XMw" firstAttribute="leading" secondItem="mbJ-rF-8Pv" secondAttribute="centerX" constant="8" id="nV8-hk-WJh"/>
+                            <constraint firstItem="13i-Ay-AxK" firstAttribute="leading" secondItem="vd2-8i-O1Q" secondAttribute="leading" constant="16" id="rDF-fc-v0u"/>
+                            <constraint firstAttribute="centerX" secondItem="13i-Ay-AxK" secondAttribute="trailing" constant="8" id="sdq-oO-PbV"/>
+                            <constraint firstItem="jJc-OK-0DG" firstAttribute="leading" secondItem="mbJ-rF-8Pv" secondAttribute="leading" constant="16" id="tQf-jS-qv2"/>
+                            <constraint firstItem="7hp-Ut-gdC" firstAttribute="centerX" secondItem="mbJ-rF-8Pv" secondAttribute="centerX" id="tmZ-PV-W3u"/>
+                            <constraint firstAttribute="bottom" secondItem="HYf-Ke-XMw" secondAttribute="bottom" constant="16" id="uGX-6t-awd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="vd2-8i-O1Q"/>
                     </view>
@@ -171,7 +174,7 @@
                     <connections>
                         <outlet property="borderView" destination="azE-St-Zbf" id="0Z0-ie-sE4"/>
                         <outlet property="cancelButton" destination="P04-42-aRA" id="Zmo-rI-Fw7"/>
-                        <outlet property="clearButton" destination="7t0-2n-BON" id="tLY-FM-wIp"/>
+                        <outlet property="clearButton" destination="13i-Ay-AxK" id="0x9-MJ-TjZ"/>
                         <outlet property="playerView" destination="jJc-OK-0DG" id="9P2-w4-UQG"/>
                         <outlet property="recordButton" destination="dva-oH-EXJ" id="hgi-D3-52Z"/>
                         <outlet property="sendButton" destination="HYf-Ke-XMw" id="3bN-H4-sgE"/>
@@ -181,7 +184,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VXd-M9-tLj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="20" y="-134"/>
+            <point key="canvasLocation" x="20" y="-134.03298350824588"/>
         </scene>
     </scenes>
 </document>
