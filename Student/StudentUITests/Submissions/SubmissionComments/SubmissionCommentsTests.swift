@@ -85,7 +85,7 @@ class SubmissionCommentsTests: StudentTest {
             "submission_comments": [ APISubmissionComment.fixture([
                 "id": "42",
                 "media_comment": [
-                    "url": "data:text/plain,",
+                    "url": "data:audio/x-m4a,",
                     "media_id": "23",
                     "media_type": "audio",
                 ],
@@ -101,6 +101,7 @@ class SubmissionCommentsTests: StudentTest {
         allowAccessToMicrophone() // Need to manually grant access in simulator once.
         AudioRecorder.recordButton.tap()
         AudioRecorder.stopButton.tap()
+        XCTAssertTrue(AudioRecorder.currentTimeLabel.isVisible)
         AudioRecorder.clearButton.tap()
         AudioRecorder.cancelButton.tap()
         XCTAssertFalse(AudioRecorder.cancelButton.isVisible)
@@ -110,6 +111,7 @@ class SubmissionCommentsTests: StudentTest {
         allowAccessToMicrophone()
         AudioRecorder.recordButton.tap()
         AudioRecorder.stopButton.tap()
+        XCTAssertTrue(AudioRecorder.currentTimeLabel.isVisible)
         AudioRecorder.sendButton.tap()
         XCTAssertTrue(SubmissionComments.audioCell(commentID: "42").isVisible)
     }

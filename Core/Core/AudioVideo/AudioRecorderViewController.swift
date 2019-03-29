@@ -55,6 +55,7 @@ public class AudioRecorderViewController: UIViewController, ErrorViewController 
         borderView?.layer.borderColor = UIColor.named(.borderMedium).cgColor
         cancelButton?.accessibilityLabel = NSLocalizedString("Cancel", bundle: .core, comment: "")
         clearButton?.accessibilityLabel = NSLocalizedString("Clear recording", bundle: .core, comment: "")
+        player.accessibilityPrefix = "AudioRecorder."
         player.backgroundColor = nil
         player.color = .named(.textDark)
         if let view = playerView { embed(player, in: view) }

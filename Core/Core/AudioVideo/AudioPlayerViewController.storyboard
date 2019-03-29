@@ -26,6 +26,7 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g9h-ws-oTb" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="35" height="32"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="AudioPlayer.playPauseButton"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="32" id="72F-fo-BMx"/>
                                                     <constraint firstAttribute="width" constant="35" id="kdr-Ju-Rkm"/>
@@ -44,7 +45,7 @@
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--:--" textAlignment="natural" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ANV-Ga-VPe" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
                                                         <rect key="frame" x="7.5" y="9.5" width="24.5" height="13.5"/>
-                                                        <accessibility key="accessibilityConfiguration">
+                                                        <accessibility key="accessibilityConfiguration" identifier="AudioPlayer.currentTimeLabel">
                                                             <accessibilityTraits key="traits" staticText="YES" updatesFrequently="YES"/>
                                                         </accessibility>
                                                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
@@ -105,7 +106,7 @@
                                                     </view>
                                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="On9-DB-8Ib">
                                                         <rect key="frame" x="-2" y="1" width="272" height="31"/>
-                                                        <accessibility key="accessibilityConfiguration">
+                                                        <accessibility key="accessibilityConfiguration" identifier="AudioPlayer.timeSlider">
                                                             <accessibilityTraits key="traits" adjustable="YES"/>
                                                         </accessibility>
                                                         <color key="minimumTrackTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -132,6 +133,7 @@
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--:--" textAlignment="natural" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bBV-09-tBG" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="9.5" width="24.5" height="13.5"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="AudioPlayer.remainingTimeLabel"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>

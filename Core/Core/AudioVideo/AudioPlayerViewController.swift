@@ -41,20 +41,27 @@ public class AudioPlayerViewController: UIViewController {
 
     public static func create() -> AudioPlayerViewController {
         let controller = loadFromStoryboard()
+        controller.loadViewIfNeeded() // So the didSets work correctly.
         return controller
+    }
+
+    public var accessibilityPrefix: String = "AudioPlayer." {
+        didSet {
+            currentTimeLabel?.accessibilityIdentifier = currentTimeLabel?.accessibilityIdentifier?.replacingOccurrences(of: oldValue, with: accessibilityPrefix)
+            loadingView?.accessibilityIdentifier = currentTimeLabel?.accessibilityIdentifier?.replacingOccurrences(of: oldValue, with: accessibilityPrefix)
+            playPauseButton?.accessibilityIdentifier = currentTimeLabel?.accessibilityIdentifier?.replacingOccurrences(of: oldValue, with: accessibilityPrefix)
+            remainingTimeLabel?.accessibilityIdentifier = currentTimeLabel?.accessibilityIdentifier?.replacingOccurrences(of: oldValue, with: accessibilityPrefix)
+            timeSlider?.accessibilityIdentifier = currentTimeLabel?.accessibilityIdentifier?.replacingOccurrences(of: oldValue, with: accessibilityPrefix)
+        }
     }
 
     public var backgroundColor: UIColor? {
         get { return backgroundView?.backgroundColor }
-        set {
-            loadViewIfNeeded()
-            backgroundView?.backgroundColor = newValue
-        }
+        set { backgroundView?.backgroundColor = newValue }
     }
 
     public var color: UIColor = .white {
         didSet {
-            loadViewIfNeeded()
             currentTimeLabel?.textColor = color
             loadingView?.color = color
             playPauseButton?.tintColor = color
@@ -69,6 +76,7 @@ public class AudioPlayerViewController: UIViewController {
         super.viewDidLoad()
         playPauseButton?.accessibilityLabel = NSLocalizedString("Play", bundle: .core, comment: "")
         currentTimeLabel?.accessibilityLabel = NSLocalizedString("Time elapsed", bundle: .core, comment: "")
+        loadingView?.accessibilityIdentifier = "AudioPlayer.loadingView"
         loadingView?.color = color
         remainingTimeLabel?.accessibilityLabel = NSLocalizedString("Total time", bundle: .core, comment: "")
         timeSlider?.accessibilityLabel = NSLocalizedString("Current position", bundle: .core, comment: "")

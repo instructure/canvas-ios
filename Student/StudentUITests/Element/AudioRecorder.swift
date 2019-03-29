@@ -18,4 +18,6 @@ import Foundation
 
 enum AudioRecorder: String, Element {
     case cancelButton, clearButton, recordButton, sendButton, stopButton, timeLabel
+    // embedded AudioPlayer
+    case currentTimeLabel, loadingView, playPauseButton, remainingTimeLabel, timeSlider
 }
