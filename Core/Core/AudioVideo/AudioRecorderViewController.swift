@@ -26,6 +26,7 @@ public class AudioRecorderViewController: UIViewController, ErrorViewController 
     @IBOutlet weak var borderView: UIView?
     @IBOutlet weak var cancelButton: DynamicButton?
     @IBOutlet weak var clearButton: DynamicButton?
+    @IBOutlet weak var playerView: UIView?
     @IBOutlet weak var recordButton: DynamicButton?
     @IBOutlet weak var sendButton: DynamicButton?
     @IBOutlet weak var stopButton: DynamicButton?
@@ -39,6 +40,7 @@ public class AudioRecorderViewController: UIViewController, ErrorViewController 
         formatter.zeroFormattingBehavior = .pad
         return formatter
     }()
+    let player = AudioPlayerViewController.create()
     var recorder: AVAudioRecorder?
     var timer: CADisplayLink?
     public lazy var url = URL.temporaryDirectory.appendingPathComponent("\(UUID.string).m4a")
@@ -53,6 +55,9 @@ public class AudioRecorderViewController: UIViewController, ErrorViewController 
         borderView?.layer.borderColor = UIColor.named(.borderMedium).cgColor
         cancelButton?.accessibilityLabel = NSLocalizedString("Cancel", bundle: .core, comment: "")
         clearButton?.accessibilityLabel = NSLocalizedString("Clear recording", bundle: .core, comment: "")
+        player.backgroundColor = nil
+        player.color = .named(.textDark)
+        if let view = playerView { embed(player, in: view) }
         recordButton?.accessibilityLabel = NSLocalizedString("Start recording", bundle: .core, comment: "")
         sendButton?.setTitle(NSLocalizedString("Send", bundle: .core, comment: ""), for: .normal)
         stopButton?.accessibilityLabel = NSLocalizedString("Stop recording", bundle: .core, comment: "")
@@ -97,6 +102,8 @@ public class AudioRecorderViewController: UIViewController, ErrorViewController 
         recorder = nil
         borderView?.isHidden = true
         clearButton?.isHidden = false
+        player.load(url: url)
+        playerView?.isHidden = false
         recordButton?.isHidden = true
         sendButton?.isHidden = false
         stopButton?.isHidden = true
@@ -111,6 +118,7 @@ public class AudioRecorderViewController: UIViewController, ErrorViewController 
         try? FileManager.default.removeItem(at: url)
         borderView?.isHidden = false
         clearButton?.isHidden = true
+        playerView?.isHidden = true
         recordButton?.isHidden = false
         sendButton?.isHidden = true
         stopButton?.isHidden = true

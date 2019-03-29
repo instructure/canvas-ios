@@ -46,8 +46,8 @@ final public class SubmissionComment: NSManagedObject {
     }
 
     @discardableResult
-    static public func save(_ item: APISubmissionComment, forSubmission submissionID: String, in client: PersistenceClient) -> SubmissionComment {
-        let predicate = NSPredicate(format: "%K == %@", #keyPath(SubmissionComment.id), item.id)
+    static public func save(_ item: APISubmissionComment, forSubmission submissionID: String, replacing id: String? = nil, in client: PersistenceClient) -> SubmissionComment {
+        let predicate = NSPredicate(format: "%K == %@", #keyPath(SubmissionComment.id), id ?? item.id)
         let model: SubmissionComment = client.fetch(predicate).first ?? client.insert()
         model.id = item.id
         model.authorAvatarURL = item.author.avatar_image_url

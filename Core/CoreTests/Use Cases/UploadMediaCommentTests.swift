@@ -45,6 +45,12 @@ class UploadMediaCommentTests: CoreTestCase {
         XCTAssert(upload.env === environment)
     }
 
+    func testSavePlaceholderError() {
+        upload.env = AppEnvironment()
+        upload.savePlaceholder()
+        XCTAssertNotNil(error)
+    }
+
     func testUpload() {
         api.mock(GetMediaServiceRequest(), error: NSError.internalError())
         upload.upload()

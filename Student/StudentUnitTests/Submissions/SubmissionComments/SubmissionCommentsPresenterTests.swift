@@ -15,7 +15,7 @@
 //
 
 import XCTest
-import Core
+@testable import Core
 @testable import Student
 import TestsFoundation
 
@@ -26,8 +26,10 @@ class SubmissionCommentsView: SubmissionCommentsViewProtocol {
     }
 
     var error: Error?
+    var expectError: XCTestExpectation?
     func showError(_ error: Error) {
         self.error = error
+        expectError?.fulfill()
     }
 }
 
@@ -53,6 +55,8 @@ class SubmissionCommentsPresenterTests: PersistenceTestCase {
 
     func testAddMediaComment() {
         presenter.addMediaComment(type: .audio, url: URL(string: "/")!)
+        view.expectError = expectation(description: "error")
+        wait(for: [view.expectError!], timeout: 5)
         XCTAssertNotNil(view.error)
     }
 }

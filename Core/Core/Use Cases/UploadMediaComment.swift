@@ -23,11 +23,14 @@ public class UploadMediaComment {
     let courseID: String
     let isGroup: Bool
     var mediaAPI: API?
+    var placeholderID: String?
     let submissionID: String
     let type: MediaCommentType
     let url: URL
     let userID: String
     var task: URLSessionTask?
+
+    private static var placeholderSuffix = 1
 
     public init(
         courseID: String,
@@ -54,10 +57,37 @@ public class UploadMediaComment {
     public func fetch(environment: AppEnvironment = .shared, _ callback: @escaping (SubmissionComment?, Error?) -> Void) {
         self.callback = callback
         self.env = environment
-        upload()
+        savePlaceholder()
     }
 
-    public func upload() {
+    func savePlaceholder() {
+        guard let session = env.currentSession else {
+            return self.callback(nil, NSError.internalError()) // There should always be a current user.
+        }
+        env.database.performBackgroundTask { client in
+            let placeholder: SubmissionComment = client.insert()
+            placeholder.authorAvatarURL = session.userAvatarURL
+            placeholder.authorID = session.userID
+            placeholder.authorName = session.userName
+            placeholder.comment = ""
+            placeholder.createdAt = Date()
+            placeholder.id = "placeholder-\(UploadMediaComment.placeholderSuffix)"
+            placeholder.mediaID = "_"
+            placeholder.mediaType = self.type
+            placeholder.mediaURL = self.url
+            placeholder.submissionID = self.submissionID
+            do {
+                try client.save()
+                self.placeholderID = placeholder.id
+                UploadMediaComment.placeholderSuffix += 1
+                self.upload()
+            } catch {
+                self.callback(nil, error)
+            }
+        }
+    }
+
+    func upload() {
         task = env.api.makeRequest(GetMediaServiceRequest()) { (data, _, error) in
             guard
                 error == nil,
@@ -115,7 +145,7 @@ public class UploadMediaComment {
                 return self.callback(nil, error)
             }
             self.env.database.performBackgroundTask { client in
-                let comment = SubmissionComment.save(comment, forSubmission: self.submissionID, in: client)
+                let comment = SubmissionComment.save(comment, forSubmission: self.submissionID, replacing: self.placeholderID, in: client)
                 var e: Error?
                 defer { self.callback(comment, e) }
                 do {

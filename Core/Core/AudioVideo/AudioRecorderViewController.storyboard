@@ -31,18 +31,18 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="clear:" destination="NAp-rK-X0s" eventType="touchUpInside" id="lNX-lP-SbM"/>
+                                    <action selector="clear:" destination="NAp-rK-X0s" eventType="primaryActionTriggered" id="Nzc-Dg-319"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7hp-Ut-gdC" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="40" y="12" width="295" height="21"/>
+                                <rect key="frame" x="40" y="12" width="295" height="24"/>
                                 <accessibility key="accessibilityConfiguration" identifier="AudioRecorder.timeLabel"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular20"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular20Monodigit"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P04-42-aRA" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
@@ -59,7 +59,7 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="cancel:" destination="NAp-rK-X0s" eventType="touchUpInside" id="0b3-Ku-gbG"/>
+                                    <action selector="cancel:" destination="NAp-rK-X0s" eventType="primaryActionTriggered" id="teU-Ga-PC9"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="azE-St-Zbf">
@@ -80,7 +80,7 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="backgroundColorName" value="crimson"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="record:" destination="NAp-rK-X0s" eventType="touchUpInside" id="iLI-3Q-zrT"/>
+                                            <action selector="record:" destination="NAp-rK-X0s" eventType="primaryActionTriggered" id="Erc-ku-mhR"/>
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="05Z-o3-ZC0" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
@@ -94,7 +94,7 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="backgroundColorName" value="crimson"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="stop:" destination="NAp-rK-X0s" eventType="touchUpInside" id="nRK-y3-sTv"/>
+                                            <action selector="stop:" destination="NAp-rK-X0s" eventType="primaryActionTriggered" id="LMx-rv-FrT"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -116,8 +116,19 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jJc-OK-0DG">
+                                <rect key="frame" x="-4" y="80" width="383" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="9sm-v0-84v"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HYf-Ke-XMw" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="131.5" y="99" width="112" height="42"/>
+                                <rect key="frame" x="130" y="122" width="115" height="44"/>
                                 <accessibility key="accessibilityConfiguration" identifier="AudioRecorder.sendButton"/>
                                 <inset key="contentEdgeInsets" minX="38" minY="12" maxX="38" maxY="12"/>
                                 <state key="normal" title="Send"/>
@@ -130,7 +141,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="send:" destination="NAp-rK-X0s" eventType="touchUpInside" id="TTt-a7-pMK"/>
+                                    <action selector="send:" destination="NAp-rK-X0s" eventType="primaryActionTriggered" id="8xv-io-4CA"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -138,7 +149,7 @@
                         <constraints>
                             <constraint firstItem="azE-St-Zbf" firstAttribute="centerX" secondItem="mbJ-rF-8Pv" secondAttribute="centerX" id="32u-9x-Oml"/>
                             <constraint firstItem="7hp-Ut-gdC" firstAttribute="leading" secondItem="7t0-2n-BON" secondAttribute="trailing" id="Mse-ez-FwT"/>
-                            <constraint firstItem="HYf-Ke-XMw" firstAttribute="centerY" secondItem="mbJ-rF-8Pv" secondAttribute="centerY" id="QeN-tu-9IL"/>
+                            <constraint firstItem="HYf-Ke-XMw" firstAttribute="centerY" secondItem="mbJ-rF-8Pv" secondAttribute="centerY" constant="24" id="QeN-tu-9IL"/>
                             <constraint firstItem="azE-St-Zbf" firstAttribute="centerY" secondItem="mbJ-rF-8Pv" secondAttribute="centerY" id="QhB-YZ-7Au"/>
                             <constraint firstAttribute="trailing" secondItem="P04-42-aRA" secondAttribute="trailing" id="SXm-Hh-t2s"/>
                             <constraint firstItem="P04-42-aRA" firstAttribute="top" secondItem="mbJ-rF-8Pv" secondAttribute="top" constant="4" id="TBa-Jd-pVJ"/>
@@ -146,7 +157,10 @@
                             <constraint firstItem="P04-42-aRA" firstAttribute="leading" secondItem="7hp-Ut-gdC" secondAttribute="trailing" id="Y48-XC-gUo"/>
                             <constraint firstItem="HYf-Ke-XMw" firstAttribute="centerX" secondItem="mbJ-rF-8Pv" secondAttribute="centerX" id="eQf-tr-dsK"/>
                             <constraint firstItem="7t0-2n-BON" firstAttribute="leading" secondItem="mbJ-rF-8Pv" secondAttribute="leading" id="iP4-jB-td8"/>
+                            <constraint firstItem="jJc-OK-0DG" firstAttribute="centerY" secondItem="mbJ-rF-8Pv" secondAttribute="centerY" constant="-24" id="jEE-KO-RSk"/>
+                            <constraint firstItem="vd2-8i-O1Q" firstAttribute="trailing" secondItem="jJc-OK-0DG" secondAttribute="trailing" constant="-4" id="k3M-bY-JU1"/>
                             <constraint firstItem="7t0-2n-BON" firstAttribute="top" secondItem="mbJ-rF-8Pv" secondAttribute="top" constant="4" id="m5D-tN-wTr"/>
+                            <constraint firstItem="jJc-OK-0DG" firstAttribute="leading" secondItem="vd2-8i-O1Q" secondAttribute="leading" constant="-4" id="tQf-jS-qv2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="vd2-8i-O1Q"/>
                     </view>
@@ -158,6 +172,7 @@
                         <outlet property="borderView" destination="azE-St-Zbf" id="0Z0-ie-sE4"/>
                         <outlet property="cancelButton" destination="P04-42-aRA" id="Zmo-rI-Fw7"/>
                         <outlet property="clearButton" destination="7t0-2n-BON" id="tLY-FM-wIp"/>
+                        <outlet property="playerView" destination="jJc-OK-0DG" id="9P2-w4-UQG"/>
                         <outlet property="recordButton" destination="dva-oH-EXJ" id="hgi-D3-52Z"/>
                         <outlet property="sendButton" destination="HYf-Ke-XMw" id="3bN-H4-sgE"/>
                         <outlet property="stopButton" destination="05Z-o3-ZC0" id="zLU-Ia-K05"/>
