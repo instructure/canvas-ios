@@ -63,8 +63,7 @@ public class GetCourseUseCase: APIUseCase {
     }
 
     public var cacheKey: String? {
-        let includes = include.map { $0.rawValue }.joined(separator: "-")
-        return "get-course-\(courseID)_includes=\(includes)"
+        return "get-course-\(courseID)"
     }
 
     public var scope: Scope {
