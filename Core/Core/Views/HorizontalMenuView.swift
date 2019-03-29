@@ -14,7 +14,7 @@ public protocol HorizontalMenuDelegate: class {
 public class HorizontalMenuView: UIView {
     @IBOutlet private weak var contentView: UIView!
     @IBOutlet private weak var collectionView: UICollectionView!
-    private var selectedIndexPath = IndexPath(item: 0, section: 0)
+    private var selectedIndexPath: IndexPath? // = IndexPath(item: 0, section: 0)
     public weak var delegate: HorizontalMenuDelegate?
     private var cachedTotalWidthOfItems: CGFloat?
     private var cachedSpaceBetweenCells: CGFloat?
@@ -35,10 +35,19 @@ public class HorizontalMenuView: UIView {
         backgroundColor = UIColor.white.ensureContrast(against: .named(.white))
         contentView.backgroundColor = UIColor.white.ensureContrast(against: .named(.white))
         contentView.frame = CGRect.zero
-        contentView.pin(inside: self)
+        contentView.pinToAllSidesOfSuperview()
         collectionView.registerCell(HorizontalMenuViewCell.self, bundle: Bundle.core)
         collectionView.dataSource = self
         collectionView.delegate = self
+    }
+
+    override public func layoutSubviews() {
+        super.layoutSubviews()
+        if selectedIndexPath == nil {
+            selectedIndexPath = IndexPath(item: 0, section: 0)
+            selectMenuItem(at: selectedIndexPath)
+        }
+        reload()
     }
 
     public func reload() {
@@ -48,7 +57,8 @@ public class HorizontalMenuView: UIView {
         selectMenuItem(at: selectedIndexPath)
     }
 
-    public func selectMenuItem(at: IndexPath, animated: Bool = true) {
+    public func selectMenuItem(at: IndexPath?, animated: Bool = true) {
+        guard let at = at else { return }
         collectionView.selectItem(at: at, animated: animated, scrollPosition: UICollectionView.ScrollPosition.centeredHorizontally)
     }
 }
@@ -71,8 +81,10 @@ extension HorizontalMenuView: UICollectionViewDataSource, UICollectionViewDelega
     }
 
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: selectedIndexPath)
-        cell?.isSelected = false
+        if let selectedIndexPath = selectedIndexPath {
+            let cell = collectionView.cellForItem(at: selectedIndexPath)
+            cell?.isSelected = false
+        }
         selectedIndexPath = indexPath
         delegate?.didSelectItem(at: indexPath)
     }
@@ -113,7 +125,7 @@ extension HorizontalMenuView: UICollectionViewDataSource, UICollectionViewDelega
             }
             cachedTotalWidthOfItems = totalWidth
         }
-        let space = (bounds.size.width - (cachedTotalWidthOfItems ?? 0)) / CGFloat(itemCount + 1)
+        let space = floor( (frame.size.width - (cachedTotalWidthOfItems ?? 0)) / CGFloat(itemCount + 1) )
         cachedSpaceBetweenCells = space
         return space
     }

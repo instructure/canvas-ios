@@ -84,6 +84,11 @@ extension UIView {
         }
     }
 
+    public func pinToAllSidesOfSuperview() {
+        pinToLeftAndRightOfSuperview()
+        pinToTopAndBottomOfSuperview()
+    }
+
     public func pinToLeftAndRightOfSuperview() {
         if let superview = superview {
             pin(inside: superview, leading: 0, trailing: 0, top: nil, bottom: nil)
