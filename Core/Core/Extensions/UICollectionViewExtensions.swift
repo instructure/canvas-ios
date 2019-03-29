@@ -25,7 +25,6 @@ extension UICollectionView {
         return cell
     }
 
-    //  TODO: - remove this method
     public func dequeue<T: UICollectionReusableView>(_ type: T.Type, ofKind: String, for indexPath: IndexPath) -> T {
         let name = String(describing: T.self)
         guard let view = dequeueReusableSupplementaryView(ofKind: ofKind, withReuseIdentifier: name, for: indexPath) as? T else {
