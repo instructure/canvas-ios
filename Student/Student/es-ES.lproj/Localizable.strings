@@ -50,6 +50,9 @@
 "Edit Course" = "Editar curso";
 
 /* No comment provided by engineer. */
+"Failed to locate camera result" = "No se pudo encontrar el resultado de la cámara";
+
+/* No comment provided by engineer. */
 "Failed upload" = "La carga falló";
 
 /* No comment provided by engineer. */
@@ -57,6 +60,9 @@
 
 /* No comment provided by engineer. */
 "Files" = "Archivos";
+
+/* No comment provided by engineer. */
+"Files (%d)" = "Archivos (%d)";
 
 /* No comment provided by engineer. */
 "Grade" = "Calificación";
@@ -75,6 +81,18 @@
 
 /* No comment provided by engineer. */
 "No Submission Date" = "Sin fecha de presentación";
+
+/* No comment provided by engineer. */
+"On %@ %@ commented \"%@\"" = "En %1$@ %2$@ comentó \"%3$@\"";
+
+/* No comment provided by engineer. */
+"On %@ %@ left a video comment" = "En %1$@ %2$@ dejó un comentario de video";
+
+/* No comment provided by engineer. */
+"On %@ %@ left an audio comment" = "En %1$@ %2$@ dejó un comentario de audio";
+
+/* No comment provided by engineer. */
+"On %@ %@ submitted the following" = "En %1$@ %2$@ envió lo siguiente";
 
 /* Button to open external tool */
 "Open External Tool" = "Abrir herramienta externa";
@@ -110,7 +128,13 @@
 "Submission & Rubric" = "Presentación y rúbrica";
 
 /* No comment provided by engineer. */
+"Submission Failed" = "No se pudo presentar";
+
+/* No comment provided by engineer. */
 "Submission Types" = "Tipos de presentación";
+
+/* No comment provided by engineer. */
+"Submission Uploading..." = "Subiendo presentación...";
 
 /* No comment provided by engineer. */
 "Submit" = "Presentar";
@@ -122,7 +146,16 @@
 "Successfully submitted!" = "¡Enviada correctamente!";
 
 /* No comment provided by engineer. */
+"Tap to view details" = "Toca para ver los detalles";
+
+/* No comment provided by engineer. */
+"Tap to view progress" = "Toca para ver el progreso";
+
+/* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "La aplicación debe reiniciarse para aplicar la nueva configuración de idioma. Vuelva a ejecutar la aplicación.";
+
+/* No comment provided by engineer. */
+"There are no files to display." = "No hay archivos que mostrar.";
 
 /* No comment provided by engineer. */
 "There are no quizzes to display." = "No hay evaluaciones para mostrar.";
@@ -135,6 +168,12 @@
 
 /* No comment provided by engineer. */
 "Uploading..." = "Cargando...";
+
+/* No comment provided by engineer. */
+"View file %@ %@" = "Ver el archivo %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View submission attempt %d" = "Ver el intento de presentación %d";
 
 /* No comment provided by engineer. */
 "Website Address" = "Dirección web";

@@ -8,10 +8,25 @@
 "Assignment" = "Assignment";
 
 /* No comment provided by engineer. */
+"Attempt %d" = "Attempt %d";
+
+/* No comment provided by engineer. */
+"Audio" = "Audio";
+
+/* No comment provided by engineer. */
 "Authentication failed. Most likely the user denied the request for access." = "Authentication failed. Most likely the user denied the request for access.";
 
 /* No comment provided by engineer. */
+"Can’t find your school? Try typing the full school URL." = "Can’t find your school? Try typing the school’s full URL.";
+
+/* No comment provided by engineer. */
 "Cancel" = "Cancel";
+
+/* No comment provided by engineer. */
+"Canvas Login" = "Canvas login";
+
+/* No comment provided by engineer. */
+"Canvas Network" = "Canvas Network";
 
 /* No comment provided by engineer. */
 "Closed" = "Closed";
@@ -56,10 +71,25 @@
 "final_grade_g_pts" = "final_grade_g_pts";
 
 /* No comment provided by engineer. */
+"Find my school" = "Find my school";
+
+/* No comment provided by engineer. */
+"Find your school or district" = "Find your school or district";
+
+/* No comment provided by engineer. */
+"Forget %@" = "Forget %@";
+
+/* No comment provided by engineer. */
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible";
 
 /* No comment provided by engineer. */
 "g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
+"Help" = "Help";
+
+/* No comment provided by engineer. */
+"How do I find my school?" = "How do I find my school?";
 
 /* No comment provided by engineer. */
 "Incomplete" = "Incomplete";
@@ -95,6 +125,9 @@
 "list_or_two" = "%1$@ or %2$@";
 
 /* No comment provided by engineer. */
+"Manual OAuth Login" = "Manual OAuth Login";
+
+/* No comment provided by engineer. */
 "Media Recording" = "Media recording";
 
 /* No comment provided by engineer. */
@@ -108,6 +141,9 @@
 
 /* No comment provided by engineer. */
 "Not Submitted" = "Not submitted";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
 
 /* No comment provided by engineer. */
 "On Paper" = "On paper";
@@ -134,7 +170,7 @@
 "Reply to the annotation or previous comments" = "Reply to the annotation or previous comments";
 
 /* No comment provided by engineer. */
-"Resubmit Assignment" = "Resubmit assignment";
+"See what's new." = "See what's new.";
 
 /* No comment provided by engineer. */
 "Select Account" = "Select Account";
@@ -149,7 +185,13 @@
 "Send comment" = "Send comment";
 
 /* No comment provided by engineer. */
+"Site Admin Login" = "Site admin login";
+
+/* No comment provided by engineer. */
 "Style" = "Style";
+
+/* No comment provided by engineer. */
+"Submission failed." = "Submission failed.";
 
 /* No comment provided by engineer. */
 "Submit Assignment" = "Submit assignment";
@@ -161,7 +203,16 @@
 "Submitted %@" = "Submitted %@";
 
 /* No comment provided by engineer. */
+"Tap here for help." = "Tap here for help.";
+
+/* No comment provided by engineer. */
+"Terms of Use" = "Terms of Use";
+
+/* No comment provided by engineer. */
 "Text Entry" = "Text entry";
+
+/* No comment provided by engineer. */
+"There was a problem retrieving the Terms of Use." = "There was a problem retrieving the Terms of Use.";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "This assignment is due by %@";
@@ -170,7 +221,16 @@
 "This assignment was due by %@" = "This assignment was due by %@";
 
 /* No comment provided by engineer. */
+"Video" = "Video";
+
+/* No comment provided by engineer. */
+"We've made a few changes." = "We've made a few changes.";
+
+/* No comment provided by engineer. */
 "Website URL" = "Website URL";
+
+/* No comment provided by engineer. */
+"What’s your school’s name?" = "What’s your school’s name?";
 
 /* No comment provided by engineer. */
 "You will need to log into at least one Canvas account from the Student app first." = "You will need to log into at least one Canvas account from the Student app first.";

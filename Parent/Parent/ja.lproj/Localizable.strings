@@ -68,6 +68,9 @@
 "Caught up on Alerts" = "アラートにこだわる";
 
 /* No comment provided by engineer. */
+"Change User" = "ユーザーを変更する";
+
+/* No comment provided by engineer. */
 "Choose a student" = "受講生を選択";
 
 /* Close Button Title */
@@ -89,6 +92,9 @@
 "Current student: %@, tap to switch students" = "現在の受講生：%@、タップして受講生を切り替える";
 
 /* No comment provided by engineer. */
+"Developer Menu" = "開発者用メニュー";
+
+/* No comment provided by engineer. */
 "Discussion" = "ディスカッション";
 
 /* No comment provided by engineer. */
@@ -105,6 +111,9 @@
 
 /* No comment provided by engineer. */
 "Excused" = "免除";
+
+/* No comment provided by engineer. */
+"Help" = "ヘルプ";
 
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "高い課題成績は、低い課題成績より低くしないでください";
@@ -132,6 +141,9 @@
 
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "遅滞: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Log Out" = "ログアウト";
 
 /* Low Assignment Grade too High */
 "Low assignment grade cannot be higher than high assignment grade" = "低い課題成績は、高い課題成績より高くしないでください";
@@ -190,6 +202,12 @@
 /* No comment provided by engineer. */
 "Quiz" = "クイズ";
 
+/* No comment provided by engineer. */
+"Report a Problem" = "問題を報告する";
+
+/* No comment provided by engineer. */
+"Request a Feature" = "機能をリクエストする";
+
 /* Not Found Error Message */
 "Resource not found.  Please try again." = "リソースが見つかりません。再度お試しください。";
 
@@ -214,6 +232,9 @@
 /* Directions in the admin view */
 "Tap to start viewing Canvas as another person." = "タップして別の人物としてCanvasの閲覧を開始する";
 
+/* No comment provided by engineer. */
+"Terms of Use" = "利用規約";
+
 /* Error message */
 "There are no actions for this item" = "このアイテムへのアクションはありません";
 
@@ -237,6 +258,9 @@
 
 /* No comment provided by engineer. */
 "Unread" = "未読";
+
+/* No comment provided by engineer. */
+"View Canvas Guides" = "Canvas ガイドを見る";
 
 /* Calendar Tab */
 "Week" = "週";

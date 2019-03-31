@@ -68,6 +68,9 @@
 "Caught up on Alerts" = "Waarschuwingen bijgewerkt";
 
 /* No comment provided by engineer. */
+"Change User" = "Gebruiker wijzigen";
+
+/* No comment provided by engineer. */
 "Choose a student" = "Kies een cursist";
 
 /* Close Button Title */
@@ -89,6 +92,9 @@
 "Current student: %@, tap to switch students" = "Huidige cursist: %@, tik om van cursist te wisselen";
 
 /* No comment provided by engineer. */
+"Developer Menu" = "Menu Ontwikkelaar";
+
+/* No comment provided by engineer. */
 "Discussion" = "Discussie";
 
 /* No comment provided by engineer. */
@@ -105,6 +111,9 @@
 
 /* No comment provided by engineer. */
 "Excused" = "Verontschuldigd";
+
+/* No comment provided by engineer. */
+"Help" = "Help";
 
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "Hoog beoordelingscijfer kan niet lager zijn dan laag beoordelingscijfer";
@@ -132,6 +141,9 @@
 
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "Laat: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Log Out" = "Afmelden";
 
 /* Low Assignment Grade too High */
 "Low assignment grade cannot be higher than high assignment grade" = "Laag opdrachtcijfer kan niet hoger zijn dan hoog beoordelingscijfer";
@@ -190,6 +202,12 @@
 /* No comment provided by engineer. */
 "Quiz" = "Toets";
 
+/* No comment provided by engineer. */
+"Report a Problem" = "Een probleem melden";
+
+/* No comment provided by engineer. */
+"Request a Feature" = "Een functie aanvragen";
+
 /* Not Found Error Message */
 "Resource not found.  Please try again." = "Bron niet gevonden. Probeer het nogmaals.";
 
@@ -214,6 +232,9 @@
 /* Directions in the admin view */
 "Tap to start viewing Canvas as another person." = "Tik hierop om Canvas weer te geven als een andere persoon.";
 
+/* No comment provided by engineer. */
+"Terms of Use" = "Gebruiksvoorwaarden";
+
 /* Error message */
 "There are no actions for this item" = "Er zijn geen handelingen voor dit item";
 
@@ -237,6 +258,9 @@
 
 /* No comment provided by engineer. */
 "Unread" = "Ongelezen";
+
+/* No comment provided by engineer. */
+"View Canvas Guides" = "Canvas-handleidingen weergeven";
 
 /* Calendar Tab */
 "Week" = "Week";

@@ -8,7 +8,10 @@
 "Assignment" = "Opdracht";
 
 /* No comment provided by engineer. */
-"Assignment not found." = "Beoordeling niet gevonden.";
+"Attempt %d" = "Poging %d";
+
+/* No comment provided by engineer. */
+"Audio" = "Audio";
 
 /* No comment provided by engineer. */
 "Authentication failed. Most likely the user denied the request for access." = "Verificatie mislukt. Hoogstwaarschijnlijk heeft de gebruiker de aanvraag voor toegang geweigerd.";
@@ -167,9 +170,6 @@
 "Reply to the annotation or previous comments" = "Reageer op de aantekening of op vorige opmerkingen";
 
 /* No comment provided by engineer. */
-"Resubmit Assignment" = "Opdracht opnieuw inleveren";
-
-/* No comment provided by engineer. */
 "See what's new." = "Wat is er nieuw.";
 
 /* No comment provided by engineer. */
@@ -191,10 +191,7 @@
 "Style" = "Stijl";
 
 /* No comment provided by engineer. */
-"Submission Failed" = "Inzending mislukt";
-
-/* No comment provided by engineer. */
-"Submission Uploading..." = "Inlevering wordt geüpload...";
+"Submission failed." = "Inlevering mislukt.";
 
 /* No comment provided by engineer. */
 "Submit Assignment" = "Opdracht inleveren";
@@ -209,19 +206,22 @@
 "Tap here for help." = "Tik hier voor hulp.";
 
 /* No comment provided by engineer. */
-"Tap to view details" = "Tik om details te bekijken";
-
-/* No comment provided by engineer. */
-"Tap to view progress" = "Tik om voortgang te bekijken";
+"Terms of Use" = "Gebruiksvoorwaarden";
 
 /* No comment provided by engineer. */
 "Text Entry" = "Tekstinvoer";
+
+/* No comment provided by engineer. */
+"There was a problem retrieving the Terms of Use." = "Er is een probleem met het ophalen van de gebruiksvoorwaarden";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "Deze opdracht moet uiterlijk worden ingeleverd op %@";
 
 /* No comment provided by engineer. */
 "This assignment was due by %@" = "Deze opdracht moest ingeleverd zijn op %@";
+
+/* No comment provided by engineer. */
+"Video" = "Video";
 
 /* No comment provided by engineer. */
 "We've made a few changes." = "We hebben enkele wijzigingen aangebracht.";

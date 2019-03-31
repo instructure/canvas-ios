@@ -68,6 +68,9 @@
 "Caught up on Alerts" = "لا توجد تنبيهات عالقة";
 
 /* No comment provided by engineer. */
+"Change User" = "تغيير المستخدم";
+
+/* No comment provided by engineer. */
 "Choose a student" = "اختر طالبًا";
 
 /* Close Button Title */
@@ -89,6 +92,9 @@
 "Current student: %@, tap to switch students" = "الطالب الحالي: %@، اضغط لتبديل الطلاب";
 
 /* No comment provided by engineer. */
+"Developer Menu" = "قائمة المطورين";
+
+/* No comment provided by engineer. */
 "Discussion" = "النقاش";
 
 /* No comment provided by engineer. */
@@ -105,6 +111,9 @@
 
 /* No comment provided by engineer. */
 "Excused" = "غير إجباري";
+
+/* No comment provided by engineer. */
+"Help" = "المساعدة";
 
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "لا يمكن أن تكون أعلى درجة للمهمة أقل من أدنى درجة للمهمة";
@@ -132,6 +141,9 @@
 
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "متأخر: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Log Out" = "تسجيل الخروج";
 
 /* Low Assignment Grade too High */
 "Low assignment grade cannot be higher than high assignment grade" = "لا يمكن أن تكون أدنى درجة للمهمة أكبر من أعلى درجة للمهمة";
@@ -190,6 +202,12 @@
 /* No comment provided by engineer. */
 "Quiz" = "الاختبار الموجز";
 
+/* No comment provided by engineer. */
+"Report a Problem" = "إبلاغ عن مشكلة";
+
+/* No comment provided by engineer. */
+"Request a Feature" = "طلب ميزة";
+
 /* Not Found Error Message */
 "Resource not found.  Please try again." = "لم يتم العثور على المورد. يرجى إعادة المحاولة.";
 
@@ -214,6 +232,9 @@
 /* Directions in the admin view */
 "Tap to start viewing Canvas as another person." = "انقر لبدء عرض Canvas كشخص آخر.";
 
+/* No comment provided by engineer. */
+"Terms of Use" = "شروط الاستخدام";
+
 /* Error message */
 "There are no actions for this item" = "لا توجد أي عملية لهذا العنصر";
 
@@ -237,6 +258,9 @@
 
 /* No comment provided by engineer. */
 "Unread" = "غير مقروء";
+
+/* No comment provided by engineer. */
+"View Canvas Guides" = "عرض Canvas Guides";
 
 /* Calendar Tab */
 "Week" = "الأسبوع";

@@ -68,6 +68,9 @@
 "Caught up on Alerts" = "Apanhados em Alertas";
 
 /* No comment provided by engineer. */
+"Change User" = "Trocar Usuário";
+
+/* No comment provided by engineer. */
 "Choose a student" = "Escolha um aluno";
 
 /* Close Button Title */
@@ -89,6 +92,9 @@
 "Current student: %@, tap to switch students" = "Aluno atual: %@, toque para alternar alunos";
 
 /* No comment provided by engineer. */
+"Developer Menu" = "Menu do desenvolvedor";
+
+/* No comment provided by engineer. */
 "Discussion" = "Discussão";
 
 /* No comment provided by engineer. */
@@ -105,6 +111,9 @@
 
 /* No comment provided by engineer. */
 "Excused" = "Dispensado";
+
+/* No comment provided by engineer. */
+"Help" = "Ajuda";
 
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "A maior nota de tarefa não pode ser menor que a menor nota de tarefa";
@@ -132,6 +141,9 @@
 
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "Atrasado: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Log Out" = "Sair";
 
 /* Low Assignment Grade too High */
 "Low assignment grade cannot be higher than high assignment grade" = "A menor nota de tarefa não pode ser maior que a maior nota de tarefa";
@@ -190,6 +202,12 @@
 /* No comment provided by engineer. */
 "Quiz" = "Questionário";
 
+/* No comment provided by engineer. */
+"Report a Problem" = "Relatar um problema";
+
+/* No comment provided by engineer. */
+"Request a Feature" = "Solicitar uma funcionalidade";
+
 /* Not Found Error Message */
 "Resource not found.  Please try again." = "Recurso não encontrado. Por favor tente novamente.";
 
@@ -214,6 +232,9 @@
 /* Directions in the admin view */
 "Tap to start viewing Canvas as another person." = "Toque para começar a visualizar o Canvas como outra pessoa.";
 
+/* No comment provided by engineer. */
+"Terms of Use" = "Termos de Uso";
+
 /* Error message */
 "There are no actions for this item" = "Não há ações para este item.";
 
@@ -237,6 +258,9 @@
 
 /* No comment provided by engineer. */
 "Unread" = "Não lido";
+
+/* No comment provided by engineer. */
+"View Canvas Guides" = "Visualizar Canvas Guides";
 
 /* Calendar Tab */
 "Week" = "Semana";

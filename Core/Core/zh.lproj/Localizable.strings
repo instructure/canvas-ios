@@ -8,7 +8,10 @@
 "Assignment" = "作业";
 
 /* No comment provided by engineer. */
-"Assignment not found." = "找不到作业";
+"Attempt %d" = "尝试%d";
+
+/* No comment provided by engineer. */
+"Audio" = "音频";
 
 /* No comment provided by engineer. */
 "Authentication failed. Most likely the user denied the request for access." = "身份验证失败。最有可能的原因是用户拒绝了访问请求。";
@@ -167,9 +170,6 @@
 "Reply to the annotation or previous comments" = "恢复注释或原来的评论";
 
 /* No comment provided by engineer. */
-"Resubmit Assignment" = "重新提交作业";
-
-/* No comment provided by engineer. */
 "See what's new." = "查看新增内容。";
 
 /* No comment provided by engineer. */
@@ -191,10 +191,7 @@
 "Style" = "样式";
 
 /* No comment provided by engineer. */
-"Submission Failed" = "提交文件失败";
-
-/* No comment provided by engineer. */
-"Submission Uploading..." = "正在上传提交项...";
+"Submission failed." = "提交失败。";
 
 /* No comment provided by engineer. */
 "Submit Assignment" = "提交作业";
@@ -209,19 +206,22 @@
 "Tap here for help." = "轻击此处获取帮助。";
 
 /* No comment provided by engineer. */
-"Tap to view details" = "轻按以查看详细信息";
-
-/* No comment provided by engineer. */
-"Tap to view progress" = "轻按以查看进度";
+"Terms of Use" = "使用条款";
 
 /* No comment provided by engineer. */
 "Text Entry" = "文本输入";
+
+/* No comment provided by engineer. */
+"There was a problem retrieving the Terms of Use." = "提取使用条款时出错。";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "此作业的截止日期为%@";
 
 /* No comment provided by engineer. */
 "This assignment was due by %@" = "此作业已截止，截止日期为%@";
+
+/* No comment provided by engineer. */
+"Video" = "视频";
 
 /* No comment provided by engineer. */
 "We've made a few changes." = "我们进行了一些更改。";

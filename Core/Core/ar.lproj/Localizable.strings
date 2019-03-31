@@ -8,7 +8,10 @@
 "Assignment" = "المهمة";
 
 /* No comment provided by engineer. */
-"Assignment not found." = "لم يتم العثور على مهمة.";
+"Attempt %d" = "المحاولة %d";
+
+/* No comment provided by engineer. */
+"Audio" = "صوت";
 
 /* No comment provided by engineer. */
 "Authentication failed. Most likely the user denied the request for access." = "فشلت المصادقة. رفض المستخدم على الأغلب طلب الوصول.";
@@ -167,9 +170,6 @@
 "Reply to the annotation or previous comments" = "الرد على التعليق التوضيحي أو التعليقات السابقة";
 
 /* No comment provided by engineer. */
-"Resubmit Assignment" = "إعادة إرسال المهمة";
-
-/* No comment provided by engineer. */
 "See what's new." = "تعرف على الجديد.";
 
 /* No comment provided by engineer. */
@@ -191,10 +191,7 @@
 "Style" = "النمط";
 
 /* No comment provided by engineer. */
-"Submission Failed" = "فشل الإرسال";
-
-/* No comment provided by engineer. */
-"Submission Uploading..." = "جارٍ تحميل الإرسال...";
+"Submission failed." = "تعذر الإرسال.";
 
 /* No comment provided by engineer. */
 "Submit Assignment" = "إرسال المهمة";
@@ -209,19 +206,22 @@
 "Tap here for help." = "اضغط هنا للحصول على المساعدة.";
 
 /* No comment provided by engineer. */
-"Tap to view details" = "اضغط لعرض التفاصيل";
-
-/* No comment provided by engineer. */
-"Tap to view progress" = "اضغط لعرض التقدم";
+"Terms of Use" = "شروط الاستخدام";
 
 /* No comment provided by engineer. */
 "Text Entry" = "إدخال النص";
+
+/* No comment provided by engineer. */
+"There was a problem retrieving the Terms of Use." = "حدثت مشكلة أثناء استرداد شروط الاستخدام.";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "هذه المهمة مستحقة بتاريخ %@";
 
 /* No comment provided by engineer. */
 "This assignment was due by %@" = "هذه المهمة كانت مستحقة بتاريخ %@";
+
+/* No comment provided by engineer. */
+"Video" = "فيديو";
 
 /* No comment provided by engineer. */
 "We've made a few changes." = "لقد أجرينا بعض التغييرات.";

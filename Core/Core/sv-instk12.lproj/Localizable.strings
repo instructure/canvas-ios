@@ -8,9 +8,6 @@
 "Assignment" = "Uppgift";
 
 /* No comment provided by engineer. */
-"Assignment not found." = "Bedömningen hittades inte";
-
-/* No comment provided by engineer. */
 "Authentication failed. Most likely the user denied the request for access." = "Autentiseringen misslyckades. Sannolikt avslog användaren åtkomstbegäran.";
 
 /* No comment provided by engineer. */
@@ -167,9 +164,6 @@
 "Reply to the annotation or previous comments" = "Svara på noteringen eller tidigare kommentarer";
 
 /* No comment provided by engineer. */
-"Resubmit Assignment" = "Lämna in uppgift igen";
-
-/* No comment provided by engineer. */
 "See what's new." = "Se vad som är nytt";
 
 /* No comment provided by engineer. */
@@ -191,12 +185,6 @@
 "Style" = "Stil";
 
 /* No comment provided by engineer. */
-"Submission Failed" = "Inlämningen misslyckades";
-
-/* No comment provided by engineer. */
-"Submission Uploading..." = "Inlämningen laddas upp ...";
-
-/* No comment provided by engineer. */
 "Submit Assignment" = "Lämna in uppgift";
 
 /* No comment provided by engineer. */
@@ -207,12 +195,6 @@
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Tryck här för hjälp.";
-
-/* No comment provided by engineer. */
-"Tap to view details" = "Tryck för att visa detaljerad information";
-
-/* No comment provided by engineer. */
-"Tap to view progress" = "Tryck för att visa framsteg";
 
 /* No comment provided by engineer. */
 "Text Entry" = "Textinlägg";
