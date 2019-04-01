@@ -28,12 +28,14 @@ extension ViewLoader where Self: UIView {
         return view
     }
 
-    public func loadFromXib(nibName name: String = String(describing: Self.self)) {
+    @discardableResult
+    public func loadFromXib(nibName name: String = String(describing: Self.self)) -> UIView {
         guard let view = Bundle(for: Self.self).loadNibNamed(name, owner: self, options: nil)?.first as? UIView else {
             fatalError("Could not load first view from \(name) xib.")
         }
         addSubview(view)
         view.pin(inside: self)
+        return view
     }
 }
 

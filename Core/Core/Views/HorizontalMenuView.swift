@@ -44,6 +44,9 @@ public class HorizontalMenuView: UIView {
     }
 
     func commonInit() {
+        //  TODO: - figure out why this does not work ??
+        //  contentView = type(of: self).loadFromXib(nibName: "HorizontalMenuView")
+
         Bundle.core.loadNibNamed("HorizontalMenuView", owner: self, options: nil)
         addSubview(contentView)
         backgroundColor = UIColor.white.ensureContrast(against: .named(.white))
