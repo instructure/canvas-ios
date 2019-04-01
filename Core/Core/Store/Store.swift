@@ -85,6 +85,7 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
     private func notify() {
         DispatchQueue.main.async {
             self.eventHandler()
+            self.changes = []
         }
     }
 
@@ -126,11 +127,6 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
                 self?.next = self?.useCase.getNext(from: urlResponse)
             }
         }
-    }
-
-    @objc
-    public func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        changes = []
     }
 
     @objc

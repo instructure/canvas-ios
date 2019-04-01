@@ -49,8 +49,7 @@ class SubmissionCommentsTests: StudentTest {
         ]))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
-        SubmissionDetailsElement.drawerFilesButton.tap()
-        SubmissionDetailsElement.drawerCommentsButton.tap()
+        SubmissionDetailsElement.drawerGripper.tap()
 
         XCTAssertTrue(SubmissionComments.attemptCell(submissionID: "1", attempt: 1).isVisible)
         XCTAssertTrue(SubmissionComments.fileView(fileID: "1").isVisible)
@@ -67,8 +66,7 @@ class SubmissionCommentsTests: StudentTest {
         ]))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
-        SubmissionDetailsElement.drawerFilesButton.tap()
-        SubmissionDetailsElement.drawerCommentsButton.tap()
+        SubmissionDetailsElement.drawerGripper.tap()
 
         XCTAssertTrue(SubmissionComments.attemptCell(submissionID: "1", attempt: 1).isVisible)
         XCTAssertTrue(SubmissionComments.attemptView(attempt: 1).isVisible)
@@ -98,11 +96,33 @@ class SubmissionCommentsTests: StudentTest {
         ]))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
-        SubmissionDetailsElement.drawerFilesButton.tap()
-        SubmissionDetailsElement.drawerCommentsButton.tap()
+        SubmissionDetailsElement.drawerGripper.tap()
 
         XCTAssertTrue(SubmissionComments.textCell(commentID: "1").isVisible)
         XCTAssertTrue(SubmissionComments.textCell(commentID: "2").isVisible)
+    }
+
+    func testCreateTextComment() {
+        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make())
+
+        show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
+        SubmissionDetailsElement.drawerGripper.tap()
+        SubmissionDetailsElement.drawerGripper.tap() // Make it full height.
+
+        XCTAssertFalse(SubmissionComments.addCommentButton.isEnabled)
+        SubmissionComments.commentTextView.enterText("First!")
+        XCTAssertTrue(SubmissionComments.addCommentButton.isEnabled)
+
+        mockData(PutSubmissionGradeRequest(courseID: course.id, assignmentID: assignment.id.value, userID: "1", body: nil), value: APISubmission.make([
+            "submission_comments": [ APISubmissionComment.fixture([
+                "id": "42",
+                "author_id": "1",
+                "author": APISubmissionCommentAuthor.fixture([ "display_name": "Student" ]),
+                "comment": "First!",
+            ]), ],
+        ]))
+        SubmissionComments.addCommentButton.tap()
+        XCTAssertTrue(SubmissionComments.textCell(commentID: "42").isVisible)
     }
 
     func testAudioComments() {
@@ -137,8 +157,7 @@ class SubmissionCommentsTests: StudentTest {
         mockDataRequest(URLRequest(url: testm4a), data: try! Data(contentsOf: testm4a))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
-        SubmissionDetailsElement.drawerFilesButton.tap()
-        SubmissionDetailsElement.drawerCommentsButton.tap()
+        SubmissionDetailsElement.drawerGripper.tap()
 
         XCTAssertTrue(SubmissionComments.audioCell(commentID: "1").isVisible)
         XCTAssertTrue(SubmissionComments.audioCell(commentID: "2").isVisible)
@@ -170,12 +189,12 @@ class SubmissionCommentsTests: StudentTest {
         ]))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
-        SubmissionDetailsElement.drawerFilesButton.tap()
-        SubmissionDetailsElement.drawerCommentsButton.tap()
+        SubmissionDetailsElement.drawerGripper.tap()
 
         SubmissionComments.addMediaButton.tap()
-        Alert.button(label: "Record Audio").tap()
-        allowAccessToMicrophone() // Need to manually grant access in simulator once.
+        allowAccessToMicrophone(waitFor: AudioRecorder.recordButton.id) {
+            Alert.button(label: "Record Audio").tap()
+        }
         AudioRecorder.recordButton.tap()
         AudioRecorder.stopButton.tap()
         XCTAssertTrue(AudioRecorder.currentTimeLabel.isVisible)
@@ -185,7 +204,6 @@ class SubmissionCommentsTests: StudentTest {
 
         SubmissionComments.addMediaButton.tap()
         Alert.button(label: "Record Audio").tap()
-        allowAccessToMicrophone()
         AudioRecorder.recordButton.tap()
         AudioRecorder.stopButton.tap()
         XCTAssertTrue(AudioRecorder.currentTimeLabel.isVisible)

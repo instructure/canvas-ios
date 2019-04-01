@@ -89,11 +89,22 @@ class StudentTest: XCTestCase {
         }
     }
 
-    func allowAccessToMicrophone() {
-        let alert = app!.alerts["“Student” Would Like to Access the Microphone"]
-        if alert.exists {
-            alert.buttons["OK"].tap()
+    func allowAccessToMicrophone(waitFor id: String, afterRunning activate: () -> Void) {
+        let alertHandler = addUIInterruptionMonitor(withDescription: "Permission Alert") { (alert) -> Bool in
+            if alert.buttons.matching(identifier: "OK").count > 0 {
+                alert.buttons["OK"].tap()
+                return true
+            } else {
+                return false
+            }
         }
+        activate()
+        if !app!.buttons[id].waitForExistence(timeout: 1) {
+            // Cause the alert handler to be invoked if the alert is currently shown.
+            XCUIApplication().swipeUp()
+        }
+        _ = app!.buttons[id].waitForExistence(timeout: 1)
+        removeUIInterruptionMonitor(alertHandler)
     }
 
     func mockData<R: APIRequestable>(
