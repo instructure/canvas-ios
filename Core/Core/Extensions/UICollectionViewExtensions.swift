@@ -17,13 +17,6 @@
 import UIKit
 
 extension UICollectionView {
-    public func dequeue<T: UICollectionViewCell>(_ type: T.Type, for indexPath: IndexPath) -> T {
-        let name = String(describing: T.self)
-        guard let cell = dequeueReusableCell(withReuseIdentifier: name, for: indexPath) as? T else {
-            fatalError("Could not dequeue \(name) as reusable cell.")
-        }
-        return cell
-    }
 
     public func dequeue<T: UICollectionReusableView>(_ type: T.Type, ofKind: String, for indexPath: IndexPath) -> T {
         let name = String(describing: T.self)
