@@ -55,7 +55,9 @@ const whitelist = [
   'no',
   'outcomes',
   'paint',
+  'pause',
   'pdf',
+  'play',
   'prerequisite',
   'question',
   'quiz',
@@ -100,7 +102,7 @@ for (const icon of whitelist) {
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "${name}.pdf"${ !/right|left/i.test(name) ? '' : `,
+      "filename" : "${name}.pdf"${ !/right|left|play/i.test(name) ? '' : `,
       "language-direction" : "left-to-right"` }
     }
   ],

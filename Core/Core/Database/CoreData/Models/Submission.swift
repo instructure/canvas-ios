@@ -135,22 +135,27 @@ extension Submission: WriteableModel {
             return DiscussionEntry.save(entry, in: client)
         } ?? [])
 
+        if let mediaComment = item.media_comment {
+            model.mediaComment = try MediaComment.save(mediaComment, in: client)
+        }
+
+        if let comments = item.submission_comments {
+            let allPredicate = NSPredicate(format: "%K == %@", #keyPath(SubmissionComment.submissionID), item.id.value)
+            let all: [SubmissionComment] = client.fetch(allPredicate)
+            try client.delete(all)
+            for comment in comments {
+                SubmissionComment.save(comment, forSubmission: item.id.value, in: client)
+            }
+        }
+        if item.submission_type != nil, item.submission_type != .none, item.submission_type != .not_graded, item.submission_type != .on_paper {
+            SubmissionComment.save(item, in: client)
+        }
+
         if let submissionHistory = item.submission_history {
             for var submission in submissionHistory {
                 submission.user = item.user
                 try Submission.save(submission, in: client)
             }
-        }
-
-        if let mediaComment = item.media_comment {
-            model.mediaComment = try MediaComment.save(mediaComment, in: client)
-        }
-
-        if item.submission_type != nil, item.submission_type != .none, item.submission_type != .not_graded, item.submission_type != .on_paper {
-            SubmissionComment.save(item, in: client)
-        }
-        for comment in item.submission_comments ?? [] {
-            SubmissionComment.save(comment, forSubmission: item.id.value, in: client)
         }
 
         let assignmentPredicate = NSPredicate(format: "%K == %@", #keyPath(Assignment.id), item.assignment_id.value)

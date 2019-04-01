@@ -21,14 +21,17 @@ class UploadMediaCommentTests: CoreTestCase {
     let upload = UploadMediaComment(courseID: "1", assignmentID: "2", userID: "3", submissionID: "4", isGroup: false, type: .audio, url: URL(string: "data:text/plain,abcde")!)
     var comment: SubmissionComment?
     var error: Error?
+    var called: XCTestExpectation?
 
     override func setUp() {
         super.setUp()
         UUID.mock("zzxxzz")
         upload.mediaAPI = api
-        upload.fetch(environment: environment) { [weak self] (comment, error) in
+        upload.env = environment
+        upload.callback = { [weak self] (comment, error) in
             self?.comment = comment
             self?.error = error
+            self?.called?.fulfill()
         }
     }
 
@@ -43,6 +46,14 @@ class UploadMediaCommentTests: CoreTestCase {
     func testFetch() {
         upload.fetch(environment: environment, upload.callback)
         XCTAssert(upload.env === environment)
+    }
+
+    func testSavePlaceholderError() {
+        upload.env = AppEnvironment()
+        called = expectation(description: "callback called")
+        upload.savePlaceholder()
+        wait(for: [called!], timeout: 5)
+        XCTAssertNotNil(error)
     }
 
     func testUpload() {

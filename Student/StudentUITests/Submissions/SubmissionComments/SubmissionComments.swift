@@ -39,7 +39,11 @@ struct SubmissionComments: RawRepresentable, Element {
         return SubmissionComments(rawValue: "audioCell.\(commentID)")
     }
 
-    static func fileView(fileID: Int) -> SubmissionComments {
+    static func audioCellPlayPauseButton(commentID: String) -> SubmissionComments {
+        return SubmissionComments(rawValue: "audioCell.\(commentID).playPauseButton")
+    }
+
+    static func fileView(fileID: String) -> SubmissionComments {
         return SubmissionComments(rawValue: "fileView.\(fileID)")
     }
 

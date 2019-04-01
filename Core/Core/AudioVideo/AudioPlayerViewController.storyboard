@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Audio Player View Controller-->
+        <scene sceneID="L4n-Yb-o5y">
+            <objects>
+                <viewController storyboardIdentifier="AudioPlayerViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XYI-Rk-CeK" customClass="AudioPlayerViewController" customModule="Core" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HBf-mh-fwk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="32"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0xx-mi-ym4">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="32"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h9U-na-QRo">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="32"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g9h-ws-oTb" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="35" height="32"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="AudioPlayer.playPauseButton"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="32" id="72F-fo-BMx"/>
+                                                    <constraint firstAttribute="width" constant="35" id="kdr-Ju-Rkm"/>
+                                                </constraints>
+                                                <inset key="contentEdgeInsets" minX="16" minY="8.5" maxX="4" maxY="8.5"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="playSolid"/>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textLightest"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="playPause:" destination="XYI-Rk-CeK" eventType="primaryActionTriggered" id="kNk-Zi-scf"/>
+                                                </connections>
+                                            </button>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QCS-wT-urj">
+                                                <rect key="frame" x="35" y="0.0" width="32" height="32"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--:--" textAlignment="natural" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ANV-Ga-VPe" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                                        <rect key="frame" x="7.5" y="9.5" width="24.5" height="13.5"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="AudioPlayer.currentTimeLabel">
+                                                            <accessibilityTraits key="traits" staticText="YES" updatesFrequently="YES"/>
+                                                        </accessibility>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textLightest"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular11Monodigit"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="ANV-Ga-VPe" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="QCS-wT-urj" secondAttribute="leading" priority="750" id="0pj-eh-acI"/>
+                                                    <constraint firstAttribute="width" constant="32" id="3mq-Qx-UfK"/>
+                                                    <constraint firstItem="ANV-Ga-VPe" firstAttribute="centerY" secondItem="QCS-wT-urj" secondAttribute="centerY" id="7eQ-7R-qXc"/>
+                                                    <constraint firstAttribute="trailing" secondItem="ANV-Ga-VPe" secondAttribute="trailing" id="xTP-CN-Iu4"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ol4-Mr-cku">
+                                                <rect key="frame" x="67" y="0.0" width="268" height="32"/>
+                                                <subviews>
+                                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hab-1R-bO8">
+                                                        <rect key="frame" x="8" y="13.5" width="252" height="5"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HS7-d7-zt6" userLabel="Track Fill">
+                                                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="5"/>
+                                                                <color key="backgroundColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" id="lxU-PL-ciW"/>
+                                                                </constraints>
+                                                            </view>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstItem="HS7-d7-zt6" firstAttribute="leading" secondItem="hab-1R-bO8" secondAttribute="leading" id="ByB-aw-9va"/>
+                                                            <constraint firstAttribute="bottom" secondItem="HS7-d7-zt6" secondAttribute="bottom" id="cIN-lT-hKI"/>
+                                                            <constraint firstAttribute="height" constant="5" id="mky-6e-tq9"/>
+                                                            <constraint firstItem="HS7-d7-zt6" firstAttribute="top" secondItem="hab-1R-bO8" secondAttribute="top" id="yOG-Dj-7WF"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <real key="value" value="2.5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SQJ-XM-03u">
+                                                        <rect key="frame" x="3" y="11" width="10" height="10"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="10" id="Aqw-bg-f7m"/>
+                                                            <constraint firstAttribute="height" constant="10" id="Uxa-Eb-XvO"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="On9-DB-8Ib">
+                                                        <rect key="frame" x="-2" y="1" width="272" height="31"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="AudioPlayer.timeSlider">
+                                                            <accessibilityTraits key="traits" adjustable="YES"/>
+                                                        </accessibility>
+                                                        <color key="minimumTrackTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="maximumTrackTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="thumbTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <connections>
+                                                            <action selector="scrub:" destination="XYI-Rk-CeK" eventType="valueChanged" id="VV2-Bt-HlG"/>
+                                                        </connections>
+                                                    </slider>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="hab-1R-bO8" secondAttribute="trailing" constant="8" id="5hy-wr-NXK"/>
+                                                    <constraint firstItem="On9-DB-8Ib" firstAttribute="leading" secondItem="ol4-Mr-cku" secondAttribute="leading" id="C9V-cP-EZw"/>
+                                                    <constraint firstItem="SQJ-XM-03u" firstAttribute="centerY" secondItem="ol4-Mr-cku" secondAttribute="centerY" id="DYK-wB-eme"/>
+                                                    <constraint firstItem="SQJ-XM-03u" firstAttribute="centerX" secondItem="HS7-d7-zt6" secondAttribute="trailing" id="Hlk-DI-x6W"/>
+                                                    <constraint firstItem="hab-1R-bO8" firstAttribute="leading" secondItem="ol4-Mr-cku" secondAttribute="leading" constant="8" id="SkZ-K8-npN"/>
+                                                    <constraint firstItem="hab-1R-bO8" firstAttribute="centerY" secondItem="ol4-Mr-cku" secondAttribute="centerY" id="UHG-TQ-Sd9"/>
+                                                    <constraint firstItem="On9-DB-8Ib" firstAttribute="centerY" secondItem="ol4-Mr-cku" secondAttribute="centerY" id="dTT-9A-DtI"/>
+                                                    <constraint firstAttribute="trailing" secondItem="On9-DB-8Ib" secondAttribute="trailing" id="eBc-WX-rb5"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qtl-Ix-JJ8">
+                                                <rect key="frame" x="335" y="0.0" width="40" height="32"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--:--" textAlignment="natural" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bBV-09-tBG" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="9.5" width="24.5" height="13.5"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="AudioPlayer.remainingTimeLabel"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textLightest"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular11Monodigit"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="40" id="0j9-vI-IQe"/>
+                                                    <constraint firstItem="bBV-09-tBG" firstAttribute="centerY" secondItem="qtl-Ix-JJ8" secondAttribute="centerY" id="9pt-fg-XAF"/>
+                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="bBV-09-tBG" secondAttribute="trailing" priority="750" id="brf-5m-zsu"/>
+                                                    <constraint firstItem="bBV-09-tBG" firstAttribute="leading" secondItem="qtl-Ix-JJ8" secondAttribute="leading" id="rlU-Np-cDI"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.17647058823529413" green="0.23137254901960785" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="h9U-na-QRo" firstAttribute="top" secondItem="0xx-mi-ym4" secondAttribute="top" id="F0h-F2-Q7I"/>
+                                    <constraint firstItem="h9U-na-QRo" firstAttribute="leading" secondItem="0xx-mi-ym4" secondAttribute="leading" id="IGd-Ep-sbR"/>
+                                    <constraint firstAttribute="height" constant="32" id="OzC-q5-hNc"/>
+                                    <constraint firstItem="h9U-na-QRo" firstAttribute="trailing" secondItem="0xx-mi-ym4" secondAttribute="trailing" id="oyV-4r-Mcf"/>
+                                    <constraint firstItem="h9U-na-QRo" firstAttribute="bottom" secondItem="0xx-mi-ym4" secondAttribute="bottom" id="z8D-Ob-QmV"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="6Ix-ia-7BI">
+                                <rect key="frame" x="12" y="6" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="0xx-mi-ym4" firstAttribute="trailing" secondItem="HBf-mh-fwk" secondAttribute="trailing" id="30E-4z-115"/>
+                            <constraint firstItem="6Ix-ia-7BI" firstAttribute="leading" secondItem="eKU-JN-xas" secondAttribute="leading" constant="12" id="DrZ-OV-a7q"/>
+                            <constraint firstItem="6Ix-ia-7BI" firstAttribute="centerY" secondItem="HBf-mh-fwk" secondAttribute="centerY" id="TBc-aL-rLE"/>
+                            <constraint firstItem="0xx-mi-ym4" firstAttribute="centerY" secondItem="HBf-mh-fwk" secondAttribute="centerY" id="UYk-hR-ca4"/>
+                            <constraint firstItem="0xx-mi-ym4" firstAttribute="top" relation="greaterThanOrEqual" secondItem="HBf-mh-fwk" secondAttribute="top" id="UpF-tt-efR"/>
+                            <constraint firstItem="0xx-mi-ym4" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="HBf-mh-fwk" secondAttribute="bottom" id="Ycz-lj-suA"/>
+                            <constraint firstItem="0xx-mi-ym4" firstAttribute="leading" secondItem="HBf-mh-fwk" secondAttribute="leading" id="Z9V-Fu-JEQ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="eKU-JN-xas"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="8"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="32"/>
+                    <connections>
+                        <outlet property="backgroundView" destination="0xx-mi-ym4" id="wuJ-0e-6q4"/>
+                        <outlet property="currentTimeLabel" destination="ANV-Ga-VPe" id="sBc-F6-n98"/>
+                        <outlet property="loadingView" destination="6Ix-ia-7BI" id="k5n-dR-IQt"/>
+                        <outlet property="playPauseButton" destination="g9h-ws-oTb" id="g0f-aN-hri"/>
+                        <outlet property="remainingTimeLabel" destination="bBV-09-tBG" id="t3V-nl-pzu"/>
+                        <outlet property="thumb" destination="SQJ-XM-03u" id="b0D-IH-vJz"/>
+                        <outlet property="timeSlider" destination="On9-DB-8Ib" id="X43-zP-eYe"/>
+                        <outlet property="track" destination="hab-1R-bO8" id="1Ee-sz-8iT"/>
+                        <outlet property="trackFill" destination="HS7-d7-zt6" id="QNJ-aU-C0M"/>
+                        <outlet property="trackFillWidth" destination="lxU-PL-ciW" id="Occ-Kj-ga1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fTk-64-Uln" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="90" y="20"/>
+        </scene>
+    </scenes>
+</document>
