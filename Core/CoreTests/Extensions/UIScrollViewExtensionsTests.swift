@@ -37,5 +37,6 @@ class UIScrollViewExtensionsTests: XCTestCase {
 
         scrollView.contentOffset.y = 200
         XCTAssertTrue(scrollView.isBottomReached())
+        XCTAssertTrue(scrollView.isBottomReached(threshold: 0))
     }
 }
