@@ -149,7 +149,7 @@ extension ModuleListViewController: UITableViewDelegate {
 
 extension ModuleListViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.isEndReached {
+        if scrollView.isBottomReached() {
             presenter?.getNextPage()
         }
     }

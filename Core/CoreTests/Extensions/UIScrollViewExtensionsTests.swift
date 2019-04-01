@@ -18,20 +18,24 @@ import Foundation
 import XCTest
 
 class UIScrollViewExtensionsTests: XCTestCase {
-    func testIsEndReached() {
+    func testIsBottomReached() {
         let scrollView = UIScrollView()
         scrollView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
         scrollView.contentSize = CGSize(width: 100, height: 300)
         scrollView.contentOffset.y = 0
-        XCTAssertFalse(scrollView.isEndReached)
+        XCTAssertFalse(scrollView.isBottomReached())
 
         scrollView.contentOffset.y = 50
-        XCTAssertFalse(scrollView.isEndReached)
+        XCTAssertFalse(scrollView.isBottomReached())
 
         scrollView.contentOffset.y = 100
-        XCTAssertFalse(scrollView.isEndReached)
+        XCTAssertFalse(scrollView.isBottomReached())
+
+        scrollView.contentOffset.y = 140
+        XCTAssertTrue(scrollView.isBottomReached())
+        XCTAssertFalse(scrollView.isBottomReached(threshold: 0))
 
         scrollView.contentOffset.y = 200
-        XCTAssertTrue(scrollView.isEndReached)
+        XCTAssertTrue(scrollView.isBottomReached())
     }
 }

@@ -17,7 +17,10 @@
 import Foundation
 
 extension UIScrollView {
-    public var isEndReached: Bool {
-        return contentOffset.y >= (contentSize.height - frame.size.height)
+    /// Whether or not the scroll view has reached the bottom using a threshold.
+    ///
+    /// The default `threshold` is 60.
+    public func isBottomReached(threshold: CGFloat = 60) -> Bool {
+        return contentOffset.y >= contentSize.height - frame.size.height - threshold
     }
 }
