@@ -21,10 +21,10 @@ public class PublishedIconView: IconView {
         didSet {
             if published == true {
                 image = .icon(.publish)
-                tintColor = UIColor.named(.backgroundSuccess).ensureContrast(against: .white)
+                tintColor = UIColor.named(.backgroundSuccess)
             } else {
                 image = .icon(.unpublish)
-                tintColor = UIColor.named(.ash).ensureContrast(against: .white)
+                tintColor = UIColor.named(.ash)
             }
         }
     }
