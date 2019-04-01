@@ -84,8 +84,8 @@ public class AudioPlayerViewController: UIViewController {
     }
 
     public func load(url: URL?) {
-        currentTimeLabel?.text = NSLocalizedString("--:--", bundle: .core, comment: "")
-        remainingTimeLabel?.text = NSLocalizedString("--:--", bundle: .core, comment: "")
+        currentTimeLabel?.text = NSLocalizedString("--:--", bundle: .core, comment: "Unknown time duration")
+        remainingTimeLabel?.text = NSLocalizedString("--:--", bundle: .core, comment: "Unknown time duration")
         loadingView?.startAnimating()
         playPauseButton?.alpha = 0
         playPauseButton?.isEnabled = false
