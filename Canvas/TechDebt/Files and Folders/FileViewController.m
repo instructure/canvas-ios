@@ -34,8 +34,9 @@
 @import PSPDFKit;
 @import PSPDFKitUI;
 @import CanvasKeymaster;
+@import QuickLook;
 
-@interface FileViewController () < UIDocumentInteractionControllerDelegate>
+@interface FileViewController () <UIDocumentInteractionControllerDelegate, QLPreviewControllerDelegate, QLPreviewControllerDataSource>
 @property (nonatomic, strong) UIActivityIndicatorView *activityView;
 @property (nonatomic, strong) UIView *legacyFileMessageView;
 @property (nonatomic, strong) NSLayoutConstraint *legacyFileMessageViewHeightConstraint;
@@ -290,6 +291,27 @@
     return _legacyFileMessageView;
 }
 
+- (void)addOpenInARButton {
+    UIButton *button = [UIButton new];
+    [button setTitle:NSLocalizedStringFromTableInBundle(@"Open in AR", nil, [NSBundle bundleForClass: self.class], nil) forState:UIControlStateNormal];
+    button.backgroundColor = Brand.current.primaryButtonColor;
+    button.titleLabel.textColor = Brand.current.primaryButtonTextColor;
+    button.titleLabel.font = [UIFont systemFontOfSize:16 weight: UIFontWeightMedium];
+    button.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:button];
+    [button.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor constant:0].active = YES;
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[button(43)]" options:0 metrics:nil views:@{@"button":button}]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-24-[button]-24-|" options:0 metrics:nil views:@{@"button":button}]];
+    [button addTarget:self action:@selector(onOpenARPressed) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)onOpenARPressed {
+    QLPreviewController* qlController = [[QLPreviewController alloc] init];
+    qlController.delegate = self;
+    qlController.dataSource = self;
+    [self presentViewController:qlController animated:YES completion:nil];
+}
+
 - (void)tappedViewOldVersion {
     NSString *path = [NSString stringWithFormat:@"/files/%llu/old", self.fileIdent];
     NSURL *url = [NSURL URLWithString:path];
@@ -313,7 +335,6 @@
 
 - (UIViewController *)childControllerForContentAtURL:(NSURL *)url {
     UIViewController *controller = nil;
-    
     if ([_file.contentType isEqualToString:@"application/pdf"]) {
 
         pdfDocPresenter = [[PreSubmissionPDFDocumentPresenter alloc] initWithDocumentURL:url session:TheKeymaster.currentClient.authSession defaultCourseID:[self hackishlyGetDefaultCourseIfPossible] defaultAssignmentID:[self hackishlyGetDefaultAssignmentIfPossible]];
@@ -409,8 +430,9 @@
 }
 
 - (void)updateForURLState {
-
-    if ([_url isFileURL]) {
+    if ([self fileIsARCapable]) {
+        [self addOpenInARButton];
+    } else if ([_url isFileURL]) {
         contentChildController = [self childControllerForContentAtURL:_url];
 
         [self addChildViewController:contentChildController];
@@ -434,7 +456,7 @@
             [[NSNotificationCenter defaultCenter] postNotificationName: @"FileViewControllerBarButtonItemsDidChange" object:nil];
         }
 
-         [contentChildController didMoveToParentViewController:self];
+        [contentChildController didMoveToParentViewController:self];
     } else {
         actionButton.enabled = NO;
         
@@ -532,6 +554,14 @@
     container.frame = containerFrame;
 }
 
+- (BOOL)fileIsARCapable {
+    if (_file == NULL) {
+        return FALSE;
+    }
+    NSString *extension = [[[NSURL alloc] initWithString:_file.filename] pathExtension];
+    return [extension isEqualToString:@"usdz"];
+}
+
 #pragma mark - UIDocumentInteractionControllerDelegate
 
 - (BOOL)documentInteractionController:(UIDocumentInteractionController *)controller canPerformAction:(SEL)action {
@@ -577,6 +607,20 @@
                                                                                             inContext:self.contextInfo];
     
     [contentLockVC lockViewController:self];
+}
+
+#pragma mark - QLPreviewControllerDelegate
+- (BOOL)previewController:(QLPreviewController *)controller shouldOpenURL:(NSURL *)url forPreviewItem:(id<QLPreviewItem>)item {
+    return YES;
+}
+
+#pragma mark - QLPreviewControllerDataSource
+- (NSInteger)numberOfPreviewItemsInPreviewController:(QLPreviewController *)controller {
+    return 1;
+}
+
+- (id<QLPreviewItem>)previewController:(QLPreviewController *)controller previewItemAtIndex:(NSInteger)index {
+    return _url;
 }
 
 @end
