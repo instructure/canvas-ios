@@ -28,26 +28,51 @@ class SyllabusPresenterTests: PersistenceTestCase {
     var courseCode: String?
     var backgroundColor: UIColor?
 
-    var expectation = XCTestExpectation(description: "expectation")
+    var navBarExpectation = XCTestExpectation(description: "navBarExpectation")
+    var htmlExpectation = XCTestExpectation(description: "htmlExpectation")
 
     override func setUp() {
         super.setUp()
-        expectation = XCTestExpectation(description: "expectation")
+        navBarExpectation = XCTestExpectation(description: "navBarExpectation")
+        htmlExpectation = XCTestExpectation(description: "htmlExpectation")
         presenter = SyllabusPresenter(courseID: "1", view: self, env: env)
+    }
+
+    func testLoadHtml() {
+        //  given
+        let expectedSyllabusHtml = "foobar"
+        Course.make(["syllabusBody": expectedSyllabusHtml])
+
+        //  when
+        presenter.viewIsReady()
+        wait(for: [htmlExpectation], timeout: 0.1)
+        //  then
+        XCTAssertEqual(expectedSyllabusHtml, html)
+    }
+
+    func testLoadNavBarStuff() {
+        //  given
+        let course = Course.make(["courseCode": "abc"])
+        Color.make([#keyPath(Color.canvasContextID): course.canvasContextID])
+
+        //  when
+        presenter.viewIsReady()
+        wait(for: [navBarExpectation], timeout: 0.1)
+        //  then
+        XCTAssertEqual(courseCode, "abc")
+        XCTAssertEqual(backgroundColor, UIColor.red)
     }
 }
 
 extension SyllabusPresenterTests: SyllabuseViewProtocol {
-    func update() {
-
-    }
-
     func updateNavBar(courseCode: String?, backgroundColor: UIColor?) {
         self.courseCode = courseCode
         self.backgroundColor = backgroundColor
+        navBarExpectation.fulfill()
     }
 
     func loadHtml(_ html: String?) {
         self.html = html
+        htmlExpectation.fulfill()
     }
 }

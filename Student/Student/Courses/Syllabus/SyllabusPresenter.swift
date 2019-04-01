@@ -18,7 +18,6 @@ import Foundation
 import Core
 
 protocol SyllabuseViewProtocol: class {
-    func update()
     func updateNavBar(courseCode: String?, backgroundColor: UIColor?)
     func loadHtml(_ html: String?)
 }
@@ -47,7 +46,6 @@ class SyllabusPresenter {
     }
 
     func update() {
-        view?.update()
         view?.updateNavBar(courseCode: courses.first?.courseCode, backgroundColor: courses.first?.color)
         view?.loadHtml(courses.first?.syllabusBody)
     }

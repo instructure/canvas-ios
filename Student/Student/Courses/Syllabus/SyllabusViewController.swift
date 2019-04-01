@@ -109,10 +109,6 @@ extension SyllabusViewController: UIScrollViewDelegate {
 }
 
 extension SyllabusViewController: SyllabuseViewProtocol {
-    func update() {
-
-    }
-
     func updateNavBar(courseCode: String?, backgroundColor: UIColor?) {
         titleView.subtitle = courseCode
         navigationController?.navigationBar.useContextColor(backgroundColor)
