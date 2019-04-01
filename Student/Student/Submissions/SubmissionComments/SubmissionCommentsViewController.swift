@@ -102,8 +102,11 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
         })
         alert.addAction(UIAlertAction(title: NSLocalizedString("Record Video", bundle: .student, comment: ""), style: .default) { [weak self] _ in
             let picker = UIImagePickerController()
+            picker.allowsEditing = true
             picker.delegate = self
             picker.mediaTypes = [ kUTTypeMovie as String ]
+            picker.sourceType = .camera
+            picker.cameraDevice = .front
             self?.present(picker, animated: true)
         })
         alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", bundle: .student, comment: ""), style: .cancel))
