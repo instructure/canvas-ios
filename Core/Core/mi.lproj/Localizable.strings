@@ -8,7 +8,10 @@
 "Assignment" = "Whakataunga";
 
 /* No comment provided by engineer. */
-"Assignment not found." = "Koar ee kitea te whakataunga";
+"Attempt %d" = "Whakamātau %d";
+
+/* No comment provided by engineer. */
+"Audio" = "Ororongo";
 
 /* No comment provided by engineer. */
 "Authentication failed. Most likely the user denied the request for access." = "I rahua te motuhēhēnga. Ko te nuinga kaore i whakāetia e te kaiwhakamahi te tono mo te uru.";
@@ -167,9 +170,6 @@
 "Reply to the annotation or previous comments" = "Whakautu ki te whakahuatanga me ngā kōrero o mua";
 
 /* No comment provided by engineer. */
-"Resubmit Assignment" = "Tuku Taumahi";
-
-/* No comment provided by engineer. */
 "See what's new." = "Tirohia ngā mea hou";
 
 /* No comment provided by engineer. */
@@ -191,10 +191,7 @@
 "Style" = "Kāhua";
 
 /* No comment provided by engineer. */
-"Submission Failed" = "I rahua te tuku o te tāpaetanga";
-
-/* No comment provided by engineer. */
-"Submission Uploading..." = "E tukuake ana te tāpaetanga...";
+"Submission failed." = "I rahua te tuku o te tāpaetanga";
 
 /* No comment provided by engineer. */
 "Submit Assignment" = "Tuku Whakataunga";
@@ -209,19 +206,22 @@
 "Tap here for help." = "Pātō ki kōnei mo te awhina";
 
 /* No comment provided by engineer. */
-"Tap to view details" = "Pātō ki te tiro i ngā taipitopito";
-
-/* No comment provided by engineer. */
-"Tap to view progress" = "Pātō ki te tiro i te ahu whakamua";
+"Terms of Use" = "Ngā ritenga whakamahi";
 
 /* No comment provided by engineer. */
 "Text Entry" = "Whakauru kuputuhi";
+
+/* No comment provided by engineer. */
+"There was a problem retrieving the Terms of Use." = "He raruraru i te wā e kimi ana i ngā Ture Whakamahia";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "Ko tenei whakatuanga e tika ana %@";
 
 /* No comment provided by engineer. */
 "This assignment was due by %@" = "Ko tenei whakataunga i tika i %@";
+
+/* No comment provided by engineer. */
+"Video" = "Ataata";
 
 /* No comment provided by engineer. */
 "We've made a few changes." = "I mahia e mātou he rerekētanga iti";

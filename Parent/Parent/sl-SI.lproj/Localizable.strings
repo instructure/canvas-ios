@@ -68,6 +68,9 @@
 "Caught up on Alerts" = "Seznanitev z opozorili";
 
 /* No comment provided by engineer. */
+"Change User" = "Spremeni uporabnika";
+
+/* No comment provided by engineer. */
 "Choose a student" = "Izberi študenta";
 
 /* Close Button Title */
@@ -89,6 +92,9 @@
 "Current student: %@, tap to switch students" = "Trenutni študent: %@, tapnite za preklop študentov.";
 
 /* No comment provided by engineer. */
+"Developer Menu" = "Meni razvijalca";
+
+/* No comment provided by engineer. */
 "Discussion" = "Razprava";
 
 /* No comment provided by engineer. */
@@ -105,6 +111,9 @@
 
 /* No comment provided by engineer. */
 "Excused" = "Opravičeno";
+
+/* No comment provided by engineer. */
+"Help" = "Pomoč";
 
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "Visoka ocena naloge ne more biti nižja od nizke ocene naloge.";
@@ -132,6 +141,9 @@
 
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "Zamuda: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Log Out" = "Odjava";
 
 /* Low Assignment Grade too High */
 "Low assignment grade cannot be higher than high assignment grade" = "Nizka ocena naloge ne more biti višja od visoke ocene naloge.";
@@ -190,6 +202,12 @@
 /* No comment provided by engineer. */
 "Quiz" = "Kviz";
 
+/* No comment provided by engineer. */
+"Report a Problem" = "Poročajte o težavi.";
+
+/* No comment provided by engineer. */
+"Request a Feature" = "Zahtevaj funkcionalnost";
+
 /* Not Found Error Message */
 "Resource not found.  Please try again." = "Vira ni mogoče najti.  Poskusite znova.";
 
@@ -214,6 +232,9 @@
 /* Directions in the admin view */
 "Tap to start viewing Canvas as another person." = "Tapnite za ogled sistema Canvas v vlogi drugega uporabnika.";
 
+/* No comment provided by engineer. */
+"Terms of Use" = "Pogoji uporabe";
+
 /* Error message */
 "There are no actions for this item" = "Pri tem elementu ni dejanj.";
 
@@ -237,6 +258,9 @@
 
 /* No comment provided by engineer. */
 "Unread" = "Neprebrano";
+
+/* No comment provided by engineer. */
+"View Canvas Guides" = "Ogled vodnikov po sistemu Canvas";
 
 /* Calendar Tab */
 "Week" = "Teden";

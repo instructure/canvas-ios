@@ -50,6 +50,9 @@
 "Edit Course" = "Modifye Kou";
 
 /* No comment provided by engineer. */
+"Failed to locate camera result" = "Enposib pou lokalize rezilta kamera a";
+
+/* No comment provided by engineer. */
 "Failed upload" = "Chajman echwe";
 
 /* No comment provided by engineer. */
@@ -57,6 +60,9 @@
 
 /* No comment provided by engineer. */
 "Files" = "Fichye";
+
+/* No comment provided by engineer. */
+"Files (%d)" = "Fichye (%d)";
 
 /* No comment provided by engineer. */
 "Grade" = "Klas";
@@ -75,6 +81,18 @@
 
 /* No comment provided by engineer. */
 "No Submission Date" = "Pa gen Dat Soumisyon";
+
+/* No comment provided by engineer. */
+"On %@ %@ commented \"%@\"" = "Nan %1$@ %2$@ kòmante\"%3$@\"";
+
+/* No comment provided by engineer. */
+"On %@ %@ left a video comment" = "Le %1$@ %2$@ kite yon kòmantè videyo";
+
+/* No comment provided by engineer. */
+"On %@ %@ left an audio comment" = "Le %1$@ %2$@ kite yon kòmantè odyo";
+
+/* No comment provided by engineer. */
+"On %@ %@ submitted the following" = "Le %1$@ %2$@ te soumèt sa annapre yo";
 
 /* Button to open external tool */
 "Open External Tool" = "Ouvri Zouti Ekstèn";
@@ -110,7 +128,13 @@
 "Submission & Rubric" = "Soumisyon ak Ribrik";
 
 /* No comment provided by engineer. */
+"Submission Failed" = "Soumisyon Echwe";
+
+/* No comment provided by engineer. */
 "Submission Types" = "Tip Soumisyon";
+
+/* No comment provided by engineer. */
+"Submission Uploading..." = "Soumisyon ap Transfere...";
 
 /* No comment provided by engineer. */
 "Submit" = "Soumèt";
@@ -122,7 +146,16 @@
 "Successfully submitted!" = "Ale avèk siksè!";
 
 /* No comment provided by engineer. */
+"Tap to view details" = "Tape pou afiche detay";
+
+/* No comment provided by engineer. */
+"Tap to view progress" = "Tape pou afiche pwogrè";
+
+/* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "App la bezwen redemare pou li ka itilize nouvo langaj ki pwograme a. Tanpri relanse app la.";
+
+/* No comment provided by engineer. */
+"There are no files to display." = "Pa gen fichye pou afiche.";
 
 /* No comment provided by engineer. */
 "There are no quizzes to display." = "Pa gen quiz pou afiche.";
@@ -135,6 +168,12 @@
 
 /* No comment provided by engineer. */
 "Uploading..." = "Chajman...";
+
+/* No comment provided by engineer. */
+"View file %@ %@" = "Afiche fichye %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View submission attempt %d" = "Afiche tantativ soumisyon %d";
 
 /* No comment provided by engineer. */
 "Website Address" = "Adrès Sit Wèb";

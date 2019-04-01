@@ -8,7 +8,10 @@
 "Assignment" = "Uppgift";
 
 /* No comment provided by engineer. */
-"Assignment not found." = "Bedömningen hittades inte";
+"Attempt %d" = "Försök %d";
+
+/* No comment provided by engineer. */
+"Audio" = "Ljud";
 
 /* No comment provided by engineer. */
 "Authentication failed. Most likely the user denied the request for access." = "Autentiseringen misslyckades. Sannolikt avslog användaren åtkomstbegäran.";
@@ -167,9 +170,6 @@
 "Reply to the annotation or previous comments" = "Svara på noteringen eller tidigare kommentarer";
 
 /* No comment provided by engineer. */
-"Resubmit Assignment" = "Lämna in uppgift igen";
-
-/* No comment provided by engineer. */
 "See what's new." = "Se vad som är nytt";
 
 /* No comment provided by engineer. */
@@ -191,10 +191,7 @@
 "Style" = "Stil";
 
 /* No comment provided by engineer. */
-"Submission Failed" = "Inlämningen misslyckades";
-
-/* No comment provided by engineer. */
-"Submission Uploading..." = "Inlämningen laddas upp ...";
+"Submission failed." = "Inlämningen misslyckades.";
 
 /* No comment provided by engineer. */
 "Submit Assignment" = "Lämna in uppgift";
@@ -209,19 +206,22 @@
 "Tap here for help." = "Tryck här för hjälp.";
 
 /* No comment provided by engineer. */
-"Tap to view details" = "Tryck för att visa detaljerad information";
-
-/* No comment provided by engineer. */
-"Tap to view progress" = "Tryck för att visa framsteg";
+"Terms of Use" = "Användarvillkor";
 
 /* No comment provided by engineer. */
 "Text Entry" = "Textinlägg";
+
+/* No comment provided by engineer. */
+"There was a problem retrieving the Terms of Use." = "Det gick inte att hämta användarvillkoren.";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "Den här uppgiften ska lämnas in  %@";
 
 /* No comment provided by engineer. */
 "This assignment was due by %@" = "Den här uppgiften skulle ha lämnats in %@";
+
+/* No comment provided by engineer. */
+"Video" = "Video";
 
 /* No comment provided by engineer. */
 "We've made a few changes." = "Vi har gjort några ändringar.";

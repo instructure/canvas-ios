@@ -50,6 +50,9 @@
 "Edit Course" = "Kurs bearbeiten";
 
 /* No comment provided by engineer. */
+"Failed to locate camera result" = "Kameraergebnis konnte nicht gefunden werden";
+
+/* No comment provided by engineer. */
 "Failed upload" = "Upload fehlgeschlagen";
 
 /* No comment provided by engineer. */
@@ -57,6 +60,9 @@
 
 /* No comment provided by engineer. */
 "Files" = "Dateien";
+
+/* No comment provided by engineer. */
+"Files (%d)" = "Dateien (%d)";
 
 /* No comment provided by engineer. */
 "Grade" = "Note";
@@ -75,6 +81,18 @@
 
 /* No comment provided by engineer. */
 "No Submission Date" = "Kein Abgabedatum";
+
+/* No comment provided by engineer. */
+"On %@ %@ commented \"%@\"" = "Am %1$@ %2$@ kommentierte „%3$@“";
+
+/* No comment provided by engineer. */
+"On %@ %@ left a video comment" = "Hat am %1$@ %2$@ einen Videokommentar hinterlassen";
+
+/* No comment provided by engineer. */
+"On %@ %@ left an audio comment" = "Hat am %1$@ %2$@ einen Audiokommentar hinterlassen";
+
+/* No comment provided by engineer. */
+"On %@ %@ submitted the following" = "Hat am %1$@ %2$@ Folgendes abgegeben";
 
 /* Button to open external tool */
 "Open External Tool" = "Externes Tool öffnen";
@@ -110,7 +128,13 @@
 "Submission & Rubric" = "Abgabe und Bewertungsschema";
 
 /* No comment provided by engineer. */
+"Submission Failed" = "Abgabe fehlgeschlagen";
+
+/* No comment provided by engineer. */
 "Submission Types" = "Abgabearten";
+
+/* No comment provided by engineer. */
+"Submission Uploading..." = "Abgabe wird hochgeladen";
 
 /* No comment provided by engineer. */
 "Submit" = "Abgeben";
@@ -122,7 +146,16 @@
 "Successfully submitted!" = "Wurde abgegeben!";
 
 /* No comment provided by engineer. */
+"Tap to view details" = "Zum Anzeigen der Details antippen";
+
+/* No comment provided by engineer. */
+"Tap to view progress" = "Zum Anzeigen des Fortschritts antippen";
+
+/* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Die Anwendung muss neu gestartet werden, um die neuen Spracheinstellungen zu übernehmen. Bitte starten Sie die App erneut.";
+
+/* No comment provided by engineer. */
+"There are no files to display." = "Es sind keine Dateien anzuzeigen.";
 
 /* No comment provided by engineer. */
 "There are no quizzes to display." = "Es sind keine Quizaufgaben anzuzeigen.";
@@ -135,6 +168,12 @@
 
 /* No comment provided by engineer. */
 "Uploading..." = "Wird hochgeladen ...";
+
+/* No comment provided by engineer. */
+"View file %@ %@" = "Datei anzeigen %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View submission attempt %d" = "Abgabeversuch anzeigen %d";
 
 /* No comment provided by engineer. */
 "Website Address" = "Website-Adresse";

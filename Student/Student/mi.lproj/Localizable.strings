@@ -50,6 +50,9 @@
 "Edit Course" = "Whakatika Akoranga";
 
 /* No comment provided by engineer. */
+"Failed to locate camera result" = "I hapa te kimi te hua o te kāmera";
+
+/* No comment provided by engineer. */
 "Failed upload" = "I rahua ki te tukuake";
 
 /* No comment provided by engineer. */
@@ -57,6 +60,9 @@
 
 /* No comment provided by engineer. */
 "Files" = "Ngā kōnae";
+
+/* No comment provided by engineer. */
+"Files (%d)" = "Ngā kōnae (%d)";
 
 /* No comment provided by engineer. */
 "Grade" = "Kōeke";
@@ -75,6 +81,18 @@
 
 /* No comment provided by engineer. */
 "No Submission Date" = "Kaore he Rā Tukunga";
+
+/* No comment provided by engineer. */
+"On %@ %@ commented \"%@\"" = "I runga %1$@ %2$@ i kōrerotia %3$@";
+
+/* No comment provided by engineer. */
+"On %@ %@ left a video comment" = "I runga %1$@ %2$@ i waiho he kōrero ataata";
+
+/* No comment provided by engineer. */
+"On %@ %@ left an audio comment" = "I runga %1$@ %2$@ i waiho he kōrero orooro";
+
+/* No comment provided by engineer. */
+"On %@ %@ submitted the following" = "I runga %1$@ %2$@ i tukuna e whai ake nei";
 
 /* Button to open external tool */
 "Open External Tool" = "Huaki Taputapu o Waho";
@@ -110,7 +128,13 @@
 "Submission & Rubric" = "Tukunga & Rubric";
 
 /* No comment provided by engineer. */
+"Submission Failed" = "I rahua te tuku o te tāpaetanga";
+
+/* No comment provided by engineer. */
 "Submission Types" = "Nga momo tāpaetanga";
+
+/* No comment provided by engineer. */
+"Submission Uploading..." = "E tukuake ana te tāpaetanga...";
 
 /* No comment provided by engineer. */
 "Submit" = "Tuku";
@@ -122,7 +146,16 @@
 "Successfully submitted!" = "Oti pai te tuku!";
 
 /* No comment provided by engineer. */
+"Tap to view details" = "Pātō ki te tiro i ngā taipitopito";
+
+/* No comment provided by engineer. */
+"Tap to view progress" = "Pātō ki te tiro i te ahu whakamua";
+
+/* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Me tīmata te taupānga anō ki te whakamahi i ngā tautuhinga reo hou. Tēna koa tuku anō i te taupānga";
+
+/* No comment provided by engineer. */
+"There are no files to display." = "Kaore he kōnae hei whakātu.";
 
 /* No comment provided by engineer. */
 "There are no quizzes to display." = "Kaore ngā quizzes hei whakāu.";
@@ -135,6 +168,12 @@
 
 /* No comment provided by engineer. */
 "Uploading..." = "E tukuna ana ......";
+
+/* No comment provided by engineer. */
+"View file %@ %@" = "Titiro ki te kōnae %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View submission attempt %d" = "Titiro tāpaetanga ngana %d";
 
 /* No comment provided by engineer. */
 "Website Address" = "Paetukutuku wāhitau";

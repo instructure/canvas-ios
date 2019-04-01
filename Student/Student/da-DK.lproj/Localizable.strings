@@ -50,6 +50,9 @@
 "Edit Course" = "Rediger fag";
 
 /* No comment provided by engineer. */
+"Failed to locate camera result" = "Kunne ikke finde kameraresultatet";
+
+/* No comment provided by engineer. */
 "Failed upload" = "Upload mislykkedes";
 
 /* No comment provided by engineer. */
@@ -57,6 +60,9 @@
 
 /* No comment provided by engineer. */
 "Files" = "Filer";
+
+/* No comment provided by engineer. */
+"Files (%d)" = "Filer (%d)";
 
 /* No comment provided by engineer. */
 "Grade" = "Karakter";
@@ -75,6 +81,18 @@
 
 /* No comment provided by engineer. */
 "No Submission Date" = "Ingen afleveringsdato";
+
+/* No comment provided by engineer. */
+"On %@ %@ commented \"%@\"" = "Den %1$@ kommenterede %2$@ \"%3$@\"";
+
+/* No comment provided by engineer. */
+"On %@ %@ left a video comment" = "Den %1$@ efterlod %2$@ en videokommentar";
+
+/* No comment provided by engineer. */
+"On %@ %@ left an audio comment" = "Den %1$@ efterlod %2$@ en lydkommentar";
+
+/* No comment provided by engineer. */
+"On %@ %@ submitted the following" = "Den %1$@ afleverede %2$@ følgende";
 
 /* Button to open external tool */
 "Open External Tool" = "Åbn eksternt værktøj";
@@ -110,7 +128,13 @@
 "Submission & Rubric" = "Aflevering og rubrik";
 
 /* No comment provided by engineer. */
+"Submission Failed" = "Aflevering mislykkedes";
+
+/* No comment provided by engineer. */
 "Submission Types" = "Afleveringsformer";
+
+/* No comment provided by engineer. */
+"Submission Uploading..." = "Aflevering uploades ...";
 
 /* No comment provided by engineer. */
 "Submit" = "Aflever";
@@ -122,7 +146,16 @@
 "Successfully submitted!" = "Blev indsendt!";
 
 /* No comment provided by engineer. */
+"Tap to view details" = "Tryk for at se detaljer";
+
+/* No comment provided by engineer. */
+"Tap to view progress" = "Tryk for at se fremskridt";
+
+/* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Appen skal genstarte for at bruge de nye sprogindstillinger. Genstart appen.";
+
+/* No comment provided by engineer. */
+"There are no files to display." = "Der er ikke nogen filer at vise.";
 
 /* No comment provided by engineer. */
 "There are no quizzes to display." = "Der er ikke nogen test at vise.";
@@ -135,6 +168,12 @@
 
 /* No comment provided by engineer. */
 "Uploading..." = "Uploader ...";
+
+/* No comment provided by engineer. */
+"View file %@ %@" = "Se fil %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View submission attempt %d" = "Se afleveringsforsøg %d";
 
 /* No comment provided by engineer. */
 "Website Address" = "Webstedets adresse";

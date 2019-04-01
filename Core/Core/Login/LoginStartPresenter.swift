@@ -52,7 +52,7 @@ class LoginStartPresenter {
                         refreshToken: entry.refreshToken,
                         userAvatarURL: response.avatar_url,
                         userID: entry.userID,
-                        userName: response.name,
+                        userName: response.short_name,
                         userEmail: response.email
                     ))
                 }

@@ -50,6 +50,9 @@
 "Edit Course" = "Редактировать курс";
 
 /* No comment provided by engineer. */
+"Failed to locate camera result" = "Ошибка получить результат камеры";
+
+/* No comment provided by engineer. */
 "Failed upload" = "Сбой загрузки";
 
 /* No comment provided by engineer. */
@@ -57,6 +60,9 @@
 
 /* No comment provided by engineer. */
 "Files" = "Файлы";
+
+/* No comment provided by engineer. */
+"Files (%d)" = "Файлы (%d)";
 
 /* No comment provided by engineer. */
 "Grade" = "Оценка";
@@ -75,6 +81,18 @@
 
 /* No comment provided by engineer. */
 "No Submission Date" = "Отсутствует дата предоставления";
+
+/* No comment provided by engineer. */
+"On %@ %@ commented \"%@\"" = "На %1$@ %2$@ прокомментировал \"%3$@\"";
+
+/* No comment provided by engineer. */
+"On %@ %@ left a video comment" = "На %1$@ %2$@ оставил видеокомментарий";
+
+/* No comment provided by engineer. */
+"On %@ %@ left an audio comment" = "На %1$@ %2$@ оставил аудиокомментарий";
+
+/* No comment provided by engineer. */
+"On %@ %@ submitted the following" = "На %1$@ %2$@ отправил следующее";
 
 /* Button to open external tool */
 "Open External Tool" = "Открыть внешний инструмент";
@@ -110,7 +128,13 @@
 "Submission & Rubric" = "Предоставление и рубрика";
 
 /* No comment provided by engineer. */
+"Submission Failed" = "Ошибка отправки";
+
+/* No comment provided by engineer. */
 "Submission Types" = "Типы сдаваемых работ";
+
+/* No comment provided by engineer. */
+"Submission Uploading..." = "Выполняется загрузка...";
 
 /* No comment provided by engineer. */
 "Submit" = "Отправить";
@@ -122,7 +146,16 @@
 "Successfully submitted!" = "Успешно отправлено!";
 
 /* No comment provided by engineer. */
+"Tap to view details" = "Нажмите для просмотра подробностей";
+
+/* No comment provided by engineer. */
+"Tap to view progress" = "Нажмите для просмотра прогресса";
+
+/* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Необходимо перезапустить приложение для использования новых языковых настроек. Перезапустите приложение.";
+
+/* No comment provided by engineer. */
+"There are no files to display." = "Нет доступных для отображения файлов.";
 
 /* No comment provided by engineer. */
 "There are no quizzes to display." = "Нет доступных для отображения тестов.";
@@ -135,6 +168,12 @@
 
 /* No comment provided by engineer. */
 "Uploading..." = "Выполняется отправка...";
+
+/* No comment provided by engineer. */
+"View file %@ %@" = "Просмотреть файл %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View submission attempt %d" = "Просмотреть попытку отправку %d";
 
 /* No comment provided by engineer. */
 "Website Address" = "Адрес веб-сайта";

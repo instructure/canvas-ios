@@ -68,6 +68,9 @@
 "Caught up on Alerts" = "Läst av larmen";
 
 /* No comment provided by engineer. */
+"Change User" = "Byt användare";
+
+/* No comment provided by engineer. */
 "Choose a student" = "Välj en elev";
 
 /* Close Button Title */
@@ -89,6 +92,9 @@
 "Current student: %@, tap to switch students" = "Aktuell student: %@, tryck för att växla student";
 
 /* No comment provided by engineer. */
+"Developer Menu" = "Meny för utvecklare";
+
+/* No comment provided by engineer. */
 "Discussion" = "Diskussion";
 
 /* No comment provided by engineer. */
@@ -105,6 +111,9 @@
 
 /* No comment provided by engineer. */
 "Excused" = "Befriad";
+
+/* No comment provided by engineer. */
+"Help" = "Hjälp";
 
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "Högt uppgiftsbetyg kan inte vara lägre än lågt uppgiftsbetyg";
@@ -132,6 +141,9 @@
 
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "Sen: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Log Out" = "Logga ut";
 
 /* Low Assignment Grade too High */
 "Low assignment grade cannot be higher than high assignment grade" = "Lågt uppgiftsbetyg kan inte vara högre än högt uppgiftsbetyg";
@@ -190,6 +202,12 @@
 /* No comment provided by engineer. */
 "Quiz" = "Quiz";
 
+/* No comment provided by engineer. */
+"Report a Problem" = "Rapportera ett problem";
+
+/* No comment provided by engineer. */
+"Request a Feature" = "Begär en funktion";
+
 /* Not Found Error Message */
 "Resource not found.  Please try again." = "Resursen hittades inte. Försök igen.";
 
@@ -214,6 +232,9 @@
 /* Directions in the admin view */
 "Tap to start viewing Canvas as another person." = "Tryck för att använda Canvas som någon annan.";
 
+/* No comment provided by engineer. */
+"Terms of Use" = "Användarvillkor";
+
 /* Error message */
 "There are no actions for this item" = "Det finns inga åtgärder för det här objektet";
 
@@ -237,6 +258,9 @@
 
 /* No comment provided by engineer. */
 "Unread" = "Oläst";
+
+/* No comment provided by engineer. */
+"View Canvas Guides" = "Visa Canvas-guider";
 
 /* Calendar Tab */
 "Week" = "Vecka";

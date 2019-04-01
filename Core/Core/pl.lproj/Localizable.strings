@@ -8,7 +8,10 @@
 "Assignment" = "Zadanie";
 
 /* No comment provided by engineer. */
-"Assignment not found." = "Nie znaleziono zadania.";
+"Attempt %d" = "Próba %d";
+
+/* No comment provided by engineer. */
+"Audio" = "Audio";
 
 /* No comment provided by engineer. */
 "Authentication failed. Most likely the user denied the request for access." = "Niepowodzenie uwierzytelnienia. Prawdopodobnie użytkownik odmówił uprawnień dostępu.";
@@ -167,9 +170,6 @@
 "Reply to the annotation or previous comments" = "Odpowiedz na adnotację lub poprzednie komentarze";
 
 /* No comment provided by engineer. */
-"Resubmit Assignment" = "Wyślij ponownie zadanie";
-
-/* No comment provided by engineer. */
 "See what's new." = "Zobacz nowości.";
 
 /* No comment provided by engineer. */
@@ -191,10 +191,7 @@
 "Style" = "Styl";
 
 /* No comment provided by engineer. */
-"Submission Failed" = "Przesyłanie zadania nie powiodło się";
-
-/* No comment provided by engineer. */
-"Submission Uploading..." = "Przesyłanie zadania...";
+"Submission failed." = "Przesyłanie zadania nie powiodło się.";
 
 /* No comment provided by engineer. */
 "Submit Assignment" = "Prześlij test";
@@ -209,19 +206,22 @@
 "Tap here for help." = "Stuknij tutaj, aby uzyskać pomoc.";
 
 /* No comment provided by engineer. */
-"Tap to view details" = "Stuknij, aby wyświetlić szczegóły";
-
-/* No comment provided by engineer. */
-"Tap to view progress" = "Stuknij, aby wyświetlić postęp";
+"Terms of Use" = "Warunki korzystania";
 
 /* No comment provided by engineer. */
 "Text Entry" = "Zapis tekstu";
+
+/* No comment provided by engineer. */
+"There was a problem retrieving the Terms of Use." = "Wystąpił problem z pobraniem Warunków korzystania.";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "Termin przesłania tego zadania upłynie %@";
 
 /* No comment provided by engineer. */
 "This assignment was due by %@" = "Termin przesłania tego zadania upłynął %@";
+
+/* No comment provided by engineer. */
+"Video" = "Wideo";
 
 /* No comment provided by engineer. */
 "We've made a few changes." = "Wprowadziliśmy kilka zmian.";

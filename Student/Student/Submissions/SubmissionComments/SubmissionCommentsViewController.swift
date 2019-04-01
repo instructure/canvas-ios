@@ -164,8 +164,8 @@ extension SubmissionCommentsViewController: AudioRecorderDelegate {
 
 extension SubmissionCommentsViewController: SubmissionCommentsViewProtocol {
     func reload() {
-        emptyLabel?.isHidden = presenter?.comments.count != 0
-        guard let changes = presenter?.comments.changes else {
+        emptyLabel?.isHidden = presenter?.comments.isEmpty == false
+        guard let changes = presenter?.comments.changes, changes.count == 1 else {
             tableView?.reloadData()
             return
         }

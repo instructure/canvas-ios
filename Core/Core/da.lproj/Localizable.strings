@@ -8,7 +8,10 @@
 "Assignment" = "Opgave";
 
 /* No comment provided by engineer. */
-"Assignment not found." = "Opgave ikke fundet";
+"Attempt %d" = "Forsøg %d";
+
+/* No comment provided by engineer. */
+"Audio" = "Lyd";
 
 /* No comment provided by engineer. */
 "Authentication failed. Most likely the user denied the request for access." = "Godkendelse mislykkedes Brugeren har sandsynligvis nægtet adgang.";
@@ -167,9 +170,6 @@
 "Reply to the annotation or previous comments" = "Besvar anmærkningen eller tidligere kommentarer";
 
 /* No comment provided by engineer. */
-"Resubmit Assignment" = "Gen-indsend opgave";
-
-/* No comment provided by engineer. */
 "See what's new." = "Se, hvad der er nyt";
 
 /* No comment provided by engineer. */
@@ -191,10 +191,7 @@
 "Style" = "Type";
 
 /* No comment provided by engineer. */
-"Submission Failed" = "Aflevering mislykkedes";
-
-/* No comment provided by engineer. */
-"Submission Uploading..." = "Aflevering uploades ...";
+"Submission failed." = "Aflevering mislykkedes.";
 
 /* No comment provided by engineer. */
 "Submit Assignment" = "Aflever opgave";
@@ -209,19 +206,22 @@
 "Tap here for help." = "Tryk her for at få hjælp.";
 
 /* No comment provided by engineer. */
-"Tap to view details" = "Tryk for at se detaljer";
-
-/* No comment provided by engineer. */
-"Tap to view progress" = "Tryk for at se fremskridt";
+"Terms of Use" = "Betingelser for brug";
 
 /* No comment provided by engineer. */
 "Text Entry" = "Tekstindlæg";
+
+/* No comment provided by engineer. */
+"There was a problem retrieving the Terms of Use." = "Der opstod et problem ved hentning af Betingelser for brug";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "Denne opgave skal afleveres d. %@";
 
 /* No comment provided by engineer. */
 "This assignment was due by %@" = "Denne opgave skulle afleveres. d. %@";
+
+/* No comment provided by engineer. */
+"Video" = "Video";
 
 /* No comment provided by engineer. */
 "We've made a few changes." = "Vi har lavet nogle ændringer.";

@@ -241,6 +241,9 @@
 /* Prompt for text upload */
 "Enter your submission..." = "Enter your submission...";
 
+/* No comment provided by engineer. */
+"Error" = "Error";
+
 /* error message for when the cache management database fails to load */
 "Error loading cache management database." = "Error loading cache management database.";
 

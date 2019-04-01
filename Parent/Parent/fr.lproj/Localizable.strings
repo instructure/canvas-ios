@@ -68,6 +68,9 @@
 "Caught up on Alerts" = "À jour avec les alertes";
 
 /* No comment provided by engineer. */
+"Change User" = "Changer d'utilisateur";
+
+/* No comment provided by engineer. */
 "Choose a student" = "Choisissez un élève";
 
 /* Close Button Title */
@@ -89,6 +92,9 @@
 "Current student: %@, tap to switch students" = "Élève actuel : %@tapez pour modifier l'élève";
 
 /* No comment provided by engineer. */
+"Developer Menu" = "Menu Développeur";
+
+/* No comment provided by engineer. */
 "Discussion" = "Discussion";
 
 /* No comment provided by engineer. */
@@ -105,6 +111,9 @@
 
 /* No comment provided by engineer. */
 "Excused" = "Exempté";
+
+/* No comment provided by engineer. */
+"Help" = "Aide";
 
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "La note 'élevée' du travail assigné ne peut pas être inférieure à la note 'basse' du travail assigné";
@@ -132,6 +141,9 @@
 
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "En retard : %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Log Out" = "Se déconnecter";
 
 /* Low Assignment Grade too High */
 "Low assignment grade cannot be higher than high assignment grade" = "La note 'basse' du travail assigné ne peut pas être supérieure à la note 'élevée' du travail assigné";
@@ -190,6 +202,12 @@
 /* No comment provided by engineer. */
 "Quiz" = "Questionnaire";
 
+/* No comment provided by engineer. */
+"Report a Problem" = "Signaler un problème";
+
+/* No comment provided by engineer. */
+"Request a Feature" = "Demander une fonctionnalité";
+
 /* Not Found Error Message */
 "Resource not found.  Please try again." = "Ressource non trouvée. Veuillez réessayer.";
 
@@ -214,6 +232,9 @@
 /* Directions in the admin view */
 "Tap to start viewing Canvas as another person." = "Tapez pour commencer à voir Canvas comme une autre personne.";
 
+/* No comment provided by engineer. */
+"Terms of Use" = "Conditions d’utilisation";
+
 /* Error message */
 "There are no actions for this item" = "Il n'y a aucune action pour cet élément";
 
@@ -237,6 +258,9 @@
 
 /* No comment provided by engineer. */
 "Unread" = "Non lu";
+
+/* No comment provided by engineer. */
+"View Canvas Guides" = "Afficher les manuels Canvas";
 
 /* Calendar Tab */
 "Week" = "Semaine";
