@@ -252,7 +252,6 @@ class ModuleListPresenterTests: TeacherTestCase {
         let presenter = ModuleListPresenter(env: environment, view: view, courseID: courseID, moduleID: "2")
         presenter.viewIsReady()
         wait(for: [expectation], timeout: 0.1)
-        XCTAssertFalse(presenter.isSectionExpanded(0))
         XCTAssertTrue(presenter.isSectionExpanded(1))
     }
 
@@ -304,17 +303,17 @@ class ModuleListPresenterTests: TeacherTestCase {
         presenter.viewIsReady()
         Module.make(["courseID": courseID])
         wait(for: [expectation], timeout: 0.1)
-        XCTAssertFalse(presenter.isSectionExpanded(0))
-
-        // expand
-        presenter.tappedSection(0)
-        XCTAssertTrue(view.reloadedSections.contains(0))
         XCTAssertTrue(presenter.isSectionExpanded(0))
 
         // collapse
         presenter.tappedSection(0)
         XCTAssertTrue(view.reloadedSections.contains(0))
-        XCTAssertEqual(view.reloadedSections.count, 2)
         XCTAssertFalse(presenter.isSectionExpanded(0))
+
+        // expand
+        presenter.tappedSection(0)
+        XCTAssertTrue(view.reloadedSections.contains(0))
+        XCTAssertEqual(view.reloadedSections.count, 2)
+        XCTAssertTrue(presenter.isSectionExpanded(0))
     }
 }

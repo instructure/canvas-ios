@@ -15,9 +15,17 @@
 //
 
 import Foundation
-import Core
 
-class ModuleItemSubHeaderCell: UITableViewCell {
-    @IBOutlet weak var label: UILabel!
-    @IBOutlet weak var publishedIconView: PublishedIconView!
+public class PublishedIconView: IconView {
+    public var published: Bool? {
+        didSet {
+            if published == true {
+                image = .icon(.publish)
+                tintColor = UIColor.named(.backgroundSuccess).ensureContrast(against: .white)
+            } else {
+                image = .icon(.unpublish)
+                tintColor = UIColor.named(.ash).ensureContrast(against: .white)
+            }
+        }
+    }
 }

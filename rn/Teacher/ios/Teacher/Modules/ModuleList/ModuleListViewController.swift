@@ -65,6 +65,7 @@ class ModuleListViewController: UIViewController, ModuleListViewProtocol {
 
     func reloadCourse() {
         updateNavBar(subtitle: presenter?.course?.name, color: presenter?.course?.color)
+        tableView.reloadData() // update icon course colors
     }
 
     @objc
@@ -109,21 +110,24 @@ extension ModuleListViewController: UITableViewDataSource {
             cell.label.text = item?.title
             cell.isUserInteractionEnabled = false
             cell.accessoryType = .none
+            cell.publishedIconView.published = item?.published == true
             return cell
         default:
             let cell: ModuleItemCell = tableView.dequeue(for: indexPath)
             cell.item = item
             cell.accessoryType = .disclosureIndicator
+            cell.tintColor = presenter?.course?.color
             return cell
         }
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let name = presenter?.modules[section]?.name else {
+        guard let module = presenter?.modules[section] else {
             return nil
         }
         let header = ModuleSectionHeaderView()
-        header.title = name
+        header.title = module.name
+        header.published = module.published
         header.onTap = {
             self.presenter?.tappedSection(section)
         }

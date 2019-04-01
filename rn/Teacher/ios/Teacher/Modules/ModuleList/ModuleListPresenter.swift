@@ -17,7 +17,7 @@
 import Foundation
 import Core
 
-private var expandedIDs: [String: Set<String>] = [:] // [courseID: [moduleID]]
+private var collapsedIDs: [String: Set<String>] = [:] // [courseID: [moduleID]]
 
 class ModuleListPresenter {
     let env: AppEnvironment
@@ -62,9 +62,9 @@ class ModuleListPresenter {
         self.moduleID = moduleID
         self.view = view
 
-        expandedIDs[courseID] = expandedIDs[courseID] ?? Set()
+        collapsedIDs[courseID] = collapsedIDs[courseID] ?? Set()
         if let moduleID = moduleID {
-            expandedIDs[courseID]?.insert(moduleID)
+            collapsedIDs[courseID]?.remove(moduleID)
         }
     }
 
@@ -107,15 +107,15 @@ class ModuleListPresenter {
         guard let module = modules[section] else { return }
         let expanded = isSectionExpanded(section)
         if expanded {
-            expandedIDs[courseID]?.remove(module.id)
+            collapsedIDs[courseID]?.insert(module.id)
         } else {
-            expandedIDs[courseID]?.insert(module.id)
+            collapsedIDs[courseID]?.remove(module.id)
         }
         view?.reloadModuleInSection(section)
     }
 
     func isSectionExpanded(_ section: Int) -> Bool {
         guard let module = modules[section] else { return false }
-        return expandedIDs[courseID]?.contains(module.id) == true
+        return collapsedIDs[courseID]?.contains(module.id) == false
     }
 }

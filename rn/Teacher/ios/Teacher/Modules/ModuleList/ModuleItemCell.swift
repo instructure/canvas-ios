@@ -21,13 +21,14 @@ import Core
 class ModuleItemCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var dueLabel: UILabel!
-    @IBOutlet weak var accessIconView: AccessIconView!
+    @IBOutlet weak var iconView: IconView!
+    @IBOutlet weak var publishedIconView: PublishedIconView!
 
     var item: ModuleItem? {
         didSet {
             nameLabel.text = item?.title
-            accessIconView.icon = item?.type?.icon
-            accessIconView.published = item?.published == true
+            iconView.image = item?.type?.icon
+            publishedIconView.published = item?.published == true
             dueLabel.isHidden = item?.dueAt == nil
             dueLabel.text = item?.dueAt.flatMap {
                 String.localizedStringWithFormat(
@@ -36,5 +37,10 @@ class ModuleItemCell: UITableViewCell {
                 )
             }
         }
+    }
+
+    override func tintColorDidChange() {
+        super.tintColorDidChange()
+        iconView.tintColor = tintColor
     }
 }

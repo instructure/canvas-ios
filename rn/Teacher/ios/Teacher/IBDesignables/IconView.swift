@@ -14,10 +14,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import Core
 
-class ModuleItemSubHeaderCell: UITableViewCell {
-    @IBOutlet weak var label: UILabel!
-    @IBOutlet weak var publishedIconView: PublishedIconView!
-}
+@IBDesignable
+class IconView: Core.IconView {}

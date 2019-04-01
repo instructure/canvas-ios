@@ -339,6 +339,7 @@
 		B18126942150564900E71F63 /* GetContextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18126932150564900E71F63 /* GetContextTests.swift */; };
 		B18359A822244E230005A918 /* AccessIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18359A722244E230005A918 /* AccessIconView.swift */; };
 		B18359AA222450DE0005A918 /* AccessIconView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B18359A9222450DE0005A918 /* AccessIconView.xib */; };
+		B183F99D225297F2000A6930 /* PublishedIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B183F99C225297F2000A6930 /* PublishedIconView.swift */; };
 		B1911CE921C8460000F42F91 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1911CE821C8460000F42F91 /* NotificationManager.swift */; };
 		B1911CEC21C849BE00F42F91 /* NotificationManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1911CEB21C849BE00F42F91 /* NotificationManagerTests.swift */; };
 		B1911CF121C851AD00F42F91 /* ProcessInfoExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1911CF021C851AD00F42F91 /* ProcessInfoExtensions.swift */; };
@@ -935,6 +936,7 @@
 		B18126932150564900E71F63 /* GetContextTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetContextTests.swift; sourceTree = "<group>"; };
 		B18359A722244E230005A918 /* AccessIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessIconView.swift; sourceTree = "<group>"; };
 		B18359A9222450DE0005A918 /* AccessIconView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccessIconView.xib; sourceTree = "<group>"; };
+		B183F99C225297F2000A6930 /* PublishedIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishedIconView.swift; sourceTree = "<group>"; };
 		B1911CE821C8460000F42F91 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		B1911CEB21C849BE00F42F91 /* NotificationManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManagerTests.swift; sourceTree = "<group>"; };
 		B1911CF021C851AD00F42F91 /* ProcessInfoExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessInfoExtensions.swift; sourceTree = "<group>"; };
@@ -1357,6 +1359,7 @@
 				7D1758C0215A8F5600F88613 /* ListFormatter.swift */,
 				7DD6CC6C21BD6DCD004C4BB6 /* LoadingViewController.storyboard */,
 				7DD6CC6A21BD6DB1004C4BB6 /* LoadingViewController.swift */,
+				B183F99C225297F2000A6930 /* PublishedIconView.swift */,
 				7D1758B32159898C00F88613 /* TitleSubtitleView.swift */,
 				7D1758B521598CA400F88613 /* TitleSubtitleView.xib */,
 			);
@@ -2422,6 +2425,7 @@
 				B1EA5AF6212E67CE00DABC5F /* DateExtensions.swift in Sources */,
 				B14FE5D72134F63C00328CD7 /* RequestUseCase.swift in Sources */,
 				7DF4FFD22171322E007E5F81 /* TTL.swift in Sources */,
+				B183F99D225297F2000A6930 /* PublishedIconView.swift in Sources */,
 				7D24D280219E1B1A002F9638 /* CommentListCell.swift in Sources */,
 				7D8262F1212B28FE00BD268D /* APITab+Requestable.swift in Sources */,
 				3BE2C764218CB53F004B8E5E /* Enrollment.swift in Sources */,

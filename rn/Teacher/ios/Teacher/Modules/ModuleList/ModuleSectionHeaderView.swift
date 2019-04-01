@@ -62,11 +62,17 @@ class CollapsableIndicator: UIControl {
 
 class ModuleSectionHeaderView: UIView {
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var publishedIconView: PublishedIconView!
     @IBOutlet weak var collapsableIndicator: CollapsableIndicator!
 
     var title: String? {
         get { return titleLabel.text }
         set { titleLabel.text = newValue }
+    }
+
+    var published: Bool? {
+        get { return publishedIconView.published }
+        set { publishedIconView.published = newValue }
     }
 
     var onTap: (() -> Void)?
