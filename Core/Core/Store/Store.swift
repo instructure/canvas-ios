@@ -35,10 +35,7 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
     public let eventHandler: EventHandler
 
     public var count: Int {
-        guard let sections = frc.sections, sections.count > 0 else {
-            return 0
-        }
-        return sections[0].numberOfObjects
+        return frc.sections?.first?.numberOfObjects ?? 0
     }
 
     public var numberOfSections: Int {

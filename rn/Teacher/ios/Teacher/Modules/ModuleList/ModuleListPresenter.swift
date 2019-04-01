@@ -92,20 +92,6 @@ class ModuleListPresenter {
         }
     }
 
-    func numberOfRows(inSection section: Int) -> Int {
-        guard let module = modules[section] else {
-            return 0
-        }
-        if expandedIDs[courseID]?.contains(module.id) == true {
-            return module.items.count
-        }
-        return 0
-    }
-
-    func showItem(_ item: ModuleItem) {
-        // TODO: show item
-    }
-
     private func scroll(toModule moduleID: String) {
         if let section = modules.enumerated().first(where: { $0.1.id == moduleID })?.0 {
             hasScrolledToModule = true
@@ -123,7 +109,6 @@ class ModuleListPresenter {
         if expanded {
             expandedIDs[courseID]?.remove(module.id)
         } else {
-            expandedIDs[courseID] = expandedIDs[courseID] ?? Set()
             expandedIDs[courseID]?.insert(module.id)
         }
         view?.reloadModuleInSection(section)

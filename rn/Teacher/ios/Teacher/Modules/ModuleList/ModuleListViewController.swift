@@ -95,7 +95,10 @@ extension ModuleListViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter?.numberOfRows(inSection: section) ?? 0
+        if presenter?.isSectionExpanded(section) == true {
+            return presenter?.modules[section]?.items.count ?? 0
+        }
+        return 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -133,8 +136,9 @@ extension ModuleListViewController: UITableViewDataSource {
 extension ModuleListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        guard let item = presenter?.modules[indexPath.section]?.items[indexPath.row] else { return }
-        presenter?.showItem(item)
+        // TODO: show item
+        // guard let item = presenter?.modules[indexPath.section]?.items[indexPath.row] else { return }
+        // presenter?.showItem(item)
     }
 }
 
