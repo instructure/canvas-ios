@@ -14,16 +14,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-import Foundation
-import UIKit
 import Core
 
-class ModuleListCell: UITableViewCell {
-    @IBOutlet weak var nameLabel: UILabel!
-
-    var module: Module? {
-        didSet {
-            nameLabel.text = module?.name
-        }
-    }
-}
+@IBDesignable
+class IconView: Core.IconView {}

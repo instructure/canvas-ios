@@ -15,9 +15,12 @@
 //
 
 import Foundation
-import UIKit
-import Core
 
-class ModuleItemCell: UITableViewCell {
-    @IBOutlet weak var accessIconView: AccessIconView!
+extension UIScrollView {
+    /// Whether or not the scroll view has reached the bottom using a threshold.
+    ///
+    /// The default `threshold` is 60.
+    public func isBottomReached(threshold: CGFloat = 60) -> Bool {
+        return contentOffset.y >= contentSize.height - frame.size.height - threshold
+    }
 }

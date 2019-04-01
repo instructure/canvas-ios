@@ -31,6 +31,14 @@ class ModuleItemTests: CoreTestCase {
         XCTAssertEqual(model.url, item.url)
         XCTAssertEqual(model.type, item.content)
         XCTAssertEqual(model.courseID, "1")
+        XCTAssertEqual(model.dueAt, item.content_details.due_at)
+    }
+
+    func testSaveDueAt() {
+        let item = APIModuleItem.make(["content_details": ["due_at": Date().isoString()]])
+        let model = ModuleItem.save(item, forCourse: "1", in: databaseClient)
+        XCTAssertNotNil(model.dueAt)
+        XCTAssertEqual(model.dueAt, item.content_details.due_at)
     }
 
     func testType() {

@@ -37,6 +37,9 @@ extension APIModuleItem: Fixture {
         "type": "Assignment",
         "content_id": "1",
         "html_url": "https://canvas.example.edu/courses/222/modules/items/768",
-        "url": "https://canvas.example.edu/api/v1/courses/222/assignments/987"
+        "url": "https://canvas.example.edu/api/v1/courses/222/assignments/987",
+        "content_details": [
+            "due_at": nil,
+        ],
     ]
 }

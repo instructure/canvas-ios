@@ -28,6 +28,5 @@ class APIModuleItemTests: XCTestCase {
         XCTAssertEqual(file.content, .file("1"))
         let subheader = try! decoder.decode(APIModuleItem.self, from: try! encoder.encode(APIModuleItem.make(["type": "SubHeader", "content_id": "1"])))
         XCTAssertEqual(subheader.content, .subHeader)
-
     }
 }

@@ -188,7 +188,8 @@ export function registerScreens (store: Store): void {
     registerScreen('/courses/:courseID/pages/:url/edit', wrap(PageEdit), store, { deepLink: true })
 
     if (featureFlagEnabled('modules')) {
-      registerScreen('/courses/:courseID/modules', null, null, { canBecomeMaster: true })
+      registerScreen('/courses/:courseID/modules', null, null, { canBecomeMaster: true, deepLink: true })
+      registerScreen('/courses/:courseID/modules/:moduleID', null, null, { canBecomeMaster: true, deepLink: true })
     }
   }
 

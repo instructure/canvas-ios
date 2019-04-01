@@ -15,21 +15,16 @@
 //
 
 import Foundation
+import Core
 
-// https://canvas.instructure.com/doc/api/modules.html#method.context_modules_api.index
-public struct GetModulesRequest: APIRequestable {
-    public typealias Response = [APIModule]
+class ModuleItemSubHeaderCell: UITableViewCell {
+    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var publishedIconView: PublishedIconView!
+    @IBOutlet weak var indentConstraint: NSLayoutConstraint!
 
-    public let courseID: String
-
-    public var path: String {
-        let context = ContextModel(.course, id: courseID)
-        return "\(context.pathComponent)/modules"
-    }
-
-    public var query: [APIQueryItem] {
-        return [
-            .include([ "items", "content_details" ]),
-        ]
+    var indent: Int = 0 {
+        didSet {
+            indentConstraint.constant = CGFloat(indent) * ModuleItemCell.IndentMultiplier
+        }
     }
 }

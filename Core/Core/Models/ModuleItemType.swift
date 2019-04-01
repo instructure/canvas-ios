@@ -116,4 +116,25 @@ public enum ModuleItemType: Equatable, Codable {
             return false
         }
     }
+
+    public var icon: UIImage? {
+        switch self {
+        case .subHeader:
+            return nil
+        case .file:
+            return .icon(.folder)
+        case .page:
+            return .icon(.document)
+        case .discussion:
+            return .icon(.discussion)
+        case .assignment:
+            return .icon(.assignment)
+        case .quiz:
+            return .icon(.quiz)
+        case .externalURL:
+            return .icon(.link)
+        case .externalTool:
+            return .icon(.lti)
+        }
+    }
 }

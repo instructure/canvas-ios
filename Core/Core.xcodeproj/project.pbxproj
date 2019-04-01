@@ -341,6 +341,7 @@
 		B18126942150564900E71F63 /* GetContextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18126932150564900E71F63 /* GetContextTests.swift */; };
 		B18359A822244E230005A918 /* AccessIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18359A722244E230005A918 /* AccessIconView.swift */; };
 		B18359AA222450DE0005A918 /* AccessIconView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B18359A9222450DE0005A918 /* AccessIconView.xib */; };
+		B183F99D225297F2000A6930 /* PublishedIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B183F99C225297F2000A6930 /* PublishedIconView.swift */; };
 		B1911CE921C8460000F42F91 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1911CE821C8460000F42F91 /* NotificationManager.swift */; };
 		B1911CEC21C849BE00F42F91 /* NotificationManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1911CEB21C849BE00F42F91 /* NotificationManagerTests.swift */; };
 		B1911CF121C851AD00F42F91 /* ProcessInfoExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1911CF021C851AD00F42F91 /* ProcessInfoExtensions.swift */; };
@@ -373,6 +374,8 @@
 		B1A6BC88218A94FA000515E3 /* APIAssignmentOverrideRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A6BC87218A94FA000515E3 /* APIAssignmentOverrideRequestableTests.swift */; };
 		B1A6BC8A218A977D000515E3 /* APIEnrollmentRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A6BC89218A977D000515E3 /* APIEnrollmentRequestableTests.swift */; };
 		B1A6BC8C218A9843000515E3 /* APILatePolicyRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A6BC8B218A9843000515E3 /* APILatePolicyRequestableTests.swift */; };
+		B1A890B8224ED64B00CEE000 /* UIScrollViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A890B7224ED64B00CEE000 /* UIScrollViewExtensions.swift */; };
+		B1A890BA224ED6A300CEE000 /* UIScrollViewExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A890B9224ED6A300CEE000 /* UIScrollViewExtensionsTests.swift */; };
 		B1A8CD3722375D6400E2242D /* FileUploadTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A8CD3622375D6400E2242D /* FileUploadTarget.swift */; };
 		B1A8CD3A223766FA00E2242D /* FileUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A8CD39223766FA00E2242D /* FileUploader.swift */; };
 		B1AE17AE21877C37002995E6 /* APIEnrollment+Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AE17AD21877C36002995E6 /* APIEnrollment+Requestable.swift */; };
@@ -937,6 +940,7 @@
 		B18126932150564900E71F63 /* GetContextTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetContextTests.swift; sourceTree = "<group>"; };
 		B18359A722244E230005A918 /* AccessIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessIconView.swift; sourceTree = "<group>"; };
 		B18359A9222450DE0005A918 /* AccessIconView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccessIconView.xib; sourceTree = "<group>"; };
+		B183F99C225297F2000A6930 /* PublishedIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishedIconView.swift; sourceTree = "<group>"; };
 		B1911CE821C8460000F42F91 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		B1911CEB21C849BE00F42F91 /* NotificationManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManagerTests.swift; sourceTree = "<group>"; };
 		B1911CF021C851AD00F42F91 /* ProcessInfoExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessInfoExtensions.swift; sourceTree = "<group>"; };
@@ -967,6 +971,8 @@
 		B1A6BC87218A94FA000515E3 /* APIAssignmentOverrideRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAssignmentOverrideRequestableTests.swift; sourceTree = "<group>"; };
 		B1A6BC89218A977D000515E3 /* APIEnrollmentRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnrollmentRequestableTests.swift; sourceTree = "<group>"; };
 		B1A6BC8B218A9843000515E3 /* APILatePolicyRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APILatePolicyRequestableTests.swift; sourceTree = "<group>"; };
+		B1A890B7224ED64B00CEE000 /* UIScrollViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScrollViewExtensions.swift; sourceTree = "<group>"; };
+		B1A890B9224ED6A300CEE000 /* UIScrollViewExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScrollViewExtensionsTests.swift; sourceTree = "<group>"; };
 		B1A8CD3622375D6400E2242D /* FileUploadTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadTarget.swift; sourceTree = "<group>"; };
 		B1A8CD39223766FA00E2242D /* FileUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploader.swift; sourceTree = "<group>"; };
 		B1AE17AD21877C36002995E6 /* APIEnrollment+Requestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIEnrollment+Requestable.swift"; sourceTree = "<group>"; };
@@ -1357,6 +1363,7 @@
 				7D1758C0215A8F5600F88613 /* ListFormatter.swift */,
 				7DD6CC6C21BD6DCD004C4BB6 /* LoadingViewController.storyboard */,
 				7DD6CC6A21BD6DB1004C4BB6 /* LoadingViewController.swift */,
+				B183F99C225297F2000A6930 /* PublishedIconView.swift */,
 				7D1758B32159898C00F88613 /* TitleSubtitleView.swift */,
 				7D1758B521598CA400F88613 /* TitleSubtitleView.xib */,
 			);
@@ -1505,14 +1512,15 @@
 				7DA20E8E21680DBF00F5FD19 /* UIImageInstIconsExtensions.swift */,
 				7D4D5EB1213F2A200080AC14 /* UIImageViewExtensions.swift */,
 				7D8FDFB52187B62A0067557E /* UINavigationBarExtensions.swift */,
+				B1A890B7224ED64B00CEE000 /* UIScrollViewExtensions.swift */,
 				7D02159E21B88B19009A8E69 /* UITabBarExtensions.swift */,
+				B10D776F21C2E27200BCE822 /* UITableViewCellExtensions.swift */,
 				7DCF202C216D461B003AF358 /* UITableViewExtensions.swift */,
 				3B5425FB21B074500009D069 /* UIViewControllerExtensions.swift */,
 				7DD6948421951FD700BA4984 /* UIViewExtensions.swift */,
 				7D7110C92139A57A0085C2E5 /* URLComponentsExtensions.swift */,
 				3B5369E1219CDD3500D3F62E /* URLExtensions.swift */,
 				7D80AC57212DAE4C00C40ECE /* URLResponseExtensions.swift */,
-				B10D776F21C2E27200BCE822 /* UITableViewCellExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1574,6 +1582,7 @@
 				7D7110CB2139AB310085C2E5 /* URLComponentsExtensionsTests.swift */,
 				3B5369E3219D0FD000D3F62E /* URLExtensionsTests.swift */,
 				7D80AC5A212DB0B500C40ECE /* URLResponseExtensionsTests.swift */,
+				B1A890B9224ED6A300CEE000 /* UIScrollViewExtensionsTests.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2360,6 +2369,7 @@
 				7D8262F5212B300F00BD268D /* APIGroup+Requestable.swift in Sources */,
 				7D80AC29212C76E600C40ECE /* APIOAuthRequestable.swift in Sources */,
 				7D29D31C218B87050036437C /* DocViewerAnnotationProvider.swift in Sources */,
+				B1A890B8224ED64B00CEE000 /* UIScrollViewExtensions.swift in Sources */,
 				7D364F2421AE04B20028E3EA /* CoreWebViewController.swift in Sources */,
 				7DF4FFCE21711EB3007E5F81 /* Group.swift in Sources */,
 				7D8262FB212B3B3000BD268D /* APIEnrollment.swift in Sources */,
@@ -2421,6 +2431,7 @@
 				B1EA5AF6212E67CE00DABC5F /* DateExtensions.swift in Sources */,
 				B14FE5D72134F63C00328CD7 /* RequestUseCase.swift in Sources */,
 				7DF4FFD22171322E007E5F81 /* TTL.swift in Sources */,
+				B183F99D225297F2000A6930 /* PublishedIconView.swift in Sources */,
 				7D24D280219E1B1A002F9638 /* CommentListCell.swift in Sources */,
 				7D8262F1212B28FE00BD268D /* APITab+Requestable.swift in Sources */,
 				3BE2C764218CB53F004B8E5E /* Enrollment.swift in Sources */,
@@ -2592,6 +2603,7 @@
 				B19792FD21769E280000369C /* GroupTests.swift in Sources */,
 				7D37BE8621C81C9A0063FAAC /* UserAgentTests.swift in Sources */,
 				7DCF203E216D5C4C003AF358 /* LockStatusViewable.swift in Sources */,
+				B1A890BA224ED6A300CEE000 /* UIScrollViewExtensionsTests.swift in Sources */,
 				7D1758C4215A995200F88613 /* ListFormatterTests.swift in Sources */,
 				9FAE410321B6C88000FE7F58 /* APIExternalToolRequestableTests.swift in Sources */,
 				B1F13294224BC656002C0555 /* ModuleItemTests.swift in Sources */,

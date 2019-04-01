@@ -24,8 +24,8 @@ let router = Core.Router(routes: [
         return ModuleListViewController.create(courseID: courseID)
     },
 
-    RouteHandler(.module(forCourse: ":courseID", moduleID: ":moduleID"), name: "course_module_item") { _, params in
+    RouteHandler(.module(forCourse: ":courseID", moduleID: ":moduleID"), name: "course_module") { _, params in
         guard let courseID = params["courseID"], let moduleID = params["moduleID"] else { return nil }
-        return ModuleItemListViewController.create(courseID: courseID, moduleID: moduleID)
+        return ModuleListViewController.create(courseID: courseID, moduleID: moduleID)
     }
 ])

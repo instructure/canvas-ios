@@ -16,20 +16,16 @@
 
 import Foundation
 
-// https://canvas.instructure.com/doc/api/modules.html#method.context_modules_api.index
-public struct GetModulesRequest: APIRequestable {
-    public typealias Response = [APIModule]
-
-    public let courseID: String
-
-    public var path: String {
-        let context = ContextModel(.course, id: courseID)
-        return "\(context.pathComponent)/modules"
-    }
-
-    public var query: [APIQueryItem] {
-        return [
-            .include([ "items", "content_details" ]),
-        ]
+public class PublishedIconView: IconView {
+    public var published: Bool? {
+        didSet {
+            if published == true {
+                image = .icon(.publish)
+                tintColor = UIColor.named(.backgroundSuccess)
+            } else {
+                image = .icon(.unpublish)
+                tintColor = UIColor.named(.ash)
+            }
+        }
     }
 }

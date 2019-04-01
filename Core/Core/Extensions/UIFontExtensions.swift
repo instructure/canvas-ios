@@ -21,9 +21,10 @@ public extension UIFont {
         case body, bodyMedium, bodySmall, bodySmallItalic, button, buttonSmall, caption, cardTitle, cardSubtitle, dotSeparator, heading, label
         case rowTitle, rowSubtitle, title, title2, title3, tabBarIconTitle
 
-        case regular11Monodigit, regular14, regular20Monodigit, regular30
+        case regular11Monodigit, regular14, regular20, regular20Monodigit, regular30
         case medium12
-        case semibold14, semibold16
+        case semibold14, semibold16, semibold20
+        case bold24
     }
 
     /// Get a named font style, that is dynamically scaled.
@@ -39,7 +40,7 @@ public extension UIFont {
             return UIFontMetrics(forTextStyle: .body).scaledFont(for: .italicSystemFont(ofSize: 14))
         case .caption:
             return UIFontMetrics(forTextStyle: .caption1).scaledFont(for: .systemFont(ofSize: 12, weight: .semibold))
-        case .cardTitle, .rowTitle:
+        case .cardTitle:
             return UIFontMetrics(forTextStyle: .callout).scaledFont(for: .systemFont(ofSize: 16, weight: .semibold))
         case .dotSeparator:
             return UIFontMetrics(forTextStyle: .caption2).scaledFont(for: .systemFont(ofSize: 10, weight: .regular))
@@ -49,8 +50,6 @@ public extension UIFont {
             return UIFontMetrics(forTextStyle: .callout).scaledFont(for: .systemFont(ofSize: 16, weight: .medium))
         case .rowSubtitle:
             return UIFontMetrics(forTextStyle: .caption1).scaledFont(for: .systemFont(ofSize: 12, weight: .regular))
-        case .title:
-            return UIFontMetrics(forTextStyle: .title3).scaledFont(for: .systemFont(ofSize: 20, weight: .semibold))
         case .title2:
             return UIFontMetrics(forTextStyle: .title2).scaledFont(for: .systemFont(ofSize: 17, weight: .bold))
         case .title3:
@@ -62,6 +61,8 @@ public extension UIFont {
 
         case .regular14, .bodySmall:
             return UIFontMetrics(forTextStyle: .body).scaledFont(for: .systemFont(ofSize: 14, weight: .regular))
+        case .regular20, .rowTitle:
+            return UIFontMetrics(forTextStyle: .callout).scaledFont(for: .systemFont(ofSize: 16, weight: .semibold))
         case .regular30:
             return UIFontMetrics(forTextStyle: .title1).scaledFont(for: .systemFont(ofSize: 30, weight: .regular))
 
@@ -72,6 +73,11 @@ public extension UIFont {
             return UIFontMetrics(forTextStyle: .callout).scaledFont(for: .systemFont(ofSize: 14, weight: .semibold))
         case .semibold16, .button:
             return UIFontMetrics(forTextStyle: .callout).scaledFont(for: .systemFont(ofSize: 16, weight: .semibold))
+        case .semibold20, .title:
+            return UIFontMetrics(forTextStyle: .title3).scaledFont(for: .systemFont(ofSize: 20, weight: .semibold))
+
+        case .bold24:
+            return UIFontMetrics(forTextStyle: .headline).scaledFont(for: .systemFont(ofSize: 24, weight: .bold))
 
         case .regular11Monodigit:
             return UIFontMetrics(forTextStyle: .caption1).scaledFont(for: .monospacedDigitSystemFont(ofSize: 11, weight: .regular))
