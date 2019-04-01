@@ -67,7 +67,7 @@ abstract_target 'defaults' do
   target 'Parent' do
     project 'Parent/Parent.xcodeproj'
     pod 'Fabric', '~> 1.7.7'
-    pod 'Eureka', :git => 'https://github.com/xmartlabs/Eureka', :branch => 'Swift-3.3'
+    pod 'Eureka', '~> 4.3'
     pod 'Firebase/Core'
   end
 
@@ -125,8 +125,11 @@ end
 
 post_install do |installer|
   installer.pods_project.targets.each do |target|
+    usePackageSwift = %w[ Eureka ]
     target.build_configurations.each do |config|
-      config.build_settings['SWIFT_VERSION'] = '3.0'
+      unless usePackageSwift.include? target.name
+        config.build_settings['SWIFT_VERSION'] = '3.0'
+      end
       config.build_settings['GCC_WARN_INHIBIT_ALL_WARNINGS'] = 'YES'
     end
     usesNonAppExAPI = %w[

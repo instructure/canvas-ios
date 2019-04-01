@@ -102,7 +102,7 @@ open class StudentSettingsViewController : FormViewController {
         let sectionTitle = NSLocalizedString("Alert me when:", comment: "Alert Section Header")
         form +++
             Section() {
-                $0.header = studentSectionHeaderView()
+                $0.header = self.studentSectionHeaderView()
             }
             +++ Section(sectionTitle)
             <<< rowForThresholdType(.courseGradeHigh)
