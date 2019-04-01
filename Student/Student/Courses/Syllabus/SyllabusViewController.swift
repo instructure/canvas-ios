@@ -19,6 +19,8 @@ import Core
 
 class SyllabusViewController: UIViewController {
 
+    @IBOutlet weak var menuBorder: UIView!
+    @IBOutlet weak var menuBorderHeight: NSLayoutConstraint!
     @IBOutlet weak var menu: HorizontalMenuView!
     @IBOutlet weak var scrollView: UIScrollView!
     var presenter: SyllabusPresenter!
@@ -46,8 +48,7 @@ class SyllabusViewController: UIViewController {
         configureTitleView()
         configureSyllabus()
         configureAssignments()
-        menu.delegate = self
-        menu.reload()
+        configureMenu()
 
         scrollView.delegate = self
         presenter.viewIsReady()
@@ -59,6 +60,11 @@ class SyllabusViewController: UIViewController {
     }
 
     // MARK: - Setup
+
+    func configureMenu() {
+        menu.delegate = self
+        menuBorderHeight.constant = 1.0 / UIScreen.main.scale
+    }
 
     func configureTitleView() {
         titleView = TitleSubtitleView.create()
@@ -116,6 +122,7 @@ extension SyllabusViewController: SyllabuseViewProtocol {
         titleView.subtitle = courseCode
         navigationController?.navigationBar.useContextColor(backgroundColor)
         color = backgroundColor?.ensureContrast(against: .named(.white))
+        menu.reload()
     }
 
     func loadHtml(_ html: String?) {
