@@ -57,6 +57,22 @@ class CreateTextCommentTests: CoreTestCase {
         XCTAssertNotNil(error)
     }
 
+    func testPlaceholderCreated() {
+        let called = expectation(description: "called")
+        create.fetch(environment: environment) { [weak self] comment, error in
+            self?.comment = comment
+            self?.error = error
+            called.fulfill()
+        }
+        wait(for: [called], timeout: 5)
+        XCTAssertNil(comment)
+        XCTAssertNil(error)
+
+        let comments: [SubmissionComment] = databaseClient.fetch()
+        XCTAssertEqual(comments.first?.id.hasPrefix("placeholder-"), true)
+        XCTAssertEqual(comments.first?.comment, create.text)
+    }
+
     func testSuccess() {
         api.mock(PutSubmissionGradeRequest(
             courseID: create.courseID,
@@ -66,7 +82,14 @@ class CreateTextCommentTests: CoreTestCase {
         ), value: APISubmission.make([
             "submission_comments": [ APISubmissionComment.fixture() ],
         ]))
-        create.putComment()
+        let called = expectation(description: "called")
+        create.fetch(environment: environment) { [weak self] comment, error in
+            self?.comment = comment
+            self?.error = error
+            called.fulfill()
+        }
+        wait(for: [called], timeout: 5)
+        XCTAssertNotNil(comment)
         XCTAssertNil(error)
     }
 }

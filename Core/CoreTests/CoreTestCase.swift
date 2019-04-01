@@ -55,6 +55,7 @@ class CoreTestCase: XCTestCase {
         environment.queue.maxConcurrentOperationCount = 1
         environment.router = router
         environment.logger = logger
+        environment.currentSession = KeychainEntry.make()
         notificationManager = NotificationManager(notificationCenter: notificationCenter, logger: logger)
     }
 
