@@ -77,8 +77,8 @@ extension UseCase {
                     do {
                         try self.write(response: response, urlResponse: urlResponse, to: client)
                         self.updateTTL(in: client)
-                        callback(response, urlResponse, error)
                         try client.save()
+                        callback(response, urlResponse, error)
                     } catch {
                         callback(response, urlResponse, error)
                     }

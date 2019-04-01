@@ -88,13 +88,14 @@ class SubmissionDetailsPresenter {
         let assignmentChanged = assignment != currentAssignment
         let fileIDChanged = currentFileID != selectedFileID
         let submissionChanged = submission != currentSubmission
+        let submissionWasNil = currentSubmission == nil && submissionChanged
         let drawerTabChanged = selectedDrawerTab != currentDrawerTab
         currentAssignment = assignment
         currentFileID = selectedFileID
         currentSubmission = submission
         currentDrawerTab = selectedDrawerTab
 
-        if drawerTabChanged || (submissionChanged && selectedDrawerTab == .files) {
+        if drawerTabChanged || submissionWasNil || (submissionChanged && selectedDrawerTab == .files) {
             view?.embedInDrawer(viewControllerForDrawer())
         }
         if assignmentChanged || fileIDChanged || submissionChanged {

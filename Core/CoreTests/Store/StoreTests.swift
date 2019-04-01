@@ -323,7 +323,8 @@ class StoreTests: CoreTestCase {
 
     func testChanges() {
         let use = TestUseCase(courses: nil, requestError: nil, writeError: nil, urlResponse: nil)
-        let store = Store(env: environment, useCase: use) { }
+        let notified = expectation(description: "notified")
+        let store = Store(env: environment, useCase: use) { notified.fulfill() }
         let frc: NSFetchedResultsController<Course> = environment.database.fetchedResultsController(
             predicate: use.scope.predicate,
             sortDescriptors: use.scope.order,
@@ -332,7 +333,8 @@ class StoreTests: CoreTestCase {
         try? frc.performFetch()
         let frc2 = frc as! NSFetchedResultsController<NSFetchRequestResult>
         store.changes = [.insertSection(0)]
-        store.controllerWillChangeContent(frc2)
+        store.controllerDidChangeContent(frc2)
+        wait(for: [notified], timeout: 1)
         XCTAssertEqual(store.changes, [])
         store.controller(frc2, didChange: frc.sections![0], atSectionIndex: 0, for: .insert)
         store.controller(frc2, didChange: frc.sections![0], atSectionIndex: 0, for: .delete)

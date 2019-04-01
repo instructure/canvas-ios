@@ -15,6 +15,7 @@
 //
 
 import UIKit
+import CoreServices
 import Core
 
 class SubmissionCommentsViewController: UIViewController, ErrorViewController {
@@ -99,8 +100,11 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
                 }
             }
         })
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Record Video", bundle: .student, comment: ""), style: .default) { _ in
-            // TODO
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Record Video", bundle: .student, comment: ""), style: .default) { [weak self] _ in
+            let picker = UIImagePickerController()
+            picker.delegate = self
+            picker.mediaTypes = [ kUTTypeMovie as String ]
+            self?.present(picker, animated: true)
         })
         alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", bundle: .student, comment: ""), style: .cancel))
         present(alert, animated: true)
@@ -162,6 +166,18 @@ extension SubmissionCommentsViewController: AudioRecorderDelegate {
     }
 }
 
+extension SubmissionCommentsViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        guard let url = info[.mediaURL] as? URL else { return }
+        presenter?.addMediaComment(type: .video, url: url)
+        picker.dismiss(animated: true)
+    }
+
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true)
+    }
+}
+
 extension SubmissionCommentsViewController: SubmissionCommentsViewProtocol {
     func reload() {
         emptyLabel?.isHidden = presenter?.comments.isEmpty == false
@@ -169,31 +185,20 @@ extension SubmissionCommentsViewController: SubmissionCommentsViewProtocol {
             tableView?.reloadData()
             return
         }
-        tableView?.performBatchUpdates({
-            for change in changes {
-                switch change {
-                case .insertSection(let section):
-                    tableView?.insertSections([section], with: .automatic)
-                case .deleteSection(let section):
-                    tableView?.deleteSections([section], with: .automatic)
-                case .insertRow(let row):
-                    tableView?.insertRows(at: [
-                        IndexPath(row: row.row * 2, section: row.section),
-                        IndexPath(row: row.row * 2 + 1, section: row.section),
-                    ], with: .automatic)
-                case .updateRow(let row):
-                    tableView?.reloadRows(at: [
-                        IndexPath(row: row.row * 2, section: row.section),
-                        IndexPath(row: row.row * 2 + 1, section: row.section),
-                    ], with: .automatic)
-                case .deleteRow(let row):
-                    tableView?.deleteRows(at: [
-                        IndexPath(row: row.row * 2, section: row.section),
-                        IndexPath(row: row.row * 2 + 1, section: row.section),
-                    ], with: .automatic)
-                }
-            }
-        })
+        switch changes[0] {
+        case .insertRow(let row):
+            tableView?.insertRows(at: [
+                IndexPath(row: row.row * 2, section: row.section),
+                IndexPath(row: row.row * 2 + 1, section: row.section),
+            ], with: .automatic)
+        case .updateRow(let row):
+            tableView?.reloadRows(at: [
+                IndexPath(row: row.row * 2, section: row.section),
+                IndexPath(row: row.row * 2 + 1, section: row.section),
+            ], with: .automatic)
+        default:
+            tableView?.reloadData()
+        }
     }
 }
 

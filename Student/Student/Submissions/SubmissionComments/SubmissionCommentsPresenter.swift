@@ -61,7 +61,18 @@ class SubmissionCommentsPresenter {
     }
 
     func addComment(text: String) {
-        // TODO
+        CreateTextComment(
+            courseID: context.id,
+            assignmentID: assignmentID,
+            userID: userID,
+            submissionID: submissionID,
+            isGroup: assignment.first?.gradedIndividually == false,
+            text: text
+        ).fetch(environment: env) { [weak self] comment, error in
+            if error != nil || comment == nil {
+                self?.view?.showError(error ?? NSError.instructureError(NSLocalizedString("Could not save the comment", bundle: .student, comment: "")))
+            }
+        }
     }
 
     func addMediaComment(type: MediaCommentType, url: URL) {
