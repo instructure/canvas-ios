@@ -29,8 +29,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="rv6-mL-EtC">
-                                                    <rect key="frame" x="16" y="16" width="319" height="19.5"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="rv6-mL-EtC">
+                                                    <rect key="frame" x="15" y="12" width="319" height="19.5"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lwl-X5-mNS" customClass="IconView" customModule="Teacher" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="22" height="19.5"/>
@@ -70,6 +70,9 @@
                                                             </constraints>
                                                         </imageView>
                                                     </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="lwl-X5-mNS" firstAttribute="leading" secondItem="rv6-mL-EtC" secondAttribute="leading" id="gj0-Xh-gMC"/>
+                                                    </constraints>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
@@ -85,6 +88,7 @@
                                         <connections>
                                             <outlet property="dueLabel" destination="SK2-Ab-F0Z" id="vEC-W0-b2n"/>
                                             <outlet property="iconView" destination="lwl-X5-mNS" id="bgO-sR-lZK"/>
+                                            <outlet property="indentConstraint" destination="gj0-Xh-gMC" id="81H-PG-FGS"/>
                                             <outlet property="nameLabel" destination="idp-ZT-sKj" id="xXf-gg-CFl"/>
                                             <outlet property="publishedIconView" destination="Bkc-gN-FAf" id="Ip4-XX-kd2"/>
                                         </connections>
@@ -117,6 +121,9 @@
                                                             </constraints>
                                                         </imageView>
                                                     </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="oQS-d3-6zu" firstAttribute="leading" secondItem="CdB-fh-KOY" secondAttribute="leading" id="vGD-pt-zd8"/>
+                                                    </constraints>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
@@ -130,6 +137,7 @@
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="fullDivider" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
+                                            <outlet property="indentConstraint" destination="vGD-pt-zd8" id="hUU-x3-cYU"/>
                                             <outlet property="label" destination="oQS-d3-6zu" id="u6y-MD-3yy"/>
                                             <outlet property="publishedIconView" destination="ahp-vo-ISY" id="XDB-qL-SxY"/>
                                         </connections>

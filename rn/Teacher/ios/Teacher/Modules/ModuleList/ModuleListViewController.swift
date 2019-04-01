@@ -111,6 +111,7 @@ extension ModuleListViewController: UITableViewDataSource {
             cell.isUserInteractionEnabled = false
             cell.accessoryType = .none
             cell.publishedIconView.published = item?.published == true
+            cell.indent = item?.indent ?? 0
             return cell
         default:
             let cell: ModuleItemCell = tableView.dequeue(for: indexPath)

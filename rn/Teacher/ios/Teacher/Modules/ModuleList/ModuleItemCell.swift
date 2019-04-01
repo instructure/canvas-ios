@@ -19,16 +19,20 @@ import UIKit
 import Core
 
 class ModuleItemCell: UITableViewCell {
+    static let IndentMultiplier: CGFloat = 10
+
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var dueLabel: UILabel!
     @IBOutlet weak var iconView: IconView!
     @IBOutlet weak var publishedIconView: PublishedIconView!
+    @IBOutlet weak var indentConstraint: NSLayoutConstraint!
 
     var item: ModuleItem? {
         didSet {
             nameLabel.text = item?.title
             iconView.image = item?.type?.icon
             publishedIconView.published = item?.published == true
+            indentConstraint.constant = CGFloat((item?.indent ?? 0)) * ModuleItemCell.IndentMultiplier
             dueLabel.isHidden = item?.dueAt == nil
             dueLabel.text = item?.dueAt.flatMap {
                 String.localizedStringWithFormat(

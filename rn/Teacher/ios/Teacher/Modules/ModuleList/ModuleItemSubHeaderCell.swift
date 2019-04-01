@@ -20,4 +20,11 @@ import Core
 class ModuleItemSubHeaderCell: UITableViewCell {
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var publishedIconView: PublishedIconView!
+    @IBOutlet weak var indentConstraint: NSLayoutConstraint!
+
+    var indent: Int = 0 {
+        didSet {
+            indentConstraint.constant = CGFloat(indent) * ModuleItemCell.IndentMultiplier
+        }
+    }
 }
