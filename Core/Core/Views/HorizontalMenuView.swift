@@ -23,6 +23,7 @@ public protocol HorizontalMenuDelegate: class {
     func menuItemCount() -> Int
     func menuItemTitle(at: IndexPath) -> String
     func didSelectItem(at: IndexPath)
+    func accessibilityLabel(at: IndexPath) -> String
 }
 
 public class HorizontalMenuView: UIView {
@@ -94,6 +95,7 @@ extension HorizontalMenuView: UICollectionViewDataSource, UICollectionViewDelega
         if indexPath == selectedIndexPath {
             cell.isSelected = true
         }
+        cell.accessibilityLabel = delegate?.accessibilityLabel(at: indexPath)
         return cell
     }
 

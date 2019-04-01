@@ -21,6 +21,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PGj-uf-9Z2" customClass="HorizontalMenuView" customModule="Core">
                                 <rect key="frame" x="0.0" y="20" width="375" height="45"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <accessibility key="accessibilityConfiguration" identifier="SyllabusPage.menu"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="FqU-RE-AQ0"/>
                                 </constraints>

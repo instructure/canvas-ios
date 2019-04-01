@@ -68,6 +68,7 @@ class SyllabusViewController: UIViewController {
 
     func configureSyllabus() {
         syllabus = CoreWebView(frame: CGRect.zero)
+        syllabus?.accessibilityLabel = "SyllabusPage.syllabusWebView"
         guard let syllabus = syllabus else { return }
         scrollView.addSubview(syllabus)
         syllabus.addConstraintsWithVFL("H:|[view(==superview)]")
@@ -79,9 +80,11 @@ class SyllabusViewController: UIViewController {
         guard let assignments = assignments else { return }
         embed(assignments, in: scrollView) { [weak self] (child, _) in
             guard let syllabus = self?.syllabus else { return }
+            child.view.accessibilityLabel = "SyllabusPage.assignmentList"
             child.view.addConstraintsWithVFL("H:[syllabus][view(==superview)]|", views: ["syllabus": syllabus])
             child.view.pinToTopAndBottomOfSuperview()
         }
+
     }
 
     // MARK: -
@@ -122,6 +125,15 @@ extension SyllabusViewController: SyllabuseViewProtocol {
 }
 
 extension SyllabusViewController: HorizontalMenuDelegate {
+    func accessibilityLabel(at: IndexPath) -> String {
+        guard let menuItem = MenuItem(rawValue: at.row) else { return "" }
+        var identifier: String
+        switch menuItem {
+        case .syllabus: identifier = "syllabus"
+        case .assignments: identifier = "assignments"
+        }
+        return "SyllabusPage.\(identifier)MenuItem"
+    }
 
     var selectedColor: UIColor? {
         return color
