@@ -192,8 +192,9 @@ class SubmissionCommentsTests: StudentTest {
         SubmissionDetailsElement.drawerGripper.tap()
 
         SubmissionComments.addMediaButton.tap()
-        Alert.button(label: "Record Audio").tap()
-        allowAccessToMicrophone() // Need to manually grant access in simulator once.
+        allowAccessToMicrophone(waitFor: AudioRecorder.recordButton.id) {
+            Alert.button(label: "Record Audio").tap()
+        }
         AudioRecorder.recordButton.tap()
         AudioRecorder.stopButton.tap()
         XCTAssertTrue(AudioRecorder.currentTimeLabel.isVisible)
@@ -203,7 +204,6 @@ class SubmissionCommentsTests: StudentTest {
 
         SubmissionComments.addMediaButton.tap()
         Alert.button(label: "Record Audio").tap()
-        allowAccessToMicrophone()
         AudioRecorder.recordButton.tap()
         AudioRecorder.stopButton.tap()
         XCTAssertTrue(AudioRecorder.currentTimeLabel.isVisible)
