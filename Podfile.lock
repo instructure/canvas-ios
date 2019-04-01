@@ -20,7 +20,7 @@ PODS:
   - Crashlytics (3.10.2):
     - Fabric (~> 1.7.7)
   - DeviceKit (1.7.0)
-  - Eureka (3.0.0)
+  - Eureka (4.3.1)
   - Fabric (1.7.7)
   - Firebase/Core (5.4.0):
     - Firebase/CoreOnly
@@ -144,7 +144,7 @@ DEPENDENCIES:
   - Cartography (~> 1.1)
   - Crashlytics (~> 3.10.2)
   - DeviceKit (~> 1.0)
-  - Eureka (from `https://github.com/xmartlabs/Eureka`, branch `Swift-3.3`)
+  - Eureka (~> 4.3)
   - Fabric (~> 1.7.7)
   - Firebase/Core
   - FXKeychain (~> 1.5)
@@ -198,6 +198,7 @@ SPEC REPOS:
     - Cartography
     - Crashlytics
     - DeviceKit
+    - Eureka
     - Fabric
     - Firebase
     - FirebaseAnalytics
@@ -225,9 +226,6 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   BVLinearGradient:
     :path: "./rn/Teacher/node_modules/react-native-linear-gradient"
-  Eureka:
-    :branch: Swift-3.3
-    :git: https://github.com/xmartlabs/Eureka
   Interactable:
     :path: "./rn/Teacher/node_modules/react-native-interactable"
   RCTSFSafariViewController:
@@ -257,18 +255,13 @@ EXTERNAL SOURCES:
   yoga:
     :path: "./rn/Teacher/node_modules/react-native/ReactCommon/yoga"
 
-CHECKOUT OPTIONS:
-  Eureka:
-    :commit: 8fcc11477411b1ac96339d3d9d0973956ed05151
-    :git: https://github.com/xmartlabs/Eureka
-
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   BVLinearGradient: 8913bd8fdc47b85abc801ae8bae007bbfb6b4ce5
   Cartography: 0538ccb4044acbbda2266335fc58cb4228794d90
   Crashlytics: 0360624eea1c978a743feddb2fb1ef8b37fb7a0d
   DeviceKit: 6a5bdeb103c03757bb94aef1ccb01e08bc8ef4ee
-  Eureka: 5b9418d7bfdc21ca977d69d124a6409f3e9af2c7
+  Eureka: 28ea296f06710f6745266b71f17862048941a32d
   Fabric: bda89e242bce1b7b8ab264248cf3407774ce0095
   Firebase: d66f4f29c23f22d96808d9abc174d81d8eee968f
   FirebaseAnalytics: b3628aea54c50464c32c393fb2ea032566e7ecc2
@@ -307,6 +300,6 @@ SPEC CHECKSUMS:
   TPKeyboardAvoiding: cb69d5ddbe90ce0170e4bc2db1e5e41d4a3ad9a4
   yoga: b5d96400ca8b2936965a7a6516da7c1177f432a3
 
-PODFILE CHECKSUM: b6ad362efe381845a3e2b6ee9cf59a57ad2bdb07
+PODFILE CHECKSUM: 8334da6ceb25840b734a2a4fdcb3f7220a3c296d
 
 COCOAPODS: 1.6.0
