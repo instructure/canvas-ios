@@ -45,7 +45,8 @@ extension UIView {
         layer.mask = mask
     }
 
-    public func pin(inside parent: UIView, leading: CGFloat? = 0, trailing: CGFloat? = 0, top: CGFloat? = 0, bottom: CGFloat? = 0) {
+    public func pin(inside parent: UIView?, leading: CGFloat? = 0, trailing: CGFloat? = 0, top: CGFloat? = 0, bottom: CGFloat? = 0) {
+        guard let parent = parent else { return }
         translatesAutoresizingMaskIntoConstraints = false
         if let leading = leading {
             leadingAnchor.constraint(equalTo: parent.leadingAnchor, constant: leading).isActive = true
@@ -82,11 +83,6 @@ extension UIView {
         } else {
             return nil
         }
-    }
-
-    public func pinToAllSidesOfSuperview() {
-        pinToLeftAndRightOfSuperview()
-        pinToTopAndBottomOfSuperview()
     }
 
     public func pinToLeftAndRightOfSuperview() {

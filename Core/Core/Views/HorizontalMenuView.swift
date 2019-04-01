@@ -49,7 +49,7 @@ public class HorizontalMenuView: UIView {
         backgroundColor = UIColor.white.ensureContrast(against: .named(.white))
         contentView.backgroundColor = UIColor.white.ensureContrast(against: .named(.white))
         contentView.frame = CGRect.zero
-        contentView.pinToAllSidesOfSuperview()
+        contentView.pin(inside: self)
         collectionView.registerCell(HorizontalMenuViewCell.self, bundle: Bundle.core)
         collectionView.dataSource = self
         collectionView.delegate = self
