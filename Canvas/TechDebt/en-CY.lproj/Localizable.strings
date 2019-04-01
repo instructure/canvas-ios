@@ -1460,6 +1460,9 @@ Error: %@";
 /* No comment provided by engineer. */
 "You are not allowed to change your avatar at this time." = "You are not allowed to change your avatar at this time.";
 
+/* No comment provided by engineer. */
+"You are not allowed to send messages at this time." = "You are not allowed to send messages at this time.";
+
 /* Masquerade title telling who you are masquerading as */
 "You are now masquerading as %@" = "You are now masquerading as %@";
 

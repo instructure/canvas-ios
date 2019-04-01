@@ -50,6 +50,9 @@
 "Edit Course" = "编辑课程";
 
 /* No comment provided by engineer. */
+"Failed to locate camera result" = "查找相机结果失败";
+
+/* No comment provided by engineer. */
 "Failed upload" = "上传失败";
 
 /* No comment provided by engineer. */
@@ -57,6 +60,9 @@
 
 /* No comment provided by engineer. */
 "Files" = "文件";
+
+/* No comment provided by engineer. */
+"Files (%d)" = "文件(%d)";
 
 /* No comment provided by engineer. */
 "Grade" = "评分";
@@ -75,6 +81,18 @@
 
 /* No comment provided by engineer. */
 "No Submission Date" = "无提交日期";
+
+/* No comment provided by engineer. */
+"On %@ %@ commented \"%@\"" = "在%1$@%2$@评论了“%3$@”";
+
+/* No comment provided by engineer. */
+"On %@ %@ left a video comment" = "在%1$@%2$@留下了视频评论";
+
+/* No comment provided by engineer. */
+"On %@ %@ left an audio comment" = "在%1$@%2$@留下了音频评论";
+
+/* No comment provided by engineer. */
+"On %@ %@ submitted the following" = "在%1$@%2$@提交了以下内容";
 
 /* Button to open external tool */
 "Open External Tool" = "打开外部工具";
@@ -110,7 +128,13 @@
 "Submission & Rubric" = "提交项和评估表格";
 
 /* No comment provided by engineer. */
+"Submission Failed" = "提交文件失败";
+
+/* No comment provided by engineer. */
 "Submission Types" = "提交项类型";
+
+/* No comment provided by engineer. */
+"Submission Uploading..." = "正在上传提交项...";
 
 /* No comment provided by engineer. */
 "Submit" = "提交";
@@ -122,7 +146,16 @@
 "Successfully submitted!" = "已成功提交。";
 
 /* No comment provided by engineer. */
+"Tap to view details" = "轻按以查看详细信息";
+
+/* No comment provided by engineer. */
+"Tap to view progress" = "轻按以查看进度";
+
+/* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "此应用程序需重启后才能使用新语言设置。请重新启动应用程序。";
+
+/* No comment provided by engineer. */
+"There are no files to display." = "没有文件可显示。";
 
 /* No comment provided by engineer. */
 "There are no quizzes to display." = "没有要显示的测验。";
@@ -135,6 +168,12 @@
 
 /* No comment provided by engineer. */
 "Uploading..." = "正在上传...";
+
+/* No comment provided by engineer. */
+"View file %@ %@" = "查看文件%1$@%2$@";
+
+/* No comment provided by engineer. */
+"View submission attempt %d" = "查看提交尝试%d";
 
 /* No comment provided by engineer. */
 "Website Address" = "网址";

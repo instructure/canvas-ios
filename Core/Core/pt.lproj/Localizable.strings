@@ -8,7 +8,10 @@
 "Assignment" = "Tarefa";
 
 /* No comment provided by engineer. */
-"Assignment not found." = "Tarefa não encontrada";
+"Attempt %d" = "Tentativa %d";
+
+/* No comment provided by engineer. */
+"Audio" = "Áudio";
 
 /* No comment provided by engineer. */
 "Authentication failed. Most likely the user denied the request for access." = "Autenticação falhou. Muito provavelmente, o utilizador negou a solicitação de acesso.";
@@ -167,9 +170,6 @@
 "Reply to the annotation or previous comments" = "Responder à anotação ou a comentários anteriores";
 
 /* No comment provided by engineer. */
-"Resubmit Assignment" = "Voltar a submeter tarefa";
-
-/* No comment provided by engineer. */
 "See what's new." = "Veja o que há de novo.";
 
 /* No comment provided by engineer. */
@@ -191,10 +191,7 @@
 "Style" = "Estilo";
 
 /* No comment provided by engineer. */
-"Submission Failed" = "Falha no envio";
-
-/* No comment provided by engineer. */
-"Submission Uploading..." = "A carregar envio...";
+"Submission failed." = "Falha no envio.";
 
 /* No comment provided by engineer. */
 "Submit Assignment" = "Enviar tarefa";
@@ -209,19 +206,22 @@
 "Tap here for help." = "Toque aqui para ajuda.";
 
 /* No comment provided by engineer. */
-"Tap to view details" = "Toque para ver detalhes";
-
-/* No comment provided by engineer. */
-"Tap to view progress" = "Toque para ver o progresso";
+"Terms of Use" = "Termos de uso";
 
 /* No comment provided by engineer. */
 "Text Entry" = "Entrada de texto";
+
+/* No comment provided by engineer. */
+"There was a problem retrieving the Terms of Use." = "Ocorreu um problema ao recuperar os Termos de Uso";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "Esta tarefa é devida por %@";
 
 /* No comment provided by engineer. */
 "This assignment was due by %@" = "Esta tarefa foi devida por %@";
+
+/* No comment provided by engineer. */
+"Video" = "Vídeo";
 
 /* No comment provided by engineer. */
 "We've made a few changes." = "Nós fizemos algumas alterações.";

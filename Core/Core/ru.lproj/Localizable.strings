@@ -8,7 +8,10 @@
 "Assignment" = "Задание";
 
 /* No comment provided by engineer. */
-"Assignment not found." = "Задание не найдено";
+"Attempt %d" = "Попытка %d";
+
+/* No comment provided by engineer. */
+"Audio" = "Аудио";
 
 /* No comment provided by engineer. */
 "Authentication failed. Most likely the user denied the request for access." = "Сбой авторизации. Скорее всего, пользователь отклонил запрос на доступ.";
@@ -167,9 +170,6 @@
 "Reply to the annotation or previous comments" = "Ответить на аннотацию или предыдущие комментарии";
 
 /* No comment provided by engineer. */
-"Resubmit Assignment" = "Повторная отправка задания";
-
-/* No comment provided by engineer. */
 "See what's new." = "Посмотрите, что нового.";
 
 /* No comment provided by engineer. */
@@ -191,10 +191,7 @@
 "Style" = "Стиль";
 
 /* No comment provided by engineer. */
-"Submission Failed" = "Ошибка отправки";
-
-/* No comment provided by engineer. */
-"Submission Uploading..." = "Выполняется загрузка...";
+"Submission failed." = "Ошибка отправки.";
 
 /* No comment provided by engineer. */
 "Submit Assignment" = "Отправить задание";
@@ -209,19 +206,22 @@
 "Tap here for help." = "Прикоснитесь здесь для получения помощи.";
 
 /* No comment provided by engineer. */
-"Tap to view details" = "Нажмите для просмотра подробностей";
-
-/* No comment provided by engineer. */
-"Tap to view progress" = "Нажмите для просмотра прогресса";
+"Terms of Use" = "Условия использования";
 
 /* No comment provided by engineer. */
 "Text Entry" = "Ввод текста";
+
+/* No comment provided by engineer. */
+"There was a problem retrieving the Terms of Use." = "Возникла проблема при обращении к условиям использования.";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "Данное задание необходимо выполнить до %@";
 
 /* No comment provided by engineer. */
 "This assignment was due by %@" = "Данное задание необходимо было выполнить до %@";
+
+/* No comment provided by engineer. */
+"Video" = "Видео";
 
 /* No comment provided by engineer. */
 "We've made a few changes." = "Мы добавили несколько изменений.";

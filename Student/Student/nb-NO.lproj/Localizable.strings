@@ -50,6 +50,9 @@
 "Edit Course" = "Redigere emne";
 
 /* No comment provided by engineer. */
+"Failed to locate camera result" = "Mislyktes i å finne kameraresultater";
+
+/* No comment provided by engineer. */
 "Failed upload" = "Opplasting mislyktes";
 
 /* No comment provided by engineer. */
@@ -57,6 +60,9 @@
 
 /* No comment provided by engineer. */
 "Files" = "Filer";
+
+/* No comment provided by engineer. */
+"Files (%d)" = "Filer (%d)";
 
 /* No comment provided by engineer. */
 "Grade" = "Karakter";
@@ -75,6 +81,18 @@
 
 /* No comment provided by engineer. */
 "No Submission Date" = "Ingen innleveringsdato";
+
+/* No comment provided by engineer. */
+"On %@ %@ commented \"%@\"" = "På %1$@ %2$@ kommenterte \"%3$@\"";
+
+/* No comment provided by engineer. */
+"On %@ %@ left a video comment" = "På %1$@ %2$@ la igjen en videokommentar";
+
+/* No comment provided by engineer. */
+"On %@ %@ left an audio comment" = "På %1$@ %2$@ la igjen en lydkommentar";
+
+/* No comment provided by engineer. */
+"On %@ %@ submitted the following" = "På %1$@ %2$@ sendte inn følgende";
 
 /* Button to open external tool */
 "Open External Tool" = "Åpne eksterne verktøy";
@@ -110,7 +128,13 @@
 "Submission & Rubric" = "Innlevering og rubrikk";
 
 /* No comment provided by engineer. */
+"Submission Failed" = "Innlevering feilet";
+
+/* No comment provided by engineer. */
 "Submission Types" = "Innleveringstyper";
+
+/* No comment provided by engineer. */
+"Submission Uploading..." = "Innlevering lastes opp...";
 
 /* No comment provided by engineer. */
 "Submit" = "Send inn";
@@ -122,7 +146,16 @@
 "Successfully submitted!" = "Vellykket innsending!";
 
 /* No comment provided by engineer. */
+"Tap to view details" = "Trykk for å vise detaljer";
+
+/* No comment provided by engineer. */
+"Tap to view progress" = "Trykk for å se fremgang";
+
+/* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Appen må åpnes på nytt for å ta i bruk de nye språkinnstillingene. Vennligst gjeninnfør appen.";
+
+/* No comment provided by engineer. */
+"There are no files to display." = "Det er ingen filer å vise.";
 
 /* No comment provided by engineer. */
 "There are no quizzes to display." = "Det er ingen tester å vise.";
@@ -135,6 +168,12 @@
 
 /* No comment provided by engineer. */
 "Uploading..." = "Laster opp...";
+
+/* No comment provided by engineer. */
+"View file %@ %@" = "Vis fil %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View submission attempt %d" = "Vis innleveringsforsøk %d";
 
 /* No comment provided by engineer. */
 "Website Address" = "Adresse til nettside";

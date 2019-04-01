@@ -50,6 +50,9 @@
 "Edit Course" = "Editar curso";
 
 /* No comment provided by engineer. */
+"Failed to locate camera result" = "Falha ao localizar resultado da câmera";
+
+/* No comment provided by engineer. */
 "Failed upload" = "Carregamento falhou";
 
 /* No comment provided by engineer. */
@@ -57,6 +60,9 @@
 
 /* No comment provided by engineer. */
 "Files" = "Arquivos";
+
+/* No comment provided by engineer. */
+"Files (%d)" = "Arquivo (%d)";
 
 /* No comment provided by engineer. */
 "Grade" = "Nota";
@@ -75,6 +81,18 @@
 
 /* No comment provided by engineer. */
 "No Submission Date" = "Sem data de envio";
+
+/* No comment provided by engineer. */
+"On %@ %@ commented \"%@\"" = "Em %1$@ %2$@ comentou \"%3$@\"";
+
+/* No comment provided by engineer. */
+"On %@ %@ left a video comment" = "Em %1$@ %2$@ deixou um comentário de vídeo";
+
+/* No comment provided by engineer. */
+"On %@ %@ left an audio comment" = "Em %1$@ %2$@ deixou um comentário de áudio";
+
+/* No comment provided by engineer. */
+"On %@ %@ submitted the following" = "Em %1$@ %2$@ enviou o seguinte";
 
 /* Button to open external tool */
 "Open External Tool" = "Abrir ferramenta externa";
@@ -110,7 +128,13 @@
 "Submission & Rubric" = "Envio e rubrica";
 
 /* No comment provided by engineer. */
+"Submission Failed" = "Falha no envio";
+
+/* No comment provided by engineer. */
 "Submission Types" = "Tipos de envio";
+
+/* No comment provided by engineer. */
+"Submission Uploading..." = "Envio carregando...";
 
 /* No comment provided by engineer. */
 "Submit" = "Enviar";
@@ -122,7 +146,16 @@
 "Successfully submitted!" = "Enviado com êxito!";
 
 /* No comment provided by engineer. */
+"Tap to view details" = "Toque para visualizar os detalhes";
+
+/* No comment provided by engineer. */
+"Tap to view progress" = "Toque para visualizar o progresso";
+
+/* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "O app precisa ser reiniciado para usar as novas configurações de idioma. Reinicie o app.";
+
+/* No comment provided by engineer. */
+"There are no files to display." = "Não há arquivos para mostrar.";
 
 /* No comment provided by engineer. */
 "There are no quizzes to display." = "Não há questionários para mostrar.";
@@ -135,6 +168,12 @@
 
 /* No comment provided by engineer. */
 "Uploading..." = "Carregando...";
+
+/* No comment provided by engineer. */
+"View file %@ %@" = "Visualizar arquivo %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View submission attempt %d" = "Visualizar tentativa de envio %d";
 
 /* No comment provided by engineer. */
 "Website Address" = "Endereço do site";

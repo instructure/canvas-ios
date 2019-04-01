@@ -8,7 +8,10 @@
 "Assignment" = "Aseiniad";
 
 /* No comment provided by engineer. */
-"Assignment not found." = "Heb ddod o hyd i’r aseiniad.";
+"Attempt %d" = "Ymgais %d";
+
+/* No comment provided by engineer. */
+"Audio" = "Sain";
 
 /* No comment provided by engineer. */
 "Authentication failed. Most likely the user denied the request for access." = "Wedi methu dilysu. Mae’n bur debyg bod y defnyddiwr wedi gwrthod y cais am fynediad.";
@@ -167,9 +170,6 @@
 "Reply to the annotation or previous comments" = "Ymateb i’r anodiad neu sylwadau blaenorol";
 
 /* No comment provided by engineer. */
-"Resubmit Assignment" = "Ailgyflwyno Aseiniad";
-
-/* No comment provided by engineer. */
 "See what's new." = "Dewch i weld beth sy’n newydd.";
 
 /* No comment provided by engineer. */
@@ -191,10 +191,7 @@
 "Style" = "Arddull";
 
 /* No comment provided by engineer. */
-"Submission Failed" = "Cyflwyniad wedi methu";
-
-/* No comment provided by engineer. */
-"Submission Uploading..." = "Cyflwyniad yn llwytho i fyny...";
+"Submission failed." = "Cyflwyniad wedi methu.";
 
 /* No comment provided by engineer. */
 "Submit Assignment" = "Cyflwyno Aseiniad";
@@ -209,19 +206,22 @@
 "Tap here for help." = "Tapiwch yma i gael help.";
 
 /* No comment provided by engineer. */
-"Tap to view details" = "Tapiwch i weld manylion";
-
-/* No comment provided by engineer. */
-"Tap to view progress" = "Tapiwch i weld cynnydd";
+"Terms of Use" = "Telerau Defnyddio";
 
 /* No comment provided by engineer. */
 "Text Entry" = "Cofnod Testun";
+
+/* No comment provided by engineer. */
+"There was a problem retrieving the Terms of Use." = "Problem wrth adfer y Telerau Defnyddio";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "Mae’r aseiniad hwn i fod i gael ei gyflwyno erbyn %@";
 
 /* No comment provided by engineer. */
 "This assignment was due by %@" = "Roedd yr aseiniad hwn yn fod i gael ei gyflwyno erbyn %@";
+
+/* No comment provided by engineer. */
+"Video" = "Fideo";
 
 /* No comment provided by engineer. */
 "We've made a few changes." = "Rydyn ni wedi gwneud ychydig o newidiadau.";

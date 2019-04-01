@@ -683,9 +683,6 @@
   "grade_grade_990eb477": {
     "message": "成績{ grade }"
   },
-  "grade_grade_number_percent_cda06b4d": {
-    "message": "成績{ grade, number, percent }"
-  },
   "graded_25cd3fcd": {
     "message": "採点済み"
   },
@@ -1060,6 +1057,12 @@
   },
   "out_of_points_number_42209979": {
     "message": "{ points, number } から"
+  },
+  "override_3de65b2c": {
+    "message": "上書き"
+  },
+  "override_grade_grade_f33671d4": {
+    "message": "成績{ grade }を上書きする"
   },
   "page_details_847e35e6": {
     "message": "ページ詳細"

@@ -8,7 +8,10 @@
 "Assignment" = "Devoirs";
 
 /* No comment provided by engineer. */
-"Assignment not found." = "Devoir introuvable.";
+"Attempt %d" = "Tentative %d";
+
+/* No comment provided by engineer. */
+"Audio" = "Audio";
 
 /* No comment provided by engineer. */
 "Authentication failed. Most likely the user denied the request for access." = "Échec de l'authentification L’utilisateur a probablement refusé la demande d'accès.";
@@ -167,9 +170,6 @@
 "Reply to the annotation or previous comments" = "Répondre aux annotations ou aux commentaires précédents";
 
 /* No comment provided by engineer. */
-"Resubmit Assignment" = "Soumettre à nouveau le travail";
-
-/* No comment provided by engineer. */
 "See what's new." = "Voir les nouveautés";
 
 /* No comment provided by engineer. */
@@ -191,10 +191,7 @@
 "Style" = "Style";
 
 /* No comment provided by engineer. */
-"Submission Failed" = "Échec de l’envoi";
-
-/* No comment provided by engineer. */
-"Submission Uploading..." = "Téléchargement des soumissions...";
+"Submission failed." = "Échec de l’envoi.";
 
 /* No comment provided by engineer. */
 "Submit Assignment" = "Soumettre le devoir";
@@ -209,19 +206,22 @@
 "Tap here for help." = "Appuyez ici pour obtenir de l’aide.";
 
 /* No comment provided by engineer. */
-"Tap to view details" = "Tapez sur pour afficher les détails";
-
-/* No comment provided by engineer. */
-"Tap to view progress" = "Tapez sur pour afficher l'état d'avancement";
+"Terms of Use" = "Conditions d’utilisation";
 
 /* No comment provided by engineer. */
 "Text Entry" = "Saisie de texte";
+
+/* No comment provided by engineer. */
+"There was a problem retrieving the Terms of Use." = "Un problème est survenu pendant la récupération des Conditions d’utilisation.";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "Ce devoir doit être rendu le %@";
 
 /* No comment provided by engineer. */
 "This assignment was due by %@" = "Ce devoir devait être rendu le %@";
+
+/* No comment provided by engineer. */
+"Video" = "Vidéo";
 
 /* No comment provided by engineer. */
 "We've made a few changes." = "Nous avons fait quelques changements.";

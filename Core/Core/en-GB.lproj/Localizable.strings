@@ -8,7 +8,10 @@
 "Assignment" = "Assignment";
 
 /* No comment provided by engineer. */
-"Assignment not found." = "Assignment not found.";
+"Attempt %d" = "Attempt %d";
+
+/* No comment provided by engineer. */
+"Audio" = "Audio";
 
 /* No comment provided by engineer. */
 "Authentication failed. Most likely the user denied the request for access." = "Authentication failed. Most likely the user denied the request for access.";
@@ -167,9 +170,6 @@
 "Reply to the annotation or previous comments" = "Reply to the annotation or previous comments";
 
 /* No comment provided by engineer. */
-"Resubmit Assignment" = "Resubmit assignment";
-
-/* No comment provided by engineer. */
 "See what's new." = "See what's new.";
 
 /* No comment provided by engineer. */
@@ -191,10 +191,7 @@
 "Style" = "Style";
 
 /* No comment provided by engineer. */
-"Submission Failed" = "Submission failed";
-
-/* No comment provided by engineer. */
-"Submission Uploading..." = "Submission Uploading...";
+"Submission failed." = "Submission failed.";
 
 /* No comment provided by engineer. */
 "Submit Assignment" = "Submit assignment";
@@ -209,19 +206,22 @@
 "Tap here for help." = "Tap here for help.";
 
 /* No comment provided by engineer. */
-"Tap to view details" = "Tap to view details";
-
-/* No comment provided by engineer. */
-"Tap to view progress" = "Tap to view progress";
+"Terms of Use" = "Terms of Use";
 
 /* No comment provided by engineer. */
 "Text Entry" = "Text entry";
+
+/* No comment provided by engineer. */
+"There was a problem retrieving the Terms of Use." = "There was a problem retrieving the Terms of Use.";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "This assignment is due by %@";
 
 /* No comment provided by engineer. */
 "This assignment was due by %@" = "This assignment was due by %@";
+
+/* No comment provided by engineer. */
+"Video" = "Video";
 
 /* No comment provided by engineer. */
 "We've made a few changes." = "We've made a few changes.";

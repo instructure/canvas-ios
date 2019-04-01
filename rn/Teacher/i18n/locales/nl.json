@@ -683,9 +683,6 @@
   "grade_grade_990eb477": {
     "message": "Cijfer { grade }"
   },
-  "grade_grade_number_percent_cda06b4d": {
-    "message": "Cijfer { grade, number, percent }"
-  },
   "graded_25cd3fcd": {
     "message": "Beoordeeld"
   },
@@ -1060,6 +1057,12 @@
   },
   "out_of_points_number_42209979": {
     "message": "Vanuit { points, number }"
+  },
+  "override_3de65b2c": {
+    "message": "Overschrijving"
+  },
+  "override_grade_grade_f33671d4": {
+    "message": "Overschrijvingscijfer { grade }"
   },
   "page_details_847e35e6": {
     "message": "Paginadetails"

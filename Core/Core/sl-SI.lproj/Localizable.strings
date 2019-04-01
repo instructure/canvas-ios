@@ -8,7 +8,10 @@
 "Assignment" = "Naloga";
 
 /* No comment provided by engineer. */
-"Assignment not found." = "Naloge ni mogoče najti.";
+"Attempt %d" = "Poskus %d";
+
+/* No comment provided by engineer. */
+"Audio" = "Zvok";
 
 /* No comment provided by engineer. */
 "Authentication failed. Most likely the user denied the request for access." = "Overitev ni uspela. Najverjetneje je uporabnik zavrnil zahtevo za dostop.";
@@ -167,9 +170,6 @@
 "Reply to the annotation or previous comments" = "Odgovori na opombo ali predhodne komentarje";
 
 /* No comment provided by engineer. */
-"Resubmit Assignment" = "Ponovno pošlji nalogo";
-
-/* No comment provided by engineer. */
 "See what's new." = "Oglejte si, kaj je novega.";
 
 /* No comment provided by engineer. */
@@ -191,10 +191,7 @@
 "Style" = "Slog";
 
 /* No comment provided by engineer. */
-"Submission Failed" = "Oddaja ni uspela.";
-
-/* No comment provided by engineer. */
-"Submission Uploading..." = "Nalaganje oddaj ...";
+"Submission failed." = "Oddaja ni uspela";
 
 /* No comment provided by engineer. */
 "Submit Assignment" = "Pošlji nalogo";
@@ -209,19 +206,22 @@
 "Tap here for help." = "Za pomoč tapnite tukaj.";
 
 /* No comment provided by engineer. */
-"Tap to view details" = "Tapnite za ogled podrobnosti";
-
-/* No comment provided by engineer. */
-"Tap to view progress" = "Tapnite za ogled napredka";
+"Terms of Use" = "Pogoji uporabe";
 
 /* No comment provided by engineer. */
 "Text Entry" = "Vnos besedila";
+
+/* No comment provided by engineer. */
+"There was a problem retrieving the Terms of Use." = "Prišlo je do težav pri pridobivanju pogojev uporabe.";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "Ta naloga ima rok do %@";
 
 /* No comment provided by engineer. */
 "This assignment was due by %@" = "Ta naloga je imela rok do %@";
+
+/* No comment provided by engineer. */
+"Video" = "Videoposnetek";
 
 /* No comment provided by engineer. */
 "We've made a few changes." = "Uvedli smo nekaj sprememb.";

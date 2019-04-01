@@ -50,6 +50,9 @@
 "Edit Course" = "Modifier le cours";
 
 /* No comment provided by engineer. */
+"Failed to locate camera result" = "Impossible de localiser le résultat de la caméra";
+
+/* No comment provided by engineer. */
 "Failed upload" = "Échec du téléversement";
 
 /* No comment provided by engineer. */
@@ -57,6 +60,9 @@
 
 /* No comment provided by engineer. */
 "Files" = "Fichiers";
+
+/* No comment provided by engineer. */
+"Files (%d)" = "Fichiers (%d)";
 
 /* No comment provided by engineer. */
 "Grade" = "Note";
@@ -75,6 +81,18 @@
 
 /* No comment provided by engineer. */
 "No Submission Date" = "Aucune date d’envoi";
+
+/* No comment provided by engineer. */
+"On %@ %@ commented \"%@\"" = "Le %1$@ %2$@ a commenté « %3$@ »";
+
+/* No comment provided by engineer. */
+"On %@ %@ left a video comment" = "Le %1$@ %2$@ a laissé un commentaire vidéo";
+
+/* No comment provided by engineer. */
+"On %@ %@ left an audio comment" = "Le %1$@ %2$@ a laissé un commentaire audio";
+
+/* No comment provided by engineer. */
+"On %@ %@ submitted the following" = "Le %1$@ %2$@ a envoyé ce qui suit";
 
 /* Button to open external tool */
 "Open External Tool" = "Ouvrir Outil externe";
@@ -110,7 +128,13 @@
 "Submission & Rubric" = "Envoi et rubrique";
 
 /* No comment provided by engineer. */
+"Submission Failed" = "Échec de l’envoi";
+
+/* No comment provided by engineer. */
 "Submission Types" = "Types d’envoi";
+
+/* No comment provided by engineer. */
+"Submission Uploading..." = "Téléversement des envois en cours...";
 
 /* No comment provided by engineer. */
 "Submit" = "Envoyer";
@@ -122,7 +146,16 @@
 "Successfully submitted!" = "Envoyé avec succès!";
 
 /* No comment provided by engineer. */
+"Tap to view details" = "Tapoter pour voir les détails";
+
+/* No comment provided by engineer. */
+"Tap to view progress" = "Tapoter pour voir la progression";
+
+/* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "L’application doit redémarrer pour utiliser les nouveaux paramètres de langue. Veuillez relancer l’application.";
+
+/* No comment provided by engineer. */
+"There are no files to display." = "Il n'existe aucun fichier à afficher.";
 
 /* No comment provided by engineer. */
 "There are no quizzes to display." = "Il n'existe aucun questionnaire à afficher.";
@@ -135,6 +168,12 @@
 
 /* No comment provided by engineer. */
 "Uploading..." = "Téléversement en cours...";
+
+/* No comment provided by engineer. */
+"View file %@ %@" = "Voir le fichier %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View submission attempt %d" = "Voir la tentative d'envoi %d";
 
 /* No comment provided by engineer. */
 "Website Address" = "Adresse du site Web";
