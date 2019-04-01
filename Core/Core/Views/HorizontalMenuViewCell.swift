@@ -21,9 +21,9 @@ class HorizontalMenuViewCell: UICollectionViewCell {
     @IBOutlet private weak var textLabel: UILabel!
     @IBOutlet private weak var selectionView: UIView!
     var selectionColor: UIColor? = UIColor.named(.borderDarkest)
-    var font: UIFont? {
+    var titleFont: UIFont? {
         didSet {
-            textLabel.font = font
+            textLabel.font = titleFont
         }
     }
 

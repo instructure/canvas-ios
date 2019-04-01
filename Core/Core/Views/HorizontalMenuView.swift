@@ -90,7 +90,7 @@ extension HorizontalMenuView: UICollectionViewDataSource, UICollectionViewDelega
         let cell: HorizontalMenuViewCell = collectionView.dequeue(for: indexPath)
         cell.title = delegate?.menuItemTitle(at: indexPath)
         cell.selectionColor = delegate?.selectedColor
-        cell.font = delegate?.measurementFont
+        cell.titleFont = delegate?.measurementFont
         if indexPath == selectedIndexPath {
             cell.isSelected = true
         }
