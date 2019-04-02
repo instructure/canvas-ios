@@ -258,20 +258,4 @@ class AssignmentDetailsPageTest: StudentTest {
         page.tap(.submitAssignmentButton)
         page.assertHidden(.submitAssignmentButton)
     }
-
-    func testSubmitOnlineUpload() {
-        #if !(targetEnvironment(simulator))
-        let assignment = mockAssignment(APIAssignment.make([
-            "submission_types": [ "online_upload" ],
-        ]))
-        show("/courses/\(course.id)/assignments/\(assignment.id)")
-        page.tap(.submitAssignmentButton)
-        filePicker.waitToExist(.submitButton, timeout: 3)
-        filePicker.assertEnabled(.submitButton, false)
-        filePicker.tap(.cameraButton)
-        capturePhoto()
-        filePicker.assertEnabled(.submitButton, true)
-        filePicker.tap(.submitButton)
-        #endif
-    }
 }

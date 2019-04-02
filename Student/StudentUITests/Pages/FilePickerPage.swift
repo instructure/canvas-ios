@@ -24,3 +24,11 @@ enum FilePickerPage: String, UITestElement, CaseIterable {
     case submitButton
     case cancelButton
 }
+
+struct FilePickerListItem: RawRepresentable, UITestElement {
+    let rawValue: String
+
+    static func item(_ id: String) -> FilePickerListItem {
+        return FilePickerListItem(rawValue: id)
+    }
+}
