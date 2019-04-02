@@ -14,6 +14,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+import AVKit
 import UIKit
 import CanvasCore
 import CanvasKeymaster
@@ -64,6 +65,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         
         TheKeymaster.fetchesBranding = false
         TheKeymaster.delegate = loginConfig
+        try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
         
         window = MasqueradableWindow(frame: UIScreen.main.bounds)
         showLoadingState()
