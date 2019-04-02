@@ -36,6 +36,9 @@ public class Assignment: NSManagedObject {
     @NSManaged public var unlockAt: Date?
     @NSManaged public var lockedForUser: Bool
     @NSManaged public var url: URL?
+    @objc public var dueAtOrder: String {
+        return dueAt == nil ? "z" : "a"
+    }
 
     public var gradingType: GradingType {
         get { return GradingType(rawValue: gradingTypeRaw) ?? .points }
@@ -79,6 +82,7 @@ extension Assignment {
         details = item.description
         pointsPossible = item.points_possible
         dueAt = item.due_at
+//        dueAtOrder = item.due_at == nil ? "z" : "a"
         htmlURL = item.html_url
         gradingType = item.grading_type
         gradedIndividually = item.grade_group_students_individually ?? true

@@ -199,4 +199,36 @@ class GetAssignmentsTests: CoreTestCase {
         XCTAssertEqual(assignment.submissionTypes, [.on_paper, .external_tool])
         XCTAssertEqual(assignment.position, 0)
     }
+
+    func testSortOrderByDueDate() {
+        let dateC = Date().addDays(2)
+        let dateD = Date().addDays(3)
+
+        let a = Assignment.make(["dueAt": nil, "id": "2"])
+        let b = Assignment.make(["dueAt": nil, "id": "3"])
+        let c = Assignment.make(["dueAt": dateC, "id": "4"])
+        let d = Assignment.make(["dueAt": dateD, "id": "5"])
+        let e = Assignment.make(["dueAt": nil, "id": "6"])
+        let f = Assignment.make(["dueAt": dateD, "id": "7"])
+
+        let useCase = GetAssignments(courseID: "1", sort: .dueAt)
+
+        let assignments: [Assignment] = databaseClient.fetch(predicate: nil, sortDescriptors: useCase.scope.order)
+        XCTAssertEqual(assignments.count, 6)
+        XCTAssertEqual([c, f, d, e, a, b], assignments)
+    }
+
+    func testSortOrderPosition() {
+
+        let a = Assignment.make(["position": 3, "id": "2"])
+        let b = Assignment.make(["position": 1, "id": "3"])
+        let c = Assignment.make(["position": 5, "id": "4"])
+        let d = Assignment.make(["position": 4, "id": "5"])
+
+        let useCase = GetAssignments(courseID: "1")
+
+        let assignments: [Assignment] = databaseClient.fetch(predicate: nil, sortDescriptors: useCase.scope.order)
+        XCTAssertEqual(assignments.count, 4)
+        XCTAssertEqual([b, a, d, c], assignments)
+    }
 }

@@ -17,12 +17,16 @@
 import Foundation
 
 public class GetAssignments: CollectionUseCase {
+
+    public enum Sort: String {
+        case position, dueAt
+    }
+
     public typealias Model = Assignment
-
     public let courseID: String
-    private let sort: String
+    private let sort: Sort
 
-    public init(courseID: String, sort: String = #keyPath(Assignment.position)) {
+    public init(courseID: String, sort: Sort = .position) {
         self.courseID = courseID
         self.sort = sort
     }
@@ -36,7 +40,33 @@ public class GetAssignments: CollectionUseCase {
     }
 
     public var scope: Scope {
-        return .where(#keyPath(Assignment.courseID), equals: courseID, orderBy: #keyPath(Assignment.position), naturally: false)
+
+        switch sort {
+        case .dueAt:
+            //  this puts nil dueAt at the bottom of the list
+            let sortDescriptor = NSSortDescriptor(key: #keyPath(Assignment.dueAt), ascending: false, selector: #selector(NSDate.fetchedResultsControllerComparatorSortNilsToBottom))
+            let predicate = NSPredicate(format: "%K == %@", argumentArray: [#keyPath(Assignment.courseID), courseID])
+            return Scope.init(predicate: predicate, order: [sortDescriptor])
+        case .position:
+        return .where(#keyPath(Assignment.courseID), equals: courseID, orderBy: #keyPath(Assignment.position))
+        }
+
+//        let s3 = NSSortDescriptor(key: #keyPath(Assignment.dueAtEmpty), ascending: true) { id1, id2 in
+//            if let id1 = id1 as? Bool, let id2 = id2 as? Bool {
+//                if id1 == id2 { return .orderedSame }
+//                if id1 && !id2 { return .orderedAscending }
+//                if !id1 && id2 { return .orderedDescending }
+//            }
+////            else {
+//                return .orderedSame
+////            }
+//
+//        }
+
+//        let s4 = NSSortDescriptor(key: #keyPath(Assignment.dueAtOrder), ascending: true, selector: #selector(NSNumber.comp(_:)))
+//        return Scope.where(#keyPath(Assignment.courseID), equals: courseID, orderBy: sort, ascending: false, naturally: false)
+//        return .where(#keyPath(Assignment.courseID), equals: courseID, orderBy: sort, naturally: true)
+//        return .where(#keyPath(Assignment.courseID), equals: courseID, orderBy: #keyPath(Assignment.position), naturally: false)
     }
 
     public func write(response: [APIAssignment]?, urlResponse: URLResponse?, to client: PersistenceClient) throws {
@@ -49,5 +79,16 @@ public class GetAssignments: CollectionUseCase {
             let model: Assignment = client.fetch(predicate).first ?? client.insert()
             try model.update(fromApiModel: item, in: client, updateSubmission: false)
         }
+    }
+}
+
+extension NSNumber {
+    @objc open func comp(_ b: NSNumber) -> ComparisonResult {
+//        if let id1 = id1 as? Bool, let id2 = id2 as? Bool {
+            if self.boolValue == b.boolValue { return .orderedSame }
+            if self.boolValue && !b.boolValue { return .orderedAscending }
+            if !self.boolValue && b.boolValue { return .orderedDescending }
+//        }
+        return .orderedSame
     }
 }

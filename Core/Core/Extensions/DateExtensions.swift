@@ -26,3 +26,9 @@ public extension Date {
         self = date
     }
 }
+
+public extension NSDate {
+    @objc public func fetchedResultsControllerComparatorSortNilsToBottom(_ d: NSDate) -> ComparisonResult {
+        return d.compare(self as Date)
+    }
+}

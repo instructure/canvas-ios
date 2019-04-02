@@ -26,4 +26,17 @@ class DateExtensionsTests: XCTestCase {
         XCTAssertEqual(Date(fromISOString: "bad wolf"), nil)
         XCTAssertEqual(Date(fromISOString: "1970-01-01T00:00:00Z"), Date(timeIntervalSince1970: 0))
     }
+
+    func testFetchedResultsControllerComparatorSortNilsToBottom() {
+        let a: NSDate = Date().addDays(2) as NSDate
+        let b: NSDate = Date().addDays(3) as NSDate
+
+        let result1 = a.fetchedResultsControllerComparatorSortNilsToBottom(b)
+        let result2  = b.fetchedResultsControllerComparatorSortNilsToBottom(a)
+        let result3  = a.fetchedResultsControllerComparatorSortNilsToBottom(a)
+
+        XCTAssertEqual(result1, .orderedDescending)
+        XCTAssertEqual(result2, .orderedAscending)
+        XCTAssertEqual(result3, .orderedSame)
+    }
 }

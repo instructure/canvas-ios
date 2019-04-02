@@ -23,7 +23,7 @@ class AssignmentListViewController: UITableViewController {
     var color: UIColor?
     var titleSubtitleView: TitleSubtitleView = TitleSubtitleView.create()
 
-    convenience init(env: AppEnvironment = .shared, courseID: String, sort: AssignmentListPresenter.Sort = .position) {
+    convenience init(env: AppEnvironment = .shared, courseID: String, sort: GetAssignments.Sort = .position) {
         self.init(nibName: nil, bundle: nil)
         presenter = AssignmentListPresenter(view: self, courseID: courseID, sort: sort)
     }
@@ -46,9 +46,11 @@ class AssignmentListViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(UITableViewCell.self, for: indexPath)
-        cell.textLabel?.text = presenter?.assignments[indexPath.row]?.name
+        cell.textLabel?.text = presenter?.assignments[indexPath]?.name
         cell.imageView?.image = .icon(.assignment, .line)
         cell.imageView?.tintColor = color
+        let dt = presenter?.assignments[indexPath]?.dueAt?.description ?? "no due date"
+        print("\(indexPath.row): \(dt)")
         return cell
     }
 
