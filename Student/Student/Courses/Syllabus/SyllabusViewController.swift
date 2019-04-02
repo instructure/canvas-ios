@@ -90,7 +90,14 @@ class SyllabusViewController: UIViewController {
             child.view.addConstraintsWithVFL("H:[syllabus][view(==superview)]|", views: ["syllabus": syllabus])
             child.view.pinToTopAndBottomOfSuperview()
         }
+    }
 
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        let ratio = self.scrollView.contentOffsetRatio
+        coordinator.animate(alongsideTransition: { [weak self] _ in
+            ratio.x >= 0.5 ? self?.showAssignments() : self?.showSyllabus()
+            self?.menu.reload()
+        }, completion: nil)
     }
 
     // MARK: -

@@ -14,6 +14,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+<<<<<<< HEAD
 import Foundation
 
 extension UIScrollView {
@@ -22,5 +23,14 @@ extension UIScrollView {
     /// The default `threshold` is 60.
     public func isBottomReached(threshold: CGFloat = 60) -> Bool {
         return contentOffset.y >= contentSize.height - frame.size.height - threshold
+    }
+
+    /// get a ratio for content offset based on current orientation that can then be used after device rotation
+    public var contentOffsetRatio: CGPoint {
+        let w = contentSize.width
+        let h = contentSize.height
+        let centerX = (contentOffset.x + (frame.size.width / 2.0)) / w
+        let centerY = (contentOffset.y + (frame.size.height / 2.0)) / h
+        return CGPoint(x: centerX, y: centerY)
     }
 }
