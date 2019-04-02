@@ -23,12 +23,12 @@ class SyllabusTests: StudentTest {
     let html = "<html>hello world</html>"
     lazy var course: APICourse = {
         let course = APICourse.make(["syllabus_body": html, "course_code": "abc"])
-        mockData(GetCourseRequest(courseID: course.id, include: [.syllabusBody]), value: course)
+        mockData(GetCourseRequest(courseID: course.id), value: course)
         return course
     }()
 
     func mockAssignment(_ assignment: APIAssignment) -> APIAssignment {
-        mockData(GetAssignmentRequest(courseID: course.id, assignmentID: assignment.id.value, include: [.submission]), value: assignment)
+        mockData(GetAssignmentRequest(courseID: course.id, assignmentID: assignment.id.value, include: []), value: assignment)
         return assignment
     }
 

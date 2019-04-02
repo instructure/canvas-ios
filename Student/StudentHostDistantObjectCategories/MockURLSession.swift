@@ -54,6 +54,9 @@ class MockURLSession: URLSession {
     @objc dynamic override func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
         let task = MockDataTask()
         task.mock = MockURLSession.dataMocks[request.url!]
+        if task.mock == nil {
+            print("⚠️ mock not found for url: \(request.url?.absoluteString ?? "<n/a>")")
+        }
         task.callback = completionHandler
         return task
     }
