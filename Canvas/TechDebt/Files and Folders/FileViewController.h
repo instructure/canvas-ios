@@ -44,9 +44,4 @@
 @property (nonatomic, copy) NSString* pageViewEventName;
 
 - (void)showDownloadError:(NSError *)error;
-- (BOOL)previewController:(QLPreviewController *)controller shouldOpenURL:(NSURL *)url forPreviewItem:(id<QLPreviewItem>)item;
-- (NSInteger)numberOfPreviewItemsInPreviewController:(QLPreviewController *)controller;
-- (id<QLPreviewItem>)previewController:(QLPreviewController *)controller
-                    previewItemAtIndex:(NSInteger)index;
-
 @end

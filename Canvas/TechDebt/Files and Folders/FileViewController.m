@@ -555,10 +555,10 @@
 }
 
 - (BOOL)fileIsARCapable {
-    if (_file == NULL) {
-        return FALSE;
+    if (_url == NULL) {
+        return NO;
     }
-    NSString *extension = [[[NSURL alloc] initWithString:_file.filename] pathExtension];
+    NSString *extension = [_url pathExtension];
     return [extension isEqualToString:@"usdz"];
 }
 
