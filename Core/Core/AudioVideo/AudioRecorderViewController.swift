@@ -108,6 +108,7 @@ public class AudioRecorderViewController: UIViewController, ErrorViewController 
         stopButton?.isHidden = true
         do {
             try AVAudioSession.sharedInstance().setActive(false)
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
         } catch {
             showError(error)
         }
