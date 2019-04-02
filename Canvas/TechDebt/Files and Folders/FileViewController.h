@@ -18,6 +18,7 @@
 
 #import <UIKit/UIKit.h>
 @import CanvasCore;
+@import QuickLook;
 
 @class CKUploadProgressToolbar, CKCanvasAPI, CKContextInfo, CKAttachment;
 
@@ -43,5 +44,4 @@
 @property (nonatomic, copy) NSString* pageViewEventName;
 
 - (void)showDownloadError:(NSError *)error;
-
 @end
