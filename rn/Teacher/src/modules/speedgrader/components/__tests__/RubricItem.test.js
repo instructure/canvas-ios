@@ -22,6 +22,7 @@ import RubricItem from '../RubricItem'
 import renderer from 'react-test-renderer'
 import explore from '../../../../../test/helpers/explore'
 import { shallow } from 'enzyme'
+import * as templates from '../../../../__templates__'
 
 jest.mock('../../../../common/components/CircleToggle', () => 'CircleToggle')
 jest.mock('TouchableOpacity', () => 'TouchableOpacity')
@@ -31,10 +32,6 @@ jest.mock('AlertIOS', () => ({
 jest.mock('ActionSheetIOS', () => ({
   showActionSheetWithOptions: jest.fn(),
 }))
-
-const templates = {
-  ...require('../../../../__templates__/rubric'),
-}
 
 let defaultProps = {
   rubricItem: templates.rubric(),
@@ -47,7 +44,7 @@ let defaultProps = {
 }
 
 describe('RubricItem', () => {
-  beforeEach(() => jest.resetAllMocks())
+  beforeEach(() => jest.clearAllMocks())
 
   it('renders', () => {
     let tree = renderer.create(
@@ -81,6 +78,7 @@ describe('RubricItem', () => {
       ...defaultProps,
       grade: {
         points: 10,
+        rating_id: '3',
         comments: '',
       },
     }
@@ -132,6 +130,7 @@ describe('RubricItem', () => {
       ...defaultProps,
       grade: {
         points: 10,
+        rating_id: '3',
         comments: '',
       },
     }
@@ -147,15 +146,16 @@ describe('RubricItem', () => {
     expect(button.props.on).toEqual(false)
   })
 
-  it('calls changeRating with the id and value', () => {
+  it('calls changeRating with the id, points, and rating_id', () => {
     let tree = renderer.create(
       <RubricItem {...defaultProps} />
     ).toJSON()
 
-    let button = explore(tree).selectByID(`rubric-item.points-${defaultProps.rubricItem.ratings[0].id}`) || {}
-    button.props.onPress(0)
+    const { id } = defaultProps.rubricItem.ratings[0]
+    let button = explore(tree).selectByID(`rubric-item.points-${id}`) || {}
+    button.props.onPress(0, id)
 
-    expect(defaultProps.changeRating).toHaveBeenCalledWith('2', 0)
+    expect(defaultProps.changeRating).toHaveBeenCalledWith('2', 0, id)
   })
 
   it('gets the value from prompting for a custom value', () => {
@@ -168,7 +168,7 @@ describe('RubricItem', () => {
 
     expect(AlertIOS.prompt).toHaveBeenCalled()
     AlertIOS.prompt.mock.calls[0][2][1].onPress('12')
-    expect(defaultProps.changeRating).toHaveBeenCalledWith(defaultProps.rubricItem.id, 12)
+    expect(defaultProps.changeRating).toHaveBeenCalledWith(defaultProps.rubricItem.id, 12, undefined)
     expect(AccessibilityInfo.setAccessibilityFocus).toHaveBeenCalled()
   })
 
@@ -199,7 +199,7 @@ describe('RubricItem', () => {
 
     let button = explore(component.toJSON()).selectByProp('testID', `rubric-item.customize-grade-${defaultProps.rubricItem.id}`).pop()
     button.props.onPress()
-    expect(component.getInstance().state.selectedOption).toEqual(null)
+    expect(component.getInstance().state.selectedPoints).toEqual(null)
   })
 
   it('will call openCommentKeyboard when the add comment button is pressed', () => {

@@ -62,7 +62,7 @@ test('calls onPress with the value', () => {
   let button = explore(tree).selectByID('circle-button') || {}
   button.props.onPress()
 
-  expect(circleToggleProps.onPress).toHaveBeenCalledWith(circleToggleProps.value)
+  expect(circleToggleProps.onPress).toHaveBeenCalledWith(circleToggleProps.value, circleToggleProps.itemID)
 })
 
 test('CircleToggle measures itself on longpress and calls props.onLongPress', () => {

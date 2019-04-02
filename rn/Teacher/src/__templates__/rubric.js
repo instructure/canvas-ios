@@ -46,6 +46,7 @@ export const rubricSettings: Template<RubricSettings> = template({
 export const rubricAssessment: Template<{ [string]: RubricAssessment }> = template({
   '2': {
     points: 10,
+    rating_id: '3',
     comments: '',
   },
 })

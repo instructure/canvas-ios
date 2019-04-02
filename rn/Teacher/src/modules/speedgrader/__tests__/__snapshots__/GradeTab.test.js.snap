@@ -46,6 +46,7 @@ exports[`Rubric renders a rubric 1`] = `
           "2": Object {
             "comments": "",
             "points": 10,
+            "rating_id": "3",
           },
         },
         "scrollEnabled": true,
@@ -112,6 +113,7 @@ exports[`Rubric renders a rubric 1`] = `
                 "2": Object {
                   "comments": "",
                   "points": 10,
+                  "rating_id": "3",
                 },
               }
             }
@@ -652,6 +654,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
           "2": Object {
             "comments": "",
             "points": 10,
+            "rating_id": "3",
           },
         },
         "scrollEnabled": true,
@@ -718,6 +721,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
                 "2": Object {
                   "comments": "",
                   "points": 10,
+                  "rating_id": "3",
                 },
               }
             }
@@ -1179,6 +1183,7 @@ exports[`Rubric renders the grade picker when there is no rubric 1`] = `
           "2": Object {
             "comments": "",
             "points": 10,
+            "rating_id": "3",
           },
         },
         "scrollEnabled": true,
@@ -1245,6 +1250,7 @@ exports[`Rubric renders the grade picker when there is no rubric 1`] = `
                 "2": Object {
                   "comments": "",
                   "points": 10,
+                  "rating_id": "3",
                 },
               }
             }
@@ -1319,6 +1325,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
           "2": Object {
             "comments": "",
             "points": 10,
+            "rating_id": "3",
           },
         },
         "scrollEnabled": true,
@@ -1385,6 +1392,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                 "2": Object {
                   "comments": "",
                   "points": 10,
+                  "rating_id": "3",
                 },
               }
             }

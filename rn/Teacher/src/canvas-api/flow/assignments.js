@@ -42,6 +42,7 @@ export type RubricSettings = {
 
 export type RubricAssessment = {
   points?: number,
+  rating_id?: string,
   comments: string,
 }
 

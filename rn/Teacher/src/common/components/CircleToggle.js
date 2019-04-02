@@ -40,7 +40,7 @@ export default class CircleToggle extends PureComponent<Props> {
   buttonViewRef: any
 
   onPress = () => {
-    this.props.onPress(this.props.value)
+    this.props.onPress(this.props.value, this.props.itemID)
   }
 
   onLongPress = () => {

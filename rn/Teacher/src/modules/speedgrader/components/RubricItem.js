@@ -41,12 +41,14 @@ export default class RubricItem extends Component<RubricItemProps, RubricItemSta
   customizeButton: any
 
   state: RubricItemState = {
-    selectedOption: this.props.grade && this.props.grade.points,
+    selectedRatingID: this.props.grade && this.props.grade.rating_id,
+    selectedPoints: this.props.grade && this.props.grade.points,
   }
 
   componentWillReceiveProps (nextProps: RubricItemProps) {
     this.setState({
-      selectedOption: nextProps.grade && nextProps.grade.points,
+      selectedRatingID: nextProps.grade && nextProps.grade.rating_id,
+      selectedPoints: nextProps.grade && nextProps.grade.points,
     })
   }
 
@@ -54,19 +56,19 @@ export default class RubricItem extends Component<RubricItemProps, RubricItemSta
     this.props.showDescription(this.props.rubricItem.id)
   }
 
-  changeSelected = (value: ?number) => {
-    this.setState({ selectedOption: value })
-    this.props.changeRating(this.props.rubricItem.id, value)
+  changeSelected = (points: ?number, rating_id: ?string) => {
+    this.setState({ selectedRatingID: rating_id, selectedPoints: points })
+    this.props.changeRating(this.props.rubricItem.id, points, rating_id)
   }
 
   clearSelected = () => {
-    this.setState({ selectedOption: null })
-    this.props.changeRating(this.props.rubricItem.id, null)
+    this.setState({ selectedRatingID: null, selectedPoints: null })
+    this.props.changeRating(this.props.rubricItem.id, null, null)
   }
 
   isCustomGrade = () => {
-    if (this.props.freeFormCriterionComments) { return this.state.selectedOption != null }
-    return this.props.rubricItem.ratings.every(({ points }) => points !== this.state.selectedOption) && this.state.selectedOption != null
+    if (this.props.freeFormCriterionComments) { return this.state.selectedPoints != null }
+    return this.state.selectedRatingID == null && this.state.selectedPoints != null
   }
 
   promptCustom = () => {
@@ -95,7 +97,7 @@ export default class RubricItem extends Component<RubricItemProps, RubricItemSta
         },
       }],
       'plain-text',
-      this.isCustomGrade() ? String(this.state.selectedOption) : '',
+      this.isCustomGrade() ? String(this.state.selectedPoints) : '',
       'number-pad'
     )
   }
@@ -154,9 +156,9 @@ export default class RubricItem extends Component<RubricItemProps, RubricItemSta
               key={rating.id}
               itemID={rating.id}
               style={styles.circle}
-              on={this.state.selectedOption === rating.points}
+              on={this.state.selectedRatingID === rating.id}
               value={rating.points}
-              onPress={(this.state.selectedOption === rating.points) ? this.clearSelected : this.changeSelected}
+              onPress={(this.state.selectedRatingID === rating.id) ? this.clearSelected : this.changeSelected}
               onLongPress={this.showToolTip}
               onPressOut={this.dismissToolTip}
               accessibilityLabel={`${rating.points} — ${rating.description}`}
@@ -169,17 +171,17 @@ export default class RubricItem extends Component<RubricItemProps, RubricItemSta
             key='add'
             style={styles.circle}
             on={isCustomGrade}
-            value={isCustomGrade ? String(this.state.selectedOption) : ''}
+            value={isCustomGrade ? String(this.state.selectedPoints) : ''}
             onPress={isCustomGrade ? this.clearSelected : this.promptCustom}
             accessibilityLabel={
               isCustomGrade
-                ? i18n('Customize Grade {value}', { value: this.state.selectedOption })
+                ? i18n('Customize Grade {value}', { value: this.state.selectedPoints })
                 : i18n('Customize Grade')}
             testID={`rubric-item.customize-grade-${rubricItem.id}`}
             ref={r => { this.customizeButton = r }}
           >
             { isCustomGrade
-              ? i18n.number(this.state.selectedOption || 0)
+              ? i18n.number(this.state.selectedPoints || 0)
               : <Image style={{ tintColor: colors.grey4 }} source={Images.add} />
             }
           </CircleToggle>
@@ -280,7 +282,7 @@ type RubricItemProps = {
   freeFormCriterionComments: boolean,
   grade: RubricAssessment,
   showDescription: (string) => void,
-  changeRating: (string, ?number) => void,
+  changeRating: (string, ?number, ?string) => void,
   openCommentKeyboard: (string) => void,
   deleteComment: (string) => void,
   showToolTip?: (sourcePoint: { x: number, y: number }, tip: string) => void,
@@ -288,5 +290,6 @@ type RubricItemProps = {
 }
 
 type RubricItemState = {
-  selectedOption: ?number,
+  selectedRatingID: ?string,
+  selectedPoints: ?number,
 }
