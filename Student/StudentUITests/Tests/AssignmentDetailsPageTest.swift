@@ -269,9 +269,9 @@ class AssignmentDetailsPageTest: StudentTest {
         filePicker.assertEnabled(.submitButton, false)
         filePicker.tap(.cameraButton)
         capturePhoto()
+        filePicker.waitToExist(.submitButton, timeout: 3)
         filePicker.assertEnabled(.submitButton, true)
         filePicker.tap(.submitButton)
-        // filePicker.assertExists(.submitButton, false)
         #endif
     }
 }
