@@ -82,7 +82,7 @@ class SyllabusViewController: UIViewController {
     }
 
     func configureAssignments() {
-        assignments = AssignmentListViewController(courseID: courseID)
+        assignments = AssignmentListViewController(courseID: courseID, sort: AssignmentListPresenter.Sort.dueAt)
         guard let assignments = assignments else { return }
         embed(assignments, in: scrollView) { [weak self] (child, _) in
             guard let syllabus = self?.syllabus else { return }

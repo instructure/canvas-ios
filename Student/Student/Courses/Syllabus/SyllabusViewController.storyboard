@@ -31,7 +31,7 @@
                                 <rect key="frame" x="0.0" y="65" width="375" height="602"/>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rbl-JY-nxo">
-                                <rect key="frame" x="0.0" y="70" width="375" height="1"/>
+                                <rect key="frame" x="0.0" y="62" width="375" height="1"/>
                                 <color key="backgroundColor" name="borderMedium"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="pmy-2S-xmf"/>
@@ -50,7 +50,7 @@
                             <constraint firstItem="sFi-e9-YFv" firstAttribute="width" secondItem="cLN-QP-Sbm" secondAttribute="width" id="U0s-Df-rmj"/>
                             <constraint firstItem="cLN-QP-Sbm" firstAttribute="bottom" secondItem="sFi-e9-YFv" secondAttribute="bottom" id="aoo-JN-7aI"/>
                             <constraint firstItem="Rbl-JY-nxo" firstAttribute="leading" secondItem="0Y1-lH-lhN" secondAttribute="leading" id="kVq-IE-x49"/>
-                            <constraint firstItem="Rbl-JY-nxo" firstAttribute="top" secondItem="PGj-uf-9Z2" secondAttribute="bottom" constant="5" id="mTM-fm-iW4"/>
+                            <constraint firstItem="Rbl-JY-nxo" firstAttribute="top" secondItem="PGj-uf-9Z2" secondAttribute="bottom" constant="-3" id="mTM-fm-iW4"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="cLN-QP-Sbm"/>
                     </view>

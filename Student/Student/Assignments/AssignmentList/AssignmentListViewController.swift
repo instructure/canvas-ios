@@ -23,9 +23,9 @@ class AssignmentListViewController: UITableViewController {
     var color: UIColor?
     var titleSubtitleView: TitleSubtitleView = TitleSubtitleView.create()
 
-    convenience init(env: AppEnvironment = .shared, courseID: String) {
+    convenience init(env: AppEnvironment = .shared, courseID: String, sort: AssignmentListPresenter.Sort = .position) {
         self.init(nibName: nil, bundle: nil)
-        presenter = AssignmentListPresenter(view: self, courseID: courseID)
+        presenter = AssignmentListPresenter(view: self, courseID: courseID, sort: sort)
     }
 
     override func viewDidLoad() {

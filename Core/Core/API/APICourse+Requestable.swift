@@ -67,6 +67,7 @@ public struct GetCourseRequest: APIRequestable {
         Include.sections,
         Include.term,
         Include.totalScores,
+        Include.syllabusBody,
     ]
 
     var include: [Include] = defaultIncludes

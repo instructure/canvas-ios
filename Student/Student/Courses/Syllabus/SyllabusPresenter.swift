@@ -28,7 +28,7 @@ class SyllabusPresenter {
     let courseID: String
 
     lazy var courses: Store<GetCourseUseCase> = {
-        let useCase = GetCourseUseCase(courseID: courseID, include: [GetCourseRequest.Include.syllabusBody])
+        let useCase = GetCourseUseCase(courseID: courseID)
         return self.env.subscribe(useCase) { [weak self] in
             self?.update()
         }

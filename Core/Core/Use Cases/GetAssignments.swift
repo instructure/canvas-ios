@@ -20,9 +20,11 @@ public class GetAssignments: CollectionUseCase {
     public typealias Model = Assignment
 
     public let courseID: String
+    private let sort: String
 
-    public init(courseID: String) {
+    public init(courseID: String, sort: String = #keyPath(Assignment.position)) {
         self.courseID = courseID
+        self.sort = sort
     }
 
     public var cacheKey: String? {
