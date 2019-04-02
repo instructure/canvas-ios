@@ -58,8 +58,8 @@ export class GradeTab extends Component<GradeTabProps, GradeTabState> {
     this.props.navigator.show(url, { modal: true })
   }
 
-  updateScore = (id: string, value: ?number) => {
-    this.updateAssessment(id, { points: value })
+  updateScore = (id: string, points: ?number, rating_id: ?string) => {
+    this.updateAssessment(id, { points, rating_id })
   }
 
   // Merges new values in 'assessment' with what's currently stored
