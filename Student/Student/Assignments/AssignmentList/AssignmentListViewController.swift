@@ -49,8 +49,6 @@ class AssignmentListViewController: UITableViewController {
         cell.textLabel?.text = presenter?.assignments[indexPath]?.name
         cell.imageView?.image = .icon(.assignment, .line)
         cell.imageView?.tintColor = color
-        let dt = presenter?.assignments[indexPath]?.dueAt?.description ?? "no due date"
-        print("\(indexPath.row): \(dt)")
         return cell
     }
 
