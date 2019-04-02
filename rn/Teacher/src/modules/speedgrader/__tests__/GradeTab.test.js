@@ -55,7 +55,7 @@ let defaultProps = {
 }
 
 describe('Rubric', () => {
-  beforeEach(() => jest.resetAllMocks())
+  beforeEach(() => jest.clearAllMocks())
 
   it('renders the grade picker when there is no rubric', () => {
     let props = {
@@ -145,7 +145,7 @@ describe('Rubric', () => {
     expect(tree.getInstance().state.ratings['2'].comments).toEqual('A Message')
     expect(defaultProps.updateUnsavedChanges).toHaveBeenCalledWith(
       {
-        2: { comments: 'A Message', points: 10 },
+        2: { comments: 'A Message', points: 10, rating_id: '3' },
       },
     )
   })
