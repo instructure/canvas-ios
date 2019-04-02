@@ -14,6 +14,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+import AVKit
 import UIKit
 import CanvasKeymaster
 import ReactiveSwift
@@ -55,6 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         setupForPushNotifications()
         preparePSPDFKit()
+        try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
         window = MasqueradableWindow(frame: UIScreen.main.bounds)
         showLoadingState()
         window?.makeKeyAndVisible()

@@ -95,6 +95,7 @@ class AudioRecorder: NSObject {
         recorder = nil
         do {
             try AVAudioSession.sharedInstance().setActive(false)
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
         } catch let e {
             print("erro stopping the recording session \(e)")
         }

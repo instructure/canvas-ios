@@ -14,6 +14,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+import AVKit
 import UIKit
 import TechDebt
 import PSPDFKit
@@ -54,6 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
         NotificationKitController.setupForPushNotifications(delegate: self)
         TheKeymaster.fetchesBranding = true
         TheKeymaster.delegate = loginConfig
+        try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
         
         window = MasqueradableWindow(frame: UIScreen.main.bounds)
         showLoadingState()

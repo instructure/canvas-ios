@@ -14,6 +14,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+import AVKit
 import UIKit
 import CoreData
 import Core
@@ -33,6 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         environment.logger.log(#function)
         DocViewerViewController.setup(.studentPSPDFKitLicense)
         setupNotifications()
+        try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
 
         if let session = Keychain.mostRecentSession {
             window.rootViewController = LoadingViewController.create()
