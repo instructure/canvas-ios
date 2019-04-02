@@ -200,26 +200,41 @@ class GetAssignmentsTests: CoreTestCase {
         XCTAssertEqual(assignment.position, 0)
     }
 
-    func testSortOrderByDueDate() {
+    func testSortOrderByDueDate2() {
         let dateC = Date().addDays(2)
         let dateD = Date().addDays(3)
 
-        let a = Assignment.make(["dueAt": nil, "id": "2"])
-        let b = Assignment.make(["dueAt": nil, "id": "3"])
-        let c = Assignment.make(["dueAt": dateC, "id": "4"])
-        let d = Assignment.make(["dueAt": dateD, "id": "5"])
-        let e = Assignment.make(["dueAt": nil, "id": "6"])
-        let f = Assignment.make(["dueAt": dateD, "id": "7"])
+        let aa = APIAssignment.make([ "id": "2", "course_id": "1", "due_at": nil])
+        let bb = APIAssignment.make([ "id": "3", "course_id": "1", "due_at": nil])
+        let cc = APIAssignment.make([ "id": "4", "course_id": "1", "due_at": dateC])
+        let dd = APIAssignment.make([ "id": "5", "course_id": "1", "due_at": dateD])
+        let ee = APIAssignment.make([ "id": "6", "course_id": "1", "due_at": nil])
+        let ff = APIAssignment.make([ "id": "7", "course_id": "1", "due_at": dateD])
+
+        let a = Assignment.make(["id": "2"])
+        let b = Assignment.make(["id": "3"])
+        let c = Assignment.make(["id": "4"])
+        let d = Assignment.make(["id": "5"])
+        let e = Assignment.make(["id": "6"])
+        let f = Assignment.make(["id": "7"])
+
+       //   must do this so dueAtOrder property gets updated
+        try? a.update(fromApiModel: aa, in: databaseClient, updateSubmission: false)
+        try? b.update(fromApiModel: bb, in: databaseClient, updateSubmission: false)
+        try? c.update(fromApiModel: cc, in: databaseClient, updateSubmission: false)
+        try? d.update(fromApiModel: dd, in: databaseClient, updateSubmission: false)
+        try? e.update(fromApiModel: ee, in: databaseClient, updateSubmission: false)
+        try? f.update(fromApiModel: ff, in: databaseClient, updateSubmission: false)
 
         let useCase = GetAssignments(courseID: "1", sort: .dueAt)
 
         let assignments: [Assignment] = databaseClient.fetch(predicate: nil, sortDescriptors: useCase.scope.order)
         XCTAssertEqual(assignments.count, 6)
-        XCTAssertEqual([c, f, d, e, a, b], assignments)
+        //  we don't care about the order of the nil values so trim them at the end of the array
+        XCTAssertEqual([c, f, d], Array(assignments[0..<3]))
     }
 
     func testSortOrderPosition() {
-
         let a = Assignment.make(["position": 3, "id": "2"])
         let b = Assignment.make(["position": 1, "id": "3"])
         let c = Assignment.make(["position": 5, "id": "4"])

@@ -44,29 +44,14 @@ public class GetAssignments: CollectionUseCase {
         switch sort {
         case .dueAt:
             //  this puts nil dueAt at the bottom of the list
-            let sortDescriptor = NSSortDescriptor(key: #keyPath(Assignment.dueAt), ascending: false, selector: #selector(NSDate.fetchedResultsControllerComparatorSortNilsToBottom))
+            let a = NSSortDescriptor(key: #keyPath(Assignment.dueAtOrder), ascending: true)
+            let b = NSSortDescriptor(key: #keyPath(Assignment.dueAt), ascending: true)
+            let c = NSSortDescriptor(key: #keyPath(Assignment.name), ascending: true, selector: #selector(NSString.localizedStandardCompare))
             let predicate = NSPredicate(format: "%K == %@", argumentArray: [#keyPath(Assignment.courseID), courseID])
-            return Scope.init(predicate: predicate, order: [sortDescriptor])
+            return Scope.init(predicate: predicate, order: [a, b, c])
         case .position:
-        return .where(#keyPath(Assignment.courseID), equals: courseID, orderBy: #keyPath(Assignment.position))
+            return .where(#keyPath(Assignment.courseID), equals: courseID, orderBy: #keyPath(Assignment.position))
         }
-
-//        let s3 = NSSortDescriptor(key: #keyPath(Assignment.dueAtEmpty), ascending: true) { id1, id2 in
-//            if let id1 = id1 as? Bool, let id2 = id2 as? Bool {
-//                if id1 == id2 { return .orderedSame }
-//                if id1 && !id2 { return .orderedAscending }
-//                if !id1 && id2 { return .orderedDescending }
-//            }
-////            else {
-//                return .orderedSame
-////            }
-//
-//        }
-
-//        let s4 = NSSortDescriptor(key: #keyPath(Assignment.dueAtOrder), ascending: true, selector: #selector(NSNumber.comp(_:)))
-//        return Scope.where(#keyPath(Assignment.courseID), equals: courseID, orderBy: sort, ascending: false, naturally: false)
-//        return .where(#keyPath(Assignment.courseID), equals: courseID, orderBy: sort, naturally: true)
-//        return .where(#keyPath(Assignment.courseID), equals: courseID, orderBy: #keyPath(Assignment.position), naturally: false)
     }
 
     public func write(response: [APIAssignment]?, urlResponse: URLResponse?, to client: PersistenceClient) throws {
