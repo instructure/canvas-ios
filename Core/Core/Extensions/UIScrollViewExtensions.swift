@@ -14,7 +14,6 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-<<<<<<< HEAD
 import Foundation
 
 extension UIScrollView {
@@ -25,7 +24,8 @@ extension UIScrollView {
         return contentOffset.y >= contentSize.height - frame.size.height - threshold
     }
 
-    /// get a ratio for content offset based on current orientation that can then be used after device rotation
+    /// Get a ratio for contentOffset based on current orientation that can then be used after device rotation
+    /// to set contentOffset
     public var contentOffsetRatio: CGPoint {
         let w = contentSize.width
         let h = contentSize.height
