@@ -266,12 +266,12 @@ class AssignmentDetailsPageTest: StudentTest {
         ]))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
         page.tap(.submitAssignmentButton)
+        filePicker.waitToExist(.submitButton, timeout: 3)
         filePicker.assertEnabled(.submitButton, false)
         filePicker.tap(.cameraButton)
         capturePhoto()
         filePicker.assertEnabled(.submitButton, true)
         filePicker.tap(.submitButton)
-        // filePicker.assertExists(.submitButton, false)
         #endif
     }
 }
