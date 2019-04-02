@@ -49,7 +49,6 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
     lazy var environment: AppEnvironment = {
         let env = AppEnvironment.shared
         env.router = Parent.router
-        // env.backgroundAPIManager.eventsHandler = self
         return env
     }()
 
