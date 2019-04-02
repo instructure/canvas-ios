@@ -266,10 +266,10 @@ class AssignmentDetailsPageTest: StudentTest {
         ]))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
         page.tap(.submitAssignmentButton)
+        filePicker.waitToExist(.submitButton, timeout: 3)
         filePicker.assertEnabled(.submitButton, false)
         filePicker.tap(.cameraButton)
         capturePhoto()
-        filePicker.waitToExist(.submitButton, timeout: 3)
         filePicker.assertEnabled(.submitButton, true)
         filePicker.tap(.submitButton)
         #endif
