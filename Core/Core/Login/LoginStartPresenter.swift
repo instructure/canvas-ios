@@ -64,8 +64,8 @@ class LoginStartPresenter {
                 if Keychain.entries.contains(entry) {
                     Keychain.addEntry(entry)
                 }
-                if Keychain.currentSession == entry {
-                    Keychain.currentSession = entry
+                if AppEnvironment.shared.currentSession == entry {
+                    AppEnvironment.shared.currentSession = entry
                 }
             }
             self?.loadEntries()

@@ -38,7 +38,6 @@ open class AppEnvironment {
     }
 
     public func userDidLogin(session: KeychainEntry) {
-        Keychain.currentSession = session
         database = NSPersistentContainer.create(session: session)
         api = URLSessionAPI(accessToken: session.accessToken, actAsUserID: session.actAsUserID, baseURL: session.baseURL)
         currentSession = session
@@ -47,7 +46,6 @@ open class AppEnvironment {
 
     public func userDidLogout(session: KeychainEntry) {
         guard session == currentSession else { return }
-        Keychain.currentSession = nil
         database.destroy()
         database = globalDatabase
         api = URLSessionAPI()

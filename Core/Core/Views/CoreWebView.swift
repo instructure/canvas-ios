@@ -52,7 +52,7 @@ open class CoreWebView: WKWebView {
     }
 
     @discardableResult
-    open override func loadHTMLString(_ string: String, baseURL: URL? = Keychain.currentSession?.baseURL) -> WKNavigation? {
+    open override func loadHTMLString(_ string: String, baseURL: URL? = AppEnvironment.shared.currentSession?.baseURL) -> WKNavigation? {
         return super.loadHTMLString(html(for: string), baseURL: baseURL)
     }
 

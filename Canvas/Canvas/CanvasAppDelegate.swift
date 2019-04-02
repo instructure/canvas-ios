@@ -29,9 +29,9 @@ import Core
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
+    var window: UIWindow? = MasqueradableWindow(frame: UIScreen.main.bounds)
     @objc let loginConfig = LoginConfiguration(mobileVerifyName: "iCanvas", logo: UIImage(named: "student-logomark")!, fullLogo: UIImage(named: "student-logo")!)
     @objc var session: Session?
-    var window: UIWindow?
 
     let appID = Bundle.main.bundleIdentifier ?? "com.instructure.icanvas"
     let appGroup = "group.com.instructure.icanvas"
@@ -56,8 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
         TheKeymaster.fetchesBranding = true
         TheKeymaster.delegate = loginConfig
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
-        
-        window = MasqueradableWindow(frame: UIScreen.main.bounds)
+
         showLoadingState()
         window?.makeKeyAndVisible()
         
@@ -348,11 +347,11 @@ extension AppDelegate: NativeLoginManagerDelegate {
     }
     
     func didLogout(_ controller: UIViewController) {
-        if let entry = Keychain.currentSession {
-            Keychain.removeEntry(entry)
+        if let entry = environment.currentSession {
             environment.userDidLogout(session: entry)
             CoreWebView.stopCookieKeepAlive()
         }
+        Keychain.clearEntries()
         NotificationKitController.deregisterPushNotifications { _ in
             // this is a no-op because we don't want errors to prevent logging out
         }

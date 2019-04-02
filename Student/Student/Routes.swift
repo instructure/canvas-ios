@@ -59,7 +59,7 @@ public let router = Router(routes: [
     },
 
     RouteHandler(.assignmentFileUpload(courseID: ":courseID", assignmentID: ":assignmentID"), name: "assignment_file_upload") { _, params in
-        guard let courseID = params["courseID"], let assignmentID = params["assignmentID"], let userID = Keychain.currentSession?.userID else {
+        guard let courseID = params["courseID"], let assignmentID = params["assignmentID"], let userID = AppEnvironment.shared.currentSession?.userID else {
             return nil
         }
         let presenter = SubmissionFilePresenter(courseID: courseID, assignmentID: assignmentID, userID: userID)
