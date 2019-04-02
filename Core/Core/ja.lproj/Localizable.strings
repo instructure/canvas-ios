@@ -8,7 +8,10 @@
 "Assignment" = "課題";
 
 /* No comment provided by engineer. */
-"Assignment not found." = "課題が見つかりません。";
+"Attempt %d" = "試行%d";
+
+/* No comment provided by engineer. */
+"Audio" = "オーディオ";
 
 /* No comment provided by engineer. */
 "Authentication failed. Most likely the user denied the request for access." = "認証に失敗。おそらく、ユーザーがアクセス要求を拒否しました。";
@@ -167,9 +170,6 @@
 "Reply to the annotation or previous comments" = "注釈や以前のコメントに返信する";
 
 /* No comment provided by engineer. */
-"Resubmit Assignment" = "課題を再提出する";
-
-/* No comment provided by engineer. */
 "See what's new." = "最新情報を見る。";
 
 /* No comment provided by engineer. */
@@ -191,10 +191,7 @@
 "Style" = "スタイル";
 
 /* No comment provided by engineer. */
-"Submission Failed" = "提出に失敗しました";
-
-/* No comment provided by engineer. */
-"Submission Uploading..." = "提出をアップロード中...";
+"Submission failed." = "提出に失敗しました。";
 
 /* No comment provided by engineer. */
 "Submit Assignment" = "課題を提出する";
@@ -209,19 +206,22 @@
 "Tap here for help." = "ここをタップしてヘルプを表示します。";
 
 /* No comment provided by engineer. */
-"Tap to view details" = "タップして詳細を表示する";
-
-/* No comment provided by engineer. */
-"Tap to view progress" = "タップして進捗を表示する";
+"Terms of Use" = "利用規約";
 
 /* No comment provided by engineer. */
 "Text Entry" = "テキストエントリ";
+
+/* No comment provided by engineer. */
+"There was a problem retrieving the Terms of Use." = "利用規約の取得中に問題が発生しました。";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "この課題の提出期限は%@";
 
 /* No comment provided by engineer. */
 "This assignment was due by %@" = "この課題の提出期限は%@";
+
+/* No comment provided by engineer. */
+"Video" = "ビデオ";
 
 /* No comment provided by engineer. */
 "We've made a few changes." = "2、3変更がありました。";

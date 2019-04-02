@@ -323,7 +323,8 @@ class StoreTests: CoreTestCase {
 
     func testChanges() {
         let use = TestUseCase(courses: nil, requestError: nil, writeError: nil, urlResponse: nil)
-        let store = Store(env: environment, useCase: use) { }
+        let notified = expectation(description: "notified")
+        let store = Store(env: environment, useCase: use) { notified.fulfill() }
         let frc: NSFetchedResultsController<Course> = environment.database.fetchedResultsController(
             predicate: use.scope.predicate,
             sortDescriptors: use.scope.order,
@@ -332,7 +333,8 @@ class StoreTests: CoreTestCase {
         try? frc.performFetch()
         let frc2 = frc as! NSFetchedResultsController<NSFetchRequestResult>
         store.changes = [.insertSection(0)]
-        store.controllerWillChangeContent(frc2)
+        store.controllerDidChangeContent(frc2)
+        wait(for: [notified], timeout: 1)
         XCTAssertEqual(store.changes, [])
         store.controller(frc2, didChange: frc.sections![0], atSectionIndex: 0, for: .insert)
         store.controller(frc2, didChange: frc.sections![0], atSectionIndex: 0, for: .delete)
@@ -349,5 +351,53 @@ class StoreTests: CoreTestCase {
             .deleteRow(IndexPath(row: 4, section: 5)),
             .insertRow(IndexPath(row: 5, section: 6)),
         ])
+    }
+
+    func testExhaustWhileKeepsGoing() {
+        let prev = "https://cgnuonline-eniversity.edu/api/v1/date"
+        let curr = "https://cgnuonline-eniversity.edu/api/v1/date?page=2"
+        let next = "https://cgnuonline-eniversity.edu/api/v1/date?page=3"
+        let headers = [
+            "Link": "<\(curr)>; rel=\"current\",<>;, <\(prev)>; rel=\"prev\", <\(next)>; rel=\"next\"; count=1",
+        ]
+        let urlResponse = HTTPURLResponse(url: URL(string: curr)!, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: headers)!
+        let page1 = [APICourse.make(["id": "1"])]
+        let page2 = [APICourse.make(["id": "2"])]
+        let useCase = TestUseCase(courses: page1, urlResponse: urlResponse)
+        api.mock(useCase.getNext(from: urlResponse)!, value: page2, response: nil, error: nil)
+        let expectation = XCTestExpectation(description: "exhausted")
+        store = environment.subscribe(useCase) {
+            if self.store.count == 2 {
+                expectation.fulfill()
+            }
+        }
+
+        store.exhaust(while: { _ in return true })
+        wait(for: [expectation], timeout: 0.5)
+    }
+
+    func testExhaustWhileStops() {
+        let prev = "https://cgnuonline-eniversity.edu/api/v1/date"
+        let curr = "https://cgnuonline-eniversity.edu/api/v1/date?page=2"
+        let next = "https://cgnuonline-eniversity.edu/api/v1/date?page=3"
+        let headers = [
+            "Link": "<\(curr)>; rel=\"current\",<>;, <\(prev)>; rel=\"prev\", <\(next)>; rel=\"next\"; count=1",
+        ]
+        let urlResponse = HTTPURLResponse(url: URL(string: curr)!, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: headers)!
+        let page1 = [APICourse.make(["id": "1"])]
+        let page2 = [APICourse.make(["id": "2"])]
+        let useCase = TestUseCase(courses: page1, urlResponse: urlResponse)
+        api.mock(useCase.getNext(from: urlResponse)!, value: page2, response: nil, error: nil)
+        let expectation = XCTestExpectation(description: "exhausted")
+        expectation.isInverted = true
+        store = environment.subscribe(useCase) {
+            if self.store.count == 2 {
+                expectation.fulfill()
+            }
+        }
+
+        store.exhaust(while: { _ in return false })
+        wait(for: [expectation], timeout: 0.5)
+        XCTAssertEqual(store.count, 1)
     }
 }

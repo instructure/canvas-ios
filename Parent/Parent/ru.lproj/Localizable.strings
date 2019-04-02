@@ -68,6 +68,9 @@
 "Caught up on Alerts" = "Выполнить задания по оповещениям";
 
 /* No comment provided by engineer. */
+"Change User" = "Сменить пользователя";
+
+/* No comment provided by engineer. */
 "Choose a student" = "Выберите студента";
 
 /* Close Button Title */
@@ -89,6 +92,9 @@
 "Current student: %@, tap to switch students" = "Текущий студент: %@, нажмите для переключения между студентами";
 
 /* No comment provided by engineer. */
+"Developer Menu" = "Меню программиста";
+
+/* No comment provided by engineer. */
 "Discussion" = "Обсуждение";
 
 /* No comment provided by engineer. */
@@ -105,6 +111,9 @@
 
 /* No comment provided by engineer. */
 "Excused" = "По уважительной причине";
+
+/* No comment provided by engineer. */
+"Help" = "Справка";
 
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "Высокая оценка за задание не может быть ниже низкой оценки за задание";
@@ -132,6 +141,9 @@
 
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "С опозданием: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Log Out" = "Выйти";
 
 /* Low Assignment Grade too High */
 "Low assignment grade cannot be higher than high assignment grade" = "Низкая оценка за задание не может быть выше высокой оценки за задание";
@@ -190,6 +202,12 @@
 /* No comment provided by engineer. */
 "Quiz" = "Тест";
 
+/* No comment provided by engineer. */
+"Report a Problem" = "Сообщить о проблеме";
+
+/* No comment provided by engineer. */
+"Request a Feature" = "Запросить функцию";
+
 /* Not Found Error Message */
 "Resource not found.  Please try again." = "Ресурс не найден. Пожалуйста, попробуйте еще раз.";
 
@@ -214,6 +232,9 @@
 /* Directions in the admin view */
 "Tap to start viewing Canvas as another person." = "Нажмите, чтобы начать просмотр Canvas как другой пользователь.";
 
+/* No comment provided by engineer. */
+"Terms of Use" = "Условия использования";
+
 /* Error message */
 "There are no actions for this item" = "Отсутствуют действия для этого элемента";
 
@@ -237,6 +258,9 @@
 
 /* No comment provided by engineer. */
 "Unread" = "Не прочитано";
+
+/* No comment provided by engineer. */
+"View Canvas Guides" = "Просмотр руководств Canvas";
 
 /* Calendar Tab */
 "Week" = "Неделя";

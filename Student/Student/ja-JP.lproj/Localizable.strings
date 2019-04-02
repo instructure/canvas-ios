@@ -50,6 +50,9 @@
 "Edit Course" = "コースを編集";
 
 /* No comment provided by engineer. */
+"Failed to locate camera result" = "カメラの結果を見つけるのに失敗しました";
+
+/* No comment provided by engineer. */
 "Failed upload" = "アップロード中に失敗";
 
 /* No comment provided by engineer. */
@@ -57,6 +60,9 @@
 
 /* No comment provided by engineer. */
 "Files" = "ファイル";
+
+/* No comment provided by engineer. */
+"Files (%d)" = "ファイル (%d)";
 
 /* No comment provided by engineer. */
 "Grade" = "成績";
@@ -75,6 +81,18 @@
 
 /* No comment provided by engineer. */
 "No Submission Date" = "提出日なし";
+
+/* No comment provided by engineer. */
+"On %@ %@ commented \"%@\"" = "%1$@について%2$@が \"%3$@\"とコメントしました";
+
+/* No comment provided by engineer. */
+"On %@ %@ left a video comment" = "%1$@について%2$@がビデオコメントを残しました";
+
+/* No comment provided by engineer. */
+"On %@ %@ left an audio comment" = "%1$@について%2$@がオーディオコメントを残しました";
+
+/* No comment provided by engineer. */
+"On %@ %@ submitted the following" = "%1$@について%2$@が次を提出しました";
 
 /* Button to open external tool */
 "Open External Tool" = "開かれている外部ツール";
@@ -110,7 +128,13 @@
 "Submission & Rubric" = "提出 & ルブリック";
 
 /* No comment provided by engineer. */
+"Submission Failed" = "提出に失敗しました";
+
+/* No comment provided by engineer. */
 "Submission Types" = "提出タイプ";
+
+/* No comment provided by engineer. */
+"Submission Uploading..." = "提出をアップロード中...";
 
 /* No comment provided by engineer. */
 "Submit" = "提出";
@@ -122,7 +146,16 @@
 "Successfully submitted!" = "正常に提出しました！";
 
 /* No comment provided by engineer. */
+"Tap to view details" = "タップして詳細を表示する";
+
+/* No comment provided by engineer. */
+"Tap to view progress" = "タップして進捗を表示する";
+
+/* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "新しい言語設定を使用するには、アプリを再起動する必要があります。アプリを再起動してください。";
+
+/* No comment provided by engineer. */
+"There are no files to display." = "表示するファイルはありません。";
 
 /* No comment provided by engineer. */
 "There are no quizzes to display." = "表示するクイズはありません。";
@@ -135,6 +168,12 @@
 
 /* No comment provided by engineer. */
 "Uploading..." = "更新中...";
+
+/* No comment provided by engineer. */
+"View file %@ %@" = "ファイルを表示%1$@%2$@";
+
+/* No comment provided by engineer. */
+"View submission attempt %d" = "提出企図を表示%d";
 
 /* No comment provided by engineer. */
 "Website Address" = "ウェブサイトのアドレス";

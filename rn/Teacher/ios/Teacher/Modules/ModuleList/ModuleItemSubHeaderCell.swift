@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2018-present Instructure, Inc.
+// Copyright (C) 2019-present Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -15,13 +15,16 @@
 //
 
 import Foundation
+import Core
 
-enum NetworkError: Error {
-    case invalidRequest
-    case invalidResponse
-}
+class ModuleItemSubHeaderCell: UITableViewCell {
+    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var publishedIconView: PublishedIconView!
+    @IBOutlet weak var indentConstraint: NSLayoutConstraint!
 
-enum Result<Value> {
-    case completed(Value)
-    case failed(Error)
+    var indent: Int = 0 {
+        didSet {
+            indentConstraint.constant = CGFloat(indent) * ModuleItemCell.IndentMultiplier
+        }
+    }
 }

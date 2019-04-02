@@ -8,7 +8,10 @@
 "Assignment" = "Tâche";
 
 /* No comment provided by engineer. */
-"Assignment not found." = "Tâche non trouvée.";
+"Attempt %d" = "Essai %d";
+
+/* No comment provided by engineer. */
+"Audio" = "Audio";
 
 /* No comment provided by engineer. */
 "Authentication failed. Most likely the user denied the request for access." = "Échec d'authentification. Très probablement, l'utilisateur a refusé la demande d'accès.";
@@ -167,9 +170,6 @@
 "Reply to the annotation or previous comments" = "Répondre à l’annotation ou aux commentaires précédents";
 
 /* No comment provided by engineer. */
-"Resubmit Assignment" = "Envoyer la tâche de nouveau";
-
-/* No comment provided by engineer. */
 "See what's new." = "Regardez ce qu'il y a de nouveau";
 
 /* No comment provided by engineer. */
@@ -191,10 +191,7 @@
 "Style" = "Style";
 
 /* No comment provided by engineer. */
-"Submission Failed" = "Échec de l’envoi";
-
-/* No comment provided by engineer. */
-"Submission Uploading..." = "Téléversement des envois en cours...";
+"Submission failed." = "Échec de l’envoi";
 
 /* No comment provided by engineer. */
 "Submit Assignment" = "Envoyer la tâche";
@@ -209,19 +206,22 @@
 "Tap here for help." = "Appuyer ici pour obtenir de l'aide.";
 
 /* No comment provided by engineer. */
-"Tap to view details" = "Tapoter pour afficher les détails";
-
-/* No comment provided by engineer. */
-"Tap to view progress" = "Tapoter pour afficher la progression";
+"Terms of Use" = "Conditions d'utilisation";
 
 /* No comment provided by engineer. */
 "Text Entry" = "Saisie de texte";
+
+/* No comment provided by engineer. */
+"There was a problem retrieving the Terms of Use." = "Un problème est survenu lors de la récupération des conditions d’utilisation.";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "Cette tâche est dû le %@";
 
 /* No comment provided by engineer. */
 "This assignment was due by %@" = "Cette tâche était due le %@";
+
+/* No comment provided by engineer. */
+"Video" = "Vidéo";
 
 /* No comment provided by engineer. */
 "We've made a few changes." = "Nous avons apporté quelques changements.";

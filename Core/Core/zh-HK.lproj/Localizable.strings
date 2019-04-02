@@ -8,7 +8,10 @@
 "Assignment" = "作業";
 
 /* No comment provided by engineer. */
-"Assignment not found." = "找不到作業。";
+"Attempt %d" = "嘗試%d";
+
+/* No comment provided by engineer. */
+"Audio" = "音訊";
 
 /* No comment provided by engineer. */
 "Authentication failed. Most likely the user denied the request for access." = "驗證失敗。很可能是使用者拒絕了存取請求。";
@@ -167,9 +170,6 @@
 "Reply to the annotation or previous comments" = "回覆註釋或上一則評論";
 
 /* No comment provided by engineer. */
-"Resubmit Assignment" = "重新提交作業";
-
-/* No comment provided by engineer. */
 "See what's new." = "看看有哪些變更。";
 
 /* No comment provided by engineer. */
@@ -191,10 +191,7 @@
 "Style" = "樣式";
 
 /* No comment provided by engineer. */
-"Submission Failed" = "提交失敗";
-
-/* No comment provided by engineer. */
-"Submission Uploading..." = "提交項目上傳中...";
+"Submission failed." = "提交項目失敗。";
 
 /* No comment provided by engineer. */
 "Submit Assignment" = "提交作業";
@@ -209,19 +206,22 @@
 "Tap here for help." = "點按此處獲取支援。";
 
 /* No comment provided by engineer. */
-"Tap to view details" = "點選檢視詳情";
+"Terms of Use" = "使用條款";
 
 /* No comment provided by engineer. */
-"Tap to view progress" = "點選檢視進度";
+"Text Entry" = "文字條目";
 
 /* No comment provided by engineer. */
-"Text Entry" = "文字輸入";
+"There was a problem retrieving the Terms of Use." = "取得使用條款時出現問題。";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "作業截止日期為%@";
 
 /* No comment provided by engineer. */
 "This assignment was due by %@" = "作業已截止，截止日期為%@";
+
+/* No comment provided by engineer. */
+"Video" = "視訊";
 
 /* No comment provided by engineer. */
 "We've made a few changes." = "我們作出了一些變更。";

@@ -17,10 +17,15 @@
 import Foundation
 import Core
 
+private var collapsedIDs: [String: Set<String>] = [:] // [courseID: [moduleID]]
+
 class ModuleListPresenter {
     let env: AppEnvironment
     let courseID: String
+    let moduleID: String?
     weak var view: ModuleListViewProtocol?
+
+    private var hasScrolledToModule = false
 
     var course: Course? {
         return courses.first
@@ -30,6 +35,10 @@ class ModuleListPresenter {
         let useCase = GetModules(courseID: courseID)
         return env.subscribe(useCase) { [weak self] in
             self?.view?.reloadModules()
+
+            if let moduleID = self?.moduleID, self?.hasScrolledToModule == false {
+                self?.scroll(toModule: moduleID)
+            }
         }
     }()
 
@@ -47,19 +56,66 @@ class ModuleListPresenter {
         }
     }()
 
-    init(env: AppEnvironment, view: ModuleListViewProtocol, courseID: String) {
+    init(env: AppEnvironment, view: ModuleListViewProtocol, courseID: String, moduleID: String? = nil) {
         self.env = env
         self.courseID = courseID
+        self.moduleID = moduleID
         self.view = view
+
+        collapsedIDs[courseID] = collapsedIDs[courseID] ?? Set()
+        if let moduleID = moduleID {
+            collapsedIDs[courseID]?.remove(moduleID)
+        }
     }
 
     func viewIsReady() {
-        modules.refresh()
+        refreshModules()
         courses.refresh()
         colors.refresh()
     }
 
     func forceRefresh() {
-        modules.refresh(force: true)
+        view?.showPending()
+        modules.refresh(force: true) { [weak self] _ in
+            self?.view?.hidePending()
+        }
+    }
+
+    func refreshModules() {
+        modules.exhaust { [weak self] modules in
+            guard let moduleID = self?.moduleID else {
+                // If no moduleID is specified we only get the first page
+                return false
+            }
+            // Keep exhausting until we sync the module with `moduleID`
+            return !modules.map({ $0.id.value }).contains(moduleID)
+        }
+    }
+
+    private func scroll(toModule moduleID: String) {
+        if let section = modules.enumerated().first(where: { $0.1.id == moduleID })?.0 {
+            hasScrolledToModule = true
+            view?.scrollToRow(at: IndexPath(row: 0, section: section))
+        }
+    }
+
+    func getNextPage() {
+        modules.getNextPage()
+    }
+
+    func tappedSection(_ section: Int) {
+        guard let module = modules[section] else { return }
+        let expanded = isSectionExpanded(section)
+        if expanded {
+            collapsedIDs[courseID]?.insert(module.id)
+        } else {
+            collapsedIDs[courseID]?.remove(module.id)
+        }
+        view?.reloadModuleInSection(section)
+    }
+
+    func isSectionExpanded(_ section: Int) -> Bool {
+        guard let module = modules[section] else { return false }
+        return collapsedIDs[courseID]?.contains(module.id) == false
     }
 }

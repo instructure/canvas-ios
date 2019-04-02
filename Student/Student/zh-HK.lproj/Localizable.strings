@@ -50,6 +50,9 @@
 "Edit Course" = "編輯課程";
 
 /* No comment provided by engineer. */
+"Failed to locate camera result" = "找不到攝影機結果";
+
+/* No comment provided by engineer. */
 "Failed upload" = "上傳失敗";
 
 /* No comment provided by engineer. */
@@ -57,6 +60,9 @@
 
 /* No comment provided by engineer. */
 "Files" = "檔案";
+
+/* No comment provided by engineer. */
+"Files (%d)" = "檔案（%d）";
 
 /* No comment provided by engineer. */
 "Grade" = "評分";
@@ -75,6 +81,18 @@
 
 /* No comment provided by engineer. */
 "No Submission Date" = "無提交項目日期";
+
+/* No comment provided by engineer. */
+"On %@ %@ commented \"%@\"" = "在 %1$@ %2$@ 評論 \"%3$@\"";
+
+/* No comment provided by engineer. */
+"On %@ %@ left a video comment" = "在 %1$@ %2$@ 上留下視訊評論";
+
+/* No comment provided by engineer. */
+"On %@ %@ left an audio comment" = "在 %1$@ %2$@ 上留下音訊評論";
+
+/* No comment provided by engineer. */
+"On %@ %@ submitted the following" = "在 %1$@ %2$@ 上提交以下內容";
 
 /* Button to open external tool */
 "Open External Tool" = "開啟外部工具";
@@ -110,7 +128,13 @@
 "Submission & Rubric" = "提交項目及評分標準";
 
 /* No comment provided by engineer. */
+"Submission Failed" = "提交項目失敗";
+
+/* No comment provided by engineer. */
 "Submission Types" = "提交類型";
+
+/* No comment provided by engineer. */
+"Submission Uploading..." = "提交項目上傳中...";
 
 /* No comment provided by engineer. */
 "Submit" = "提交";
@@ -122,7 +146,16 @@
 "Successfully submitted!" = "成功提交！";
 
 /* No comment provided by engineer. */
+"Tap to view details" = "點選檢視詳情";
+
+/* No comment provided by engineer. */
+"Tap to view progress" = "點選檢視進度";
+
+/* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "須重新開啟應用程式方可使用新語言設定。請重新啟動應用程式。";
+
+/* No comment provided by engineer. */
+"There are no files to display." = "沒有可顯示的檔案。";
 
 /* No comment provided by engineer. */
 "There are no quizzes to display." = "沒有可顯示的測驗。";
@@ -135,6 +168,12 @@
 
 /* No comment provided by engineer. */
 "Uploading..." = "正在上傳...";
+
+/* No comment provided by engineer. */
+"View file %@ %@" = "檢視檔案%1$@%2$@";
+
+/* No comment provided by engineer. */
+"View submission attempt %d" = "檢視提交項目的嘗試%d";
 
 /* No comment provided by engineer. */
 "Website Address" = "網站位址";

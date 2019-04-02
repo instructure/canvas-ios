@@ -50,6 +50,9 @@
 "Edit Course" = "تحرير المساق";
 
 /* No comment provided by engineer. */
+"Failed to locate camera result" = "تعذر تحديد موقع نتيجة الكاميرا";
+
+/* No comment provided by engineer. */
 "Failed upload" = "فشل التحميل";
 
 /* No comment provided by engineer. */
@@ -57,6 +60,9 @@
 
 /* No comment provided by engineer. */
 "Files" = "الملفات";
+
+/* No comment provided by engineer. */
+"Files (%d)" = "الملفات (%d)";
 
 /* No comment provided by engineer. */
 "Grade" = "الدرجة";
@@ -75,6 +81,18 @@
 
 /* No comment provided by engineer. */
 "No Submission Date" = "لا يوجد تاريخ إرسال";
+
+/* No comment provided by engineer. */
+"On %@ %@ commented \"%@\"" = "في %1$@ %2$@ علق على \"%3$@\"";
+
+/* No comment provided by engineer. */
+"On %@ %@ left a video comment" = "في %1$@ %2$@ ترك تعليق فيديو";
+
+/* No comment provided by engineer. */
+"On %@ %@ left an audio comment" = "في %1$@ %2$@ ترك تعليق صوتي";
+
+/* No comment provided by engineer. */
+"On %@ %@ submitted the following" = "في %1$@ %2$@ أرسل التالي";
 
 /* Button to open external tool */
 "Open External Tool" = "فتح أداة خارجية";
@@ -110,7 +128,13 @@
 "Submission & Rubric" = "الإرسال ومقياس التقييم";
 
 /* No comment provided by engineer. */
+"Submission Failed" = "فشل الإرسال";
+
+/* No comment provided by engineer. */
 "Submission Types" = "أنواع الإرسال";
+
+/* No comment provided by engineer. */
+"Submission Uploading..." = "جارٍ تحميل الإرسال...";
 
 /* No comment provided by engineer. */
 "Submit" = "إرسال";
@@ -122,7 +146,16 @@
 "Successfully submitted!" = "تم الإرسال بنجاح!";
 
 /* No comment provided by engineer. */
+"Tap to view details" = "اضغط لعرض التفاصيل";
+
+/* No comment provided by engineer. */
+"Tap to view progress" = "اضغط لعرض التقدم";
+
+/* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "يحتاج التطبيق لإعادة التشغيل لاستخدام إعدادات اللغة الجديدة. يرجى إعادة تشغيل التطبيق.";
+
+/* No comment provided by engineer. */
+"There are no files to display." = "لا توجد أي ملفات للعرض.";
 
 /* No comment provided by engineer. */
 "There are no quizzes to display." = "لا توجد أي اختبارات موجزة للعرض.";
@@ -135,6 +168,12 @@
 
 /* No comment provided by engineer. */
 "Uploading..." = "يتم الآن التحميل...";
+
+/* No comment provided by engineer. */
+"View file %@ %@" = "عرض الملف %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View submission attempt %d" = "عرض محاولة الإرسال %d";
 
 /* No comment provided by engineer. */
 "Website Address" = "عنوان موقع ويب";

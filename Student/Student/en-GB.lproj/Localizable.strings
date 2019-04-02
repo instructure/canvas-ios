@@ -50,6 +50,9 @@
 "Edit Course" = "Edit course";
 
 /* No comment provided by engineer. */
+"Failed to locate camera result" = "Failed to locate camera result";
+
+/* No comment provided by engineer. */
 "Failed upload" = "Failed upload";
 
 /* No comment provided by engineer. */
@@ -57,6 +60,9 @@
 
 /* No comment provided by engineer. */
 "Files" = "Files";
+
+/* No comment provided by engineer. */
+"Files (%d)" = "Files (%d)";
 
 /* No comment provided by engineer. */
 "Grade" = "Grade";
@@ -75,6 +81,18 @@
 
 /* No comment provided by engineer. */
 "No Submission Date" = "No Submission Date";
+
+/* No comment provided by engineer. */
+"On %@ %@ commented \"%@\"" = "On %1$@ %2$@ commented \"%3$@\"";
+
+/* No comment provided by engineer. */
+"On %@ %@ left a video comment" = "On %1$@ %2$@ left a video comment";
+
+/* No comment provided by engineer. */
+"On %@ %@ left an audio comment" = "On %1$@ %2$@ left an audio comment";
+
+/* No comment provided by engineer. */
+"On %@ %@ submitted the following" = "On %1$@ %2$@ submitted the following";
 
 /* Button to open external tool */
 "Open External Tool" = "Open External Tool";
@@ -110,7 +128,13 @@
 "Submission & Rubric" = "Submission & Rubric";
 
 /* No comment provided by engineer. */
+"Submission Failed" = "Submission failed";
+
+/* No comment provided by engineer. */
 "Submission Types" = "Submission types";
+
+/* No comment provided by engineer. */
+"Submission Uploading..." = "Submission Uploading...";
 
 /* No comment provided by engineer. */
 "Submit" = "Submit";
@@ -122,7 +146,16 @@
 "Successfully submitted!" = "Successfully submitted!";
 
 /* No comment provided by engineer. */
+"Tap to view details" = "Tap to view details";
+
+/* No comment provided by engineer. */
+"Tap to view progress" = "Tap to view progress";
+
+/* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "The app needs to restart to use the new language settings. Please relaunch the app.";
+
+/* No comment provided by engineer. */
+"There are no files to display." = "There are no files to display.";
 
 /* No comment provided by engineer. */
 "There are no quizzes to display." = "There are no quizzes to display.";
@@ -135,6 +168,12 @@
 
 /* No comment provided by engineer. */
 "Uploading..." = "Uploading...";
+
+/* No comment provided by engineer. */
+"View file %@ %@" = "View file %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View submission attempt %d" = "View submission attempt %d";
 
 /* No comment provided by engineer. */
 "Website Address" = "Website Address";

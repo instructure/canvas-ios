@@ -50,6 +50,9 @@
 "Edit Course" = "Editar disciplina";
 
 /* No comment provided by engineer. */
+"Failed to locate camera result" = "Falha ao localizar o resultado da câmera";
+
+/* No comment provided by engineer. */
 "Failed upload" = "Falha no carregamento";
 
 /* No comment provided by engineer. */
@@ -57,6 +60,9 @@
 
 /* No comment provided by engineer. */
 "Files" = "Ficheiros";
+
+/* No comment provided by engineer. */
+"Files (%d)" = "Ficheiros (%d)";
 
 /* No comment provided by engineer. */
 "Grade" = "Nota";
@@ -75,6 +81,18 @@
 
 /* No comment provided by engineer. */
 "No Submission Date" = "Data Nenhuma submissão";
+
+/* No comment provided by engineer. */
+"On %@ %@ commented \"%@\"" = "Em %1$@ %2$@ comentado \"%3$@\"";
+
+/* No comment provided by engineer. */
+"On %@ %@ left a video comment" = "À %1$@ %2$@ esquerda um comentário em vídeo";
+
+/* No comment provided by engineer. */
+"On %@ %@ left an audio comment" = "À %1$@ %2$@ esquerda um comentário de áudio";
+
+/* No comment provided by engineer. */
+"On %@ %@ submitted the following" = "Sobre %1$@ %2$@ envio o seguinte";
 
 /* Button to open external tool */
 "Open External Tool" = "Abrir Ferramenta externa";
@@ -110,7 +128,13 @@
 "Submission & Rubric" = "Submissão e Rubrica";
 
 /* No comment provided by engineer. */
+"Submission Failed" = "Falha no envio";
+
+/* No comment provided by engineer. */
 "Submission Types" = "Tipos de submissão";
+
+/* No comment provided by engineer. */
+"Submission Uploading..." = "A carregar envio...";
 
 /* No comment provided by engineer. */
 "Submit" = "Submeter";
@@ -122,7 +146,16 @@
 "Successfully submitted!" = "Submetido com sucesso!";
 
 /* No comment provided by engineer. */
+"Tap to view details" = "Toque para ver detalhes";
+
+/* No comment provided by engineer. */
+"Tap to view progress" = "Toque para ver o progresso";
+
+/* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "A aplicação precisa de ser reiniciada para usar as novas definições de idioma. Por favor, reinicie a aplicação.";
+
+/* No comment provided by engineer. */
+"There are no files to display." = "Não há ficheiros para exibir.";
 
 /* No comment provided by engineer. */
 "There are no quizzes to display." = "Não há questionários a exibir.";
@@ -135,6 +168,12 @@
 
 /* No comment provided by engineer. */
 "Uploading..." = "A fazer upload...";
+
+/* No comment provided by engineer. */
+"View file %@ %@" = "Ver ficheiro %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View submission attempt %d" = "Ver tentativa de envio %d";
 
 /* No comment provided by engineer. */
 "Website Address" = "Endereço web";

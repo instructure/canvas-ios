@@ -50,6 +50,9 @@
 "Edit Course" = "Golygu Cwrs";
 
 /* No comment provided by engineer. */
+"Failed to locate camera result" = "Wedi methu dod o hyd i ganlyniad camera";
+
+/* No comment provided by engineer. */
 "Failed upload" = "Wedi methu llwytho i fyny";
 
 /* No comment provided by engineer. */
@@ -57,6 +60,9 @@
 
 /* No comment provided by engineer. */
 "Files" = "Ffeiliau";
+
+/* No comment provided by engineer. */
+"Files (%d)" = "Ffeiliau (%d)";
 
 /* No comment provided by engineer. */
 "Grade" = "Gradd";
@@ -75,6 +81,18 @@
 
 /* No comment provided by engineer. */
 "No Submission Date" = "Dim Dyddiad Cyflwyno";
+
+/* No comment provided by engineer. */
+"On %@ %@ commented \"%@\"" = "Ar %1$@ gadawodd %2$@ y sylw \"%3$@\"";
+
+/* No comment provided by engineer. */
+"On %@ %@ left a video comment" = "Ar %1$@ gadawodd %2$@ sylw fideo";
+
+/* No comment provided by engineer. */
+"On %@ %@ left an audio comment" = "Ar %1$@ gadawodd %2$@ sylw sain";
+
+/* No comment provided by engineer. */
+"On %@ %@ submitted the following" = "Ar %1$@ cyflwynodd %2$@ y canlynol";
 
 /* Button to open external tool */
 "Open External Tool" = "Agor Adnodd Allanol";
@@ -110,7 +128,13 @@
 "Submission & Rubric" = "Cyflwyniad a Chyfarwyddyd Sgorio";
 
 /* No comment provided by engineer. */
+"Submission Failed" = "Cyflwyniad wedi methu";
+
+/* No comment provided by engineer. */
 "Submission Types" = "Mathau o Gyflwyniadau";
+
+/* No comment provided by engineer. */
+"Submission Uploading..." = "Cyflwyniad yn llwytho i fyny...";
 
 /* No comment provided by engineer. */
 "Submit" = "Cyflwyno";
@@ -122,7 +146,16 @@
 "Successfully submitted!" = "Wedi llwyddo i gyflwyno!";
 
 /* No comment provided by engineer. */
+"Tap to view details" = "Tapiwch i weld manylion";
+
+/* No comment provided by engineer. */
+"Tap to view progress" = "Tapiwch i weld cynnydd";
+
+/* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Er mwyn defnyddio’r gosodiadau iaith newydd mae angen ailddechrau’r ap. Ail-lansiwch yr ap.";
+
+/* No comment provided by engineer. */
+"There are no files to display." = "Does dim ffeiliau i’w dangos.";
 
 /* No comment provided by engineer. */
 "There are no quizzes to display." = "Does dim cwisiau i’w dangos.";
@@ -135,6 +168,12 @@
 
 /* No comment provided by engineer. */
 "Uploading..." = "Wrthi’n llwytho i fyny...";
+
+/* No comment provided by engineer. */
+"View file %@ %@" = "Gweld ffeil %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View submission attempt %d" = "Gweld ymgais cyflwyniad %d";
 
 /* No comment provided by engineer. */
 "Website Address" = "Cyfeiriad Gwefan";

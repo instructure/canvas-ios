@@ -50,6 +50,9 @@
 "Edit Course" = "Redigera kurs";
 
 /* No comment provided by engineer. */
+"Failed to locate camera result" = "Det gick inte att hitta kameraresultat";
+
+/* No comment provided by engineer. */
 "Failed upload" = "Det gick inte att ladda upp";
 
 /* No comment provided by engineer. */
@@ -57,6 +60,9 @@
 
 /* No comment provided by engineer. */
 "Files" = "Filer";
+
+/* No comment provided by engineer. */
+"Files (%d)" = "Filer (%d)";
 
 /* No comment provided by engineer. */
 "Grade" = "Omdöme";
@@ -75,6 +81,18 @@
 
 /* No comment provided by engineer. */
 "No Submission Date" = "Inget inlämningsdatum";
+
+/* No comment provided by engineer. */
+"On %@ %@ commented \"%@\"" = "På %1$@ %2$@ kommenterade \"%3$@\"";
+
+/* No comment provided by engineer. */
+"On %@ %@ left a video comment" = "På %1$@ %2$@ lämnade en videokommentar";
+
+/* No comment provided by engineer. */
+"On %@ %@ left an audio comment" = "På %1$@ %2$@ lämnade en ljudkommentar";
+
+/* No comment provided by engineer. */
+"On %@ %@ submitted the following" = "På %1$@ %2$@ skickade in följande";
 
 /* Button to open external tool */
 "Open External Tool" = "Öppna externt verktyg";
@@ -110,7 +128,13 @@
 "Submission & Rubric" = "Inlämning ";
 
 /* No comment provided by engineer. */
+"Submission Failed" = "Inlämningen misslyckades";
+
+/* No comment provided by engineer. */
 "Submission Types" = "Inlämningstyp";
+
+/* No comment provided by engineer. */
+"Submission Uploading..." = "Inlämningen laddas upp ...";
 
 /* No comment provided by engineer. */
 "Submit" = "Lämna in";
@@ -122,7 +146,16 @@
 "Successfully submitted!" = "Inlämningen har slutförts!";
 
 /* No comment provided by engineer. */
+"Tap to view details" = "Tryck för att visa detaljerad information";
+
+/* No comment provided by engineer. */
+"Tap to view progress" = "Tryck för att visa framsteg";
+
+/* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Du måste starta om appen för att använda de nya språkinställningarna. Starta om appen.";
+
+/* No comment provided by engineer. */
+"There are no files to display." = "Det finns inga filer att visa.";
 
 /* No comment provided by engineer. */
 "There are no quizzes to display." = "Det finns inga quizzes att visa.";
@@ -135,6 +168,12 @@
 
 /* No comment provided by engineer. */
 "Uploading..." = "Laddar upp...";
+
+/* No comment provided by engineer. */
+"View file %@ %@" = "Visa fil %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View submission attempt %d" = "Visa inlämningsförsök %d";
 
 /* No comment provided by engineer. */
 "Website Address" = "Webbplatsadress";

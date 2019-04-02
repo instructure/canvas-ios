@@ -20,20 +20,8 @@ import Core
 
 class SubmissionCommentAudioCell: UITableViewCell {
     @IBOutlet weak var containerView: UIView?
-    @IBOutlet weak var loadingView: UIActivityIndicatorView?
 
-    var loadObservation: NSKeyValueObservation?
-
-    var playerViewController: AVPlayerViewController = {
-        let av = AVPlayerViewController()
-        av.updatesNowPlayingInfoCenter = false
-        av.contentOverlayView?.backgroundColor = UIColor.named(.backgroundLightest)
-        return av
-    }()
-
-    deinit {
-        playerViewController.unembed()
-    }
+    let player = AudioPlayerViewController.create()
 
     func update(comment: SubmissionComment, parent: UIViewController) {
         accessibilityIdentifier = "SubmissionComments.audioCell.\(comment.id)"
@@ -43,22 +31,11 @@ class SubmissionCommentAudioCell: UITableViewCell {
             comment.authorName
         )
 
-        containerView?.alpha = 0
-        loadingView?.startAnimating()
-
         guard let mediaURL = comment.mediaURL else { return } // The cell should always have a valid mediaURL
-        playerViewController.player = AVPlayer(url: mediaURL)
-        loadObservation = playerViewController.player?.currentItem?.observe(\.status) { [weak self] (item: AVPlayerItem, _) in
-            guard item.status != .unknown else { return }
-            self?.loadObservation = nil
-            UIView.animate(withDuration: 0.2, delay: 0.2, options: .curveLinear, animations: {
-                self?.containerView?.alpha = 1
-            }, completion: { _ in
-                self?.loadingView?.stopAnimating()
-            })
-        }
-        if playerViewController.view?.superview == nil, let view = containerView {
-            parent.embed(playerViewController, in: view)
+        player.accessibilityPrefix = "SubmissionComments.audioCell.\(comment.id)."
+        player.load(url: mediaURL)
+        if player.view?.superview == nil, let view = containerView {
+            parent.embed(player, in: view)
         }
     }
 }

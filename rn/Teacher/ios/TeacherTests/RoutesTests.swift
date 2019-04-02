@@ -25,6 +25,6 @@ class RoutesTests: TeacherTestCase {
     }
 
     func testModule() {
-        XCTAssert(Teacher.router.match(Route.module(forCourse: "1", moduleID: "2").url) is ModuleItemListViewController)
+        XCTAssert(Teacher.router.match(Route.module(forCourse: "1", moduleID: "2").url) is ModuleListViewController)
     }
 }

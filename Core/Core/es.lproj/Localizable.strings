@@ -8,7 +8,10 @@
 "Assignment" = "Tarea";
 
 /* No comment provided by engineer. */
-"Assignment not found." = "Tarea no encontrada";
+"Attempt %d" = "Intento %d";
+
+/* No comment provided by engineer. */
+"Audio" = "Audio";
 
 /* No comment provided by engineer. */
 "Authentication failed. Most likely the user denied the request for access." = "Falló la autenticación. Es muy probable que el usuario haya rechazado la solicitud de acceso.";
@@ -167,9 +170,6 @@
 "Reply to the annotation or previous comments" = "Responder a la anotación o a los comentarios anteriores.";
 
 /* No comment provided by engineer. */
-"Resubmit Assignment" = "Volver a presentar la tarea";
-
-/* No comment provided by engineer. */
 "See what's new." = "Ver las novedades.";
 
 /* No comment provided by engineer. */
@@ -191,10 +191,7 @@
 "Style" = "Estilo";
 
 /* No comment provided by engineer. */
-"Submission Failed" = "No se pudo presentar";
-
-/* No comment provided by engineer. */
-"Submission Uploading..." = "Cargando presentación...";
+"Submission failed." = "No se pudo enviar.";
 
 /* No comment provided by engineer. */
 "Submit Assignment" = "Presentar tarea";
@@ -209,19 +206,22 @@
 "Tap here for help." = "Presione aquí para obtener ayuda.";
 
 /* No comment provided by engineer. */
-"Tap to view details" = "Toque para ver los detalles";
-
-/* No comment provided by engineer. */
-"Tap to view progress" = "Toque para ver el progreso";
+"Terms of Use" = "Términos de uso";
 
 /* No comment provided by engineer. */
 "Text Entry" = "Entrada de texto";
+
+/* No comment provided by engineer. */
+"There was a problem retrieving the Terms of Use." = "Hubo un problema al intentar acceder a los Términos de uso.";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "Esta tarea debe presentarse antes del %@";
 
 /* No comment provided by engineer. */
 "This assignment was due by %@" = "Esta tarea debía presentarse antes del %@";
+
+/* No comment provided by engineer. */
+"Video" = "Video";
 
 /* No comment provided by engineer. */
 "We've made a few changes." = "Hemos realizado algunos cambios.";

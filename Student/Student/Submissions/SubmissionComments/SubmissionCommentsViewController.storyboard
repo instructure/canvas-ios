@@ -27,7 +27,7 @@
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="myHeader" rowHeight="64" id="2G9-QC-KCR" userLabel="myHeader" customClass="SubmissionCommentHeaderCell" customModule="Student" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="myHeader" rowHeight="64" id="2G9-QC-KCR" userLabel="myHeader" customClass="SubmissionCommentHeaderCell" customModule="Student" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="52" width="375" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2G9-QC-KCR" id="651-00-ovF">
@@ -93,7 +93,7 @@
                                             <outlet property="createdAtLabel" destination="brg-4l-HGS" id="eSa-R1-GxO"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="myComment" rowHeight="48" id="0Ne-yr-TaC" customClass="SubmissionCommentTextCell" customModule="Student" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="myComment" rowHeight="48" id="0Ne-yr-TaC" customClass="SubmissionCommentTextCell" customModule="Student" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="116" width="375" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0Ne-yr-TaC" id="3mt-Xn-QrW">
@@ -135,7 +135,7 @@
                                             <outlet property="commentLabel" destination="jQO-Zk-01K" id="dFb-A9-V8w"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="theirHeader" rowHeight="64" id="m2a-Fo-JCH" userLabel="theirHeader" customClass="SubmissionCommentHeaderCell" customModule="Student" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="theirHeader" rowHeight="64" id="m2a-Fo-JCH" userLabel="theirHeader" customClass="SubmissionCommentHeaderCell" customModule="Student" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="164" width="375" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="m2a-Fo-JCH" id="H3o-fz-9OC">
@@ -202,7 +202,7 @@
                                             <outlet property="createdAtLabel" destination="S2V-PQ-jCT" id="7zb-JG-G6E"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="theirComment" rowHeight="48" id="di6-ba-fsx" customClass="SubmissionCommentTextCell" customModule="Student" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="theirComment" rowHeight="48" id="di6-ba-fsx" customClass="SubmissionCommentTextCell" customModule="Student" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="228" width="375" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="di6-ba-fsx" id="Fyz-QS-eeN">
@@ -245,7 +245,7 @@
                                             <outlet property="commentLabel" destination="eMn-Vx-0Ll" id="FVy-xC-zeC"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SubmissionCommentAudioCell" rowHeight="57" id="MSG-Gi-WrB" customClass="SubmissionCommentAudioCell" customModule="Student" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SubmissionCommentAudioCell" rowHeight="57" id="MSG-Gi-WrB" customClass="SubmissionCommentAudioCell" customModule="Student" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="276" width="375" height="57"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MSG-Gi-WrB" id="mEg-Wj-XA5">
@@ -253,30 +253,24 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HOr-G9-8Pg">
-                                                    <rect key="frame" x="9" y="7" width="357" height="44"/>
+                                                    <rect key="frame" x="15" y="13" width="345" height="32"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="44" id="8MA-9C-Duo"/>
+                                                        <constraint firstAttribute="height" constant="32" id="8MA-9C-Duo"/>
                                                     </constraints>
                                                 </view>
-                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Ylg-dn-2U3">
-                                                    <rect key="frame" x="177.5" y="19" width="20" height="20"/>
-                                                </activityIndicatorView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="HOr-G9-8Pg" secondAttribute="trailing" constant="-6" id="2Bb-UD-AWG"/>
-                                                <constraint firstItem="HOr-G9-8Pg" firstAttribute="top" secondItem="mEg-Wj-XA5" secondAttribute="topMargin" constant="-4" id="4O0-CL-378"/>
-                                                <constraint firstItem="Ylg-dn-2U3" firstAttribute="centerX" secondItem="HOr-G9-8Pg" secondAttribute="centerX" id="A3g-hY-XOP"/>
-                                                <constraint firstItem="HOr-G9-8Pg" firstAttribute="leading" secondItem="mEg-Wj-XA5" secondAttribute="leadingMargin" constant="-6" id="SKE-BQ-lHH"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="HOr-G9-8Pg" secondAttribute="bottom" constant="-6" id="WBC-9d-DeD"/>
-                                                <constraint firstItem="Ylg-dn-2U3" firstAttribute="centerY" secondItem="HOr-G9-8Pg" secondAttribute="centerY" id="e7g-s7-9tV"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="HOr-G9-8Pg" secondAttribute="trailing" id="2Bb-UD-AWG"/>
+                                                <constraint firstItem="HOr-G9-8Pg" firstAttribute="top" secondItem="mEg-Wj-XA5" secondAttribute="topMargin" constant="2" id="4O0-CL-378"/>
+                                                <constraint firstItem="HOr-G9-8Pg" firstAttribute="leading" secondItem="mEg-Wj-XA5" secondAttribute="leadingMargin" id="SKE-BQ-lHH"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="HOr-G9-8Pg" secondAttribute="bottom" id="WBC-9d-DeD"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="containerView" destination="HOr-G9-8Pg" id="0I6-bR-aov"/>
-                                            <outlet property="loadingView" destination="Ylg-dn-2U3" id="iGO-QX-9EQ"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SubmissionCommentVideoCell" rowHeight="190" id="nat-Ap-6Oh" customClass="SubmissionCommentVideoCell" customModule="Student" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SubmissionCommentVideoCell" rowHeight="190" id="nat-Ap-6Oh" customClass="SubmissionCommentVideoCell" customModule="Student" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="333" width="375" height="190"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nat-Ap-6Oh" id="Z1E-2H-LVT">
@@ -307,7 +301,7 @@
                                             <outlet property="containerView" destination="EXe-uL-Kl7" id="JFS-Ct-mNL"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" restorationIdentifier="SubmissionCommentAttemptCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SubmissionCommentAttemptCell" rowHeight="73" id="u2W-dv-awt" customClass="SubmissionCommentAttemptCell" customModule="Student" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="SubmissionCommentAttemptCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SubmissionCommentAttemptCell" rowHeight="73" id="u2W-dv-awt" customClass="SubmissionCommentAttemptCell" customModule="Student" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="523" width="375" height="73"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="u2W-dv-awt" id="hxE-7s-uYJ">
@@ -336,7 +330,7 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Have questions? Use this area to message your instructor about this assignment." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vxN-b5-Dqx" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                <rect key="frame" x="33" y="317" width="309" height="33.5"/>
+                                <rect key="frame" x="24" y="313" width="327.5" height="41"/>
                                 <viewLayoutGuide key="safeArea" id="pIe-X1-3Uk"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -382,7 +376,7 @@
                                             <rect key="frame" x="40" y="8" width="319" height="33"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WRu-wb-h9t" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="9" y="8" width="63" height="17"/>
+                                                    <rect key="frame" x="9" y="8" width="75" height="20.5"/>
                                                     <accessibility key="accessibilityConfiguration">
                                                         <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
                                                         <bool key="isElement" value="NO"/>

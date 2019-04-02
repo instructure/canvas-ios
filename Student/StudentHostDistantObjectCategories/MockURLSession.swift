@@ -57,6 +57,12 @@ class MockURLSession: URLSession {
         task.callback = completionHandler
         return task
     }
+    @objc dynamic override func dataTask(with url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
+        let task = MockDataTask()
+        task.mock = MockURLSession.dataMocks[url]
+        task.callback = completionHandler
+        return task
+    }
 
     // MARK: download
     struct MockDownload {

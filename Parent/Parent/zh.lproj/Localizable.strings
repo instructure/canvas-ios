@@ -68,6 +68,9 @@
 "Caught up on Alerts" = "赶上了通知";
 
 /* No comment provided by engineer. */
+"Change User" = "更改用户";
+
+/* No comment provided by engineer. */
 "Choose a student" = "选择一个学生";
 
 /* Close Button Title */
@@ -89,6 +92,9 @@
 "Current student: %@, tap to switch students" = "当前学生：%@，点击以切换学生";
 
 /* No comment provided by engineer. */
+"Developer Menu" = "开发人员菜单";
+
+/* No comment provided by engineer. */
 "Discussion" = "讨论";
 
 /* No comment provided by engineer. */
@@ -105,6 +111,9 @@
 
 /* No comment provided by engineer. */
 "Excused" = "免除";
+
+/* No comment provided by engineer. */
+"Help" = "帮助";
 
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "得分高的作业不能低于得分低的作业";
@@ -132,6 +141,9 @@
 
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "迟交：%1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Log Out" = "注销";
 
 /* Low Assignment Grade too High */
 "Low assignment grade cannot be higher than high assignment grade" = "得分低的作业不能高于得分高的作业 ";
@@ -190,6 +202,12 @@
 /* No comment provided by engineer. */
 "Quiz" = "测验";
 
+/* No comment provided by engineer. */
+"Report a Problem" = "报告问题";
+
+/* No comment provided by engineer. */
+"Request a Feature" = "请求功能";
+
 /* Not Found Error Message */
 "Resource not found.  Please try again." = "没有找到资源。请再次尝试。";
 
@@ -214,6 +232,9 @@
 /* Directions in the admin view */
 "Tap to start viewing Canvas as another person." = "轻触以开始以另一个人的身份查看 Canvas。";
 
+/* No comment provided by engineer. */
+"Terms of Use" = "使用条款";
+
 /* Error message */
 "There are no actions for this item" = "此项目没有动作";
 
@@ -237,6 +258,9 @@
 
 /* No comment provided by engineer. */
 "Unread" = "未读";
+
+/* No comment provided by engineer. */
+"View Canvas Guides" = "查看 Canvas 指南";
 
 /* Calendar Tab */
 "Week" = "周";

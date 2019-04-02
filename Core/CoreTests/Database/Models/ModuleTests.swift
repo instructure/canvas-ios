@@ -32,4 +32,20 @@ class ModuleTests: CoreTestCase {
         XCTAssertEqual(one?.courseID, "1")
         XCTAssertEqual(two?.courseID, "1")
     }
+
+    func testSaveItems() {
+        let module = APIModule.make([
+            "items": [
+                APIModuleItem.fixture(["id": "1"]),
+                APIModuleItem.fixture(["id": "2"]),
+            ],
+        ])
+        Module.save(module, forCourse: "1", in: databaseClient)
+
+        let modules: [Module] = databaseClient.fetch()
+        XCTAssertEqual(modules.count, 1)
+
+        let moduleItems: [ModuleItem] = databaseClient.fetch()
+        XCTAssertEqual(moduleItems.count, 2)
+    }
 }

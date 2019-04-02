@@ -41,6 +41,12 @@ extension AppDelegate {
             guard let courseID = props["courseID"] as? String else { return nil }
             return ModuleListViewController.create(courseID: courseID)
         })
+
+        HelmManager.shared.registerNativeViewController(for: "/courses/:courseID/modules/:moduleID", factory: { props in
+            guard let courseID = props["courseID"] as? String else { return nil }
+            guard let moduleID = props["moduleID"] as? String else { return nil }
+            return ModuleListViewController.create(courseID: courseID, moduleID: moduleID)
+        })
         
         CanvasCore.registerSharedNativeViewControllers()
     }

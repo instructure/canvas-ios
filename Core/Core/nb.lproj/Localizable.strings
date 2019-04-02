@@ -8,7 +8,10 @@
 "Assignment" = "Oppgave";
 
 /* No comment provided by engineer. */
-"Assignment not found." = "Ikke funnet oppgave.";
+"Attempt %d" = "Forsøk %d";
+
+/* No comment provided by engineer. */
+"Audio" = "Lyd";
 
 /* No comment provided by engineer. */
 "Authentication failed. Most likely the user denied the request for access." = "Autentisering mislyktes. Mest sannsynlig nektet bruker forespørselen om tilgang.";
@@ -167,9 +170,6 @@
 "Reply to the annotation or previous comments" = "Svar på merknaden eller tidligere kommentar";
 
 /* No comment provided by engineer. */
-"Resubmit Assignment" = "Send oppgaven inn på nytt";
-
-/* No comment provided by engineer. */
 "See what's new." = "Se hva som er nytt.";
 
 /* No comment provided by engineer. */
@@ -191,10 +191,7 @@
 "Style" = "Stil";
 
 /* No comment provided by engineer. */
-"Submission Failed" = "Innlevering feilet";
-
-/* No comment provided by engineer. */
-"Submission Uploading..." = "Innlevering lastes opp...";
+"Submission failed." = "Innlevering mislyktes.";
 
 /* No comment provided by engineer. */
 "Submit Assignment" = "Lever oppgave";
@@ -209,19 +206,22 @@
 "Tap here for help." = "Trykk her for hjelp.";
 
 /* No comment provided by engineer. */
-"Tap to view details" = "Trykk for å vise detaljer";
-
-/* No comment provided by engineer. */
-"Tap to view progress" = "Trykk for å se fremgang";
+"Terms of Use" = "Bruksvilkår";
 
 /* No comment provided by engineer. */
 "Text Entry" = "Innlegging av tekst";
+
+/* No comment provided by engineer. */
+"There was a problem retrieving the Terms of Use." = "Det oppsto et problem under hentingen av bruksvilkårene.";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "Denne oppgaven har frist %@";
 
 /* No comment provided by engineer. */
 "This assignment was due by %@" = "Denne oppgaven hadde frist %@";
+
+/* No comment provided by engineer. */
+"Video" = "Video";
 
 /* No comment provided by engineer. */
 "We've made a few changes." = "Vi har gjort noen endringer.";

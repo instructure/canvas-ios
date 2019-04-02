@@ -683,9 +683,6 @@
   "grade_grade_990eb477": {
     "message": "評分 { grade }"
   },
-  "grade_grade_number_percent_cda06b4d": {
-    "message": "評分 { grade, number, percent }"
-  },
   "graded_25cd3fcd": {
     "message": "已評分"
   },
@@ -1060,6 +1057,12 @@
   },
   "out_of_points_number_42209979": {
     "message": "滿分為 { points, number }"
+  },
+  "override_3de65b2c": {
+    "message": "重寫"
+  },
+  "override_grade_grade_f33671d4": {
+    "message": "重寫評分 { grade }"
   },
   "page_details_847e35e6": {
     "message": "頁面詳情"

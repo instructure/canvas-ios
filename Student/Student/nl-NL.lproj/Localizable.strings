@@ -50,6 +50,9 @@
 "Edit Course" = "Cursus bewerken";
 
 /* No comment provided by engineer. */
+"Failed to locate camera result" = "Kan cameraresultaat niet vinden";
+
+/* No comment provided by engineer. */
 "Failed upload" = "Upload mislukt";
 
 /* No comment provided by engineer. */
@@ -57,6 +60,9 @@
 
 /* No comment provided by engineer. */
 "Files" = "Bestanden";
+
+/* No comment provided by engineer. */
+"Files (%d)" = "Bestanden (%d)";
 
 /* No comment provided by engineer. */
 "Grade" = "Cijfer";
@@ -75,6 +81,18 @@
 
 /* No comment provided by engineer. */
 "No Submission Date" = "Geen inleverdatum";
+
+/* No comment provided by engineer. */
+"On %@ %@ commented \"%@\"" = "Op %1$@ heeft %2$@ als opmerking geplaatst \"%3$@\"";
+
+/* No comment provided by engineer. */
+"On %@ %@ left a video comment" = "Op %1$@ heeft %2$@ een video-opmerking achtergelaten";
+
+/* No comment provided by engineer. */
+"On %@ %@ left an audio comment" = "Op %1$@ heeft %2$@ een audio-opmerking achtergelaten";
+
+/* No comment provided by engineer. */
+"On %@ %@ submitted the following" = "Op %1$@ heeft %2$@ het volgende ingeleverd";
 
 /* Button to open external tool */
 "Open External Tool" = "Externe tool openen";
@@ -110,7 +128,13 @@
 "Submission & Rubric" = "Inlevering en rubriek";
 
 /* No comment provided by engineer. */
+"Submission Failed" = "Inlevering mislukt";
+
+/* No comment provided by engineer. */
 "Submission Types" = "Inleveringstypen";
+
+/* No comment provided by engineer. */
+"Submission Uploading..." = "Inlevering wordt geüpload...";
 
 /* No comment provided by engineer. */
 "Submit" = "Inleveren";
@@ -122,7 +146,16 @@
 "Successfully submitted!" = "Inlevering is gelukt!";
 
 /* No comment provided by engineer. */
+"Tap to view details" = "Tik om details te bekijken";
+
+/* No comment provided by engineer. */
+"Tap to view progress" = "Tik om voortgang te bekijken";
+
+/* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "De app moet opnieuw worden gestart om de nieuwe taalinstellingen te activeren. Start de app opnieuw.";
+
+/* No comment provided by engineer. */
+"There are no files to display." = "Er zijn geen bestanden om weer te geven.";
 
 /* No comment provided by engineer. */
 "There are no quizzes to display." = "Er zijn geen toetsen om weer te geven";
@@ -135,6 +168,12 @@
 
 /* No comment provided by engineer. */
 "Uploading..." = "Bezig met uploaden...";
+
+/* No comment provided by engineer. */
+"View file %@ %@" = "Bestand bekijken %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View submission attempt %d" = "Inleveringspoging bekijken %d";
 
 /* No comment provided by engineer. */
 "Website Address" = "Website-adres";

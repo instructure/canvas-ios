@@ -58,6 +58,16 @@ extension Element {
         greyInteraction.perform(grey_tap())
     }
 
+    func enterText(_ text: String) {
+        greyInteraction.perform(grey_typeText(text))
+    }
+
+    var isEnabled: Bool {
+        var error: NSError?
+        greyInteraction.assert(grey_enabled(), error: &error)
+        return error == nil
+    }
+
     var isVisible: Bool {
         var error: NSError?
         greyInteraction.assert(grey_sufficientlyVisible(), error: &error)

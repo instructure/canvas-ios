@@ -29,7 +29,7 @@ public struct GetModulesRequest: APIRequestable {
 
     public var query: [APIQueryItem] {
         return [
-            .include([ "items" ]),
+            .include([ "items", "content_details" ]),
         ]
     }
 }

@@ -22,9 +22,9 @@ export type InstIconName =
   'box' | 'calendarMonth' | 'check' | 'complete' | 'courses' | 'dashboard' | 'discussion' |
   'document' | 'email' | 'empty' | 'folder' | 'gradebook' | 'group' | 'hamburger' | 'highlighter' |
   'instructure' | 'link' | 'lock' | 'lti' | 'marker' | 'miniArrowDown' | 'miniArrowUp' | 'module' |
-  'more' | 'no' | 'outcomes' | 'paint' | 'pdf' | 'prerequisite' | 'question' | 'quiz' | 'refresh' |
-  'rubric' | 'settings' | 'star' | 'strikethrough' | 'text' | 'trash' | 'trouble' | 'unlock' |
-  'user' | 'video' | 'x'
+  'more' | 'no' | 'outcomes' | 'paint' | 'pause' | 'pdf' | 'play' | 'prerequisite' | 'question' |
+  'quiz' | 'refresh' | 'rubric' | 'settings' | 'star' | 'strikethrough' | 'text' | 'trash' |
+  'trouble' | 'unlock' | 'user' | 'video' | 'x'
 
 export default function icon (name: InstIconName, type: 'line' | 'solid' = 'line') {
   return { uri: `${name}${type[0].toUpperCase()}${type.slice(1)}` }

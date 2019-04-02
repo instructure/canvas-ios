@@ -50,6 +50,9 @@
 "Edit Course" = "Uredi predmet";
 
 /* No comment provided by engineer. */
+"Failed to locate camera result" = "Rezultata za kamero ni bilo mogoče najti";
+
+/* No comment provided by engineer. */
 "Failed upload" = "Nalaganje ni uspelo";
 
 /* No comment provided by engineer. */
@@ -57,6 +60,9 @@
 
 /* No comment provided by engineer. */
 "Files" = "Datoteke";
+
+/* No comment provided by engineer. */
+"Files (%d)" = "Datoteke (%d)";
 
 /* No comment provided by engineer. */
 "Grade" = "Ocena";
@@ -75,6 +81,18 @@
 
 /* No comment provided by engineer. */
 "No Submission Date" = "Ni datuma oddaje";
+
+/* No comment provided by engineer. */
+"On %@ %@ commented \"%@\"" = "Na %1$@ je %2$@ komentiral(a) »%3$@«";
+
+/* No comment provided by engineer. */
+"On %@ %@ left a video comment" = "Na %1$@ je %2$@ pustil(a) videokomentar";
+
+/* No comment provided by engineer. */
+"On %@ %@ left an audio comment" = "Na %1$@ je %2$@ pustil(a) zvočni komentar";
+
+/* No comment provided by engineer. */
+"On %@ %@ submitted the following" = "Na %1$@ je %2$@ objavil(a) naslednje";
 
 /* Button to open external tool */
 "Open External Tool" = "Odpri zunanje orodje";
@@ -110,7 +128,13 @@
 "Submission & Rubric" = "Oddaja in ocenjevalni vodnik";
 
 /* No comment provided by engineer. */
+"Submission Failed" = "Oddaja ni uspela.";
+
+/* No comment provided by engineer. */
 "Submission Types" = "Vrste oddaj";
+
+/* No comment provided by engineer. */
+"Submission Uploading..." = "Nalaganje oddaj ...";
 
 /* No comment provided by engineer. */
 "Submit" = "Pošlji";
@@ -122,7 +146,16 @@
 "Successfully submitted!" = "Uspešno poslano.";
 
 /* No comment provided by engineer. */
+"Tap to view details" = "Tapnite za ogled podrobnosti";
+
+/* No comment provided by engineer. */
+"Tap to view progress" = "Tapnite za ogled napredka";
+
+/* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Da bodo uporabljene nove jezikovne nastavitve, je treba aplikacijo znova zagnati. Znova zaženite aplikacijo.";
+
+/* No comment provided by engineer. */
+"There are no files to display." = "Ni nobenih datotek za prikaz.";
 
 /* No comment provided by engineer. */
 "There are no quizzes to display." = "Ni nobenih kvizov za prikaz.";
@@ -135,6 +168,12 @@
 
 /* No comment provided by engineer. */
 "Uploading..." = "Nalaganje ...";
+
+/* No comment provided by engineer. */
+"View file %@ %@" = "Ogled datoteke %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View submission attempt %d" = "Ogled poskusa oddaje %d";
 
 /* No comment provided by engineer. */
 "Website Address" = "Naslov spletnega mesta";

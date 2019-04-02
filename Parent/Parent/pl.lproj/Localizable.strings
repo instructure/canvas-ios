@@ -68,6 +68,9 @@
 "Caught up on Alerts" = "Alerty przeczytane";
 
 /* No comment provided by engineer. */
+"Change User" = "Zmień użytkownika";
+
+/* No comment provided by engineer. */
 "Choose a student" = "Wybierz ucznia";
 
 /* Close Button Title */
@@ -89,6 +92,9 @@
 "Current student: %@, tap to switch students" = "Obecny uczestnik: %@, stuknij, aby przełącznik uczestników";
 
 /* No comment provided by engineer. */
+"Developer Menu" = "Menu programisty";
+
+/* No comment provided by engineer. */
 "Discussion" = "Dyskusja";
 
 /* No comment provided by engineer. */
@@ -105,6 +111,9 @@
 
 /* No comment provided by engineer. */
 "Excused" = "Usprawiedliwiony";
+
+/* No comment provided by engineer. */
+"Help" = "Pomoc";
 
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "Wysoka ocena za zadanie nie może być niższa od niskiej oceny za zadanie";
@@ -132,6 +141,9 @@
 
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "Spóźnione: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Log Out" = "Wyloguj";
 
 /* Low Assignment Grade too High */
 "Low assignment grade cannot be higher than high assignment grade" = "Niska ocena za zadanie nie może być wyższa od wysokiej oceny za zadanie";
@@ -190,6 +202,12 @@
 /* No comment provided by engineer. */
 "Quiz" = "Quiz";
 
+/* No comment provided by engineer. */
+"Report a Problem" = "Zgłoś problem";
+
+/* No comment provided by engineer. */
+"Request a Feature" = "Zażądaj funkcji";
+
 /* Not Found Error Message */
 "Resource not found.  Please try again." = "Nie znaleziono zasobu. Spróbuj ponownie później.";
 
@@ -214,6 +232,9 @@
 /* Directions in the admin view */
 "Tap to start viewing Canvas as another person." = "Stuknij, aby rozpocząć wyświetlanie Canvas jako inna osoba.";
 
+/* No comment provided by engineer. */
+"Terms of Use" = "Warunki korzystania";
+
 /* Error message */
 "There are no actions for this item" = "Brak działań dla danej pozycji";
 
@@ -237,6 +258,9 @@
 
 /* No comment provided by engineer. */
 "Unread" = "Nieprzeczytane";
+
+/* No comment provided by engineer. */
+"View Canvas Guides" = "Wyświetl przewodniki Canvas";
 
 /* Calendar Tab */
 "Week" = "Tydzień";

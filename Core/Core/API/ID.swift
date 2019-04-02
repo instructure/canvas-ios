@@ -17,15 +17,15 @@
 import Foundation
 
 //  swiftlint:disable type_name
-struct ID: Codable, Equatable, CustomStringConvertible {
+public struct ID: Codable, Equatable, CustomStringConvertible {
 //  swiftlint:enable type_name
 
-    let value: String
-    var description: String {
+    public let value: String
+    public var description: String {
         return value
     }
 
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         if let int = try? decoder.singleValueContainer().decode(Int.self) {
             value = String(int)
             return
