@@ -66,14 +66,3 @@ public class GetAssignments: CollectionUseCase {
         }
     }
 }
-
-extension NSNumber {
-    @objc open func comp(_ b: NSNumber) -> ComparisonResult {
-//        if let id1 = id1 as? Bool, let id2 = id2 as? Bool {
-            if self.boolValue == b.boolValue { return .orderedSame }
-            if self.boolValue && !b.boolValue { return .orderedAscending }
-            if !self.boolValue && b.boolValue { return .orderedDescending }
-//        }
-        return .orderedSame
-    }
-}
