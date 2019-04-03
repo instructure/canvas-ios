@@ -91,9 +91,21 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
     }
 
     private func notify() {
-        DispatchQueue.main.async {
+        let runNotifyEvents = {
             self.eventHandler()
             self.changes = []
+        }
+
+        //  when this code was calling `DispatchQueue.main.async` when already on the main thread,
+        //  it caused a small delay that was inadequate for toolbar color on viewController transitions,
+        //  caused a noticeable flicker.
+        //  https://github.com/instructure/canvas-ios/pull/42
+        if !Thread.isMainThread {
+            DispatchQueue.main.async {
+                runNotifyEvents()
+            }
+        } else {
+            runNotifyEvents()
         }
     }
 
