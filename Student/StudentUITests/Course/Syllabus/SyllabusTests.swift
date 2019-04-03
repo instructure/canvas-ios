@@ -27,23 +27,17 @@ class SyllabusTests: StudentTest {
         return course
     }()
 
-    func mockAssignment(_ assignment: APIAssignment) -> APIAssignment {
-        mockData(GetAssignmentRequest(courseID: course.id, assignmentID: assignment.id.value, include: []), value: assignment)
-        return assignment
+    func mockAssignments(_ assignments: [APIAssignment]) -> [APIAssignment] {
+        mockData(GetAssignmentsRequest(courseID: course.id), value: assignments)
+        return assignments
     }
 
-    func testLoad() {
+    func testSyllabusLoad() {
         mockData(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [
             course.canvasContextID: "#123456",
             ]))
 
-        _ = mockAssignment(APIAssignment.make([
-            "name": "Discuss this",
-            "description": "Say it like you mean it",
-            "points_possible": 15.1,
-            "due_at": DateComponents(calendar: Calendar.current, year: 2035, month: 1, day: 1, hour: 8).date,
-            "submission_types": [ "discussion_topic" ],
-            ]))
+        _ = mockAssignments([APIAssignment.make([ "name": "Foobar", "description": "hello world", "submission": APISubmission.fixture()])])
 
         show("/courses/\(course.id)/assignments/syllabus")
 
@@ -54,5 +48,10 @@ class SyllabusTests: StudentTest {
         page.waitToExist(.syllabusWebView, timeout: 5)
         let description = app?.webViews.staticTexts.firstMatch.label
         XCTAssertEqual(description, "hello world")
+
+        app?.swipeLeft()
+        page.waitToExist(.assignmentList, timeout: 5)
+
+        XCTAssertEqual(navBarColorHex(), "#123456")
     }
 }
