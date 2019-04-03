@@ -20,7 +20,7 @@ import TestsFoundation
 
 class SyllabusTests: StudentTest {
     let page = SyllabusPage.self
-    let html = "<html>hello world</html>"
+    let html = "hello world"
     lazy var course: APICourse = {
         let course = APICourse.make(["syllabus_body": html, "course_code": "abc"])
         mockData(GetCourseRequest(courseID: course.id), value: course)
@@ -33,11 +33,12 @@ class SyllabusTests: StudentTest {
     }
 
     func testSyllabusLoad() {
+        let assignmentName = "Foobar"
         mockData(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [
             course.canvasContextID: "#123456",
             ]))
 
-        _ = mockAssignments([APIAssignment.make([ "name": "Foobar", "description": "hello world", "submission": APISubmission.fixture()])])
+        _ = mockAssignments([APIAssignment.make([ "name": assignmentName, "description": "hello world", "submission": APISubmission.fixture()])])
 
         show("/courses/\(course.id)/assignments/syllabus")
 
@@ -52,6 +53,14 @@ class SyllabusTests: StudentTest {
         app?.swipeLeft()
         page.waitToExist(.assignmentList, timeout: 5)
 
+        let cells = app?.cells.containing(NSPredicate(format: "label CONTAINS %@", assignmentName))
+
+        if let assignmentCell = cells?.firstMatch {
+            assignmentCell.tap()
+            AssignmentDetailsPage.self.waitToExist(AssignmentDetailsPage.name, timeout: 5)
+        } else {
+            XCTFail("could not find assignment cell")
+        }
         XCTAssertEqual(navBarColorHex(), "#123456")
     }
 }
