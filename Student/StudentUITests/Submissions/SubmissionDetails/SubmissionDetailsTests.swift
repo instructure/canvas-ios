@@ -298,6 +298,7 @@ class SubmissionDetailsTests: StudentTest {
         ]))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
+        page.waitToExist(.mediaPlayer, timeout: 2)
         page.assertVisible(.mediaPlayer)
     }
 }
