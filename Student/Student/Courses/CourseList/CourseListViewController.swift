@@ -115,7 +115,7 @@ extension CourseListViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == CourseListViewSection.current.rawValue {
-            let cell = collectionView.dequeue(CourseListCourseCell.self, for: indexPath)
+            let cell: CourseListCourseCell = collectionView.dequeue(for: indexPath)
             guard let model = presenter.current[indexPath.row] else { return UICollectionViewCell(frame: CGRect.zero) }
             cell.configure(with: model)
             cell.optionsCallback = { [unowned self, model] in
@@ -130,7 +130,7 @@ extension CourseListViewController: UICollectionViewDataSource {
             return cell
         }
 
-        let cell = collectionView.dequeue(CourseListCourseCell.self, for: indexPath)
+        let cell: CourseListCourseCell = collectionView.dequeue(for: indexPath)
         guard let past = presenter.past[indexPath.row] else { return UICollectionViewCell(frame: CGRect.zero) }
         cell.configure(with: past)
         return cell

@@ -55,9 +55,11 @@ public class GetCourseUseCase: APIUseCase {
     public typealias Model = Course
 
     public let courseID: String
+    private let include: [GetCourseRequest.Include]
 
-    public init(courseID: String) {
+    public init(courseID: String, include: [GetCourseRequest.Include] = GetCourseRequest.defaultIncludes) {
         self.courseID = courseID
+        self.include = include
     }
 
     public var cacheKey: String? {
@@ -69,6 +71,6 @@ public class GetCourseUseCase: APIUseCase {
     }
 
     public var request: GetCourseRequest {
-        return GetCourseRequest(courseID: courseID)
+        return GetCourseRequest(courseID: courseID, include: include)
     }
 }

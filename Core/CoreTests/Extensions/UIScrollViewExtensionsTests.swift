@@ -39,4 +39,16 @@ class UIScrollViewExtensionsTests: XCTestCase {
         XCTAssertTrue(scrollView.isBottomReached())
         XCTAssertTrue(scrollView.isBottomReached(threshold: 0))
     }
+
+    func testContentOffsetRatio() {
+        let scrollView = UIScrollView()
+        scrollView.contentSize = CGSize(width: 100, height: 100)
+        scrollView.contentOffset = CGPoint(x: 0, y: 0)
+        var ratio = scrollView.contentOffsetRatio
+        XCTAssertEqual(ratio, CGPoint(x: 0, y: 0))
+
+        scrollView.contentOffset = CGPoint(x: 50, y: 0)
+        ratio = scrollView.contentOffsetRatio
+        XCTAssertEqual(ratio, CGPoint(x: 0.5, y: 0))
+    }
 }

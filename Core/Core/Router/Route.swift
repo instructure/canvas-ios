@@ -55,6 +55,10 @@ public struct Route: Equatable {
         return Route("/courses/\(courseID)/assignments/\(assignmentID)/submissions/\(userID)/urlsubmission")
     }
 
+    public static func syllabus(courseID: String, includeAssignmentPath: Bool = true) -> Route {
+        return Route("/courses/\(courseID)\(includeAssignmentPath ? "/assignments" : "")/syllabus")
+    }
+
     public static let groups = Route("/groups")
 
     public static func group(_ groupID: String) -> Route {

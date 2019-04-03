@@ -47,4 +47,48 @@ class URLComponentsExtensionsTests: XCTestCase {
         XCTAssertEqual(url.fragment, nil)
         XCTAssertEqual(URLComponents.parse("").path, "")
     }
+
+    func testCleanupApiVersionInPath() {
+        var string = "scheme://host/api/v1/path"
+        var url = URLComponents.parse(string)
+        url.cleanupApiVersionInPath()
+        XCTAssertEqual(url.scheme, "scheme")
+        XCTAssertEqual(url.host, "host")
+        XCTAssertEqual(url.path, "/path")
+
+        string = "api/v1/path"
+        url = URLComponents.parse(string)
+        url.cleanupApiVersionInPath()
+        XCTAssertEqual(url.path, "/path")
+
+        string = "/api/v1/path"
+        url = URLComponents.parse(string)
+        url.cleanupApiVersionInPath()
+        XCTAssertEqual(url.path, "/path")
+
+        string = "/foobar/api/v1/path"
+        url = URLComponents.parse(string)
+        url.cleanupApiVersionInPath()
+        XCTAssertEqual(url.path, "/foobar/api/v1/path")
+
+        string = "/api/v2/path"
+        url = URLComponents.parse(string)
+        url.cleanupApiVersionInPath()
+        XCTAssertEqual(url.path, "/path")
+
+        string = "/api/V4/path"
+        url = URLComponents.parse(string)
+        url.cleanupApiVersionInPath()
+        XCTAssertEqual(url.path, "/path")
+
+        string = "/api/w1/path"
+        url = URLComponents.parse(string)
+        url.cleanupApiVersionInPath()
+        XCTAssertEqual(url.path, "/api/w1/path")
+
+        string = "/api/vv1/path"
+        url = URLComponents.parse(string)
+        url.cleanupApiVersionInPath()
+        XCTAssertEqual(url.path, "/api/vv1/path")
+    }
 }

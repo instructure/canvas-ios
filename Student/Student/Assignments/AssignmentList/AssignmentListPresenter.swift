@@ -22,6 +22,8 @@ protocol AssignmentListViewProtocol: ErrorViewController, ColoredNavViewProtocol
 }
 
 class AssignmentListPresenter {
+
+    var sort: GetAssignments.Sort
     let courseID: String
     let env: AppEnvironment
     weak var view: AssignmentListViewProtocol?
@@ -34,16 +36,17 @@ class AssignmentListPresenter {
     }()
 
     lazy var assignments: Store<GetAssignments> = {
-        let useCase = GetAssignments(courseID: self.courseID)
+        let useCase = GetAssignments(courseID: self.courseID, sort: sort)
         return self.env.subscribe(useCase) { [weak self] in
             self?.update()
         }
     }()
 
-    init(env: AppEnvironment = .shared, view: AssignmentListViewProtocol, courseID: String) {
+    init(env: AppEnvironment = .shared, view: AssignmentListViewProtocol, courseID: String, sort: GetAssignments.Sort = .position) {
         self.courseID = courseID
         self.env = env
         self.view = view
+        self.sort = sort
     }
 
     func viewIsReady() {

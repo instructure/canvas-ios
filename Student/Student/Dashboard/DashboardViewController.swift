@@ -170,7 +170,7 @@ extension DashboardViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == DashboardViewSection.courses.rawValue {
-            let cell = collectionView.dequeue(DashboardCourseCell.self, for: indexPath)
+            let cell: DashboardCourseCell = collectionView.dequeue(for: indexPath)
             guard let model = presenter?.courses[indexPath.row] else { return UICollectionViewCell(frame: CGRect.zero) }
             cell.configure(with: model)
             cell.optionsCallback = { [weak self, model] in
@@ -186,7 +186,7 @@ extension DashboardViewController: UICollectionViewDataSource {
             return cell
         }
 
-        let cell = collectionView.dequeue(DashboardGroupCell.self, for: indexPath)
+        let cell: DashboardGroupCell = collectionView.dequeue(for: indexPath)
         if let group = presenter?.groups[indexPath.row] {
             cell.configure(with: group)
         }

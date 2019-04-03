@@ -23,4 +23,14 @@ extension UIScrollView {
     public func isBottomReached(threshold: CGFloat = 60) -> Bool {
         return contentOffset.y >= contentSize.height - frame.size.height - threshold
     }
+
+    /// Get a ratio for contentOffset based on current orientation that can then be used after device rotation
+    /// to set contentOffset
+    public var contentOffsetRatio: CGPoint {
+        let w = contentSize.width
+        let h = contentSize.height
+        let centerX = (contentOffset.x + (frame.size.width / 2.0)) / w
+        let centerY = (contentOffset.y + (frame.size.height / 2.0)) / h
+        return CGPoint(x: centerX, y: centerY)
+    }
 }
