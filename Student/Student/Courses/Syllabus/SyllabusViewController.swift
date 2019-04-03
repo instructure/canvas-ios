@@ -37,12 +37,12 @@ class SyllabusViewController: UIViewController {
     static func create(courseID: String) -> SyllabusViewController {
         let vc = loadFromStoryboard()
         vc.courseID = courseID
+        vc.presenter = SyllabusPresenter(courseID: courseID, view: vc)
         return vc
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter = SyllabusPresenter(courseID: courseID, view: self)
         view.backgroundColor = UIColor.white.ensureContrast(against: .named(.white))
 
         configureTitleView()
