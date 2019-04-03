@@ -29,7 +29,14 @@ class SyllabusPresenter {
 
     lazy var courses: Store<GetCourseUseCase> = {
         let useCase = GetCourseUseCase(courseID: courseID)
-        return self.env.subscribe(useCase) { [weak self] in
+        return env.subscribe(useCase) { [weak self] in
+            self?.update()
+        }
+    }()
+
+    lazy var colors: Store<GetCustomColors> = {
+        let useCase = GetCustomColors()
+        return env.subscribe(useCase) { [weak self] in
             self?.update()
         }
     }()
@@ -41,7 +48,8 @@ class SyllabusPresenter {
     }
 
     func viewIsReady() {
-        courses.refresh()
+        colors.refresh()
+        courses.refresh(force: true)
         update()
     }
 
