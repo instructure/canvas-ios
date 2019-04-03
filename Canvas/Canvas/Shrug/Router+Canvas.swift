@@ -98,9 +98,13 @@ extension TechDebt.Router {
         }
 
         addContextRoute([.course], subPath: "assignments/syllabus") { contextID, params in
-            guard let url = params["url"] as? URL,
-            let newUrl = URL(string:url.absoluteString.replacingOccurrences(of: "api/v1", with: "")) else { return nil }
-            return StudentReborn.router.match(.parse(newUrl))
+            guard let url = params["url"] as? URL else { return nil }
+            return StudentReborn.router.match(.parse(url))
+        }
+
+        addContextRoute([.course], subPath: "syllabus") { contextID, params in
+            guard let url = params["url"] as? URL else { return nil }
+            return StudentReborn.router.match(.parse(url))
         }
 
         addContextRoute([.course], subPath: "assignments/:assignmentID/submissions/:userID") { contextID, params in
