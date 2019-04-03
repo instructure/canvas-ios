@@ -49,7 +49,7 @@ class SyllabusPresenter {
 
     func viewIsReady() {
         colors.refresh()
-        courses.refresh(force: true)
+        courses.refresh()
         update()
     }
 
