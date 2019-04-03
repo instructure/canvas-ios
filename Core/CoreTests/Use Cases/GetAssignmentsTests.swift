@@ -204,35 +204,35 @@ class GetAssignmentsTests: CoreTestCase {
         let dateC = Date().addDays(2)
         let dateD = Date().addDays(3)
 
-        let aa = APIAssignment.make([ "id": "2", "course_id": "1", "due_at": nil])
-        let bb = APIAssignment.make([ "id": "3", "course_id": "1", "due_at": nil])
-        let cc = APIAssignment.make([ "id": "4", "course_id": "1", "due_at": dateC, "name": "aaa"])
-        let dd = APIAssignment.make([ "id": "5", "course_id": "1", "due_at": dateD, "name": "ccc"])
-        let ee = APIAssignment.make([ "id": "6", "course_id": "1", "due_at": nil])
-        let ff = APIAssignment.make([ "id": "7", "course_id": "1", "due_at": dateD, "name": "bbb"])
+        let api2 = APIAssignment.make([ "id": "2", "course_id": "1", "due_at": nil, "name": "api2"])
+        let api3 = APIAssignment.make([ "id": "3", "course_id": "1", "due_at": nil, "name": "api3"])
+        let api4 = APIAssignment.make([ "id": "4", "course_id": "1", "due_at": dateC, "name": "api4"])
+        let api5 = APIAssignment.make([ "id": "5", "course_id": "1", "due_at": dateD, "name": "api5"])
+        let api6 = APIAssignment.make([ "id": "6", "course_id": "1", "due_at": nil, "name": "api6"])
+        let api7 = APIAssignment.make([ "id": "7", "course_id": "1", "due_at": dateD, "name": "api7"])
 
-        let a = Assignment.make(["id": "2"])
-        let b = Assignment.make(["id": "3"])
-        let c = Assignment.make(["id": "4"])
-        let d = Assignment.make(["id": "5"])
-        let e = Assignment.make(["id": "6"])
-        let f = Assignment.make(["id": "7"])
+        let a2 = Assignment.make(["id": "2"])
+        let a3 = Assignment.make(["id": "3"])
+        let a4 = Assignment.make(["id": "4"])
+        let a5 = Assignment.make(["id": "5"])
+        let a6 = Assignment.make(["id": "6"])
+        let a7 = Assignment.make(["id": "7"])
 
        //   must do this so dueAtOrder property gets updated
-        try? a.update(fromApiModel: aa, in: databaseClient, updateSubmission: false)
-        try? b.update(fromApiModel: bb, in: databaseClient, updateSubmission: false)
-        try? c.update(fromApiModel: cc, in: databaseClient, updateSubmission: false)
-        try? d.update(fromApiModel: dd, in: databaseClient, updateSubmission: false)
-        try? e.update(fromApiModel: ee, in: databaseClient, updateSubmission: false)
-        try? f.update(fromApiModel: ff, in: databaseClient, updateSubmission: false)
+        try? a2.update(fromApiModel: api2, in: databaseClient, updateSubmission: false)
+        try? a3.update(fromApiModel: api3, in: databaseClient, updateSubmission: false)
+        try? a4.update(fromApiModel: api4, in: databaseClient, updateSubmission: false)
+        try? a5.update(fromApiModel: api5, in: databaseClient, updateSubmission: false)
+        try? a6.update(fromApiModel: api6, in: databaseClient, updateSubmission: false)
+        try? a7.update(fromApiModel: api7, in: databaseClient, updateSubmission: false)
 
         let useCase = GetAssignments(courseID: "1", sort: .dueAt)
 
         let assignments: [Assignment] = databaseClient.fetch(predicate: nil, sortDescriptors: useCase.scope.order)
         XCTAssertEqual(assignments.count, 6)
         let order = assignments.map { "\($0.id)" }.joined(separator: " ")
-        //  we don't care about the order of the nil values so trim them at the end of the array
-        XCTAssertEqual([c, f, d], Array(assignments[0..<3]), order)
+        print("** order: \(order)")
+        XCTAssertEqual([a4, a5, a7, a2, a3, a6], assignments, order)
     }
 
     func testSortOrderPosition() {
