@@ -194,7 +194,7 @@
 
 - (UIViewController *)controllerForHandlingBlockFromViewModel:(CBIViewModel *)viewModel {
     __block id returnedController;
-    NSURL *matchUR = [NSURL URLWithString:[viewModel.model.path realURLEncodedString]];
+    NSURL *matchURL = [NSURL URLWithString:[viewModel.model.path realURLEncodedString]];
 
     [self matchURL:matchURL matchHandler:^(NSDictionary *params, id classOrBlock) {
         if (class_isMetaClass(object_getClass(classOrBlock))) { // it's a class
