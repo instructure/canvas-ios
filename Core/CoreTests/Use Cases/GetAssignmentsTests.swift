@@ -206,10 +206,10 @@ class GetAssignmentsTests: CoreTestCase {
 
         let aa = APIAssignment.make([ "id": "2", "course_id": "1", "due_at": nil])
         let bb = APIAssignment.make([ "id": "3", "course_id": "1", "due_at": nil])
-        let cc = APIAssignment.make([ "id": "4", "course_id": "1", "due_at": dateC])
-        let dd = APIAssignment.make([ "id": "5", "course_id": "1", "due_at": dateD])
+        let cc = APIAssignment.make([ "id": "4", "course_id": "1", "due_at": dateC, "name": "aaa"])
+        let dd = APIAssignment.make([ "id": "5", "course_id": "1", "due_at": dateD, "name": "ccc"])
         let ee = APIAssignment.make([ "id": "6", "course_id": "1", "due_at": nil])
-        let ff = APIAssignment.make([ "id": "7", "course_id": "1", "due_at": dateD])
+        let ff = APIAssignment.make([ "id": "7", "course_id": "1", "due_at": dateD, "name": "bbb"])
 
         let a = Assignment.make(["id": "2"])
         let b = Assignment.make(["id": "3"])
@@ -230,8 +230,9 @@ class GetAssignmentsTests: CoreTestCase {
 
         let assignments: [Assignment] = databaseClient.fetch(predicate: nil, sortDescriptors: useCase.scope.order)
         XCTAssertEqual(assignments.count, 6)
+        let order = assignments.map { "\($0.id)" }.joined(separator: " ")
         //  we don't care about the order of the nil values so trim them at the end of the array
-        XCTAssertEqual([c, f, d], Array(assignments[0..<3]))
+        XCTAssertEqual([c, f, d], Array(assignments[0..<3]), order)
     }
 
     func testSortOrderPosition() {

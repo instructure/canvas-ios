@@ -55,6 +55,7 @@ class APICourseRequestableTests: XCTestCase {
             URLQueryItem(name: "include[]", value: "sections"),
             URLQueryItem(name: "include[]", value: "term"),
             URLQueryItem(name: "include[]", value: "total_scores"),
+            URLQueryItem(name: "include[]", value: "syllabus_body"),
         ])
     }
 
