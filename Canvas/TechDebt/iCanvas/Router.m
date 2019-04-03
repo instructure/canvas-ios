@@ -194,14 +194,8 @@
 
 - (UIViewController *)controllerForHandlingBlockFromViewModel:(CBIViewModel *)viewModel {
     __block id returnedController;
-    NSURL *matchURL;
-    if ([viewModel isKindOfClass:[CBISyllabusViewModel class]]){
-        matchURL = [NSURL URLWithString:[viewModel.model.path stringByAppendingPathComponent:@"item/syllabus"]];
-    }
-    else {
-        matchURL = [NSURL URLWithString:[viewModel.model.path realURLEncodedString]];
-    }
-    
+    NSURL *matchUR = [NSURL URLWithString:[viewModel.model.path realURLEncodedString]];
+
     [self matchURL:matchURL matchHandler:^(NSDictionary *params, id classOrBlock) {
         if (class_isMetaClass(object_getClass(classOrBlock))) { // it's a class
             returnedController = [self controllerForClass:classOrBlock params:params];
