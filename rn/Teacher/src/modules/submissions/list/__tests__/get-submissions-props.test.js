@@ -1,3 +1,5 @@
+/* eslint-disable flowtype/require-valid-file-annotation */
+
 //
 // Copyright (C) 2017-present Instructure, Inc.
 //
@@ -14,9 +16,7 @@
 // limitations under the License.
 //
 
-// @flow
-
-import { gradeProp, statusProp } from '../get-submissions-props'
+import { gradeProp, statusProp, dueDate, getGroup } from '../get-submissions-props'
 import app from '../../../app'
 import * as template from '../../../../__templates__'
 
@@ -75,6 +75,130 @@ describe('GetSubmissionsProps gradeProp', () => {
       workflow_state: 'pending_review',
     })
     expect(gradeProp(submission)).toEqual('ungraded')
+  })
+
+  describe('dueDate', () => {
+    it('returns null if there is no assignment', () => {
+      expect(dueDate(null, template.user())).toBeUndefined()
+    })
+
+    it('returns the assignment due_at if there are no overrides', () => {
+      let assignment = template.assignment({
+        overrides: undefined,
+        due_at: '2019-04-03T17:37:02.051Z',
+      })
+      expect(dueDate(assignment, template.user())).toEqual('2019-04-03T17:37:02.051Z')
+      assignment.overrides = []
+      expect(dueDate(assignment, template.user())).toEqual('2019-04-03T17:37:02.051Z')
+    })
+
+    it('returns the assignment due at if there is no user or group', () => {
+      let assignment = template.assignment({
+        overrides: [template.assignmentOverride()],
+        due_at: '2019-04-03T17:37:02.051Z',
+      })
+      expect(dueDate(assignment, null)).toEqual('2019-04-03T17:37:02.051Z')
+    })
+
+    it('returns the assignment due at if there is no override listing the student user id', () => {
+      let assignment = template.assignment({
+        overrides: [template.assignmentOverride({
+          student_ids: ['1'],
+        })],
+        due_at: '2019-04-03T17:37:02.051Z',
+      })
+      let user = template.user({ id: '2' })
+      expect(dueDate(assignment, user)).toEqual('2019-04-03T17:37:02.051Z')
+    })
+
+    it('returns the override when one for the user exists', () => {
+      let assignment = template.assignment({
+        overrides: [template.assignmentOverride({
+          student_ids: ['1'],
+          due_at: '2019-04-03T17:37:02.051Z',
+        })],
+      })
+      let user = template.user({ id: '1' })
+      expect(dueDate(assignment, user)).toEqual('2019-04-03T17:37:02.051Z')
+    })
+
+    it('returns the assignment due at if the override does not have a group id', () => {
+      let assignment = template.assignment({
+        overrides: [template.assignmentOverride({ group_id: undefined })],
+        due_at: '2019-04-03T17:37:02.051Z',
+      })
+      let group = template.group({ id: '2' })
+      expect(dueDate(assignment, template.user(), group)).toEqual('2019-04-03T17:37:02.051Z')
+    })
+
+    it('returns the assignment due at if the override does not match the group id', () => {
+      let assignment = template.assignment({
+        overrides: [template.assignmentOverride({ group_id: '1' })],
+        due_at: '2019-04-03T17:37:02.051Z',
+      })
+      let group = template.group({ id: '2' })
+      expect(dueDate(assignment, template.user(), group)).toEqual('2019-04-03T17:37:02.051Z')
+    })
+
+    it('returns the override due at when the group id matches the group', () => {
+      let assignment = template.assignment({
+        overrides: [template.assignmentOverride({
+          group_id: '1',
+          due_at: '2019-04-03T17:37:02.051Z',
+        })],
+      })
+      let group = template.group({
+        id: '1',
+      })
+      expect(dueDate(assignment, template.user(), group)).toEqual('2019-04-03T17:37:02.051Z')
+    })
+  })
+
+  describe('getGroup', () => {
+    it('returns the group from the id on the submission if the group exists', () => {
+      let groupState = {
+        '1': {
+          group: template.group({ id: '1' }),
+        },
+      }
+      let submission = template.submission({
+        group: {
+          id: '1',
+          name: 'A test name',
+        },
+      })
+      expect(getGroup(groupState, submission).id).toEqual('1')
+    })
+
+    it('returns nothing if the submission has no group and there is no group category id', () => {
+      let groupState = {}
+      let submission = template.submission({
+        group: {
+          id: null,
+          name: null,
+        },
+      })
+      expect(getGroup(groupState, submission)).toBeUndefined()
+    })
+
+    it('returns the group that includes the user and matches the group category id', () => {
+      let groupState = {
+        '1': { group: template.group({ id: '1' }) },
+        '2': { group: template.group({
+          id: '2',
+          users: [template.user({ id: '1' })],
+        }) },
+        '3': { group: template.group({
+          id: '3',
+          users: [template.user({ id: '1' })],
+          group_category_id: '1',
+        }) },
+      }
+      let submission = template.submission({
+        user_id: '1',
+      })
+      expect(getGroup(groupState, submission, '1').id).toEqual('3')
+    })
   })
 
   describe('statusProp', () => {

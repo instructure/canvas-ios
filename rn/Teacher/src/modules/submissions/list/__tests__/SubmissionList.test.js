@@ -88,6 +88,7 @@ const props = {
   groupAssignment: null,
   sections: [template.section()],
   getCourseEnabledFeatures: jest.fn(),
+  isGroupGradedAssignment: false,
 }
 
 beforeEach(() => jest.resetAllMocks())
@@ -97,6 +98,26 @@ test('SubmissionList loaded', () => {
     <SubmissionList {...props} navigator={template.navigator()} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
+})
+
+test('SubmissionList calls refreshSubmissions if the assignmentName is present', () => {
+  renderer.create(
+    <SubmissionList {...props} />
+  )
+  expect(props.refreshSubmissions).toHaveBeenCalledWith('12', '32', false)
+})
+
+test('SubmissionList calls refreshSubmissions on update if the assignmentName was empty', () => {
+  const tree = renderer.create(
+    <SubmissionList {...props} assignmentName='' isGroupGradedAssignment />
+  )
+  expect(props.refreshSubmissions).not.toHaveBeenCalled()
+  tree.getInstance().componentWillReceiveProps({
+    ...props,
+    assignmentName: 'Blah',
+    isGroupGradedAssignment: true,
+  })
+  expect(props.refreshSubmissions).toHaveBeenCalledWith('12', '32', true)
 })
 
 test('SubmissionList shows loading indicator', () => {
@@ -371,28 +392,6 @@ test('should prevent going to speed grader when offline', () => {
 
 test('refreshSubmissionList', () => {
   refreshSubmissionList(props)
-  expect(props.refreshSubmissions).toHaveBeenCalledWith(props.courseID, props.assignmentID, false)
   expect(props.refreshEnrollments).toHaveBeenCalledWith(props.courseID)
-})
-
-test('refreshSubmissionList (missing groups data)', () => {
-  refreshSubmissionList({
-    ...props,
-    isMissingGroupsData: true,
-    isGroupGradedAssignment: false,
-  })
-  expect(props.refreshSubmissions).toHaveBeenCalledWith(props.courseID, props.assignmentID,
-    true)
-  expect(props.refreshGroupsForCourse).toHaveBeenCalledWith(props.courseID)
-})
-
-test('refreshSubmissionList (group graded submissions)', () => {
-  refreshSubmissionList({
-    ...props,
-    isMissingGroupsData: false,
-    isGroupGradedAssignment: true,
-  })
-  expect(props.refreshSubmissions).toHaveBeenCalledWith(props.courseID, props.assignmentID,
-    true)
   expect(props.refreshGroupsForCourse).toHaveBeenCalledWith(props.courseID)
 })

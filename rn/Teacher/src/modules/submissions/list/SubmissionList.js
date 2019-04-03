@@ -67,6 +67,12 @@ export class SubmissionList extends Component<Props, State> {
     }
   }
 
+  componentDidMount () {
+    if (this.props.assignmentName !== '') {
+      this.props.refreshSubmissions(this.props.courseID, this.props.assignmentID, this.props.isGroupGradedAssignment)
+    }
+  }
+
   componentWillMount = () => {
     NetInfo.isConnected.fetch().then(this.setConnection)
     NetInfo.isConnected.addEventListener('change', this.setConnection)
@@ -84,6 +90,9 @@ export class SubmissionList extends Component<Props, State> {
         filterOptions,
         filter,
       })
+    }
+    if (this.props.assignmentName === '' && newProps.assignmentName !== '') {
+      this.props.refreshSubmissions(this.props.courseID, this.props.assignmentID, this.props.isGroupGradedAssignment)
     }
   }
 
@@ -242,14 +251,8 @@ const styles = StyleSheet.create({
 export function refreshSubmissionList (props: SubmissionListProps): void {
   props.refreshSections(props.courseID)
   props.getCourseEnabledFeatures(props.courseID)
-
-  if (props.isMissingGroupsData || props.isGroupGradedAssignment) {
-    props.refreshGroupsForCourse(props.courseID)
-    props.refreshSubmissions(props.courseID, props.assignmentID, true)
-  } else {
-    props.refreshSubmissions(props.courseID, props.assignmentID, false)
-    props.refreshEnrollments(props.courseID)
-  }
+  props.refreshEnrollments(props.courseID)
+  props.refreshGroupsForCourse(props.courseID)
 }
 
 export function shouldRefresh (props: SubmissionListProps): boolean {

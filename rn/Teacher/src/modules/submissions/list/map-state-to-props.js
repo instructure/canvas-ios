@@ -18,9 +18,6 @@
 
 import { getSubmissionsProps } from './get-submissions-props'
 import shuffle from 'knuth-shuffle-seeded'
-import {
-  getGroupSubmissionProps,
-} from '../../groups/submissions/get-group-submission-props'
 import { isAssignmentAnonymous } from '../../../common/anonymous-grading'
 
 type RoutingProps = {
@@ -39,19 +36,11 @@ export function mapStateToProps (state: AppState, { courseID, assignmentID }: Ro
   if (assignmentContent && assignmentContent.data) {
     const a = assignmentContent.data
     isMissingGroupsData = (!a.grade_group_students_individually && a.group_category_id > 0 && !Object.keys(entities.groups).length)
-    const groupExists = !isMissingGroupsData && a.group_category_id && courseContent.groups.refs
-      .filter(ref => entities.groups[ref].group.group_category_id === a.group_category_id)
-      .length > 0
-    isGroupGradedAssignment = (groupExists && !a.grade_group_students_individually)
+    isGroupGradedAssignment = a.group_category_id != null && !a.grade_group_students_individually
     pointsPossible = assignmentContent.data.points_possible
   }
 
-  let submissions
-  if (isGroupGradedAssignment) {
-    submissions = getGroupSubmissionProps(entities, courseID, assignmentID)
-  } else {
-    submissions = getSubmissionsProps(entities, courseID, assignmentID)
-  }
+  let submissions = getSubmissionsProps(entities, courseID, assignmentID)
 
   let courseColor = '#FFFFFF'
   if (courseContent && courseContent.color) {
