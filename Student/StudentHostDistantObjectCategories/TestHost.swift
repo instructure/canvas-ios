@@ -39,7 +39,7 @@ extension GREYHostApplicationDistantObject: TestHost {
     }
 
     func reset() {
-        appDelegate.window.layer.speed = 100
+        appDelegate.window!.layer.speed = 100
         resetNavigationStack()
         resetDatabase()
         setScreenshotDir()
@@ -47,7 +47,7 @@ extension GREYHostApplicationDistantObject: TestHost {
     }
 
     private func resetNavigationStack() {
-        guard let root = appDelegate.window.rootViewController else { return }
+        guard let root = appDelegate.window!.rootViewController else { return }
         removePresented(root)
         let navController = root as? UINavigationController ?? root.navigationController
         navController?.popToRootViewController(animated: false)
@@ -82,7 +82,7 @@ extension GREYHostApplicationDistantObject: TestHost {
         if !(controller is UINavigationController) {
             controller = UINavigationController(rootViewController: controller)
         }
-        appDelegate.window.rootViewController = controller
+        appDelegate.window!.rootViewController = controller
         controller.loadViewIfNeeded()
         appDelegate.environment.queue.waitUntilAllOperationsAreFinished()
     }
