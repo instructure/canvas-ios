@@ -251,7 +251,7 @@ class ModuleListPresenterTests: TeacherTestCase {
         }
         let presenter = ModuleListPresenter(env: environment, view: view, courseID: courseID, moduleID: "2")
         presenter.viewIsReady()
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 2)
         XCTAssertTrue(presenter.isSectionExpanded(1))
     }
 
@@ -290,7 +290,7 @@ class ModuleListPresenterTests: TeacherTestCase {
             }
         }
         presenter.viewIsReady()
-        wait(for: [expectation], timeout: 1.0)
+        wait(for: [expectation], timeout: 2.0)
     }
 
     func testTappedSection() {
