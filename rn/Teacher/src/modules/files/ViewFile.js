@@ -46,6 +46,7 @@ import { isTeacher } from '../app'
 import CanvasWebView from '../../common/components/CanvasWebView'
 import { alertError } from '../../redux/middleware/error-handler'
 import ModalOverlay from '../../common/components/ModalOverlay'
+import { getSession } from '../../canvas-api/session'
 
 type Props = {
   context?: CanvasContext,
@@ -283,6 +284,26 @@ export default class ViewFile extends Component<Props, State> {
               {i18n('Previewing this file type is not supported')}
             </Text>
           </View>
+        )
+      case 'html':
+        // some people use files as a web server to serve html content and
+        // when they do they might include relative links to other files in the course
+        // which won't work with the download url. We must build a preview url that will
+        // redirect the webview to the server that serves file content in order for the
+        // relative urls to function properly
+        let { baseURL } = getSession()
+        let url = baseURL
+        if (this.props.context && this.props.contextID) {
+          url += `${this.props.context}/${this.props.contextID}/`
+        }
+        url += `files/${this.props.fileID}/preview`
+        return (
+          <CanvasWebView
+            source={{ uri: url }}
+            style={styles.document}
+            onError={this.handleError}
+            navigator={this.props.navigator}
+          />
         )
       default:
         return (
