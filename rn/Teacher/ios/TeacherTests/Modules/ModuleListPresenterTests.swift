@@ -147,7 +147,7 @@ class ModuleListPresenterTests: TeacherTestCase {
 
     func testReloadCourse() {
         let expectation = XCTestExpectation(description: "reloaded")
-        view.onReloadModules = {
+        view.onReloadCourse = {
             if self.presenter.course != nil {
                 expectation.fulfill()
             }
