@@ -111,20 +111,12 @@ class StoreTests: CoreTestCase {
 
         wait(for: [eventsExpectation], timeout: 1.0)
 
-        let loading = snapshots[0]
-        let notLoading = snapshots[1]
-        let loaded = snapshots[2]
-
-        // loading
+        let loading = snapshots.first!
         XCTAssertEqual(loading.count, 0)
         XCTAssertTrue(loading.pending)
         XCTAssertNil(loading.error)
 
-        // not loading
-        XCTAssertFalse(notLoading.pending)
-        XCTAssertNil(notLoading.error)
-
-        // loaded
+        let loaded = snapshots.last!
         XCTAssertEqual(loaded.count, 1)
         XCTAssertFalse(loaded.pending)
         XCTAssertEqual(loaded.objects.first?.id, "1")
@@ -143,17 +135,10 @@ class StoreTests: CoreTestCase {
 
         wait(for: [eventsExpectation], timeout: 1.0)
 
-        let loading = snapshots[0]
-        let notLoading = snapshots[1]
-        let loaded = snapshots[2]
-
-        // loading
+        let loading = snapshots.first!
         XCTAssertTrue(loading.pending)
 
-        // not loading
-        XCTAssertFalse(notLoading.pending)
-
-        // loaded
+        let loaded = snapshots.last!
         XCTAssertFalse(loaded.pending)
     }
 
@@ -197,20 +182,12 @@ class StoreTests: CoreTestCase {
 
         wait(for: [eventsExpectation], timeout: 1.0)
 
-        let loading = snapshots[0]
-        let notLoading = snapshots[1]
-        let error = snapshots[2]
-
-        // loading
+        let loading = snapshots.first!
         XCTAssertEqual(loading.count, 0)
         XCTAssertTrue(loading.pending)
         XCTAssertNil(loading.error)
 
-        // not loading
-        XCTAssertEqual(notLoading.count, 0)
-        XCTAssertFalse(notLoading.pending)
-
-        // error
+        let error = snapshots.last!
         XCTAssertEqual(error.count, 0)
         XCTAssertFalse(error.pending)
         XCTAssertEqual(error.error?.localizedDescription, "network error")
@@ -228,20 +205,12 @@ class StoreTests: CoreTestCase {
 
         wait(for: [eventsExpectation], timeout: 1.0)
 
-        let loading = snapshots[0]
-        let notLoading = snapshots[1]
-        let error = snapshots[2]
-
-        // loading
+        let loading = snapshots.first!
         XCTAssertEqual(loading.count, 0)
         XCTAssertTrue(loading.pending)
         XCTAssertNil(loading.error)
 
-        // not loading
-        XCTAssertEqual(notLoading.count, 0)
-        XCTAssertFalse(notLoading.pending)
-
-        // error
+        let error = snapshots.last!
         XCTAssertEqual(error.count, 0)
         XCTAssertFalse(error.pending)
         XCTAssertEqual(error.error?.localizedDescription, "write error")
