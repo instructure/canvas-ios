@@ -390,15 +390,15 @@ test('mapStateToProps sets groupAssignment when there is a group_category_id', (
       courses: {
         '2': {
           groups: {
-            refs: ['1']
-          }
+            refs: ['1'],
+          },
         },
       },
       groups: {
         '1': {
-          group: templates.group({ group_category_id: '1' })
-        }
-      }
+          group: templates.group({ group_category_id: '1' }),
+        },
+      },
     },
   })
   let newState = mapStateToProps(appState, {
