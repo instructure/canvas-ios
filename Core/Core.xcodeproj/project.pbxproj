@@ -368,6 +368,8 @@
 		B1A32BDA21599C700071B41E /* APIAssignment+Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A32BD921599C700071B41E /* APIAssignment+Requestable.swift */; };
 		B1A32BDC21599F1C0071B41E /* APISubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A32BDB21599F1C0071B41E /* APISubmission.swift */; };
 		B1A32BE22159A3100071B41E /* APIAssignmentRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A32BE12159A3100071B41E /* APIAssignmentRequestableTests.swift */; };
+		B1A464BB225669140052F8DF /* DispatchExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A464BA225669140052F8DF /* DispatchExtensions.swift */; };
+		B1A464BD225669B50052F8DF /* DispatchExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A464BC225669B50052F8DF /* DispatchExtensionsTests.swift */; };
 		B1A6BC762189F9AE000515E3 /* TestsFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B0CEB762150408A00D07CFA /* TestsFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B1A6BC7A218A062E000515E3 /* MediaCommentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A6BC79218A062E000515E3 /* MediaCommentType.swift */; };
 		B1A6BC7E218A317A000515E3 /* APIAssignmentOverride.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A6BC7D218A317A000515E3 /* APIAssignmentOverride.swift */; };
@@ -970,6 +972,8 @@
 		B1A32BDB21599F1C0071B41E /* APISubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISubmission.swift; sourceTree = "<group>"; };
 		B1A32BE12159A3100071B41E /* APIAssignmentRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAssignmentRequestableTests.swift; sourceTree = "<group>"; };
 		B1A32BE5215A81350071B41E /* GetAssignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAssignment.swift; sourceTree = "<group>"; };
+		B1A464BA225669140052F8DF /* DispatchExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchExtensions.swift; sourceTree = "<group>"; };
+		B1A464BC225669B50052F8DF /* DispatchExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchExtensionsTests.swift; sourceTree = "<group>"; };
 		B1A6BC79218A062E000515E3 /* MediaCommentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaCommentType.swift; sourceTree = "<group>"; };
 		B1A6BC7D218A317A000515E3 /* APIAssignmentOverride.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAssignmentOverride.swift; sourceTree = "<group>"; };
 		B1A6BC7F218A32F3000515E3 /* APIAssignmentOverride+Requestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIAssignmentOverride+Requestable.swift"; sourceTree = "<group>"; };
@@ -1508,6 +1512,7 @@
 			children = (
 				7DF9BF03215191840099026B /* BundleExtensions.swift */,
 				B1EA5AF5212E67CE00DABC5F /* DateExtensions.swift */,
+				B1A464BA225669140052F8DF /* DispatchExtensions.swift */,
 				3B69253F21A12E020023ED75 /* Int64Extensions.swift */,
 				B192833721C07A4E008D1B9B /* LoggerExtensions.swift */,
 				3B346754213052C700F9BC2E /* NSErrorExtensions.swift */,
@@ -1595,6 +1600,7 @@
 				3B5369E3219D0FD000D3F62E /* URLExtensionsTests.swift */,
 				7D80AC5A212DB0B500C40ECE /* URLResponseExtensionsTests.swift */,
 				B1A890B9224ED6A300CEE000 /* UIScrollViewExtensionsTests.swift */,
+				B1A464BC225669B50052F8DF /* DispatchExtensionsTests.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2274,6 +2280,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B15CA279221DE9660014FB02 /* APIModuleRequestable.swift in Sources */,
+				B1A464BB225669140052F8DF /* DispatchExtensions.swift in Sources */,
 				9FAE410121B6C56D00FE7F58 /* APIExternalTool.swift in Sources */,
 				9FD504F22180C5F600B395BA /* AsyncBlockOperation.swift in Sources */,
 				78151DCB21AE75D400692862 /* APIDiscussion.swift in Sources */,
@@ -2607,6 +2614,7 @@
 				7D5C871F2239A45300D99651 /* GetSubmissionCommentsTests.swift in Sources */,
 				7D80AC56212CF41900C40ECE /* APIRequestableTests.swift in Sources */,
 				7D8B78FB215EC9BE005E08F1 /* BrandTests.swift in Sources */,
+				B1A464BD225669B50052F8DF /* DispatchExtensionsTests.swift in Sources */,
 				7D062AFB2124A14700677F66 /* ContextTests.swift in Sources */,
 				B17F23AD21378E3800771F86 /* PaginatedUseCaseTest.swift in Sources */,
 				7DAFB46521A4693B00311275 /* LocalizationManagerTests.swift in Sources */,

@@ -91,21 +91,9 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
     }
 
     private func notify() {
-        let runNotifyEvents = {
+        performUIUpdate {
             self.eventHandler()
             self.changes = []
-        }
-
-        //  when this code was calling `DispatchQueue.main.async` when already on the main thread,
-        //  it caused a small delay that was inadequate for toolbar color on viewController transitions,
-        //  caused a noticeable flicker.
-        //  https://github.com/instructure/canvas-ios/pull/42
-        if !Thread.isMainThread {
-            DispatchQueue.main.async {
-                runNotifyEvents()
-            }
-        } else {
-            runNotifyEvents()
         }
     }
 
@@ -131,7 +119,7 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
             if let urlResponse = urlResponse {
                 self?.next = self?.useCase.getNext(from: urlResponse)
             }
-            DispatchQueue.main.async {
+            performUIUpdate {
                 callback?(response)
             }
         }
@@ -155,7 +143,7 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
 
     public func getNextPage(_ callback: ((U.Response?) -> Void)? = nil) {
         guard let next = next else {
-            DispatchQueue.main.async {
+            performUIUpdate {
                 callback?(nil)
             }
             return
@@ -169,7 +157,7 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
             if let urlResponse = urlResponse {
                 self?.next = self?.useCase.getNext(from: urlResponse)
             }
-            DispatchQueue.main.async {
+            performUIUpdate {
                 callback?(response)
             }
         }

@@ -43,12 +43,16 @@ class ModuleListPresenterTests: TeacherTestCase {
         func showAlert(title: String?, message: String?) {
         }
 
+        var onShowPending: (() -> Void)?
         func showPending() {
             refreshing = true
+            onShowPending?()
         }
 
+        var onHidePending: (() -> Void)?
         func hidePending() {
             refreshing = false
+            onHidePending?()
         }
 
         var onScrollToIndexPath: ((IndexPath) -> Void)?
@@ -147,7 +151,7 @@ class ModuleListPresenterTests: TeacherTestCase {
 
     func testReloadCourse() {
         let expectation = XCTestExpectation(description: "reloaded")
-        view.onReloadModules = {
+        view.onReloadCourse = {
             if self.presenter.course != nil {
                 expectation.fulfill()
             }
@@ -205,16 +209,19 @@ class ModuleListPresenterTests: TeacherTestCase {
         let request = GetModulesRequest(courseID: "1")
         let response = [APIModule.make(["name": "Refreshed"])]
         api.mock(request, value: response, response: nil, error: nil)
-        let expectation = XCTestExpectation(description: "modules refreshed")
+        let refreshed = expectation(description: "modules refreshed")
+        refreshed.assertForOverFulfill = false
+        let pending = expectation(description: "start pending")
+        let stopPending = expectation(description: "stop pending")
+        view.onShowPending = pending.fulfill
+        view.onHidePending = stopPending.fulfill
         view.onReloadModules = {
             if self.presenter.modules.count == 1, self.presenter.modules[0]?.name == "Refreshed" {
-                expectation.fulfill()
+                refreshed.fulfill()
             }
         }
         presenter.forceRefresh()
-        XCTAssertTrue(view.refreshing)
-        wait(for: [expectation], timeout: 1)
-        XCTAssertFalse(view.refreshing)
+        wait(for: [pending, refreshed, stopPending], timeout: 1)
     }
 
     func testScrollsToModule() {
@@ -281,16 +288,22 @@ class ModuleListPresenterTests: TeacherTestCase {
             ])
         ]
         api.mock(page2Request, value: page2Response, response: nil, error: nil)
-        let expectation = XCTestExpectation(description: "got next page")
+        var expectation = XCTestExpectation(description: "first page")
         view.onReloadModules = {
             if self.presenter.modules.count == 1 {
-                self.presenter.getNextPage()
-            } else if self.presenter.modules.count == 2 {
                 expectation.fulfill()
             }
         }
         presenter.viewIsReady()
-        wait(for: [expectation], timeout: 2.0)
+        wait(for: [expectation], timeout: 1.0)
+        expectation = XCTestExpectation(description: "second page")
+        view.onReloadModules = {
+            if self.presenter.modules.count == 2 {
+                expectation.fulfill()
+            }
+        }
+        presenter.getNextPage()
+        wait(for: [expectation], timeout: 1.0)
     }
 
     func testTappedSection() {
