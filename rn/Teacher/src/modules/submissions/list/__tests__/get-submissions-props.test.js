@@ -1,4 +1,3 @@
-/* eslint-disable flowtype/require-valid-file-annotation *///
 // Copyright (C) 2017-present Instructure, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+
+/* eslint-disable flowtype/require-valid-file-annotation */
 
 import { gradeProp, statusProp, dueDate, getGroup } from '../get-submissions-props'
 import app from '../../../app'
