@@ -188,8 +188,8 @@ class LoginWebPresenterTests: XCTestCase {
         let username = scripts[0]
         let password = scripts[1]
         let submit = scripts[2]
-        XCTAssertEqual(username, "document.querySelector('input[name=\"pseudonym_session[unique_id]\"]').value = \"canvas\"")
-        XCTAssertEqual(password, "document.querySelector('input[name=\"pseudonym_session[password]\"]').value = \"password\"")
+        XCTAssertEqual(username, "document.querySelector('input[name=\"pseudonym_session[unique_id]\"]').value = \"apple\"")
+        XCTAssertEqual(password, "document.querySelector('input[name=\"pseudonym_session[password]\"]').value = \"titaniumium\"")
         XCTAssertEqual(submit, "document.querySelector('#login_form').submit()")
     }
 
