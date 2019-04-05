@@ -294,9 +294,9 @@ export default class ViewFile extends Component<Props, State> {
         let { baseURL } = getSession()
         let url = baseURL
         if (this.props.context && this.props.contextID) {
-          url += `${this.props.context}/${this.props.contextID}/`
+          url += `/${this.props.context}/${this.props.contextID}`
         }
-        url += `files/${this.props.fileID}/preview`
+        url += `/files/${this.props.fileID}/preview`
         return (
           <CanvasWebView
             source={{ uri: url }}
