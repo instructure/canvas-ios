@@ -146,8 +146,17 @@
         self.fileIdent = [fileIdent intValue];
     }
 
-    self.courseID = params[@"query"][@"courseID"];
-    self.assignmentID = params[@"query"][@"assignmentID"];
+    // don't write over routing parameters applied at
+    // beginning of function unless the query params really
+    // exist
+    NSString *courseID = params[@"query"][@"courseID"];
+    if (courseID) {
+        self.courseID = courseID;
+    }
+    NSString *assignmentID = params[@"query"][@"courseID"];
+    if (assignmentID) {
+        self.assignmentID = assignmentID;
+    }
 
     NSString *url = params[@"url"];
     if (url && [url.lastPathComponent isEqualToString:@"old"]) {
@@ -333,6 +342,22 @@
     [self.view setNeedsLayout];
 }
 
+- (NSURL *)getHTMLFilePreviewURL {
+    NSURL *previewURL = TheKeymaster.currentClient.authSession.baseURL;
+
+    if (self.courseID) {
+        previewURL = [previewURL URLByAppendingPathComponent:@"courses"];
+        // self.courseID should be an NSString but the way it gets set in
+        // [UIViewController applyRoutingParameters] makes it a number
+        previewURL = [previewURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@",self.courseID]];
+    }
+
+    previewURL = [previewURL URLByAppendingPathComponent:@"files"];
+    previewURL = [previewURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%llu", self.fileIdent]];
+    previewURL = [previewURL URLByAppendingPathComponent:@"preview"];
+    return previewURL;
+}
+
 - (UIViewController *)childControllerForContentAtURL:(NSURL *)url {
     UIViewController *controller = nil;
     if ([_file.contentType isEqualToString:@"application/pdf"]) {
@@ -350,6 +375,13 @@
             [self.navigationController popViewControllerAnimated:YES];
         };
         controller = [pdfDocPresenter getPDFViewController];
+    } else if ([_file.contentType isEqualToString:@"text/html"]) {
+        CanvasWebView *webView = [CanvasWebView new];
+        webView.presentingViewController = self;
+        [webView loadRequest:[NSURLRequest requestWithURL:[self getHTMLFilePreviewURL]]];
+        UIViewController *viewController = [UIViewController new];
+        viewController.view = webView;
+        controller = viewController;
     } else {
         CanvasWebView *webView = [CanvasWebView new];
         webView.presentingViewController = self;
