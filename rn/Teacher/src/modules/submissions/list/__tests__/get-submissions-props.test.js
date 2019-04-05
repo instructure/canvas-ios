@@ -1,5 +1,4 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
-//
+/* eslint-disable flowtype/require-valid-file-annotation *///
 // Copyright (C) 2017-present Instructure, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
