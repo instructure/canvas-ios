@@ -33,6 +33,7 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
     public var changes = [StoreChange]()
     public let useCase: U
     public let eventHandler: EventHandler
+    let getNextQueue = DispatchQueue(label: "get-next")
 
     public var count: Int {
         return frc.sections?.first?.numberOfObjects ?? 0
@@ -142,23 +143,25 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
     }
 
     public func getNextPage(_ callback: ((U.Response?) -> Void)? = nil) {
-        guard let next = next else {
-            performUIUpdate {
-                callback?(nil)
+        getNextQueue.sync {
+            guard let next = next else {
+                performUIUpdate {
+                    callback?(nil)
+                }
+                return
             }
-            return
-        }
-        self.next = nil
-        let useCase = GetNextUseCase(parent: self.useCase, request: next)
-        useCase.fetch(environment: env, force: true) { [weak self] response, urlResponse, error in
-            if let error = error {
-                self?.error = error
-            }
-            if let urlResponse = urlResponse {
-                self?.next = self?.useCase.getNext(from: urlResponse)
-            }
-            performUIUpdate {
-                callback?(response)
+            self.next = nil
+            let useCase = GetNextUseCase(parent: self.useCase, request: next)
+            useCase.fetch(environment: env, force: true) { [weak self] response, urlResponse, error in
+                if let error = error {
+                    self?.error = error
+                }
+                if let urlResponse = urlResponse {
+                    self?.next = self?.useCase.getNext(from: urlResponse)
+                }
+                performUIUpdate {
+                    callback?(response)
+                }
             }
         }
     }
