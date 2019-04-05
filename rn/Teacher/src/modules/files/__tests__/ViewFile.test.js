@@ -157,7 +157,7 @@ describe('ViewFile', () => {
     await Promise.resolve()
     await updatedState(tree)
     tree.update()
-    expect(tree.find('CanvasWebView').props().source.uri).toEqual('http://mobiledev.instructure.com/courses/1/files/24/preview')
+    expect(tree.find('CanvasWebView').props().source.uri).toEqual('http://mobiledev.instructure.com//courses/1/files/24/preview')
   })
 
   it('renders an error message if loading fails', async () => {
