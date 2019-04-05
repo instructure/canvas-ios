@@ -150,7 +150,6 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
         }
         self.next = nil
         let useCase = GetNextUseCase(parent: self.useCase, request: next)
-        print("get next")
         useCase.fetch(environment: env, force: true) { [weak self] response, urlResponse, error in
             if let error = error {
                 self?.error = error
