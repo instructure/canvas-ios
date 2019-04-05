@@ -288,16 +288,22 @@ class ModuleListPresenterTests: TeacherTestCase {
             ])
         ]
         api.mock(page2Request, value: page2Response, response: nil, error: nil)
-        let expectation = XCTestExpectation(description: "got next page")
+        var expectation = XCTestExpectation(description: "first page")
         view.onReloadModules = {
             if self.presenter.modules.count == 1 {
-                self.presenter.getNextPage()
-            } else if self.presenter.modules.count == 2 {
                 expectation.fulfill()
             }
         }
         presenter.viewIsReady()
-        wait(for: [expectation], timeout: 2.0)
+        wait(for: [expectation], timeout: 1.0)
+        expectation = XCTestExpectation(description: "second page")
+        view.onReloadModules = {
+            if self.presenter.modules.count == 2 {
+                expectation.fulfill()
+            }
+        }
+        presenter.getNextPage()
+        wait(for: [expectation], timeout: 1.0)
     }
 
     func testTappedSection() {
