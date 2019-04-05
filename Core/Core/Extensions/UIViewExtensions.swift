@@ -28,12 +28,14 @@ extension ViewLoader where Self: UIView {
         return view
     }
 
-    public func loadFromXib(nibName name: String = String(describing: Self.self)) {
+    @discardableResult
+    public func loadFromXib(nibName name: String = String(describing: Self.self)) -> UIView {
         guard let view = Bundle(for: Self.self).loadNibNamed(name, owner: self, options: nil)?.first as? UIView else {
             fatalError("Could not load first view from \(name) xib.")
         }
         addSubview(view)
         view.pin(inside: self)
+        return view
     }
 }
 
@@ -45,7 +47,8 @@ extension UIView {
         layer.mask = mask
     }
 
-    public func pin(inside parent: UIView, leading: CGFloat? = 0, trailing: CGFloat? = 0, top: CGFloat? = 0, bottom: CGFloat? = 0) {
+    public func pin(inside parent: UIView?, leading: CGFloat? = 0, trailing: CGFloat? = 0, top: CGFloat? = 0, bottom: CGFloat? = 0) {
+        guard let parent = parent else { return }
         translatesAutoresizingMaskIntoConstraints = false
         if let leading = leading {
             leadingAnchor.constraint(equalTo: parent.leadingAnchor, constant: leading).isActive = true

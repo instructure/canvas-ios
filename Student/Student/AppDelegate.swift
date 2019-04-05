@@ -14,6 +14,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+import AVKit
 import UIKit
 import CoreData
 import Core
@@ -21,7 +22,7 @@ import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate, AppEnvironmentDelegate {
-    let window = UIWindow(frame: UIScreen.main.bounds)
+    var window: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
 
     lazy var environment: AppEnvironment = {
         let env = AppEnvironment.shared
@@ -33,14 +34,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         environment.logger.log(#function)
         DocViewerViewController.setup(.studentPSPDFKitLicense)
         setupNotifications()
+        try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
 
         if let session = Keychain.mostRecentSession {
-            window.rootViewController = LoadingViewController.create()
+            window?.rootViewController = LoadingViewController.create()
             userDidLogin(keychainEntry: session)
         } else {
-            window.rootViewController = LoginNavigationController.create(loginDelegate: self, fromLaunch: true)
+            window?.rootViewController = LoginNavigationController.create(loginDelegate: self, fromLaunch: true)
         }
-        window.makeKeyAndVisible()
+        window?.makeKeyAndVisible()
 
         return true
     }
@@ -82,10 +84,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     }
 
     func showRootView() {
+        guard let window = window else { return }
         let controller = RootViewController.create()
         controller.view.layoutIfNeeded()
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
-            self.window.rootViewController = controller
+            window.rootViewController = controller
         }, completion: nil)
 
         // FIXME: Move to dev menu
@@ -99,8 +102,9 @@ extension AppDelegate: LoginDelegate {
     var loginLogo: UIImage { return UIImage(named: "CanvasStudent")! }
 
     func changeUser() {
+        guard let window = window else { return }
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft, animations: {
-            self.window.rootViewController = LoginNavigationController.create(loginDelegate: self)
+            window.rootViewController = LoginNavigationController.create(loginDelegate: self)
         }, completion: nil)
     }
 
@@ -123,8 +127,8 @@ extension AppDelegate: LoginDelegate {
     func userDidLogout(keychainEntry: KeychainEntry) {
         Keychain.removeEntry(keychainEntry)
         // TODO: Deregister push notifications?
+        guard environment.currentSession == keychainEntry else { return }
         environment.userDidLogout(session: keychainEntry)
-        guard Keychain.currentSession == keychainEntry else { return }
         CoreWebView.stopCookieKeepAlive()
         changeUser()
     }
@@ -140,7 +144,7 @@ extension AppDelegate {
         alert.addAction(UIAlertAction(title: NSLocalizedString("Close App", bundle: .student, comment: ""), style: .default) { _ in
             UIControl().sendAction(#selector(NSXPCConnection.suspend), to: UIApplication.shared, for: nil)
         })
-        window.rootViewController?.present(alert, animated: true)
+        window?.rootViewController?.present(alert, animated: true)
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
@@ -151,7 +155,7 @@ extension AppDelegate {
     }
 
     func topMostViewController() -> UIViewController? {
-        return window.rootViewController?.topMostViewController()
+        return window?.rootViewController?.topMostViewController()
     }
 }
 

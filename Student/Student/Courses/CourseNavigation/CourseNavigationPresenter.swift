@@ -47,7 +47,6 @@ class CourseNavigationPresenter {
     func viewIsReady() {
         courses.refresh()
         tabs.refresh()
-        update()
     }
 
     func update() {

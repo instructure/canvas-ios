@@ -46,4 +46,17 @@ class SubmissionFilePickerPageTests: FilePickerPageTests {
         page.assertHidden(.cameraButton)
         page.assertHidden(.libraryButton)
     }
+
+    func testCapturePhoto() {
+        #if !(targetEnvironment(simulator))
+        let assignment = APIAssignment.make([
+            "submission_types": [ "online_upload" ],
+        ])
+        mockData(GetAssignmentRequest(courseID: "1", assignmentID: "1", include: []), value: assignment)
+        show("/courses/\(assignment.course_id)/assignments/\(assignment.id)/fileupload")
+        page.tap(.cameraButton)
+        capturePhoto()
+        FilePickerListItem.assertExists(.item("0"))
+        #endif
+    }
 }

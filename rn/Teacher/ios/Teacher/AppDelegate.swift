@@ -14,6 +14,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+import AVKit
 import UIKit
 import CanvasKeymaster
 import ReactiveSwift
@@ -28,9 +29,8 @@ import React
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
-
+    var window: UIWindow? = MasqueradableWindow(frame: UIScreen.main.bounds)
     @objc let loginConfig = LoginConfiguration(mobileVerifyName: "iosTeacher", logo: UIImage(named: "teacher-logomark")!, fullLogo: UIImage(named: "teacher-logo")!)
-    var window: UIWindow?
 
     let hasFabric = (Bundle.main.object(forInfoDictionaryKey: "Fabric") as? [String: Any])?["APIKey"] != nil
     let hasFirebase = FirebaseOptions.defaultOptions()?.apiKey != nil
@@ -55,7 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         setupForPushNotifications()
         preparePSPDFKit()
-        window = MasqueradableWindow(frame: UIScreen.main.bounds)
+        try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
         showLoadingState()
         window?.makeKeyAndVisible()
         UIApplication.shared.reactive.applicationIconBadgeNumber <~ TabBarBadgeCounts.applicationIconBadgeNumber
@@ -207,12 +207,12 @@ extension AppDelegate: NativeLoginManagerDelegate {
     }
     
     func didLogout(_ controller: UIViewController) {
-        if let entry = Keychain.currentSession {
-            Keychain.removeEntry(entry)
+        if let entry = environment.currentSession {
             environment.userDidLogout(session: entry)
             CoreWebView.stopCookieKeepAlive()
         }
         guard let window = self.window else { return }
+        Keychain.clearEntries()
         
         UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: {
             window.rootViewController = controller

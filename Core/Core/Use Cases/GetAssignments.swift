@@ -17,12 +17,18 @@
 import Foundation
 
 public class GetAssignments: CollectionUseCase {
+
+    public enum Sort: String {
+        case position, dueAt
+    }
+
     public typealias Model = Assignment
-
     public let courseID: String
+    private let sort: Sort
 
-    public init(courseID: String) {
+    public init(courseID: String, sort: Sort = .position) {
         self.courseID = courseID
+        self.sort = sort
     }
 
     public var cacheKey: String? {
@@ -34,7 +40,18 @@ public class GetAssignments: CollectionUseCase {
     }
 
     public var scope: Scope {
-        return .where(#keyPath(Assignment.courseID), equals: courseID, orderBy: #keyPath(Assignment.position), naturally: false)
+
+        switch sort {
+        case .dueAt:
+            //  this puts nil dueAt at the bottom of the list
+            let a = NSSortDescriptor(key: #keyPath(Assignment.dueAtOrder), ascending: true)
+            let b = NSSortDescriptor(key: #keyPath(Assignment.dueAt), ascending: true)
+            let c = NSSortDescriptor(key: #keyPath(Assignment.name), ascending: true, selector: #selector(NSString.localizedStandardCompare))
+            let predicate = NSPredicate(format: "%K == %@", argumentArray: [#keyPath(Assignment.courseID), courseID])
+            return Scope.init(predicate: predicate, order: [a, b, c])
+        case .position:
+            return .where(#keyPath(Assignment.courseID), equals: courseID, orderBy: #keyPath(Assignment.position))
+        }
     }
 
     public func write(response: [APIAssignment]?, urlResponse: URLResponse?, to client: PersistenceClient) throws {

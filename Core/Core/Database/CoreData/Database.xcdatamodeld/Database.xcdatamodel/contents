@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18A391" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18D42" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Assignment" representedClassName="Core.Assignment" syncable="YES">
         <attribute name="allowedExtensions" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="courseID" attributeType="String" syncable="YES"/>
         <attribute name="details" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="dueAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="dueAtOrder" attributeType="String" defaultValueString="z" syncable="YES"/>
         <attribute name="gradedIndividually" optional="YES" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="gradingTypeRaw" attributeType="String" syncable="YES"/>
         <attribute name="htmlURL" attributeType="URI" syncable="YES"/>
@@ -31,6 +32,7 @@
         <attribute name="imageDownloadURL" optional="YES" attributeType="URI" syncable="YES"/>
         <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="syllabusBody" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="enrollments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Enrollment" inverseName="course" inverseEntity="Enrollment" syncable="YES"/>
     </entity>
     <entity name="DiscussionEntry" representedClassName="Core.DiscussionEntry" syncable="YES">
@@ -272,9 +274,9 @@
         <attribute name="lastRefresh" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="315"/>
+        <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="330"/>
         <element name="Color" positionX="-177.3046875" positionY="-36" width="128" height="75"/>
-        <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="150"/>
+        <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="165"/>
         <element name="DiscussionEntry" positionX="-513.66796875" positionY="535.73828125" width="128" height="150"/>
         <element name="Enrollment" positionX="-578.41796875" positionY="2.78125" width="128" height="315"/>
         <element name="File" positionX="-162.1640625" positionY="69.79296875" width="128" height="495"/>

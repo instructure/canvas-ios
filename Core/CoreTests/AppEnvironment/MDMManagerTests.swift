@@ -24,7 +24,7 @@ class MDMManagerTests: XCTestCase {
         MDMManager.reset()
     }
 
-    func testAppleOnLoginConfigured() {
+    func testOnLoginConfiguredInstructure() {
         var login: MDMLogin?
         let expectation = XCTestExpectation(description: "on login configured")
         MDMManager.shared.onLoginConfigured {
@@ -40,7 +40,7 @@ class MDMManagerTests: XCTestCase {
         XCTAssertNotNil(MDMManager.shared.login)
     }
 
-    func testInstructureOnLoginConfigured() {
+    func testOnLoginConfiguredApple() {
         var login: MDMLogin?
         let expectation = XCTestExpectation(description: "on login configured")
         MDMManager.shared.onLoginConfigured {

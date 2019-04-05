@@ -91,7 +91,7 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
     }
 
     private func notify() {
-        DispatchQueue.main.async {
+        performUIUpdate {
             self.eventHandler()
             self.changes = []
         }
@@ -119,7 +119,7 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
             if let urlResponse = urlResponse {
                 self?.next = self?.useCase.getNext(from: urlResponse)
             }
-            DispatchQueue.main.async {
+            performUIUpdate {
                 callback?(response)
             }
         }
@@ -143,21 +143,21 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
 
     public func getNextPage(_ callback: ((U.Response?) -> Void)? = nil) {
         guard let next = next else {
-            DispatchQueue.main.async {
+            performUIUpdate {
                 callback?(nil)
             }
             return
         }
+        self.next = nil
         let useCase = GetNextUseCase(parent: self.useCase, request: next)
         useCase.fetch(environment: env, force: true) { [weak self] response, urlResponse, error in
             if let error = error {
                 self?.error = error
             }
-            self?.next = nil
             if let urlResponse = urlResponse {
                 self?.next = self?.useCase.getNext(from: urlResponse)
             }
-            DispatchQueue.main.async {
+            performUIUpdate {
                 callback?(response)
             }
         }

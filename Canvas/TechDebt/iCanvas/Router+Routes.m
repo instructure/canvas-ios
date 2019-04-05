@@ -262,19 +262,6 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
         @"/groups/:contextID/users" : [self usersBlockForClass:[CKIGroup class]],
         @"/courses/:contextID/users/:userID" : [self usersDetailBlockForClass:[CKICourse class]],
         @"/groups/:contextID/users/:userID" : [self usersDetailBlockForClass:[CKIGroup class]],
-        @"/courses/:courseID/syllabus" : syllabusListViewControllerBlock,
-        @"/courses/:courseID/item/syllabus" : ^ (NSDictionary *params, id viewModel) {
-            if(viewModel == nil){
-                CKICourse *course = [CKICourse modelWithID:[params[@"courseID"] description]];
-                viewModel = [CBISyllabusViewModel viewModelForModel:course];
-                ((CBIColorfulViewModel *)viewModel).viewControllerTitle = NSLocalizedStringFromTableInBundle(@"Syllabus", nil, bundle, @"Title for Syllabus screen");
-            }
-
-        ((CBIColorfulViewModel *)viewModel).tintColor = [TheKeymaster.currentClient.authSession colorForCourse:[params[@"courseID"] description]];
-            CBISyllabusDetailViewController *syllabusViewController = [CBISyllabusDetailViewController new];
-            syllabusViewController.viewModel = viewModel;
-            return syllabusViewController;
-        },
         @"/courses/:courseID/quizzes": ^(NSDictionary *params, CBIQuizzesTabViewModel *quizzesTabViewModel) {
             NSString *contextID = [params[@"courseID"] description];
             if (quizzesTabViewModel == nil) {

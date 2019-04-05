@@ -31,6 +31,16 @@ public let router = Router(routes: [
         return CourseNavigationViewController(courseID: courseID)
     },
 
+    RouteHandler(.syllabus(courseID: ":courseID", includeAssignmentPath: false), name: "syllabus") { _, params in
+        guard let courseID = params["courseID"] else { return nil }
+        return SyllabusViewController.create(courseID: courseID)
+    },
+
+    RouteHandler(.syllabus(courseID: ":courseID"), name: "syllabus") { _, params in
+        guard let courseID = params["courseID"] else { return nil }
+        return SyllabusViewController.create(courseID: courseID)
+    },
+
     RouteHandler(.course(":courseID", assignment: ":assignmentID"), name: "course_assignment") { url, params in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
         return AssignmentDetailsViewController.create(courseID: courseID, assignmentID: assignmentID, fragment: url.fragment)
@@ -59,7 +69,7 @@ public let router = Router(routes: [
     },
 
     RouteHandler(.assignmentFileUpload(courseID: ":courseID", assignmentID: ":assignmentID"), name: "assignment_file_upload") { _, params in
-        guard let courseID = params["courseID"], let assignmentID = params["assignmentID"], let userID = Keychain.currentSession?.userID else {
+        guard let courseID = params["courseID"], let assignmentID = params["assignmentID"], let userID = AppEnvironment.shared.currentSession?.userID else {
             return nil
         }
         let presenter = SubmissionFilePresenter(courseID: courseID, assignmentID: assignmentID, userID: userID)

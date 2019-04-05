@@ -117,8 +117,6 @@ public class Keychain {
 
     public static let key = "CanvasUsers"
 
-    public static var currentSession: KeychainEntry?
-
     public static var mostRecentSession: KeychainEntry? {
         return entries.reduce(nil) { (latest: KeychainEntry?, entry: KeychainEntry) -> KeychainEntry? in
             if let latest = latest, latest.lastUsedAt > entry.lastUsedAt {

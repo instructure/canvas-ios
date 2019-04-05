@@ -28,6 +28,7 @@ final public class Course: NSManagedObject, Context, WriteableModel {
     @NSManaged public var isFavorite: Bool
     @NSManaged public var name: String?
     @NSManaged public var enrollments: Set<Enrollment>?
+    @NSManaged public var syllabusBody: String?
 
     public var defaultView: CourseDefaultView? {
         get { return CourseDefaultView(rawValue: defaultViewRaw ?? "") }
@@ -43,6 +44,7 @@ final public class Course: NSManagedObject, Context, WriteableModel {
         model.isFavorite = item.is_favorite ?? false
         model.courseCode = item.course_code
         model.imageDownloadURL = item.image_download_url
+        model.syllabusBody = item.syllabus_body
 
         try model.enrollments?.forEach { try context.delete($0) }
         model.enrollments = nil

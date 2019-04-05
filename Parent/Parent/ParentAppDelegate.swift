@@ -14,6 +14,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+import AVKit
 import UIKit
 import CanvasCore
 import CanvasKeymaster
@@ -28,12 +29,8 @@ let ParentAppRefresherTTL: TimeInterval = 5.minutes
 
 @UIApplicationMain
 class ParentAppDelegate: UIResponder, UIApplicationDelegate {
-
-    var environment: AppEnvironment!
-
-    var window: UIWindow?
+    var window: UIWindow? = MasqueradableWindow(frame: UIScreen.main.bounds)
     var legacySession: Session?
-    var session: KeychainEntry?
     @objc let loginConfig = LoginConfiguration(mobileVerifyName: "iosParent",
                                          logo: UIImage(named: "parent-logomark")!,
                                          fullLogo: UIImage(named: "parent-logo")!,
@@ -49,13 +46,16 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         return vc
     }
 
+    lazy var environment: AppEnvironment = {
+        let env = AppEnvironment.shared
+        env.router = Parent.router
+        return env
+    }()
+
     let hasFabric = (Bundle.main.object(forInfoDictionaryKey: "Fabric") as? [String: Any])?["APIKey"] != nil
     let hasFirebase = FirebaseOptions.defaultOptions()?.apiKey != nil
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        environment = AppEnvironment.shared
-        environment.router = Parent.router
-
         setupCrashlytics()
         ResetAppIfNecessary()
         if hasFirebase {
@@ -64,8 +64,8 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         
         TheKeymaster.fetchesBranding = false
         TheKeymaster.delegate = loginConfig
-        
-        window = MasqueradableWindow(frame: UIScreen.main.bounds)
+        try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+
         showLoadingState()
         window?.makeKeyAndVisible()
         
@@ -103,7 +103,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
     
     @objc func openCanvasURL(_ url: URL) -> Bool {
         if url.scheme == "canvas-parent" {
-            if let _ = session {
+            if environment.currentSession != nil {
                 Router.sharedInstance.route(visibleController, toURL: url, modal: false)
             } else if let window = window, let vc = Router.sharedInstance.viewControllerForURL(url) {
                 Router.sharedInstance.route(window, toRootViewController: vc)
@@ -137,7 +137,6 @@ extension ParentAppDelegate {
             return
         }
 
-        self.session = lastSession
         self.legacySession = Session(baseURL: lastSession.baseURL, user: SessionUser(id: lastSession.userID, name: lastSession.userName, avatarURL: lastSession.userAvatarURL), token: lastSession.accessToken)
         self.didLogin(lastSession)
     }
@@ -227,9 +226,9 @@ extension ParentAppDelegate: NativeLoginManagerDelegate {
         guard let legacySession = self.legacySession else {
             return
         }
-        Keychain.currentSession = session
         Keychain.addEntry(session)
         environment.userDidLogin(session: session)
+        CoreWebView.keepCookieAlive(for: environment)
 
         // UX requires that students are given color schemes in a specific order.
         // The method call below ensures that we always start with the first color scheme.
@@ -291,11 +290,13 @@ extension ParentAppDelegate: NativeLoginManagerDelegate {
     }
     
     func didLogout(_ controller: UIViewController) {
-        guard let window = self.window else { return }
-        Keychain.clearEntries()
-        if let session = session {
-            environment.userDidLogout(session: session)
+        if let entry = environment.currentSession {
+            environment.userDidLogout(session: entry)
+            CoreWebView.stopCookieKeepAlive()
         }
+        Keychain.clearEntries()
+
+        guard let window = window else { return }
         UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: {
             window.rootViewController = controller
         }, completion:nil)

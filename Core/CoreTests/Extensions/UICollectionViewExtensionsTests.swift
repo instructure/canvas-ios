@@ -25,7 +25,8 @@ class UICollectionViewExtensionsTests: XCTestCase {
         let view = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         view.register(Cell.self, forCellWithReuseIdentifier: "Cell")
         view.register(View.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "View")
-        XCTAssertNoThrow(view.dequeue(Cell.self, for: IndexPath(row: 0, section: 0)))
+
+        XCTAssertNoThrow(view.dequeue(for: IndexPath(row: 0, section: 0)) as Cell)
         XCTAssertNoThrow(view.dequeue(View.self, ofKind: UICollectionView.elementKindSectionHeader, for: IndexPath(row: 0, section: 0)))
     }
 }
