@@ -1,5 +1,4 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
-
 //
 // Copyright (C) 2017-present Instructure, Inc.
 //
