@@ -150,6 +150,16 @@ describe('ViewFile', () => {
     expect(tree.find('ActivityIndicator').length).toBe(1)
   })
 
+  it('renders html', async () => {
+    props.file.mime_class = 'html'
+    const tree = shallow(<ViewFile {...props} />)
+    await Promise.resolve()
+    await Promise.resolve()
+    await updatedState(tree)
+    tree.update()
+    expect(tree.find('CanvasWebView').props().source.uri).toEqual('http://mobiledev.instructure.com//courses/1/files/24/preview')
+  })
+
   it('renders an error message if loading fails', async () => {
     let promise = Promise.resolve({ statusCode: 500 })
     downloadFile.mockImplementationOnce(() => ({
