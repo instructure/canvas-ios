@@ -41,7 +41,8 @@ extension Student {
     }
 
     private static func getEnrollments(session: Session) throws -> SignalProducer<[JSONObject], NSError> {
-        let request = try session.GET("/api/v1/users/self/enrollments", parameters: ["state": ["creation_pending", "active", "invited"], "include": ["observed_users", "avatar_url"]])
+        let params = ["state": ["creation_pending", "active", "invited"], "include": ["observed_users", "avatar_url"], "role": ["ObserverEnrollment"]]
+        let request = try session.GET("/api/v1/users/self/enrollments", parameters: params)
         return session.paginatedJSONSignalProducer(request)
     }
 
