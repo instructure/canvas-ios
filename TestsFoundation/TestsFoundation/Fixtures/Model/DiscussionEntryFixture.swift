@@ -24,3 +24,16 @@ extension DiscussionEntry: Fixture {
         ]
     }
 }
+
+
+extension DiscussionTopic: Fixture {
+    public static var template: Template {
+        return [
+            "id": "1",
+            "title": "Graded Discussion",
+            "assignmentID": "1",
+            "discussionSubEntryCount": 1,
+            "published": true
+        ]
+    }
+}

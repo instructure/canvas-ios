@@ -28,7 +28,7 @@ class SyllabusViewController: UIViewController {
     var courseID: String = ""
     var color: UIColor?
     var syllabus: CoreWebView?
-    var assignments: AssignmentListViewController?
+    var assignments: SyllabusAssignmentListViewController?
 
     enum MenuItem: Int {
         case syllabus, assignments
@@ -82,7 +82,7 @@ class SyllabusViewController: UIViewController {
     }
 
     func configureAssignments() {
-        assignments = AssignmentListViewController(courseID: courseID, sort: GetAssignments.Sort.dueAt)
+        assignments = SyllabusAssignmentListViewController(courseID: courseID, sort: GetAssignments.Sort.dueAt)
         guard let assignments = assignments else { return }
         embed(assignments, in: scrollView) { [weak self] (child, _) in
             guard let syllabus = self?.syllabus else { return }

@@ -37,6 +37,7 @@ public class Assignment: NSManagedObject {
     @NSManaged public var lockedForUser: Bool
     @NSManaged public var url: URL?
     @NSManaged public var dueAtOrder: String
+    @NSManaged public var discussionTopic: DiscussionTopic?
 
     public var gradingType: GradingType {
         get { return GradingType(rawValue: gradingTypeRaw) ?? .points }
@@ -91,6 +92,14 @@ extension Assignment {
         lockAt = item.lock_at
         lockedForUser = item.locked_for_user ?? false
         url = item.url
+
+        if let topic = item.discussion_topic {
+            discussionTopic = DiscussionTopic.save(topic, in: client)
+        } else if let topic = discussionTopic {
+            try client.delete(topic)
+            self.discussionTopic = nil
+        }
+
         if updateSubmission {
             if let submissionItem = item.submission {
                 let sub = try Submission.save(submissionItem, in: client)
