@@ -43,8 +43,9 @@ class HorizontalMenuViewCell: UICollectionViewCell {
         didSet {
             UIView.animate(withDuration: 0.2) { [weak self] in
                 let selected = self?.isSelected ?? false
-                self?.selectionView?.backgroundColor = selected ? self?.selectionColor : UIColor.clear
-                self?.textLabel.textColor = selected ? self?.selectionColor : UIColor.named(.textDark)
+                let selectionColor = self?.selectionColor?.ensureContrast(against: UIColor.named(.backgroundLightest))
+                self?.selectionView?.backgroundColor = selected ? selectionColor : UIColor.clear
+                self?.textLabel.textColor = selected ? selectionColor : UIColor.named(.textDark).ensureContrast(against: UIColor.named(.backgroundLightest))
             }
         }
     }

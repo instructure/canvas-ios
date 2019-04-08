@@ -46,8 +46,8 @@ public class HorizontalMenuView: UIView {
 
     func commonInit() {
         contentView = loadFromXib()
-        backgroundColor = UIColor.white.ensureContrast(against: .named(.white))
-        contentView.backgroundColor = UIColor.white.ensureContrast(against: .named(.white))
+        backgroundColor = UIColor.named(.backgroundLightest)
+        contentView.backgroundColor = UIColor.named(.backgroundLightest)
         collectionView.registerCell(HorizontalMenuViewCell.self, bundle: Bundle.core)
         collectionView.dataSource = self
         collectionView.delegate = self

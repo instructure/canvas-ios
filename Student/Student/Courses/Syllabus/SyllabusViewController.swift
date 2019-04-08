@@ -43,7 +43,7 @@ class SyllabusViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.white.ensureContrast(against: .named(.white))
+        view.backgroundColor = UIColor.named(.backgroundLightest)
 
         configureTitleView()
         configureSyllabus()
