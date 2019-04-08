@@ -16,19 +16,10 @@
 
 import Foundation
 
-/// Manages MDM Configurations
-///
-/// You can test this locally with command line arguments
-// -com.apple.configuration.managed '<dict><key>enableDemo</key><true/><key>username</key><string>username</string><key>password</key><string>password</string></dict>'
-/// `username` and `password` values should match what's set in App Store Connect.
-
 public class MDMLogin: NSObject {
-    @objc
-    public let host: String
-    @objc
-    public let username: String
-    @objc
-    public let password: String
+    @objc public let host: String
+    @objc public let username: String
+    @objc public let password: String
 
     fileprivate init(host: String, username: String, password: String) {
         self.host = host
@@ -37,43 +28,15 @@ public class MDMLogin: NSObject {
     }
 }
 
-enum MDMProvider: String, CaseIterable {
-    case instructure = "com.instructure.configuration.managed"
-    case apple = "com.apple.configuration.managed"
-
-    var login: MDMLogin? {
-        guard let defaults = defaults else { return nil }
-        switch self {
-        case .instructure:
-            guard let enableLogin = defaults["enableLogin"] as? Bool, enableLogin else { return nil }
-            guard let host = defaults["host"] as? String else { return nil }
-            guard let username = defaults["username"] as? String else { return nil }
-            guard let password = defaults["password"] as? String else { return nil }
-            return MDMLogin(host: host, username: username, password: password)
-        case .apple:
-            guard let enableDemo = defaults["enableDemo"] as? Bool, enableDemo else { return nil }
-            guard let username = defaults["username"] as? String else { return nil }
-            guard let password = defaults["password"] as? String else { return nil }
-            guard let host = Secret.appleDemoHost.string else { return nil }
-            return MDMLogin(host: host, username: username, password: password)
-        }
-    }
-
-    private var defaults: [String: Any]? {
-        return UserDefaults.standard.dictionary(forKey: rawValue)
-    }
-}
-
 @objc
 public class MDMManager: NSObject {
-    @objc
-    public static let shared = MDMManager()
+    public static let MDMUserDefaultsKey = "com.apple.configuration.managed"
+    @objc public static let shared = MDMManager()
     private var token: NSObjectProtocol?
 
     // Login
     public typealias LoginObserver = (MDMLogin) -> Void
-    @objc
-    public private(set) var login: MDMLogin?
+    @objc public private(set) var login: MDMLogin?
     private var loginObservers: [LoginObserver] = []
 
     override init() {
@@ -104,7 +67,14 @@ public class MDMManager: NSObject {
     }
 
     private func updateLogin() {
-        login = MDMProvider.allCases.compactMap { $0.login }.first
+        var login: MDMLogin?
+        defer { self.login = login }
+        guard let defaults = UserDefaults.standard.dictionary(forKey: MDMManager.MDMUserDefaultsKey) else { return }
+        guard let enableDemo = defaults["enableDemo"] as? Bool, enableDemo else { return }
+        guard let host = defaults["host"] as? String else { return }
+        guard let username = defaults["username"] as? String else { return }
+        guard let password = defaults["password"] as? String else { return }
+        login = MDMLogin(host: host, username: username, password: password)
         if let login = login {
             let observers = self.loginObservers
             observers.forEach { $0(login) }

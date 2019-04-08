@@ -204,3 +204,20 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ```
+
+## MDM Configurations
+
+MDM Profile settings are saved in `UserDefaults.standard` and keyed by
+`com.apple.configuration.managed`.
+
+Use our `MDMManager` to observe changes such as managed logins.
+
+You can test this locally with command line arguments.
+
+`Scheme` > `Edit Scheme` > `Run` > `Arguments` > `Arguments Passed on Launch`
+
+```
+-com.apple.configuration.managed '<dict><key>enableDemo</key><true/><key>username</key><string>student</string><key>password</key><string>Canvas2019</string><key>host</key><string>canvas.instructure.com</string></dict>'
+```
+
+Change the `username`, `password`, and `host` to your test credentials.
