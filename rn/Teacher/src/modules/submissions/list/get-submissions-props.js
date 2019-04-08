@@ -22,23 +22,12 @@ import type {
   AsyncSubmissionsDataProps,
 } from './submission-prop-types'
 import localeSort from '../../../utils/locale-sort'
-import find from 'lodash/find'
 import { isTeacher } from '../../app'
 
 function getEnrollments (courseContent?: CourseContentState, enrollments: EnrollmentsState): Array<Enrollment> {
   if (!courseContent) { return [] }
   return courseContent.enrollments.refs
     .map(ref => enrollments[ref])
-}
-
-function getSubmissionsByUserID (assignmentContent?: AssignmentContentState, submissions: SubmissionsState): { [string]: SubmissionWithHistory } {
-  if (!assignmentContent) { return {} }
-  return assignmentContent.submissions.refs
-    .reduce((byUserID, ref) => {
-      const submission = submissions[ref].submission
-      if (!submission) { return byUserID }
-      return { ...byUserID, [submission.user_id]: submission }
-    }, {})
 }
 
 export function statusProp (submission: ?Submission, dueDate: ?string): ?SubmissionStatus {
@@ -104,34 +93,31 @@ function submissionProps (enrollment: Enrollment, submission: ?SubmissionWithHis
   return { userID: id, avatarURL, name, status, grade, submissionID, submission, score, sectionID, allSectionIDs }
 }
 
-export function dueDate (assignment: Assignment, user: ?User | SessionUser): ?string {
+export function dueDate (assignment: Assignment, user: ?User | SessionUser, group: ?Group): ?string {
   if (!assignment) {
-    return null
+    return
   }
 
   const overrides = assignment.overrides
-  if (overrides) {
-    const override = find(overrides, (override) => {
-      if (!override.student_ids) return false
+  if (!overrides) {
+    return assignment.due_at
+  }
+
+  let override
+  if (group) {
+    override = overrides.find(override => {
+      return override.group_id != null &&
+             group &&
+             override.group_id === group.id
+    })
+  } else {
+    override = overrides.find(override => {
       if (!user) return false
       return override.student_ids.includes(user.id)
     })
-    if (override) {
-      return override.due_at
-    }
   }
-  return assignment.due_at
-}
 
-function uniqueEnrollments (enrollments: Array<Enrollment>): Array<Enrollment> {
-  const ids: Set<string> = new Set()
-  return enrollments
-    .filter(e => e.enrollment_state === 'active' || e.enrollment_state === 'invited')
-    .reduce((unique, e) => {
-      if (ids.has(e.user_id)) { return unique }
-      ids.add(e.user_id)
-      return [...unique, e]
-    }, [])
+  return override != null ? override.due_at : assignment.due_at
 }
 
 export function pendingProp (assignmentContent?: AssignmentContentState, courseContent?: CourseContentState): boolean {
@@ -142,45 +128,85 @@ export function pendingProp (assignmentContent?: AssignmentContentState, courseC
   return assignmentContent.submissions.pending > 0 || courseContent.enrollments.pending > 0
 }
 
+// If a submission does not have a grade or an actual submission it will not have a group attached to the submission.
+// So if it's there we get the group from entities, but if not then we will look up the group in entities based on
+// the category id and if the user is in the group.
+export function getGroup (groups: GroupsState, submission: SubmissionWithHistory, categoryID: ?string): ?Group {
+  if (submission.group && submission.group.id != null) {
+    let group = groups[submission.group.id]
+    if (!group) return
+    return group.group
+  }
+
+  if (!categoryID) return
+
+  // $FlowFixMe
+  let groupValues: Array<{ group: Group }> = Object.values(groups)
+  let group = groupValues
+    .filter(({ group }) => group && group.group_category_id === categoryID)
+    .find(({ group }) => group.users && group.users.map(({ id }) => id).includes(submission.user_id))
+
+  if (!group) return
+  return group.group
+}
+
+export function groupPropsForSubmissionsAndDueDate (submission: SubmissionWithHistory, dueDate: ?string, group: ?Group) {
+  if (!group) return
+  return {
+    // just a precaution... we're filtering out empty groups below
+    userID: group.users && group.users.length > 0 ? group.users[0].id : 'none',
+    groupID: group.id,
+    name: group.name,
+    status: statusProp(submission, dueDate),
+    grade: gradeProp(submission),
+    score: submission ? submission.score : null,
+    submissionID: submission ? submission.id : null,
+    submission,
+    sectionID: null,
+    allSectionIDs: null,
+  }
+}
+
 export function getSubmissionsProps (entities: Entities, courseID: string, assignmentID: string): AsyncSubmissionsDataProps {
   // enrollments
   const courseContent = entities.courses[courseID]
   const enrollments = getEnrollments(courseContent, entities.enrollments)
 
-  const sectionIDs = enrollments.reduce((memo, enrollment) => {
+  const sectionIDs: { [string]: [string] } = enrollments.reduce((memo, enrollment) => {
     const userID = enrollment.user_id
     const existing = memo[userID] || []
     return { ...memo, [userID]: [...existing, enrollment.course_section_id] }
   }, {})
 
-  // submissions
+  // We no longer need to do the song and dance of matching user enrollments up to potentially missing
+  // submissions since we now are guaranteed to have one submission per user/group. We also handle both
+  // groups and users here since it's possible for a user to not be in a group so we can't do one or
+  // the other, we must do both.
   const assignmentContent = entities.assignments[assignmentID]
-  const submissionsByUserID = getSubmissionsByUserID(assignmentContent, entities.submissions)
-
-  // don't create the submissions unless we have submissions
-  // this fixes some issues we were having where deep linking
-  // wouldn't show the submission for the user
-  const submissions = Object.keys(submissionsByUserID).length
-    ? uniqueEnrollments(enrollments)
-      .filter(e => e.type === 'StudentEnrollment')
-      .sort((e1, e2) => {
-        if (e1.type !== e2.type) {
-          if (e1.type === 'StudentEnrollment') {
-            return -1
-          } else if (e2.type === 'StudentEnrollment') {
-            return 1
-          }
+  const submissions = Object.values(entities.submissions)
+    // $FlowFixMe
+    .map(({ submission }) => submission)
+    .filter(sub => sub.assignment_id === assignmentID)
+    .map(sub => {
+      let group = getGroup(entities.groups, sub, assignmentContent.data.group_category_id)
+      if (assignmentContent.data.group_category_id != null &&
+          !assignmentContent.data.grade_group_students_individually &&
+          group != null) {
+        const due = assignmentContent != null ? dueDate(assignmentContent.data, null, group) : undefined
+        return groupPropsForSubmissionsAndDueDate(sub, due, group)
+      } else {
+        const enrollment = enrollments.find(e => e.user_id === sub.user_id)
+        if (!enrollment) {
+          return
         }
-        return localeSort(e1.user.sortable_name, e2.user.sortable_name)
-      })
-      .map(enrollment => {
-        const submission: ?SubmissionWithHistory = submissionsByUserID[enrollment.user_id]
         const due = assignmentContent && dueDate(assignmentContent.data, enrollment.user)
-        // $FlowFixMe
-        let temp = submissionProps(enrollment, submission, due, sectionIDs)
-        return temp
-      })
-    : []
+        return submissionProps(enrollment, sub, due, sectionIDs)
+      }
+    })
+    .filter(Boolean)
+    .sort((s1, s2) => {
+      return localeSort(s1.name, s2.name)
+    })
 
   const pending = pendingProp(assignmentContent, courseContent)
 

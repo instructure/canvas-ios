@@ -428,6 +428,329 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
             "dismiss": [Function],
             "getInitialTabIndex": [Function],
             "getItemLayout": [Function],
+            "hasRenderedBody": false,
+            "onLayout": [Function],
+            "props": Object {
+              "assignmentID": "1",
+              "assignmentSubmissionTypes": Array [
+                "none",
+              ],
+              "courseID": "1",
+              "drawerPosition": 0,
+              "getCourseEnabledFeatures": [Function],
+              "gradeSubmissionWithRubric": [Function],
+              "groupAssignment": Object {},
+              "hasAssignment": true,
+              "navigator": Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "isModal": false,
+                "pop": [Function],
+                "replace": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              },
+              "onDismiss": [Function],
+              "pending": true,
+              "refresh": [Function],
+              "refreshSubmissionSummary": [Function],
+              "refreshSubmissions": [Function],
+              "refreshing": false,
+              "resetDrawer": [Function],
+              "submissionEntities": Object {},
+              "submissions": Array [],
+              "userID": "1",
+            },
+            "refs": Object {},
+            "renderBody": [Function],
+            "renderItem": [Function],
+            "scrollEnded": [Function],
+            "snapTo": [Function],
+            "state": Object {
+              "currentPageIndex": undefined,
+              "currentStudentID": "1",
+              "drawerInset": 62,
+              "hasScrolledToInitialSubmission": false,
+              "hasSetInitialDrawerPosition": false,
+              "scrollEnabled": true,
+              "size": Object {
+                "height": 1334,
+                "width": 770,
+              },
+            },
+            "updater": Updater {
+              "_renderer": ReactShallowRenderer {
+                "_context": Object {},
+                "_element": <SpeedGrader
+                  assignmentID="1"
+                  assignmentSubmissionTypes={
+                              Array [
+                                          "none",
+                                        ]
+                  }
+                  courseID="1"
+                  drawerPosition={0}
+                  getCourseEnabledFeatures={[Function]}
+                  gradeSubmissionWithRubric={[Function]}
+                  groupAssignment={Object {}}
+                  hasAssignment={true}
+                  navigator={
+                              Object {
+                                          "dismiss": [Function],
+                                          "dismissAllModals": [Function],
+                                          "isModal": false,
+                                          "pop": [Function],
+                                          "replace": [Function],
+                                          "show": [Function],
+                                          "traitCollection": [Function],
+                                        }
+                  }
+                  onDismiss={[Function]}
+                  pending={true}
+                  refresh={[Function]}
+                  refreshSubmissionSummary={[Function]}
+                  refreshSubmissions={[Function]}
+                  refreshing={false}
+                  resetDrawer={[Function]}
+                  submissionEntities={Object {}}
+                  submissions={Array []}
+                  userID="1"
+      />,
+                "_forcedUpdate": false,
+                "_instance": [Circular],
+                "_newState": Object {
+                  "currentPageIndex": undefined,
+                  "currentStudentID": "1",
+                  "drawerInset": 62,
+                  "hasScrolledToInitialSubmission": false,
+                  "hasSetInitialDrawerPosition": false,
+                  "scrollEnabled": true,
+                  "size": Object {
+                    "height": 1334,
+                    "width": 770,
+                  },
+                },
+                "_rendered": <Screen
+                  navBarHidden={true}
+                  navBarStyle="light"
+                  noRotationInVerticallyCompact={true}
+                  showDismissButton={true}
+                  statusBarHidden={true}
+                  statusBarStyle="default"
+      >
+                  <View
+                              style={
+                                          Object {
+                                                      "flex": 1,
+                                                    }
+                              }
+                  >
+                              <View
+                                          accessibilityLabel="In Progress"
+                                          accessible={true}
+                                          style={
+                                                      Object {
+                                                                  "alignItems": "center",
+                                                                  "flex": 1,
+                                                                  "justifyContent": "center",
+                                                                }
+                                          }
+                              >
+                                          <ActivityIndicator
+                                                      animating={true}
+                                                      color="#999999"
+                                                      hidesWhenStopped={true}
+                                                      size="small"
+                                          />
+                              </View>
+                              <Tutorial
+                                          tutorials={
+                                                      Array [
+                                                                  Object {
+                                                                    "id": "swipe-tutorial",
+                                                                    "image": Object {
+                                                                      "testUri": "../../../src/images/speedgrader/Swipe.png",
+                                                                    },
+                                                                    "text": "Swipe left or right to view other student submissions",
+                                                                  },
+                                                                ]
+                                          }
+                              />
+                  </View>
+      </Screen>,
+                "_rendering": false,
+                "_updater": [Circular],
+              },
+            },
+          },
+          SpeedGrader {
+            "_captureFlatList": [Function],
+            "componentWillReceiveProps": [Function],
+            "context": Object {},
+            "dismiss": [Function],
+            "getInitialTabIndex": [Function],
+            "getItemLayout": [Function],
+            "hasRenderedBody": false,
+            "onLayout": [Function],
+            "props": Object {
+              "assignmentID": "1",
+              "assignmentSubmissionTypes": Array [
+                "none",
+              ],
+              "courseID": "1",
+              "drawerPosition": 0,
+              "getCourseEnabledFeatures": [Function],
+              "gradeSubmissionWithRubric": [Function],
+              "groupAssignment": null,
+              "hasAssignment": true,
+              "navigator": Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "isModal": false,
+                "pop": [Function],
+                "replace": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              },
+              "onDismiss": [Function],
+              "pending": true,
+              "refresh": [Function],
+              "refreshSubmissionSummary": [Function],
+              "refreshSubmissions": [Function],
+              "refreshing": false,
+              "resetDrawer": [Function],
+              "submissionEntities": Object {},
+              "submissions": Array [],
+              "userID": "1",
+            },
+            "refs": Object {},
+            "renderBody": [Function],
+            "renderItem": [Function],
+            "scrollEnded": [Function],
+            "snapTo": [Function],
+            "state": Object {
+              "currentPageIndex": undefined,
+              "currentStudentID": "1",
+              "drawerInset": 62,
+              "hasScrolledToInitialSubmission": false,
+              "hasSetInitialDrawerPosition": false,
+              "scrollEnabled": true,
+              "size": Object {
+                "height": 1334,
+                "width": 770,
+              },
+            },
+            "updater": Updater {
+              "_renderer": ReactShallowRenderer {
+                "_context": Object {},
+                "_element": <SpeedGrader
+                  assignmentID="1"
+                  assignmentSubmissionTypes={
+                              Array [
+                                          "none",
+                                        ]
+                  }
+                  courseID="1"
+                  drawerPosition={0}
+                  getCourseEnabledFeatures={[Function]}
+                  gradeSubmissionWithRubric={[Function]}
+                  groupAssignment={null}
+                  hasAssignment={true}
+                  navigator={
+                              Object {
+                                          "dismiss": [Function],
+                                          "dismissAllModals": [Function],
+                                          "isModal": false,
+                                          "pop": [Function],
+                                          "replace": [Function],
+                                          "show": [Function],
+                                          "traitCollection": [Function],
+                                        }
+                  }
+                  onDismiss={[Function]}
+                  pending={true}
+                  refresh={[Function]}
+                  refreshSubmissionSummary={[Function]}
+                  refreshSubmissions={[Function]}
+                  refreshing={false}
+                  resetDrawer={[Function]}
+                  submissionEntities={Object {}}
+                  submissions={Array []}
+                  userID="1"
+      />,
+                "_forcedUpdate": false,
+                "_instance": [Circular],
+                "_newState": Object {
+                  "currentPageIndex": undefined,
+                  "currentStudentID": "1",
+                  "drawerInset": 62,
+                  "hasScrolledToInitialSubmission": false,
+                  "hasSetInitialDrawerPosition": false,
+                  "scrollEnabled": true,
+                  "size": Object {
+                    "height": 1334,
+                    "width": 770,
+                  },
+                },
+                "_rendered": <Screen
+                  navBarHidden={true}
+                  navBarStyle="light"
+                  noRotationInVerticallyCompact={true}
+                  showDismissButton={true}
+                  statusBarHidden={true}
+                  statusBarStyle="default"
+      >
+                  <View
+                              style={
+                                          Object {
+                                                      "flex": 1,
+                                                    }
+                              }
+                  >
+                              <View
+                                          accessibilityLabel="In Progress"
+                                          accessible={true}
+                                          style={
+                                                      Object {
+                                                                  "alignItems": "center",
+                                                                  "flex": 1,
+                                                                  "justifyContent": "center",
+                                                                }
+                                          }
+                              >
+                                          <ActivityIndicator
+                                                      animating={true}
+                                                      color="#999999"
+                                                      hidesWhenStopped={true}
+                                                      size="small"
+                                          />
+                              </View>
+                              <Tutorial
+                                          tutorials={
+                                                      Array [
+                                                                  Object {
+                                                                    "id": "swipe-tutorial",
+                                                                    "image": Object {
+                                                                      "testUri": "../../../src/images/speedgrader/Swipe.png",
+                                                                    },
+                                                                    "text": "Swipe left or right to view other student submissions",
+                                                                  },
+                                                                ]
+                                          }
+                              />
+                  </View>
+      </Screen>,
+                "_rendering": false,
+                "_updater": [Circular],
+              },
+            },
+          },
+          SpeedGrader {
+            "_captureFlatList": [Function],
+            "context": Object {},
+            "dismiss": [Function],
+            "getInitialTabIndex": [Function],
+            "getItemLayout": [Function],
             "hasRenderedBody": true,
             "onLayout": [Function],
             "props": Object {

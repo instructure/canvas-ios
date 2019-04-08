@@ -17,7 +17,6 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 import { mapStateToProps } from '../map-state-to-props'
-import type { SubmissionDataProps } from '../submission-prop-types'
 import shuffle from 'knuth-shuffle-seeded'
 
 jest.mock('knuth-shuffle-seeded', () => jest.fn())
@@ -35,33 +34,6 @@ let t = {
   ...require('../__templates__/submission-props'),
 }
 
-const submissionProps: Array<SubmissionDataProps> = [
-  t.submissionProps({
-    name: 'S1',
-    status: 'none',
-    grade: 'not_submitted',
-    userID: '1',
-  }),
-  t.submissionProps({
-    name: 'S2',
-    status: 'none',
-    grade: 'excused',
-    userID: '2',
-  }),
-  t.submissionProps({
-    name: 'S3',
-    status: 'late',
-    grade: 'ungraded',
-    userID: '3',
-  }),
-  t.submissionProps({
-    name: 'S4',
-    status: 'submitted',
-    grade: 'A-',
-    userID: '4',
-  }),
-]
-
 function createHappyPathTestState () {
   const enrollments: EnrollmentsState = {
     '0': t.enrollment({ id: '0', user_id: '0', type: 'TeacherEnrollment' }),
@@ -74,11 +46,28 @@ function createHappyPathTestState () {
   }
 
   const submissions: SubmissionsState = {
-    // S1 has not submitted
+    '10': {
+      submission: t.submissionHistory([{
+        id: '10',
+        user_id: '1',
+        assignment_id: '1000',
+        grade: undefined,
+        submitted_at: undefined,
+        workflow_state: 'unsubmitted',
+        excused: false,
+        late: false,
+      }]),
+      pending: 0,
+      error: null,
+      selectedIndex: null,
+      selectedAttachmentIndex: null,
+      rubricGradePending: false,
+    },
     '20': {
       submission: t.submissionHistory([{
         id: '20',
         user_id: '2',
+        assignment_id: '1000',
         grade: undefined,
         submitted_at: undefined,
         workflow_state: 'unsubmitted',
@@ -95,6 +84,7 @@ function createHappyPathTestState () {
       submission: t.submissionHistory([{
         id: '30',
         user_id: '3',
+        assignment_id: '1000',
         grade: undefined,
         submitted_at: '2017-04-05T15:12:45Z',
         workflow_state: 'submitted',
@@ -111,6 +101,7 @@ function createHappyPathTestState () {
       submission: t.submissionHistory([{
         id: '40',
         user_id: '4',
+        assignment_id: '1000',
         grade: 'A-',
         submitted_at: '2017-04-05T15:12:45Z',
         workflow_state: 'graded',
@@ -164,7 +155,36 @@ test('submissions', () => {
     courseColor: '#000',
     courseName: 'fancy name',
     pending: false,
-    submissions: submissionProps,
+    submissions: [
+      t.submissionProps({
+        name: 'S1',
+        status: 'none',
+        grade: 'not_submitted',
+        userID: '1',
+        submission: state.entities.submissions['10'].submission,
+      }),
+      t.submissionProps({
+        name: 'S2',
+        status: 'none',
+        grade: 'excused',
+        userID: '2',
+        submission: state.entities.submissions['20'].submission,
+      }),
+      t.submissionProps({
+        name: 'S3',
+        status: 'late',
+        grade: 'ungraded',
+        userID: '3',
+        submission: state.entities.submissions['30'].submission,
+      }),
+      t.submissionProps({
+        name: 'S4',
+        status: 'submitted',
+        grade: 'A-',
+        userID: '4',
+        submission: state.entities.submissions['40'].submission,
+      }),
+    ],
     pointsPossible: 5,
     anonymous: false,
     muted: true,
@@ -348,5 +368,5 @@ test('detect missing groups data', () => {
 
   const { isMissingGroupsData, isGroupGradedAssignment } = mapStateToProps(state, { courseID: course.id, assignmentID: assignment.id })
   expect(isMissingGroupsData).toBe(true)
-  expect(isGroupGradedAssignment).toBe(false) // Should be true but is false because we are missing the entities.groups lookup data
+  expect(isGroupGradedAssignment).toBe(true)
 })

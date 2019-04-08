@@ -37,9 +37,6 @@ import CourseActions from '../courses/actions'
 import SubmissionGrader from './SubmissionGrader'
 import SpeedGraderActions from './actions'
 import { getSubmissionsProps } from '../submissions/list/get-submissions-props'
-import {
-  getGroupSubmissionProps,
-} from '../groups/submissions/get-group-submission-props'
 import type {
   AsyncSubmissionsDataProps,
   SubmissionDataProps,
@@ -105,10 +102,17 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
   componentDidMount () {
     this.setSubmissions(this.props)
     SpeedGrader.drawerState.registerDrawer(this)
+    if (this.props.hasAssignment) {
+      this.props.refreshSubmissions(this.props.courseID, this.props.assignmentID, this.props.groupAssignment != null)
+    }
   }
 
   componentWillReceiveProps (nextProps: SpeedGraderProps) {
     this.setSubmissions(nextProps)
+
+    if (this.props.hasAssignment === false && nextProps.hasAssignment === true) {
+      this.props.refreshSubmissions(this.props.courseID, this.props.assignmentID, this.props.groupAssignment != null)
+    }
   }
 
   // DrawerObserver
@@ -144,7 +148,7 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
   componentWillUnmount () {
     SpeedGrader.drawerState.unregisterDrawer(this)
     SpeedGrader.drawerState.snapTo(0, false)
-    this.props.refreshSubmissions(this.props.courseID, this.props.assignmentID, false)
+    this.props.refreshSubmissions(this.props.courseID, this.props.assignmentID, this.props.groupAssignment != null)
     this.props.refreshSubmissionSummary(this.props.courseID, this.props.assignmentID)
     this.props.refreshAssignment(this.props.courseID, this.props.assignmentID)
     updateBadgeCounts()
@@ -385,12 +389,7 @@ export function mapStateToProps (state: AppState, ownProps: RoutingProps): Speed
     }
   }
 
-  let props
-  if (groupAssignment && !groupAssignment.gradeIndividually) {
-    props = getGroupSubmissionProps(entities, courseID, assignmentID)
-  } else {
-    props = getSubmissionsProps(entities, courseID, assignmentID)
-  }
+  let props = getSubmissionsProps(entities, courseID, assignmentID)
 
   const result = {
     ...props,
@@ -409,13 +408,8 @@ export function mapStateToProps (state: AppState, ownProps: RoutingProps): Speed
 export function refreshSpeedGrader (props: SpeedGraderProps): void {
   props.refreshAssignment(props.courseID, props.assignmentID)
   props.getCourseEnabledFeatures(props.courseID)
-  if (props.groupAssignment && !props.groupAssignment.gradeIndividually) {
-    props.refreshGroupsForCourse(props.courseID)
-    props.refreshSubmissions(props.courseID, props.assignmentID, true)
-  } else {
-    props.refreshSubmissions(props.courseID, props.assignmentID, false)
-    props.refreshEnrollments(props.courseID)
-  }
+  props.refreshGroupsForCourse(props.courseID)
+  props.refreshEnrollments(props.courseID)
 }
 
 export function shouldRefresh (props: SpeedGraderProps): boolean {
