@@ -8,6 +8,12 @@
 "Assignment" = "Opgave";
 
 /* No comment provided by engineer. */
+"Attempt %d" = "Forsøg %d";
+
+/* No comment provided by engineer. */
+"Audio" = "Lyd";
+
+/* No comment provided by engineer. */
 "Authentication failed. Most likely the user denied the request for access." = "Godkendelse mislykkedes Brugeren har sandsynligvis nægtet adgang.";
 
 /* No comment provided by engineer. */
@@ -110,7 +116,7 @@
 "list_or_end" = "%1$@, eller %2$@";
 
 /* middle of or list pattern */
-"list_or_middle" = "%1$@. %2$@";
+"list_or_middle" = "%1$@, %2$@";
 
 /* start of or list pattern */
 "list_or_start" = "%1$@, %2$@";
@@ -185,6 +191,9 @@
 "Style" = "Stil";
 
 /* No comment provided by engineer. */
+"Submission failed." = "Aflevering mislykkedes.";
+
+/* No comment provided by engineer. */
 "Submit Assignment" = "Aflever opgave";
 
 /* No comment provided by engineer. */
@@ -197,13 +206,22 @@
 "Tap here for help." = "Tryk her for at få hjælp.";
 
 /* No comment provided by engineer. */
+"Terms of Use" = "Betingelser for brug";
+
+/* No comment provided by engineer. */
 "Text Entry" = "Tekstindlæg";
+
+/* No comment provided by engineer. */
+"There was a problem retrieving the Terms of Use." = "Der opstod et problem ved hentning af Betingelser for brug";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "Denne opgave skal afleveres d. %@";
 
 /* No comment provided by engineer. */
 "This assignment was due by %@" = "Denne opgave skulle afleveres. d. %@";
+
+/* No comment provided by engineer. */
+"Video" = "Video";
 
 /* No comment provided by engineer. */
 "We've made a few changes." = "Vi har lavet nogle ændringer.";
