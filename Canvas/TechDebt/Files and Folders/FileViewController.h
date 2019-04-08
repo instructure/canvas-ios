@@ -30,9 +30,10 @@
 @property (nonatomic) CKAttachment *file;
 @property uint64_t fileIdent;
 
-// A possible can be passed through as a query param
-@property (nullable, nonatomic, strong) NSString* courseID;
-@property (nullable, nonatomic, strong) NSString* assignmentID;
+// These can be passed via routing param or query param
+// Route params will be numbers so query params are converted from string to number
+@property (nullable, nonatomic, strong) NSNumber* courseID;
+@property (nullable, nonatomic, strong) NSNumber* assignmentID;
 
 @property (nonatomic) float downloadProgress;
 @property (nonatomic, copy) NSURL *url;
