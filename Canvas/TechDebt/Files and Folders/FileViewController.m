@@ -151,11 +151,11 @@
     // exist
     NSString *courseID = params[@"query"][@"courseID"];
     if (courseID) {
-        self.courseID = courseID;
+        self.courseID = [NSNumber numberWithInteger:courseID.integerValue];
     }
     NSString *assignmentID = params[@"query"][@"courseID"];
     if (assignmentID) {
-        self.assignmentID = assignmentID;
+        self.assignmentID = [NSNumber numberWithInteger:assignmentID.integerValue];
     }
 
     NSString *url = params[@"url"];
@@ -361,8 +361,10 @@
 - (UIViewController *)childControllerForContentAtURL:(NSURL *)url {
     UIViewController *controller = nil;
     if ([_file.contentType isEqualToString:@"application/pdf"]) {
-
-        pdfDocPresenter = [[PreSubmissionPDFDocumentPresenter alloc] initWithDocumentURL:url session:TheKeymaster.currentClient.authSession defaultCourseID:[self hackishlyGetDefaultCourseIfPossible] defaultAssignmentID:[self hackishlyGetDefaultAssignmentIfPossible]];
+        NSString * _Nullable courseID = [self hackishlyGetDefaultCourseIfPossible];
+        NSString * _Nullable assignmentID = [self hackishlyGetDefaultAssignmentIfPossible];
+        Session *session = TheKeymaster.currentClient.authSession;
+        pdfDocPresenter = [[PreSubmissionPDFDocumentPresenter alloc] initWithDocumentURL:url session:session defaultCourseID:courseID defaultAssignmentID:assignmentID];
         @weakify(self);
         pdfDocPresenter.didSubmitAssignment = ^{
             @strongify(self);
@@ -403,7 +405,7 @@
 
 - (NSString * _Nullable)hackishlyGetDefaultAssignmentIfPossible {
     if (self.assignmentID) {
-        return self.assignmentID;
+        return self.assignmentID.stringValue;
     }
     
     CBIAssignmentDetailViewController *assignmentDeets = [self assignmentDeets];
@@ -412,7 +414,7 @@
 
 - (NSString * _Nullable)hackishlyGetDefaultCourseIfPossible {
     if (self.courseID) {
-        return self.courseID;
+        return self.courseID.stringValue;
     }
 
     CBIAssignmentDetailViewController *assignmentDeets = [self assignmentDeets];
