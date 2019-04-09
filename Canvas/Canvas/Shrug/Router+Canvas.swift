@@ -124,6 +124,13 @@ extension TechDebt.Router {
             }
             return nil
         }
+
+        addContextRoute([.course], subPath: "assignments/:assignmentID/submissions/:userID/online_text_entry") { contextID, params in
+            if FeatureFlags.featureFlagEnabled(.newStudentAssignmentView), let url = params["url"] as? URL {
+                return StudentReborn.router.match(.parse(url))
+            }
+            return nil
+        }
         
         addContextRoute([.course], subPath: "assignments-fromHomeTab") { contextID, _ in
             return HelmViewController(
