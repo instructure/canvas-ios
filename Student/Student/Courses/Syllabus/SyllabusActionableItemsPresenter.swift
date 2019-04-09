@@ -122,9 +122,16 @@ class SyllabusActionableItemsPresenter {
         var image: UIImage? = .icon(.assignment, .line)
         if assignment.quizID != nil {
             image = .icon(.quiz, .line)
-        } else if assignment.discussionTopic != nil {
+        } else if assignment.submissionTypes.contains(.discussion_topic) {
             image = .icon(.discussion, .line)
+        } else if assignment.submissionTypes.contains(.external_tool) || assignment.submissionTypes.contains(.basic_lti_launch) {
+            image = .icon(.lti, .line)
         }
+
+        if assignment.lockedForUser {
+            image = .icon(.lock, .line)
+        }
+
         return image
     }
 }

@@ -89,7 +89,7 @@ class SyllabusActionableItemsPresenterTests: PersistenceTestCase {
     }
 
     func testIconForDiscussion() {
-        let a = Assignment.make(["id": "1", "discussionTopic": DiscussionTopic.make(["assignmentID": "1"])])
+        let a = Assignment.make(["id": "1", "submissionTypesRaw": ["discussion_topic"]])
         let icon = presenter.icon(for: a)
         let expected = UIImage.icon(.discussion, .line)
         XCTAssertEqual(icon, expected)
@@ -106,6 +106,20 @@ class SyllabusActionableItemsPresenterTests: PersistenceTestCase {
         let a = Assignment.make(["id": "1", "quizID": "1"])
         let icon = presenter.icon(for: a)
         let expected = UIImage.icon(.quiz, .line)
+        XCTAssertEqual(icon, expected)
+    }
+
+    func testIconForExternalTool() {
+        let a = Assignment.make(["id": "1", "submissionTypesRaw": ["external_tool"]])
+        let icon = presenter.icon(for: a)
+        let expected = UIImage.icon(.lti, .line)
+        XCTAssertEqual(icon, expected)
+    }
+
+    func testIconForLocked() {
+        let a = Assignment.make(["id": "1", "submissionTypesRaw": ["external_tool"], "lockedForUser": true])
+        let icon = presenter.icon(for: a)
+        let expected = UIImage.icon(.lock, .line)
         XCTAssertEqual(icon, expected)
     }
 
