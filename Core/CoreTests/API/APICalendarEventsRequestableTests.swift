@@ -37,6 +37,6 @@ class APICalendarEventsRequestableTests: XCTestCase {
     func testGetCalendarEvents() {
         let requestable = GetCalendarEventsRequest(context: ctx)
         let r = try? requestable.urlRequest(relativeTo: url, accessToken: nil, actAsUserID: nil)
-        XCTAssertEqual(r?.url?.absoluteString, "https://foo.instructure.com/api/v1/calender_events?context_codes%5B%5D=course_1&type=event&start_date=2017-12-25&end_date=2020-12-25&per_page=100")
+        XCTAssertEqual(r?.url?.absoluteString, "https://foo.instructure.com/api/v1/calendar_events?context_codes%5B%5D=course_1&type=event&start_date=2017-12-25&end_date=2020-12-25&per_page=100")
     }
 }
