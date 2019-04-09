@@ -24,6 +24,7 @@
 		3B84C392218BB102005946BA /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B84C391218BB102005946BA /* DateExtensions.swift */; };
 		3BAA4177218A361100701E03 /* EnrollmentFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAA4176218A361100701E03 /* EnrollmentFixture.swift */; };
 		3BAA4179218A3ACE00701E03 /* APIEnrollmentFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAA4178218A3ACE00701E03 /* APIEnrollmentFixture.swift */; };
+		3BD364AD225D3D8A006CEBD8 /* APIDiscussionTopicFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD364AC225D3D8A006CEBD8 /* APIDiscussionTopicFixture.swift */; };
 		7D2DC2FF219A0514008FE29A /* APIDocViewerFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2DC2FE219A0514008FE29A /* APIDocViewerFixture.swift */; };
 		7D37BE8F21C8398D0063FAAC /* DiscussionEntryFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D37BE8E21C8398D0063FAAC /* DiscussionEntryFixture.swift */; };
 		7D47769821AF356200B441CE /* APIQuizRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D47769721AF356200B441CE /* APIQuizRequestable.swift */; };
@@ -85,6 +86,7 @@
 		3B84C391218BB102005946BA /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		3BAA4176218A361100701E03 /* EnrollmentFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrollmentFixture.swift; sourceTree = "<group>"; };
 		3BAA4178218A3ACE00701E03 /* APIEnrollmentFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnrollmentFixture.swift; sourceTree = "<group>"; };
+		3BD364AC225D3D8A006CEBD8 /* APIDiscussionTopicFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDiscussionTopicFixture.swift; sourceTree = "<group>"; };
 		7D2DC2FE219A0514008FE29A /* APIDocViewerFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDocViewerFixture.swift; sourceTree = "<group>"; };
 		7D37BE8E21C8398D0063FAAC /* DiscussionEntryFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionEntryFixture.swift; sourceTree = "<group>"; };
 		7D47769721AF356200B441CE /* APIQuizRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIQuizRequestable.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 				3B0CEBA021504C2500D07CFA /* APITabFixture.swift */,
 				7DB0A1C821C07F39009ABB40 /* APIUserFixture.swift */,
 				3B635B38225CE613001F353D /* APICalendarEventFixture.swift */,
+				3BD364AC225D3D8A006CEBD8 /* APIDiscussionTopicFixture.swift */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -445,6 +448,7 @@
 				B15CA280221DFED00014FB02 /* ModuleFixture.swift in Sources */,
 				7D47769A21AF396500B441CE /* APIQuiz.swift in Sources */,
 				7DCF2048216D6597003AF358 /* APIQuizFixture.swift in Sources */,
+				3BD364AD225D3D8A006CEBD8 /* APIDiscussionTopicFixture.swift in Sources */,
 				B1C6BF6521BF2C2B00C8C585 /* UIBarButtonItemExtensions.swift in Sources */,
 				7D47769821AF356200B441CE /* APIQuizRequestable.swift in Sources */,
 				7D63F794215D8FC100151E49 /* APIBrandVariablesFixture.swift in Sources */,
