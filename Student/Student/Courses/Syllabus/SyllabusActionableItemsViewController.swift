@@ -62,7 +62,7 @@ class SyllabusActionableItemsViewController: UITableViewController {
         cell.imageView?.tintColor = color
         cell.detailTextLabel?.text = models[indexPath.row].formattedDate
         cell.detailTextLabel?.textColor = UIColor.named(.textDark)
-        cell.detailTextLabel?.font = UIFont.scaledNamedFont(.rowSubtitle)
+        cell.detailTextLabel?.font = UIFont.scaledNamedFont(.regular14)
         return cell
     }
 
