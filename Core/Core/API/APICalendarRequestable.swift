@@ -19,7 +19,7 @@ import Foundation
 public struct GetCalendarEventsRequest: APIRequestable {
     public typealias Response = [APICalendarEvent]
 
-    public let path = "calender_events"
+    public let path = "calendar_events"
     public let context: Context
     public let startDate: Date
     public let endDate: Date

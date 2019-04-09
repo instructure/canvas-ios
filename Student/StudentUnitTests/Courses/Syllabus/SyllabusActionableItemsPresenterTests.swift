@@ -19,15 +19,16 @@ import XCTest
 import Core
 import TestsFoundation
 
-class SyllabusAssignmentListPresenterTests: PersistenceTestCase {
+class SyllabusActionableItemsPresenterTests: PersistenceTestCase {
 
     var resultingError: NSError?
     var resultingBaseURL: URL?
     var resultingSubtitle: String?
     var resultingBackgroundColor: UIColor?
-    var presenter: SyllabusAssignmentListPresenter!
+    var presenter: SyllabusActionableItemsPresenter!
     var expectation = XCTestExpectation(description: "expectation")
     var colorExpectation = XCTestExpectation(description: "expectation")
+    var models: [SyllabusActionableItemsViewController.ViewModel] = []
 
     var titleSubtitleView = TitleSubtitleView.create()
     var navigationItem: UINavigationItem = UINavigationItem(title: "")
@@ -38,18 +39,7 @@ class SyllabusAssignmentListPresenterTests: PersistenceTestCase {
     override func setUp() {
         super.setUp()
         expectation = XCTestExpectation(description: "expectation")
-        presenter = SyllabusAssignmentListPresenter(env: env, view: self, courseID: "1")
-    }
-
-    func testLoadAssignments() {
-        //  given
-        let expected = Assignment.make()
-
-        //  when
-        presenter.viewIsReady()
-
-        //  then
-        XCTAssert(presenter.assignments.first! === expected)
+        presenter = SyllabusActionableItemsPresenter(env: env, view: self, courseID: "1")
     }
 
     func testUseCaseFetchesData() {
@@ -60,7 +50,7 @@ class SyllabusAssignmentListPresenterTests: PersistenceTestCase {
         presenter.viewIsReady()
 
         //  then
-        XCTAssertEqual(presenter.assignments.first?.name, "Assignment One")
+        XCTAssertEqual(models.first?.title, "Assignment One")
     }
 
     func testLoadCourseColorsAndTitle() {
@@ -82,46 +72,62 @@ class SyllabusAssignmentListPresenterTests: PersistenceTestCase {
     func testSelect() {
         let a = Assignment.make()
         let router = env.router as? TestRouter
-        XCTAssertNoThrow(presenter.select(a, from: UIViewController()))
+        XCTAssertNoThrow(presenter.select(a.htmlURL, from: UIViewController()))
         XCTAssertEqual(router?.calls.last?.0, URLComponents.parse(a.htmlURL))
     }
 
     func testFormattedDateNoDueDate() {
-        Assignment.make()
-        let str = presenter.formattedDueDate(for: IndexPath(row: 0, section: 0))
+        let a = Assignment.make()
+        let str = presenter.formattedDueDate(a.dueAt)
         XCTAssertEqual(str, "No Due Date")
     }
 
     func testFormattedDate() {
-        Assignment.make(["dueAt": Date(fromISOString: "2018-05-15T20:00:00Z")])
-        let str = presenter.formattedDueDate(for: IndexPath(row: 0, section: 0))
+        let a = Assignment.make(["dueAt": Date(fromISOString: "2018-05-15T20:00:00Z")])
+        let str = presenter.formattedDueDate(a.dueAt)
         XCTAssertEqual(str, "May 15, 2018 at 2:00 PM")
     }
 
     func testIconForDiscussion() {
-        Assignment.make(["id": "1", "discussionTopic": DiscussionTopic.make(["assignmentID": "1"])])
-        let icon = presenter.icon(for: IndexPath(row: 0, section: 0))
+        let a = Assignment.make(["id": "1", "discussionTopic": DiscussionTopic.make(["assignmentID": "1"])])
+        let icon = presenter.icon(for: a)
         let expected = UIImage.icon(.discussion, .line)
         XCTAssertEqual(icon, expected)
     }
 
     func testIconForAssignment() {
-        Assignment.make(["id": "1"])
-        let icon = presenter.icon(for: IndexPath(row: 0, section: 0))
+        let a = Assignment.make(["id": "1"])
+        let icon = presenter.icon(for: a)
         let expected = UIImage.icon(.assignment, .line)
         XCTAssertEqual(icon, expected)
     }
 
     func testIconForQuiz() {
-        Assignment.make(["id": "1", "quizID": "1"])
-        let icon = presenter.icon(for: IndexPath(row: 0, section: 0))
+        let a = Assignment.make(["id": "1", "quizID": "1"])
+        let icon = presenter.icon(for: a)
         let expected = UIImage.icon(.quiz, .line)
         XCTAssertEqual(icon, expected)
     }
+
+    func testSortOrder() {
+        Assignment.make(["name": "a", "dueAt": Date(fromISOString: "2017-05-15T20:00:00Z")])
+        Assignment.make(["name": "b", "dueAt": Date(fromISOString: "2018-05-15T20:00:00Z")])
+        Assignment.make(["name": "c", "dueAt": nil])
+
+        CalendarEvent.make(["title": "cA", "endAt": Date(fromISOString: "2016-05-15T20:00:00Z")])
+        CalendarEvent.make(["title": "cB", "endAt": Date(fromISOString: "2017-06-15T20:00:00Z")])
+        CalendarEvent.make(["title": "cC", "endAt": nil])
+
+        presenter.viewIsReady()
+
+        let order = models.map { $0.title }
+        XCTAssertEqual(order, ["cA", "a", "cB", "b", "c", "cC"])
+    }
 }
 
-extension SyllabusAssignmentListPresenterTests: SyllabusAssignmentListViewProtocol {
-    func update() {
+extension SyllabusActionableItemsPresenterTests: SyllabusActionableItemsViewProtocol {
+    func update(models: [SyllabusActionableItemsViewController.ViewModel]) {
+        self.models = models
         expectation.fulfill()
     }
 

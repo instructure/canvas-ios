@@ -17,21 +17,30 @@
 import UIKit
 import Core
 
-class SyllabusAssignmentListViewController: UITableViewController {
+class SyllabusActionableItemsViewController: UITableViewController {
 
-    var presenter: SyllabusAssignmentListPresenter?
+    struct ViewModel {
+        var id: String
+        var htmlUrl: URL
+        var title: String
+        var dueDate: Date?
+        var formattedDate: String
+        var image: UIImage?
+    }
+    var models: [ViewModel] = []
+    var presenter: SyllabusActionableItemsPresenter?
     var color: UIColor?
     var titleSubtitleView: TitleSubtitleView = TitleSubtitleView.create()
 
     convenience init(env: AppEnvironment = .shared, courseID: String, sort: GetAssignments.Sort = .position) {
         self.init(nibName: nil, bundle: nil)
-        presenter = SyllabusAssignmentListPresenter(view: self, courseID: courseID, sort: sort)
+        presenter = SyllabusActionableItemsPresenter(view: self, courseID: courseID, sort: sort)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTitleViewInNavbar(title: NSLocalizedString("Assignments", comment: ""))
-        tableView.register(SyllabusAssignmentListCell.self, forCellReuseIdentifier: String(describing: SyllabusAssignmentListCell.self))
+        tableView.register(SyllabusActionableItemsCell.self, forCellReuseIdentifier: String(describing: SyllabusActionableItemsCell.self))
         presenter?.viewIsReady()
     }
 
@@ -41,35 +50,36 @@ class SyllabusAssignmentListViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter?.assignments.count ?? 0
+        return models.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeue(SyllabusAssignmentListCell.self, for: indexPath)
-        cell.textLabel?.text = presenter?.assignments[indexPath]?.name
+        let cell = tableView.dequeue(SyllabusActionableItemsCell.self, for: indexPath)
+        cell.textLabel?.text = models[indexPath.row].title
         cell.textLabel?.font = UIFont.scaledNamedFont(.body)
         cell.textLabel?.textColor = UIColor.named(.textDarkest)
-        cell.imageView?.image = presenter?.icon(for: indexPath)
+        cell.imageView?.image = models[indexPath.row].image
         cell.imageView?.tintColor = color
-        cell.detailTextLabel?.text = presenter?.formattedDueDate(for: indexPath)
+        cell.detailTextLabel?.text = models[indexPath.row].formattedDate
         cell.detailTextLabel?.textColor = UIColor.named(.textDark)
         cell.detailTextLabel?.font = UIFont.scaledNamedFont(.rowSubtitle)
         return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let assignment = presenter?.assignments[indexPath.row] else { return }
-        presenter?.select(assignment, from: self)
+        let htmlUrl = models[indexPath.row].htmlUrl
+        presenter?.select(htmlUrl, from: self)
     }
 }
 
-extension SyllabusAssignmentListViewController: SyllabusAssignmentListViewProtocol {
-    func update() {
+extension SyllabusActionableItemsViewController: SyllabusActionableItemsViewProtocol {
+    func update(models: [ViewModel]) {
+        self.models = models
         tableView.reloadData()
     }
 }
 
-class SyllabusAssignmentListCell: UITableViewCell {
+class SyllabusActionableItemsCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: nil)
