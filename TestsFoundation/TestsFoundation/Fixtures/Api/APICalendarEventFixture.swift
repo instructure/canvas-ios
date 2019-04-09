@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2018-present Instructure, Inc.
+// Copyright (C) 2019-present Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -15,18 +15,18 @@
 //
 
 import Foundation
+@testable import Core
 
-public extension Date {
-    public func isoString() -> String {
-        return ISO8601DateFormatter.string(from: self, timeZone: TimeZone(abbreviation: "UTC")!, formatOptions: .withInternetDateTime)
-    }
-
-    public init?(fromISOString: String) {
-        guard let date = ISO8601DateFormatter().date(from: fromISOString) else { return nil }
-        self = date
-    }
-
-    public func plusYears(_ years: Int) -> Date? {
-        return Calendar.current.date(byAdding: .year, value: years, to: self)
+extension APICalendarEvent: Fixture {
+    public static var template: Template {
+        return [
+            "id": "1",
+            "title": "calendar event #1",
+            "type": "event",
+            "start_at": "2018-05-18T06:00:00Z",
+            "end_at": "2018-05-18T06:00:00Z",
+            "html_url": "https://narmstrong.instructure.com/calendar?event_id=10&include_contexts=course_1",
+            "context_code": "course_1",
+        ]
     }
 }

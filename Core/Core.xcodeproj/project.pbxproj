@@ -33,6 +33,12 @@
 		3B5369E4219D0FD000D3F62E /* URLExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5369E3219D0FD000D3F62E /* URLExtensionsTests.swift */; };
 		3B5425FC21B074500009D069 /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5425FB21B074500009D069 /* UIViewControllerExtensions.swift */; };
 		3B635B29225C13DD001F353D /* DiscussionTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B635B28225C13DD001F353D /* DiscussionTopic.swift */; };
+		3B635B2B225CD298001F353D /* APICalendarEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B635B2A225CD298001F353D /* APICalendarEvent.swift */; };
+		3B635B2D225CD377001F353D /* APICalendarRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B635B2C225CD377001F353D /* APICalendarRequestable.swift */; };
+		3B635B2F225CD7B3001F353D /* APICalendarEventsRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B635B2E225CD7B3001F353D /* APICalendarEventsRequestableTests.swift */; };
+		3B635B31225CDC2C001F353D /* GetCalendarEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B635B30225CDC2C001F353D /* GetCalendarEvents.swift */; };
+		3B635B33225CDC95001F353D /* CalendarEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B635B32225CDC95001F353D /* CalendarEvent.swift */; };
+		3B635B37225CE59D001F353D /* GetCalendarEventsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B635B36225CE59D001F353D /* GetCalendarEventsTests.swift */; };
 		3B67BCB821B5E72000055324 /* CreateSubmissionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B67BCB721B5E72000055324 /* CreateSubmissionTests.swift */; };
 		3B69254021A12E020023ED75 /* Int64Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B69253F21A12E020023ED75 /* Int64Extensions.swift */; };
 		3B84C38D218B9A84005946BA /* AssignmentDates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B84C38C218B9A84005946BA /* AssignmentDates.swift */; };
@@ -492,6 +498,12 @@
 		3B5369E3219D0FD000D3F62E /* URLExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLExtensionsTests.swift; sourceTree = "<group>"; };
 		3B5425FB21B074500009D069 /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
 		3B635B28225C13DD001F353D /* DiscussionTopic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionTopic.swift; sourceTree = "<group>"; };
+		3B635B2A225CD298001F353D /* APICalendarEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICalendarEvent.swift; sourceTree = "<group>"; };
+		3B635B2C225CD377001F353D /* APICalendarRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICalendarRequestable.swift; sourceTree = "<group>"; };
+		3B635B2E225CD7B3001F353D /* APICalendarEventsRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICalendarEventsRequestableTests.swift; sourceTree = "<group>"; };
+		3B635B30225CDC2C001F353D /* GetCalendarEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCalendarEvents.swift; sourceTree = "<group>"; };
+		3B635B32225CDC95001F353D /* CalendarEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEvent.swift; sourceTree = "<group>"; };
+		3B635B36225CE59D001F353D /* GetCalendarEventsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCalendarEventsTests.swift; sourceTree = "<group>"; };
 		3B67BCB721B5E72000055324 /* CreateSubmissionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSubmissionTests.swift; sourceTree = "<group>"; };
 		3B69253F21A12E020023ED75 /* Int64Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int64Extensions.swift; sourceTree = "<group>"; };
 		3B84C38C218B9A84005946BA /* AssignmentDates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDates.swift; sourceTree = "<group>"; };
@@ -1574,6 +1586,7 @@
 				7D80AC1E212B738500C40ECE /* APITests.swift */,
 				7D80AC14212B67E100C40ECE /* APIUser+Requestable+Tests.swift */,
 				3B3467D52135B99700F9BC2E /* IDTests.swift */,
+				3B635B2E225CD7B3001F353D /* APICalendarEventsRequestableTests.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1657,6 +1670,8 @@
 				7D80AC02212B445200C40ECE /* APIUser.swift */,
 				7D80AC04212B461F00C40ECE /* APIUser+Requestable.swift */,
 				3B3467D32135B7B700F9BC2E /* ID.swift */,
+				3B635B2A225CD298001F353D /* APICalendarEvent.swift */,
+				3B635B2C225CD377001F353D /* APICalendarRequestable.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1732,6 +1747,7 @@
 				7DF4FFD62171347B007E5F81 /* Tab.swift */,
 				7DF4FFD02171322E007E5F81 /* TTL.swift */,
 				9FBE536C223C32E7001EC40C /* Permissions.swift */,
+				3B635B32225CDC95001F353D /* CalendarEvent.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1854,6 +1870,7 @@
 				7DA5C48B22385F95003CDB4C /* GetSubmissionComments.swift */,
 				B195DC44213201DE00797FE4 /* GetUserGroups.swift */,
 				7D92D656224ACC7A0015B368 /* UploadMediaComment.swift */,
+				3B635B30225CDC2C001F353D /* GetCalendarEvents.swift */,
 			);
 			path = "Use Cases";
 			sourceTree = "<group>";
@@ -1989,6 +2006,7 @@
 				9FCD79D92188E3CD0054293A /* GetSubmissionTest.swift */,
 				B195DC5421324DA600797FE4 /* GetUserGroupsTest.swift */,
 				7D86285C224C15BA003A37DC /* UploadMediaCommentTests.swift */,
+				3B635B36225CE59D001F353D /* GetCalendarEventsTests.swift */,
 			);
 			path = "Use Cases";
 			sourceTree = "<group>";
@@ -2420,6 +2438,7 @@
 				9FAE40FF21B6C54700FE7F58 /* APIExternalTool+Requestable.swift in Sources */,
 				7DF4FFC6217113DA007E5F81 /* Color.swift in Sources */,
 				7DCF1EAE216BC48F003AF358 /* EnrollmentState.swift in Sources */,
+				3B635B2B225CD298001F353D /* APICalendarEvent.swift in Sources */,
 				B1F1328A224BAD43002C0555 /* ModuleItemType.swift in Sources */,
 				7D63F78A215D46AB00151E49 /* GetBrandVariables.swift in Sources */,
 				B1A6BC7A218A062E000515E3 /* MediaCommentType.swift in Sources */,
@@ -2449,9 +2468,11 @@
 				7D80AC0E212B4D4100C40ECE /* APIFavorite.swift in Sources */,
 				7DF9BF04215191840099026B /* BundleExtensions.swift in Sources */,
 				7DA057522193A30E00A3CFBB /* IconView.swift in Sources */,
+				3B635B2D225CD377001F353D /* APICalendarRequestable.swift in Sources */,
 				B18126922150542A00E71F63 /* GetContext.swift in Sources */,
 				9FD504EC2180BF1A00B395BA /* File.swift in Sources */,
 				3B34674B213051FD00F9BC2E /* LoginWebViewController.swift in Sources */,
+				3B635B33225CDC95001F353D /* CalendarEvent.swift in Sources */,
 				7D02159F21B88B19009A8E69 /* UITabBarExtensions.swift in Sources */,
 				B17F23A9213788B100771F86 /* PaginatedUseCase.swift in Sources */,
 				B1A8CD3A223766FA00E2242D /* FileUploader.swift in Sources */,
@@ -2509,6 +2530,7 @@
 				B1F1328E224BBBC7002C0555 /* ModuleItem.swift in Sources */,
 				7D54501121BDFB5C0008E75D /* LoginFindSchoolPresenter.swift in Sources */,
 				7D062AF92124A0F400677F66 /* ContextModel.swift in Sources */,
+				3B635B31225CDC2C001F353D /* GetCalendarEvents.swift in Sources */,
 				7DCF1EAA216BC1A5003AF358 /* CourseDefaultView.swift in Sources */,
 				7D63F77D215D31A600151E49 /* DynamicButton.swift in Sources */,
 				B192833821C07A4E008D1B9B /* LoggerExtensions.swift in Sources */,
@@ -2547,6 +2569,7 @@
 				7D80AC1B212B6A7700C40ECE /* APIFavorite+Requestable+Tests.swift in Sources */,
 				7DDC450F215BF4AA003F3209 /* UIFontExtensionsTests.swift in Sources */,
 				7D2DC2F62199F27B008FE29A /* DocViewerPointAnnotationTests.swift in Sources */,
+				3B635B2F225CD7B3001F353D /* APICalendarEventsRequestableTests.swift in Sources */,
 				9FD504F42180DC7B00B395BA /* AsyncBlockOperationTest.swift in Sources */,
 				B1F13290224BBFC0002C0555 /* ModuleItemTypeTests.swift in Sources */,
 				7DCF1ED4216C05A0003AF358 /* DueViewableTests.swift in Sources */,
@@ -2661,6 +2684,7 @@
 				7DC4A55B222EFE0E00FA03DC /* NSErrorExtensionsTests.swift in Sources */,
 				7D6A2BE4214C538F00DB15C4 /* RouteTests.swift in Sources */,
 				3B412F0B2141A9760090DE02 /* FetchedResultsControllerTests.swift in Sources */,
+				3B635B37225CE59D001F353D /* GetCalendarEventsTests.swift in Sources */,
 				7D2DC301219A16EC008FE29A /* DocViewerConstantsTests.swift in Sources */,
 				7D2DC2F42199EC93008FE29A /* SecretTests.swift in Sources */,
 				7DCF1EA8216BC126003AF358 /* CourseWorkflowStateTests.swift in Sources */,

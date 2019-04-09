@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2018-present Instructure, Inc.
+// Copyright (C) 2019-present Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -16,17 +16,12 @@
 
 import Foundation
 
-public extension Date {
-    public func isoString() -> String {
-        return ISO8601DateFormatter.string(from: self, timeZone: TimeZone(abbreviation: "UTC")!, formatOptions: .withInternetDateTime)
-    }
-
-    public init?(fromISOString: String) {
-        guard let date = ISO8601DateFormatter().date(from: fromISOString) else { return nil }
-        self = date
-    }
-
-    public func plusYears(_ years: Int) -> Date? {
-        return Calendar.current.date(byAdding: .year, value: years, to: self)
-    }
+public struct APICalendarEvent: Codable, Equatable {
+    let id: ID
+    let html_url: URL
+    let title: String
+    let start_at: Date?
+    let end_at: Date?
+    let type: String?
+    let context_code: String
 }

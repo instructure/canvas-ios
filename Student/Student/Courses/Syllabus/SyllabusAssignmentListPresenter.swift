@@ -50,7 +50,7 @@ class SyllabusAssignmentListPresenter {
     }
 
     func viewIsReady() {
-        assignments.refresh()
+        assignments.exhaust(while: { _ in true })
         course.refresh()
         update()
     }
