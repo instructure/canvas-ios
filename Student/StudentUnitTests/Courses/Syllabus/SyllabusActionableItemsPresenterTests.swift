@@ -35,11 +35,18 @@ class SyllabusActionableItemsPresenterTests: PersistenceTestCase {
 
     var title: String?
     var color: UIColor?
+    var originalTimeZone: TimeZone!
 
     override func setUp() {
         super.setUp()
+        originalTimeZone = NSTimeZone.default
         expectation = XCTestExpectation(description: "expectation")
         presenter = SyllabusActionableItemsPresenter(env: env, view: self, courseID: "1")
+    }
+
+    override func tearDown() {
+        NSTimeZone.default = originalTimeZone
+        super.tearDown()
     }
 
     func testUseCaseFetchesData() {
@@ -83,9 +90,10 @@ class SyllabusActionableItemsPresenterTests: PersistenceTestCase {
     }
 
     func testFormattedDate() {
+        NSTimeZone.default = NSTimeZone(forSecondsFromGMT: 0) as TimeZone
         let a = Assignment.make(["dueAt": Date(fromISOString: "2018-05-15T20:00:00Z")])
         let str = presenter.formattedDueDate(a.dueAt)
-        XCTAssertEqual(str, "May 15, 2018 at 2:00 PM")
+        XCTAssertEqual(str, "May 15, 2018 at 8:00 PM")
     }
 
     func testIconForDiscussion() {
