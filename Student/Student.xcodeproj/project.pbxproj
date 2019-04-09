@@ -74,6 +74,8 @@
 		3B635B22225C0DA0001F353D /* SyllabusActionableItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B635B1C225C0DA0001F353D /* SyllabusActionableItemsViewController.swift */; };
 		3B635B23225C0DA0001F353D /* SyllabusActionableItemsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B635B21225C0DA0001F353D /* SyllabusActionableItemsPresenter.swift */; };
 		3B635B25225C0E50001F353D /* SyllabusActionableItemsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B635B24225C0E4F001F353D /* SyllabusActionableItemsPresenterTests.swift */; };
+		3B635B42225D07CB001F353D /* SyllabusActionableItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B635B1C225C0DA0001F353D /* SyllabusActionableItemsViewController.swift */; };
+		3B635B47225D07D6001F353D /* SyllabusActionableItemsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B635B21225C0DA0001F353D /* SyllabusActionableItemsPresenter.swift */; };
 		3B67BCB621B5784500055324 /* UrlSubmissionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B54260421B1D08B0009D069 /* UrlSubmissionPresenter.swift */; };
 		3B692535219F428E0023ED75 /* FilePickerProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B692534219F428E0023ED75 /* FilePickerProgressView.swift */; };
 		3B692536219F428E0023ED75 /* FilePickerProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B692534219F428E0023ED75 /* FilePickerProgressView.swift */; };
@@ -2047,6 +2049,7 @@
 				7D09E5BA21935933006150FA /* SubmissionDetailsEmptyView.swift in Sources */,
 				7D067CE621505B3500B78AF2 /* DashboardGroupCell.swift in Sources */,
 				3B0B0F68219C8D1500F04216 /* CourseNavigationPresenter.swift in Sources */,
+				3B635B42225D07CB001F353D /* SyllabusActionableItemsViewController.swift in Sources */,
 				7DEE316F223C09120042FE2A /* SubmissionCommentVideoCell.swift in Sources */,
 				3B67BCB621B5784500055324 /* UrlSubmissionPresenter.swift in Sources */,
 				3BBCF834224BFF29004B519D /* SyllabusViewController.swift in Sources */,
@@ -2062,6 +2065,7 @@
 				9F2C9F7D219B0F4D001F0F32 /* Drawer.swift in Sources */,
 				9FB25D4B21653AB40087003C /* (null) in Sources */,
 				9F74200D21932DEF00108A0F /* SubmissionDetailsPresenter.swift in Sources */,
+				3B635B47225D07D6001F353D /* SyllabusActionableItemsPresenter.swift in Sources */,
 				7D20F61721C3144C00B77E5E /* CourseListPresenter.swift in Sources */,
 				3BE2C77C219386F1004B8E5E /* FilePickerViewController.swift in Sources */,
 				3BE2C78121938BFD004B8E5E /* FilePickerPresenter.swift in Sources */,
