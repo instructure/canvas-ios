@@ -17,7 +17,7 @@
 import Foundation
 
 public class GetCalendarEvents: CollectionUseCase {
-    public typealias Model = CalendarEvent
+    public typealias Model = CalendarEventItem
     public let cacheKey: String? = "get-calendar-events"
     public let context: Context
 
@@ -30,6 +30,6 @@ public class GetCalendarEvents: CollectionUseCase {
     }
 
     public var scope: Scope {
-        return .where(#keyPath(CalendarEvent.contextRaw), equals: context.canvasContextID, orderBy: #keyPath(CalendarEvent.title))
+        return .where(#keyPath(CalendarEventItem.contextRaw), equals: context.canvasContextID, orderBy: #keyPath(CalendarEventItem.title))
     }
 }

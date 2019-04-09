@@ -128,9 +128,9 @@ class SyllabusActionableItemsPresenterTests: PersistenceTestCase {
         Assignment.make(["name": "b", "dueAt": Date(fromISOString: "2018-05-15T20:00:00Z")])
         Assignment.make(["name": "c", "dueAt": nil])
 
-        CalendarEvent.make(["title": "cA", "endAt": Date(fromISOString: "2016-05-15T20:00:00Z")])
-        CalendarEvent.make(["title": "cB", "endAt": Date(fromISOString: "2017-06-15T20:00:00Z")])
-        CalendarEvent.make(["title": "cC", "endAt": nil])
+        CalendarEventItem.make(["title": "cA", "endAt": Date(fromISOString: "2016-05-15T20:00:00Z")])
+        CalendarEventItem.make(["title": "cB", "endAt": Date(fromISOString: "2017-06-15T20:00:00Z")])
+        CalendarEventItem.make(["title": "cC", "endAt": nil])
 
         presenter.viewIsReady()
 

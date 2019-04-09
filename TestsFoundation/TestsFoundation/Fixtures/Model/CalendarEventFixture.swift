@@ -17,7 +17,7 @@
 import Foundation
 @testable import Core
 
-extension CalendarEvent: Fixture {
+extension CalendarEventItem: Fixture {
     public static var template: Template {
         return [
             "id": "1",

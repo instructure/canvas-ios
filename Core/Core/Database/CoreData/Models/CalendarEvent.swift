@@ -17,7 +17,7 @@
 import Foundation
 import CoreData
 
-final public class CalendarEvent: NSManagedObject, WriteableModel {
+final public class CalendarEventItem: NSManagedObject, WriteableModel {
     public typealias JSON = APICalendarEvent
 
     @NSManaged public var id: String
@@ -34,9 +34,9 @@ final public class CalendarEvent: NSManagedObject, WriteableModel {
     }
 
     @discardableResult
-    public static func save(_ item: APICalendarEvent, in context: PersistenceClient) throws -> CalendarEvent {
-        let predicate = NSPredicate(format: "%K == %@", #keyPath(CalendarEvent.id), item.id.value)
-        let model: CalendarEvent = context.fetch(predicate).first ?? context.insert()
+    public static func save(_ item: APICalendarEvent, in context: PersistenceClient) throws -> CalendarEventItem {
+        let predicate = NSPredicate(format: "%K == %@", #keyPath(CalendarEventItem.id), item.id.value)
+        let model: CalendarEventItem = context.fetch(predicate).first ?? context.insert()
         model.id = item.id.value
         model.title = item.title
         model.startAt = item.start_at

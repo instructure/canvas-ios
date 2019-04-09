@@ -22,7 +22,7 @@
         <relationship name="discussionTopic" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DiscussionTopic" inverseName="assignment" inverseEntity="DiscussionTopic" syncable="YES"/>
         <relationship name="submission" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Submission" inverseName="assignment" inverseEntity="Submission" syncable="YES"/>
     </entity>
-    <entity name="CalendarEvent" representedClassName="Core.CalendarEvent" syncable="YES">
+    <entity name="CalendarEventItem" representedClassName="Core.CalendarEventItem" syncable="YES">
         <attribute name="contextRaw" attributeType="String" syncable="YES"/>
         <attribute name="endAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="htmlUrl" attributeType="URI" syncable="YES"/>
@@ -297,7 +297,7 @@
     </entity>
     <elements>
         <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="345"/>
-        <element name="CalendarEvent" positionX="-531" positionY="-18" width="128" height="150"/>
+        <element name="CalendarEventItem" positionX="-531" positionY="-18" width="128" height="150"/>
         <element name="Color" positionX="-177.3046875" positionY="-36" width="128" height="75"/>
         <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="165"/>
         <element name="DiscussionEntry" positionX="-513.66796875" positionY="535.73828125" width="128" height="150"/>
