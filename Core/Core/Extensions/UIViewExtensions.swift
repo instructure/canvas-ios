@@ -54,13 +54,13 @@ extension UIView {
             leadingAnchor.constraint(equalTo: parent.leadingAnchor, constant: leading).isActive = true
         }
         if let trailing = trailing {
-            trailingAnchor.constraint(equalTo: parent.trailingAnchor, constant: trailing).isActive = true
+            parent.trailingAnchor.constraint(equalTo: trailingAnchor, constant: trailing).isActive = true
         }
         if let top = top {
             topAnchor.constraint(equalTo: parent.topAnchor, constant: top).isActive = true
         }
         if let bottom = bottom {
-            bottomAnchor.constraint(equalTo: parent.bottomAnchor, constant: bottom).isActive = true
+            parent.bottomAnchor.constraint(equalTo: bottomAnchor, constant: bottom).isActive = true
         }
     }
 

@@ -76,6 +76,13 @@ public let router = Router(routes: [
         return FilePickerViewController.create(presenter: presenter)
     },
 
+    RouteHandler(.assignmentTextSubmission(courseID: ":courseID", assignmentID: ":assignmentID", userID: ":userID"), name: "assignment_text_submission") { _, params in
+        guard let courseID = params["courseID"], let assignmentID = params["assignmentID"], let userID = params["userID"] else {
+            return nil
+        }
+        return TextSubmissionViewController.create(courseID: courseID, assignmentID: assignmentID, userID: userID)
+    },
+
     RouteHandler(.assignmentUrlSubmission(courseID: ":courseID", assignmentID: ":assignmentID", userID: ":userID"), name: "assignment_url_submission") { _, params in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"], let userID = params["userID"] else {
             return nil

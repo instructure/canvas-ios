@@ -72,6 +72,7 @@ class AssignmentDetailsPresenter {
     }
 
     let supportedSubmissionTypes: [SubmissionType] = [
+        .online_text_entry,
         .online_upload,
         .online_url,
     ]
@@ -178,6 +179,9 @@ class AssignmentDetailsPresenter {
 
     func submit(_ type: SubmissionType, from viewController: UIViewController) {
         switch type {
+        case .online_text_entry:
+            let route = Route.assignmentTextSubmission(courseID: courseID, assignmentID: assignmentID, userID: userID ?? "")
+            env.router.route(to: route, from: viewController, options: [.modal, .embedInNav])
         case .online_upload:
             let route = Route.assignmentFileUpload(courseID: courseID, assignmentID: assignmentID)
             env.router.route(to: route, from: viewController, options: [.modal, .embedInNav])

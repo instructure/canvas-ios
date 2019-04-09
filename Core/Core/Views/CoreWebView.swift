@@ -51,6 +51,12 @@ open class CoreWebView: WKWebView {
         configuration.userContentController.add(messagePasser, name: "resize")
     }
 
+    public var contentInputAccessoryView: UIView? {
+        didSet {
+            replaceContentViewClass()
+        }
+    }
+
     @discardableResult
     open override func loadHTMLString(_ string: String, baseURL: URL? = AppEnvironment.shared.currentSession?.baseURL) -> WKNavigation? {
         return super.loadHTMLString(html(for: string), baseURL: baseURL)
@@ -271,5 +277,37 @@ extension CoreWebView {
             cookieKeepAliveTimer?.invalidate()
             cookieKeepAliveTimer = nil
         }
+    }
+}
+
+extension CoreWebView {
+    private func replaceContentViewClass() {
+        guard
+            let contentView = scrollView.subviews.first(where: { String(describing: type(of: $0)).hasPrefix("WKContent") }),
+            let superClass = object_getClass(contentView)
+        else { return }
+        let contentClassName = "CoreWebContent"
+        if let contentClass = NSClassFromString(contentClassName) {
+            object_setClass(contentView, contentClass)
+            return
+        }
+        guard
+            let method = class_getInstanceMethod(CoreWebView.self, #selector(CoreWebView.getParentContentInputAccessoryView)),
+            let contentClass = objc_allocateClassPair(superClass, contentClassName, 0)
+        else { return }
+        class_addMethod(contentClass, #selector(getter: UIResponder.inputAccessoryView), method_getImplementation(method), method_getTypeEncoding(method))
+        objc_registerClassPair(contentClass)
+        object_setClass(contentView, contentClass)
+    }
+
+    @objc func getParentContentInputAccessoryView() -> UIView? {
+        var view: UIView? = self
+        while view != nil {
+            if let webView = view as? CoreWebView {
+                return webView.contentInputAccessoryView
+            }
+            view = view?.superview
+        }
+        return nil
     }
 }
