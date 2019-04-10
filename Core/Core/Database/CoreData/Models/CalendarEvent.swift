@@ -33,6 +33,10 @@ final public class CalendarEventItem: NSManagedObject, WriteableModel {
         set { contextRaw = newValue.canvasContextID }
     }
 
+    public var routingURL: URL {
+        return URL(string: "calendar_events/\(id)")!
+    }
+
     @discardableResult
     public static func save(_ item: APICalendarEvent, in context: PersistenceClient) throws -> CalendarEventItem {
         let predicate = NSPredicate(format: "%K == %@", #keyPath(CalendarEventItem.id), item.id.value)
