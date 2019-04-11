@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RichContentToolbarView" customModule="Core" customModuleProvider="target">
+            <connections>
+                <outlet property="boldButton" destination="5wg-47-S5Y" id="kmo-v9-4RV"/>
+                <outlet property="colorPickerHeight" destination="zCm-pt-FrJ" id="rZc-r5-KHp"/>
+                <outlet property="colorPickerStack" destination="PdY-MT-A8h" id="23E-IT-Q5c"/>
+                <outlet property="colorPickerView" destination="jRn-ls-w11" id="Yrf-Pb-gBv"/>
+                <outlet property="imageButton" destination="niV-Ke-SwN" id="66s-De-Zxw"/>
+                <outlet property="italicButton" destination="nft-PA-7aH" id="59S-Kc-Irt"/>
+                <outlet property="linkButton" destination="sg6-3t-3pl" id="23N-xC-rHm"/>
+                <outlet property="orderedButton" destination="L3s-ob-5Pi" id="dYi-ah-rKD"/>
+                <outlet property="redoButton" destination="JVc-je-oFY" id="HJM-oT-J9g"/>
+                <outlet property="textColorButton" destination="IJh-YQ-flm" id="eg6-83-QBe"/>
+                <outlet property="undoButton" destination="Lql-Cx-71D" id="GTc-GQ-8Hi"/>
+                <outlet property="unorderedButton" destination="F2e-v8-3pa" id="3so-8R-EIt"/>
+                <outlet property="whiteColorButton" destination="9EA-PY-VIH" id="uAM-am-CCi"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jRn-ls-w11">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l96-gQ-7lq" customClass="DividerView" customModule="Core" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="PAh-1s-jaz"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="tintColorName" value="borderMedium"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h2c-tZ-tpM">
+                            <rect key="frame" x="0.0" y="1" width="375" height="44"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PdY-MT-A8h">
+                                    <rect key="frame" x="0.0" y="0.0" width="396" height="44"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9EA-PY-VIH" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                                            <accessibility key="accessibilityConfiguration" identifier="RichContentToolbar.whiteColorButton"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="44" id="24E-ZX-Pjb"/>
+                                                <constraint firstAttribute="width" constant="44" id="lxe-jr-yBn"/>
+                                            </constraints>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <inset key="contentEdgeInsets" minX="7" minY="7" maxX="7" maxY="7"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="emptySolid"/>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="textColorAction:" destination="-1" eventType="primaryActionTriggered" id="xuH-p8-O3J"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8bb-ww-unV" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                            <rect key="frame" x="44" y="0.0" width="44" height="44"/>
+                                            <accessibility key="accessibilityConfiguration" identifier="RichContentToolbar.blackColorButton"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="44" id="BJX-9x-KpX"/>
+                                                <constraint firstAttribute="width" constant="44" id="NVn-un-JZf"/>
+                                            </constraints>
+                                            <color key="tintColor" red="0.1764705882352941" green="0.23137254901960785" blue="0.27058823529411763" alpha="1" colorSpace="calibratedRGB"/>
+                                            <inset key="contentEdgeInsets" minX="7" minY="7" maxX="7" maxY="7"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="emptySolid"/>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="textColorAction:" destination="-1" eventType="primaryActionTriggered" id="iaZ-Bc-7zf"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="auu-G0-rgM" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                            <rect key="frame" x="88" y="0.0" width="44" height="44"/>
+                                            <accessibility key="accessibilityConfiguration" identifier="RichContentToolbar.greyColorButton"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="44" id="VjG-xT-url"/>
+                                                <constraint firstAttribute="width" constant="44" id="q3E-wK-THg"/>
+                                            </constraints>
+                                            <color key="tintColor" red="0.54509803921568623" green="0.58823529411764708" blue="0.61960784313725492" alpha="1" colorSpace="calibratedRGB"/>
+                                            <inset key="contentEdgeInsets" minX="7" minY="7" maxX="7" maxY="7"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="emptySolid"/>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="textColorAction:" destination="-1" eventType="primaryActionTriggered" id="6Mc-mq-taA"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PLQ-Z6-qF1" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                            <rect key="frame" x="132" y="0.0" width="44" height="44"/>
+                                            <accessibility key="accessibilityConfiguration" identifier="RichContentToolbar.redColorButton"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="44" id="evg-Vx-rCq"/>
+                                                <constraint firstAttribute="width" constant="44" id="qkU-g5-Ig7"/>
+                                            </constraints>
+                                            <color key="tintColor" red="0.93333333333333335" green="0.023529411764705882" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
+                                            <inset key="contentEdgeInsets" minX="7" minY="7" maxX="7" maxY="7"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="emptySolid"/>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="textColorAction:" destination="-1" eventType="primaryActionTriggered" id="M0e-El-Efr"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NDp-RG-zqo" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                            <rect key="frame" x="176" y="0.0" width="44" height="44"/>
+                                            <accessibility key="accessibilityConfiguration" identifier="RichContentToolbar.orangeColorButton"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="44" id="KYr-4e-GXI"/>
+                                                <constraint firstAttribute="width" constant="44" id="hi2-11-bd7"/>
+                                            </constraints>
+                                            <color key="tintColor" red="0.9882352941176471" green="0.36862745098039218" blue="0.074509803921568626" alpha="1" colorSpace="calibratedRGB"/>
+                                            <inset key="contentEdgeInsets" minX="7" minY="7" maxX="7" maxY="7"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="emptySolid"/>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="textColorAction:" destination="-1" eventType="primaryActionTriggered" id="Fwx-uC-rfy"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UWD-hA-rnP" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                            <rect key="frame" x="220" y="0.0" width="44" height="44"/>
+                                            <accessibility key="accessibilityConfiguration" identifier="RichContentToolbar.yellowColorButton"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="44" id="KP9-8M-PQH"/>
+                                                <constraint firstAttribute="width" constant="44" id="buJ-xh-phm"/>
+                                            </constraints>
+                                            <color key="tintColor" red="1" green="0.75686274509803919" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <inset key="contentEdgeInsets" minX="7" minY="7" maxX="7" maxY="7"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="emptySolid"/>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="textColorAction:" destination="-1" eventType="primaryActionTriggered" id="h4k-pF-L7n"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VTJ-xN-HNz" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                            <rect key="frame" x="264" y="0.0" width="44" height="44"/>
+                                            <accessibility key="accessibilityConfiguration" identifier="RichContentToolbar.greenColorButton"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="44" id="M9K-Wu-XoU"/>
+                                                <constraint firstAttribute="width" constant="44" id="jjm-LI-Nma"/>
+                                            </constraints>
+                                            <color key="tintColor" red="0.53725490196078429" green="0.77254901960784317" blue="0.25098039215686274" alpha="1" colorSpace="calibratedRGB"/>
+                                            <inset key="contentEdgeInsets" minX="7" minY="7" maxX="7" maxY="7"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="emptySolid"/>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="textColorAction:" destination="-1" eventType="primaryActionTriggered" id="Rsy-Q3-Fe6"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oAV-gQ-UO6" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                            <rect key="frame" x="308" y="0.0" width="44" height="44"/>
+                                            <accessibility key="accessibilityConfiguration" identifier="RichContentToolbar.blueColorButton"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="44" id="B7V-xl-b6r"/>
+                                                <constraint firstAttribute="height" constant="44" id="IOw-L7-fux"/>
+                                            </constraints>
+                                            <color key="tintColor" red="0.078431372549019607" green="0.50980392156862742" blue="0.78431372549019607" alpha="1" colorSpace="calibratedRGB"/>
+                                            <inset key="contentEdgeInsets" minX="7" minY="7" maxX="7" maxY="7"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="emptySolid"/>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="textColorAction:" destination="-1" eventType="primaryActionTriggered" id="psX-Di-e1R"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L6w-FE-OEQ" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                            <rect key="frame" x="352" y="0.0" width="44" height="44"/>
+                                            <accessibility key="accessibilityConfiguration" identifier="RichContentToolbar.purpleColorButton"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="44" id="AAw-Rx-kMg"/>
+                                                <constraint firstAttribute="height" constant="44" id="jaS-zm-ggW"/>
+                                            </constraints>
+                                            <color key="tintColor" red="0.396078431372549" green="0.27450980392156865" blue="0.62352941176470589" alpha="1" colorSpace="calibratedRGB"/>
+                                            <inset key="contentEdgeInsets" minX="7" minY="7" maxX="7" maxY="7"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="emptySolid"/>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="textColorAction:" destination="-1" eventType="primaryActionTriggered" id="YTU-cY-KhL"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="PdY-MT-A8h" firstAttribute="top" secondItem="h2c-tZ-tpM" secondAttribute="top" id="2Yv-bY-pm4"/>
+                                <constraint firstItem="PdY-MT-A8h" firstAttribute="leading" secondItem="h2c-tZ-tpM" secondAttribute="leading" id="3CP-an-Vhy"/>
+                                <constraint firstAttribute="height" constant="44" id="4th-oD-c9C"/>
+                                <constraint firstAttribute="trailing" secondItem="PdY-MT-A8h" secondAttribute="trailing" id="R2W-Mm-r1j"/>
+                                <constraint firstAttribute="bottom" secondItem="PdY-MT-A8h" secondAttribute="bottom" id="iOR-7Q-Kcg"/>
+                            </constraints>
+                        </scrollView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="l96-gQ-7lq" secondAttribute="trailing" id="7Oj-ly-ns0"/>
+                        <constraint firstItem="l96-gQ-7lq" firstAttribute="leading" secondItem="jRn-ls-w11" secondAttribute="leading" id="DS4-Ai-ewr"/>
+                        <constraint firstItem="l96-gQ-7lq" firstAttribute="top" secondItem="jRn-ls-w11" secondAttribute="top" id="KV2-tu-eM3"/>
+                        <constraint firstItem="h2c-tZ-tpM" firstAttribute="leading" secondItem="jRn-ls-w11" secondAttribute="leading" id="ZvW-eK-6ga"/>
+                        <constraint firstItem="h2c-tZ-tpM" firstAttribute="top" secondItem="jRn-ls-w11" secondAttribute="top" constant="1" id="dGG-Eo-8wD"/>
+                        <constraint firstAttribute="trailing" secondItem="h2c-tZ-tpM" secondAttribute="trailing" id="rlH-rP-9yE"/>
+                        <constraint firstAttribute="height" constant="45" id="zCm-pt-FrJ"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oy8-V8-FQe">
+                    <rect key="frame" x="0.0" y="45" width="375" height="45"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eBL-kd-0wv" customClass="DividerView" customModule="Core" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="PYK-gT-v8S"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="tintColorName" value="borderMedium"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QP5-dZ-0qm">
+                            <rect key="frame" x="0.0" y="1" width="375" height="44"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e9h-Mq-pwP">
+                                    <rect key="frame" x="0.0" y="0.0" width="450" height="44"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lql-Cx-71D" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="44"/>
+                                            <accessibility key="accessibilityConfiguration" identifier="RichContentToolbar.undoButton"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="44" id="7DG-Jt-gsc"/>
+                                                <constraint firstAttribute="width" constant="50" id="pDs-hI-a7k"/>
+                                            </constraints>
+                                            <inset key="contentEdgeInsets" minX="16" minY="13" maxX="16" maxY="13"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="replySolid"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="undoAction:" destination="-1" eventType="primaryActionTriggered" id="D7A-3o-W9t"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JVc-je-oFY" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                            <rect key="frame" x="50" y="0.0" width="50" height="44"/>
+                                            <accessibility key="accessibilityConfiguration" identifier="RichContentToolbar.redoButton"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="50" id="hM3-WQ-K7s"/>
+                                                <constraint firstAttribute="height" constant="44" id="sEb-cu-0ho"/>
+                                            </constraints>
+                                            <inset key="contentEdgeInsets" minX="16" minY="13" maxX="16" maxY="13"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="forwardSolid"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="redoAction:" destination="-1" eventType="primaryActionTriggered" id="4Gx-py-a9y"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5wg-47-S5Y" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                            <rect key="frame" x="100" y="0.0" width="50" height="44"/>
+                                            <accessibility key="accessibilityConfiguration" identifier="RichContentToolbar.boldButton"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="50" id="eHz-xp-5Ad"/>
+                                                <constraint firstAttribute="height" constant="44" id="sOU-XZ-sfv"/>
+                                            </constraints>
+                                            <inset key="contentEdgeInsets" minX="16" minY="13" maxX="16" maxY="13"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="boldSolid"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="boldAction:" destination="-1" eventType="primaryActionTriggered" id="jE1-Hw-PLX"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nft-PA-7aH" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                            <rect key="frame" x="150" y="0.0" width="50" height="44"/>
+                                            <accessibility key="accessibilityConfiguration" identifier="RichContentToolbar.italicButton"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="44" id="ac9-WJ-4uD"/>
+                                                <constraint firstAttribute="width" constant="50" id="jjm-Pf-ifa"/>
+                                            </constraints>
+                                            <inset key="contentEdgeInsets" minX="16" minY="13" maxX="16" maxY="13"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="italicSolid"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="italicAction:" destination="-1" eventType="primaryActionTriggered" id="8Wl-k7-FVU"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IJh-YQ-flm" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                            <rect key="frame" x="200" y="0.0" width="50" height="44"/>
+                                            <accessibility key="accessibilityConfiguration" identifier="RichContentToolbar.textColorButton"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="44" id="edX-rA-iuL"/>
+                                                <constraint firstAttribute="width" constant="50" id="s2I-CR-MUh"/>
+                                            </constraints>
+                                            <inset key="contentEdgeInsets" minX="16" minY="13" maxX="16" maxY="13"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="textColorSolid"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="toggleColorPickerWithSender:" destination="-1" eventType="primaryActionTriggered" id="SGb-ys-qlM"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F2e-v8-3pa" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                            <rect key="frame" x="250" y="0.0" width="50" height="44"/>
+                                            <accessibility key="accessibilityConfiguration" identifier="RichContentToolbar.unorderedListButton"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="44" id="dWH-38-NQI"/>
+                                                <constraint firstAttribute="width" constant="50" id="w88-42-S8Q"/>
+                                            </constraints>
+                                            <inset key="contentEdgeInsets" minX="16" minY="13" maxX="16" maxY="13"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="bulletListSolid"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="unorderedListAction:" destination="-1" eventType="primaryActionTriggered" id="dr4-u7-bqC"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L3s-ob-5Pi" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                            <rect key="frame" x="300" y="0.0" width="50" height="44"/>
+                                            <accessibility key="accessibilityConfiguration" identifier="RichContentToolbar.orderedListButton"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="50" id="27N-3g-egU"/>
+                                                <constraint firstAttribute="height" constant="44" id="tCr-4N-isz"/>
+                                            </constraints>
+                                            <inset key="contentEdgeInsets" minX="16" minY="13" maxX="16" maxY="13"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="numberedListSolid"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="orderedListAction:" destination="-1" eventType="primaryActionTriggered" id="aAg-jP-Ggi"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sg6-3t-3pl" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                            <rect key="frame" x="350" y="0.0" width="50" height="44"/>
+                                            <accessibility key="accessibilityConfiguration" identifier="RichContentToolbar.linkButton"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="50" id="3vA-Jy-H5H"/>
+                                                <constraint firstAttribute="height" constant="44" id="w5f-42-UOF"/>
+                                            </constraints>
+                                            <inset key="contentEdgeInsets" minX="16" minY="13" maxX="16" maxY="13"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="linkSolid"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="linkAction:" destination="-1" eventType="primaryActionTriggered" id="4mZ-uq-MGV"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="niV-Ke-SwN" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                            <rect key="frame" x="400" y="0.0" width="50" height="44"/>
+                                            <accessibility key="accessibilityConfiguration" identifier="RichContentToolbar.imageButton"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="50" id="3p9-jL-niu"/>
+                                                <constraint firstAttribute="height" constant="44" id="OmH-cS-fvS"/>
+                                            </constraints>
+                                            <inset key="contentEdgeInsets" minX="16" minY="13" maxX="16" maxY="13"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="imageSolid"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="imageAction:" destination="-1" eventType="primaryActionTriggered" id="sTo-c3-BNU"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="e9h-Mq-pwP" secondAttribute="trailing" id="S0B-g1-i2D"/>
+                                <constraint firstAttribute="bottom" secondItem="e9h-Mq-pwP" secondAttribute="bottom" id="bVq-nP-jhI"/>
+                                <constraint firstItem="e9h-Mq-pwP" firstAttribute="top" secondItem="QP5-dZ-0qm" secondAttribute="top" id="dUZ-Q8-4If"/>
+                                <constraint firstItem="e9h-Mq-pwP" firstAttribute="leading" secondItem="QP5-dZ-0qm" secondAttribute="leading" id="mLe-Bw-hWu"/>
+                            </constraints>
+                        </scrollView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="QP5-dZ-0qm" firstAttribute="leading" secondItem="Oy8-V8-FQe" secondAttribute="leading" id="2sg-PG-EGy"/>
+                        <constraint firstAttribute="trailing" secondItem="QP5-dZ-0qm" secondAttribute="trailing" id="5Ao-h2-mJR"/>
+                        <constraint firstAttribute="height" constant="45" id="5aA-W5-NfG"/>
+                        <constraint firstItem="eBL-kd-0wv" firstAttribute="leading" secondItem="Oy8-V8-FQe" secondAttribute="leading" id="AhW-1F-N2k"/>
+                        <constraint firstItem="QP5-dZ-0qm" firstAttribute="top" secondItem="Oy8-V8-FQe" secondAttribute="top" constant="1" id="JqS-0i-lSy"/>
+                        <constraint firstItem="eBL-kd-0wv" firstAttribute="top" secondItem="Oy8-V8-FQe" secondAttribute="top" id="Oju-cb-xD2"/>
+                        <constraint firstAttribute="trailing" secondItem="eBL-kd-0wv" secondAttribute="trailing" id="Sxi-tJ-NQz"/>
+                        <constraint firstAttribute="bottom" secondItem="QP5-dZ-0qm" secondAttribute="bottom" id="wOK-Vt-sKm"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="Oy8-V8-FQe" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="0DQ-FR-fxy"/>
+                <constraint firstItem="Oy8-V8-FQe" firstAttribute="top" secondItem="jRn-ls-w11" secondAttribute="bottom" id="1iU-Wd-eYd"/>
+                <constraint firstItem="jRn-ls-w11" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="OzD-qt-o1i"/>
+                <constraint firstItem="Oy8-V8-FQe" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="Tdg-qw-okp"/>
+                <constraint firstItem="jRn-ls-w11" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="tWO-Lo-h16"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="jRn-ls-w11" secondAttribute="trailing" id="uM4-HC-LRx"/>
+                <constraint firstItem="Oy8-V8-FQe" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="x3Y-Rf-PBm"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+        </view>
+    </objects>
+</document>

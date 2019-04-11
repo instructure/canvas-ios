@@ -51,7 +51,6 @@ class TextSubmissionViewController: UIViewController, ErrorViewController, RichC
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         keyboard = KeyboardTransitioning(view: view, space: keyboardSpace)
-        editor.view.becomeFirstResponder()
     }
 
     func rce(_ editor: RichContentEditorViewController, didChangeEmpty isEmpty: Bool) {

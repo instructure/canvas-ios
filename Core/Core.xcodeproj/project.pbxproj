@@ -247,6 +247,8 @@
 		7DDC4511215BF7AA003F3209 /* BundleExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDC4510215BF7AA003F3209 /* BundleExtensionsTests.swift */; };
 		7DDC81442242E2B2000DD25A /* AudioRecorderViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DDC81432242E2B2000DD25A /* AudioRecorderViewController.storyboard */; };
 		7DDC81462242E2C7000DD25A /* AudioRecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDC81452242E2C7000DD25A /* AudioRecorderViewController.swift */; };
+		7DE3D11F225E7058000CAE7C /* RichContentToolbarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DE3D11E225E7058000CAE7C /* RichContentToolbarView.xib */; };
+		7DE3D121225E7074000CAE7C /* RichContentToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE3D120225E7074000CAE7C /* RichContentToolbarView.swift */; };
 		7DEB5C3A224EB02B00F28404 /* CreateTextComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEB5C39224EB02A00F28404 /* CreateTextComment.swift */; };
 		7DEB5C3C224EBF2D00F28404 /* CreateTextCommentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEB5C3B224EBF2D00F28404 /* CreateTextCommentTests.swift */; };
 		7DF4001B2174FA24007E5F81 /* UITableViewExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF4001A2174FA24007E5F81 /* UITableViewExtensionsTests.swift */; };
@@ -853,6 +855,8 @@
 		7DDC4510215BF7AA003F3209 /* BundleExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtensionsTests.swift; sourceTree = "<group>"; };
 		7DDC81432242E2B2000DD25A /* AudioRecorderViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AudioRecorderViewController.storyboard; sourceTree = "<group>"; };
 		7DDC81452242E2C7000DD25A /* AudioRecorderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorderViewController.swift; sourceTree = "<group>"; };
+		7DE3D11E225E7058000CAE7C /* RichContentToolbarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RichContentToolbarView.xib; sourceTree = "<group>"; };
+		7DE3D120225E7074000CAE7C /* RichContentToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichContentToolbarView.swift; sourceTree = "<group>"; };
 		7DEB5C39224EB02A00F28404 /* CreateTextComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTextComment.swift; sourceTree = "<group>"; };
 		7DEB5C3B224EBF2D00F28404 /* CreateTextCommentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTextCommentTests.swift; sourceTree = "<group>"; };
 		7DF4001A2174FA24007E5F81 /* UITableViewExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewExtensionsTests.swift; sourceTree = "<group>"; };
@@ -1444,6 +1448,8 @@
 			children = (
 				7D2FADC3225BBA5600BCE19E /* RichContentEditor.js */,
 				7D2FADBD225BA50A00BCE19E /* RichContentEditorViewController.swift */,
+				7DE3D120225E7074000CAE7C /* RichContentToolbarView.swift */,
+				7DE3D11E225E7058000CAE7C /* RichContentToolbarView.xib */,
 			);
 			path = RichContentEditor;
 			sourceTree = "<group>";
@@ -2199,6 +2205,7 @@
 				B1B4C1C9219631AC00FA9E0E /* EmptyView.xib in Resources */,
 				7DDC81442242E2B2000DD25A /* AudioRecorderViewController.storyboard in Resources */,
 				5BF786A6218599B600471A5F /* InfoPlist.strings in Resources */,
+				7DE3D11F225E7058000CAE7C /* RichContentToolbarView.xib in Resources */,
 				7DFFAB1A219DDB22003E71F8 /* CommentListViewController.storyboard in Resources */,
 				B18359AA222450DE0005A918 /* AccessIconView.xib in Resources */,
 				9FBFE6D322412B9E002B3796 /* ActAsUserViewController.storyboard in Resources */,
@@ -2386,6 +2393,7 @@
 				9FBE535B223ADA69001EC40C /* TermsOfServiceViewController.swift in Sources */,
 				B1A32BDA21599C700071B41E /* APIAssignment+Requestable.swift in Sources */,
 				9FE84DDA214FE06300B95A68 /* GetGroup.swift in Sources */,
+				7DE3D121225E7074000CAE7C /* RichContentToolbarView.swift in Sources */,
 				7DF4FFBF21700133007E5F81 /* TabViewable.swift in Sources */,
 				7D80AC58212DAE4C00C40ECE /* URLResponseExtensions.swift in Sources */,
 				7DD6948F2196891200BA4984 /* Secret.swift in Sources */,
