@@ -28,40 +28,33 @@ public class KeyboardTransitioning {
         self.space = space
         self.callback = callback
 
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame(_:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
 
-    @objc func keyboardWillShow(_ notification: Notification) {
+    @objc func keyboardWillChangeFrame(_ notification: Notification) {
         guard
+            let view = view, let space = space,
             let info = notification.userInfo as? [String: Any],
-            let keyboardHeight = (info[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect)?.height,
+            let keyboardFrame = info[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect
+        else { return }
+        let constant = max(0, view.bounds.height - view.safeAreaInsets.bottom - view.convert(keyboardFrame, from: nil).origin.y)
+        guard
             let animationCurve = info[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt,
             let animationDuration = info[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval
-        else { return }
-
-        callback?()
+        else {
+            space.constant = constant
+            view.layoutIfNeeded()
+            return
+        }
         UIView.animate(withDuration: animationDuration, delay: 0, options: .init(rawValue: animationCurve), animations: {
-            self.callback?()
-            self.space?.constant = keyboardHeight
-            self.view?.layoutIfNeeded()
-        }, completion: nil)
-    }
-
-    @objc func keyboardWillHide(_ notification: Notification) {
-        guard
-            let info = notification.userInfo as? [String: Any],
-            let animationCurve = info[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt,
-            let animationDuration = info[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval
-        else { return }
-
-        UIView.animate(withDuration: animationDuration, delay: 0, options: .init(rawValue: animationCurve), animations: {
-            self.space?.constant = 0
-            self.view?.layoutIfNeeded()
+            space.constant = constant
+            view.layoutIfNeeded()
         }, completion: nil)
     }
 }
