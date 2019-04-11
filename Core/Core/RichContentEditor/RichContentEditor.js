@@ -174,6 +174,8 @@ const editor = window.editor = {
         }
 
         webkit.messageHandlers.state.postMessage({
+            undo: document.queryCommandEnabled('undo'),
+            redo: document.queryCommandEnabled('redo'),
             bold: document.queryCommandState('bold'),
             italic: document.queryCommandState('italic'),
             orderedList: document.queryCommandState('insertOrderedList'),

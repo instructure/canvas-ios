@@ -119,6 +119,8 @@ public class RichContentToolbarView: UIView {
         imageAlt = state?["imageAlt"] as? String
         let active = Brand.shared.linkColor
         let inactive = UIColor.named(.textDarkest)
+        undoButton?.isEnabled = (state?["undo"] as? Bool) == true
+        redoButton?.isEnabled = (state?["redo"] as? Bool) == true
         boldButton?.isSelected = (state?["bold"] as? Bool) == true
         italicButton?.isSelected = (state?["italic"] as? Bool) == true
         unorderedButton?.isSelected = (state?["unorderedList"] as? Bool) == true
