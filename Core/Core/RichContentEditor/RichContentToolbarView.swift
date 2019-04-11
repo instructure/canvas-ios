@@ -28,6 +28,7 @@ public class RichContentToolbarView: UIView {
     @IBOutlet weak var linkButton: DynamicButton?
     @IBOutlet weak var imageButton: DynamicButton?
 
+    @IBOutlet weak var buttonStack: UIStackView?
     @IBOutlet weak var colorPickerHeight: NSLayoutConstraint?
     @IBOutlet weak var colorPickerStack: UIStackView?
     @IBOutlet weak var colorPickerView: UIView?
@@ -72,15 +73,18 @@ public class RichContentToolbarView: UIView {
         imageButton?.accessibilityLabel = NSLocalizedString("Image", bundle: .core, comment: "")
 
         let colors = colorPickerStack?.arrangedSubviews
-        colors?[0].accessibilityLabel = NSLocalizedString("Set text color white", bundle: .core, comment: "")
-        colors?[1].accessibilityLabel = NSLocalizedString("Set text color black", bundle: .core, comment: "")
-        colors?[2].accessibilityLabel = NSLocalizedString("Set text color grey", bundle: .core, comment: "")
-        colors?[3].accessibilityLabel = NSLocalizedString("Set text color red", bundle: .core, comment: "")
-        colors?[4].accessibilityLabel = NSLocalizedString("Set text color orange", bundle: .core, comment: "")
-        colors?[5].accessibilityLabel = NSLocalizedString("Set text color yellow", bundle: .core, comment: "")
-        colors?[6].accessibilityLabel = NSLocalizedString("Set text color green", bundle: .core, comment: "")
-        colors?[7].accessibilityLabel = NSLocalizedString("Set text color blue", bundle: .core, comment: "")
-        colors?[8].accessibilityLabel = NSLocalizedString("Set text color purple", bundle: .core, comment: "")
+        colors?[0].accessibilityValue = NSLocalizedString("white", bundle: .core, comment: "")
+        colors?[1].accessibilityValue = NSLocalizedString("black", bundle: .core, comment: "")
+        colors?[2].accessibilityValue = NSLocalizedString("grey", bundle: .core, comment: "")
+        colors?[3].accessibilityValue = NSLocalizedString("red", bundle: .core, comment: "")
+        colors?[4].accessibilityValue = NSLocalizedString("orange", bundle: .core, comment: "")
+        colors?[5].accessibilityValue = NSLocalizedString("yellow", bundle: .core, comment: "")
+        colors?[6].accessibilityValue = NSLocalizedString("green", bundle: .core, comment: "")
+        colors?[7].accessibilityValue = NSLocalizedString("blue", bundle: .core, comment: "")
+        colors?[8].accessibilityValue = NSLocalizedString("purple", bundle: .core, comment: "")
+        for color in colors ?? [] {
+            color.accessibilityLabel = NSLocalizedString("Set text color", bundle: .core, comment: "")
+        }
 
         // TODO: unhide this when implemented
         imageButton?.isHidden = true
@@ -108,24 +112,38 @@ public class RichContentToolbarView: UIView {
 
     func updateState(_ state: [String: Any?]?) {
         foreColor = UIColor(hexString: state?["foreColor"] as? String) ?? UIColor.named(.textDarkest)
+        let foreColorHex = foreColor.hexString
         linkHref = state?["linkHref"] as? String
         linkText = state?["linkText"] as? String
         imageSrc = state?["imageSrc"] as? String
         imageAlt = state?["imageAlt"] as? String
         let active = Brand.shared.linkColor
         let inactive = UIColor.named(.textDarkest)
-        boldButton?.tintColor = (state?["bold"] as? Bool) == true ? active : inactive
-        italicButton?.tintColor = (state?["italic"] as? Bool) == true ? active : inactive
-        unorderedButton?.tintColor = (state?["unorderedList"] as? Bool) == true ? active : inactive
-        orderedButton?.tintColor = (state?["orderedList"] as? Bool) == true ? active : inactive
-        linkButton?.tintColor = linkHref != nil ? active : inactive
-        imageButton?.tintColor = imageSrc != nil ? active : inactive
+        boldButton?.isSelected = (state?["bold"] as? Bool) == true
+        italicButton?.isSelected = (state?["italic"] as? Bool) == true
+        unorderedButton?.isSelected = (state?["unorderedList"] as? Bool) == true
+        orderedButton?.isSelected = (state?["orderedList"] as? Bool) == true
+        linkButton?.isSelected = linkHref != nil
+        linkButton?.accessibilityValue = linkHref
+        imageButton?.isSelected = imageSrc != nil
+        imageButton?.accessibilityValue = imageSrc
+        for button in buttonStack?.arrangedSubviews ?? [] {
+            button.tintColor = (button as? UIButton)?.isSelected == true ? active : inactive
+        }
 
         textColorView?.backgroundColor = foreColor
-        if foreColor.hexString == UIColor.white.hexString {
+        if foreColorHex == UIColor.white.hexString {
             textColorView?.layer.borderColor = UIColor.named(.borderMedium).cgColor
         } else {
             textColorView?.layer.borderColor = foreColor.cgColor
+        }
+        for color in colorPickerStack?.arrangedSubviews ?? [] {
+            if color.tintColor.hexString == foreColorHex {
+                (color as? UIButton)?.isSelected = true
+                textColorButton?.accessibilityValue = color.accessibilityValue
+            } else {
+                (color as? UIButton)?.isSelected = false
+            }
         }
     }
 

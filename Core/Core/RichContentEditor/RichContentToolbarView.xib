@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RichContentToolbarView" customModule="Core" customModuleProvider="target">
             <connections>
                 <outlet property="boldButton" destination="5wg-47-S5Y" id="kmo-v9-4RV"/>
+                <outlet property="buttonStack" destination="e9h-Mq-pwP" id="isB-76-JkC"/>
                 <outlet property="colorPickerHeight" destination="zCm-pt-FrJ" id="rZc-r5-KHp"/>
                 <outlet property="colorPickerStack" destination="PdY-MT-A8h" id="23E-IT-Q5c"/>
                 <outlet property="colorPickerView" destination="jRn-ls-w11" id="Yrf-Pb-gBv"/>
@@ -51,7 +52,7 @@
                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PdY-MT-A8h">
                                     <rect key="frame" x="0.0" y="0.0" width="396" height="44"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9EA-PY-VIH" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9EA-PY-VIH" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
                                             <accessibility key="accessibilityConfiguration" identifier="RichContentToolbar.whiteColorButton"/>
                                             <constraints>
@@ -67,7 +68,7 @@
                                                 <action selector="textColorAction:" destination="-1" eventType="primaryActionTriggered" id="xuH-p8-O3J"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8bb-ww-unV" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8bb-ww-unV" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
                                             <rect key="frame" x="44" y="0.0" width="44" height="44"/>
                                             <accessibility key="accessibilityConfiguration" identifier="RichContentToolbar.blackColorButton"/>
                                             <constraints>
@@ -83,7 +84,7 @@
                                                 <action selector="textColorAction:" destination="-1" eventType="primaryActionTriggered" id="iaZ-Bc-7zf"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="auu-G0-rgM" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="auu-G0-rgM" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
                                             <rect key="frame" x="88" y="0.0" width="44" height="44"/>
                                             <accessibility key="accessibilityConfiguration" identifier="RichContentToolbar.greyColorButton"/>
                                             <constraints>
@@ -99,7 +100,7 @@
                                                 <action selector="textColorAction:" destination="-1" eventType="primaryActionTriggered" id="6Mc-mq-taA"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PLQ-Z6-qF1" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PLQ-Z6-qF1" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
                                             <rect key="frame" x="132" y="0.0" width="44" height="44"/>
                                             <accessibility key="accessibilityConfiguration" identifier="RichContentToolbar.redColorButton"/>
                                             <constraints>
@@ -115,7 +116,7 @@
                                                 <action selector="textColorAction:" destination="-1" eventType="primaryActionTriggered" id="M0e-El-Efr"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NDp-RG-zqo" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NDp-RG-zqo" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
                                             <rect key="frame" x="176" y="0.0" width="44" height="44"/>
                                             <accessibility key="accessibilityConfiguration" identifier="RichContentToolbar.orangeColorButton"/>
                                             <constraints>
@@ -131,7 +132,7 @@
                                                 <action selector="textColorAction:" destination="-1" eventType="primaryActionTriggered" id="Fwx-uC-rfy"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UWD-hA-rnP" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UWD-hA-rnP" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
                                             <rect key="frame" x="220" y="0.0" width="44" height="44"/>
                                             <accessibility key="accessibilityConfiguration" identifier="RichContentToolbar.yellowColorButton"/>
                                             <constraints>
@@ -147,7 +148,7 @@
                                                 <action selector="textColorAction:" destination="-1" eventType="primaryActionTriggered" id="h4k-pF-L7n"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VTJ-xN-HNz" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VTJ-xN-HNz" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
                                             <rect key="frame" x="264" y="0.0" width="44" height="44"/>
                                             <accessibility key="accessibilityConfiguration" identifier="RichContentToolbar.greenColorButton"/>
                                             <constraints>
@@ -163,7 +164,7 @@
                                                 <action selector="textColorAction:" destination="-1" eventType="primaryActionTriggered" id="Rsy-Q3-Fe6"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oAV-gQ-UO6" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oAV-gQ-UO6" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
                                             <rect key="frame" x="308" y="0.0" width="44" height="44"/>
                                             <accessibility key="accessibilityConfiguration" identifier="RichContentToolbar.blueColorButton"/>
                                             <constraints>
@@ -179,7 +180,7 @@
                                                 <action selector="textColorAction:" destination="-1" eventType="primaryActionTriggered" id="psX-Di-e1R"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L6w-FE-OEQ" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L6w-FE-OEQ" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
                                             <rect key="frame" x="352" y="0.0" width="44" height="44"/>
                                             <accessibility key="accessibilityConfiguration" identifier="RichContentToolbar.purpleColorButton"/>
                                             <constraints>
@@ -237,7 +238,7 @@
                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e9h-Mq-pwP">
                                     <rect key="frame" x="0.0" y="0.0" width="450" height="44"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lql-Cx-71D" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lql-Cx-71D" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="44"/>
                                             <accessibility key="accessibilityConfiguration" identifier="RichContentToolbar.undoButton"/>
                                             <constraints>
@@ -253,7 +254,7 @@
                                                 <action selector="undoAction:" destination="-1" eventType="primaryActionTriggered" id="D7A-3o-W9t"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JVc-je-oFY" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JVc-je-oFY" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
                                             <rect key="frame" x="50" y="0.0" width="50" height="44"/>
                                             <accessibility key="accessibilityConfiguration" identifier="RichContentToolbar.redoButton"/>
                                             <constraints>
@@ -269,7 +270,7 @@
                                                 <action selector="redoAction:" destination="-1" eventType="primaryActionTriggered" id="4Gx-py-a9y"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5wg-47-S5Y" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5wg-47-S5Y" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
                                             <rect key="frame" x="100" y="0.0" width="50" height="44"/>
                                             <accessibility key="accessibilityConfiguration" identifier="RichContentToolbar.boldButton"/>
                                             <constraints>
@@ -285,7 +286,7 @@
                                                 <action selector="boldAction:" destination="-1" eventType="primaryActionTriggered" id="jE1-Hw-PLX"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nft-PA-7aH" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nft-PA-7aH" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
                                             <rect key="frame" x="150" y="0.0" width="50" height="44"/>
                                             <accessibility key="accessibilityConfiguration" identifier="RichContentToolbar.italicButton"/>
                                             <constraints>
@@ -301,7 +302,7 @@
                                                 <action selector="italicAction:" destination="-1" eventType="primaryActionTriggered" id="8Wl-k7-FVU"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IJh-YQ-flm" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IJh-YQ-flm" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
                                             <rect key="frame" x="200" y="0.0" width="50" height="44"/>
                                             <accessibility key="accessibilityConfiguration" identifier="RichContentToolbar.textColorButton"/>
                                             <constraints>
@@ -317,7 +318,7 @@
                                                 <action selector="toggleColorPickerWithSender:" destination="-1" eventType="primaryActionTriggered" id="SGb-ys-qlM"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F2e-v8-3pa" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F2e-v8-3pa" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
                                             <rect key="frame" x="250" y="0.0" width="50" height="44"/>
                                             <accessibility key="accessibilityConfiguration" identifier="RichContentToolbar.unorderedListButton"/>
                                             <constraints>
@@ -333,7 +334,7 @@
                                                 <action selector="unorderedListAction:" destination="-1" eventType="primaryActionTriggered" id="dr4-u7-bqC"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L3s-ob-5Pi" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L3s-ob-5Pi" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
                                             <rect key="frame" x="300" y="0.0" width="50" height="44"/>
                                             <accessibility key="accessibilityConfiguration" identifier="RichContentToolbar.orderedListButton"/>
                                             <constraints>
@@ -349,7 +350,7 @@
                                                 <action selector="orderedListAction:" destination="-1" eventType="primaryActionTriggered" id="aAg-jP-Ggi"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sg6-3t-3pl" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sg6-3t-3pl" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
                                             <rect key="frame" x="350" y="0.0" width="50" height="44"/>
                                             <accessibility key="accessibilityConfiguration" identifier="RichContentToolbar.linkButton"/>
                                             <constraints>
@@ -365,7 +366,7 @@
                                                 <action selector="linkAction:" destination="-1" eventType="primaryActionTriggered" id="4mZ-uq-MGV"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="niV-Ke-SwN" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="niV-Ke-SwN" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
                                             <rect key="frame" x="400" y="0.0" width="50" height="44"/>
                                             <accessibility key="accessibilityConfiguration" identifier="RichContentToolbar.imageButton"/>
                                             <constraints>
