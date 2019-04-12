@@ -95,7 +95,7 @@ class SyllabusActionableItemsPresenter {
 
     func signalUpdate() {
         let updateThreshold = 2
-        if(assignmentUpdateCount >= updateThreshold && calendarEventUpdateCount >= updateThreshold) {
+        if assignmentUpdateCount >= updateThreshold && calendarEventUpdateCount >= updateThreshold {
             update()
         }
     }
@@ -117,8 +117,7 @@ class SyllabusActionableItemsPresenter {
         return result
     }
 
-    func icon(for: Assignment) -> UIImage? {
-        let assignment = `for`
+    func icon(for assignment: Assignment) -> UIImage? {
         var image: UIImage? = .icon(.assignment, .line)
         if assignment.quizID != nil {
             image = .icon(.quiz, .line)
