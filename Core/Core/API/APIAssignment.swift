@@ -36,4 +36,5 @@ public struct APIAssignment: Codable, Equatable {
     let lock_at: Date?
     let locked_for_user: Bool?
     let url: URL?
+    let discussion_topic: APIDiscussionTopic?
 }

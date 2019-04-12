@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2018-present Instructure, Inc.
+// Copyright (C) 2019-present Instructure, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,23 +17,16 @@
 import Foundation
 @testable import Core
 
-extension DiscussionEntry: Fixture {
+extension APICalendarEvent: Fixture {
     public static var template: Template {
         return [
             "id": "1",
-        ]
-    }
-}
-
-
-extension DiscussionTopic: Fixture {
-    public static var template: Template {
-        return [
-            "id": "1",
-            "title": "Graded Discussion",
-            "assignmentID": "1",
-            "discussionSubEntryCount": 1,
-            "published": true
+            "title": "calendar event #1",
+            "type": "event",
+            "start_at": "2018-05-18T06:00:00Z",
+            "end_at": "2018-05-18T06:00:00Z",
+            "html_url": "https://narmstrong.instructure.com/calendar?event_id=10&include_contexts=course_1",
+            "context_code": "course_1",
         ]
     }
 }

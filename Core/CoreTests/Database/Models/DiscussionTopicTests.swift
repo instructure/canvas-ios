@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2018-present Instructure, Inc.
+// Copyright (C) 2019-present Instructure, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,25 +15,21 @@
 //
 
 import Foundation
+import XCTest
 @testable import Core
 
-extension DiscussionEntry: Fixture {
-    public static var template: Template {
-        return [
-            "id": "1",
-        ]
+class DiscussionTopicTests: CoreTestCase {
+    func testProperties() {
+        let topic = DiscussionTopic.make()
+
+        XCTAssertEqual(topic.id, "1")
+        XCTAssertEqual(topic.title, "Graded Discussion")
     }
-}
 
-
-extension DiscussionTopic: Fixture {
-    public static var template: Template {
-        return [
-            "id": "1",
-            "title": "Graded Discussion",
-            "assignmentID": "1",
-            "discussionSubEntryCount": 1,
-            "published": true
-        ]
+    func testSave() {
+        let api = APIDiscussionTopic.make()
+        DiscussionTopic.save(api, in: databaseClient)
+        let topics: [DiscussionTopic] =  databaseClient.fetch()
+        XCTAssertEqual(topics.count, 1)
     }
 }

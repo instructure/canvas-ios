@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2018-present Instructure, Inc.
+// Copyright (C) 2019-present Instructure, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,26 +14,16 @@
 // limitations under the License.
 //
 
-import Foundation
 @testable import Core
 
-extension DiscussionEntry: Fixture {
+extension APIDiscussionTopic: Fixture {
     public static var template: Template {
         return [
             "id": "1",
-        ]
-    }
-}
-
-
-extension DiscussionTopic: Fixture {
-    public static var template: Template {
-        return [
-            "id": "1",
-            "title": "Graded Discussion",
-            "assignmentID": "1",
-            "discussionSubEntryCount": 1,
-            "published": true
+            "title": "my discussion topic",
+            "message": "message",
+            "discussion_subentry_count": 1,
+            "published": true,
         ]
     }
 }

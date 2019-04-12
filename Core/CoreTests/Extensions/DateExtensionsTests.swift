@@ -18,6 +18,11 @@ import XCTest
 @testable import Core
 
 class DateExtensionsTests: XCTestCase {
+
+    override func setUp() {
+        super.setUp()
+    }
+
     func testIsoString() {
         XCTAssertEqual(Date(timeIntervalSince1970: 0).isoString(), "1970-01-01T00:00:00Z")
     }
@@ -25,5 +30,13 @@ class DateExtensionsTests: XCTestCase {
     func testFromISOString() {
         XCTAssertEqual(Date(fromISOString: "bad wolf"), nil)
         XCTAssertEqual(Date(fromISOString: "1970-01-01T00:00:00Z"), Date(timeIntervalSince1970: 0))
+    }
+
+    func testPlusYears() {
+        let a = Date(fromISOString: "2019-12-25T14:24:37Z")!
+        let b = Date(fromISOString: "2020-12-25T14:24:37Z")!
+        let c = Date(fromISOString: "2018-12-25T14:24:37Z")!
+        XCTAssertEqual(a.addYears(1), b)
+        XCTAssertEqual(a.addYears(-1), c)
     }
 }
