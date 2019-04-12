@@ -280,6 +280,10 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
 
     func chooseSubmissionType(_ types: [SubmissionType]) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        // set ipad properties to display modal
+        alert.popoverPresentationController?.sourceView = submitAssignmentButton?.superview
+        alert.popoverPresentationController?.sourceRect =  CGRect(origin: submitAssignmentButton?.superview?.center ?? .zero, size: .zero)
+        alert.popoverPresentationController?.permittedArrowDirections = []
         for type in types {
             let action = UIAlertAction(title: type.localizedString, style: .default) { _ in
                 self.presenter?.submit(type, from: self)
