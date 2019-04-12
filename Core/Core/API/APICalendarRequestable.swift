@@ -29,11 +29,10 @@ public struct GetCalendarEventsRequest: APIRequestable {
         return df
     }()
 
-    init(context: Context, startDate: Date? = Clock.now.plusYears(-2), endDate: Date? = Clock.now.plusYears(1)) {
+    init(context: Context, startDate: Date = Clock.now.addYears(-2), endDate: Date = Clock.now.addYears(1)) {
         self.context = context
-        guard let sd = startDate, let ed = endDate else { fatalError("nil start or end date") }
-        self.startDate = sd
-        self.endDate = ed
+        self.startDate = startDate
+        self.endDate = endDate
     }
 
     public var query: [APIQueryItem] {

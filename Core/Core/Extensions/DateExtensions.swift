@@ -26,7 +26,7 @@ public extension Date {
         self = date
     }
 
-    public func plusYears(_ years: Int) -> Date? {
-        return Calendar.current.date(byAdding: .year, value: years, to: self)
+    public func addYears(_ years: Int) -> Date {
+        return Calendar.current.date(byAdding: .year, value: years, to: self) ?? Date()
     }
 }
