@@ -151,7 +151,7 @@ extension RichContentEditorViewController {
     }
 
     enum Message: String, CaseIterable {
-        case blur, focus, html, linkTap, paste, ready, state
+        case link, ready, state
     }
 
     func setupScriptMessaging() {
@@ -168,12 +168,12 @@ extension RichContentEditorViewController {
     func handleScriptMessage(_ message: WKScriptMessage) {
         guard let name = Message(rawValue: message.name) else { return }
         switch name {
+        case .link:
+            toolbar.linkAction()
         case .ready:
             if let html = html { setHTML(html) }
         case .state:
             updateState(message.body as? [String: Any?])
-        default:
-            break
         }
     }
 }

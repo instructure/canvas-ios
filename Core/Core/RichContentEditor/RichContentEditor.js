@@ -73,16 +73,15 @@ const editor = window.editor = {
         if (editor.currentEditingImage) {
             editor.currentEditingImage.src = src
             editor.currentEditingImage.alt = alt
+            editor.postState()
         } else {
             editor.insertHTML(`<img src="${escapeHTML(src)}" alt="${escapeHTML(alt)}" />`)
         }
-        editor.postState()
     },
 
     insertVideoComment (mediaID) {
         editor.restoreRange()
         editor.insertHTML(videoPreviewHTML(mediaID))
-        editor.postState()
     },
 
     setHTML (html) {
@@ -237,12 +236,8 @@ window.addEventListener('touchend', e => {
             img.classList.remove('editor-active')
         }
     }
-    if (e.target.nodeName.toLowerCase() === 'a') {
-        editor.currentEditingLink = e.target
-        webkit.messageHandlers.linkTap.postMessage({
-            text: e.target.textContent,
-            href: e.target.href
-        })
+    if (editor.currentEditingLink) {
+        webkit.messageHandlers.link.postMessage('')
         e.preventDefault()
     }
     if (!editor.isDragging && e.target.nodeName.toLowerCase() === 'html') {
@@ -250,18 +245,28 @@ window.addEventListener('touchend', e => {
     }
 })
 
-content.addEventListener('focus', () => {
-    webkit.messageHandlers.focus.postMessage()
-})
 content.addEventListener('blur', () => {
     if (editor.isEmpty()) { content.textContent = '' }
-    webkit.messageHandlers.blur.postMessage()
 })
 
 content.addEventListener('paste', e => {
-    webkit.messageHandlers.paste.postMessage()
-    e.stopPropagation()
-    e.preventDefault()
+    if (e.clipboardData.files.length) {
+        const uris = e.clipboardData.getData('text/uri-list').split('\r\n')
+        for (let i = 0; i < e.clipboardData.files.length; ++i) {
+            const file = e.clipboardData.files[i]
+            const uri = uris[i]
+            if (file.type.startsWith('image/') && uri) {
+                document.execCommand('insertHTML', false, `<img src="${escapeHTML(uri)}" alt="${escapeHTML(file.name)}" />`)
+                e.preventDefault()
+            } else if (uri) {
+                document.execCommand('insertHTML', false, `<a href="${escapeHTML(uri)}">${escapeHTML(uri)}</a>`)
+                e.preventDefault()
+            } else {
+                // don't prevent default
+            }
+        }
+    }
+    editor.postState(e)
 })
 
-webkit.messageHandlers.ready.postMessage()
+webkit.messageHandlers.ready.postMessage('')

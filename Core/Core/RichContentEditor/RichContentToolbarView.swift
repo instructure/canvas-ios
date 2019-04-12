@@ -183,6 +183,7 @@ public class RichContentToolbarView: UIView {
     }
 
     func hideColorPicker() {
+        UIAccessibility.post(notification: .layoutChanged, argument: self.textColorButton)
         UIView.animate(withDuration: 0.2, animations: {
             self.colorPickerView?.alpha = 0
             self.colorPickerView?.transform = CGAffineTransform(translationX: 0, y: 45)
@@ -190,11 +191,10 @@ public class RichContentToolbarView: UIView {
         }, completion: { _ in
             self.colorPickerHeight?.constant = 0
             self.layoutIfNeeded()
-            UIAccessibility.post(notification: .layoutChanged, argument: self.textColorButton)
         })
     }
 
-    @IBAction func linkAction(_ sender: UIButton) {
+    @IBAction func linkAction(_ sender: UIButton? = nil) {
         controller?.backupRange()
         let alert = UIAlertController(title: NSLocalizedString("Link to Website URL", bundle: .core, comment: ""), message: nil, preferredStyle: .alert)
         alert.addTextField { (field: UITextField) in
