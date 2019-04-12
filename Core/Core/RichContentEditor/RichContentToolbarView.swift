@@ -139,6 +139,7 @@ public class RichContentToolbarView: UIView {
         } else {
             textColorView?.layer.borderColor = foreColor.cgColor
         }
+        textColorButton?.accessibilityValue = foreColorHex
         for color in colorPickerStack?.arrangedSubviews ?? [] {
             if color.tintColor.hexString == foreColorHex {
                 (color as? UIButton)?.isSelected = true
@@ -170,14 +171,15 @@ public class RichContentToolbarView: UIView {
     }
 
     func showColorPicker() {
-        controller?.backupRange()
         colorPickerHeight?.constant = 45
         layoutIfNeeded()
-        UIView.animate(withDuration: 0.2) {
+        UIView.animate(withDuration: 0.2, animations: {
             self.colorPickerView?.alpha = 1
             self.colorPickerView?.transform = .identity
             self.layoutIfNeeded()
-        }
+        }, completion: { _ in
+            UIAccessibility.post(notification: .layoutChanged, argument: self.whiteColorButton)
+        })
     }
 
     func hideColorPicker() {
@@ -188,6 +190,7 @@ public class RichContentToolbarView: UIView {
         }, completion: { _ in
             self.colorPickerHeight?.constant = 0
             self.layoutIfNeeded()
+            UIAccessibility.post(notification: .layoutChanged, argument: self.textColorButton)
         })
     }
 

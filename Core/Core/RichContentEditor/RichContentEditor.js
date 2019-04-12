@@ -49,23 +49,8 @@ const editor = window.editor = {
     },
 
     execCommand (command, value = null) {
-        document.execCommand(command, false, null)
-        editor.postState()
-    },
-
-    setTextColor (color) {
-        const boldState = document.queryCommandState('bold')
-        const italicState = document.queryCommandState('italic')
-        editor.restoreRange()
-        document.execCommand('styleWithCSS', null, true)
-        document.execCommand('foreColor', false, color)
-        document.execCommand('styleWithCSS', null, false)
-        if (boldState !== document.queryCommandState('bold')) {
-            document.execCommand('bold', false, null)
-        }
-        if (italicState !== document.queryCommandState('italic')) {
-            document.execCommand('italic', false, null)
-        }
+        document.execCommand('styleWithCSS', false, 'foreColor' === command)
+        document.execCommand(command, false, value)
         editor.postState()
     },
 

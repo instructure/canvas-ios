@@ -19,7 +19,7 @@ import Core
 
 protocol TextSubmissionViewProtocol: class {
     func showError(_ error: Error)
-    func dismiss(animated flag: Bool, completion: (() -> Void)?)
+    func dismiss(animated flag: Bool, completion: EmptyHandler?)
 }
 
 class TextSubmissionPresenter {

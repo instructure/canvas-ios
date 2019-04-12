@@ -94,7 +94,7 @@ extension RichContentEditorViewController {
         webView.evaluateJavaScript("editor.execCommand('italic')")
     }
     func setTextColor(_ color: UIColor) {
-        webView.evaluateJavaScript("editor.setTextColor('\(color.hexString)')")
+        webView.evaluateJavaScript("editor.execCommand('foreColor', '\(color.hexString)')")
     }
     func toggleUnordered() {
         webView.evaluateJavaScript("editor.execCommand('insertUnorderedList')")
