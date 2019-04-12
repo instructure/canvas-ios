@@ -282,7 +282,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         // set ipad properties to display modal
         alert.popoverPresentationController?.sourceView = submitAssignmentButton?.superview
-        alert.popoverPresentationController?.sourceRect = CGRect(x: submitAssignmentButton?.superview?.frame.midX ?? 0, y: submitAssignmentButton?.superview?.frame.midY ?? 0, width: 0, height: 0)
+        alert.popoverPresentationController?.sourceRect =  CGRect(origin: submitAssignmentButton?.superview?.center ?? .zero, size: .zero)
         alert.popoverPresentationController?.permittedArrowDirections = []
         for type in types {
             let action = UIAlertAction(title: type.localizedString, style: .default) { _ in
