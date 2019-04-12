@@ -33,6 +33,7 @@ public class HorizontalMenuView: UIView {
     public weak var delegate: HorizontalMenuDelegate?
     private var cachedTotalWidthOfItems: CGFloat?
     private var cachedSpaceBetweenCells: CGFloat?
+    private var underlineView: UIView?
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -57,6 +58,7 @@ public class HorizontalMenuView: UIView {
         super.layoutSubviews()
         if selectedIndexPath == nil {
             selectedIndexPath = IndexPath(item: 0, section: 0)
+            setupUnderlineView()
             selectMenuItem(at: selectedIndexPath)
         }
         reload()
@@ -72,6 +74,16 @@ public class HorizontalMenuView: UIView {
     public func selectMenuItem(at: IndexPath?, animated: Bool = true) {
         guard let at = at else { return }
         collectionView.selectItem(at: at, animated: animated, scrollPosition: UICollectionView.ScrollPosition.centeredHorizontally)
+        collectionView(collectionView, didSelectItemAt: at)
+    }
+
+    private func setupUnderlineView() {
+        underlineView = UIView()
+        underlineView?.backgroundColor = delegate?.selectedColor
+        underlineView?.frame = CGRect.zero
+        guard let underlineView = underlineView else { return }
+        addSubview(underlineView)
+        animateUnderlineView(to: selectedIndexPath)
     }
 }
 
@@ -100,6 +112,7 @@ extension HorizontalMenuView: UICollectionViewDataSource, UICollectionViewDelega
         }
         selectedIndexPath = indexPath
         delegate?.didSelectItem(at: indexPath)
+        animateUnderlineView(to: indexPath)
     }
 
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -141,5 +154,29 @@ extension HorizontalMenuView: UICollectionViewDataSource, UICollectionViewDelega
         let space = floor( (frame.size.width - (cachedTotalWidthOfItems ?? 0)) / CGFloat(itemCount + 1) )
         cachedSpaceBetweenCells = space
         return space
+    }
+
+    func frameForCollectionViewCell(at: IndexPath?, translationView: UIView? = nil) -> CGRect {
+        guard let at = at else { return CGRect.zero }
+        let attributes = collectionView.layoutAttributesForItem(at: at)
+        if var frame = attributes?.frame {
+            frame = collectionView.convert(frame, to: translationView ?? collectionView.superview)
+            return frame
+        }
+        return CGRect.zero
+    }
+
+    func animateUnderlineView(to: IndexPath?) {
+        let frame = frameForCollectionViewCell(at: to)
+        var newFrame = frame
+        let underlineViewHeight: CGFloat = 2
+        newFrame.origin.y = frame.maxY - underlineViewHeight
+        newFrame.size.height = underlineViewHeight
+
+        let duration: Double = Double(self.frame.size.width) * 0.00054
+
+        UIView.animate(withDuration: duration, delay: 0, options: [.beginFromCurrentState, .curveEaseInOut], animations: { [weak self] in
+            self?.underlineView?.frame = newFrame
+            }, completion: nil)
     }
 }
