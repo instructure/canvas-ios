@@ -23,6 +23,8 @@ import Result
 import Marshal
 import ReactiveSwift
 
+struct ResponsePlaceholder: Decodable {}
+
 open class RemoteService {
     
     let session: Session
@@ -77,20 +79,35 @@ open class RemoteService {
     }
     
     // MARK: Push notification registration
-    open func registerPushNotificationTokenWithPushService(_ pushToken: String, completion: @escaping (Result<Bool, NSError>) -> ()) {
-        requestForPushNotificationRegistration(pushToken)
-            .flatMap(.concat, transform: session.emptyResponseSignalProducer)
-            .on(completed: { completion(Result(value: true)) })
-            .startWithFailed { err in completion(Result(error: err)) }
+    open func registerPushNotificationTokenWithPushService(_ pushToken: String, retries: Int = 0, completion: @escaping (Result<Bool, NSError>) -> ()) {
+        do {
+            let request = try requestForPushNotificationRegistration(pushToken)
+            session.makeRequest(request) { [weak self] (result: Result<ResponsePlaceholder, NSError>) in
+                switch result {
+                case .success:
+                    completion(Result(value: true))
+                case .failure(let error):
+                    let retryCodes: [Int] = [Int(ECONNABORTED), NSURLErrorNetworkConnectionLost]
+                    let retryMax = 5
+                    if retries < retryMax && retryCodes.contains(error.code) {
+                        self?.registerPushNotificationTokenWithPushService(pushToken, retries: retries + 1, completion: completion)
+                    } else {
+                        completion(Result(error: error))
+                    }
+                }
+            }
+        } catch let error as NSError {
+            completion(Result(error: error))
+        }
     }
     
-    fileprivate func requestForPushNotificationRegistration(_ pushToken: String) -> SignalProducer<URLRequest, NSError> {
+    fileprivate func requestForPushNotificationRegistration(_ pushToken: String) throws -> URLRequest {
         let path = "api/v1/users/self/communication_channels"
         
         let channel = ["type": "push", "token": pushToken]
         let params = ["communication_channel": channel]
         
-        return attemptProducer { try session.POST(path, parameters: params) }
+        return try session.POST(path, parameters: params)
     }
     
     // MARK: Retrieve communication channels
