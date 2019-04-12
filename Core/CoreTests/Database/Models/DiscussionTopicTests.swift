@@ -29,5 +29,7 @@ class DiscussionTopicTests: CoreTestCase {
     func testSave() {
         let api = APIDiscussionTopic.make()
         DiscussionTopic.save(api, in: databaseClient)
+        let topics: [DiscussionTopic] =  databaseClient.fetch()
+        XCTAssertEqual(topics.count, 1)
     }
 }
