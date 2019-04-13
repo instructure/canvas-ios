@@ -59,6 +59,14 @@ class ModuleListViewController: UIViewController, ModuleListViewProtocol {
         presenter?.viewIsReady()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if let selectedIndexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: selectedIndexPath, animated: true)
+        }
+    }
+
     func reloadModules() {
         tableView.reloadData()
     }
@@ -140,10 +148,14 @@ extension ModuleListViewController: UITableViewDataSource {
 
 extension ModuleListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        // TODO: show item
-        // guard let item = presenter?.modules[indexPath.section]?.items[indexPath.row] else { return }
-        // presenter?.showItem(item)
+        guard let item = presenter?.modules[indexPath.section]?.items[indexPath.row] else { return }
+        switch item.type {
+        case .externalTool?, .externalURL?:
+            tableView.deselectRow(at: indexPath, animated: true)
+        default:
+            break
+        }
+        presenter?.showItem(item, from: self)
     }
 }
 

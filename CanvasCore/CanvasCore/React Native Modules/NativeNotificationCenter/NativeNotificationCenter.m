@@ -20,9 +20,21 @@
 
 RCT_EXPORT_MODULE()
 
+- (NSArray<NSString *> *)supportedEvents
+{
+    return @[@"Notification"];
+}
+
 RCT_EXPORT_METHOD(postNotification:(NSString *)name userInfo:(NSDictionary *)userInfo)
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:name object:nil userInfo:userInfo];
+}
+
+RCT_EXPORT_METHOD(addObserver:(NSString *)name)
+{
+    [[NSNotificationCenter defaultCenter] addObserverForName:name object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        [self sendEventWithName:@"Notification" body:@{ @"name": name, @"userInfo": note.userInfo }];
+    }];
 }
 
 - (dispatch_queue_t)methodQueue

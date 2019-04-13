@@ -29,24 +29,12 @@ extension HelmSplitViewController {
         }
     }
     
-    @objc var masterTopHelmViewController: HelmViewController? {
-        get {
-            return masterTopViewController as? HelmViewController
-        }
-    }
-    
-    @objc var detailTopHelmViewController: HelmViewController? {
-        get {
-            return detailTopViewController as? HelmViewController
-        }
-    }
-    
-    @objc func sourceController(moduleName: String) -> HelmViewController? {
-        if let detailTopViewController = detailTopHelmViewController, detailTopViewController.moduleName == moduleName {
+    @objc func sourceController(moduleName: String) -> UIViewController? {
+        if (detailTopViewController as? HelmModule)?.moduleName == moduleName {
             return detailTopViewController
         }
         
-        if let masterTopViewController = masterTopHelmViewController, masterTopViewController.moduleName == moduleName {
+        if (masterTopViewController as? HelmModule)?.moduleName == moduleName {
             return masterTopViewController
         }
         return nil
@@ -61,7 +49,7 @@ extension HelmSplitViewController {
     
     override open var description: String {
         get {
-            return "displayMode: \(self.displayMode) master: \(masterTopHelmViewController?.moduleName ?? "N/A") detail: \(detailTopHelmViewController?.moduleName ?? "N/A") masterVC: \( masterNavigationController != nil ? String(describing: masterNavigationController.self) : "N/A") detailVC: \( detailNavigationController != nil ? String(describing: detailNavigationController.self) : "N/A")"
+            return "displayMode: \(self.displayMode) master: \((masterTopViewController as? HelmModule)?.moduleName ?? "N/A") detail: \((detailTopViewController as? HelmModule)?.moduleName ?? "N/A") masterVC: \( masterNavigationController != nil ? String(describing: masterNavigationController.self) : "N/A") detailVC: \( detailNavigationController != nil ? String(describing: detailNavigationController.self) : "N/A")"
         }
     }
 }

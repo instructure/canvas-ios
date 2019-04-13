@@ -40,8 +40,11 @@ public struct APIModuleItem: Codable, Equatable {
     /// 0-based indent level; module items may be indented to show a hierarchy
     let indent: Int
     let content: ModuleItemType
+    /// link to the item in Canvas
+    /// eg: "https://canvas.example.edu/courses/222/modules/items/768"
     let html_url: URL?
     /// (Optional) link to the Canvas API object, if applicable
+    /// eg: "https://canvas.example.edu/api/v1/courses/222/assignments/987"
     let url: URL?
     /// Only present if the caller has permission to view unpublished items
     let published: Bool?

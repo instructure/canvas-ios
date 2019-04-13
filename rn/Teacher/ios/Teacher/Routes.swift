@@ -18,14 +18,15 @@ import Foundation
 import Core
 import CanvasCore
 
-let router = Core.Router(routes: [
-    RouteHandler(.modules(forCourse: ":courseID"), name: "course_modules") { _, params in
-        guard let courseID = params["courseID"] else { return nil }
-        return ModuleListViewController.create(courseID: courseID)
-    },
-
-    RouteHandler(.module(forCourse: ":courseID", moduleID: ":moduleID"), name: "course_module") { _, params in
-        guard let courseID = params["courseID"], let moduleID = params["moduleID"] else { return nil }
-        return ModuleListViewController.create(courseID: courseID, moduleID: moduleID)
+class Router: RouterProtocol {
+    func route(to url: URLComponents, from: UIViewController, options: Core.Router.RouteOptions?) {
+        guard let url = url.url else { return }
+        let name = NSNotification.Name("route")
+        let userInfo: [AnyHashable: Any] = [
+            "url": url.absoluteString,
+        ]
+        NotificationCenter.default.post(name: name, object: nil, userInfo: userInfo)
     }
-])
+}
+
+let router = Router()

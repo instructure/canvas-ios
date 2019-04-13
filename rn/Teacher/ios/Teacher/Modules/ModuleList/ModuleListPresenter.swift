@@ -16,6 +16,8 @@
 
 import Foundation
 import Core
+import CanvasCore
+import SafariServices
 
 private var collapsedIDs: [String: Set<String>] = [:] // [courseID: [moduleID]]
 
@@ -27,7 +29,7 @@ class ModuleListPresenter {
 
     private var hasScrolledToModule = false
 
-    var course: Course? {
+    var course: Core.Course? {
         return courses.first
     }
 
@@ -117,5 +119,17 @@ class ModuleListPresenter {
     func isSectionExpanded(_ section: Int) -> Bool {
         guard let module = modules[section] else { return false }
         return collapsedIDs[courseID]?.contains(module.id) == false
+    }
+
+    func showItem(_ item: Core.ModuleItem, from viewController: UIViewController) {
+        switch item.type {
+        case .externalTool(_, let url)?, .externalURL(let url)?:
+            let safari = SFSafariViewController(url: url)
+            safari.modalPresentationStyle = .overFullScreen
+            viewController.present(safari, animated: true, completion: nil)
+        default:
+            guard let url = item.url else { return }
+            env.router.route(to: url, from: viewController, options: nil)
+        }
     }
 }

@@ -51,3 +51,9 @@ extension AppDelegate {
         CanvasCore.registerSharedNativeViewControllers()
     }
 }
+
+// MARK - HelmModules
+
+extension ModuleListViewController: HelmModule {
+    var moduleName: String { return "/courses/:courseID/modules" }
+}

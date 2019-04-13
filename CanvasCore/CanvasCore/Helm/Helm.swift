@@ -39,6 +39,12 @@ public struct HelmViewControllerFactory {
     }
 }
 
+public protocol HelmModule {
+    var moduleName: String { get }
+}
+
+extension HelmViewController: HelmModule {}
+
 @objc(HelmManager)
 open class HelmManager: NSObject {
 
@@ -431,7 +437,7 @@ open class HelmManager: NSObject {
 extension HelmManager {
     @objc func navigationControllerForSplitViewControllerPush(splitViewController: HelmSplitViewController?, sourceModule: ModuleName, destinationModule: ModuleName, props: [String: Any], options: [String: Any]) -> UINavigationController? {
 
-        if let detailViewController = splitViewController?.detailTopHelmViewController, detailViewController.moduleName == sourceModule {
+        if (splitViewController?.detailTopViewController as? HelmModule)?.moduleName == sourceModule {
             return splitViewController?.detailHelmNavigationController ?? splitViewController?.detailNavigationController
         } else {
             let canBecomeMaster = options["canBecomeMaster"] as? Bool ?? false
