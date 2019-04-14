@@ -947,9 +947,6 @@ Nepodprte vrste vprašanj so tiste, ki vključujejo vprašanja z vsebino in nalo
 /* Link to open assignment in SpeedGrader */
 "Open in SpeedGrader" = "Odpri v SpeedGrader";
 
-/* Open file in another application */
-"Open in..." = "Odpri v ...";
-
 /* Button title for selecting an option given a number */
 "Option %d" = "Možnost %d";
 

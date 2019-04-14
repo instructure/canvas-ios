@@ -936,14 +936,14 @@ Se você acredita que um questionário contém conteúdo sem suporte, por favor,
 /* Title for an error alert */
 "Oops!" = "Oops!";
 
+/* No comment provided by engineer. */
+"Open in AR" = "Abrir em AR";
+
 /* Open a document in the application Safari */
 "Open in Safari" = "Abrir em Safari";
 
 /* Link to open assignment in SpeedGrader */
 "Open in SpeedGrader" = "Abrir em SpeedGrader";
-
-/* Open file in another application */
-"Open in..." = "Abrir em...";
 
 /* Link to Open Source Components */
 "Open Source Components" = "Componentes de Código Aberto";

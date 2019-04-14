@@ -937,14 +937,14 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Title for an error alert */
 "Oops!" = "しまった！";
 
+/* No comment provided by engineer. */
+"Open in AR" = "ARで開く";
+
 /* Open a document in the application Safari */
 "Open in Safari" = "Safariで開く";
 
 /* Link to open assignment in SpeedGrader */
 "Open in SpeedGrader" = "SpeedGraderで開く";
-
-/* Open file in another application */
-"Open in..." = "...で開く";
 
 /* Link to Open Source Components */
 "Open Source Components" = "オープンソースコンポーネント";

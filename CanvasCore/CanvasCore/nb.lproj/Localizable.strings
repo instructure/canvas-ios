@@ -313,6 +313,9 @@
 /* front page segmented control title */
 "Front Page" = "Forside";
 
+/* No comment provided by engineer. */
+"Get Grades for" = "Få karakterer for";
+
 /* navigate */
 "Go" = "Gå";
 

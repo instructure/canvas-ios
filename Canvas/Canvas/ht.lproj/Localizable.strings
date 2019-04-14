@@ -947,9 +947,6 @@ Si w kwè yon quiz gen kontni ki pa sipòte, pran li sou òdinatè oswa laptòp.
 /* Link to open assignment in SpeedGrader */
 "Open in SpeedGrader" = "Ouvri nan SpeedGrader";
 
-/* Open file in another application */
-"Open in..." = "Ouvri nan...";
-
 /* Button title for selecting an option given a number */
 "Option %d" = "Opsyon %d";
 

@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"Add a comment or reply to previous comments" = "添加评论或回复以前的评论";
+
 /* All Courses screen title */
 "All Courses" = "所有课程";
 
@@ -18,6 +21,9 @@
 
 /* No comment provided by engineer. */
 "Comments" = "评论";
+
+/* No comment provided by engineer. */
+"Could not save the comment" = "无法保存评论";
 
 /* No comment provided by engineer. */
 "Courses" = "课程";
@@ -71,6 +77,9 @@
 "Groups" = "小组";
 
 /* No comment provided by engineer. */
+"Have questions? Use this area to message your instructor about this assignment." = "有问题？使用此区域向讲师发送关于此作业的消息。";
+
+/* No comment provided by engineer. */
 "Invalid url" = "无效的 URL";
 
 /* No comment provided by engineer. */
@@ -101,7 +110,16 @@
 "Past Enrollments" = "以前的注册";
 
 /* No comment provided by engineer. */
+"Permission Needed" = "需要权限";
+
+/* No comment provided by engineer. */
 "Quizzes" = "测验";
+
+/* No comment provided by engineer. */
+"Record Audio" = "录制音频";
+
+/* No comment provided by engineer. */
+"Record Video" = "录制视频";
 
 /* No comment provided by engineer. */
 "Resubmit Assignment" = "重新提交作业";
@@ -117,6 +135,12 @@
 
 /* No comment provided by engineer. */
 "See All Courses" = "查看所有课程";
+
+/* No comment provided by engineer. */
+"Send comment" = "发送评论";
+
+/* No comment provided by engineer. */
+"Settings" = "设置";
 
 /* No comment provided by engineer. */
 "Something went wrong while loading the quizzes." = "加载测验时出了些问题。";
@@ -177,6 +201,9 @@
 
 /* No comment provided by engineer. */
 "Website Address" = "网址";
+
+/* No comment provided by engineer. */
+"You must enable Microphone permissions in Settings to record audio." = "您必须在“设置”中启用麦克风权限才能录制音频。";
 
 /* No comment provided by engineer. */
 "Your submission is now waiting to be graded" = "您的提交项目前正在等待评分";

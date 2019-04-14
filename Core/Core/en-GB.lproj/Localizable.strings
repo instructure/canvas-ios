@@ -1,5 +1,14 @@
+/* Unknown time duration */
+"--:--" = "--:--";
+
+/* No comment provided by engineer. */
+"\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user." = "\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user.";
+
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ Class";
+
+/* No comment provided by engineer. */
+"Act as User" = "Act as user";
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Are you sure you would like to delete this comment?";
@@ -23,10 +32,16 @@
 "Cancel" = "Cancel";
 
 /* No comment provided by engineer. */
+"Canvas Guides" = "Canvas Guides";
+
+/* No comment provided by engineer. */
 "Canvas Login" = "Canvas login";
 
 /* No comment provided by engineer. */
 "Canvas Network" = "Canvas Network";
+
+/* No comment provided by engineer. */
+"Clear recording" = "Clear recording";
 
 /* No comment provided by engineer. */
 "Closed" = "Closed";
@@ -39,6 +54,9 @@
 
 /* No comment provided by engineer. */
 "Course" = "Course";
+
+/* No comment provided by engineer. */
+"Current position" = "Current position";
 
 /* No comment provided by engineer. */
 "d_questions" = "d_questions";
@@ -57,6 +75,12 @@
 
 /* No comment provided by engineer. */
 "Dismiss" = "Dismiss";
+
+/* No comment provided by engineer. */
+"Domain" = "Domain";
+
+/* No comment provided by engineer. */
+"Error" = "Error";
 
 /* No comment provided by engineer. */
 "External Tool" = "External tool";
@@ -125,16 +149,31 @@
 "list_or_two" = "%1$@ or %2$@";
 
 /* No comment provided by engineer. */
+"Log In Again" = "Log in again";
+
+/* No comment provided by engineer. */
 "Manual OAuth Login" = "Manual OAuth Login";
 
 /* No comment provided by engineer. */
 "Media Recording" = "Media recording";
 
 /* No comment provided by engineer. */
+"N/A" = "N/A";
+
+/* No comment provided by engineer. */
 "No Due Date" = "No due date";
 
 /* No comment provided by engineer. */
 "No Submission" = "No submission";
+
+/* No comment provided by engineer. */
+"Not a parent?" = "Not a parent?";
+
+/* No comment provided by engineer. */
+"Not a student?" = "Not a student?";
+
+/* No comment provided by engineer. */
+"Not a teacher?" = "Not a teacher?";
 
 /* No comment provided by engineer. */
 "Not Graded" = "Not graded";
@@ -149,7 +188,16 @@
 "On Paper" = "On paper";
 
 /* No comment provided by engineer. */
+"One of our other apps might be a better fit. Tap one to visit the App Store." = "One of our other apps may be a better fit. Tap one to visit the App Store.";
+
+/* No comment provided by engineer. */
 "out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
+"Pause" = "Pause";
+
+/* No comment provided by engineer. */
+"Play" = "Play";
 
 /* No comment provided by engineer. */
 "plural_points" = "plural_points";
@@ -182,10 +230,19 @@
 "Select Course" = "Select Course";
 
 /* No comment provided by engineer. */
+"Send" = "Send";
+
+/* No comment provided by engineer. */
 "Send comment" = "Send comment";
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "Site admin login";
+
+/* No comment provided by engineer. */
+"Start recording" = "Start recording";
+
+/* No comment provided by engineer. */
+"Stop recording" = "Stop recording";
 
 /* No comment provided by engineer. */
 "Style" = "Style";
@@ -215,10 +272,25 @@
 "There was a problem retrieving the Terms of Use." = "There was a problem retrieving the Terms of Use.";
 
 /* No comment provided by engineer. */
+"There was an error with Act as User. Please try again later." = "There was an error with act as user. Please try again later.";
+
+/* No comment provided by engineer. */
 "This assignment is due by %@" = "This assignment is due by %@";
 
 /* No comment provided by engineer. */
 "This assignment was due by %@" = "This assignment was due by %@";
+
+/* No comment provided by engineer. */
+"This is a media comment" = "This is a media comment";
+
+/* No comment provided by engineer. */
+"Time elapsed" = "Time elapsed";
+
+/* No comment provided by engineer. */
+"Total time" = "Total time";
+
+/* No comment provided by engineer. */
+"User ID" = "User ID";
 
 /* No comment provided by engineer. */
 "Video" = "Video";
@@ -231,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "What’s your school’s name?" = "What’s your school’s name?";
+
+/* No comment provided by engineer. */
+"You need at least one active observer enrollment to use Canvas Parent. If you're a student or teacher, try one of our other apps below." = "You need at least one active observer enrolment to use Canvas Parent. If you're a student or teacher, try one of our other apps below.";
 
 /* No comment provided by engineer. */
 "You will need to log into at least one Canvas account from the Student app first." = "You will need to log into at least one Canvas account from the Student app first.";

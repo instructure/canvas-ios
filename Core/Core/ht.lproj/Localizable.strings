@@ -1,5 +1,14 @@
+/* Unknown time duration */
+"--:--" = "--:--";
+
+/* No comment provided by engineer. */
+"\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user." = "\"Aji tankou\" se avan tou koneksyon an tan ke itilizatè san modpas. Ou ka fè nenpòt aksyon kòmsi w te itilizatè sa a, epi pou lòt itilizatè yo, y ap panse se moun nan k ap fè aksyon yo. Men, jounal odit yo endike ke se te ou menm ki te fè aksyon yo nan non itilizatè sa a.";
+
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
+
+/* No comment provided by engineer. */
+"Act as User" = "Aji tankou Itilizatè";
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Èske se tout bon ou vle efase kòmantè sa a?";
@@ -23,10 +32,16 @@
 "Cancel" = "Anile";
 
 /* No comment provided by engineer. */
+"Canvas Guides" = "Gid Canvas";
+
+/* No comment provided by engineer. */
 "Canvas Login" = "Koneksyon Canvas";
 
 /* No comment provided by engineer. */
 "Canvas Network" = "Canvas Network";
+
+/* No comment provided by engineer. */
+"Clear recording" = "Efase anrejistreman";
 
 /* No comment provided by engineer. */
 "Closed" = "Fèmen";
@@ -39,6 +54,9 @@
 
 /* No comment provided by engineer. */
 "Course" = "Kou";
+
+/* No comment provided by engineer. */
+"Current position" = "Pozisyon aktyèl";
 
 /* No comment provided by engineer. */
 "d_questions" = "d_questions";
@@ -57,6 +75,12 @@
 
 /* No comment provided by engineer. */
 "Dismiss" = "Rejte";
+
+/* No comment provided by engineer. */
+"Domain" = "Domèn";
+
+/* No comment provided by engineer. */
+"Error" = "Erè";
 
 /* No comment provided by engineer. */
 "External Tool" = "Zouti Ekstèn";
@@ -125,16 +149,31 @@
 "list_or_two" = "%1$@ oswa %2$@";
 
 /* No comment provided by engineer. */
+"Log In Again" = "Konekte Ankò";
+
+/* No comment provided by engineer. */
 "Manual OAuth Login" = "Koneksyon OAuth Manyèl";
 
 /* No comment provided by engineer. */
 "Media Recording" = "Anrejistreman Medya";
 
 /* No comment provided by engineer. */
+"N/A" = "N/A";
+
+/* No comment provided by engineer. */
 "No Due Date" = "San Delè";
 
 /* No comment provided by engineer. */
 "No Submission" = "Pa gen Soumisyon";
+
+/* No comment provided by engineer. */
+"Not a parent?" = "Ou pa yon paran?";
+
+/* No comment provided by engineer. */
+"Not a student?" = "Ou pa yon elèv?";
+
+/* No comment provided by engineer. */
+"Not a teacher?" = "Se pa yon pofesè?";
 
 /* No comment provided by engineer. */
 "Not Graded" = "Pa Klase";
@@ -149,7 +188,16 @@
 "On Paper" = "Sou Papye";
 
 /* No comment provided by engineer. */
+"One of our other apps might be a better fit. Tap one to visit the App Store." = "Yonn nan lòt aplikasyon nou yo kapab pi bon. Tape yonn pou al vizite App Store la";
+
+/* No comment provided by engineer. */
 "out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
+"Pause" = "Poz";
+
+/* No comment provided by engineer. */
+"Play" = "Jwe";
 
 /* No comment provided by engineer. */
 "plural_points" = "plural_points";
@@ -182,10 +230,19 @@
 "Select Course" = "Seleksyone Kou";
 
 /* No comment provided by engineer. */
+"Send" = "Voye";
+
+/* No comment provided by engineer. */
 "Send comment" = "Voye kòmantè";
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "Koneksyon Admin Sit";
+
+/* No comment provided by engineer. */
+"Start recording" = "Kòmanse anrejistreman";
+
+/* No comment provided by engineer. */
+"Stop recording" = "Kanpe anrejistreman";
 
 /* No comment provided by engineer. */
 "Style" = "Estil";
@@ -215,10 +272,25 @@
 "There was a problem retrieving the Terms of Use." = "Gen yon pwoblèm ki pase pandan rekiperasyon Kondisyon Itilizasyon an";
 
 /* No comment provided by engineer. */
+"There was an error with Act as User. Please try again later." = "Te gen yon erè nan Aji tankou Itilizatè. Tanpri eseye ankò.";
+
+/* No comment provided by engineer. */
 "This assignment is due by %@" = "Delè sesyon sa a se %@";
 
 /* No comment provided by engineer. */
 "This assignment was due by %@" = "Delè sesyon sa a se te %@";
+
+/* No comment provided by engineer. */
+"This is a media comment" = "Sa se yon kòmantè miltimedya";
+
+/* No comment provided by engineer. */
+"Time elapsed" = "Tan ki pase";
+
+/* No comment provided by engineer. */
+"Total time" = "Tan total";
+
+/* No comment provided by engineer. */
+"User ID" = "ID Itilizatè";
 
 /* No comment provided by engineer. */
 "Video" = "Videyo";
@@ -231,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "What’s your school’s name?" = "Ki non lekòl ou a?";
+
+/* No comment provided by engineer. */
+"You need at least one active observer enrollment to use Canvas Parent. If you're a student or teacher, try one of our other apps below." = "Ou bezwen omwen enskripsyon yon obsèvatè aktif pou ka itilize Canvas Parent. Si w se yon elèv oswa pwofesè, eseye yonn nan lòt app nou yo ki pi ba a.";
 
 /* No comment provided by engineer. */
 "You will need to log into at least one Canvas account from the Student app first." = "Ou dwe toudabò konekte sou omwen yon kont Canvas sou app Elèv la.";

@@ -1,5 +1,14 @@
+/* Unknown time duration */
+"--:--" = "--:--";
+
+/* No comment provided by engineer. */
+"\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user." = "“Agir como” é essencialmente fazer logon como este usuário sem uma senha. Você poderá realizar qualquer ação como se você fosse esse usuário, e será como se esse usuário estivesse agindo para os outros usuários. Contudo, logs de auditoria registram o fato de que você era a pessoa que realizou as ações em nome desse usuário.";
+
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
+
+/* No comment provided by engineer. */
+"Act as User" = "Agir como Usuário";
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Tem certeza de que deseja excluir este comentário?";
@@ -23,10 +32,16 @@
 "Cancel" = "Cancelar";
 
 /* No comment provided by engineer. */
+"Canvas Guides" = "Canvas Guides";
+
+/* No comment provided by engineer. */
 "Canvas Login" = "Login Canvas";
 
 /* No comment provided by engineer. */
 "Canvas Network" = "Canvas Network";
+
+/* No comment provided by engineer. */
+"Clear recording" = "Limpar gravação";
 
 /* No comment provided by engineer. */
 "Closed" = "Fechado";
@@ -39,6 +54,9 @@
 
 /* No comment provided by engineer. */
 "Course" = "Curso";
+
+/* No comment provided by engineer. */
+"Current position" = "Posição atual";
 
 /* No comment provided by engineer. */
 "d_questions" = "d_questions";
@@ -57,6 +75,12 @@
 
 /* No comment provided by engineer. */
 "Dismiss" = "Descartar";
+
+/* No comment provided by engineer. */
+"Domain" = "Domínio";
+
+/* No comment provided by engineer. */
+"Error" = "Erro";
 
 /* No comment provided by engineer. */
 "External Tool" = "Ferramenta externa";
@@ -125,16 +149,31 @@
 "list_or_two" = "%1$@ ou %2$@";
 
 /* No comment provided by engineer. */
+"Log In Again" = "Entrar novamente";
+
+/* No comment provided by engineer. */
 "Manual OAuth Login" = "Login manual OAuth";
 
 /* No comment provided by engineer. */
 "Media Recording" = "Gravação de Mídia";
 
 /* No comment provided by engineer. */
+"N/A" = "N/A";
+
+/* No comment provided by engineer. */
 "No Due Date" = "Sem Prazo";
 
 /* No comment provided by engineer. */
 "No Submission" = "Sem envio";
+
+/* No comment provided by engineer. */
+"Not a parent?" = "Não é um pai?";
+
+/* No comment provided by engineer. */
+"Not a student?" = "Não é aluno?";
+
+/* No comment provided by engineer. */
+"Not a teacher?" = "Não é professor?";
 
 /* No comment provided by engineer. */
 "Not Graded" = "Sem nota";
@@ -149,7 +188,16 @@
 "On Paper" = "Em Papel";
 
 /* No comment provided by engineer. */
+"One of our other apps might be a better fit. Tap one to visit the App Store." = "Um dos nossos outros apps pode ser uma escolha melhor. Toque em um para visitar o App Store.";
+
+/* No comment provided by engineer. */
 "out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
+"Pause" = "Pausar";
+
+/* No comment provided by engineer. */
+"Play" = "Reproduzir";
 
 /* No comment provided by engineer. */
 "plural_points" = "plural_points";
@@ -182,10 +230,19 @@
 "Select Course" = "Selecionar curso";
 
 /* No comment provided by engineer. */
+"Send" = "Enviar";
+
+/* No comment provided by engineer. */
 "Send comment" = "Enviar comentário";
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "Login do Admin do Site";
+
+/* No comment provided by engineer. */
+"Start recording" = "Iniciar gravação";
+
+/* No comment provided by engineer. */
+"Stop recording" = "Parar gravação";
 
 /* No comment provided by engineer. */
 "Style" = "Estilo";
@@ -215,10 +272,25 @@
 "There was a problem retrieving the Terms of Use." = "Houve um problema ao recuperar os Termos de Uso.";
 
 /* No comment provided by engineer. */
+"There was an error with Act as User. Please try again later." = "Houve um erro com Agir como usuário. Por favor, tente novamente mais tarde.";
+
+/* No comment provided by engineer. */
 "This assignment is due by %@" = "Essa tarefa vence em %@";
 
 /* No comment provided by engineer. */
 "This assignment was due by %@" = "Essa tarefa venceu em %@";
+
+/* No comment provided by engineer. */
+"This is a media comment" = "Este é um comentário em mídia";
+
+/* No comment provided by engineer. */
+"Time elapsed" = "Tempo transcorrido";
+
+/* No comment provided by engineer. */
+"Total time" = "Tempo total";
+
+/* No comment provided by engineer. */
+"User ID" = "ID de Usuário";
 
 /* No comment provided by engineer. */
 "Video" = "Vídeo";
@@ -231,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "What’s your school’s name?" = "Qual é o nome da sua escola?";
+
+/* No comment provided by engineer. */
+"You need at least one active observer enrollment to use Canvas Parent. If you're a student or teacher, try one of our other apps below." = "Você precisa de pelo menos uma matrícula do observador ativo para usar o Canvas Parent. Se for um aluno ou professor, tente um dos nossos outros apps abaixo.";
 
 /* No comment provided by engineer. */
 "You will need to log into at least one Canvas account from the Student app first." = "Você precisará fazer login em pelo menos uma conta do Canvas a partir do app Student primeiro.";

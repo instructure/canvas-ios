@@ -936,14 +936,14 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 /* Title for an error alert */
 "Oops!" = "Ups!";
 
+/* No comment provided by engineer. */
+"Open in AR" = "Åbn i AR";
+
 /* Open a document in the application Safari */
 "Open in Safari" = "Åbn i Safari";
 
 /* Link to open assignment in SpeedGrader */
 "Open in SpeedGrader" = "Åbn i SpeedGrader";
-
-/* Open file in another application */
-"Open in..." = "Åbn i...";
 
 /* Link to Open Source Components */
 "Open Source Components" = "Open Source-komponenter";

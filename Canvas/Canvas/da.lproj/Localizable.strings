@@ -947,9 +947,6 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 /* Link to open assignment in SpeedGrader */
 "Open in SpeedGrader" = "Åbn i SpeedGrader";
 
-/* Open file in another application */
-"Open in..." = "Åbn i...";
-
 /* Button title for selecting an option given a number */
 "Option %d" = "Indstillinger %d";
 

@@ -1,5 +1,14 @@
+/* Unknown time duration */
+"--:--" = "--:--";
+
+/* No comment provided by engineer. */
+"\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user." = "「～として」は、基本的にこのユーザーとしてパスワードなしでログインしています。あたかもこのユーザーであるかのようにアクションを取ることができ、また、他のユーザーの観点からだと、あたかもこのユーザーがそれを実行したかのように見ることができます。ただし、監査ログには、このユーザーの代わりにアクションを実行したのは、あなた だったと記録されます。";
+
 /* No comment provided by engineer. */
 "%@ GPA" = "%@GPA";
+
+/* No comment provided by engineer. */
+"Act as User" = "ユーザーとして行動する";
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "このコメントを本当に削除しますか？";
@@ -23,10 +32,16 @@
 "Cancel" = "キャンセル";
 
 /* No comment provided by engineer. */
+"Canvas Guides" = "Canvas ガイド";
+
+/* No comment provided by engineer. */
 "Canvas Login" = "キャンバスログイン";
 
 /* No comment provided by engineer. */
 "Canvas Network" = "Canvas Network";
+
+/* No comment provided by engineer. */
+"Clear recording" = "録音をクリアする";
 
 /* No comment provided by engineer. */
 "Closed" = "終了済み";
@@ -39,6 +54,9 @@
 
 /* No comment provided by engineer. */
 "Course" = "コース";
+
+/* No comment provided by engineer. */
+"Current position" = "現在のポジション";
 
 /* No comment provided by engineer. */
 "d_questions" = "d_questions";
@@ -57,6 +75,12 @@
 
 /* No comment provided by engineer. */
 "Dismiss" = "却下する";
+
+/* No comment provided by engineer. */
+"Domain" = "ドメイン";
+
+/* No comment provided by engineer. */
+"Error" = "エラー";
 
 /* No comment provided by engineer. */
 "External Tool" = "外部ツール";
@@ -125,16 +149,31 @@
 "list_or_two" = "%1$@または%2$@";
 
 /* No comment provided by engineer. */
+"Log In Again" = "もう一度ログインしてください。";
+
+/* No comment provided by engineer. */
 "Manual OAuth Login" = "手動 O承認ログイン";
 
 /* No comment provided by engineer. */
 "Media Recording" = "メディアレコーディング";
 
 /* No comment provided by engineer. */
+"N/A" = "N/A";
+
+/* No comment provided by engineer. */
 "No Due Date" = "期日なし";
 
 /* No comment provided by engineer. */
 "No Submission" = "提出なし";
+
+/* No comment provided by engineer. */
+"Not a parent?" = "親ではありませんか？";
+
+/* No comment provided by engineer. */
+"Not a student?" = "受講生ではありませんか？";
+
+/* No comment provided by engineer. */
+"Not a teacher?" = "講師ではありませんか？";
 
 /* No comment provided by engineer. */
 "Not Graded" = "採点されていません";
@@ -149,7 +188,16 @@
 "On Paper" = "書類上";
 
 /* No comment provided by engineer. */
+"One of our other apps might be a better fit. Tap one to visit the App Store." = "私たちの他のアプリのうちの1つのほうが、もと合うかもしれません。1つタップしてApp Storeにアクセスする。";
+
+/* No comment provided by engineer. */
 "out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
+"Pause" = "一時停止";
+
+/* No comment provided by engineer. */
+"Play" = "再生";
 
 /* No comment provided by engineer. */
 "plural_points" = "plural_points";
@@ -182,10 +230,19 @@
 "Select Course" = "コースの選択";
 
 /* No comment provided by engineer. */
+"Send" = "送信";
+
+/* No comment provided by engineer. */
 "Send comment" = "コメントを送信する";
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "サイト管理者ログイン";
+
+/* No comment provided by engineer. */
+"Start recording" = "録画開始";
+
+/* No comment provided by engineer. */
+"Stop recording" = "録画停止";
 
 /* No comment provided by engineer. */
 "Style" = "スタイル";
@@ -215,10 +272,25 @@
 "There was a problem retrieving the Terms of Use." = "利用規約の取得中に問題が発生しました。";
 
 /* No comment provided by engineer. */
+"There was an error with Act as User. Please try again later." = "ユーザーとして行動する際にエラーが発生しました。後ほどもういちど試してください。";
+
+/* No comment provided by engineer. */
 "This assignment is due by %@" = "この課題の提出期限は%@";
 
 /* No comment provided by engineer. */
 "This assignment was due by %@" = "この課題の提出期限は%@";
+
+/* No comment provided by engineer. */
+"This is a media comment" = "これはメディアコメントです";
+
+/* No comment provided by engineer. */
+"Time elapsed" = "経過時間";
+
+/* No comment provided by engineer. */
+"Total time" = "合計時間:";
+
+/* No comment provided by engineer. */
+"User ID" = "ユーザーID";
 
 /* No comment provided by engineer. */
 "Video" = "ビデオ";
@@ -231,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "What’s your school’s name?" = "学校の名前は？";
+
+/* No comment provided by engineer. */
+"You need at least one active observer enrollment to use Canvas Parent. If you're a student or teacher, try one of our other apps below." = "Canvas Parent を使用するには、少なくとも1人のアクティブなオブザーバー登録が必要です。あなたが受講生か講師であれば、次の他のアプリを試してみてください。";
 
 /* No comment provided by engineer. */
 "You will need to log into at least one Canvas account from the Student app first." = "最初に受講生のアプリから少なくとも1つのCanvasアカウントにログインする必要があります。";

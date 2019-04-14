@@ -936,14 +936,14 @@ Jeśli uważasz, że test zawiera nieobsługiwane treści, należy go wykonać n
 /* Title for an error alert */
 "Oops!" = "Ups!";
 
+/* No comment provided by engineer. */
+"Open in AR" = "Otwórz w AR";
+
 /* Open a document in the application Safari */
 "Open in Safari" = "Otwórz w programie Safari";
 
 /* Link to open assignment in SpeedGrader */
 "Open in SpeedGrader" = "Otwórz w programie SpeedGrader";
-
-/* Open file in another application */
-"Open in..." = "Otwórz w...";
 
 /* Link to Open Source Components */
 "Open Source Components" = "Komponenty open source";

@@ -947,9 +947,6 @@ Si usted cree que una evaluación incluye contenido no compatible, por favor tom
 /* Link to open assignment in SpeedGrader */
 "Open in SpeedGrader" = "Abrir en SpeedGrader";
 
-/* Open file in another application */
-"Open in..." = "Abrir en...";
-
 /* Button title for selecting an option given a number */
 "Option %d" = "Opción %d";
 

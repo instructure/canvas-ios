@@ -936,14 +936,14 @@ Os ydych chi'n meddwl bod cynnwys nad oes modd delio ag ef mewn cwis, ewch ati i
 /* Title for an error alert */
 "Oops!" = "Wps!";
 
+/* No comment provided by engineer. */
+"Open in AR" = "Agor yn AR";
+
 /* Open a document in the application Safari */
 "Open in Safari" = "Agor yn Safari";
 
 /* Link to open assignment in SpeedGrader */
 "Open in SpeedGrader" = "Agor yn SpeedGrader";
-
-/* Open file in another application */
-"Open in..." = "Agor yn...";
 
 /* Link to Open Source Components */
 "Open Source Components" = "Cydrannau Ffynhonnell Agored";

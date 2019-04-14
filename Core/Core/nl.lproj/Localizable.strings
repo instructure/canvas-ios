@@ -1,5 +1,14 @@
+/* Unknown time duration */
+"--:--" = "--:--";
+
+/* No comment provided by engineer. */
+"\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user." = "\"Optreden als\" is in essentie hetzelfde als aanmelden als deze gebruiker zonder wachtwoord. Je kunt alle acties uitvoeren alsof je die gebruiker bent. Gezien vanuit andere gebruikers lijkt het dan ook alsof die acties door die gebruiker zijn uitgevoerd. De controleogboeken laten echter zien dat jij degene was die namens deze gebruiker die acties verricht hebt.";
+
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
+
+/* No comment provided by engineer. */
+"Act as User" = "Optreden als gebruiker";
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Weet je zeker dat je deze opmerking wilt verwijderen?";
@@ -23,10 +32,16 @@
 "Cancel" = "Annuleren";
 
 /* No comment provided by engineer. */
+"Canvas Guides" = "Canvas-handleidingen";
+
+/* No comment provided by engineer. */
 "Canvas Login" = "Aanmelding bij Canvas";
 
 /* No comment provided by engineer. */
 "Canvas Network" = "Canvas Network";
+
+/* No comment provided by engineer. */
+"Clear recording" = "Opname wissen";
 
 /* No comment provided by engineer. */
 "Closed" = "Gesloten";
@@ -39,6 +54,9 @@
 
 /* No comment provided by engineer. */
 "Course" = "Cursus";
+
+/* No comment provided by engineer. */
+"Current position" = "Huidige positie";
 
 /* No comment provided by engineer. */
 "d_questions" = "d_questions";
@@ -57,6 +75,12 @@
 
 /* No comment provided by engineer. */
 "Dismiss" = "Afwijzen";
+
+/* No comment provided by engineer. */
+"Domain" = "Domein";
+
+/* No comment provided by engineer. */
+"Error" = "Fout";
 
 /* No comment provided by engineer. */
 "External Tool" = "Externe tool";
@@ -125,16 +149,31 @@
 "list_or_two" = "%1$@ of %2$@";
 
 /* No comment provided by engineer. */
+"Log In Again" = "Opnieuw aanmelden";
+
+/* No comment provided by engineer. */
 "Manual OAuth Login" = "Handmatige OAuth Login";
 
 /* No comment provided by engineer. */
 "Media Recording" = "Media opnames";
 
 /* No comment provided by engineer. */
+"N/A" = "N.v.t.";
+
+/* No comment provided by engineer. */
 "No Due Date" = "Geen inleverdatum";
 
 /* No comment provided by engineer. */
 "No Submission" = "Geen inzending";
+
+/* No comment provided by engineer. */
+"Not a parent?" = "Geen ouder?";
+
+/* No comment provided by engineer. */
+"Not a student?" = "Geen cursist?";
+
+/* No comment provided by engineer. */
+"Not a teacher?" = "Geen docent?";
 
 /* No comment provided by engineer. */
 "Not Graded" = "Niet beoordeeld";
@@ -149,7 +188,16 @@
 "On Paper" = "Op papier";
 
 /* No comment provided by engineer. */
+"One of our other apps might be a better fit. Tap one to visit the App Store." = "Wellicht is een van onze andere apps hiervoor beter geschikt. Tik op een van de apps om de App Store te openen.";
+
+/* No comment provided by engineer. */
 "out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
+"Pause" = "Onderbreken";
+
+/* No comment provided by engineer. */
+"Play" = "Afspelen";
 
 /* No comment provided by engineer. */
 "plural_points" = "plural_points";
@@ -182,10 +230,19 @@
 "Select Course" = "Cursus selecteren";
 
 /* No comment provided by engineer. */
+"Send" = "Versturen";
+
+/* No comment provided by engineer. */
 "Send comment" = "Opmerking verzenden";
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "Aanmelding sitebeheer";
+
+/* No comment provided by engineer. */
+"Start recording" = "Opname starten";
+
+/* No comment provided by engineer. */
+"Stop recording" = "Opname stoppen";
 
 /* No comment provided by engineer. */
 "Style" = "Stijl";
@@ -215,10 +272,25 @@
 "There was a problem retrieving the Terms of Use." = "Er is een probleem met het ophalen van de gebruiksvoorwaarden";
 
 /* No comment provided by engineer. */
+"There was an error with Act as User. Please try again later." = "Er is een fout met het instellen van Optreden als gebruiker. Probeer het later opnieuw.";
+
+/* No comment provided by engineer. */
 "This assignment is due by %@" = "Deze opdracht moet uiterlijk worden ingeleverd op %@";
 
 /* No comment provided by engineer. */
 "This assignment was due by %@" = "Deze opdracht moest ingeleverd zijn op %@";
+
+/* No comment provided by engineer. */
+"This is a media comment" = "Dit is een media-opmerking";
+
+/* No comment provided by engineer. */
+"Time elapsed" = "Verstreken tijd";
+
+/* No comment provided by engineer. */
+"Total time" = "Totale tijd";
+
+/* No comment provided by engineer. */
+"User ID" = "Gebruikers-ID:";
 
 /* No comment provided by engineer. */
 "Video" = "Video";
@@ -231,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "What’s your school’s name?" = "Wat is de naam van je school?";
+
+/* No comment provided by engineer. */
+"You need at least one active observer enrollment to use Canvas Parent. If you're a student or teacher, try one of our other apps below." = "Je hebt ten minste één actieve waarnemersinschrijving nodig om Canvas Parent te kunnen gebruiken. Als je een cursist of cursusleider bent, probeer dan een van onze andere apps hieronder.";
 
 /* No comment provided by engineer. */
 "You will need to log into at least one Canvas account from the Student app first." = "Je moet je eerst vanuit de Student App bij ten minste één Canvas-account aanmelden.";

@@ -947,9 +947,6 @@ Se você acredita que um questionário contém conteúdo sem suporte, por favor,
 /* Link to open assignment in SpeedGrader */
 "Open in SpeedGrader" = "Abrir em SpeedGrader";
 
-/* Open file in another application */
-"Open in..." = "Abrir em...";
-
 /* Button title for selecting an option given a number */
 "Option %d" = "Opção %d";
 

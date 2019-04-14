@@ -1,5 +1,14 @@
+/* Unknown time duration */
+"--:--" = "--:--";
+
+/* No comment provided by engineer. */
+"\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user." = "\"Funger som\" betyder i bund og grund, at du logger ind som denne bruger uden adgangskode. Du vil kunne udføre enhver handling, som om du var denne bruger, og se ud som om du var denne bruger for andre brugere. Dog registrerer audit-logs, at det faktisk var dig, der udførte handlingerne på vegne af denne bruger.";
+
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
+
+/* No comment provided by engineer. */
+"Act as User" = "Funger som bruger";
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Er du sikker på, at du vil slette denne kommentar?";
@@ -23,10 +32,16 @@
 "Cancel" = "Annullér";
 
 /* No comment provided by engineer. */
+"Canvas Guides" = "Canvas-vejledningerne";
+
+/* No comment provided by engineer. */
 "Canvas Login" = "Canvas-login";
 
 /* No comment provided by engineer. */
 "Canvas Network" = "Canvas Network";
+
+/* No comment provided by engineer. */
+"Clear recording" = "Ryd optagelse";
 
 /* No comment provided by engineer. */
 "Closed" = "Lukket";
@@ -39,6 +54,9 @@
 
 /* No comment provided by engineer. */
 "Course" = "Fag";
+
+/* No comment provided by engineer. */
+"Current position" = "Aktuel position";
 
 /* No comment provided by engineer. */
 "d_questions" = "d_questions";
@@ -57,6 +75,12 @@
 
 /* No comment provided by engineer. */
 "Dismiss" = "Afvis";
+
+/* No comment provided by engineer. */
+"Domain" = "Domæne";
+
+/* No comment provided by engineer. */
+"Error" = "Fejl";
 
 /* No comment provided by engineer. */
 "External Tool" = "Eksternt værktøj";
@@ -125,16 +149,31 @@
 "list_or_two" = "%1$@ eller %2$@";
 
 /* No comment provided by engineer. */
+"Log In Again" = "Log på igen";
+
+/* No comment provided by engineer. */
 "Manual OAuth Login" = "Manuel OAuth-login";
 
 /* No comment provided by engineer. */
 "Media Recording" = "Medieoptagelse";
 
 /* No comment provided by engineer. */
+"N/A" = "N/A";
+
+/* No comment provided by engineer. */
 "No Due Date" = "Ingen afleveringsdato";
 
 /* No comment provided by engineer. */
 "No Submission" = "Ingen aflevering";
+
+/* No comment provided by engineer. */
+"Not a parent?" = "Ikke forælder?";
+
+/* No comment provided by engineer. */
+"Not a student?" = "Ikke studerende?";
+
+/* No comment provided by engineer. */
+"Not a teacher?" = "Ikke en lærer?";
 
 /* No comment provided by engineer. */
 "Not Graded" = "Ikke bedømt";
@@ -149,7 +188,16 @@
 "On Paper" = "På papir";
 
 /* No comment provided by engineer. */
+"One of our other apps might be a better fit. Tap one to visit the App Store." = "En af vores andre apps kan være bedre egnet. Tryk på en for at besøge App Store.";
+
+/* No comment provided by engineer. */
 "out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
+"Pause" = "Pause";
+
+/* No comment provided by engineer. */
+"Play" = "Afspil";
 
 /* No comment provided by engineer. */
 "plural_points" = "plural_points";
@@ -182,10 +230,19 @@
 "Select Course" = "Vælg fag";
 
 /* No comment provided by engineer. */
+"Send" = "Send";
+
+/* No comment provided by engineer. */
 "Send comment" = "Send kommentar";
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "Websted admin login";
+
+/* No comment provided by engineer. */
+"Start recording" = "Start optagelsen";
+
+/* No comment provided by engineer. */
+"Stop recording" = "Stop optagelsen";
 
 /* No comment provided by engineer. */
 "Style" = "Type";
@@ -215,10 +272,25 @@
 "There was a problem retrieving the Terms of Use." = "Der opstod et problem ved hentning af Betingelser for brug";
 
 /* No comment provided by engineer. */
+"There was an error with Act as User. Please try again later." = "Der opstod en fejl ved at fungere som bruger. Prøv igen senere.";
+
+/* No comment provided by engineer. */
 "This assignment is due by %@" = "Denne opgave skal afleveres d. %@";
 
 /* No comment provided by engineer. */
 "This assignment was due by %@" = "Denne opgave skulle afleveres. d. %@";
+
+/* No comment provided by engineer. */
+"This is a media comment" = "Dette er en mediekommentar";
+
+/* No comment provided by engineer. */
+"Time elapsed" = "Tid gået";
+
+/* No comment provided by engineer. */
+"Total time" = "Samlet tid";
+
+/* No comment provided by engineer. */
+"User ID" = "Bruger-id";
 
 /* No comment provided by engineer. */
 "Video" = "Video";
@@ -231,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "What’s your school’s name?" = "Hvad hedder din skole?";
+
+/* No comment provided by engineer. */
+"You need at least one active observer enrollment to use Canvas Parent. If you're a student or teacher, try one of our other apps below." = "Du har brug for mindst en aktiv observatørtilmelding for at bruge Canvas Parent. Hvis du er studerende eller lærer, kan du prøve en af vores andre apps nedenfor.";
 
 /* No comment provided by engineer. */
 "You will need to log into at least one Canvas account from the Student app first." = "Du skal først logge ind på mindst en Canvas-konto fra appen for studerende.";

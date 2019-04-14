@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"Add a comment or reply to previous comments" = "Dodajte komentar ali odgovor na prejšnje komentarje";
+
 /* All Courses screen title */
 "All Courses" = "Vsi predmeti";
 
@@ -18,6 +21,9 @@
 
 /* No comment provided by engineer. */
 "Comments" = "Komentarji";
+
+/* No comment provided by engineer. */
+"Could not save the comment" = "Komentarja ni bilo mogoče shraniti";
 
 /* No comment provided by engineer. */
 "Courses" = "Predmeti";
@@ -71,6 +77,9 @@
 "Groups" = "Skupine";
 
 /* No comment provided by engineer. */
+"Have questions? Use this area to message your instructor about this assignment." = "Imate vprašanja? Uporabite to polje, da izvajalcu pošljete komentar o tej nalogi.";
+
+/* No comment provided by engineer. */
 "Invalid url" = "Neveljaven naslov URL";
 
 /* No comment provided by engineer. */
@@ -101,7 +110,16 @@
 "Past Enrollments" = "Pretekli vpisi";
 
 /* No comment provided by engineer. */
+"Permission Needed" = "Potrebno je dovoljenje.";
+
+/* No comment provided by engineer. */
 "Quizzes" = "Kvizi";
+
+/* No comment provided by engineer. */
+"Record Audio" = "Posnemi zvok";
+
+/* No comment provided by engineer. */
+"Record Video" = "Posnemi videoposnetek";
 
 /* No comment provided by engineer. */
 "Resubmit Assignment" = "Ponovno pošlji nalogo";
@@ -117,6 +135,12 @@
 
 /* No comment provided by engineer. */
 "See All Courses" = "Ogled vseh predmetov";
+
+/* No comment provided by engineer. */
+"Send comment" = "Pošlji komentar";
+
+/* No comment provided by engineer. */
+"Settings" = "Nastavitve";
 
 /* No comment provided by engineer. */
 "Something went wrong while loading the quizzes." = "Pri nalaganju kvizov je prišlo je do težav.";
@@ -177,6 +201,9 @@
 
 /* No comment provided by engineer. */
 "Website Address" = "Naslov spletnega mesta";
+
+/* No comment provided by engineer. */
+"You must enable Microphone permissions in Settings to record audio." = "Za snemanje zvoka morate v možnosti »Nastavitve« omogočiti nastavitve mikrofona.";
 
 /* No comment provided by engineer. */
 "Your submission is now waiting to be graded" = "Oddaja čaka, da bo ocenjena.";

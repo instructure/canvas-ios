@@ -1,5 +1,14 @@
+/* Unknown time duration */
+"--:--" = "--:--";
+
+/* No comment provided by engineer. */
+"\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user." = "»Nastopajoči v vlogi« se v osnovi prijavlja kot ta uporabnik brez gesla. Lahko boste izvedli katero koli dejanje, kot bi bili ta uporabnik, z vidika drugih uporabnikov pa bo videti, kot da je dejanja izvedel ta uporabnik. Vendar dnevniki dogodkov beležijo, da ste v imenu tega uporabnika dejanja izvedli vi.";
+
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ Lestvica GPA";
+
+/* No comment provided by engineer. */
+"Act as User" = "Nastopajoči v vlogi uporabnika";
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Ali ste prepričani, da želite odstraniti ta komentar?";
@@ -23,10 +32,16 @@
 "Cancel" = "Prekliči";
 
 /* No comment provided by engineer. */
+"Canvas Guides" = "Vodniki po sistemu Canvas";
+
+/* No comment provided by engineer. */
 "Canvas Login" = "Prijava v sistem Canvas";
 
 /* No comment provided by engineer. */
 "Canvas Network" = "Omrežje Canvas Network";
+
+/* No comment provided by engineer. */
+"Clear recording" = "Počisti snemanje";
 
 /* No comment provided by engineer. */
 "Closed" = "Zaprto";
@@ -39,6 +54,9 @@
 
 /* No comment provided by engineer. */
 "Course" = "Predmet";
+
+/* No comment provided by engineer. */
+"Current position" = "Trenutni položaj";
 
 /* No comment provided by engineer. */
 "d_questions" = "d_questions";
@@ -57,6 +75,12 @@
 
 /* No comment provided by engineer. */
 "Dismiss" = "Opusti";
+
+/* No comment provided by engineer. */
+"Domain" = "Domena";
+
+/* No comment provided by engineer. */
+"Error" = "Napaka";
 
 /* No comment provided by engineer. */
 "External Tool" = "Zunanje orodje";
@@ -125,16 +149,31 @@
 "list_or_two" = "%1$@ ali %2$@";
 
 /* No comment provided by engineer. */
+"Log In Again" = "Prijavite se znova.";
+
+/* No comment provided by engineer. */
 "Manual OAuth Login" = "Ročna prijava OAuth";
 
 /* No comment provided by engineer. */
 "Media Recording" = "Medijski posnetek";
 
 /* No comment provided by engineer. */
+"N/A" = "Ni na voljo.";
+
+/* No comment provided by engineer. */
 "No Due Date" = "Ni roka.";
 
 /* No comment provided by engineer. */
 "No Submission" = "Ni oddaj.";
+
+/* No comment provided by engineer. */
+"Not a parent?" = "Niste starš?";
+
+/* No comment provided by engineer. */
+"Not a student?" = "Niste študent?";
+
+/* No comment provided by engineer. */
+"Not a teacher?" = "Niste izvajalec?";
 
 /* No comment provided by engineer. */
 "Not Graded" = "Ni ocenjeno.";
@@ -149,7 +188,16 @@
 "On Paper" = "Na papirju";
 
 /* No comment provided by engineer. */
+"One of our other apps might be a better fit. Tap one to visit the App Store." = "Morda bi bolj ustrezala kakšna druga aplikacija. Tapnite eno od njih, da obiščete trgovino App Store.";
+
+/* No comment provided by engineer. */
 "out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
+"Pause" = "Začasna zaustavitev";
+
+/* No comment provided by engineer. */
+"Play" = "Predvajaj";
 
 /* No comment provided by engineer. */
 "plural_points" = "plural_points";
@@ -182,10 +230,19 @@
 "Select Course" = "Izberi predmet";
 
 /* No comment provided by engineer. */
+"Send" = "Pošlji";
+
+/* No comment provided by engineer. */
 "Send comment" = "Pošlji komentar";
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "Prijava skrbnika mesta";
+
+/* No comment provided by engineer. */
+"Start recording" = "Zaženi snemanje";
+
+/* No comment provided by engineer. */
+"Stop recording" = "Zaustavi snemanje";
 
 /* No comment provided by engineer. */
 "Style" = "Slog";
@@ -215,10 +272,25 @@
 "There was a problem retrieving the Terms of Use." = "Prišlo je do težav pri pridobivanju pogojev uporabe.";
 
 /* No comment provided by engineer. */
+"There was an error with Act as User. Please try again later." = "Prišlo je do napake pri prevzemanju vloge uporabnika. Poskusite znova pozneje.";
+
+/* No comment provided by engineer. */
 "This assignment is due by %@" = "Ta naloga ima rok do %@";
 
 /* No comment provided by engineer. */
 "This assignment was due by %@" = "Ta naloga je imela rok do %@";
+
+/* No comment provided by engineer. */
+"This is a media comment" = "To je komentar v obliki medija";
+
+/* No comment provided by engineer. */
+"Time elapsed" = "Pretečeni čas";
+
+/* No comment provided by engineer. */
+"Total time" = "Skupni čas";
+
+/* No comment provided by engineer. */
+"User ID" = "ID uporabnika";
 
 /* No comment provided by engineer. */
 "Video" = "Videoposnetek";
@@ -231,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "What’s your school’s name?" = "Kakšno je ime vaše šole?";
+
+/* No comment provided by engineer. */
+"You need at least one active observer enrollment to use Canvas Parent. If you're a student or teacher, try one of our other apps below." = "Za uporabo aplikacije Canvas Parent potrebujete vpis vsaj enega aktivnega skritega bralca. Če ste študent ali izvajalec, poskusite eno od naših drugih spodnjih aplikacij.";
 
 /* No comment provided by engineer. */
 "You will need to log into at least one Canvas account from the Student app first." = "Najprej se morate v aplikaciji Student prijaviti v vsaj en račun Canvas.";

@@ -948,9 +948,6 @@ Als je denkt dat een toets niet-ondersteunde content bevat, doe het dan op een d
 /* Link to open assignment in SpeedGrader */
 "Open in SpeedGrader" = "Openen in SpeedGrader";
 
-/* Open file in another application */
-"Open in..." = "Openen in...";
-
 /* Button title for selecting an option given a number */
 "Option %d" = "Optie %d";
 

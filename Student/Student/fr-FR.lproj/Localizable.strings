@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"Add a comment or reply to previous comments" = "Ajouter un commentaire ou répondre aux commentaires précédents";
+
 /* All Courses screen title */
 "All Courses" = "Tous les cours";
 
@@ -18,6 +21,9 @@
 
 /* No comment provided by engineer. */
 "Comments" = "Commentaires";
+
+/* No comment provided by engineer. */
+"Could not save the comment" = "Impossible de sauvegarder le commentaire";
 
 /* No comment provided by engineer. */
 "Courses" = "Cours";
@@ -71,6 +77,9 @@
 "Groups" = "Groupes";
 
 /* No comment provided by engineer. */
+"Have questions? Use this area to message your instructor about this assignment." = "Vous avez des questions ? Utilisez cette zone pour envoyer un message à votre instructeur à propos de ce travail.";
+
+/* No comment provided by engineer. */
 "Invalid url" = "URL invalide";
 
 /* No comment provided by engineer. */
@@ -101,7 +110,16 @@
 "Past Enrollments" = "Inscriptions antérieures";
 
 /* No comment provided by engineer. */
+"Permission Needed" = "Autorisation requise";
+
+/* No comment provided by engineer. */
 "Quizzes" = "Questionnaires";
+
+/* No comment provided by engineer. */
+"Record Audio" = "Enregistrer de l’audio";
+
+/* No comment provided by engineer. */
+"Record Video" = "Enregistrer la vidéo";
 
 /* No comment provided by engineer. */
 "Resubmit Assignment" = "Soumettre à nouveau le travail";
@@ -117,6 +135,12 @@
 
 /* No comment provided by engineer. */
 "See All Courses" = "Voir tous les cours";
+
+/* No comment provided by engineer. */
+"Send comment" = "Envoyer commentaire";
+
+/* No comment provided by engineer. */
+"Settings" = "Paramètres";
 
 /* No comment provided by engineer. */
 "Something went wrong while loading the quizzes." = "Un problème est survenu pendant le chargement des questionnaires.";
@@ -177,6 +201,9 @@
 
 /* No comment provided by engineer. */
 "Website Address" = "Adresse du site web";
+
+/* No comment provided by engineer. */
+"You must enable Microphone permissions in Settings to record audio." = "Vous devez activer les autorisations « microphone » dans les Paramètres pour enregistrer de l’audio.";
 
 /* No comment provided by engineer. */
 "Your submission is now waiting to be graded" = "Votre soumission est maintenant en attente de notation";
