@@ -17,17 +17,19 @@
 import Foundation
 
 public struct APIRubric: Codable, Equatable {
-    let id: String
+    let id: ID
     let points: Double
     let description: String
     let long_description: String
     let criterion_use_range: Bool
     let ratings: [APIRubricRating]?
+    var assignmentID: String?
 }
 
 public struct APIRubricRating: Codable, Equatable {
-    let id: String
+    let id: ID
     let points: Double
     let description: String
     let long_description: String
+    var assignmentID: String?
 }

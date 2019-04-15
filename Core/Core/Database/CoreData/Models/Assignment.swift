@@ -101,9 +101,15 @@ extension Assignment {
             self.discussionTopic = nil
         }
 
-        if let rubric = item.rubric, rubric.count > 0 {
+        if let exitstingRubrics = rubric {
+            try client.delete(Array(exitstingRubrics))
+            self.rubric = nil
+        }
+
+        if let apiRubrics = item.rubric, apiRubrics.count > 0 {
             self.rubric = Set<Rubric>()
-            for r in rubric {
+            for var r in apiRubrics {
+                r.assignmentID = item.id.value
                 let rubricModel = try Rubric.save(r, in: client)
                 self.rubric?.insert(rubricModel)
             }

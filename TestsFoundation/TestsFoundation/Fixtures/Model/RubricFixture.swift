@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2019-present Instructure, Inc.
+// Copyright (C) 2018-present Instructure, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,27 +17,27 @@
 import Foundation
 @testable import Core
 
-extension APIRubric: Fixture {
+extension Rubric: Fixture {
     public static var template: Template {
         return [
             "id": "1",
             "points": 25.0,
-            "description": "Effort",
-            "long_description": "Did you even try?",
-            "criterion_use_range": false,
-            "ratings": [APIRubricRating.fixture()],
-            "assignmentID": "1",
+            "desc": "Effort",
+            "longDesc": "Did you even try?",
+            "criterionUseRange": false,
+            "assignmentID": "2",
         ]
     }
 }
 
-extension APIRubricRating: Fixture {
+extension RubricRating: Fixture {
     public static var template: Template {
         return [
             "id": "1",
             "points": 25.0,
-            "description": "Excellent",
-            "long_description": "Like the best!"
+            "desc": "Effort",
+            "longDesc": "Did you even try?",
+            "assignmentID": "2",
         ]
     }
 }

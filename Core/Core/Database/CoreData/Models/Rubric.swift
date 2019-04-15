@@ -21,6 +21,7 @@ public final class Rubric: NSManagedObject, WriteableModel {
     public typealias JSON = APIRubric
 
     @NSManaged public var id: String
+    @NSManaged public var assignmentID: String
     @NSManaged public var desc: String
     @NSManaged public var longDesc: String
     @NSManaged public var points: Double
@@ -28,17 +29,23 @@ public final class Rubric: NSManagedObject, WriteableModel {
     @NSManaged public var ratings: Set<RubricRating>?
 
     public static func save(_ item: APIRubric, in context: PersistenceClient) throws -> Rubric {
-        let predicate = NSPredicate(format: "%K == %@", #keyPath(Rubric.id), item.id)
+        let predicate = NSPredicate(format: "%K == %@ AND %K == %@", #keyPath(Rubric.id), item.id.value, #keyPath(Rubric.assignmentID), item.assignmentID ?? "")
         let model: Rubric = context.fetch(predicate).first ?? context.insert()
-        model.id = item.id
+        model.id = item.id.value
         model.desc = item.description
         model.longDesc = item.long_description
         model.points = item.points
         model.criterionUseRange = item.criterion_use_range
 
+        if let ratings = model.ratings {
+            try context.delete(Array(ratings))
+            model.ratings = nil
+        }
+
         if let ratings = item.ratings {
             model.ratings = Set<RubricRating>()
-            for r in ratings {
+            for var r in ratings {
+                r.assignmentID = item.assignmentID
                 let ratingModel = try RubricRating.save(r, in: context)
                 model.ratings?.insert(ratingModel)
             }
@@ -55,11 +62,13 @@ public final class RubricRating: NSManagedObject, WriteableModel {
     @NSManaged public var desc: String
     @NSManaged public var longDesc: String
     @NSManaged public var points: Double
+    @NSManaged public var assignmentID: String
 
     public static func save(_ item: APIRubricRating, in context: PersistenceClient) throws -> RubricRating {
-        let predicate = NSPredicate(format: "%K == %@", #keyPath(RubricRating.id), item.id)
+        let predicate = NSPredicate(format: "%K == %@ AND %K == %@", #keyPath(RubricRating.id), item.id.value, #keyPath(RubricRating.assignmentID), item.assignmentID ?? "")
+
         let model: RubricRating = context.fetch(predicate).first ?? context.insert()
-        model.id = item.id
+        model.id = item.id.value
         model.desc = item.description
         model.longDesc = item.long_description
         model.points = item.points
