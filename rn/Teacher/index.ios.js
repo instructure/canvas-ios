@@ -127,7 +127,7 @@ const loginHandler = async ({
     switch (notification.name) {
       case 'route':
         const userInfo = notification.userInfo
-        if (userInfo && userInfo.url)  {
+        if (userInfo && userInfo.url) {
           const navigator = new Navigator('/courses/:courseID/modules')
           navigator.show(userInfo.url)
         }
