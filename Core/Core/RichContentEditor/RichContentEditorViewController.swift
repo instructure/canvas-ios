@@ -57,10 +57,7 @@ public class RichContentEditorViewController: UIViewController {
                 }
                 #content {
                     box-sizing: border-box;
-                    width: 100%;
-                    height: 100%;
-                    -webkit-overflow-scrolling: touch;
-                    overflow: auto;
+                    min-height: 100%;
                     padding: 1em;
                 }
                 #content:empty:before {
