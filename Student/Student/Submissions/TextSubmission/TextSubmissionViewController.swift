@@ -44,6 +44,7 @@ class TextSubmissionViewController: UIViewController, ErrorViewController, RichC
         if let contentView = contentView {
             editor.delegate = self
             editor.placeholder = NSLocalizedString("Enter submission", bundle: .student, comment: "")
+            editor.webView.scrollView.layer.masksToBounds = false
             embed(editor, in: contentView)
         }
     }

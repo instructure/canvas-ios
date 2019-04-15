@@ -25,7 +25,7 @@ public class RichContentEditorViewController: UIViewController {
     public weak var delegate: RichContentEditorDelegate?
     private var html: String?
     lazy var toolbar = RichContentToolbarView()
-    lazy var webView = CoreWebView(frame: .zero)
+    public lazy var webView = CoreWebView(frame: .zero)
 
     public var placeholder: String = "" {
         didSet {

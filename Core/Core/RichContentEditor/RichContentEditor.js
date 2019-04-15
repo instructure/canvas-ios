@@ -44,7 +44,7 @@ const editor = window.editor = {
 
     getSelectedNode () {
         const selection = getSelection()
-        let node = selection.anchorNode
+        let node = selection.focusNode
         return node && (node.nodeName == '#text' ? node.parentNode : node)
     },
 
@@ -130,7 +130,7 @@ const editor = window.editor = {
         return !content.querySelector('img') && !content.textContent.trim()
     },
 
-    postState (e) {
+    postState: throttle((e) => {
         const node = (e && e.target) || editor.getSelectedNode()
 
         let foreColor = document.queryCommandValue('foreColor') || (node && getComputedStyle(node).color)
@@ -167,7 +167,7 @@ const editor = window.editor = {
             isEmpty: editor.isEmpty(),
             foreColor, linkHref, linkText, imageSrc, imageAlt,
         })
-    },
+    }),
 
     focus () {
         let range = document.createRange()
@@ -178,6 +178,20 @@ const editor = window.editor = {
         selection.addRange(range)
         content.focus()
     },
+
+    updateScroll: throttle(() => {
+        const selection = getSelection()
+        if (selection.rangeCount <= 0) return
+        const span = document.createElement('span')
+        const range = selection.getRangeAt(0).cloneRange()
+        range.collapse(false)
+        range.insertNode(span)
+        const { bottom } = span.getBoundingClientRect()
+        span.parentNode.removeChild(span)
+        if (bottom > innerHeight) {
+            scrollTo(0, scrollY + bottom - innerHeight + 16)
+        }
+    }),
 }
 
 const rgbToHex = (rgb) => {
@@ -210,7 +224,26 @@ const videoPreviewHTML = mediaID => {
     return html
 }
 
+function throttle (fn, ms = 200) {
+  let timer, last
+  return function () {
+    const context = this, args = arguments
+    const now = performance.now()
+    if (now < last + ms) {
+        clearTimeout(timer)
+        timer = setTimeout(() => {
+            last = now
+            fn.apply(context, args)
+        }, ms)
+    } else {
+        last = now
+        fn.apply(context, args)
+    }
+  }
+}
+
 document.addEventListener('selectionchange', e => {
+    editor.updateScroll()
     const empty = document.querySelector('#content>br:only-child')
     if (empty) { content.removeChild(empty) }
     editor.postState()
