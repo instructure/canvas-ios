@@ -19,12 +19,13 @@
 
 export type InstIconName =
   'add' | 'alerts' | 'announcement' | 'arrowOpenLeft' | 'arrowOpenRight' | 'assignment' | 'audio' |
-  'box' | 'calendarMonth' | 'check' | 'complete' | 'courses' | 'dashboard' | 'discussion' |
-  'document' | 'email' | 'empty' | 'folder' | 'gradebook' | 'group' | 'hamburger' | 'highlighter' |
-  'instructure' | 'link' | 'lock' | 'lti' | 'marker' | 'miniArrowDown' | 'miniArrowUp' | 'module' |
-  'more' | 'no' | 'outcomes' | 'paint' | 'pause' | 'pdf' | 'play' | 'prerequisite' | 'question' |
-  'quiz' | 'refresh' | 'rubric' | 'settings' | 'star' | 'strikethrough' | 'text' | 'trash' |
-  'trouble' | 'unlock' | 'user' | 'video' | 'x'
+  'bold' | 'box' | 'bulletList' | 'calendarMonth' | 'check' | 'complete' | 'courses' | 'dashboard' |
+  'discussion' | 'document' | 'email' | 'empty' | 'folder' | 'forward' | 'gradebook' | 'group' |
+  'hamburger' | 'highlighter' | 'image' | 'instructure' | 'italic' | 'link' | 'lock' | 'lti' |
+  'marker' | 'miniArrowDown' | 'miniArrowUp' | 'module' | 'more' | 'no' | 'numberedList' |
+  'outcomes' | 'paint' | 'pause' | 'pdf' | 'play' | 'prerequisite' | 'question' | 'quiz' |
+  'refresh' | 'reply' | 'rubric' | 'settings' | 'star' | 'strikethrough' | 'text' | 'textColor' |
+  'trash' | 'trouble' | 'unlock' | 'user' | 'video' | 'x'
 
 export default function icon (name: InstIconName, type: 'line' | 'solid' = 'line') {
   return { uri: `${name}${type[0].toUpperCase()}${type.slice(1)}` }

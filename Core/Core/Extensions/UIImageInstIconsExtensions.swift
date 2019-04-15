@@ -25,12 +25,13 @@ extension UIImage {
     }
 
     public enum InstIconName: String, CaseIterable {
-        case add, alerts, announcement, arrowOpenLeft, arrowOpenRight, assignment, audio, box,
-            calendarMonth, check, complete, courses, dashboard, discussion, document, email, empty,
-            folder, gradebook, group, hamburger, highlighter, instructure, link, lock, lti, marker,
-            miniArrowDown, miniArrowUp, module, more, no, outcomes, paint, pause, pdf, play,
-            prerequisite, question, quiz, refresh, rubric, settings, star, strikethrough, text,
-            trash, trouble, unlock, user, video, x
+        case add, alerts, announcement, arrowOpenLeft, arrowOpenRight, assignment, audio, bold, box,
+            bulletList, calendarMonth, check, complete, courses, dashboard, discussion, document,
+            email, empty, folder, forward, gradebook, group, hamburger, highlighter, image,
+            instructure, italic, link, lock, lti, marker, miniArrowDown, miniArrowUp, module, more,
+            no, numberedList, outcomes, paint, pause, pdf, play, prerequisite, question, quiz,
+            refresh, reply, rubric, settings, star, strikethrough, text, textColor, trash, trouble,
+            unlock, user, video, x
     }
 
     public static func icon(_ name: InstIconName, _ type: InstIconType = .line) -> UIImage {

@@ -25,9 +25,9 @@ public class CreateSubmission: APIUseCase {
     public typealias Model = Submission
 
     public init(context: Context, assignmentID: String, userID: String,
+                submissionType: SubmissionType,
                 textComment: String? = nil,
                 body: String? = nil,
-                submissionType: SubmissionType,
                 url: URL? = nil,
                 fileIDs: [String]? = nil,
                 mediaCommentID: String? = nil,
