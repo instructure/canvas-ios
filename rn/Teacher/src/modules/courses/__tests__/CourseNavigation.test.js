@@ -296,6 +296,28 @@ describe('CourseNavigation', () => {
       .simulate('Press', tab)
     expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/pages')
   })
+
+  it('navigates to syllabus', () => {
+    const tab = template.tab({
+      id: 'syllabus',
+      html_url: '/courses/1/syllabus',
+    })
+    const props = {
+      ...defaultProps,
+      tabs: [tab],
+      navigator: template.navigator({
+        show: jest.fn(),
+      }),
+    }
+
+    const tree = shallow(<CourseNavigation {...props} />)
+    tree
+      .find('TabsList').first().dive()
+      .find('OnLayout').first().dive()
+      .find('[testID="courses-details.tab.syllabus"]')
+      .simulate('Press', tab)
+    expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/syllabus')
+  })
 })
 
 describe('mapStateToProps', () => {
