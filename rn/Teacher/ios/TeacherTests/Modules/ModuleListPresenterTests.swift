@@ -20,6 +20,7 @@ import XCTest
 import TestsFoundation
 @testable import Core
 import CoreData
+import SafariServices
 
 class ModuleListPresenterTests: TeacherTestCase {
     class View: ModuleListViewProtocol {
@@ -63,6 +64,13 @@ class ModuleListPresenterTests: TeacherTestCase {
         var reloadedSections: [Int] = []
         func reloadModuleInSection(_ section: Int) {
             reloadedSections.append(section)
+        }
+    }
+
+    class MockViewController: UIViewController {
+        var presented: UIViewController?
+        override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
+            presented = viewControllerToPresent
         }
     }
 
@@ -328,5 +336,28 @@ class ModuleListPresenterTests: TeacherTestCase {
         XCTAssertTrue(view.reloadedSections.contains(0))
         XCTAssertEqual(view.reloadedSections.count, 2)
         XCTAssertTrue(presenter.isSectionExpanded(0))
+    }
+
+    func testShowItemExternalTool() {
+        let url = URL(string: "https://canvas.instructure.com/courses/1/external_tools/1?sessionless_launch=YES")!
+        let item = ModuleItem.make(["typeRaw": ModuleItemType.externalTool("1", url).data])
+        let vc = MockViewController()
+        presenter.showItem(item, from: vc)
+        XCTAssertNotNil(vc.presented as? SFSafariViewController)
+    }
+
+    func testShowItemExternalURL() {
+        let url = URL(string: "https://google.com")!
+        let item = ModuleItem.make(["typeRaw": ModuleItemType.externalURL(url).data])
+        let vc = MockViewController()
+        presenter.showItem(item, from: vc)
+        XCTAssertNotNil(vc.presented as? SFSafariViewController)
+    }
+
+    func testShowItem() {
+        let url = URL(string: "/courses/1/assignments/2")!
+        let item = ModuleItem.make(["url": url])
+        presenter.showItem(item, from: MockViewController())
+        XCTAssertTrue(router.lastRoutedTo(.course("1", assignment: "2")))
     }
 }

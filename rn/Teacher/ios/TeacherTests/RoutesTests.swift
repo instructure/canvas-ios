@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2018-present Instructure, Inc.
+// Copyright (C) 2019-present Instructure, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,17 +14,24 @@
 // limitations under the License.
 //
 
+import Foundation
 import XCTest
-import Core
 @testable import Teacher
-import TestsFoundation
 
-class RoutesTests: TeacherTestCase {
-    func testModules() {
-        XCTAssert(Teacher.router.match(Route.modules(forCourse: "1").url) is ModuleListViewController)
-    }
-
-    func testModule() {
-        XCTAssert(Teacher.router.match(Route.module(forCourse: "1", moduleID: "2").url) is ModuleListViewController)
+class RoutesTests: XCTestCase {
+    func testRouteSendsNotification() {
+        let route = URLComponents(string: "https://canvas.instructure.com/api/v1/courses/1")!
+        let expectation = self.expectation(description: "route notification")
+        let name = NSNotification.Name("route")
+        var userInfo: [AnyHashable: Any]?
+        let observer = NotificationCenter.default.addObserver(forName: name, object: nil, queue: nil) { note in
+            userInfo = note.userInfo
+            expectation.fulfill()
+        }
+        router.route(to: route, from: UIViewController(), options: nil)
+        wait(for: [expectation], timeout: 0.5)
+        XCTAssertNotNil(userInfo)
+        XCTAssertEqual(userInfo?["url"] as? String, route.url!.absoluteString)
+        NotificationCenter.default.removeObserver(observer)
     }
 }

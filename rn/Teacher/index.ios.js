@@ -53,6 +53,7 @@ console.disableYellowBox = true
 const {
   NativeLogin,
   Helm,
+  NativeNotificationCenter,
 } = NativeModules
 
 function logout () {
@@ -118,6 +119,20 @@ const loginHandler = async ({
       embedInNavigationController: true,
       deepLink: true,
     })
+  })
+
+  NativeNotificationCenter.addObserver('route')
+  const notificationCenter = new NativeEventEmitter(NativeNotificationCenter)
+  notificationCenter.addListener('Notification', (notification) => {
+    switch (notification.name) {
+      case 'route':
+        const userInfo = notification.userInfo
+        if (userInfo && userInfo.url) {
+          const navigator = new Navigator('/courses/:courseID/modules')
+          navigator.show(userInfo.url)
+        }
+        break
+    }
   })
 
   setSession(session)
