@@ -936,14 +936,14 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* Title for an error alert */
 "Oops!" = "Oops!";
 
+/* No comment provided by engineer. */
+"Open in AR" = "Åpne i AR";
+
 /* Open a document in the application Safari */
 "Open in Safari" = "Åpne i Safari";
 
 /* Link to open assignment in SpeedGrader */
 "Open in SpeedGrader" = "Åpne i SpeedGrader";
-
-/* Open file in another application */
-"Open in..." = "Åpne i ...";
 
 /* Link to Open Source Components */
 "Open Source Components" = "Åpen kildekode-komponenter";

@@ -948,9 +948,6 @@ Wenn Sie der Meinung sind, das ein Quiz nicht-unterstützte Inhalte aufweist, so
 /* Link to open assignment in SpeedGrader */
 "Open in SpeedGrader" = "Im SpeedGrader benoten";
 
-/* Open file in another application */
-"Open in..." = "Öffnen in...";
-
 /* Button title for selecting an option given a number */
 "Option %d" = "Option %d";
 

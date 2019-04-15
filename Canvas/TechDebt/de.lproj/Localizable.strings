@@ -937,14 +937,14 @@ Wenn Sie der Meinung sind, das ein Quiz nicht-unterstützte Inhalte aufweist, so
 /* Title for an error alert */
 "Oops!" = "Oops!";
 
+/* No comment provided by engineer. */
+"Open in AR" = "In AR öffnen";
+
 /* Open a document in the application Safari */
 "Open in Safari" = "In Safari öffnen";
 
 /* Link to open assignment in SpeedGrader */
 "Open in SpeedGrader" = "Im SpeedGrader benoten";
-
-/* Open file in another application */
-"Open in..." = "Öffnen in...";
 
 /* Link to Open Source Components */
 "Open Source Components" = "Open-Source-Komponenten";

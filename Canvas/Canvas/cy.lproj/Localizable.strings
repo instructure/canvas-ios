@@ -947,9 +947,6 @@ Os ydych chi'n meddwl bod cynnwys nad oes modd delio ag ef mewn cwis, ewch ati i
 /* Link to open assignment in SpeedGrader */
 "Open in SpeedGrader" = "Agor yn SpeedGrader";
 
-/* Open file in another application */
-"Open in..." = "Agor yn...";
-
 /* Button title for selecting an option given a number */
 "Option %d" = "Opsiwn %d";
 

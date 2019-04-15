@@ -1,5 +1,14 @@
+/* Unknown time duration */
+"--:--" = "--:--";
+
+/* No comment provided by engineer. */
+"\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user." = "Bydd \"Gweithredu fel\" yn golygu eich bod yn mewngofnodi fel y defnyddiwr hwn heb gyfrinair. Byddwch chi’n gallu gwneud unrhyw beth fel mai chi yw’r defnyddiwr hwn o safbwynt pobl eraill; bydd yn edrych fel mai’r defnyddiwr hwn sydd wedi gwneud hynny. Ond, bydd logiau archwilio’n cofnodi mai chi wnaeth hynny ar ran y defnyddiwr hwn.";
+
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
+
+/* No comment provided by engineer. */
+"Act as User" = "Gweithredu fel Defnyddiwr";
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Ydych chi’n siŵr eich bod am ddileu’r sylw hwn?";
@@ -23,10 +32,16 @@
 "Cancel" = "Canslo";
 
 /* No comment provided by engineer. */
+"Canvas Guides" = "Canllawiau Canvas";
+
+/* No comment provided by engineer. */
 "Canvas Login" = "Manylion Mewngofnodi Canvas";
 
 /* No comment provided by engineer. */
 "Canvas Network" = "Canvas Network";
+
+/* No comment provided by engineer. */
+"Clear recording" = "Clirio’r recordiad";
 
 /* No comment provided by engineer. */
 "Closed" = "Wedi cau";
@@ -39,6 +54,9 @@
 
 /* No comment provided by engineer. */
 "Course" = "Cwrs";
+
+/* No comment provided by engineer. */
+"Current position" = "Lleoliad presennol";
 
 /* No comment provided by engineer. */
 "d_questions" = "d_questions";
@@ -57,6 +75,12 @@
 
 /* No comment provided by engineer. */
 "Dismiss" = "Gwrthod";
+
+/* No comment provided by engineer. */
+"Domain" = "Parth";
+
+/* No comment provided by engineer. */
+"Error" = "Gwall";
 
 /* No comment provided by engineer. */
 "External Tool" = "Adnodd Allanol";
@@ -125,16 +149,31 @@
 "list_or_two" = "%1$@ neu %2$@";
 
 /* No comment provided by engineer. */
+"Log In Again" = "Mewngofnodi Eto";
+
+/* No comment provided by engineer. */
 "Manual OAuth Login" = "OAuth Login sydd ddim yn awtomatig";
 
 /* No comment provided by engineer. */
 "Media Recording" = "Recordio Cyfryngau";
 
 /* No comment provided by engineer. */
+"N/A" = "Amherthnasol";
+
+/* No comment provided by engineer. */
 "No Due Date" = "Dim Dyddiad Erbyn";
 
 /* No comment provided by engineer. */
 "No Submission" = "Dim cyflwyniad";
+
+/* No comment provided by engineer. */
+"Not a parent?" = "Ddim yn rhiant?";
+
+/* No comment provided by engineer. */
+"Not a student?" = "Ddim yn fyfyriwr?";
+
+/* No comment provided by engineer. */
+"Not a teacher?" = "Ddim yn athro?";
 
 /* No comment provided by engineer. */
 "Not Graded" = "Heb eu graddio";
@@ -149,7 +188,16 @@
 "On Paper" = "Ar bapur";
 
 /* No comment provided by engineer. */
+"One of our other apps might be a better fit. Tap one to visit the App Store." = "Efallai y byddai un o'r apiau eraill yn fwy addas. Tapiwch un i fynd i'r App Store.";
+
+/* No comment provided by engineer. */
 "out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
+"Pause" = "Rhewi";
+
+/* No comment provided by engineer. */
+"Play" = "Chwarae";
 
 /* No comment provided by engineer. */
 "plural_points" = "plural_points";
@@ -182,10 +230,19 @@
 "Select Course" = "Dewis Cwrs";
 
 /* No comment provided by engineer. */
+"Send" = "Anfon";
+
+/* No comment provided by engineer. */
 "Send comment" = "Anfon sylw";
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "Manylion Mewngofnodi Gweinyddwr y Safle";
+
+/* No comment provided by engineer. */
+"Start recording" = "Dechrau'r recordiad";
+
+/* No comment provided by engineer. */
+"Stop recording" = "Stopio'r recordiad";
 
 /* No comment provided by engineer. */
 "Style" = "Arddull";
@@ -215,10 +272,25 @@
 "There was a problem retrieving the Terms of Use." = "Problem wrth adfer y Telerau Defnyddio";
 
 /* No comment provided by engineer. */
+"There was an error with Act as User. Please try again later." = "Gwall â'r nodwedd Gweithredu fel Defnyddiwr. Rhowch gynnig arall arni rywbryd eto.";
+
+/* No comment provided by engineer. */
 "This assignment is due by %@" = "Mae’r aseiniad hwn i fod i gael ei gyflwyno erbyn %@";
 
 /* No comment provided by engineer. */
 "This assignment was due by %@" = "Roedd yr aseiniad hwn yn fod i gael ei gyflwyno erbyn %@";
+
+/* No comment provided by engineer. */
+"This is a media comment" = "Mae’r sylw hwn wedi’i wneud ar gyfryngau";
+
+/* No comment provided by engineer. */
+"Time elapsed" = "Amser wedi mynd heibio";
+
+/* No comment provided by engineer. */
+"Total time" = "Cyfanswm amser";
+
+/* No comment provided by engineer. */
+"User ID" = "ID Defnyddiwr";
 
 /* No comment provided by engineer. */
 "Video" = "Fideo";
@@ -231,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "What’s your school’s name?" = "Beth yw enw eich ysgol?";
+
+/* No comment provided by engineer. */
+"You need at least one active observer enrollment to use Canvas Parent. If you're a student or teacher, try one of our other apps below." = "Mae angen o leiaf un ymrestriad arsyllwr gweithredol arnoch er mwyn gallu defnyddio Canvas Parent. Os ydych chi'n fyfyriwr neu'n athro, rhowch gynnig ar un o'n rhaglenni eraill isod.";
 
 /* No comment provided by engineer. */
 "You will need to log into at least one Canvas account from the Student app first." = "I ddechrau, bydd angen i chi fewngofnodi i o leiaf un cyfrif Canvas o’r ap Myfyrwyr.";

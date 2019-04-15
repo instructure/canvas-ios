@@ -947,9 +947,6 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* Link to open assignment in SpeedGrader */
 "Open in SpeedGrader" = "Öppna i SpeedGrader";
 
-/* Open file in another application */
-"Open in..." = "Öppna i...";
-
 /* Button title for selecting an option given a number */
 "Option %d" = "Alternativ %d";
 

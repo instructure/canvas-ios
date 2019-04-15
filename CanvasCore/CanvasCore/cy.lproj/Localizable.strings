@@ -313,6 +313,9 @@
 /* front page segmented control title */
 "Front Page" = "Tudalen Flaen";
 
+/* No comment provided by engineer. */
+"Get Grades for" = "Nôl Graddau ar gyfer";
+
 /* navigate */
 "Go" = "Mynd";
 

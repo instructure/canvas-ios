@@ -313,6 +313,9 @@
 /* front page segmented control title */
 "Front Page" = "Prva stran";
 
+/* No comment provided by engineer. */
+"Get Grades for" = "Pridobi ocene za";
+
 /* navigate */
 "Go" = "Pojdi";
 

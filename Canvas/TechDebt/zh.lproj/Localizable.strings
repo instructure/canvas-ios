@@ -936,14 +936,14 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Title for an error alert */
 "Oops!" = "糟糕！";
 
+/* No comment provided by engineer. */
+"Open in AR" = "在 AR 中打开";
+
 /* Open a document in the application Safari */
 "Open in Safari" = "在Safari中打开";
 
 /* Link to open assignment in SpeedGrader */
 "Open in SpeedGrader" = "在SpeedGrader打开";
-
-/* Open file in another application */
-"Open in..." = "在...打开";
 
 /* Link to Open Source Components */
 "Open Source Components" = "打开源组件";

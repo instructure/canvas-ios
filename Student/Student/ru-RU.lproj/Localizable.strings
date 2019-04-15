@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"Add a comment or reply to previous comments" = "Добавить комментарий или ответить на предыдущие комментарии";
+
 /* All Courses screen title */
 "All Courses" = "Все курсы";
 
@@ -18,6 +21,9 @@
 
 /* No comment provided by engineer. */
 "Comments" = "Комментарии";
+
+/* No comment provided by engineer. */
+"Could not save the comment" = "Не удалось сохранить комментарий";
 
 /* No comment provided by engineer. */
 "Courses" = "Курсы";
@@ -71,6 +77,9 @@
 "Groups" = "Группы";
 
 /* No comment provided by engineer. */
+"Have questions? Use this area to message your instructor about this assignment." = "Есть вопросы? Используйте эту область, чтобы сообщить своему преподавателю об этом задании.";
+
+/* No comment provided by engineer. */
 "Invalid url" = "Неверный URL";
 
 /* No comment provided by engineer. */
@@ -101,7 +110,16 @@
 "Past Enrollments" = "Прошлые регистрации";
 
 /* No comment provided by engineer. */
+"Permission Needed" = "Требуется разрешение";
+
+/* No comment provided by engineer. */
 "Quizzes" = "Тесты";
+
+/* No comment provided by engineer. */
+"Record Audio" = "Записать аудио";
+
+/* No comment provided by engineer. */
+"Record Video" = "Записать видео";
 
 /* No comment provided by engineer. */
 "Resubmit Assignment" = "Повторная отправка задания";
@@ -117,6 +135,12 @@
 
 /* No comment provided by engineer. */
 "See All Courses" = "Показать все курсы";
+
+/* No comment provided by engineer. */
+"Send comment" = "Отправить комментарий";
+
+/* No comment provided by engineer. */
+"Settings" = "Настройки";
 
 /* No comment provided by engineer. */
 "Something went wrong while loading the quizzes." = "При загрузке тестов что-то пошло не так.";
@@ -177,6 +201,9 @@
 
 /* No comment provided by engineer. */
 "Website Address" = "Адрес веб-сайта";
+
+/* No comment provided by engineer. */
+"You must enable Microphone permissions in Settings to record audio." = "Вы должны активировать разрешения для микрофона в настройках для записи аудио.";
 
 /* No comment provided by engineer. */
 "Your submission is now waiting to be graded" = "Предоставляемые вами данные в ожидании оценки";

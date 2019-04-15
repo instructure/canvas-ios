@@ -313,6 +313,9 @@
 /* front page segmented control title */
 "Front Page" = "Voorpagina";
 
+/* No comment provided by engineer. */
+"Get Grades for" = "Cijfers ophalen voor";
+
 /* navigate */
 "Go" = "Start";
 

@@ -947,9 +947,6 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* Link to open assignment in SpeedGrader */
 "Open in SpeedGrader" = "Åpne i SpeedGrader";
 
-/* Open file in another application */
-"Open in..." = "Åpne i ...";
-
 /* Button title for selecting an option given a number */
 "Option %d" = "Valg %d";
 

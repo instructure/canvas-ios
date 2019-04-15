@@ -947,9 +947,6 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Link to open assignment in SpeedGrader */
 "Open in SpeedGrader" = "الفتح في SpeedGrader";
 
-/* Open file in another application */
-"Open in..." = "الفتح في...";
-
 /* Button title for selecting an option given a number */
 "Option %d" = "خيارات %d";
 

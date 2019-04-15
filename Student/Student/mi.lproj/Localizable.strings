@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"Add a comment or reply to previous comments" = "Tāpiri he kōrero, whakautu rānei ki ngā kōrero o mua";
+
 /* All Courses screen title */
 "All Courses" = "Ngā akoranga katoa";
 
@@ -18,6 +21,9 @@
 
 /* No comment provided by engineer. */
 "Comments" = "Ngā Kōrero";
+
+/* No comment provided by engineer. */
+"Could not save the comment" = "Kaore i taea te tiaki i te kōrero";
 
 /* No comment provided by engineer. */
 "Courses" = "Ngā Akoranga";
@@ -71,6 +77,9 @@
 "Groups" = "rōpū";
 
 /* No comment provided by engineer. */
+"Have questions? Use this area to message your instructor about this assignment." = "He pātai? Whakamahia tēnei wāhanga hei tuku karere ki tō kaitohutohu mo tēnei whakataunga";
+
+/* No comment provided by engineer. */
 "Invalid url" = "Koremana url";
 
 /* No comment provided by engineer. */
@@ -101,7 +110,16 @@
 "Past Enrollments" = "whakaurunga o Muri nei";
 
 /* No comment provided by engineer. */
+"Permission Needed" = "E hiahiatia ana he whakāetanga";
+
+/* No comment provided by engineer. */
 "Quizzes" = "Ngā Quizzes";
+
+/* No comment provided by engineer. */
+"Record Audio" = "Tāhopu Ororongo";
+
+/* No comment provided by engineer. */
+"Record Video" = "Tāhopu Ataata";
 
 /* No comment provided by engineer. */
 "Resubmit Assignment" = "Tuku Taumahi";
@@ -117,6 +135,12 @@
 
 /* No comment provided by engineer. */
 "See All Courses" = "Titiro ki ngā akoranga katoa";
+
+/* No comment provided by engineer. */
+"Send comment" = "Tuku kōrero";
+
+/* No comment provided by engineer. */
+"Settings" = "Ngā Tautuhinga";
 
 /* No comment provided by engineer. */
 "Something went wrong while loading the quizzes." = "He hapa i te wā e uta ana ngā quizzes.";
@@ -177,6 +201,9 @@
 
 /* No comment provided by engineer. */
 "Website Address" = "Paetukutuku wāhitau";
+
+/* No comment provided by engineer. */
+"You must enable Microphone permissions in Settings to record audio." = "Me whakahohe e koe ngā whakāetanga Reooro i roto i ngā Tautuhinga hei tuhi ororongo.";
 
 /* No comment provided by engineer. */
 "Your submission is now waiting to be graded" = "Kei te tatari to tāpaetanga ki te kōeketia.";

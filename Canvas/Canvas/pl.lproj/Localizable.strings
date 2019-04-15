@@ -947,9 +947,6 @@ Jeśli uważasz, że test zawiera nieobsługiwane treści, należy go wykonać n
 /* Link to open assignment in SpeedGrader */
 "Open in SpeedGrader" = "Otwórz w programie SpeedGrader";
 
-/* Open file in another application */
-"Open in..." = "Otwórz w...";
-
 /* Button title for selecting an option given a number */
 "Option %d" = "Opcja %d";
 

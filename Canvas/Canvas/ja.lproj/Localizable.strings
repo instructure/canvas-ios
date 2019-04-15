@@ -948,9 +948,6 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Link to open assignment in SpeedGrader */
 "Open in SpeedGrader" = "SpeedGraderで開く";
 
-/* Open file in another application */
-"Open in..." = "...で開く";
-
 /* Button title for selecting an option given a number */
 "Option %d" = "オプション%d";
 

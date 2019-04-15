@@ -1,5 +1,14 @@
+/* Unknown time duration */
+"--:--" = "--:--";
+
+/* No comment provided by engineer. */
+"\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user." = "「作為」本質上是以此使用者身份登錄，沒有密碼。您將能夠進行任何操作，就好像您就是此使用者一樣，而且，其他使用者也會認為是此使用者執行了操作。然而，活動紀錄會記錄事實，即您是代表此使用者執行操作的人。";
+
 /* No comment provided by engineer. */
 "%@ GPA" = "%@GPA";
+
+/* No comment provided by engineer. */
+"Act as User" = "作為使用者";
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "您確定要刪除此評論嗎？";
@@ -23,10 +32,16 @@
 "Cancel" = "取消";
 
 /* No comment provided by engineer. */
+"Canvas Guides" = "Canvas 指南";
+
+/* No comment provided by engineer. */
 "Canvas Login" = "Canvas 登入";
 
 /* No comment provided by engineer. */
 "Canvas Network" = "Canvas Network";
+
+/* No comment provided by engineer. */
+"Clear recording" = "清除錄製";
 
 /* No comment provided by engineer. */
 "Closed" = "已關閉";
@@ -39,6 +54,9 @@
 
 /* No comment provided by engineer. */
 "Course" = "課程";
+
+/* No comment provided by engineer. */
+"Current position" = "目前位置";
 
 /* No comment provided by engineer. */
 "d_questions" = "d_questions";
@@ -57,6 +75,12 @@
 
 /* No comment provided by engineer. */
 "Dismiss" = "解除";
+
+/* No comment provided by engineer. */
+"Domain" = "網域";
+
+/* No comment provided by engineer. */
+"Error" = "錯誤";
 
 /* No comment provided by engineer. */
 "External Tool" = "外部工具";
@@ -125,16 +149,31 @@
 "list_or_two" = "%1$@或者%2$@";
 
 /* No comment provided by engineer. */
+"Log In Again" = "重新登入";
+
+/* No comment provided by engineer. */
 "Manual OAuth Login" = "手動 OAuth 登入";
 
 /* No comment provided by engineer. */
 "Media Recording" = "媒體錄製";
 
 /* No comment provided by engineer. */
+"N/A" = "不適用";
+
+/* No comment provided by engineer. */
 "No Due Date" = "無截止日期";
 
 /* No comment provided by engineer. */
 "No Submission" = "無提交項目";
+
+/* No comment provided by engineer. */
+"Not a parent?" = "不是父母？";
+
+/* No comment provided by engineer. */
+"Not a student?" = "不是學生？";
+
+/* No comment provided by engineer. */
+"Not a teacher?" = "不是教師？";
 
 /* No comment provided by engineer. */
 "Not Graded" = "未評分";
@@ -149,7 +188,16 @@
 "On Paper" = "在紙上";
 
 /* No comment provided by engineer. */
+"One of our other apps might be a better fit. Tap one to visit the App Store." = "我們其他應用程式可能更適合您。點選一個以造訪 App Store。";
+
+/* No comment provided by engineer. */
 "out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
+"Pause" = "暫停";
+
+/* No comment provided by engineer. */
+"Play" = "播放";
 
 /* No comment provided by engineer. */
 "plural_points" = "plural_points";
@@ -182,10 +230,19 @@
 "Select Course" = "選擇課程";
 
 /* No comment provided by engineer. */
+"Send" = "發送";
+
+/* No comment provided by engineer. */
 "Send comment" = "發送評論";
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "網站管理員登入";
+
+/* No comment provided by engineer. */
+"Start recording" = "開始錄製";
+
+/* No comment provided by engineer. */
+"Stop recording" = "停止錄製";
 
 /* No comment provided by engineer. */
 "Style" = "樣式";
@@ -215,10 +272,25 @@
 "There was a problem retrieving the Terms of Use." = "取得使用條款時出現問題。";
 
 /* No comment provided by engineer. */
+"There was an error with Act as User. Please try again later." = "作為使用者時出現錯誤。請稍後重試。";
+
+/* No comment provided by engineer. */
 "This assignment is due by %@" = "作業截止日期為%@";
 
 /* No comment provided by engineer. */
 "This assignment was due by %@" = "作業已截止，截止日期為%@";
+
+/* No comment provided by engineer. */
+"This is a media comment" = "這是媒體評論";
+
+/* No comment provided by engineer. */
+"Time elapsed" = "已用時間";
+
+/* No comment provided by engineer. */
+"Total time" = "總時間";
+
+/* No comment provided by engineer. */
+"User ID" = "使用者 ID";
 
 /* No comment provided by engineer. */
 "Video" = "視訊";
@@ -231,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "What’s your school’s name?" = "您的學校名稱是？";
+
+/* No comment provided by engineer. */
+"You need at least one active observer enrollment to use Canvas Parent. If you're a student or teacher, try one of our other apps below." = "您需要至少一個啟用的觀察者註冊以使用 Canvas Parent。如果您是學生或教師，可以試用以下其中一個應用程式。";
 
 /* No comment provided by engineer. */
 "You will need to log into at least one Canvas account from the Student app first." = "您需要首先從學生應用程式登入至最少一個 Canvas 帳戶。";

@@ -947,9 +947,6 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* Link to open assignment in SpeedGrader */
 "Open in SpeedGrader" = "Abrir no SpeedGrader";
 
-/* Open file in another application */
-"Open in..." = "Abrir com...";
-
 /* Button title for selecting an option given a number */
 "Option %d" = "Opção %d";
 
