@@ -53,7 +53,7 @@ open class CoreWebView: WKWebView {
 
     public var contentInputAccessoryView: UIView? {
         didSet {
-            replaceContentViewClass()
+            addContentInputAccessoryView()
         }
     }
 
@@ -281,7 +281,7 @@ extension CoreWebView {
 }
 
 extension CoreWebView {
-    private func replaceContentViewClass() {
+    private func addContentInputAccessoryView() {
         guard
             let contentView = scrollView.subviews.first(where: { String(describing: type(of: $0)).hasPrefix("WKContent") }),
             let superClass = object_getClass(contentView)

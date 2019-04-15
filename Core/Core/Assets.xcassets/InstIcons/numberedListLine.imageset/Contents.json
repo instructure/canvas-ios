@@ -2,7 +2,8 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "numberedList.pdf"
+      "filename" : "numberedList.pdf",
+      "language-direction" : "left-to-right"
     }
   ],
   "info" : {

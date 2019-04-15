@@ -2,7 +2,8 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "bulletList.pdf"
+      "filename" : "bulletList.pdf",
+      "language-direction" : "left-to-right"
     }
   ],
   "info" : {

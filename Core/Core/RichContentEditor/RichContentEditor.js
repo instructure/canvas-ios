@@ -138,17 +138,17 @@ const editor = window.editor = {
 
         let linkHref, linkText, imageSrc, imageAlt
         if (node) {
-            let nodeName = node.nodeName.toLowerCase()
-            if (nodeName === 'a') {
-                editor.currentEditingLink = node
-                linkHref = node.href
-                linkText = node.textContent
+            let a = node.closest && node.closest('a')
+            if (a) {
+                editor.currentEditingLink = a
+                linkHref = a.href
+                linkText = a.textContent
             } else {
                 linkText = getSelection().toString()
                 editor.currentEditingLink = null
             }
 
-            if (nodeName == 'img') {
+            if (node instanceof HTMLImageElement) {
                 editor.currentEditingImage = node
                 imageSrc = node.src
                 imageAlt = node.alt
@@ -251,18 +251,15 @@ content.addEventListener('blur', () => {
 
 content.addEventListener('paste', e => {
     if (e.clipboardData.files.length) {
+        e.preventDefault() // don't allow default pasting of a blob url for the file
         const uris = e.clipboardData.getData('text/uri-list').split('\r\n')
         for (let i = 0; i < e.clipboardData.files.length; ++i) {
             const file = e.clipboardData.files[i]
             const uri = uris[i]
             if (file.type.startsWith('image/') && uri) {
                 document.execCommand('insertHTML', false, `<img src="${escapeHTML(uri)}" alt="${escapeHTML(file.name)}" />`)
-                e.preventDefault()
             } else if (uri) {
                 document.execCommand('insertHTML', false, `<a href="${escapeHTML(uri)}">${escapeHTML(uri)}</a>`)
-                e.preventDefault()
-            } else {
-                // don't prevent default
             }
         }
     }

@@ -110,7 +110,7 @@ for (const icon of whitelist) {
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "${name}.pdf"${ !/right|left|play/i.test(name) ? '' : `,
+      "filename" : "${name}.pdf"${ !/right|left|list|play/i.test(name) ? '' : `,
       "language-direction" : "left-to-right"` }
     }
   ],

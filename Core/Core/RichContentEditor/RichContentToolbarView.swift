@@ -211,7 +211,7 @@ public class RichContentToolbarView: UIView {
             let text = alert.textFields?[0].text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
             var href = alert.textFields?[1].text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
             if !href.isEmpty, URLComponents.parse(href).scheme == nil {
-                href = "http://\(href)"
+                href = "https://\(href)"
             }
             self.controller?.updateLink(href: href, text: text)
         })

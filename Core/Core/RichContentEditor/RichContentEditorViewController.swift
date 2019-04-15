@@ -42,6 +42,7 @@ public class RichContentEditorViewController: UIViewController {
         setupScriptMessaging()
         toolbar.controller = self
         webView.contentInputAccessoryView = toolbar
+        webView.scrollView.keyboardDismissMode = .interactive
         webView.loadHTMLString("""
             <style>
                 html, body {
@@ -183,5 +184,9 @@ private func jsString(_ string: String?) -> String {
     let escaped = string
         .replacingOccurrences(of: "\\", with: "\\\\")
         .replacingOccurrences(of: "'", with: "\\'")
+        .replacingOccurrences(of: "\r", with: "\\r")
+        .replacingOccurrences(of: "\n", with: "\\n")
+        .replacingOccurrences(of: "\u{2028}", with: "\\u2028")
+        .replacingOccurrences(of: "\u{2029}", with: "\\u2029")
     return "'\(escaped)'"
 }
