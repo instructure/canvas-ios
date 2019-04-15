@@ -247,4 +247,20 @@ class GetAssignmentsTests: CoreTestCase {
         XCTAssertEqual(assignments.count, 4)
         XCTAssertEqual([b, a, d, c], assignments)
     }
+
+    func testItCreatesRubrics() {
+        let apiAssignment = APIAssignment.make([
+            "id": "2",
+            "rubric": [APIRubric.fixture()],
+            ])
+
+        let getAssignment = GetAssignment(courseID: "1", assignmentID: "2", include: [])
+        try! getAssignment.write(response: apiAssignment, urlResponse: nil, to: databaseClient)
+
+        let assignments: [Assignment] = databaseClient.fetch()
+        let assignment = assignments.first
+        XCTAssertNotNil(assignment)
+        XCTAssertNotNil(assignment?.rubric)
+        XCTAssertNotNil(assignment?.rubric?.first?.ratings?.first)
+    }
 }
