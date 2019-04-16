@@ -18,9 +18,11 @@
 		3B0CEBA321504C2500D07CFA /* APITabFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0CEBA021504C2500D07CFA /* APITabFixture.swift */; };
 		3B0CEBA421504C2500D07CFA /* APIGroupFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0CEBA121504C2500D07CFA /* APIGroupFixture.swift */; };
 		3B0CEBA521504C2500D07CFA /* APICourseFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0CEBA221504C2500D07CFA /* APICourseFixture.swift */; };
+		3B19D25D2265391F003A0565 /* RubricFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B19D25C2265391F003A0565 /* RubricFixture.swift */; };
 		3B5757D721629C5D0014F6A2 /* MockUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5757D621629C5D0014F6A2 /* MockUseCase.swift */; };
 		3B635B35225CDFB1001F353D /* CalendarEventFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B635B34225CDFB1001F353D /* CalendarEventFixture.swift */; };
 		3B635B39225CE613001F353D /* APICalendarEventFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B635B38225CE613001F353D /* APICalendarEventFixture.swift */; };
+		3B6386A72264F781002DEE72 /* APIRubricFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6386A62264F781002DEE72 /* APIRubricFixture.swift */; };
 		3B84C392218BB102005946BA /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B84C391218BB102005946BA /* DateExtensions.swift */; };
 		3BAA4177218A361100701E03 /* EnrollmentFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAA4176218A361100701E03 /* EnrollmentFixture.swift */; };
 		3BAA4179218A3ACE00701E03 /* APIEnrollmentFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAA4178218A3ACE00701E03 /* APIEnrollmentFixture.swift */; };
@@ -80,9 +82,11 @@
 		3B0CEBA021504C2500D07CFA /* APITabFixture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APITabFixture.swift; sourceTree = "<group>"; };
 		3B0CEBA121504C2500D07CFA /* APIGroupFixture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIGroupFixture.swift; sourceTree = "<group>"; };
 		3B0CEBA221504C2500D07CFA /* APICourseFixture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APICourseFixture.swift; sourceTree = "<group>"; };
+		3B19D25C2265391F003A0565 /* RubricFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricFixture.swift; sourceTree = "<group>"; };
 		3B5757D621629C5D0014F6A2 /* MockUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUseCase.swift; sourceTree = "<group>"; };
 		3B635B34225CDFB1001F353D /* CalendarEventFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventFixture.swift; sourceTree = "<group>"; };
 		3B635B38225CE613001F353D /* APICalendarEventFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICalendarEventFixture.swift; sourceTree = "<group>"; };
+		3B6386A62264F781002DEE72 /* APIRubricFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRubricFixture.swift; sourceTree = "<group>"; };
 		3B84C391218BB102005946BA /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		3BAA4176218A361100701E03 /* EnrollmentFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrollmentFixture.swift; sourceTree = "<group>"; };
 		3BAA4178218A3ACE00701E03 /* APIEnrollmentFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnrollmentFixture.swift; sourceTree = "<group>"; };
@@ -225,6 +229,7 @@
 				7DB0A1C821C07F39009ABB40 /* APIUserFixture.swift */,
 				3B635B38225CE613001F353D /* APICalendarEventFixture.swift */,
 				3BD364AC225D3D8A006CEBD8 /* APIDiscussionTopicFixture.swift */,
+				3B6386A62264F781002DEE72 /* APIRubricFixture.swift */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -252,6 +257,7 @@
 				3B032D17215037C900B570F7 /* TTL+Fixture.swift */,
 				B1F13295224BFE03002C0555 /* ModuleItemFixture.swift */,
 				3B635B34225CDFB1001F353D /* CalendarEventFixture.swift */,
+				3B19D25C2265391F003A0565 /* RubricFixture.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -416,6 +422,7 @@
 				B1911CEF21C84B1000F42F91 /* MockNotificationManager.swift in Sources */,
 				7DBFD31722454609000A18DC /* MockURLSession.swift in Sources */,
 				3B84C392218BB102005946BA /* DateExtensions.swift in Sources */,
+				3B6386A72264F781002DEE72 /* APIRubricFixture.swift in Sources */,
 				B1A32BE02159A28D0071B41E /* APISubmissionFixture.swift in Sources */,
 				3B0CEBA321504C2500D07CFA /* APITabFixture.swift in Sources */,
 				3B0CEB722150406400D07CFA /* Course+Fixture.swift in Sources */,
@@ -451,6 +458,7 @@
 				3BD364AD225D3D8A006CEBD8 /* APIDiscussionTopicFixture.swift in Sources */,
 				B1C6BF6521BF2C2B00C8C585 /* UIBarButtonItemExtensions.swift in Sources */,
 				7D47769821AF356200B441CE /* APIQuizRequestable.swift in Sources */,
+				3B19D25D2265391F003A0565 /* RubricFixture.swift in Sources */,
 				7D63F794215D8FC100151E49 /* APIBrandVariablesFixture.swift in Sources */,
 				3B0CEB712150406400D07CFA /* Fixture.swift in Sources */,
 				7DBFD3192245480B000A18DC /* MockMessage.swift in Sources */,

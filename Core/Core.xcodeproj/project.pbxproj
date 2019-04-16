@@ -39,6 +39,8 @@
 		3B635B31225CDC2C001F353D /* GetCalendarEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B635B30225CDC2C001F353D /* GetCalendarEvents.swift */; };
 		3B635B33225CDC95001F353D /* CalendarEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B635B32225CDC95001F353D /* CalendarEvent.swift */; };
 		3B635B37225CE59D001F353D /* GetCalendarEventsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B635B36225CE59D001F353D /* GetCalendarEventsTests.swift */; };
+		3B6386A52264F6AC002DEE72 /* APIRubric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6386A42264F6AC002DEE72 /* APIRubric.swift */; };
+		3B6386A92264FB17002DEE72 /* Rubric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6386A82264FB17002DEE72 /* Rubric.swift */; };
 		3B67BCB821B5E72000055324 /* CreateSubmissionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B67BCB721B5E72000055324 /* CreateSubmissionTests.swift */; };
 		3B69254021A12E020023ED75 /* Int64Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B69253F21A12E020023ED75 /* Int64Extensions.swift */; };
 		3B84C38D218B9A84005946BA /* AssignmentDates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B84C38C218B9A84005946BA /* AssignmentDates.swift */; };
@@ -510,6 +512,8 @@
 		3B635B30225CDC2C001F353D /* GetCalendarEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCalendarEvents.swift; sourceTree = "<group>"; };
 		3B635B32225CDC95001F353D /* CalendarEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEvent.swift; sourceTree = "<group>"; };
 		3B635B36225CE59D001F353D /* GetCalendarEventsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCalendarEventsTests.swift; sourceTree = "<group>"; };
+		3B6386A42264F6AC002DEE72 /* APIRubric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRubric.swift; sourceTree = "<group>"; };
+		3B6386A82264FB17002DEE72 /* Rubric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rubric.swift; sourceTree = "<group>"; };
 		3B67BCB721B5E72000055324 /* CreateSubmissionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSubmissionTests.swift; sourceTree = "<group>"; };
 		3B69253F21A12E020023ED75 /* Int64Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int64Extensions.swift; sourceTree = "<group>"; };
 		3B84C38C218B9A84005946BA /* AssignmentDates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDates.swift; sourceTree = "<group>"; };
@@ -1698,6 +1702,7 @@
 				3B3467D32135B7B700F9BC2E /* ID.swift */,
 				3B635B2A225CD298001F353D /* APICalendarEvent.swift */,
 				3B635B2C225CD377001F353D /* APICalendarRequestable.swift */,
+				3B6386A42264F6AC002DEE72 /* APIRubric.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1774,6 +1779,7 @@
 				7DF4FFD02171322E007E5F81 /* TTL.swift */,
 				9FBE536C223C32E7001EC40C /* Permissions.swift */,
 				3B635B32225CDC95001F353D /* CalendarEvent.swift */,
+				3B6386A82264FB17002DEE72 /* Rubric.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2438,6 +2444,7 @@
 				7D29D309218A5E810036437C /* APIDocViewerRequestable.swift in Sources */,
 				9F6878AF223951EE00E559CE /* APIMediaComment.swift in Sources */,
 				7D29D307218A592B0036437C /* APIDocViewer.swift in Sources */,
+				3B6386A52264F6AC002DEE72 /* APIRubric.swift in Sources */,
 				7DDC81462242E2C7000DD25A /* AudioRecorderViewController.swift in Sources */,
 				9FCD79D82188DFD00054293A /* GetSubmission.swift in Sources */,
 				7D8262F5212B300F00BD268D /* APIGroup+Requestable.swift in Sources */,
@@ -2482,6 +2489,7 @@
 				7D29D303218A54CC0036437C /* DocViewerCommentReplyAnnotation.swift in Sources */,
 				7DD7F890215ADFA5006E1715 /* UIFontExtensions.swift in Sources */,
 				7D63F786215D3CE300151E49 /* APIBrandVariables+Requestable.swift in Sources */,
+				3B6386A92264FB17002DEE72 /* Rubric.swift in Sources */,
 				7DF4001E217509D6007E5F81 /* Quiz.swift in Sources */,
 				7D29D305218A57560036437C /* DocViewerAnnotationStateManager.swift in Sources */,
 				7D80AC23212B8A2100C40ECE /* APIAccount.swift in Sources */,

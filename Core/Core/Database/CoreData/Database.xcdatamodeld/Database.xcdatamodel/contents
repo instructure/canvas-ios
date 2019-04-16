@@ -20,6 +20,7 @@
         <attribute name="unlockAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="URI" syncable="YES"/>
         <relationship name="discussionTopic" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DiscussionTopic" inverseName="assignment" inverseEntity="DiscussionTopic" syncable="YES"/>
+        <relationship name="rubric" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Rubric" inverseName="assignment" inverseEntity="Rubric" syncable="YES"/>
         <relationship name="submission" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Submission" inverseName="assignment" inverseEntity="Submission" syncable="YES"/>
     </entity>
     <entity name="CalendarEventItem" representedClassName="Core.CalendarEventItem" syncable="YES">
@@ -244,6 +245,24 @@
         <attribute name="quizTypeRaw" attributeType="String" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="Rubric" representedClassName="Core.Rubric" syncable="YES">
+        <attribute name="assignmentID" attributeType="String" syncable="YES"/>
+        <attribute name="criterionUseRange" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="desc" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="longDesc" attributeType="String" syncable="YES"/>
+        <attribute name="points" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="assignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Assignment" inverseName="rubric" inverseEntity="Assignment" syncable="YES"/>
+        <relationship name="ratings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RubricRating" inverseName="rubric" inverseEntity="RubricRating" syncable="YES"/>
+    </entity>
+    <entity name="RubricRating" representedClassName="Core.RubricRating" syncable="YES">
+        <attribute name="assignmentID" attributeType="String" syncable="YES"/>
+        <attribute name="desc" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="longDesc" attributeType="String" syncable="YES"/>
+        <attribute name="points" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="rubric" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Rubric" inverseName="ratings" inverseEntity="Rubric" syncable="YES"/>
+    </entity>
     <entity name="Submission" representedClassName="Core.Submission" syncable="YES">
         <attribute name="assignmentID" attributeType="String" syncable="YES"/>
         <attribute name="attempt" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -311,6 +330,8 @@
         <element name="ModuleItem" positionX="-540" positionY="-27" width="128" height="225"/>
         <element name="Permissions" positionX="-369" positionY="-18" width="128" height="1080"/>
         <element name="Quiz" positionX="-26.7890625" positionY="226.0703125" width="128" height="195"/>
+        <element name="Rubric" positionX="-540" positionY="-27" width="128" height="165"/>
+        <element name="RubricRating" positionX="-531" positionY="-18" width="128" height="135"/>
         <element name="Submission" positionX="-312.484375" positionY="260.38671875" width="128" height="360"/>
         <element name="SubmissionComment" positionX="-369" positionY="-18" width="128" height="225"/>
         <element name="Tab" positionX="108.015625" positionY="177.67578125" width="128" height="165"/>

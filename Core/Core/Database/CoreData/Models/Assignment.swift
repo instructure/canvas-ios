@@ -38,6 +38,7 @@ public class Assignment: NSManagedObject {
     @NSManaged public var url: URL?
     @NSManaged public var dueAtOrder: String
     @NSManaged public var discussionTopic: DiscussionTopic?
+    @NSManaged public var rubric: Set<Rubric>?
 
     public var gradingType: GradingType {
         get { return GradingType(rawValue: gradingTypeRaw) ?? .points }
@@ -98,6 +99,20 @@ extension Assignment {
         } else if let topic = discussionTopic {
             try client.delete(topic)
             self.discussionTopic = nil
+        }
+
+        if let exitstingRubrics = rubric {
+            try client.delete(Array(exitstingRubrics))
+            self.rubric = nil
+        }
+
+        if let apiRubrics = item.rubric, apiRubrics.count > 0 {
+            self.rubric = Set<Rubric>()
+            for var r in apiRubrics {
+                r.assignmentID = item.id.value
+                let rubricModel = try Rubric.save(r, in: client)
+                self.rubric?.insert(rubricModel)
+            }
         }
 
         if updateSubmission {
