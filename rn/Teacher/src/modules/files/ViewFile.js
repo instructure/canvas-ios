@@ -120,7 +120,7 @@ export default class ViewFile extends Component<Props, State> {
 
     const directoryPath = `${CachesDirectoryPath}/file-${file.id}`
     await mkdir(directoryPath)
-    const toFile = `${directoryPath}/${file.filename}`
+    const toFile = `${directoryPath}/${decodeURIComponent(file.filename)}`
     let fileExists = await exists(toFile)
     if (fileExists && !forceRefresh) {
       this.setState({ loadingDone: true, jobID: null, localPath: `file://${toFile}`, error: null })
