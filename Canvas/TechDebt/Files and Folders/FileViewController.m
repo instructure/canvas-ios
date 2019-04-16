@@ -302,7 +302,7 @@
 
 - (void)addOpenInARButton {
     UIButton *button = [UIButton new];
-    [button setTitle:NSLocalizedStringFromTableInBundle(@"Open in AR", nil, [NSBundle bundleForClass: self.class], nil) forState:UIControlStateNormal];
+    [button setTitle:NSLocalizedStringFromTableInBundle(@"Augment Reality", nil, [NSBundle bundleForClass: self.class], nil) forState:UIControlStateNormal];
     button.backgroundColor = Brand.current.primaryButtonColor;
     button.titleLabel.textColor = Brand.current.primaryButtonTextColor;
     button.titleLabel.font = [UIFont systemFontOfSize:16 weight: UIFontWeightMedium];

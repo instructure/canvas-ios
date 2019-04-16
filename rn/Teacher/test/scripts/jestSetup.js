@@ -161,6 +161,10 @@ NativeModules.CanvasAnalytics = {
   logEvent: jest.fn(),
 }
 
+NativeModules.QLPreviewManager = {
+  previewFile: jest.fn(),
+}
+
 jest.mock('NativeEventEmitter')
 
 jest.mock('NetInfo', () => ({
