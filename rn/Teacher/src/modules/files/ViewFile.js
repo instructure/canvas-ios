@@ -258,7 +258,7 @@ export default class ViewFile extends Component<Props, State> {
       )
     }
 
-    if (file.filename.split('.').pop() === 'usdz') {
+    if (file && file.filename.split('.').pop() === 'usdz') {
       return (
         <View style={styles.centeredContainer}>
           <Button
