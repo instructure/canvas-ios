@@ -261,7 +261,9 @@ class GetAssignmentsTests: CoreTestCase {
         let assignment = assignments.first
         XCTAssertNotNil(assignment)
         XCTAssertNotNil(assignment?.rubric)
+        XCTAssertEqual(assignment?.rubric?.first?.assignmentID, "2")
         XCTAssertNotNil(assignment?.rubric?.first?.ratings?.first)
+        XCTAssertEqual(assignment?.rubric?.first?.ratings?.first?.assignmentID, "2")
     }
 
     func testItChangesRubrics() {
@@ -343,6 +345,7 @@ class GetAssignmentsTests: CoreTestCase {
         XCTAssertNotNil(assignment)
         XCTAssertNotNil(assignment?.rubric)
         XCTAssertEqual(assignment?.rubric?.first?.ratings?.first?.id, "2")
+        XCTAssertEqual(assignment?.rubric?.first?.ratings?.first?.assignmentID, "2")
         XCTAssertEqual(assignment?.rubric?.first?.ratings?.count, 1)
     }
 }

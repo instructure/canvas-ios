@@ -36,6 +36,7 @@ public final class Rubric: NSManagedObject, WriteableModel {
         model.longDesc = item.long_description
         model.points = item.points
         model.criterionUseRange = item.criterion_use_range
+        model.assignmentID = item.assignmentID ?? ""
 
         if let ratings = model.ratings {
             try context.delete(Array(ratings))
@@ -72,6 +73,7 @@ public final class RubricRating: NSManagedObject, WriteableModel {
         model.desc = item.description
         model.longDesc = item.long_description
         model.points = item.points
+        model.assignmentID = item.assignmentID ?? ""
         return model
     }
 }
