@@ -143,8 +143,8 @@ public final class Course: Enrollment {
             favorite ? try session.POST(path) : try session.DELETE(path)
         }
         return super.markAsFavorite(favorite, session: session)
-            .flatMap(.concat, transform: { request })
-            .flatMap(.concat, transform: session.JSONSignalProducer)
+            .flatMap(.concat, { request })
+            .flatMap(.concat, session.JSONSignalProducer)
             .map { _ in () }
             .on(failed: { [weak self] _ in
                 self?.isFavorite = !favorite

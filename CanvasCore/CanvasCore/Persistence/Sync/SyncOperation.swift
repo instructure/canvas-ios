@@ -115,7 +115,7 @@ extension SynchronizedModel where Self: NSManagedObject {
                                     }
                                     
                                 default:
-                                    observer.action(event)
+                                    observer.send(event)
                                 }
                             }
                         }

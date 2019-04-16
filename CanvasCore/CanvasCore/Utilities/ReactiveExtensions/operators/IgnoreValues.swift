@@ -34,6 +34,6 @@ public extension SignalProducerProtocol {
      - returns: A new producer.
      */
     public func ignoreValues() -> SignalProducer<Void, Error> {
-        return lift { $0.ignoreValues() }
+        return producer.lift { $0.ignoreValues() }
     }
 }

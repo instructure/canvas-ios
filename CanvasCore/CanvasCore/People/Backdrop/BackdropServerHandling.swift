@@ -66,7 +66,7 @@ internal func setBackdropOnServer(_ file: BackdropFile?, session: Session) ->Sig
     let parseResponse = backdropParseResponse
     
     return attemptProducer { try session.PUT(path, parameters: parameters) }
-        .flatMap(.merge, transform: session.JSONSignalProducer)
+        .flatMap(.merge, session.JSONSignalProducer)
         .attemptMap(parseResponse)
         .attemptMap(BackdropFile.fromJSON)
 }
@@ -80,7 +80,7 @@ internal func getBackdropOnServer(_ session: Session) -> SignalProducer<Backdrop
     let parseResponse = backdropParseResponse
     let parameters = [namespaceKey: backdropNamespace]
     return attemptProducer { try session.GET(path, parameters: parameters) }
-        .flatMap(.merge, transform: session.JSONSignalProducer)
+        .flatMap(.merge, session.JSONSignalProducer)
         .attemptMap(parseResponse)
         .attemptMap(BackdropFile.fromJSON)
         .flatMapError { _ in SignalProducer(value: nil) }

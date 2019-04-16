@@ -71,7 +71,7 @@ class ModuleViewModel {
             return imageView
         }
         vm.accessibilityLabel <~ SignalProducer.combineLatest(vm.title.producer, vm.subtitle.producer, state)
-            .map { title, detail, state in
+            .map { title, detail, state -> String in
                 let status: String?
                 switch state {
                 case .some(.locked):

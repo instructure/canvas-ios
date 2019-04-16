@@ -263,7 +263,7 @@ open class StudentSettingsViewController : FormViewController {
     func updateThreshold(_ type: AlertThresholdType) {
         guard let row = form.rowBy(tag: type.rawValue) else { return }
         
-        let onComplete = { (event: ReactiveSwift.Event<Bool, NSError>) -> Void in
+        let onComplete = { (event: ReactiveSwift.Signal<Bool, NSError>.Event) -> Void in
             switch(event) {
             case .failed(let error):
                 self.displayError(error: error)

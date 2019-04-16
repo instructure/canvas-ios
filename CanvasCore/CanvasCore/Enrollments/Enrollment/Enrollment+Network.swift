@@ -27,7 +27,7 @@ extension Enrollment {
         let path = "/api/v1/users/self/colors" / forContextID.canvasContextID
         let params: [String: Any] = ["hexcode": color.hex]
         return attemptProducer { try session.PUT(path, parameters: params) }
-            .flatMap(.merge, transform: session.emptyResponseSignalProducer)
+            .flatMap(.merge, session.emptyResponseSignalProducer)
     }
     
     @objc public static func arcLTIToolID(courseID: String, callback: @escaping (String?) -> Void) {

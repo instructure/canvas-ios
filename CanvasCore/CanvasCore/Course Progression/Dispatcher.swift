@@ -19,13 +19,13 @@ import Result
 
 open class Dispatcher<Input, Output, E: Error> {
 	fileprivate let executeClosure: (Input) -> SignalProducer<Output, E>
-	fileprivate let eventsObserver: Signal<Event<Output, E>, NoError>.Observer
+	fileprivate let eventsObserver: Signal<Signal<Output, E>.Event, NoError>.Observer
 
 	/// A signal of all events generated from applications of the Dispatcher.
 	///
 	/// In other words, this will send every `Event` from every signal generated
 	/// by each SignalProducer returned from apply().
-    public let events: Signal<Event<Output, E>, NoError>
+    public let events: Signal<Signal<Output, E>.Event, NoError>
 
 	/// A signal of all values generated from applications of the Dispatcher.
 	///
@@ -41,7 +41,7 @@ open class Dispatcher<Input, Output, E: Error> {
 
 	public init(execute: @escaping (Input) -> SignalProducer<Output, E>) {
         executeClosure = execute
-		(events, eventsObserver) = Signal<Event<Output, E>, NoError>.pipe()
+		(events, eventsObserver) = Signal<Signal<Output, E>.Event, NoError>.pipe()
 
 		values = events.map { $0.value }.skipNil()
 		errors = events.map { $0.error }.skipNil()
@@ -57,10 +57,11 @@ open class Dispatcher<Input, Output, E: Error> {
 	open func apply(_ input: Input) -> SignalProducer<Output, E> {
 		return SignalProducer { observer, disposable in
 			self.executeClosure(input).startWithSignal { signal, signalDisposable in
-				disposable.add(signalDisposable)
+				disposable.observeEnded(signalDisposable.dispose)
+
 
 				signal.observe { event in
-					observer.action(event)
+                    observer.send(event)
                     self.eventsObserver.send(value: event)
 				}
 			}

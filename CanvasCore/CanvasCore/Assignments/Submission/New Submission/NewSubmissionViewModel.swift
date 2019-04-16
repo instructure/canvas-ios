@@ -105,7 +105,7 @@ public class NewSubmissionViewModel: NSObject, NewSubmissionViewModelType, NewSu
         let fileTypes = assignment.map { Assignment.allowedSubmissionUTIs($0.submissionTypes, allowedExtensions: $0.allowedExtensions) }
 
         let apiPath = Signal.combineLatest(session, assignment)
-            .flatMap(.latest, transform: apiPathForFileSubmissions(in:for:))
+            .flatMap(.latest, apiPathForFileSubmissions(in:for:))
             .materialize()
         let courseID = assignment.map { $0.courseID }
         let selectedUploadable = selectedUploadableProperty.signal.skipNil()
@@ -127,7 +127,7 @@ public class NewSubmissionViewModel: NSObject, NewSubmissionViewModelType, NewSu
         let createSubmissionEvent = sessionAssignment.signal.skipNil()
             .sample(with: newSubmission)
             .map(blend)
-            .flatMap(.latest) { session, assignment, newSubmission -> SignalProducer<Event<Submission, NSError>, NoError> in
+            .flatMap(.latest) { session, assignment, newSubmission -> SignalProducer<Signal<Submission, NSError>.Event, NoError> in
                 return attemptProducer {
                     try Submission.create(newSubmission, session: session, courseID: assignment.courseID, assignmentID: assignment.id, comment: nil)
                 }

@@ -32,6 +32,6 @@ extension SignalProducerProtocol {
     ///
     /// - returns: A signal that emits an array containing all `next` values.
     public func accumulate() -> SignalProducer<[Value], Error> {
-        return lift { $0.accumulate() }
+        return producer.lift { $0.accumulate() }
     }
 }

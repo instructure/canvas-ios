@@ -128,8 +128,8 @@ public enum JSONObjectResponse {
 extension Session {
     public func rac_dataWithRequest(_ request: URLRequest) -> SignalProducer<(Data, URLResponse), NSError> {
         return blockProducer { self.URLSession.dataTask(with: request) }
-            .promoteErrors(NSError.self)
-            .flatMap(.concat, transform: resumeTask)
+            .promoteError(NSError.self)
+            .flatMap(.concat, resumeTask)
     }
 
     public func resumeTask(_ task: URLSessionTask) -> SignalProducer<(Data, URLResponse), NSError> {
@@ -143,7 +143,7 @@ extension Session {
                 }
             }
 
-            disposable.add {
+            disposable.observeEnded {
                 task.cancel()
             }
 
@@ -161,7 +161,7 @@ extension Session {
     public func emptyResponseSignalProducer(_ request: URLRequest) -> SignalProducer<(), NSError> {
         return rac_dataWithRequest(request)
             .attemptMap { Session.validateResponse($0.0, response: $0.1) }
-            .flatMap(.concat, transform: { _ in SignalProducer<(), NSError>.empty })
+            .flatMap(.concat, { _ in SignalProducer<(), NSError>.empty })
     }
 
     fileprivate func JSONAndPaginationSignalProducer(_ request: URLRequest, keypath: String? = nil) -> SignalProducer<(Any, URL?), NSError> {
@@ -180,12 +180,12 @@ extension Session {
     public func JSONSignalProducer(_ request: URLRequest) -> SignalProducer<JSONObject, NSError> {
         return JSONAndPaginationSignalProducer(request)
             .map { $0.0 }
-            .flatMap(.concat, transform: Session.asJSONObject)
+            .flatMap(.concat, Session.asJSONObject)
     }
 
     public func JSONSignalProducer(_ task: URLSessionTask) -> SignalProducer<JSONObject, NSError> {
         return resumeTask(task)
-            .flatMap(.concat, transform: responseJSONSignalProducer)
+            .flatMap(.concat, responseJSONSignalProducer)
     }
 
     public func responseJSONSignalProducer(_ data: Data, response: URLResponse) -> SignalProducer<JSONObject, NSError> {
@@ -193,7 +193,7 @@ extension Session {
             .attemptMap(Session.validateResponse)
             .attemptMap(JSONSerialization.parseData)
             .map { $0.0 }
-            .flatMap(.concat, transform: Session.asJSONObject)
+            .flatMap(.concat, Session.asJSONObject)
     }
 
     fileprivate func appendNextPage(_ request: URLRequest, json: Any, nextPageURL: URL?) -> SignalProducer<Any, NSError> {
@@ -233,7 +233,7 @@ extension Session {
 
     public func paginatedJSONSignalProducer(_ request: URLRequest, keypath: String? = nil) -> SignalProducer<[JSONObject], NSError> {
         return paginatedJSONSignalProducerAnyObject(request, keypath: keypath)
-            .flatMap(.concat, transform: asArray(keypath))
+            .flatMap(.concat, asArray(keypath))
     }
 
     @discardableResult

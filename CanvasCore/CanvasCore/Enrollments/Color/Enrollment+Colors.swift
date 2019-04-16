@@ -43,7 +43,7 @@ extension Enrollment {
         let path = "/api/v1/users/self/colors"
         
         return attemptProducer { try session.GET(path) }
-            .flatMap(.merge, transform: session.JSONSignalProducer)
+            .flatMap(.merge, session.JSONSignalProducer)
     }
     
     static func syncFavoriteColors(_ session: Session, inContext context: NSManagedObjectContext) -> SignalProducer<(), NSError> {
@@ -64,7 +64,7 @@ extension Enrollment {
             }
             .observe(on: ManagedObjectContextScheduler(context: context.syncContext))
         }
-        return attemptProducer { try parseColors(colors) }.flatMap(.latest, transform: write)
+        return attemptProducer { try parseColors(colors) }.flatMap(.latest, write)
     }
     
     static func writeFavoriteColors(_ colors: CustomColors, inContext context: NSManagedObjectContext, completion: @escaping (NSError?) -> Void) {

@@ -47,7 +47,7 @@ open class Enrollment: NSManagedObject {
         return isFavorite ? favorites : hidden
     }
     
-    public lazy var color: DynamicProperty<UIColor> = {
+    public lazy var color: DynamicProperty<UIColor?> = {
         return DynamicProperty(object: self, keyPath: "color")
     }()
     

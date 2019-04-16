@@ -42,10 +42,10 @@ public protocol Refresher: class {
 
 import ReactiveSwift
 
-open class SignalProducerRefresher<SP: SignalProducerProtocol>: NSObject, Refresher where SP.Error == NSError {
+open class SignalProducerRefresher<Value>: NSObject, Refresher {
 
     @objc public let refreshControl = UIRefreshControl()
-    let signalProducer: SP
+    let signalProducer: SignalProducer<Value, NSError>
     var disposable: Disposable?
 
     @objc public let cacheKey: String
@@ -54,9 +54,9 @@ open class SignalProducerRefresher<SP: SignalProducerProtocol>: NSObject, Refres
 
     @objc fileprivate (set) open var isRefreshing: Bool = false
     open var refreshingBegan: Signal<(), NoError>
-    var refreshingBeganObserver: Observer<(), NoError>
+    var refreshingBeganObserver: Signal<(), NoError>.Observer
     open var refreshingCompleted: Signal<NSError?, NoError>
-    var refreshingCompletedObserver: Observer<NSError?, NoError>
+    var refreshingCompletedObserver: Signal<NSError?, NoError>.Observer
 
     @objc open var shouldRefresh: Bool {
         if let scope = scope, scope.shouldRefreshCache(cacheKey, ttl: ttl) {
@@ -70,7 +70,7 @@ open class SignalProducerRefresher<SP: SignalProducerProtocol>: NSObject, Refres
      * - param refreshSignalProducer The producer to invoke in order to sync the data
      * - param cacheKey The unique key for the cache. __MUST BE UNIQUE TO THE REQUEST__
      */
-    public init(refreshSignalProducer: SP, scope: RefreshScope, cacheKey: String, ttl: TimeInterval = 2.hours) {
+    public init(refreshSignalProducer: SignalProducer<Value, NSError>, scope: RefreshScope, cacheKey: String, ttl: TimeInterval = 2.hours) {
         self.scope = scope
         self.cacheKey = cacheKey
         self.ttl = ttl

@@ -124,6 +124,6 @@ extension SignalProtocol where Value == Notification {
 
 extension SignalProducerProtocol where Value == Notification {
     public func mapChanges<Object>(matching predicate: NSPredicate) -> SignalProducer<(ManagedObjectChange, Object?)?, Error> {
-        return self.lift { $0.mapChanges(matching: predicate) }
+        return producer.lift { $0.mapChanges(matching: predicate) }
     }
 }

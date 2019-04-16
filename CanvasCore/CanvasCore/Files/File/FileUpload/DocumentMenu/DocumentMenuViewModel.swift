@@ -113,17 +113,17 @@ public class DocumentMenuViewModel: DocumentMenuViewModelType, DocumentMenuViewM
 
         let uploadableMediaEvent = self.pickedMediaProperty.signal
             .skipNil()
-            .flatMap(.latest, transform: uploadable(for:))
+            .flatMap(.latest, uploadable(for:))
             .materialize()
 
         let uploadableAudioEvent = self.recordedAudioFileProperty.signal
             .skipNil()
-            .flatMap(.latest, transform: uploadableAudio(from:))
+            .flatMap(.latest, uploadableAudio(from:))
             .materialize()
 
         let uploadableDocumentEvent = self.pickedDocumentAtURLProperty.signal
             .skipNil()
-            .flatMap(.latest, transform: uploadableFile(from:))
+            .flatMap(.latest, uploadableFile(from:))
             .materialize()
 
         self.uploadable = Signal.merge(uploadableMediaEvent.values(), uploadableAudioEvent.values(), uploadableDocumentEvent.values())

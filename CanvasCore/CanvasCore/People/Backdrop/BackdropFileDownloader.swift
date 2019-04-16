@@ -29,7 +29,7 @@ internal class BackdropFileDownloader: NSObject {
     @objc static let sharedDownloader: BackdropFileDownloader = BackdropFileDownloader()
     
     let statusChangedSignal: Signal<BackdropFile, NoError>
-    let observer: Observer<BackdropFile, NoError>
+    let observer: Signal<BackdropFile, NoError>.Observer
     var disposable: Disposable?
     
     fileprivate override init() {
@@ -84,7 +84,7 @@ internal class BackdropFileDownloader: NSObject {
             
             download.resume()
             
-            disposable += ActionDisposable() {
+            disposable += AnyDisposable() {
                 download.cancel()
             }
         }

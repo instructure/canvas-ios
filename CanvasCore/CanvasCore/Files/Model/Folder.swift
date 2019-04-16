@@ -75,8 +75,8 @@ public final class Folder: FileNode {
                 return try Folder.addFolder(session, contextID: contextID, folderID: folderID, name: name)
             }.flatten(.merge)
             
-            
-            return network.flatMap(.concat, transform: local)
+
+            return network.flatMap(.concat, local)
 
         } else {
             let folderID: SignalProducer<String,  NSError> = FileNode.getRootFolderID(session, contextID: contextID)!
@@ -86,7 +86,7 @@ public final class Folder: FileNode {
                 }.flatten(.merge)
             }
             
-            return folderID.flatMap(.concat, transform: network).flatMap(.concat, transform: local)
+            return folderID.flatMap(.concat, network).flatMap(.concat, local)
         }
     }
 }
