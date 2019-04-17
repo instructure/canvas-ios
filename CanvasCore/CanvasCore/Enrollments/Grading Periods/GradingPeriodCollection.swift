@@ -59,7 +59,7 @@ open class GradingPeriodCollection: CanvasCore.Collection {
     public let selectedGradingPeriod: Property<GradingPeriodItem>
 
     public let collectionUpdates: Signal<[CollectionUpdate<GradingPeriodItem>], NoError>
-    let updatesObserver: Observer<[CollectionUpdate<GradingPeriodItem>], NoError>
+    let updatesObserver: Signal<[CollectionUpdate<GradingPeriodItem>], NoError>.Observer
 
     fileprivate let gradingPeriods: FetchedCollection<GradingPeriod>
     fileprivate let allSection = 0

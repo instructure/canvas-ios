@@ -45,22 +45,22 @@ abstract_target 'defaults' do
   pod 'react-native-camera', :path => nm_path + 'react-native-camera'
 
   pod 'SDWebImage', '~> 4.1'
-  pod 'ReactiveCocoa', '~> 5.0'
+  pod 'ReactiveCocoa', '~> 8.0'
   pod 'Marshal', '~> 1.1'
-  pod 'Result', '~> 3.2'
-  pod 'Cartography', '~> 1.1'
-  pod 'ReactiveSwift'
-  pod 'Kingfisher', '~> 3.2'
+  pod 'Result', '~> 4.1'
+  pod 'Cartography', '~> 3.1'
+  pod 'ReactiveSwift', '~> 4.0'
+  pod 'Kingfisher', '~> 4.10'
   pod 'Masonry', '~> 1.0'
   pod 'SVProgressHUD', '~> 2.0'
   pod 'TBBModal', '~> 1.0'
-  pod 'ReactiveObjC', '~> 3.0'
-  pod 'ReactiveObjCBridge', '~> 1.1'
+  pod 'ReactiveObjC', '~> 3.1'
+  pod 'ReactiveObjCBridge', '~> 4.0'
   pod 'AFNetworking', '~> 3.0'
   pod 'FXKeychain', '~> 1.5'
   pod 'Reachability', '~> 3.2'
   pod 'Mantle', '~> 1.5.5'
-  pod 'DeviceKit', '~> 1.0'
+  pod 'DeviceKit', '~> 1.13'
   pod 'TPKeyboardAvoiding', '~> 1.3'
   pod 'SwiftSimplify'
 
@@ -119,17 +119,13 @@ target 'GradesWidget' do
     project 'Canvas/Canvas.xcodeproj'
     pod 'Mantle', '~> 1.5.5'
     pod 'AFNetworking', '~> 3.0'
-    pod 'ReactiveObjC', '~> 3.0'
+    pod 'ReactiveObjC', '~> 3.1'
     pod 'FXKeychain', '~> 1.5'
 end
 
 post_install do |installer|
   installer.pods_project.targets.each do |target|
-    usePackageSwift = %w[ Eureka ]
     target.build_configurations.each do |config|
-      unless usePackageSwift.include? target.name
-        config.build_settings['SWIFT_VERSION'] = '3.0'
-      end
       config.build_settings['GCC_WARN_INHIBIT_ALL_WARNINGS'] = 'YES'
     end
     usesNonAppExAPI = %w[

@@ -23,8 +23,8 @@ public extension SignalProtocol where Value: Sequence {
      */
     
     public func uncollect() -> Signal<Value.Iterator.Element, Error> {
-        return Signal<Value.Iterator.Element, Error> { observer in
-            return self.observe { event in
+        return Signal<Value.Iterator.Element, Error> { observer, _ in
+            return signal.observe { event in
                 switch event {
                 case let .value(sequence):
                     sequence.forEach(observer.send)
@@ -47,6 +47,6 @@ public extension SignalProducerProtocol where Value: Sequence {
      */
     
     public func uncollect() -> SignalProducer<Value.Iterator.Element, Error> {
-        return lift { $0.uncollect() }
+        return producer.lift { $0.uncollect() }
     }
 }

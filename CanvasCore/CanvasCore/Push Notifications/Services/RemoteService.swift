@@ -36,7 +36,7 @@ open class RemoteService {
     // MARK: Notification Settings Globally Update
     open func getNotificationPreferencesSetup(_ completion: @escaping (Result<Bool, NSError>) -> ()) {
         requestForGetNotificationPreferencesSetup()
-            .flatMap(.concat, transform: session.JSONSignalProducer)
+            .flatMap(.concat, session.JSONSignalProducer)
             .on(value: { response in
                 let resultString: String = (try? response <| "\(RemoteService.customDataKey).\(RemoteService.key)") ?? "false"
                 completion(Result(value: (resultString as NSString).boolValue))
@@ -54,7 +54,7 @@ open class RemoteService {
     
     open func updateNotificationPreferencesSetup(_ completion: @escaping (Result<Bool, NSError>) -> ()) {
         requestForUpdateNotificationPreferencesSetup()
-            .flatMap(.concat, transform: session.emptyResponseSignalProducer)
+            .flatMap(.concat, session.emptyResponseSignalProducer)
             .on(completed: { completion(Result(value: true)) })
             .startWithFailed { err in completion(Result(error: err)) }
     }
@@ -114,7 +114,7 @@ open class RemoteService {
     //       GET /users/:user_id/communication_channels
     open func getUserCommunicationChannels(_ completion: @escaping (Result<[CommunicationChannel], NSError>) -> ()) {
         requestForUserCommunicationChannels()
-            .flatMap(.merge, transform: { self.session.paginatedJSONSignalProducer($0) } )
+            .flatMap(.merge, { self.session.paginatedJSONSignalProducer($0) } )
             .map { $0.compactMap(CommunicationChannel.create) }
             .on(value: { completion(Result(value: $0)) })
             .startWithFailed { err in completion(Result(error: err)) }
@@ -128,7 +128,7 @@ open class RemoteService {
 
     func deregisterPushNotificationTokenWithPushService(_ pushToken: String, completion: @escaping (Result<Void, NSError>) -> Void) {
         requestForPushNotificationDeregistration(pushToken)
-            .flatMap(.concat, transform: session.emptyResponseSignalProducer)
+            .flatMap(.concat, session.emptyResponseSignalProducer)
             .on(completed: { completion(Result(value: ())) })
             .startWithFailed { e in completion(Result(error: e)) }
     }
@@ -143,7 +143,7 @@ open class RemoteService {
     //       GET /users/:user_id/communication_channels/:communication_channel_id/notification_preferences
     open func getNotificationPreferences(_ channelID: String, completion: @escaping (Result<[NotificationPreference], NSError>) -> ()) {
         requestForNotificationPreferences(channelID)
-            .flatMap(.concat, transform: { self.session.paginatedJSONSignalProducer($0, keypath: "notification_preferences") } )
+            .flatMap(.concat, { self.session.paginatedJSONSignalProducer($0, keypath: "notification_preferences") } )
             .map { $0.compactMap(NotificationPreference.create) }
             .on(value: { completion(Result(value: $0)) })
             .startWithFailed { err in completion(Result(error: err)) }
@@ -161,7 +161,7 @@ open class RemoteService {
     //       e.g. https://mobiledev.instructure.com/api/v1/users/self/communication_channels/5574839/notification_preferences[new_file_added][frequency]=immediately&notification_preferences[new_files_added][frequency]=immediately
     open func setNotificationPreferences(_ channelID: String, preferences: [NotificationPreference], completion: @escaping (Result<Bool, NSError>) -> ()) {
         requestForSetNotificationPreferences(channelID, preferences: preferences)
-            .flatMap(.merge, transform: session.emptyResponseSignalProducer)
+            .flatMap(.merge, session.emptyResponseSignalProducer)
             .on(completed: { completion(Result(value: true)) })
             .startWithFailed { err in completion(Result(error: err)) }
     }

@@ -87,7 +87,7 @@ class ModuleItemViewModel: NSObject {
         }
     }
     fileprivate let module: Property<Module?>
-    fileprivate let errorObserver: Observer<NSError, NoError>
+    fileprivate let errorObserver: Signal<NSError, NoError>.Observer
     fileprivate let disposable = CompositeDisposable()
     fileprivate let siblingsUpdates: Property<[CollectionUpdate<ModuleItem>]>
     fileprivate let url: Property<URL?>
@@ -192,7 +192,7 @@ class ModuleItemViewModel: NSObject {
 
         let contentType = self.moduleItem.producer.map { $0?.contentType.accessibilityLabel }
         vm.accessibilityLabel <~ SignalProducer.combineLatest(vm.title.producer, vm.subtitle.producer, contentType, self.completed.producer, self.locked.producer)
-            .map { title, detail, content, completed, locked in
+            .map { title, detail, content, completed, locked -> String in
                 let completedStatus = NSLocalizedString("Status: Completed", comment: "Label read aloud when item status is completed.")
                 let incompleteStatus = NSLocalizedString("Status: Incomplete", comment: "Label read aloud when item status is incomplete.")
                 let lockedStatus = NSLocalizedString("Status: Locked", comment: "Label read aloud when item status is locked.")
@@ -253,7 +253,7 @@ class ModuleItemViewModel: NSObject {
 
         nextModuleItem = Property(initial: nil, then: SignalProducer.combineLatest(moduleItem.producer, siblingsUpdates.producer)
             .map { moduleItem, _ in moduleItem }
-            .promoteErrors(NSError.self)
+            .promoteError(NSError.self)
             .flatMap(.latest) { moduleItem in
                 attemptProducer {
                     try moduleItem?.next(session)
@@ -264,7 +264,7 @@ class ModuleItemViewModel: NSObject {
 
         previousModuleItem = Property(initial: nil, then: SignalProducer.combineLatest(moduleItem.producer, siblingsUpdates.producer)
             .map { moduleItem, _ in moduleItem }
-            .promoteErrors(NSError.self)
+            .promoteError(NSError.self)
             .flatMap(.latest) { moduleItem in
                 attemptProducer {
                     try moduleItem?.previous(session)

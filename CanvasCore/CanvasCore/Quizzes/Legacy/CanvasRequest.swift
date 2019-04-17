@@ -62,10 +62,10 @@ struct Request<T>: CustomStringConvertible {
     }
     
     fileprivate var request: Result<URLRequest, NSError> {
-        return Result() {
+        return Result(catching: {
             try URLRequest(method: method, URL: url, parameters: parameters ?? [:], encoding: parameterEncoding)
                 .authorized(with: auth)
-        }
+        })
     }
     
     fileprivate func requestForPageWithURL(_ url: URL) -> Request<T> {

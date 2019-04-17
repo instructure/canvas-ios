@@ -35,7 +35,7 @@ open class FetchedCollection<Model>: NSObject, Collection, Sequence, NSFetchedRe
     @objc let titleForSectionTitle: (String?)->String?
 
     public let collectionUpdates: Signal<[CollectionUpdate<Model>], NoError>
-    internal let updatesObserver: Observer<[CollectionUpdate<Model>], NoError>
+    internal let updatesObserver: Signal<[CollectionUpdate<Model>], NoError>.Observer
     
     @objc open func reload() {
         

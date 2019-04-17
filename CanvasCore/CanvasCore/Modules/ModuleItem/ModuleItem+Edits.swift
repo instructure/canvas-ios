@@ -90,6 +90,6 @@ extension ModuleItem {
                 try Assignment.invalidateCache(session, courseID: me.courseID)
             }
         }
-        return remote.flatMap(.concat, transform: local)
+        return remote.flatMap(.concat, local)
     }
 }

@@ -29,7 +29,7 @@ open class FetchedDetailsCollection<M, DVM>: Collection where M: NSManagedObject
     let detailsFactory: (M)->[DVM]
     var details: [DVM] = []
     public let collectionUpdates: Signal<[CollectionUpdate<DVM>], NoError>
-    fileprivate let updatesObserver: Observer<[CollectionUpdate<DVM>], NoError>
+    fileprivate let updatesObserver: Signal<[CollectionUpdate<DVM>], NoError>.Observer
     
     public init(observer: ManagedObjectObserver<M>, detailsFactory: @escaping (M)->[DVM]) {
         self.observer = observer

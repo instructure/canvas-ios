@@ -63,7 +63,7 @@ extension ModuleItem {
 
                 return edit
                     .concat(invalidateCache)
-                    .concat(postModuleItemProgress.promoteErrors(NSError.self))
+                    .concat(postModuleItemProgress.promoteError(NSError.self))
             }
 
             return SignalProducer<SignalProducer<Void, NSError>, NSError>(updates).flatten(.merge)

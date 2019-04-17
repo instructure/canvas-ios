@@ -137,7 +137,7 @@ extension Session {
                     let description = NSLocalizedString("There was a problem preparing the file for upload", tableName: "Localizable", bundle: .core, value: "", comment: "File upload error message")
                     return NSError(subdomain: "FileKit", code: 0, sessionID: sessionID, apiURL: target.url, title: FileUploadErrorTitle, description: description, failureReason: e.localizedDescription)
                 }
-                .flatMap(.concat, transform: self.writeDataToFile(identifier: identifier))
+                .flatMap(.concat, self.writeDataToFile(identifier: identifier))
                 .map { (request, $0) }
         }
     }

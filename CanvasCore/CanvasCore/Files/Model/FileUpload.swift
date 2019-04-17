@@ -122,9 +122,9 @@ open class FileUpload: Upload {
             
             // json should be the upload target
             disposable += UploadTarget.parse(json: json)
-                .flatMap(.concat, transform: saveUploadTargetInContext(context))
-                .flatMap(.concat, transform: session.requestUploadFile(data: self.data))
-                .flatMap(.concat, transform: self.uploadFile(inSession: session, inContext: context))
+                .flatMap(.concat, saveUploadTargetInContext(context))
+                .flatMap(.concat, session.requestUploadFile(data: self.data))
+                .flatMap(.concat, self.uploadFile(inSession: session, inContext: context))
                 .observe(on: ManagedObjectContextScheduler(context: context))
                 .flatMapError(saveError(context))
                 .start()
