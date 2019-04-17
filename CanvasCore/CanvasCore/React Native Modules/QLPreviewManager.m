@@ -24,7 +24,7 @@ RCT_EXPORT_MODULE();
 
 RCT_EXPORT_METHOD(previewFile:(NSString *)url)
 {
-    _fileURL = [[NSURL alloc] initWithString:url];
+    self.fileURL = [[NSURL alloc] initWithString:url];
     UIViewController *view = [[HelmManager shared] topMostViewController];
     QLPreviewController *preview = [[QLPreviewController alloc] init];
     preview.delegate = self;
@@ -48,7 +48,7 @@ RCT_EXPORT_METHOD(previewFile:(NSString *)url)
 }
 
 - (id<QLPreviewItem>)previewController:(QLPreviewController *)controller previewItemAtIndex:(NSInteger)index {
-    return _fileURL;
+    return self.fileURL;
 }
 
 @end
