@@ -26,6 +26,7 @@ import {
   TouchableHighlight,
   SafeAreaView,
   Clipboard,
+  NativeModules,
 } from 'react-native'
 import {
   downloadFile,
@@ -47,6 +48,9 @@ import CanvasWebView from '../../common/components/CanvasWebView'
 import { alertError } from '../../redux/middleware/error-handler'
 import ModalOverlay from '../../common/components/ModalOverlay'
 import { getSession } from '../../canvas-api/session'
+import { Button } from '../../common/buttons'
+
+const { QLPreviewManager } = NativeModules
 
 type Props = {
   context?: CanvasContext,
@@ -238,6 +242,10 @@ export default class ViewFile extends Component<Props, State> {
     }
   }
 
+  openInAR = () => {
+    QLPreviewManager.previewFile(this.state.localPath)
+  }
+
   renderPreview () {
     const { file } = this.state
     const { error, localPath, width } = this.state
@@ -249,6 +257,20 @@ export default class ViewFile extends Component<Props, State> {
         </View>
       )
     }
+
+    if (file && file.filename.split('.').pop() === 'usdz') {
+      return (
+        <View style={styles.centeredContainer}>
+          <Button
+            style={styles.augmentRealityButton}
+            onPress={this.openInAR}
+          >
+            {i18n('Augment Reality')}
+          </Button>
+        </View>
+      )
+    }
+
     let mimeClass = file && file.mime_class
     if (file && file['content-type'].includes('audio')) {
       mimeClass = 'audio'
@@ -433,5 +455,9 @@ const styles = StyleSheet.create({
     width: 24,
     height: 24,
     resizeMode: 'contain',
+  },
+  augmentRealityButton: {
+    paddingVertical: 8,
+    paddingHorizontal: 24,
   },
 })

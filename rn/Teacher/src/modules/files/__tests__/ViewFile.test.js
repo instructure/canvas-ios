@@ -17,7 +17,7 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
 import React from 'react'
 import { shallow } from 'enzyme'
-import { ActionSheetIOS, Clipboard } from 'react-native'
+import { ActionSheetIOS, Clipboard, NativeModules } from 'react-native'
 import {
   exists,
   downloadFile,
@@ -158,6 +158,28 @@ describe('ViewFile', () => {
     await updatedState(tree)
     tree.update()
     expect(tree.find('CanvasWebView').props().source.uri).toEqual('http://mobiledev.instructure.com//courses/1/files/24/preview')
+  })
+
+  it('renders the button for AR preview', async () => {
+    props.file.filename = 'test.usdz'
+    const tree = shallow(<ViewFile {...props} />)
+    await Promise.resolve()
+    await Promise.resolve()
+    await updatedState(tree)
+    tree.update()
+    expect(tree.find('Button').props().children).toEqual('Augment Reality')
+  })
+
+  it('calls QLPreviewManager.previewFile when the AR button is tapped', async () => {
+    props.file.filename = 'test.usdz'
+    const tree = shallow(<ViewFile {...props} />)
+    await Promise.resolve()
+    await Promise.resolve()
+    await updatedState(tree)
+    tree.update()
+    let button = tree.find('Button')
+    button.simulate('press')
+    expect(NativeModules.QLPreviewManager.previewFile).toHaveBeenCalled()
   })
 
   it('renders an error message if loading fails', async () => {

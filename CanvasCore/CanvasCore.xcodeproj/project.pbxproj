@@ -500,6 +500,7 @@
 		9F544E0A1FBB766E00BB2D84 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F544E0C1FBB766E00BB2D84 /* Localizable.strings */; };
 		9FA866972086820D000ECFC9 /* Adjustable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA866962086820D000ECFC9 /* Adjustable.swift */; };
 		9FB85499208677DB007499DA /* AdjustableManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB85498208677DB007499DA /* AdjustableManager.m */; };
+		9FBD22DA2264CC9A007E48E6 /* QLPreviewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FBD22D92264CC9A007E48E6 /* QLPreviewManager.m */; };
 		9FCA1A11205AC2FC00ECB5E9 /* AlertControls.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FCA1A10205AC2FC00ECB5E9 /* AlertControls.m */; };
 		9FD18B6B2052DE6800119927 /* LTITools.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD18B6A2052DE6800119927 /* LTITools.m */; };
 		B1411D5A1FE825ED00CD4967 /* CoreDataSyncHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1411D591FE825ED00CD4967 /* CoreDataSyncHelper.swift */; };
@@ -1127,6 +1128,8 @@
 		9FBCE5EF1FBB767300D0CB43 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		9FBCE5F01FBB767300D0CB43 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		9FBCE5F11FBB767300D0CB43 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/TimedQuizViewController.strings"; sourceTree = "<group>"; };
+		9FBD22D92264CC9A007E48E6 /* QLPreviewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QLPreviewManager.m; sourceTree = "<group>"; };
+		9FBD22DB2264D001007E48E6 /* QLPreviewManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QLPreviewManager.h; sourceTree = "<group>"; };
 		9FC5F3571FBB7676007F4B9D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9FC5F3581FBB7676007F4B9D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9FC5F3591FBB7676007F4B9D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/TimedQuizViewController.strings; sourceTree = "<group>"; };
@@ -1755,6 +1758,8 @@
 				2CE2059020EAC5BD002A6A64 /* CanvasAnalytics.m */,
 				78C610CB21C9FFFC00913B93 /* CanvasCrashlytics.h */,
 				78C610CC21CA022400913B93 /* CanvasCrashlytics.m */,
+				9FBD22D92264CC9A007E48E6 /* QLPreviewManager.m */,
+				9FBD22DB2264D001007E48E6 /* QLPreviewManager.h */,
 			);
 			path = "React Native Modules";
 			sourceTree = "<group>";
@@ -3452,6 +3457,7 @@
 				4961F58C1F8FB21F0093EC86 /* Brand.swift in Sources */,
 				494AE0A21F843A09001A8F31 /* ScrollViewDisablerManager.m in Sources */,
 				49CE96991F8FF41B00121A43 /* NSError+QuizKit.swift in Sources */,
+				9FBD22DA2264CC9A007E48E6 /* QLPreviewManager.m in Sources */,
 				49CE967E1F8FF41B00121A43 /* SelectableAnswerCellProtocol.swift in Sources */,
 				3BBEAA4B20472984004D334C /* Persistency.swift in Sources */,
 				4961F61F1F8FB6E40093EC86 /* UIColor+EnrollmentKit.swift in Sources */,
