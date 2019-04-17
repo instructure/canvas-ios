@@ -128,12 +128,10 @@ extension Swift.Collection where Iterator.Element: Equatable {
 private struct XY: Hashable, CustomDebugStringConvertible {
     let a: Int
     let b: Int
-    let hashValue: Int
     let debugDescription: String
     init(_ a: Int, _ b: Int) {
         self.a = a
         self.b = b
-        hashValue = a.hashValue ^ b.hashValue
         debugDescription = "\(a),\(b)"
     }
 }

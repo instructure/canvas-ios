@@ -46,7 +46,7 @@ public extension UIImage {
     }
 
     // https://stackoverflow.com/a/5427890
-    @objc public static func fixOrientation(_ image: UIImage) -> UIImage {
+    @objc static func fixOrientation(_ image: UIImage) -> UIImage {
         if image.imageOrientation == .up {
             return image
         }
@@ -105,7 +105,7 @@ public extension UIImage {
     }
     
     /// Creates an image that has RTL support if available
-    public static func RTLImage(_ named: String, renderingMode: UIImage.RenderingMode? = nil) -> UIImage? {
+    static func RTLImage(_ named: String, renderingMode: UIImage.RenderingMode? = nil) -> UIImage? {
         var image = UIImage(named: named)
         if let mode = renderingMode {
             image = image?.withRenderingMode(mode)

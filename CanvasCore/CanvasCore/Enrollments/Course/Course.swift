@@ -138,7 +138,7 @@ public final class Course: Enrollment {
     }
 
     public override func markAsFavorite(_ favorite: Bool, session: Session) -> SignalProducer<Void, NSError> {
-        let path = api/v1/"users"/"self"/"favorites"/"courses"/id
+        let path = "api/v1/users/self/favorites/courses/\(id)"
         let request = attemptProducer {
             favorite ? try session.POST(path) : try session.DELETE(path)
         }

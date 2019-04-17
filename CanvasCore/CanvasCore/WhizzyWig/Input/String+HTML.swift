@@ -27,7 +27,7 @@
 import Foundation
 
 public extension String {
-    public func stringByStrippingHTML() -> String {
+    func stringByStrippingHTML() -> String {
         var str = self.replacingOccurrences(of: "<br[^>]*>", with: "\n", options: [.regularExpression, .caseInsensitive], range: nil)
         str = str.replacingOccurrences(of: "</*p[^>]*>", with: "\n", options: [.regularExpression, .caseInsensitive], range: nil)
         str = str.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)

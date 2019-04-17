@@ -18,13 +18,19 @@
 #import <CanvasCore/CanvasCore-Swift.h>
 @import React;
 
-@interface TabBarBadgeCounts (React) <RCTBridgeModule>
+@interface TabBarBadgeCountsReact : NSObject<RCTBridgeModule>
 @end
 
-@implementation TabBarBadgeCounts (React)
+@implementation TabBarBadgeCountsReact
 RCT_EXPORT_MODULE(TabBarBadgeCounts);
-RCT_EXTERN_METHOD(updateUnreadMessageCount:);
-RCT_EXTERN_METHOD(updateTodoListCount:);
+RCT_EXPORT_METHOD(updateUnreadMessageCount: (NSNumber* _Nonnull)count)
+{
+    [TabBarBadgeCounts updateUnreadMessageCount:count];
+}
+RCT_EXPORT_METHOD(updateTodoListCount: (NSNumber* _Nonnull)count)
+{
+    [TabBarBadgeCounts updateTodoListCount:count];
+}
 
 - (dispatch_queue_t)methodQueue { return dispatch_get_main_queue(); }
 + (BOOL)requiresMainQueueSetup { return YES; }

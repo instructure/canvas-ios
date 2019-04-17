@@ -72,7 +72,7 @@ public struct ContextID: Hashable, Equatable, CustomStringConvertible {
     
     /// E.g. course_123, group_333, account_5912
     public var canvasContextID: String {
-        return context.rawValue + "_\(id)"
+        return "\(context.rawValue)_\(id)"
     }
     
     /** The api path for the resources
@@ -80,7 +80,7 @@ public struct ContextID: Hashable, Equatable, CustomStringConvertible {
      in the format `api/v1/courses/<id>`
      */
     public var apiPath: String {
-        return api/v1/context.pathComponent/id
+        return "api/v1/\(context.pathComponent)/\(id)"
     }
     
     /** The html path for the resources
@@ -88,11 +88,7 @@ public struct ContextID: Hashable, Equatable, CustomStringConvertible {
      in the format `courses/<id>`
      */
     public var htmlPath: String {
-        return context.pathComponent/id
-    }
-    
-    public var hashValue: Int {
-        return htmlPath.hashValue
+        return "\(context.pathComponent)/\(id)"
     }
     
     public var description: String {

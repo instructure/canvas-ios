@@ -19,15 +19,15 @@
 import Foundation
 
 public extension String {
-    public func toNSNumberWrappingInt64() -> NSNumber {
+    func toNSNumberWrappingInt64() -> NSNumber {
         return NSNumber(value: (self as NSString).longLongValue as Int64)
     }
     
-    public func toInt64() -> Int64 {
+    func toInt64() -> Int64 {
         return self.toNSNumberWrappingInt64().int64Value
     }
 
-    public func isValidEmail() -> Bool {
+    func isValidEmail() -> Bool {
         
         let range = NSRange(location: 0, length: self.count)
         if let detector = try? NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue),

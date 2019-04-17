@@ -713,7 +713,7 @@
 			};
 			buildConfigurationList = 49E95863190967B000A1BFB7 /* Build configuration list for PBXProject "CanvasKeymaster" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -722,6 +722,29 @@
 				"en-GB-instukhe",
 				"nb-instk12",
 				"sv-instk12",
+				ar,
+				da,
+				de,
+				"en-AU",
+				"en-GB",
+				es,
+				"fr-CA",
+				fr,
+				ht,
+				ja,
+				mi,
+				nb,
+				nl,
+				pl,
+				"pt-BR",
+				pt,
+				ru,
+				sv,
+				"zh-HK",
+				zh,
+				cy,
+				"en-CY",
+				"sl-SI",
 			);
 			mainGroup = 49E9585F190967B000A1BFB7;
 			productRefGroup = 49E95869190967B000A1BFB7 /* Products */;

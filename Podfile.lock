@@ -22,24 +22,52 @@ PODS:
   - DeviceKit (1.13.0)
   - Eureka (4.3.1)
   - Fabric (1.7.7)
-  - Firebase/Core (5.4.0):
+  - Firebase/Core (5.20.2):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (= 5.0.1)
-  - Firebase/CoreOnly (5.4.0):
-    - FirebaseCore (= 5.0.5)
-  - FirebaseAnalytics (5.0.1):
-    - FirebaseCore (~> 5.0)
-    - FirebaseInstanceID (~> 3.0)
-    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
+    - FirebaseAnalytics (= 5.8.1)
+  - Firebase/CoreOnly (5.20.2):
+    - FirebaseCore (= 5.4.1)
+  - FirebaseAnalytics (5.8.1):
+    - FirebaseCore (~> 5.4)
+    - FirebaseInstanceID (~> 3.8)
+    - GoogleAppMeasurement (= 5.8.1)
+    - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
+    - GoogleUtilities/MethodSwizzler (~> 5.2)
+    - GoogleUtilities/Network (~> 5.2)
+    - "GoogleUtilities/NSData+zlib (~> 5.2)"
     - nanopb (~> 0.3)
-  - FirebaseCore (5.0.5):
-    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
-  - FirebaseInstanceID (3.1.1):
-    - FirebaseCore (~> 5.0)
+  - FirebaseCore (5.4.1):
+    - GoogleUtilities/Environment (~> 5.2)
+    - GoogleUtilities/Logger (~> 5.2)
+  - FirebaseInstanceID (3.8.1):
+    - FirebaseCore (~> 5.2)
+    - GoogleUtilities/Environment (~> 5.2)
+    - GoogleUtilities/UserDefaults (~> 5.2)
   - FXKeychain (1.5.3)
-  - GoogleToolboxForMac/Defines (2.1.4)
-  - "GoogleToolboxForMac/NSData+zlib (2.1.4)":
-    - GoogleToolboxForMac/Defines (= 2.1.4)
+  - GoogleAppMeasurement (5.8.1):
+    - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
+    - GoogleUtilities/MethodSwizzler (~> 5.2)
+    - GoogleUtilities/Network (~> 5.2)
+    - "GoogleUtilities/NSData+zlib (~> 5.2)"
+    - nanopb (~> 0.3)
+  - GoogleUtilities/AppDelegateSwizzler (5.7.0):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+  - GoogleUtilities/Environment (5.7.0)
+  - GoogleUtilities/Logger (5.7.0):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/MethodSwizzler (5.7.0):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/Network (5.7.0):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (5.7.0)"
+  - GoogleUtilities/Reachability (5.7.0):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/UserDefaults (5.7.0):
+    - GoogleUtilities/Logger
   - Interactable (0.0.9):
     - React
   - Kingfisher (4.10.1)
@@ -48,11 +76,11 @@ PODS:
   - Mantle/extobjc (1.5.8)
   - Marshal (1.2.4)
   - Masonry (1.1.0)
-  - nanopb (0.3.8):
-    - nanopb/decode (= 0.3.8)
-    - nanopb/encode (= 0.3.8)
-  - nanopb/decode (0.3.8)
-  - nanopb/encode (0.3.8)
+  - nanopb (0.3.901):
+    - nanopb/decode (= 0.3.901)
+    - nanopb/encode (= 0.3.901)
+  - nanopb/decode (0.3.901)
+  - nanopb/encode (0.3.901)
   - RCTSFSafariViewController (0.2.4):
     - React
   - Reachability (3.2)
@@ -146,7 +174,7 @@ DEPENDENCIES:
   - DeviceKit (~> 1.13)
   - Eureka (~> 4.3)
   - Fabric (~> 1.7.7)
-  - Firebase/Core
+  - Firebase/Core (~> 5.20)
   - FXKeychain (~> 1.5)
   - Interactable (from `./rn/Teacher/node_modules/react-native-interactable`)
   - Kingfisher (~> 4.10)
@@ -205,7 +233,8 @@ SPEC REPOS:
     - FirebaseCore
     - FirebaseInstanceID
     - FXKeychain
-    - GoogleToolboxForMac
+    - GoogleAppMeasurement
+    - GoogleUtilities
     - Kingfisher
     - Mantle
     - Marshal
@@ -263,18 +292,19 @@ SPEC CHECKSUMS:
   DeviceKit: 5a4accdb2918ce0b69e62dc3bef6e4d2cc06e2e4
   Eureka: 28ea296f06710f6745266b71f17862048941a32d
   Fabric: bda89e242bce1b7b8ab264248cf3407774ce0095
-  Firebase: d66f4f29c23f22d96808d9abc174d81d8eee968f
-  FirebaseAnalytics: b3628aea54c50464c32c393fb2ea032566e7ecc2
-  FirebaseCore: 42b3267233bd21a5abd54117ccc38ca3dd0f8e83
-  FirebaseInstanceID: f3f0657372592ecdfdfe2cac604a5a75758376a6
+  Firebase: 0c8cf33f266410c61ab3e2265cfa412200351d9c
+  FirebaseAnalytics: ece1aa57a4f43c64d53a648b5a5e05151aae947b
+  FirebaseCore: f1a9a8be1aee4bf71a2fc0f4096df6788bdfda61
+  FirebaseInstanceID: a122b0c258720cf250551bb2bedf48c699f80d90
   FXKeychain: 2fe54573946ffef634f4e2a2851e6c8f4ea15e76
-  GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
+  GoogleAppMeasurement: ffe513e90551844a739e7bcbb1d2aca1c28a4338
+  GoogleUtilities: 273e67030e0de313e7304f6dcfa96fc5214f6c23
   Interactable: 0a9f2a42b02ea03114d7e03e714d946a65cd8d0b
   Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
   Mantle: f03b2b606c3f0cabd80214ad8a2fed6b464a7359
   Marshal: 8e04e6624e506921db7143b0bfd83caee03f32d6
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
-  nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   RCTSFSafariViewController: 954d0fedb55f8b01b8695c78a8697fdc09a931b4
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   React: 352f02f1db6e4744f9a758527e13e3fdefbbd6ba
@@ -300,6 +330,6 @@ SPEC CHECKSUMS:
   TPKeyboardAvoiding: cb69d5ddbe90ce0170e4bc2db1e5e41d4a3ad9a4
   yoga: b5d96400ca8b2936965a7a6516da7c1177f432a3
 
-PODFILE CHECKSUM: 0c3d58b6bc8cd04c755cbfa283e9233f6cf198fe
+PODFILE CHECKSUM: bb538787c940f39041e34dcbcccfc9e14594c056
 
-COCOAPODS: 1.6.0
+COCOAPODS: 1.6.1

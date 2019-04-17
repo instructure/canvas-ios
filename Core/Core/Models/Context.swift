@@ -30,11 +30,11 @@ public protocol Context {
 }
 
 public extension Context {
-    public var canvasContextID: String {
+    var canvasContextID: String {
         return "\(contextType)_\(id)"
     }
 
-    public var pathComponent: String {
+    var pathComponent: String {
         return "\(contextType.pathComponent)/\(id)"
     }
 }

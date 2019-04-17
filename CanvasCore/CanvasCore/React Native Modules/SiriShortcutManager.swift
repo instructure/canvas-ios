@@ -17,9 +17,8 @@
 import Foundation
 import CanvasKit
 import ReactiveSwift
-             
-public class SiriShortcutManager: NSObject {
 
+public class SiriShortcutManager: NSObject {
     enum ShortcutType: String {
         case grades = "com.instructure.siri.shortcut.getgrades"
 
@@ -34,7 +33,7 @@ public class SiriShortcutManager: NSObject {
     }
 
     @objc
-    public func donateSiriShortcut(_ userInfo: [String: Any]) {
+    public static func donateSiriShortcut(_ userInfo: [String: Any]) {
         guard let identifier = userInfo["identifier"] as? String,
               let shortcutType = ShortcutType(rawValue: identifier),
               let _ = userInfo["name"] as? String else { return }

@@ -26,14 +26,14 @@ public extension Bundle {
     static let parentBundleID = "com.instructure.parentapp"
     static let coreBundleID = "com.instructure.core"
 
-    public func appGroupID(bundleID: String? = nil) -> String? {
+    func appGroupID(bundleID: String? = nil) -> String? {
         if (bundleID ?? bundleIdentifier)?.hasPrefix(Bundle.studentBundleID) == true {
             return "group.\(Bundle.studentBundleID)"
         }
         return nil
     }
 
-    public var isStudentApp: Bool { return bundleIdentifier == Bundle.studentBundleID }
-    public var isTeacherApp: Bool { return bundleIdentifier == Bundle.teacherBundleID }
-    public var isParentApp: Bool { return bundleIdentifier == Bundle.parentBundleID }
+    var isStudentApp: Bool { return bundleIdentifier == Bundle.studentBundleID }
+    var isTeacherApp: Bool { return bundleIdentifier == Bundle.teacherBundleID }
+    var isParentApp: Bool { return bundleIdentifier == Bundle.parentBundleID }
 }

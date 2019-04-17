@@ -19,7 +19,7 @@
 import Foundation
 
 public extension URLRequest {
-    public static func requestWithDefaultHTTPHeaders(_ url: URL) -> URLRequest {
+    static func requestWithDefaultHTTPHeaders(_ url: URL) -> URLRequest {
         var request = URLRequest(url: url)
         request.addDefaultHTTPHeaders()
         return request as URLRequest

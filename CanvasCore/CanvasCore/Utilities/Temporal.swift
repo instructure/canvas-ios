@@ -53,7 +53,7 @@ private let _relativeShortDate: DateFormatter = {
 }()
 
 public extension Date {
-    public var formattedDueDate: String {
+    var formattedDueDate: String {
         let plus1 = self + 1.minutesComponents
         let is1159 = !(plus1 ~= self)
         if is1159 {
@@ -65,11 +65,11 @@ public extension Date {
 }
 
 public extension DateFormatter {
-    @objc public static var LongStyleDateFormatter: DateFormatter { return _LongStyleDateFormatter }
-    @objc public static var MediumStyleDateTimeFormatter: DateFormatter { return _MediumStyleDateTimeFormatter }
-    @objc public static var yyyyMMdd: DateFormatter { return _yyyyMMdd }
-    @objc public static var relativeShortDateAndTime: DateFormatter { return _relativeShortDateAndTime }
-    @objc public static var relativeShortDate: DateFormatter { return _relativeShortDate }
+    @objc static var LongStyleDateFormatter: DateFormatter { return _LongStyleDateFormatter }
+    @objc static var MediumStyleDateTimeFormatter: DateFormatter { return _MediumStyleDateTimeFormatter }
+    @objc static var yyyyMMdd: DateFormatter { return _yyyyMMdd }
+    @objc static var relativeShortDateAndTime: DateFormatter { return _relativeShortDateAndTime }
+    @objc static var relativeShortDate: DateFormatter { return _relativeShortDate }
 }
 
 public extension DateComponents {
@@ -91,49 +91,49 @@ public extension DateComponents {
 }
 
 public extension Int {
-    public var nanosecondsComponents: DateComponents {
+    var nanosecondsComponents: DateComponents {
         var c = DateComponents.zero()
         c.nanosecond = self
         return c
     }
     
-    public var secondsComponents: DateComponents {
+    var secondsComponents: DateComponents {
         var c = DateComponents.zero()
         c.second = self
         return c
     }
     
-    public var minutesComponents: DateComponents {
+    var minutesComponents: DateComponents {
         var c = DateComponents.zero()
         c.minute = self
         return c
     }
     
-    public var hoursComponents: DateComponents {
+    var hoursComponents: DateComponents {
         var c = DateComponents.zero()
         c.hour = self
         return c
     }
     
-    public var daysComponents: DateComponents {
+    var daysComponents: DateComponents {
         var c = DateComponents.zero()
         c.day = self
         return c
     }
     
-    public var weeksComponents: DateComponents {
+    var weeksComponents: DateComponents {
         var c = DateComponents.zero()
         c.weekOfMonth = self
         return c
     }
     
-    public var monthsComponents: DateComponents {
+    var monthsComponents: DateComponents {
         var c = DateComponents.zero()
         c.month = self
         return c
     }
     
-    public var yearsComponents: DateComponents {
+    var yearsComponents: DateComponents {
         var c = DateComponents.zero()
         c.year = self
         return c
@@ -141,15 +141,15 @@ public extension Int {
 }
 
 public extension Int {
-    public var minutes: TimeInterval {
+    var minutes: TimeInterval {
         return TimeInterval(self*60)
     }
     
-    public var hours: TimeInterval {
+    var hours: TimeInterval {
         return TimeInterval(minutes*60)
     }
     
-    public var days: TimeInterval {
+    var days: TimeInterval {
         return TimeInterval(hours*24)
     }
 }
@@ -215,7 +215,7 @@ public func -(lhs: Date, rhs: DateComponents) -> Date {
 }
 
 public extension Date {
-    public init(year: Int, month: Int, day: Int) {
+    init(year: Int, month: Int, day: Int) {
         var components = DateComponents()
         components.year = year
         components.month = month
@@ -224,25 +224,25 @@ public extension Date {
         self.init(timeIntervalSinceReferenceDate:tx!)
     }
     
-    public var dateAtMidnight: Date {
+    var dateAtMidnight: Date {
         let components = (TemporalCalendar as NSCalendar).components([.day, .month, .year], from: self)
         return TemporalCalendar.date(from: components)!
     }
     
-    public var dateOnSundayAtTheBeginningOfTheWeek: Date {
+    var dateOnSundayAtTheBeginningOfTheWeek: Date {
         let date = dateAtMidnight
         let component = (TemporalCalendar as NSCalendar).component(.weekday, from: self)
         return date - (component - 1).daysComponents
     }
     
-    public func isTheSameDayAsDate(_ date: Date) -> Bool {
+    func isTheSameDayAsDate(_ date: Date) -> Bool {
         let myComponents = (TemporalCalendar as NSCalendar).components([.day, .month, .year], from: self)
         let otherComponents = (TemporalCalendar as NSCalendar).components([.day, .month, .year], from: date)
         
         return myComponents.year == otherComponents.year && myComponents.month == otherComponents.month && myComponents.day == otherComponents.day
     }
     
-    public var yyyyMMdd: String { return DateFormatter.yyyyMMdd.string(from: self) }
+    var yyyyMMdd: String { return DateFormatter.yyyyMMdd.string(from: self) }
 }
 
 // returns an array of days (00:00:00) (removes time component) from the start date to finish date inclusive

@@ -188,7 +188,7 @@ struct BackdropFile: Hashable, Equatable {
     to a semi-permanent location in the Cache directory.
     */
     func writeFileToPermanentLocationFromURL(_ fromURL: URL) -> Result<UIImage, NSError> {
-        return Result(attempt: {
+        return Result(catching: {
             let data = try Data(contentsOf: fromURL)
             guard let image = UIImage(data: data) else {
                 throw NSError(domain: "ProfileKit.BackdropFile.writeFileFromTemporyURLToPermanentLocation", code: 0, userInfo: [NSLocalizedDescriptionKey: "error parsing file to UIImage"])
