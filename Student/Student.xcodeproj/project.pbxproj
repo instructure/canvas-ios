@@ -1706,6 +1706,7 @@
 				TargetAttributes = {
 					2C5C6988211DFFAD00D9AD15 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -1717,10 +1718,12 @@
 						};
 					};
 					3B542D4F215AE79E0084DA9D = {
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 					78761D83218B8C2A0042E5D2 = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -1733,15 +1736,17 @@
 					};
 					7D067CDB21505AF100B78AF2 = {
 						CreatedOnToolsVersion = 9.4;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 					B1FFB8292160719C000684AA = {
 						CreatedOnToolsVersion = 10.0;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 					F9E7D0CE215BE19F00CDC1A3 = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 2C5C6988211DFFAD00D9AD15;
 					};
@@ -2586,7 +2591,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2613,7 +2618,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -2633,7 +2638,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas.StudentTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Student.app/Student";
 			};
@@ -2654,7 +2659,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas.StudentTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Student.app/Student";
 			};
@@ -2678,7 +2683,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.instructure.icanvas.share-extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2697,7 +2702,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.instructure.icanvas.share-extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -2727,7 +2732,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -2759,7 +2764,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -2792,7 +2797,7 @@
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_OBJC_BRIDGING_HEADER = StudentHostDistantObjectCategories/bridge.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../Carthage/Checkouts/EarlGrey/** $(PROJECT_DIR)/../Carthage/Build/iOS/**";
 				WRAPPER_EXTENSION = bundle;
 			};
@@ -2822,7 +2827,7 @@
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_OBJC_BRIDGING_HEADER = StudentHostDistantObjectCategories/bridge.h;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../Carthage/Checkouts/EarlGrey/** $(PROJECT_DIR)/../Carthage/Build/iOS/**";
 				WRAPPER_EXTENSION = bundle;
 			};
@@ -2852,7 +2857,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(TARGET_NAME)/bridge.h";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				SYSTEM_FRAMEWORK_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Student;
@@ -2883,7 +2888,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(TARGET_NAME)/bridge.h";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				SYSTEM_FRAMEWORK_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Student;

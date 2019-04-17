@@ -304,7 +304,7 @@ extension WebBrowserViewController: UIWebViewDelegate {
         let downloadTask = session.dataTask(with: url) { data, response, error in
             let filename = response?.suggestedFilename ?? "file"
             let url = URL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]).appendingPathComponent(filename)
-            let _ = try? data?.write(to: url, options: .atomic)
+            let _ = ((try? data?.write(to: url, options: .atomic)) as ()??)
             self.fileURLString = url.absoluteString
         }
         downloadTask.resume()

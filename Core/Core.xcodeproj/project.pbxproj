@@ -2187,7 +2187,7 @@
 				TargetAttributes = {
 					2C96482D211E2F1A002C3255 = {
 						CreatedOnToolsVersion = 9.4.1;
-						LastSwiftMigration = 0940;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 					2C964836211E2F1A002C3255 = {
@@ -3128,7 +3128,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -3158,7 +3158,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

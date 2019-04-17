@@ -26,9 +26,9 @@ open class DynamicLabel: UILabel {
     }
 
     @IBInspectable
-    public var textStyle: String = "body" {
+    public var textStyle: String = "regular16" {
         didSet {
-            font = UIFont.scaledNamedFont(UIFont.Name(rawValue: textStyle) ?? .body)
+            font = UIFont.scaledNamedFont(UIFont.Name(rawValue: textStyle) ?? .regular16)
             adjustsFontForContentSizeCategory = true
         }
     }

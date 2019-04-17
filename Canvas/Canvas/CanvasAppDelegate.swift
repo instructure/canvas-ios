@@ -261,7 +261,7 @@ extension AppDelegate {
             var index: Int?
             
             for (i, element) in tabRoutes.enumerated() {
-                if let _ = element.index(of: path) {
+                if let _ = element.firstIndex(of: path) {
                     index = i
                     break
                 }

@@ -21,7 +21,7 @@ public extension UIFont {
         case body, bodyMedium, bodySmall, bodySmallItalic, button, buttonSmall, caption, cardTitle, cardSubtitle, dotSeparator, heading, label
         case rowTitle, rowSubtitle, title, title2, title3, tabBarIconTitle
 
-        case regular11Monodigit, regular14, regular20, regular20Monodigit, regular30
+        case regular11Monodigit, regular14, regular16, regular20, regular20Monodigit, regular30
         case medium12
         case semibold14, semibold16, semibold20
         case bold24
@@ -32,8 +32,6 @@ public extension UIFont {
     /// See https://developer.apple.com/design/human-interface-guidelines/ios/visual-design/typography/
     static func scaledNamedFont(_ name: Name) -> UIFont {
         switch name {
-        case .body:
-            return UIFontMetrics(forTextStyle: .body).scaledFont(for: .systemFont(ofSize: 16, weight: .regular))
         case .bodyMedium:
             return UIFontMetrics(forTextStyle: .body).scaledFont(for: .systemFont(ofSize: 14, weight: .medium))
         case .bodySmallItalic:
@@ -61,6 +59,8 @@ public extension UIFont {
 
         case .regular14, .bodySmall:
             return UIFontMetrics(forTextStyle: .body).scaledFont(for: .systemFont(ofSize: 14, weight: .regular))
+        case .regular16, .body:
+            return UIFontMetrics(forTextStyle: .body).scaledFont(for: .systemFont(ofSize: 16, weight: .regular))
         case .regular20, .rowTitle:
             return UIFontMetrics(forTextStyle: .callout).scaledFont(for: .systemFont(ofSize: 16, weight: .semibold))
         case .regular30:

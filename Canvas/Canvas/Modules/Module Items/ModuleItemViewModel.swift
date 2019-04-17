@@ -333,7 +333,7 @@ class ModuleItemViewModel: NSObject {
             .combinePrevious(true)
             .observeValues { [weak self] previous, current in
                 if previous && !current {
-                    _ = try? self?.invalidateCaches()
+                    _ = ((try? self?.invalidateCaches()) as ()??)
                 }
             }
     }

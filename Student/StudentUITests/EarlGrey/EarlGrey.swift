@@ -20,35 +20,35 @@ public func GREYAssert(
     _ expression: @autoclosure () -> Bool,
     _ reason: @autoclosure () -> String = "Assert on expression Failed"
     ) {
-    GREYAssert(expression(), reason, "Expected expression to be true")
+    GREYAssert(expression(), reason(), "Expected expression to be true")
 }
 
 public func GREYAssertTrue(
     _ expression: @autoclosure () -> Bool,
     _ reason: @autoclosure () -> String = "Expression is not true"
     ) {
-    GREYAssert(expression(), reason, "Expected the boolean expression to be true")
+    GREYAssert(expression(), reason(), "Expected the boolean expression to be true")
 }
 
 public func GREYAssertFalse(
     _ expression: @autoclosure () -> Bool,
     _ reason: @autoclosure () -> String = "Expression is not false"
     ) {
-    GREYAssert(!expression(), reason, "Expected the boolean expression to be false")
+    GREYAssert(!expression(), reason(), "Expected the boolean expression to be false")
 }
 
 public func GREYAssertNotNil(
     _ expression: @autoclosure ()-> Any?,
     _ reason: @autoclosure () -> String = "Expression is nil"
     ) {
-    GREYAssert(expression() != nil, reason, "Expected expression to be not nil")
+    GREYAssert(expression() != nil, reason(), "Expected expression to be not nil")
 }
 
 public func GREYAssertNil(
     _ expression: @autoclosure () -> Any?,
     _ reason: @autoclosure () -> String = "Expression is not nil"
     ) {
-    GREYAssert(expression() == nil, reason, "Expected expression to be nil")
+    GREYAssert(expression() == nil, reason(), "Expected expression to be nil")
 }
 
 public func GREYAssertEqual<T: Equatable>(
@@ -56,7 +56,7 @@ public func GREYAssertEqual<T: Equatable>(
     _ right: @autoclosure () -> T?,
     _ reason: @autoclosure () -> String = "Expression's compared values are not equal"
     ) {
-    GREYAssert(left() == right(), reason, "Expected left term to be equal to right term")
+    GREYAssert(left() == right(), reason(), "Expected left term to be equal to right term")
 }
 
 public func GREYAssertNotEqual<T: Equatable>(
@@ -66,7 +66,7 @@ public func GREYAssertNotEqual<T: Equatable>(
     ) {
     GREYAssert(
         left() != right(),
-        reason,
+        reason(),
         "Expected left term to not equal the right term")
 }
 

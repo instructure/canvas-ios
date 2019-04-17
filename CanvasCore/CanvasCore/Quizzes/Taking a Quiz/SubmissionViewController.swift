@@ -720,7 +720,7 @@ extension SubmissionViewController {
                 if let cell = tableView.cellForRow(at: indexPath) as? MatchAnswerCell {
                     cell.hiddenTextField.becomeFirstResponder()
                     _ = question.question.answers[answerIndex]
-                    if let index = cell.pickerItems.index(of: cell.matchLabel.text ?? "") {
+                    if let index = cell.pickerItems.firstIndex(of: cell.matchLabel.text ?? "") {
                         cell.pickerView.selectRow(index, inComponent: 0, animated: false)
                     }
                 }

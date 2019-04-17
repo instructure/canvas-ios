@@ -131,7 +131,7 @@ extension CommentListViewController: CommentListCellDelegate {
         )
         alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: NSLocalizedString("Delete", bundle: .core, comment: ""), style: .destructive, handler: { _ in
-            guard let index = self.comments.index(of: comment) else { return }
+            guard let index = self.comments.firstIndex(of: comment) else { return }
             self.document?.remove([comment], options: nil)
             self.comments.remove(at: index)
             self.tableView?.deleteRows(at: [ IndexPath(row: index, section: 0) ], with: .automatic)

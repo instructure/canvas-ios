@@ -61,9 +61,6 @@ extension CanvasCore.Progress {
         default: fatalError("Unknown completion requirement")
         }
 
-        self.kind = kind
-        self.contextID = contextID
-        self.itemType = .legacyModuleProgressShim
-        self.itemID = id
+        self.init(kind: kind, contextID: contextID, itemType: .legacyModuleProgressShim, itemID: id)
     }
 }

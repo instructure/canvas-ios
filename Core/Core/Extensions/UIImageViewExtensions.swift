@@ -273,6 +273,7 @@ public func cssFromContentMode(_ contentMode: UIView.ContentMode) -> String {
     case .top: return "top"
     case .topLeft: return "top left"
     case .topRight: return "top right"
+    @unknown default: return ""
     }
 }
 // swiftlint:enable cyclomatic_complexity

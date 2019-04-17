@@ -67,7 +67,7 @@ extension Course {
         let request = NSFetchRequest<Color>(entityName: String(describing: Color.self))
         request.fetchLimit = 1
         request.predicate = NSPredicate(format: "%K == %@", #keyPath(Color.canvasContextID), canvasContextID)
-        let color = try? managedObjectContext?.fetch(request).first
+        let color = ((try? managedObjectContext?.fetch(request).first) as Color??)
         return color??.color ?? .named(.ash)
     }
 
