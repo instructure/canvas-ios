@@ -85,7 +85,6 @@ import ConferenceList from '../modules/courses/conferences/ConferenceList'
 import { Store } from 'redux'
 import { registerScreen } from './'
 import { isTeacher, isStudent, isParent } from '../modules/app'
-import { featureFlagEnabled } from '../common/feature-flags'
 
 export function wrap (name: any): Function {
   return () => name
@@ -187,10 +186,8 @@ export function registerScreens (store: Store): void {
     registerScreen('/courses/:courseID/pages/:url', wrap(PageDetails), store, { deepLink: true })
     registerScreen('/courses/:courseID/pages/:url/edit', wrap(PageEdit), store, { deepLink: true })
 
-    if (featureFlagEnabled('modules')) {
-      registerScreen('/courses/:courseID/modules', null, null, { canBecomeMaster: true, deepLink: true })
-      registerScreen('/courses/:courseID/modules/:moduleID', null, null, { canBecomeMaster: true, deepLink: true })
-    }
+    registerScreen('/courses/:courseID/modules', null, null, { canBecomeMaster: true, deepLink: true })
+    registerScreen('/courses/:courseID/modules/:moduleID', null, null, { canBecomeMaster: true, deepLink: true })
   }
 
   if (isStudent()) {

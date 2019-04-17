@@ -43,8 +43,7 @@ export type FeatureFlagName = 'favoriteGroups' |
                               'newGroupNavigation' |
                               'simpleDiscussionRenderer' |
                               'newStudentAssignmentView' |
-                              'conferences' |
-                              'modules'
+                              'conferences'
 
 // if a feature is listed here it will be turned off
 // unless in development, the current user is on a domain
@@ -56,7 +55,6 @@ export const featureFlags: { [FeatureFlagName]: FeatureFlag } = {
   simpleDiscussionRenderer: {},
   newStudentAssignmentView: {},
   conferences: {},
-  modules: {},
 }
 
 var enableAllFeatureFlags = false
