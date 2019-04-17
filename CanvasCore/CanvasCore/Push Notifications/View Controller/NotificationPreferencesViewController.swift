@@ -150,7 +150,7 @@ extension NotificationPreferencesViewController: ChangeNotificationPreferencePro
                 self?.showCouldNotUpdatePushNotificationAlert()
                 completion(value, .error(setPreferenceResult.error!))
             } else if setPreferenceResult.value != nil {
-                completion(value, .success())
+                completion(value, .success)
             }
         }
     }

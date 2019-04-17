@@ -44,17 +44,17 @@ public class TabBarBadgeCounts: NSObject {
     }
     
     @objc
-    public func updateUnreadMessageCount(_ count: NSNumber) {
-        TabBarBadgeCounts.unreadMessageCount = count.intValue
+    public static func updateUnreadMessageCount(_ count: NSNumber) {
+        unreadMessageCount = count.intValue
     }
     
     @objc
-    public func updateTodoListCount(_ count: NSNumber) {
-        TabBarBadgeCounts.todoListCount = count.intValue
+    public static func updateTodoListCount(_ count: NSNumber) {
+        todoListCount = count.intValue
     }
     
     @objc static func updateApplicationIconBadgeNumber() {
-        let count = (TabBarBadgeCounts.unreadMessageCount + TabBarBadgeCounts.todoListCount)
-        TabBarBadgeCounts.applicationIconBadgeNumber.value = count
+        let count = (unreadMessageCount + todoListCount)
+        applicationIconBadgeNumber.value = count
     }
 }

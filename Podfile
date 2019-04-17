@@ -68,19 +68,19 @@ abstract_target 'defaults' do
     project 'Parent/Parent.xcodeproj'
     pod 'Fabric', '~> 1.7.7'
     pod 'Eureka', '~> 4.3'
-    pod 'Firebase/Core'
+    pod 'Firebase/Core', '~> 5.20'
   end
 
   target 'Teacher' do
     project 'rn/Teacher/ios/Teacher.xcodeproj'
     pod 'Fabric', '~> 1.7.7'
-    pod 'Firebase/Core'
+    pod 'Firebase/Core', '~> 5.20'
   end
 
   target 'TeacherTests' do
     project 'rn/Teacher/ios/Teacher.xcodeproj'
     pod 'Fabric', '~> 1.7.7'
-    pod 'Firebase/Core'
+    pod 'Firebase/Core', '~> 5.20'
   end
 
   target 'TechDebt' do
@@ -91,7 +91,7 @@ abstract_target 'defaults' do
   target 'Canvas' do
     project 'Canvas/Canvas.xcodeproj'
     pod 'Fabric', '~> 1.7.7'
-    pod 'Firebase/Core'
+    pod 'Firebase/Core', '~> 5.20'
   end
 
   target 'CanvasCore' do

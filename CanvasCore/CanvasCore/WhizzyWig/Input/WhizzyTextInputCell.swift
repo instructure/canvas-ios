@@ -161,11 +161,11 @@ public extension WhizzyTextInputCell {
         return UIEdgeInsets(top: 15, left: 20, bottom: 15, right: 20)
     }
     
-    @objc public class var font: UIFont {
+    @objc class var font: UIFont {
         return UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)
     }
     
-    @objc public class func heightWithText(_ text: String, boundsWidth width: CGFloat) -> CGFloat {
+    @objc class func heightWithText(_ text: String, boundsWidth width: CGFloat) -> CGFloat {
         
         let textViewBoundsWidth = width - textViewMargins.left - textViewMargins.right
         

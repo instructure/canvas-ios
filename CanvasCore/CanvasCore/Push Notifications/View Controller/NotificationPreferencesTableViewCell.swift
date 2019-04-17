@@ -20,7 +20,7 @@ import Foundation
 
 
 enum ChangeNotificationPreferenceResult {
-    case success()
+    case success
     case error(NSError)
 }
 

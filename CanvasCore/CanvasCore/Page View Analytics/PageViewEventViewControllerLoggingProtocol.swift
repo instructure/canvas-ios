@@ -25,7 +25,7 @@ public protocol PageViewEventViewControllerLoggingProtocol: class {
 
 public extension PageViewEventViewControllerLoggingProtocol {
     
-    public var timeOnViewControllerStart: Date? {
+    var timeOnViewControllerStart: Date? {
         get {
             return objc_getAssociatedObject(self, &tagAssociationStartKey) as? Date
         }
@@ -34,7 +34,7 @@ public extension PageViewEventViewControllerLoggingProtocol {
         }
     }
     
-    public var timeOnViewControllerEnd: Date? {
+    var timeOnViewControllerEnd: Date? {
         get {
             return objc_getAssociatedObject(self, &tagAssociationEndKey) as? Date
         }
@@ -44,11 +44,11 @@ public extension PageViewEventViewControllerLoggingProtocol {
     }
     
     //  MARK: - Measure time spent on view controller
-    public func startTrackingTimeOnViewController() {
+    func startTrackingTimeOnViewController() {
         timeOnViewControllerStart = Date()
     }
 
-    public func stopTrackingTimeOnViewController(eventName: String, attributes: [String: Any]? = nil) {
+    func stopTrackingTimeOnViewController(eventName: String, attributes: [String: Any]? = nil) {
         timeOnViewControllerEnd = Date()
         guard let start = timeOnViewControllerStart, let end = timeOnViewControllerEnd else { return }
         let duration = end.timeIntervalSince(start)

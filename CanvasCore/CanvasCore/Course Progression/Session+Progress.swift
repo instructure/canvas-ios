@@ -47,32 +47,32 @@ extension Session {
     // MARK: - Objective-C Compatability
 
     // MARK: Discussions
-    @objc @available(*, deprecated: 1.0)
+    @objc @available(*, deprecated)
     public func postProgressDiscussionContributed(courseID: String, discussionTopicID: String) {
         postProgress(.contributed, type: .discussion, context: .course, contextID: courseID, itemID: discussionTopicID)
     }
     
-    @objc @available(*, deprecated: 1.0)
+    @objc @available(*, deprecated)
     public func postProgressDiscussionContributed(groupID: String, discussionTopicID: String) {
         postProgress(.contributed, type: .discussion, context: .group, contextID: groupID, itemID: discussionTopicID)
     }
     
-    @objc @available(*, deprecated: 1.0)
+    @objc @available(*, deprecated)
     public func postProgressDiscussionViewed(courseID: String, discussionTopicID: String) {
         postProgress(.viewed, type: .discussion, context: .course, contextID: courseID, itemID: discussionTopicID)
     }
     
-    @objc @available(*, deprecated: 1.0)
+    @objc @available(*, deprecated)
     public func postProgressDiscussionViewed(groupID: String, discussionTopicID: String) {
         postProgress(.viewed, type: .discussion, context: .group, contextID: groupID, itemID: discussionTopicID)
     }
     
-    @objc @available(*, deprecated: 1.0)
+    @objc @available(*, deprecated)
     public func postProgressDiscussionMarkedDone(courseID: String, discussionTopicID: String) {
         postProgress(.markedDone, type: .discussion, context: .course, contextID: courseID, itemID: discussionTopicID)
     }
     
-    @objc @available(*, deprecated: 1.0)
+    @objc @available(*, deprecated)
     public func postProgressDiscussionMarkedDone(groupID: String, discussionTopicID: String) {
         postProgress(.markedDone, type: .discussion, context: .group, contextID: groupID, itemID: discussionTopicID)
     }
@@ -80,22 +80,22 @@ extension Session {
     
     
     // MARK: Pages
-    @objc @available(*, deprecated: 1.0)
+    @objc @available(*, deprecated)
     public func postProgressPageViewed(courseID: String, pageURL: String) {
         postProgress(.viewed, type: .page, context: .course, contextID: courseID, itemID: pageURL)
     }
     
-    @objc @available(*, deprecated: 1.0)
+    @objc @available(*, deprecated)
     public func postProgressPageViewed(groupID: String, pageURL: String) {
         postProgress(.viewed, type: .page, context: .group, contextID: groupID, itemID: pageURL)
     }
     
-    @objc @available(*, deprecated: 1.0)
+    @objc @available(*, deprecated)
     public func postProgressPageMarkedDone(courseID: String, pageURL: String) {
         postProgress(.markedDone, type: .page, context: .course, contextID: courseID, itemID: pageURL)
     }
     
-    @objc @available(*, deprecated: 1.0)
+    @objc @available(*, deprecated)
     public func postProgressPageViewedMarkedDone(groupID: String, pageURL: String) {
         postProgress(.markedDone, type: .page, context: .group, contextID: groupID, itemID: pageURL)
     }
@@ -103,32 +103,32 @@ extension Session {
     
     
     // MARK: LTI
-    @objc @available(*, deprecated: 1.0)
+    @objc @available(*, deprecated)
     public func postProgressLTIViewed(courseID: String, toolURL: String) {
         postProgress(.viewed, type: .externalTool, context: .course, contextID: courseID, itemID: toolURL)
     }
     
-    @objc @available(*, deprecated: 1.0)
+    @objc @available(*, deprecated)
     public func postProgressLTIViewed(groupID: String, toolURL: String) {
         postProgress(.viewed, type: .externalTool, context: .group, contextID: groupID, itemID: toolURL)
     }
     
-    @objc @available(*, deprecated: 1.0)
+    @objc @available(*, deprecated)
     public func postProgressLTISubmitted(courseID: String, toolURL: String) {
         postProgress(.submitted, type: .externalTool, context: .course, contextID: courseID, itemID: toolURL)
     }
     
-    @objc @available(*, deprecated: 1.0)
+    @objc @available(*, deprecated)
     public func postProgressLTISubmitted(groupID: String, toolURL: String) {
         postProgress(.submitted, type: .externalTool, context: .group, contextID: groupID, itemID: toolURL)
     }
     
-    @objc @available(*, deprecated: 1.0)
+    @objc @available(*, deprecated)
     public func postProgressLTIMarkedDone(courseID: String, toolURL: String) {
         postProgress(.markedDone, type: .externalTool, context: .course, contextID: courseID, itemID: toolURL)
     }
     
-    @objc @available(*, deprecated: 1.0)
+    @objc @available(*, deprecated)
     public func postProgressLTIMarkedDone(groupID: String, toolURL: String) {
         postProgress(.markedDone, type: .externalTool, context: .group, contextID: groupID, itemID: toolURL)
     }
@@ -136,22 +136,22 @@ extension Session {
     
     
     // MARK: Files
-    @objc @available(*, deprecated: 1.0)
+    @objc @available(*, deprecated)
     public func postProgressFileViewed(courseID: String, fileID: String) {
         postProgress(.viewed, type: .file, context: .course, contextID: courseID, itemID: fileID)
     }
     
-    @objc @available(*, deprecated: 1.0)
+    @objc @available(*, deprecated)
     public func postProgressFileViewed(groupID: String, fileID: String) {
         postProgress(.viewed, type: .file, context: .group, contextID: groupID, itemID: fileID)
     }
     
-    @objc @available(*, deprecated: 1.0)
+    @objc @available(*, deprecated)
     public func postProgressFileMarkedDone(courseID: String, fileID: String) {
         postProgress(.markedDone, type: .file, context: .course, contextID: courseID, itemID: fileID)
     }
     
-    @objc @available(*, deprecated: 1.0)
+    @objc @available(*, deprecated)
     public func postProgressFileViewedMarkedDone(groupID: String, fileID: String) {
         postProgress(.markedDone, type: .file, context: .group, contextID: groupID, itemID: fileID)
     }
@@ -160,22 +160,22 @@ extension Session {
     
     
     // MARK: External URLs
-    @objc @available(*, deprecated: 1.0)
+    @objc @available(*, deprecated)
     public func postProgressURLViewed(courseID: String, url: String) {
         postProgress(.viewed, type: .url, context: .course, contextID: courseID, itemID: url)
     }
     
-    @objc @available(*, deprecated: 1.0)
+    @objc @available(*, deprecated)
     public func postProgressURLViewed(groupID: String, url: String) {
         postProgress(.viewed, type: .url, context: .group, contextID: groupID, itemID: url)
     }
     
-    @objc @available(*, deprecated: 1.0)
+    @objc @available(*, deprecated)
     public func postProgressURLMarkedDone(courseID: String, url: String) {
         postProgress(.markedDone, type: .url, context: .course, contextID: courseID, itemID: url)
     }
     
-    @objc @available(*, deprecated: 1.0)
+    @objc @available(*, deprecated)
     public func postProgressURLViewedMarkedDone(groupID: String, url: String) {
         postProgress(.markedDone, type: .url, context: .group, contextID: groupID, itemID: url)
     }

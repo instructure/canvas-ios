@@ -18,15 +18,15 @@
 #import <CanvasCore/CanvasCore-Swift.h>
 @import React;
 
-@interface LocalizationManager (React) <RCTBridgeModule>
+@interface LocalizationManagerReact : NSObject<RCTBridgeModule>
 
 @end
 
-@implementation LocalizationManager (React)
+@implementation LocalizationManagerReact
 
 RCT_EXPORT_MODULE(LocalizationManager);
 
-RCT_EXPORT_METHOD(setCurrentLocale:(NSString *)locale) {
+RCT_EXPORT_METHOD(setCurrentLocale:(NSString * _Nonnull)locale) {
     [LocalizationManager setCurrentLocale:locale];
 }
 

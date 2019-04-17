@@ -119,7 +119,6 @@
 		61D6A84D1C8F84E400370117 /* AlertsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D6A84C1C8F84E400370117 /* AlertsListViewController.swift */; };
 		61E94C611C873C1A00777B95 /* DetailsDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E94C5F1C873C1A00777B95 /* DetailsDescriptionCell.swift */; };
 		785AC17F20CEDAD300C28E46 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 785AC17E20CEDAD300C28E46 /* Settings.bundle */; };
-		7864D52921C3FD230075D955 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D0215A421BAE863009A8E69 /* Core.framework */; };
 		7864D52A21C3FD230075D955 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D0215A421BAE863009A8E69 /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7893BDD120D1A7A200231DF7 /* AdminViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7893BDD320D1A7A200231DF7 /* AdminViewController.storyboard */; };
 		7893BDFD20D1A83F00231DF7 /* AdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7893BDFC20D1A83F00231DF7 /* AdminViewController.swift */; };
@@ -878,7 +877,6 @@
 				2C75AB971DDF62CF00650856 /* CoreTelephony.framework in Frameworks */,
 				2C75AB951DDF62CA00650856 /* AssetsLibrary.framework in Frameworks */,
 				5E75B6001C4D4A8E00A44160 /* CoreData.framework in Frameworks */,
-				7864D52921C3FD230075D955 /* Core.framework in Frameworks */,
 				5180FB980843FA6B1321EF5E /* Pods_defaults_Parent.framework in Frameworks */,
 				49A36ECF1FA90BEF005F5905 /* CanvasKeymaster.framework in Frameworks */,
 			);
@@ -1343,7 +1341,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 1000;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Instructure Inc";
 				TargetAttributes = {
 					5E6441861C3EE2E0003D7397 = {
@@ -1367,7 +1365,7 @@
 			};
 			buildConfigurationList = 5E6441821C3EE2E0003D7397 /* Build configuration list for PBXProject "Parent" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -1396,6 +1394,9 @@
 				"en-GB-instukhe",
 				"nb-instk12",
 				"sv-instk12",
+				cy,
+				"en-CY",
+				"sl-SI",
 			);
 			mainGroup = 5E64417E1C3EE2E0003D7397;
 			productRefGroup = 5E6441881C3EE2E0003D7397 /* Products */;
@@ -1493,7 +1494,7 @@
 				"${BUILT_PRODUCTS_DIR}/Cartography/Cartography.framework",
 				"${BUILT_PRODUCTS_DIR}/DeviceKit/DeviceKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Interactable/Interactable.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/Marshal/Marshal.framework",
@@ -1535,7 +1536,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cartography.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DeviceKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Interactable.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",

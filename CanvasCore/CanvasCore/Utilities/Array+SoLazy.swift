@@ -21,7 +21,7 @@ import Foundation
 /// A glorious shuffle method to shuffle all the things
 public extension Swift.Collection {
     /// Return a copy of `self` with its elements shuffled
-    public func shuffle() -> [Element] {
+    func shuffle() -> [Element] {
         var list = Array(self)
         list.shuffleInPlace()
         return list
@@ -29,7 +29,7 @@ public extension Swift.Collection {
 }
 
 public extension Swift.Collection {
-    public func findFirst(_ test: (Iterator.Element) throws -> Bool) rethrows -> Iterator.Element? {
+    func findFirst(_ test: (Iterator.Element) throws -> Bool) rethrows -> Iterator.Element? {
         for (_, element) in enumerated() {
             if try test(element) {
                 return element
@@ -38,15 +38,15 @@ public extension Swift.Collection {
         return nil
     }
     
-    public func any(_ test: ((Iterator.Element) throws -> Bool)) rethrows -> Bool {
+    func any(_ test: ((Iterator.Element) throws -> Bool)) rethrows -> Bool {
         return try findFirst(test) != nil
     }
     
-    public func any() -> Bool {
+    func any() -> Bool {
         return any { _ in true }
     }
     
-    public func all(_ test: ((Iterator.Element) throws -> Bool)) rethrows -> Bool {
+    func all(_ test: ((Iterator.Element) throws -> Bool)) rethrows -> Bool {
         return try filter { !(try test($0)) }.isEmpty
     }
 }
@@ -54,7 +54,7 @@ public extension Swift.Collection {
 
 public extension Array {
     /// Shuffle the elements of `self` in-place.
-    public mutating func shuffleInPlace() {
+    mutating func shuffleInPlace() {
         // empty and single-element collections don't shuffle
         if count < 2 { return }
         

@@ -24,15 +24,15 @@ public protocol RouterProtocol {
 }
 
 public extension RouterProtocol {
-    public func route(to: Route, from: UIViewController, options: Router.RouteOptions? = nil) {
+    func route(to: Route, from: UIViewController, options: Router.RouteOptions? = nil) {
         return route(to: to.url, from: from, options: options)
     }
 
-    public func route(to url: URL, from: UIViewController, options: Router.RouteOptions? = nil) {
+    func route(to url: URL, from: UIViewController, options: Router.RouteOptions? = nil) {
         return route(to: .parse(url), from: from, options: options)
     }
 
-    public func route(to url: String, from: UIViewController, options: Router.RouteOptions? = nil) {
+    func route(to url: String, from: UIViewController, options: Router.RouteOptions? = nil) {
         return route(to: .parse(url), from: from, options: options)
     }
 }

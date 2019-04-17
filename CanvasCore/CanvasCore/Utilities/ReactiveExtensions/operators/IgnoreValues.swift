@@ -33,7 +33,7 @@ public extension SignalProducerProtocol {
      Creates a new producer that emits a void value for every emission of `self`.
      - returns: A new producer.
      */
-    public func ignoreValues() -> SignalProducer<Void, Error> {
+    func ignoreValues() -> SignalProducer<Void, Error> {
         return producer.lift { $0.ignoreValues() }
     }
 }

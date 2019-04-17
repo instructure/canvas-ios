@@ -23,7 +23,6 @@ public class MockFileUploader: FileUploader {
 
     public convenience init(environment: AppEnvironment = .shared) {
         self.init(bundleID: "tests", appGroup: nil, environment: environment)
-        self.uploads = []
     }
 
     public override func upload(_ file: File, context: FileUploadContext, callback: @escaping (Error?) -> Void) {

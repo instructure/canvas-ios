@@ -26,11 +26,11 @@ const TabBarBadgeCounts = NativeModules.TabBarBadgeCounts
 export async function updateBadgeCounts () {
   try {
     const unread = canvas.getUnreadConversationsCount().then(({ data: unread }) =>
-      TabBarBadgeCounts.updateUnreadMessageCount(unread.unread_count || 0)
+      TabBarBadgeCounts.updateUnreadMessageCount(+unread.unread_count || 0)
     )
     if (isTeacher()) {
       await canvas.getToDoCount().then(({ data: todo }) =>
-        TabBarBadgeCounts.updateTodoListCount(todo.needs_grading_count)
+        TabBarBadgeCounts.updateTodoListCount(+todo.needs_grading_count)
       )
     }
     await unread

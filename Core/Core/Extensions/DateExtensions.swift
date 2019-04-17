@@ -17,16 +17,16 @@
 import Foundation
 
 public extension Date {
-    public func isoString() -> String {
+    func isoString() -> String {
         return ISO8601DateFormatter.string(from: self, timeZone: TimeZone(abbreviation: "UTC")!, formatOptions: .withInternetDateTime)
     }
 
-    public init?(fromISOString: String) {
+    init?(fromISOString: String) {
         guard let date = ISO8601DateFormatter().date(from: fromISOString) else { return nil }
         self = date
     }
 
-    public func addYears(_ years: Int) -> Date {
+    func addYears(_ years: Int) -> Date {
         return Calendar.current.date(byAdding: .year, value: years, to: self) ?? Date()
     }
 }

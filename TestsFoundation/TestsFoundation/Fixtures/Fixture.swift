@@ -31,7 +31,7 @@ public extension Fixture where Self: Decodable {
         return try! decoder.decode(Self.self, from: data)
     }
 
-    public static func fixture(_ template: Template = [:]) -> Template {
+    static func fixture(_ template: Template = [:]) -> Template {
         var t = self.template
         for (key, _) in template {
             var value = template[key]

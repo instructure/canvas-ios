@@ -17,7 +17,7 @@
 import UIKit
 
 public extension UIFont {
-    public enum Name: String, CaseIterable {
+    enum Name: String, CaseIterable {
         case body, bodyMedium, bodySmall, bodySmallItalic, button, buttonSmall, caption, cardTitle, cardSubtitle, dotSeparator, heading, label
         case rowTitle, rowSubtitle, title, title2, title3, tabBarIconTitle
 
@@ -30,7 +30,7 @@ public extension UIFont {
     /// Get a named font style, that is dynamically scaled.
     ///
     /// See https://developer.apple.com/design/human-interface-guidelines/ios/visual-design/typography/
-    public static func scaledNamedFont(_ name: Name) -> UIFont {
+    static func scaledNamedFont(_ name: Name) -> UIFont {
         switch name {
         case .body:
             return UIFontMetrics(forTextStyle: .body).scaledFont(for: .systemFont(ofSize: 16, weight: .regular))

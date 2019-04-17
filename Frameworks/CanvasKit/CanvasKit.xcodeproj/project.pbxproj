@@ -1084,7 +1084,7 @@
 			};
 			buildConfigurationList = 499D18811C8643E6005A86D2 /* Build configuration list for PBXProject "CanvasKit" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -1092,6 +1092,30 @@
 				"en-GB-instukhe",
 				"nb-instk12",
 				"sv-instk12",
+				fr,
+				ru,
+				"pt-BR",
+				ja,
+				"fr-CA",
+				sv,
+				pl,
+				zh,
+				nl,
+				ar,
+				mi,
+				"en-GB",
+				nb,
+				"zh-HK",
+				"en-AU",
+				de,
+				pt,
+				da,
+				ht,
+				es,
+				cy,
+				"en-CY",
+				"sl-SI",
+				Base,
 			);
 			mainGroup = 499D187D1C8643E6005A86D2;
 			productRefGroup = 499D18881C8643E6005A86D2 /* Products */;

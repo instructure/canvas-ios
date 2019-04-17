@@ -18,7 +18,7 @@ import Foundation
 
 public extension UINavigationController {
     
-    @objc public func applyDefaultBranding() {
+    @objc func applyDefaultBranding() {
         self.navigationBar.barStyle = .black
         self.navigationBar.barTintColor = Brand.current.navBgColor
         self.navigationBar.tintColor = Brand.current.navTextColor
@@ -29,19 +29,19 @@ public extension UINavigationController {
     }
     
     // Sets the barTintColor on self as well as a detail in a split view controller situation
-    @objc public func syncBarTintColor(_ color: UIColor?) {
+    @objc func syncBarTintColor(_ color: UIColor?) {
         self.navigationBar.barTintColor = color
         syncStyles()
     }
     
     // Same as above but for tintColor
-    @objc public func syncTintColor(_ color: UIColor?) {
+    @objc func syncTintColor(_ color: UIColor?) {
         self.navigationBar.tintColor = color
         syncStyles()
     }
     
     // Looks at what is in the master, if in split view, and applies what master has to detail
-    @objc public func syncStyles() {
+    @objc func syncStyles() {
         guard let svc = self.splitViewController else { return }
         guard let master = svc.masterNavigationController else { return }
         guard let detail = svc.detailNavigationController else { return }

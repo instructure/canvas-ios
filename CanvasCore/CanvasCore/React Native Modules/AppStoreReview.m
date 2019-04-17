@@ -18,10 +18,10 @@
 #import <CanvasCore/CanvasCore-Swift.h>
 @import React;
 
-@interface AppStoreReview (React) <RCTBridgeModule>
+@interface AppStoreReviewReact : NSObject<RCTBridgeModule>
 @end
 
-@implementation AppStoreReview (React)
+@implementation AppStoreReviewReact
 RCT_EXPORT_MODULE(AppStoreReview);
 
 RCT_EXPORT_METHOD(handleSuccessfulSubmit) {

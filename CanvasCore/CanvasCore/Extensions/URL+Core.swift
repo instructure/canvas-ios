@@ -18,7 +18,7 @@ import Foundation
 
 public extension URL {
     
-    public var allQueryItems: [URLQueryItem] {
+    var allQueryItems: [URLQueryItem] {
         get {
             let components = URLComponents(url: self, resolvingAgainstBaseURL: false)!
             if let allQueryItems = components.queryItems {
@@ -29,13 +29,13 @@ public extension URL {
         }
     }
     
-    public func queryItemForKey(_ key: String) -> URLQueryItem? {
+    func queryItemForKey(_ key: String) -> URLQueryItem? {
         let predicate = NSPredicate(format: "name=%@", key)
         return (allQueryItems as NSArray).filtered(using: predicate).first as? URLQueryItem
         
     }
     
-    public func appending(value: String, forQueryParameter param: String) -> URL? {
+    func appending(value: String, forQueryParameter param: String) -> URL? {
         var components = URLComponents(url: self, resolvingAgainstBaseURL: false)
         var query = components?.queryItems ?? []
         query.append(URLQueryItem(name: param, value: value))

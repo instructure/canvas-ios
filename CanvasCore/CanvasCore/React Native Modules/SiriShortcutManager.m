@@ -18,12 +18,15 @@
 #import <CanvasCore/CanvasCore-Swift.h>
 @import React;
 
-@interface SiriShortcutManager (React) <RCTBridgeModule>
+@interface SiriShortcutManagerReact : NSObject<RCTBridgeModule>
 @end
 
-@implementation SiriShortcutManager (React)
+@implementation SiriShortcutManagerReact
 RCT_EXPORT_MODULE(SiriShortcutManager);
-RCT_EXTERN_METHOD(donateSiriShortcut:);
+RCT_EXPORT_METHOD(donateSiriShortcut: (NSDictionary*)userInfo)
+{
+    [SiriShortcutManager donateSiriShortcut:userInfo];
+}
 
 - (dispatch_queue_t)methodQueue { return dispatch_get_main_queue(); }
 + (BOOL)requiresMainQueueSetup { return YES; }

@@ -20,7 +20,7 @@ public extension URLComponents {
     /// Returns a URLComponents struct with properties copied from the URL.
     ///
     /// Unlike `init?(url: URL, resolvingAgainstBaseURL Bool)`, this never returns nil, though the components may not be convertable to a full URL.
-    public static func parse(_ url: URL) -> URLComponents {
+    static func parse(_ url: URL) -> URLComponents {
         var components = URLComponents()
         components.scheme = url.scheme
         components.user = url.user
@@ -37,7 +37,7 @@ public extension URLComponents {
     /// Returns a URLComponents struct parsed from the string.
     ///
     /// Tries `init(string: String)`, then again with aggressive percent encoding, then falls back to putting the string in a `path` property.
-    public static func parse(_ string: String) -> URLComponents {
+    static func parse(_ string: String) -> URLComponents {
         if let url = URLComponents(string: string) { return url }
         if let safe = string.addingPercentEncoding(withAllowedCharacters: CharacterSet(charactersIn: ":/?&=#%").union(.alphanumerics)),
             let url = URLComponents(string: safe) { return url }
@@ -46,7 +46,7 @@ public extension URLComponents {
         return url
     }
 
-    public mutating func cleanupApiVersionInPath() {
+    mutating func cleanupApiVersionInPath() {
         if let range = path.range(of: "^[/]*api/[vV]\\d+", options: .regularExpression, range: nil, locale: nil) {
             self.path = path.replacingCharacters(in: range, with: "")
         }

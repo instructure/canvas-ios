@@ -43,7 +43,7 @@ extension Submission {
 
 // Objective-C compatible bridge, cuz `NewSubmission` is an enum, and not compatible...
 public extension Submission {
-    @objc public static func submitArcSubmission(_ url: URL, session: Session, courseID: String, assignmentID: String, completion: @escaping (NSError?)->()) {
+    @objc static func submitArcSubmission(_ url: URL, session: Session, courseID: String, assignmentID: String, completion: @escaping (NSError?)->()) {
         let newSubmission = NewSubmission.arc(url)
         do {
             let sp = try post(newSubmission, session: session, courseID: courseID, assignmentID: assignmentID, comment: nil)
