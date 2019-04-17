@@ -316,6 +316,12 @@ export class Dashboard extends React.Component<Props, State> {
     // Course Invites
     if (this.props.enrollments.length > 0) {
       let courseInvites = this.props.enrollments.filter(en => {
+        if (en.course_id) {
+          const course = this.props.allCourses[en.course_id]
+          if (course.access_restricted_by_date) {
+            return false
+          }
+        }
         return en.displayState === 'acted' || en.enrollment_state === 'invited'
       })
       sections.push({
