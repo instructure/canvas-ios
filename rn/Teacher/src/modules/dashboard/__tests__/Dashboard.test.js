@@ -352,6 +352,54 @@ describe('Dashboard', () => {
     App.setCurrentApp(currentApp)
   })
 
+  it('filters invites restricted by date', async () => {
+    let currentApp = App.current().appId
+    App.setCurrentApp('student')
+
+    const course1 = template.course({
+      id: '1',
+      access_restricted_by_date: true,
+    })
+    const course2 = template.course({ id: '2' })
+    const allCourses = {
+      [course1.id]: course1,
+      [course2.id]: course2,
+    }
+    const courses = [course1, course2]
+
+    const enrollments = [
+      template.enrollment({
+        id: '1',
+        course_id: course1.id,
+        enrollment_state: 'invited',
+      }),
+      template.enrollment({
+        id: '2',
+        course_id: course2.id,
+        enrollment_state: 'invited',
+      }),
+    ]
+
+    let props = {
+      ...defaultProps,
+      enrollments,
+      allCourses,
+      courses,
+      sections,
+    }
+
+    let screen = shallow(<Dashboard {...props} />)
+    const layout = { width: 340, height: 400 }
+    screen.find('SectionList').simulate('Layout', { nativeEvent: { layout } })
+    await screen.update()
+    const sections = screen.find('SectionList').prop('sections')
+    const inviteSection = sections[0]
+    expect(inviteSection.data).toHaveLength(1)
+    expect(inviteSection.data[0].id).toEqual('2')
+
+    App.setCurrentApp(currentApp)
+  })
+
   it('handles accept invite', () => {
     let currentApp = App.current().appId
 
