@@ -45,6 +45,7 @@ jest
     },
   }))
   .mock('TouchableOpacity', () => 'TouchableOpacity')
+  .mock('Alert', () => ({ alert: jest.fn() }))
   .mock('../../../canvas-api')
   .mock('../../../routing/Screen')
 
