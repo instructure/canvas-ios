@@ -19,10 +19,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PJu-Wl-5yf" userLabel="Content">
-                                <rect key="frame" x="0.0" y="20" width="375" height="547"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="542"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Ivp-6e-qcJ">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="547"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="542"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KBk-nG-lHe" customClass="FilePickerProgressView" customModule="Student" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
@@ -42,7 +42,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pZl-T1-Myp">
-                                                <rect key="frame" x="0.0" y="71" width="375" height="476"/>
+                                                <rect key="frame" x="0.0" y="71" width="375" height="471"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FilePickerCell" id="pcl-I5-RWL" customClass="FilePickerCell" customModule="Student" customModuleProvider="target">
@@ -121,7 +121,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uej-Jh-rpx" customClass="EmptyView" customModule="Student" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="20" width="375" height="547"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="542"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <accessibility key="accessibilityConfiguration" identifier="FilePickerPage.emptyView"/>
                                 <userDefinedRuntimeAttributes>
@@ -137,7 +137,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RNN-Ca-8UT" customClass="DividerView" customModule="Student" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="567" width="375" height="1"/>
+                                <rect key="frame" x="0.0" y="562" width="375" height="1"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="uFL-yt-qk5"/>
@@ -147,10 +147,10 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="S68-r9-46M">
-                                <rect key="frame" x="0.0" y="568" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="563" width="375" height="55"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W2Z-pi-iMR">
-                                        <rect key="frame" x="0.0" y="0.0" width="125" height="50"/>
+                                        <rect key="frame" x="0.0" y="2.5" width="125" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4GU-Fg-9Gc">
                                                 <rect key="frame" x="0.0" y="0.0" width="125" height="50"/>
@@ -160,14 +160,14 @@
                                                 </connections>
                                             </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="C6d-KE-XUf" customClass="IconView" customModule="Student" customModuleProvider="target">
-                                                <rect key="frame" x="50.5" y="12" width="24" height="23"/>
+                                                <rect key="frame" x="50.5" y="0.0" width="24" height="23"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="buttonPrimaryBackground"/>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="addPhoto"/>
                                                 </userDefinedRuntimeAttributes>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Camera" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="49d-WQ-pJi" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="40" width="109" height="20.5"/>
+                                                <rect key="frame" x="8" y="28" width="109" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -190,7 +190,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N0m-Xn-euG">
-                                        <rect key="frame" x="125" y="0.0" width="125" height="50"/>
+                                        <rect key="frame" x="125" y="2.5" width="125" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="isY-BV-B1c">
                                                 <rect key="frame" x="0.0" y="0.0" width="125" height="50"/>
@@ -199,14 +199,14 @@
                                                 </connections>
                                             </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addLibrary" translatesAutoresizingMaskIntoConstraints="NO" id="K7D-2e-wRi" customClass="IconView" customModule="Student" customModuleProvider="target">
-                                                <rect key="frame" x="51" y="12" width="23" height="22"/>
+                                                <rect key="frame" x="51" y="0.0" width="23" height="22"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="buttonPrimaryBackground"/>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="addLibrary"/>
                                                 </userDefinedRuntimeAttributes>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Library" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qTl-Qe-oau" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="39" width="109" height="20.5"/>
+                                                <rect key="frame" x="8" y="27" width="109" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -231,7 +231,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IhI-4n-tOO">
-                                        <rect key="frame" x="250" y="0.0" width="125" height="50"/>
+                                        <rect key="frame" x="250" y="2.5" width="125" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jf9-Iv-lTN">
                                                 <rect key="frame" x="0.0" y="0.0" width="125" height="50"/>
@@ -240,14 +240,14 @@
                                                 </connections>
                                             </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addFile" translatesAutoresizingMaskIntoConstraints="NO" id="web-fa-JW1" customClass="IconView" customModule="Student" customModuleProvider="target">
-                                                <rect key="frame" x="52" y="12" width="21" height="23"/>
+                                                <rect key="frame" x="52" y="0.0" width="21" height="23"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="buttonPrimaryBackground"/>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="addFile"/>
                                                 </userDefinedRuntimeAttributes>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Files" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lmR-TV-wPf" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="40" width="109" height="20.5"/>
+                                                <rect key="frame" x="8" y="28" width="109" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -302,7 +302,7 @@
                         <outlet property="cameraView" destination="W2Z-pi-iMR" id="i25-Jr-dqd"/>
                         <outlet property="contentView" destination="PJu-Wl-5yf" id="SV4-ys-mkM"/>
                         <outlet property="dividerView" destination="RNN-Ca-8UT" id="1dK-FV-3C2"/>
-                        <outlet property="emptyView" destination="uej-Jh-rpx" id="1jX-SJ-ijW"/>
+                        <outlet property="emptyView" destination="uej-Jh-rpx" id="q50-gn-6ng"/>
                         <outlet property="filesView" destination="IhI-4n-tOO" id="N1A-g5-aHY"/>
                         <outlet property="libraryView" destination="N0m-Xn-euG" id="gQH-aM-gJl"/>
                         <outlet property="progressView" destination="KBk-nG-lHe" id="Sta-OD-3hq"/>

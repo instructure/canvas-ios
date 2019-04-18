@@ -38,6 +38,8 @@ protocol AssignmentDetailsViewProtocol: ErrorViewController {
     func update(assignment: AssignmentDetailsViewModel, baseURL: URL?)
     func showSubmitAssignmentButton(title: String?)
     func chooseSubmissionType(_ types: [SubmissionType])
+    func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)?)
+    func dismiss(animated flag: Bool, completion: (() -> Void)?)
 }
 
 class AssignmentDetailsPresenter {
@@ -57,12 +59,23 @@ class AssignmentDetailsPresenter {
         self?.update()
     }
 
+    var fileUploadInProgress = false
     lazy var files: Store<LocalUseCase<File>> = env.subscribe(scope: Scope.where(#keyPath(File.assignmentID), equals: assignmentID)) { [weak self] in
         self?.update()
+        let files = self?.files.map { $0 } ?? []
+        self?.filePicker?.files = files
+        self?.filePicker?.reload()
+
+        if self?.fileUploadInProgress == true && files.allSatisfy({ $0.isUploaded }) {
+            self?.fileUploadInProgress = false
+            self?.view?.dismiss(animated: true, completion: nil)
+        }
+        self?.fileUploadInProgress = files.first { $0.isUploading } != nil
     }
 
     let env: AppEnvironment
     weak var view: AssignmentDetailsViewProtocol?
+    weak var filePicker: FilePickerViewController?
     let courseID: String
     let assignmentID: String
     var userID: String?
@@ -71,6 +84,7 @@ class AssignmentDetailsPresenter {
         guard let fragment = fragment, !fragment.isEmpty else { return nil }
         return "#\(fragment)"
     }
+    var fileUploader: FileUploader = UploadFile.shared
 
     let supportedSubmissionTypes: [SubmissionType] = [
         .online_text_entry,
@@ -108,7 +122,6 @@ class AssignmentDetailsPresenter {
         showSubmitAssignmentButton(assignment: assignment, course: course)
         view?.updateNavBar(subtitle: course.name, backgroundColor: course.color)
         view?.update(assignment: assignment, baseURL: baseURL)
-
     }
 
     func viewIsReady() {
@@ -170,7 +183,7 @@ class AssignmentDetailsPresenter {
     }
 
     func viewFileSubmission(from viewController: UIViewController) {
-        env.router.route(to: Route.assignmentFileUpload(courseID: courseID, assignmentID: assignmentID), from: viewController, options: [.modal, .embedInNav])
+        showOnlineUpload()
     }
 
     func submitAssignment(from viewController: UIViewController) {
@@ -191,8 +204,7 @@ class AssignmentDetailsPresenter {
             let route = Route.assignmentTextSubmission(courseID: courseID, assignmentID: assignmentID, userID: userID ?? "")
             env.router.route(to: route, from: viewController, options: [.modal, .embedInNav])
         case .online_upload:
-            let route = Route.assignmentFileUpload(courseID: courseID, assignmentID: assignmentID)
-            env.router.route(to: route, from: viewController, options: [.modal, .embedInNav])
+            showOnlineUpload()
         case .online_url:
             let route = Route.assignmentUrlSubmission(courseID: courseID, assignmentID: assignmentID, userID: userID ?? "")
             env.router.route(to: route, from: viewController, options: [.modal, .embedInNav])
@@ -213,5 +225,77 @@ class AssignmentDetailsPresenter {
         default:
             break
         }
+    }
+
+    private func showOnlineUpload() {
+        let filePicker = FilePickerViewController.create()
+        filePicker.title = NSLocalizedString("Submission", bundle: .student, comment: "")
+        filePicker.cancelButtonTitle = NSLocalizedString("Cancel Submission", bundle: .student, comment: "")
+        filePicker.delegate = self
+        let allowedUTIs = assignment?.allowedUTIs ?? []
+        if allowedUTIs.contains(where: { $0.isAny || $0.isImage || $0.isVideo }) {
+            filePicker.sources = [.camera, .library, .files]
+        } else {
+            filePicker.sources = [.files]
+        }
+        filePicker.files = self.files.map { $0 }
+        filePicker.utis = allowedUTIs
+        self.filePicker = filePicker
+        let nav = UINavigationController(rootViewController: filePicker)
+        view?.present(nav, animated: true, completion: nil)
+    }
+}
+
+extension AssignmentDetailsPresenter: FilePickerControllerDelegate {
+    func cancel(_ controller: FilePickerViewController) {
+        view?.dismiss(animated: true) {
+            let context = self.env.database.viewContext
+            context.performAndWait {
+                for file in self.files {
+                    self.fileUploader.cancel(file)
+                    context.delete(file)
+                }
+                do {
+                    try context.save()
+                } catch {
+                    self.view?.showError(error)
+                }
+            }
+        }
+    }
+
+    func submit(_ controller: FilePickerViewController) {
+        view?.dismiss(animated: true) {
+            for file in self.files {
+                self.fileUploader.upload(file, context: .submission(courseID: self.courseID, assignmentID: self.assignmentID)) { [weak self] error in
+                    if let error = error {
+                        self?.view?.showError(error)
+                    }
+                }
+            }
+        }
+    }
+
+    func retry(_ controller: FilePickerViewController) {
+        // TODO: retry
+    }
+
+    func add(_ controller: FilePickerViewController, url: URL) {
+        let context = env.database.viewContext
+        context.performAndWait {
+            do {
+                let file: File = context.insert()
+                file.localFileURL = url
+                file.size = url.lookupFileSize()
+                file.prepareForSubmission(courseID: self.courseID, assignmentID: self.assignmentID)
+                try context.save()
+            } catch {
+                self.view?.showError(error)
+            }
+        }
+    }
+
+    func canSubmit(_ controller: FilePickerViewController) -> Bool {
+        return files.count > 0
     }
 }

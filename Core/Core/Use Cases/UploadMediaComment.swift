@@ -16,75 +16,27 @@
 
 import Foundation
 
-public class UploadMediaComment {
+public class UploadMedia {
     var env = AppEnvironment.shared
-    let assignmentID: String
-    var callback: (SubmissionComment?, Error?) -> Void = { _, _ in }
-    let courseID: String
-    let isGroup: Bool
     var mediaAPI: API?
-    var placeholderID: String?
-    let submissionID: String
-    let type: MediaCommentType
-    let url: URL
-    let userID: String
     var task: URLSessionTask?
+    var callback: (String?, Error?) -> Void = { _, _ in }
+    let url: URL
+    let type: MediaCommentType
 
-    private static var placeholderSuffix = 1
-
-    public init(
-        courseID: String,
-        assignmentID: String,
-        userID: String,
-        submissionID: String,
-        isGroup: Bool,
-        type: MediaCommentType,
-        url: URL
-    ) {
-        self.assignmentID = assignmentID
-        self.courseID = courseID
-        self.isGroup = isGroup
-        self.submissionID = submissionID
+    public init(type: MediaCommentType, url: URL) {
         self.type = type
         self.url = url
-        self.userID = userID
     }
 
     public func cancel() {
         task?.cancel()
     }
 
-    public func fetch(environment: AppEnvironment = .shared, _ callback: @escaping (SubmissionComment?, Error?) -> Void) {
-        self.callback = callback
+    public func fetch(environment: AppEnvironment = .shared, _ callback: @escaping (String?, Error?) -> Void) {
         self.env = environment
-        savePlaceholder()
-    }
-
-    func savePlaceholder() {
-        guard let session = env.currentSession else {
-            return self.callback(nil, NSError.internalError()) // There should always be a current user.
-        }
-        env.database.performBackgroundTask { client in
-            let placeholder: SubmissionComment = client.insert()
-            placeholder.authorAvatarURL = session.userAvatarURL
-            placeholder.authorID = session.userID
-            placeholder.authorName = session.userName
-            placeholder.comment = ""
-            placeholder.createdAt = Date()
-            placeholder.id = "placeholder-\(UploadMediaComment.placeholderSuffix)"
-            placeholder.mediaID = "_"
-            placeholder.mediaType = self.type
-            placeholder.mediaURL = self.url
-            placeholder.submissionID = self.submissionID
-            do {
-                try client.save()
-                self.placeholderID = placeholder.id
-                UploadMediaComment.placeholderSuffix += 1
-                self.upload()
-            } catch {
-                self.callback(nil, error)
-            }
-        }
+        self.callback = callback
+        upload()
     }
 
     func upload() {
@@ -93,8 +45,8 @@ public class UploadMediaComment {
                 error == nil,
                 let domain = data?.domain.replacingOccurrences(of: "https://", with: ""),
                 let url = URL(string: "https://\(domain)")
-            else {
-                return self.callback(nil, error)
+                else {
+                    return self.callback(nil, error)
             }
             self.mediaAPI = URLSessionAPI(accessToken: nil, baseURL: url)
             self.getSession()
@@ -133,7 +85,88 @@ public class UploadMediaComment {
             guard error == nil, let mediaID = data?.id, !mediaID.isEmpty else {
                 return self.callback(nil, error)
             }
-            self.putComment(mediaID: mediaID)
+            self.callback(mediaID, nil)
+        }
+    }
+}
+
+public class UploadMediaComment {
+    var env = AppEnvironment.shared
+    let assignmentID: String
+    var callback: (SubmissionComment?, Error?) -> Void = { _, _ in }
+    let courseID: String
+    let isGroup: Bool
+    var mediaAPI: API?
+    var placeholderID: String?
+    let submissionID: String
+    let type: MediaCommentType
+    let url: URL
+    let uploader: UploadMedia
+    let userID: String
+    var task: URLSessionTask?
+
+    private static var placeholderSuffix = 1
+
+    public init(
+        courseID: String,
+        assignmentID: String,
+        userID: String,
+        submissionID: String,
+        isGroup: Bool,
+        type: MediaCommentType,
+        url: URL
+    ) {
+        self.assignmentID = assignmentID
+        self.courseID = courseID
+        self.isGroup = isGroup
+        self.submissionID = submissionID
+        self.type = type
+        self.url = url
+        self.uploader = UploadMedia(type: type, url: url)
+        self.userID = userID
+    }
+
+    public func cancel() {
+        task?.cancel()
+        uploader.cancel()
+    }
+
+    public func fetch(environment: AppEnvironment = .shared, _ callback: @escaping (SubmissionComment?, Error?) -> Void) {
+        self.callback = callback
+        self.env = environment
+        savePlaceholder()
+    }
+
+    func savePlaceholder() {
+        guard let session = env.currentSession else {
+            return self.callback(nil, NSError.internalError()) // There should always be a current user.
+        }
+        env.database.performBackgroundTask { client in
+            let placeholder: SubmissionComment = client.insert()
+            placeholder.authorAvatarURL = session.userAvatarURL
+            placeholder.authorID = session.userID
+            placeholder.authorName = session.userName
+            placeholder.comment = ""
+            placeholder.createdAt = Date()
+            placeholder.id = "placeholder-\(UploadMediaComment.placeholderSuffix)"
+            placeholder.mediaID = "_"
+            placeholder.mediaType = self.type
+            placeholder.mediaURL = self.url
+            placeholder.submissionID = self.submissionID
+            do {
+                try client.save()
+                self.placeholderID = placeholder.id
+                UploadMediaComment.placeholderSuffix += 1
+                self.uploader.fetch(environment: self.env) { mediaID, error in
+                    guard error == nil, let mediaID = mediaID else {
+                        self.callback(nil, error)
+                        return
+                    }
+                    self.putComment(mediaID: mediaID)
+                }
+            } catch {
+                self.callback(nil, error)
+            }
         }
     }
 

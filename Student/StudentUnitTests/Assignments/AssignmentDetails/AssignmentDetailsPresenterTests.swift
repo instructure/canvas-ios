@@ -32,11 +32,15 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
     var expectation = XCTestExpectation(description: "expectation")
     var resultingButtonTitle: String?
     var navigationController: UINavigationController?
+    var presentedViewController: UIViewController?
+    var dismissedCount = 0
+    let fileUploader = MockFileUploader()
 
     override func setUp() {
         super.setUp()
         expectation = XCTestExpectation(description: "expectation")
         presenter = AssignmentDetailsPresenter(env: env, view: self, courseID: "1", assignmentID: "1", fragment: "target")
+        presenter.fileUploader = fileUploader
     }
 
     func testLoadCourse() {
@@ -169,17 +173,6 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         XCTAssertEqual(resultingButtonTitle, "Submit Assignment")
     }
 
-//    @discardableResult
-//    func assignmentSetupForSubmissionsTypeTests(_ types: [SubmissionType]) -> Assignment {
-//        let subTypes = Array(types.map { $0.rawValue })
-//
-//        let assignment = Assignment.make(["submissionTypesRaw": subTypes])
-//        Course.make(["enrollments": Set([Enrollment.make()])])
-//
-//        presenter.viewIsReady()
-//        return assignment
-//    }
-
     func testShowSubmitAssignmentButtonMultipleAttempts() {
         //  given
         let a = Assignment.make([
@@ -212,7 +205,9 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
     func testSubmitOnlineUpload() {
         Assignment.make(["id": "1"])
         presenter.submit(.online_upload, from: UIViewController())
-        XCTAssert(router.lastRoutedTo(.assignmentFileUpload(courseID: "1", assignmentID: "1")))
+        let nav = presentedViewController as? UINavigationController
+        let filePicker = nav?.topViewController as? FilePickerViewController
+        XCTAssertNotNil(filePicker)
     }
 
     func testSubmitOnlineURL() {
@@ -225,10 +220,10 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
 
     func testSubmitAssignmentAutomaticallyDoesOnlySubmissionType() {
         let assignment = Assignment.make(["id": "1"])
-        assignment.submissionTypes = [.online_upload]
+        assignment.submissionTypes = [.online_text_entry]
 
         let expectation = BlockExpectation(description: "main queue") {
-            return self.router.lastRoutedTo(.assignmentFileUpload(courseID: assignment.courseID, assignmentID: "1"))
+            return self.router.lastRoutedTo(.assignmentTextSubmission(courseID: assignment.courseID, assignmentID: "1", userID: ""))
         }
 
         presenter.viewIsReady()
@@ -254,7 +249,9 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
 
         presenter.viewFileSubmission(from: UIViewController())
 
-        XCTAssert(router.lastRoutedTo(.assignmentFileUpload(courseID: "1", assignmentID: "1")))
+        let nav = presentedViewController as? UINavigationController
+        let filePicker = nav?.topViewController as? FilePickerViewController
+        XCTAssertNotNil(filePicker)
     }
 
     func testExternalToolSubmission() {
@@ -268,9 +265,53 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         wait(for: [openedSFSafariViewController], timeout: 1)
         XCTAssert(router.viewControllerCalls[0].0 is SFSafariViewController)
     }
+
+    func testAddFilePicker() {
+        let filePicker = FilePickerViewController.create()
+        let url = URL(fileURLWithPath: "/file.txt")
+        presenter.add(filePicker, url: url)
+        XCTAssertEqual(presenter.files.count, 1)
+    }
+
+    func testCancelFilePicker() {
+        let filePicker = FilePickerViewController.create()
+        let url = URL(fileURLWithPath: "/file.txt")
+        presenter.add(filePicker, url: url)
+        presenter.cancel(filePicker)
+        XCTAssertEqual(presenter.files.count, 0)
+        XCTAssertEqual(dismissedCount, 1)
+        XCTAssertEqual(fileUploader.cancels.count, 1)
+    }
+
+    func testSubmitFilePicker() {
+        let filePicker = FilePickerViewController.create()
+        let url = URL(fileURLWithPath: "/file.txt")
+        presenter.add(filePicker, url: url)
+        presenter.submit(filePicker)
+        XCTAssertEqual(dismissedCount, 1)ntde
+        XCTAssertEqual(fileUploader.uploads.count, 1)
+    }
+
+    func testCanSubmitFilePicker() {
+        let filePicker = FilePickerViewController.create()
+        XCTAssertFalse(presenter.canSubmit(filePicker))
+        let url = URL(fileURLWithPath: "/file.txt")
+        presenter.add(filePicker, url: url)
+        XCTAssertTrue(presenter.canSubmit(filePicker))
+    }
 }
 
 extension AssignmentDetailsPresenterTests: AssignmentDetailsViewProtocol {
+    func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)?) {
+        completion?()
+        presentedViewController = viewControllerToPresent
+    }
+
+    func dismiss(animated flag: Bool, completion: (() -> Void)?) {
+        completion?()
+        dismissedCount += 1
+    }
+
     func showSubmitAssignmentButton(title: String?) {
         resultingButtonTitle = title
     }

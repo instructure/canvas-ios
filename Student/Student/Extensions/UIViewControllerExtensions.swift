@@ -17,6 +17,8 @@
 import Foundation
 import Core
 
-extension UploadFile {
-    static var shared = UploadFile(bundleID: Bundle.studentBundleID, appGroup: Bundle.main.appGroupID())
+extension UIViewController: ApplicationViewController {
+    public func open(_ url: URL) {
+        UIApplication.shared.open(url)
+    }
 }

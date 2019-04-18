@@ -47,10 +47,6 @@ public struct Route: Equatable {
         return Route("/courses/\(courseID)/assignments/\(assignmentID)/submissions/\(userID)")
     }
 
-    public static func assignmentFileUpload(courseID: String, assignmentID: String) -> Route {
-        return Route("/courses/\(courseID)/assignments/\(assignmentID)/fileupload")
-    }
-
     public static func assignmentTextSubmission(courseID: String, assignmentID: String, userID: String) -> Route {
         return Route("/courses/\(courseID)/assignments/\(assignmentID)/submissions/\(userID)/online_text_entry")
     }

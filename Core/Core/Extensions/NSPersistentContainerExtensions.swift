@@ -34,6 +34,7 @@ extension NSPersistentContainer {
                 fatalError(error.localizedDescription)
             }
             container.viewContext.automaticallyMergesChangesFromParent = true
+            container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
         }
         return container
     }

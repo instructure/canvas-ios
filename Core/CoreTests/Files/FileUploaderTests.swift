@@ -33,7 +33,7 @@ class FileUploaderTests: CoreTestCase {
     }
 
     let session = MockURLSession()
-    var fileUploader: FileUploader!
+    var fileUploader: UploadFile!
     let user = KeychainEntry(
         accessToken: "1",
         baseURL: URL(string: "https://canvas.instructure.com")!,
@@ -61,7 +61,7 @@ class FileUploaderTests: CoreTestCase {
     override func setUp() {
         super.setUp()
         environment.currentSession = user
-        fileUploader = FileUploader(bundleID: "core-tests", appGroup: nil, environment: environment)
+        fileUploader = UploadFile(bundleID: "core-tests", appGroup: nil, environment: environment)
         fileUploader.backgroundAPI = api
         files.refresh()
     }
@@ -164,9 +164,9 @@ class FileUploaderTests: CoreTestCase {
 
     func testInitIdentifier() {
         Keychain.addEntry(user)
-        let session = FileUploader.Session(bundleID: "core-tests", appGroup: nil, userID: user.userID, baseURL: user.baseURL, actAsUserID: user.actAsUserID)
+        let session = UploadFile.Session(bundleID: "core-tests", appGroup: nil, userID: user.userID, baseURL: user.baseURL, actAsUserID: user.actAsUserID)
         let identifier = session.identifier
-        let uploader = FileUploader(backgroundSessionIdentifier: identifier)
+        let uploader = UploadFile(backgroundSessionIdentifier: identifier)
         XCTAssertNotNil(uploader)
     }
 

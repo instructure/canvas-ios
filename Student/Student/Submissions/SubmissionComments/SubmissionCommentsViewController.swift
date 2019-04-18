@@ -96,7 +96,7 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
                     controller.delegate = self
                     self?.showMediaController(controller)
                 } else {
-                    self?.showPermissionError(NSLocalizedString("You must enable Microphone permissions in Settings to record audio.", bundle: .student, comment: ""))
+                    self?.showPermissionError(.microphone)
                 }
             }
         })
@@ -110,17 +110,6 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
             self?.present(picker, animated: true)
         })
         alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", bundle: .student, comment: ""), style: .cancel))
-        present(alert, animated: true)
-    }
-
-    func showPermissionError(_ message: String) {
-        let title = NSLocalizedString("Permission Needed", bundle: .student, comment: "")
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", bundle: .student, comment: ""), style: .cancel))
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Settings", bundle: .student, comment: ""), style: .default) { _ in
-            guard let url = URL(string: "app-settings:") else { return }
-            UIApplication.shared.open(url)
-        })
         present(alert, animated: true)
     }
 

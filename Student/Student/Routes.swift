@@ -68,14 +68,6 @@ public let router = Router(routes: [
         return SubmissionDetailsViewController.create(context: ContextModel(.course, id: courseID), assignmentID: assignmentID, userID: userID)
     },
 
-    RouteHandler(.assignmentFileUpload(courseID: ":courseID", assignmentID: ":assignmentID"), name: "assignment_file_upload") { _, params in
-        guard let courseID = params["courseID"], let assignmentID = params["assignmentID"], let userID = AppEnvironment.shared.currentSession?.userID else {
-            return nil
-        }
-        let presenter = SubmissionFilePresenter(courseID: courseID, assignmentID: assignmentID, userID: userID)
-        return FilePickerViewController.create(presenter: presenter)
-    },
-
     RouteHandler(.assignmentTextSubmission(courseID: ":courseID", assignmentID: ":assignmentID", userID: ":userID"), name: "assignment_text_submission") { _, params in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"], let userID = params["userID"] else {
             return nil

@@ -98,3 +98,31 @@ extension UIViewController {
         child.didMove(toParent: self)
     }
 }
+
+public enum PermissionError {
+    case microphone
+
+    var message: String {
+        switch self {
+        case .microphone:
+            return NSLocalizedString("You must enable Microphone permissions in Settings.", bundle: .core, comment: "")
+        }
+    }
+}
+
+public protocol ApplicationViewController {
+    func open(_ url: URL)
+}
+
+extension ApplicationViewController where Self: UIViewController {
+    public func showPermissionError(_ error: PermissionError) {
+        let title = NSLocalizedString("Permission Needed", bundle: .core, comment: "")
+        let alert = UIAlertController(title: title, message: error.message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Settings", bundle: .core, comment: ""), style: .default) { _ in
+            guard let url = URL(string: "app-settings:") else { return }
+            self.open(url)
+        })
+        present(alert, animated: true)
+    }
+}

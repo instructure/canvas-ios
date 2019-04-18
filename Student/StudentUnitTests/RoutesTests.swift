@@ -52,13 +52,6 @@ class RoutesTests: XCTestCase {
         XCTAssert(router.match(Route.submission(forCourse: "1", assignment: "1", user: ":userID").url) is SubmissionDetailsViewController)
     }
 
-    func testAssignmentFileUpload() {
-        AppEnvironment.shared.currentSession = nil
-        XCTAssertNil(router.match(Route.assignmentFileUpload(courseID: "1", assignmentID: "1").url))
-        AppEnvironment.shared.currentSession = KeychainEntry.make()
-        XCTAssert(router.match(Route.assignmentFileUpload(courseID: "1", assignmentID: "1").url) is FilePickerViewController)
-    }
-
     func testAssignmentUrlSubmission() {
         XCTAssert(router.match(Route.assignmentUrlSubmission(courseID: "1", assignmentID: "1", userID: "1").url) is UrlSubmissionViewController)
     }
