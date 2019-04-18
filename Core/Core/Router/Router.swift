@@ -21,6 +21,7 @@ public protocol RouterProtocol {
     func route(to url: URL, from: UIViewController, options: Router.RouteOptions?)
     func route(to url: String, from: UIViewController, options: Router.RouteOptions?)
     func route(to url: URLComponents, from: UIViewController, options: Router.RouteOptions?)
+    func route(to view: UIViewController, from: UIViewController, options: Router.RouteOptions?)
 }
 
 public extension RouterProtocol {
@@ -72,6 +73,10 @@ public class Router: RouterProtocol {
 
     public func route(to url: URLComponents, from: UIViewController, options: RouteOptions? = nil) {
         guard let view = match(url) else { return }
+        route(to: view, from: from, options: options)
+    }
+
+    public func route(to view: UIViewController, from: UIViewController, options: RouteOptions? = nil) {
         if options?.contains(.modal) == true {
             if options?.contains(.embedInNav) == true {
                 if options?.contains(.addDoneButton) == true {

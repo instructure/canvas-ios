@@ -16,7 +16,8 @@
 
 import XCTest
 @testable import Student
-import Core
+@testable import Core
+import SafariServices
 import TestsFoundation
 
 class AssignmentDetailsPresenterTests: PersistenceTestCase {
@@ -198,6 +199,16 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         XCTAssertEqual(resultingButtonTitle, "Resubmit Assignment")
     }
 
+    func testShowSubmitAssignmentButtonExternalTool() {
+        let a = Assignment.make()
+        a.submissionTypes = [.external_tool]
+
+        let c = Course.make(["enrollments": Set([Enrollment.make()])])
+
+        presenter.showSubmitAssignmentButton(assignment: a, course: c)
+        XCTAssertEqual(resultingButtonTitle, "Launch External Tool")
+    }
+
     func testSubmitOnlineUpload() {
         Assignment.make(["id": "1"])
         presenter.submit(.online_upload, from: UIViewController())
@@ -244,6 +255,18 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         presenter.viewFileSubmission(from: UIViewController())
 
         XCTAssert(router.lastRoutedTo(.assignmentFileUpload(courseID: "1", assignmentID: "1")))
+    }
+
+    func testExternalToolSubmission() {
+        Assignment.make(["id": "1", "courseID": "1"])
+        let request = GetSessionlessLaunchURLRequest(context: ContextModel(.course, id: "1"), id: nil, url: nil, assignmentID: "1", moduleItemID: nil, launchType: .assessment)
+        api.mock(request, value: APIGetSessionlessLaunchResponse(id: "", name: "", url: URL(string: "https://instructure.com")!))
+        let openedSFSafariViewController = XCTestExpectation(description: "opened")
+        presenter.submit(.external_tool, from: UIViewController()) {
+            openedSFSafariViewController.fulfill()
+        }
+        wait(for: [openedSFSafariViewController], timeout: 1)
+        XCTAssert(router.viewControllerCalls[0].0 is SFSafariViewController)
     }
 }
 

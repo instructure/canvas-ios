@@ -205,4 +205,10 @@ class AssignmentTests: CoreTestCase {
         XCTAssertTrue(result[0].isImage)
         XCTAssertEqual(result[1], .text)
     }
+
+    func testIsLTIAssignment() {
+        let a = Assignment.make()
+        a.submissionTypes = [.external_tool]
+        XCTAssertTrue(a.isLTIAssignment)
+    }
 }

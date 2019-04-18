@@ -39,30 +39,25 @@ public class LTITools {
 
     public func presentToolInSFSafariViewController(from: UIViewController, animated: Bool, completionHandler: ((Bool) -> Void)?) {
         getSessionlessLaunchURL { (url) in
-            DispatchQueue.main.async {
-                guard let url = url else {
-                    completionHandler?(false)
-                    return
-                }
-                from.present(SFSafariViewController(url: url), animated: true, completion: {
-                    completionHandler?(true)
-                })
+            guard let url = url else {
+                completionHandler?(false)
+                return
             }
+            from.present(SFSafariViewController(url: url), animated: true, completion: {
+                completionHandler?(true)
+            })
         }
     }
 
-    func getSessionlessLaunchURL(completionBlock: @escaping (URL?) -> Void) {
+    public func getSessionlessLaunchURL(completionBlock: @escaping (URL?) -> Void) {
         let getSessionlessLaunchURL = GetSessionlessLaunchURL(api: env.api, context: context, id: id, url: url, launchType: launchType, assignmentID: assignmentID, moduleItemID: moduleItemID)
         getSessionlessLaunchURL.completionBlock = { [weak getSessionlessLaunchURL] in
-            guard let op = getSessionlessLaunchURL, let url = op.response?.url else {
-                completionBlock(nil)
-                return
+            var url: URL?
+            defer { DispatchQueue.main.async { completionBlock(url) } }
+            let op = getSessionlessLaunchURL
+            if op?.errors.isEmpty == true {
+                url = op?.response?.url
             }
-            if !op.errors.isEmpty {
-                completionBlock(nil)
-                return
-            }
-            completionBlock(url)
         }
 
         env.queue.addOperation(getSessionlessLaunchURL)
