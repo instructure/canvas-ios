@@ -230,15 +230,15 @@ class FetchedResultsControllerTests: CoreTestCase {
     }
 
     func testSortingOfSectionsWithDates() {
-        let mockNow = Date(timeIntervalSince1970: 1536597712.04575)
-        let mock100DaysFromMockNow = Calendar.current.date(byAdding: .day, value: 100, to: Date(timeIntervalSince1970: 1545241312.0443602))
-        let _: TTL = p.make(["key": "a", "lastRefresh": mockNow])
-        let _: TTL = p.make(["key": "b", "lastRefresh": mock100DaysFromMockNow])
+        let first = Date(fromISOString: "2019-09-09T00:00:00Z")
+        let second = Date(fromISOString: "2019-09-10T00:00:00Z")
+        let _: TTL = p.make(["key": "a", "lastRefresh": first])
+        let _: TTL = p.make(["key": "b", "lastRefresh": second])
 
         let expected: [FetchedSection] = [
-            FetchedSection(name: "2018-09-10 16:41:52 +0000", numberOfObjects: 1),
-            FetchedSection(name: "2019-03-29 16:41:52 +0000", numberOfObjects: 1),
-            ]
+            FetchedSection(name: "2019-09-09 00:00:00 +0000", numberOfObjects: 1),
+            FetchedSection(name: "2019-09-10 00:00:00 +0000", numberOfObjects: 1),
+        ]
 
         let sort = [NSSortDescriptor(key: "key", ascending: true), NSSortDescriptor(key: "lastRefresh", ascending: true)]
         let frc: FetchedResultsController<TTL> = database.fetchedResultsController(sortDescriptors: sort, sectionNameKeyPath: "lastRefresh")
