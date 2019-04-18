@@ -121,20 +121,6 @@ const loginHandler = async ({
     })
   })
 
-  NativeNotificationCenter.addObserver('route')
-  const notificationCenter = new NativeEventEmitter(NativeNotificationCenter)
-  notificationCenter.addListener('Notification', (notification) => {
-    switch (notification.name) {
-      case 'route':
-        const userInfo = notification.userInfo
-        if (userInfo && userInfo.url) {
-          const navigator = new Navigator('/courses/:courseID/modules')
-          navigator.show(userInfo.url)
-        }
-        break
-    }
-  })
-
   setSession(session)
 
   try {
@@ -177,3 +163,17 @@ AppState.addEventListener('change', (nextAppState) => {
 })
 
 APIBridge()
+
+NativeNotificationCenter.addObserver('route')
+const notificationCenter = new NativeEventEmitter(NativeNotificationCenter)
+notificationCenter.addListener('Notification', (notification) => {
+  switch (notification.name) {
+    case 'route':
+      const userInfo = notification.userInfo
+      if (userInfo && userInfo.url) {
+        const navigator = new Navigator('')
+        navigator.show(userInfo.url)
+      }
+      break
+  }
+})
