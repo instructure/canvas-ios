@@ -148,7 +148,7 @@ public final class Course: Enrollment {
             .map { _ in () }
             .on(failed: { [weak self] _ in
                 self?.isFavorite = !favorite
-                let _ = try? self?.managedObjectContext?.saveFRD()
+                _ = try? self?.managedObjectContext?.saveFRD()
             })
             .observe(on: UIScheduler())
     }
@@ -224,7 +224,7 @@ extension Course: SynchronizedModel {
                 let tabID: String = try tabJSON.stringID("id")
                 let tab = currentTabs.filter({ $0.id == tabID }).first ?? Tab(inContext: context)
                 try tab.updateValues(tabJSON, inContext: context)
-                if let index = currentTabs.index(of: tab) {
+                if let index = currentTabs.firstIndex(of: tab) {
                     currentTabs.remove(at: index)
                 }
             }

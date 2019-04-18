@@ -125,7 +125,7 @@ extension CanvadocsCommentsViewController: CommentTableViewCellDelegate {
         let alert = UIAlertController(title: NSLocalizedString("Delete Comment", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: ""), message: NSLocalizedString("Are you sure you would like to delete this comment?", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: ""), preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: ""), style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: NSLocalizedString("Delete", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: ""), style: .destructive, handler: { _ in
-            guard let index = self.comments.index(of: reply) else { return }
+            guard let index = self.comments.firstIndex(of: reply) else { return }
             self.pdfDocument.remove([reply], options: [:])
             self.comments.remove(at: index)
             self.tableView.reloadData()

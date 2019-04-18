@@ -72,7 +72,7 @@ enum SubmissionAnswer: Equatable {
             if answerIDs.contains(id) {
                 // deselect
                 var newAnswerIDs = answerIDs
-                if let index = newAnswerIDs.index(of: id) {
+                if let index = newAnswerIDs.firstIndex(of: id) {
                     newAnswerIDs.remove(at: index)
                 }
                 return .ids(newAnswerIDs)

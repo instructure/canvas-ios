@@ -30,7 +30,7 @@ public class NewSubmissionViewModelShim: NewSubmissionViewModel {
     @objc public weak var delegate: NewSubmissionViewModelShimProtocol?
     fileprivate let documentMenuViewModel: DocumentMenuViewModelType = DocumentMenuViewModel()
 
-    override init() {
+    public override init() {
         super.init()
 
         showSubmissionTypesSheet

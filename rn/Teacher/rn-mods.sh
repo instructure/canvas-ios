@@ -19,3 +19,6 @@ sed -i '' -e "s/flatStyles == null || flatStyles.flexWrap !== 'wrap'/true/g" ./n
 # https://github.com/facebook/react-native/issues/16039
 sed -i '' 's/self.delegate = self;/self.delegate = self;\
     [self selectRow:0 inComponent:0 animated:YES];/' ./node_modules/react-native/React/Views/RCTPicker.m
+
+# https://github.com/facebook/jest/issues/2567 (We can't update, since it requires newer babel)
+sed -i '' 's/  arguments: true,/  arguments: true, console: true,/' ./node_modules/babel-plugin-jest-hoist/build/index.js

@@ -51,19 +51,4 @@ public struct Progress: Equatable, Hashable {
     public let contextID: ContextID
     public let itemType: ItemType
     public let itemID: String
-    
-    
-    public var hashValue: Int {
-        return kind.hashValue
-            + 11 * contextID.hashValue
-            + 37 * itemType.hashValue
-            + 101 * itemID.hashValue
-    }
-}
-
-public func ==(lhs: Progress, rhs: Progress) -> Bool {
-    return lhs.kind == rhs.kind
-        && lhs.contextID == rhs.contextID
-        && lhs.itemType == rhs.itemType
-        && lhs.itemID == rhs.itemID
 }

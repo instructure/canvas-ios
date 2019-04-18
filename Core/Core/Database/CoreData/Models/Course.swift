@@ -68,7 +68,7 @@ extension Course {
         request.fetchLimit = 1
         request.predicate = NSPredicate(format: "%K == %@", #keyPath(Color.canvasContextID), canvasContextID)
         let color = try? managedObjectContext?.fetch(request).first
-        return color??.color ?? .named(.ash)
+        return color?.color ?? .named(.ash)
     }
 
     static let scoreFormatter: NumberFormatter = {

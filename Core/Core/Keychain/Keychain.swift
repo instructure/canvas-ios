@@ -131,7 +131,7 @@ public class Keychain {
             kSecClass: kSecClassGenericPassword,
             kSecAttrService: config.service,
             kSecAttrAccount: key,
-            kSecReturnData: kCFBooleanTrue,
+            kSecReturnData: kCFBooleanTrue as Any,
             kSecMatchLimit: kSecMatchLimitOne,
         ]
         if let group = config.accessGroup {

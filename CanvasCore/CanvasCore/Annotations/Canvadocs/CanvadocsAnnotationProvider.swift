@@ -103,7 +103,7 @@ class CanvadocsAnnotationProvider: PSPDFContainerAnnotationProvider {
                     self?.decrementRequestsInFlight()
                     switch result {
                     case .success(let updated):
-                        if let index = self?.canvadocsAnnotations.index(where: { $0.id == updated.id }) {
+                        if let index = self?.canvadocsAnnotations.firstIndex(where: { $0.id == updated.id }) {
                             self?.canvadocsAnnotations[index] = updated
                         }
                     case .failure(let error):
@@ -150,7 +150,7 @@ class CanvadocsAnnotationProvider: PSPDFContainerAnnotationProvider {
         guard
             let doc = documentProvider?.document,
             let pspdfAnnotationID = annotation.name,
-            let index = canvadocsAnnotations.index(where: { $0.id == pspdfAnnotationID }),
+            let index = canvadocsAnnotations.firstIndex(where: { $0.id == pspdfAnnotationID }),
             let canvadocsAnnotation = CanvadocsAnnotation(pspdfAnnotation: annotation, onDocument: doc)
             else { return }
         
@@ -171,7 +171,7 @@ class CanvadocsAnnotationProvider: PSPDFContainerAnnotationProvider {
             switch result {
             case .success(let annotation):
                 if let id = annotation.id {
-                    if let index = self?.canvadocsAnnotations.index(where: { $0.id == id }) {
+                    if let index = self?.canvadocsAnnotations.firstIndex(where: { $0.id == id }) {
                         self?.canvadocsAnnotations[index] = canvadocsAnnotation
                     }
                 }

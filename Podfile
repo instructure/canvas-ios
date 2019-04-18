@@ -46,7 +46,7 @@ abstract_target 'defaults' do
 
   pod 'SDWebImage', '~> 4.1'
   pod 'ReactiveCocoa', '~> 8.0'
-  pod 'Marshal', '~> 1.1'
+  pod 'Marshal', '~> 1.2.7'
   pod 'Result', '~> 4.1'
   pod 'Cartography', '~> 3.1'
   pod 'ReactiveSwift', '~> 4.0'

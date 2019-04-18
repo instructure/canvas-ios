@@ -74,7 +74,7 @@ PODS:
   - Mantle (1.5.8):
     - Mantle/extobjc (= 1.5.8)
   - Mantle/extobjc (1.5.8)
-  - Marshal (1.2.4)
+  - Marshal (1.2.7)
   - Masonry (1.1.0)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
@@ -179,7 +179,7 @@ DEPENDENCIES:
   - Interactable (from `./rn/Teacher/node_modules/react-native-interactable`)
   - Kingfisher (~> 4.10)
   - Mantle (~> 1.5.5)
-  - Marshal (~> 1.1)
+  - Marshal (~> 1.2.7)
   - Masonry (~> 1.0)
   - RCTSFSafariViewController (from `./rn/Teacher/node_modules/react-native-sfsafariviewcontroller`)
   - Reachability (~> 3.2)
@@ -302,7 +302,7 @@ SPEC CHECKSUMS:
   Interactable: 0a9f2a42b02ea03114d7e03e714d946a65cd8d0b
   Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
   Mantle: f03b2b606c3f0cabd80214ad8a2fed6b464a7359
-  Marshal: 8e04e6624e506921db7143b0bfd83caee03f32d6
+  Marshal: ef480864a6af10a63f67be7e55bb5d8fe67a16d9
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   RCTSFSafariViewController: 954d0fedb55f8b01b8695c78a8697fdc09a931b4
@@ -330,6 +330,6 @@ SPEC CHECKSUMS:
   TPKeyboardAvoiding: cb69d5ddbe90ce0170e4bc2db1e5e41d4a3ad9a4
   yoga: b5d96400ca8b2936965a7a6516da7c1177f432a3
 
-PODFILE CHECKSUM: bb538787c940f39041e34dcbcccfc9e14594c056
+PODFILE CHECKSUM: 78e3dd1f37c27eaa8699cb8bbb79287e22287fec
 
 COCOAPODS: 1.6.1
