@@ -148,7 +148,7 @@ public final class Course: Enrollment {
             .map { _ in () }
             .on(failed: { [weak self] _ in
                 self?.isFavorite = !favorite
-                let _ = ((try? self?.managedObjectContext?.saveFRD()) as ()??)
+                _ = try? self?.managedObjectContext?.saveFRD()
             })
             .observe(on: UIScheduler())
     }

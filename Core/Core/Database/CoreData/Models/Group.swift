@@ -47,13 +47,13 @@ extension Group {
         let request = NSFetchRequest<Color>(entityName: String(describing: Color.self))
         request.fetchLimit = 1
         request.predicate = NSPredicate(format: "%K == %@", #keyPath(Color.canvasContextID), canvasContextID)
-        if let first = ((try? managedObjectContext?.fetch(request).first) as Color??), let color = first {
+        if let color = try? managedObjectContext?.fetch(request).first {
             return color.color
         }
         if let courseID = courseID {
             let course = ContextModel(.course, id: courseID)
             request.predicate = NSPredicate(format: "%K == %@", #keyPath(Color.canvasContextID), course.canvasContextID)
-            if let first = ((try? managedObjectContext?.fetch(request).first) as Color??), let color = first {
+            if let color = try? managedObjectContext?.fetch(request).first {
                 return color.color
             }
         }

@@ -131,7 +131,7 @@ open class RefreshScope: NSObject {
         let allRefreshes = NSFetchRequest<NSFetchRequestResult>(entityName: "Refresh")
         if #available(iOSApplicationExtension 9.0, *) {
             let batchDelete = NSBatchDeleteRequest(fetchRequest: allRefreshes)
-            _ = ((try? context.persistentStoreCoordinator?.execute(batchDelete, with: context)) as Any??)
+            _ = try? context.persistentStoreCoordinator?.execute(batchDelete, with: context)
         } else {
             // Fallback on earlier versions
             for (_, refresh) in refreshesByKey {
