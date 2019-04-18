@@ -37,7 +37,7 @@ jest
   }))
 
 jest.mock('react-native-fs', () => ({
-  CachesDirectoryPath: 'caches',
+  TemporaryDirectoryPath: 'tmp',
   downloadFile: jest.fn(() => ({
     jobId: '1',
     promise: Promise.resolve({ statusCode: 200 }),
@@ -203,7 +203,7 @@ describe('ViewFile', () => {
     await updatedState(tree)
     tree.find(selectors.share).simulate('Press')
     expect(ActionSheetIOS.showShareActionSheetWithOptions).toHaveBeenCalledWith(
-      { url: 'file://caches/file-24/picture<>()[]{}.?%日本.jpg' },
+      { url: 'file://tmp/file-24/picture<>()[]{}.?%日本.jpg' },
       expect.any(Function),
       expect.any(Function)
     )
@@ -340,7 +340,7 @@ describe('ViewFile', () => {
     await Promise.resolve() // wait for mkdir
     expect(tree.state()).toMatchObject({
       jobID: null,
-      localPath: 'file://caches/file-24/picture<>()[]{}.?%日本.jpg',
+      localPath: 'file://tmp/file-24/picture<>()[]{}.?%日本.jpg',
       loadingDone: true,
       error: null,
     })

@@ -30,7 +30,7 @@ import {
 } from 'react-native'
 import {
   downloadFile,
-  CachesDirectoryPath,
+  TemporaryDirectoryPath,
   mkdir,
   stopDownload,
   exists,
@@ -122,7 +122,7 @@ export default class ViewFile extends Component<Props, State> {
       return
     }
 
-    const directoryPath = `${CachesDirectoryPath}/file-${file.id}`
+    const directoryPath = `${TemporaryDirectoryPath}/file-${file.id}`
     await mkdir(directoryPath)
     const toFile = `${directoryPath}/${decodeURIComponent(file.filename)}`
     let fileExists = await exists(toFile)

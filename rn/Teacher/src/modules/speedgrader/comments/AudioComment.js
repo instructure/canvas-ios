@@ -28,7 +28,7 @@ import {
 import { connect } from 'react-redux'
 import {
   downloadFile,
-  CachesDirectoryPath,
+  TemporaryDirectoryPath,
   stopDownload,
 } from 'react-native-fs'
 import Images from '../../../images'
@@ -200,7 +200,7 @@ export class AudioComment extends Component<Props, any> {
 /* istanbul ignore next */
 async function downloadAudio (url: string, captureJob: (number) => void): Promise<string> {
   const fileName = `${new Date().valueOf()}.mp4`
-  const path = `${CachesDirectoryPath}/${fileName}`
+  const path = `${TemporaryDirectoryPath}/${fileName}`
   let { jobId, promise } = downloadFile({
     fromUrl: url,
     toFile: path,
