@@ -1072,7 +1072,6 @@
 		7D349C7721430D2A004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		7D349C7821430D2A004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7D349C7B21430D2C004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/TimedQuizViewController.strings"; sourceTree = "<group>"; };
-		7DAFB46621A4866900311275 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DC4D69F2146E23D007B1C06 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/TimedQuizViewController.strings"; sourceTree = "<group>"; };
 		7DC4D6A12146E249007B1C06 /* en-GB-instukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-instukhe"; path = "en-GB-instukhe.lproj/TimedQuizViewController.strings"; sourceTree = "<group>"; };
 		7DC4D6A32146E24C007B1C06 /* nb-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-instk12"; path = "nb-instk12.lproj/TimedQuizViewController.strings"; sourceTree = "<group>"; };
@@ -1154,8 +1153,6 @@
 		9FFBF1B11FBB7687005AC85C /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9FFBF1B21FBB7687005AC85C /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/TimedQuizViewController.strings; sourceTree = "<group>"; };
 		B1411D591FE825ED00CD4967 /* CoreDataSyncHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataSyncHelper.swift; sourceTree = "<group>"; };
-		B159CA592153F0B500DA6044 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = "../ios-frameworks/PSPDFKit.framework"; sourceTree = "<group>"; };
-		B159CA5A2153F0B500DA6044 /* PSPDFKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKitUI.framework; path = "../ios-frameworks/PSPDFKitUI.framework"; sourceTree = "<group>"; };
 		B196F79A206AB60400DE640F /* CoreDataSync.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataSync.m; sourceTree = "<group>"; };
 		B1A6BC93218CAB51000515E3 /* SessionToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionToken.swift; sourceTree = "<group>"; };
 		B1BE249620AB13FE00C521C3 /* SafariActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariActivity.swift; sourceTree = "<group>"; };
@@ -1181,9 +1178,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D0215A321BAE703009A8E69 /* Core.framework in Frameworks */,
-				49383CE61F848652009C8F8E /* CanvasKit.framework in Frameworks */,
 				49383CE51F848652009C8F8E /* CanvasKeymaster.framework in Frameworks */,
+				49383CE61F848652009C8F8E /* CanvasKit.framework in Frameworks */,
+				7D0215A321BAE703009A8E69 /* Core.framework in Frameworks */,
 				630085E9F4EBC97E435FFE64 /* Pods_defaults_CanvasCore.framework in Frameworks */,
 				F9B946EC221491F00083E660 /* PSPDFKit.framework in Frameworks */,
 				F9B946ED221491F00083E660 /* PSPDFKitUI.framework in Frameworks */,
@@ -1221,16 +1218,13 @@
 		2C60495C1F72B9CE00252BC5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F9B946EA221491F00083E660 /* PSPDFKit.framework */,
-				F9B946EB221491F00083E660 /* PSPDFKitUI.framework */,
-				7D0215A221BAE703009A8E69 /* Core.framework */,
-				7DAFB46621A4866900311275 /* Core.framework */,
-				B159CA592153F0B500DA6044 /* PSPDFKit.framework */,
-				B159CA5A2153F0B500DA6044 /* PSPDFKitUI.framework */,
 				49383CDF1F846FCC009C8F8E /* CanvasKeymaster.framework */,
 				49383CDE1F846FCB009C8F8E /* CanvasKit.framework */,
+				7D0215A221BAE703009A8E69 /* Core.framework */,
 				801BC15BB71585F55A4CD6C8 /* Pods_defaults_CanvasCore.framework */,
 				0C6ED514BCD5F05D551BC00B /* Pods_defaults_CanvasCoreTests.framework */,
+				F9B946EA221491F00083E660 /* PSPDFKit.framework */,
+				F9B946EB221491F00083E660 /* PSPDFKitUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
