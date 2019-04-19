@@ -142,10 +142,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				4948BE6B1F915F4B0035BAFD /* CanvasCore.framework in Embed Frameworks */,
+				49A36ED01FA90BEF005F5905 /* CanvasKeymaster.framework in Embed Frameworks */,
 				49A36ED21FA90BEF005F5905 /* CanvasKit.framework in Embed Frameworks */,
 				7864D52A21C3FD230075D955 /* Core.framework in Embed Frameworks */,
-				49A36ED01FA90BEF005F5905 /* CanvasKeymaster.framework in Embed Frameworks */,
-				4948BE6B1F915F4B0035BAFD /* CanvasCore.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -590,7 +590,6 @@
 		49A36ECB1FA90BD0005F5905 /* CanvasKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49A36ECC1FA90BD0005F5905 /* CanvasKeymaster.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKeymaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49DB0AE51E4E27030036D96E /* Student+AccessRemoved.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Student+AccessRemoved.swift"; sourceTree = "<group>"; };
-		49E21B071D1C667A00B7B9B4 /* SoGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoGrey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49ED5A4C1DBFD02E009E2896 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5B022DDB21FD9504006FEA47 /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sl-SI"; path = "sl-SI.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		5B022DDC21FD9504006FEA47 /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sl-SI"; path = "sl-SI.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -831,8 +830,6 @@
 		9FBFE6D72241747B002B3796 /* ActAsUserPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActAsUserPresenter.swift; sourceTree = "<group>"; };
 		9FC676A2222832C700945F64 /* CKIClientExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKIClientExtensions.swift; sourceTree = "<group>"; };
 		B11A2CF620E42D9500A2DBDD /* AccountNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNotificationViewController.swift; sourceTree = "<group>"; };
-		B18020AC21556E7500AB2F03 /* PSPDFKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKitUI.framework; path = "../ios-frameworks/PSPDFKitUI.framework"; sourceTree = "<group>"; };
-		B18020AD21556E7500AB2F03 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = "../ios-frameworks/PSPDFKit.framework"; sourceTree = "<group>"; };
 		B38F4CDA7FBACEC7F04FB4BB /* Pods_Parent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Parent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5CB1B621DC15AD800FE9C93 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/ArmchairLocalizable.strings; sourceTree = "<group>"; };
 		B5CB1B641DC15AE000FE9C93 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/ArmchairLocalizable.strings; sourceTree = "<group>"; };
@@ -863,22 +860,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F9B946F4221492400083E660 /* PSPDFKit.framework in Frameworks */,
-				F9B946F5221492400083E660 /* PSPDFKitUI.framework in Frameworks */,
-				7D0215A521BAE863009A8E69 /* Core.framework in Frameworks */,
-				2C75ABA31DDF62F200650856 /* SystemConfiguration.framework in Frameworks */,
-				2C75ABA11DDF62ED00650856 /* QuartzCore.framework in Frameworks */,
-				2C75AB9F1DDF62E600650856 /* CoreVideo.framework in Frameworks */,
+				2C75AB951DDF62CA00650856 /* AssetsLibrary.framework in Frameworks */,
 				2C75AB9D1DDF62E000650856 /* AVFoundation.framework in Frameworks */,
 				4948BE6A1F915F4B0035BAFD /* CanvasCore.framework in Frameworks */,
-				2C75AB9B1DDF62DA00650856 /* CoreMedia.framework in Frameworks */,
-				49A36ED11FA90BEF005F5905 /* CanvasKit.framework in Frameworks */,
-				2C75AB991DDF62D500650856 /* CoreText.framework in Frameworks */,
-				2C75AB971DDF62CF00650856 /* CoreTelephony.framework in Frameworks */,
-				2C75AB951DDF62CA00650856 /* AssetsLibrary.framework in Frameworks */,
-				5E75B6001C4D4A8E00A44160 /* CoreData.framework in Frameworks */,
-				5180FB980843FA6B1321EF5E /* Pods_defaults_Parent.framework in Frameworks */,
 				49A36ECF1FA90BEF005F5905 /* CanvasKeymaster.framework in Frameworks */,
+				49A36ED11FA90BEF005F5905 /* CanvasKit.framework in Frameworks */,
+				7D0215A521BAE863009A8E69 /* Core.framework in Frameworks */,
+				5E75B6001C4D4A8E00A44160 /* CoreData.framework in Frameworks */,
+				2C75AB9B1DDF62DA00650856 /* CoreMedia.framework in Frameworks */,
+				2C75AB971DDF62CF00650856 /* CoreTelephony.framework in Frameworks */,
+				2C75AB991DDF62D500650856 /* CoreText.framework in Frameworks */,
+				2C75AB9F1DDF62E600650856 /* CoreVideo.framework in Frameworks */,
+				5180FB980843FA6B1321EF5E /* Pods_defaults_Parent.framework in Frameworks */,
+				F9B946F4221492400083E660 /* PSPDFKit.framework in Frameworks */,
+				F9B946F5221492400083E660 /* PSPDFKitUI.framework in Frameworks */,
+				2C75ABA11DDF62ED00650856 /* QuartzCore.framework in Frameworks */,
+				2C75ABA31DDF62F200650856 /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1166,28 +1163,25 @@
 		5E7790AF1C46CBA100429BF8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F9B946F2221492400083E660 /* PSPDFKit.framework */,
-				F9B946F3221492400083E660 /* PSPDFKitUI.framework */,
-				7D0215A421BAE863009A8E69 /* Core.framework */,
-				B18020AD21556E7500AB2F03 /* PSPDFKit.framework */,
-				B18020AC21556E7500AB2F03 /* PSPDFKitUI.framework */,
+				2C75AB941DDF62CA00650856 /* AssetsLibrary.framework */,
+				2C75AB9C1DDF62E000650856 /* AVFoundation.framework */,
+				49952C3B1F7477C300A11404 /* CanvasCore.framework */,
 				49A36ECC1FA90BD0005F5905 /* CanvasKeymaster.framework */,
 				49A36ECB1FA90BD0005F5905 /* CanvasKit.framework */,
-				49952C3B1F7477C300A11404 /* CanvasCore.framework */,
-				2C75ABA21DDF62F200650856 /* SystemConfiguration.framework */,
-				2C75ABA01DDF62ED00650856 /* QuartzCore.framework */,
-				2C75AB9E1DDF62E600650856 /* CoreVideo.framework */,
-				2C75AB9C1DDF62E000650856 /* AVFoundation.framework */,
-				2C75AB9A1DDF62DA00650856 /* CoreMedia.framework */,
-				2C75AB981DDF62D500650856 /* CoreText.framework */,
-				2C75AB961DDF62CF00650856 /* CoreTelephony.framework */,
-				2C75AB941DDF62CA00650856 /* AssetsLibrary.framework */,
+				7D0215A421BAE863009A8E69 /* Core.framework */,
 				5EEB551C1C483E7200953B20 /* CoreData.framework */,
-				49E21B071D1C667A00B7B9B4 /* SoGrey.framework */,
-				3029A40C0EE636CB00AF751E /* Pods_ParentTests.framework */,
-				5DF4F6632250B1D4C9A25BC6 /* Pods_defaults_Parent.framework */,
+				2C75AB9A1DDF62DA00650856 /* CoreMedia.framework */,
+				2C75AB961DDF62CF00650856 /* CoreTelephony.framework */,
+				2C75AB981DDF62D500650856 /* CoreText.framework */,
+				2C75AB9E1DDF62E600650856 /* CoreVideo.framework */,
 				90C9F9DE9C41E49B6739CC26 /* Pods_defaults_common_tests_ParentTests.framework */,
+				5DF4F6632250B1D4C9A25BC6 /* Pods_defaults_Parent.framework */,
 				B38F4CDA7FBACEC7F04FB4BB /* Pods_Parent.framework */,
+				3029A40C0EE636CB00AF751E /* Pods_ParentTests.framework */,
+				F9B946F2221492400083E660 /* PSPDFKit.framework */,
+				F9B946F3221492400083E660 /* PSPDFKitUI.framework */,
+				2C75ABA01DDF62ED00650856 /* QuartzCore.framework */,
+				2C75ABA21DDF62F200650856 /* SystemConfiguration.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

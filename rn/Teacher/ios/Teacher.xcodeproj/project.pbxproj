@@ -35,6 +35,7 @@
 		7D2C7D312225B08600B8CA2B /* CKIClientExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2C7D302225B08600B8CA2B /* CKIClientExtensionsTests.swift */; };
 		7D3DA83A2187615E000D828F /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D3DA83821876142000D828F /* Core.framework */; };
 		7D3DA83B2187615E000D828F /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D3DA83821876142000D828F /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7DBF923B2269791600710D0F /* TestsFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B15CA26C221DDEB40014FB02 /* TestsFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		840CABA038B02116B1BDA3E0 /* Pods_defaults_TeacherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 862F1400F211EDA7FFBD70FA /* Pods_defaults_TeacherTests.framework */; };
 		8C2F55972B1A4A3EBFAEEBBD /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D063D27A1B3640208ABF74D4 /* libz.tbd */; };
 		B15CA240221DBA940014FB02 /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA23F221DBA940014FB02 /* Routes.swift */; };
@@ -77,10 +78,21 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				7D3DA83B2187615E000D828F /* Core.framework in Embed Frameworks */,
-				4943ECB81E5CEFBD001DC5B5 /* CanvasKit.framework in Embed Frameworks */,
 				497CA7341F82AE8D00501613 /* CanvasCore.framework in Embed Frameworks */,
 				4943ECB61E5CEFBD001DC5B5 /* CanvasKeymaster.framework in Embed Frameworks */,
+				4943ECB81E5CEFBD001DC5B5 /* CanvasKit.framework in Embed Frameworks */,
+				7D3DA83B2187615E000D828F /* Core.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7DBF923A226978FC00710D0F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7DBF923B2269791600710D0F /* TestsFoundation.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -153,9 +165,7 @@
 		494AE0B51F843CB4001A8F31 /* RootTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RootTabBarController.swift; path = Teacher/RootTabBarController.swift; sourceTree = "<group>"; };
 		494AE0B61F843CB4001A8F31 /* AppDelegate+Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AppDelegate+Routes.swift"; path = "Teacher/AppDelegate+Routes.swift"; sourceTree = "<group>"; };
 		494AE0B71F843CB4001A8F31 /* TeacherAttendanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TeacherAttendanceViewController.swift; path = Teacher/TeacherAttendanceViewController.swift; sourceTree = "<group>"; };
-		494BC60A1F954E1A00C77257 /* SoGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoGrey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		497CA7321F82ACF400501613 /* CanvasCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		510EF9905DA0D0F8D63CE1CD /* EarlGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EarlGrey.framework; path = Pods/EarlGrey/EarlGrey/EarlGrey.framework; sourceTree = SOURCE_ROOT; };
 		5641857260D9B45E5BEF297B /* Pods-defaults-TeacherTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-TeacherTests.debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-TeacherTests/Pods-defaults-TeacherTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5B0508CB203179F6004DFC9A /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "Teacher/en-AU.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		5B0E3D2B203179FD00F45C25 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "Teacher/en-GB.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
@@ -204,13 +214,6 @@
 		7D3DA83821876142000D828F /* Core.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		862F1400F211EDA7FFBD70FA /* Pods_defaults_TeacherTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_TeacherTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9210A7D2CE7CB864C8337310 /* Pods-defaults-Teacher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Teacher.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-Teacher/Pods-defaults-Teacher.release.xcconfig"; sourceTree = "<group>"; };
-		9FCA66222142CFDC00BE0EBB /* SoSeedySwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoSeedySwift.framework; path = "../../../ios-frameworks/SoSeedySwift.framework"; sourceTree = "<group>"; };
-		9FCA66252142CFF100BE0EBB /* SwiftProtobuf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftProtobuf.framework; path = "../../../ios-frameworks/SwiftGRPC/SwiftProtobuf.framework"; sourceTree = "<group>"; };
-		9FCA66262142CFF100BE0EBB /* BoringSSL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BoringSSL.framework; path = "../../../ios-frameworks/SwiftGRPC/BoringSSL.framework"; sourceTree = "<group>"; };
-		9FCA66272142CFF100BE0EBB /* CgRPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CgRPC.framework; path = "../../../ios-frameworks/SwiftGRPC/CgRPC.framework"; sourceTree = "<group>"; };
-		9FCA66282142CFF100BE0EBB /* SwiftGRPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftGRPC.framework; path = "../../../ios-frameworks/SwiftGRPC/SwiftGRPC.framework"; sourceTree = "<group>"; };
-		B159CA6C21540E0800DA6044 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = "../../../ios-frameworks/PSPDFKit.framework"; sourceTree = "<group>"; };
-		B159CA6D21540E0800DA6044 /* PSPDFKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKitUI.framework; path = "../../../ios-frameworks/PSPDFKitUI.framework"; sourceTree = "<group>"; };
 		B15CA23F221DBA940014FB02 /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Routes.swift; path = Teacher/Routes.swift; sourceTree = "<group>"; };
 		B15CA242221DC4EC0014FB02 /* CKIClientExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKIClientExtensions.swift; sourceTree = "<group>"; };
 		B15CA244221DC5BC0014FB02 /* ModuleListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleListViewController.swift; sourceTree = "<group>"; };
@@ -242,22 +245,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F9B946F8221492580083E660 /* PSPDFKit.framework in Frameworks */,
-				F9B946F9221492580083E660 /* PSPDFKitUI.framework in Frameworks */,
-				497CA7331F82AE8D00501613 /* CanvasCore.framework in Frameworks */,
-				7D3DA83A2187615E000D828F /* Core.framework in Frameworks */,
-				2C50EE091E735CCB0096592C /* SystemConfiguration.framework in Frameworks */,
-				2C50EE071E735CC60096592C /* QuartzCore.framework in Frameworks */,
-				2C50EE051E735CC00096592C /* CoreVideo.framework in Frameworks */,
-				2C50EE031E735CBB0096592C /* AVFoundation.framework in Frameworks */,
-				2C50EE011E735CB50096592C /* CoreMedia.framework in Frameworks */,
-				2C50EDFF1E735CB10096592C /* CoreText.framework in Frameworks */,
-				2C50EDFD1E735CAC0096592C /* CoreTelephony.framework in Frameworks */,
 				2C50EDE11E735CA50096592C /* AssetsLibrary.framework in Frameworks */,
-				4943ECB71E5CEFBD001DC5B5 /* CanvasKit.framework in Frameworks */,
+				2C50EE031E735CBB0096592C /* AVFoundation.framework in Frameworks */,
+				497CA7331F82AE8D00501613 /* CanvasCore.framework in Frameworks */,
 				4943ECB51E5CEFBD001DC5B5 /* CanvasKeymaster.framework in Frameworks */,
+				4943ECB71E5CEFBD001DC5B5 /* CanvasKit.framework in Frameworks */,
+				7D3DA83A2187615E000D828F /* Core.framework in Frameworks */,
+				2C50EE011E735CB50096592C /* CoreMedia.framework in Frameworks */,
+				2C50EDFD1E735CAC0096592C /* CoreTelephony.framework in Frameworks */,
+				2C50EDFF1E735CB10096592C /* CoreText.framework in Frameworks */,
+				2C50EE051E735CC00096592C /* CoreVideo.framework in Frameworks */,
 				8C2F55972B1A4A3EBFAEEBBD /* libz.tbd in Frameworks */,
 				F9FDB9351C9FB4F9CF7E0F94 /* Pods_defaults_Teacher.framework in Frameworks */,
+				F9B946F8221492580083E660 /* PSPDFKit.framework in Frameworks */,
+				F9B946F9221492580083E660 /* PSPDFKitUI.framework in Frameworks */,
+				2C50EE071E735CC60096592C /* QuartzCore.framework in Frameworks */,
+				2C50EE091E735CCB0096592C /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,43 +303,27 @@
 		2C50EDDF1E735CA50096592C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B159CA6C21540E0800DA6044 /* PSPDFKit.framework */,
-				B15CA26C221DDEB40014FB02 /* TestsFoundation.framework */,
-				B159CA6D21540E0800DA6044 /* PSPDFKitUI.framework */,
-				F9B946F6221492580083E660 /* PSPDFKit.framework */,
-				F9B946F7221492580083E660 /* PSPDFKitUI.framework */,
-				9FCA66262142CFF100BE0EBB /* BoringSSL.framework */,
-				9FCA66272142CFF100BE0EBB /* CgRPC.framework */,
-				9FCA66282142CFF100BE0EBB /* SwiftGRPC.framework */,
-				9FCA66252142CFF100BE0EBB /* SwiftProtobuf.framework */,
-				9FCA66222142CFDC00BE0EBB /* SoSeedySwift.framework */,
-				2C50EE081E735CCB0096592C /* SystemConfiguration.framework */,
-				2C50EE061E735CC60096592C /* QuartzCore.framework */,
-				2C50EE041E735CC00096592C /* CoreVideo.framework */,
-				2C50EE021E735CBB0096592C /* AVFoundation.framework */,
-				2C50EE001E735CB50096592C /* CoreMedia.framework */,
-				2C50EDFE1E735CB10096592C /* CoreText.framework */,
-				2C50EDFC1E735CAC0096592C /* CoreTelephony.framework */,
 				2C50EDE01E735CA50096592C /* AssetsLibrary.framework */,
-				D063D27A1B3640208ABF74D4 /* libz.tbd */,
-				EE78272172F7D235E49A1D77 /* Pods_defaults_Teacher.framework */,
-				2E32426347BE56C907EB34A1 /* Pods_defaults_common_ui_tests_TeacherUITests.framework */,
-				510EF9905DA0D0F8D63CE1CD /* EarlGrey.framework */,
-				862F1400F211EDA7FFBD70FA /* Pods_defaults_TeacherTests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		4943EC8A1E5CEF93001DC5B5 /* Dependencies */ = {
-			isa = PBXGroup;
-			children = (
+				2C50EE021E735CBB0096592C /* AVFoundation.framework */,
 				497CA7321F82ACF400501613 /* CanvasCore.framework */,
 				4943ECAB1E5CEFAC001DC5B5 /* CanvasKeymaster.framework */,
 				4943ECAC1E5CEFAC001DC5B5 /* CanvasKit.framework */,
 				7D3DA83821876142000D828F /* Core.framework */,
-				494BC60A1F954E1A00C77257 /* SoGrey.framework */,
+				2C50EE001E735CB50096592C /* CoreMedia.framework */,
+				2C50EDFC1E735CAC0096592C /* CoreTelephony.framework */,
+				2C50EDFE1E735CB10096592C /* CoreText.framework */,
+				2C50EE041E735CC00096592C /* CoreVideo.framework */,
+				D063D27A1B3640208ABF74D4 /* libz.tbd */,
+				2E32426347BE56C907EB34A1 /* Pods_defaults_common_ui_tests_TeacherUITests.framework */,
+				EE78272172F7D235E49A1D77 /* Pods_defaults_Teacher.framework */,
+				862F1400F211EDA7FFBD70FA /* Pods_defaults_TeacherTests.framework */,
+				F9B946F6221492580083E660 /* PSPDFKit.framework */,
+				F9B946F7221492580083E660 /* PSPDFKitUI.framework */,
+				2C50EE061E735CC60096592C /* QuartzCore.framework */,
+				2C50EE081E735CCB0096592C /* SystemConfiguration.framework */,
+				B15CA26C221DDEB40014FB02 /* TestsFoundation.framework */,
 			);
-			name = Dependencies;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		7D2C7D2F2225B06A00B8CA2B /* Extensions */ = {
@@ -352,7 +339,6 @@
 			children = (
 				2C8E35712093AD760071ED94 /* Settings.bundle */,
 				13B07FAE1A68108700A75B9A /* Teacher */,
-				4943EC8A1E5CEF93001DC5B5 /* Dependencies */,
 				B15CA25E221DDB820014FB02 /* TeacherTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2C50EDDF1E735CA50096592C /* Frameworks */,
@@ -485,6 +471,7 @@
 				B15CA25A221DDB820014FB02 /* Frameworks */,
 				B15CA25B221DDB820014FB02 /* Resources */,
 				AF77E971FEE0456B393856EF /* [CP] Embed Pods Frameworks */,
+				7DBF923A226978FC00710D0F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

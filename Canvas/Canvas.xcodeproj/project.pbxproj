@@ -212,7 +212,6 @@
 		492708551CF4BC3200C631C6 /* WebBrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 492708301CF4BC3200C631C6 /* WebBrowserViewController.xib */; };
 		49295B531F87F01D001DAB1F /* CBIResizableTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49295B511F87F01B001DAB1F /* CBIResizableTextView.m */; };
 		49383CE21F848353009C8F8E /* Session+Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49383CE11F84834A009C8F8E /* Session+Login.swift */; };
-		49383CE81F84887A009C8F8E /* CanvasCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6049621F72BB6900252BC5 /* CanvasCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		494E139E1D355C690068279D /* MobileQuizInformation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 494E139B1D355C690068279D /* MobileQuizInformation.storyboard */; };
 		494E139F1D355C690068279D /* MobileQuizInformationViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 494E139C1D355C690068279D /* MobileQuizInformationViewController.h */; };
 		494E13A01D355C690068279D /* MobileQuizInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 494E139D1D355C690068279D /* MobileQuizInformationViewController.m */; };
@@ -597,6 +596,10 @@
 		7D1D7E05213743D300F7CCFE /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1D7E04213743D300F7CCFE /* Core.framework */; };
 		7D1D7E06213743D300F7CCFE /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1D7E04213743D300F7CCFE /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7DAEE5872111019600BF5C43 /* ToDoEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEE5862111019600BF5C43 /* ToDoEmptyView.xib */; };
+		7DBF920222690E9400710D0F /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6049621F72BB6900252BC5 /* CanvasCore.framework */; };
+		7DBF920322690E9400710D0F /* CanvasCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6049621F72BB6900252BC5 /* CanvasCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7DBF920422690ECF00710D0F /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946EE221492040083E660 /* PSPDFKit.framework */; };
+		7DBF920522690ED200710D0F /* PSPDFKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946EF221492040083E660 /* PSPDFKitUI.framework */; };
 		7DC912E61FE1CC9200A76B14 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7DC912E81FE1CC9200A76B14 /* Localizable.strings */; };
 		7DC912EB1FE1CC9200A76B14 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7DC912ED1FE1CC9200A76B14 /* InfoPlist.strings */; };
 		8F363586CEA2A05378002836 /* Pods_GradesWidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 651295DCB22A2B02F381D94B /* Pods_GradesWidget.framework */; };
@@ -607,8 +610,6 @@
 		9F61B52C205985A5009C0B13 /* CanvasAppDelegate+Helm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F61B52B205985A5009C0B13 /* CanvasAppDelegate+Helm.swift */; };
 		ACC968801D245768006AEAB1 /* Page+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC9687F1D245768006AEAB1 /* Page+ViewModel.swift */; };
 		B15738001D94C38C00ADBB85 /* ModuleItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15737FF1D94C38C00ADBB85 /* ModuleItemDetailViewController.swift */; };
-		B159CA67215401BD00DA6044 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B159CA5D2153F0F700DA6044 /* PSPDFKit.framework */; };
-		B159CA682154023600DA6044 /* PSPDFKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B159CA5E2153F0F700DA6044 /* PSPDFKitUI.framework */; };
 		B177E6FD1E2EC8BA00D7477D /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B177E6FF1E2EC8BA00D7477D /* Settings.storyboard */; };
 		B177E7091E2ECAB900D7477D /* CBIGradeDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B177E70B1E2ECAB900D7477D /* CBIGradeDetailView.xib */; };
 		B1CB84F01D076025004D2265 /* CKRichTextInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1CB84EC1D076025004D2265 /* CKRichTextInputView.xib */; };
@@ -665,13 +666,13 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				7D067CF421505BA000B78AF2 /* StudentReborn.framework in Embed Frameworks */,
+				7DBF920322690E9400710D0F /* CanvasCore.framework in Embed Frameworks */,
 				49642BC51CF4C4DC00238B3F /* CanvasKeymaster.framework in Embed Frameworks */,
-				7D1D7E06213743D300F7CCFE /* Core.framework in Embed Frameworks */,
-				492704B31CF4B6D700C631C6 /* TechDebt.framework in Embed Frameworks */,
 				49642BC71CF4C4DC00238B3F /* CanvasKit.framework in Embed Frameworks */,
-				49383CE81F84887A009C8F8E /* CanvasCore.framework in Embed Frameworks */,
 				49AA291F1CF4D1880055862D /* CanvasKit1.framework in Embed Frameworks */,
+				7D1D7E06213743D300F7CCFE /* Core.framework in Embed Frameworks */,
+				7D067CF421505BA000B78AF2 /* StudentReborn.framework in Embed Frameworks */,
+				492704B31CF4B6D700C631C6 /* TechDebt.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -723,8 +724,6 @@
 		35490A998ED46E2FC6020548 /* Pods_defaults_Canvas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_Canvas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		396B37BFEED26519D8237DA7 /* Pods_Canvas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Canvas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B0107A31FBBA7C600062DB2 /* GradeWidgetCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GradeWidgetCell.xib; sourceTree = "<group>"; };
-		3B1642C41FBA0426006C55D2 /* CanvasCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3B1642C51FBA0426006C55D2 /* CanvasKeymaster.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CanvasKeymaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B6DCCA51FB502CD005EE8D2 /* GradesWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = GradesWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B6DCCA61FB502CE005EE8D2 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		3B6DCCAC1FB502CE005EE8D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
@@ -1448,8 +1447,6 @@
 		ACC9687F1D245768006AEAB1 /* Page+ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Page+ViewModel.swift"; sourceTree = "<group>"; };
 		B15737FF1D94C38C00ADBB85 /* ModuleItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleItemDetailViewController.swift; sourceTree = "<group>"; };
 		B15738061D95AA7600ADBB85 /* ModuleItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleItemViewModel.swift; sourceTree = "<group>"; };
-		B159CA5D2153F0F700DA6044 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = "../ios-frameworks/PSPDFKit.framework"; sourceTree = "<group>"; };
-		B159CA5E2153F0F700DA6044 /* PSPDFKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKitUI.framework; path = "../ios-frameworks/PSPDFKitUI.framework"; sourceTree = "<group>"; };
 		B16B5A2E1E24534B00DED47B /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B16B5A2F1E24534C00DED47B /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B16B5A301E24534C00DED47B /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -1650,24 +1647,25 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C67B0C61E01F05A00DDD191 /* AssetsLibrary.framework in Frameworks */,
+				61F438E31DD4E60B00552D14 /* AVFoundation.framework in Frameworks */,
+				7DBF920222690E9400710D0F /* CanvasCore.framework in Frameworks */,
+				49642BC41CF4C4DC00238B3F /* CanvasKeymaster.framework in Frameworks */,
+				49642BC61CF4C4DC00238B3F /* CanvasKit.framework in Frameworks */,
+				49AA291E1CF4D1880055862D /* CanvasKit1.framework in Frameworks */,
+				7D1D7E05213743D300F7CCFE /* Core.framework in Frameworks */,
+				2C67B0CC1E01F06800DDD191 /* CoreMedia.framework in Frameworks */,
+				2C67B0C81E01F05F00DDD191 /* CoreTelephony.framework in Frameworks */,
+				2C67B0CA1E01F06300DDD191 /* CoreText.framework in Frameworks */,
+				2C67B0CE1E01F07200DDD191 /* CoreVideo.framework in Frameworks */,
+				49A04E7D1CF653050051E1E7 /* libc++.tbd in Frameworks */,
+				03DAE3A2A1041407B354AC7C /* Pods_defaults_Canvas.framework in Frameworks */,
 				F9B946F0221492040083E660 /* PSPDFKit.framework in Frameworks */,
 				F9B946F1221492040083E660 /* PSPDFKitUI.framework in Frameworks */,
-				7D1D7E05213743D300F7CCFE /* Core.framework in Frameworks */,
+				2C67B0D01E01F07800DDD191 /* QuartzCore.framework in Frameworks */,
 				7D067CF321505BA000B78AF2 /* StudentReborn.framework in Frameworks */,
 				2C67B0D21E01F07C00DDD191 /* SystemConfiguration.framework in Frameworks */,
-				2C67B0D01E01F07800DDD191 /* QuartzCore.framework in Frameworks */,
-				2C67B0CE1E01F07200DDD191 /* CoreVideo.framework in Frameworks */,
-				61F438E31DD4E60B00552D14 /* AVFoundation.framework in Frameworks */,
-				2C67B0CC1E01F06800DDD191 /* CoreMedia.framework in Frameworks */,
-				2C67B0CA1E01F06300DDD191 /* CoreText.framework in Frameworks */,
-				2C67B0C81E01F05F00DDD191 /* CoreTelephony.framework in Frameworks */,
-				2C67B0C61E01F05A00DDD191 /* AssetsLibrary.framework in Frameworks */,
-				49A04E7D1CF653050051E1E7 /* libc++.tbd in Frameworks */,
-				49642BC61CF4C4DC00238B3F /* CanvasKit.framework in Frameworks */,
 				492704B21CF4B6D700C631C6 /* TechDebt.framework in Frameworks */,
-				49642BC41CF4C4DC00238B3F /* CanvasKeymaster.framework in Frameworks */,
-				49AA291E1CF4D1880055862D /* CanvasKit1.framework in Frameworks */,
-				03DAE3A2A1041407B354AC7C /* Pods_defaults_Canvas.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1675,14 +1673,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B159CA67215401BD00DA6044 /* PSPDFKit.framework in Frameworks */,
-				B159CA682154023600DA6044 /* PSPDFKitUI.framework in Frameworks */,
 				2C6049611F72BB6900252BC5 /* CanvasCore.framework in Frameworks */,
 				49642BC81CF4C4DF00238B3F /* CanvasKeymaster.framework in Frameworks */,
-				49AA2D111CF4DBC90055862D /* DBChooser.framework in Frameworks */,
 				49642BC91CF4C4DF00238B3F /* CanvasKit.framework in Frameworks */,
 				49A04E4E1CF6420C0051E1E7 /* CanvasKit1.framework in Frameworks */,
+				49AA2D111CF4DBC90055862D /* DBChooser.framework in Frameworks */,
 				1D39C6E1D2AC732040A7B9B7 /* Pods_defaults_TechDebt.framework in Frameworks */,
+				7DBF920422690ECF00710D0F /* PSPDFKit.framework in Frameworks */,
+				7DBF920522690ED200710D0F /* PSPDFKitUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1759,7 +1757,6 @@
 			isa = PBXGroup;
 			children = (
 				2C8E356D20939C2D0071ED94 /* Settings.bundle */,
-				4927085D1CF4C33700C631C6 /* Dependencies */,
 				492704751CF4AF7100C631C6 /* Canvas */,
 				492704AC1CF4B6D700C631C6 /* TechDebt */,
 				49AA29181CF4D1880055862D /* CanvasKit1 */,
@@ -2212,16 +2209,6 @@
 				492708301CF4BC3200C631C6 /* WebBrowserViewController.xib */,
 			);
 			path = "Web Browser";
-			sourceTree = "<group>";
-		};
-		4927085D1CF4C33700C631C6 /* Dependencies */ = {
-			isa = PBXGroup;
-			children = (
-				49642BC21CF4C4CD00238B3F /* CanvasKeymaster.framework */,
-				49642BC31CF4C4CD00238B3F /* CanvasKit.framework */,
-				49E80A301CFF93DC002AF45E /* Tests */,
-			);
-			name = Dependencies;
 			sourceTree = "<group>";
 		};
 		49383CE01F84834A009C8F8E /* Login */ = {
@@ -2773,13 +2760,6 @@
 			path = Pages;
 			sourceTree = "<group>";
 		};
-		49E80A301CFF93DC002AF45E /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Tests;
-			sourceTree = "<group>";
-		};
 		49F9FA6D1CF8FC6A00654758 /* SoPushy */ = {
 			isa = PBXGroup;
 			children = (
@@ -2791,39 +2771,37 @@
 		5B0FCCDFB07A88D993D5871D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B159CA5D2153F0F700DA6044 /* PSPDFKit.framework */,
-				B159CA5E2153F0F700DA6044 /* PSPDFKitUI.framework */,
-				F9B946EE221492040083E660 /* PSPDFKit.framework */,
-				F9B946EF221492040083E660 /* PSPDFKitUI.framework */,
-				7D067CF221505BA000B78AF2 /* StudentReborn.framework */,
-				7D1D7E04213743D300F7CCFE /* Core.framework */,
-				3B1642C41FBA0426006C55D2 /* CanvasCore.framework */,
-				3B1642C51FBA0426006C55D2 /* CanvasKeymaster.framework */,
-				2C6049621F72BB6900252BC5 /* CanvasCore.framework */,
-				2C67B0D11E01F07C00DDD191 /* SystemConfiguration.framework */,
-				2C67B0CF1E01F07800DDD191 /* QuartzCore.framework */,
-				2C67B0CD1E01F07200DDD191 /* CoreVideo.framework */,
-				2C67B0CB1E01F06800DDD191 /* CoreMedia.framework */,
-				2C67B0C91E01F06300DDD191 /* CoreText.framework */,
-				2C67B0C71E01F05F00DDD191 /* CoreTelephony.framework */,
 				2C67B0C51E01F05A00DDD191 /* AssetsLibrary.framework */,
 				61F438E21DD4E60B00552D14 /* AVFoundation.framework */,
+				2C6049621F72BB6900252BC5 /* CanvasCore.framework */,
+				49642BC21CF4C4CD00238B3F /* CanvasKeymaster.framework */,
+				49642BC31CF4C4CD00238B3F /* CanvasKit.framework */,
+				7D1D7E04213743D300F7CCFE /* Core.framework */,
+				2C67B0CB1E01F06800DDD191 /* CoreMedia.framework */,
+				2C67B0C71E01F05F00DDD191 /* CoreTelephony.framework */,
+				2C67B0C91E01F06300DDD191 /* CoreText.framework */,
+				2C67B0CD1E01F07200DDD191 /* CoreVideo.framework */,
 				49A04E7C1CF653050051E1E7 /* libc++.tbd */,
 				49A04DAC1CF4F65D0051E1E7 /* libxml2.tbd */,
-				04620E9714197D5A7E2A2FBF /* Pods_TechDebt.framework */,
+				3B6DCCA61FB502CE005EE8D2 /* NotificationCenter.framework */,
 				396B37BFEED26519D8237DA7 /* Pods_Canvas.framework */,
-				55719F36E10A651448BD4F1C /* Pods_CanvasTests.framework */,
 				00A2F765EB4E7EB599C4B4D3 /* Pods_CanvasKit1.framework */,
+				55719F36E10A651448BD4F1C /* Pods_CanvasTests.framework */,
 				35490A998ED46E2FC6020548 /* Pods_defaults_Canvas.framework */,
 				C2AB6A9FA96CE49682022ACB /* Pods_defaults_CanvasKit1.framework */,
 				1624D39115A77E2B728908FB /* Pods_defaults_CanvasTests.framework */,
-				FB53AA8A26564C052A94E885 /* Pods_defaults_TechDebt.framework */,
 				A025F6634B44F7120D41717E /* Pods_defaults_common_tests_CanvasTests.framework */,
-				6784CACE8F4CE3D651D62113 /* Pods_defaults_PreSubmissionAnnotations.framework */,
-				3B6DCCA61FB502CE005EE8D2 /* NotificationCenter.framework */,
-				6F2A3A50F7E6F5904365BABE /* Pods_defaults_GradesWidget.framework */,
-				651295DCB22A2B02F381D94B /* Pods_GradesWidget.framework */,
 				1617CAD552082AC99A178C4E /* Pods_defaults_common_ui_tests_StudentUITests.framework */,
+				6F2A3A50F7E6F5904365BABE /* Pods_defaults_GradesWidget.framework */,
+				6784CACE8F4CE3D651D62113 /* Pods_defaults_PreSubmissionAnnotations.framework */,
+				FB53AA8A26564C052A94E885 /* Pods_defaults_TechDebt.framework */,
+				651295DCB22A2B02F381D94B /* Pods_GradesWidget.framework */,
+				04620E9714197D5A7E2A2FBF /* Pods_TechDebt.framework */,
+				F9B946EE221492040083E660 /* PSPDFKit.framework */,
+				F9B946EF221492040083E660 /* PSPDFKitUI.framework */,
+				2C67B0CF1E01F07800DDD191 /* QuartzCore.framework */,
+				7D067CF221505BA000B78AF2 /* StudentReborn.framework */,
+				2C67B0D11E01F07C00DDD191 /* SystemConfiguration.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
