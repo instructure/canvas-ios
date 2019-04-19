@@ -18,13 +18,9 @@
 
 import clearCache from '../clear-cache'
 import {
-  CachesDirectoryPath,
-} from 'react-native-fs'
-import {
-  NativeModules,
   AsyncStorage,
 } from 'react-native'
-import fs from 'react-native-fs'
+import fs, { CachesDirectoryPath } from 'react-native-fs'
 
 jest.mock('react-native-fs', () => ({
   CachesDirectoryPath: 'caches',

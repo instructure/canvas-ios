@@ -16,7 +16,6 @@
 
 // @flow
 
-
 import { AsyncStorage } from 'react-native'
 import {
   unlink,
@@ -29,7 +28,7 @@ export default async function clearCache () {
   const key = 'lastClearCacheDate'
   const date = await AsyncStorage.getItem(key)
   if (date) return
-  if (await exists(CachesDirectoryPath) == false) {
+  if (await exists(CachesDirectoryPath) === false) {
     await mkdir(CachesDirectoryPath)
     return
   }
