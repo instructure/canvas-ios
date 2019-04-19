@@ -672,7 +672,6 @@
 		7D7963682230646B00CCF943 /* SubmissionFilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionFilesViewController.swift; sourceTree = "<group>"; };
 		7D79636A22307F2500CCF943 /* SubmissionFilesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionFilesCell.swift; sourceTree = "<group>"; };
 		7D79636C22307FC000CCF943 /* SubmissionFilesViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SubmissionFilesViewController.storyboard; sourceTree = "<group>"; };
-		7D7ABFDE21671998007DF1D1 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D862860224C21AD003A37DC /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
 		7D862862224C26D6003A37DC /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		7D979CD3215BE3E300567627 /* BundleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtensions.swift; sourceTree = "<group>"; };
@@ -818,7 +817,6 @@
 				78761D85218B8C2A0042E5D2 /* StudentShare */,
 				2C964862211E37EC002C3255 /* Frameworks */,
 				2C5C698A211DFFAD00D9AD15 /* Products */,
-				7DBF9227226972A700710D0F /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1391,14 +1389,6 @@
 				7DAFB457219F48D000311275 /* empty.pdf */,
 			);
 			path = Fixtures;
-			sourceTree = "<group>";
-		};
-		7DBF9227226972A700710D0F /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				7D7ABFDE21671998007DF1D1 /* Core.framework */,
-			);
-			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		9FCD79DB2188E7B40054293A /* SubmissionDetails */ = {
