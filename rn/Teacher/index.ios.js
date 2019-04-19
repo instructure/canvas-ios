@@ -43,6 +43,7 @@ import Navigator from './src/routing/Navigator'
 import { featureFlagSetup } from './src/common/feature-flags'
 import APIBridge from './src/canvas-api/APIBridge'
 import { Crashlytics } from './src/common/CanvasCrashlytics'
+import clearCache from './src/utils/clear-cache'
 
 global.crashReporter = Crashlytics
 
@@ -176,4 +177,8 @@ notificationCenter.addListener('Notification', (notification) => {
       }
       break
   }
+})
+
+clearCache().catch((e) => {
+  console.log('error clearing cache', e)
 })
