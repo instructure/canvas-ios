@@ -36,6 +36,22 @@ public extension RouterProtocol {
     func route(to url: String, from: UIViewController, options: Router.RouteOptions? = nil) {
         return route(to: .parse(url), from: from, options: options)
     }
+
+    func route(to view: UIViewController, from: UIViewController, options: Router.RouteOptions? = nil) {
+        if options?.contains(.modal) == true {
+            if options?.contains(.embedInNav) == true {
+                if options?.contains(.addDoneButton) == true {
+                    view.addDoneButton()
+                }
+                let nav = UINavigationController(rootViewController: view)
+                from.present(nav, animated: true, completion: nil)
+            } else {
+                from.present(view, animated: true, completion: nil)
+            }
+        } else {
+            from.show(view, sender: nil)
+        }
+    }
 }
 
 // The Router stores all routes that can be routed to in the app
@@ -74,21 +90,5 @@ public class Router: RouterProtocol {
     public func route(to url: URLComponents, from: UIViewController, options: RouteOptions? = nil) {
         guard let view = match(url) else { return }
         route(to: view, from: from, options: options)
-    }
-
-    public func route(to view: UIViewController, from: UIViewController, options: RouteOptions? = nil) {
-        if options?.contains(.modal) == true {
-            if options?.contains(.embedInNav) == true {
-                if options?.contains(.addDoneButton) == true {
-                    view.addDoneButton()
-                }
-                let nav = UINavigationController(rootViewController: view)
-                from.present(nav, animated: true, completion: nil)
-            } else {
-                from.present(view, animated: true, completion: nil)
-            }
-        } else {
-            from.show(view, sender: nil)
-        }
     }
 }
