@@ -29,7 +29,7 @@ import {
 } from 'react-native'
 import {
   downloadFile,
-  CachesDirectoryPath,
+  TemporaryDirectoryPath,
   stopDownload,
 } from 'react-native-fs'
 import i18n from 'format-message'
@@ -74,7 +74,7 @@ export default class AttachmentView extends Component<Props, State> {
     const fromUrl = this.props.attachment.url
     const filename = (this.props.attachment.filename || this.props.attachment.display_name)
     // filenames from canvas come back encoded, and RN doesn't like that. So i'm creating a new filename based of the url hash and extension. gross.
-    const toFile = `${CachesDirectoryPath}/${md5(fromUrl)}.${filename.split('.').pop()}`
+    const toFile = `${TemporaryDirectoryPath}/${md5(fromUrl)}.${filename.split('.').pop()}`
     let { jobId, promise } = downloadFile({ fromUrl, toFile })
     this.setState({ jobID: jobId, downloadPromise: promise })
     return promise.then((r) => {

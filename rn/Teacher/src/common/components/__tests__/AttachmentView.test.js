@@ -29,7 +29,7 @@ jest.mock('ActionSheetIOS', () => ({
 }))
 
 jest.mock('react-native-fs', () => ({
-  CachesDirectoryPath: 'caches',
+  TemporaryDirectoryPath: 'tmp',
   downloadFile: jest.fn(() => ({
     jobId: '1',
     promise: Promise.resolve({ statusCode: 200 }),
@@ -196,7 +196,7 @@ describe('AttachmentView', () => {
 
     expect(ActionSheetIOS.showShareActionSheetWithOptions).toHaveBeenCalledWith(
       {
-        url: `file://caches/${md5(props.attachment.url)}.pdf`,
+        url: `file://tmp/${md5(props.attachment.url)}.pdf`,
       },
       expect.any(Function),
       expect.any(Function)
