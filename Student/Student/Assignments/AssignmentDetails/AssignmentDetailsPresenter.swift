@@ -16,6 +16,7 @@
 
 import Foundation
 import Core
+import SafariServices
 
 extension Assignment: AssignmentDetailsViewModel {
     public var viewableScore: Double? {
@@ -75,6 +76,7 @@ class AssignmentDetailsPresenter {
         .online_text_entry,
         .online_upload,
         .online_url,
+        .external_tool,
     ]
 
     var assignment: Assignment? {
@@ -150,6 +152,12 @@ class AssignmentDetailsPresenter {
             && isOpen
             && amStudent
             && !filesUploading
+
+        if assignment.isLTIAssignment {
+            view?.showSubmitAssignmentButton(title: NSLocalizedString("Launch External Tool", comment: ""))
+            return
+        }
+
         if canSubmit {
             let title = assignment.submission?.workflowState == .unsubmitted
                 ? NSLocalizedString("Submit Assignment", comment: "")
@@ -177,7 +185,7 @@ class AssignmentDetailsPresenter {
         view?.chooseSubmissionType(supported)
     }
 
-    func submit(_ type: SubmissionType, from viewController: UIViewController) {
+    func submit(_ type: SubmissionType, from viewController: UIViewController, completionBlock: (() -> Void)? = nil) {
         switch type {
         case .online_text_entry:
             let route = Route.assignmentTextSubmission(courseID: courseID, assignmentID: assignmentID, userID: userID ?? "")
@@ -188,6 +196,20 @@ class AssignmentDetailsPresenter {
         case .online_url:
             let route = Route.assignmentUrlSubmission(courseID: courseID, assignmentID: assignmentID, userID: userID ?? "")
             env.router.route(to: route, from: viewController, options: [.modal, .embedInNav])
+        case .external_tool:
+            guard let assignment = assignment else {
+                return
+            }
+            let context = ContextModel(.course, id: assignment.courseID)
+            let lti = LTITools(env: env, context: context, id: nil, url: nil, launchType: .assessment, assignmentID: assignment.id, moduleItemID: nil)
+            lti.getSessionlessLaunchURL { [weak self] url in
+                guard let url = url else {
+                    return
+                }
+                let vc = SFSafariViewController(url: url)
+                self?.env.router.route(to: vc, from: viewController, options: [.modal])
+                completionBlock?()
+            }
         default:
             break
         }

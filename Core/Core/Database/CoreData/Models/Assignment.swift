@@ -131,6 +131,11 @@ extension Assignment {
             !submissionTypes.contains(.none) && !submissionTypes.contains(.on_paper)
     }
 
+    public var isLTIAssignment: Bool {
+        return submissionTypes.count == 1 &&
+            submissionTypes.contains(.external_tool)
+    }
+
     public var allowedUTIs: [UTI] {
         var utis: [UTI] = []
 
