@@ -34,10 +34,6 @@ class RouteTests: XCTestCase {
         XCTAssertEqual(Route.course("4", assignment: "1").url.path, "/courses/4/assignments/1")
     }
 
-    func testCourseAssignmentFileUpload() {
-        XCTAssertEqual(Route.assignmentFileUpload(courseID: "4", assignmentID: "1").url.path, "/courses/4/assignments/1/fileupload")
-    }
-
     func testGroup() {
         XCTAssertEqual(Route.group("2").url.path, "/groups/2")
     }

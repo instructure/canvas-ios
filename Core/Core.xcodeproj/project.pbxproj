@@ -353,6 +353,8 @@
 		B15CA27E221DFA450014FB02 /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA27D221DFA450014FB02 /* Module.swift */; };
 		B15CA284221E00870014FB02 /* ModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA283221E00870014FB02 /* ModuleTests.swift */; };
 		B16F036E215AE6210011E952 /* GetAssignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A32BE5215A81350071B41E /* GetAssignment.swift */; };
+		B17855B1226ABDB100B30C80 /* UploadMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17855B0226ABDB100B30C80 /* UploadMedia.swift */; };
+		B17855B3226ABDDD00B30C80 /* UploadMediaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17855B2226ABDDD00B30C80 /* UploadMediaTests.swift */; };
 		B17F23A9213788B100771F86 /* PaginatedUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17F23A8213788B100771F86 /* PaginatedUseCase.swift */; };
 		B17F23AB213788BC00771F86 /* TTLOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17F23AA213788BC00771F86 /* TTLOperation.swift */; };
 		B17F23AD21378E3800771F86 /* PaginatedUseCaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17F23AC21378E3800771F86 /* PaginatedUseCaseTest.swift */; };
@@ -990,6 +992,8 @@
 		B15CA278221DE9660014FB02 /* APIModuleRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModuleRequestable.swift; sourceTree = "<group>"; };
 		B15CA27D221DFA450014FB02 /* Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
 		B15CA283221E00870014FB02 /* ModuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleTests.swift; sourceTree = "<group>"; };
+		B17855B0226ABDB100B30C80 /* UploadMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadMedia.swift; sourceTree = "<group>"; };
+		B17855B2226ABDDD00B30C80 /* UploadMediaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadMediaTests.swift; sourceTree = "<group>"; };
 		B17F23A8213788B100771F86 /* PaginatedUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginatedUseCase.swift; sourceTree = "<group>"; };
 		B17F23AA213788BC00771F86 /* TTLOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTLOperation.swift; sourceTree = "<group>"; };
 		B17F23AC21378E3800771F86 /* PaginatedUseCaseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginatedUseCaseTest.swift; sourceTree = "<group>"; };
@@ -1907,6 +1911,7 @@
 				B1A32BE5215A81350071B41E /* GetAssignment.swift */,
 				3BF5C54E2187800B0081A858 /* GetAssignments.swift */,
 				7D63F789215D46AB00151E49 /* GetBrandVariables.swift */,
+				3B635B30225CDC2C001F353D /* GetCalendarEvents.swift */,
 				B18126912150542A00E71F63 /* GetContext.swift */,
 				7D9BB1E722527F310058D9C6 /* GetContextPermissions.swift */,
 				9FE84DDD2150281300B95A68 /* GetContextTabs.swift */,
@@ -1921,8 +1926,8 @@
 				9FCD79D72188DFD00054293A /* GetSubmission.swift */,
 				7DA5C48B22385F95003CDB4C /* GetSubmissionComments.swift */,
 				B195DC44213201DE00797FE4 /* GetUserGroups.swift */,
+				B17855B0226ABDB100B30C80 /* UploadMedia.swift */,
 				7D92D656224ACC7A0015B368 /* UploadMediaComment.swift */,
-				3B635B30225CDC2C001F353D /* GetCalendarEvents.swift */,
 			);
 			path = "Use Cases";
 			sourceTree = "<group>";
@@ -2043,6 +2048,7 @@
 				9F47F53921820494002D8BD8 /* DownloadFileTest.swift */,
 				3BF5C55221879A430081A858 /* GetAssignmentsTests.swift */,
 				7D63F791215D8EEC00151E49 /* GetBrandVariablesTests.swift */,
+				3B635B36225CE59D001F353D /* GetCalendarEventsTests.swift */,
 				9F1CEA6222401AF1000BB98F /* GetContextPermissionsTests.swift */,
 				9FE84DE1215037A000B95A68 /* GetContextTabsTest.swift */,
 				B18126932150564900E71F63 /* GetContextTests.swift */,
@@ -2058,7 +2064,7 @@
 				9FCD79D92188E3CD0054293A /* GetSubmissionTest.swift */,
 				B195DC5421324DA600797FE4 /* GetUserGroupsTest.swift */,
 				7D86285C224C15BA003A37DC /* UploadMediaCommentTests.swift */,
-				3B635B36225CE59D001F353D /* GetCalendarEventsTests.swift */,
+				B17855B2226ABDDD00B30C80 /* UploadMediaTests.swift */,
 			);
 			path = "Use Cases";
 			sourceTree = "<group>";
@@ -2525,6 +2531,7 @@
 				7DCF1EAE216BC48F003AF358 /* EnrollmentState.swift in Sources */,
 				3B635B2B225CD298001F353D /* APICalendarEvent.swift in Sources */,
 				B1F1328A224BAD43002C0555 /* ModuleItemType.swift in Sources */,
+				B17855B1226ABDB100B30C80 /* UploadMedia.swift in Sources */,
 				7D63F78A215D46AB00151E49 /* GetBrandVariables.swift in Sources */,
 				B1A6BC7A218A062E000515E3 /* MediaCommentType.swift in Sources */,
 				7D80AC0C212B4C6F00C40ECE /* APITab.swift in Sources */,
@@ -2645,6 +2652,7 @@
 				9F47F53A21820494002D8BD8 /* DownloadFileTest.swift in Sources */,
 				7D63F78E215D7B8100151E49 /* DynamicButtonTests.swift in Sources */,
 				7D37BE8821C824DA0063FAAC /* UIViewControllerExtensionsTests.swift in Sources */,
+				B17855B3226ABDDD00B30C80 /* UploadMediaTests.swift in Sources */,
 				B14FE5D92134F68800328CD7 /* CoreTestCase.swift in Sources */,
 				B1F3780A22498AF1000B7CAA /* MDMManagerTests.swift in Sources */,
 				3B67BCB821B5E72000055324 /* CreateSubmissionTests.swift in Sources */,
