@@ -288,7 +288,7 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         let url = URL(fileURLWithPath: "/file.txt")
         presenter.add(filePicker, url: url)
         presenter.submit(filePicker)
-        XCTAssertEqual(dismissedCount, 1)ntde
+        XCTAssertEqual(dismissedCount, 1)
         XCTAssertEqual(fileUploader.uploads.count, 1)
     }
 
