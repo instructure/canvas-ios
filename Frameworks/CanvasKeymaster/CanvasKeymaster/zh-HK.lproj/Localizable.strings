@@ -71,7 +71,7 @@
 "I need help but it's not urgent" = "我需要幫助但情況並不緊急";
 
 /* No comment provided by engineer. */
-"Invalid Canvas URL." = "Canvas URL 無效。	";
+"Invalid Canvas URL." = "Canvas URL 無效。\t";
 
 /* No comment provided by engineer. */
 "Invalid User Agent." = "用戶代理無效。";

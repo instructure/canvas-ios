@@ -1,9 +1,5 @@
 /* prerequisites for unlocking item */
-"
-
-You must first complete:" = "
-
-Me whakaoti koe i te tuatahi:";
+"\n\nYou must first complete:" = "\n\nMe whakaoti koe i te tuatahi:";
 
 /* when locked item will become unlocked */
 " until %@" = "tae noa ki %@";
@@ -313,26 +309,10 @@ Me whakaoti koe i te tuatahi:";
 "Canvas failed to find recipients for your current search. Please try again later." = "I rahua a Canvas i ki te kite kaiwhiwhi mo tō rapu o nāianei. Tēnā koa ngana anō i muri mai.";
 
 /* mobile quiz warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.
-
-Unsupported question types include questions containing Adobe Flash™ content, and others.
-
-If you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Ka tautoko a Canvas quizzes ngā momo aromatawai. E tautokona te nuinga o ēnei momo i runga i ngā pūrere pūkoro; heoi, e kore ētahi. Ki te ngana koe ki te tango i tētahi o ēnei quizzes tautokona i runga i tou waea, ai waiho koe kaore e taea ki te whakaoti i te quiz katoa, mahue koe i te ngoikoretanga.
-
-Ngā momo pātai tē tautokohia ngā pātai kei roto Adobe Flash ™ ihirangi, me ētahi atu.
-
-Ki te whakapono koe e kei roto i quiz ihirangi kaore tautokona, tēnā koa tango i runga i te papamahi pona rorohiko rānei. Ki te mōhio koe e te quiz kei roto tautoko ihirangi anake, i te noa ki te tango i runga i tō pūrere pūkoro.";
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Ka tautoko a Canvas quizzes ngā momo aromatawai. E tautokona te nuinga o ēnei momo i runga i ngā pūrere pūkoro; heoi, e kore ētahi. Ki te ngana koe ki te tango i tētahi o ēnei quizzes tautokona i runga i tou waea, ai waiho koe kaore e taea ki te whakaoti i te quiz katoa, mahue koe i te ngoikoretanga.\n\nNgā momo pātai tē tautokohia ngā pātai kei roto Adobe Flash ™ ihirangi, me ētahi atu.\n\nKi te whakapono koe e kei roto i quiz ihirangi kaore tautokona, tēnā koa tango i runga i te papamahi pona rorohiko rānei. Ki te mōhio koe e te quiz kei roto tautoko ihirangi anake, i te noa ki te tango i runga i tō pūrere pūkoro.";
 
 /* mobile quze warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.
-
-Unsupported question types include questions containing Adobe Flash™ content, file uploads, and others.
-
-If you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Ka tautoko a Canvas quizzes ngā momo aromatawai. E tautokona te nuinga o ēnei momo i runga i ngā pūrere pūkoro; heoi, e kore ētahi. Ki te ngana koe ki te tango i tētahi o ēnei quizzes tautokona i runga i tou waea, ai waiho koe kaore e taea ki te whakaoti i te quiz katoa, mahue koe i te ngoikoretanga.
-
-Ngā momo pātai tē tautokohia ngā pātai kei roto Adobe Flash ™ ihirangi, ngā tukunga kōnae, me ētahi atu.
-
-Ki te whakapono koe e kei roto i quiz ihirangi kaore tautokona, tēnā koa tango i runga i te papamahi pona rorohiko rānei. Ki te mōhio koe e te quiz kei roto tautoko ihirangi anake, i te noa ki te tango i runga i tō pūrere pūkoro.";
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Ka tautoko a Canvas quizzes ngā momo aromatawai. E tautokona te nuinga o ēnei momo i runga i ngā pūrere pūkoro; heoi, e kore ētahi. Ki te ngana koe ki te tango i tētahi o ēnei quizzes tautokona i runga i tou waea, ai waiho koe kaore e taea ki te whakaoti i te quiz katoa, mahue koe i te ngoikoretanga.\n\nNgā momo pātai tē tautokohia ngā pātai kei roto Adobe Flash ™ ihirangi, ngā tukunga kōnae, me ētahi atu.\n\nKi te whakapono koe e kei roto i quiz ihirangi kaore tautokona, tēnā koa tango i runga i te papamahi pona rorohiko rānei. Ki te mōhio koe e te quiz kei roto tautoko ihirangi anake, i te noa ki te tango i runga i tō pūrere pūkoro.";
 
 /* button to change user's profile image */
 "Change Profile Image" = "Huriai te Kōtaha Āhua";
@@ -936,14 +916,14 @@ Ki te whakapono koe e kei roto i quiz ihirangi kaore tautokona, tēnā koa tango
 /* Title for an error alert */
 "Oops!" = "Aue!";
 
-/* No comment provided by engineer. */
-"Open in AR" = "Huaki i roto i AR";
-
 /* Open a document in the application Safari */
 "Open in Safari" = "Tuwhera i roto i te Safari";
 
 /* Link to open assignment in SpeedGrader */
 "Open in SpeedGrader" = "Whakatūwhera i roto i te SpeedGrader";
+
+/* Open file in another application */
+"Open in..." = "Tuwhera i roto i ...";
 
 /* Link to Open Source Components */
 "Open Source Components" = "Tuwhera i ngā puna wāhanga";
@@ -1273,11 +1253,7 @@ Ki te whakapono koe e kei roto i quiz ihirangi kaore tautokona, tēnā koa tango
 "There was a network problem while attempting to upload your submission" = "He hapa whatunga i te wā e ngana ana ki te tukuatu i tō tāpaetanga";
 
 /* Error message when fetching a file fails */
-"There was a problem accessing the requested file.
-
-Error: %@" = "He hapa i te wā e whakauru ana i te kōnae kua tonoa.
-
-Hapa: %@";
+"There was a problem accessing the requested file.\n\nError: %@" = "He hapa i te wā e whakauru ana i te kōnae kua tonoa.\n\nHapa: %@";
 
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "He hapai te wā e whakarewa ana Safari";

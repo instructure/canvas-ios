@@ -1,9 +1,5 @@
 /* prerequisites for unlocking item */
-"
-
-You must first complete:" = "
-
-You must first complete:";
+"\n\nYou must first complete:" = "\n\nYou must first complete:";
 
 /* when locked item will become unlocked */
 " until %@" = "until %@";
@@ -313,26 +309,10 @@ You must first complete:";
 "Canvas failed to find recipients for your current search. Please try again later." = "Canvas failed to find recipients for your current search. Please try again later.";
 
 /* mobile quiz warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.
-
-Unsupported question types include questions containing Adobe Flash™ content, and others.
-
-If you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices, however some are not. If you attempt to take one of these unsupported quizzes on your phone, you may not be able to complete the entire quiz, leaving you at a disadvantage.
-
-Unsupported question types include questions containing Adobe Flash™ content, and others.
-
-If you believe that a quiz contains unsupported content, please complete it on a desktop or laptop computer. If you know that the quiz contains only supported content, feel free to complete it on your mobile device.";
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices, however some are not. If you attempt to take one of these unsupported quizzes on your phone, you may not be able to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, and others.\n\nIf you believe that a quiz contains unsupported content, please complete it on a desktop or laptop computer. If you know that the quiz contains only supported content, feel free to complete it on your mobile device.";
 
 /* mobile quze warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.
-
-Unsupported question types include questions containing Adobe Flash™ content, file uploads, and others.
-
-If you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, thus leaving you at a disadvantage.
-
-Unsupported question types include questions containing Adobe Flash™ content, file uploads and others.
-
-If you believe that a quiz contains unsupported content, please take the quiz on a desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device.";
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, thus leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads and others.\n\nIf you believe that a quiz contains unsupported content, please take the quiz on a desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device.";
 
 /* button to change user's profile image */
 "Change Profile Image" = "Change profile image";
@@ -936,14 +916,14 @@ If you believe that a quiz contains unsupported content, please take the quiz on
 /* Title for an error alert */
 "Oops!" = "Whoops!";
 
-/* No comment provided by engineer. */
-"Open in AR" = "Open in AR";
-
 /* Open a document in the application Safari */
 "Open in Safari" = "Open in Safari";
 
 /* Link to open assignment in SpeedGrader */
 "Open in SpeedGrader" = "Open in SpeedGrader";
+
+/* Open file in another application */
+"Open in..." = "Open in...";
 
 /* Link to Open Source Components */
 "Open Source Components" = "Open source components";
@@ -1273,11 +1253,7 @@ If you believe that a quiz contains unsupported content, please take the quiz on
 "There was a network problem while attempting to upload your submission" = "There was a network problem while attempting to upload your submission";
 
 /* Error message when fetching a file fails */
-"There was a problem accessing the requested file.
-
-Error: %@" = "There was a problem accessing the requested file.
-
-Error: %@";
+"There was a problem accessing the requested file.\n\nError: %@" = "There was a problem accessing the requested file.\n\nError: %@";
 
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "There was a problem launching Safari";

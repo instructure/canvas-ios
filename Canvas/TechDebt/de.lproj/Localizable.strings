@@ -1,9 +1,5 @@
 /* prerequisites for unlocking item */
-"
-
-You must first complete:" = "
-
-Sie müssen zunächst das Folgende vervollständigen:";
+"\n\nYou must first complete:" = "\n\nSie müssen zunächst das Folgende vervollständigen:";
 
 /* when locked item will become unlocked */
 " until %@" = "bis %@";
@@ -313,26 +309,10 @@ Sie müssen zunächst das Folgende vervollständigen:";
 "Canvas failed to find recipients for your current search. Please try again later." = "Canvas hat für Ihre aktuelle Suche  keine Empfänger gefunden. Bitte versuchen Sie es später noch einmal.";
 
 /* mobile quiz warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.
-
-Unsupported question types include questions containing Adobe Flash™ content, and others.
-
-If you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas-Tests unterstützen verschiedene Bewertungsstile. Die meisten dieser Stile werden von Mobilgeräten unterstützt, einige jedoch nicht. Wenn Sie versuchen, einen dieser nicht unterstützten Tests auf Ihrem Handy zu machen, schaffen Sie es unter Umständen nicht, den Test zu beenden, und geraten so in Nachteil.
-
-Zu den nicht unterstützten Fragearten gehören u. a. Fragen mit Adobe Flash™-Inhalten.
-
-Wenn Sie glauben, dass ein Test nicht unterstützten Inhalt enthält, laden Sie ihn bitte auf einen Desktop-PC oder Laptop. Wenn Sie sicher sind, dass der Test nur unterstützte Inhalte enthält, können Sie ihn gern auf Ihr Mobilgerät laden.";
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas-Tests unterstützen verschiedene Bewertungsstile. Die meisten dieser Stile werden von Mobilgeräten unterstützt, einige jedoch nicht. Wenn Sie versuchen, einen dieser nicht unterstützten Tests auf Ihrem Handy zu machen, schaffen Sie es unter Umständen nicht, den Test zu beenden, und geraten so in Nachteil.\n\nZu den nicht unterstützten Fragearten gehören u. a. Fragen mit Adobe Flash™-Inhalten.\n\nWenn Sie glauben, dass ein Test nicht unterstützten Inhalt enthält, laden Sie ihn bitte auf einen Desktop-PC oder Laptop. Wenn Sie sicher sind, dass der Test nur unterstützte Inhalte enthält, können Sie ihn gern auf Ihr Mobilgerät laden.";
 
 /* mobile quze warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.
-
-Unsupported question types include questions containing Adobe Flash™ content, file uploads, and others.
-
-If you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas-Quizze unterstützen verschiedene Aufgabenformate. Die meisten dieser Formate werden von Mobilgeräten unterstützt. Auf andere trifft dies nicht zu. Wenn Sie versuchen ein nicht-unterstütztes Quiz auf Ihrem Mobiltelefon anzuzeigen, wird es Ihnen möglicherweise nicht möglich sein, dass Quiz zu beenden, wodurch Ihnen ein Nachteil entsteht.
-
-Nicht-unterstützte Fragentypen schließen Adobe-Flash™-Inhalte, hochgeladene Dateien und anderes ein.
-
-Wenn Sie der Meinung sind, das ein Quiz nicht-unterstützte Inhalte aufweist, so bearbeiten Sie dieses bitte via Laptop oder Desktop-PC. Wenn Sie genau wissen, dass das Quiz 100-prozentige Mobiltelefonunterstützung genießt, können Sie ohne Bedenken Ihr Mobilgerät verwenden.";
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas-Quizze unterstützen verschiedene Aufgabenformate. Die meisten dieser Formate werden von Mobilgeräten unterstützt. Auf andere trifft dies nicht zu. Wenn Sie versuchen ein nicht-unterstütztes Quiz auf Ihrem Mobiltelefon anzuzeigen, wird es Ihnen möglicherweise nicht möglich sein, dass Quiz zu beenden, wodurch Ihnen ein Nachteil entsteht.\n\nNicht-unterstützte Fragentypen schließen Adobe-Flash™-Inhalte, hochgeladene Dateien und anderes ein.\n\nWenn Sie der Meinung sind, das ein Quiz nicht-unterstützte Inhalte aufweist, so bearbeiten Sie dieses bitte via Laptop oder Desktop-PC. Wenn Sie genau wissen, dass das Quiz 100-prozentige Mobiltelefonunterstützung genießt, können Sie ohne Bedenken Ihr Mobilgerät verwenden.";
 
 /* button to change user's profile image */
 "Change Profile Image" = "Profilbild ändern";
@@ -787,8 +767,7 @@ Wenn Sie der Meinung sind, das ein Quiz nicht-unterstützte Inhalte aufweist, so
 "Media type selector. %@" = "Medientyp-Selector. %@";
 
 /* No comment provided by engineer. */
-"Message everyone separately, or add everyone to a group conversation?" = "Jeden einzeln benachrichtigen oder jeden einem Gruppengespräch hinzufügen?
-";
+"Message everyone separately, or add everyone to a group conversation?" = "Jeden einzeln benachrichtigen oder jeden einem Gruppengespräch hinzufügen?\n";
 
 /* Add message button */
 "Message Instructor" = "Dem Unterrichtenden eine Nachricht senden";
@@ -937,14 +916,14 @@ Wenn Sie der Meinung sind, das ein Quiz nicht-unterstützte Inhalte aufweist, so
 /* Title for an error alert */
 "Oops!" = "Oops!";
 
-/* No comment provided by engineer. */
-"Open in AR" = "In AR öffnen";
-
 /* Open a document in the application Safari */
 "Open in Safari" = "In Safari öffnen";
 
 /* Link to open assignment in SpeedGrader */
 "Open in SpeedGrader" = "Im SpeedGrader benoten";
+
+/* Open file in another application */
+"Open in..." = "Öffnen in...";
 
 /* Link to Open Source Components */
 "Open Source Components" = "Open-Source-Komponenten";
@@ -1274,11 +1253,7 @@ Wenn Sie der Meinung sind, das ein Quiz nicht-unterstützte Inhalte aufweist, so
 "There was a network problem while attempting to upload your submission" = "Beim Hochladen Ihrer Einreichung ist ein Netzwerkproblem aufgetreten.";
 
 /* Error message when fetching a file fails */
-"There was a problem accessing the requested file.
-
-Error: %@" = "Beim Zugriff auf die angeforderte Datei ist ein Problem aufgetreten.
-
-Fehler: %@";
+"There was a problem accessing the requested file.\n\nError: %@" = "Beim Zugriff auf die angeforderte Datei ist ein Problem aufgetreten.\n\nFehler: %@";
 
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "Beim Start von Safari ist ein Problem aufgetreten";

@@ -310,15 +310,7 @@
 "Canvas failed to find recipients for your current search. Please try again later." = "O Canvas não conseguiu encontrar os destinatários para a sua pesquisa atual. Por favor, tente novamente mais tarde.";
 
 /* mobile quze warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.
-
-Unsupported question types include questions containing Adobe Flash™ content, file uploads, and others.
-
-If you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Os questionário do Canvas oferecem suporte a vários estilos de avaliação. A maioria destes estilos é suportada em dispositivos móveis; no entanto, alguns não são. Se você tentar fazer dentre estes questionários sem suporte no seu telefone, pode ficar incapaz de completar o questionário inteiro, ficando em desvantagem.
-
-Tipos de perguntas sem suporte incluem perguntas que contenham conteúdo Adobe Flash™, carregamentos de arquivos e outros.
-
-Se você acredita que um questionário contém conteúdo sem suporte, por favor, faça-o no computador ou laptop. Se você souber que o questionário contém apenas conteúdo com suporte, sinta-se livre para fazê-lo em seu dispositivo móvel.";
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Os questionário do Canvas oferecem suporte a vários estilos de avaliação. A maioria destes estilos é suportada em dispositivos móveis; no entanto, alguns não são. Se você tentar fazer dentre estes questionários sem suporte no seu telefone, pode ficar incapaz de completar o questionário inteiro, ficando em desvantagem.\n\nTipos de perguntas sem suporte incluem perguntas que contenham conteúdo Adobe Flash™, carregamentos de arquivos e outros.\n\nSe você acredita que um questionário contém conteúdo sem suporte, por favor, faça-o no computador ou laptop. Se você souber que o questionário contém apenas conteúdo com suporte, sinta-se livre para fazê-lo em seu dispositivo móvel.";
 
 /* No comment provided by engineer. */
 "Change User" = "Trocar Usuário";
@@ -947,6 +939,9 @@ Se você acredita que um questionário contém conteúdo sem suporte, por favor,
 /* Link to open assignment in SpeedGrader */
 "Open in SpeedGrader" = "Abrir em SpeedGrader";
 
+/* Open file in another application */
+"Open in..." = "Abrir em...";
+
 /* Button title for selecting an option given a number */
 "Option %d" = "Opção %d";
 
@@ -1301,11 +1296,7 @@ Se você acredita que um questionário contém conteúdo sem suporte, por favor,
 "There was a network problem while attempting to upload your submission" = "Houve um erro de rede ao tentar fazer upload de seu envio.";
 
 /* Error message when fetching a file fails */
-"There was a problem accessing the requested file.
-
-Error: %@" = "Houve um problema ao acessar o arquivo solicitado.
-
-Erro: %@";
+"There was a problem accessing the requested file.\n\nError: %@" = "Houve um problema ao acessar o arquivo solicitado.\n\nErro: %@";
 
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "Houve um problema ao lançar Safari";

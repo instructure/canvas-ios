@@ -2,8 +2,7 @@
 "b0z-1f-3Pv.text" = "Bienvenue!";
 
 /* Class = "UILabel"; text = "Tap to start viewing Canvas as another  person."; ObjectID = "chJ-nt-Qcc"; */
-"chJ-nt-Qcc.text" = "Tapoter pour commencer à voir Canvas comme un 
-autre utilisateur.";
+"chJ-nt-Qcc.text" = "Tapoter pour commencer à voir Canvas comme un \nautre utilisateur.";
 
 /* Class = "UIButton"; normalTitle = "Act as User"; ObjectID = "Pur-YX-Y1F"; */
 "Pur-YX-Y1F.normalTitle" = "Agir en tant qu'utilisateur";

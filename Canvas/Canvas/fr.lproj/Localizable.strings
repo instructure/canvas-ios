@@ -310,15 +310,7 @@
 "Canvas failed to find recipients for your current search. Please try again later." = "Canvas n'a retourné aucun destinataire correspondant à votre recherche actuelle. Veuillez réessayer plus tard.";
 
 /* mobile quze warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.
-
-Unsupported question types include questions containing Adobe Flash™ content, file uploads, and others.
-
-If you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Les questionnaires Canvas supportent divers styles d'évaluation. La plupart de ces styles sont pris en charge sur les appareils mobiles ; cependant, certains ne le sont pas encore. Si vous essayez de répondre à l’un de ces questionnaires non pris en charge sur votre téléphone, vous pourriez être incapable de le terminer dans son ensemble, vous laissant à un certain désavantage.
-
-Les types de questions non pris en charge comprennent les questions contenant du contenu Adobe Flash™, une option de téléchargement de fichier et quelques autres.
-
-Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veuillez y répondre sur un ordinateur de bureau ou sur un ordinateur portable. Si vous savez que le questionnaire contient uniquement des questions au contenu entièrement pris en charge, n’hésitez pas à y répondre sur votre appareil mobile.";
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Les questionnaires Canvas supportent divers styles d'évaluation. La plupart de ces styles sont pris en charge sur les appareils mobiles ; cependant, certains ne le sont pas encore. Si vous essayez de répondre à l’un de ces questionnaires non pris en charge sur votre téléphone, vous pourriez être incapable de le terminer dans son ensemble, vous laissant à un certain désavantage.\n\nLes types de questions non pris en charge comprennent les questions contenant du contenu Adobe Flash™, une option de téléchargement de fichier et quelques autres.\n\nSi vous pensez qu’un questionnaire contient du contenu non pris en charge, veuillez y répondre sur un ordinateur de bureau ou sur un ordinateur portable. Si vous savez que le questionnaire contient uniquement des questions au contenu entièrement pris en charge, n’hésitez pas à y répondre sur votre appareil mobile.";
 
 /* No comment provided by engineer. */
 "Change User" = "Changer d'utilisateur";
@@ -947,6 +939,9 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* Link to open assignment in SpeedGrader */
 "Open in SpeedGrader" = "Ouvrir dans SpeedGrader";
 
+/* Open file in another application */
+"Open in..." = "Ouvrir avec...";
+
 /* Button title for selecting an option given a number */
 "Option %d" = "Option %d";
 
@@ -1301,11 +1296,7 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 "There was a network problem while attempting to upload your submission" = "Un problème de réseau est survenu lors de la tentative de téléchargement de votre soumission";
 
 /* Error message when fetching a file fails */
-"There was a problem accessing the requested file.
-
-Error: %@" = "Un problème est survenu lors de l’accès au fichier demandé.
-
-Erreur : %@";
+"There was a problem accessing the requested file.\n\nError: %@" = "Un problème est survenu lors de l’accès au fichier demandé.\n\nErreur : %@";
 
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "Un problème est survenu lors du lancement de Safari";

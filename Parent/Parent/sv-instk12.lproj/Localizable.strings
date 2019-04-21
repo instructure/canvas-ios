@@ -68,6 +68,9 @@
 "Caught up on Alerts" = "Läst av larmen";
 
 /* No comment provided by engineer. */
+"Change User" = "Byt användare";
+
+/* No comment provided by engineer. */
 "Choose a student" = "Välj en elev";
 
 /* Close Button Title */
@@ -89,6 +92,9 @@
 "Current student: %@, tap to switch students" = "Aktuell elev: %@, tryck för att växla elev";
 
 /* No comment provided by engineer. */
+"Developer Menu" = "Utvecklarmeny";
+
+/* No comment provided by engineer. */
 "Discussion" = "Diskussion";
 
 /* No comment provided by engineer. */
@@ -105,6 +111,9 @@
 
 /* No comment provided by engineer. */
 "Excused" = "Slipper göras";
+
+/* No comment provided by engineer. */
+"Help" = "Hjälp";
 
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "Hög uppgiftsbedömning kan inte vara lägre än låg uppgiftsbedömning";
@@ -132,6 +141,9 @@
 
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "Sen: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Log Out" = "Logga ut";
 
 /* Low Assignment Grade too High */
 "Low assignment grade cannot be higher than high assignment grade" = "Låg uppgiftsbedömning kan inte vara högre än hög uppgiftsbedömning";
@@ -190,6 +202,12 @@
 /* No comment provided by engineer. */
 "Quiz" = "Quiz";
 
+/* No comment provided by engineer. */
+"Report a Problem" = "Rapportera ett problem";
+
+/* No comment provided by engineer. */
+"Request a Feature" = "Begär en funktion";
+
 /* Not Found Error Message */
 "Resource not found.  Please try again." = "Resursen hittades inte.  Vänligen försök igen.";
 
@@ -198,6 +216,9 @@
 
 /* No comment provided by engineer. */
 "Settings" = "Inställningar";
+
+/* No comment provided by engineer. */
+"Stop Act as User" = "Sluta uppträda som användare";
 
 /* No comment provided by engineer. */
 "Submitted" = "Inlämnad";
@@ -213,6 +234,9 @@
 
 /* Directions in the admin view */
 "Tap to start viewing Canvas as another person." = "Knacka för att börja titta på Canvas som en annan person.";
+
+/* No comment provided by engineer. */
+"Terms of Use" = "Användarvillkor";
 
 /* Error message */
 "There are no actions for this item" = "Det finns inga åtgärder för det här objektet";
@@ -237,6 +261,9 @@
 
 /* No comment provided by engineer. */
 "Unread" = "Oläst";
+
+/* No comment provided by engineer. */
+"View Canvas Guides" = "Visa Canvas-vägledningar";
 
 /* Calendar Tab */
 "Week" = "Vecka";

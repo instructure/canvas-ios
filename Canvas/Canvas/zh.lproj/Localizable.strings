@@ -310,15 +310,7 @@
 "Canvas failed to find recipients for your current search. Please try again later." = "Canvas 无法找到您当前搜索的收件人。 请稍后再试。";
 
 /* mobile quze warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.
-
-Unsupported question types include questions containing Adobe Flash™ content, file uploads, and others.
-
-If you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas测验支持各样的测验类型。手机支持大部分类型；但是，有些不受支持。如果您在手机上尝试参加某个不受支持的测验，您可能无法完成整个测验，并留下后患。
-
-不受支持的问题类型包括含有 Adobe Flash™ 内容、文件上传和其它问题。
-
-如果您认为一个测验包含不受支持的内容，请在台式电脑或手提电脑上进行测验。如果您知道测验只包含受支持的内容，您可随意在手机上进行测验。";
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas测验支持各样的测验类型。手机支持大部分类型；但是，有些不受支持。如果您在手机上尝试参加某个不受支持的测验，您可能无法完成整个测验，并留下后患。\n\n不受支持的问题类型包括含有 Adobe Flash™ 内容、文件上传和其它问题。\n\n如果您认为一个测验包含不受支持的内容，请在台式电脑或手提电脑上进行测验。如果您知道测验只包含受支持的内容，您可随意在手机上进行测验。";
 
 /* No comment provided by engineer. */
 "Change User" = "更改用户";
@@ -947,6 +939,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Link to open assignment in SpeedGrader */
 "Open in SpeedGrader" = "在SpeedGrader打开";
 
+/* Open file in another application */
+"Open in..." = "在...打开";
+
 /* Button title for selecting an option given a number */
 "Option %d" = "选项%d";
 
@@ -1301,11 +1296,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 "There was a network problem while attempting to upload your submission" = "尝试上传您的提交时网络出现问题";
 
 /* Error message when fetching a file fails */
-"There was a problem accessing the requested file.
-
-Error: %@" = "访问请求的文件时遇到问题。
-
-错误：%@";
+"There was a problem accessing the requested file.\n\nError: %@" = "访问请求的文件时遇到问题。\n\n错误：%@";
 
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "启动Safari时出现问题";

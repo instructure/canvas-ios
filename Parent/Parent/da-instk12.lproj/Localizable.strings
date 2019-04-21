@@ -68,6 +68,9 @@
 "Caught up on Alerts" = "Ajourført med alarmer";
 
 /* No comment provided by engineer. */
+"Change User" = "Skift bruger";
+
+/* No comment provided by engineer. */
 "Choose a student" = "Vælg en elev";
 
 /* Close Button Title */
@@ -89,6 +92,9 @@
 "Current student: %@, tap to switch students" = "Nuværende elev: %@, tryk for at skifte elev";
 
 /* No comment provided by engineer. */
+"Developer Menu" = "Udvikler-menu";
+
+/* No comment provided by engineer. */
 "Discussion" = "Diskussion";
 
 /* No comment provided by engineer. */
@@ -105,6 +111,9 @@
 
 /* No comment provided by engineer. */
 "Excused" = "Undskyldt";
+
+/* No comment provided by engineer. */
+"Help" = "Hjælp";
 
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "Høj opgavevurdering kan ikke være lavere end lav opgavevurdering";
@@ -132,6 +141,9 @@
 
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "Sen: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Log Out" = "Log ud";
 
 /* Low Assignment Grade too High */
 "Low assignment grade cannot be higher than high assignment grade" = "Lav opgavevurdering kan ikke være højere end høj opgavevurdering";
@@ -190,6 +202,12 @@
 /* No comment provided by engineer. */
 "Quiz" = "Quiz";
 
+/* No comment provided by engineer. */
+"Report a Problem" = "Indberet et problem";
+
+/* No comment provided by engineer. */
+"Request a Feature" = "Anmod om en funktion";
+
 /* Not Found Error Message */
 "Resource not found.  Please try again." = "Resurse ikke fundet.  Prøv venligst igen.";
 
@@ -198,6 +216,9 @@
 
 /* No comment provided by engineer. */
 "Settings" = "Indstillinger";
+
+/* No comment provided by engineer. */
+"Stop Act as User" = "Hold op med at fungere som bruger";
 
 /* No comment provided by engineer. */
 "Submitted" = "Afleveret";
@@ -213,6 +234,9 @@
 
 /* Directions in the admin view */
 "Tap to start viewing Canvas as another person." = "Tryk for at begynde at se Canvas som en anden person.";
+
+/* No comment provided by engineer. */
+"Terms of Use" = "Betingelser for brug";
 
 /* Error message */
 "There are no actions for this item" = "Der er ingen handlinger for dette element";
@@ -237,6 +261,9 @@
 
 /* No comment provided by engineer. */
 "Unread" = "Ulæst";
+
+/* No comment provided by engineer. */
+"View Canvas Guides" = "Se Canvas-vejledningerne";
 
 /* Calendar Tab */
 "Week" = "Uge";

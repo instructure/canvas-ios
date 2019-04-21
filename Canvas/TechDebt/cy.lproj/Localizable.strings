@@ -1,9 +1,5 @@
 /* prerequisites for unlocking item */
-"
-
-You must first complete:" = "
-
-Bydd yn rhaid i chi gwblhau’r canlynol yn gyntaf:";
+"\n\nYou must first complete:" = "\n\nBydd yn rhaid i chi gwblhau’r canlynol yn gyntaf:";
 
 /* when locked item will become unlocked */
 " until %@" = " tan %@";
@@ -313,26 +309,10 @@ Bydd yn rhaid i chi gwblhau’r canlynol yn gyntaf:";
 "Canvas failed to find recipients for your current search. Please try again later." = "Canvas wedi methu canfod derbynwyr ar gyfer eich chwiliad presennol. Rhowch gynnig arall arni rywbryd eto.";
 
 /* mobile quiz warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.
-
-Unsupported question types include questions containing Adobe Flash™ content, and others.
-
-If you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Mae cwisiau Canvas yn gallu delio â sawl math o arddull asesu. Mae modd delio â'r rhan fwyaf o'r arddulliau hyn ar ddyfeisiau symudol, ond mae rhai nad oes modd delio â nhw. Os byddwch yn ceisio gwneud un o'r cwisiau hyn nad oes modd delio â nhw ar eich ffôn, efallai na fydd modd i chi gwblhau'r cwis, a fydd yn golygu eich bod dan anfantais.
-
-Mae'r mathau o gwestiynau nad oes modd delio â nhw yn cynnwys rhai sy'n defnyddio Adobe Flash™, yn ogystal â mathau eraill.
-
-Os ydych chi'n meddwl bod cynnwys nad oes modd delio ag ef mewn cwis, ewch ati i'w wneud ar gyfrifiadur neu liniadur. Os ydych chi'n gwybod mai dim ond cynnwys y mae modd delio ag ef sydd mewn cwis, mae croeso i chi ei wneud ar eich dyfais symudol.";
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Mae cwisiau Canvas yn gallu delio â sawl math o arddull asesu. Mae modd delio â'r rhan fwyaf o'r arddulliau hyn ar ddyfeisiau symudol, ond mae rhai nad oes modd delio â nhw. Os byddwch yn ceisio gwneud un o'r cwisiau hyn nad oes modd delio â nhw ar eich ffôn, efallai na fydd modd i chi gwblhau'r cwis, a fydd yn golygu eich bod dan anfantais.\n\nMae'r mathau o gwestiynau nad oes modd delio â nhw yn cynnwys rhai sy'n defnyddio Adobe Flash™, yn ogystal â mathau eraill.\n\nOs ydych chi'n meddwl bod cynnwys nad oes modd delio ag ef mewn cwis, ewch ati i'w wneud ar gyfrifiadur neu liniadur. Os ydych chi'n gwybod mai dim ond cynnwys y mae modd delio ag ef sydd mewn cwis, mae croeso i chi ei wneud ar eich dyfais symudol.";
 
 /* mobile quze warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.
-
-Unsupported question types include questions containing Adobe Flash™ content, file uploads, and others.
-
-If you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Mae cwisiau Canvas yn gallu delio â sawl math o arddull asesu. Mae modd delio â'r rhan fwyaf o'r arddulliau hyn ar ddyfeisiau symudol, ond mae rhai nad oes modd delio â nhw. Os byddwch yn ceisio gwneud un o'r cwisiau hyn nad oes modd delio â nhw ar eich ffôn, efallai na fydd modd i chi gwblhau'r cwis, a fydd yn golygu eich bod dan anfantais.
-
-Mae'r mathau o gwestiynau nad oes modd delio â nhw yn cynnwys rhai sy'n defnyddio Adobe Flash™ a ffeiliau wedi’u llwytho i fyny, yn ogystal â mathau eraill.
-
-Os ydych chi'n meddwl bod cynnwys nad oes modd delio ag ef mewn cwis, ewch ati i'w wneud ar gyfrifiadur neu liniadur. Os ydych chi'n gwybod mai dim ond cynnwys y mae modd delio ag ef sydd mewn cwis, mae croeso i chi ei wneud ar eich dyfais symudol.";
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Mae cwisiau Canvas yn gallu delio â sawl math o arddull asesu. Mae modd delio â'r rhan fwyaf o'r arddulliau hyn ar ddyfeisiau symudol, ond mae rhai nad oes modd delio â nhw. Os byddwch yn ceisio gwneud un o'r cwisiau hyn nad oes modd delio â nhw ar eich ffôn, efallai na fydd modd i chi gwblhau'r cwis, a fydd yn golygu eich bod dan anfantais.\n\nMae'r mathau o gwestiynau nad oes modd delio â nhw yn cynnwys rhai sy'n defnyddio Adobe Flash™ a ffeiliau wedi’u llwytho i fyny, yn ogystal â mathau eraill.\n\nOs ydych chi'n meddwl bod cynnwys nad oes modd delio ag ef mewn cwis, ewch ati i'w wneud ar gyfrifiadur neu liniadur. Os ydych chi'n gwybod mai dim ond cynnwys y mae modd delio ag ef sydd mewn cwis, mae croeso i chi ei wneud ar eich dyfais symudol.";
 
 /* button to change user's profile image */
 "Change Profile Image" = "Newid Llun Proffil";
@@ -936,14 +916,14 @@ Os ydych chi'n meddwl bod cynnwys nad oes modd delio ag ef mewn cwis, ewch ati i
 /* Title for an error alert */
 "Oops!" = "Wps!";
 
-/* No comment provided by engineer. */
-"Open in AR" = "Agor yn AR";
-
 /* Open a document in the application Safari */
 "Open in Safari" = "Agor yn Safari";
 
 /* Link to open assignment in SpeedGrader */
 "Open in SpeedGrader" = "Agor yn SpeedGrader";
+
+/* Open file in another application */
+"Open in..." = "Agor yn...";
 
 /* Link to Open Source Components */
 "Open Source Components" = "Cydrannau Ffynhonnell Agored";
@@ -1273,11 +1253,7 @@ Os ydych chi'n meddwl bod cynnwys nad oes modd delio ag ef mewn cwis, ewch ati i
 "There was a network problem while attempting to upload your submission" = "Problem â'r rhwydwaith wrth geisio cyflwyno eich cyflwyniad";
 
 /* Error message when fetching a file fails */
-"There was a problem accessing the requested file.
-
-Error: %@" = "Problem wrth gael mynediad at y ffeil dan sylw.
-
-Gwall: %@";
+"There was a problem accessing the requested file.\n\nError: %@" = "Problem wrth gael mynediad at y ffeil dan sylw.\n\nGwall: %@";
 
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "Problem wrth gychwyn Safari";

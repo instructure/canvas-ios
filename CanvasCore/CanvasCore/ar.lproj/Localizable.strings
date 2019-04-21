@@ -366,9 +366,7 @@
 "LightPink" = "LightPink";
 
 /* Label indicating that the quiz lock date was reached and the quiz is auto submitting */
-"Lock Date Reached
-Submitting" = "تم الوصول إلى موعد الإغلاق
-إرسال";
+"Lock Date Reached\nSubmitting" = "تم الوصول إلى موعد الإغلاق\nإرسال";
 
 /* Detail label for when a tool called Lockdown Browser is required to take the quiz */
 "Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue." = "مطلوب متصفح Lockdown لعرض النتائج الخاصة بك. يُرجى فتح الاختبار في متصفح Lockdown للمتابعة";
