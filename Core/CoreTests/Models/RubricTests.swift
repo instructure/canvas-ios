@@ -14,24 +14,20 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import XCTest
+@testable import Core
 
-public struct APIRubric: Codable, Equatable {
-    let id: ID
-    let points: Double
-    let description: String
-    let long_description: String
-    let criterion_use_range: Bool
-    let ratings: [APIRubricRating]?
-    var assignmentID: String?
-    var position: Int?
-}
+class RubricTests: XCTestCase {
 
-public struct APIRubricRating: Codable, Equatable {
-    let id: ID
-    let points: Double
-    let description: String
-    let long_description: String
-    var assignmentID: String?
-    var position: Int?
+    func testSelectedRating() {
+        let a = RubricRating.make(["id": "a", "points": 1.0])
+        let b = RubricRating.make(["id": "b", "points": 2.0])
+        let c = RubricRating.make(["id": "c", "points": 3.0])
+
+        let r = Rubric.make(["points": 2.0, "ratings": Set([a, b, c])] )
+
+        let rating = r.selectedRating()
+
+        XCTAssertEqual(rating, b)
+    }
 }

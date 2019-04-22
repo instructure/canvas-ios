@@ -29,12 +29,18 @@ struct DebugRoute {
 
 let routes = [
     DebugRoute("/login"),
-    DebugRoute("/courses"),
-    DebugRoute("/courses/177/assignments/1933"),
-    DebugRoute("/courses/167/quizzes"),
-    DebugRoute("/courses/162/assignments/1916/fileupload"),
-    DebugRoute("courses/162/assignments/1901/submissions/12", [.modal, .embedInNav]),
-    DebugRoute("courses/162/assignments/1901/submissions/12/urlsubmission", [.modal, .embedInNav]),
+//    DebugRoute("/courses"),
+//    DebugRoute("/courses/177/assignments/1933"),
+//    DebugRoute("/courses/167/quizzes"),
+//    DebugRoute("/courses/162/assignments/1916/fileupload"),
+//    DebugRoute("courses/162/assignments/1901/submissions/12", [.modal, .embedInNav]),
+//    DebugRoute("courses/162/assignments/1901/submissions/12/urlsubmission", [.modal, .embedInNav]),
+    DebugRoute("courses/159/assignments/2029/submissions/rubric", [.embedInNav]),
+    DebugRoute("courses/159/assignments/2145/submissions/rubric", [.embedInNav]),
+    DebugRoute("courses/159/assignments/1977/submissions/rubric", [.embedInNav]),
+    DebugRoute("courses/159/assignments/1857/submissions/rubric", [.embedInNav]),
+    DebugRoute("courses/159/assignments/1884/submissions/rubric", [.embedInNav]),
+    DebugRoute("courses/159/assignments/1932/submissions/rubric", [.embedInNav]),
     DebugRoute("/logs", [.modal, .embedInNav]),
 ]
 

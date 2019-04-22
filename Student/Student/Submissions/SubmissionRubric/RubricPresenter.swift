@@ -14,7 +14,95 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-import UIKit
+import Foundation
+import Core
+
+protocol RubricViewProtocol: ErrorViewController {
+    func update(_ rubric: [RubricViewModel])
+    func showEmptyState()
+}
+
+struct RubricViewModel {
+    let title: String
+    let selectedDesc: String
+    let selectedIndex: Int
+    let ratings: [Double]
+}
 
 class RubricPresenter {
+
+    lazy var assignments = env.subscribe(GetAssignment(courseID: courseID, assignmentID: assignmentID, include: [.submission])) { [weak self] in
+        self?.update()
+    }
+
+    lazy var submissions = env.subscribe(GetSubmission(context: ContextModel(.course, id: courseID), assignmentID: assignmentID, userID: userID)) { [weak self] in
+        self?.update()
+    }
+
+    lazy var frc: FetchedResultsController<Rubric>? = {
+        let predicate = NSPredicate(format: "%K == %@", #keyPath(Rubric.assignmentID), assignmentID)
+        let sort1 = NSSortDescriptor(key: #keyPath(Rubric.position), ascending: true)
+//        let sort2 = NSSortDescriptor(key: #keyPath(Rubric.ratings.position), ascending: true)
+        let controller: FetchedResultsController<Rubric>? = env.database.fetchedResultsController(predicate: predicate,
+                                                                                                  sortDescriptors: [sort1],
+                                                                                                  sectionNameKeyPath: nil)
+        return controller
+    }()
+
+    let env: AppEnvironment
+    weak var view: RubricViewProtocol?
+    let courseID: String
+    let assignmentID: String
+    let userID: String
+
+    init(env: AppEnvironment = .shared, view: RubricViewProtocol, courseID: String, assignmentID: String, userID: String) {
+        self.env = env
+        self.view = view
+        self.courseID = courseID
+        self.assignmentID = assignmentID
+        self.userID = userID
+    }
+
+    func viewIsReady() {
+        assignments.refresh(force: true)
+        submissions.refresh(force: true)
+    }
+
+    func update() {
+        frc?.performFetch()
+        if let submission = submissions.first {
+            print(submission)
+        }
+        if let rubrics = frc?.fetchedObjects {
+            let models = transformRubricsToViewModels(rubrics)
+            view?.update(models)
+        } else {
+            view?.showEmptyState()
+        }
+    }
+
+    func transformRubricsToViewModels(_ rubric: [Rubric]) -> [RubricViewModel] {
+        var models = [RubricViewModel]()
+        for r in rubric {
+            if let ratings = r.ratings {
+                let sorted = Array(ratings).sorted { $0.points < $1.points }
+                var selected: RubricRating?
+                var selectedIndex = 0
+                var allRatings: [Double] = []
+                for (j, rr) in sorted.enumerated() {
+                    print("r.points: \(r.points) == rr.points: \(rr.points)")
+                    if rr.points == r.points {
+                        selected = rr
+                        selectedIndex = j
+                        print("rr.points: \(rr.points) selectedIndex: \(j)")
+                    }
+                    allRatings.append(rr.points)
+                }
+                let m = RubricViewModel(title: r.desc, selectedDesc: selected?.desc ?? "", selectedIndex: selectedIndex, ratings: allRatings)
+                models.append(m)
+            }
+
+        }
+        return models
+    }
 }

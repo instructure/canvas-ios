@@ -130,4 +130,17 @@ class SubmissionTests: CoreTestCase {
         submission.type = nil
         XCTAssertNil(submission.subtitle)
     }
+
+    func testRubricAssessment() {
+        let s = APISubmission.make([
+            "rubric_assessment": [
+                "_6624": [
+                    "comments": nil,
+                    "points": 5.0,
+                ],
+            ],
+            ]
+        )
+        XCTAssertNotNil(s.rubric_assessment?["_6624"])
+    }
 }

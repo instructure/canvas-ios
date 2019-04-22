@@ -27,6 +27,7 @@ public final class Rubric: NSManagedObject, WriteableModel {
     @NSManaged public var points: Double
     @NSManaged public var criterionUseRange: Bool
     @NSManaged public var ratings: Set<RubricRating>?
+    @NSManaged public var position: Int
 
     public static func save(_ item: APIRubric, in context: PersistenceClient) throws -> Rubric {
         let predicate = NSPredicate(format: "%K == %@ AND %K == %@", #keyPath(Rubric.id), item.id.value, #keyPath(Rubric.assignmentID), item.assignmentID ?? "")
@@ -37,6 +38,7 @@ public final class Rubric: NSManagedObject, WriteableModel {
         model.points = item.points
         model.criterionUseRange = item.criterion_use_range
         model.assignmentID = item.assignmentID ?? ""
+        model.position = item.position ?? 0
 
         if let ratings = model.ratings {
             try context.delete(Array(ratings))
@@ -45,8 +47,9 @@ public final class Rubric: NSManagedObject, WriteableModel {
 
         if let ratings = item.ratings {
             model.ratings = Set<RubricRating>()
-            for var r in ratings {
+            for (index, var r) in ratings.enumerated() {
                 r.assignmentID = item.assignmentID
+                r.position = index
                 let ratingModel = try RubricRating.save(r, in: context)
                 model.ratings?.insert(ratingModel)
             }
@@ -64,6 +67,7 @@ public final class RubricRating: NSManagedObject, WriteableModel {
     @NSManaged public var longDesc: String
     @NSManaged public var points: Double
     @NSManaged public var assignmentID: String
+    @NSManaged public var position: Int
 
     public static func save(_ item: APIRubricRating, in context: PersistenceClient) throws -> RubricRating {
         let predicate = NSPredicate(format: "%K == %@ AND %K == %@", #keyPath(RubricRating.id), item.id.value, #keyPath(RubricRating.assignmentID), item.assignmentID ?? "")
@@ -74,6 +78,33 @@ public final class RubricRating: NSManagedObject, WriteableModel {
         model.longDesc = item.long_description
         model.points = item.points
         model.assignmentID = item.assignmentID ?? ""
+        model.position = item.position ?? 0
+        return model
+    }
+}
+
+public final class RubricAssessment: NSManagedObject, WriteableModel {
+    public typealias JSON = APIRubricRating
+
+    @NSManaged public var comments: String?
+    @NSManaged public var points: Double
+
+    public static func save(_ item: APIRubricAssessment, in context: PersistenceClient) throws -> RubricAssessment {
+        assert(item.submissionID != nil)
+        let predicate = NSPredicate(format: "%K == %@", #keyPath(Submission.id), item.submissionID ?? "")
+
+        let submission: Submission = context.fetch(predicate).first {
+            let model: RubricAssessment = context.insert()
+            model.comments = item.comments
+            model.points = model.points
+        }
+
+        model.id = item.id.value
+        model.desc = item.description
+        model.longDesc = item.long_description
+        model.points = item.points
+        model.assignmentID = item.assignmentID ?? ""
+        model.position = item.position ?? 0
         return model
     }
 }

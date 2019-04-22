@@ -16,22 +16,10 @@
 
 import Foundation
 
-public struct APIRubric: Codable, Equatable {
-    let id: ID
-    let points: Double
-    let description: String
-    let long_description: String
-    let criterion_use_range: Bool
-    let ratings: [APIRubricRating]?
-    var assignmentID: String?
-    var position: Int?
-}
+typealias APIRubricAssessmentMap = [String: APIRubricAssessment]
 
-public struct APIRubricRating: Codable, Equatable {
-    let id: ID
+public struct APIRubricAssessment: Codable, Equatable {
+    let submissionID: String?
     let points: Double
-    let description: String
-    let long_description: String
-    var assignmentID: String?
-    var position: Int?
+    let comments: String?
 }
