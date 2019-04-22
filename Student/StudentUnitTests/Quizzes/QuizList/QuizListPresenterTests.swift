@@ -22,7 +22,6 @@ import TestsFoundation
 class QuizListPresenterTests: PersistenceTestCase {
 
     var resultingError: NSError?
-    var resultingQuizzes: [QuizListItemModel]?
     var resultingSubtitle: String?
     var resultingBackgroundColor: UIColor?
     var presenter: QuizListPresenter!
@@ -61,15 +60,45 @@ class QuizListPresenterTests: PersistenceTestCase {
     }
 
     func testLoadQuizzes() {
-        //  given
-        let expected = Quiz.make()
-
-        //  when
+        Quiz.make([ "quizTypeRaw": "assignment" ])
+        Quiz.make([ "quizTypeRaw": "graded_survey" ])
+        Quiz.make([ "quizTypeRaw": "practice_quiz" ])
+        Quiz.make([ "quizTypeRaw": "survey" ])
         presenter.viewIsReady()
 
-        //  then
-        let quiz = presenter?.quizzes[IndexPath(row: 0, section: 0)]
-        XCTAssertEqual(quiz?.title, expected.title)
+        XCTAssertEqual(presenter.quiz(IndexPath(row: 0, section: 0))?.quizType, QuizType.assignment)
+        XCTAssertEqual(presenter.quiz(IndexPath(row: 0, section: 1))?.quizType, QuizType.practice_quiz)
+        XCTAssertEqual(presenter.quiz(IndexPath(row: 0, section: 2))?.quizType, QuizType.graded_survey)
+        XCTAssertEqual(presenter.quiz(IndexPath(row: 0, section: 3))?.quizType, QuizType.survey)
+    }
+
+    func testSectionOrder() {
+        XCTAssertEqual(presenter.sectionOrder(QuizType.assignment.rawValue), 0)
+        XCTAssertEqual(presenter.sectionOrder(QuizType.practice_quiz.rawValue), 1)
+        XCTAssertEqual(presenter.sectionOrder(QuizType.graded_survey.rawValue), 2)
+        XCTAssertEqual(presenter.sectionOrder(QuizType.survey.rawValue), 3)
+        XCTAssertEqual(presenter.sectionOrder("something_else"), 4)
+    }
+
+    func testSection() {
+        Quiz.make([ "quizTypeRaw": "survey" ])
+        presenter.viewIsReady()
+        XCTAssertEqual(presenter.section(0)?.name, "survey")
+    }
+
+    func testSectionTitle() {
+        Quiz.make([ "quizTypeRaw": "assignment" ])
+        Quiz.make([ "quizTypeRaw": "graded_survey" ])
+        Quiz.make([ "quizTypeRaw": "practice_quiz" ])
+        Quiz.make([ "quizTypeRaw": "survey" ])
+        Quiz.make([ "quizTypeRaw": "invalid" ])
+        presenter.viewIsReady()
+
+        XCTAssertEqual(presenter.sectionTitle(0), "Assignments")
+        XCTAssertEqual(presenter.sectionTitle(1), "Practice Quizzes")
+        XCTAssertEqual(presenter.sectionTitle(2), "Graded Surveys")
+        XCTAssertEqual(presenter.sectionTitle(3), "Surveys")
+        XCTAssertNil(presenter.sectionTitle(4))
     }
 
     func testSelect() {

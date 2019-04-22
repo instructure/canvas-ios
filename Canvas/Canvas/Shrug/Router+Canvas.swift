@@ -315,9 +315,10 @@ extension TechDebt.Router {
             return try PagesHomeViewController(session: currentSession, contextID: contextID, listViewModelFactory: pagesListViewModelFactory, route: route)
         }
 
-        // addContextRoute([.course], subPath: "quizzes") { contextID, _ in
-        //      return QuizListController.create(contextID: contextID, route: route)
-        // }
+        addContextRoute([.course], subPath: "quizzes") { contextID, params in
+            guard let url = params["url"] as? URL else { return nil }
+            return StudentReborn.router.match(.parse(url))
+        }
 
         addContextRoute([.course], subPath: "external_tools/:toolID") { contextID, params in
             guard let url = params["url"] as? URL,

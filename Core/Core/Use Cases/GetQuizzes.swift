@@ -34,7 +34,15 @@ public struct GetQuizzes: CollectionUseCase {
     }
 
     public var scope: Scope {
-        return .where(#keyPath(Quiz.courseID), equals: courseID, orderBy: #keyPath(Quiz.title), naturally: true)
+        return Scope(
+            predicate: NSPredicate(format: "%K == %@", #keyPath(Quiz.courseID), courseID),
+            order: [
+                NSSortDescriptor(key: #keyPath(Quiz.quizTypeRaw), ascending: true),
+                NSSortDescriptor(key: #keyPath(Quiz.order), ascending: true),
+                NSSortDescriptor(key: #keyPath(Quiz.title), ascending: true, selector: #selector(NSString.localizedStandardCompare(_:))),
+            ],
+            sectionNameKeyPath: #keyPath(Quiz.quizTypeRaw)
+        )
     }
 
     public func write(response: [APIQuiz]?, urlResponse: URLResponse?, to client: PersistenceClient) throws {
@@ -54,6 +62,8 @@ public struct GetQuizzes: CollectionUseCase {
             model.questionCount = item.question_count
             model.quizType = item.quiz_type
             model.title = item.title
+            let orderDate = (item.quiz_type == .assignment ? item.due_at : item.lock_at) ?? Date.distantFuture
+            model.order = orderDate.isoString()
         }
     }
 }

@@ -27,8 +27,6 @@
 		3B0B0F6B219C8D1D00F04216 /* GroupNavigationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B003F219BD9F50045E8A1 /* GroupNavigationPresenter.swift */; };
 		3B0B0F6C219C8D2300F04216 /* QuizListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B005C219BD9F60045E8A1 /* QuizListPresenter.swift */; };
 		3B0B0F6D219C8D2300F04216 /* QuizListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B1B005D219BD9F60045E8A1 /* QuizListViewController.storyboard */; };
-		3B0B0F72219C8D3100F04216 /* QuizListEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B1B0061219BD9F60045E8A1 /* QuizListEmptyView.xib */; };
-		3B0B0F73219C8D3100F04216 /* QuizListEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0062219BD9F60045E8A1 /* QuizListEmptyView.swift */; };
 		3B0B0F74219C8D3100F04216 /* QuizListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0063219BD9F60045E8A1 /* QuizListCell.swift */; };
 		3B1B0064219BD9F60045E8A1 /* GroupNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B003D219BD9F50045E8A1 /* GroupNavigationViewController.swift */; };
 		3B1B0066219BD9F60045E8A1 /* GroupNavigationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B003F219BD9F50045E8A1 /* GroupNavigationPresenter.swift */; };
@@ -46,8 +44,6 @@
 		3B1B007A219BD9F60045E8A1 /* QuizListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B005C219BD9F60045E8A1 /* QuizListPresenter.swift */; };
 		3B1B007B219BD9F60045E8A1 /* QuizListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B1B005D219BD9F60045E8A1 /* QuizListViewController.storyboard */; };
 		3B1B007D219BD9F60045E8A1 /* QuizListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B005F219BD9F60045E8A1 /* QuizListViewController.swift */; };
-		3B1B007E219BD9F60045E8A1 /* QuizListEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B1B0061219BD9F60045E8A1 /* QuizListEmptyView.xib */; };
-		3B1B007F219BD9F60045E8A1 /* QuizListEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0062219BD9F60045E8A1 /* QuizListEmptyView.swift */; };
 		3B1B0080219BD9F60045E8A1 /* QuizListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0063219BD9F60045E8A1 /* QuizListCell.swift */; };
 		3B1B0094219BDA560045E8A1 /* AssignmentListPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0084219BDA550045E8A1 /* AssignmentListPresenterTests.swift */; };
 		3B1B0095219BDA560045E8A1 /* AssignmentDetailsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0086219BDA550045E8A1 /* AssignmentDetailsPresenterTests.swift */; };
@@ -430,8 +426,6 @@
 		3B1B005C219BD9F60045E8A1 /* QuizListPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizListPresenter.swift; sourceTree = "<group>"; };
 		3B1B005D219BD9F60045E8A1 /* QuizListViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = QuizListViewController.storyboard; sourceTree = "<group>"; };
 		3B1B005F219BD9F60045E8A1 /* QuizListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizListViewController.swift; sourceTree = "<group>"; };
-		3B1B0061219BD9F60045E8A1 /* QuizListEmptyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuizListEmptyView.xib; sourceTree = "<group>"; };
-		3B1B0062219BD9F60045E8A1 /* QuizListEmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizListEmptyView.swift; sourceTree = "<group>"; };
 		3B1B0063219BD9F60045E8A1 /* QuizListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizListCell.swift; sourceTree = "<group>"; };
 		3B1B0084219BDA550045E8A1 /* AssignmentListPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentListPresenterTests.swift; sourceTree = "<group>"; };
 		3B1B0086219BDA550045E8A1 /* AssignmentDetailsPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsPresenterTests.swift; sourceTree = "<group>"; };
@@ -970,22 +964,12 @@
 		3B1B005B219BD9F60045E8A1 /* QuizList */ = {
 			isa = PBXGroup;
 			children = (
-				3B1B0060219BD9F60045E8A1 /* Views */,
+				3B1B0063219BD9F60045E8A1 /* QuizListCell.swift */,
 				3B1B005C219BD9F60045E8A1 /* QuizListPresenter.swift */,
 				3B1B005D219BD9F60045E8A1 /* QuizListViewController.storyboard */,
 				3B1B005F219BD9F60045E8A1 /* QuizListViewController.swift */,
 			);
 			path = QuizList;
-			sourceTree = "<group>";
-		};
-		3B1B0060219BD9F60045E8A1 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				3B1B0061219BD9F60045E8A1 /* QuizListEmptyView.xib */,
-				3B1B0062219BD9F60045E8A1 /* QuizListEmptyView.swift */,
-				3B1B0063219BD9F60045E8A1 /* QuizListCell.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		3B1B0081219BDA550045E8A1 /* Assignments */ = {
@@ -1837,7 +1821,6 @@
 				3B1B0077219BD9F60045E8A1 /* CourseListViewController.storyboard in Resources */,
 				7D1758E8215AA07E00F88613 /* Localizable.stringsdict in Resources */,
 				788152DF212B35F8005BA428 /* DashboardViewController.storyboard in Resources */,
-				3B1B007E219BD9F60045E8A1 /* QuizListEmptyView.xib in Resources */,
 				3B1B006A219BD9F60045E8A1 /* AssignmentDetailsViewController.storyboard in Resources */,
 				3B1B007B219BD9F60045E8A1 /* QuizListViewController.storyboard in Resources */,
 				7D09E5B721935933006150FA /* SubmissionDetailsEmptyView.xib in Resources */,
@@ -1883,7 +1866,6 @@
 				7D2FADCF225BD1FA00BCE19E /* TextSubmissionViewController.storyboard in Resources */,
 				3B0B0F6D219C8D2300F04216 /* QuizListViewController.storyboard in Resources */,
 				3BBCF849224C19A2004B519D /* SyllabusViewController.storyboard in Resources */,
-				3B0B0F72219C8D3100F04216 /* QuizListEmptyView.xib in Resources */,
 				7D09E5AA2192156A006150FA /* Assets.xcassets in Resources */,
 				9FA7C360219C92A6001F3BC7 /* Drawer.xib in Resources */,
 				7DD9E642223C4E4400B45A7E /* SubmissionCommentFileView.xib in Resources */,
@@ -1973,7 +1955,6 @@
 				7D09E5B921935933006150FA /* SubmissionDetailsEmptyView.swift in Sources */,
 				788152DB212B3470005BA428 /* DashboardPresenter.swift in Sources */,
 				7DD9E622223C1B9500B45A7E /* SubmissionCommentHeaderCell.swift in Sources */,
-				3B1B007F219BD9F60045E8A1 /* QuizListEmptyView.swift in Sources */,
 				7D101954215EBB540058FDD1 /* DynamicLabel.swift in Sources */,
 				7D979CD4215BE3E300567627 /* BundleExtensions.swift in Sources */,
 				3BBCF839224C142C004B519D /* SyllabusPresenter.swift in Sources */,
@@ -2097,7 +2078,6 @@
 				7D067CE521505B3500B78AF2 /* DashboardCourseCell.swift in Sources */,
 				7DA057552193A3A800A3CFBB /* IconView.swift in Sources */,
 				7D979CD5215BE3E600567627 /* BundleExtensions.swift in Sources */,
-				3B0B0F73219C8D3100F04216 /* QuizListEmptyView.swift in Sources */,
 				9F74200B21932DCE00108A0F /* SubmissionDetailsViewController.swift in Sources */,
 				7D10A49321B5E3CF0040C311 /* RootViewController.swift in Sources */,
 				3B0B0F5B219C8CBA00F04216 /* AssignmentDetailsViewController.swift in Sources */,
