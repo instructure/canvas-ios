@@ -262,6 +262,13 @@
         <relationship name="assignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Assignment" inverseName="rubric" inverseEntity="Assignment" syncable="YES"/>
         <relationship name="ratings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RubricRating" inverseName="rubric" inverseEntity="RubricRating" syncable="YES"/>
     </entity>
+    <entity name="RubricAssessment" representedClassName="Core.RubricAssessment" syncable="YES">
+        <attribute name="comments" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="String" defaultValueString="0" syncable="YES"/>
+        <attribute name="points" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="submissionID" attributeType="String" defaultValueString="0" syncable="YES"/>
+        <relationship name="submission" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Submission" inverseName="rubricAssesmentRaw" inverseEntity="Submission" syncable="YES"/>
+    </entity>
     <entity name="RubricRating" representedClassName="Core.RubricRating" syncable="YES">
         <attribute name="assignmentID" attributeType="String" syncable="YES"/>
         <attribute name="desc" attributeType="String" syncable="YES"/>
@@ -293,6 +300,7 @@
         <relationship name="attachments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="File" inverseName="submission" inverseEntity="File" syncable="YES"/>
         <relationship name="discussionEntries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DiscussionEntry" inverseName="submission" inverseEntity="DiscussionEntry" syncable="YES"/>
         <relationship name="mediaComment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MediaComment" inverseName="submission" inverseEntity="MediaComment" syncable="YES"/>
+        <relationship name="rubricAssesmentRaw" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RubricAssessment" inverseName="submission" inverseEntity="RubricAssessment" syncable="YES"/>
     </entity>
     <entity name="SubmissionComment" representedClassName="Core.SubmissionComment" syncable="YES">
         <attribute name="authorAvatarURL" optional="YES" attributeType="URI" syncable="YES"/>
@@ -340,9 +348,10 @@
         <element name="Quiz" positionX="-26.7890625" positionY="226.0703125" width="128" height="210"/>
         <element name="Rubric" positionX="-540" positionY="-27" width="128" height="165"/>
         <element name="RubricRating" positionX="-531" positionY="-18" width="128" height="150"/>
-        <element name="Submission" positionX="-312.484375" positionY="260.38671875" width="128" height="360"/>
+        <element name="Submission" positionX="-312.484375" positionY="260.38671875" width="128" height="375"/>
         <element name="SubmissionComment" positionX="-369" positionY="-18" width="128" height="225"/>
         <element name="Tab" positionX="108.015625" positionY="177.67578125" width="128" height="165"/>
         <element name="TTL" positionX="-173.30859375" positionY="-128.48046875" width="128" height="75"/>
+        <element name="RubricAssessment" positionX="-540" positionY="-27" width="128" height="120"/>
     </elements>
 </model>

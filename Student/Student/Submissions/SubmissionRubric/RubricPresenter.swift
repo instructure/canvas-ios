@@ -42,10 +42,11 @@ class RubricPresenter {
     lazy var frc: FetchedResultsController<Rubric>? = {
         let predicate = NSPredicate(format: "%K == %@", #keyPath(Rubric.assignmentID), assignmentID)
         let sort1 = NSSortDescriptor(key: #keyPath(Rubric.position), ascending: true)
-//        let sort2 = NSSortDescriptor(key: #keyPath(Rubric.ratings.position), ascending: true)
         let controller: FetchedResultsController<Rubric>? = env.database.fetchedResultsController(predicate: predicate,
                                                                                                   sortDescriptors: [sort1],
+
                                                                                                   sectionNameKeyPath: nil)
+        controller?.performFetch()
         return controller
     }()
 
@@ -69,19 +70,15 @@ class RubricPresenter {
     }
 
     func update() {
-        frc?.performFetch()
-        if let submission = submissions.first {
-            print(submission)
-        }
-        if let rubrics = frc?.fetchedObjects {
-            let models = transformRubricsToViewModels(rubrics)
+        if let rubrics = frc?.fetchedObjects, let assessments = submissions.first?.rubricAssessments {
+            let models = transformRubricsToViewModels(rubrics, assessments: assessments)
             view?.update(models)
         } else {
             view?.showEmptyState()
         }
     }
 
-    func transformRubricsToViewModels(_ rubric: [Rubric]) -> [RubricViewModel] {
+    func transformRubricsToViewModels(_ rubric: [Rubric], assessments: RubricAssessments) -> [RubricViewModel] {
         var models = [RubricViewModel]()
         for r in rubric {
             if let ratings = r.ratings {
@@ -90,18 +87,15 @@ class RubricPresenter {
                 var selectedIndex = 0
                 var allRatings: [Double] = []
                 for (j, rr) in sorted.enumerated() {
-                    print("r.points: \(r.points) == rr.points: \(rr.points)")
-                    if rr.points == r.points {
+                    if let a = assessments[r.id], a.points == rr.points {
                         selected = rr
                         selectedIndex = j
-                        print("rr.points: \(rr.points) selectedIndex: \(j)")
                     }
                     allRatings.append(rr.points)
                 }
                 let m = RubricViewModel(title: r.desc, selectedDesc: selected?.desc ?? "", selectedIndex: selectedIndex, ratings: allRatings)
                 models.append(m)
             }
-
         }
         return models
     }

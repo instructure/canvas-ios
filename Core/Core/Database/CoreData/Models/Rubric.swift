@@ -83,28 +83,23 @@ public final class RubricRating: NSManagedObject, WriteableModel {
     }
 }
 
-public final class RubricAssessment: NSManagedObject, WriteableModel {
+public final class RubricAssessment: NSManagedObject {
     public typealias JSON = APIRubricRating
 
+    @NSManaged public var id: String
+    @NSManaged public var submissionID: String
     @NSManaged public var comments: String?
     @NSManaged public var points: Double
 
-    public static func save(_ item: APIRubricAssessment, in context: PersistenceClient) throws -> RubricAssessment {
-        assert(item.submissionID != nil)
-        let predicate = NSPredicate(format: "%K == %@", #keyPath(Submission.id), item.submissionID ?? "")
+    @discardableResult
+    public static func save(_ item: APIRubricAssessment, in context: PersistenceClient, id: String, submissionID: String) throws -> RubricAssessment {
+        let predicate = NSPredicate(format: "%K == %@ AND %K == %@", #keyPath(RubricAssessment.submissionID), submissionID, #keyPath(RubricAssessment.id), id)
 
-        let submission: Submission = context.fetch(predicate).first {
-            let model: RubricAssessment = context.insert()
-            model.comments = item.comments
-            model.points = model.points
-        }
-
-        model.id = item.id.value
-        model.desc = item.description
-        model.longDesc = item.long_description
+        let model: RubricAssessment = context.fetch(predicate).first ?? context.insert()
+        model.id = id
+        model.submissionID = submissionID
+        model.comments = item.comments
         model.points = item.points
-        model.assignmentID = item.assignmentID ?? ""
-        model.position = item.position ?? 0
         return model
     }
 }
