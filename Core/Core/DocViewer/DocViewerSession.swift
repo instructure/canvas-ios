@@ -91,7 +91,7 @@ class DocViewerSession: NSObject, URLSessionTaskDelegate {
             self?.error = error
             if let temp = url, let self = self {
                 let fs = FileManager.default
-                let perm = fs.urls(for: .cachesDirectory, in: .userDomainMask)[0].appendingPathComponent("\(UUID.string).pdf")
+                let perm = URL.temporaryDirectory.appendingPathComponent("\(UUID.string).pdf")
                 do {
                     if fs.fileExists(atPath: perm.path) {
                         try fs.removeItem(at: perm)

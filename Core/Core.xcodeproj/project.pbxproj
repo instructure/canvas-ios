@@ -366,6 +366,8 @@
 		B1911CE921C8460000F42F91 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1911CE821C8460000F42F91 /* NotificationManager.swift */; };
 		B1911CEC21C849BE00F42F91 /* NotificationManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1911CEB21C849BE00F42F91 /* NotificationManagerTests.swift */; };
 		B1911CF121C851AD00F42F91 /* ProcessInfoExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1911CF021C851AD00F42F91 /* ProcessInfoExtensions.swift */; };
+		B191D5E6226E28E100D02948 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191D5E5226E28E100D02948 /* CacheManager.swift */; };
+		B191D5E8226E2CBA00D02948 /* CacheManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191D5E7226E2CBA00D02948 /* CacheManagerTests.swift */; };
 		B192833821C07A4E008D1B9B /* LoggerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B192833721C07A4E008D1B9B /* LoggerExtensions.swift */; };
 		B195DC45213201DE00797FE4 /* GetUserGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = B195DC44213201DE00797FE4 /* GetUserGroups.swift */; };
 		B195DC49213215A300797FE4 /* NSPredicateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B195DC48213215A300797FE4 /* NSPredicateExtensions.swift */; };
@@ -1003,6 +1005,8 @@
 		B1911CE821C8460000F42F91 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		B1911CEB21C849BE00F42F91 /* NotificationManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManagerTests.swift; sourceTree = "<group>"; };
 		B1911CF021C851AD00F42F91 /* ProcessInfoExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessInfoExtensions.swift; sourceTree = "<group>"; };
+		B191D5E5226E28E100D02948 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
+		B191D5E7226E2CBA00D02948 /* CacheManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManagerTests.swift; sourceTree = "<group>"; };
 		B192833721C07A4E008D1B9B /* LoggerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerExtensions.swift; sourceTree = "<group>"; };
 		B195DC44213201DE00797FE4 /* GetUserGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserGroups.swift; sourceTree = "<group>"; };
 		B195DC48213215A300797FE4 /* NSPredicateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPredicateExtensions.swift; sourceTree = "<group>"; };
@@ -1233,11 +1237,12 @@
 			children = (
 				2C96485D211E3723002C3255 /* AppEnvironment.swift */,
 				7D63F78B215D4BD300151E49 /* Brand.swift */,
+				B191D5E5226E28E100D02948 /* CacheManager.swift */,
 				B17F23B02137981B00771F86 /* Clock.swift */,
-				7DD6948E2196891200BA4984 /* Secret.swift */,
 				7DAFB46221A361C400311275 /* LocalizationManager.swift */,
-				B1C783EC2241E39B00DD89A9 /* UUID.swift */,
 				B1BEB2CA22458B5E00E893A4 /* MDMManager.swift */,
+				7DD6948E2196891200BA4984 /* Secret.swift */,
+				B1C783EC2241E39B00DD89A9 /* UUID.swift */,
 			);
 			path = AppEnvironment;
 			sourceTree = "<group>";
@@ -1732,9 +1737,10 @@
 			children = (
 				7D1F704721CAE4E700E78D69 /* AppEnvironmentTests.swift */,
 				7D8B78FA215EC9BE005E08F1 /* BrandTests.swift */,
+				B191D5E7226E2CBA00D02948 /* CacheManagerTests.swift */,
 				7DAFB46421A4693B00311275 /* LocalizationManagerTests.swift */,
-				7D2DC2F32199EC93008FE29A /* SecretTests.swift */,
 				B1F3780922498AF1000B7CAA /* MDMManagerTests.swift */,
+				7D2DC2F32199EC93008FE29A /* SecretTests.swift */,
 			);
 			path = AppEnvironment;
 			sourceTree = "<group>";
@@ -2484,6 +2490,7 @@
 				B1A6BC86218A5D07000515E3 /* LatePolicyInterval.swift in Sources */,
 				B19792ED21751C200000369C /* CoreDataFetchedResultsController.swift in Sources */,
 				7D0215A921BB1762009A8E69 /* LoginStartViewController.swift in Sources */,
+				B191D5E6226E28E100D02948 /* CacheManager.swift in Sources */,
 				9FD504E72180BE1400B395BA /* APIFile.swift in Sources */,
 				B18359A822244E230005A918 /* AccessIconView.swift in Sources */,
 				7DF4FFD82171347B007E5F81 /* Tab.swift in Sources */,
@@ -2650,6 +2657,7 @@
 				3B67BCB821B5E72000055324 /* CreateSubmissionTests.swift in Sources */,
 				B19792F7217697E30000369C /* AssignmentTests.swift in Sources */,
 				7DF9BF082152AEF10099026B /* UIColorExtensionsTests.swift in Sources */,
+				B191D5E8226E2CBA00D02948 /* CacheManagerTests.swift in Sources */,
 				B19792FF2176A0F00000369C /* TabTests.swift in Sources */,
 				2C96485B211E30B3002C3255 /* RouterTests.swift in Sources */,
 				7DCF2032216D530D003AF358 /* QuestionCountViewableTests.swift in Sources */,

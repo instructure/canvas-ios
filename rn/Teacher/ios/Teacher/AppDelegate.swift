@@ -50,6 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setupCrashlytics()
         ResetAppIfNecessary()
+        clearCache()
         if hasFirebase {
             FirebaseApp.configure()
         }
@@ -159,6 +160,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             RCTLinkingManager.application(app, open: url, options: options)
         }
         return true
+    }
+
+    func clearCache() {
+        if CacheManager.shared.lastDeletedAt == nil {
+            do {
+                try CacheManager.shared.deleteAll()
+            } catch {
+                assertionFailure("failed to delete cache")
+            }
+        }
     }
 }
 

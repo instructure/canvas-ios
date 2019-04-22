@@ -285,8 +285,8 @@ extension CanvadocView: PSPDFAnnotationStateManagerDelegate {
 
 extension CanvadocView: URLSessionDownloadDelegate {
     public func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
-        if let filename = self.filename, let caches = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first {
-            let fileURL = caches.appendingPathComponent(filename)
+        if let filename = self.filename {
+            let fileURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(filename)
             if FileManager.default.fileExists(atPath: fileURL.relativePath) {
                 let _ = try? FileManager.default.removeItem(at: fileURL)
             }
