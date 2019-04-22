@@ -5,8 +5,7 @@
 "&quot;%1$@&quot; is locked as part of &quot;%2$@&quot;" = "&quot;%1$@&quot;は &quot;%2$@&quot;の一部としてロックされています";
 
 /* Message for unsupported tab coming soon */
-"%@ is coming soon!" = "%@は近日公開！
- ";
+"%@ is coming soon!" = "%@は近日公開！\n ";
 
 /* explanation for locked item */
 "%@ is locked" = "%@ はロックされています";
@@ -311,15 +310,7 @@
 "Canvas failed to find recipients for your current search. Please try again later." = "Canvasは、現在の検索で受信者を見つけることができませんでした。時間をおいて再度お試しください。";
 
 /* mobile quze warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.
-
-Unsupported question types include questions containing Adobe Flash™ content, file uploads, and others.
-
-If you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvasクイズは様々な評価の形式をサポートしています。クイズの形式の多くは携帯端末でサポートされていますが、そうでないものもあります。もし携帯端末で、そのようなサポートされていないクイズを受ける場合、クイズを全部終えることができずに不利が生じる恐れがあります。
-
-サポートされていないクイズの形式には、Adobe Flash™のコンテンツ、ファイルのアップロードその他が含まれています。
-
-クイズにサポートされていない内容がある場合には、デスクトップやノートパソコンをご使用ください。クイズのコンテンツがすべてサポートされていることが分かっている場合には、ご自由に携帯端末を使用してください。";
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvasクイズは様々な評価の形式をサポートしています。クイズの形式の多くは携帯端末でサポートされていますが、そうでないものもあります。もし携帯端末で、そのようなサポートされていないクイズを受ける場合、クイズを全部終えることができずに不利が生じる恐れがあります。\n\nサポートされていないクイズの形式には、Adobe Flash™のコンテンツ、ファイルのアップロードその他が含まれています。\n\nクイズにサポートされていない内容がある場合には、デスクトップやノートパソコンをご使用ください。クイズのコンテンツがすべてサポートされていることが分かっている場合には、ご自由に携帯端末を使用してください。";
 
 /* No comment provided by engineer. */
 "Change User" = "ユーザーを変更する";
@@ -948,6 +939,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Link to open assignment in SpeedGrader */
 "Open in SpeedGrader" = "SpeedGraderで開く";
 
+/* Open file in another application */
+"Open in..." = "...で開く";
+
 /* Button title for selecting an option given a number */
 "Option %d" = "オプション%d";
 
@@ -1302,11 +1296,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 "There was a network problem while attempting to upload your submission" = "提出をアップロード中にネットワーク上の問題が発生しました";
 
 /* Error message when fetching a file fails */
-"There was a problem accessing the requested file.
-
-Error: %@" = "リクエストされたファイルにアクセス中に問題が起こりました。:
-
-エラー:%@";
+"There was a problem accessing the requested file.\n\nError: %@" = "リクエストされたファイルにアクセス中に問題が起こりました。:\n\nエラー:%@";
 
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "サファリの起動中に問題が発生しました";

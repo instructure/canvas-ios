@@ -310,15 +310,7 @@
 "Canvas failed to find recipients for your current search. Please try again later." = "Canvas 未能根據您當前的搜尋項找到收件人.請稍後再試。";
 
 /* mobile quze warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.
-
-Unsupported question types include questions containing Adobe Flash™ content, file uploads, and others.
-
-If you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas 測驗支持多種評估風格。大部分風格在移動設備上可獲支持；但仍有部分例外。如果您試圖在您的行動電話上進行上述未獲支持的測驗，您或許無法完成完整的測試，導致對您不利。
-
-未獲支持的問題類型包括包含有 Adobe Flash™ 內容的問題，資料夾上載和其他內容。
-
-如果您認為測驗包含有未經支持的內容，請選用桌面電腦或膝上式電腦。如果您確定測驗僅包含已獲支持的內容，您可放心選用移動設備接受測驗。";
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas 測驗支持多種評估風格。大部分風格在移動設備上可獲支持；但仍有部分例外。如果您試圖在您的行動電話上進行上述未獲支持的測驗，您或許無法完成完整的測試，導致對您不利。\n\n未獲支持的問題類型包括包含有 Adobe Flash™ 內容的問題，資料夾上載和其他內容。\n\n如果您認為測驗包含有未經支持的內容，請選用桌面電腦或膝上式電腦。如果您確定測驗僅包含已獲支持的內容，您可放心選用移動設備接受測驗。";
 
 /* No comment provided by engineer. */
 "Change User" = "變更使用者";
@@ -947,6 +939,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Link to open assignment in SpeedGrader */
 "Open in SpeedGrader" = "在 SpeedGrader 中打開";
 
+/* Open file in another application */
+"Open in..." = "打開方式...";
+
 /* Button title for selecting an option given a number */
 "Option %d" = "選項%d";
 
@@ -1301,11 +1296,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 "There was a network problem while attempting to upload your submission" = "試圖上傳您的提交件時出現網路錯誤。";
 
 /* Error message when fetching a file fails */
-"There was a problem accessing the requested file.
-
-Error: %@" = "存取所請求檔案時出現問題。
-
-錯誤：%@";
+"There was a problem accessing the requested file.\n\nError: %@" = "存取所請求檔案時出現問題。\n\n錯誤：%@";
 
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "啟動 Safari 時出錯";

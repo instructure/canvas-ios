@@ -1,9 +1,5 @@
 /* prerequisites for unlocking item */
-"
-
-You must first complete:" = "
-
-Вы должны сначала завершить:";
+"\n\nYou must first complete:" = "\n\nВы должны сначала завершить:";
 
 /* when locked item will become unlocked */
 " until %@" = " до %@";
@@ -313,26 +309,10 @@ You must first complete:" = "
 "Canvas failed to find recipients for your current search. Please try again later." = "Canvas не удалось найти получателей для текущего поиска. Пожалуйста, повторите попытку позже.";
 
 /* mobile quiz warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.
-
-Unsupported question types include questions containing Adobe Flash™ content, and others.
-
-If you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Тесты Canvas поддерживают различные стили оценки. Большинство этих стилей поддерживаются на мобильных устройствах, но некоторые стили не поддерживаются. Если вы попытаетесь загрузить на ваш смартфон один из неподдерживаемых тестов, возможно, вы не сможете пройти весь тест, что поставит вас в невыгодное положение.
-
-К неподдерживаемым типам вопросов, в частности, относятся вопросы, содержание контент Adobe Flash™.
-
-Если вы считаете, что тот или иной тест содержит неподдерживаемый контент, пожалуйста, пройдите его на вашем настольном ПК или ноутбуке. Если вы точно знаете, что тест содержит только поддерживаемый контент, вы можете пройти его на вашем мобильном устройстве.";
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Тесты Canvas поддерживают различные стили оценки. Большинство этих стилей поддерживаются на мобильных устройствах, но некоторые стили не поддерживаются. Если вы попытаетесь загрузить на ваш смартфон один из неподдерживаемых тестов, возможно, вы не сможете пройти весь тест, что поставит вас в невыгодное положение.\n\nК неподдерживаемым типам вопросов, в частности, относятся вопросы, содержание контент Adobe Flash™.\n\nЕсли вы считаете, что тот или иной тест содержит неподдерживаемый контент, пожалуйста, пройдите его на вашем настольном ПК или ноутбуке. Если вы точно знаете, что тест содержит только поддерживаемый контент, вы можете пройти его на вашем мобильном устройстве.";
 
 /* mobile quze warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.
-
-Unsupported question types include questions containing Adobe Flash™ content, file uploads, and others.
-
-If you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Тесты Canvas поддерживают различные стили оценивания. Большинство из этих стилей поддерживаются на мобильных устройствах; Тем не менее, некоторые тз них не поддерживаются. Если вы попытаетесь пройти один из этих не поддерживаемых тестов на вашем телефоне, вы можете быть не в состоянии завершить весь тест, и получить плохую оценку.
-
-Не поддерживаемые типы вопросов включают вопросы, содержащие контент Adobe Flash™, загрузку файлов, и другое.
-
-Если вы считаете, что тест содержит не поддерживаемый контент, пожалуйста, пройдите его на компьютере или ноутбуке. Если вы знаете, что тест содержит только допустимый контент, вы можете смело пройти его на мобильном устройстве.";
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Тесты Canvas поддерживают различные стили оценивания. Большинство из этих стилей поддерживаются на мобильных устройствах; Тем не менее, некоторые тз них не поддерживаются. Если вы попытаетесь пройти один из этих не поддерживаемых тестов на вашем телефоне, вы можете быть не в состоянии завершить весь тест, и получить плохую оценку.\n\nНе поддерживаемые типы вопросов включают вопросы, содержащие контент Adobe Flash™, загрузку файлов, и другое.\n\nЕсли вы считаете, что тест содержит не поддерживаемый контент, пожалуйста, пройдите его на компьютере или ноутбуке. Если вы знаете, что тест содержит только допустимый контент, вы можете смело пройти его на мобильном устройстве.";
 
 /* button to change user's profile image */
 "Change Profile Image" = "Изменить изображение профиля";
@@ -936,14 +916,14 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Title for an error alert */
 "Oops!" = "Ой!";
 
-/* No comment provided by engineer. */
-"Open in AR" = "Открыть в AR";
-
 /* Open a document in the application Safari */
 "Open in Safari" = "Открыть в Safari";
 
 /* Link to open assignment in SpeedGrader */
 "Open in SpeedGrader" = "Открыть в SpeedGrader";
+
+/* Open file in another application */
+"Open in..." = "Открыть в...";
 
 /* Link to Open Source Components */
 "Open Source Components" = "Открыть исходные компоненты";
@@ -1273,11 +1253,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 "There was a network problem while attempting to upload your submission" = "Возниекла ошибка сети при попытке загрузить отправку";
 
 /* Error message when fetching a file fails */
-"There was a problem accessing the requested file.
-
-Error: %@" = "Возникла проблема доступа к запрашиваемому файлу.
-
-Ошибка: %@";
+"There was a problem accessing the requested file.\n\nError: %@" = "Возникла проблема доступа к запрашиваемому файлу.\n\nОшибка: %@";
 
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "Возникла проблема при запуске Safari";

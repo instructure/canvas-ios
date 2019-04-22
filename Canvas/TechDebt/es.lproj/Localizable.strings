@@ -1,9 +1,5 @@
 /* prerequisites for unlocking item */
-"
-
-You must first complete:" = "
-
-Primero debe completar:";
+"\n\nYou must first complete:" = "\n\nPrimero debe completar:";
 
 /* when locked item will become unlocked */
 " until %@" = "hasta %@";
@@ -313,26 +309,10 @@ Primero debe completar:";
 "Canvas failed to find recipients for your current search. Please try again later." = "Canvas no logró encontrar destinatarios para su búsqueda actual. Por favor, inténtelo de nuevo más tarde.";
 
 /* mobile quiz warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.
-
-Unsupported question types include questions containing Adobe Flash™ content, and others.
-
-If you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Los examenes de Canvas admiten diversos estilos de evaluación. La mayoría de estos estilos son compatibles con dispositivos móviles; sin embargo, algunos no lo son. Si intenta tomar uno de estos cuestionarios no compatibles en su teléfono, es posible que no pueda completar el cuestionario, dejándolo en desventaja.
-
-Los tipos de preguntas no compatibles incluyen preguntas que contienen contenido de Adobe Flash™ y otros.
-
-Si cree que una evaluación incluye contenido no compatible, realice la evaluación en su computador o portátil. Si sabe que la evaluación contiene solo contenido compatible, no dude en hacerla en su dispositivo móvil.";
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Los examenes de Canvas admiten diversos estilos de evaluación. La mayoría de estos estilos son compatibles con dispositivos móviles; sin embargo, algunos no lo son. Si intenta tomar uno de estos cuestionarios no compatibles en su teléfono, es posible que no pueda completar el cuestionario, dejándolo en desventaja.\n\nLos tipos de preguntas no compatibles incluyen preguntas que contienen contenido de Adobe Flash™ y otros.\n\nSi cree que una evaluación incluye contenido no compatible, realice la evaluación en su computador o portátil. Si sabe que la evaluación contiene solo contenido compatible, no dude en hacerla en su dispositivo móvil.";
 
 /* mobile quze warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.
-
-Unsupported question types include questions containing Adobe Flash™ content, file uploads, and others.
-
-If you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Las evaluaciones de Canvas son compatibles con diversos estilos de evaluación. La mayoría de estos estilos son compatibles con dispositivos móviles; Sin embargo, algunos no lo son. Si intenta tomar una de estas evaluaciones que no son compatibles desde su teléfono, es posible que no pueda completar la evaluación, dejándole en desventaja.
-
-Los tipos de preguntas no compatibles incluyen preguntas con contenido de Flash™, carga de archivos, y otros.
-
-Si usted cree que una evaluación incluye contenido no compatible, por favor tome la evaluación en su computador o portátil. Si sabe que la evaluación contiene solo contenido compatible, no dude en tomarla en su dispositivo móvil.";
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Las evaluaciones de Canvas son compatibles con diversos estilos de evaluación. La mayoría de estos estilos son compatibles con dispositivos móviles; Sin embargo, algunos no lo son. Si intenta tomar una de estas evaluaciones que no son compatibles desde su teléfono, es posible que no pueda completar la evaluación, dejándole en desventaja.\n\nLos tipos de preguntas no compatibles incluyen preguntas con contenido de Flash™, carga de archivos, y otros.\n\nSi usted cree que una evaluación incluye contenido no compatible, por favor tome la evaluación en su computador o portátil. Si sabe que la evaluación contiene solo contenido compatible, no dude en tomarla en su dispositivo móvil.";
 
 /* button to change user's profile image */
 "Change Profile Image" = "Cambiar imagen de perfil";
@@ -936,14 +916,14 @@ Si usted cree que una evaluación incluye contenido no compatible, por favor tom
 /* Title for an error alert */
 "Oops!" = "¡Ups!";
 
-/* No comment provided by engineer. */
-"Open in AR" = "Abrir en AR";
-
 /* Open a document in the application Safari */
 "Open in Safari" = "Abrir en Safari";
 
 /* Link to open assignment in SpeedGrader */
 "Open in SpeedGrader" = "Abrir en SpeedGrader";
+
+/* Open file in another application */
+"Open in..." = "Abrir en...";
 
 /* Link to Open Source Components */
 "Open Source Components" = "Componentes de código abierto";
@@ -1273,11 +1253,7 @@ Si usted cree que una evaluación incluye contenido no compatible, por favor tom
 "There was a network problem while attempting to upload your submission" = "Hubo un problema en la red al intentar subir su presentación";
 
 /* Error message when fetching a file fails */
-"There was a problem accessing the requested file.
-
-Error: %@" = "Hubo un problema al acceder al archivo solicitado.
-
-Error: %@";
+"There was a problem accessing the requested file.\n\nError: %@" = "Hubo un problema al acceder al archivo solicitado.\n\nError: %@";
 
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "Hubo un problema al lanzar Safari";

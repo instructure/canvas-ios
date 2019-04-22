@@ -310,15 +310,7 @@
 "Canvas failed to find recipients for your current search. Please try again later." = "Canvas fant ikke mottakere til søket ditt. Forsøk igjen senere.";
 
 /* mobile quze warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.
-
-Unsupported question types include questions containing Adobe Flash™ content, file uploads, and others.
-
-If you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas tester støtter forskjellige vurderingsstiler. De fleste av disse stilene støttes på mobile enheter, men ikke alle. Hvis du forsøker å ta en av disse testene som ikke støttes på telefonen din er du kanskje ikke i stand til å fullføre hele testen, hvilket gir deg en ulempe.
-
-Spørsmålstyper som ikke støttes inkluderer spørsmål som inneholder Adobe Flash™ innhold, filopplastinger og annet.
-
-Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på stasjonær eller bærbar datamaskin. Hvis du vet at testen inneholder kun innhold som støttes, da må du gjerne gjøre den på din mobile enhet.";
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas tester støtter forskjellige vurderingsstiler. De fleste av disse stilene støttes på mobile enheter, men ikke alle. Hvis du forsøker å ta en av disse testene som ikke støttes på telefonen din er du kanskje ikke i stand til å fullføre hele testen, hvilket gir deg en ulempe.\n\nSpørsmålstyper som ikke støttes inkluderer spørsmål som inneholder Adobe Flash™ innhold, filopplastinger og annet.\n\nDersom du tror av testen inneholder innhold som ikke støttes, gjør testen på stasjonær eller bærbar datamaskin. Hvis du vet at testen inneholder kun innhold som støttes, da må du gjerne gjøre den på din mobile enhet.";
 
 /* No comment provided by engineer. */
 "Change User" = "Endre bruker";
@@ -947,6 +939,9 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* Link to open assignment in SpeedGrader */
 "Open in SpeedGrader" = "Åpne i SpeedGrader";
 
+/* Open file in another application */
+"Open in..." = "Åpne i ...";
+
 /* Button title for selecting an option given a number */
 "Option %d" = "Valg %d";
 
@@ -1301,11 +1296,7 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 "There was a network problem while attempting to upload your submission" = "Det var et nettverksproblem under forsøket på å laste opp innleveringen din";
 
 /* Error message when fetching a file fails */
-"There was a problem accessing the requested file.
-
-Error: %@" = "Der oppsto et problem med tilgangen til den forespurte filen.
-
-Avvik: %@";
+"There was a problem accessing the requested file.\n\nError: %@" = "Der oppsto et problem med tilgangen til den forespurte filen.\n\nAvvik: %@";
 
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "Det oppsto et problem med å starte Safari";

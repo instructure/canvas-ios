@@ -366,9 +366,7 @@
 "LightPink" = "LightPink";
 
 /* Label indicating that the quiz lock date was reached and the quiz is auto submitting */
-"Lock Date Reached
-Submitting" = "ロックの日付に到達しました
-提出中";
+"Lock Date Reached\nSubmitting" = "ロックの日付に到達しました\n提出中";
 
 /* Detail label for when a tool called Lockdown Browser is required to take the quiz */
 "Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue." = "結果を見るにはロックダウンブラウザが必要です。ロックダウンブラウザでクイズを開くと続行します。";

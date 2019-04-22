@@ -310,15 +310,7 @@
 "Canvas failed to find recipients for your current search. Please try again later." = "Canvas fant ikke mottakere til søket ditt. Forsøk igjen senere.";
 
 /* mobile quze warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.
-
-Unsupported question types include questions containing Adobe Flash™ content, file uploads, and others.
-
-If you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas spørrekonkurranser støtter forskjellige vurderingsmetoder. De fleste av disse stilene støttes på mobile enheter, men ikke alle. Hvis du forsøker å ta en av disse testene som ikke støttes på telefonen din er du kanskje ikke i stand til å fullføre hele testen, hvilket gir deg en ulempe.
-
-Spørsmålstyper som ikke støttes inkluderer spørsmål som inneholder Adobe Flash™ innhold, filopplastinger og annet.
-
-Hvis du mener at en spørrekonkurranse inneholder innhold som ikke støttes, bør du delta i den på en bærbar eller stasjonær PC. Hvis du vet at spørrekonkurransen kun inneholder støttet innhold, kan du delta i den på mobilenheten.";
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas spørrekonkurranser støtter forskjellige vurderingsmetoder. De fleste av disse stilene støttes på mobile enheter, men ikke alle. Hvis du forsøker å ta en av disse testene som ikke støttes på telefonen din er du kanskje ikke i stand til å fullføre hele testen, hvilket gir deg en ulempe.\n\nSpørsmålstyper som ikke støttes inkluderer spørsmål som inneholder Adobe Flash™ innhold, filopplastinger og annet.\n\nHvis du mener at en spørrekonkurranse inneholder innhold som ikke støttes, bør du delta i den på en bærbar eller stasjonær PC. Hvis du vet at spørrekonkurransen kun inneholder støttet innhold, kan du delta i den på mobilenheten.";
 
 /* No comment provided by engineer. */
 "Change User" = "Endre bruker";
@@ -1304,11 +1296,7 @@ Hvis du mener at en spørrekonkurranse inneholder innhold som ikke støttes, bø
 "There was a network problem while attempting to upload your submission" = "Det var et nettverksproblem under forsøket på å laste opp innleveringen din";
 
 /* Error message when fetching a file fails */
-"There was a problem accessing the requested file.
-
-Error: %@" = "Det oppsto et problem med å få tilgang til forespurt fil.
-
-Avvik: %@";
+"There was a problem accessing the requested file.\n\nError: %@" = "Det oppsto et problem med å få tilgang til forespurt fil.\n\nAvvik: %@";
 
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "Det oppsto et problem med å starte Safari";

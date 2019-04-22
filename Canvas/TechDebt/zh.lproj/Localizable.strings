@@ -1,9 +1,5 @@
 /* prerequisites for unlocking item */
-"
-
-You must first complete:" = "
-
-您必须首先完成：";
+"\n\nYou must first complete:" = "\n\n您必须首先完成：";
 
 /* when locked item will become unlocked */
 " until %@" = "直到%@";
@@ -313,26 +309,10 @@ You must first complete:" = "
 "Canvas failed to find recipients for your current search. Please try again later." = "Canvas 无法找到您当前搜索的收件人。 请稍后再试。";
 
 /* mobile quiz warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.
-
-Unsupported question types include questions containing Adobe Flash™ content, and others.
-
-If you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas 测验支持多种评估风格。这些风格大多受移动设备支持；但有些风格不受移动设备支持。如果您试图进行的测验在手机上不受支持，您可能无法完成整个测验，进而让自己处于劣势。
-
-不受支持的问题类型包括含有Adobe Flash™内容等的问题。
-
-如果您认为测验包含不受支持的内容，请在台式计算机或便携式计算机上参加测验。如果您知道测验只包含受支持的内容，请在移动设备上参加测验。";
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas 测验支持多种评估风格。这些风格大多受移动设备支持；但有些风格不受移动设备支持。如果您试图进行的测验在手机上不受支持，您可能无法完成整个测验，进而让自己处于劣势。\n\n不受支持的问题类型包括含有Adobe Flash™内容等的问题。\n\n如果您认为测验包含不受支持的内容，请在台式计算机或便携式计算机上参加测验。如果您知道测验只包含受支持的内容，请在移动设备上参加测验。";
 
 /* mobile quze warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.
-
-Unsupported question types include questions containing Adobe Flash™ content, file uploads, and others.
-
-If you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas测验支持各样的测验类型。手机支持大部分类型；但是，有些不受支持。如果您在手机上尝试参加某个不受支持的测验，您可能无法完成整个测验，并留下后患。
-
-不受支持的问题类型包括含有 Adobe Flash™ 内容、文件上传和其它问题。
-
-如果您认为一个测验包含不受支持的内容，请在台式电脑或手提电脑上进行测验。如果您知道测验只包含受支持的内容，您可随意在手机上进行测验。";
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas测验支持各样的测验类型。手机支持大部分类型；但是，有些不受支持。如果您在手机上尝试参加某个不受支持的测验，您可能无法完成整个测验，并留下后患。\n\n不受支持的问题类型包括含有 Adobe Flash™ 内容、文件上传和其它问题。\n\n如果您认为一个测验包含不受支持的内容，请在台式电脑或手提电脑上进行测验。如果您知道测验只包含受支持的内容，您可随意在手机上进行测验。";
 
 /* button to change user's profile image */
 "Change Profile Image" = "更改个人资料图片";
@@ -936,14 +916,14 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Title for an error alert */
 "Oops!" = "糟糕！";
 
-/* No comment provided by engineer. */
-"Open in AR" = "在 AR 中打开";
-
 /* Open a document in the application Safari */
 "Open in Safari" = "在Safari中打开";
 
 /* Link to open assignment in SpeedGrader */
 "Open in SpeedGrader" = "在SpeedGrader打开";
+
+/* Open file in another application */
+"Open in..." = "在...打开";
 
 /* Link to Open Source Components */
 "Open Source Components" = "打开源组件";
@@ -1273,11 +1253,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 "There was a network problem while attempting to upload your submission" = "尝试上传您的提交时网络出现问题";
 
 /* Error message when fetching a file fails */
-"There was a problem accessing the requested file.
-
-Error: %@" = "访问请求的文件时遇到问题。
-
-错误：%@";
+"There was a problem accessing the requested file.\n\nError: %@" = "访问请求的文件时遇到问题。\n\n错误：%@";
 
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "启动Safari时出现问题";

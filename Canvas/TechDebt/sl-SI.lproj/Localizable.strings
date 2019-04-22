@@ -1,9 +1,5 @@
 /* prerequisites for unlocking item */
-"
-
-You must first complete:" = "
-
-Najprej morate zaključiti:";
+"\n\nYou must first complete:" = "\n\nNajprej morate zaključiti:";
 
 /* when locked item will become unlocked */
 " until %@" = " do %@";
@@ -313,26 +309,10 @@ Najprej morate zaključiti:";
 "Canvas failed to find recipients for your current search. Please try again later." = "Iskanje prejemnikov v sistemu Canvas za vaše trenutno iskanje ni uspelo. Poskusite znova pozneje.";
 
 /* mobile quiz warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.
-
-Unsupported question types include questions containing Adobe Flash™ content, and others.
-
-If you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Pri kvizih sistema Canvas je podprtih več različnih slogov ocenjevanja. Večina teh slogov je na mobilnih napravah podprta, nekateri pa niso. Če poskušate opravljati enega od teh nepodprtih kvizov na svojem telefonu, kviza morda ne boste mogli v celoti zaključiti, zato boste v slabšem položaju.
-
-Nepodprte vrste vprašanj so tiste, ki vključujejo vprašanja z vsebino Adobe Flash™ in druga.
-
-Če menite, da kviz vsebuje nepodprto vsebino, si ga prenesite na namizni ali prenosni računalnik. Če veste, da kviz vsebuje samo podprto vsebino, ga lahko opravljate na mobilni napravi.";
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Pri kvizih sistema Canvas je podprtih več različnih slogov ocenjevanja. Večina teh slogov je na mobilnih napravah podprta, nekateri pa niso. Če poskušate opravljati enega od teh nepodprtih kvizov na svojem telefonu, kviza morda ne boste mogli v celoti zaključiti, zato boste v slabšem položaju.\n\nNepodprte vrste vprašanj so tiste, ki vključujejo vprašanja z vsebino Adobe Flash™ in druga.\n\nČe menite, da kviz vsebuje nepodprto vsebino, si ga prenesite na namizni ali prenosni računalnik. Če veste, da kviz vsebuje samo podprto vsebino, ga lahko opravljate na mobilni napravi.";
 
 /* mobile quze warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.
-
-Unsupported question types include questions containing Adobe Flash™ content, file uploads, and others.
-
-If you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Pri kvizih sistema Canvas je podprtih več različnih slogov ocenjevanja. Večina teh slogov je na mobilnih napravah podprta, nekateri pa niso. Če poskušate opravljati enega od teh nepodprtih kvizov na svojem telefonu, kviza morda ne boste mogli v celoti zaključiti, zato boste v slabšem položaju.
-
-Nepodprte vrste vprašanj so tiste, ki vključujejo vprašanja z vsebino in naloženimi datotekami Adobe Flash™ ter druga.
-
-Če menite, da kviz vsebuje nepodprto vsebino, si ga prenesite na namizni ali prenosni računalnik. Če veste, da kviz vsebuje samo podprto vsebino, ga lahko opravljate na mobilni napravi.";
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Pri kvizih sistema Canvas je podprtih več različnih slogov ocenjevanja. Večina teh slogov je na mobilnih napravah podprta, nekateri pa niso. Če poskušate opravljati enega od teh nepodprtih kvizov na svojem telefonu, kviza morda ne boste mogli v celoti zaključiti, zato boste v slabšem položaju.\n\nNepodprte vrste vprašanj so tiste, ki vključujejo vprašanja z vsebino in naloženimi datotekami Adobe Flash™ ter druga.\n\nČe menite, da kviz vsebuje nepodprto vsebino, si ga prenesite na namizni ali prenosni računalnik. Če veste, da kviz vsebuje samo podprto vsebino, ga lahko opravljate na mobilni napravi.";
 
 /* button to change user's profile image */
 "Change Profile Image" = "Spremeni sliko profila";
@@ -936,14 +916,14 @@ Nepodprte vrste vprašanj so tiste, ki vključujejo vprašanja z vsebino in nalo
 /* Title for an error alert */
 "Oops!" = "Opa!";
 
-/* No comment provided by engineer. */
-"Open in AR" = "Odpri v AR";
-
 /* Open a document in the application Safari */
 "Open in Safari" = "Odpri v brskalniku Safari";
 
 /* Link to open assignment in SpeedGrader */
 "Open in SpeedGrader" = "Odpri v SpeedGrader";
+
+/* Open file in another application */
+"Open in..." = "Odpri v ...";
 
 /* Link to Open Source Components */
 "Open Source Components" = "Odpri komponente vira";
@@ -1273,11 +1253,7 @@ Nepodprte vrste vprašanj so tiste, ki vključujejo vprašanja z vsebino in nalo
 "There was a network problem while attempting to upload your submission" = "Pri poskusu nalaganja oddaje je prišlo do napake v omrežju.";
 
 /* Error message when fetching a file fails */
-"There was a problem accessing the requested file.
-
-Error: %@" = "Pri dostopu do zahtevane naloge je prišlo do težave.
-
-Napaka: %@";
+"There was a problem accessing the requested file.\n\nError: %@" = "Pri dostopu do zahtevane naloge je prišlo do težave.\n\nNapaka: %@";
 
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "Prišlo je do težave z zagonom brskalnika Safari.";
