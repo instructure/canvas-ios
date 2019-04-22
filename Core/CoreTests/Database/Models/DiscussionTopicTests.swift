@@ -28,8 +28,26 @@ class DiscussionTopicTests: CoreTestCase {
 
     func testSave() {
         let api = APIDiscussionTopic.make()
-        DiscussionTopic.save(api, in: databaseClient)
+        XCTAssertNoThrow(try DiscussionTopic.save(api, in: databaseClient))
         let topics: [DiscussionTopic] =  databaseClient.fetch()
         XCTAssertEqual(topics.count, 1)
+    }
+
+    func testHtml() {
+        let topic = DiscussionTopic.make([
+            "authorName": "Strong Bad",
+            "postedAt": DateComponents(calendar: .current, timeZone: .current, year: 2019, month: 4, day: 22).date,
+        ])
+        XCTAssertTrue(topic.html.contains("SB"))
+        XCTAssertTrue(topic.html.contains("Strong Bad"))
+        XCTAssertTrue(topic.html.contains("Apr 22, 2019"))
+    }
+
+    func testHtmlAttachmentIcon() {
+        let api = APIDiscussionTopic.make([ "attachments": [ APIFile.fixture() ] ])
+        XCTAssertNoThrow(try DiscussionTopic.save(api, in: databaseClient))
+        let topics: [DiscussionTopic] =  databaseClient.fetch()
+        XCTAssertTrue(topics.first!.html.contains("<svg"))
+        XCTAssertFalse(DiscussionTopic.make().html.contains("<svg"))
     }
 }

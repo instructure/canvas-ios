@@ -47,6 +47,7 @@ final public class File: NSManagedObject {
     @NSManaged public var lockExplanation: String?
     @NSManaged public var previewURL: URL?
     @NSManaged public var localFileURL: URL?
+    @NSManaged public var discussionTopic: DiscussionTopic?
     @NSManaged public var submission: Submission?
     @NSManaged public var uploadError: String?
     @NSManaged public var bytesSent: Int

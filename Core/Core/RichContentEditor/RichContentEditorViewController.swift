@@ -29,7 +29,7 @@ public class RichContentEditorViewController: UIViewController {
 
     public var placeholder: String = "" {
         didSet {
-            webView.evaluateJavaScript("content.setAttribute('placeholder', \(jsString(placeholder)))")
+            webView.evaluateJavaScript("content.setAttribute('placeholder', \(CoreWebView.jsString(placeholder)))")
         }
     }
 
@@ -101,10 +101,10 @@ extension RichContentEditorViewController {
         webView.evaluateJavaScript("editor.execCommand('insertOrderedList')")
     }
     func updateLink(href: String, text: String) {
-        webView.evaluateJavaScript("editor.updateLink(\(jsString(href)), \(jsString(text)))")
+        webView.evaluateJavaScript("editor.updateLink(\(CoreWebView.jsString(href)), \(CoreWebView.jsString(text)))")
     }
     func updateImage(src: String, alt: String) {
-        webView.evaluateJavaScript("editor.updateImage(\(jsString(src)), \(jsString(alt)))")
+        webView.evaluateJavaScript("editor.updateImage(\(CoreWebView.jsString(src)), \(CoreWebView.jsString(alt)))")
     }
 
     func backupRange() {
@@ -117,7 +117,7 @@ extension RichContentEditorViewController {
 
     public func setHTML(_ html: String) {
         self.html = html // Save to try again when editor is ready
-        webView.evaluateJavaScript("editor.setHTML(\(jsString(html)))")
+        webView.evaluateJavaScript("editor.setHTML(\(CoreWebView.jsString(html)))")
     }
 
     public func getHTML(_ callback: @escaping (String) -> Void) {
@@ -174,16 +174,4 @@ extension RichContentEditorViewController {
             updateState(message.body as? [String: Any?])
         }
     }
-}
-
-private func jsString(_ string: String?) -> String {
-    guard let string = string else { return "null" }
-    let escaped = string
-        .replacingOccurrences(of: "\\", with: "\\\\")
-        .replacingOccurrences(of: "'", with: "\\'")
-        .replacingOccurrences(of: "\r", with: "\\r")
-        .replacingOccurrences(of: "\n", with: "\\n")
-        .replacingOccurrences(of: "\u{2028}", with: "\\u2028")
-        .replacingOccurrences(of: "\u{2029}", with: "\\u2029")
-    return "'\(escaped)'"
 }

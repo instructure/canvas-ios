@@ -174,6 +174,7 @@
 		7D8262F7212B34F800BD268D /* APICourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8262F6212B34F800BD268D /* APICourse.swift */; };
 		7D8262F9212B3B2000BD268D /* APISection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8262F8212B3B2000BD268D /* APISection.swift */; };
 		7D8262FB212B3B3000BD268D /* APIEnrollment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8262FA212B3B3000BD268D /* APIEnrollment.swift */; };
+		7D85D8E5226A8CFB002DBF63 /* AvatarViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D85D8E4226A8CFB002DBF63 /* AvatarViewTests.swift */; };
 		7D86285B224C05BB003A37DC /* APIMediaCommentRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D86285A224C05BB003A37DC /* APIMediaCommentRequestableTests.swift */; };
 		7D86285D224C15BA003A37DC /* UploadMediaCommentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D86285C224C15BA003A37DC /* UploadMediaCommentTests.swift */; };
 		7D862869224D4907003A37DC /* AudioPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D862868224D4907003A37DC /* AudioPlayerViewController.swift */; };
@@ -811,6 +812,7 @@
 		7D8262F6212B34F800BD268D /* APICourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICourse.swift; sourceTree = "<group>"; };
 		7D8262F8212B3B2000BD268D /* APISection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISection.swift; sourceTree = "<group>"; };
 		7D8262FA212B3B3000BD268D /* APIEnrollment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnrollment.swift; sourceTree = "<group>"; };
+		7D85D8E4226A8CFB002DBF63 /* AvatarViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarViewTests.swift; sourceTree = "<group>"; };
 		7D86285A224C05BB003A37DC /* APIMediaCommentRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIMediaCommentRequestableTests.swift; sourceTree = "<group>"; };
 		7D86285C224C15BA003A37DC /* UploadMediaCommentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadMediaCommentTests.swift; sourceTree = "<group>"; };
 		7D862868224D4907003A37DC /* AudioPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerViewController.swift; sourceTree = "<group>"; };
@@ -1437,6 +1439,7 @@
 		7D1758C2215A993100F88613 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7D85D8E4226A8CFB002DBF63 /* AvatarViewTests.swift */,
 				7D8B79022162B9E2005E08F1 /* CoreWebViewTests.swift */,
 				7D979CC9215BDFD500567627 /* DividerViewTests.swift */,
 				7D63F78D215D7B8100151E49 /* DynamicButtonTests.swift */,
@@ -1592,13 +1595,13 @@
 				7D8FDFB52187B62A0067557E /* UINavigationBarExtensions.swift */,
 				B1A890B7224ED64B00CEE000 /* UIScrollViewExtensions.swift */,
 				7D02159E21B88B19009A8E69 /* UITabBarExtensions.swift */,
+				B10D776F21C2E27200BCE822 /* UITableViewCellExtensions.swift */,
 				7DCF202C216D461B003AF358 /* UITableViewExtensions.swift */,
 				3B5425FB21B074500009D069 /* UIViewControllerExtensions.swift */,
 				7DD6948421951FD700BA4984 /* UIViewExtensions.swift */,
 				7D7110C92139A57A0085C2E5 /* URLComponentsExtensions.swift */,
 				3B5369E1219CDD3500D3F62E /* URLExtensions.swift */,
 				7D80AC57212DAE4C00C40ECE /* URLResponseExtensions.swift */,
-				B10D776F21C2E27200BCE822 /* UITableViewCellExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2673,6 +2676,7 @@
 				7DDC450D215BF14A003F3209 /* DynamicLabelTests.swift in Sources */,
 				7D1F704821CAE4E700E78D69 /* AppEnvironmentTests.swift in Sources */,
 				7D80AC25212C61F100C40ECE /* APIAccount+Requestable+Tests.swift in Sources */,
+				7D85D8E5226A8CFB002DBF63 /* AvatarViewTests.swift in Sources */,
 				7D80AC2D212C801600C40ECE /* APIOAuthRequestableTests.swift in Sources */,
 				B1F1328C224BB383002C0555 /* APIModuleTests.swift in Sources */,
 				7DEB5C3C224EBF2D00F28404 /* CreateTextCommentTests.swift in Sources */,

@@ -160,4 +160,18 @@ class CoreWebViewTests: CoreTestCase {
 
         CoreWebView.stopCookieKeepAlive()
     }
+
+    func testJsString() {
+        XCTAssertEqual(CoreWebView.jsString(nil), "null")
+        XCTAssertEqual(CoreWebView.jsString(""), "''")
+        XCTAssertEqual(CoreWebView.jsString("javascript"), "'javascript'")
+        XCTAssertEqual(CoreWebView.jsString("\\'\r\n\u{2028}\u{2029}"), #"'\\\'\r\n\u2028\u2029'"#)
+    }
+
+    func testHtmlString() {
+        XCTAssertEqual(CoreWebView.htmlString(nil), "")
+        XCTAssertEqual(CoreWebView.htmlString(""), "")
+        XCTAssertEqual(CoreWebView.htmlString("html"), "html")
+        XCTAssertEqual(CoreWebView.htmlString("&'\"<>"), "&amp;&#39;&quot;&lt;&gt;")
+    }
 }

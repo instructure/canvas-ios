@@ -71,28 +71,6 @@ class AssignmentTests: CoreTestCase {
         XCTAssertNil(result?.submission)
     }
 
-    func testDetailsScopeOnlyIncludesAssignment() {
-        let assignment = Assignment.make(["id": "1"])
-        let other = Assignment.make(["id": "2"])
-        let list = environment.subscribe(Assignment.self, .details("1"))
-        list.performFetch()
-
-        XCTAssertEqual(list.fetchedObjects?.count, 1)
-        XCTAssertEqual(list.fetchedObjects?.first, assignment)
-        XCTAssertEqual(list.fetchedObjects?.contains(other), false)
-    }
-
-    func testCourseListScoppeIsSortedByPosition() {
-        let a = Assignment.make(["id": "1", "position": 2, "name": "a"])
-        let b = Assignment.make(["id": "2", "position": 1, "name": "b"])
-        let list = environment.subscribe(Assignment.self, Assignment.ScopeKeys.courseList("1"))
-        list.performFetch()
-
-        XCTAssertEqual(list.fetchedObjects?.count, 2)
-        XCTAssertEqual(list.fetchedObjects?.first, b)
-        XCTAssertEqual(list.fetchedObjects?.last, a)
-    }
-
     func testCanMakeSubmissions() {
         //  given
         let a = Assignment.make()
@@ -210,5 +188,37 @@ class AssignmentTests: CoreTestCase {
         let a = Assignment.make()
         a.submissionTypes = [.external_tool]
         XCTAssertTrue(a.isLTIAssignment)
+    }
+
+    func testIsDiscussion() {
+        let a = Assignment.make([ "submissionTypesRaw": ["discussion_topic"] ])
+        XCTAssertTrue(a.isDiscussion)
+        a.submissionTypes.append(.basic_lti_launch)
+        XCTAssertFalse(a.isDiscussion)
+    }
+
+    func testViewableScore() {
+        let a = Assignment.make()
+        XCTAssertNil(a.viewableScore)
+        a.submission = Submission.make([ "scoreRaw": 10 ])
+        XCTAssertEqual(a.viewableScore, 10)
+    }
+
+    func testViewableGrade() {
+        let a = Assignment.make()
+        XCTAssertNil(a.viewableGrade)
+        a.submission = Submission.make([ "grade": "C" ])
+        XCTAssertEqual(a.viewableGrade, "C")
+    }
+
+    func testDescriptionHTML() {
+        let a = Assignment.make([ "details": nil ])
+        XCTAssertEqual(a.descriptionHTML, "<i>No Content</i>")
+        a.details = "details"
+        XCTAssertEqual(a.descriptionHTML, "details")
+        a.submissionTypes = [.discussion_topic]
+        XCTAssertEqual(a.descriptionHTML, "<i>No Content</i>")
+        a.discussionTopic = DiscussionTopic.make()
+        XCTAssertEqual(a.descriptionHTML, a.discussionTopic?.html)
     }
 }

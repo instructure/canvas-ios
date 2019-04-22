@@ -27,6 +27,15 @@ public struct APIDiscussionTopic: Codable, Equatable {
     let last_reply_at: Date?
     let discussion_subentry_count: Int
     let published: Bool
+    let attachments: [APIFile]?
+    let author: APIDiscussionAuthor
+}
+
+public struct APIDiscussionAuthor: Codable, Equatable {
+    let id: String
+    let display_name: String
+    let avatar_image_url: URL?
+    let html_url: URL
 }
 
 public struct APIDiscussionEntry: Codable, Equatable {
