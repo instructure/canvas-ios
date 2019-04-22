@@ -229,7 +229,7 @@ extension FilePickerViewController: UIImagePickerControllerDelegate, UINavigatio
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         picker.dismiss(animated: true, completion: nil)
         do {
-            if let image = info[.originalImage] as? UIImage {
+            if let image = info[.editedImage] as? UIImage ?? info[.originalImage] as? UIImage {
                 delegate?.add(self, url: try image.write())
             } else if let videoURL = info[.mediaURL] as? URL {
                 let destination = URL
