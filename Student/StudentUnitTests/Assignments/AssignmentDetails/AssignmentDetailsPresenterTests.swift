@@ -23,7 +23,7 @@ import TestsFoundation
 class AssignmentDetailsPresenterTests: PersistenceTestCase {
 
     var resultingError: NSError?
-    var resultingAssignment: AssignmentDetailsViewModel?
+    var resultingAssignment: Assignment?
     var resultingBaseURL: URL?
     var resultingSubtitle: String?
     var resultingBackgroundColor: UIColor?
@@ -60,7 +60,7 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         presenter.viewIsReady()
         wait(for: [expectation], timeout: 1)
         //  then
-        XCTAssert(resultingAssignment as! Assignment === expected)
+        XCTAssert(resultingAssignment === expected)
         XCTAssertEqual(presenter!.userID!, expected.submission!.userID)
     }
 
@@ -143,7 +143,7 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
     }
 
     func testAssignmentAsAssignmentDetailsViewModel() {
-        let assignment: AssignmentDetailsViewModel = Assignment.make([
+        let assignment: Assignment = Assignment.make([
             "submission": Submission.make(["scoreRaw": 100, "grade": "A"]),
         ])
         XCTAssertEqual(assignment.viewableScore, 100)
@@ -209,6 +209,16 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         XCTAssertEqual(resultingButtonTitle, "Launch External Tool")
     }
 
+    func testShowSubmitAssignmentButtonDiscussion() {
+        let a = Assignment.make()
+        a.submissionTypes = [.discussion_topic]
+
+        let c = Course.make(["enrollments": Set([Enrollment.make()])])
+
+        presenter.showSubmitAssignmentButton(assignment: a, course: c)
+        XCTAssertEqual(resultingButtonTitle, "View Discussion")
+    }
+
     func testSubmitOnlineUpload() {
         Assignment.make(["id": "1"])
         presenter.submit(.online_upload, from: UIViewController())
@@ -249,6 +259,16 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         XCTAssertEqual(resultingSubmissionTypes, [.online_upload, .online_url])
     }
 
+    func testSubmitDiscussion() {
+        let url = URL(string: "/courses/1/discussions/2")!
+        let a = Assignment.make(["id": "1"])
+        presenter.submit(.discussion_topic, from: UIViewController())
+        XCTAssertEqual(router.calls.count, 0)
+        a.discussionTopic = DiscussionTopic.make([ "htmlUrl": url ])
+        presenter.submit(.discussion_topic, from: UIViewController())
+        XCTAssert(router.lastRoutedTo(url))
+    }
+
     func testViewFileSubmission() {
         Assignment.make(["id": "1"])
 
@@ -279,7 +299,7 @@ extension AssignmentDetailsPresenterTests: AssignmentDetailsViewProtocol {
         resultingSubmissionTypes = types
     }
 
-    func update(assignment: AssignmentDetailsViewModel, baseURL: URL?) {
+    func update(assignment: Assignment, baseURL: URL?) {
         resultingAssignment = assignment
         resultingBaseURL = baseURL
         expectation.fulfill()

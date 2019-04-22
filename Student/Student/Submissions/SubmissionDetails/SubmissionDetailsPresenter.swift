@@ -203,4 +203,8 @@ class SubmissionDetailsPresenter {
             return nil
         }
     }
+
+    func submit(from viewController: UIViewController) {
+        // TODO: share submit button logic currently in AssignmentDetails
+    }
 }

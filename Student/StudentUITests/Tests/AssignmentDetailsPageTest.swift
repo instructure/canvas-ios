@@ -74,6 +74,9 @@ class AssignmentDetailsPageTest: StudentTest {
             "points_possible": 15.1,
             "due_at": DateComponents(calendar: Calendar.current, year: 2035, month: 1, day: 1, hour: 8).date,
             "submission_types": [ "discussion_topic" ],
+            "discussion_topic": APIDiscussionTopic.fixture([
+                "message": "Say something I'm giving up on you.",
+            ]),
         ]))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)")
@@ -86,10 +89,14 @@ class AssignmentDetailsPageTest: StudentTest {
         page.assertHidden(.allowedExtensions)
         page.assertHidden(.submittedText)
         page.assertHidden(.gradeCell)
-        page.assertText(.submitAssignmentButton, equals: "Submit Assignment")
+        page.assertText(.submitAssignmentButton, equals: "View Discussion")
 
-        let description = app?.webViews.staticTexts.firstMatch.label
-        XCTAssertEqual(description, assignment.description)
+        let authorAvatar = app?.webViews.staticTexts.element(boundBy: 0).label
+        let authorName = app?.webViews.staticTexts.element(boundBy: 1).label
+        let message = app?.webViews.staticTexts.element(boundBy: 2).label
+        XCTAssertEqual(authorAvatar, "B")
+        XCTAssertEqual(authorName, assignment.discussion_topic?.author.display_name)
+        XCTAssertEqual(message, assignment.discussion_topic?.message)
     }
 
     func testSubmittedDiscussion() {
@@ -105,7 +112,7 @@ class AssignmentDetailsPageTest: StudentTest {
         page.assertText(.name, equals: assignment.name)
         page.assertVisible(.submittedText)
         page.assertVisible(.gradeCell)
-        page.assertText(.submitAssignmentButton, equals: "Resubmit Assignment")
+        page.assertText(.submitAssignmentButton, equals: "View Discussion")
     }
 
     func testResubmitAssignmentButton() {

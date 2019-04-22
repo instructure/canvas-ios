@@ -56,23 +56,6 @@ public class Assignment: NSManagedObject {
     }
 }
 
-extension Assignment: Scoped {
-
-    public enum ScopeKeys {
-        case details(String)
-        case courseList(String)
-    }
-
-    public static func scope(forName name: ScopeKeys) -> Scope {
-        switch name {
-        case let .details(id):
-            return .where(#keyPath(Assignment.id), equals: id)
-        case let .courseList(id):
-            return Scope.where(#keyPath(Assignment.courseID), equals: id, orderBy: #keyPath(Assignment.position), ascending: true)
-        }
-    }
-}
-
 extension Assignment {
     func update(fromApiModel item: APIAssignment, in client: PersistenceClient, updateSubmission: Bool) throws {
         id = item.id.value
@@ -95,7 +78,7 @@ extension Assignment {
         url = item.url
 
         if let topic = item.discussion_topic {
-            discussionTopic = DiscussionTopic.save(topic, in: client)
+            discussionTopic = try DiscussionTopic.save(topic, in: client)
         } else if let topic = discussionTopic {
             try client.delete(topic)
             self.discussionTopic = nil
@@ -136,6 +119,11 @@ extension Assignment {
             submissionTypes.contains(.external_tool)
     }
 
+    public var isDiscussion: Bool {
+        return submissionTypes.count == 1 &&
+            submissionTypes.contains(.discussion_topic)
+    }
+
     public var allowedUTIs: [UTI] {
         var utis: [UTI] = []
 
@@ -160,5 +148,22 @@ extension Assignment {
         }
 
         return utis
+    }
+}
+
+extension Assignment: DueViewable, GradeViewable, SubmissionViewable {
+    public var viewableScore: Double? {
+        return submission?.score
+    }
+    public var viewableGrade: String? {
+        return submission?.grade
+    }
+
+    public var descriptionHTML: String {
+        let fallback = "<i>\(NSLocalizedString("No Content", bundle: .core, comment: ""))</i>"
+        if isDiscussion {
+            return discussionTopic?.html ?? fallback
+        }
+        return details ?? fallback
     }
 }

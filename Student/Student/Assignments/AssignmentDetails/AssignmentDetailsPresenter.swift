@@ -18,15 +18,6 @@ import Foundation
 import Core
 import SafariServices
 
-extension Assignment: AssignmentDetailsViewModel {
-    public var viewableScore: Double? {
-        return submission?.score
-    }
-    public var viewableGrade: String? {
-        return submission?.grade
-    }
-}
-
 struct SubmissionAction: Equatable {
     let title: String
     let route: Route
@@ -35,7 +26,7 @@ struct SubmissionAction: Equatable {
 
 protocol AssignmentDetailsViewProtocol: ErrorViewController {
     func updateNavBar(subtitle: String?, backgroundColor: UIColor?)
-    func update(assignment: AssignmentDetailsViewModel, baseURL: URL?)
+    func update(assignment: Assignment, baseURL: URL?)
     func showSubmitAssignmentButton(title: String?)
     func chooseSubmissionType(_ types: [SubmissionType])
 }
@@ -73,10 +64,11 @@ class AssignmentDetailsPresenter {
     }
 
     let supportedSubmissionTypes: [SubmissionType] = [
+        .discussion_topic,
+        .external_tool,
         .online_text_entry,
         .online_upload,
         .online_url,
-        .external_tool,
     ]
 
     var assignment: Assignment? {
@@ -153,6 +145,11 @@ class AssignmentDetailsPresenter {
             && amStudent
             && !filesUploading
 
+        if assignment.isDiscussion {
+            view?.showSubmitAssignmentButton(title: NSLocalizedString("View Discussion", comment: ""))
+            return
+        }
+
         if assignment.isLTIAssignment {
             view?.showSubmitAssignmentButton(title: NSLocalizedString("Launch External Tool", comment: ""))
             return
@@ -187,6 +184,9 @@ class AssignmentDetailsPresenter {
 
     func submit(_ type: SubmissionType, from viewController: UIViewController, completionBlock: (() -> Void)? = nil) {
         switch type {
+        case .discussion_topic:
+            guard let url = assignment?.discussionTopic?.htmlUrl else { return }
+            env.router.route(to: url, from: viewController)
         case .online_text_entry:
             let route = Route.assignmentTextSubmission(courseID: courseID, assignmentID: assignmentID, userID: userID ?? "")
             env.router.route(to: route, from: viewController, options: [.modal, .embedInNav])
