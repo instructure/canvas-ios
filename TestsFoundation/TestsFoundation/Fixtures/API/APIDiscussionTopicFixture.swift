@@ -24,6 +24,17 @@ extension APIDiscussionTopic: Fixture {
             "message": "message",
             "discussion_subentry_count": 1,
             "published": true,
+            "author": APIDiscussionAuthor.fixture(),
+        ]
+    }
+}
+
+extension APIDiscussionAuthor: Fixture {
+    public static var template: Template {
+        return [
+            "id": "1",
+            "display_name": "Bob",
+            "html_url": "/users/1",
         ]
     }
 }

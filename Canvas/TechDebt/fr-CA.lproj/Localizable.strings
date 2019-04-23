@@ -1,9 +1,5 @@
 /* prerequisites for unlocking item */
-"
-
-You must first complete:" = "
-
-Vous devez d’abord compléter :";
+"\n\nYou must first complete:" = "\n\nVous devez d’abord compléter :";
 
 /* when locked item will become unlocked */
 " until %@" = "jusqu’à %@";
@@ -313,26 +309,10 @@ Vous devez d’abord compléter :";
 "Canvas failed to find recipients for your current search. Please try again later." = "Canvas n'a retourné aucun destinataire correspondant à votre recherche actuelle. Veuillez réessayer plus tard.";
 
 /* mobile quiz warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.
-
-Unsupported question types include questions containing Adobe Flash™ content, and others.
-
-If you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Les questionnaires prennent en charge plusieurs styles d'évaluation. La plupart de ces styles sont pris en charge par les appareils mobiles; cependant, certains ne sont pas. Si vous essayez de remplir un de ces questionnaires non pris en charge sur votre téléphone, vous pourriez être incapable de terminer le questionnaire, vous laissant dans une situation désavantageuse.
-
-Les types de questions non prises en charge comprennent des questions contenant du contenu Adobe Flash™, et autres.
-
-Si vous pensez que un questionnaire contient du contenu non pris en charge, veuillez le remplir sur un ordinateur de bureau ou un ordinateur portable. Si vous êtes certain que le questionnaire contient uniquement du contenu pris en charge, n'hésitez pas à le remplir sur votre appareil mobile.";
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Les questionnaires prennent en charge plusieurs styles d'évaluation. La plupart de ces styles sont pris en charge par les appareils mobiles; cependant, certains ne sont pas. Si vous essayez de remplir un de ces questionnaires non pris en charge sur votre téléphone, vous pourriez être incapable de terminer le questionnaire, vous laissant dans une situation désavantageuse.\n\nLes types de questions non prises en charge comprennent des questions contenant du contenu Adobe Flash™, et autres.\n\nSi vous pensez que un questionnaire contient du contenu non pris en charge, veuillez le remplir sur un ordinateur de bureau ou un ordinateur portable. Si vous êtes certain que le questionnaire contient uniquement du contenu pris en charge, n'hésitez pas à le remplir sur votre appareil mobile.";
 
 /* mobile quze warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.
-
-Unsupported question types include questions containing Adobe Flash™ content, file uploads, and others.
-
-If you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Les questionnaires Canvas prennent en charge divers styles d'évaluation. La plupart de ces styles sont pris en charge sur les appareils mobiles; cependant, certains ne le sont pas encore. Si vous essayez de répondre à l’un de ces questionnaires non pris en charge sur votre téléphone, vous pourriez être incapable de le terminer dans son ensemble, vous laissant à un certain désavantage.
-
-Les types de questions non pris en charge comprennent les questions contenant du contenu Adobe Flash™, des téléversements de fichier et autres.
-
-Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veuillez y répondre sur un ordinateur de bureau ou sur un ordinateur portable. Si vous savez que le questionnaire contient uniquement des questions au contenu entièrement pris en charge, n’hésitez pas à y répondre sur votre appareil mobile.";
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Les questionnaires Canvas prennent en charge divers styles d'évaluation. La plupart de ces styles sont pris en charge sur les appareils mobiles; cependant, certains ne le sont pas encore. Si vous essayez de répondre à l’un de ces questionnaires non pris en charge sur votre téléphone, vous pourriez être incapable de le terminer dans son ensemble, vous laissant à un certain désavantage.\n\nLes types de questions non pris en charge comprennent les questions contenant du contenu Adobe Flash™, des téléversements de fichier et autres.\n\nSi vous pensez qu’un questionnaire contient du contenu non pris en charge, veuillez y répondre sur un ordinateur de bureau ou sur un ordinateur portable. Si vous savez que le questionnaire contient uniquement des questions au contenu entièrement pris en charge, n’hésitez pas à y répondre sur votre appareil mobile.";
 
 /* button to change user's profile image */
 "Change Profile Image" = "Changer l'image de profil";
@@ -936,14 +916,14 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* Title for an error alert */
 "Oops!" = "Oups!";
 
-/* No comment provided by engineer. */
-"Open in AR" = "Ouvrir dans AR";
-
 /* Open a document in the application Safari */
 "Open in Safari" = "Ouvrir avec Safari";
 
 /* Link to open assignment in SpeedGrader */
 "Open in SpeedGrader" = "Ouvrir dans SpeedGrader";
+
+/* Open file in another application */
+"Open in..." = "Ouvrir avec...";
 
 /* Link to Open Source Components */
 "Open Source Components" = "Composants Open source";
@@ -1273,11 +1253,7 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 "There was a network problem while attempting to upload your submission" = "Un problème de réseau est survenu lors de la tentative de téléversement de votre envoi";
 
 /* Error message when fetching a file fails */
-"There was a problem accessing the requested file.
-
-Error: %@" = "Un problème est survenu lors de l'accès au fichier demandé.
-
-Erreur : %@";
+"There was a problem accessing the requested file.\n\nError: %@" = "Un problème est survenu lors de l'accès au fichier demandé.\n\nErreur : %@";
 
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "Un problème est survenu lors du lancement de Safari";

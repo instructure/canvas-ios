@@ -366,9 +366,7 @@
 "LightPink" = "LightPink";
 
 /* Label indicating that the quiz lock date was reached and the quiz is auto submitting */
-"Lock Date Reached
-Submitting" = "Rive nan Dat Blokaj
-Soumisyon";
+"Lock Date Reached\nSubmitting" = "Rive nan Dat Blokaj\nSoumisyon";
 
 /* Detail label for when a tool called Lockdown Browser is required to take the quiz */
 "Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue." = "Navigatè Lockdown nesesè pou ka wè rezilta ou yo. Tanpri ouvri quiz la nan Navigatè Lockdown pou ka kontinye.";

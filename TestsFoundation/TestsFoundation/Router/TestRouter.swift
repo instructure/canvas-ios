@@ -31,6 +31,14 @@ public class TestRouter: RouterProtocol {
     }
 
     public func lastRoutedTo(_ route: Route) -> Bool {
-        return calls.last?.0 == route.url
+        return lastRoutedTo(route.url)
+    }
+
+    public func lastRoutedTo(_ url: URL) -> Bool {
+        return calls.last?.0 == URLComponents.parse(url)
+    }
+
+    public func lastRoutedTo(_ url: URLComponents) -> Bool {
+        return calls.last?.0 == url
     }
 }

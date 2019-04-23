@@ -310,16 +310,7 @@
 "Canvas failed to find recipients for your current search. Please try again later." = "Canvas kon geen geadresseerden vinden voor je huidige zoekopdracht. Probeer het later nogmaals.";
 
 /* mobile quze warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.
-
-Unsupported question types include questions containing Adobe Flash™ content, file uploads, and others.
-
-If you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas toetsen ondersteunen verschillende beoordelingsstijlen. De meeste van deze stijlen worden ondersteund op mobiele apparaten; maar andere niet. Als je een van deze niet-ondersteunde toetsen op je telefoon probeert te doen, lukt het misschien niet om de hele toets te voltooien, wat nadelig voor je is.
-
-
-Niet-ondersteunde vraagsoorten zijn onder andere vragen met Adobe Flash™-content, uploads van bestanden en andere.
-
-Als je denkt dat een toets niet-ondersteunde content bevat, doe het dan op een desktop of laptop. Als je weet dat de toets alleen ondersteunde content bevat, aarzel dan niet hem op je mobiele apparaat te doen.";
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas toetsen ondersteunen verschillende beoordelingsstijlen. De meeste van deze stijlen worden ondersteund op mobiele apparaten; maar andere niet. Als je een van deze niet-ondersteunde toetsen op je telefoon probeert te doen, lukt het misschien niet om de hele toets te voltooien, wat nadelig voor je is.\n\n\nNiet-ondersteunde vraagsoorten zijn onder andere vragen met Adobe Flash™-content, uploads van bestanden en andere.\n\nAls je denkt dat een toets niet-ondersteunde content bevat, doe het dan op een desktop of laptop. Als je weet dat de toets alleen ondersteunde content bevat, aarzel dan niet hem op je mobiele apparaat te doen.";
 
 /* No comment provided by engineer. */
 "Change User" = "Gebruiker wijzigen";
@@ -948,6 +939,9 @@ Als je denkt dat een toets niet-ondersteunde content bevat, doe het dan op een d
 /* Link to open assignment in SpeedGrader */
 "Open in SpeedGrader" = "Openen in SpeedGrader";
 
+/* Open file in another application */
+"Open in..." = "Openen in...";
+
 /* Button title for selecting an option given a number */
 "Option %d" = "Optie %d";
 
@@ -1302,11 +1296,7 @@ Als je denkt dat een toets niet-ondersteunde content bevat, doe het dan op een d
 "There was a network problem while attempting to upload your submission" = "Er was een netwerkfout bij het uploaden van je indiening";
 
 /* Error message when fetching a file fails */
-"There was a problem accessing the requested file.
-
-Error: %@" = "Er is een probleem opgetreden bij het toegang verkrijgen tot het aangevraagde bestand.
-
-Fout: %@";
+"There was a problem accessing the requested file.\n\nError: %@" = "Er is een probleem opgetreden bij het toegang verkrijgen tot het aangevraagde bestand.\n\nFout: %@";
 
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "Er was een probleem bij het lanceren van Safari";

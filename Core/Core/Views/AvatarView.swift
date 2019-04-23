@@ -28,6 +28,7 @@ open class AvatarView: UIView {
             imageView.pin(inside: self)
             imageView.backgroundColor = .named(.backgroundLight)
             imageView.clipsToBounds = true
+            imageView.contentMode = .scaleAspectFill
             imageView.isAccessibilityElement = false
             imageView.tintColor = .named(.textDark)
 
@@ -52,12 +53,7 @@ open class AvatarView: UIView {
 
     public var url: URL? {
         didSet {
-            // Ignore crappy default avatars.
-            var url = self.url
-            if url?.absoluteString.contains("images/dotted_pic.png") == true || url?.absoluteString.contains("images/messages/avatar-50.png") == true {
-                url = nil
-            }
-
+            let url = AvatarView.scrubbedURL(self.url)
             imageView.load(url: url)
             label.isHidden = url != nil
         }
@@ -66,10 +62,51 @@ open class AvatarView: UIView {
     @IBInspectable
     public var name: String = "" {
         didSet {
-            label.text = name.split(separator: " ", maxSplits: 2).reduce("") { (value: String, part: Substring) -> String in
-                guard let char = part.first else { return value }
-                return "\(value)\(char)"
-            }.localizedUppercase
+            label.text = AvatarView.initials(for: name)
         }
+    }
+
+    static func scrubbedURL(_ url: URL?) -> URL? {
+        // Ignore crappy default avatars.
+        if url?.absoluteString.contains("images/dotted_pic.png") == true || url?.absoluteString.contains("images/messages/avatar-50.png") == true {
+            return nil
+        }
+        return url
+    }
+
+    static func initials(for name: String) -> String {
+        return name.split(separator: " ", maxSplits: 2).reduce("") { (value: String, part: Substring) -> String in
+            guard let char = part.first else { return value }
+            return "\(value)\(char)"
+        }.localizedUppercase
+    }
+
+    public static func html(for url: URL?, name: String, size: CGFloat = 32) -> String {
+        var style = """
+        background:#fff; \
+        border-radius:50%; \
+        height:\(size)px; \
+        width:\(size)px;
+        """
+        let content: String
+        if let url = scrubbedURL(url)?.absoluteString {
+            style += """
+            background-image:url(\(CoreWebView.htmlString(url))); \
+            background-size:cover;
+            """
+            content = ""
+        } else {
+            style += """
+            border:1px solid \(UIColor.named(.borderMedium).hexString); \
+            box-sizing:border-box; \
+            color:\(UIColor.named(.textDark).hexString); \
+            line-height:\(size)px; \
+            font-size:\(round(size / 2.25))px; \
+            font-weight:600; \
+            text-align:center;
+            """
+            content = CoreWebView.htmlString(initials(for: name))
+        }
+        return "<div aria-hidden style=\"\(style)\">\(content)</div>"
     }
 }

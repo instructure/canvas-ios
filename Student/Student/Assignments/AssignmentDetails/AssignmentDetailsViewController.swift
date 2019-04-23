@@ -17,12 +17,6 @@
 import Core
 import UIKit
 
-protocol AssignmentDetailsViewModel: DueViewable, GradeViewable, SubmissionViewable {
-    var details: String? { get }
-    var htmlURL: URL { get }
-    var name: String { get }
-}
-
 class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewProtocol {
     @IBOutlet weak var nameLabel: UILabel?
     @IBOutlet weak var pointsLabel: UILabel?
@@ -142,7 +136,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         gradeCellDivider?.isHidden = true
     }
 
-    func updateGradeCell(_ assignment: AssignmentDetailsViewModel) {
+    func updateGradeCell(_ assignment: Assignment) {
         // in this case the submission should always be there because canvas generates
         // submissions for every user for every assignment but just in case
         guard let submission = assignment.submission else {
@@ -233,7 +227,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         }
     }
 
-    func update(assignment: AssignmentDetailsViewModel, baseURL: URL?) {
+    func update(assignment: Assignment, baseURL: URL?) {
         nameLabel?.text = assignment.name
         pointsLabel?.text = assignment.pointsPossibleText
         statusIconView?.isHidden = assignment.submissionStatusIsHidden
@@ -248,10 +242,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         fileTypesHeadingLabel?.isHidden = !assignment.hasFileTypes
         fileTypesLabel?.isHidden = !assignment.hasFileTypes
         fileTypesDivider?.isHidden = !assignment.hasFileTypes
-        descriptionView?.loadHTMLString(
-            assignment.details ?? NSLocalizedString("No Content", bundle: .student, comment: ""),
-            baseURL: baseURL
-        )
+        descriptionView?.loadHTMLString(assignment.descriptionHTML, baseURL: baseURL)
         updateGradeCell(assignment)
 
         submissionButtonView?.isHidden = !assignment.isSubmittable

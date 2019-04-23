@@ -57,6 +57,9 @@
     </entity>
     <entity name="DiscussionTopic" representedClassName="Core.DiscussionTopic" syncable="YES">
         <attribute name="assignmentID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="authorAvatarURL" optional="YES" attributeType="URI" syncable="YES"/>
+        <attribute name="authorID" attributeType="String" defaultValueString=" " syncable="YES"/>
+        <attribute name="authorName" attributeType="String" defaultValueString=" " syncable="YES"/>
         <attribute name="discussionSubEntryCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="htmlUrl" optional="YES" attributeType="URI" syncable="YES"/>
         <attribute name="id" attributeType="String" syncable="YES"/>
@@ -66,6 +69,7 @@
         <attribute name="published" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="assignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Assignment" inverseName="discussionTopic" inverseEntity="Assignment" syncable="YES"/>
+        <relationship name="attachments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="File" inverseName="discussionTopic" inverseEntity="File" syncable="YES"/>
     </entity>
     <entity name="Enrollment" representedClassName="Core.Enrollment" syncable="YES">
         <attribute name="canvasContextID" optional="YES" attributeType="String" syncable="YES"/>
@@ -117,6 +121,7 @@
         <attribute name="uploadError" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="URI" syncable="YES"/>
         <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="discussionTopic" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DiscussionTopic" inverseName="attachments" inverseEntity="DiscussionTopic" syncable="YES"/>
         <relationship name="submission" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Submission" inverseName="attachments" inverseEntity="Submission" syncable="YES"/>
     </entity>
     <entity name="Group" representedClassName="Core.Group" syncable="YES">
@@ -321,9 +326,9 @@
         <element name="Color" positionX="-177.3046875" positionY="-36" width="128" height="75"/>
         <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="165"/>
         <element name="DiscussionEntry" positionX="-513.66796875" positionY="535.73828125" width="128" height="150"/>
-        <element name="DiscussionTopic" positionX="-540" positionY="-27" width="128" height="195"/>
+        <element name="DiscussionTopic" positionX="-540" positionY="-27" width="128" height="253"/>
         <element name="Enrollment" positionX="-578.41796875" positionY="2.78125" width="128" height="315"/>
-        <element name="File" positionX="-162.1640625" positionY="69.79296875" width="128" height="495"/>
+        <element name="File" positionX="-162.1640625" positionY="69.79296875" width="128" height="508"/>
         <element name="Group" positionX="-366.25" positionY="-174.85546875" width="128" height="135"/>
         <element name="LogEvent" positionX="-743.51953125" positionY="192.92578125" width="128" height="90"/>
         <element name="MediaComment" positionX="-369" positionY="-18" width="128" height="135"/>

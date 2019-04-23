@@ -310,15 +310,7 @@
 "Canvas failed to find recipients for your current search. Please try again later." = "Canvas pa rive jwenn destinatè pou rechèch ou a. Tanpri eseye ankò.";
 
 /* mobile quze warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.
-
-Unsupported question types include questions containing Adobe Flash™ content, file uploads, and others.
-
-If you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Quiz Canvas  yo pran plizyè tip evalyasyon an chaj. Laplipa nan stil evalyasyon sa yo gen sipò sou aparèy mobil; men gen kèk ki pa kapab. Si ou eseye pran yonn nan quiz ki pa gen sipò sa yo sou telefòn ou, ou gendwa paka fini tout quiz la, k ap kite w nan yon sitiyasyon ki pa nan avantaj ou ditou.
-
-Tip kesyon yo pa pran an chaj se tankou kesyon ki gen kontni, fichye transfere ak lòt bagay ki gen Adobe Flash™.
-
-Si w kwè yon quiz gen kontni ki pa sipòte, pran li sou òdinatè oswa laptòp. SI w konnen quiz la gen kontni aparèy mobil yo sipòte, ou pa bezwen ezite pran li sou aparèy mobil ou.";
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Quiz Canvas  yo pran plizyè tip evalyasyon an chaj. Laplipa nan stil evalyasyon sa yo gen sipò sou aparèy mobil; men gen kèk ki pa kapab. Si ou eseye pran yonn nan quiz ki pa gen sipò sa yo sou telefòn ou, ou gendwa paka fini tout quiz la, k ap kite w nan yon sitiyasyon ki pa nan avantaj ou ditou.\n\nTip kesyon yo pa pran an chaj se tankou kesyon ki gen kontni, fichye transfere ak lòt bagay ki gen Adobe Flash™.\n\nSi w kwè yon quiz gen kontni ki pa sipòte, pran li sou òdinatè oswa laptòp. SI w konnen quiz la gen kontni aparèy mobil yo sipòte, ou pa bezwen ezite pran li sou aparèy mobil ou.";
 
 /* No comment provided by engineer. */
 "Change User" = "Chanje Itilizatè";
@@ -947,6 +939,9 @@ Si w kwè yon quiz gen kontni ki pa sipòte, pran li sou òdinatè oswa laptòp.
 /* Link to open assignment in SpeedGrader */
 "Open in SpeedGrader" = "Ouvri nan SpeedGrader";
 
+/* Open file in another application */
+"Open in..." = "Ouvri nan...";
+
 /* Button title for selecting an option given a number */
 "Option %d" = "Opsyon %d";
 
@@ -1301,11 +1296,7 @@ Si w kwè yon quiz gen kontni ki pa sipòte, pran li sou òdinatè oswa laptòp.
 "There was a network problem while attempting to upload your submission" = "Te gen yon erè rezo lè ou t ap eseye chaje soumisyon ou an.";
 
 /* Error message when fetching a file fails */
-"There was a problem accessing the requested file.
-
-Error: %@" = "Te gen yon pwoblèm pou w te rive aksede a fichye w te mande a.
-
-Erè: %@";
+"There was a problem accessing the requested file.\n\nError: %@" = "Te gen yon pwoblèm pou w te rive aksede a fichye w te mande a.\n\nErè: %@";
 
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "Te gen yon pwoblèm nan lansman Safari a";

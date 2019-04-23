@@ -44,6 +44,10 @@ class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewPr
     override func viewDidLoad() {
         setupTitleViewInNavbar(title: NSLocalizedString("Submission", bundle: .student, comment: ""))
         drawer?.tabs?.addTarget(self, action: #selector(drawerTabChanged), for: .valueChanged)
+        emptyView?.submitCallback = { [weak self] in
+            guard let self = self else { return }
+            self.presenter?.submit(from: self)
+        }
         picker?.dataSource = self
         picker?.delegate = self
         presenter?.viewIsReady()

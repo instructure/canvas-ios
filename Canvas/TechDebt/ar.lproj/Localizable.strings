@@ -1,9 +1,5 @@
 /* prerequisites for unlocking item */
-"
-
-You must first complete:" = "
-
-يجب أن تكمل أولاً:";
+"\n\nYou must first complete:" = "\n\nيجب أن تكمل أولاً:";
 
 /* when locked item will become unlocked */
 " until %@" = "حتى %@";
@@ -313,26 +309,10 @@ You must first complete:" = "
 "Canvas failed to find recipients for your current search. Please try again later." = "فشل Canvas في العثور على مستلمين لبحثك الحالي. يرجى إعادة المحاولة لاحقاً.";
 
 /* mobile quiz warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.
-
-Unsupported question types include questions containing Adobe Flash™ content, and others.
-
-If you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "تدعم اختبارات Canvas أنماطًا متنوعة للتقييمات. تحظى معظم هذه الأنماط بالدعم على الأجهزة المحمولة، في حين لا يتم دعم بعض الأنماط الأخرى. إذا حاولت تلقي أحد تلك الاختبارات غير المدعومة على هاتفك، فقد لا تتمكن من إكمال الاختبار بأكمله، مما يضعك في موقف غير جيد.
-
-وتتضمن أنواع الأسئلة غير المدعومة الأسئلة التي يوجد بها محتوى Adobe Flash™ وغيرها.
-
-إذا كنت تظن أن اختبارًا ما يوجد به محتوى غير مدعوم، يرجى الإجابة عليه على جهاز كمبيوتر مكتبي أو محمول. إذا كنت تعلم أن الاختبار يحتوي فقط على محتوى مدعوم، فبإمكانك الإجابة عليه على جهازك المحمول.";
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "تدعم اختبارات Canvas أنماطًا متنوعة للتقييمات. تحظى معظم هذه الأنماط بالدعم على الأجهزة المحمولة، في حين لا يتم دعم بعض الأنماط الأخرى. إذا حاولت تلقي أحد تلك الاختبارات غير المدعومة على هاتفك، فقد لا تتمكن من إكمال الاختبار بأكمله، مما يضعك في موقف غير جيد.\n\nوتتضمن أنواع الأسئلة غير المدعومة الأسئلة التي يوجد بها محتوى Adobe Flash™ وغيرها.\n\nإذا كنت تظن أن اختبارًا ما يوجد به محتوى غير مدعوم، يرجى الإجابة عليه على جهاز كمبيوتر مكتبي أو محمول. إذا كنت تعلم أن الاختبار يحتوي فقط على محتوى مدعوم، فبإمكانك الإجابة عليه على جهازك المحمول.";
 
 /* mobile quze warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.
-
-Unsupported question types include questions containing Adobe Flash™ content, file uploads, and others.
-
-If you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "تدعم اختبارات Canvas أنماط تقييم عديدة. معظم هذه الأنماط مدعومة على الأجهزة المحمولة؛ لكن بعض الأجهزة ليست مدعومة بعد. إذا حاولت إجراء أحد الاختبارات غير المدعومة على هاتفك، فقد يستحيل عليك إنهاء الاختبار بأكمله، ما سيضعك في وضع غير موات.
-
-أنواع الأسئلة غير المدعومة يشمل أسئلة تتضمن محتويات Adobe Flash™، تحميلات الملفات وغيرها.
-
-إذا كنت تعتقد أن اختبار ما يتضمن محتويات غير مدعومة، يرجى إجراء الامتحان على كمبيوتر المكتب أو كمبيوتر محمول. إذا كنت تعلم أن الاختبار يحتوي على محتويات مدعومة فقط، لا تترد في إجرائه على جهازك المحمول.";
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "تدعم اختبارات Canvas أنماط تقييم عديدة. معظم هذه الأنماط مدعومة على الأجهزة المحمولة؛ لكن بعض الأجهزة ليست مدعومة بعد. إذا حاولت إجراء أحد الاختبارات غير المدعومة على هاتفك، فقد يستحيل عليك إنهاء الاختبار بأكمله، ما سيضعك في وضع غير موات.\n\nأنواع الأسئلة غير المدعومة يشمل أسئلة تتضمن محتويات Adobe Flash™، تحميلات الملفات وغيرها.\n\nإذا كنت تعتقد أن اختبار ما يتضمن محتويات غير مدعومة، يرجى إجراء الامتحان على كمبيوتر المكتب أو كمبيوتر محمول. إذا كنت تعلم أن الاختبار يحتوي على محتويات مدعومة فقط، لا تترد في إجرائه على جهازك المحمول.";
 
 /* button to change user's profile image */
 "Change Profile Image" = "تغيير صورة الملف التعريفي";
@@ -936,14 +916,14 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Title for an error alert */
 "Oops!" = "عذراً!";
 
-/* No comment provided by engineer. */
-"Open in AR" = "الفتح باللغة العربية";
-
 /* Open a document in the application Safari */
 "Open in Safari" = "الفتح في Safari";
 
 /* Link to open assignment in SpeedGrader */
 "Open in SpeedGrader" = "الفتح في SpeedGrader";
+
+/* Open file in another application */
+"Open in..." = "الفتح في...";
 
 /* Link to Open Source Components */
 "Open Source Components" = "مكونات مفتوحة المصدر";
@@ -1273,11 +1253,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 "There was a network problem while attempting to upload your submission" = "حدثت مشكلة في الشبكة أثناء محاولة تحميل إرسالك";
 
 /* Error message when fetching a file fails */
-"There was a problem accessing the requested file.
-
-Error: %@" = "حدثت مشكلة أثناء الوصول إلى الملف المطلوب.
-
-خطأ: %@";
+"There was a problem accessing the requested file.\n\nError: %@" = "حدثت مشكلة أثناء الوصول إلى الملف المطلوب.\n\nخطأ: %@";
 
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "حدث خطأ أثناء تشغيل Safari";
