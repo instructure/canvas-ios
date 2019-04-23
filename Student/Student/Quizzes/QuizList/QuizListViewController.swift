@@ -54,6 +54,7 @@ class QuizListViewController: UIViewController, QuizListViewProtocol {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        tableView?.selectRow(at: nil, animated: false, scrollPosition: .none)
         presenter?.pageViewStarted()
     }
 
