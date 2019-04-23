@@ -68,18 +68,19 @@ class QuizListViewController: UIViewController, QuizListViewProtocol {
     }
 
     func update(isLoading: Bool) {
-        if presenter?.quizzes.isEmpty == false {
-            emptyLabel?.isHidden = true
-            loadingView?.stopAnimating()
-            tableView?.refreshControl?.endRefreshing()
-        } else if !isLoading {
+        tableView?.reloadData()
+        let isEmpty = presenter?.quizzes.isEmpty == true
+        if isEmpty && !isLoading {
             emptyLabel?.text = NSLocalizedString("There are no quizzes to display.", bundle: .student, comment: "")
             emptyLabel?.textColor = .named(.textDarkest)
             emptyLabel?.isHidden = false
+        } else {
+            emptyLabel?.isHidden = true
+        }
+        if !isEmpty || !isLoading {
             loadingView?.stopAnimating()
             tableView?.refreshControl?.endRefreshing()
         }
-        tableView?.reloadData()
     }
 
     func showError(_ error: Error) {

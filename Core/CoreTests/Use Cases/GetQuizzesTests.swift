@@ -43,11 +43,11 @@ class GetQuizzesTest: CoreTestCase {
         api.mock(request, value: [], response: nil, error: nil)
         let getQuizzes = GetQuizzes(courseID: courseID)
         let expectation = XCTestExpectation(description: "quizzes written")
-        getQuizzes.makeRequest(environment: environment) { response, urlResponse, _ in
+        getQuizzes.fetch(environment: environment) { response, urlResponse, _ in
             try! getQuizzes.write(response: response, urlResponse: urlResponse, to: self.databaseClient)
             expectation.fulfill()
         }
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 1)
 
         databaseClient.refresh()
         let quizzes: [Quiz] = databaseClient.fetch()

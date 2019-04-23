@@ -21,22 +21,17 @@ class QuizListPresenter {
     let courseID: String
     let env: AppEnvironment
     weak var view: QuizListViewProtocol?
-    var viewIsVisible = false
     var sectionIndex: [Int] = []
 
-    lazy var quizzes: Store<GetQuizzes> = {
-        let useCase = GetQuizzes(courseID: self.courseID)
-        return self.env.subscribe(useCase) { [weak self] in
-            self?.update()
-        }
-    }()
-
-    lazy var course: Store<GetCourseUseCase> = {
-        let useCase = GetCourseUseCase(courseID: courseID)
-        return self.env.subscribe(useCase) { [weak self] in
-            self?.update()
-        }
-    }()
+    lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
+        self?.update()
+    }
+    lazy var course = env.subscribe(GetCourseUseCase(courseID: courseID)) { [weak self] in
+        self?.update()
+    }
+    lazy var quizzes = env.subscribe(GetQuizzes(courseID: courseID)) { [weak self] in
+        self?.update()
+    }
 
     init(env: AppEnvironment = .shared, view: QuizListViewProtocol, courseID: String) {
         self.courseID = courseID
@@ -58,7 +53,9 @@ class QuizListPresenter {
         sectionIndex = quizzes.sections?.enumerated()
             .sorted(by: { sectionOrder($0.element.name) < sectionOrder($1.element.name) })
             .map { $0.offset } ?? []
-        view?.updateNavBar(subtitle: course.first?.name, color: course.first?.color)
+        if let course = course.first, colors.pending == false {
+            view?.updateNavBar(subtitle: course.name, color: course.color)
+        }
         view?.update(isLoading: quizzes.pending)
         if let error = course.error ?? quizzes.error {
             view?.showError(error)
@@ -88,17 +85,19 @@ class QuizListPresenter {
     }
 
     func viewIsReady() {
-        quizzes.refresh()
+        colors.refresh()
         course.refresh()
+        quizzes.refresh()
     }
 
     func pageViewStarted() {
-        viewIsVisible = true
+        if let course = course.first, colors.pending == false {
+            view?.updateNavBar(subtitle: course.name, color: course.color)
+        }
         // log page view
     }
 
     func pageViewEnded() {
-        viewIsVisible = false
         // log page view
     }
 

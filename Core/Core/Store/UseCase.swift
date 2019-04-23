@@ -25,6 +25,7 @@ public protocol UseCase {
     var scope: Scope { get }
     var cacheKey: String? { get }
     var ttl: TimeInterval { get }
+    var clearsBeforeWrite: Bool { get }
 
     func makeRequest(environment: AppEnvironment, completionHandler: @escaping RequestCallback)
     func write(response: Response?, urlResponse: URLResponse?, to client: PersistenceClient) throws
@@ -38,6 +39,10 @@ extension UseCase {
 
     public var ttl: TimeInterval {
         return 60 * 60 * 2 // 2 hours
+    }
+
+    public var clearsBeforeWrite: Bool {
+        return false
     }
 
     public func getNext(from response: URLResponse) -> GetNextRequest<Response>? {
@@ -78,6 +83,10 @@ extension UseCase {
                 }
                 database.performBackgroundTask { client in
                     do {
+                        if self.clearsBeforeWrite {
+                            let all: [Model] = client.fetch(self.scope.predicate)
+                            try client.delete(all)
+                        }
                         try self.write(response: response, urlResponse: urlResponse, to: client)
                         self.updateTTL(in: client)
                         try client.save()
@@ -110,23 +119,8 @@ extension APIUseCase where Response == Request.Response {
 
 public protocol CollectionUseCase: APIUseCase {}
 extension CollectionUseCase where Response == Request.Response {
-    public func makeRequest(environment: AppEnvironment, completionHandler: @escaping RequestCallback) {
-        environment.api.makeRequest(request) { response, urlResponse, error in
-            if let error = error {
-                completionHandler(response, urlResponse, error)
-                return
-            }
-            environment.database.performBackgroundTask { client in
-                do {
-                    let all: [Model] = client.fetch(self.scope.predicate)
-                    try client.delete(all)
-                    try client.save()
-                    completionHandler(response, urlResponse, error)
-                } catch {
-                    completionHandler(nil, nil, error)
-                }
-            }
-        }
+    public var clearsBeforeWrite: Bool {
+        return true
     }
 }
 

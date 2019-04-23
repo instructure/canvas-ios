@@ -48,13 +48,14 @@ class QuizListPresenterTests: PersistenceTestCase {
     func testLoadCourse() {
         XCTAssertNil(resultingSubtitle)
         XCTAssertNil(resultingBackgroundColor)
+        update.expectedFulfillmentCount = 6
 
         let c = Course.make()
         Color.make(["canvasContextID": c.canvasContextID, "color": UIColor.red])
 
         presenter.viewIsReady()
 
-        wait(for: [update], timeout: 0.1)
+        wait(for: [update], timeout: 1)
         XCTAssertEqual(resultingSubtitle, c.name)
         XCTAssertEqual(resultingBackgroundColor, c.color)
     }
