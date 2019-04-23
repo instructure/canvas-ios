@@ -81,21 +81,20 @@ class RubricPresenter {
     func transformRubricsToViewModels(_ rubric: [Rubric], assessments: RubricAssessments) -> [RubricViewModel] {
         var models = [RubricViewModel]()
         for r in rubric {
-            if let ratings = r.ratings {
-                let sorted = Array(ratings).sorted { $0.points < $1.points }
-                var selected: RubricRating?
-                var selectedIndex = 0
-                var allRatings: [Double] = []
-                for (j, rr) in sorted.enumerated() {
-                    if let a = assessments[r.id], a.points == rr.points {
-                        selected = rr
-                        selectedIndex = j
-                    }
-                    allRatings.append(rr.points)
-                }
-                let m = RubricViewModel(title: r.desc, selectedDesc: selected?.desc ?? "", selectedIndex: selectedIndex, ratings: allRatings)
-                models.append(m)
+            guard let ratings = r.ratings else { continue }
+            guard let assessment = assessments[r.id] else { continue }
+
+            let sorted = Array(ratings).sorted { $0.points < $1.points }
+            var selected: RubricRating?
+            var selectedIndex = 0
+
+            if let index = sorted.firstIndex(where: { rr in assessment.points == rr.points }) {
+                selected = sorted[index]
+                selectedIndex = index
             }
+            let allRatings: [Double] = sorted.map { $0.points }
+            let m = RubricViewModel(title: r.desc, selectedDesc: selected?.desc ?? "", selectedIndex: selectedIndex, ratings: allRatings)
+            models.append(m)
         }
         return models
     }
