@@ -174,32 +174,19 @@ class CollectionUseCaseTests: CoreTestCase {
         }
     }
 
-    func testMakeRequestDeletes() {
+    func testFetchDeletes() {
         Course.make()
         XCTAssertEqual((databaseClient.fetch() as [Course]).count, 1)
 
         let useCase = TestCollectionUseCase()
         let expectation = XCTestExpectation(description: "make request callback")
-        useCase.makeRequest(environment: environment) { _, _, _ in
+        useCase.fetch(environment: environment) { _, _, _ in
             expectation.fulfill()
         }
 
         wait(for: [expectation], timeout: 0.1)
         databaseClient.refresh()
         XCTAssertEqual((databaseClient.fetch() as [Course]).count, 0)
-    }
-
-    func testMakeRequestError() {
-        let useCase = TestCollectionUseCase()
-        let error = NSError.instructureError("request error")
-        api.mock(useCase.request, value: nil, response: nil, error: error)
-        let expectation = XCTestExpectation(description: "make request callback")
-        var result: Error?
-        useCase.makeRequest(environment: environment) { _, _, e in
-            result = e
-            expectation.fulfill()
-        }
-        XCTAssertNotNil(result)
     }
 }
 

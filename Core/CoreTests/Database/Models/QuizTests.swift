@@ -19,14 +19,25 @@ import XCTest
 @testable import Core
 
 class QuizTests: CoreTestCase {
-    func testCourseScope() {
-        let quiz = Quiz.make(["id": "1", "courseID": "1"])
-        let other = Quiz.make(["id": "2", "courseID": "2"])
-        let list = environment.subscribe(Quiz.self, .course("1"))
-        list.performFetch()
+    func testPointsPossible() {
+        let quiz = Quiz.make([ "pointsPossibleRaw": nil ])
+        XCTAssertNil(quiz.pointsPossible)
+        quiz.pointsPossible = 15.7
+        XCTAssertEqual(quiz.pointsPossibleRaw, NSNumber(value: 15.7))
+    }
 
-        XCTAssertEqual(list.fetchedObjects?.count, 1)
-        XCTAssertEqual(list.fetchedObjects?.first, quiz)
-        XCTAssertEqual(list.fetchedObjects?.contains(other), false)
+    func testQuizType() {
+        let quiz = Quiz.make([ "quizTypeRaw": "invalid" ])
+        XCTAssertEqual(quiz.quizType, .assignment)
+        quiz.quizType = .graded_survey
+        XCTAssertEqual(quiz.quizTypeRaw, "graded_survey")
+        XCTAssertEqual(quiz.quizType, .graded_survey)
+    }
+
+    func testGradeViewable() {
+        let quiz = Quiz.make()
+        XCTAssertEqual(quiz.gradingType, .points)
+        XCTAssertNil(quiz.viewableGrade)
+        XCTAssertNil(quiz.viewableScore)
     }
 }

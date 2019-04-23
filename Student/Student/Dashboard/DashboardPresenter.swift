@@ -90,9 +90,9 @@ class DashboardPresenter {
     }
 
     func loadDataFromServer(force: Bool = false) {
-        groups.refresh(force: force)
+        groups.exhaust(while: { _ in true })
         colors.refresh(force: force)
-        courses.refresh(force: force)
+        courses.exhaust(while: { _ in true })
     }
 
     func update() {

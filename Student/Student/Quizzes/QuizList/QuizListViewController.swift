@@ -17,28 +17,22 @@
 import UIKit
 import Core
 
-protocol QuizListItemModel: DueViewable, GradeViewable, QuestionCountViewable, LockStatusViewable {
-    var htmlURL: URL { get }
-    var title: String { get }
-}
-
 protocol QuizListViewProtocol: ErrorViewController, ColoredNavViewProtocol {
     func update(isLoading: Bool)
 }
 
-class QuizListViewController: UITableViewController, QuizListViewProtocol {
-    var emptyView: UIView?
-    var presenter: QuizListPresenter?
-    let loadingView = UIActivityIndicatorView(style: .gray)
-    var titleSubtitleView: TitleSubtitleView = TitleSubtitleView.create()
+class QuizListViewController: UIViewController, QuizListViewProtocol {
+    @IBOutlet weak var emptyLabel: DynamicLabel?
+    @IBOutlet weak var loadingView: UIActivityIndicatorView?
+    @IBOutlet weak var tableView: UITableView?
 
     var color: UIColor?
-    var hasAppeared = false
+    var presenter: QuizListPresenter?
+    var titleSubtitleView: TitleSubtitleView = TitleSubtitleView.create()
 
     static func create(env: AppEnvironment = .shared, courseID: String) -> QuizListViewController {
         let view = loadFromStoryboard()
         view.presenter = QuizListPresenter(env: env, view: view, courseID: courseID)
-        view.emptyView = QuizListEmptyView.loadFromXib()
         return view
     }
 
@@ -48,17 +42,19 @@ class QuizListViewController: UITableViewController, QuizListViewProtocol {
         super.viewDidLoad()
         setupTitleViewInNavbar(title: NSLocalizedString("Quizzes", bundle: .student, comment: ""))
 
-        refreshControl?.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
+        loadingView?.color = Brand.shared.primary.ensureContrast(against: .named(.white))
 
-        loadingView.color = Brand.shared.primary.ensureContrast(against: .named(.white))
-        tableView.backgroundView = loadingView
-        loadingView.startAnimating()
+        let refresh = UIRefreshControl()
+        refresh.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
+        tableView?.refreshControl = refresh
+        tableView?.separatorColor = .named(.borderMedium)
 
         presenter?.viewIsReady()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        tableView?.selectRow(at: nil, animated: false, scrollPosition: .none)
         presenter?.pageViewStarted()
     }
 
@@ -72,38 +68,58 @@ class QuizListViewController: UITableViewController, QuizListViewProtocol {
     }
 
     func update(isLoading: Bool) {
-        guard isViewLoaded else { return }
-        tableView.backgroundView = presenter?.quizzes.count == 0 ? (isLoading ? loadingView : emptyView) : nil
-        tableView.reloadData()
-        refreshControl?.endRefreshing()
+        tableView?.reloadData()
+        let isEmpty = presenter?.quizzes.isEmpty == true
+        if isEmpty && !isLoading {
+            emptyLabel?.text = NSLocalizedString("There are no quizzes to display.", bundle: .student, comment: "")
+            emptyLabel?.textColor = .named(.textDarkest)
+            emptyLabel?.isHidden = false
+        } else {
+            emptyLabel?.isHidden = true
+        }
+        if !isEmpty || !isLoading {
+            loadingView?.stopAnimating()
+            tableView?.refreshControl?.endRefreshing()
+        }
     }
 
     func showError(_ error: Error) {
-        let errorView = QuizListEmptyView.loadFromXib()
-        errorView.label?.text = NSLocalizedString("Something went wrong while loading the quizzes.", bundle: .student, comment: "")
-        errorView.label?.textColor = .named(.textDanger)
-        tableView.backgroundView = errorView
-        // TODO: log error to analytics
+        emptyLabel?.text = NSLocalizedString("Something went wrong while loading the quizzes.", bundle: .student, comment: "")
+        emptyLabel?.textColor = .named(.textDanger)
+        emptyLabel?.isHidden = false
+    }
+}
+
+extension QuizListViewController: UITableViewDataSource, UITableViewDelegate {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return presenter?.quizzes.numberOfSections ?? 0
     }
 
-    func quizAt(_ indexPath: IndexPath) -> QuizListItemModel? {
-        return presenter?.quizzes[indexPath]
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let title = presenter?.sectionTitle(section) else { return nil }
+        return SectionHeaderView.create(title: title, section: section)
     }
 
-    // MARK: - Table view data source
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter?.quizzes.count ?? 0
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return presenter?.section(section)?.numberOfObjects ?? 0
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(QuizListCell.self, for: indexPath)
-        cell.update(quiz: quizAt(indexPath), color: color)
+        cell.update(quiz: presenter?.quiz(indexPath), color: color)
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let quiz = quizAt(indexPath) else { return }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let quiz = presenter?.quiz(indexPath) else { return }
         presenter?.select(quiz, from: self)
+    }
+}
+
+extension QuizListViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.isBottomReached() {
+            presenter?.quizzes.getNextPage()
+        }
     }
 }

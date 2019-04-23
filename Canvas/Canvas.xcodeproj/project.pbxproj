@@ -272,8 +272,6 @@
 		49A04E1A1CF4F8620051E1E7 /* TouchXML.h in Headers */ = {isa = PBXBuildFile; fileRef = 49A04DFF1CF4F8620051E1E7 /* TouchXML.h */; };
 		49A04E211CF5052A0051E1E7 /* CBIQuizViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 49A04E1D1CF5052A0051E1E7 /* CBIQuizViewModel.h */; };
 		49A04E221CF5052A0051E1E7 /* CBIQuizViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A04E1E1CF5052A0051E1E7 /* CBIQuizViewModel.m */; };
-		49A04E231CF5052A0051E1E7 /* CBIQuizzesTabViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 49A04E1F1CF5052A0051E1E7 /* CBIQuizzesTabViewModel.h */; };
-		49A04E241CF5052A0051E1E7 /* CBIQuizzesTabViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A04E201CF5052A0051E1E7 /* CBIQuizzesTabViewModel.m */; };
 		49A04E271CF506810051E1E7 /* CKCanvasAPI+CurrentAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 49A04E251CF506810051E1E7 /* CKCanvasAPI+CurrentAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49A04E281CF506810051E1E7 /* CKCanvasAPI+CurrentAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A04E261CF506810051E1E7 /* CKCanvasAPI+CurrentAPI.m */; };
 		49A04E4E1CF6420C0051E1E7 /* CanvasKit1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AA29171CF4D1880055862D /* CanvasKit1.framework */; };
@@ -974,8 +972,6 @@
 		49A04DFF1CF4F8620051E1E7 /* TouchXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchXML.h; sourceTree = "<group>"; };
 		49A04E1D1CF5052A0051E1E7 /* CBIQuizViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBIQuizViewModel.h; sourceTree = "<group>"; };
 		49A04E1E1CF5052A0051E1E7 /* CBIQuizViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBIQuizViewModel.m; sourceTree = "<group>"; };
-		49A04E1F1CF5052A0051E1E7 /* CBIQuizzesTabViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBIQuizzesTabViewModel.h; sourceTree = "<group>"; };
-		49A04E201CF5052A0051E1E7 /* CBIQuizzesTabViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CBIQuizzesTabViewModel.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		49A04E251CF506810051E1E7 /* CKCanvasAPI+CurrentAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CKCanvasAPI+CurrentAPI.h"; sourceTree = "<group>"; };
 		49A04E261CF506810051E1E7 /* CKCanvasAPI+CurrentAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CKCanvasAPI+CurrentAPI.m"; sourceTree = "<group>"; };
 		49A04E531CF64C510051E1E7 /* NotificationsTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsTab.swift; sourceTree = "<group>"; };
@@ -2335,8 +2331,6 @@
 				494E139D1D355C690068279D /* MobileQuizInformationViewController.m */,
 				49A04E1D1CF5052A0051E1E7 /* CBIQuizViewModel.h */,
 				49A04E1E1CF5052A0051E1E7 /* CBIQuizViewModel.m */,
-				49A04E1F1CF5052A0051E1E7 /* CBIQuizzesTabViewModel.h */,
-				49A04E201CF5052A0051E1E7 /* CBIQuizzesTabViewModel.m */,
 			);
 			path = Quizzes;
 			sourceTree = "<group>";
@@ -2928,7 +2922,6 @@
 				4927077C1CF4BB2100C631C6 /* CBIModuleProgressNotifications.h in Headers */,
 				492705CA1CF4B73200C631C6 /* UITableView+in_updateInBlocks.h in Headers */,
 				4927054D1CF4B70600C631C6 /* SubmissionAttachmentsController.h in Headers */,
-				49A04E231CF5052A0051E1E7 /* CBIQuizzesTabViewModel.h in Headers */,
 				49AA2D2B1CF4DC540055862D /* CBIPeopleDetailViewController.h in Headers */,
 				4927053A1CF4B70600C631C6 /* CBISubmissionInputView.h in Headers */,
 				492706B31CF4B99700C631C6 /* Router+Routes.h in Headers */,
@@ -3818,7 +3811,6 @@
 				492705F81CF4B76A00C631C6 /* CBIColorfulViewModel+CellViewModel.m in Sources */,
 				492705C91CF4B73200C631C6 /* UITableView+in_backgroundImage.m in Sources */,
 				492705A31CF4B73200C631C6 /* CKIUser+SwiftCompatibility.m in Sources */,
-				49A04E241CF5052A0051E1E7 /* CBIQuizzesTabViewModel.m in Sources */,
 				4927077D1CF4BB2100C631C6 /* CBIModuleProgressNotifications.m in Sources */,
 				49AA2D2E1CF4DC540055862D /* CBIPeopleTabViewModel.m in Sources */,
 				4927053B1CF4B70600C631C6 /* CBISubmissionInputView.m in Sources */,

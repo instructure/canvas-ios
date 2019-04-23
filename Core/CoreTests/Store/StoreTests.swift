@@ -176,7 +176,7 @@ class StoreTests: CoreTestCase {
     func testSubscribeWithNetworkError() {
         let requestError = NSError.instructureError("network error")
         let useCase = TestUseCase(requestError: requestError)
-        eventsExpectation.expectedFulfillmentCount = 3
+        eventsExpectation.expectedFulfillmentCount = 2
         store = environment.subscribe(useCase, storeUpdated)
         store.refresh()
 
@@ -199,7 +199,7 @@ class StoreTests: CoreTestCase {
     func testSubscribeWithWriteError() {
         let writeError = NSError.instructureError("write error")
         let useCase = TestUseCase(writeError: writeError)
-        eventsExpectation.expectedFulfillmentCount = 3
+        eventsExpectation.expectedFulfillmentCount = 2
         store = environment.subscribe(useCase, storeUpdated)
         store.refresh()
 
@@ -228,7 +228,7 @@ class StoreTests: CoreTestCase {
         ]
         let response = HTTPURLResponse(url: URL(string: curr)!, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: headers)!
         let secondPage = XCTestExpectation(description: "second page of courses")
-        secondPage.expectedFulfillmentCount = 4
+        secondPage.expectedFulfillmentCount = 6
 
         let course1 = APICourse.make(["id": "1"])
         let useCase = TestUseCase(courses: [course1], urlResponse: response)

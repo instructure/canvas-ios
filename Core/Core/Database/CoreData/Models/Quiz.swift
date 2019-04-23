@@ -24,6 +24,7 @@ public class Quiz: NSManagedObject {
     @NSManaged public var htmlURL: URL
     @NSManaged public var id: String
     @NSManaged public var lockAt: Date?
+    @NSManaged public var order: String?
     @NSManaged var pointsPossibleRaw: NSNumber?
     @NSManaged public var questionCount: Int
     @NSManaged var quizTypeRaw: String
@@ -40,15 +41,8 @@ public class Quiz: NSManagedObject {
     }
 }
 
-extension Quiz: Scoped {
-    public enum ScopeKeys {
-        case course(String)
-    }
-
-    public static func scope(forName name: ScopeKeys) -> Scope {
-        switch name {
-        case let .course(id):
-            return .where(#keyPath(Quiz.courseID), equals: id)
-        }
-    }
+extension Quiz: DueViewable, GradeViewable, QuestionCountViewable, LockStatusViewable {
+    public var gradingType: GradingType { return .points }
+    public var viewableGrade: String? { return nil }
+    public var viewableScore: Double? { return nil }
 }

@@ -60,17 +60,8 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
 
     private var next: GetNextRequest<U.Response>?
 
-    public private(set) var pending: Bool = false {
-        didSet {
-            notify()
-        }
-    }
-
-    public private(set) var error: Error? = nil {
-        didSet {
-            notify()
-        }
-    }
+    public private(set) var pending: Bool = false
+    public private(set) var error: Error?
 
     init(env: AppEnvironment, useCase: U, eventHandler: @escaping EventHandler) {
         self.env = env
@@ -110,19 +101,7 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
     }
 
     public func refresh(force: Bool = false, callback: ((U.Response?) -> Void)? = nil) {
-        pending = true
-        useCase.fetch(environment: env, force: force) { [weak self] response, urlResponse, error in
-            self?.pending = false
-            if let error = error {
-                self?.error = error
-            }
-            if let urlResponse = urlResponse {
-                self?.next = self?.useCase.getNext(from: urlResponse)
-            }
-            performUIUpdate {
-                callback?(response)
-            }
-        }
+        request(useCase, force: force, callback: callback)
     }
 
     public func exhaust(while condition: @escaping (U.Response) -> Bool) {
@@ -150,13 +129,19 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
         }
         self.next = nil
         let useCase = GetNextUseCase(parent: self.useCase, request: next)
-        useCase.fetch(environment: env, force: true) { [weak self] response, urlResponse, error in
-            if let error = error {
-                self?.error = error
-            }
+        request(useCase, force: true, callback: callback)
+    }
+
+    private func request<UC: UseCase>(_ useCase: UC, force: Bool, callback: ((UC.Response?) -> Void)? = nil) {
+        pending = true
+        notify()
+        useCase.fetch(environment: env, force: force) { [weak self] response, urlResponse, error in
+            self?.error = error
+            self?.pending = false
             if let urlResponse = urlResponse {
                 self?.next = self?.useCase.getNext(from: urlResponse)
             }
+            self?.notify()
             performUIUpdate {
                 callback?(response)
             }

@@ -174,6 +174,8 @@
 		7D8262F7212B34F800BD268D /* APICourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8262F6212B34F800BD268D /* APICourse.swift */; };
 		7D8262F9212B3B2000BD268D /* APISection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8262F8212B3B2000BD268D /* APISection.swift */; };
 		7D8262FB212B3B3000BD268D /* APIEnrollment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8262FA212B3B3000BD268D /* APIEnrollment.swift */; };
+		7D85D8E9226E5DFE002DBF63 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D85D8E8226E5DFE002DBF63 /* SectionHeaderView.swift */; };
+		7D85D8EF226E6901002DBF63 /* SectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D85D8EE226E6901002DBF63 /* SectionHeaderView.xib */; };
 		7D85D8E5226A8CFB002DBF63 /* AvatarViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D85D8E4226A8CFB002DBF63 /* AvatarViewTests.swift */; };
 		7D86285B224C05BB003A37DC /* APIMediaCommentRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D86285A224C05BB003A37DC /* APIMediaCommentRequestableTests.swift */; };
 		7D86285D224C15BA003A37DC /* UploadMediaCommentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D86285C224C15BA003A37DC /* UploadMediaCommentTests.swift */; };
@@ -232,7 +234,7 @@
 		7DCF2030216D521D003AF358 /* QuestionCountViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF202F216D521D003AF358 /* QuestionCountViewable.swift */; };
 		7DCF2032216D530D003AF358 /* QuestionCountViewableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF2031216D530D003AF358 /* QuestionCountViewableTests.swift */; };
 		7DCF2034216D5458003AF358 /* APIQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF2033216D5458003AF358 /* APIQuiz.swift */; };
-		7DCF2036216D546C003AF358 /* APIQuiz+Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF2035216D546C003AF358 /* APIQuiz+Requestable.swift */; };
+		7DCF2036216D546C003AF358 /* APIQuizRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF2035216D546C003AF358 /* APIQuizRequestable.swift */; };
 		7DCF2038216D55E6003AF358 /* QuizType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF2037216D55E6003AF358 /* QuizType.swift */; };
 		7DCF203A216D5712003AF358 /* QuizTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF2039216D5712003AF358 /* QuizTypeTests.swift */; };
 		7DCF203C216D5AE2003AF358 /* LockStatusViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF203B216D5AE2003AF358 /* LockStatusViewable.swift */; };
@@ -815,6 +817,8 @@
 		7D8262F6212B34F800BD268D /* APICourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICourse.swift; sourceTree = "<group>"; };
 		7D8262F8212B3B2000BD268D /* APISection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISection.swift; sourceTree = "<group>"; };
 		7D8262FA212B3B3000BD268D /* APIEnrollment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnrollment.swift; sourceTree = "<group>"; };
+		7D85D8E8226E5DFE002DBF63 /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
+		7D85D8EE226E6901002DBF63 /* SectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionHeaderView.xib; sourceTree = "<group>"; };
 		7D85D8E4226A8CFB002DBF63 /* AvatarViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarViewTests.swift; sourceTree = "<group>"; };
 		7D86285A224C05BB003A37DC /* APIMediaCommentRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIMediaCommentRequestableTests.swift; sourceTree = "<group>"; };
 		7D86285C224C15BA003A37DC /* UploadMediaCommentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadMediaCommentTests.swift; sourceTree = "<group>"; };
@@ -871,7 +875,7 @@
 		7DCF202F216D521D003AF358 /* QuestionCountViewable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCountViewable.swift; sourceTree = "<group>"; };
 		7DCF2031216D530D003AF358 /* QuestionCountViewableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCountViewableTests.swift; sourceTree = "<group>"; };
 		7DCF2033216D5458003AF358 /* APIQuiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIQuiz.swift; sourceTree = "<group>"; };
-		7DCF2035216D546C003AF358 /* APIQuiz+Requestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIQuiz+Requestable.swift"; sourceTree = "<group>"; };
+		7DCF2035216D546C003AF358 /* APIQuizRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIQuizRequestable.swift; sourceTree = "<group>"; };
 		7DCF2037216D55E6003AF358 /* QuizType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizType.swift; sourceTree = "<group>"; };
 		7DCF2039216D5712003AF358 /* QuizTypeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizTypeTests.swift; sourceTree = "<group>"; };
 		7DCF203B216D5AE2003AF358 /* LockStatusViewable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockStatusViewable.swift; sourceTree = "<group>"; };
@@ -1416,10 +1420,6 @@
 		7D1758B12159894C00F88613 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				3BBCF840224C193B004B519D /* HorizontalMenuView.swift */,
-				3BBCF83F224C193B004B519D /* HorizontalMenuView.xib */,
-				3BBCF841224C193B004B519D /* HorizontalMenuViewCell.swift */,
-				3BBCF842224C193B004B519D /* HorizontalMenuViewCell.xib */,
 				B18359A722244E230005A918 /* AccessIconView.swift */,
 				B18359A9222450DE0005A918 /* AccessIconView.xib */,
 				7D005F762239CCEF0040CBD7 /* AvatarView.swift */,
@@ -1431,12 +1431,18 @@
 				3BE2ADCA21B704F1008D91AB /* DynamicTextField.swift */,
 				B1B4C1CA219631B700FA9E0E /* EmptyView.swift */,
 				B1B4C1C8219631AC00FA9E0E /* EmptyView.xib */,
+				3BBCF840224C193B004B519D /* HorizontalMenuView.swift */,
+				3BBCF83F224C193B004B519D /* HorizontalMenuView.xib */,
+				3BBCF841224C193B004B519D /* HorizontalMenuViewCell.swift */,
+				3BBCF842224C193B004B519D /* HorizontalMenuViewCell.xib */,
 				7DA057512193A30E00A3CFBB /* IconView.swift */,
 				7D1219232243340200D3BF5C /* KeyboardTransitioning.swift */,
 				7D1758C0215A8F5600F88613 /* ListFormatter.swift */,
 				7DD6CC6C21BD6DCD004C4BB6 /* LoadingViewController.storyboard */,
 				7DD6CC6A21BD6DB1004C4BB6 /* LoadingViewController.swift */,
 				B183F99C225297F2000A6930 /* PublishedIconView.swift */,
+				7D85D8E8226E5DFE002DBF63 /* SectionHeaderView.swift */,
+				7D85D8EE226E6901002DBF63 /* SectionHeaderView.xib */,
 				7D1758B32159898C00F88613 /* TitleSubtitleView.swift */,
 				7D1758B521598CA400F88613 /* TitleSubtitleView.xib */,
 			);
@@ -1718,7 +1724,7 @@
 				9FBE5364223C1D7F001EC40C /* APIPermissions.swift */,
 				9FBE5366223C1EE9001EC40C /* APIPermissionsRequestable.swift */,
 				7DCF2033216D5458003AF358 /* APIQuiz.swift */,
-				7DCF2035216D546C003AF358 /* APIQuiz+Requestable.swift */,
+				7DCF2035216D546C003AF358 /* APIQuizRequestable.swift */,
 				7D8262EA212B1A7B00BD268D /* APIRequestable.swift */,
 				7D8262F8212B3B2000BD268D /* APISection.swift */,
 				B1A32BDB21599F1C0071B41E /* APISubmission.swift */,
@@ -2308,6 +2314,7 @@
 				B1E789AB21B0EF130087FE4A /* LogEventListViewController.storyboard in Resources */,
 				7D86286B224D493C003A37DC /* AudioPlayerViewController.storyboard in Resources */,
 				7D1758B621598CA400F88613 /* TitleSubtitleView.xib in Resources */,
+				7D85D8EF226E6901002DBF63 /* SectionHeaderView.xib in Resources */,
 				9FBFE6E1224289A6002B3796 /* WrongAppViewController.storyboard in Resources */,
 				9F8C3291223ACBA500D53F84 /* ProfileViewController.xib in Resources */,
 				7DD752A321BEFA8F00E26260 /* LoginManualOAuthViewController.storyboard in Resources */,
@@ -2449,6 +2456,7 @@
 				3B5425FC21B074500009D069 /* UIViewControllerExtensions.swift in Sources */,
 				B1A6BC82218A5066000515E3 /* APILatePolicy.swift in Sources */,
 				7D7110CA2139A57A0085C2E5 /* URLComponentsExtensions.swift in Sources */,
+				7D85D8E9226E5DFE002DBF63 /* SectionHeaderView.swift in Sources */,
 				7DF4FFDC21713636007E5F81 /* Assignment.swift in Sources */,
 				3BBCF844224C193B004B519D /* HorizontalMenuView.swift in Sources */,
 				7D1758C1215A8F5600F88613 /* ListFormatter.swift in Sources */,
@@ -2479,7 +2487,7 @@
 				789C9BC32138656E00B37AC4 /* OperationQueueExtensions.swift in Sources */,
 				7D2DC306219C9D36008FE29A /* DocViewerSession.swift in Sources */,
 				3B3467DC2137087100F9BC2E /* HTTPHeaderConstants.swift in Sources */,
-				7DCF2036216D546C003AF358 /* APIQuiz+Requestable.swift in Sources */,
+				7DCF2036216D546C003AF358 /* APIQuizRequestable.swift in Sources */,
 				7D10194B215E97D90058FDD1 /* UIImageExtensions.swift in Sources */,
 				B10D777021C2E27200BCE822 /* UITableViewCellExtensions.swift in Sources */,
 				9FBE535B223ADA69001EC40C /* TermsOfServiceViewController.swift in Sources */,

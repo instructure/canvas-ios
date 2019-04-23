@@ -22,7 +22,6 @@
 #import <CanvasKit1/CanvasKit1.h>
 #import <CanvasKit/CanvasKit.h>
 #import "UIViewController+Transitions.h"
-#import "CBIQuizzesTabViewModel.h"
 #import "CBIQuizViewModel.h"
 #import <TechDebt/MyLittleViewController.h>
 
@@ -262,17 +261,6 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
         @"/groups/:contextID/users" : [self usersBlockForClass:[CKIGroup class]],
         @"/courses/:contextID/users/:userID" : [self usersDetailBlockForClass:[CKICourse class]],
         @"/groups/:contextID/users/:userID" : [self usersDetailBlockForClass:[CKIGroup class]],
-        @"/courses/:courseID/quizzes": ^(NSDictionary *params, CBIQuizzesTabViewModel *quizzesTabViewModel) {
-            NSString *contextID = [params[@"courseID"] description];
-            if (quizzesTabViewModel == nil) {
-                quizzesTabViewModel = [CBIQuizzesTabViewModel new];
-                quizzesTabViewModel.model = [CKITab modelWithID:@"quizzes" context:[CKICourse modelWithID:contextID]];
-            }
-        
-            quizzesTabViewModel.tintColor = [self tintColorForContextID:contextID contextClass:[CKICourse class]];
-            NSString * url = [params[@"url"] description];
-            return [self MLVCTableViewControllerForViewModel:quizzesTabViewModel screenName:@"Quizzes List Screen" canBeMaster:YES style:UITableViewStylePlain url: url];
-        },
         @"/courses/:contextID/settings" : ^(NSDictionary *params, CBIFileViewModel *viewModel) {
             UnsupportedViewController *unsupportedVC = [UnsupportedViewController new];
             unsupportedVC.tabName = NSLocalizedStringFromTableInBundle(@"Settings", nil, bundle, @"Title for Settings");

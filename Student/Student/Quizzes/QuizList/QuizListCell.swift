@@ -15,6 +15,7 @@
 //
 
 import UIKit
+import Core
 
 class QuizListCell: UITableViewCell {
     // MARK: - IBOutlets
@@ -27,7 +28,7 @@ class QuizListCell: UITableViewCell {
     @IBOutlet weak var statusLabel: DynamicLabel?
     @IBOutlet weak var titleLabel: DynamicLabel?
 
-    func update(quiz: QuizListItemModel?, color: UIColor?) {
+    func update(quiz: Quiz?, color: UIColor?) {
         dateLabel?.text = quiz?.dueText
         titleLabel?.text = quiz?.title
         iconImageView?.image = .icon(.quiz, .line)
