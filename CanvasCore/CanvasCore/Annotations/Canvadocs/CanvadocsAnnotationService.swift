@@ -198,7 +198,7 @@ class CanvadocsAnnotationService: NSObject {
             
             // Move the doc to a permanent location
             let fileManager = FileManager.default
-            let directoryURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            let directoryURL = URL(fileURLWithPath: NSTemporaryDirectory())
             let copyURL = directoryURL.appendingPathComponent(filename)
             
             if fileManager.fileExists(atPath: copyURL.path) {

@@ -21,6 +21,14 @@ extension URL {
         return URL(fileURLWithPath: NSTemporaryDirectory())
     }
 
+    public static var cachesDirectory: URL {
+        return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
+    }
+
+    public static var documentsDirectory: URL {
+        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+    }
+
     public func lookupFileSize() -> Int {
         guard self.isFileURL else { return 0 }
         let attributes = try? FileManager.default.attributesOfItem(atPath: path)

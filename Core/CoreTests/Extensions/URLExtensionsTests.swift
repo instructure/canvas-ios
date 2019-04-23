@@ -19,13 +19,14 @@ import XCTest
 class URLExtensionsTests: XCTestCase {
 
     let path = URL(fileURLWithPath: "\(NSTemporaryDirectory())submissions/")
+    let fs = FileManager.default
 
     func setup() {
         deleteTempDir()
     }
 
     func deleteTempDir() {
-        XCTAssertNoThrow( try FileManager.default.removeItem(at: path) )
+        XCTAssertNoThrow( try fs.removeItem(at: path) )
     }
 
     func testLookupFileSize() {
@@ -38,5 +39,17 @@ class URLExtensionsTests: XCTestCase {
     func testAppendingQueryItems() {
         let url = URL(string: "/")?.appendingQueryItems(URLQueryItem(name: "a", value: "b"), URLQueryItem(name: "c", value: nil))
         XCTAssertEqual(url?.absoluteString, "/?a=b&c")
+    }
+
+    func testTemporaryDirectory() {
+        XCTAssertEqual(URL.temporaryDirectory, URL(fileURLWithPath: NSTemporaryDirectory()))
+    }
+
+    func testCachesDirectory() {
+        XCTAssertEqual(URL.cachesDirectory, fs.urls(for: .cachesDirectory, in: .userDomainMask)[0])
+    }
+
+    func testDocumentsDirectory() {
+        XCTAssertEqual(URL.documentsDirectory, fs.urls(for: .documentDirectory, in: .userDomainMask)[0])
     }
 }
