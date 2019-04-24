@@ -236,6 +236,7 @@
 		B10D777721C2F69500BCE822 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B107189721963BC000ED1DC7 /* EmptyView.swift */; };
 		B1906E5022679A0A00FAD2DE /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1906E4F22679A0A00FAD2DE /* UIViewControllerExtensions.swift */; };
 		B1906E5522679A1A00FAD2DE /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1906E4F22679A0A00FAD2DE /* UIViewControllerExtensions.swift */; };
+		B191D5EC226FF26A00D02948 /* UIViewControllerExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191D5EB226FF26A00D02948 /* UIViewControllerExtensionsTests.swift */; };
 		B191F4C1216138E20045506F /* TestHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191F4C0216138E20045506F /* TestHost.swift */; };
 		B191F4C921613FA00045506F /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1DF2578215F36F3006EDA4F /* Core.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		B1A8CD3E223841C600E2242D /* FileUploaderExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A8CD3D223841C600E2242D /* FileUploaderExtensions.swift */; };
@@ -706,6 +707,7 @@
 		B10D776D21C1CCE200BCE822 /* FilePickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePickerCell.swift; sourceTree = "<group>"; };
 		B10D777121C2EA5B00BCE822 /* BlockExpectation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockExpectation.swift; sourceTree = "<group>"; };
 		B1906E4F22679A0A00FAD2DE /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
+		B191D5EB226FF26A00D02948 /* UIViewControllerExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensionsTests.swift; sourceTree = "<group>"; };
 		B191F4BF216138E10045506F /* bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bridge.h; sourceTree = "<group>"; };
 		B191F4C0216138E20045506F /* TestHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHost.swift; sourceTree = "<group>"; };
 		B1A8CD3D223841C600E2242D /* FileUploaderExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploaderExtensions.swift; sourceTree = "<group>"; };
@@ -1053,6 +1055,7 @@
 			isa = PBXGroup;
 			children = (
 				3B3436EB215EF2F8009EF87F /* UIImageStudentExtensionTests.swift */,
+				B191D5EB226FF26A00D02948 /* UIViewControllerExtensionsTests.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1999,6 +2002,7 @@
 				3B542D56215AE79E0084DA9D /* TestEnvironment.swift in Sources */,
 				3B3639FF224EBC2900FC5A7E /* SyllabusPresenterTests.swift in Sources */,
 				3B635B25225C0E50001F353D /* SyllabusActionableItemsPresenterTests.swift in Sources */,
+				B191D5EC226FF26A00D02948 /* UIViewControllerExtensionsTests.swift in Sources */,
 				3B6065FA2194EEF800D04D53 /* PersistenceTestCase.swift in Sources */,
 				B10D777221C2EA5B00BCE822 /* BlockExpectation.swift in Sources */,
 				3B1B009A219BDA560045E8A1 /* QuizListPresenterTests.swift in Sources */,
