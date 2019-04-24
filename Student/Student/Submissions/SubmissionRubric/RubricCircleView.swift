@@ -18,25 +18,27 @@ import UIKit
 import Core
 
 class RubricCircleView: UIView {
-    private let w: CGFloat = 49
+    private static let w: CGFloat = 49
+    private static let space: CGFloat = 10
     var rubric: RubricViewModel? {
         didSet {
             setNeedsDisplay()
         }
     }
 
+    static func computedHeight(rubric: RubricViewModel, maxWidth: CGFloat) -> CGFloat {
+        let count = CGFloat(rubric.ratings.count)
+        let howManyCanFitInWidth = CGFloat( floor( maxWidth / (w + space) ) )
+        let rows = CGFloat(ceil(count / howManyCanFitInWidth))
+        return (rows * w) + ((rows - 1) * space)
+    }
+
     override func draw(_ rect: CGRect) {
+        let w = RubricCircleView.w
         let space: CGFloat = 10
         let ratings: [Double] = rubric?.ratings ?? []
         let howManyCanFitInWidth = Int( floor( rect.size.width / (w + space) ) )
-        var count = howManyCanFitInWidth
-
-        if ratings.count <= howManyCanFitInWidth {
-            count = ratings.count
-        } else {
-            count = howManyCanFitInWidth
-            fatalError("not implemented when there are 2 rows or ratings")
-        }
+        let count = ratings.count
 
         let ctx = UIGraphicsGetCurrentContext()
         var center = CGPoint(x: w / 2, y: w / 2)
@@ -90,6 +92,10 @@ class RubricCircleView: UIView {
             }
 
             center.x += w + space
+            if i == howManyCanFitInWidth - 1 {
+                center.y += w + space
+                center.x = w / 2
+            }
         }
     }
 }

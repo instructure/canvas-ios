@@ -15,6 +15,8 @@
 		3B032CBA2150258F00B570F7 /* PresenterUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B032CB92150258F00B570F7 /* PresenterUseCase.swift */; };
 		3B0CEB772150408A00D07CFA /* TestsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B0CEB762150408A00D07CFA /* TestsFoundation.framework */; };
 		3B19D2862266B136003A0565 /* RubricTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B19D2852266B136003A0565 /* RubricTests.swift */; };
+		3B339B6A226FA9AF00D3283D /* ChatBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B339B69226FA9AF00D3283D /* ChatBubbleView.swift */; };
+		3B339B6C226FAA1000D3283D /* ChatBubbleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B339B6B226FAA1000D3283D /* ChatBubbleView.xib */; };
 		3B34674A213051FD00F9BC2E /* LoginWebPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B346748213051FD00F9BC2E /* LoginWebPresenter.swift */; };
 		3B34674B213051FD00F9BC2E /* LoginWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B346749213051FD00F9BC2E /* LoginWebViewController.swift */; };
 		3B346755213052C700F9BC2E /* NSErrorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B346754213052C700F9BC2E /* NSErrorExtensions.swift */; };
@@ -522,6 +524,8 @@
 		3B032CB92150258F00B570F7 /* PresenterUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterUseCase.swift; sourceTree = "<group>"; };
 		3B0CEB762150408A00D07CFA /* TestsFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TestsFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B19D2852266B136003A0565 /* RubricTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricTests.swift; sourceTree = "<group>"; };
+		3B339B69226FA9AF00D3283D /* ChatBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBubbleView.swift; sourceTree = "<group>"; };
+		3B339B6B226FAA1000D3283D /* ChatBubbleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatBubbleView.xib; sourceTree = "<group>"; };
 		3B346748213051FD00F9BC2E /* LoginWebPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginWebPresenter.swift; sourceTree = "<group>"; };
 		3B346749213051FD00F9BC2E /* LoginWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginWebViewController.swift; sourceTree = "<group>"; };
 		3B346754213052C700F9BC2E /* NSErrorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSErrorExtensions.swift; sourceTree = "<group>"; };
@@ -1462,6 +1466,8 @@
 				7D85D8EE226E6901002DBF63 /* SectionHeaderView.xib */,
 				7D1758B32159898C00F88613 /* TitleSubtitleView.swift */,
 				7D1758B521598CA400F88613 /* TitleSubtitleView.xib */,
+				3B339B69226FA9AF00D3283D /* ChatBubbleView.swift */,
+				3B339B6B226FAA1000D3283D /* ChatBubbleView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2336,6 +2342,7 @@
 				3BBCF846224C193B004B519D /* HorizontalMenuViewCell.xib in Resources */,
 				7DD694892195F7A200BA4984 /* DocViewerViewController.storyboard in Resources */,
 				B1E789AB21B0EF130087FE4A /* LogEventListViewController.storyboard in Resources */,
+				3B339B6C226FAA1000D3283D /* ChatBubbleView.xib in Resources */,
 				7D86286B224D493C003A37DC /* AudioPlayerViewController.storyboard in Resources */,
 				7D2E82882270BB9B00735854 /* FilePickerViewController.storyboard in Resources */,
 				7D1758B621598CA400F88613 /* TitleSubtitleView.xib in Resources */,
@@ -2478,6 +2485,7 @@
 				7D20F61921C3166800B77E5E /* UICollectionViewExtensions.swift in Sources */,
 				B1E789B121B199E40087FE4A /* LogEventListPresenter.swift in Sources */,
 				9FE6D44C2249541E00EFFF5C /* EnrollmentRole.swift in Sources */,
+				3B339B6A226FA9AF00D3283D /* ChatBubbleView.swift in Sources */,
 				3B5425FC21B074500009D069 /* UIViewControllerExtensions.swift in Sources */,
 				B1A6BC82218A5066000515E3 /* APILatePolicy.swift in Sources */,
 				7D7110CA2139A57A0085C2E5 /* URLComponentsExtensions.swift in Sources */,

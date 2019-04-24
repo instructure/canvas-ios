@@ -28,6 +28,7 @@ class RubricViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     var models: [RubricViewModel] = []
     var presenter: RubricPresenter!
+    var cellHeightCache = [Int: CGFloat]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,14 +56,20 @@ extension RubricViewController: UICollectionViewDataSource, UICollectionViewDele
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let s = CGSize(width: view.bounds.size.width, height: 158)
-        return s
+        let height: CGFloat
+        if let cached = cellHeightCache[indexPath.item] {
+            height = cached
+        } else {
+            height = RubricCollectionViewCell.computedHeight(rubric: models[indexPath.item], containerFrame: collectionView.bounds)
+        }
+        return CGSize(width: view.bounds.size.width, height: height)
     }
 }
 
 extension RubricViewController: RubricViewProtocol {
     func update(_ rubric: [RubricViewModel]) {
         models = rubric
+        cellHeightCache = [:]
         collectionView.reloadData()
     }
 
@@ -77,20 +84,64 @@ class RubricCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var rubricTitle: DynamicLabel!
     @IBOutlet weak var selectedRatingTitle: DynamicLabel!
     @IBOutlet weak var borderHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var commentView: ChatBubbleView!
+    @IBOutlet weak var commentViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var commentViewWidthConstraint: NSLayoutConstraint!
+    private static var chatBubbleTextLabelFont = UIFont.scaledNamedFont(.regular14)
+    @IBOutlet weak var circleViewHeightConstraint: NSLayoutConstraint!
+    private static var margin: CGFloat = 16
+    @IBOutlet weak var viewLongDescriptionToCircleViewVerticalConstraint: NSLayoutConstraint!
+    @IBOutlet weak var viewLongDescriptionToCommentViewVerticalConstraint: NSLayoutConstraint!
 
     override func awakeFromNib() {
-        print("\(#file) awake")
         borderHeightConstraint.constant = 1.0 / UIScreen.main.scale
+        commentView.side = ChatBubbleView.Side.left
+        commentView.textLabel.numberOfLines = 0
+        commentView.textLabel.font = type(of: self).chatBubbleTextLabelFont
     }
 
     func update(_ rubric: RubricViewModel) {
         rubricTitle.text = rubric.title
         selectedRatingTitle.text = rubric.selectedDesc
         circleView.rubric = rubric
+        circleViewHeightConstraint.constant = RubricCircleView.computedHeight(rubric: rubric, maxWidth: bounds.size.width - (RubricCollectionViewCell.margin * 2))
+        updateComment(comment: rubric.comment)
     }
 
-    override func prepareForReuse() {
-        super.prepareForReuse()
+    func updateComment(comment: String?) {
+        commentView.textLabel.text = comment
+        let size = type(of: self).commentViewSize(comment: comment, containerFrame: bounds)
+        commentViewHeightConstraint.constant = size.height
+        commentViewWidthConstraint.constant = size.width
+
+        let isActive = size.height == 0
+        viewLongDescriptionToCircleViewVerticalConstraint?.isActive = isActive
+        viewLongDescriptionToCommentViewVerticalConstraint?.isActive = !isActive
+    }
+
+    static func computedHeight(rubric: RubricViewModel, containerFrame: CGRect) -> CGFloat {
+        let otherViewHeights: CGFloat = 111
+        let circles = RubricCircleView.computedHeight(rubric: rubric, maxWidth: containerFrame.size.width - (margin * 2.0))
+        var comment = commentViewSize(comment: rubric.comment, containerFrame: containerFrame).height
+        if comment > 0 { comment += 12.0 /* add extra vertical spacing for additional item */ }
+        return otherViewHeights + circles + comment
+    }
+
+    static func commentViewSize(comment: String?, containerFrame: CGRect) -> CGSize {
+        if let comment = comment, !comment.isEmpty {
+            let maxLabelHeight: CGFloat = 100.0
+            let margin: CGFloat = 16.0
+            let horizontalMargins: CGFloat = (margin * 2.0) + (margin * 2.0)
+            let verticalMargins: CGFloat = 24    //  (top + bottom margins 16, 8)
+            let maxWidth: CGFloat = containerFrame.size.width - horizontalMargins
+            let constraintRect = CGSize(width: maxWidth, height: maxLabelHeight)
+            let size = comment.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: chatBubbleTextLabelFont], context: nil)
+            let w = min( size.width + (margin * 2.0) + margin /* 1 margin since we don't extend full width */, maxWidth)
+            let h = ceil(size.height) + verticalMargins
+            let computedSize = CGSize(width: w, height: h)
+            return computedSize
+        }
+        return CGSize.zero
     }
 
     @IBAction func actionShowLongDescription(_ sender: Any) {

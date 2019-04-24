@@ -27,6 +27,7 @@ struct RubricViewModel {
     let selectedDesc: String
     let selectedIndex: Int
     let ratings: [Double]
+    let comment: String?
 }
 
 class RubricPresenter {
@@ -87,13 +88,15 @@ class RubricPresenter {
             let sorted = Array(ratings).sorted { $0.points < $1.points }
             var selected: RubricRating?
             var selectedIndex = 0
+            var comments: String?
 
             if let index = sorted.firstIndex(where: { rr in assessment.points == rr.points }) {
                 selected = sorted[index]
                 selectedIndex = index
+                comments = assessment.comments
             }
             let allRatings: [Double] = sorted.map { $0.points }
-            let m = RubricViewModel(title: r.desc, selectedDesc: selected?.desc ?? "", selectedIndex: selectedIndex, ratings: allRatings)
+            let m = RubricViewModel(title: r.desc, selectedDesc: selected?.desc ?? "", selectedIndex: selectedIndex, ratings: allRatings, comment: comments)
             models.append(m)
         }
         return models
