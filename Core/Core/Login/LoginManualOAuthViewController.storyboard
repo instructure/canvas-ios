@@ -25,7 +25,7 @@
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="title"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold20"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SUJ-PA-JyQ" customClass="DividerView" customModule="Core" customModuleProvider="target">
@@ -47,7 +47,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="label"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium16"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
                                 </userDefinedRuntimeAttributes>
                             </textField>
@@ -68,7 +68,7 @@
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="title"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold20"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2mE-bm-cba" customClass="DividerView" customModule="Core" customModuleProvider="target">
@@ -90,7 +90,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="password"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="label"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium16"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
                                 </userDefinedRuntimeAttributes>
                             </textField>
@@ -114,7 +114,7 @@
                                         <integer key="value" value="4"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textLightest"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="button"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="submit:" destination="Sui-8Q-gDf" eventType="touchUpInside" id="dBd-4U-SEI"/>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -41,7 +41,7 @@
                                                         <nil key="highlightedColor"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="title"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold20"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7yL-fW-mIX">
@@ -55,7 +55,7 @@
                                                                 <nil key="highlightedColor"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="label"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium16"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tdl-M0-B5e">
@@ -110,7 +110,7 @@
                                                         <nil key="highlightedColor"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="label"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium16"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mar 3 at 11:59pm" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mgD-fJ-MaF" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
@@ -121,7 +121,7 @@
                                                         <nil key="highlightedColor"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="body"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular16"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yXW-fH-cEE" customClass="DividerView" customModule="Student" customModuleProvider="target">
@@ -143,7 +143,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                         <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="label"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium16"/>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
@@ -155,7 +155,7 @@
                                                         <nil key="highlightedColor"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="body"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular16"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mZo-vG-hJJ" customClass="DividerView" customModule="Student" customModuleProvider="target">
@@ -177,7 +177,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                         <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="label"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium16"/>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
@@ -189,7 +189,7 @@
                                                         <nil key="highlightedColor"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="body"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular16"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="exy-Uo-OLb" customClass="DividerView" customModule="Student" customModuleProvider="target">
@@ -215,7 +215,7 @@
                                                                 <nil key="highlightedColor"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="label"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium16"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E1l-zH-QmF" userLabel="GradedView">
@@ -288,7 +288,7 @@
                                                                                 <nil key="highlightedColor"/>
                                                                                 <userDefinedRuntimeAttributes>
                                                                                     <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="heading"/>
+                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="heavy24"/>
                                                                                 </userDefinedRuntimeAttributes>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Out of 100 pts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oig-yd-g9Z" userLabel="Out Of" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
@@ -301,7 +301,7 @@
                                                                                 <nil key="highlightedColor"/>
                                                                                 <userDefinedRuntimeAttributes>
                                                                                     <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="bodySmall"/>
+                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular14"/>
                                                                                 </userDefinedRuntimeAttributes>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Late Penatly (-2pts)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JzX-fE-dvo" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
@@ -312,7 +312,7 @@
                                                                                 <nil key="highlightedColor"/>
                                                                                 <userDefinedRuntimeAttributes>
                                                                                     <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textWarning"/>
-                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="caption"/>
+                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold12"/>
                                                                                 </userDefinedRuntimeAttributes>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Final Grade: 89%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wXY-A0-b0H" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
@@ -328,7 +328,7 @@
                                                                                 <nil key="highlightedColor"/>
                                                                                 <userDefinedRuntimeAttributes>
                                                                                     <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="title2"/>
+                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="bold17"/>
                                                                                 </userDefinedRuntimeAttributes>
                                                                             </label>
                                                                         </subviews>
@@ -354,7 +354,7 @@
                                                                         <nil key="highlightedColor"/>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textSuccess"/>
-                                                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="title"/>
+                                                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold20"/>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </label>
                                                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4TE-cB-TlA" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
@@ -374,7 +374,7 @@
                                                                         <nil key="highlightedColor"/>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="bodySmall"/>
+                                                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular14"/>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </label>
                                                                 </subviews>
@@ -435,7 +435,7 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                                 <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="body"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular16"/>
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="linkColor"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
@@ -489,7 +489,7 @@
                                                         <nil key="highlightedColor"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="label"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium16"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                 </subviews>
@@ -567,7 +567,7 @@
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="buttonPrimaryText"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="button"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="backgroundColorName" value="buttonPrimaryBackground"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>

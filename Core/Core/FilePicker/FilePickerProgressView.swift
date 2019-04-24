@@ -64,7 +64,7 @@ class FilePickerProgressView: UIView {
         progressView.addConstraintsWithVFL("V:[header]-(pad)-[view]", views: ["header": header], metrics: metrics)
 
         progressView.tintColor = .named(.electric)
-        header.font = .scaledNamedFont(.title3)
+        header.font = .scaledNamedFont(.medium16)
         header.textAlignment = .center
         header.textColor = .named(.electric)
 

@@ -16,7 +16,6 @@
 
 import Foundation
 import UIKit
-import Core
 
 class FilePickerCell: UITableViewCell {
     var file: File? {

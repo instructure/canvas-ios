@@ -44,9 +44,9 @@ open class DynamicButton: UIButton {
     }
 
     @IBInspectable
-    public var textStyle: String = "button" {
+    public var textStyle: String = "semibold16" {
         didSet {
-            titleLabel?.font = UIFont.scaledNamedFont(UIFont.Name(rawValue: textStyle) ?? .button)
+            titleLabel?.font = UIFont.scaledNamedFont(UIFont.Name(rawValue: textStyle) ?? .semibold16)
             titleLabel?.adjustsFontForContentSizeCategory = true
         }
     }

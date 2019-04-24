@@ -45,7 +45,7 @@
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="bodyMedium"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium14"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User ID" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="q3d-B6-ITy" customClass="DynamicTextField" customModule="Core" customModuleProvider="target">
@@ -83,7 +83,7 @@
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="backgroundColorName" value="electric"/>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="white"/>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="button"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <action selector="actAsUserPressed:" destination="ICM-7t-mjc" eventType="touchUpInside" id="E8c-Up-xLA"/>

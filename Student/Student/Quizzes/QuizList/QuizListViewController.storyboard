@@ -51,7 +51,7 @@
                                                             <nil key="highlightedColor"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="rowTitle"/>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular20"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IUb-Hp-M8r">
@@ -64,7 +64,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
-                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="bodySmall"/>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular14"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="  •  " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zim-hH-cAf" userLabel="statusDot" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
@@ -74,7 +74,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
-                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="dotSeparator"/>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular10"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aug 2, 2018 at 1:57 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3D8-Qy-LXr" userLabel="dateLabel" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
@@ -84,7 +84,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
-                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="bodySmall"/>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular14"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                             </subviews>
@@ -108,7 +108,7 @@
                                                                     <color key="textColor" red="0.5450980392" green="0.58823529409999997" blue="0.61960784310000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                     <userDefinedRuntimeAttributes>
-                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="dotSeparator"/>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular10"/>
                                                                         <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
@@ -118,7 +118,7 @@
                                                                     <color key="textColor" red="0.1764705882" green="0.23137254900000001" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                     <userDefinedRuntimeAttributes>
-                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="body"/>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular16"/>
                                                                         <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
@@ -156,7 +156,7 @@
                                 </connections>
                             </tableView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" text="There are no quizzes to display." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WIe-yk-vgB" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                <rect key="frame" x="73.5" y="267.5" width="228.5" height="19.5"/>
+                                <rect key="frame" x="67" y="267" width="241" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
