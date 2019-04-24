@@ -16,10 +16,18 @@
 
 import XCTest
 import TestsFoundation
+import SwiftUITest
 
 class StudentUITestsEG2: StudentTest {
     func testExample() {
       EarlGrey.selectElement(with: grey_keyWindow())
         .perform(grey_tap())
+    }
+
+    func testExample2() {
+        let driver = DriverFactory.getXCUITestDriver(XCUIApplication())
+        let label = ""
+        let ele = driver.find(label: label)
+        XCTAssertTrue(ele.label == label)
     }
 }
