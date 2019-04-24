@@ -56,40 +56,6 @@ class UploadMediaCommentTests: CoreTestCase {
         XCTAssertNotNil(error)
     }
 
-    func testUpload() {
-        api.mock(GetMediaServiceRequest(), error: NSError.internalError())
-        upload.upload()
-        XCTAssertNotNil(error)
-
-        api.mock(GetMediaServiceRequest(), value: APIMediaService(domain: "u.edu"))
-        upload.upload()
-        XCTAssertEqual(upload.mediaAPI?.baseURL.absoluteString, "https://u.edu")
-    }
-
-    func testGetSessionError() {
-        api.mock(PostMediaSessionRequest(), error: NSError.internalError())
-        upload.getSession()
-        XCTAssertNotNil(error)
-    }
-
-    func testGetUploadTokenError() {
-        api.mock(PostMediaUploadTokenRequest(body: .init(ks: "k")), error: NSError.internalError())
-        upload.getUploadToken(ks: "k")
-        XCTAssertNotNil(error)
-    }
-
-    func testPostUploadError() {
-        api.mock(PostMediaUploadRequest(fileURL: upload.url, type: upload.type, ks: "k", token: "t"), error: NSError.internalError())
-        upload.postUpload(ks: "k", token: "t")
-        XCTAssertNotNil(error)
-    }
-
-    func testGetMediaIDError() {
-        api.mock(PostMediaIDRequest(ks: "k", token: "t", type: upload.type), error: NSError.internalError())
-        upload.getMediaID(ks: "k", token: "t")
-        XCTAssertNotNil(error)
-    }
-
     func testPutCommentError() {
         api.mock(PutSubmissionGradeRequest(
             courseID: upload.courseID,
@@ -114,7 +80,7 @@ class UploadMediaCommentTests: CoreTestCase {
         ), value: APISubmission.make([
             "submission_comments": [ APISubmissionComment.fixture() ],
         ]))
-        upload.getSession()
+        upload.fetch(environment: environment) { _, _ in }
         XCTAssertNil(error)
     }
 }

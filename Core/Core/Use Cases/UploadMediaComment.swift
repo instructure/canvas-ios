@@ -27,6 +27,7 @@ public class UploadMediaComment {
     let submissionID: String
     let type: MediaCommentType
     let url: URL
+    let uploader: UploadMedia
     let userID: String
     var task: URLSessionTask?
 
@@ -47,11 +48,13 @@ public class UploadMediaComment {
         self.submissionID = submissionID
         self.type = type
         self.url = url
+        self.uploader = UploadMedia(type: type, url: url)
         self.userID = userID
     }
 
     public func cancel() {
         task?.cancel()
+        uploader.cancel()
     }
 
     public func fetch(environment: AppEnvironment = .shared, _ callback: @escaping (SubmissionComment?, Error?) -> Void) {
@@ -80,60 +83,16 @@ public class UploadMediaComment {
                 try client.save()
                 self.placeholderID = placeholder.id
                 UploadMediaComment.placeholderSuffix += 1
-                self.upload()
+                self.uploader.fetch(environment: self.env) { mediaID, error in
+                    guard error == nil, let mediaID = mediaID else {
+                        self.callback(nil, error)
+                        return
+                    }
+                    self.putComment(mediaID: mediaID)
+                }
             } catch {
                 self.callback(nil, error)
             }
-        }
-    }
-
-    func upload() {
-        task = env.api.makeRequest(GetMediaServiceRequest()) { (data, _, error) in
-            guard
-                error == nil,
-                let domain = data?.domain.replacingOccurrences(of: "https://", with: ""),
-                let url = URL(string: "https://\(domain)")
-            else {
-                return self.callback(nil, error)
-            }
-            self.mediaAPI = URLSessionAPI(accessToken: nil, baseURL: url)
-            self.getSession()
-        }
-    }
-
-    func getSession() {
-        task = env.api.makeRequest(PostMediaSessionRequest()) { (data, _, error) in
-            guard error == nil, let ks = data?.ks else {
-                return self.callback(nil, error)
-            }
-            self.getUploadToken(ks: ks)
-        }
-    }
-
-    func getUploadToken(ks: String) {
-        task = mediaAPI?.makeRequest(PostMediaUploadTokenRequest(body: .init(ks: ks))) { (data, _, error) in
-            guard error == nil, let token = data?.id, !token.isEmpty else {
-                return self.callback(nil, error)
-            }
-            self.postUpload(ks: ks, token: token)
-        }
-    }
-
-    func postUpload(ks: String, token: String) {
-        task = mediaAPI?.makeRequest(PostMediaUploadRequest(fileURL: url, type: type, ks: ks, token: token)) { (_, _, error) in
-            guard error == nil else {
-                return self.callback(nil, error)
-            }
-            self.getMediaID(ks: ks, token: token)
-        }
-    }
-
-    func getMediaID(ks: String, token: String) {
-        task = mediaAPI?.makeRequest(PostMediaIDRequest(ks: ks, token: token, type: type)) { (data, _, error) in
-            guard error == nil, let mediaID = data?.id, !mediaID.isEmpty else {
-                return self.callback(nil, error)
-            }
-            self.putComment(mediaID: mediaID)
         }
     }
 

@@ -14,22 +14,14 @@
 // limitations under the License.
 //
 
-import Foundation
-@testable import Core
+import XCTest
+import Core
 
-public class MockFileUploader: FileUploader {
-    public var uploads: [File] = []
-    public var cancels: [File] = []
-    public var error: Error?
-
-    public init() {}
-
-    public func upload(_ file: File, context: FileUploadContext, callback: @escaping (Error?) -> Void) {
-        uploads.append(file)
-        callback(error)
+class UIViewControllerExtensionsTests: XCTestCase {
+    func testApplicationViewController() {
+        XCTAssertNotNil(UIViewController() as ApplicationViewController)
     }
-
-    public func cancel(_ file: File) {
-        cancels.append(file)
+    func testOpen() {
+        XCTAssertNoThrow(UIViewController().open(URL(string: "https://canvas.instructure.com/")!))
     }
 }

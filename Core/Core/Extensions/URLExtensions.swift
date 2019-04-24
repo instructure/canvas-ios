@@ -40,4 +40,17 @@ extension URL {
         components.queryItems = (components.queryItems ?? []) + items
         return components.url ?? self
     }
+
+    public func move(to destination: URL, override: Bool = true) throws {
+        let manager = FileManager.default
+        if destination.hasDirectoryPath {
+            try manager.createDirectory(at: destination, withIntermediateDirectories: true, attributes: nil)
+        } else {
+            try manager.createDirectory(at: destination.deletingLastPathComponent(), withIntermediateDirectories: true, attributes: nil)
+        }
+        if override && manager.fileExists(atPath: destination.path) {
+            try manager.removeItem(at: destination)
+        }
+        try manager.moveItem(at: self, to: destination)
+    }
 }

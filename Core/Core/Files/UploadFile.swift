@@ -24,7 +24,12 @@ enum FileUploaderError: Error {
     case fileNotFound
 }
 
-public class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate, URLSessionDataDelegate {
+public protocol FileUploader {
+    func upload(_ file: File, context: FileUploadContext, callback: @escaping (Error?) -> Void)
+    func cancel(_ file: File)
+}
+
+public class UploadFile: NSObject, URLSessionDelegate, URLSessionTaskDelegate, URLSessionDataDelegate, FileUploader {
     struct Session: Codable {
         let bundleID: String
         let appGroup: String?
@@ -244,7 +249,7 @@ public class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate,
 }
 
 // MARK: - Submissions
-extension FileUploader {
+extension UploadFile {
     private func submit(assignmentID: String, courseID: String) {
         performAndWait { context in
             let files: [File] = context.all(where: #keyPath(File.assignmentID), equals: assignmentID)
@@ -318,7 +323,7 @@ extension FileUploader {
 
 }
 
-private func == (lhs: KeychainEntry, rhs: FileUploader.Session) -> Bool {
+private func == (lhs: KeychainEntry, rhs: UploadFile.Session) -> Bool {
     return lhs.userID == rhs.userID &&
         lhs.baseURL == rhs.baseURL &&
         lhs.actAsUserID == rhs.actAsUserID
