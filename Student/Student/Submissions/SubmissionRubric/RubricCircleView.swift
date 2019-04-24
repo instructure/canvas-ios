@@ -26,6 +26,13 @@ class RubricCircleView: UIView {
         }
     }
 
+    private static var formatter: NumberFormatter = {
+        var formatter = NumberFormatter()
+        formatter.roundingIncrement = 0.01
+        formatter.numberStyle = .decimal
+        return formatter
+    }()
+
     static func computedHeight(rubric: RubricViewModel, maxWidth: CGFloat) -> CGFloat {
         let count = CGFloat(rubric.ratings.count)
         let howManyCanFitInWidth = CGFloat( floor( maxWidth / (w + space) ) )
@@ -56,7 +63,7 @@ class RubricCircleView: UIView {
                 font = UIFont.scaledNamedFont(.semibold20)
                 color = UIColor.white
                 strokeColor = UIColor.blue
-                bgColor = UIColor.blue
+                bgColor = Brand.shared.buttonPrimaryBackground
             } else {
                 font = UIFont.scaledNamedFont(.regular20Monodigit)
                 color = UIColor.named(.borderDark)
@@ -80,7 +87,7 @@ class RubricCircleView: UIView {
             if let ctx = ctx {
                 let half: CGFloat = (w / 2.0)
                 let boundingRect = CGRect(x: center.x - half, y: center.y - half, width: w, height: w)
-                let text = String(Int(r))
+                let text = RubricCircleView.formatter.string(for: r) ?? ""
                 let attr = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: UIColor.blue]
                 let textRect = text.boundingRect(with: boundingRect.size, options: .usesLineFragmentOrigin, attributes: attr, context: nil)
                 let string = NSAttributedString(string: text, attributes: [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: color])
