@@ -29,7 +29,7 @@ public struct APIRubric: Codable, Equatable {
 
 public struct APIRubricRating: Codable, Equatable {
     let id: ID
-    let points: Double
+    let points: Double?
     let description: String
     let long_description: String
     var assignmentID: String?

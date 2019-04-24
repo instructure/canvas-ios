@@ -20,6 +20,6 @@ typealias APIRubricAssessmentMap = [String: APIRubricAssessment]
 
 public struct APIRubricAssessment: Codable, Equatable {
     let submissionID: String?
-    let points: Double
+    let points: Double?
     let comments: String?
 }

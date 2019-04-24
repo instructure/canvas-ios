@@ -76,7 +76,7 @@ public final class RubricRating: NSManagedObject, WriteableModel {
         model.id = item.id.value
         model.desc = item.description
         model.longDesc = item.long_description
-        model.points = item.points
+        model.points = item.points ?? 0
         model.assignmentID = item.assignmentID ?? ""
         model.position = item.position ?? 0
         return model
@@ -99,7 +99,7 @@ public final class RubricAssessment: NSManagedObject {
         model.id = id
         model.submissionID = submissionID
         model.comments = item.comments
-        model.points = item.points
+        model.points = item.points ?? 0
         return model
     }
 }

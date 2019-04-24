@@ -89,14 +89,25 @@ class RubricPresenter {
             var selected: RubricRating?
             var selectedIndex = 0
             var comments: String?
+            var description = ""
 
             if let index = sorted.firstIndex(where: { rr in assessment.points == rr.points }) {
                 selected = sorted[index]
                 selectedIndex = index
                 comments = assessment.comments
+                description = selected?.desc ?? ""
             }
-            let allRatings: [Double] = sorted.map { $0.points }
-            let m = RubricViewModel(title: r.desc, selectedDesc: selected?.desc ?? "", selectedIndex: selectedIndex, ratings: allRatings, comment: comments)
+            var allRatings: [Double] = sorted.map { $0.points }
+
+            if selected == nil {
+                //  this could be a custom assesment
+                allRatings.append(assessment.points)
+                selectedIndex = allRatings.count - 1
+                description = NSLocalizedString("Custom Grade", comment: "")
+                comments = assessment.comments
+            }
+
+            let m = RubricViewModel(title: r.desc, selectedDesc: description, selectedIndex: selectedIndex, ratings: allRatings, comment: comments)
             models.append(m)
         }
         return models

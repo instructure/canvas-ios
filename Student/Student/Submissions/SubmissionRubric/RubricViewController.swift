@@ -19,7 +19,7 @@ import Core
 
 class RubricViewController: UIViewController {
 
-    static func create(env: AppEnvironment = .shared, courseID: String, assignmentID: String, userID: String = "12") -> RubricViewController {
+    static func create(env: AppEnvironment = .shared, courseID: String, assignmentID: String, userID: String) -> RubricViewController {
         let controller = loadFromStoryboard()
         controller.presenter = RubricPresenter(env: env, view: controller, courseID: courseID, assignmentID: assignmentID, userID: userID)
         return controller
@@ -114,9 +114,13 @@ class RubricCollectionViewCell: UICollectionViewCell {
         commentViewHeightConstraint.constant = size.height
         commentViewWidthConstraint.constant = size.width
 
-        let isActive = size.height == 0
-        viewLongDescriptionToCircleViewVerticalConstraint?.isActive = isActive
-        viewLongDescriptionToCommentViewVerticalConstraint?.isActive = !isActive
+        if size.height == 0 {
+            viewLongDescriptionToCircleViewVerticalConstraint.priority = UILayoutPriority.defaultHigh
+            viewLongDescriptionToCommentViewVerticalConstraint.priority = UILayoutPriority.defaultLow
+        } else {
+            viewLongDescriptionToCircleViewVerticalConstraint.priority = UILayoutPriority.defaultLow
+            viewLongDescriptionToCommentViewVerticalConstraint.priority = UILayoutPriority.defaultHigh
+        }
     }
 
     static func computedHeight(rubric: RubricViewModel, containerFrame: CGRect) -> CGFloat {
