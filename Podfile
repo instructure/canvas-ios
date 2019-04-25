@@ -113,16 +113,6 @@ abstract_target 'defaults' do
 
 end
 
-target 'GradesWidget' do
-    use_frameworks!
-
-    project 'Canvas/Canvas.xcodeproj'
-    pod 'Mantle', '~> 1.5.5'
-    pod 'AFNetworking', '~> 3.0'
-    pod 'ReactiveObjC', '~> 3.1'
-    pod 'FXKeychain', '~> 1.5'
-end
-
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
