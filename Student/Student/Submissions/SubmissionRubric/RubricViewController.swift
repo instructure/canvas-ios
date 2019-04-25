@@ -41,6 +41,14 @@ class RubricViewController: UIViewController {
         let nib = UINib(nibName: id, bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: id)
     }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        coordinator.animate(alongsideTransition: nil) { _ in
+            self.cellHeightCache = [:]
+            self.collectionView.reloadData()
+        }
+    }
 }
 
 extension RubricViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
