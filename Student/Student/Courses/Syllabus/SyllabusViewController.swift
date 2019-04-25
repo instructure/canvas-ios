@@ -21,6 +21,8 @@ class SyllabusViewController: UIViewController {
 
     @IBOutlet weak var menuBorder: UIView!
     @IBOutlet weak var menuBorderHeight: NSLayoutConstraint!
+    @IBOutlet weak var menuHeightConstraint: NSLayoutConstraint!
+    var assignmentConstraints: [NSLayoutConstraint] = []
     @IBOutlet weak var menu: HorizontalMenuView!
     @IBOutlet weak var scrollView: UIScrollView!
     var presenter: SyllabusPresenter!
@@ -29,6 +31,13 @@ class SyllabusViewController: UIViewController {
     var color: UIColor?
     var syllabus: CoreWebView?
     var assignments: SyllabusActionableItemsViewController?
+
+    lazy var relayoutAssignmentConstraints: Void = {
+        menuHeightConstraint.constant = 0
+        assignments?.view.removeConstraints(assignmentConstraints)
+        assignments?.view.addConstraintsWithVFL("H:|[view(==superview)]|")
+        assignments?.view.addConstraintsWithVFL("V:|[view(==superview)]|")
+    }()
 
     enum MenuItem: Int {
         case syllabus, assignments
@@ -87,7 +96,7 @@ class SyllabusViewController: UIViewController {
         embed(assignments, in: scrollView) { [weak self] (child, _) in
             guard let syllabus = self?.syllabus else { return }
             child.view.accessibilityLabel = "SyllabusPage.assignmentList"
-            child.view.addConstraintsWithVFL("H:[syllabus][view(==superview)]|", views: ["syllabus": syllabus])
+            self?.assignmentConstraints = child.view.addConstraintsWithVFL("H:[syllabus][view(==superview)]|", views: ["syllabus": syllabus]) ?? []
             child.view.pinToTopAndBottomOfSuperview()
         }
     }
@@ -135,6 +144,10 @@ extension SyllabusViewController: SyllabuseViewProtocol {
     func loadHtml(_ html: String?) {
         guard let html = html else { return }
         syllabus?.loadHTMLString(html, baseURL: nil)
+    }
+
+    func showAssignmentsOnly() {
+        _ = relayoutAssignmentConstraints
     }
 }
 

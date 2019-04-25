@@ -20,6 +20,7 @@ import Core
 protocol SyllabuseViewProtocol: class {
     func updateNavBar(courseCode: String?, backgroundColor: UIColor?)
     func loadHtml(_ html: String?)
+    func showAssignmentsOnly()
 }
 
 class SyllabusPresenter {
@@ -55,6 +56,10 @@ class SyllabusPresenter {
 
     func update() {
         view?.updateNavBar(courseCode: courses.first?.courseCode, backgroundColor: courses.first?.color)
-        view?.loadHtml(courses.first?.syllabusBody)
+        if let html = courses.first?.syllabusBody, courses.first != nil, !html.isEmpty {
+            view?.loadHtml(courses.first?.syllabusBody)
+        } else if courses.first != nil {
+            view?.showAssignmentsOnly()
+        }
     }
 }
