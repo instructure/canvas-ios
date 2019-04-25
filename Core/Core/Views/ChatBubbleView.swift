@@ -45,6 +45,5 @@ public class ChatBubbleView: UIView {
 
     func setupFromNib() {
         contentView = loadFromXib()
-        bgImageView.tintColor = .named(.backgroundLight)
     }
 }
