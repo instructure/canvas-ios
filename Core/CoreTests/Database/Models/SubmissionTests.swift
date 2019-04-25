@@ -59,19 +59,6 @@ class SubmissionTests: CoreTestCase {
         XCTAssertEqual(submission.discussionEntriesOrdered.first?.id, "1")
     }
 
-    func testUserAssignmentScope() {
-        let one = Submission.make(["assignmentID": "2", "attempt": 1, "userID": "3"])
-        let two = Submission.make(["assignmentID": "2", "attempt": 2, "userID": "3"])
-        let three = Submission.make(["assignmentID": "2", "attempt": 3, "userID": "3"])
-        let other = Submission.make(["assignmentID": "7"])
-        let list = environment.subscribe(Submission.self, .forUserOnAssignment("2", "3"))
-        list.performFetch()
-        let objects = list.fetchedObjects
-
-        XCTAssertEqual(objects, [one, two, three])
-        XCTAssertEqual(objects?.contains(other), false)
-    }
-
     func testMediaSubmission() {
         let submission = Submission.make(["mediaComment": MediaComment.make()])
         XCTAssertNotNil(submission.mediaComment)

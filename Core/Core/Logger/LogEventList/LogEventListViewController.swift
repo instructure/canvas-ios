@@ -15,6 +15,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol LogEventListViewProtocol: ErrorViewController {
     func reloadData()
@@ -50,13 +51,13 @@ public class LogEventListViewController: UIViewController, LogEventListViewProto
         let alert = UIAlertController(title: "Filter", message: nil, preferredStyle: .actionSheet)
         for type in LoggableType.allCases {
             let action = UIAlertAction(title: type.rawValue, style: .default) { _ in
-                self.presenter?.applyFilter(.type(type))
+                self.presenter?.applyFilter(type)
             }
             alert.addAction(action)
         }
         if presenter?.currentFilter != nil {
             let clear = UIAlertAction(title: "Clear filter", style: .destructive) { _ in
-                self.presenter?.applyFilter(.all)
+                self.presenter?.applyFilter(nil)
             }
             alert.addAction(clear)
         }
@@ -76,16 +77,16 @@ public class LogEventListViewController: UIViewController, LogEventListViewProto
 
 extension LogEventListViewController: UITableViewDataSource, UITableViewDelegate {
     public func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return presenter?.events.numberOfSections ?? 1
     }
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter?.numberOfEvents ?? 0
+        return presenter?.events.count ?? 0
     }
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(LoggableCell.self, for: indexPath)
-        cell.loggable = presenter?.logEvent(for: indexPath)
+        cell.loggable = presenter?.events[indexPath]
         return cell
     }
 }

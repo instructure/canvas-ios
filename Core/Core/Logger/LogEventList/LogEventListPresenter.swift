@@ -16,45 +16,35 @@
 
 import Foundation
 
-class LogEventListPresenter: FetchedResultsControllerDelegate {
+class LogEventListPresenter {
     let env: AppEnvironment
     weak var view: LogEventListViewProtocol?
-    var events: FetchedResultsController<LogEvent>
-    private(set) var currentFilter: LogEvent.ScopeKeys?
+    private(set) var currentFilter: LoggableType?
+
+    lazy var events: Store<LocalUseCase<LogEvent>> = env.subscribe(scope: LogEvent.scope(forType: nil)) { [weak self] in
+        self?.view?.reloadData()
+    }
 
     init(env: AppEnvironment = .shared, view: LogEventListViewProtocol) {
         self.env = env
         self.view = view
-        events = env.subscribe(LogEvent.self, .all)
-        events.delegate = self
-    }
-
-    var numberOfEvents: Int {
-        return events.sections?[0].numberOfObjects ?? 0
     }
 
     func viewIsReady() {
-        events.performFetch()
+        events.refresh()
         view?.reloadData()
     }
 
-    func applyFilter(_ scope: LogEvent.ScopeKeys) {
-        currentFilter = scope
-        events = env.subscribe(LogEvent.self, scope)
-        events.delegate = self
-        events.performFetch()
+    func applyFilter(_ type: LoggableType?) {
+        currentFilter = type
+        events = env.subscribe(scope: LogEvent.scope(forType: type)) { [weak self] in
+            self?.view?.reloadData()
+        }
+        events.refresh()
         view?.reloadData()
-    }
-
-    func logEvent(for indexPath: IndexPath) -> LogEvent? {
-        return events.object(at: indexPath)
     }
 
     func clearAll() {
         env.logger.clearAll()
-    }
-
-    func controllerDidChangeContent<T>(_ controller: FetchedResultsController<T>) {
-        view?.reloadData()
     }
 }

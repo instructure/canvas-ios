@@ -42,17 +42,4 @@ class TabTests: CoreTestCase {
         tab.visibilityRaw = "bogus"
         XCTAssertEqual(tab.visibility, .none)
     }
-
-    func testContextScope() {
-        let one = Tab.make(["contextRaw": "course_1", "position": 0])
-        let two = Tab.make(["contextRaw": "course_1", "position": 1])
-        let three = Tab.make(["contextRaw": "course_1", "position": 2])
-        let otherTab = Tab.make(["contextRaw": "group_1"])
-        let list = environment.subscribe(Tab.self, .context(ContextModel(.course, id: "1")))
-        list.performFetch()
-        let objects = list.fetchedObjects
-
-        XCTAssertEqual(objects, [one, two, three])
-        XCTAssertEqual(objects?.contains(otherTab), false)
-    }
 }

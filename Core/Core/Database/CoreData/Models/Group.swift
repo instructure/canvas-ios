@@ -60,19 +60,3 @@ extension Group {
         return .named(.ash)
     }
 }
-
-extension Group: Scoped {
-    public enum ScopeKeys {
-        case details(String)
-        case dashboard
-    }
-
-    public static func scope(forName name: ScopeKeys) -> Scope {
-        switch name {
-        case let .details(id):
-            return .where(#keyPath(Group.id), equals: id)
-        case .dashboard:
-            return .where(#keyPath(Group.concluded), equals: false, orderBy: #keyPath(Group.name))
-        }
-    }
-}

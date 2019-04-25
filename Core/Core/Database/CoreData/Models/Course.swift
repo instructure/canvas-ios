@@ -110,22 +110,3 @@ extension Course {
         return scoreString
     }
 }
-
-extension Course: Scoped {
-    public enum ScopeKeys {
-        case details(String)
-        case all
-        case favorites
-    }
-
-    public static func scope(forName name: ScopeKeys) -> Scope {
-        switch name {
-        case let .details(id):
-            return .where(#keyPath(Course.id), equals: id)
-        case .all:
-            return .all(orderBy: #keyPath(Course.name))
-        case .favorites:
-            return .where(#keyPath(Course.isFavorite), equals: true, orderBy: #keyPath(Course.name))
-        }
-    }
-}

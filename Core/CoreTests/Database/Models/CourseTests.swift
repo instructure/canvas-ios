@@ -19,41 +19,6 @@ import XCTest
 @testable import Core
 
 class CourseTests: CoreTestCase {
-    func testDetailsScopeOnlyIncludesCourse() {
-        let course = Course.make(["id": "1"])
-        let other = Course.make(["id": "2"])
-        let list = environment.subscribe(Course.self, .details("1"))
-        list.performFetch()
-        let objects = list.fetchedObjects
-        XCTAssertEqual(objects?.count, 1)
-        XCTAssertEqual(objects?.contains(course), true)
-        XCTAssertEqual(objects?.contains(other), false)
-    }
-
-    func testAllScope() {
-        let one = Course.make(["id": "1"])
-        let two = Course.make(["id": "2"])
-        let list = environment.subscribe(Course.self, .all)
-        list.performFetch()
-        let objects = list.fetchedObjects
-
-        XCTAssertEqual(objects?.count, 2)
-        XCTAssertEqual(objects?.contains(one), true)
-        XCTAssertEqual(objects?.contains(two), true)
-    }
-
-    func testFavoritesScopeOnlyIncludesFavorites() {
-        let favorite = Course.make(["id": "1", "isFavorite": true])
-        let nonFavorite = Course.make(["id": "1", "isFavorite": false])
-        let list = environment.subscribe(Course.self, .favorites)
-        list.performFetch()
-        let objects = list.fetchedObjects
-
-        XCTAssertEqual(objects?.count, 1)
-        XCTAssertEqual(objects?.first, favorite)
-        XCTAssertEqual(objects?.contains(nonFavorite), false)
-    }
-
     func testColor() {
         let a = Course.make()
         _ = Color.make()

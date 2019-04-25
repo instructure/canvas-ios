@@ -23,19 +23,12 @@ public class LogEvent: NSManagedObject {
     @NSManaged public var message: String
 }
 
-extension LogEvent: Scoped {
-    public enum ScopeKeys {
-        case all
-        case type(LoggableType)
-    }
-
-    public static func scope(forName name: LogEvent.ScopeKeys) -> Scope {
-        switch name {
-        case .all:
+extension LogEvent {
+    public static func scope(forType type: LoggableType?) -> Scope {
+        guard let type = type else {
             let order = NSSortDescriptor(key: #keyPath(LogEvent.timestamp), ascending: false)
             return Scope(predicate: .all, order: [order])
-        case let .type(type):
-            return Scope.where(#keyPath(LogEvent.typeRaw), equals: type.rawValue)
         }
+        return Scope.where(#keyPath(LogEvent.typeRaw), equals: type.rawValue)
     }
 }
