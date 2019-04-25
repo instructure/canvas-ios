@@ -57,16 +57,3 @@ public class Tab: NSManagedObject {
         visibility = item.visibility
     }
 }
-
-extension Tab: Scoped {
-    public enum ScopeKeys {
-        case context(Context)
-    }
-
-    public static func scope(forName name: ScopeKeys) -> Scope {
-        switch name {
-        case let .context(context):
-            return .where(#keyPath(Tab.contextRaw), equals: context.canvasContextID, orderBy: #keyPath(Tab.position))
-        }
-    }
-}

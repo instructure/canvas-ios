@@ -40,8 +40,3 @@ public struct Scope: Equatable {
         return Scope(predicate: .all, order: [sort])
     }
 }
-
-public protocol Scoped {
-    associatedtype ScopeKeys
-    static func scope(forName name: ScopeKeys) -> Scope
-}

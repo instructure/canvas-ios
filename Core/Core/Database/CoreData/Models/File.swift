@@ -91,19 +91,6 @@ final public class File: NSManagedObject {
     }
 }
 
-extension File: Scoped {
-    public enum ScopeKeys {
-        case details(String)
-    }
-
-    public static func scope(forName name: ScopeKeys) -> Scope {
-        switch name {
-        case let .details(id):
-            return .where(#keyPath(File.id), equals: id)
-        }
-    }
-}
-
 extension File: WriteableModel {
     public typealias JSON = APIFile
 

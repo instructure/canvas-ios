@@ -19,40 +19,6 @@ import XCTest
 @testable import Core
 
 class GroupTests: CoreTestCase {
-    func testDetailsScopeOnlyIncludesGroup() {
-        let group = Group.make(["id": "1"])
-        Group.make(["id": "2"])
-        let list = environment.subscribe(Group.self, .details("1"))
-        list.performFetch()
-        let objects = list.fetchedObjects
-
-        XCTAssertEqual(objects?.count, 1)
-        XCTAssertEqual(objects, [group])
-    }
-
-    func testDashboardScopeDoesNotIncludeConcluded() {
-        let notConcluded = Group.make(["id": "1", "concluded": false])
-        Group.make(["id": "2", "concluded": true])
-        let list = environment.subscribe(Group.self, .dashboard)
-        list.performFetch()
-        let objects = list.fetchedObjects
-
-        XCTAssertEqual(objects?.count, 1)
-        XCTAssertEqual(objects, [notConcluded])
-    }
-
-    func testDashboardScopeOrdersByName() {
-        let a = Group.make(["id": "1", "name": "a"])
-        let b = Group.make(["id": "2", "name": "b"])
-        let c = Group.make(["id": "3", "name": "c"])
-        let list = environment.subscribe(Group.self, .dashboard)
-        list.performFetch()
-        let objects = list.fetchedObjects
-
-        XCTAssertEqual(objects?.count, 3)
-        XCTAssertEqual(objects, [a, b, c])
-    }
-
     func testColorWithNoLinkOrCourse() {
         let a = Group.make()
         _ = Color.make()

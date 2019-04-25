@@ -52,8 +52,7 @@ public class DownloadFile: OperationSet {
             guard let fileID = self?.fileID else {
                 return
             }
-            let scope = File.scope(forName: .details(fileID))
-            guard let file: File = client.fetch(predicate: scope.predicate, sortDescriptors: nil).first else {
+            guard let file: File = client.fetch(predicate: .id(fileID), sortDescriptors: nil).first else {
                 return
             }
             self?.serverFileURL = file.url
@@ -106,8 +105,7 @@ public class DownloadFile: OperationSet {
             guard let fileID = self?.fileID, let localFileURL = self?.localFileURL else {
                 return
             }
-            let scope = File.scope(forName: .details(fileID))
-            guard let file: File = client.fetch(predicate: scope.predicate, sortDescriptors: nil).first else {
+            guard let file: File = client.fetch(predicate: .id(fileID), sortDescriptors: nil).first else {
                 return
             }
             file.localFileURL = localFileURL

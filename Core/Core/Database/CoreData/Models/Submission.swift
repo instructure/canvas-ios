@@ -77,23 +77,6 @@ final public class Submission: NSManagedObject {
     }
 }
 
-extension Submission: Scoped {
-    public enum ScopeKeys {
-        case forUserOnAssignment(String, String)
-    }
-
-    public static func scope(forName name: Submission.ScopeKeys) -> Scope {
-        switch name {
-        case let .forUserOnAssignment(assignmentID, userID):
-            let assignmentPredicate = Scope.where(#keyPath(Submission.assignmentID), equals: assignmentID).predicate
-            let userPredicate = Scope.where(#keyPath(Submission.userID), equals: userID).predicate
-            let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [assignmentPredicate, userPredicate])
-            let sort = NSSortDescriptor(key: #keyPath(Submission.attempt), ascending: true)
-            return Scope(predicate: compoundPredicate, order: [sort])
-        }
-    }
-}
-
 extension Submission: WriteableModel {
     public typealias JSON = APISubmission
 

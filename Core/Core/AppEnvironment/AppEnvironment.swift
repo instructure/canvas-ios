@@ -55,11 +55,6 @@ open class AppEnvironment {
 
     public static let shared = AppEnvironment()
 
-    public func subscribe<T: Scoped>(_ scoped: T.Type, _ name: T.ScopeKeys) -> FetchedResultsController<T> {
-        let scope = T.scope(forName: name)
-        return database.fetchedResultsController(predicate: scope.predicate, sortDescriptors: scope.order, sectionNameKeyPath: scope.sectionNameKeyPath)
-    }
-
     public func subscribe<U>(_ useCase: U, _ callback: @escaping Store<U>.EventHandler) -> Store<U> where U: UseCase {
         return Store(env: self, useCase: useCase, eventHandler: callback)
     }

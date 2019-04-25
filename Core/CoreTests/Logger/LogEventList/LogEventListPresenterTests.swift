@@ -37,41 +37,18 @@ class LogEventListPresenterTests: CoreTestCase {
         presenter = LogEventListPresenter(env: environment, view: view)
     }
 
-    func testNumberOfEventsZero() {
-        presenter.viewIsReady()
-        XCTAssertEqual(presenter.numberOfEvents, 0)
-    }
-
-    func testNumberOfEventsNonZero() {
-        LogEvent.make()
-        LogEvent.make()
-        presenter.viewIsReady()
-        XCTAssertEqual(presenter.numberOfEvents, 2)
-    }
-
-    func testLogEventForIndexPath() {
-        let expectedOne = LogEvent.make(["timestamp": Date().addDays(-1)])
-        let expectedTwo = LogEvent.make(["timestamp": Date().addDays(-2)])
-        presenter.viewIsReady()
-        let one = presenter.logEvent(for: IndexPath(row: 0, section: 0))
-        let two = presenter.logEvent(for: IndexPath(row: 1, section: 0))
-
-        XCTAssertEqual(expectedOne.timestamp, one?.timestamp)
-        XCTAssertEqual(expectedTwo.timestamp, two?.timestamp)
-    }
-
     func testApplyFilter() {
         LogEvent.make(["typeRaw": LoggableType.log.rawValue])
         LogEvent.make(["typeRaw": LoggableType.error.rawValue])
         presenter.viewIsReady()
-        XCTAssertEqual(presenter.numberOfEvents, 2)
+        XCTAssertEqual(presenter.events.count, 2)
 
         view.reloadDataExpectation = XCTestExpectation()
-        presenter.applyFilter(.type(.log))
+        presenter.applyFilter(.log)
 
         wait(for: [view.reloadDataExpectation], timeout: 0.1)
-        XCTAssertEqual(presenter.numberOfEvents, 1)
-        let event = presenter.logEvent(for: IndexPath(row: 0, section: 0))
+        XCTAssertEqual(presenter.events.count, 1)
+        let event = presenter.events[IndexPath(row: 0, section: 0)]
         XCTAssertEqual(event?.type, .log)
     }
 
@@ -79,18 +56,18 @@ class LogEventListPresenterTests: CoreTestCase {
         LogEvent.make(["typeRaw": LoggableType.log.rawValue])
         LogEvent.make(["typeRaw": LoggableType.error.rawValue])
         presenter.viewIsReady()
-        XCTAssertEqual(presenter.numberOfEvents, 2)
+        XCTAssertEqual(presenter.events.count, 2)
 
         // Filter to only show errors
         view.reloadDataExpectation = XCTestExpectation()
-        presenter.applyFilter(.type(.log))
+        presenter.applyFilter(.log)
         wait(for: [view.reloadDataExpectation], timeout: 0.1)
-        XCTAssertEqual(presenter.numberOfEvents, 1)
+        XCTAssertEqual(presenter.events.count, 1)
 
-        // Apply filter back to .all
+        // Apply filter back to nil
         view.reloadDataExpectation = XCTestExpectation()
-        presenter.applyFilter(.all)
+        presenter.applyFilter(nil)
         wait(for: [view.reloadDataExpectation], timeout: 0.1)
-        XCTAssertEqual(presenter.numberOfEvents, 2)
+        XCTAssertEqual(presenter.events.count, 2)
     }
 }
