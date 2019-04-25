@@ -112,9 +112,10 @@ public enum PermissionError {
 
 public protocol ApplicationViewController {
     func open(_ url: URL)
+    func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)?)
 }
 
-extension ApplicationViewController where Self: UIViewController {
+extension ApplicationViewController {
     public func showPermissionError(_ error: PermissionError) {
         let title = NSLocalizedString("Permission Needed", bundle: .core, comment: "")
         let alert = UIAlertController(title: title, message: error.message, preferredStyle: .alert)
@@ -123,6 +124,6 @@ extension ApplicationViewController where Self: UIViewController {
             guard let url = URL(string: "app-settings:") else { return }
             self.open(url)
         })
-        present(alert, animated: true)
+        present(alert, animated: true, completion: nil)
     }
 }

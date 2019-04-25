@@ -56,7 +56,7 @@ class SyllabusActionableItemsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(SyllabusActionableItemsCell.self, for: indexPath)
         cell.textLabel?.text = models[indexPath.row].title
-        cell.textLabel?.font = UIFont.scaledNamedFont(.body)
+        cell.textLabel?.font = UIFont.scaledNamedFont(.regular16)
         cell.textLabel?.textColor = UIColor.named(.textDarkest)
         cell.imageView?.image = models[indexPath.row].image
         cell.imageView?.tintColor = color

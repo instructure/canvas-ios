@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -34,14 +34,14 @@
                                 </connections>
                             </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Canvas Login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1pX-Al-xWp" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="16" y="47.5" width="301" height="19.5"/>
+                                <rect key="frame" x="16" y="47" width="301" height="20.5"/>
                                 <accessibility key="accessibilityConfiguration" identifier="LoginStartPage.authenticationMethodLabel"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="body"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular16"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YBX-Gr-kI6">
@@ -60,14 +60,14 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K3D-iK-gpK" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="76.5" y="315" width="222" height="52"/>
+                                <rect key="frame" x="82" y="315" width="211" height="50"/>
                                 <accessibility key="accessibilityConfiguration" identifier="LoginStartPage.findSchoolButton"/>
                                 <inset key="contentEdgeInsets" minX="54" minY="16" maxX="54" maxY="16"/>
                                 <state key="normal" title="Find my school"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="backgroundColorName" value="electric"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textLightest"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="button"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="4"/>
                                     </userDefinedRuntimeAttribute>
@@ -77,15 +77,15 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="g3X-Rb-xXO">
-                                <rect key="frame" x="44" y="383" width="287" height="58"/>
+                                <rect key="frame" x="18" y="381" width="339" height="66"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9EW-4z-2Mo" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="287" height="29"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="339" height="33"/>
                                         <accessibility key="accessibilityConfiguration" identifier="LoginStartPage.canvasNetworkButton"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <state key="normal" title="Canvas Network"/>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="buttonSmall"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold14"/>
                                             <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
@@ -93,27 +93,27 @@
                                         </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="3Ua-og-syp">
-                                        <rect key="frame" x="0.0" y="29" width="287" height="29"/>
+                                        <rect key="frame" x="0.0" y="33" width="339" height="33"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We've made a few changes." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qRY-FA-Dia" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="180" height="29"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="213" height="33"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="LoginStartPage.whatsNewLabel"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.45098039220000002" green="0.50588235290000005" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="bodySmall"/>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular14"/>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="va0-Ci-EPu" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                                <rect key="frame" x="183" y="0.0" width="104" height="29"/>
+                                                <rect key="frame" x="216" y="0.0" width="123" height="33"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="LoginStartPage.whatsNewLink"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <state key="normal" title="See what's new."/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="electric"/>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="bodySmall"/>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular14"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="whatsNewTapped:" destination="QZA-SV-u24" eventType="touchUpInside" id="uaY-Ki-c9E"/>
@@ -169,7 +169,7 @@
                                                             <nil key="highlightedColor"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="cardSubtitle"/>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold14"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mobiledev.instructure.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ubm-Qb-95q" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
@@ -178,7 +178,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                             <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="caption"/>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold12"/>
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>

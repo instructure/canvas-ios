@@ -20,7 +20,7 @@ import Foundation
 extension UIImage {
     public enum IconName: String, CaseIterable {
         case attendance, collaborations, conferences, todo
-        case addFile, addPhoto, addLibrary
+        case addAudioLine, addCameraLine, addDocumentLine, addImageLine, addVideoCameraLine
         case publish, unpublish
         case warning
     }

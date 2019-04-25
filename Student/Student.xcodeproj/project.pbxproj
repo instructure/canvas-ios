@@ -72,8 +72,6 @@
 		3B635B42225D07CB001F353D /* SyllabusActionableItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B635B1C225C0DA0001F353D /* SyllabusActionableItemsViewController.swift */; };
 		3B635B47225D07D6001F353D /* SyllabusActionableItemsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B635B21225C0DA0001F353D /* SyllabusActionableItemsPresenter.swift */; };
 		3B67BCB621B5784500055324 /* UrlSubmissionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B54260421B1D08B0009D069 /* UrlSubmissionPresenter.swift */; };
-		3B692535219F428E0023ED75 /* FilePickerProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B692534219F428E0023ED75 /* FilePickerProgressView.swift */; };
-		3B692536219F428E0023ED75 /* FilePickerProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B692534219F428E0023ED75 /* FilePickerProgressView.swift */; };
 		3BBCF833224BFF29004B519D /* SyllabusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBCF832224BFF29004B519D /* SyllabusViewController.swift */; };
 		3BBCF834224BFF29004B519D /* SyllabusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBCF832224BFF29004B519D /* SyllabusViewController.swift */; };
 		3BBCF839224C142C004B519D /* SyllabusPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBCF838224C142C004B519D /* SyllabusPresenter.swift */; };
@@ -86,8 +84,6 @@
 		3BE2ADC721B6F6E1008D91AB /* UrlSubmissionPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE2ADC621B6F6E1008D91AB /* UrlSubmissionPage.swift */; };
 		3BE2ADC921B6F72D008D91AB /* UrlSubmissionPageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE2ADC821B6F72D008D91AB /* UrlSubmissionPageTests.swift */; };
 		3BE2ADCD21B70537008D91AB /* DynamicTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE2ADCC21B70537008D91AB /* DynamicTextField.swift */; };
-		3BE2C77B219386F1004B8E5E /* FilePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE2C779219386F1004B8E5E /* FilePickerViewController.swift */; };
-		3BE2C77C219386F1004B8E5E /* FilePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE2C779219386F1004B8E5E /* FilePickerViewController.swift */; };
 		5B5E29762185A057001C9C79 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5B5E29782185A057001C9C79 /* InfoPlist.strings */; };
 		5B5E297C2185A057001C9C79 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5B5E297E2185A057001C9C79 /* InfoPlist.strings */; };
 		5B5E29832185A058001C9C79 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5B5E29852185A058001C9C79 /* InfoPlist.strings */; };
@@ -226,9 +222,7 @@
 		9FF4276422398C17005AB73C /* test.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 9FF4276322398C0E005AB73C /* test.m4a */; };
 		9FFA7553218C8E540036FD41 /* SubmissionDetailsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA7552218C8E540036FD41 /* SubmissionDetailsPresenterTests.swift */; };
 		B107189821963BC000ED1DC7 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B107189721963BC000ED1DC7 /* EmptyView.swift */; };
-		B10D776E21C1CCE200BCE822 /* FilePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10D776D21C1CCE200BCE822 /* FilePickerCell.swift */; };
 		B10D777221C2EA5B00BCE822 /* BlockExpectation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10D777121C2EA5B00BCE822 /* BlockExpectation.swift */; };
-		B10D777621C2F14900BCE822 /* FilePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10D776D21C1CCE200BCE822 /* FilePickerCell.swift */; };
 		B10D777721C2F69500BCE822 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B107189721963BC000ED1DC7 /* EmptyView.swift */; };
 		B1906E5022679A0A00FAD2DE /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1906E4F22679A0A00FAD2DE /* UIViewControllerExtensions.swift */; };
 		B1906E5522679A1A00FAD2DE /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1906E4F22679A0A00FAD2DE /* UIViewControllerExtensions.swift */; };
@@ -239,9 +233,7 @@
 		B1A8CD4322384F9200E2242D /* FileUploaderExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A8CD3D223841C600E2242D /* FileUploaderExtensions.swift */; };
 		B1AE17A8218771CE002995E6 /* TestsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1AE17A7218771CE002995E6 /* TestsFoundation.framework */; };
 		B1AE17AA218771FA002995E6 /* TestsFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1AE17A7218771CE002995E6 /* TestsFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B1B4C1C62196304E00FA9E0E /* FilePickerViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1B4C1C52196304E00FA9E0E /* FilePickerViewController.storyboard */; };
 		B1B6F07A219A89E300C1575D /* FilePickerPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B6F079219A89E300C1575D /* FilePickerPage.swift */; };
-		B1B6F07D219B34A500C1575D /* FilePickerViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1B4C1C52196304E00FA9E0E /* FilePickerViewController.storyboard */; };
 		B1DF2579215F36F4006EDA4F /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1DF2578215F36F3006EDA4F /* Core.framework */; };
 		B1DF257B215F3713006EDA4F /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1DF2578215F36F3006EDA4F /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B1E1FA5D215F11160008C76D /* AssignmentDetailsPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E1FA5C215F11160008C76D /* AssignmentDetailsPageTest.swift */; };
@@ -449,7 +441,6 @@
 		3B635B1C225C0DA0001F353D /* SyllabusActionableItemsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusActionableItemsViewController.swift; sourceTree = "<group>"; };
 		3B635B21225C0DA0001F353D /* SyllabusActionableItemsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusActionableItemsPresenter.swift; sourceTree = "<group>"; };
 		3B635B24225C0E4F001F353D /* SyllabusActionableItemsPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusActionableItemsPresenterTests.swift; sourceTree = "<group>"; };
-		3B692534219F428E0023ED75 /* FilePickerProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePickerProgressView.swift; sourceTree = "<group>"; };
 		3BBCF832224BFF29004B519D /* SyllabusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusViewController.swift; sourceTree = "<group>"; };
 		3BBCF838224C142C004B519D /* SyllabusPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusPresenter.swift; sourceTree = "<group>"; };
 		3BBCF847224C19A2004B519D /* SyllabusViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SyllabusViewController.storyboard; sourceTree = "<group>"; };
@@ -457,7 +448,6 @@
 		3BE2ADC621B6F6E1008D91AB /* UrlSubmissionPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlSubmissionPage.swift; sourceTree = "<group>"; };
 		3BE2ADC821B6F72D008D91AB /* UrlSubmissionPageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlSubmissionPageTests.swift; sourceTree = "<group>"; };
 		3BE2ADCC21B70537008D91AB /* DynamicTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicTextField.swift; sourceTree = "<group>"; };
-		3BE2C779219386F1004B8E5E /* FilePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePickerViewController.swift; sourceTree = "<group>"; };
 		5B03DC182185A0BF00CE2D5F /* mi-NZ */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "mi-NZ"; path = "mi-NZ.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		5B03DC192185A0BF00CE2D5F /* mi-NZ */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "mi-NZ"; path = "mi-NZ.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		5B03DC1A2185A0C000CE2D5F /* mi-NZ */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "mi-NZ"; path = "mi-NZ.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -701,7 +691,6 @@
 		9FF4276322398C0E005AB73C /* test.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.m4a; sourceTree = "<group>"; };
 		9FFA7552218C8E540036FD41 /* SubmissionDetailsPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsPresenterTests.swift; sourceTree = "<group>"; };
 		B107189721963BC000ED1DC7 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
-		B10D776D21C1CCE200BCE822 /* FilePickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePickerCell.swift; sourceTree = "<group>"; };
 		B10D777121C2EA5B00BCE822 /* BlockExpectation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockExpectation.swift; sourceTree = "<group>"; };
 		B1906E4F22679A0A00FAD2DE /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
 		B191D5EB226FF26A00D02948 /* UIViewControllerExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensionsTests.swift; sourceTree = "<group>"; };
@@ -709,7 +698,6 @@
 		B191F4C0216138E20045506F /* TestHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHost.swift; sourceTree = "<group>"; };
 		B1A8CD3D223841C600E2242D /* FileUploaderExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploaderExtensions.swift; sourceTree = "<group>"; };
 		B1AE17A7218771CE002995E6 /* TestsFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TestsFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B1B4C1C52196304E00FA9E0E /* FilePickerViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FilePickerViewController.storyboard; sourceTree = "<group>"; };
 		B1B6F079219A89E300C1575D /* FilePickerPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePickerPage.swift; sourceTree = "<group>"; };
 		B1DF2578215F36F3006EDA4F /* Core.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1E1FA5C215F11160008C76D /* AssignmentDetailsPageTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsPageTest.swift; sourceTree = "<group>"; };
@@ -833,7 +821,6 @@
 				3B1B004F219BD9F50045E8A1 /* Courses */,
 				788152D5212B330C005BA428 /* Dashboard */,
 				7D979CD2215BE3CC00567627 /* Extensions */,
-				B1B4C1C42196301800FA9E0E /* FilePicker */,
 				3B1B003B219BD9F50045E8A1 /* Groups */,
 				7D10194C215EBA530058FDD1 /* IBDesignables */,
 				3B1B005A219BD9F60045E8A1 /* Quizzes */,
@@ -1398,25 +1385,6 @@
 			path = SubmissionDetails;
 			sourceTree = "<group>";
 		};
-		B10D776C21C1CCCB00BCE822 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				3B692534219F428E0023ED75 /* FilePickerProgressView.swift */,
-				B10D776D21C1CCE200BCE822 /* FilePickerCell.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		B1B4C1C42196301800FA9E0E /* FilePicker */ = {
-			isa = PBXGroup;
-			children = (
-				B10D776C21C1CCCB00BCE822 /* Views */,
-				3BE2C779219386F1004B8E5E /* FilePickerViewController.swift */,
-				B1B4C1C52196304E00FA9E0E /* FilePickerViewController.storyboard */,
-			);
-			path = FilePicker;
-			sourceTree = "<group>";
-		};
 		B1BCFF8F21BF24A700F58D0F /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -1794,7 +1762,6 @@
 				7DA5C494223863A2003CDB4C /* SubmissionCommentsViewController.storyboard in Resources */,
 				3BE1307421AE0074001D4582 /* UrlSubmissionContentViewController.storyboard in Resources */,
 				7D1758E4215AA06C00F88613 /* Localizable.strings in Resources */,
-				B1B4C1C62196304E00FA9E0E /* FilePickerViewController.storyboard in Resources */,
 				3B1B0077219BD9F60045E8A1 /* CourseListViewController.storyboard in Resources */,
 				7D1758E8215AA07E00F88613 /* Localizable.stringsdict in Resources */,
 				788152DF212B35F8005BA428 /* DashboardViewController.storyboard in Resources */,
@@ -1830,7 +1797,6 @@
 				5B5E29762185A057001C9C79 /* InfoPlist.strings in Resources */,
 				7DA61A5D216561A60085BAE8 /* Localizable.strings in Resources */,
 				3B0B0F66219C8D1100F04216 /* CourseListViewController.storyboard in Resources */,
-				B1B6F07D219B34A500C1575D /* FilePickerViewController.storyboard in Resources */,
 				7DA5C498223863F3003CDB4C /* SubmissionCommentsViewController.storyboard in Resources */,
 				9F9F4EB521B5D24F00842570 /* ExternalToolSubmissionContentViewController.storyboard in Resources */,
 				3B0B0F62219C8D0500F04216 /* AssignmentDetailsViewController.storyboard in Resources */,
@@ -1946,10 +1912,8 @@
 				3B1B0073219BD9F60045E8A1 /* CourseNavigationPresenter.swift in Sources */,
 				3B1B006F219BD9F60045E8A1 /* AssignmentDetailsViewController.swift in Sources */,
 				7D08F53621541AE80042E1F4 /* CardView.swift in Sources */,
-				B10D776E21C1CCE200BCE822 /* FilePickerCell.swift in Sources */,
 				9F9F4EB321B58AA300842570 /* ExternalToolSubmissionContentViewController.swift in Sources */,
 				9F5ADB31218B656400D8C973 /* SubmissionDetailsPresenter.swift in Sources */,
-				3BE2C77B219386F1004B8E5E /* FilePickerViewController.swift in Sources */,
 				B1A8CD3E223841C600E2242D /* FileUploaderExtensions.swift in Sources */,
 				2C5C698D211DFFAD00D9AD15 /* AppDelegate.swift in Sources */,
 				788152F5212B7482005BA428 /* DashboardGroupCell.swift in Sources */,
@@ -1966,7 +1930,6 @@
 				7DD9E63E223C4E3600B45A7E /* SubmissionCommentFileView.swift in Sources */,
 				3B1B0070219BD9F60045E8A1 /* GradeCircle.swift in Sources */,
 				B1906E5022679A0A00FAD2DE /* UIViewControllerExtensions.swift in Sources */,
-				3B692535219F428E0023ED75 /* FilePickerProgressView.swift in Sources */,
 				7D2000432233355F003BE403 /* SubmissionFilesViewController.swift in Sources */,
 				3B1B0066219BD9F60045E8A1 /* GroupNavigationPresenter.swift in Sources */,
 				2CB3261D21387C99009496AF /* RouterViewController.swift in Sources */,
@@ -2046,8 +2009,6 @@
 				7DD9E623223C1B9500B45A7E /* SubmissionCommentHeaderCell.swift in Sources */,
 				3BBCF83A224C142C004B519D /* SyllabusPresenter.swift in Sources */,
 				3B4B75B1222DE7F3002CCBEC /* CourseNavigationViewController.swift in Sources */,
-				3B692536219F428E0023ED75 /* FilePickerProgressView.swift in Sources */,
-				B10D777621C2F14900BCE822 /* FilePickerCell.swift in Sources */,
 				7DA5C497223863EF003CDB4C /* SubmissionCommentsViewController.swift in Sources */,
 				7D067CE521505B3500B78AF2 /* DashboardCourseCell.swift in Sources */,
 				7DA057552193A3A800A3CFBB /* IconView.swift in Sources */,
@@ -2080,7 +2041,6 @@
 				9F74200D21932DEF00108A0F /* SubmissionDetailsPresenter.swift in Sources */,
 				3B635B47225D07D6001F353D /* SyllabusActionableItemsPresenter.swift in Sources */,
 				7D20F61721C3144C00B77E5E /* CourseListPresenter.swift in Sources */,
-				3BE2C77C219386F1004B8E5E /* FilePickerViewController.swift in Sources */,
 				3B0B0F5F219C8CFE00F04216 /* AssignmentListViewController.swift in Sources */,
 				7D101952215EBB4B0058FDD1 /* DynamicButton.swift in Sources */,
 			);

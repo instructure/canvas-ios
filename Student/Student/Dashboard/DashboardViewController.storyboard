@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -49,7 +49,7 @@
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                     <userDefinedRuntimeAttributes>
-                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="cardTitle"/>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
                                                                         <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
@@ -60,7 +60,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
-                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="caption"/>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold12"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                             </subviews>
@@ -167,7 +167,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                             <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="cardTitle"/>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
@@ -177,7 +177,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                             <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="cardSubtitle"/>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold14"/>
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="electric"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
@@ -187,7 +187,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                             <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="caption"/>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold12"/>
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
@@ -241,7 +241,7 @@
                                             <nil key="highlightedColor"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="heading"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="heavy24"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="bottom" buttonType="roundedRect" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RLb-JR-jec" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
@@ -250,7 +250,7 @@
                                             <state key="normal" title="See All"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="electric"/>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="button"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
                                             </userDefinedRuntimeAttributes>
                                             <connections>
                                                 <action selector="rightButtonTapped:" destination="orm-17-Sxi" eventType="touchUpInside" id="V1e-it-79b"/>

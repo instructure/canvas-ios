@@ -109,6 +109,10 @@
 		7D2DC301219A16EC008FE29A /* DocViewerConstantsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2DC300219A16EC008FE29A /* DocViewerConstantsTests.swift */; };
 		7D2DC306219C9D36008FE29A /* DocViewerSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2DC305219C9D36008FE29A /* DocViewerSession.swift */; };
 		7D2DC31B219CE469008FE29A /* DocViewerSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2DC31A219CE469008FE29A /* DocViewerSessionTests.swift */; };
+		7D2E82882270BB9B00735854 /* FilePickerViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D2E82822270BB7600735854 /* FilePickerViewController.storyboard */; };
+		7D2E82892270BB9F00735854 /* FilePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E82812270BB7600735854 /* FilePickerViewController.swift */; };
+		7D2E828A2270BBA200735854 /* FilePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E827F2270BB7600735854 /* FilePickerCell.swift */; };
+		7D2E828B2270BBA900735854 /* FilePickerProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E827E2270BB7600735854 /* FilePickerProgressView.swift */; };
 		7D2FADBE225BA50A00BCE19E /* RichContentEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2FADBD225BA50A00BCE19E /* RichContentEditorViewController.swift */; };
 		7D2FADC4225BBA5600BCE19E /* RichContentEditor.js in Resources */ = {isa = PBXBuildFile; fileRef = 7D2FADC3225BBA5600BCE19E /* RichContentEditor.js */; };
 		7D364F2421AE04B20028E3EA /* CoreWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D364F2321AE04B20028E3EA /* CoreWebViewController.swift */; };
@@ -174,9 +178,9 @@
 		7D8262F7212B34F800BD268D /* APICourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8262F6212B34F800BD268D /* APICourse.swift */; };
 		7D8262F9212B3B2000BD268D /* APISection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8262F8212B3B2000BD268D /* APISection.swift */; };
 		7D8262FB212B3B3000BD268D /* APIEnrollment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8262FA212B3B3000BD268D /* APIEnrollment.swift */; };
+		7D85D8E5226A8CFB002DBF63 /* AvatarViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D85D8E4226A8CFB002DBF63 /* AvatarViewTests.swift */; };
 		7D85D8E9226E5DFE002DBF63 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D85D8E8226E5DFE002DBF63 /* SectionHeaderView.swift */; };
 		7D85D8EF226E6901002DBF63 /* SectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D85D8EE226E6901002DBF63 /* SectionHeaderView.xib */; };
-		7D85D8E5226A8CFB002DBF63 /* AvatarViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D85D8E4226A8CFB002DBF63 /* AvatarViewTests.swift */; };
 		7D86285B224C05BB003A37DC /* APIMediaCommentRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D86285A224C05BB003A37DC /* APIMediaCommentRequestableTests.swift */; };
 		7D86285D224C15BA003A37DC /* UploadMediaCommentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D86285C224C15BA003A37DC /* UploadMediaCommentTests.swift */; };
 		7D862869224D4907003A37DC /* AudioPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D862868224D4907003A37DC /* AudioPlayerViewController.swift */; };
@@ -746,6 +750,10 @@
 		7D2DC300219A16EC008FE29A /* DocViewerConstantsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerConstantsTests.swift; sourceTree = "<group>"; };
 		7D2DC305219C9D36008FE29A /* DocViewerSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerSession.swift; sourceTree = "<group>"; };
 		7D2DC31A219CE469008FE29A /* DocViewerSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerSessionTests.swift; sourceTree = "<group>"; };
+		7D2E827E2270BB7600735854 /* FilePickerProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePickerProgressView.swift; sourceTree = "<group>"; };
+		7D2E827F2270BB7600735854 /* FilePickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePickerCell.swift; sourceTree = "<group>"; };
+		7D2E82812270BB7600735854 /* FilePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePickerViewController.swift; sourceTree = "<group>"; };
+		7D2E82822270BB7600735854 /* FilePickerViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FilePickerViewController.storyboard; sourceTree = "<group>"; };
 		7D2FADBD225BA50A00BCE19E /* RichContentEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichContentEditorViewController.swift; sourceTree = "<group>"; };
 		7D2FADC3225BBA5600BCE19E /* RichContentEditor.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = RichContentEditor.js; sourceTree = "<group>"; };
 		7D349C352143090C004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/Main.strings"; sourceTree = "<group>"; };
@@ -819,9 +827,9 @@
 		7D8262F6212B34F800BD268D /* APICourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICourse.swift; sourceTree = "<group>"; };
 		7D8262F8212B3B2000BD268D /* APISection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISection.swift; sourceTree = "<group>"; };
 		7D8262FA212B3B3000BD268D /* APIEnrollment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnrollment.swift; sourceTree = "<group>"; };
+		7D85D8E4226A8CFB002DBF63 /* AvatarViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarViewTests.swift; sourceTree = "<group>"; };
 		7D85D8E8226E5DFE002DBF63 /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
 		7D85D8EE226E6901002DBF63 /* SectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionHeaderView.xib; sourceTree = "<group>"; };
-		7D85D8E4226A8CFB002DBF63 /* AvatarViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarViewTests.swift; sourceTree = "<group>"; };
 		7D86285A224C05BB003A37DC /* APIMediaCommentRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIMediaCommentRequestableTests.swift; sourceTree = "<group>"; };
 		7D86285C224C15BA003A37DC /* UploadMediaCommentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadMediaCommentTests.swift; sourceTree = "<group>"; };
 		7D862868224D4907003A37DC /* AudioPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerViewController.swift; sourceTree = "<group>"; };
@@ -1166,7 +1174,7 @@
 				9FBE5354223AD16F001EC40C /* DeveloperMenu */,
 				7D29D2F5218A29B10036437C /* DocViewer */,
 				7D80AC06212B46D500C40ECE /* Extensions */,
-				B1A8CD38223766EA00E2242D /* Files */,
+				7D2E82832270BB7600735854 /* FilePicker */,
 				3B47227E2137972200BF6FF3 /* Frameworks */,
 				2C964832211E2F1A002C3255 /* Info.plist */,
 				5BF786A8218599B600471A5F /* InfoPlist.strings */,
@@ -1500,6 +1508,17 @@
 				7D2DC2FA2199FD47008FE29A /* instructure.pdf */,
 			);
 			path = Fixtures;
+			sourceTree = "<group>";
+		};
+		7D2E82832270BB7600735854 /* FilePicker */ = {
+			isa = PBXGroup;
+			children = (
+				7D2E827E2270BB7600735854 /* FilePickerProgressView.swift */,
+				7D2E827F2270BB7600735854 /* FilePickerCell.swift */,
+				7D2E82812270BB7600735854 /* FilePickerViewController.swift */,
+				7D2E82822270BB7600735854 /* FilePickerViewController.storyboard */,
+			);
+			path = FilePicker;
 			sourceTree = "<group>";
 		};
 		7D2FADBC225BA4BC00BCE19E /* RichContentEditor */ = {
@@ -1941,6 +1960,7 @@
 				9FCD79D72188DFD00054293A /* GetSubmission.swift */,
 				7DA5C48B22385F95003CDB4C /* GetSubmissionComments.swift */,
 				B195DC44213201DE00797FE4 /* GetUserGroups.swift */,
+				B1A8CD39223766FA00E2242D /* UploadFile.swift */,
 				B17855B0226ABDB100B30C80 /* UploadMedia.swift */,
 				7D92D656224ACC7A0015B368 /* UploadMediaComment.swift */,
 			);
@@ -1999,14 +2019,6 @@
 				9FD504F32180DC7B00B395BA /* AsyncBlockOperationTest.swift */,
 			);
 			path = Base;
-			sourceTree = "<group>";
-		};
-		B1A8CD38223766EA00E2242D /* Files */ = {
-			isa = PBXGroup;
-			children = (
-				B1A8CD39223766FA00E2242D /* UploadFile.swift */,
-			);
-			path = Files;
 			sourceTree = "<group>";
 		};
 		B1B42C1422403AE90087399A /* Files */ = {
@@ -2319,6 +2331,7 @@
 				7DD694892195F7A200BA4984 /* DocViewerViewController.storyboard in Resources */,
 				B1E789AB21B0EF130087FE4A /* LogEventListViewController.storyboard in Resources */,
 				7D86286B224D493C003A37DC /* AudioPlayerViewController.storyboard in Resources */,
+				7D2E82882270BB9B00735854 /* FilePickerViewController.storyboard in Resources */,
 				7D1758B621598CA400F88613 /* TitleSubtitleView.xib in Resources */,
 				7D85D8EF226E6901002DBF63 /* SectionHeaderView.xib in Resources */,
 				9FBFE6E1224289A6002B3796 /* WrongAppViewController.storyboard in Resources */,
@@ -2472,6 +2485,7 @@
 				7DCF2030216D521D003AF358 /* QuestionCountViewable.swift in Sources */,
 				7D8262F3212B2E3100BD268D /* APIFavorite+Requestable.swift in Sources */,
 				7DA5C48C22385F95003CDB4C /* GetSubmissionComments.swift in Sources */,
+				7D2E828A2270BBA200735854 /* FilePickerCell.swift in Sources */,
 				7DCF1ECB216BF544003AF358 /* SubmissionViewable.swift in Sources */,
 				7D7110BF213890AD0085C2E5 /* RouteHandler.swift in Sources */,
 				7D80AC05212B461F00C40ECE /* APIUser+Requestable.swift in Sources */,
@@ -2511,6 +2525,7 @@
 				9FD504E72180BE1400B395BA /* APIFile.swift in Sources */,
 				B18359A822244E230005A918 /* AccessIconView.swift in Sources */,
 				7DF4FFD82171347B007E5F81 /* Tab.swift in Sources */,
+				7D2E82892270BB9F00735854 /* FilePickerViewController.swift in Sources */,
 				3B3467D02135024800F9BC2E /* ErrorViewController.swift in Sources */,
 				7D062AF4212496E600677F66 /* Context.swift in Sources */,
 				7DCF2038216D55E6003AF358 /* QuizType.swift in Sources */,
@@ -2568,6 +2583,7 @@
 				7D29D305218A57560036437C /* DocViewerAnnotationStateManager.swift in Sources */,
 				7D80AC23212B8A2100C40ECE /* APIAccount.swift in Sources */,
 				7D765026215AEDE300BB4F38 /* DynamicLabel.swift in Sources */,
+				7D2E828B2270BBA900735854 /* FilePickerProgressView.swift in Sources */,
 				7DCF2034216D5458003AF358 /* APIQuiz.swift in Sources */,
 				7DCF1EC5216BE2B5003AF358 /* GradeViewable.swift in Sources */,
 				B1B4C1CB219631B700FA9E0E /* EmptyView.swift in Sources */,

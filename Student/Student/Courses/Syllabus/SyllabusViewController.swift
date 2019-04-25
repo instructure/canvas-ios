@@ -158,7 +158,7 @@ extension SyllabusViewController: HorizontalMenuDelegate {
     }
 
     var measurementFont: UIFont {
-        return .scaledNamedFont(.rowTitle)
+        return .scaledNamedFont(.regular20)
     }
 
     func menuItemCount() -> Int {
