@@ -57,7 +57,7 @@ class SyllabusPresenter {
     func update() {
         view?.updateNavBar(courseCode: courses.first?.courseCode, backgroundColor: courses.first?.color)
         if let html = courses.first?.syllabusBody, courses.first != nil, !html.isEmpty {
-            view?.loadHtml(courses.first?.syllabusBody)
+            view?.loadHtml(html)
         } else if courses.first != nil {
             view?.showAssignmentsOnly()
         }
