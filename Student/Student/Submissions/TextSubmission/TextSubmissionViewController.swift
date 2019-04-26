@@ -21,12 +21,13 @@ class TextSubmissionViewController: UIViewController, ErrorViewController, RichC
     @IBOutlet weak var contentView: UIView?
     @IBOutlet weak var keyboardSpace: NSLayoutConstraint?
 
-    let editor = RichContentEditorViewController()
+    var editor: RichContentEditorViewController?
     var keyboard: KeyboardTransitioning?
     var presenter: TextSubmissionPresenter?
 
     static func create(env: AppEnvironment = .shared, courseID: String, assignmentID: String, userID: String) -> TextSubmissionViewController {
         let controller = loadFromStoryboard()
+        controller.editor = RichContentEditorViewController.create(env: env, uploadTo: .myFiles)
         controller.presenter = TextSubmissionPresenter(env: env, view: controller, courseID: courseID, assignmentID: assignmentID, userID: userID)
         return controller
     }
@@ -41,7 +42,7 @@ class TextSubmissionViewController: UIViewController, ErrorViewController, RichC
         navigationItem.rightBarButtonItem?.isEnabled = false
         addCancelButton(side: .left)
 
-        if let contentView = contentView {
+        if let contentView = contentView, let editor = editor {
             editor.delegate = self
             editor.placeholder = NSLocalizedString("Enter submission", bundle: .student, comment: "")
             editor.webView.scrollView.layer.masksToBounds = false
@@ -54,12 +55,20 @@ class TextSubmissionViewController: UIViewController, ErrorViewController, RichC
         keyboard = KeyboardTransitioning(view: view, space: keyboardSpace)
     }
 
-    func rce(_ editor: RichContentEditorViewController, didChangeEmpty isEmpty: Bool) {
-        navigationItem.rightBarButtonItem?.isEnabled = !isEmpty
+    func rce(_ editor: RichContentEditorViewController, canSubmit: Bool) {
+        navigationItem.rightBarButtonItem?.isEnabled = canSubmit
+    }
+
+    func rce(_ editor: RichContentEditorViewController, didError error: Error) {
+        showError(error)
+    }
+
+    func rce(_ editor: RichContentEditorViewController, didError error: String) {
+        showError(message: error)
     }
 
     @objc func submit(_ sender: Any? = nil) {
-        editor.getHTML { (html: String) in
+        editor?.getHTML { (html: String) in
             self.presenter?.submit(html)
         }
     }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,11 +14,12 @@
             <connections>
                 <outlet property="boldButton" destination="5wg-47-S5Y" id="kmo-v9-4RV"/>
                 <outlet property="buttonStack" destination="e9h-Mq-pwP" id="isB-76-JkC"/>
+                <outlet property="cameraButton" destination="niV-Ke-SwN" id="b7u-ho-yex"/>
                 <outlet property="colorPickerHeight" destination="zCm-pt-FrJ" id="rZc-r5-KHp"/>
                 <outlet property="colorPickerStack" destination="PdY-MT-A8h" id="23E-IT-Q5c"/>
                 <outlet property="colorPickerView" destination="jRn-ls-w11" id="Yrf-Pb-gBv"/>
-                <outlet property="imageButton" destination="niV-Ke-SwN" id="66s-De-Zxw"/>
                 <outlet property="italicButton" destination="nft-PA-7aH" id="59S-Kc-Irt"/>
+                <outlet property="libraryButton" destination="qvG-nJ-iI7" id="zhx-hD-w2H"/>
                 <outlet property="linkButton" destination="sg6-3t-3pl" id="23N-xC-rHm"/>
                 <outlet property="orderedButton" destination="L3s-ob-5Pi" id="dYi-ah-rKD"/>
                 <outlet property="redoButton" destination="JVc-je-oFY" id="HJM-oT-J9g"/>
@@ -236,7 +237,7 @@
                             <rect key="frame" x="0.0" y="1" width="375" height="44"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e9h-Mq-pwP">
-                                    <rect key="frame" x="0.0" y="0.0" width="450" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="500" height="44"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lql-Cx-71D" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="44"/>
@@ -375,11 +376,27 @@
                                             </constraints>
                                             <inset key="contentEdgeInsets" minX="16" minY="13" maxX="16" maxY="13"/>
                                             <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="cameraSolid"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="cameraAction:" destination="-1" eventType="primaryActionTriggered" id="1Wd-Kg-vaw"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qvG-nJ-iI7" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                            <rect key="frame" x="450" y="0.0" width="50" height="44"/>
+                                            <accessibility key="accessibilityConfiguration" identifier="RichContentToolbar.imageButton"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="44" id="Pf8-SH-Jpl"/>
+                                                <constraint firstAttribute="width" constant="50" id="fb0-IO-EeS"/>
+                                            </constraints>
+                                            <inset key="contentEdgeInsets" minX="16" minY="13" maxX="16" maxY="13"/>
+                                            <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="imageSolid"/>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
                                             </userDefinedRuntimeAttributes>
                                             <connections>
-                                                <action selector="imageAction:" destination="-1" eventType="primaryActionTriggered" id="sTo-c3-BNU"/>
+                                                <action selector="libraryAction:" destination="-1" eventType="primaryActionTriggered" id="O5E-FL-Ecb"/>
                                             </connections>
                                         </button>
                                     </subviews>

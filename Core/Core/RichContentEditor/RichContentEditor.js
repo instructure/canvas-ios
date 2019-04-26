@@ -79,16 +79,71 @@ const editor = window.editor = {
         }
     },
 
-    insertVideoComment (mediaID) {
+    insertImagePlaceholder (url, placeholder) {
         editor.restoreRange()
-        editor.insertHTML(videoPreviewHTML(mediaID))
+        editor.insertHTML(`<img src="${escapeHTML(placeholder)}" alt="" data-uploading="${escapeHTML(url)}" />`)
+    },
+
+    insertVideoPlaceholder (url) {
+        editor.restoreRange()
+        editor.insertHTML(`<img src='${videoUploadURL}' alt="" data-uploading="${escapeHTML(url)}" data-media_comment_id />`)
+    },
+
+    updateUploadProgress (files) {
+        for (let file of files) {
+            let img = document.querySelector(`[data-uploading="${file.localFileURL}"]`)
+            let progress = document.querySelector(`[data-progress="${file.localFileURL}"]`)
+            if (!img) {
+                if (progress) progress.remove()
+            } else if (file.uploadError) {
+                img.remove()
+                if (progress) progress.remove()
+            } else if (file.mediaEntryID) {
+                img.src = videoPreviewURL
+                img.dataset.media_comment_id = file.mediaEntryID
+                delete img.dataset.uploading
+                if (progress) progress.remove()
+            } else if (file.url) {
+                img.src = file.url
+                delete img.dataset.uploading
+                if (progress) progress.remove()
+            } else {
+                progress = progress || progressElement(file.localFileURL)
+                const fill = progress.querySelector('.progress-fill')
+                const circum = 2 * fill.r.baseVal.value * Math.PI
+                fill.style.strokeDashoffset = 1000 - (((file.bytesSent / file.size) || 0) * circum)
+            }
+        }
+        editor.updateOverlays()
+    },
+
+    updateOverlays () {
+        for (let button of document.querySelectorAll('.remove-image')) {
+            if (!button.removesImage.parentNode) {
+                button.remove()
+            }
+        }
+        for (let img of content.querySelectorAll('img')) {
+            let bounds = img.getBoundingClientRect()
+            if (img.dataset.uploading) {
+                let progress = document.querySelector(`[data-progress="${img.dataset.uploading}"]`)
+                if (!progress) continue
+                progress.style.left = `${bounds.left + (bounds.width / 2) + scrollX}px`
+                progress.style.top = `${bounds.top + (bounds.height / 2) + scrollY}px`
+            } else {
+                let button = img.removeButton || (img.removeButton = removeButton(img))
+                if (!button.parentNode) { document.body.appendChild(button) } // fix undo breaking it
+                button.style.left = `${bounds.right + (bounds.width < 40 ? 20 : 0) + scrollX}px`
+                button.style.top = `${bounds.top + (bounds.height < 40 ? -20 : 0) + scrollY}px`
+            }
+        }
     },
 
     setHTML (html) {
         content.innerHTML = html
-        // replace <video> with preview <img>
         for (let video of document.querySelectorAll('video')) {
-            video.outerHTML = videoPreviewHTML(video.dataset.media_comment_id)
+            let mediaID = video.dataset.media_comment_id
+            video.outerHTML = `<img src='${videoPreviewURL}' alt="" data-media_comment_id="${mediaID}" />`
         }
     },
 
@@ -98,25 +153,18 @@ const editor = window.editor = {
     },
 
     getHTML () {
-        // Images
-        for (let img of document.querySelectorAll('img')) {
-            img.classList.remove('editor-active')
-            if (img.className === '') {
-                img.removeAttribute('class')
-            }
-        }
-
         // Get the contents
         const clone = content.cloneNode(true)
         for (let styled of clone.querySelectorAll('[style]')) {
             // Replace rgb with hex because Canvas will remove rgb styles
             styled.setAttribute('style', rgbToHex(styled.style.cssText))
         }
-        for (let remove of clone.querySelectorAll('.video-preview')) {
-            remove.parentNode.removeChild(remove)
+        for (let remove of clone.querySelectorAll('[data-uploading]')) {
+            remove.remove() // There shouldn't be any, but just in case.
         }
-        for (let comment of clone.querySelectorAll('p.last-video-comment')) {
-            comment.classList.remove('last-video-comment')
+        for (let img of clone.querySelectorAll('[data-media_comment_id]')) {
+            let mediaID = img.dataset.media_comment_id
+            img.outerHTML = `<a id="media_comment_${mediaID}" class="instructure_inline_media_comment video_comment" href="/media_objects/${mediaID}">this is a media comment</a>`
         }
         let html = clone.innerHTML
         // backspaces can leave behind empty line breaks
@@ -187,7 +235,7 @@ const editor = window.editor = {
         range.collapse(false)
         range.insertNode(span)
         const { bottom } = span.getBoundingClientRect()
-        span.parentNode.removeChild(span)
+        span.remove()
         if (bottom > innerHeight) {
             scrollTo(0, scrollY + bottom - innerHeight + 16)
         }
@@ -212,17 +260,35 @@ const escapeHTML = (html) => {
         .replace(/"/g, '&quot;')
 }
 
-const videoPreviewHTML = mediaID => {
-    const src = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 111">
+const progressElement = url => {
+    const progress = document.body.appendChild(document.createElement('div'))
+    progress.setAttribute('aria-hidden', null)
+    progress.className = 'progress'
+    progress.dataset.progress = url
+    progress.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="44" height="44">
+  <circle class="progress-track" stroke-width="4" cx="22" cy="22" r="20"/>
+  <circle class="progress-fill" stroke-width="4" cx="22" cy="22" r="20"/>
+</svg>`
+    return progress
+}
+
+const removeButton = img => {
+    const button = document.body.appendChild(document.createElement('button'))
+    button.setAttribute('aria-hidden', null)
+    button.className = 'remove-image'
+    button.removesImage = img
+    button.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1920" width="18" height="18">
+  <path d="M771.55 960.11L319 1412.66l188.56 188.56 452.55-452.55 452.55 452.55 188.56-188.56-452.55-452.55 452.55-452.55L1412.66 319 960.1 771.55 507.56 319 319 507.56z"/>
+</svg>`
+    button.onclick = () => { img.remove() }
+    return button
+}
+
+const videoUploadURL = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"></svg>`
+const videoPreviewURL = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 111">
   <circle fill="none" stroke="white" stroke-width="3" cx="96" cy="55" r="25"/>
   <path fill="white" d="M90 45 l18 11-18 11z"/>
 </svg>`.replace(/\r?\n\s*/g, '')
-    let html = `<img class="video-preview" src='${src}' />`
-    if (mediaID) {
-        html += `<p class="last-video-comment"><a id="media_comment_${mediaID}" class="instructure_inline_media_comment video_comment" href="/media_objects/${mediaID}">this is a media comment</a></p>`
-    }
-    return html
-}
 
 function throttle (fn, ms = 200) {
   let timer, last
@@ -249,14 +315,12 @@ document.addEventListener('selectionchange', e => {
     editor.postState()
 })
 
+new MutationObserver(() => {
+    editor.updateOverlays()
+}).observe(content, { attributes: true, characterData: true, childList: true, subtree: true })
+
 window.addEventListener('touchstart', e => {
     editor.isDragging = false
-    if (e.target.tagName.toLowerCase() === 'img') {
-        for (let img of document.querySelectorAll('img.editor-active')) {
-            img.classList.remove('editor-active')
-        }
-        e.target.classList.add('editor-active')
-    }
 })
 window.addEventListener('touchmove', e => {
     editor.isDragging = true
@@ -264,11 +328,6 @@ window.addEventListener('touchmove', e => {
 })
 window.addEventListener('touchend', e => {
     editor.postState(e)
-    if (!e.target.classList.contains('editor-active')) {
-        for (let img of document.querySelectorAll('img.editor-active')) {
-            img.classList.remove('editor-active')
-        }
-    }
     if (editor.currentEditingLink) {
         webkit.messageHandlers.link.postMessage('')
         e.preventDefault()

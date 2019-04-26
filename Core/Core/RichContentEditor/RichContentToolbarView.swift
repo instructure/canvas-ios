@@ -26,7 +26,8 @@ public class RichContentToolbarView: UIView {
     @IBOutlet weak var unorderedButton: DynamicButton?
     @IBOutlet weak var orderedButton: DynamicButton?
     @IBOutlet weak var linkButton: DynamicButton?
-    @IBOutlet weak var imageButton: DynamicButton?
+    @IBOutlet weak var cameraButton: DynamicButton?
+    @IBOutlet weak var libraryButton: DynamicButton?
 
     @IBOutlet weak var buttonStack: UIStackView?
     @IBOutlet weak var colorPickerHeight: NSLayoutConstraint?
@@ -70,7 +71,8 @@ public class RichContentToolbarView: UIView {
         unorderedButton?.accessibilityLabel = NSLocalizedString("Unordered List", bundle: .core, comment: "")
         orderedButton?.accessibilityLabel = NSLocalizedString("Ordered List", bundle: .core, comment: "")
         linkButton?.accessibilityLabel = NSLocalizedString("Link", bundle: .core, comment: "")
-        imageButton?.accessibilityLabel = NSLocalizedString("Image", bundle: .core, comment: "")
+        cameraButton?.accessibilityLabel = NSLocalizedString("Camera", bundle: .core, comment: "")
+        libraryButton?.accessibilityLabel = NSLocalizedString("Image", bundle: .core, comment: "")
 
         let colors = colorPickerStack?.arrangedSubviews
         colors?[0].accessibilityValue = NSLocalizedString("white", bundle: .core, comment: "")
@@ -85,9 +87,6 @@ public class RichContentToolbarView: UIView {
         for color in colors ?? [] {
             color.accessibilityLabel = NSLocalizedString("Set text color", bundle: .core, comment: "")
         }
-
-        // TODO: unhide this when implemented
-        imageButton?.isHidden = true
 
         colorPickerHeight?.constant = 0
         colorPickerView?.alpha = 0
@@ -127,8 +126,12 @@ public class RichContentToolbarView: UIView {
         orderedButton?.isSelected = (state?["orderedList"] as? Bool) == true
         linkButton?.isSelected = linkHref != nil
         linkButton?.accessibilityValue = linkHref
-        imageButton?.isSelected = imageSrc != nil
-        imageButton?.accessibilityValue = imageSrc
+        cameraButton?.isHidden = controller?.fileUploadContext == nil ||
+            !UIImagePickerController.isSourceTypeAvailable(.camera)
+        libraryButton?.isHidden = controller?.fileUploadContext == nil ||
+            !UIImagePickerController.isSourceTypeAvailable(.photoLibrary)
+        libraryButton?.isSelected = imageSrc != nil
+        libraryButton?.accessibilityValue = imageSrc
         for button in buttonStack?.arrangedSubviews ?? [] {
             button.tintColor = (button as? UIButton)?.isSelected == true ? active : inactive
         }
@@ -195,32 +198,14 @@ public class RichContentToolbarView: UIView {
     }
 
     @IBAction func linkAction(_ sender: UIButton? = nil) {
-        controller?.backupRange()
-        let alert = UIAlertController(title: NSLocalizedString("Link to Website URL", bundle: .core, comment: ""), message: nil, preferredStyle: .alert)
-        alert.addTextField { (field: UITextField) in
-            field.placeholder = NSLocalizedString("Text", bundle: .core, comment: "")
-            field.text = self.linkText
-        }
-        alert.addTextField { (field: UITextField) in
-            field.placeholder = NSLocalizedString("URL", bundle: .core, comment: "")
-            field.text = self.linkHref
-            field.keyboardType = .URL
-        }
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel))
-        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", bundle: .core, comment: ""), style: .default) { _ in
-            let text = alert.textFields?[0].text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-            var href = alert.textFields?[1].text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-            if !href.isEmpty, URLComponents.parse(href).scheme == nil {
-                href = "https://\(href)"
-            }
-            self.controller?.updateLink(href: href, text: text)
-        })
-        controller?.present(alert, animated: true)
-
+        controller?.editLink(href: linkHref, text: linkText)
     }
 
-    @IBAction func imageAction(_ sender: UIButton) {
-        // TODO
-        // controller?.updateImage(src: src, alt: alt)
+    @IBAction func cameraAction(_ sender: UIButton) {
+        controller?.insertFrom(.camera)
+    }
+
+    @IBAction func libraryAction(_ sender: UIButton) {
+        controller?.insertFrom(.photoLibrary)
     }
 }

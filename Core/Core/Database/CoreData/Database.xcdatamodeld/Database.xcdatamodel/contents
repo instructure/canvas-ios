@@ -93,6 +93,7 @@
     </entity>
     <entity name="File" representedClassName="Core.File" syncable="YES">
         <attribute name="assignmentID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="batchID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="bytesSent" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="contentType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="courseID" optional="YES" attributeType="String" syncable="YES"/>
@@ -328,7 +329,7 @@
         <element name="DiscussionEntry" positionX="-513.66796875" positionY="535.73828125" width="128" height="150"/>
         <element name="DiscussionTopic" positionX="-540" positionY="-27" width="128" height="253"/>
         <element name="Enrollment" positionX="-578.41796875" positionY="2.78125" width="128" height="315"/>
-        <element name="File" positionX="-162.1640625" positionY="69.79296875" width="128" height="508"/>
+        <element name="File" positionX="-162.1640625" positionY="69.79296875" width="128" height="525"/>
         <element name="Group" positionX="-366.25" positionY="-174.85546875" width="128" height="135"/>
         <element name="LogEvent" positionX="-743.51953125" positionY="192.92578125" width="128" height="90"/>
         <element name="MediaComment" positionX="-369" positionY="-18" width="128" height="135"/>
