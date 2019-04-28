@@ -277,6 +277,9 @@
 /* No comment provided by engineer. */
 "Audio input hardware not available" = "音频输入的硬件不可用";
 
+/* No comment provided by engineer. */
+"Augment Reality" = "增强现实";
+
 /* Title for an error popup */
 "Authentication error" = "验证错误";
 

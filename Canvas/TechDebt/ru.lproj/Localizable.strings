@@ -277,6 +277,9 @@
 /* No comment provided by engineer. */
 "Audio input hardware not available" = "Аппаратное обеспечение для входного аудио сигнала  не доступно";
 
+/* No comment provided by engineer. */
+"Augment Reality" = "Дополнить реальность";
+
 /* Title for an error popup */
 "Authentication error" = "Ошибка аутентификации";
 

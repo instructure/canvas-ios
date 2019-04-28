@@ -26,6 +26,9 @@
 "Could not save the comment" = "コメントを保存できませんでした";
 
 /* No comment provided by engineer. */
+"Course Syllabus" = "コースシラバス";
+
+/* No comment provided by engineer. */
 "Courses" = "コース";
 
 /* No comment provided by engineer. */
@@ -33,9 +36,6 @@
 
 /* No comment provided by engineer. */
 "Description" = "説明";
-
-/* No comment provided by engineer. */
-"Done" = "完了";
 
 /* No comment provided by engineer. */
 "Drawer closed" = "引き出しが閉まっている";
@@ -56,10 +56,7 @@
 "Edit Course" = "コースを編集";
 
 /* No comment provided by engineer. */
-"Failed to locate camera result" = "カメラの結果を見つけるのに失敗しました";
-
-/* No comment provided by engineer. */
-"Failed upload" = "アップロード中に失敗";
+"Enter submission" = "提出を入力する";
 
 /* No comment provided by engineer. */
 "File Types" = "ファイル タイプ";
@@ -83,7 +80,7 @@
 "Invalid url" = "無効なURL";
 
 /* No comment provided by engineer. */
-"No Content" = "コンテンツなし";
+"No Due Date" = "期日なし";
 
 /* No comment provided by engineer. */
 "No Submission" = "提出なし";
@@ -110,9 +107,6 @@
 "Past Enrollments" = "過去の登録";
 
 /* No comment provided by engineer. */
-"Permission Needed" = "許可が必要";
-
-/* No comment provided by engineer. */
 "Quizzes" = "クイズ";
 
 /* No comment provided by engineer. */
@@ -125,9 +119,6 @@
 "Resubmit Assignment" = "課題を再提出する";
 
 /* No comment provided by engineer. */
-"Retry" = "再試行";
-
-/* No comment provided by engineer. */
 "Rubric" = "ルービック";
 
 /* No comment provided by engineer. */
@@ -138,9 +129,6 @@
 
 /* No comment provided by engineer. */
 "Send comment" = "コメントを送信する";
-
-/* No comment provided by engineer. */
-"Settings" = "設定";
 
 /* No comment provided by engineer. */
 "Something went wrong while loading the quizzes." = "クイズをロード中に問題が発生しました。.";
@@ -170,10 +158,16 @@
 "Successfully submitted!" = "正常に提出しました！";
 
 /* No comment provided by engineer. */
+"Syllabus" = "シラバス";
+
+/* No comment provided by engineer. */
 "Tap to view details" = "タップして詳細を表示する";
 
 /* No comment provided by engineer. */
 "Tap to view progress" = "タップして進捗を表示する";
+
+/* No comment provided by engineer. */
+"Text Entry" = "テキストエントリ";
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "新しい言語設定を使用するには、アプリを再起動する必要があります。アプリを再起動してください。";
@@ -188,12 +182,6 @@
 "Updated Language Settings" = "更新された言語設定";
 
 /* No comment provided by engineer. */
-"Uploading %@ of %@" = "～の %1$@ をアップロード中%2$@";
-
-/* No comment provided by engineer. */
-"Uploading..." = "更新中...";
-
-/* No comment provided by engineer. */
 "View file %@ %@" = "ファイルを表示%1$@%2$@";
 
 /* No comment provided by engineer. */
@@ -201,9 +189,6 @@
 
 /* No comment provided by engineer. */
 "Website Address" = "ウェブサイトのアドレス";
-
-/* No comment provided by engineer. */
-"You must enable Microphone permissions in Settings to record audio." = "音声を録音するには、「設定」でマイクのアクセス許可を有効にしなければなりません。";
 
 /* No comment provided by engineer. */
 "Your submission is now waiting to be graded" = "あなたの提出物は採点待ちです";

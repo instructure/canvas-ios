@@ -26,6 +26,15 @@
 "Authentication failed. Most likely the user denied the request for access." = "Authentifizierung fehlgeschlagen. Wahrscheinlich hat der Benutzer den Zugriff verweigert.";
 
 /* No comment provided by engineer. */
+"black" = "schwarz";
+
+/* No comment provided by engineer. */
+"blue" = "blau";
+
+/* No comment provided by engineer. */
+"Bold" = "Fett";
+
+/* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "Finden Sie Ihre Schule nicht? Geben Sie den vollständigen URL der Schule ein.";
 
 /* No comment provided by engineer. */
@@ -110,19 +119,37 @@
 "g_pts" = "g_pts";
 
 /* No comment provided by engineer. */
+"green" = "grün";
+
+/* No comment provided by engineer. */
+"grey" = "grau";
+
+/* No comment provided by engineer. */
 "Help" = "Hilfe";
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "Wie finde ich meine Schule?";
 
 /* No comment provided by engineer. */
+"Image" = "Bild";
+
+/* No comment provided by engineer. */
 "Incomplete" = "Unvollständig";
+
+/* No comment provided by engineer. */
+"Italic" = "Kursiv";
 
 /* No comment provided by engineer. */
 "late_penalty_g_pts" = "late_penalty_g_pts";
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Externes Tool starten";
+
+/* No comment provided by engineer. */
+"Link" = "Link";
+
+/* No comment provided by engineer. */
+"Link to Website URL" = "Link zu Website-URL";
 
 /* end of and list pattern */
 "list_and_end" = "%1$@, und %2$@";
@@ -191,6 +218,12 @@
 "One of our other apps might be a better fit. Tap one to visit the App Store." = "Eine unserer anderen Apps passt möglicherweise besser. Tippen Sie auf eine, um den App-Store zu besuchen.";
 
 /* No comment provided by engineer. */
+"orange" = "orange";
+
+/* No comment provided by engineer. */
+"Ordered List" = "Geordnete Liste";
+
+/* No comment provided by engineer. */
 "out_of_g_pts" = "out_of_g_pts";
 
 /* No comment provided by engineer. */
@@ -203,7 +236,16 @@
 "plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
+"purple" = "lila";
+
+/* No comment provided by engineer. */
 "Quiz" = "Quiz";
+
+/* No comment provided by engineer. */
+"red" = "rot";
+
+/* No comment provided by engineer. */
+"Redo" = "Wiederholen";
 
 /* No comment provided by engineer. */
 "Remove" = "Entfernen";
@@ -236,6 +278,9 @@
 "Send comment" = "Kommentar senden";
 
 /* No comment provided by engineer. */
+"Set text color" = "Textfarbe festlegen";
+
+/* No comment provided by engineer. */
 "Site Admin Login" = "Website-Anmeldung als Admin";
 
 /* No comment provided by engineer. */
@@ -266,6 +311,12 @@
 "Terms of Use" = "Nutzungsbedingungen";
 
 /* No comment provided by engineer. */
+"Text" = "Text";
+
+/* No comment provided by engineer. */
+"Text Color" = "Textfarbe";
+
+/* No comment provided by engineer. */
 "Text Entry" = "Texteintrag";
 
 /* No comment provided by engineer. */
@@ -290,6 +341,15 @@
 "Total time" = "Gesamtdauer";
 
 /* No comment provided by engineer. */
+"Undo" = "Rückgängig machen";
+
+/* No comment provided by engineer. */
+"Unordered List" = "Unsortierte Liste";
+
+/* No comment provided by engineer. */
+"URL" = "URL";
+
+/* No comment provided by engineer. */
 "User ID" = "Benutzer-ID";
 
 /* No comment provided by engineer. */
@@ -303,6 +363,12 @@
 
 /* No comment provided by engineer. */
 "What’s your school’s name?" = "Wie heißt Ihre Schule?";
+
+/* No comment provided by engineer. */
+"white" = "weiß";
+
+/* No comment provided by engineer. */
+"yellow" = "gelb";
 
 /* No comment provided by engineer. */
 "You need at least one active observer enrollment to use Canvas Parent. If you're a student or teacher, try one of our other apps below." = "Sie benötigen mindestens ein Anmeldung als aktiver Beobachter um Canvas Parent zu nutzen. Falls Sie ein Student oder Lehrer sind, probieren Sie eine unserer anderen Apps unten.";

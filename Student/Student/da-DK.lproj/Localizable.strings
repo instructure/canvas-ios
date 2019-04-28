@@ -26,6 +26,9 @@
 "Could not save the comment" = "Kunne ikke gemme kommentaren";
 
 /* No comment provided by engineer. */
+"Course Syllabus" = "Fagets læseplan";
+
+/* No comment provided by engineer. */
 "Courses" = "Fag";
 
 /* No comment provided by engineer. */
@@ -33,9 +36,6 @@
 
 /* No comment provided by engineer. */
 "Description" = "Beskrivelse";
-
-/* No comment provided by engineer. */
-"Done" = "Udført";
 
 /* No comment provided by engineer. */
 "Drawer closed" = "Skuffen lukket";
@@ -56,10 +56,7 @@
 "Edit Course" = "Rediger fag";
 
 /* No comment provided by engineer. */
-"Failed to locate camera result" = "Kunne ikke finde kameraresultatet";
-
-/* No comment provided by engineer. */
-"Failed upload" = "Upload mislykkedes";
+"Enter submission" = "Indtast indsendelse";
 
 /* No comment provided by engineer. */
 "File Types" = "Filtyper";
@@ -83,7 +80,7 @@
 "Invalid url" = "Ugyldig URL";
 
 /* No comment provided by engineer. */
-"No Content" = "Intet indhold";
+"No Due Date" = "Ingen afleveringsdato";
 
 /* No comment provided by engineer. */
 "No Submission" = "Ingen aflevering";
@@ -110,9 +107,6 @@
 "Past Enrollments" = "Tidligere tilmeldinger";
 
 /* No comment provided by engineer. */
-"Permission Needed" = "Tilladelse nødvendig";
-
-/* No comment provided by engineer. */
 "Quizzes" = "Test";
 
 /* No comment provided by engineer. */
@@ -125,9 +119,6 @@
 "Resubmit Assignment" = "Gen-indsend opgave";
 
 /* No comment provided by engineer. */
-"Retry" = "Prøv igen";
-
-/* No comment provided by engineer. */
 "Rubric" = "Rubrik";
 
 /* No comment provided by engineer. */
@@ -138,9 +129,6 @@
 
 /* No comment provided by engineer. */
 "Send comment" = "Send kommentar";
-
-/* No comment provided by engineer. */
-"Settings" = "Indstillinger";
 
 /* No comment provided by engineer. */
 "Something went wrong while loading the quizzes." = "Noget gik galt under indlæsning af testene.";
@@ -170,10 +158,16 @@
 "Successfully submitted!" = "Blev indsendt!";
 
 /* No comment provided by engineer. */
+"Syllabus" = "Læseplan";
+
+/* No comment provided by engineer. */
 "Tap to view details" = "Tryk for at se detaljer";
 
 /* No comment provided by engineer. */
 "Tap to view progress" = "Tryk for at se fremskridt";
+
+/* No comment provided by engineer. */
+"Text Entry" = "Tekstindlæg";
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Appen skal genstarte for at bruge de nye sprogindstillinger. Genstart appen.";
@@ -188,12 +182,6 @@
 "Updated Language Settings" = "Opdaterede sprogindstillinger";
 
 /* No comment provided by engineer. */
-"Uploading %@ of %@" = "Overfører %1$@ af %2$@";
-
-/* No comment provided by engineer. */
-"Uploading..." = "Uploader ...";
-
-/* No comment provided by engineer. */
 "View file %@ %@" = "Se fil %1$@ %2$@";
 
 /* No comment provided by engineer. */
@@ -201,9 +189,6 @@
 
 /* No comment provided by engineer. */
 "Website Address" = "Webstedets adresse";
-
-/* No comment provided by engineer. */
-"You must enable Microphone permissions in Settings to record audio." = "Du skal aktivere mikrofonrettigheder i Indstillinger for at optage lyd.";
 
 /* No comment provided by engineer. */
 "Your submission is now waiting to be graded" = "Din aflevering venter nu på at blive bedømt";

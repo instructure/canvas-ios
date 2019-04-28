@@ -26,6 +26,9 @@
 "Could not save the comment" = "Kaore i taea te tiaki i te kōrero";
 
 /* No comment provided by engineer. */
+"Course Syllabus" = "mahere akoranga";
+
+/* No comment provided by engineer. */
 "Courses" = "Ngā Akoranga";
 
 /* No comment provided by engineer. */
@@ -33,9 +36,6 @@
 
 /* No comment provided by engineer. */
 "Description" = "Whakāhuatanga";
-
-/* No comment provided by engineer. */
-"Done" = "Kua mahia";
 
 /* No comment provided by engineer. */
 "Drawer closed" = "Kua kati te pouaka";
@@ -56,10 +56,7 @@
 "Edit Course" = "Whakatika Akoranga";
 
 /* No comment provided by engineer. */
-"Failed to locate camera result" = "I hapa te kimi te hua o te kāmera";
-
-/* No comment provided by engineer. */
-"Failed upload" = "I rahua ki te tukuake";
+"Enter submission" = "Whakauru tāpaetangat";
 
 /* No comment provided by engineer. */
 "File Types" = "Momo kōnae";
@@ -83,7 +80,7 @@
 "Invalid url" = "Koremana url";
 
 /* No comment provided by engineer. */
-"No Content" = "Kaore he Ihirangi";
+"No Due Date" = "Kaore he rā tika";
 
 /* No comment provided by engineer. */
 "No Submission" = "Kaore he Tukunga";
@@ -110,9 +107,6 @@
 "Past Enrollments" = "whakaurunga o Muri nei";
 
 /* No comment provided by engineer. */
-"Permission Needed" = "E hiahiatia ana he whakāetanga";
-
-/* No comment provided by engineer. */
 "Quizzes" = "Ngā Quizzes";
 
 /* No comment provided by engineer. */
@@ -125,9 +119,6 @@
 "Resubmit Assignment" = "Tuku Taumahi";
 
 /* No comment provided by engineer. */
-"Retry" = "Ngana anō";
-
-/* No comment provided by engineer. */
 "Rubric" = "Rubric";
 
 /* No comment provided by engineer. */
@@ -138,9 +129,6 @@
 
 /* No comment provided by engineer. */
 "Send comment" = "Tuku kōrero";
-
-/* No comment provided by engineer. */
-"Settings" = "Ngā Tautuhinga";
 
 /* No comment provided by engineer. */
 "Something went wrong while loading the quizzes." = "He hapa i te wā e uta ana ngā quizzes.";
@@ -170,10 +158,16 @@
 "Successfully submitted!" = "Oti pai te tuku!";
 
 /* No comment provided by engineer. */
+"Syllabus" = "Marautanga";
+
+/* No comment provided by engineer. */
 "Tap to view details" = "Pātō ki te tiro i ngā taipitopito";
 
 /* No comment provided by engineer. */
 "Tap to view progress" = "Pātō ki te tiro i te ahu whakamua";
+
+/* No comment provided by engineer. */
+"Text Entry" = "Whakauru kuputuhi";
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Me tīmata te taupānga anō ki te whakamahi i ngā tautuhinga reo hou. Tēna koa tuku anō i te taupānga";
@@ -188,12 +182,6 @@
 "Updated Language Settings" = "Kua whakahoutia ngā Tautuhinga Reo";
 
 /* No comment provided by engineer. */
-"Uploading %@ of %@" = "E tukuake ana %1$@ ō %2$@";
-
-/* No comment provided by engineer. */
-"Uploading..." = "E tukuna ana ......";
-
-/* No comment provided by engineer. */
 "View file %@ %@" = "Titiro ki te kōnae %1$@ %2$@";
 
 /* No comment provided by engineer. */
@@ -201,9 +189,6 @@
 
 /* No comment provided by engineer. */
 "Website Address" = "Paetukutuku wāhitau";
-
-/* No comment provided by engineer. */
-"You must enable Microphone permissions in Settings to record audio." = "Me whakahohe e koe ngā whakāetanga Reooro i roto i ngā Tautuhinga hei tuhi ororongo.";
 
 /* No comment provided by engineer. */
 "Your submission is now waiting to be graded" = "Kei te tatari to tāpaetanga ki te kōeketia.";

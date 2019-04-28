@@ -26,6 +26,9 @@
 "Could not save the comment" = "Kan de opmerking niet opslaan";
 
 /* No comment provided by engineer. */
+"Course Syllabus" = "Cursussyllabus";
+
+/* No comment provided by engineer. */
 "Courses" = "Cursussen";
 
 /* No comment provided by engineer. */
@@ -33,9 +36,6 @@
 
 /* No comment provided by engineer. */
 "Description" = "Beschrijving";
-
-/* No comment provided by engineer. */
-"Done" = "Gereed";
 
 /* No comment provided by engineer. */
 "Drawer closed" = "Lade gesloten";
@@ -56,10 +56,7 @@
 "Edit Course" = "Cursus bewerken";
 
 /* No comment provided by engineer. */
-"Failed to locate camera result" = "Kan cameraresultaat niet vinden";
-
-/* No comment provided by engineer. */
-"Failed upload" = "Upload mislukt";
+"Enter submission" = "Indiening invoeren";
 
 /* No comment provided by engineer. */
 "File Types" = "Bestandstypen";
@@ -83,7 +80,7 @@
 "Invalid url" = "Ongeldige URL";
 
 /* No comment provided by engineer. */
-"No Content" = "Geen inhoud";
+"No Due Date" = "Geen inleverdatum";
 
 /* No comment provided by engineer. */
 "No Submission" = "Geen inlevering";
@@ -110,9 +107,6 @@
 "Past Enrollments" = "Oude inschrijvingen";
 
 /* No comment provided by engineer. */
-"Permission Needed" = "Toestemming vereist";
-
-/* No comment provided by engineer. */
 "Quizzes" = "Toetsen";
 
 /* No comment provided by engineer. */
@@ -125,9 +119,6 @@
 "Resubmit Assignment" = "Opdracht opnieuw inleveren";
 
 /* No comment provided by engineer. */
-"Retry" = "Opnieuw proberen";
-
-/* No comment provided by engineer. */
 "Rubric" = "Rubriek";
 
 /* No comment provided by engineer. */
@@ -138,9 +129,6 @@
 
 /* No comment provided by engineer. */
 "Send comment" = "Opmerking verzenden";
-
-/* No comment provided by engineer. */
-"Settings" = "Instellingen";
 
 /* No comment provided by engineer. */
 "Something went wrong while loading the quizzes." = "Er is iets fout gegaan bij het laden van de toetsen.";
@@ -170,10 +158,16 @@
 "Successfully submitted!" = "Inlevering is gelukt!";
 
 /* No comment provided by engineer. */
+"Syllabus" = "Syllabus";
+
+/* No comment provided by engineer. */
 "Tap to view details" = "Tik om details te bekijken";
 
 /* No comment provided by engineer. */
 "Tap to view progress" = "Tik om voortgang te bekijken";
+
+/* No comment provided by engineer. */
+"Text Entry" = "Tekstinvoer";
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "De app moet opnieuw worden gestart om de nieuwe taalinstellingen te activeren. Start de app opnieuw.";
@@ -188,12 +182,6 @@
 "Updated Language Settings" = "Bijgewerkte taalinstellingen";
 
 /* No comment provided by engineer. */
-"Uploading %@ of %@" = "Uploaden van %1$@ van %2$@";
-
-/* No comment provided by engineer. */
-"Uploading..." = "Bezig met uploaden...";
-
-/* No comment provided by engineer. */
 "View file %@ %@" = "Bestand bekijken %1$@ %2$@";
 
 /* No comment provided by engineer. */
@@ -201,9 +189,6 @@
 
 /* No comment provided by engineer. */
 "Website Address" = "Website-adres";
-
-/* No comment provided by engineer. */
-"You must enable Microphone permissions in Settings to record audio." = "Je moet Microfoon-toestemming inschakelen bij Instellingen om audio op te nemen.";
 
 /* No comment provided by engineer. */
 "Your submission is now waiting to be graded" = "Je inlevering acht op beoordeling";

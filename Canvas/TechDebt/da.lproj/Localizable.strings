@@ -277,6 +277,9 @@
 /* No comment provided by engineer. */
 "Audio input hardware not available" = "Audio input hardware ikke tilgængelig";
 
+/* No comment provided by engineer. */
+"Augment Reality" = "Augment Reality";
+
 /* Title for an error popup */
 "Authentication error" = "Autorisationsfejl";
 

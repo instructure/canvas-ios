@@ -277,6 +277,9 @@
 /* No comment provided by engineer. */
 "Audio input hardware not available" = "音頻輸入硬體不可用";
 
+/* No comment provided by engineer. */
+"Augment Reality" = "擴增實境";
+
 /* Title for an error popup */
 "Authentication error" = "認證錯誤";
 

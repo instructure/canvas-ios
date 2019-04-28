@@ -277,6 +277,9 @@
 /* No comment provided by engineer. */
 "Audio input hardware not available" = "Audio input hardware niet beschikbaar";
 
+/* No comment provided by engineer. */
+"Augment Reality" = "Realiteit verbeteren";
+
 /* Title for an error popup */
 "Authentication error" = "Verificatiefout";
 

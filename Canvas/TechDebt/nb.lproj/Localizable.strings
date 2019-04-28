@@ -277,6 +277,9 @@
 /* No comment provided by engineer. */
 "Audio input hardware not available" = "Maskinvare for lyd-input ikke tilgjengelig";
 
+/* No comment provided by engineer. */
+"Augment Reality" = "Utvide virkelighet";
+
 /* Title for an error popup */
 "Authentication error" = "Autentiseringsfeil";
 

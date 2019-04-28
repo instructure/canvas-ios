@@ -26,6 +26,9 @@
 "Could not save the comment" = "Could not save the comment";
 
 /* No comment provided by engineer. */
+"Course Syllabus" = "Course syllabus";
+
+/* No comment provided by engineer. */
 "Courses" = "Courses";
 
 /* No comment provided by engineer. */
@@ -33,9 +36,6 @@
 
 /* No comment provided by engineer. */
 "Description" = "Description";
-
-/* No comment provided by engineer. */
-"Done" = "Done";
 
 /* No comment provided by engineer. */
 "Drawer closed" = "Drawer closed";
@@ -56,10 +56,7 @@
 "Edit Course" = "Edit course";
 
 /* No comment provided by engineer. */
-"Failed to locate camera result" = "Failed to locate camera result";
-
-/* No comment provided by engineer. */
-"Failed upload" = "Failed upload";
+"Enter submission" = "Enter submission";
 
 /* No comment provided by engineer. */
 "File Types" = "File types";
@@ -83,7 +80,7 @@
 "Invalid url" = "Invalid URL";
 
 /* No comment provided by engineer. */
-"No Content" = "No Content";
+"No Due Date" = "No due date";
 
 /* No comment provided by engineer. */
 "No Submission" = "No submission";
@@ -110,9 +107,6 @@
 "Past Enrollments" = "Past enrolments";
 
 /* No comment provided by engineer. */
-"Permission Needed" = "Permission needed";
-
-/* No comment provided by engineer. */
 "Quizzes" = "Quizzes";
 
 /* No comment provided by engineer. */
@@ -125,9 +119,6 @@
 "Resubmit Assignment" = "Resubmit assignment";
 
 /* No comment provided by engineer. */
-"Retry" = "Retry";
-
-/* No comment provided by engineer. */
 "Rubric" = "Rubric";
 
 /* No comment provided by engineer. */
@@ -138,9 +129,6 @@
 
 /* No comment provided by engineer. */
 "Send comment" = "Send comment";
-
-/* No comment provided by engineer. */
-"Settings" = "Settings";
 
 /* No comment provided by engineer. */
 "Something went wrong while loading the quizzes." = "Something went wrong while loading the quizzes.";
@@ -170,10 +158,16 @@
 "Successfully submitted!" = "Successfully submitted!";
 
 /* No comment provided by engineer. */
+"Syllabus" = "Syllabus";
+
+/* No comment provided by engineer. */
 "Tap to view details" = "Tap to view details";
 
 /* No comment provided by engineer. */
 "Tap to view progress" = "Tap to view progress";
+
+/* No comment provided by engineer. */
+"Text Entry" = "Text entry";
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "The app needs to restart to use the new language settings. Please relaunch the app.";
@@ -188,12 +182,6 @@
 "Updated Language Settings" = "Updated language settings";
 
 /* No comment provided by engineer. */
-"Uploading %@ of %@" = "Uploading %1$@ of %2$@";
-
-/* No comment provided by engineer. */
-"Uploading..." = "Uploading...";
-
-/* No comment provided by engineer. */
 "View file %@ %@" = "View file %1$@ %2$@";
 
 /* No comment provided by engineer. */
@@ -201,9 +189,6 @@
 
 /* No comment provided by engineer. */
 "Website Address" = "Website Address";
-
-/* No comment provided by engineer. */
-"You must enable Microphone permissions in Settings to record audio." = "You must enable microphone permissions in settings to record audio.";
 
 /* No comment provided by engineer. */
 "Your submission is now waiting to be graded" = "Your submission is now waiting to be graded";

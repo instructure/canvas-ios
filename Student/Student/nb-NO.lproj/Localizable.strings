@@ -26,6 +26,9 @@
 "Could not save the comment" = "Kan ikke lagre kommentaren";
 
 /* No comment provided by engineer. */
+"Course Syllabus" = "Emneoversikt";
+
+/* No comment provided by engineer. */
 "Courses" = "Emner";
 
 /* No comment provided by engineer. */
@@ -33,9 +36,6 @@
 
 /* No comment provided by engineer. */
 "Description" = "Beskrivelse";
-
-/* No comment provided by engineer. */
-"Done" = "Ferdig";
 
 /* No comment provided by engineer. */
 "Drawer closed" = "Skuff lukket";
@@ -56,10 +56,7 @@
 "Edit Course" = "Redigere emne";
 
 /* No comment provided by engineer. */
-"Failed to locate camera result" = "Mislyktes i å finne kameraresultater";
-
-/* No comment provided by engineer. */
-"Failed upload" = "Opplasting mislyktes";
+"Enter submission" = "Skriv innsending";
 
 /* No comment provided by engineer. */
 "File Types" = "Filtyper";
@@ -83,7 +80,7 @@
 "Invalid url" = "Ugyldig URL";
 
 /* No comment provided by engineer. */
-"No Content" = "Uten innhold";
+"No Due Date" = "Ingen forfallsdato";
 
 /* No comment provided by engineer. */
 "No Submission" = "Ingen innlevering";
@@ -110,9 +107,6 @@
 "Past Enrollments" = "Tidligere påmeldinger";
 
 /* No comment provided by engineer. */
-"Permission Needed" = "Tillatelse kreves";
-
-/* No comment provided by engineer. */
 "Quizzes" = "Tester";
 
 /* No comment provided by engineer. */
@@ -125,9 +119,6 @@
 "Resubmit Assignment" = "Send oppgaven inn på nytt";
 
 /* No comment provided by engineer. */
-"Retry" = "Forsøk igjen";
-
-/* No comment provided by engineer. */
 "Rubric" = "Rubrikk";
 
 /* No comment provided by engineer. */
@@ -138,9 +129,6 @@
 
 /* No comment provided by engineer. */
 "Send comment" = "Send kommentar";
-
-/* No comment provided by engineer. */
-"Settings" = "Innstillinger";
 
 /* No comment provided by engineer. */
 "Something went wrong while loading the quizzes." = "Noe gikk ved lasting av quizene.";
@@ -170,10 +158,16 @@
 "Successfully submitted!" = "Vellykket innsending!";
 
 /* No comment provided by engineer. */
+"Syllabus" = "Emneoversikt";
+
+/* No comment provided by engineer. */
 "Tap to view details" = "Trykk for å vise detaljer";
 
 /* No comment provided by engineer. */
 "Tap to view progress" = "Trykk for å se fremgang";
+
+/* No comment provided by engineer. */
+"Text Entry" = "Innlegging av tekst";
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Appen må åpnes på nytt for å ta i bruk de nye språkinnstillingene. Vennligst gjeninnfør appen.";
@@ -188,12 +182,6 @@
 "Updated Language Settings" = "Oppdatert språkinnstillinger";
 
 /* No comment provided by engineer. */
-"Uploading %@ of %@" = "Laster opp %1$@ av %2$@";
-
-/* No comment provided by engineer. */
-"Uploading..." = "Laster opp...";
-
-/* No comment provided by engineer. */
 "View file %@ %@" = "Vis fil %1$@ %2$@";
 
 /* No comment provided by engineer. */
@@ -201,9 +189,6 @@
 
 /* No comment provided by engineer. */
 "Website Address" = "Adresse til nettside";
-
-/* No comment provided by engineer. */
-"You must enable Microphone permissions in Settings to record audio." = "Du må aktivere mikrofontillatelser i Innstillinger for å gjøre opptak.";
 
 /* No comment provided by engineer. */
 "Your submission is now waiting to be graded" = "Din innlevering venter på karaktersetting";

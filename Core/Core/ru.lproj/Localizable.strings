@@ -26,6 +26,15 @@
 "Authentication failed. Most likely the user denied the request for access." = "Сбой авторизации. Скорее всего, пользователь отклонил запрос на доступ.";
 
 /* No comment provided by engineer. */
+"black" = "черный";
+
+/* No comment provided by engineer. */
+"blue" = "синий";
+
+/* No comment provided by engineer. */
+"Bold" = "Жирный";
+
+/* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "Не можете найти ваше учебное заведение? Попробуйте набрать полный адрес URL учебного заведения.";
 
 /* No comment provided by engineer. */
@@ -110,19 +119,37 @@
 "g_pts" = "g_pts";
 
 /* No comment provided by engineer. */
+"green" = "цвета окиси меди";
+
+/* No comment provided by engineer. */
+"grey" = "серый";
+
+/* No comment provided by engineer. */
 "Help" = "Справка";
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "Как мне найти свою школу?";
 
 /* No comment provided by engineer. */
+"Image" = "Изображение";
+
+/* No comment provided by engineer. */
 "Incomplete" = "Не завершено";
+
+/* No comment provided by engineer. */
+"Italic" = "Курсив";
 
 /* No comment provided by engineer. */
 "late_penalty_g_pts" = "late_penalty_g_pts";
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Запуск внешнего инструмента";
+
+/* No comment provided by engineer. */
+"Link" = "Ссылка";
+
+/* No comment provided by engineer. */
+"Link to Website URL" = "Ссылка на URL веб-сайта";
 
 /* end of and list pattern */
 "list_and_end" = "%1$@, и %2$@";
@@ -191,6 +218,12 @@
 "One of our other apps might be a better fit. Tap one to visit the App Store." = "Одно из наших других приложений может подойти лучше. Прикоснитесь один раз для входа в App Store.";
 
 /* No comment provided by engineer. */
+"orange" = "оранжевого цвета";
+
+/* No comment provided by engineer. */
+"Ordered List" = "Упорядоченный список";
+
+/* No comment provided by engineer. */
 "out_of_g_pts" = "out_of_g_pts";
 
 /* No comment provided by engineer. */
@@ -203,7 +236,16 @@
 "plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
+"purple" = "пурпурный";
+
+/* No comment provided by engineer. */
 "Quiz" = "Тест";
+
+/* No comment provided by engineer. */
+"red" = "красный";
+
+/* No comment provided by engineer. */
+"Redo" = "Повторить";
 
 /* No comment provided by engineer. */
 "Remove" = "Удалить";
@@ -236,6 +278,9 @@
 "Send comment" = "Отправить комментарий";
 
 /* No comment provided by engineer. */
+"Set text color" = "Задать цвет текста";
+
+/* No comment provided by engineer. */
 "Site Admin Login" = "Учетная запись администратора";
 
 /* No comment provided by engineer. */
@@ -266,6 +311,12 @@
 "Terms of Use" = "Условия использования";
 
 /* No comment provided by engineer. */
+"Text" = "Текст";
+
+/* No comment provided by engineer. */
+"Text Color" = "Цвет текста";
+
+/* No comment provided by engineer. */
 "Text Entry" = "Ввод текста";
 
 /* No comment provided by engineer. */
@@ -290,6 +341,15 @@
 "Total time" = "Общее время";
 
 /* No comment provided by engineer. */
+"Undo" = "Отменить";
+
+/* No comment provided by engineer. */
+"Unordered List" = "Неупорядоченный список";
+
+/* No comment provided by engineer. */
+"URL" = "URL";
+
+/* No comment provided by engineer. */
 "User ID" = "Идентификатор пользователя";
 
 /* No comment provided by engineer. */
@@ -303,6 +363,12 @@
 
 /* No comment provided by engineer. */
 "What’s your school’s name?" = "Как называется ваше учебное заведение?";
+
+/* No comment provided by engineer. */
+"white" = "белый";
+
+/* No comment provided by engineer. */
+"yellow" = "желтый";
 
 /* No comment provided by engineer. */
 "You need at least one active observer enrollment to use Canvas Parent. If you're a student or teacher, try one of our other apps below." = "Вам необходимо как минимум одно активное зачисление оценщика для использования Canvas Parent. Если вы студент или преподаватель, попробуйте одно из наших приложений ниже.";

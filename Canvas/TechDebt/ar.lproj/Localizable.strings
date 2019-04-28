@@ -277,6 +277,9 @@
 /* No comment provided by engineer. */
 "Audio input hardware not available" = "جهاز إدخال الصوت غير متوفر";
 
+/* No comment provided by engineer. */
+"Augment Reality" = "الواقع المعزز";
+
 /* Title for an error popup */
 "Authentication error" = "خطأ في المصادقة";
 

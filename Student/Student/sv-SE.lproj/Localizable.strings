@@ -26,6 +26,9 @@
 "Could not save the comment" = "Det gick inte att spara kommentaren";
 
 /* No comment provided by engineer. */
+"Course Syllabus" = "Kursöversikt för kursen";
+
+/* No comment provided by engineer. */
 "Courses" = "Kurser";
 
 /* No comment provided by engineer. */
@@ -33,9 +36,6 @@
 
 /* No comment provided by engineer. */
 "Description" = "Beskrivning";
-
-/* No comment provided by engineer. */
-"Done" = "Färdig";
 
 /* No comment provided by engineer. */
 "Drawer closed" = "Låda stängd";
@@ -56,10 +56,7 @@
 "Edit Course" = "Redigera kurs";
 
 /* No comment provided by engineer. */
-"Failed to locate camera result" = "Det gick inte att hitta kameraresultat";
-
-/* No comment provided by engineer. */
-"Failed upload" = "Det gick inte att ladda upp";
+"Enter submission" = "Fyll i inlämning";
 
 /* No comment provided by engineer. */
 "File Types" = "Filtyper";
@@ -83,7 +80,7 @@
 "Invalid url" = "Ogiltig URL";
 
 /* No comment provided by engineer. */
-"No Content" = "Inget innehåll";
+"No Due Date" = "Inget inlämningsdatum";
 
 /* No comment provided by engineer. */
 "No Submission" = "Ingen inlämning";
@@ -110,9 +107,6 @@
 "Past Enrollments" = "Tidigare registreringar";
 
 /* No comment provided by engineer. */
-"Permission Needed" = "Tillstånd behövs";
-
-/* No comment provided by engineer. */
 "Quizzes" = "Frågor/frågesporter";
 
 /* No comment provided by engineer. */
@@ -125,9 +119,6 @@
 "Resubmit Assignment" = "Lämna in uppgift igen";
 
 /* No comment provided by engineer. */
-"Retry" = "Försök igen";
-
-/* No comment provided by engineer. */
 "Rubric" = "Matris";
 
 /* No comment provided by engineer. */
@@ -138,9 +129,6 @@
 
 /* No comment provided by engineer. */
 "Send comment" = "Skicka kommentar";
-
-/* No comment provided by engineer. */
-"Settings" = "Inställningar";
 
 /* No comment provided by engineer. */
 "Something went wrong while loading the quizzes." = "Något gick fel vid inläsning av quizzen.";
@@ -170,10 +158,16 @@
 "Successfully submitted!" = "Inlämningen har slutförts!";
 
 /* No comment provided by engineer. */
+"Syllabus" = "Kursöversikt";
+
+/* No comment provided by engineer. */
 "Tap to view details" = "Tryck för att visa detaljerad information";
 
 /* No comment provided by engineer. */
 "Tap to view progress" = "Tryck för att visa framsteg";
+
+/* No comment provided by engineer. */
+"Text Entry" = "Textinlägg";
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Du måste starta om appen för att använda de nya språkinställningarna. Starta om appen.";
@@ -188,12 +182,6 @@
 "Updated Language Settings" = "Uppdaterade språkinställningar";
 
 /* No comment provided by engineer. */
-"Uploading %@ of %@" = "Laddar upp %1$@ av %2$@";
-
-/* No comment provided by engineer. */
-"Uploading..." = "Laddar upp...";
-
-/* No comment provided by engineer. */
 "View file %@ %@" = "Visa fil %1$@ %2$@";
 
 /* No comment provided by engineer. */
@@ -201,9 +189,6 @@
 
 /* No comment provided by engineer. */
 "Website Address" = "Webbplatsadress";
-
-/* No comment provided by engineer. */
-"You must enable Microphone permissions in Settings to record audio." = "Du måste aktivera mikrofonbehörigheter i Inställningar för att spela in ljud.";
 
 /* No comment provided by engineer. */
 "Your submission is now waiting to be graded" = "Din inlämning väntar på att bedömas";

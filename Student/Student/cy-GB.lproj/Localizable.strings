@@ -26,6 +26,9 @@
 "Could not save the comment" = "Doedd dim modd cadw'r sylw";
 
 /* No comment provided by engineer. */
+"Course Syllabus" = "Maes Llafur y Cwrs";
+
+/* No comment provided by engineer. */
 "Courses" = "Cyrsiau";
 
 /* No comment provided by engineer. */
@@ -33,9 +36,6 @@
 
 /* No comment provided by engineer. */
 "Description" = "Disgrifiad";
-
-/* No comment provided by engineer. */
-"Done" = "Wedi gorffen";
 
 /* No comment provided by engineer. */
 "Drawer closed" = "Drôr ar gau";
@@ -56,10 +56,7 @@
 "Edit Course" = "Golygu Cwrs";
 
 /* No comment provided by engineer. */
-"Failed to locate camera result" = "Wedi methu dod o hyd i ganlyniad camera";
-
-/* No comment provided by engineer. */
-"Failed upload" = "Wedi methu llwytho i fyny";
+"Enter submission" = "Rhowch y cyflwyniad";
 
 /* No comment provided by engineer. */
 "File Types" = "Mathau o Ffeiliau";
@@ -83,7 +80,7 @@
 "Invalid url" = "URL annilys";
 
 /* No comment provided by engineer. */
-"No Content" = "Dim Cynnwys";
+"No Due Date" = "Dim Dyddiad Erbyn";
 
 /* No comment provided by engineer. */
 "No Submission" = "Dim Cyflwyniad";
@@ -110,9 +107,6 @@
 "Past Enrollments" = "Ymrestriadau'r Gorffennol";
 
 /* No comment provided by engineer. */
-"Permission Needed" = "Angen Caniatâd";
-
-/* No comment provided by engineer. */
 "Quizzes" = "Cwisiau";
 
 /* No comment provided by engineer. */
@@ -125,9 +119,6 @@
 "Resubmit Assignment" = "Ailgyflwyno Aseiniad";
 
 /* No comment provided by engineer. */
-"Retry" = "Rhoi cynnig arall arni";
-
-/* No comment provided by engineer. */
 "Rubric" = "Cyfarwyddyd sgorio";
 
 /* No comment provided by engineer. */
@@ -138,9 +129,6 @@
 
 /* No comment provided by engineer. */
 "Send comment" = "Anfon sylw";
-
-/* No comment provided by engineer. */
-"Settings" = "Gosodiadau";
 
 /* No comment provided by engineer. */
 "Something went wrong while loading the quizzes." = "Aeth rhywbeth o’i le wrth lwytho’r cwisiau.";
@@ -170,10 +158,16 @@
 "Successfully submitted!" = "Wedi llwyddo i gyflwyno!";
 
 /* No comment provided by engineer. */
+"Syllabus" = "Maes Llafur";
+
+/* No comment provided by engineer. */
 "Tap to view details" = "Tapiwch i weld manylion";
 
 /* No comment provided by engineer. */
 "Tap to view progress" = "Tapiwch i weld cynnydd";
+
+/* No comment provided by engineer. */
+"Text Entry" = "Cofnod Testun";
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Er mwyn defnyddio’r gosodiadau iaith newydd mae angen ailddechrau’r ap. Ail-lansiwch yr ap.";
@@ -188,12 +182,6 @@
 "Updated Language Settings" = "Gosodiadau Iaith wedi’u Diweddaru";
 
 /* No comment provided by engineer. */
-"Uploading %@ of %@" = "Wrthi'n llwytho i fyny %1$@ o %2$@";
-
-/* No comment provided by engineer. */
-"Uploading..." = "Wrthi’n llwytho i fyny...";
-
-/* No comment provided by engineer. */
 "View file %@ %@" = "Gweld ffeil %1$@ %2$@";
 
 /* No comment provided by engineer. */
@@ -201,9 +189,6 @@
 
 /* No comment provided by engineer. */
 "Website Address" = "Cyfeiriad Gwefan";
-
-/* No comment provided by engineer. */
-"You must enable Microphone permissions in Settings to record audio." = "Rhaid i chi alluogi hawliau'r Microffon yn y Gosodiadau er mwyn recordio sain.";
 
 /* No comment provided by engineer. */
 "Your submission is now waiting to be graded" = "Mae eich cyflwyniad bellach yn aros i gael ei raddio";

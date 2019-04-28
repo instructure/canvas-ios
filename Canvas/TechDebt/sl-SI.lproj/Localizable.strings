@@ -277,6 +277,9 @@
 /* No comment provided by engineer. */
 "Audio input hardware not available" = "Strojna oprema za zvočni vhod ni na voljo.";
 
+/* No comment provided by engineer. */
+"Augment Reality" = "Obogatena resničnost";
+
 /* Title for an error popup */
 "Authentication error" = "Napaka overitve";
 
