@@ -26,6 +26,7 @@ extension Rubric: Fixture {
             "longDesc": "Did you even try?",
             "criterionUseRange": false,
             "assignmentID": "2",
+            "ratings": Set( [ RubricRating.make(["id": "1", "points": 10.0]), RubricRating.make(["id": "2", "points": 25.0])] ),
         ]
     }
 }
@@ -35,9 +36,21 @@ extension RubricRating: Fixture {
         return [
             "id": "1",
             "points": 25.0,
-            "desc": "Effort",
-            "longDesc": "Did you even try?",
+            "desc": "Great!",
+            "longDesc": "You did great!!",
             "assignmentID": "2",
+        ]
+    }
+}
+
+extension RubricAssessment: Fixture {
+    public static var template: Template {
+        return [
+            "id": "1",
+            "ratingID": "2",
+            "comments": "random comment",
+            "points": 25.0,
+            "submissionID": "1",
         ]
     }
 }

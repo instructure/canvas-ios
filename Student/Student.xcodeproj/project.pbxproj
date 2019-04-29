@@ -60,6 +60,7 @@
 		3B1B0098219BDA560045E8A1 /* CourseNavigationPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B008B219BDA550045E8A1 /* CourseNavigationPresenterTests.swift */; };
 		3B1B009A219BDA560045E8A1 /* QuizListPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B008F219BDA560045E8A1 /* QuizListPresenterTests.swift */; };
 		3B1B009B219BDA560045E8A1 /* GroupNavigationPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0092219BDA560045E8A1 /* GroupNavigationPresenterTests.swift */; };
+		3B300C7F2277853F00743C59 /* RubricPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B300C7E2277853F00743C59 /* RubricPresenterTests.swift */; };
 		3B3436E9215EF0FB009EF87F /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3436E7215EF0FB009EF87F /* UIImageExtensions.swift */; };
 		3B3436EC215EF2F8009EF87F /* UIImageStudentExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3436EB215EF2F8009EF87F /* UIImageStudentExtensionTests.swift */; };
 		3B3639FF224EBC2900FC5A7E /* SyllabusPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3639FE224EBC2900FC5A7E /* SyllabusPresenterTests.swift */; };
@@ -437,6 +438,7 @@
 		3B1B008B219BDA550045E8A1 /* CourseNavigationPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseNavigationPresenterTests.swift; sourceTree = "<group>"; };
 		3B1B008F219BDA560045E8A1 /* QuizListPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizListPresenterTests.swift; sourceTree = "<group>"; };
 		3B1B0092219BDA560045E8A1 /* GroupNavigationPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupNavigationPresenterTests.swift; sourceTree = "<group>"; };
+		3B300C7E2277853F00743C59 /* RubricPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricPresenterTests.swift; sourceTree = "<group>"; };
 		3B3436E7215EF0FB009EF87F /* UIImageExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtensions.swift; sourceTree = "<group>"; };
 		3B3436EB215EF2F8009EF87F /* UIImageStudentExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageStudentExtensionTests.swift; sourceTree = "<group>"; };
 		3B3639FE224EBC2900FC5A7E /* SyllabusPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusPresenterTests.swift; sourceTree = "<group>"; };
@@ -457,7 +459,6 @@
 		3B635B21225C0DA0001F353D /* SyllabusActionableItemsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusActionableItemsPresenter.swift; sourceTree = "<group>"; };
 		3B635B24225C0E4F001F353D /* SyllabusActionableItemsPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusActionableItemsPresenterTests.swift; sourceTree = "<group>"; };
 		3B6386AE22653347002DEE72 /* DrawerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerTests.swift; sourceTree = "<group>"; };
-		3B692534219F428E0023ED75 /* FilePickerProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePickerProgressView.swift; sourceTree = "<group>"; };
 		3BBCF832224BFF29004B519D /* SyllabusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusViewController.swift; sourceTree = "<group>"; };
 		3BBCF838224C142C004B519D /* SyllabusPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusPresenter.swift; sourceTree = "<group>"; };
 		3BBCF847224C19A2004B519D /* SyllabusViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SyllabusViewController.storyboard; sourceTree = "<group>"; };
@@ -1059,6 +1060,14 @@
 			path = GroupNavigation;
 			sourceTree = "<group>";
 		};
+		3B300C792277851F00743C59 /* SubmissionRubric */ = {
+			isa = PBXGroup;
+			children = (
+				3B300C7E2277853F00743C59 /* RubricPresenterTests.swift */,
+			);
+			path = SubmissionRubric;
+			sourceTree = "<group>";
+		};
 		3B3436EA215EF24F009EF87F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -1242,6 +1251,7 @@
 		7D2DC30E219CB743008FE29A /* Submissions */ = {
 			isa = PBXGroup;
 			children = (
+				3B300C792277851F00743C59 /* SubmissionRubric */,
 				7D5C871B22399E3F00D99651 /* SubmissionComments */,
 				9FFA7551218C8E2D0036FD41 /* SubmissionDetails */,
 				7D34F477225D514A001B97E6 /* TextSubmission */,
@@ -1419,7 +1429,6 @@
 			isa = PBXGroup;
 			children = (
 				3B6386AE22653347002DEE72 /* DrawerTests.swift */,
-				B1BCFF9021BF24C200F58D0F /* FilePickerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1795,7 +1804,6 @@
 				3BE1307421AE0074001D4582 /* UrlSubmissionContentViewController.storyboard in Resources */,
 				7D1758E4215AA06C00F88613 /* Localizable.strings in Resources */,
 				3B19D28022666AD5003A0565 /* RubricViewController.storyboard in Resources */,
-				B1B4C1C62196304E00FA9E0E /* FilePickerViewController.storyboard in Resources */,
 				3B1B0077219BD9F60045E8A1 /* CourseListViewController.storyboard in Resources */,
 				7D1758E8215AA07E00F88613 /* Localizable.stringsdict in Resources */,
 				788152DF212B35F8005BA428 /* DashboardViewController.storyboard in Resources */,
@@ -1994,6 +2002,7 @@
 				3B542D56215AE79E0084DA9D /* TestEnvironment.swift in Sources */,
 				3B3639FF224EBC2900FC5A7E /* SyllabusPresenterTests.swift in Sources */,
 				3B635B25225C0E50001F353D /* SyllabusActionableItemsPresenterTests.swift in Sources */,
+				3B300C7F2277853F00743C59 /* RubricPresenterTests.swift in Sources */,
 				B191D5EC226FF26A00D02948 /* UIViewControllerExtensionsTests.swift in Sources */,
 				3B6065FA2194EEF800D04D53 /* PersistenceTestCase.swift in Sources */,
 				B10D777221C2EA5B00BCE822 /* BlockExpectation.swift in Sources */,
