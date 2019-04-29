@@ -277,6 +277,9 @@
 /* No comment provided by engineer. */
 "Audio input hardware not available" = "pūmārō tāuru ororongo kore e wātea ana";
 
+/* No comment provided by engineer. */
+"Augment Reality" = "Whakanui motuhenga";
+
 /* Title for an error popup */
 "Authentication error" = "hapa motuhēhēnga";
 

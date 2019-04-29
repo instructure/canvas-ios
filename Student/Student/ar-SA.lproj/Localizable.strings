@@ -26,6 +26,9 @@
 "Could not save the comment" = "تعذر حفظ التعليق";
 
 /* No comment provided by engineer. */
+"Course Syllabus" = "مناهج المساق";
+
+/* No comment provided by engineer. */
 "Courses" = "المساقات";
 
 /* No comment provided by engineer. */
@@ -33,9 +36,6 @@
 
 /* No comment provided by engineer. */
 "Description" = "الوصف";
-
-/* No comment provided by engineer. */
-"Done" = "تم";
 
 /* No comment provided by engineer. */
 "Drawer closed" = "الدرج مغلق";
@@ -56,10 +56,7 @@
 "Edit Course" = "تحرير المساق";
 
 /* No comment provided by engineer. */
-"Failed to locate camera result" = "تعذر تحديد موقع نتيجة الكاميرا";
-
-/* No comment provided by engineer. */
-"Failed upload" = "فشل التحميل";
+"Enter submission" = "إدخال الإرسال";
 
 /* No comment provided by engineer. */
 "File Types" = "أنواع الملفات";
@@ -83,7 +80,7 @@
 "Invalid url" = "URL غير صالح";
 
 /* No comment provided by engineer. */
-"No Content" = "لا يوجد محتوى";
+"No Due Date" = "لا يوجد تاريخ استحقاق";
 
 /* No comment provided by engineer. */
 "No Submission" = "لا يوجد إرسال";
@@ -110,9 +107,6 @@
 "Past Enrollments" = "التسجيلات الماضية";
 
 /* No comment provided by engineer. */
-"Permission Needed" = "مطلوب إذن";
-
-/* No comment provided by engineer. */
 "Quizzes" = "اختبارات موجزة";
 
 /* No comment provided by engineer. */
@@ -125,9 +119,6 @@
 "Resubmit Assignment" = "إعادة إرسال المهمة";
 
 /* No comment provided by engineer. */
-"Retry" = "إعادة المحاولة";
-
-/* No comment provided by engineer. */
 "Rubric" = "تقييم روبرك";
 
 /* No comment provided by engineer. */
@@ -138,9 +129,6 @@
 
 /* No comment provided by engineer. */
 "Send comment" = "إرسال تعليق";
-
-/* No comment provided by engineer. */
-"Settings" = "إعدادات";
 
 /* No comment provided by engineer. */
 "Something went wrong while loading the quizzes." = "حدث خطأ ما أثناء تحميل الاختبارات الموجزة.";
@@ -170,10 +158,16 @@
 "Successfully submitted!" = "تم الإرسال بنجاح!";
 
 /* No comment provided by engineer. */
+"Syllabus" = "المناهج";
+
+/* No comment provided by engineer. */
 "Tap to view details" = "اضغط لعرض التفاصيل";
 
 /* No comment provided by engineer. */
 "Tap to view progress" = "اضغط لعرض التقدم";
+
+/* No comment provided by engineer. */
+"Text Entry" = "إدخال النص";
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "يحتاج التطبيق لإعادة التشغيل لاستخدام إعدادات اللغة الجديدة. يرجى إعادة تشغيل التطبيق.";
@@ -188,12 +182,6 @@
 "Updated Language Settings" = "إعدادات اللغة المحدثة";
 
 /* No comment provided by engineer. */
-"Uploading %@ of %@" = "جارٍ تحميل %1$@ من %2$@";
-
-/* No comment provided by engineer. */
-"Uploading..." = "يتم الآن التحميل...";
-
-/* No comment provided by engineer. */
 "View file %@ %@" = "عرض الملف %1$@ %2$@";
 
 /* No comment provided by engineer. */
@@ -201,9 +189,6 @@
 
 /* No comment provided by engineer. */
 "Website Address" = "عنوان موقع ويب";
-
-/* No comment provided by engineer. */
-"You must enable Microphone permissions in Settings to record audio." = "يجب أن تقوم بتمكين أذونات الميكروفون في الإعدادات لتسجيل صوت.";
 
 /* No comment provided by engineer. */
 "Your submission is now waiting to be graded" = "إرسالك قيد الانتظار الآن للتقييم";

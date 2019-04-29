@@ -277,6 +277,9 @@
 /* No comment provided by engineer. */
 "Audio input hardware not available" = "Equipamento de entrada de som não disponível";
 
+/* No comment provided by engineer. */
+"Augment Reality" = "Realidade aumentada";
+
 /* Title for an error popup */
 "Authentication error" = "Erro de Autenticação";
 

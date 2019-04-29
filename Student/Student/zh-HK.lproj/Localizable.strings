@@ -26,6 +26,9 @@
 "Could not save the comment" = "無法儲存評論";
 
 /* No comment provided by engineer. */
+"Course Syllabus" = "課程大綱";
+
+/* No comment provided by engineer. */
 "Courses" = "課程";
 
 /* No comment provided by engineer. */
@@ -33,9 +36,6 @@
 
 /* No comment provided by engineer. */
 "Description" = "說明";
-
-/* No comment provided by engineer. */
-"Done" = "已完成";
 
 /* No comment provided by engineer. */
 "Drawer closed" = "已關閉檔案夾";
@@ -56,10 +56,7 @@
 "Edit Course" = "編輯課程";
 
 /* No comment provided by engineer. */
-"Failed to locate camera result" = "找不到攝影機結果";
-
-/* No comment provided by engineer. */
-"Failed upload" = "上傳失敗";
+"Enter submission" = "輸入提交項目";
 
 /* No comment provided by engineer. */
 "File Types" = "檔案類型";
@@ -83,7 +80,7 @@
 "Invalid url" = "無效的 URL";
 
 /* No comment provided by engineer. */
-"No Content" = "無內容";
+"No Due Date" = "無截止日期";
 
 /* No comment provided by engineer. */
 "No Submission" = "無提交項目";
@@ -110,9 +107,6 @@
 "Past Enrollments" = "過去的註冊";
 
 /* No comment provided by engineer. */
-"Permission Needed" = "需要權限";
-
-/* No comment provided by engineer. */
 "Quizzes" = "測驗";
 
 /* No comment provided by engineer. */
@@ -125,9 +119,6 @@
 "Resubmit Assignment" = "重新提交作業";
 
 /* No comment provided by engineer. */
-"Retry" = "重試";
-
-/* No comment provided by engineer. */
 "Rubric" = "評分標準";
 
 /* No comment provided by engineer. */
@@ -138,9 +129,6 @@
 
 /* No comment provided by engineer. */
 "Send comment" = "發送評論";
-
-/* No comment provided by engineer. */
-"Settings" = "設定";
 
 /* No comment provided by engineer. */
 "Something went wrong while loading the quizzes." = "載入測驗時發生錯誤。";
@@ -170,10 +158,16 @@
 "Successfully submitted!" = "成功提交！";
 
 /* No comment provided by engineer. */
+"Syllabus" = "課程大綱";
+
+/* No comment provided by engineer. */
 "Tap to view details" = "點選檢視詳情";
 
 /* No comment provided by engineer. */
 "Tap to view progress" = "點選檢視進度";
+
+/* No comment provided by engineer. */
+"Text Entry" = "文字條目";
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "須重新開啟應用程式方可使用新語言設定。請重新啟動應用程式。";
@@ -188,12 +182,6 @@
 "Updated Language Settings" = "已更新語言設定";
 
 /* No comment provided by engineer. */
-"Uploading %@ of %@" = "正在上傳第 %1$@ / 個檔案%2$@";
-
-/* No comment provided by engineer. */
-"Uploading..." = "正在上傳...";
-
-/* No comment provided by engineer. */
 "View file %@ %@" = "檢視檔案%1$@%2$@";
 
 /* No comment provided by engineer. */
@@ -201,9 +189,6 @@
 
 /* No comment provided by engineer. */
 "Website Address" = "網站位址";
-
-/* No comment provided by engineer. */
-"You must enable Microphone permissions in Settings to record audio." = "您必須在設定中啟用麥克風的權限才能錄製音訊。";
 
 /* No comment provided by engineer. */
 "Your submission is now waiting to be graded" = "您的提交項目現正等候評分。";

@@ -194,6 +194,9 @@
   "audio_playback_failed_912bcb82": {
     "message": "Ljuduppspelning misslyckades"
   },
+  "augment_reality_4d23e2df": {
+    "message": "Förstärk verkligheten"
+  },
   "availability_8942cde6": {
     "message": "Tillgänglighet"
   },
@@ -683,9 +686,6 @@
   "grade_grade_990eb477": {
     "message": "Bedöm { grade }"
   },
-  "grade_grade_number_percent_cda06b4d": {
-    "message": "Bedöm { grade, number, percent }"
-  },
   "graded_25cd3fcd": {
     "message": "Bedömd"
   },
@@ -1060,6 +1060,12 @@
   },
   "out_of_points_number_42209979": {
     "message": "Av { points, number }"
+  },
+  "override_3de65b2c": {
+    "message": "Åsidosätta"
+  },
+  "override_grade_grade_f33671d4": {
+    "message": "Åsidosätt bedömning { grade }"
   },
   "page_details_847e35e6": {
     "message": "Sidodetaljer"

@@ -26,6 +26,9 @@
 "Could not save the comment" = "Konnte Kommentar nicht speichern";
 
 /* No comment provided by engineer. */
+"Course Syllabus" = "Kursplan";
+
+/* No comment provided by engineer. */
 "Courses" = "Kurse";
 
 /* No comment provided by engineer. */
@@ -33,9 +36,6 @@
 
 /* No comment provided by engineer. */
 "Description" = "Beschreibung";
-
-/* No comment provided by engineer. */
-"Done" = "Fertig";
 
 /* No comment provided by engineer. */
 "Drawer closed" = "Fach geschlossen";
@@ -56,10 +56,7 @@
 "Edit Course" = "Kurs bearbeiten";
 
 /* No comment provided by engineer. */
-"Failed to locate camera result" = "Kameraergebnis konnte nicht gefunden werden";
-
-/* No comment provided by engineer. */
-"Failed upload" = "Upload fehlgeschlagen";
+"Enter submission" = "Einreichung eingeben";
 
 /* No comment provided by engineer. */
 "File Types" = "Dateitypen";
@@ -83,7 +80,7 @@
 "Invalid url" = "Ungültiger URL";
 
 /* No comment provided by engineer. */
-"No Content" = "Keine Inhalte vorhanden";
+"No Due Date" = "Kein Abgabetermin";
 
 /* No comment provided by engineer. */
 "No Submission" = "Keine Abgabe";
@@ -110,9 +107,6 @@
 "Past Enrollments" = "Frühere Einschreibungen";
 
 /* No comment provided by engineer. */
-"Permission Needed" = "Berechtigung erforderlich";
-
-/* No comment provided by engineer. */
 "Quizzes" = "Quizze";
 
 /* No comment provided by engineer. */
@@ -125,9 +119,6 @@
 "Resubmit Assignment" = "Aufgabe neu einreichen";
 
 /* No comment provided by engineer. */
-"Retry" = "Erneut versuchen";
-
-/* No comment provided by engineer. */
 "Rubric" = "Bewertungsschema";
 
 /* No comment provided by engineer. */
@@ -138,9 +129,6 @@
 
 /* No comment provided by engineer. */
 "Send comment" = "Kommentar senden";
-
-/* No comment provided by engineer. */
-"Settings" = "Einstellungen";
 
 /* No comment provided by engineer. */
 "Something went wrong while loading the quizzes." = "Beim Laden der Quizaufgaben ist etwas schiefgegangen.";
@@ -170,10 +158,16 @@
 "Successfully submitted!" = "Wurde abgegeben!";
 
 /* No comment provided by engineer. */
+"Syllabus" = "Kursplan";
+
+/* No comment provided by engineer. */
 "Tap to view details" = "Zum Anzeigen der Details antippen";
 
 /* No comment provided by engineer. */
 "Tap to view progress" = "Zum Anzeigen des Fortschritts antippen";
+
+/* No comment provided by engineer. */
+"Text Entry" = "Texteintrag";
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Die Anwendung muss neu gestartet werden, um die neuen Spracheinstellungen zu übernehmen. Bitte starten Sie die App erneut.";
@@ -188,12 +182,6 @@
 "Updated Language Settings" = "Aktualisierte Spracheinstellungen";
 
 /* No comment provided by engineer. */
-"Uploading %@ of %@" = "%1$@ von [...] wird hochgeladen %2$@";
-
-/* No comment provided by engineer. */
-"Uploading..." = "Wird hochgeladen ...";
-
-/* No comment provided by engineer. */
 "View file %@ %@" = "Datei anzeigen %1$@ %2$@";
 
 /* No comment provided by engineer. */
@@ -201,9 +189,6 @@
 
 /* No comment provided by engineer. */
 "Website Address" = "Website-Adresse";
-
-/* No comment provided by engineer. */
-"You must enable Microphone permissions in Settings to record audio." = "Aktivieren Sie die Berechtigungen für Mikrofon in den Einstellungen Zum Aufzeichnen von Audio.";
 
 /* No comment provided by engineer. */
 "Your submission is now waiting to be graded" = "Ihre Abgabe wartet nun auf die Benotung.";

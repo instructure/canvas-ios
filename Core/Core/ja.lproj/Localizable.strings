@@ -26,6 +26,15 @@
 "Authentication failed. Most likely the user denied the request for access." = "認証に失敗。おそらく、ユーザーがアクセス要求を拒否しました。";
 
 /* No comment provided by engineer. */
+"black" = "ブラック";
+
+/* No comment provided by engineer. */
+"blue" = "ブルー";
+
+/* No comment provided by engineer. */
+"Bold" = "ボールド";
+
+/* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "学校が見つかりませんか？学校の完全なURLを入力してみてください。";
 
 /* No comment provided by engineer. */
@@ -110,19 +119,37 @@
 "g_pts" = "g_pts";
 
 /* No comment provided by engineer. */
+"green" = "グリーン";
+
+/* No comment provided by engineer. */
+"grey" = "グレー";
+
+/* No comment provided by engineer. */
 "Help" = "ヘルプ";
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "私のスクールの見つけ方は？";
 
 /* No comment provided by engineer. */
+"Image" = "画像";
+
+/* No comment provided by engineer. */
 "Incomplete" = "不完全";
+
+/* No comment provided by engineer. */
+"Italic" = "イタリック体";
 
 /* No comment provided by engineer. */
 "late_penalty_g_pts" = "late_penalty_g_pts";
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "外部ツールを起動する";
+
+/* No comment provided by engineer. */
+"Link" = "リンク";
+
+/* No comment provided by engineer. */
+"Link to Website URL" = "ウェブURLへのリンク";
 
 /* end of and list pattern */
 "list_and_end" = "%1$@と%2$@";
@@ -191,6 +218,12 @@
 "One of our other apps might be a better fit. Tap one to visit the App Store." = "私たちの他のアプリのうちの1つのほうが、もと合うかもしれません。1つタップしてApp Storeにアクセスする。";
 
 /* No comment provided by engineer. */
+"orange" = "オレンジ";
+
+/* No comment provided by engineer. */
+"Ordered List" = "順序リスト";
+
+/* No comment provided by engineer. */
 "out_of_g_pts" = "out_of_g_pts";
 
 /* No comment provided by engineer. */
@@ -203,7 +236,16 @@
 "plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
+"purple" = "パープル";
+
+/* No comment provided by engineer. */
 "Quiz" = "クイズ";
+
+/* No comment provided by engineer. */
+"red" = "レッド";
+
+/* No comment provided by engineer. */
+"Redo" = "やり直し";
 
 /* No comment provided by engineer. */
 "Remove" = "削除";
@@ -236,6 +278,9 @@
 "Send comment" = "コメントを送信する";
 
 /* No comment provided by engineer. */
+"Set text color" = "テキストの色を設定する";
+
+/* No comment provided by engineer. */
 "Site Admin Login" = "サイト管理者ログイン";
 
 /* No comment provided by engineer. */
@@ -266,6 +311,12 @@
 "Terms of Use" = "利用規約";
 
 /* No comment provided by engineer. */
+"Text" = "テキスト";
+
+/* No comment provided by engineer. */
+"Text Color" = "テキストカラー";
+
+/* No comment provided by engineer. */
 "Text Entry" = "テキストエントリ";
 
 /* No comment provided by engineer. */
@@ -290,6 +341,15 @@
 "Total time" = "合計時間:";
 
 /* No comment provided by engineer. */
+"Undo" = "アンドゥーする";
+
+/* No comment provided by engineer. */
+"Unordered List" = "順不同リスト";
+
+/* No comment provided by engineer. */
+"URL" = "URL";
+
+/* No comment provided by engineer. */
 "User ID" = "ユーザーID";
 
 /* No comment provided by engineer. */
@@ -303,6 +363,12 @@
 
 /* No comment provided by engineer. */
 "What’s your school’s name?" = "学校の名前は？";
+
+/* No comment provided by engineer. */
+"white" = "ホワイト";
+
+/* No comment provided by engineer. */
+"yellow" = "イエロー";
 
 /* No comment provided by engineer. */
 "You need at least one active observer enrollment to use Canvas Parent. If you're a student or teacher, try one of our other apps below." = "Canvas Parent を使用するには、少なくとも1人のアクティブなオブザーバー登録が必要です。あなたが受講生か講師であれば、次の他のアプリを試してみてください。";

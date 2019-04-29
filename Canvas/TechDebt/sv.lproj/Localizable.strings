@@ -277,6 +277,9 @@
 /* No comment provided by engineer. */
 "Audio input hardware not available" = "Ljudingång på hårdvaran är inte tillgänglig";
 
+/* No comment provided by engineer. */
+"Augment Reality" = "Förstärk verkligheten";
+
 /* Title for an error popup */
 "Authentication error" = "Autentiseringsfel ";
 

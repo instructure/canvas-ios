@@ -277,6 +277,9 @@
 /* No comment provided by engineer. */
 "Audio input hardware not available" = "Does dim caledwedd mewnbynnu sain ar gael";
 
+/* No comment provided by engineer. */
+"Augment Reality" = "Realiti Estynedig";
+
 /* Title for an error popup */
 "Authentication error" = "Gwall dilysu";
 

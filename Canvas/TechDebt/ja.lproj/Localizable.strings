@@ -277,6 +277,9 @@
 /* No comment provided by engineer. */
 "Audio input hardware not available" = "オーディオのインプットハードウェアがありません";
 
+/* No comment provided by engineer. */
+"Augment Reality" = "拡張現実（AR）";
+
 /* Title for an error popup */
 "Authentication error" = "認証エラー";
 

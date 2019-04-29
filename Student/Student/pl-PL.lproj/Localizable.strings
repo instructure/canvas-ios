@@ -26,6 +26,9 @@
 "Could not save the comment" = "Nie można zapisać komentarza";
 
 /* No comment provided by engineer. */
+"Course Syllabus" = "Program kursu";
+
+/* No comment provided by engineer. */
 "Courses" = "Kursy";
 
 /* No comment provided by engineer. */
@@ -33,9 +36,6 @@
 
 /* No comment provided by engineer. */
 "Description" = "Opis";
-
-/* No comment provided by engineer. */
-"Done" = "Gotowe";
 
 /* No comment provided by engineer. */
 "Drawer closed" = "Panel zamknięty";
@@ -56,10 +56,7 @@
 "Edit Course" = "Edytuj kurs";
 
 /* No comment provided by engineer. */
-"Failed to locate camera result" = "Nie udało się odnaleźć wyniku z kamery";
-
-/* No comment provided by engineer. */
-"Failed upload" = "Nie udało się przesłać";
+"Enter submission" = "Wpisz złożenie";
 
 /* No comment provided by engineer. */
 "File Types" = "Typy plików";
@@ -83,7 +80,7 @@
 "Invalid url" = "Nieprawidłowy adres URL";
 
 /* No comment provided by engineer. */
-"No Content" = "Brak zawartości";
+"No Due Date" = "Brak terminu";
 
 /* No comment provided by engineer. */
 "No Submission" = "Brak przesłanych zadań";
@@ -110,9 +107,6 @@
 "Past Enrollments" = "Wcześniejsze zapisy";
 
 /* No comment provided by engineer. */
-"Permission Needed" = "Wymagane uprawnienia";
-
-/* No comment provided by engineer. */
 "Quizzes" = "Testy";
 
 /* No comment provided by engineer. */
@@ -125,9 +119,6 @@
 "Resubmit Assignment" = "Wyślij ponownie zadanie";
 
 /* No comment provided by engineer. */
-"Retry" = "Ponów próbę";
-
-/* No comment provided by engineer. */
 "Rubric" = "Rubryka";
 
 /* No comment provided by engineer. */
@@ -138,9 +129,6 @@
 
 /* No comment provided by engineer. */
 "Send comment" = "Wyślij komentarz";
-
-/* No comment provided by engineer. */
-"Settings" = "Ustawienia";
 
 /* No comment provided by engineer. */
 "Something went wrong while loading the quizzes." = "Wystąpił błąd podczas wczytywania testów.";
@@ -170,10 +158,16 @@
 "Successfully submitted!" = "Przesłano pomyślnie!";
 
 /* No comment provided by engineer. */
+"Syllabus" = "Program";
+
+/* No comment provided by engineer. */
 "Tap to view details" = "Stuknij, aby wyświetlić szczegóły";
 
 /* No comment provided by engineer. */
 "Tap to view progress" = "Stuknij, aby wyświetlić postęp";
+
+/* No comment provided by engineer. */
+"Text Entry" = "Zapis tekstu";
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Aby użyć nowych ustawień językowych, aplikację należy uruchomić ponownie. Uruchom aplikację ponownie.";
@@ -188,12 +182,6 @@
 "Updated Language Settings" = "Zaktualizuj ustawienia językowe";
 
 /* No comment provided by engineer. */
-"Uploading %@ of %@" = "Wysyłanie %1$@ z %2$@";
-
-/* No comment provided by engineer. */
-"Uploading..." = "Przesyłanie...";
-
-/* No comment provided by engineer. */
 "View file %@ %@" = "Wyświetl plik %1$@ %2$@";
 
 /* No comment provided by engineer. */
@@ -201,9 +189,6 @@
 
 /* No comment provided by engineer. */
 "Website Address" = "Adres witryny";
-
-/* No comment provided by engineer. */
-"You must enable Microphone permissions in Settings to record audio." = "Aby nagrać dźwięk, należy włączyć uprawnienia dla mikrofonu w Ustawieniach.";
 
 /* No comment provided by engineer. */
 "Your submission is now waiting to be graded" = "Przesłane materiały oczekują na ocenę";

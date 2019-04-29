@@ -26,6 +26,9 @@
 "Could not save the comment" = "Не удалось сохранить комментарий";
 
 /* No comment provided by engineer. */
+"Course Syllabus" = "Программа курса";
+
+/* No comment provided by engineer. */
 "Courses" = "Курсы";
 
 /* No comment provided by engineer. */
@@ -33,9 +36,6 @@
 
 /* No comment provided by engineer. */
 "Description" = "Описание";
-
-/* No comment provided by engineer. */
-"Done" = "Готово";
 
 /* No comment provided by engineer. */
 "Drawer closed" = "Панель закрыта";
@@ -56,10 +56,7 @@
 "Edit Course" = "Редактировать курс";
 
 /* No comment provided by engineer. */
-"Failed to locate camera result" = "Ошибка получить результат камеры";
-
-/* No comment provided by engineer. */
-"Failed upload" = "Сбой загрузки";
+"Enter submission" = "Ввести отправку";
 
 /* No comment provided by engineer. */
 "File Types" = "Типы файлов";
@@ -83,7 +80,7 @@
 "Invalid url" = "Неверный URL";
 
 /* No comment provided by engineer. */
-"No Content" = "Нет содержимого";
+"No Due Date" = "Срок выполнения не задан";
 
 /* No comment provided by engineer. */
 "No Submission" = "Нет отправки";
@@ -110,9 +107,6 @@
 "Past Enrollments" = "Прошлые регистрации";
 
 /* No comment provided by engineer. */
-"Permission Needed" = "Требуется разрешение";
-
-/* No comment provided by engineer. */
 "Quizzes" = "Тесты";
 
 /* No comment provided by engineer. */
@@ -125,9 +119,6 @@
 "Resubmit Assignment" = "Повторная отправка задания";
 
 /* No comment provided by engineer. */
-"Retry" = "Повторить";
-
-/* No comment provided by engineer. */
 "Rubric" = "Рубрика";
 
 /* No comment provided by engineer. */
@@ -138,9 +129,6 @@
 
 /* No comment provided by engineer. */
 "Send comment" = "Отправить комментарий";
-
-/* No comment provided by engineer. */
-"Settings" = "Настройки";
 
 /* No comment provided by engineer. */
 "Something went wrong while loading the quizzes." = "При загрузке тестов что-то пошло не так.";
@@ -170,10 +158,16 @@
 "Successfully submitted!" = "Успешно отправлено!";
 
 /* No comment provided by engineer. */
+"Syllabus" = "Содержание курса";
+
+/* No comment provided by engineer. */
 "Tap to view details" = "Нажмите для просмотра подробностей";
 
 /* No comment provided by engineer. */
 "Tap to view progress" = "Нажмите для просмотра прогресса";
+
+/* No comment provided by engineer. */
+"Text Entry" = "Ввод текста";
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Необходимо перезапустить приложение для использования новых языковых настроек. Перезапустите приложение.";
@@ -188,12 +182,6 @@
 "Updated Language Settings" = "Обновленные языковые настройки";
 
 /* No comment provided by engineer. */
-"Uploading %@ of %@" = "Отправка %1$@ из %2$@";
-
-/* No comment provided by engineer. */
-"Uploading..." = "Выполняется отправка...";
-
-/* No comment provided by engineer. */
 "View file %@ %@" = "Просмотреть файл %1$@ %2$@";
 
 /* No comment provided by engineer. */
@@ -201,9 +189,6 @@
 
 /* No comment provided by engineer. */
 "Website Address" = "Адрес веб-сайта";
-
-/* No comment provided by engineer. */
-"You must enable Microphone permissions in Settings to record audio." = "Вы должны активировать разрешения для микрофона в настройках для записи аудио.";
 
 /* No comment provided by engineer. */
 "Your submission is now waiting to be graded" = "Предоставляемые вами данные в ожидании оценки";

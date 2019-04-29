@@ -194,6 +194,9 @@
   "audio_playback_failed_912bcb82": {
     "message": "Lydavspilling mislyktes"
   },
+  "augment_reality_4d23e2df": {
+    "message": "Utvide virkelighet"
+  },
   "availability_8942cde6": {
     "message": "Tilgjengelighet"
   },
@@ -683,9 +686,6 @@
   "grade_grade_990eb477": {
     "message": "Vurder { grade }"
   },
-  "grade_grade_number_percent_cda06b4d": {
-    "message": "Vurder { grade, number, percent }"
-  },
   "graded_25cd3fcd": {
     "message": "Vurdert"
   },
@@ -1060,6 +1060,12 @@
   },
   "out_of_points_number_42209979": {
     "message": "Av { points, number }"
+  },
+  "override_3de65b2c": {
+    "message": "Opphev"
+  },
+  "override_grade_grade_f33671d4": {
+    "message": "Overstyrt vurdering { grade }"
   },
   "page_details_847e35e6": {
     "message": "Sidedetaljer"
