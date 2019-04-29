@@ -29,11 +29,8 @@ public class ChatBubbleView: UIView {
             switch side {
             case .left:
                 bgImageView.transform = CGAffineTransform(scaleX: -1, y: 1)
-                textLabel.textAlignment = .left
-
             case .right:
                 bgImageView.transform = CGAffineTransform.identity
-                textLabel.textAlignment = .right
             }
         }
     }
