@@ -144,7 +144,6 @@ extension SyllabusViewController: SyllabuseViewProtocol {
     func loadHtml(_ html: String?) {
         guard let html = html else { return }
         menuHeightConstraint.constant = menuHeight
-        
         syllabus?.loadHTMLString(html, baseURL: nil)
     }
 
