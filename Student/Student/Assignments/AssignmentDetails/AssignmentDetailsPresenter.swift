@@ -17,6 +17,7 @@
 import Foundation
 import Core
 import SafariServices
+import CoreData
 
 struct SubmissionAction: Equatable {
     let title: String
@@ -36,6 +37,10 @@ protocol AssignmentDetailsViewProtocol: ErrorViewController {
 class AssignmentDetailsPresenter {
     enum FileSubmissionState {
         case pending, failed
+    }
+
+    enum FilePickerTag: Int {
+        case onlineUpload, mediaRecording
     }
 
     lazy var assignments = env.subscribe(GetAssignment(courseID: courseID, assignmentID: assignmentID, include: [.submission])) { [weak self] in
@@ -83,6 +88,7 @@ class AssignmentDetailsPresenter {
         .online_text_entry,
         .online_upload,
         .online_url,
+        .media_recording,
     ]
 
     var assignment: Assignment? {
@@ -222,6 +228,8 @@ class AssignmentDetailsPresenter {
                 self?.env.router.route(to: vc, from: viewController, options: [.modal])
                 completionBlock?()
             }
+        case .media_recording:
+            showMediaRecording()
         default:
             break
         }
@@ -232,6 +240,7 @@ class AssignmentDetailsPresenter {
         filePicker.title = NSLocalizedString("Submission", bundle: .student, comment: "")
         filePicker.cancelButtonTitle = NSLocalizedString("Cancel Submission", bundle: .student, comment: "")
         filePicker.delegate = self
+        filePicker.view.tag = FilePickerTag.onlineUpload.rawValue
         let allowedUTIs = assignment?.allowedUTIs ?? []
         if allowedUTIs.contains(where: { $0.isAny || $0.isImage || $0.isVideo }) {
             filePicker.sources = [.camera, .library, .files]
@@ -244,10 +253,8 @@ class AssignmentDetailsPresenter {
         let nav = UINavigationController(rootViewController: filePicker)
         view?.present(nav, animated: true, completion: nil)
     }
-}
 
-extension AssignmentDetailsPresenter: FilePickerControllerDelegate {
-    func cancel(_ controller: FilePickerViewController) {
+    private func cancelOnlineUpload() {
         view?.dismiss(animated: true) {
             let context = self.env.database.viewContext
             context.performAndWait {
@@ -264,7 +271,7 @@ extension AssignmentDetailsPresenter: FilePickerControllerDelegate {
         }
     }
 
-    func submit(_ controller: FilePickerViewController) {
+    private func submitOnlineUpload() {
         view?.dismiss(animated: true) {
             for file in self.files {
                 self.fileUploader.upload(file, context: .submission(courseID: self.courseID, assignmentID: self.assignmentID)) { [weak self] error in
@@ -273,6 +280,86 @@ extension AssignmentDetailsPresenter: FilePickerControllerDelegate {
                     }
                 }
             }
+        }
+    }
+
+    private func showMediaRecording() {
+        let filePicker = FilePickerViewController.create()
+        filePicker.title = NSLocalizedString("Submission", bundle: .student, comment: "")
+        filePicker.cancelButtonTitle = NSLocalizedString("Cancel Submission", bundle: .student, comment: "")
+        filePicker.delegate = self
+        filePicker.view.tag = FilePickerTag.mediaRecording.rawValue
+        filePicker.sources = [.audio, .video]
+        self.filePicker = filePicker
+        let nav = UINavigationController(rootViewController: filePicker)
+        view?.present(nav, animated: true, completion: nil)
+    }
+
+    private func cancelMediaRecording() {
+    }
+
+    private func submitMediaRecording() {
+        guard
+            let file = files.first,
+            let mimeClass = file.mimeClass,
+            let type = MediaCommentType(rawValue: mimeClass),
+            let url = file.localFileURL,
+            let userID = userID
+        else {
+            return
+        }
+        UploadMedia(type: type, url: url).fetch(environment: env) { [weak self] mediaID, error in
+            guard let self = self else { return }
+            if let error = error {
+                self.updateFile(file, error: error)
+                return
+            }
+            let context = ContextModel(.course, id: self.courseID)
+            let createSubmission = CreateSubmission(
+                context: context,
+                assignmentID: self.assignmentID,
+                userID: userID,
+                submissionType: .media_recording,
+                mediaCommentID: mediaID,
+                mediaCommentType: type
+            )
+            createSubmission.fetch(environment: self.env) { [weak self] _, _, error in
+                if let error = error {
+                    self?.updateFile(file, error: error)
+                    return
+                }
+                self?.view?.dismiss(animated: true, completion: nil)
+            }
+        }
+    }
+
+    private func updateFile(_ file: File, error: Error? = nil) {
+        let context = env.database.viewContext
+        context.perform {
+            file.uploadError = error?.localizedDescription
+            try? context.save()
+        }
+    }
+}
+
+extension AssignmentDetailsPresenter: FilePickerControllerDelegate {
+    func cancel(_ controller: FilePickerViewController) {
+        switch FilePickerTag(rawValue: controller.view.tag) {
+        case .onlineUpload?:
+            cancelOnlineUpload()
+        case .mediaRecording?:
+            cancelMediaRecording()
+        case nil: break
+        }
+    }
+
+    func submit(_ controller: FilePickerViewController) {
+        switch FilePickerTag(rawValue: controller.view.tag) {
+        case .onlineUpload?:
+            submitOnlineUpload()
+        case .mediaRecording?:
+            submitMediaRecording()
+        case nil: break
         }
     }
 

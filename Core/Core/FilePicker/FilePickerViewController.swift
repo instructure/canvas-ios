@@ -276,6 +276,10 @@ extension FilePickerViewController: UIImagePickerControllerDelegate, UINavigatio
 }
 
 extension FilePickerViewController: UITableViewDelegate, UITableViewDataSource {
+    public func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return files.count
     }

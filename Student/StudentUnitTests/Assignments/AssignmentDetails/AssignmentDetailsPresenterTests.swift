@@ -220,6 +220,15 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         XCTAssertNotNil(filePicker)
     }
 
+    func testSubmitMediaRecording() {
+        let assignment = Assignment.make(["id": "1"])
+        assignment.submissionTypes = [.media_recording]
+        presenter.submit(.media_recording, from: UIViewController())
+        let nav = presentedViewController as? UINavigationController
+        let filePicker = nav?.topViewController as? FilePickerViewController
+        XCTAssertNotNil(filePicker)
+    }
+
     func testSubmitOnlineURL() {
         Assignment.make(["id": "1"])
 
