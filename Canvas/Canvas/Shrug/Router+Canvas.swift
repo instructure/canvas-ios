@@ -85,9 +85,10 @@ extension TechDebt.Router {
         }
 
         addContextRoute([.course], subPath: "assignments/:assignmentID") { contextID, params in
-            if FeatureFlags.featureFlagEnabled(.newStudentAssignmentView), let url = params["url"] as? URL,
-                !((params["query"] as? [String: Any])?["module_item_id"] is String),
-                (params["assignmentID"] as? String) != "syllabus" {
+            if (params["assignmentID"] as? String) == "syllabus", let url = params["url"] as? URL {
+                return StudentReborn.router.match(.parse(url))
+            } else if FeatureFlags.featureFlagEnabled(.newStudentAssignmentView), let url = params["url"] as? URL,
+                !((params["query"] as? [String: Any])?["module_item_id"] is String) {
                 return StudentReborn.router.match(.parse(url))
             }
 
