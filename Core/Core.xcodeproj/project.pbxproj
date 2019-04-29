@@ -14,7 +14,7 @@
 		2C96485E211E3723002C3255 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C96485D211E3723002C3255 /* AppEnvironment.swift */; };
 		3B032CBA2150258F00B570F7 /* PresenterUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B032CB92150258F00B570F7 /* PresenterUseCase.swift */; };
 		3B0CEB772150408A00D07CFA /* TestsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B0CEB762150408A00D07CFA /* TestsFoundation.framework */; };
-		3B19D2862266B136003A0565 /* RubricTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B19D2852266B136003A0565 /* RubricTests.swift */; };
+		3B300C852277981100743C59 /* RubricTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B300C842277981100743C59 /* RubricTests.swift */; };
 		3B339B6A226FA9AF00D3283D /* ChatBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B339B69226FA9AF00D3283D /* ChatBubbleView.swift */; };
 		3B339B6C226FAA1000D3283D /* ChatBubbleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B339B6B226FAA1000D3283D /* ChatBubbleView.xib */; };
 		3B34674A213051FD00F9BC2E /* LoginWebPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B346748213051FD00F9BC2E /* LoginWebPresenter.swift */; };
@@ -523,7 +523,7 @@
 		2C96485D211E3723002C3255 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
 		3B032CB92150258F00B570F7 /* PresenterUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterUseCase.swift; sourceTree = "<group>"; };
 		3B0CEB762150408A00D07CFA /* TestsFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TestsFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3B19D2852266B136003A0565 /* RubricTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricTests.swift; sourceTree = "<group>"; };
+		3B300C842277981100743C59 /* RubricTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricTests.swift; sourceTree = "<group>"; };
 		3B339B69226FA9AF00D3283D /* ChatBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBubbleView.swift; sourceTree = "<group>"; };
 		3B339B6B226FAA1000D3283D /* ChatBubbleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatBubbleView.xib; sourceTree = "<group>"; };
 		3B346748213051FD00F9BC2E /* LoginWebPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginWebPresenter.swift; sourceTree = "<group>"; };
@@ -1425,7 +1425,6 @@
 				7DCF1EBD216BC969003AF358 /* SubmissionWorkflowStateTests.swift */,
 				7DCF1EBF216BC97F003AF358 /* TabVisibilityTests.swift */,
 				B1B6F077219A7D8B00C1575D /* UTITests.swift */,
-				3B19D2852266B136003A0565 /* RubricTests.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1573,6 +1572,7 @@
 				B19792FE2176A0F00000369C /* TabTests.swift */,
 				3BD364AA225D3C02006CEBD8 /* DiscussionTopicTests.swift */,
 				3BD364AE225E36FC006CEBD8 /* CalendarEventItemTests.swift */,
+				3B300C842277981100743C59 /* RubricTests.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2698,7 +2698,6 @@
 				7D4C3D59222D9E41001B1198 /* LTIToolsTests.swift in Sources */,
 				3BE2C76F219335FA004B8E5E /* ColoredNavViewProtocol.swift in Sources */,
 				7DFB2CF921C978D40077DEEE /* GetCustomColorsTests.swift in Sources */,
-				3B19D2862266B136003A0565 /* RubricTests.swift in Sources */,
 				9F47F53A21820494002D8BD8 /* DownloadFileTest.swift in Sources */,
 				7D63F78E215D7B8100151E49 /* DynamicButtonTests.swift in Sources */,
 				7D37BE8821C824DA0063FAAC /* UIViewControllerExtensionsTests.swift in Sources */,
@@ -2796,6 +2795,7 @@
 				B17F23AD21378E3800771F86 /* PaginatedUseCaseTest.swift in Sources */,
 				7DAFB46521A4693B00311275 /* LocalizationManagerTests.swift in Sources */,
 				B14FE5D32134E9ED00328CD7 /* DatabaseOperationTest.swift in Sources */,
+				3B300C852277981100743C59 /* RubricTests.swift in Sources */,
 				B18126942150564900E71F63 /* GetContextTests.swift in Sources */,
 				B1A6BC88218A94FA000515E3 /* APIAssignmentOverrideRequestableTests.swift in Sources */,
 				7D8FDFB82187B92C0067557E /* UINavigationBarExtensionsTests.swift in Sources */,

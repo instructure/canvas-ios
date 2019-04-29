@@ -158,7 +158,6 @@ extension Submission: WriteableModel {
         }
 
         if let rubricAssessmentMap = item.rubric_assessment {
-            print(rubricAssessmentMap as Any)
             let allPredicate = NSPredicate(format: "%K == %@", #keyPath(RubricAssessment.submissionID), item.id.value)
             let all: [RubricAssessment] = client.fetch(allPredicate)
             try client.delete(all)

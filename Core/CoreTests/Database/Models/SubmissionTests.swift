@@ -131,16 +131,22 @@ class SubmissionTests: CoreTestCase {
         XCTAssertNil(submission.subtitle)
     }
 
-    func testRubricAssessment() {
-        let s = APISubmission.make([
-            "rubric_assessment": [
-                "_6624": [
-                    "comments": nil,
-                    "points": 5.0,
-                ],
-            ],
-            ]
-        )
-        XCTAssertNotNil(s.rubric_assessment?["_6624"])
+    func testRubricAssessments() {
+        let assessA = RubricAssessment.make(["id": "A"])
+        let assessB = RubricAssessment.make(["id": "B"])
+        let submisison = Submission.make(["rubricAssesmentRaw": Set( [ assessA, assessB ] )])
+        let map = submisison.rubricAssessments ?? [:]
+        XCTAssertEqual(map[assessA.id], assessA)
+        XCTAssertEqual(map[assessB.id], assessB)
+    }
+
+    func testSaveRubricAssessmentsOnSubmission() {
+        let assessmentItem = APIRubricAssessment.fixture()
+        let item = APISubmission.make([ "rubric_assessment": ["1": assessmentItem] ])
+        _ = try? Submission.save(item, in: databaseClient)
+
+        let assessments: [RubricAssessment] = databaseClient.fetch()
+        let submissions: [Submission] = databaseClient.fetch()
+        XCTAssertEqual(submissions.first?.rubricAssessments?["1"], assessments.first)
     }
 }
