@@ -22,4 +22,5 @@ public struct APIRubricAssessment: Codable, Equatable {
     let submissionID: String?
     let points: Double?
     let comments: String?
+    let rating_id: String?
 }

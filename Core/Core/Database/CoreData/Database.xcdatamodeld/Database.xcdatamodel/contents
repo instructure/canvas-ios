@@ -266,6 +266,7 @@
         <attribute name="comments" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" attributeType="String" defaultValueString="0" syncable="YES"/>
         <attribute name="points" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="ratingID" attributeType="String" syncable="YES"/>
         <attribute name="submissionID" attributeType="String" defaultValueString="0" syncable="YES"/>
         <relationship name="submission" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Submission" inverseName="rubricAssesmentRaw" inverseEntity="Submission" syncable="YES"/>
     </entity>
@@ -347,7 +348,7 @@
         <element name="Permissions" positionX="-369" positionY="-18" width="128" height="1080"/>
         <element name="Quiz" positionX="-26.7890625" positionY="226.0703125" width="128" height="195"/>
         <element name="Rubric" positionX="-540" positionY="-27" width="128" height="180"/>
-        <element name="RubricAssessment" positionX="-540" positionY="-27" width="128" height="120"/>
+        <element name="RubricAssessment" positionX="-540" positionY="-27" width="128" height="135"/>
         <element name="RubricRating" positionX="-531" positionY="-18" width="128" height="150"/>
         <element name="Submission" positionX="-312.484375" positionY="260.38671875" width="128" height="375"/>
         <element name="SubmissionComment" positionX="-369" positionY="-18" width="128" height="225"/>

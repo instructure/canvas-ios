@@ -99,6 +99,7 @@ public final class RubricAssessment: NSManagedObject {
     @NSManaged public var submissionID: String
     @NSManaged public var comments: String?
     @NSManaged public var points: Double
+    @NSManaged public var ratingID: String
 
     @discardableResult
     public static func save(_ item: APIRubricAssessment, in context: PersistenceClient, id: String, submissionID: String) throws -> RubricAssessment {
@@ -109,6 +110,7 @@ public final class RubricAssessment: NSManagedObject {
         model.submissionID = submissionID
         model.comments = item.comments
         model.points = item.points ?? 0
+        model.ratingID = item.rating_id ?? "0"
         return model
     }
 }
