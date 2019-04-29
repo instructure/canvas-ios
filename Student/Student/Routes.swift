@@ -22,13 +22,6 @@ public let router = Router(routes: [
         return LoginNavigationController.create(loginDelegate: delegate)
     },
 
-    RouteHandler(.assignmentSubmissionRubric(courseID: ":courseID", assignmentID: ":assignmentID"), name: "assignment_submission_rubric") { _, params in
-        guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else {
-            return nil
-        }
-        return RubricViewController.create(courseID: courseID, assignmentID: assignmentID)
-    },
-
     RouteHandler(.courses, name: "courses") { _, _ in
         return CourseListViewController.create()
     },
