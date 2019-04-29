@@ -50,8 +50,8 @@ extension UIImage {
         let directory = url ?? URL.temporaryDirectory.appendingPathComponent("images", isDirectory: true)
         let name = name ?? String(Clock.now.timeIntervalSince1970)
         try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true, attributes: nil)
-        let url = directory.appendingPathComponent(name, isDirectory: false).appendingPathExtension("png")
-        guard let data = pngData() else {
+        let url = directory.appendingPathComponent(name, isDirectory: false).appendingPathExtension("jpg")
+        guard let data = jpegData(compressionQuality: 0.8) else {
             throw NSError.instructureError("Failed to save image")
         }
         if FileManager.default.fileExists(atPath: url.path) {

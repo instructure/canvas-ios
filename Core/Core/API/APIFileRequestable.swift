@@ -36,11 +36,13 @@ public struct PostFileUploadTargetRequest: APIRequestable {
         let name: String
         let on_duplicate: OnDuplicate
         let parent_folder_id: String?
+        let size: Int
 
-        public init(name: String, on_duplicate: OnDuplicate, parent_folder_id: String?) {
+        public init(name: String, on_duplicate: OnDuplicate, parent_folder_id: String?, size: Int) {
             self.name = name
             self.on_duplicate = on_duplicate
             self.parent_folder_id = parent_folder_id
+            self.size = size
         }
     }
 

@@ -121,7 +121,7 @@ public class UploadFile: NSObject, URLSessionDelegate, URLSessionTaskDelegate, U
             return
         }
         let objectID = file.objectID
-        getTarget(context: context, name: url.lastPathComponent) { target, error in
+        getTarget(context: context, name: url.lastPathComponent, size: file.size) { target, error in
             if let error = error {
                 callback(error)
                 return
@@ -165,7 +165,7 @@ public class UploadFile: NSObject, URLSessionDelegate, URLSessionTaskDelegate, U
     }
 
     public func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
-        Logger.shared.log()
+        Logger.shared.log("sent: \(totalBytesSent) / \(totalBytesExpectedToSend)")
         performAndWait { context in
             guard let file: File = context.first(where: #keyPath(File.taskIDRaw), equals: NSNumber(value: task.taskIdentifier)) else {
                 return
@@ -235,9 +235,9 @@ public class UploadFile: NSObject, URLSessionDelegate, URLSessionTaskDelegate, U
         session.finishTasksAndInvalidate()
     }
 
-    private func getTarget(context: FileUploadContext, name: String, callback: @escaping (FileUploadTarget?, Error?) -> Void) {
+    private func getTarget(context: FileUploadContext, name: String, size: Int, callback: @escaping (FileUploadTarget?, Error?) -> Void) {
         Logger.shared.log()
-        let body = PostFileUploadTargetRequest.Body(name: name, on_duplicate: .rename, parent_folder_id: nil)
+        let body = PostFileUploadTargetRequest.Body(name: name, on_duplicate: .rename, parent_folder_id: nil, size: size)
         let request = PostFileUploadTargetRequest(context: context, body: body)
         api.makeRequest(request) { target, _, error in
             callback(target, error)
