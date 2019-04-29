@@ -59,6 +59,15 @@ public final class Rubric: NSManagedObject, WriteableModel {
     }
 }
 
+extension Rubric {
+    public static func scope(assignmentID: String) -> Scope {
+        let predicate = NSPredicate(format: "%K == %@", #keyPath(Rubric.assignmentID), assignmentID)
+        let sortOrder = NSSortDescriptor(key: #keyPath(Rubric.position), ascending: true)
+        let scope = Scope(predicate: predicate, order: [sortOrder])
+        return scope
+    }
+}
+
 public final class RubricRating: NSManagedObject, WriteableModel {
     public typealias JSON = APIRubricRating
 

@@ -40,16 +40,9 @@ class RubricPresenter {
         self?.update()
     }
 
-    lazy var frc: FetchedResultsController<Rubric>? = {
-        let predicate = NSPredicate(format: "%K == %@", #keyPath(Rubric.assignmentID), assignmentID)
-        let sort1 = NSSortDescriptor(key: #keyPath(Rubric.position), ascending: true)
-        let controller: FetchedResultsController<Rubric>? = env.database.fetchedResultsController(predicate: predicate,
-                                                                                                  sortDescriptors: [sort1],
-
-                                                                                                  sectionNameKeyPath: nil)
-        controller?.performFetch()
-        return controller
-    }()
+    lazy var rubrics: Store<LocalUseCase<Rubric>> = env.subscribe(scope: Rubric.scope(assignmentID: assignmentID)) { [weak self] in
+        self?.update()
+    }
 
     let env: AppEnvironment
     weak var view: RubricViewProtocol?
@@ -68,10 +61,11 @@ class RubricPresenter {
     func viewIsReady() {
         assignments.refresh(force: true)
         submissions.refresh(force: true)
+        rubrics.refresh(force: true)
     }
 
     func update() {
-        if let rubrics = frc?.fetchedObjects, let assessments = submissions.first?.rubricAssessments {
+        if rubrics.count > 0, let rubrics = rubrics.all, let assessments = submissions.first?.rubricAssessments {
             let models = transformRubricsToViewModels(rubrics, assessments: assessments)
             view?.update(models)
         } else {
@@ -100,7 +94,7 @@ class RubricPresenter {
             var allRatings: [Double] = sorted.map { $0.points }
 
             if selected == nil {
-                //  this could be a custom assesment
+                //  this is a custom assesment
                 allRatings.append(assessment.points)
                 selectedIndex = allRatings.count - 1
                 description = NSLocalizedString("Custom Grade", comment: "")

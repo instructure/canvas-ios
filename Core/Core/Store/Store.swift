@@ -50,6 +50,10 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
         return frc.fetchedObjects?.last
     }
 
+    public var all: [U.Model]? {
+        return frc.fetchedObjects
+    }
+
     public var sections: [NSFetchedResultsSectionInfo]? {
         return frc.sections
     }
