@@ -85,7 +85,7 @@ class RubricPresenter {
             var comments: String?
             var description = ""
 
-            if let index = sorted.firstIndex(where: { rr in assessment.points == rr.points }) {
+            if let index = sorted.firstIndex(where: { rr in assessment.ratingID == rr.id }) {
                 selected = sorted[index]
                 selectedIndex = index
                 comments = assessment.comments
