@@ -37,7 +37,6 @@ class SyllabusViewController: UIViewController {
         menuHeightConstraint.constant = 0
         assignments?.view.removeConstraints(assignmentConstraints)
         assignments?.view.addConstraintsWithVFL("H:|[view(==superview)]|")
-        assignments?.view.addConstraintsWithVFL("V:|[view(==superview)]|")
     }()
 
     enum MenuItem: Int {
@@ -98,7 +97,7 @@ class SyllabusViewController: UIViewController {
             guard let syllabus = self?.syllabus else { return }
             child.view.accessibilityLabel = "SyllabusPage.assignmentList"
             self?.assignmentConstraints = child.view.addConstraintsWithVFL("H:[syllabus][view(==superview)]|", views: ["syllabus": syllabus]) ?? []
-            child.view.pinToTopAndBottomOfSuperview()
+            child.view.addConstraintsWithVFL("V:|[view(==superview)]|")
         }
     }
 
