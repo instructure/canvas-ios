@@ -324,7 +324,7 @@
 		9FCD79D82188DFD00054293A /* GetSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCD79D72188DFD00054293A /* GetSubmission.swift */; };
 		9FCD79DA2188E3CD0054293A /* GetSubmissionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCD79D92188E3CD0054293A /* GetSubmissionTest.swift */; };
 		9FD504E72180BE1400B395BA /* APIFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD504E52180BE1300B395BA /* APIFile.swift */; };
-		9FD504E82180BE1400B395BA /* APIFile+Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD504E62180BE1400B395BA /* APIFile+Requestable.swift */; };
+		9FD504E82180BE1400B395BA /* APIFileRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD504E62180BE1400B395BA /* APIFileRequestable.swift */; };
 		9FD504EA2180BE2900B395BA /* APIFile+Requestable+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD504E92180BE2900B395BA /* APIFile+Requestable+Tests.swift */; };
 		9FD504EC2180BF1A00B395BA /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD504EB2180BF1A00B395BA /* File.swift */; };
 		9FD504EE2180C17400B395BA /* GetFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD504ED2180C17400B395BA /* GetFile.swift */; };
@@ -972,7 +972,7 @@
 		9FCD79D72188DFD00054293A /* GetSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubmission.swift; sourceTree = "<group>"; };
 		9FCD79D92188E3CD0054293A /* GetSubmissionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubmissionTest.swift; sourceTree = "<group>"; };
 		9FD504E52180BE1300B395BA /* APIFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIFile.swift; sourceTree = "<group>"; };
-		9FD504E62180BE1400B395BA /* APIFile+Requestable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIFile+Requestable.swift"; sourceTree = "<group>"; };
+		9FD504E62180BE1400B395BA /* APIFileRequestable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIFileRequestable.swift; sourceTree = "<group>"; };
 		9FD504E92180BE2900B395BA /* APIFile+Requestable+Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIFile+Requestable+Tests.swift"; sourceTree = "<group>"; };
 		9FD504EB2180BF1A00B395BA /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		9FD504ED2180C17400B395BA /* GetFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetFile.swift; sourceTree = "<group>"; };
@@ -1735,7 +1735,7 @@
 				7D80AC0D212B4D4100C40ECE /* APIFavorite.swift */,
 				7D8262F2212B2E3100BD268D /* APIFavorite+Requestable.swift */,
 				9FD504E52180BE1300B395BA /* APIFile.swift */,
-				9FD504E62180BE1400B395BA /* APIFile+Requestable.swift */,
+				9FD504E62180BE1400B395BA /* APIFileRequestable.swift */,
 				7D80AC09212B4A8D00C40ECE /* APIGroup.swift */,
 				7D8262F4212B300F00BD268D /* APIGroup+Requestable.swift */,
 				B1A6BC81218A5066000515E3 /* APILatePolicy.swift */,
@@ -2552,7 +2552,7 @@
 				B1E789A421B0EC1A0087FE4A /* LogEvent.swift in Sources */,
 				7DCF1EBA216BC8C6003AF358 /* TabVisibility.swift in Sources */,
 				7DA20E8F21680DBF00F5FD19 /* UIImageInstIconsExtensions.swift in Sources */,
-				9FD504E82180BE1400B395BA /* APIFile+Requestable.swift in Sources */,
+				9FD504E82180BE1400B395BA /* APIFileRequestable.swift in Sources */,
 				7D6A2BE2214C11AD00DB15C4 /* Route.swift in Sources */,
 				7836B0D32199021500FA25AE /* ShareExtensionPresenter.swift in Sources */,
 				7DD6CC6B21BD6DB1004C4BB6 /* LoadingViewController.swift in Sources */,

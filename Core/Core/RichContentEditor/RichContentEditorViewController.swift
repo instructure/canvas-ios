@@ -20,7 +20,6 @@ import WebKit
 
 public protocol RichContentEditorDelegate: class {
     func rce(_ editor: RichContentEditorViewController, canSubmit: Bool)
-    func rce(_ editor: RichContentEditorViewController, didError error: Error)
     func rce(_ editor: RichContentEditorViewController, didError error: String)
 }
 
@@ -285,6 +284,6 @@ extension RichContentEditorViewController: RichContentEditorViewProtocol {
     }
 
     public func showError(_ error: Error) {
-        delegate?.rce(self, didError: error)
+        delegate?.rce(self, didError: error.localizedDescription)
     }
 }

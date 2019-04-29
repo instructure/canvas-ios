@@ -74,6 +74,7 @@ public class UploadFile: NSObject, URLSessionDelegate, URLSessionTaskDelegate, U
     public var notificationManager: NotificationManager = .shared
     var backgroundSession: URLSession!
     lazy var backgroundAPI: API = URLSessionAPI(urlSession: backgroundSession)
+    public static var shared = UploadFile(bundleID: Bundle.main.bundleIdentifier ?? Bundle.coreBundleID, appGroup: Bundle.main.appGroupID())
 
     /// Completion handler that should be called once all background tasks have finished.
     ///
@@ -138,7 +139,7 @@ public class UploadFile: NSObject, URLSessionDelegate, URLSessionTaskDelegate, U
                 }
                 do {
                     let request = PostFileUploadRequest(fileURL: url, target: target)
-                    task = try self.backgroundAPI.uploadTask(request, fromFile: url)
+                    task = try self.backgroundAPI.uploadTask(request)
                     file.taskID = task?.taskIdentifier
                     file.id = nil
                     try context.save()
@@ -192,6 +193,9 @@ public class UploadFile: NSObject, URLSessionDelegate, URLSessionTaskDelegate, U
                 Logger.shared.log("Created a file with id \(response.id)")
                 try file.update(fromAPIModel: response)
             } catch {
+                #if DEBUG
+                print(String(data: data, encoding: .utf8) ?? "", error)
+                #endif
                 file.uploadError = error.localizedDescription
                 Logger.shared.error(error)
             }

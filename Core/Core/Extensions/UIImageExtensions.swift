@@ -57,7 +57,7 @@ extension UIImage {
         if FileManager.default.fileExists(atPath: url.path) {
             try FileManager.default.removeItem(at: url)
         }
-        try data.write(to: url, options: .atomic)
+        try data.write(to: url)
         return url
     }
 }

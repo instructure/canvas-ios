@@ -27,7 +27,7 @@ public class RichContentEditorPresenter: NSObject, UIImagePickerControllerDelega
     let batchID = UUID.string
     var env: AppEnvironment = .shared
     let uploadContext: FileUploadContext
-    var uploader: FileUploader = UploadFile(bundleID: Bundle.main.bundleIdentifier ?? Bundle.studentBundleID, appGroup: Bundle.main.appGroupID())
+    var uploader: FileUploader = UploadFile.shared
     weak var view: RichContentEditorViewProtocol?
 
     lazy var files: Store<LocalUseCase<File>> = env.subscribe(scope: .where(#keyPath(File.batchID), equals: batchID, orderBy: #keyPath(File.createdAt))) { [weak self] in
@@ -51,15 +51,16 @@ public class RichContentEditorPresenter: NSObject, UIImagePickerControllerDelega
     }
 
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        picker.dismiss(animated: true, completion: nil)
-        do {
-            if let image = info[.editedImage] as? UIImage ?? info[.originalImage] as? UIImage {
-                createFile(try image.write(), then: uploadImage)
-            } else if let url = info[.mediaURL] as? URL {
-                createFile(url, then: uploadMedia)
+        picker.dismiss(animated: true) {
+            do {
+                if let image = info[.editedImage] as? UIImage ?? info[.originalImage] as? UIImage {
+                    self.createFile(try image.write(), then: self.uploadImage)
+                } else if let url = info[.mediaURL] as? URL {
+                    self.createFile(url, then: self.uploadMedia)
+                }
+            } catch {
+                self.view?.showError(error)
             }
-        } catch {
-            view?.showError(error)
         }
     }
 

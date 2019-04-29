@@ -82,7 +82,6 @@ public struct PostFileUploadRequest: APIRequestable {
 
     public let fileURL: URL
     public let target: FileUploadTarget
-    public let boundary = UUID.string
 
     public var body: URL? {
         return fileURL
@@ -93,41 +92,21 @@ public struct PostFileUploadRequest: APIRequestable {
         self.target = target
     }
 
-    public let method: APIMethod = .post
+    public let cachePolicy = URLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData
+    public let method = APIMethod.post
+    public let headers: [String: String?] = [
+        HttpHeader.authorization: nil,
+    ]
     public var path: String {
         return target.upload_url.absoluteString
     }
-    public var headers: [String: String?] {
-        let multipart = "multipart/form-data; charset=utf-8; boundary=\"\(boundary)\""
-        return [
-            HttpHeader.authorization: nil,
-            HttpHeader.contentType: multipart,
-        ]
-    }
-    public var cachePolicy: URLRequest.CachePolicy {
-        return .reloadIgnoringLocalAndRemoteCacheData
-    }
-
-    public func encode(_ body: URL) throws -> Data {
-        let delim = "--\(boundary)\r\n".data(using: .utf8)!
-        let params = target.upload_params
-
-        let file = try Data(contentsOf: body)
-        var body = Data()
-        body += delim
-
-        // First append each key/value in upload_params
-        for (key, value) in params {
-            body += "Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n\(value)\r\n".data(using: .utf8)!
-            body += delim
-        }
-
-        // File must be appended last
-        let filename = params["filename"] ?? ""
-        body += "Content-Disposition: form-data; name=\"file\"; filename=\"\(filename)\"\r\n\r\n".data(using: .utf8)!
-        body += file
-        body += "\r\n--\(boundary)--\r\n".data(using: .utf8)!
-
-        return body
+    public var form: APIFormData? {
+        var form: APIFormData = target.upload_params.mapValues { APIFormDatum.string($0) }
+        form["file"] = .file(
+            filename: target.upload_params["filename"] ?? "",
+            type: target.upload_params["content_type"] ?? "application/octet-stream",
+            at: fileURL
+        )
+        return form
     }
 }
