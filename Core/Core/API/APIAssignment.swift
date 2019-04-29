@@ -26,7 +26,6 @@ public struct APIAssignment: Codable, Equatable {
     let points_possible: Double?
     let due_at: Date?
     let html_url: URL
-    let submission: APISubmission?
     let grade_group_students_individually: Bool?
     let grading_type: GradingType
     let submission_types: [SubmissionType]
@@ -38,4 +37,39 @@ public struct APIAssignment: Codable, Equatable {
     let url: URL?
     let discussion_topic: APIDiscussionTopic?
     let rubric: [APIRubric]?
+    let submission: APISubmission?
+}
+
+public struct APIAssignmentNoSubmission: Codable, Equatable {
+    let id: ID
+    let course_id: ID
+    let quiz_id: ID?
+    let name: String
+    let description: String?
+    let points_possible: Double?
+    let due_at: Date?
+    let html_url: URL
+    let grade_group_students_individually: Bool?
+    let grading_type: GradingType
+    let submission_types: [SubmissionType]
+    let allowed_extensions: [String]?
+    let position: Int
+    let unlock_at: Date?
+    let lock_at: Date?
+    let locked_for_user: Bool?
+    let url: URL?
+    let discussion_topic: APIDiscussionTopic?
+    let rubric: [APIRubric]?
+
+    func toAPIAssignment() -> APIAssignment {
+        return APIAssignment(
+            id: id, course_id: course_id, quiz_id: quiz_id, name: name,
+            description: description, points_possible: points_possible,
+            due_at: due_at, html_url: html_url,
+            grade_group_students_individually: grade_group_students_individually,
+            grading_type: grading_type, submission_types: submission_types,
+            allowed_extensions: allowed_extensions, position: position,
+            unlock_at: unlock_at, lock_at: lock_at, locked_for_user: locked_for_user,
+            url: url, discussion_topic: discussion_topic, rubric: rubric, submission: nil)
+    }
 }

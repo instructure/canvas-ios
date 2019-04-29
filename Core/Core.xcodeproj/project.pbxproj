@@ -322,6 +322,7 @@
 		9FCD79D62188DE8B0054293A /* APISubmissionRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCD79D52188DE8B0054293A /* APISubmissionRequestableTests.swift */; };
 		9FCD79D82188DFD00054293A /* GetSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCD79D72188DFD00054293A /* GetSubmission.swift */; };
 		9FCD79DA2188E3CD0054293A /* GetSubmissionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCD79D92188E3CD0054293A /* GetSubmissionTest.swift */; };
+		9FCF53E922776EAA006D2EFE /* GetRecentlyGradedSubmissionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCF53E822776EAA006D2EFE /* GetRecentlyGradedSubmissionsTests.swift */; };
 		9FD504E72180BE1400B395BA /* APIFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD504E52180BE1300B395BA /* APIFile.swift */; };
 		9FD504E82180BE1400B395BA /* APIFile+Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD504E62180BE1400B395BA /* APIFile+Requestable.swift */; };
 		9FD504EA2180BE2900B395BA /* APIFile+Requestable+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD504E92180BE2900B395BA /* APIFile+Requestable+Tests.swift */; };
@@ -331,6 +332,9 @@
 		9FD504F22180C5F600B395BA /* AsyncBlockOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD504F12180C5F600B395BA /* AsyncBlockOperation.swift */; };
 		9FD504F42180DC7B00B395BA /* AsyncBlockOperationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD504F32180DC7B00B395BA /* AsyncBlockOperationTest.swift */; };
 		9FD504F62180FC7200B395BA /* GetFileTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD504F52180FC7200B395BA /* GetFileTest.swift */; };
+		9FE21AA8226A09DE00A1D9AD /* APIRecentlyGradedRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE21AA7226A09DE00A1D9AD /* APIRecentlyGradedRequestable.swift */; };
+		9FE21AAA226A0AC600A1D9AD /* APIRecentlyGradedRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE21AA9226A0AC600A1D9AD /* APIRecentlyGradedRequestableTests.swift */; };
+		9FE21AAC226A0C1300A1D9AD /* GetRecentlyGradedSubmissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE21AAB226A0C1300A1D9AD /* GetRecentlyGradedSubmissions.swift */; };
 		9FE6D44C2249541E00EFFF5C /* EnrollmentRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE6D44B2249541E00EFFF5C /* EnrollmentRole.swift */; };
 		9FE84DDA214FE06300B95A68 /* GetGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE84DD9214FE06300B95A68 /* GetGroup.swift */; };
 		9FE84DDC214FE5C500B95A68 /* GetGroupTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE84DDB214FE5C500B95A68 /* GetGroupTest.swift */; };
@@ -969,6 +973,7 @@
 		9FCD79D52188DE8B0054293A /* APISubmissionRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISubmissionRequestableTests.swift; sourceTree = "<group>"; };
 		9FCD79D72188DFD00054293A /* GetSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubmission.swift; sourceTree = "<group>"; };
 		9FCD79D92188E3CD0054293A /* GetSubmissionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubmissionTest.swift; sourceTree = "<group>"; };
+		9FCF53E822776EAA006D2EFE /* GetRecentlyGradedSubmissionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRecentlyGradedSubmissionsTests.swift; sourceTree = "<group>"; };
 		9FD504E52180BE1300B395BA /* APIFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIFile.swift; sourceTree = "<group>"; };
 		9FD504E62180BE1400B395BA /* APIFile+Requestable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIFile+Requestable.swift"; sourceTree = "<group>"; };
 		9FD504E92180BE2900B395BA /* APIFile+Requestable+Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIFile+Requestable+Tests.swift"; sourceTree = "<group>"; };
@@ -978,6 +983,9 @@
 		9FD504F12180C5F600B395BA /* AsyncBlockOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncBlockOperation.swift; sourceTree = "<group>"; };
 		9FD504F32180DC7B00B395BA /* AsyncBlockOperationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncBlockOperationTest.swift; sourceTree = "<group>"; };
 		9FD504F52180FC7200B395BA /* GetFileTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFileTest.swift; sourceTree = "<group>"; };
+		9FE21AA7226A09DE00A1D9AD /* APIRecentlyGradedRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRecentlyGradedRequestable.swift; sourceTree = "<group>"; };
+		9FE21AA9226A0AC600A1D9AD /* APIRecentlyGradedRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRecentlyGradedRequestableTests.swift; sourceTree = "<group>"; };
+		9FE21AAB226A0C1300A1D9AD /* GetRecentlyGradedSubmissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRecentlyGradedSubmissions.swift; sourceTree = "<group>"; };
 		9FE6D44B2249541E00EFFF5C /* EnrollmentRole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnrollmentRole.swift; sourceTree = "<group>"; };
 		9FE84DD9214FE06300B95A68 /* GetGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGroup.swift; sourceTree = "<group>"; };
 		9FE84DDB214FE5C500B95A68 /* GetGroupTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGroupTest.swift; sourceTree = "<group>"; };
@@ -1673,6 +1681,7 @@
 				7D80AC14212B67E100C40ECE /* APIUser+Requestable+Tests.swift */,
 				3B3467D52135B99700F9BC2E /* IDTests.swift */,
 				3B635B2E225CD7B3001F353D /* APICalendarEventsRequestableTests.swift */,
+				9FE21AA9226A0AC600A1D9AD /* APIRecentlyGradedRequestableTests.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1719,6 +1728,8 @@
 				B1A6BC7F218A32F3000515E3 /* APIAssignmentOverride+Requestable.swift */,
 				7D63F783215D3C3D00151E49 /* APIBrandVariables.swift */,
 				7D63F785215D3CE300151E49 /* APIBrandVariables+Requestable.swift */,
+				3B635B2A225CD298001F353D /* APICalendarEvent.swift */,
+				3B635B2C225CD377001F353D /* APICalendarRequestable.swift */,
 				7D8262F6212B34F800BD268D /* APICourse.swift */,
 				7D8262EE212B228F00BD268D /* APICourse+Requestable.swift */,
 				78151DCA21AE75D400692862 /* APIDiscussion.swift */,
@@ -1748,7 +1759,9 @@
 				9FBE5366223C1EE9001EC40C /* APIPermissionsRequestable.swift */,
 				7DCF2033216D5458003AF358 /* APIQuiz.swift */,
 				7DCF2035216D546C003AF358 /* APIQuizRequestable.swift */,
+				9FE21AA7226A09DE00A1D9AD /* APIRecentlyGradedRequestable.swift */,
 				7D8262EA212B1A7B00BD268D /* APIRequestable.swift */,
+				3B6386A42264F6AC002DEE72 /* APIRubric.swift */,
 				7D8262F8212B3B2000BD268D /* APISection.swift */,
 				B1A32BDB21599F1C0071B41E /* APISubmission.swift */,
 				9FCD79D32188DC4E0054293A /* APISubmissionRequestable.swift */,
@@ -1757,9 +1770,6 @@
 				7D80AC02212B445200C40ECE /* APIUser.swift */,
 				7D80AC04212B461F00C40ECE /* APIUser+Requestable.swift */,
 				3B3467D32135B7B700F9BC2E /* ID.swift */,
-				3B635B2A225CD298001F353D /* APICalendarEvent.swift */,
-				3B635B2C225CD377001F353D /* APICalendarRequestable.swift */,
-				3B6386A42264F6AC002DEE72 /* APIRubric.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1945,7 +1955,6 @@
 				B1A32BE5215A81350071B41E /* GetAssignment.swift */,
 				3BF5C54E2187800B0081A858 /* GetAssignments.swift */,
 				7D63F789215D46AB00151E49 /* GetBrandVariables.swift */,
-				3B635B30225CDC2C001F353D /* GetCalendarEvents.swift */,
 				B18126912150542A00E71F63 /* GetContext.swift */,
 				7D9BB1E722527F310058D9C6 /* GetContextPermissions.swift */,
 				9FE84DDD2150281300B95A68 /* GetContextTabs.swift */,
@@ -1963,6 +1972,8 @@
 				B1A8CD39223766FA00E2242D /* UploadFile.swift */,
 				B17855B0226ABDB100B30C80 /* UploadMedia.swift */,
 				7D92D656224ACC7A0015B368 /* UploadMediaComment.swift */,
+				3B635B30225CDC2C001F353D /* GetCalendarEvents.swift */,
+				9FE21AAB226A0C1300A1D9AD /* GetRecentlyGradedSubmissions.swift */,
 			);
 			path = "Use Cases";
 			sourceTree = "<group>";
@@ -2075,7 +2086,6 @@
 				9F47F53921820494002D8BD8 /* DownloadFileTest.swift */,
 				3BF5C55221879A430081A858 /* GetAssignmentsTests.swift */,
 				7D63F791215D8EEC00151E49 /* GetBrandVariablesTests.swift */,
-				3B635B36225CE59D001F353D /* GetCalendarEventsTests.swift */,
 				9F1CEA6222401AF1000BB98F /* GetContextPermissionsTests.swift */,
 				9FE84DE1215037A000B95A68 /* GetContextTabsTest.swift */,
 				B18126932150564900E71F63 /* GetContextTests.swift */,
@@ -2092,6 +2102,8 @@
 				B195DC5421324DA600797FE4 /* GetUserGroupsTest.swift */,
 				7D86285C224C15BA003A37DC /* UploadMediaCommentTests.swift */,
 				B17855B2226ABDDD00B30C80 /* UploadMediaTests.swift */,
+				3B635B36225CE59D001F353D /* GetCalendarEventsTests.swift */,
+				9FCF53E822776EAA006D2EFE /* GetRecentlyGradedSubmissionsTests.swift */,
 			);
 			path = "Use Cases";
 			sourceTree = "<group>";
@@ -2431,6 +2443,7 @@
 				B1B6F071219A1F2800C1575D /* UTI.swift in Sources */,
 				9FD504F02180C17C00B395BA /* DownloadFile.swift in Sources */,
 				B1445308212E5B6E0009D848 /* Persistence.swift in Sources */,
+				9FE21AAC226A0C1300A1D9AD /* GetRecentlyGradedSubmissions.swift in Sources */,
 				B1BB68F421B5F0C90079C78B /* FileUploadContext.swift in Sources */,
 				7DD6CC6321BB6BF7004C4BB6 /* LoginStartPresenter.swift in Sources */,
 				9FBE5369223C2522001EC40C /* PermissionName.swift in Sources */,
@@ -2531,6 +2544,7 @@
 				7DCF2038216D55E6003AF358 /* QuizType.swift in Sources */,
 				7D29D309218A5E810036437C /* APIDocViewerRequestable.swift in Sources */,
 				9F6878AF223951EE00E559CE /* APIMediaComment.swift in Sources */,
+				9FE21AA8226A09DE00A1D9AD /* APIRecentlyGradedRequestable.swift in Sources */,
 				7D29D307218A592B0036437C /* APIDocViewer.swift in Sources */,
 				3B6386A52264F6AC002DEE72 /* APIRubric.swift in Sources */,
 				7DDC81462242E2C7000DD25A /* AudioRecorderViewController.swift in Sources */,
@@ -2673,6 +2687,7 @@
 				7D5C87212239A99E00D99651 /* SubmissionCommentTests.swift in Sources */,
 				B1A6BC8A218A977D000515E3 /* APIEnrollmentRequestableTests.swift in Sources */,
 				7D80AC5B212DB0B500C40ECE /* URLResponseExtensionsTests.swift in Sources */,
+				9FE21AAA226A0AC600A1D9AD /* APIRecentlyGradedRequestableTests.swift in Sources */,
 				3B3467DA2136FFBA00F9BC2E /* APILoginWeb+RequestableTests.swift in Sources */,
 				B1EA5AEE212E656100DABC5F /* GetCoursesTest.swift in Sources */,
 				7DCF1EBC216BC94E003AF358 /* LatePolicyStatusTests.swift in Sources */,
@@ -2726,6 +2741,7 @@
 				3B5369E4219D0FD000D3F62E /* URLExtensionsTests.swift in Sources */,
 				B1911CEC21C849BE00F42F91 /* NotificationManagerTests.swift in Sources */,
 				7D37BE8D21C837840063FAAC /* SubmissionTests.swift in Sources */,
+				9FCF53E922776EAA006D2EFE /* GetRecentlyGradedSubmissionsTests.swift in Sources */,
 				B1C783F32241ECEB00DD89A9 /* NSManagedObjectContextExtensionsTests.swift in Sources */,
 				7DCF2046216D652C003AF358 /* GetQuizzesTests.swift in Sources */,
 				7DDC4511215BF7AA003F3209 /* BundleExtensionsTests.swift in Sources */,
@@ -3195,6 +3211,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas.Core;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;

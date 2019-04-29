@@ -57,6 +57,12 @@ class SubmissionTests: CoreTestCase {
             DiscussionEntry.make([ "id": "1" ]),
         ]
         XCTAssertEqual(submission.discussionEntriesOrdered.first?.id, "1")
+
+        let date = Date(timeIntervalSinceNow: 0)
+        submission.gradedAt = nil
+        XCTAssertNil(submission.gradedAt)
+        submission.gradedAt = date
+        XCTAssertEqual(submission.gradedAt, date)
     }
 
     func testMediaSubmission() {

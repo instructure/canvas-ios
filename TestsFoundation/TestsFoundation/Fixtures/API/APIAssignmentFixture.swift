@@ -37,3 +37,21 @@ extension APIAssignment: Fixture {
         ]
     }
 }
+
+extension APIAssignmentNoSubmission: Fixture {
+    public static var template: Template {
+        return [
+            "id": "1",
+            "course_id": "1",
+            "name": "some assignment",
+            "description": "<p>Do the following:</p>...",
+            "points_possible": 10,
+            "due_at": nil,
+            "html_url": "https://canvas.instructure.com/courses/1/assignments/1",
+            "grading_type": "points",
+            "submission_types": ["online_text_entry"],
+            "position": 0,
+            "lockedForUser": false,
+        ]
+    }
+}

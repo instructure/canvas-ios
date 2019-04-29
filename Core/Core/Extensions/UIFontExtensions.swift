@@ -21,7 +21,7 @@ public extension UIFont {
         case regular10, regular11Monodigit, regular12, regular14, regular14Italic, regular16, regular20, regular20Monodigit, regular30
         case medium10, medium12, medium14, medium16
         case semibold12, semibold14, semibold16, semibold20
-        case bold17, bold24
+        case bold17, bold20, bold24
         case heavy24
     }
 
@@ -69,6 +69,10 @@ public extension UIFont {
 
         case .bold17:
             return scaledFont(.title2, for: .systemFont(ofSize: 17, weight: .bold))
+
+        case .bold20:
+            return UIFontMetrics(forTextStyle: .title3).scaledFont(for: .systemFont(ofSize: 20, weight: .bold))
+
         case .bold24:
             return scaledFont(.headline, for: .systemFont(ofSize: 24, weight: .bold))
 

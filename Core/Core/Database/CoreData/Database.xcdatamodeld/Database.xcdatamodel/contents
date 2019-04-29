@@ -275,6 +275,7 @@
         <attribute name="body" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="excusedRaw" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="grade" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="gradedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="id" attributeType="String" syncable="YES"/>
         <attribute name="late" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="latePolicyStatusRaw" optional="YES" attributeType="String" syncable="YES"/>
@@ -338,7 +339,7 @@
         <element name="Quiz" positionX="-26.7890625" positionY="226.0703125" width="128" height="210"/>
         <element name="Rubric" positionX="-540" positionY="-27" width="128" height="165"/>
         <element name="RubricRating" positionX="-531" positionY="-18" width="128" height="135"/>
-        <element name="Submission" positionX="-312.484375" positionY="260.38671875" width="128" height="360"/>
+        <element name="Submission" positionX="-312.484375" positionY="260.38671875" width="128" height="375"/>
         <element name="SubmissionComment" positionX="-369" positionY="-18" width="128" height="225"/>
         <element name="Tab" positionX="108.015625" positionY="177.67578125" width="128" height="165"/>
         <element name="TTL" positionX="-173.30859375" positionY="-128.48046875" width="128" height="75"/>

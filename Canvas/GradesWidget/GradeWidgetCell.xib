@@ -19,29 +19,22 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="55.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vpp-Hc-I9x">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="55.5"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="55" id="6H4-HL-hfk"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="c1D-9H-5v2"/>
-                    </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jaY-dJ-xrv">
-                        <rect key="frame" x="16" y="24" width="8" height="8"/>
+                        <rect key="frame" x="16" y="25" width="6" height="6"/>
                         <color key="backgroundColor" red="0.22486946820000001" green="0.40256763130000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="8" id="KOs-YH-CjX"/>
-                            <constraint firstAttribute="height" constant="8" id="nkR-fm-lk5"/>
+                            <constraint firstAttribute="width" constant="6" id="KOs-YH-CjX"/>
+                            <constraint firstAttribute="height" constant="6" id="nkR-fm-lk5"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZ5-LL-on8" customClass="DynamicLabel" customModule="Core">
-                        <rect key="frame" x="32" y="13.5" width="279.5" height="29"/>
+                        <rect key="frame" x="32" y="18" width="42" height="19.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="heavy24"/>
+                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
+                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="licorice"/>
                         </userDefinedRuntimeAttributes>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WRP-wQ-PKm" customClass="DynamicLabel" customModule="Core">
@@ -51,25 +44,18 @@
                         <nil key="highlightedColor"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="body"/>
+                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="licorice"/>
                         </userDefinedRuntimeAttributes>
                     </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="WRP-wQ-PKm" firstAttribute="leading" secondItem="eZ5-LL-on8" secondAttribute="trailing" constant="8" id="4Ew-YE-mSU"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="WRP-wQ-PKm" secondAttribute="trailing" id="55n-K2-xuv"/>
+                    <constraint firstItem="eZ5-LL-on8" firstAttribute="centerY" secondItem="XqI-3V-yiu" secondAttribute="centerY" id="30r-Pb-L3n"/>
                     <constraint firstItem="jaY-dJ-xrv" firstAttribute="centerY" secondItem="XqI-3V-yiu" secondAttribute="centerY" id="7d4-tu-ws7"/>
-                    <constraint firstItem="eZ5-LL-on8" firstAttribute="centerY" secondItem="jaY-dJ-xrv" secondAttribute="centerY" id="9yi-jq-lKr"/>
-                    <constraint firstItem="WRP-wQ-PKm" firstAttribute="centerY" secondItem="jaY-dJ-xrv" secondAttribute="centerY" id="BRM-kx-Xbd"/>
-                    <constraint firstItem="eZ5-LL-on8" firstAttribute="centerY" secondItem="jaY-dJ-xrv" secondAttribute="centerY" id="RjT-Gn-mKb"/>
-                    <constraint firstItem="eZ5-LL-on8" firstAttribute="leading" secondItem="jaY-dJ-xrv" secondAttribute="trailing" constant="8" id="W7r-7E-Oxb"/>
-                    <constraint firstAttribute="bottom" secondItem="Vpp-Hc-I9x" secondAttribute="bottom" id="dLE-FM-bYw"/>
-                    <constraint firstItem="Vpp-Hc-I9x" firstAttribute="top" secondItem="XqI-3V-yiu" secondAttribute="top" id="dYk-ev-o5o"/>
-                    <constraint firstItem="jaY-dJ-xrv" firstAttribute="leading" secondItem="XqI-3V-yiu" secondAttribute="leadingMargin" id="fKT-Q1-bDj"/>
-                    <constraint firstItem="Vpp-Hc-I9x" firstAttribute="leading" secondItem="XqI-3V-yiu" secondAttribute="leading" id="fZq-Ds-8dl"/>
-                    <constraint firstItem="eZ5-LL-on8" firstAttribute="leading" secondItem="jaY-dJ-xrv" secondAttribute="trailing" constant="8" id="g9Z-mz-Zqe"/>
-                    <constraint firstAttribute="trailing" secondItem="Vpp-Hc-I9x" secondAttribute="trailing" id="tSc-JL-R4z"/>
-                    <constraint firstItem="WRP-wQ-PKm" firstAttribute="centerY" secondItem="jaY-dJ-xrv" secondAttribute="centerY" id="uBc-9E-s5n"/>
+                    <constraint firstItem="jaY-dJ-xrv" firstAttribute="leading" secondItem="XqI-3V-yiu" secondAttribute="leading" constant="16" id="Lxb-r4-20Y"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="WRP-wQ-PKm" secondAttribute="trailing" id="Sdf-TK-fnK"/>
+                    <constraint firstItem="eZ5-LL-on8" firstAttribute="leading" secondItem="jaY-dJ-xrv" secondAttribute="trailing" constant="10" id="W7r-7E-Oxb"/>
+                    <constraint firstItem="WRP-wQ-PKm" firstAttribute="centerY" secondItem="XqI-3V-yiu" secondAttribute="centerY" id="fWu-J7-4Lj"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -77,7 +63,7 @@
                 <outlet property="dotView" destination="jaY-dJ-xrv" id="w5e-9F-Anc"/>
                 <outlet property="gradeLabel" destination="WRP-wQ-PKm" id="uVv-zS-gVa"/>
             </connections>
-            <point key="canvasLocation" x="-12" y="-20"/>
+            <point key="canvasLocation" x="-12" y="-15.292353823088456"/>
         </tableViewCell>
     </objects>
 </document>

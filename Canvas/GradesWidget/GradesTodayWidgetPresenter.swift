@@ -23,7 +23,7 @@ class GradesTodayWidgetPresenter {
     weak var view: GradesTodayWidgetViewController?
 
     lazy var courses: Store<GetCourses> = {
-        let useCase = GetCourses(showFavorites: true)
+        let useCase = GetCourses(showFavorites: false)
         return env.subscribe(useCase, { [weak self] in
             self?.view?.reload()
         })
@@ -36,14 +36,22 @@ class GradesTodayWidgetPresenter {
         })
     }()
 
+    lazy var submissions: Store<GetRecentlyGradedSubmissions> = {
+        let useCase = GetRecentlyGradedSubmissions(userID: "self")
+        return env.subscribe(useCase, { [weak self] in
+            self?.view?.reload()
+        })
+    }()
+
     init(env: AppEnvironment = .shared, view: GradesTodayWidgetViewController) {
         self.env = env
         self.view = view
     }
 
     func viewIsReady() {
-        courses.refresh(force: false)
-        colors.refresh(force: false)
+        courses.refresh(force: true)
+        colors.refresh(force: true)
+        submissions.refresh(force: true)
     }
 
 }

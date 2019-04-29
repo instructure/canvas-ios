@@ -604,6 +604,7 @@
 		9F00A5692245593200C0CC32 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1D7E04213743D300F7CCFE /* Core.framework */; };
 		9F00A56B2245599800C0CC32 /* GradesTodayWidgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F00A56A2245599800C0CC32 /* GradesTodayWidgetViewController.swift */; };
 		9F00A56D22455BD500C0CC32 /* GradesTodayWidgetPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F00A56C22455BD500C0CC32 /* GradesTodayWidgetPresenter.swift */; };
+		9F29407D226E4ED6002D2208 /* GradedAssignmentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F29407C226E4ED6002D2208 /* GradedAssignmentCell.xib */; };
 		9F61B52C205985A5009C0B13 /* CanvasAppDelegate+Helm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F61B52B205985A5009C0B13 /* CanvasAppDelegate+Helm.swift */; };
 		ACC968801D245768006AEAB1 /* Page+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC9687F1D245768006AEAB1 /* Page+ViewModel.swift */; };
 		B15738001D94C38C00ADBB85 /* ModuleItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15737FF1D94C38C00ADBB85 /* ModuleItemDetailViewController.swift */; };
@@ -1431,6 +1432,7 @@
 		99747510483FA8853301B9F5 /* Pods-defaults-CanvasTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasTests/Pods-defaults-CanvasTests.release.xcconfig"; sourceTree = "<group>"; };
 		9F00A56A2245599800C0CC32 /* GradesTodayWidgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesTodayWidgetViewController.swift; sourceTree = "<group>"; };
 		9F00A56C22455BD500C0CC32 /* GradesTodayWidgetPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesTodayWidgetPresenter.swift; sourceTree = "<group>"; };
+		9F29407C226E4ED6002D2208 /* GradedAssignmentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GradedAssignmentCell.xib; sourceTree = "<group>"; };
 		9F61B52B205985A5009C0B13 /* CanvasAppDelegate+Helm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CanvasAppDelegate+Helm.swift"; sourceTree = "<group>"; };
 		A025F6634B44F7120D41717E /* Pods_defaults_common_tests_CanvasTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_common_tests_CanvasTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A13903D63AE70A2926A48F10 /* Pods-defaults-common_ui_tests-StudentUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_ui_tests-StudentUITests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-common_ui_tests-StudentUITests/Pods-defaults-common_ui_tests-StudentUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -1697,6 +1699,7 @@
 				3B6DCCAB1FB502CE005EE8D2 /* MainInterface.storyboard */,
 				3B6DCCAE1FB502CE005EE8D2 /* Info.plist */,
 				3B0107A31FBBA7C600062DB2 /* GradeWidgetCell.xib */,
+				9F29407C226E4ED6002D2208 /* GradedAssignmentCell.xib */,
 			);
 			path = GradesWidget;
 			sourceTree = "<group>";
@@ -3303,6 +3306,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F29407D226E4ED6002D2208 /* GradedAssignmentCell.xib in Resources */,
 				3B6DCCAD1FB502CE005EE8D2 /* MainInterface.storyboard in Resources */,
 				7DC912EB1FE1CC9200A76B14 /* InfoPlist.strings in Resources */,
 				7DC912E61FE1CC9200A76B14 /* Localizable.strings in Resources */,
