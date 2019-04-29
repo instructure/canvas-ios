@@ -18,16 +18,4 @@ import XCTest
 @testable import Core
 
 class RubricTests: XCTestCase {
-
-    func testSelectedRating() {
-        let a = RubricRating.make(["id": "a", "points": 1.0])
-        let b = RubricRating.make(["id": "b", "points": 2.0])
-        let c = RubricRating.make(["id": "c", "points": 3.0])
-
-        let r = Rubric.make(["points": 2.0, "ratings": Set([a, b, c])] )
-
-        let rating = r.selectedRating()
-
-        XCTAssertEqual(rating, b)
-    }
 }
