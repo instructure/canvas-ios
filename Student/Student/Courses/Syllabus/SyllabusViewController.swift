@@ -31,6 +31,7 @@ class SyllabusViewController: UIViewController {
     var color: UIColor?
     var syllabus: CoreWebView?
     var assignments: SyllabusActionableItemsViewController?
+    let menuHeight: CGFloat = 45.0
 
     lazy var relayoutAssignmentConstraints: Void = {
         menuHeightConstraint.constant = 0
@@ -143,6 +144,8 @@ extension SyllabusViewController: SyllabuseViewProtocol {
 
     func loadHtml(_ html: String?) {
         guard let html = html else { return }
+        menuHeightConstraint.constant = menuHeight
+        
         syllabus?.loadHTMLString(html, baseURL: nil)
     }
 

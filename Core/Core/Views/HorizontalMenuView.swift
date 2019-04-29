@@ -167,6 +167,7 @@ extension HorizontalMenuView: UICollectionViewDataSource, UICollectionViewDelega
     }
 
     func animateUnderlineView(to: IndexPath?) {
+        underlineView?.backgroundColor = delegate?.selectedColor
         let frame = frameForCollectionViewCell(at: to)
         var newFrame = frame
         let underlineViewHeight: CGFloat = 2

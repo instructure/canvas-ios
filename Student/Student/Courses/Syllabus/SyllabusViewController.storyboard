@@ -20,18 +20,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PGj-uf-9Z2" customClass="HorizontalMenuView" customModule="Core">
-                                <rect key="frame" x="0.0" y="20" width="375" height="45"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="0.0"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <accessibility key="accessibilityConfiguration" identifier="SyllabusPage.menu"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="FqU-RE-AQ0"/>
+                                    <constraint firstAttribute="height" id="FqU-RE-AQ0"/>
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="sFi-e9-YFv">
-                                <rect key="frame" x="0.0" y="65" width="375" height="602"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rbl-JY-nxo">
-                                <rect key="frame" x="0.0" y="62" width="375" height="1"/>
+                                <rect key="frame" x="0.0" y="17" width="375" height="1"/>
                                 <color key="backgroundColor" name="borderMedium"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="pmy-2S-xmf"/>
