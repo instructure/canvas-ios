@@ -83,12 +83,3 @@ extension RubricPresenterTests: RubricViewProtocol {
         return nil
     }
 }
-
-extension RubricViewModel: Equatable {
-    public static func == (lhs: RubricViewModel, rhs: RubricViewModel) -> Bool {
-        return lhs.title == rhs.title &&
-        lhs.ratings == rhs.ratings &&
-        lhs.selectedDesc == rhs.selectedDesc &&
-        lhs.selectedIndex == rhs.selectedIndex
-    }
-}

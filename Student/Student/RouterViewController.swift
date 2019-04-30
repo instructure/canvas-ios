@@ -33,7 +33,8 @@ let routes = [
     DebugRoute("/courses/177/assignments/1933"),
     DebugRoute("/courses/167/quizzes"),
     DebugRoute("/courses/162/assignments/1916/fileupload"),
-    DebugRoute("courses/162/assignments/1901/submissions/12", [.modal, .embedInNav]),
+    DebugRoute("courses/162/assignments/1901/submissions/12", [.embedInNav]),
+    DebugRoute("courses/159/assignments/1932/submissions/12", [.embedInNav]),
     DebugRoute("courses/162/assignments/1901/submissions/12/urlsubmission", [.modal, .embedInNav]),
     DebugRoute("/logs", [.modal, .embedInNav]),
 ]
