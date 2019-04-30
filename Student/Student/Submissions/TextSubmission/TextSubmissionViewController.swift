@@ -63,10 +63,6 @@ class TextSubmissionViewController: UIViewController, ErrorViewController, RichC
         showError(error)
     }
 
-    func rce(_ editor: RichContentEditorViewController, didError error: String) {
-        showError(message: error)
-    }
-
     @objc func submit(_ sender: Any? = nil) {
         editor?.getHTML { (html: String) in
             self.presenter?.submit(html)

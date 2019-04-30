@@ -1,0 +1,104 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+* {
+    outline: 0px solid transparent;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-touch-callout: none;
+}
+#content {
+    box-sizing: border-box;
+    min-height: 100%;
+    padding: 1em;
+}
+#content:empty:before,
+#content.is-empty:before {
+    content: attr(placeholder);
+    color: var(--text-dark);
+}
+.is-hidden {
+    display: none;
+}
+svg {
+    display: block;
+}
+[data-media_comment_id] {
+    background-color: var(--background-darkest);
+    width: 288px;
+}
+[data-uploading] {
+    opacity: 0.25;
+}
+.image-overlay {
+    position: absolute;
+}
+.progress {
+    height: 44px;
+    left: 50%;
+    margin: -22px;
+    pointer-events: none;
+    position: absolute;
+    transform: rotateZ(-90deg);
+    width: 44px;
+    top: 50%;
+}
+.progress-track {
+    fill: none;
+    stroke: white;
+}
+.progress-fill {
+    fill: none;
+    stroke: var(--brand-primary);
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    transition: stroke-dashoffset 0.5s linear;
+}
+.remove-image {
+    background: var(--background-darkest);
+    border: 0 none;
+    border-radius: 12px;
+    fill: white;
+    height: 24px;
+    padding: 3px;
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    width: 24px;
+}
+.upload-error {
+    background: white linear-gradient(to right, var(--background-danger), var(--background-danger) 40px, white 40px, white);
+    border-radius: 4px;
+    bottom: 8px;
+    left: 8px;
+    line-height: 1.2;
+    min-width: 220px;
+    padding: 12px 48px 12px 52px;
+    position: absolute;
+    right: 8px;
+}
+.upload-error-icon {
+    fill: white;
+    left: 10px;
+    margin-top: -10px;
+    position: absolute;
+    top: 50%;
+    width: 20px;
+}
+.retry-upload {
+    border: 0 none;
+    fill: var(--brand-link-color);
+    margin-top: -10px;
+    padding: 0;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+}
+.upload-error-title {
+    font-weight: 600;
+}
+.upload-error-message {
+    font-size: 14px;
+    margin-top: 4px;
+}

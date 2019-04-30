@@ -20,7 +20,7 @@ import WebKit
 
 public protocol RichContentEditorDelegate: class {
     func rce(_ editor: RichContentEditorViewController, canSubmit: Bool)
-    func rce(_ editor: RichContentEditorViewController, didError error: String)
+    func rce(_ editor: RichContentEditorViewController, didError error: Error)
 }
 
 public class RichContentEditorViewController: UIViewController {
@@ -58,60 +58,13 @@ public class RichContentEditorViewController: UIViewController {
         webView.scrollView.keyboardDismissMode = .interactive
         webView.loadHTMLString("""
             <style>
-                html, body {
-                    height: 100%;
-                    margin: 0;
-                    padding: 0;
-                }
-                * {
-                    outline: 0px solid transparent;
-                    -webkit-tap-highlight-color: rgba(0,0,0,0);
-                    -webkit-touch-callout: none;
-                }
-                #content {
-                    box-sizing: border-box;
-                    min-height: 100%;
-                    padding: 1em;
-                }
-                #content:empty:before {
-                    content: attr(placeholder);
-                    color: \(UIColor.named(.textDark).hexString);
-                }
-                [data-media_comment_id] {
-                    background-color: \(UIColor.named(.backgroundDarkest).hexString);
-                    width: 288px;
-                }
-                [data-uploading] {
-                    opacity: 0.25;
-                }
-                .progress {
-                    margin: -22px;
-                    pointer-events: none;
-                    position: absolute;
-                    transform: rotateZ(-90deg);
-                }
-                .progress-track {
-                    fill: none;
-                    stroke: white;
-                }
-                .progress-fill {
-                    fill: none;
-                    stroke: \(Brand.shared.primary.ensureContrast(against: .white).hexString);
-                    stroke-dasharray: 1000;
-                    stroke-dashoffset: 1000;
-                    transition: stroke-dashoffset 0.5s ease;
-                }
-                .remove-image {
-                    background: \(UIColor.named(.backgroundDarkest).hexString);
-                    border: 0 none;
-                    border-radius: 12px;
-                    fill: white;
-                    height: 24px;
-                    margin: 8px 0 0 -32px;
-                    padding: 3px;
-                    position: absolute;
-                    width: 24px;
-                }
+            :root {
+                --background-danger: \(UIColor.named(.backgroundDanger).hexString);
+                --background-darkest: \(UIColor.named(.backgroundDarkest).hexString);
+                --brand-link-color: \(Brand.shared.linkColor.ensureContrast(against: .white).hexString);
+                --brand-primary: \(Brand.shared.primary.ensureContrast(against: .white).hexString);
+                --text-dark: \(UIColor.named(.textDark).hexString);
+            }
             </style>
             <div id="content" contenteditable=\"true\" placeholder=\"\(placeholder)\">\(html ?? "")</div>
         """)
@@ -191,7 +144,7 @@ extension RichContentEditorViewController {
     }
 
     enum Message: String, CaseIterable {
-        case link, ready, state
+        case link, ready, state, retryUpload
     }
 
     func setupScriptMessaging() {
@@ -200,6 +153,15 @@ extension RichContentEditorViewController {
             webView.configuration.userContentController.add(messenger, name: message.rawValue)
         }
         if let url = Bundle.core.url(forResource: "RichContentEditor", withExtension: "js"), let source = try? String(contentsOf: url, encoding: .utf8) {
+            let script = WKUserScript(source: source, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
+            webView.configuration.userContentController.addUserScript(script)
+        }
+        if let url = Bundle.core.url(forResource: "RichContentEditor", withExtension: "css"), let css = try? String(contentsOf: url, encoding: .utf8) {
+            let source = """
+            var style = document.createElement('style');
+            style.textContent = \(CoreWebView.jsString(css));
+            document.head.appendChild(style);
+            """
             let script = WKUserScript(source: source, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
             webView.configuration.userContentController.addUserScript(script)
         }
@@ -214,6 +176,9 @@ extension RichContentEditorViewController {
             if let html = html { setHTML(html) }
         case .state:
             updateState(message.body as? [String: Any?])
+        case .retryUpload:
+            guard let url = (message.body as? String).flatMap({ URL(string: $0) }) else { return }
+            presenter?.retry(url)
         }
     }
 }
@@ -264,26 +229,20 @@ extension RichContentEditorViewController: RichContentEditorViewProtocol {
     }
 
     public func updateUploadProgress(of files: [File]) {
-        for file in files {
-            if let error = file.uploadError {
-                delegate?.rce(self, didError: error)
-            }
-        }
-        let list = files.map { file in """
-            {
-                localFileURL: \(CoreWebView.jsString(file.localFileURL?.absoluteString)),
-                url: \(CoreWebView.jsString(file.url?.absoluteString)),
-                mediaEntryID: \(CoreWebView.jsString(file.mediaEntryID)),
-                uploadError: \(CoreWebView.jsString(file.uploadError)),
-                bytesSent: \(file.bytesSent),
-                size: \(file.size),
-            }
-            """
-        }
-        webView.evaluateJavaScript("editor.updateUploadProgress([\(list.joined(separator: ", "))])")
+        let data = try? JSONSerialization.data(withJSONObject: files.map { file -> [String: Any?] in [
+            "localFileURL": file.localFileURL?.absoluteString,
+            "url": file.url?.absoluteString,
+            "mediaEntryID": file.mediaEntryID,
+            "uploadError": file.uploadError,
+            "uploadErrorTitle": NSLocalizedString("Failed Upload", bundle: .core, comment: ""),
+            "bytesSent": file.bytesSent,
+            "size": file.size,
+        ] })
+        let json = data.flatMap({ String(data: $0, encoding: .utf8) }) ?? "[]"
+        webView.evaluateJavaScript("editor.updateUploadProgress(\(json))")
     }
 
     public func showError(_ error: Error) {
-        delegate?.rce(self, didError: error.localizedDescription)
+        delegate?.rce(self, didError: error)
     }
 }

@@ -90,26 +90,34 @@ const editor = window.editor = {
     },
 
     updateUploadProgress (files) {
-        for (let file of files) {
-            let img = document.querySelector(`[data-uploading="${file.localFileURL}"]`)
-            let progress = document.querySelector(`[data-progress="${file.localFileURL}"]`)
-            if (!img) {
-                if (progress) progress.remove()
-            } else if (file.uploadError) {
-                img.remove()
-                if (progress) progress.remove()
+        for (const file of files) {
+            const img = document.querySelector(`[data-uploading="${file.localFileURL}"]`)
+            if (!img) continue
+            const overlay = img.overlay || (img.overlay = imgOverlay(img))
+            if (file.uploadError) {
+                overlay.progressSVG.classList.add('is-hidden')
+                overlay.removeButton.classList.remove('is-hidden')
+                overlay.uploadErrorTitle.textContent = file.uploadErrorTitle
+                overlay.uploadErrorMessage.textContent = file.uploadError
+                overlay.uploadError.classList.remove('is-hidden')
             } else if (file.mediaEntryID) {
                 img.src = videoPreviewURL
                 img.dataset.media_comment_id = file.mediaEntryID
                 delete img.dataset.uploading
-                if (progress) progress.remove()
+                overlay.progressSVG.classList.add('is-hidden')
+                overlay.removeButton.classList.remove('is-hidden')
+                overlay.uploadError.classList.add('is-hidden')
             } else if (file.url) {
                 img.src = file.url
                 delete img.dataset.uploading
-                if (progress) progress.remove()
+                overlay.progressSVG.classList.add('is-hidden')
+                overlay.removeButton.classList.remove('is-hidden')
+                overlay.uploadError.classList.add('is-hidden')
             } else {
-                progress = progress || progressElement(file.localFileURL)
-                const fill = progress.querySelector('.progress-fill')
+                overlay.progressSVG.classList.remove('is-hidden')
+                overlay.removeButton.classList.add('is-hidden')
+                overlay.uploadError.classList.add('is-hidden')
+                const fill = overlay.querySelector('.progress-fill')
                 const circum = 2 * fill.r.baseVal.value * Math.PI
                 fill.style.strokeDashoffset = 1000 - (((file.bytesSent / file.size) || 0) * circum)
             }
@@ -118,24 +126,18 @@ const editor = window.editor = {
     },
 
     updateOverlays () {
-        for (let button of document.querySelectorAll('.remove-image')) {
-            if (!button.removesImage.parentNode) {
-                button.remove()
+        for (const overlay of document.querySelectorAll('.image-overlay')) {
+            if (!overlay.image.parentNode) {
+                overlay.remove()
             }
         }
-        for (let img of content.querySelectorAll('img')) {
-            let bounds = img.getBoundingClientRect()
-            if (img.dataset.uploading) {
-                let progress = document.querySelector(`[data-progress="${img.dataset.uploading}"]`)
-                if (!progress) continue
-                progress.style.left = `${bounds.left + (bounds.width / 2) + scrollX}px`
-                progress.style.top = `${bounds.top + (bounds.height / 2) + scrollY}px`
-            } else {
-                let button = img.removeButton || (img.removeButton = removeButton(img))
-                if (!button.parentNode) { document.body.appendChild(button) } // fix undo breaking it
-                button.style.left = `${bounds.right + (bounds.width < 40 ? 20 : 0) + scrollX}px`
-                button.style.top = `${bounds.top + (bounds.height < 40 ? -20 : 0) + scrollY}px`
-            }
+        for (const img of content.querySelectorAll('img')) {
+            const bounds = img.getBoundingClientRect()
+            const overlay = img.overlay || (img.overlay = imgOverlay(img))
+            overlay.style.height = `${bounds.height}px`
+            overlay.style.left = `${scrollX + bounds.left}px`
+            overlay.style.top = `${scrollY + bounds.top}px`
+            overlay.style.width = `${bounds.width}px`
         }
     },
 
@@ -205,6 +207,9 @@ const editor = window.editor = {
             }
         }
 
+        const isEmpty = editor.isEmpty()
+        content.classList.toggle('is-empty', isEmpty)
+
         webkit.messageHandlers.state.postMessage({
             undo: document.queryCommandEnabled('undo'),
             redo: document.queryCommandEnabled('redo'),
@@ -212,8 +217,7 @@ const editor = window.editor = {
             italic: document.queryCommandState('italic'),
             orderedList: document.queryCommandState('insertOrderedList'),
             unorderedList: document.queryCommandState('insertUnorderedList'),
-            isEmpty: editor.isEmpty(),
-            foreColor, linkHref, linkText, imageSrc, imageAlt,
+            isEmpty, foreColor, linkHref, linkText, imageSrc, imageAlt,
         })
     }),
 
@@ -260,28 +264,47 @@ const escapeHTML = (html) => {
         .replace(/"/g, '&quot;')
 }
 
-const progressElement = url => {
-    const progress = document.body.appendChild(document.createElement('div'))
-    progress.setAttribute('aria-hidden', null)
-    progress.className = 'progress'
-    progress.dataset.progress = url
-    progress.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="44" height="44">
-  <circle class="progress-track" stroke-width="4" cx="22" cy="22" r="20"/>
-  <circle class="progress-fill" stroke-width="4" cx="22" cy="22" r="20"/>
-</svg>`
-    return progress
-}
-
-const removeButton = img => {
-    const button = document.body.appendChild(document.createElement('button'))
-    button.setAttribute('aria-hidden', null)
-    button.className = 'remove-image'
-    button.removesImage = img
-    button.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1920" width="18" height="18">
-  <path d="M771.55 960.11L319 1412.66l188.56 188.56 452.55-452.55 452.55 452.55 188.56-188.56-452.55-452.55 452.55-452.55L1412.66 319 960.1 771.55 507.56 319 319 507.56z"/>
-</svg>`
-    button.onclick = () => { img.remove() }
-    return button
+const imgOverlay = img => {
+    const overlay = document.body.appendChild(document.createElement('div'))
+    overlay.setAttribute('aria-hidden', '')
+    overlay.className = 'image-overlay'
+    overlay.innerHTML = `
+        <button class="remove-image">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1920" width="18" height="18">
+                <path d="M771.55 960.11L319 1412.66l188.56 188.56 452.55-452.55 452.55 452.55 188.56-188.56-452.55-452.55 452.55-452.55L1412.66 319 960.1 771.55 507.56 319 319 507.56z"/>
+            </svg>
+        </button>
+        <svg class="progress is-hidden" xmlns="http://www.w3.org/2000/svg">
+            <circle class="progress-track" stroke-width="4" cx="22" cy="22" r="20"/>
+            <circle class="progress-fill" stroke-width="4" cx="22" cy="22" r="20"/>
+        </svg>
+        <div class="upload-error is-hidden">
+            <svg class="upload-error-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1920" width="20" height="20">
+                <path d="M960 1920C429.8 1920 0 1490.2 0 960S429.8 0 960 0s960 429.8 960 960-429.8 960-960 960zm-9.84-577.32c-84.47 0-153.19 68.73-153.19 153.2 0 84.46 68.72 153.19 153.2 153.19s153.18-68.72 153.18-153.2-68.72-153.18-153.19-153.18zM1153.66 320h-407l99.13 898.62h208.75L1153.66 320z"/>
+            </svg>
+            <div>
+                <div class="upload-error-title"></div>
+                <div class="upload-error-message"></div>
+            </div>
+            <button class="retry-upload">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1920" width="20" height="20">
+                    <path d="M960 0v112.94c467.13 0 847.06 379.94 847.06 847.06 0 467.13-379.94 847.06-847.06 847.06-467.13 0-847.06-379.94-847.06-847.06 0-267.1 126.6-515.91 338.83-675.73v393.38H564.7v-564.7H0v112.93h342.89C127.06 407.38 0 674.71 0 960c0 529.36 430.64 960 960 960s960-430.64 960-960S1489.36 0 960 0"/>
+                </svg>
+            </button>
+        </div>
+    `.replace(/>\s+</g, '><').trim()
+    overlay.image = img
+    overlay.progressSVG = overlay.querySelector('.progress')
+    overlay.removeButton = overlay.querySelector('.remove-image')
+    overlay.removeButton.onclick = () => { overlay.image.remove() }
+    overlay.retryButton = overlay.querySelector('.retry-upload')
+    overlay.retryButton.onclick = () => {
+        webkit.messageHandlers.retryUpload.postMessage(overlay.image.dataset.uploading)
+    }
+    overlay.uploadError = overlay.querySelector('.upload-error')
+    overlay.uploadErrorTitle = overlay.querySelector('.upload-error-title')
+    overlay.uploadErrorMessage = overlay.querySelector('.upload-error-message')
+    return overlay
 }
 
 const videoUploadURL = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"></svg>`
@@ -310,8 +333,6 @@ function throttle (fn, ms = 200) {
 
 document.addEventListener('selectionchange', e => {
     editor.updateScroll()
-    const empty = document.querySelector('#content>br:only-child')
-    if (empty) { content.removeChild(empty) }
     editor.postState()
 })
 
@@ -335,10 +356,6 @@ window.addEventListener('touchend', e => {
     if (!editor.isDragging && e.target.nodeName.toLowerCase() === 'html') {
         editor.focus()
     }
-})
-
-content.addEventListener('blur', () => {
-    if (editor.isEmpty()) { content.textContent = '' }
 })
 
 content.addEventListener('paste', e => {

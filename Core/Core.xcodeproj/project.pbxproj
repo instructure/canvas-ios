@@ -270,6 +270,7 @@
 		7DE3D11F225E7058000CAE7C /* RichContentToolbarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DE3D11E225E7058000CAE7C /* RichContentToolbarView.xib */; };
 		7DE3D121225E7074000CAE7C /* RichContentToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE3D120225E7074000CAE7C /* RichContentToolbarView.swift */; };
 		7DEAD08E2272387F0030C28A /* RichContentEditorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEAD08D2272387F0030C28A /* RichContentEditorPresenter.swift */; };
+		7DEAD09822789E8A0030C28A /* RichContentEditor.css in Resources */ = {isa = PBXBuildFile; fileRef = 7DEAD09722789E8A0030C28A /* RichContentEditor.css */; };
 		7DEB5C3A224EB02B00F28404 /* CreateTextComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEB5C39224EB02A00F28404 /* CreateTextComment.swift */; };
 		7DEB5C3C224EBF2D00F28404 /* CreateTextCommentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEB5C3B224EBF2D00F28404 /* CreateTextCommentTests.swift */; };
 		7DF4001B2174FA24007E5F81 /* UITableViewExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF4001A2174FA24007E5F81 /* UITableViewExtensionsTests.swift */; };
@@ -918,6 +919,7 @@
 		7DE3D11E225E7058000CAE7C /* RichContentToolbarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RichContentToolbarView.xib; sourceTree = "<group>"; };
 		7DE3D120225E7074000CAE7C /* RichContentToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichContentToolbarView.swift; sourceTree = "<group>"; };
 		7DEAD08D2272387F0030C28A /* RichContentEditorPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichContentEditorPresenter.swift; sourceTree = "<group>"; };
+		7DEAD09722789E8A0030C28A /* RichContentEditor.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = RichContentEditor.css; sourceTree = "<group>"; };
 		7DEB5C39224EB02A00F28404 /* CreateTextComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTextComment.swift; sourceTree = "<group>"; };
 		7DEB5C3B224EBF2D00F28404 /* CreateTextCommentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTextCommentTests.swift; sourceTree = "<group>"; };
 		7DF4001A2174FA24007E5F81 /* UITableViewExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewExtensionsTests.swift; sourceTree = "<group>"; };
@@ -1526,6 +1528,7 @@
 		7D2FADBC225BA4BC00BCE19E /* RichContentEditor */ = {
 			isa = PBXGroup;
 			children = (
+				7DEAD09722789E8A0030C28A /* RichContentEditor.css */,
 				7D2FADC3225BBA5600BCE19E /* RichContentEditor.js */,
 				7DEAD08D2272387F0030C28A /* RichContentEditorPresenter.swift */,
 				7D2FADBD225BA50A00BCE19E /* RichContentEditorViewController.swift */,
@@ -2323,6 +2326,7 @@
 				B1B4C1C9219631AC00FA9E0E /* EmptyView.xib in Resources */,
 				7DDC81442242E2B2000DD25A /* AudioRecorderViewController.storyboard in Resources */,
 				5BF786A6218599B600471A5F /* InfoPlist.strings in Resources */,
+				7DEAD09822789E8A0030C28A /* RichContentEditor.css in Resources */,
 				7DE3D11F225E7058000CAE7C /* RichContentToolbarView.xib in Resources */,
 				7DFFAB1A219DDB22003E71F8 /* CommentListViewController.storyboard in Resources */,
 				B18359AA222450DE0005A918 /* AccessIconView.xib in Resources */,

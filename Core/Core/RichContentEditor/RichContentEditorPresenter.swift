@@ -14,7 +14,9 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+import CoreData
 import Foundation
+import UIKit
 
 public protocol RichContentEditorViewProtocol: class {
     func showError(_ error: Error)
@@ -54,9 +56,9 @@ public class RichContentEditorPresenter: NSObject, UIImagePickerControllerDelega
         picker.dismiss(animated: true) {
             do {
                 if let image = info[.editedImage] as? UIImage ?? info[.originalImage] as? UIImage {
-                    self.createFile(try image.write(), then: self.uploadImage)
+                    self.createFile(try image.write(), isRetry: false, then: self.uploadImage)
                 } else if let url = info[.mediaURL] as? URL {
-                    self.createFile(url, then: self.uploadMedia)
+                    self.createFile(url, isRetry: false, then: self.uploadMedia)
                 }
             } catch {
                 self.view?.showError(error)
@@ -64,7 +66,15 @@ public class RichContentEditorPresenter: NSObject, UIImagePickerControllerDelega
         }
     }
 
-    func createFile(_ url: URL, then: @escaping (URL, File) -> Void) {
+    func retry(_ url: URL) {
+        if ["png", "jpeg", "jpg"].contains(url.pathExtension) {
+            createFile(url, isRetry: true, then: uploadImage)
+        } else {
+            createFile(url, isRetry: true, then: uploadMedia)
+        }
+    }
+
+    func createFile(_ url: URL, isRetry: Bool, then: @escaping (URL, File, Bool) -> Void) {
         env.database.perform { context in
             do {
                 let file: File = context.insert()
@@ -72,7 +82,7 @@ public class RichContentEditorPresenter: NSObject, UIImagePickerControllerDelega
                 file.localFileURL = url
                 file.size = url.lookupFileSize()
                 try context.save()
-                then(url, file)
+                then(url, file, isRetry)
             } catch {
                 self.view?.showError(error)
             }
@@ -80,17 +90,25 @@ public class RichContentEditorPresenter: NSObject, UIImagePickerControllerDelega
     }
 
     func updateFile(_ file: File, error: Error?, mediaID: String? = nil) {
-        env.database.perform { context in
-            file.uploadError = error?.localizedDescription ?? file.uploadError
-            file.mediaEntryID = mediaID
-            try? context.save()
+        let context = env.database.viewContext
+        context.perform { [weak self] in
+            do {
+                guard let file = context.object(with: file.objectID) as? File else { return }
+                file.uploadError = error?.localizedDescription ?? file.uploadError
+                file.mediaEntryID = mediaID
+                try context.save()
+            } catch {
+                self?.view?.showError(error)
+            }
         }
     }
 
-    func uploadImage(_ url: URL, file: File) {
+    func uploadImage(_ url: URL, file: File, isRetry: Bool) {
         do {
-            let base64 = try Data(contentsOf: url).base64EncodedString()
-            view?.insertImagePlaceholder(url, placeholder: "data:image/png;base64,\(base64)")
+            if !isRetry {
+                let base64 = try Data(contentsOf: url).base64EncodedString()
+                view?.insertImagePlaceholder(url, placeholder: "data:image/png;base64,\(base64)")
+            }
             uploader.upload(file, context: uploadContext) { [weak self] error in
                 self?.updateFile(file, error: error)
             }
@@ -99,8 +117,8 @@ public class RichContentEditorPresenter: NSObject, UIImagePickerControllerDelega
         }
     }
 
-    func uploadMedia(_ url: URL, file: File) {
-        view?.insertVideoPlaceholder(url)
+    func uploadMedia(_ url: URL, file: File, isRetry: Bool) {
+        if !isRetry { view?.insertVideoPlaceholder(url) }
         UploadMedia(type: .video, url: url, file: file).fetch(environment: env) { [weak self] mediaID, error in
             self?.updateFile(file, error: error, mediaID: mediaID)
         }
