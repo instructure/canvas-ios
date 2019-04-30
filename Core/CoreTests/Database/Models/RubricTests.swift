@@ -19,11 +19,6 @@ import XCTest
 @testable import Core
 
 class RubricTests: CoreTestCase {
-
-    override func setUp() {
-
-    }
-
     func testRubricScope() {
         let two = Rubric.make(["position": 2, "id": "2"])
         let one = Rubric.make(["position": 1, "id": "1"])
@@ -36,32 +31,26 @@ class RubricTests: CoreTestCase {
     }
 
     func testSaveRating() {
-        var ratings: [RubricRating] = databaseClient.fetch(predicate: NSPredicate.all)
-        databaseClient.delete(ratings)
-
         RubricRating.make(["id": "1", "assignmentID": "2"])
         let item = APIRubricRating.make(["id": "1", "assignmentID": "2", "points": 100.0])
 
         let rating = try? RubricRating.save(item, in: databaseClient)
 
         XCTAssertNotNil(rating)
-        ratings = databaseClient.fetch(predicate: NSPredicate.all)
+        let ratings: [RubricRating] = databaseClient.fetch(predicate: NSPredicate.all)
 
         XCTAssertEqual(ratings.count, 1)
         XCTAssertEqual(ratings.first?.points, 100)
     }
 
     func testSaveAssessment() {
-        var assessments: [RubricAssessment] = databaseClient.fetch(predicate: NSPredicate.all)
-        databaseClient.delete(assessments)
-
         RubricAssessment.make(["id": "1", "submissionID": "1", "points": 2.0])
         let item = APIRubricAssessment.make(["points": 200.0])
 
         let assessment = try? RubricAssessment.save(item, in: databaseClient, id: "1", submissionID: "1")
 
         XCTAssertNotNil(assessment)
-        assessments = databaseClient.fetch(predicate: NSPredicate.all)
+        let assessments: [RubricAssessment] = databaseClient.fetch(predicate: NSPredicate.all)
 
         XCTAssertEqual(assessments.count, 1)
         XCTAssertEqual(assessments.first?.points, 200)
