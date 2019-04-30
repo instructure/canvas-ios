@@ -22,6 +22,7 @@ import { alertError } from '../../../../redux/middleware/error-handler'
 import { API, httpCache, PageModel } from '../../../../canvas-api/model-api'
 import * as template from '../../../../__templates__'
 import ConnectedPageEdit, { PageEdit } from '../PageEdit'
+import app from '../../../app'
 
 jest.mock('../../../../redux/middleware/error-handler', () => {
   return { alertError: jest.fn() }
@@ -63,7 +64,15 @@ describe('PageEdit', () => {
   })
 
   it('renders', () => {
+    app.setCurrentApp('teacher')
     expect(shallow(<PageEdit {...props} />)).toMatchSnapshot()
+  })
+
+  it('renders when the student app', () => {
+    app.setCurrentApp('student')
+    props.page.editingRoles = ['students', 'teacher']
+    expect(shallow(<PageEdit {...props} />)).toMatchSnapshot()
+    app.setCurrentApp('teacher')
   })
 
   it('alerts on new loadError', () => {
