@@ -290,6 +290,15 @@ class StoreTests: CoreTestCase {
         XCTAssertEqual(store.last, two)
     }
 
+    func testAll() {
+        let one = Course.make(["id": "1", "name": "A"])
+        let two = Course.make(["id": "2", "name": "B"])
+        let useCase = TestUseCase(courses: nil, requestError: nil, writeError: nil, urlResponse: nil)
+        let store = Store(env: environment, useCase: useCase) { }
+
+        XCTAssertEqual(store.all, [one, two])
+    }
+
     func testChanges() {
         let use = TestUseCase(courses: nil, requestError: nil, writeError: nil, urlResponse: nil)
         let notified = expectation(description: "notified")

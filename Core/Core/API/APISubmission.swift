@@ -44,6 +44,7 @@ public struct APISubmission: Codable, Equatable {
     let submission_comments: [APISubmissionComment]? // include[]=submission_comments
     let submission_history: [APISubmission]? // include[]=submission_history
     var user: APISubmissionUser? // include[]=user
+    var rubric_assessment: APIRubricAssessmentMap?  // include[]=rubric_assessment
 }
 
 public struct APISubmissionUser: Codable, Equatable {

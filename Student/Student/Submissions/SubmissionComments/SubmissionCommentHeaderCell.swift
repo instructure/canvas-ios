@@ -23,6 +23,11 @@ class SubmissionCommentHeaderCell: UITableViewCell {
     @IBOutlet weak var createdAtLabel: DynamicLabel?
     @IBOutlet weak var chatBubbleView: IconView?
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        chatBubbleView?.image = UIImage(named: "chatBubble", in: Bundle.core, compatibleWith: nil)
+    }
+
     func update(comment: SubmissionComment) {
         isAccessibilityElement = false
         accessibilityElementsHidden = true

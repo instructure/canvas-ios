@@ -25,6 +25,7 @@ class APISubmissionRequestableTests: CoreTestCase {
             "submission_comments",
             "submission_history",
             "user",
+            "rubric_assessment",
         ]), ])
     }
 

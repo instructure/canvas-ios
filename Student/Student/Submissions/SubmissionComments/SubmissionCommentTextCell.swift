@@ -19,6 +19,12 @@ import Core
 
 class SubmissionCommentTextCell: UITableViewCell {
     @IBOutlet weak var commentLabel: DynamicLabel?
+    @IBOutlet weak var chatBubbleView: IconView?
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        chatBubbleView?.image = UIImage(named: "chatBubble", in: Bundle.core, compatibleWith: nil)
+    }
 
     func update(comment: SubmissionComment) {
         accessibilityIdentifier = "SubmissionComments.textCell.\(comment.id)"

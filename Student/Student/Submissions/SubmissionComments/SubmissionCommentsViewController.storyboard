@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -46,7 +46,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Um-tb-BF2" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="207" y="28" width="101" height="20.5"/>
+                                                    <rect key="frame" x="219.5" y="28" width="88.5" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -56,7 +56,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="March 13 at 10:51 AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="brg-4l-HGS" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="143.5" y="48.5" width="164.5" height="20.5"/>
+                                                    <rect key="frame" x="183.5" y="45" width="124.5" height="14.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -65,7 +65,7 @@
                                                         <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium12"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chatBubble" translatesAutoresizingMaskIntoConstraints="NO" id="kFW-ob-ndx" customClass="IconView" customModule="Student" customModuleProvider="target">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kFW-ob-ndx" customClass="IconView" customModule="Student" customModuleProvider="target">
                                                     <rect key="frame" x="320" y="59" width="40" height="40"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="electric"/>
@@ -100,7 +100,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chatBubble" translatesAutoresizingMaskIntoConstraints="NO" id="6at-Xx-e6I" customClass="IconView" customModule="Student" customModuleProvider="target">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6at-Xx-e6I" customClass="IconView" customModule="Student" customModuleProvider="target">
                                                     <rect key="frame" x="224.5" y="-5" width="135.5" height="42"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="jWm-AB-N4T"/>
@@ -132,6 +132,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="chatBubbleView" destination="6at-Xx-e6I" id="1iR-WZ-blv"/>
                                             <outlet property="commentLabel" destination="jQO-Zk-01K" id="dFb-A9-V8w"/>
                                         </connections>
                                     </tableViewCell>
@@ -173,7 +174,7 @@
                                                         <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium12"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chatBubble" translatesAutoresizingMaskIntoConstraints="NO" id="2V9-9A-X5r" customClass="IconView" customModule="Student" customModuleProvider="target">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2V9-9A-X5r" customClass="IconView" customModule="Student" customModuleProvider="target">
                                                     <rect key="frame" x="15" y="59" width="40" height="40"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="backgroundLight"/>
@@ -209,7 +210,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chatBubble" translatesAutoresizingMaskIntoConstraints="NO" id="893-hG-e0V" customClass="IconView" customModule="Student" customModuleProvider="target">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="893-hG-e0V" customClass="IconView" customModule="Student" customModuleProvider="target">
                                                     <rect key="frame" x="15" y="-5" width="135.5" height="42"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="6G6-Mn-eLP"/>
@@ -242,6 +243,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="chatBubbleView" destination="893-hG-e0V" id="jbJ-VX-qw5"/>
                                             <outlet property="commentLabel" destination="eMn-Vx-0Ll" id="FVy-xC-zeC"/>
                                         </connections>
                                     </tableViewCell>
@@ -505,7 +507,4 @@
             <point key="canvasLocation" x="-254" y="33"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="chatBubble" width="40" height="40"/>
-    </resources>
 </document>
