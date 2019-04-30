@@ -256,7 +256,30 @@ extension GradesTodayWidgetViewController: UITableViewDataSource {
 extension GradesTodayWidgetViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        guard let course = presenter.courses[indexPath.row], let host = AppEnvironment.shared.currentSession?.baseURL.host else {
+
+        guard let host = AppEnvironment.shared.currentSession?.baseURL.host else {
+            extensionContext?.open(URL(string: "canvas-courses://")!, completionHandler: nil)
+            return
+        }
+
+        if indexPath.section == 0 {
+            openAssignment(indexPath: indexPath, host: host)
+        } else {
+            openCourse(indexPath: indexPath, host: host)
+        }
+    }
+
+    func openAssignment(indexPath: IndexPath, host: String) {
+        guard let submission = presenter.submissions[indexPath.row], let assignment = submission.assignment else {
+            extensionContext?.open(URL(string: "canvas-courses://")!, completionHandler: nil)
+            return
+        }
+
+        extensionContext?.open(URL(string: "canvas-courses://\(host)/courses/\(assignment.courseID)/assignments/\(assignment.id)")!)
+    }
+
+    func openCourse(indexPath: IndexPath, host: String) {
+        guard let course = presenter.courses[indexPath.row] else {
             extensionContext?.open(URL(string: "canvas-courses://")!, completionHandler: nil)
             return
         }

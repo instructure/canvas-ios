@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -28,7 +27,7 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZ5-LL-on8" customClass="DynamicLabel" customModule="Core">
-                        <rect key="frame" x="32" y="18" width="42" height="19.5"/>
+                        <rect key="frame" x="32" y="17.5" width="281" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -38,7 +37,7 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WRP-wQ-PKm" customClass="DynamicLabel" customModule="Core">
-                        <rect key="frame" x="319.5" y="18" width="39.5" height="19.5"/>
+                        <rect key="frame" x="317" y="17.5" width="42" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -55,6 +54,7 @@
                     <constraint firstItem="jaY-dJ-xrv" firstAttribute="leading" secondItem="XqI-3V-yiu" secondAttribute="leading" constant="16" id="Lxb-r4-20Y"/>
                     <constraint firstAttribute="trailingMargin" secondItem="WRP-wQ-PKm" secondAttribute="trailing" id="Sdf-TK-fnK"/>
                     <constraint firstItem="eZ5-LL-on8" firstAttribute="leading" secondItem="jaY-dJ-xrv" secondAttribute="trailing" constant="10" id="W7r-7E-Oxb"/>
+                    <constraint firstItem="WRP-wQ-PKm" firstAttribute="leading" secondItem="eZ5-LL-on8" secondAttribute="trailing" constant="4" id="ZHE-1r-OmC"/>
                     <constraint firstItem="WRP-wQ-PKm" firstAttribute="centerY" secondItem="XqI-3V-yiu" secondAttribute="centerY" id="fWu-J7-4Lj"/>
                 </constraints>
             </tableViewCellContentView>
