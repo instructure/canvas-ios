@@ -63,7 +63,7 @@ class RubricCircleView: UIView {
                 font = UIFont.scaledNamedFont(.semibold20)
                 color = UIColor.white
                 strokeColor = UIColor.blue
-                bgColor = Brand.shared.buttonPrimaryBackground
+                bgColor = Brand.shared.primary
             } else {
                 font = UIFont.scaledNamedFont(.regular20Monodigit)
                 color = UIColor.named(.borderDark)
