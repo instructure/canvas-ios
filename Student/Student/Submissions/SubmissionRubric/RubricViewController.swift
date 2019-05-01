@@ -38,7 +38,7 @@ class RubricViewController: UIViewController {
 
     func setupCollectionView() {
         let id = String(describing: RubricCollectionViewCell.self)
-        let nib = UINib(nibName: id, bundle: nil)
+        let nib = UINib(nibName: id, bundle: Bundle(for: type(of: self)))
         collectionView.register(nib, forCellWithReuseIdentifier: id)
     }
 
