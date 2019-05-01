@@ -49,6 +49,9 @@ public struct URLSessionAPI: API {
         configuration.urlCache = nil
         return URLSession(configuration: configuration)
     }()
+    public static var delegateURLSession = { (configuration: URLSessionConfiguration, delegate: URLSessionDelegate?) -> URLSession in
+        return URLSession(configuration: configuration, delegate: delegate, delegateQueue: nil)
+    }
 
     public init(
         accessToken: String? = nil,

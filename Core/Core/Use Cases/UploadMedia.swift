@@ -19,7 +19,7 @@ import Foundation
 
 public class UploadMedia: NSObject, URLSessionDelegate, URLSessionDataDelegate {
     var env = AppEnvironment.shared
-    lazy var urlSession = URLSession(configuration: .ephemeral, delegate: self, delegateQueue: nil)
+    lazy var urlSession = URLSessionAPI.delegateURLSession(.ephemeral, self)
     var mediaAPI: API?
     var task: URLSessionTask?
     var callback: (String?, Error?) -> Void = { _, _ in }

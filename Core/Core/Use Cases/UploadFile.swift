@@ -111,7 +111,7 @@ public class UploadFile: NSObject, URLSessionDelegate, URLSessionTaskDelegate, U
         let configuration = URLSessionConfiguration.background(withIdentifier: identifier)
         configuration.sharedContainerIdentifier = appGroup
         super.init()
-        backgroundSession = URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
+        backgroundSession = URLSessionAPI.delegateURLSession(configuration, self)
     }
 
     public func upload(_ file: File, context: FileUploadContext, callback: @escaping (Error?) -> Void) {
