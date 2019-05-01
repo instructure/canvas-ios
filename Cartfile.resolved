@@ -1,3 +1,3 @@
 binary "https://customers.pspdfkit.com/carthage/mq7ic2x5FCWWUCuxWct2g87YfR9hpK/pspdfkit.json" "8.2.2"
 github "google/EarlGrey" "f26066ee142f4d2708f95da19c21fd2c7a1b0a1d"
-github "instructure/SwiftUITest" "8e8382a4f1803062a6a0b32cb3ed718d95f8b5fe"
+github "instructure/SwiftUITest" "fed9568e4d5d109447b511388cdc158625e431b4"
