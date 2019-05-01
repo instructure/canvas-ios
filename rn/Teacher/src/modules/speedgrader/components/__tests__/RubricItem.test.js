@@ -167,6 +167,7 @@ describe('RubricItem', () => {
     button.props.onPress()
 
     expect(AlertIOS.prompt).toHaveBeenCalled()
+    expect(AlertIOS.prompt.mock.calls[0][5]).toEqual('decimal-pad')
     AlertIOS.prompt.mock.calls[0][2][1].onPress('12')
     expect(defaultProps.changeRating).toHaveBeenCalledWith(defaultProps.rubricItem.id, 12, undefined)
     expect(AccessibilityInfo.setAccessibilityFocus).toHaveBeenCalled()
