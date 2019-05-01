@@ -77,6 +77,7 @@ exports[`SubmissionGrader renders 1`] = `
             "refs": Object {},
             "renderHandleContent": [Function],
             "saveUnsavedChanges": [Function],
+            "setState": [Function],
             "snapTo": [Function],
             "state": Object {
               "height": 200,
@@ -164,6 +165,7 @@ exports[`SubmissionGrader renders 1`] = `
                 "_updater": [Circular],
               },
             },
+            Symbol(enzyme.__setState__): [Function],
           },
         ],
         "registerCommentProgress": [Function],
@@ -210,6 +212,7 @@ exports[`SubmissionGrader renders 1`] = `
             "refs": Object {},
             "renderHandleContent": [Function],
             "saveUnsavedChanges": [Function],
+            "setState": [Function],
             "snapTo": [Function],
             "state": Object {
               "height": 200,
@@ -297,6 +300,7 @@ exports[`SubmissionGrader renders 1`] = `
                 "_updater": [Circular],
               },
             },
+            Symbol(enzyme.__setState__): [Function],
           },
         ],
         "registerCommentProgress": [Function],
@@ -334,6 +338,7 @@ exports[`SubmissionGrader renders 1`] = `
               "refs": Object {},
               "renderHandleContent": [Function],
               "saveUnsavedChanges": [Function],
+              "setState": [Function],
               "snapTo": [Function],
               "state": Object {
                 "height": 200,
@@ -421,6 +426,7 @@ exports[`SubmissionGrader renders 1`] = `
                   "_updater": [Circular],
                 },
               },
+              Symbol(enzyme.__setState__): [Function],
             },
           ],
           "registerCommentProgress": [Function],
@@ -510,6 +516,7 @@ exports[`SubmissionGrader renders wide 1`] = `
                 "refs": Object {},
                 "renderHandleContent": [Function],
                 "saveUnsavedChanges": [Function],
+                "setState": [Function],
                 "snapTo": [Function],
                 "state": Object {
                   "height": 200,
@@ -597,6 +604,7 @@ exports[`SubmissionGrader renders wide 1`] = `
                     "_updater": [Circular],
                   },
                 },
+                Symbol(enzyme.__setState__): [Function],
               },
               SubmissionGrader {
                 "captureToolTip": [Function],
@@ -616,6 +624,7 @@ exports[`SubmissionGrader renders wide 1`] = `
                 "refs": Object {},
                 "renderHandleContent": [Function],
                 "saveUnsavedChanges": [Function],
+                "setState": [Function],
                 "snapTo": [Function],
                 "state": Object {
                   "height": 200,
@@ -756,6 +765,7 @@ exports[`SubmissionGrader renders wide 1`] = `
                     "_updater": [Circular],
                   },
                 },
+                Symbol(enzyme.__setState__): [Function],
               },
             ],
             "registerCommentProgress": [Function],
@@ -836,6 +846,7 @@ exports[`SubmissionGrader renders wide 1`] = `
                 "refs": Object {},
                 "renderHandleContent": [Function],
                 "saveUnsavedChanges": [Function],
+                "setState": [Function],
                 "snapTo": [Function],
                 "state": Object {
                   "height": 200,
@@ -923,6 +934,7 @@ exports[`SubmissionGrader renders wide 1`] = `
                     "_updater": [Circular],
                   },
                 },
+                Symbol(enzyme.__setState__): [Function],
               },
               SubmissionGrader {
                 "captureToolTip": [Function],
@@ -942,6 +954,7 @@ exports[`SubmissionGrader renders wide 1`] = `
                 "refs": Object {},
                 "renderHandleContent": [Function],
                 "saveUnsavedChanges": [Function],
+                "setState": [Function],
                 "snapTo": [Function],
                 "state": Object {
                   "height": 200,
@@ -1082,6 +1095,7 @@ exports[`SubmissionGrader renders wide 1`] = `
                     "_updater": [Circular],
                   },
                 },
+                Symbol(enzyme.__setState__): [Function],
               },
             ],
             "registerCommentProgress": [Function],

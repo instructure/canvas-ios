@@ -158,6 +158,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/to-do', wrap(ToDoList), store, { canBecomeMaster: true, deepLink: true })
   registerScreen('/courses/:courseID/wiki', wrap(PageDetails), store, { deepLink: true })
   registerScreen('/courses/:courseID/pages', wrap(PagesList), store, { canBecomeMaster: true, deepLink: true })
+  registerScreen('/courses/:courseID/pages/:url/edit', wrap(PageEdit), store, { deepLink: true })
   registerScreen('/terms-of-use', wrap(TermsOfUse), store)
   registerScreen('/profile/settings')
   registerScreen('/support/:type', undefined, undefined, { deepLink: true })
@@ -184,7 +185,6 @@ export function registerScreens (store: Store): void {
     registerScreen('/courses/:courseID/pages/new', wrap(PageEdit), store)
     registerScreen('/courses/:courseID/wiki/:url', wrap(PageDetails), store, { deepLink: true })
     registerScreen('/courses/:courseID/pages/:url', wrap(PageDetails), store, { deepLink: true })
-    registerScreen('/courses/:courseID/pages/:url/edit', wrap(PageEdit), store, { deepLink: true })
 
     registerScreen('/courses/:courseID/modules', null, null, { canBecomeMaster: true, deepLink: true })
     registerScreen('/courses/:courseID/modules/:moduleID', null, null, { canBecomeMaster: true, deepLink: true })

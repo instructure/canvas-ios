@@ -306,6 +306,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
             "renderBody": [Function],
             "renderItem": [Function],
             "scrollEnded": [Function],
+            "setState": [Function],
             "snapTo": [Function],
             "state": Object {
               "currentPageIndex": undefined,
@@ -421,6 +422,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                 "_updater": [Circular],
               },
             },
+            Symbol(enzyme.__setState__): [Function],
           },
           SpeedGrader {
             "_captureFlatList": [Function],
@@ -465,6 +467,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
             "renderBody": [Function],
             "renderItem": [Function],
             "scrollEnded": [Function],
+            "setState": [Function],
             "snapTo": [Function],
             "state": Object {
               "currentPageIndex": undefined,
@@ -582,10 +585,10 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                 "_updater": [Circular],
               },
             },
+            Symbol(enzyme.__setState__): [Function],
           },
           SpeedGrader {
             "_captureFlatList": [Function],
-            "componentWillReceiveProps": [Function],
             "context": Object {},
             "dismiss": [Function],
             "getInitialTabIndex": [Function],
@@ -627,6 +630,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
             "renderBody": [Function],
             "renderItem": [Function],
             "scrollEnded": [Function],
+            "setState": [Function],
             "snapTo": [Function],
             "state": Object {
               "currentPageIndex": undefined,
@@ -744,6 +748,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                 "_updater": [Circular],
               },
             },
+            Symbol(enzyme.__setState__): [Function],
           },
           SpeedGrader {
             "_captureFlatList": [Function],
@@ -804,6 +809,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
             "renderBody": [Function],
             "renderItem": [Function],
             "scrollEnded": [Function],
+            "setState": [Function],
             "snapTo": [Function],
             "state": Object {
               "currentPageIndex": 0,
@@ -975,10 +981,10 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                 "_updater": [Circular],
               },
             },
+            Symbol(enzyme.__setState__): [Function],
           },
           SpeedGrader {
             "_captureFlatList": [Function],
-            "componentWillReceiveProps": [Function],
             "context": Object {},
             "dismiss": [Function],
             "getInitialTabIndex": [Function],
@@ -1027,6 +1033,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
             "renderBody": [Function],
             "renderItem": [Function],
             "scrollEnded": [Function],
+            "setState": [Function],
             "snapTo": [Function],
             "state": Object {
               "currentPageIndex": 0,
@@ -1189,10 +1196,10 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                 "_updater": [Circular],
               },
             },
+            Symbol(enzyme.__setState__): [Function],
           },
           SpeedGrader {
             "_captureFlatList": [Function],
-            "componentWillReceiveProps": [Function],
             "context": Object {},
             "dismiss": [Function],
             "getInitialTabIndex": [Function],
@@ -1241,6 +1248,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
             "renderBody": [Function],
             "renderItem": [Function],
             "scrollEnded": [Function],
+            "setState": [Function],
             "snapTo": [Function],
             "state": Object {
               "currentPageIndex": 0,
@@ -1403,6 +1411,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                 "_updater": [Circular],
               },
             },
+            Symbol(enzyme.__setState__): [Function],
           },
           SpeedGrader {
             "_captureFlatList": [Function],
@@ -1445,6 +1454,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
             "renderBody": [Function],
             "renderItem": [Function],
             "scrollEnded": [Function],
+            "setState": [Function],
             "snapTo": [Function],
             "state": Object {
               "currentPageIndex": undefined,
@@ -1560,6 +1570,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                 "_updater": [Circular],
               },
             },
+            Symbol(enzyme.__setState__): [Function],
           },
           SpeedGrader {
             "_captureFlatList": [Function],
@@ -1602,6 +1613,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
             "renderBody": [Function],
             "renderItem": [Function],
             "scrollEnded": [Function],
+            "setState": [Function],
             "snapTo": [Function],
             "state": Object {
               "currentPageIndex": undefined,
@@ -1717,6 +1729,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                 "_updater": [Circular],
               },
             },
+            Symbol(enzyme.__setState__): [Function],
           },
           SpeedGrader {
             "_captureFlatList": [Function],
@@ -1768,6 +1781,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
             "renderBody": [Function],
             "renderItem": [Function],
             "scrollEnded": [Function],
+            "setState": [Function],
             "snapTo": [Function],
             "state": Object {
               "currentPageIndex": 0,
@@ -1930,6 +1944,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                 "_updater": [Circular],
               },
             },
+            Symbol(enzyme.__setState__): [Function],
           },
         ],
         "registerCommentProgress": [Function],

@@ -287,7 +287,7 @@ describe('EditItem folder', () => {
       ...props.item,
       name: 'title2',
     })
-    await updatedState(tree)
+
     expect(tree.find('SavingBanner').exists()).toBe(true)
     await saveFailed.catch(() => {})
     jest.runOnlyPendingTimers()

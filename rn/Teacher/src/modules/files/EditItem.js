@@ -149,7 +149,7 @@ export default class EditItem extends Component<Props, State> {
         }
       } catch (error) {
         this.setState({ pending: false })
-        setTimeout(() => { alertError(error) }, 1000)
+        alertError(error)
         return
       }
     }

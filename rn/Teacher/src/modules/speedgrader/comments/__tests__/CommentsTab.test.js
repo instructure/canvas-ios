@@ -125,10 +125,9 @@ test('comments render properly', () => {
 
 test('empty state renders properly', () => {
   const tree = shallow(<CommentsTab commentRows={[]} drawerState={new DrawerState()}/>)
-  let flatlist = tree.find('Component').first()
-  let props = flatlist.props().children[0].props
-  expect(props['ListEmptyComponent'].props.title).toBe('There are no comments to display.')
-  expect(props['contentContainerStyle'].justifyContent).toBe('center')
+  let flatlist = tree.find('FlatList')
+  expect(flatlist.prop('ListEmptyComponent').props.title).toBe('There are no comments to display.')
+  expect(flatlist.prop('contentContainerStyle').justifyContent).toBe('center')
 })
 
 test('calling switchFile will call the correct actions', () => {

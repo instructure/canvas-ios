@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-// @flow
+/* eslint-disable flowtype/require-valid-file-annotation */
 
 import { shallow } from 'enzyme'
 import React from 'react'
@@ -59,6 +59,16 @@ describe('PageDetails', () => {
     expect(source.html).toEqual('')
   })
 
+  it('does not mark page as viewed when a teacher', () => {
+    app.setCurrentApp('teacher')
+    const spy = jest.fn()
+    NativeModules.ModuleItemsProgress.viewedPage = spy
+    props.courseID = '33'
+    props.url = 'view-this'
+    shallow(<PageDetails {...props} />)
+    expect(spy).not.toHaveBeenCalled()
+  })
+
   it('marks page as viewed', () => {
     app.setCurrentApp('student')
     const spy = jest.fn()
@@ -100,7 +110,7 @@ describe('PageDetails', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  it('renders while loading', async () => {
+  it('renders while loading', () => {
     props.course = null
     props.page = null
     props.isLoading = true
@@ -127,7 +137,6 @@ describe('PageDetails', () => {
   })
 
   it('routes to page edit', async () => {
-    // $FlowFixMe
     ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => callback(0))
     props.navigator = template.navigator({ show: jest.fn() })
     props.courseID = '1'
@@ -144,9 +153,7 @@ describe('PageDetails', () => {
   })
 
   it('deletes page', async () => {
-    // $FlowFixMe
     ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => callback(1))
-    // $FlowFixMe
     Alert.alert = jest.fn((title, message, buttons) => buttons[1].onPress())
 
     props.api.deletePage = jest.fn()
@@ -159,9 +166,7 @@ describe('PageDetails', () => {
   })
 
   it('cant delete front page', async () => {
-    // $FlowFixMe
     ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => callback(1))
-    // $FlowFixMe
     Alert.alert = jest.fn((title, message, buttons) => buttons[1].onPress())
 
     props.api.deletePage = jest.fn()
@@ -174,9 +179,7 @@ describe('PageDetails', () => {
   })
 
   it('alerts error deleting page', async () => {
-    // $FlowFixMe
     ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => callback(1))
-    // $FlowFixMe
     Alert.alert = jest.fn((title, message, buttons) => buttons[1].onPress())
 
     const error = new Error()
@@ -192,18 +195,65 @@ describe('PageDetails', () => {
     expect(alertError).toHaveBeenCalledWith(error)
   })
 
-  it('shows edit button if permitted', () => {
-    app.setCurrentApp('teacher')
+  it('doesnt show delete for a student', async () => {
+    app.setCurrentApp('student')
+    ActionSheetIOS.showActionSheetWithOptions = jest.fn()
+    Alert.alert = jest.fn((title, message, buttons) => buttons[1].onPress())
+
+    props.page = template.pageModel({ url: 'page-1', isFrontPage: false, editingRoles: ['students', 'teacher'] })
     const tree = shallow(<PageDetails {...props} />)
-    const button = tree.find('Screen').prop('rightBarButtons')
+    tree.find('Screen').prop('rightBarButtons')
       .find(({ testID }) => testID === 'pages.details.editButton')
-    expect(button).toBeDefined()
+      .action()
+    expect(ActionSheetIOS.showActionSheetWithOptions.mock.calls[0][0].options).toEqual(['Edit', 'Cancel'])
   })
 
-  it('hides edit button if not permitted', () => {
+  it('cant edit while loading', () => {
+    props.course = null
+    props.page = null
+    props.isLoading = true
+    const tree = shallow(<PageDetails {...props} />)
+    let screen = tree.find('Screen')
+    expect(screen.prop('rightBarButtons')).toEqual(false)
+  })
+
+  it('cant edit without a page', () => {
+    props.course = null
+    props.page = null
+    props.isLoading = false
+    const tree = shallow(<PageDetails {...props} />)
+    let screen = tree.find('Screen')
+    expect(screen.prop('rightBarButtons')).toEqual(false)
+  })
+
+  it('can edit if the teacher app', () => {
+    app.setCurrentApp('teacher')
+    const tree = shallow(<PageDetails {...props} />)
+    let screen = tree.find('Screen')
+    expect(screen.prop('rightBarButtons')[0].testID).toEqual('pages.details.editButton')
+  })
+
+  it('cant edit if the student app and page does not support it', () => {
     app.setCurrentApp('student')
     const tree = shallow(<PageDetails {...props} />)
-    expect(tree.find('Screen').prop('rightBarButtons')).toBeFalsy()
+    let screen = tree.find('Screen')
+    expect(screen.prop('rightBarButtons')).toEqual(false)
+  })
+
+  it('can edit if the page supports student editing in the student app', () => {
+    app.setCurrentApp('student')
+    props.page.editingRoles = ['students', 'teacher']
+    const tree = shallow(<PageDetails {...props} />)
+    let screen = tree.find('Screen')
+    expect(screen.prop('rightBarButtons')[0].testID).toEqual('pages.details.editButton')
+  })
+
+  it('can edit if the page supports public editing in the student app', () => {
+    app.setCurrentApp('student')
+    props.page.editingRoles = ['public', 'students', 'teacher']
+    const tree = shallow(<PageDetails {...props} />)
+    let screen = tree.find('Screen')
+    expect(screen.prop('rightBarButtons')[0].testID).toEqual('pages.details.editButton')
   })
 
   it('bails out without error when page is null', () => {
