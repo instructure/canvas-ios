@@ -79,16 +79,73 @@ const editor = window.editor = {
         }
     },
 
-    insertVideoComment (mediaID) {
+    insertImagePlaceholder (url, placeholder) {
         editor.restoreRange()
-        editor.insertHTML(videoPreviewHTML(mediaID))
+        editor.insertHTML(`<img src="${escapeHTML(placeholder)}" alt="" data-uploading="${escapeHTML(url)}" />`)
+    },
+
+    insertVideoPlaceholder (url) {
+        editor.restoreRange()
+        editor.insertHTML(`<img src='${videoUploadURL}' alt="" data-uploading="${escapeHTML(url)}" data-media_comment_id />`)
+    },
+
+    updateUploadProgress (files) {
+        for (const file of files) {
+            const img = document.querySelector(`[data-uploading="${file.localFileURL}"]`)
+            if (!img) continue
+            const overlay = img.overlay || (img.overlay = imgOverlay(img))
+            if (file.uploadError) {
+                overlay.progressSVG.classList.add('is-hidden')
+                overlay.removeButton.classList.remove('is-hidden')
+                overlay.uploadErrorTitle.textContent = file.uploadErrorTitle
+                overlay.uploadErrorMessage.textContent = file.uploadError
+                overlay.uploadError.classList.remove('is-hidden')
+            } else if (file.mediaEntryID) {
+                img.src = videoPreviewURL
+                img.dataset.media_comment_id = file.mediaEntryID
+                delete img.dataset.uploading
+                overlay.progressSVG.classList.add('is-hidden')
+                overlay.removeButton.classList.remove('is-hidden')
+                overlay.uploadError.classList.add('is-hidden')
+            } else if (file.url) {
+                img.src = file.url
+                delete img.dataset.uploading
+                overlay.progressSVG.classList.add('is-hidden')
+                overlay.removeButton.classList.remove('is-hidden')
+                overlay.uploadError.classList.add('is-hidden')
+            } else {
+                overlay.progressSVG.classList.remove('is-hidden')
+                overlay.removeButton.classList.add('is-hidden')
+                overlay.uploadError.classList.add('is-hidden')
+                const fill = overlay.querySelector('.progress-fill')
+                const circum = 2 * fill.r.baseVal.value * Math.PI
+                fill.style.strokeDashoffset = 1000 - (((file.bytesSent / file.size) || 0) * circum)
+            }
+        }
+        editor.updateOverlays()
+        editor.postState()
+    },
+
+    updateOverlays () {
+        for (const overlay of document.querySelectorAll('.image-overlay')) {
+            if (!overlay.image.parentNode) { overlay.remove() }
+        }
+        for (const img of content.querySelectorAll('img')) {
+            const bounds = img.getBoundingClientRect()
+            const overlay = img.overlay || (img.overlay = imgOverlay(img))
+            overlay.style.height = `${bounds.height}px`
+            overlay.style.left = `${scrollX + bounds.left}px`
+            overlay.style.top = `${scrollY + bounds.top}px`
+            overlay.style.width = `${bounds.width}px`
+            if (!overlay.parentNode) { document.body.appendChild(overlay) }
+        }
     },
 
     setHTML (html) {
         content.innerHTML = html
-        // replace <video> with preview <img>
         for (let video of document.querySelectorAll('video')) {
-            video.outerHTML = videoPreviewHTML(video.dataset.media_comment_id)
+            let mediaID = video.dataset.media_comment_id
+            video.outerHTML = `<img src='${videoPreviewURL}' alt="" data-media_comment_id="${mediaID}" />`
         }
     },
 
@@ -98,25 +155,18 @@ const editor = window.editor = {
     },
 
     getHTML () {
-        // Images
-        for (let img of document.querySelectorAll('img')) {
-            img.classList.remove('editor-active')
-            if (img.className === '') {
-                img.removeAttribute('class')
-            }
-        }
-
         // Get the contents
         const clone = content.cloneNode(true)
         for (let styled of clone.querySelectorAll('[style]')) {
             // Replace rgb with hex because Canvas will remove rgb styles
             styled.setAttribute('style', rgbToHex(styled.style.cssText))
         }
-        for (let remove of clone.querySelectorAll('.video-preview')) {
-            remove.parentNode.removeChild(remove)
+        for (let remove of clone.querySelectorAll('[data-uploading]')) {
+            remove.remove() // There shouldn't be any, but just in case.
         }
-        for (let comment of clone.querySelectorAll('p.last-video-comment')) {
-            comment.classList.remove('last-video-comment')
+        for (let img of clone.querySelectorAll('[data-media_comment_id]')) {
+            let mediaID = img.dataset.media_comment_id
+            img.outerHTML = `<a id="media_comment_${mediaID}" class="instructure_inline_media_comment video_comment" href="/media_objects/${mediaID}">this is a media comment</a>`
         }
         let html = clone.innerHTML
         // backspaces can leave behind empty line breaks
@@ -124,10 +174,6 @@ const editor = window.editor = {
             html = ''
         }
         return html
-    },
-
-    isEmpty () {
-        return !content.querySelector('img') && !content.textContent.trim()
     },
 
     postState: throttle((e) => {
@@ -157,6 +203,11 @@ const editor = window.editor = {
             }
         }
 
+        const hasImages = content.querySelector('img') != null
+        const text = content.textContent
+        const showPlaceholder = !hasImages && !text
+        content.classList.toggle('show-placeholder', showPlaceholder)
+
         webkit.messageHandlers.state.postMessage({
             undo: document.queryCommandEnabled('undo'),
             redo: document.queryCommandEnabled('redo'),
@@ -164,7 +215,8 @@ const editor = window.editor = {
             italic: document.queryCommandState('italic'),
             orderedList: document.queryCommandState('insertOrderedList'),
             unorderedList: document.queryCommandState('insertUnorderedList'),
-            isEmpty: editor.isEmpty(),
+            isUploading: content.querySelector('[data-uploading]') != null,
+            isEmpty: !hasImages && !text.trim(),
             foreColor, linkHref, linkText, imageSrc, imageAlt,
         })
     }),
@@ -187,7 +239,7 @@ const editor = window.editor = {
         range.collapse(false)
         range.insertNode(span)
         const { bottom } = span.getBoundingClientRect()
-        span.parentNode.removeChild(span)
+        span.remove()
         if (bottom > innerHeight) {
             scrollTo(0, scrollY + bottom - innerHeight + 16)
         }
@@ -212,17 +264,61 @@ const escapeHTML = (html) => {
         .replace(/"/g, '&quot;')
 }
 
-const videoPreviewHTML = mediaID => {
-    const src = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 111">
+const imgOverlay = img => {
+    const overlay = document.createElement('div')
+    overlay.setAttribute('aria-hidden', '')
+    overlay.className = 'image-overlay'
+    overlay.innerHTML = `
+        <button class="remove-image">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1920" width="18" height="18">
+                <path d="M771.55 960.11L319 1412.66l188.56 188.56 452.55-452.55 452.55 452.55 188.56-188.56-452.55-452.55 452.55-452.55L1412.66 319 960.1 771.55 507.56 319 319 507.56z"/>
+            </svg>
+        </button>
+        <svg class="progress is-hidden" xmlns="http://www.w3.org/2000/svg">
+            <circle class="progress-track" stroke-width="4" cx="22" cy="22" r="20"/>
+            <circle class="progress-fill" stroke-width="4" cx="22" cy="22" r="20"/>
+        </svg>
+        <div class="upload-error is-hidden">
+            <svg class="upload-error-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1920" width="20" height="20">
+                <path d="M960 1920C429.8 1920 0 1490.2 0 960S429.8 0 960 0s960 429.8 960 960-429.8 960-960 960zm-9.84-577.32c-84.47 0-153.19 68.73-153.19 153.2 0 84.46 68.72 153.19 153.2 153.19s153.18-68.72 153.18-153.2-68.72-153.18-153.19-153.18zM1153.66 320h-407l99.13 898.62h208.75L1153.66 320z"/>
+            </svg>
+            <div>
+                <div class="upload-error-title"></div>
+                <div class="upload-error-message"></div>
+            </div>
+            <button class="retry-upload">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1920" width="20" height="20">
+                    <path d="M960 0v112.94c467.13 0 847.06 379.94 847.06 847.06 0 467.13-379.94 847.06-847.06 847.06-467.13 0-847.06-379.94-847.06-847.06 0-267.1 126.6-515.91 338.83-675.73v393.38H564.7v-564.7H0v112.93h342.89C127.06 407.38 0 674.71 0 960c0 529.36 430.64 960 960 960s960-430.64 960-960S1489.36 0 960 0"/>
+                </svg>
+            </button>
+        </div>
+    `.replace(/>\s+</g, '><').trim()
+    overlay.image = img
+    overlay.progressSVG = overlay.querySelector('.progress')
+    overlay.removeButton = overlay.querySelector('.remove-image')
+    overlay.removeButton.onclick = () => {
+        const range = document.createRange()
+        range.selectNode(overlay.image)
+        const selection = getSelection()
+        selection.removeAllRanges()
+        selection.addRange(range)
+        editor.execCommand('delete')
+    }
+    overlay.retryButton = overlay.querySelector('.retry-upload')
+    overlay.retryButton.onclick = () => {
+        webkit.messageHandlers.retryUpload.postMessage(overlay.image.dataset.uploading)
+    }
+    overlay.uploadError = overlay.querySelector('.upload-error')
+    overlay.uploadErrorTitle = overlay.querySelector('.upload-error-title')
+    overlay.uploadErrorMessage = overlay.querySelector('.upload-error-message')
+    return overlay
+}
+
+const videoUploadURL = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"></svg>`
+const videoPreviewURL = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 111">
   <circle fill="none" stroke="white" stroke-width="3" cx="96" cy="55" r="25"/>
   <path fill="white" d="M90 45 l18 11-18 11z"/>
 </svg>`.replace(/\r?\n\s*/g, '')
-    let html = `<img class="video-preview" src='${src}' />`
-    if (mediaID) {
-        html += `<p class="last-video-comment"><a id="media_comment_${mediaID}" class="instructure_inline_media_comment video_comment" href="/media_objects/${mediaID}">this is a media comment</a></p>`
-    }
-    return html
-}
 
 function throttle (fn, ms = 200) {
   let timer, last
@@ -244,19 +340,15 @@ function throttle (fn, ms = 200) {
 
 document.addEventListener('selectionchange', e => {
     editor.updateScroll()
-    const empty = document.querySelector('#content>br:only-child')
-    if (empty) { content.removeChild(empty) }
     editor.postState()
 })
 
+new MutationObserver(() => {
+    editor.updateOverlays()
+}).observe(content, { attributes: true, characterData: true, childList: true, subtree: true })
+
 window.addEventListener('touchstart', e => {
     editor.isDragging = false
-    if (e.target.tagName.toLowerCase() === 'img') {
-        for (let img of document.querySelectorAll('img.editor-active')) {
-            img.classList.remove('editor-active')
-        }
-        e.target.classList.add('editor-active')
-    }
 })
 window.addEventListener('touchmove', e => {
     editor.isDragging = true
@@ -264,11 +356,6 @@ window.addEventListener('touchmove', e => {
 })
 window.addEventListener('touchend', e => {
     editor.postState(e)
-    if (!e.target.classList.contains('editor-active')) {
-        for (let img of document.querySelectorAll('img.editor-active')) {
-            img.classList.remove('editor-active')
-        }
-    }
     if (editor.currentEditingLink) {
         webkit.messageHandlers.link.postMessage('')
         e.preventDefault()
@@ -276,10 +363,6 @@ window.addEventListener('touchend', e => {
     if (!editor.isDragging && e.target.nodeName.toLowerCase() === 'html') {
         editor.focus()
     }
-})
-
-content.addEventListener('blur', () => {
-    if (editor.isEmpty()) { content.textContent = '' }
 })
 
 content.addEventListener('paste', e => {

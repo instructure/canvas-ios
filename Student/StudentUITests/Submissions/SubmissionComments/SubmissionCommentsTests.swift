@@ -188,6 +188,7 @@ class SubmissionCommentsTests: StudentTest {
             ]), ],
         ]))
 
+        host.logIn(domain: "canvas.instructure.com", token: "t")
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
         SubmissionDetailsElement.drawerGripper.tap()
 

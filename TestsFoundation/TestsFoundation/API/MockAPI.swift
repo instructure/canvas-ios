@@ -74,7 +74,7 @@ public class MockAPI: API {
         return nil
     }
 
-    public func uploadTask<R>(_ requestable: R, fromFile file: URL) throws -> URLSessionTask where R: APIRequestable {
+    public func uploadTask<R>(_ requestable: R) throws -> URLSessionTask where R: APIRequestable {
         let task = MockAPITask(taskIdentifier: uploadMocks.values.count + 1)
         let request = try! requestable.urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: actAsUserID)
         uploadMocks[request] = task

@@ -19,7 +19,7 @@ import Foundation
 
 extension UIImage {
     public enum IconName: String, CaseIterable {
-        case attendance, collaborations, conferences, todo
+        case attendance, collaborations, conferences, todo, cameraSolid
         case addAudioLine, addCameraLine, addDocumentLine, addImageLine, addVideoCameraLine
         case publish, unpublish
         case warning
@@ -50,14 +50,14 @@ extension UIImage {
         let directory = url ?? URL.temporaryDirectory.appendingPathComponent("images", isDirectory: true)
         let name = name ?? String(Clock.now.timeIntervalSince1970)
         try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true, attributes: nil)
-        let url = directory.appendingPathComponent(name, isDirectory: false).appendingPathExtension("png")
-        guard let data = pngData() else {
-            throw NSError.instructureError("Failed to save image")
+        let url = directory.appendingPathComponent(name, isDirectory: false).appendingPathExtension("jpg")
+        guard let data = jpegData(compressionQuality: 0.8) else {
+            throw NSError.instructureError(NSLocalizedString("Failed to save image", bundle: .core, comment: ""))
         }
         if FileManager.default.fileExists(atPath: url.path) {
             try FileManager.default.removeItem(at: url)
         }
-        try data.write(to: url, options: .atomic)
+        try data.write(to: url)
         return url
     }
 }
