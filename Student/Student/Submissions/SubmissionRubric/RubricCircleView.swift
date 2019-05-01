@@ -55,7 +55,7 @@ class RubricCircleView: UIView {
 
             let button = DynamicButton(frame: CGRect(x: center.x, y: center.y, width: w, height: w))
             button.tag = i
-            button.addTarget(self, action: #selector(actionButtonClicked(sender:)), for: .touchUpInside)
+            button.addTarget(self, action: #selector(actionButtonClicked(sender:)), for: .primaryActionTriggered)
             button.layer.cornerRadius = floor( w / 2 )
             button.layer.masksToBounds = true
             let title = RubricCircleView.formatter.string(for: r) ?? ""
