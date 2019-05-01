@@ -17,11 +17,12 @@
     
 
 import UIKit
+import WebKit
 
 public typealias URLHandler = (URL)->()
 var WhizzyWigOpenURLHandler: URLHandler?
 
-private func renderHTML(_ html: String, width: Float, fontColor: UIColor, backgroundColor: UIColor, padding: UIEdgeInsets) -> String {
+private func renderHTML(_ html: String, width: CGFloat, fontColor: UIColor, backgroundColor: UIColor, padding: UIEdgeInsets) -> String {
     let bundle = Bundle(for: WhizzyWigView.classForCoder())
     let templateURL = bundle.url(forResource: "WhizzyWigTemplate", withExtension: "html")
     var template = try! String(contentsOf: templateURL!, encoding: String.Encoding.utf8)
@@ -42,19 +43,11 @@ private func renderHTML(_ html: String, width: Float, fontColor: UIColor, backgr
     return template.replacingOccurrences(of: "{{content}}", with: html)
 }
 
-open class WhizzyWigView: UIWebView, UIWebViewDelegate {
+open class WhizzyWigView: WKWebView, WKNavigationDelegate {
     @objc open var contentFinishedLoading: ()->() = {}
     @objc open var didRecieveMessage: (String)->() = {_ in }
-    @objc open var contentHeight: CGFloat {
-        let heightString = stringByEvaluatingJavaScript(from: "document.getElementById('whizzy_content').scrollHeight") ?? "43.0"
-        return CGFloat((heightString as NSString).doubleValue)
-    }
-    @objc open var contentWidth: CGFloat {
-        guard let widthString = stringByEvaluatingJavaScript(from: "document.documentElement.scrollWidth") else {
-            return frame.width
-        }
-        return CGFloat((widthString as NSString).doubleValue)
-    }
+    @objc open private(set) var contentHeight: CGFloat = 43
+    @objc open private(set) var contentWidth: CGFloat = 0
     @objc open var contentFontColor = UIColor.black
     @objc open var contentBackgroundColor = UIColor.white
     @objc open var contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
@@ -64,48 +57,51 @@ open class WhizzyWigView: UIWebView, UIWebViewDelegate {
             isUserInteractionEnabled = allowLinks
         }
     }
-    
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
-        delegate = self
+
+    public override init(frame: CGRect, configuration: WKWebViewConfiguration) {
+        super.init(frame: frame, configuration: configuration)
+        navigationDelegate = self
         translatesAutoresizingMaskIntoConstraints = false
         scrollView.isScrollEnabled = false
     }
-    
-    public required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        delegate = self
+
+    public required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        navigationDelegate = self
         scrollView.isScrollEnabled = false
     }
     
-    open override func loadHTMLString(_ string: String, baseURL: URL?) {
-        super.loadHTMLString(renderHTML(string, width: Float(frame.size.width), fontColor: contentFontColor, backgroundColor: contentBackgroundColor, padding: contentInsets), baseURL: baseURL)
+    open override func loadHTMLString(_ string: String, baseURL: URL?) -> WKNavigation? {
+        return super.loadHTMLString(renderHTML(string, width: frame.width, fontColor: contentFontColor, backgroundColor: contentBackgroundColor, padding: contentInsets), baseURL: baseURL)
     }
-    
-    open func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
-        
-        if !allowLinks && navigationType == .linkClicked {
-            return false
-        } else if allowLinks && navigationType == .linkClicked && request.url != nil && request.url?.host != nil {
+
+    open func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        let navigationType = navigationAction.navigationType
+        let request = navigationAction.request
+        if !allowLinks && navigationType == .linkActivated {
+            return decisionHandler(.cancel)
+        } else if allowLinks && navigationType == .linkActivated && request.url != nil && request.url?.host != nil {
             if let requestURL = request.url {
                 WhizzyWigOpenURLHandler?(requestURL)
             }
-            return false
+            return decisionHandler(.cancel)
         }
-        
-        if request.url?.scheme == "whizzywig" {
+
+        if let url = request.url, url.scheme == "whizzywig" {
+            contentHeight = CGFloat(Double(url.pathComponents[2]) ?? 43)
+            contentWidth = CGFloat(Double(url.pathComponents[1]) ?? Double(frame.width))
             contentFinishedLoading()
-            return false
+            return decisionHandler(.cancel)
         }
         if request.url?.scheme == "canvas-message", let path = request.url?.path {
             didRecieveMessage(path)
-            return false
+            return decisionHandler(.cancel)
         }
-        
-        return true
+
+        return decisionHandler(.allow)
     }
-    
-    open func webViewDidFinishLoad(_ webView: UIWebView) {
+
+    open func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         if useAPISafeLinks {
             webView.replaceHREFsWithAPISafeURLs()
         }

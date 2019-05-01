@@ -30,45 +30,26 @@
     </div>
 </body>
 
-<script type="text/javascript">
-    function onLoadAllImages(callback) {
-        var images = document.getElementsByTagName('img');
-        
-        for (var i = 0; i < images.length; i++) {
-            if (images[i].src == '' || images[i].src == undefined || !images[i].hasAttribute('src')) {
-                images[i].parentNode.removeChild(images[i]);
-            }
-        }
-        
-        images = document.getElementsByTagName('img');
-        
-        var loadedImageCount = 0;
-        
-        if (images.length > 0) {
-            for(var i = 0; i < images.length; i++) {
-                images[i].onload=checkIfImagesLoaded;
-                images[i].onerror=checkIfImagesLoaded;
-            }
-        }
-        else {
-            callback();
-        }
-        
-        function checkIfImagesLoaded() {
-            loadedImageCount++;
-            if(loadedImageCount == images.length) {
-                callback();
-            }
+<script>
+    // Send content size whenever it changes
+    let lastHeight = 43, lastWidth = 0
+    const checkSize = () => {
+        const height = document.getElementById('whizzy_content').scrollHeight
+        const width = document.documentElement.scrollWidth
+        if (lastHeight !== height || lastWidth !== width) {
+            lastHeight = height
+            lastWidth = width
+            const iframe = document.createElement('iframe')
+            iframe.src = `whizzywig://size/${width}/${height}`
+            document.documentElement.appendChild(iframe)
+            iframe.remove()
         }
     }
-
-    onLoadAllImages(function () {
-        // Inform the DiscussionEntryCell that all the images are loaded
-        var iframe = document.createElement("iframe");
-        iframe.setAttribute("src", "whizzywig://finishedLoadingImages/");
-        document.documentElement.appendChild(iframe);
-        iframe.parentNode.removeChild(iframe);
-        iframe = null;
-    });
+    const observer = new MutationObserver(checkSize)
+    observer.observe(document.getElementById('whizzy_content'), { attributes: true, childList: true, subtree: true })
+    window.addEventListener('resize', checkSize)
+    window.addEventListener('load', checkSize)
+    document.addEventListener('load', checkSize, true)
+    checkSize()
 </script>
 </html>
