@@ -58,8 +58,8 @@ class RubricCircleView: UIView {
             button.addTarget(self, action: #selector(actionButtonClicked(sender:)), for: .touchUpInside)
             button.layer.cornerRadius = floor( w / 2 )
             button.layer.masksToBounds = true
-                let title = RubricCircleView.formatter.string(for: r) ?? ""
-                button.setTitle(title, for: .normal)
+            let title = RubricCircleView.formatter.string(for: r) ?? ""
+            button.setTitle(title, for: .normal)
 
             let font: UIFont
             let color: UIColor
