@@ -96,7 +96,7 @@ class FileUploaderTests: CoreTestCase {
         }
 
         let context = FileUploadContext.submission(courseID: "1", assignmentID: "2")
-        let body = PostFileUploadTargetRequest.Body(name: url.lastPathComponent, on_duplicate: .rename, parent_folder_id: nil)
+        let body = PostFileUploadTargetRequest.Body(name: url.lastPathComponent, on_duplicate: .rename, parent_folder_id: nil, size: url.lookupFileSize())
         let request = PostFileUploadTargetRequest(context: context, body: body)
         api.mock(request, value: FileUploadTarget.make(), response: nil, error: nil)
         let started = XCTestExpectation(description: "started upload")

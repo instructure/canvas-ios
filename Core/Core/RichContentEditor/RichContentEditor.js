@@ -123,13 +123,12 @@ const editor = window.editor = {
             }
         }
         editor.updateOverlays()
+        editor.postState()
     },
 
     updateOverlays () {
         for (const overlay of document.querySelectorAll('.image-overlay')) {
-            if (!overlay.image.parentNode) {
-                overlay.remove()
-            }
+            if (!overlay.image.parentNode) { overlay.remove() }
         }
         for (const img of content.querySelectorAll('img')) {
             const bounds = img.getBoundingClientRect()
@@ -138,6 +137,7 @@ const editor = window.editor = {
             overlay.style.left = `${scrollX + bounds.left}px`
             overlay.style.top = `${scrollY + bounds.top}px`
             overlay.style.width = `${bounds.width}px`
+            if (!overlay.parentNode) { document.body.appendChild(overlay) }
         }
     },
 
@@ -176,10 +176,6 @@ const editor = window.editor = {
         return html
     },
 
-    isEmpty () {
-        return !content.querySelector('img') && !content.textContent.trim()
-    },
-
     postState: throttle((e) => {
         const node = (e && e.target) || editor.getSelectedNode()
 
@@ -207,8 +203,10 @@ const editor = window.editor = {
             }
         }
 
-        const isEmpty = editor.isEmpty()
-        content.classList.toggle('is-empty', isEmpty)
+        const hasImages = content.querySelector('img') != null
+        const text = content.textContent
+        const showPlaceholder = !hasImages && !text
+        content.classList.toggle('show-placeholder', showPlaceholder)
 
         webkit.messageHandlers.state.postMessage({
             undo: document.queryCommandEnabled('undo'),
@@ -217,7 +215,9 @@ const editor = window.editor = {
             italic: document.queryCommandState('italic'),
             orderedList: document.queryCommandState('insertOrderedList'),
             unorderedList: document.queryCommandState('insertUnorderedList'),
-            isEmpty, foreColor, linkHref, linkText, imageSrc, imageAlt,
+            isUploading: content.querySelector('[data-uploading]') != null,
+            isEmpty: !hasImages && !text.trim(),
+            foreColor, linkHref, linkText, imageSrc, imageAlt,
         })
     }),
 
@@ -265,7 +265,7 @@ const escapeHTML = (html) => {
 }
 
 const imgOverlay = img => {
-    const overlay = document.body.appendChild(document.createElement('div'))
+    const overlay = document.createElement('div')
     overlay.setAttribute('aria-hidden', '')
     overlay.className = 'image-overlay'
     overlay.innerHTML = `
@@ -296,7 +296,14 @@ const imgOverlay = img => {
     overlay.image = img
     overlay.progressSVG = overlay.querySelector('.progress')
     overlay.removeButton = overlay.querySelector('.remove-image')
-    overlay.removeButton.onclick = () => { overlay.image.remove() }
+    overlay.removeButton.onclick = () => {
+        const range = document.createRange()
+        range.selectNode(overlay.image)
+        const selection = getSelection()
+        selection.removeAllRanges()
+        selection.addRange(range)
+        editor.execCommand('delete')
+    }
     overlay.retryButton = overlay.querySelector('.retry-upload')
     overlay.retryButton.onclick = () => {
         webkit.messageHandlers.retryUpload.postMessage(overlay.image.dataset.uploading)

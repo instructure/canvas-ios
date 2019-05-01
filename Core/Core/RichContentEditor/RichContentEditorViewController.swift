@@ -122,7 +122,7 @@ extension RichContentEditorViewController {
     func updateState(_ state: [String: Any?]?) {
         toolbar.updateState(state)
         let isEmpty = state?["isEmpty"] as? Bool ?? true
-        let isUploading = !(presenter?.files.isEmpty ?? true)
+        let isUploading = state?["isUploading"] as? Bool ?? false
         delegate?.rce(self, canSubmit: !isEmpty && !isUploading)
     }
 }
@@ -212,9 +212,10 @@ extension RichContentEditorViewController: RichContentEditorViewProtocol {
         backupRange()
         let picker = UIImagePickerController()
         picker.delegate = presenter
+        picker.imageExportPreset = .compatible
         picker.sourceType = sourceType
-        picker.mediaTypes = [kUTTypeMovie as String, kUTTypeImage as String]
-        present(picker, animated: true, completion: nil)
+        picker.mediaTypes = [ kUTTypeImage as String, kUTTypeMovie as String ]
+        present(picker, animated: true)
     }
 
     public func insertImagePlaceholder(_ url: URL, placeholder: String) {

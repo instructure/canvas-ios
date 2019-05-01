@@ -46,19 +46,23 @@ public class RichContentEditorPresenter: NSObject, UIImagePickerControllerDelega
         view?.updateUploadProgress(of: files.map { $0 })
         let completes = files.filter { $0.mediaEntryID != nil || $0.url != nil || $0.uploadError != nil }
         guard !completes.isEmpty else { return }
-        env.database.perform { context in
-            try? context.delete(completes)
+        let context = env.database.viewContext
+        context.performAndWait {
+            context.delete(completes)
             try? context.save()
         }
     }
 
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         picker.dismiss(animated: true) {
+            self.files.refresh() // Actualize lazy local store
             do {
                 if let image = info[.editedImage] as? UIImage ?? info[.originalImage] as? UIImage {
                     self.createFile(try image.write(), isRetry: false, then: self.uploadImage)
                 } else if let url = info[.mediaURL] as? URL {
                     self.createFile(url, isRetry: false, then: self.uploadMedia)
+                } else {
+                    throw NSError.instructureError(NSLocalizedString("No image found from image picker", bundle: .core, comment: ""))
                 }
             } catch {
                 self.view?.showError(error)
@@ -75,7 +79,8 @@ public class RichContentEditorPresenter: NSObject, UIImagePickerControllerDelega
     }
 
     func createFile(_ url: URL, isRetry: Bool, then: @escaping (URL, File, Bool) -> Void) {
-        env.database.perform { context in
+        let context = env.database.viewContext
+        context.performAndWait {
             do {
                 let file: File = context.insert()
                 file.batchID = self.batchID
@@ -91,7 +96,7 @@ public class RichContentEditorPresenter: NSObject, UIImagePickerControllerDelega
 
     func updateFile(_ file: File, error: Error?, mediaID: String? = nil) {
         let context = env.database.viewContext
-        context.perform { [weak self] in
+        context.performAndWait { [weak self] in
             do {
                 guard let file = context.object(with: file.objectID) as? File else { return }
                 file.uploadError = error?.localizedDescription ?? file.uploadError

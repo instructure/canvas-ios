@@ -30,7 +30,7 @@ public protocol API {
     func makeDownloadRequest(_ url: URL, callback: @escaping (URL?, URLResponse?, Error?) -> Void) -> URLSessionTask?
 
     @discardableResult
-    func uploadTask<R: APIRequestable>(_ requestable: R) throws -> URLSessionTask where R.Body == URL
+    func uploadTask<R: APIRequestable>(_ requestable: R) throws -> URLSessionTask
 }
 
 public struct URLSessionAPI: API {
@@ -96,7 +96,7 @@ public struct URLSessionAPI: API {
     }
 
     @discardableResult
-    public func uploadTask<R>(_ requestable: R) throws -> URLSessionTask where R: APIRequestable, R.Body == URL {
+    public func uploadTask<R: APIRequestable>(_ requestable: R) throws -> URLSessionTask {
         let request = try requestable.urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: actAsUserID)
         let url = URL.temporaryDirectory.appendingPathComponent(UUID.string)
         try request.httpBody?.write(to: url)

@@ -85,10 +85,6 @@ public struct PostFileUploadRequest: APIRequestable {
     public let fileURL: URL
     public let target: FileUploadTarget
 
-    public var body: URL? {
-        return fileURL
-    }
-
     public init(fileURL: URL, target: FileUploadTarget) {
         self.fileURL = fileURL
         self.target = target

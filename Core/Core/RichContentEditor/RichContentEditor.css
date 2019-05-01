@@ -13,10 +13,11 @@ html, body {
     min-height: 100%;
     padding: 1em;
 }
-#content:empty:before,
-#content.is-empty:before {
+#content:empty::before,
+#content.show-placeholder::before {
     content: attr(placeholder);
     color: var(--text-dark);
+    position: absolute;
 }
 .is-hidden {
     display: none;
