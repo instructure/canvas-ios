@@ -18,6 +18,8 @@ import Foundation
 import CoreData
 import UIKit
 
+public typealias RubricAssessments = [String: RubricAssessment]
+
 final public class Submission: NSManagedObject {
     @NSManaged public var assignment: Assignment?
     @NSManaged public var assignmentID: String
@@ -41,7 +43,17 @@ final public class Submission: NSManagedObject {
     @NSManaged public var url: URL?
     @NSManaged public var gradedAt: Date?
 
+    @NSManaged public var rubricAssesmentRaw: Set<RubricAssessment>?
     @NSManaged public var mediaComment: MediaComment?
+
+    public var rubricAssessments: RubricAssessments? {
+        if let assessments = rubricAssesmentRaw, assessments.count > 0 {
+            var map = RubricAssessments()
+            assessments.forEach { map[$0.id] = $0 }
+            return map
+        }
+        return nil
+    }
 
     public var excused: Bool? {
         get { return excusedRaw?.boolValue }
@@ -150,6 +162,18 @@ extension Submission: WriteableModel {
             assignment.submission = model
         } else if let assignment: Assignment = client.fetch(assignmentPredicate).first {
             assignment.submission = model
+        }
+
+        if let rubricAssessmentMap = item.rubric_assessment {
+            let allPredicate = NSPredicate(format: "%K == %@", #keyPath(RubricAssessment.submissionID), item.id.value)
+            let all: [RubricAssessment] = client.fetch(allPredicate)
+            try client.delete(all)
+            model.rubricAssesmentRaw = Set()
+            for (k, v) in rubricAssessmentMap {
+                let i = v as APIRubricAssessment
+                let a = try RubricAssessment.save(i, in: client, id: k, submissionID: item.id.value)
+                model.rubricAssesmentRaw?.insert(a)
+            }
         }
 
         return model

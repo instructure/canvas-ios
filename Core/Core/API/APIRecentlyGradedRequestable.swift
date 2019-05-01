@@ -22,7 +22,8 @@ public struct GetRecentlyGradedSubmissionsRequest: APIRequestable {
     let userID: String
 
     public var path: String {
-        return "users/\(userID)/graded_submissions"
+        let context = ContextModel(.user, id: userID)
+        return "\(context.pathComponent)/graded_submissions"
     }
 
     public var query: [APIQueryItem] {

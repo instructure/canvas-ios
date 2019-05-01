@@ -27,12 +27,15 @@ class SyllabusPresenterTests: PersistenceTestCase {
     var html: String?
     var courseCode: String?
     var backgroundColor: UIColor?
+    var didCallShowAssignmentsOnly = false
 
     var navBarExpectation = XCTestExpectation(description: "navBarExpectation")
     var htmlExpectation = XCTestExpectation(description: "htmlExpectation")
+    var assignmentsOnlyExpectation = XCTestExpectation(description: "assignmentsOnlyExpectation")
 
     override func setUp() {
         super.setUp()
+        didCallShowAssignmentsOnly = false
         navBarExpectation = XCTestExpectation(description: "navBarExpectation")
         htmlExpectation = XCTestExpectation(description: "htmlExpectation")
         presenter = SyllabusPresenter(courseID: "1", view: self, env: env)
@@ -62,6 +65,29 @@ class SyllabusPresenterTests: PersistenceTestCase {
         XCTAssertEqual(courseCode, "abc")
         XCTAssertEqual(backgroundColor, UIColor.red)
     }
+
+    func testShowAssignmentsOnly() {
+        //  given
+        let expectedSyllabusHtml = ""
+        Course.make(["syllabusBody": expectedSyllabusHtml])
+
+        //  when
+        presenter.viewIsReady()
+        wait(for: [assignmentsOnlyExpectation], timeout: 0.1)
+        //  then
+        XCTAssertTrue(didCallShowAssignmentsOnly)
+    }
+
+    func testShowAssignmentsOnlyNotCalledWhenNoCourse() {
+        //  given
+        assignmentsOnlyExpectation.isInverted = true
+
+        //  when
+        presenter.viewIsReady()
+        wait(for: [assignmentsOnlyExpectation], timeout: 0.1)
+        //  then
+        XCTAssertFalse(didCallShowAssignmentsOnly)
+    }
 }
 
 extension SyllabusPresenterTests: SyllabuseViewProtocol {
@@ -74,5 +100,10 @@ extension SyllabusPresenterTests: SyllabuseViewProtocol {
     func loadHtml(_ html: String?) {
         self.html = html
         htmlExpectation.fulfill()
+    }
+
+    func showAssignmentsOnly() {
+        didCallShowAssignmentsOnly = true
+        assignmentsOnlyExpectation.fulfill()
     }
 }

@@ -91,8 +91,9 @@ extension Assignment {
 
         if let apiRubrics = item.rubric, apiRubrics.count > 0 {
             self.rubric = Set<Rubric>()
-            for var r in apiRubrics {
+            for (index, var r) in apiRubrics.enumerated() {
                 r.assignmentID = item.id.value
+                r.position = index
                 let rubricModel = try Rubric.save(r, in: client)
                 self.rubric?.insert(rubricModel)
             }

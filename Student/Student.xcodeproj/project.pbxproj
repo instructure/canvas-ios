@@ -28,6 +28,16 @@
 		3B0B0F6C219C8D2300F04216 /* QuizListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B005C219BD9F60045E8A1 /* QuizListPresenter.swift */; };
 		3B0B0F6D219C8D2300F04216 /* QuizListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B1B005D219BD9F60045E8A1 /* QuizListViewController.storyboard */; };
 		3B0B0F74219C8D3100F04216 /* QuizListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0063219BD9F60045E8A1 /* QuizListCell.swift */; };
+		3B19D26C22664727003A0565 /* RubricViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B19D26B22664727003A0565 /* RubricViewController.swift */; };
+		3B19D26D22664727003A0565 /* RubricViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B19D26B22664727003A0565 /* RubricViewController.swift */; };
+		3B19D26F2266475B003A0565 /* RubricPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B19D26E2266475B003A0565 /* RubricPresenter.swift */; };
+		3B19D2702266475B003A0565 /* RubricPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B19D26E2266475B003A0565 /* RubricPresenter.swift */; };
+		3B19D27D22666180003A0565 /* RubricCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B19D27C22666180003A0565 /* RubricCollectionViewCell.xib */; };
+		3B19D27E22666180003A0565 /* RubricCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B19D27C22666180003A0565 /* RubricCollectionViewCell.xib */; };
+		3B19D28022666AD5003A0565 /* RubricViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B19D27F22666AD5003A0565 /* RubricViewController.storyboard */; };
+		3B19D28122666AD5003A0565 /* RubricViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B19D27F22666AD5003A0565 /* RubricViewController.storyboard */; };
+		3B19D28322667028003A0565 /* RubricCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B19D28222667028003A0565 /* RubricCircleView.swift */; };
+		3B19D28422667028003A0565 /* RubricCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B19D28222667028003A0565 /* RubricCircleView.swift */; };
 		3B1B0064219BD9F60045E8A1 /* GroupNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B003D219BD9F50045E8A1 /* GroupNavigationViewController.swift */; };
 		3B1B0066219BD9F60045E8A1 /* GroupNavigationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B003F219BD9F50045E8A1 /* GroupNavigationPresenter.swift */; };
 		3B1B0067219BD9F60045E8A1 /* AssignmentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0042219BD9F50045E8A1 /* AssignmentListViewController.swift */; };
@@ -50,6 +60,7 @@
 		3B1B0098219BDA560045E8A1 /* CourseNavigationPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B008B219BDA550045E8A1 /* CourseNavigationPresenterTests.swift */; };
 		3B1B009A219BDA560045E8A1 /* QuizListPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B008F219BDA560045E8A1 /* QuizListPresenterTests.swift */; };
 		3B1B009B219BDA560045E8A1 /* GroupNavigationPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0092219BDA560045E8A1 /* GroupNavigationPresenterTests.swift */; };
+		3B300C7F2277853F00743C59 /* RubricPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B300C7E2277853F00743C59 /* RubricPresenterTests.swift */; };
 		3B3436E9215EF0FB009EF87F /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3436E7215EF0FB009EF87F /* UIImageExtensions.swift */; };
 		3B3436EC215EF2F8009EF87F /* UIImageStudentExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3436EB215EF2F8009EF87F /* UIImageStudentExtensionTests.swift */; };
 		3B3639FF224EBC2900FC5A7E /* SyllabusPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3639FE224EBC2900FC5A7E /* SyllabusPresenterTests.swift */; };
@@ -400,6 +411,11 @@
 		2C5C6998211DFFAE00D9AD15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2C5C699A211DFFAE00D9AD15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2CB3261C21387C99009496AF /* RouterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterViewController.swift; sourceTree = "<group>"; };
+		3B19D26B22664727003A0565 /* RubricViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricViewController.swift; sourceTree = "<group>"; };
+		3B19D26E2266475B003A0565 /* RubricPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricPresenter.swift; sourceTree = "<group>"; };
+		3B19D27C22666180003A0565 /* RubricCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RubricCollectionViewCell.xib; sourceTree = "<group>"; };
+		3B19D27F22666AD5003A0565 /* RubricViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RubricViewController.storyboard; sourceTree = "<group>"; };
+		3B19D28222667028003A0565 /* RubricCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricCircleView.swift; sourceTree = "<group>"; };
 		3B1B003D219BD9F50045E8A1 /* GroupNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupNavigationViewController.swift; sourceTree = "<group>"; };
 		3B1B003F219BD9F50045E8A1 /* GroupNavigationPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupNavigationPresenter.swift; sourceTree = "<group>"; };
 		3B1B0042219BD9F50045E8A1 /* AssignmentListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentListViewController.swift; sourceTree = "<group>"; };
@@ -422,6 +438,7 @@
 		3B1B008B219BDA550045E8A1 /* CourseNavigationPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseNavigationPresenterTests.swift; sourceTree = "<group>"; };
 		3B1B008F219BDA560045E8A1 /* QuizListPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizListPresenterTests.swift; sourceTree = "<group>"; };
 		3B1B0092219BDA560045E8A1 /* GroupNavigationPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupNavigationPresenterTests.swift; sourceTree = "<group>"; };
+		3B300C7E2277853F00743C59 /* RubricPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricPresenterTests.swift; sourceTree = "<group>"; };
 		3B3436E7215EF0FB009EF87F /* UIImageExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtensions.swift; sourceTree = "<group>"; };
 		3B3436EB215EF2F8009EF87F /* UIImageStudentExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageStudentExtensionTests.swift; sourceTree = "<group>"; };
 		3B3639FE224EBC2900FC5A7E /* SyllabusPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusPresenterTests.swift; sourceTree = "<group>"; };
@@ -441,6 +458,7 @@
 		3B635B1C225C0DA0001F353D /* SyllabusActionableItemsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusActionableItemsViewController.swift; sourceTree = "<group>"; };
 		3B635B21225C0DA0001F353D /* SyllabusActionableItemsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusActionableItemsPresenter.swift; sourceTree = "<group>"; };
 		3B635B24225C0E4F001F353D /* SyllabusActionableItemsPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusActionableItemsPresenterTests.swift; sourceTree = "<group>"; };
+		3B6386AE22653347002DEE72 /* DrawerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerTests.swift; sourceTree = "<group>"; };
 		3BBCF832224BFF29004B519D /* SyllabusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusViewController.swift; sourceTree = "<group>"; };
 		3BBCF838224C142C004B519D /* SyllabusPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusPresenter.swift; sourceTree = "<group>"; };
 		3BBCF847224C19A2004B519D /* SyllabusViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SyllabusViewController.storyboard; sourceTree = "<group>"; };
@@ -853,6 +871,18 @@
 			path = Frameworks;
 			sourceTree = "<group>";
 		};
+		3B19D266226646DF003A0565 /* SubmissionRubric */ = {
+			isa = PBXGroup;
+			children = (
+				3B19D26B22664727003A0565 /* RubricViewController.swift */,
+				3B19D26E2266475B003A0565 /* RubricPresenter.swift */,
+				3B19D27C22666180003A0565 /* RubricCollectionViewCell.xib */,
+				3B19D27F22666AD5003A0565 /* RubricViewController.storyboard */,
+				3B19D28222667028003A0565 /* RubricCircleView.swift */,
+			);
+			path = SubmissionRubric;
+			sourceTree = "<group>";
+		};
 		3B1B003B219BD9F50045E8A1 /* Groups */ = {
 			isa = PBXGroup;
 			children = (
@@ -1030,6 +1060,14 @@
 			path = GroupNavigation;
 			sourceTree = "<group>";
 		};
+		3B300C792277851F00743C59 /* SubmissionRubric */ = {
+			isa = PBXGroup;
+			children = (
+				3B300C7E2277853F00743C59 /* RubricPresenterTests.swift */,
+			);
+			path = SubmissionRubric;
+			sourceTree = "<group>";
+		};
 		3B3436EA215EF24F009EF87F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -1200,6 +1238,7 @@
 		7D2DC30D219CB65E008FE29A /* Submissions */ = {
 			isa = PBXGroup;
 			children = (
+				3B19D266226646DF003A0565 /* SubmissionRubric */,
 				7DA5C49222386374003CDB4C /* SubmissionComments */,
 				9FCD79DB2188E7B40054293A /* SubmissionDetails */,
 				7D79636322305A3B00CCF943 /* SubmissionFiles */,
@@ -1212,6 +1251,7 @@
 		7D2DC30E219CB743008FE29A /* Submissions */ = {
 			isa = PBXGroup;
 			children = (
+				3B300C792277851F00743C59 /* SubmissionRubric */,
 				7D5C871B22399E3F00D99651 /* SubmissionComments */,
 				9FFA7551218C8E2D0036FD41 /* SubmissionDetails */,
 				7D34F477225D514A001B97E6 /* TextSubmission */,
@@ -1388,6 +1428,7 @@
 		B1BCFF8F21BF24A700F58D0F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3B6386AE22653347002DEE72 /* DrawerTests.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1762,10 +1803,12 @@
 				7DA5C494223863A2003CDB4C /* SubmissionCommentsViewController.storyboard in Resources */,
 				3BE1307421AE0074001D4582 /* UrlSubmissionContentViewController.storyboard in Resources */,
 				7D1758E4215AA06C00F88613 /* Localizable.strings in Resources */,
+				3B19D28022666AD5003A0565 /* RubricViewController.storyboard in Resources */,
 				3B1B0077219BD9F60045E8A1 /* CourseListViewController.storyboard in Resources */,
 				7D1758E8215AA07E00F88613 /* Localizable.stringsdict in Resources */,
 				788152DF212B35F8005BA428 /* DashboardViewController.storyboard in Resources */,
 				3B1B006A219BD9F60045E8A1 /* AssignmentDetailsViewController.storyboard in Resources */,
+				3B19D27D22666180003A0565 /* RubricCollectionViewCell.xib in Resources */,
 				3B1B007B219BD9F60045E8A1 /* QuizListViewController.storyboard in Resources */,
 				7D09E5B721935933006150FA /* SubmissionDetailsEmptyView.xib in Resources */,
 				7D2FADCE225BD1FA00BCE19E /* TextSubmissionViewController.storyboard in Resources */,
@@ -1799,12 +1842,14 @@
 				3B0B0F66219C8D1100F04216 /* CourseListViewController.storyboard in Resources */,
 				7DA5C498223863F3003CDB4C /* SubmissionCommentsViewController.storyboard in Resources */,
 				9F9F4EB521B5D24F00842570 /* ExternalToolSubmissionContentViewController.storyboard in Resources */,
+				3B19D27E22666180003A0565 /* RubricCollectionViewCell.xib in Resources */,
 				3B0B0F62219C8D0500F04216 /* AssignmentDetailsViewController.storyboard in Resources */,
 				3BE1307521AE0074001D4582 /* UrlSubmissionContentViewController.storyboard in Resources */,
 				3B54260221B094DF0009D069 /* UrlSubmissionViewController.storyboard in Resources */,
 				9F74200C21932DEB00108A0F /* SubmissionDetailsViewController.storyboard in Resources */,
 				7D09E5B821935933006150FA /* SubmissionDetailsEmptyView.xib in Resources */,
 				7DA61A5E216561A90085BAE8 /* Localizable.stringsdict in Resources */,
+				3B19D28122666AD5003A0565 /* RubricViewController.storyboard in Resources */,
 				7D2FADCF225BD1FA00BCE19E /* TextSubmissionViewController.storyboard in Resources */,
 				3B0B0F6D219C8D2300F04216 /* QuizListViewController.storyboard in Resources */,
 				3BBCF849224C19A2004B519D /* SyllabusViewController.storyboard in Resources */,
@@ -1890,8 +1935,10 @@
 				B107189821963BC000ED1DC7 /* EmptyView.swift in Sources */,
 				3B1B0080219BD9F60045E8A1 /* QuizListCell.swift in Sources */,
 				7DA057542193A3A800A3CFBB /* IconView.swift in Sources */,
+				3B19D26F2266475B003A0565 /* RubricPresenter.swift in Sources */,
 				3B635B22225C0DA0001F353D /* SyllabusActionableItemsViewController.swift in Sources */,
 				788152FC212B83D0005BA428 /* DashboardSectionHeaderView.swift in Sources */,
+				3B19D26C22664727003A0565 /* RubricViewController.swift in Sources */,
 				3B54260521B1D08B0009D069 /* UrlSubmissionPresenter.swift in Sources */,
 				7D09E5B921935933006150FA /* SubmissionDetailsEmptyView.swift in Sources */,
 				788152DB212B3470005BA428 /* DashboardPresenter.swift in Sources */,
@@ -1924,6 +1971,7 @@
 				7DA5C496223863C2003CDB4C /* SubmissionCommentsViewController.swift in Sources */,
 				7DEE316A223C08A20042FE2A /* SubmissionCommentVideoCell.swift in Sources */,
 				7D0BF3232165315B00859FA1 /* CoreWebView.swift in Sources */,
+				3B19D28322667028003A0565 /* RubricCircleView.swift in Sources */,
 				9FCD79DD2188E9D90054293A /* SubmissionDetailsViewController.swift in Sources */,
 				3B1B0079219BD9F60045E8A1 /* CourseListViewController.swift in Sources */,
 				7DC1C9D6223AB8690083F707 /* SubmissionCommentAudioCell.swift in Sources */,
@@ -1954,6 +2002,7 @@
 				3B542D56215AE79E0084DA9D /* TestEnvironment.swift in Sources */,
 				3B3639FF224EBC2900FC5A7E /* SyllabusPresenterTests.swift in Sources */,
 				3B635B25225C0E50001F353D /* SyllabusActionableItemsPresenterTests.swift in Sources */,
+				3B300C7F2277853F00743C59 /* RubricPresenterTests.swift in Sources */,
 				B191D5EC226FF26A00D02948 /* UIViewControllerExtensionsTests.swift in Sources */,
 				3B6065FA2194EEF800D04D53 /* PersistenceTestCase.swift in Sources */,
 				B10D777221C2EA5B00BCE822 /* BlockExpectation.swift in Sources */,
@@ -1984,6 +2033,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DA5C49D22386C1E003CDB4C /* SubmissionCommentTextCell.swift in Sources */,
+				3B19D28422667028003A0565 /* RubricCircleView.swift in Sources */,
 				7D067CE721505B3500B78AF2 /* DashboardSectionHeaderView.swift in Sources */,
 				3B0B0F64219C8D0A00F04216 /* GradeCircle.swift in Sources */,
 				7D005F7F2239DE920040CBD7 /* DynamicTextField.swift in Sources */,
@@ -2012,6 +2062,7 @@
 				7DA5C497223863EF003CDB4C /* SubmissionCommentsViewController.swift in Sources */,
 				7D067CE521505B3500B78AF2 /* DashboardCourseCell.swift in Sources */,
 				7DA057552193A3A800A3CFBB /* IconView.swift in Sources */,
+				3B19D2702266475B003A0565 /* RubricPresenter.swift in Sources */,
 				7D979CD5215BE3E600567627 /* BundleExtensions.swift in Sources */,
 				9F74200B21932DCE00108A0F /* SubmissionDetailsViewController.swift in Sources */,
 				B1906E5522679A1A00FAD2DE /* UIViewControllerExtensions.swift in Sources */,
@@ -2040,6 +2091,7 @@
 				9FB25D4B21653AB40087003C /* (null) in Sources */,
 				9F74200D21932DEF00108A0F /* SubmissionDetailsPresenter.swift in Sources */,
 				3B635B47225D07D6001F353D /* SyllabusActionableItemsPresenter.swift in Sources */,
+				3B19D26D22664727003A0565 /* RubricViewController.swift in Sources */,
 				7D20F61721C3144C00B77E5E /* CourseListPresenter.swift in Sources */,
 				3B0B0F5F219C8CFE00F04216 /* AssignmentListViewController.swift in Sources */,
 				7D101952215EBB4B0058FDD1 /* DynamicButton.swift in Sources */,

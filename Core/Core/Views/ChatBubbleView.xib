@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChatBubbleView" customModule="Core" customModuleProvider="target">
+            <connections>
+                <outlet property="bgImageView" destination="wul-gf-jch" id="xCq-oB-7zS"/>
+                <outlet property="contentView" destination="jmD-2g-PR1" id="9SS-jc-Ncw"/>
+                <outlet property="textLabel" destination="wUU-4b-yOg" id="QVB-sy-WbP"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="jmD-2g-PR1">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chatBubble" translatesAutoresizingMaskIntoConstraints="NO" id="wul-gf-jch" customClass="IconView" customModule="Core" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="backgroundLight"/>
+                    </userDefinedRuntimeAttributes>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wUU-4b-yOg" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                    <rect key="frame" x="16" y="16" width="382" height="176"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular14"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="darkText"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="wUU-4b-yOg" firstAttribute="leading" secondItem="jmD-2g-PR1" secondAttribute="leading" constant="16" id="2C1-Zo-DHB"/>
+                <constraint firstAttribute="bottom" secondItem="wUU-4b-yOg" secondAttribute="bottom" constant="8" id="BMo-JO-iZt"/>
+                <constraint firstAttribute="bottom" secondItem="wul-gf-jch" secondAttribute="bottom" id="Hs4-DA-boF"/>
+                <constraint firstItem="wUU-4b-yOg" firstAttribute="top" secondItem="jmD-2g-PR1" secondAttribute="top" constant="16" id="PYd-Vt-oyX"/>
+                <constraint firstItem="wul-gf-jch" firstAttribute="top" secondItem="jmD-2g-PR1" secondAttribute="top" id="XAX-Fv-d2e"/>
+                <constraint firstAttribute="trailing" secondItem="wul-gf-jch" secondAttribute="trailing" id="jbi-do-XT6"/>
+                <constraint firstAttribute="trailing" secondItem="wUU-4b-yOg" secondAttribute="trailing" constant="16" id="s5d-MR-qSs"/>
+                <constraint firstItem="wul-gf-jch" firstAttribute="leading" secondItem="jmD-2g-PR1" secondAttribute="leading" id="v82-rb-OhW"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="buE-7c-Mam"/>
+            <point key="canvasLocation" x="-16" y="100"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="chatBubble" width="40" height="40"/>
+    </resources>
+</document>

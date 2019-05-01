@@ -200,7 +200,10 @@ class SubmissionDetailsPresenter {
                 presenter: self
             )
         case .rubric:
-            return nil
+            return RubricViewController.create(env: env,
+                                               courseID: context.id,
+                                               assignmentID: assignmentID,
+                                               userID: userID)
         }
     }
 

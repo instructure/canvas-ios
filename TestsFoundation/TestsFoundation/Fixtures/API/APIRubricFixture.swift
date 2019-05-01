@@ -41,3 +41,16 @@ extension APIRubricRating: Fixture {
         ]
     }
 }
+
+
+extension APIRubricAssessment: Fixture {
+    public static var template: Template {
+        return [
+            "id": "1",
+            "submissionID": "1",
+            "rating_id": "1",
+            "points": 25.0,
+            "comments": "You failed at punctuation!",
+        ]
+    }
+}
