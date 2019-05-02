@@ -21,7 +21,6 @@
 #import "Router.h"
 #import "Router+Routes.h"
 #import "CBIViewModel.h"
-#import "CBISyllabusViewModel.h"
 #import "UIViewController+Transitions.h"
 #import <CanvasKit1/NSString+CKAdditions.h>
 #import <CanvasKit1/CKCanvasAPI.h>
