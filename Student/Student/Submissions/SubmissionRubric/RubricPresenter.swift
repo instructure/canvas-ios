@@ -24,6 +24,7 @@ protocol RubricViewProtocol: ErrorViewController {
 
 struct RubricViewModel {
     let title: String
+    let longDescription: String
     let selectedDesc: String
     let selectedIndex: Int
     let ratings: [Double]
@@ -101,7 +102,7 @@ class RubricPresenter {
                 comments = assessment.comments
             }
 
-            let m = RubricViewModel(title: r.desc, selectedDesc: description, selectedIndex: selectedIndex, ratings: allRatings, comment: comments)
+            let m = RubricViewModel(title: r.desc, longDescription: r.longDesc, selectedDesc: description, selectedIndex: selectedIndex, ratings: allRatings, comment: comments)
             models.append(m)
         }
         return models

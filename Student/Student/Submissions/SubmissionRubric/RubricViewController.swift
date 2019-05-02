@@ -60,6 +60,7 @@ extension RubricViewController: UICollectionViewDataSource, UICollectionViewDele
         let cell: RubricCollectionViewCell = collectionView.dequeue(for: indexPath)
         let r = models[indexPath.item]
         cell.update(r)
+        cell.delegate = self
         return cell
     }
 
@@ -86,7 +87,23 @@ extension RubricViewController: RubricViewProtocol {
     }
 }
 
+protocol RubricCellDelegate: class {
+    func longDescriptionTapped(cell: RubricCollectionViewCell)
+}
+extension RubricViewController: RubricCellDelegate {
+    func longDescriptionTapped(cell: RubricCollectionViewCell) {
+        guard let indexPath = self.collectionView.indexPath(for: cell) else {
+            return
+        }
+        let r = models[indexPath.item]
+        let vc = UINavigationController(rootViewController: RubricLongDescriptionViewController(longDescription: r.longDescription, title: r.title))
+        self.present(vc, animated: true, completion: nil)
+    }
+}
+
 class RubricCollectionViewCell: UICollectionViewCell {
+
+    weak var delegate: RubricCellDelegate?
 
     @IBOutlet weak var circleView: RubricCircleView!
     @IBOutlet weak var rubricTitle: DynamicLabel!
@@ -98,6 +115,7 @@ class RubricCollectionViewCell: UICollectionViewCell {
     private static var chatBubbleTextLabelFont = UIFont.scaledNamedFont(.regular14)
     @IBOutlet weak var circleViewHeightConstraint: NSLayoutConstraint!
     private static var margin: CGFloat = 16
+    @IBOutlet weak var viewLongDescriptionButton: UIButton!
     @IBOutlet weak var viewLongDescriptionToCircleViewVerticalConstraint: NSLayoutConstraint!
     @IBOutlet weak var viewLongDescriptionToCommentViewVerticalConstraint: NSLayoutConstraint!
 
@@ -114,6 +132,7 @@ class RubricCollectionViewCell: UICollectionViewCell {
         circleView.rubric = rubric
         circleViewHeightConstraint.constant = RubricCircleView.computedHeight(rubric: rubric, maxWidth: bounds.size.width - (RubricCollectionViewCell.margin * 2))
         updateComment(comment: rubric.comment)
+        viewLongDescriptionButton.isHidden = rubric.longDescription.count == 0
     }
 
     func updateComment(comment: String?) {
@@ -157,5 +176,9 @@ class RubricCollectionViewCell: UICollectionViewCell {
     }
 
     @IBAction func actionShowLongDescription(_ sender: Any) {
+        guard let delegate = self.delegate else {
+            return
+        }
+        delegate.longDescriptionTapped(cell: self)
     }
 }

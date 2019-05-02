@@ -226,6 +226,7 @@
 		9F9F4EB521B5D24F00842570 /* ExternalToolSubmissionContentViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F9F4EB021B58A5D00842570 /* ExternalToolSubmissionContentViewController.storyboard */; };
 		9FA7C360219C92A6001F3BC7 /* Drawer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FDDE2E1218CCBF5002B71F0 /* Drawer.xib */; };
 		9FB25D4B21653AB40087003C /* (null) in Sources */ = {isa = PBXBuildFile; };
+		9FCC249D2279F0C10002E782 /* RubricLongDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCC249C2279F0C10002E782 /* RubricLongDescriptionViewController.swift */; };
 		9FCD79DD2188E9D90054293A /* SubmissionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCD79DC2188E9D90054293A /* SubmissionDetailsViewController.swift */; };
 		9FCD79DF2188EAC40054293A /* SubmissionDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FCD79DE2188EAC40054293A /* SubmissionDetailsViewController.storyboard */; };
 		9FDDE2E0218CCAB9002B71F0 /* Drawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDDE2DF218CCAB9002B71F0 /* Drawer.swift */; };
@@ -700,6 +701,7 @@
 		9F5ADB30218B656400D8C973 /* SubmissionDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsPresenter.swift; sourceTree = "<group>"; };
 		9F9F4EB021B58A5D00842570 /* ExternalToolSubmissionContentViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ExternalToolSubmissionContentViewController.storyboard; sourceTree = "<group>"; };
 		9F9F4EB221B58AA300842570 /* ExternalToolSubmissionContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExternalToolSubmissionContentViewController.swift; sourceTree = "<group>"; };
+		9FCC249C2279F0C10002E782 /* RubricLongDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricLongDescriptionViewController.swift; sourceTree = "<group>"; };
 		9FCD79DC2188E9D90054293A /* SubmissionDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsViewController.swift; sourceTree = "<group>"; };
 		9FCD79DE2188EAC40054293A /* SubmissionDetailsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SubmissionDetailsViewController.storyboard; sourceTree = "<group>"; };
 		9FDDE2DF218CCAB9002B71F0 /* Drawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drawer.swift; sourceTree = "<group>"; };
@@ -876,6 +878,7 @@
 				3B19D27C22666180003A0565 /* RubricCollectionViewCell.xib */,
 				3B19D27F22666AD5003A0565 /* RubricViewController.storyboard */,
 				3B19D28222667028003A0565 /* RubricCircleView.swift */,
+				9FCC249C2279F0C10002E782 /* RubricLongDescriptionViewController.swift */,
 			);
 			path = SubmissionRubric;
 			sourceTree = "<group>";
@@ -1924,6 +1927,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D2FADCB225BCC8A00BCE19E /* TextSubmissionViewController.swift in Sources */,
+				9FCC249D2279F0C10002E782 /* RubricLongDescriptionViewController.swift in Sources */,
 				3B1B006B219BD9F60045E8A1 /* AssignmentDetailsPresenter.swift in Sources */,
 				3B1B007D219BD9F60045E8A1 /* QuizListViewController.swift in Sources */,
 				3B1B0067219BD9F60045E8A1 /* AssignmentListViewController.swift in Sources */,
