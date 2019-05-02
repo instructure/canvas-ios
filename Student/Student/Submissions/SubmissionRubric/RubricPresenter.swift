@@ -22,7 +22,7 @@ protocol RubricViewProtocol: ErrorViewController {
     func showEmptyState()
 }
 
-struct RubricViewModel {
+struct RubricViewModel: Hashable, Equatable {
     let title: String
     let selectedDesc: String
     let selectedIndex: Int
