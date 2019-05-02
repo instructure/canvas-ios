@@ -151,13 +151,13 @@ class RubricCollectionViewCell: UICollectionViewCell {
     }
 
     static func computedHeight(rubric: RubricViewModel, containerFrame: CGRect) -> CGFloat {
-        let spaceToCollapse: CGFloat = rubric.longDescription.count == 0 ? 16 : 0
-        let otherViewHeights: CGFloat = 111 - spaceToCollapse
+        let otherViewHeights: CGFloat = 95
 
         let circles = RubricCircleView.computedHeight(rubric: rubric, maxWidth: containerFrame.size.width - (margin * 2.0))
         var comment = commentViewSize(comment: rubric.comment, containerFrame: containerFrame).height
         if comment > 0 { comment += 12.0 /* add extra vertical spacing for additional item */ }
-        return otherViewHeights + circles + comment
+        let longDescription: CGFloat = rubric.longDescription.count == 0 ? 0 : 16
+        return otherViewHeights + circles + comment + longDescription
     }
 
     static func commentViewSize(comment: String?, containerFrame: CGRect) -> CGSize {
