@@ -20,12 +20,11 @@ import Core
 class RubricLongDescriptionViewController: UIViewController {
 
     let longDescription: String
-    let navTitle: String
 
     init(longDescription: String, title: String) {
         self.longDescription = longDescription
-        self.navTitle = title
         super.init(nibName: nil, bundle: nil)
+        self.title = title
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -35,7 +34,6 @@ class RubricLongDescriptionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = self.navTitle
         self.addDoneButton()
 
         let textView = UITextView()

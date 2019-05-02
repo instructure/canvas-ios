@@ -229,6 +229,7 @@
 		9FCC249D2279F0C10002E782 /* RubricLongDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCC249C2279F0C10002E782 /* RubricLongDescriptionViewController.swift */; };
 		9FCD79DD2188E9D90054293A /* SubmissionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCD79DC2188E9D90054293A /* SubmissionDetailsViewController.swift */; };
 		9FCD79DF2188EAC40054293A /* SubmissionDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FCD79DE2188EAC40054293A /* SubmissionDetailsViewController.storyboard */; };
+		9FCF1538227B3F50009D35F6 /* RubricLongDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCC249C2279F0C10002E782 /* RubricLongDescriptionViewController.swift */; };
 		9FDDE2E0218CCAB9002B71F0 /* Drawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDDE2DF218CCAB9002B71F0 /* Drawer.swift */; };
 		9FDDE2E2218CCBF5002B71F0 /* Drawer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FDDE2E1218CCBF5002B71F0 /* Drawer.xib */; };
 		9FF4276422398C17005AB73C /* test.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 9FF4276322398C0E005AB73C /* test.m4a */; };
@@ -2084,6 +2085,7 @@
 				3BE1307221ADFFDD001D4582 /* UrlSubmissionContentViewController.swift in Sources */,
 				B10D777721C2F69500BCE822 /* EmptyView.swift in Sources */,
 				7D101955215EBB540058FDD1 /* DynamicLabel.swift in Sources */,
+				9FCF1538227B3F50009D35F6 /* RubricLongDescriptionViewController.swift in Sources */,
 				9F2C9F7D219B0F4D001F0F32 /* Drawer.swift in Sources */,
 				7D2FADCC225BCC8A00BCE19E /* TextSubmissionViewController.swift in Sources */,
 				9FB25D4B21653AB40087003C /* (null) in Sources */,
