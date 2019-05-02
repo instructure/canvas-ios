@@ -16,10 +16,12 @@
 
 import Foundation
 import XCTest
+import SwiftUITest
 @testable import Core
 @testable import TestsFoundation
 
 var app: XCUIApplication?
+var driver = DriverFactory.getEarlGreyDriver()
 
 class StudentTest: XCTestCase {
     var host: TestHost {
@@ -41,8 +43,10 @@ class StudentTest: XCTestCase {
             app!.launch()
         }
         host.reset()
-        sleep(1) // FIXME: Remove this and fix flakiness better.
         // This sleep helps ensure old views got cleaned up, so EG2 doesn't find them accidentally.
+        sleep(1) // FIXME: Remove this and fix flakiness better.
+
+        driver = DriverFactory.getXCUITestDriver(app!, testCase: self)
     }
 
     func show(_ route: String) {
