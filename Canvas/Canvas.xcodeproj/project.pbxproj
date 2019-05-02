@@ -197,13 +197,6 @@
 		4927083A1CF4BC3200C631C6 /* unfilled.png in Resources */ = {isa = PBXBuildFile; fileRef = 492708101CF4BC3200C631C6 /* unfilled.png */; };
 		4927083B1CF4BC3200C631C6 /* unfilled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492708111CF4BC3200C631C6 /* unfilled@2x.png */; };
 		4927083C1CF4BC3200C631C6 /* unfilled@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492708121CF4BC3200C631C6 /* unfilled@3x.png */; };
-		4927083D1CF4BC3200C631C6 /* CBISyllabusDetailViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 492708141CF4BC3200C631C6 /* CBISyllabusDetailViewController.h */; };
-		4927083E1CF4BC3200C631C6 /* CBISyllabusDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 492708151CF4BC3200C631C6 /* CBISyllabusDetailViewController.m */; };
-		4927083F1CF4BC3200C631C6 /* CBISyllabusTabViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 492708161CF4BC3200C631C6 /* CBISyllabusTabViewModel.h */; };
-		492708401CF4BC3200C631C6 /* CBISyllabusTabViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 492708171CF4BC3200C631C6 /* CBISyllabusTabViewModel.m */; };
-		492708411CF4BC3200C631C6 /* CBISyllabusViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 492708181CF4BC3200C631C6 /* CBISyllabusViewModel.h */; };
-		492708421CF4BC3200C631C6 /* CBISyllabusViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 492708191CF4BC3200C631C6 /* CBISyllabusViewModel.m */; };
-		492708431CF4BC3200C631C6 /* SyllabusDetails.html in Resources */ = {isa = PBXBuildFile; fileRef = 4927081B1CF4BC3200C631C6 /* SyllabusDetails.html */; };
 		4927084A1CF4BC3200C631C6 /* UIViewController+Transitions.h in Headers */ = {isa = PBXBuildFile; fileRef = 492708231CF4BC3200C631C6 /* UIViewController+Transitions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4927084B1CF4BC3200C631C6 /* UIViewController+Transitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 492708241CF4BC3200C631C6 /* UIViewController+Transitions.m */; };
 		492708521CF4BC3200C631C6 /* Storyboard-WebBrowser.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4927082D1CF4BC3200C631C6 /* Storyboard-WebBrowser.storyboard */; };
@@ -896,13 +889,6 @@
 		492708101CF4BC3200C631C6 /* unfilled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unfilled.png; sourceTree = "<group>"; };
 		492708111CF4BC3200C631C6 /* unfilled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unfilled@2x.png"; sourceTree = "<group>"; };
 		492708121CF4BC3200C631C6 /* unfilled@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unfilled@3x.png"; sourceTree = "<group>"; };
-		492708141CF4BC3200C631C6 /* CBISyllabusDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBISyllabusDetailViewController.h; sourceTree = "<group>"; };
-		492708151CF4BC3200C631C6 /* CBISyllabusDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBISyllabusDetailViewController.m; sourceTree = "<group>"; };
-		492708161CF4BC3200C631C6 /* CBISyllabusTabViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBISyllabusTabViewModel.h; sourceTree = "<group>"; };
-		492708171CF4BC3200C631C6 /* CBISyllabusTabViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CBISyllabusTabViewModel.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		492708181CF4BC3200C631C6 /* CBISyllabusViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBISyllabusViewModel.h; sourceTree = "<group>"; };
-		492708191CF4BC3200C631C6 /* CBISyllabusViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBISyllabusViewModel.m; sourceTree = "<group>"; };
-		4927081B1CF4BC3200C631C6 /* SyllabusDetails.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = SyllabusDetails.html; sourceTree = "<group>"; };
 		492708231CF4BC3200C631C6 /* UIViewController+Transitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Transitions.h"; sourceTree = "<group>"; };
 		492708241CF4BC3200C631C6 /* UIViewController+Transitions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Transitions.m"; sourceTree = "<group>"; };
 		4927082D1CF4BC3200C631C6 /* Storyboard-WebBrowser.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Storyboard-WebBrowser.storyboard"; sourceTree = "<group>"; };
@@ -1830,7 +1816,6 @@
 				492707D61CF4BC1000C631C6 /* Rubric */,
 				492707D91CF4BC1000C631C6 /* Sad Panda */,
 				4927080C1CF4BC3200C631C6 /* starRatingIcons */,
-				492708131CF4BC3200C631C6 /* Syllabus */,
 				4927081C1CF4BC3200C631C6 /* Transitioning */,
 				4927082C1CF4BC3200C631C6 /* Web Browser */,
 			);
@@ -2155,28 +2140,6 @@
 				492708121CF4BC3200C631C6 /* unfilled@3x.png */,
 			);
 			path = starRatingIcons;
-			sourceTree = "<group>";
-		};
-		492708131CF4BC3200C631C6 /* Syllabus */ = {
-			isa = PBXGroup;
-			children = (
-				492708141CF4BC3200C631C6 /* CBISyllabusDetailViewController.h */,
-				492708151CF4BC3200C631C6 /* CBISyllabusDetailViewController.m */,
-				492708161CF4BC3200C631C6 /* CBISyllabusTabViewModel.h */,
-				492708171CF4BC3200C631C6 /* CBISyllabusTabViewModel.m */,
-				492708181CF4BC3200C631C6 /* CBISyllabusViewModel.h */,
-				492708191CF4BC3200C631C6 /* CBISyllabusViewModel.m */,
-				4927081A1CF4BC3200C631C6 /* HTML */,
-			);
-			path = Syllabus;
-			sourceTree = "<group>";
-		};
-		4927081A1CF4BC3200C631C6 /* HTML */ = {
-			isa = PBXGroup;
-			children = (
-				4927081B1CF4BC3200C631C6 /* SyllabusDetails.html */,
-			);
-			path = HTML;
 			sourceTree = "<group>";
 		};
 		4927081C1CF4BC3200C631C6 /* Transitioning */ = {
@@ -2917,7 +2880,6 @@
 				492706B31CF4B99700C631C6 /* Router+Routes.h in Headers */,
 				492705CE1CF4B73300C631C6 /* UIView+Circular.h in Headers */,
 				492706901CF4B88600C631C6 /* CBIFolderViewModel.h in Headers */,
-				4927083F1CF4BC3200C631C6 /* CBISyllabusTabViewModel.h in Headers */,
 				492705A61CF4B73200C631C6 /* CKIClient+CBIClient.h in Headers */,
 				492705371CF4B70600C631C6 /* CBISubmissionCommentViewModel.h in Headers */,
 				49DC23041CFE42E7009F27BA /* HandleDropboxOpen.h in Headers */,
@@ -2951,7 +2913,6 @@
 				492706971CF4B88600C631C6 /* NoPreviewAvailableController.h in Headers */,
 				492705F01CF4B76A00C631C6 /* CBIColorfulCell.h in Headers */,
 				2C7041AE203CDDB700745253 /* UIAlertController+TechDebt.h in Headers */,
-				492708411CF4BC3200C631C6 /* CBISyllabusViewModel.h in Headers */,
 				4927068A1CF4B88600C631C6 /* CBIFilesTabViewModel.h in Headers */,
 				49CE976D1F900B4700121A43 /* metamacros.h in Headers */,
 				492706D11CF4BA7B00C631C6 /* CBILockableViewModel.h in Headers */,
@@ -2982,7 +2943,6 @@
 				492706141CF4B79B00C631C6 /* ProgressTableViewCell.h in Headers */,
 				492705B81CF4B73200C631C6 /* NSString+IN_Additions.h in Headers */,
 				492706931CF4B88600C631C6 /* FileViewController.h in Headers */,
-				4927083D1CF4BC3200C631C6 /* CBISyllabusDetailViewController.h in Headers */,
 				4927054F1CF4B70600C631C6 /* SubmissionWorkflowController.h in Headers */,
 				492705BA1CF4B73200C631C6 /* NSString_stripHTML.h in Headers */,
 				49AA2D341CF4DC540055862D /* RoundedButton.h in Headers */,
@@ -3372,7 +3332,6 @@
 				B177E7091E2ECAB900D7477D /* CBIGradeDetailView.xib in Resources */,
 				4927053E1CF4B70600C631C6 /* CBISubmissionInputViewController.storyboard in Resources */,
 				495068751D414DC00030A9D5 /* icon_video_large.png in Resources */,
-				492708431CF4BC3200C631C6 /* SyllabusDetails.html in Resources */,
 				492705451CF4B70600C631C6 /* jquery-1.4.2.min.js in Resources */,
 				495068701D414DC00030A9D5 /* empty-checkbox-white@2x.png in Resources */,
 				4950687B1D414DC00030A9D5 /* unlock@2x.png in Resources */,
@@ -3773,7 +3732,6 @@
 				492706911CF4B88600C631C6 /* CBIFolderViewModel.m in Sources */,
 				4927068F1CF4B88600C631C6 /* CBIFileViewModel.m in Sources */,
 				492706E51CF4BAB500C631C6 /* VideoRecorderController.m in Sources */,
-				492708401CF4BC3200C631C6 /* CBISyllabusTabViewModel.m in Sources */,
 				49AA2D351CF4DC540055862D /* RoundedButton.m in Sources */,
 				492705B71CF4B73200C631C6 /* NSCache+AvatarCache.m in Sources */,
 				492705501CF4B70600C631C6 /* SubmissionWorkflowController.m in Sources */,
@@ -3787,7 +3745,6 @@
 				4927053B1CF4B70600C631C6 /* CBISubmissionInputView.m in Sources */,
 				492706D21CF4BA7B00C631C6 /* CBILockableViewModel.m in Sources */,
 				49AA2D281CF4DC540055862D /* AFHTTPAvatarImageResponseSerializer.m in Sources */,
-				492708421CF4BC3200C631C6 /* CBISyllabusViewModel.m in Sources */,
 				49AA2D331CF4DC540055862D /* ProfileViewController.m in Sources */,
 				492706151CF4B79B00C631C6 /* ProgressTableViewCell.m in Sources */,
 				4927051F1CF4B70600C631C6 /* CKRichTextInputView.m in Sources */,
@@ -3815,7 +3772,6 @@
 				4927051B1CF4B70600C631C6 /* CKAttachmentManager.m in Sources */,
 				492705181CF4B70600C631C6 /* CBIGradeDetailView.m in Sources */,
 				61F438E71DD667D900552D14 /* MLVCCollectionController+CBIRefresh.m in Sources */,
-				4927083E1CF4BC3200C631C6 /* CBISyllabusDetailViewController.m in Sources */,
 				492705A11CF4B73200C631C6 /* CBICalendarEventViewModel.m in Sources */,
 				492706D01CF4BA7B00C631C6 /* CBIContentLockViewController.m in Sources */,
 				492705361CF4B70600C631C6 /* CBISubmissionCommentCell.m in Sources */,
