@@ -15,7 +15,6 @@
 		2C4FAD3220487DD6000551EB /* UINavigationController+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4FAD3120487DD6000551EB /* UINavigationController+Core.swift */; };
 		2C5649E820111E0400C0D1BB /* EnrollmentSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD7769D201111F700589D4F /* EnrollmentSplitViewController.swift */; };
 		2C5FDC1B2140759700633BB4 /* LocalizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5FDC1A2140759600633BB4 /* LocalizationManager.swift */; };
-		2C6796C01FD9E36B00BE7BC0 /* DrawerTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6796BF1FD9E36B00BE7BC0 /* DrawerTransition.swift */; };
 		2C68DCF32086786E00A1EBFA /* UIPickerView+Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C68DCF22086786E00A1EBFA /* UIPickerView+Quiz.swift */; };
 		2C7CBD2B1F79A42600E5EC02 /* CGRect+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7CBD2A1F79A42600E5EC02 /* CGRect+Core.swift */; };
 		2C8E35702093A0340071ED94 /* AppReset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8E356F2093A0340071ED94 /* AppReset.swift */; };
@@ -532,7 +531,6 @@
 		2C4EBB3A204DFC820085D00E /* UITabBarController+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBarController+Core.swift"; sourceTree = "<group>"; };
 		2C4FAD3120487DD6000551EB /* UINavigationController+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Core.swift"; sourceTree = "<group>"; };
 		2C5FDC1A2140759600633BB4 /* LocalizationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationManager.swift; sourceTree = "<group>"; };
-		2C6796BF1FD9E36B00BE7BC0 /* DrawerTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerTransition.swift; sourceTree = "<group>"; };
 		2C68DCF22086786E00A1EBFA /* UIPickerView+Quiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIPickerView+Quiz.swift"; sourceTree = "<group>"; };
 		2C7CBD2A1F79A42600E5EC02 /* CGRect+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Core.swift"; sourceTree = "<group>"; };
 		2C8E356F2093A0340071ED94 /* AppReset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReset.swift; sourceTree = "<group>"; };
@@ -1229,14 +1227,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		2C6796BE1FD9E0E700BE7BC0 /* Drawer */ = {
-			isa = PBXGroup;
-			children = (
-				2C6796BF1FD9E36B00BE7BC0 /* DrawerTransition.swift */,
-			);
-			path = Drawer;
-			sourceTree = "<group>";
-		};
 		2CAF1B0A1F72AEDB007225DF = {
 			isa = PBXGroup;
 			children = (
@@ -1271,7 +1261,6 @@
 				2CAF1B171F72AEDB007225DF /* CanvasCore.h */,
 				49383CF21F8498DA009C8F8E /* CanvasCore.xcassets */,
 				49CE969C1F8FF46D00121A43 /* Course Progression */,
-				2C6796BE1FD9E0E700BE7BC0 /* Drawer */,
 				4917182B1F8EE68D008B4599 /* Discussions */,
 				4961F5EF1F8FB6160093EC86 /* Enrollments */,
 				2CAF1B381F72B18F007225DF /* Extensions */,
@@ -3045,7 +3034,6 @@
 				49CE96EB1F8FFC4500121A43 /* SoEdventurous.xcdatamodeld in Sources */,
 				3BD715A620B7562500F5A422 /* PageViewEventRequestManager.swift in Sources */,
 				49CE96E31F8FFC4400121A43 /* MasteryPathAssignmentSet.swift in Sources */,
-				2C6796C01FD9E36B00BE7BC0 /* DrawerTransition.swift in Sources */,
 				49CE97371F8FFEA600121A43 /* ArcVideoPickerViewController.swift in Sources */,
 				4961F51A1F8FAC440093EC86 /* Icon.swift in Sources */,
 				49CE966C1F8FF41B00121A43 /* QuestionDrawerCell.swift in Sources */,
