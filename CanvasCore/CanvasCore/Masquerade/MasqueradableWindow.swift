@@ -14,21 +14,22 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-import UIKit
 import CanvasKeymaster
+import Core
 import Kingfisher
-
-let masqueradeColor = UIColor.colorFromHexString("#BE32A3")!
+import UIKit
 
 public class MasqueradableWindow: UIWindow {
     @objc lazy var overlay: MasqueradeOverlay = {
-        let view = MasqueradeOverlay(frame: self.bounds)
+        let view = MasqueradeOverlay(frame: self.bounds, loginDelegate: loginDelegate)
         view.backgroundColor = .clear
-        view.layer.borderColor = masqueradeColor.cgColor
+        view.layer.borderColor = UIColor.named(.borderAlert).cgColor
         view.layer.borderWidth = 2
         view.alpha = 0.0
         return view
     }()
+
+    weak var loginDelegate: LoginDelegate?
     
     override public func layoutSubviews() {
         super.layoutSubviews()
@@ -36,16 +37,21 @@ public class MasqueradableWindow: UIWindow {
         self.bringSubviewToFront(overlay)
         self.overlay.setNeedsLayout()
     }
-    
+
+    public convenience init(frame: CGRect, loginDelegate: LoginDelegate?) {
+        self.init(frame: frame)
+        self.loginDelegate = loginDelegate
+    }
+
     public override init(frame: CGRect) {
         super.init(frame: frame)
         self.registerObservers()
     }
-    
+
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     fileprivate var masquerading = true {
         didSet {
             
@@ -76,6 +82,12 @@ public class MasqueradableWindow: UIWindow {
 }
 
 class MasqueradeOverlay: UIView {
+    weak var loginDelegate: LoginDelegate?
+
+    convenience init(frame: CGRect, loginDelegate: LoginDelegate?) {
+        self.init(frame: frame)
+        self.loginDelegate = loginDelegate
+    }
     
     @objc lazy var button: UIButton = {
         let button = UIButton(type: .custom)
@@ -88,7 +100,7 @@ class MasqueradeOverlay: UIView {
     
     @objc lazy var buttonContainer: UIView = {
         let view = UIView()
-        view.backgroundColor = masqueradeColor
+        view.backgroundColor = UIColor.named(.borderAlert)
         view.layer.cornerRadius = 48 / 2
         view.frame = CGRect(x: 0, y: 0, width: 48, height: 48)
         let buttonSuperview = UIView()
@@ -132,7 +144,7 @@ class MasqueradeOverlay: UIView {
     
     @objc func beginMasquerade() {
         let placeholderImage = UIImage(named: "icon_user", in: .core, compatibleWith: nil)
-        if let avatarURL = CanvasKeymaster.the().currentClient?.currentUser?.avatarURL {
+        if let avatarURL = AppEnvironment.shared.currentSession?.userAvatarURL {
             button.kf.setImage(with: avatarURL, for: .normal, placeholder: placeholderImage)
         } else {
             button.setImage(placeholderImage, for: .normal)
@@ -142,16 +154,20 @@ class MasqueradeOverlay: UIView {
     @objc func endMasquerade() {
         guard let viewController = UIApplication.shared.delegate?.topViewController else { return }
         var message = NSLocalizedString("You will stop acting as this user and return to your account.", tableName: nil, bundle: .core, value: "You will stop acting as this user and return to your account.", comment: "")
-        if let name = CanvasKeymaster.the().currentClient?.currentUser?.name {
+        if let name = AppEnvironment.shared.currentSession?.userName {
             let template = NSLocalizedString("You will stop acting as %@ and return to your account.", tableName: nil, bundle: .core, value: "You will stop acting as %@ and return to your account.", comment: "")
             message = String.localizedStringWithFormat(template, name)
         }
         let title = NSLocalizedString("Stop acting as...", tableName: nil, bundle: .core, value: "Stop acting as...", comment: "")
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let ok = UIAlertAction(title: NSLocalizedString("OK", tableName: nil, bundle: .core, value: "OK", comment: ""), style: .default) { _ in
-            // Parent no longer has a RNBridge so the old method doesn't work
-            NativeLoginManager.shared().shouldCleanupOnNextLogoutEvent = true
-            CanvasKeymaster.the().stopMasquerading()
+            if let loginDelegate = self.loginDelegate, let session = AppEnvironment.shared.currentSession {
+                loginDelegate.stopActing(as: session)
+            } else {
+                // Parent no longer has a RNBridge so the old method doesn't work
+                NativeLoginManager.shared().shouldCleanupOnNextLogoutEvent = true
+                CanvasKeymaster.the().stopMasquerading()
+            }
             NotificationCenter.default.post(name: Notification.Name(rawValue: "MasqueradeDidEnd"), object: nil)
         }
         let cancelTitle = NSLocalizedString("Cancel", tableName: nil, bundle: .core, value: "Cancel", comment: "")

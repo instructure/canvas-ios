@@ -156,6 +156,7 @@ class APITests: XCTestCase {
     }
 
     func testMakeUploadRequest() {
+        UUID.mock("testfile")
         let url = URL(fileURLWithPath: "/file.png")
         let request = UploadFile(body: url)
         XCTAssertNoThrow(try URLSessionAPI().uploadTask(request))

@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2019-present Instructure, Inc.
+// Copyright (C) 2017-present Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -15,14 +15,9 @@
 //
 
 import Foundation
-import Core
-import CanvasKeymaster
 
-class ActAsUserPresenter: ActAsUserPresenterProtocol {
-    func didSubmit(domain: String, userID: String, completion: @escaping (Error?) -> Void) {
-        CanvasKeymaster.the().masqueradeAsUser(withID: userID, domain: domain).subscribeNext({ _ in
-            NotificationCenter.default.post(name: Notification.Name(rawValue: "MasqueradeDidStart"), object: nil)
-            completion(nil)
-        }, error: completion)
-    }
+private class Placeholder {}
+
+extension Bundle {
+    @objc internal static let parent = Bundle(for: Placeholder.self)
 }

@@ -15,7 +15,7 @@
 //
 
 import Foundation
-import CanvasKeymaster
+import Core
 
 // You must add the name of the feature flag both here and in
 // ./rn/Teacher/src/common/feature-flags.js
@@ -35,7 +35,7 @@ open class FeatureFlags: NSObject {
     // The logic in this method is duplicated from ./rn/Teacher/src/common/feature-flags.js
     // Any changes here should be duplicated into that file
     public class func featureFlagEnabled(_ flagName: FeatureFlagName) -> Bool {
-        guard let baseURL = CanvasKeymaster.the().currentClient?.baseURL?.absoluteString else { return false }
+        guard let baseURL = AppEnvironment.shared.currentSession?.baseURL.absoluteString else { return false }
         
         if let featureFlag = featureFlags[flagName.rawValue] as? [String: [String: Any]] {
             if let exemptions = featureFlag["exempt"] {

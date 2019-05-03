@@ -424,7 +424,8 @@ let router = Core.Router(routes: [
         return vc
     },
     Core.RouteHandler(.actAsUser, name: "act_as_user") { _, _ in
-        return ActAsUserViewController.create(presenter: ActAsUserPresenter())
+        guard let loginDelegate = UIApplication.shared.delegate as? LoginDelegate else { return nil }
+        return ActAsUserViewController.create(loginDelegate: loginDelegate)
     },
     Core.RouteHandler(.wrongApp, name: "wrongApp") { _, _ in
         return WrongAppViewController.create(app: .parent, delegate: WrongAppDelegate.shared)
@@ -450,7 +451,9 @@ public class WrongAppDelegate: WrongAppViewControllerDelegate {
     public static let shared = WrongAppDelegate()
 
     public func loginAgainPressed() {
-        CanvasKeymaster.the().logout()
+        guard let delegate = UIApplication.shared.delegate as? ParentAppDelegate else { return }
+        guard let session = delegate.environment.currentSession else { return }
+        delegate.userDidLogout(keychainEntry: session)
     }
 
     public func openURL(_ url: URL) {
