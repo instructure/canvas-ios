@@ -211,6 +211,7 @@ extension QuizDetailsViewController {
                 contentView.height == 30; return
             }
         }
+        cell?.selectionStyle = .none
         return cell!
     }
 }
