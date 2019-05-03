@@ -48,6 +48,7 @@ class SubmissionFilesTests: StudentTest {
         SubmissionDetailsElement.drawerFilesButton.tap()
 
         XCTAssertTrue(SubmissionFilesElement.cell(fileID: "1").isVisible)
+
         XCTAssertTrue(SubmissionFilesElement.checkView(fileID: "1").isVisible)
         XCTAssertTrue(SubmissionFilesElement.cell(fileID: "2").isVisible)
         XCTAssertFalse(SubmissionFilesElement.checkView(fileID: "2").isVisible)

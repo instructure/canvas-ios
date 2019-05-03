@@ -27,6 +27,6 @@ extension XCUIApplication {
         file: StaticString = #file,
         line: UInt = #line) throws {
         return try EarlGreyImpl.invoked(fromFile: file.description, lineNumber: line)
-            .dismissKeyboard(in: self)
+            .dismissKeyboard()
     }
 }

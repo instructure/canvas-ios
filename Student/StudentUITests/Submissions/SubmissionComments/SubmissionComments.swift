@@ -15,43 +15,40 @@
 //
 
 import Foundation
+import SwiftUITest
 
-struct SubmissionComments: RawRepresentable, Element {
-    let rawValue: String
+enum SubmissionComments: String, CaseIterable, ElementWrapper {
+    case addCommentButton
+    case addMediaButton
+    case commentTextView
 
-    init(rawValue: String) {
-        self.rawValue = rawValue
+    private static let className = String(describing: SubmissionComments.self)
+
+    static func attemptCell(submissionID: String, attempt: Int) -> Element {
+        return app.find(id: "\(className).attemptCell.submission-\(submissionID)-\(attempt)")
     }
 
-    static let addCommentButton = SubmissionComments(rawValue: "addCommentButton")
-    static let addMediaButton = SubmissionComments(rawValue: "addMediaButton")
-    static let commentTextView = SubmissionComments(rawValue: "commentTextView")
-
-    static func attemptCell(submissionID: String, attempt: Int) -> SubmissionComments {
-        return SubmissionComments(rawValue: "attemptCell.submission-\(submissionID)-\(attempt)")
+    static func attemptView(attempt: Int) -> Element {
+        return app.find(id: "\(className).attemptView.\(attempt)")
     }
 
-    static func attemptView(attempt: Int) -> SubmissionComments {
-        return SubmissionComments(rawValue: "attemptView.\(attempt)")
+    static func audioCell(commentID: String) -> Element {
+        return app.find(id: "\(className).audioCell.\(commentID)")
     }
 
-    static func audioCell(commentID: String) -> SubmissionComments {
-        return SubmissionComments(rawValue: "audioCell.\(commentID)")
+    static func audioCellPlayPauseButton(commentID: String) -> Element {
+        return app.find(id: "\(className).audioCell.\(commentID).playPauseButton")
     }
 
-    static func audioCellPlayPauseButton(commentID: String) -> SubmissionComments {
-        return SubmissionComments(rawValue: "audioCell.\(commentID).playPauseButton")
+    static func fileView(fileID: String) -> Element {
+        return app.find(id: "\(className).fileView.\(fileID)")
     }
 
-    static func fileView(fileID: String) -> SubmissionComments {
-        return SubmissionComments(rawValue: "fileView.\(fileID)")
+    static func textCell(commentID: String) -> Element {
+        return app.find(id: "\(className).textCell.\(commentID)")
     }
 
-    static func textCell(commentID: String) -> SubmissionComments {
-        return SubmissionComments(rawValue: "textCell.\(commentID)")
-    }
-
-    static func videoCell(commentID: String) -> SubmissionComments {
-        return SubmissionComments(rawValue: "videoCell.\(commentID)")
+    static func videoCell(commentID: String) -> Element {
+        return app.find(id: "\(className).videoCell.\(commentID)")
     }
 }

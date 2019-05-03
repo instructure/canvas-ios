@@ -110,7 +110,7 @@ class SubmissionCommentsTests: StudentTest {
         SubmissionDetailsElement.drawerGripper.tap() // Make it full height.
 
         XCTAssertFalse(SubmissionComments.addCommentButton.isEnabled)
-        SubmissionComments.commentTextView.enterText("First!")
+        SubmissionComments.commentTextView.typeText("First!")
         XCTAssertTrue(SubmissionComments.addCommentButton.isEnabled)
 
         mockData(PutSubmissionGradeRequest(courseID: course.id, assignmentID: assignment.id.value, userID: "1", body: nil), value: APISubmission.make([
@@ -193,6 +193,7 @@ class SubmissionCommentsTests: StudentTest {
         SubmissionDetailsElement.drawerGripper.tap()
 
         SubmissionComments.addMediaButton.tap()
+
         allowAccessToMicrophone(waitFor: AudioRecorder.recordButton.id) {
             Alert.button(label: "Record Audio").tap()
         }

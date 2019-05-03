@@ -15,19 +15,16 @@
 //
 
 import Foundation
+import SwiftUITest
 
-class SubmissionFilesElement: RawRepresentable, Element {
-    let rawValue: String
+struct SubmissionFilesElement {
+    private static let className: String = String(describing: SubmissionFilesElement.self)
 
-    required init(rawValue: String) {
-        self.rawValue = rawValue
+    static func cell(fileID: String) -> Element {
+        return app.find(id: "\(className).cell.\(fileID)")
     }
 
-    static func cell(fileID: String) -> SubmissionFilesElement {
-        return SubmissionFilesElement(rawValue: "cell.\(fileID)")
-    }
-
-    static func checkView(fileID: String) -> SubmissionFilesElement {
-        return SubmissionFilesElement(rawValue: "cell.\(fileID).checkView")
+    static func checkView(fileID: String) -> Element {
+        return app.find(id: "\(className).cell.\(fileID).checkView")
     }
 }

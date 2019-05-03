@@ -69,7 +69,7 @@ extension UITestElement {
 // MARK: - Actions
 extension UITestElement {
     static func findIdentifier(for label: String) -> String {
-        return app!.descendants(matching: .any).matching(NSPredicate(
+        return xcuiApp!.descendants(matching: .any).matching(NSPredicate(
             format: "%K == %@", #keyPath(XCUIElement.label), label
         )).firstMatch.identifier
     }
@@ -126,7 +126,7 @@ extension UITestElement {
     }
 
     static func waitToExist(_ element: Self, timeout: TimeInterval) {
-        let exists = app?.descendants(matching: .any).matching(identifier: element.a11yID).firstMatch.waitForExistence(timeout: timeout) ?? false
+        let exists = xcuiApp?.descendants(matching: .any).matching(identifier: element.a11yID).firstMatch.waitForExistence(timeout: timeout) ?? false
         XCTAssertTrue(exists, "Timeout expired waiting for \(element.a11yID) to exist.")
     }
 }

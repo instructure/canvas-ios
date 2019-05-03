@@ -65,7 +65,7 @@ class SubmissionDetailsTests: StudentTest {
         page.assertEnabled(.attemptPickerToggle, false)
         page.assertText(.attemptPickerToggle, equals: DateFormatter.localizedString(from: submittedAt, dateStyle: .medium, timeStyle: .short))
         page.assertVisible(.onlineTextEntryWebView)
-        let body = app?.webViews.staticTexts.firstMatch.label
+        let body = xcuiApp?.webViews.staticTexts.firstMatch.label
         XCTAssertEqual(body, "hi")
     }
 
@@ -139,7 +139,7 @@ class SubmissionDetailsTests: StudentTest {
         DocViewer.assertVisible(.searchButton)
         DocViewer.tap(.searchButton)
         // PSPDFKit's search view has no accessibility identifiers
-        XCTAssertEqual(app?.searchFields.count, 1)
+        XCTAssertEqual(xcuiApp?.searchFields.count, 1)
         PSPDFDoc.tap(label: "Done")
 
         DocViewer.assertVisible(.shareButton)
@@ -193,6 +193,7 @@ class SubmissionDetailsTests: StudentTest {
         PSPDFDoc.waitToExist(.view, timeout: 5)
 
         // 😱 PSPDFAnnotations are not in the accessibility tree
+        // these x,y coordinates are valid only on iPhone 8
         PSPDFDoc.tap(.view, at: CGPoint(x: 32, y: 32))
         PSPDFDoc.tapCalloutAction("Comments")
 

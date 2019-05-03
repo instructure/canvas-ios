@@ -15,8 +15,9 @@
 //
 
 import Foundation
+import SwiftUITest
 
-enum AudioRecorder: String, Element {
+enum AudioRecorder: String, ElementWrapper {
     case cancelButton, clearButton, recordButton, sendButton, stopButton, timeLabel
     // embedded AudioPlayer
     case currentTimeLabel, loadingView, playPauseButton, remainingTimeLabel, timeSlider
