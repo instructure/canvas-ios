@@ -89,7 +89,7 @@ public class DrawerPresentationController: UIPresentationController {
         super.presentationTransitionWillBegin()
         guard let containerView = containerView else { return }
 
-        dimmer.backgroundColor = .black
+        dimmer.backgroundColor = UIColor.named(.backgroundDarkest).withAlphaComponent(0.9)
         dimmer.alpha = 0
         dimmer.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(dimmer)
@@ -102,7 +102,7 @@ public class DrawerPresentationController: UIPresentationController {
         dimmer.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapped)))
 
         presentingViewController.transitionCoordinator?.animate(alongsideTransition: { _ in
-            self.dimmer.alpha = 0.5
+            self.dimmer.alpha = 1
         })
     }
 
