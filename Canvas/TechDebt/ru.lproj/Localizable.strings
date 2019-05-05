@@ -1183,7 +1183,8 @@
 /* No comment provided by engineer. */
 "Switches to text comment mode" = "Переключение в режим текстового комментария";
 
-/* Title for Syllabus screen */
+/* Syllabus screen name
+   Title for Syllabus view controller */
 "Syllabus" = "Учебный план";
 
 /* Short name for TA enrollment */

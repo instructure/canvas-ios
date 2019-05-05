@@ -1183,7 +1183,8 @@
 /* No comment provided by engineer. */
 "Switches to text comment mode" = "切換到文字評論模式";
 
-/* Title for Syllabus screen */
+/* Syllabus screen name
+   Title for Syllabus view controller */
 "Syllabus" = "課程大綱";
 
 /* Short name for TA enrollment */

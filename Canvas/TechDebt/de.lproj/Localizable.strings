@@ -1183,7 +1183,8 @@
 /* No comment provided by engineer. */
 "Switches to text comment mode" = "Wechselt zum Textkommentarmodus";
 
-/* Title for Syllabus screen */
+/* Syllabus screen name
+   Title for Syllabus view controller */
 "Syllabus" = "Lehrplan";
 
 /* Short name for TA enrollment */

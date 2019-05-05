@@ -1183,7 +1183,8 @@
 /* No comment provided by engineer. */
 "Switches to text comment mode" = "Chanje sou mòd kòmantè tèks";
 
-/* Title for Syllabus screen */
+/* Syllabus screen name
+   Title for Syllabus view controller */
 "Syllabus" = "Pwogram";
 
 /* Short name for TA enrollment */
