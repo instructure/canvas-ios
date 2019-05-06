@@ -16,6 +16,29 @@
 
 import UIKit
 
+let topPadding: CGFloat = 12
+public class GradeCircleReusableView: UICollectionReusableView {
+//    @IBOutlet public weak var gradeCircleView: GradeCircleView?
+    public let gradeCircleView: GradeCircleView?
+
+    public override init(frame: CGRect) {
+        gradeCircleView = GradeCircleView(frame: CGRect(x: 0, y: topPadding, width: frame.width, height: frame.height))
+        super.init(frame: frame)
+        guard let gradeCircleView = gradeCircleView else {
+            return
+        }
+        addSubview(gradeCircleView)
+
+        let border = UIView(frame: CGRect(x: 16, y: frame.height, width: frame.width - 32, height: 1))
+        border.backgroundColor = UIColor.named(.borderMedium)
+        addSubview(border)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("No implemented")
+    }
+}
+
 public class GradeCircleView: UIView {
     @IBOutlet weak var circlePoints: UILabel!
     @IBOutlet weak var circleLabel: UILabel!
