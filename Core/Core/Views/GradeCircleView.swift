@@ -40,48 +40,48 @@ public class GradeCircleView: UIView {
         // in this case the submission should always be there because canvas generates
         // submissions for every user for every assignment but just in case
         guard let submission = assignment.submission, submission.workflowState != .unsubmitted else {
-            self.isHidden = true
+            isHidden = true
             return
         }
 
         guard submission.grade != nil else {
-            self.isHidden = true
+            isHidden = true
             return
         }
 
-        self.isHidden = false
+        isHidden = false
 
         let isPassFail = assignment.gradingType == .pass_fail
-        self.circlePoints.isHidden = isPassFail
-        self.circleLabel.isHidden = isPassFail
-        self.circleComplete.isHidden = isPassFail ? (submission.score == nil || submission.score == 0) : true
+        circlePoints.isHidden = isPassFail
+        circleLabel.isHidden = isPassFail
+        circleComplete.isHidden = isPassFail ? (submission.score == nil || submission.score == 0) : true
 
         // Update grade circle
         if let score = submission.score, let pointsPossible = assignment.pointsPossible {
-            self.circlePoints.text = NumberFormatter.localizedString(from: NSNumber(value: score), number: .decimal)
-            self.gradeCircle?.progress = score / pointsPossible
+            circlePoints.text = NumberFormatter.localizedString(from: NSNumber(value: score), number: .decimal)
+            gradeCircle?.progress = score / pointsPossible
 
-            self.gradeCircle?.accessibilityLabel = assignment.scoreOutOfPointsPossibleText
+            gradeCircle?.accessibilityLabel = assignment.scoreOutOfPointsPossibleText
         }
 
-        self.circleLabel.text = assignment.pointsText
+        circleLabel.text = assignment.pointsText
 
         // Update the display grade
-        self.displayGrade.isHidden = assignment.gradingType == .points || submission.late == true
-        self.displayGrade.text = assignment.gradeText
+        displayGrade.isHidden = assignment.gradingType == .points || submission.late == true
+        displayGrade.text = assignment.gradeText
 
         // Update the outOf label
-        self.outOfLabel.text = assignment.outOfText
+        outOfLabel.text = assignment.outOfText
 
         // Update the Late penalty and Final Grade
-        self.latePenaltyLabel.isHidden = true
-        self.finalGradeLabel.isHidden = true
+        latePenaltyLabel.isHidden = true
+        finalGradeLabel.isHidden = true
         if assignment.hasLatePenalty {
-            self.latePenaltyLabel.isHidden = false
-            self.finalGradeLabel.isHidden = false
+            latePenaltyLabel.isHidden = false
+            finalGradeLabel.isHidden = false
 
-            self.latePenaltyLabel.text = assignment.latePenaltyText
-            self.finalGradeLabel.text = assignment.finalGradeText
+            latePenaltyLabel.text = assignment.latePenaltyText
+            finalGradeLabel.text = assignment.finalGradeText
         }
     }
 }
