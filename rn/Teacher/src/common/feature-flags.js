@@ -18,11 +18,9 @@
 
 import { getSession } from '../canvas-api/session'
 import { NativeModules, AsyncStorage } from 'react-native'
-import app, { type AppId } from '../modules/app'
 
 type Exemption = {
   domains?: Array<string>,
-  apps?: Array<AppId>,
 }
 
 type FeatureFlag = {
@@ -71,10 +69,6 @@ export function featureFlagEnabled (flagName: FeatureFlagName): boolean {
 
   let flag = featureFlags[flagName]
   if (!flag) {
-    return true
-  }
-
-  if (flag.exempt && flag.exempt.apps && flag.exempt.apps.includes(app.current().appId)) {
     return true
   }
 

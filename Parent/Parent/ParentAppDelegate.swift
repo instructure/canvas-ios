@@ -49,8 +49,6 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         if hasFirebase {
             FirebaseApp.configure()
         }
-        NativeLoginManager.shared().setup()
-        NativeLoginManager.shared().app = .parent
         setupDefaultErrorHandling()
         CanvasAnalytics.setHandler(self)
         UNUserNotificationCenter.current().delegate = self
