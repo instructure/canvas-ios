@@ -44,16 +44,8 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
     var refreshControl: UIRefreshControl?
     @IBOutlet weak var gradeCell: UIView?
     @IBOutlet weak var gradeCellDivider: DividerView?
-    @IBOutlet weak var gradedView: UIView?
-    @IBOutlet weak var circlePoints: UILabel?
-    @IBOutlet weak var circleLabel: UILabel?
-    @IBOutlet weak var circleComplete: UIImageView?
-    @IBOutlet weak var gradeCircle: GradeCircle?
+    @IBOutlet weak var gradedView: GradeCircleView?
     @IBOutlet weak var gradeCircleBottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak var displayGrade: UILabel?
-    @IBOutlet weak var outOfLabel: UILabel?
-    @IBOutlet weak var latePenaltyLabel: UILabel?
-    @IBOutlet weak var finalGradeLabel: UILabel?
     @IBOutlet weak var submittedView: UIView?
     @IBOutlet weak var submittedLabel: UILabel?
     @IBOutlet weak var submittedDetailsLabel: UILabel?
@@ -137,6 +129,8 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
     }
 
     func updateGradeCell(_ assignment: Assignment) {
+        self.gradedView?.update(assignment)
+
         // in this case the submission should always be there because canvas generates
         // submissions for every user for every assignment but just in case
         guard let submission = assignment.submission else {
@@ -176,55 +170,13 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         gradeCellDivider?.isHidden = false
 
         guard submission.grade != nil else {
-            gradedView?.isHidden = true
             gradeCircleBottomConstraint?.isActive = false
             submittedView?.isHidden = false
             return
         }
 
-        gradedView?.isHidden = false
         gradeCircleBottomConstraint?.isActive = true
         submittedView?.isHidden = true
-
-        if assignment.gradingType == .pass_fail {
-            circlePoints?.isHidden = true
-            circleLabel?.isHidden = true
-            circleComplete?.isHidden = false
-
-            circleComplete?.isHidden = submission.score == nil || submission.score == 0
-        } else {
-            circlePoints?.isHidden = false
-            circleLabel?.isHidden = false
-            circleComplete?.isHidden = true
-        }
-
-        // Update grade circle
-        if let score = submission.score, let pointsPossible = assignment.pointsPossible {
-            circlePoints?.text = NumberFormatter.localizedString(from: NSNumber(value: score), number: .decimal)
-            gradeCircle?.progress = score / pointsPossible
-
-            gradeCircle?.accessibilityLabel = assignment.scoreOutOfPointsPossibleText
-        }
-
-        circleLabel?.text = assignment.pointsText
-
-        // Update the display grade
-        displayGrade?.isHidden = assignment.gradingType == .points || submission.late == true
-        displayGrade?.text = assignment.gradeText
-
-        // Update the outOf label
-        outOfLabel?.text = assignment.outOfText
-
-        // Update the Late penalty and Final Grade
-        latePenaltyLabel?.isHidden = true
-        finalGradeLabel?.isHidden = true
-        if assignment.hasLatePenalty {
-            latePenaltyLabel?.isHidden = false
-            finalGradeLabel?.isHidden = false
-
-            latePenaltyLabel?.text = assignment.latePenaltyText
-            finalGradeLabel?.text = assignment.finalGradeText
-        }
     }
 
     func update(assignment: Assignment, baseURL: URL?) {
