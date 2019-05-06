@@ -29,28 +29,16 @@ let ParentAppRefresherTTL: TimeInterval = 5.minutes
 
 @UIApplicationMain
 class ParentAppDelegate: UIResponder, UIApplicationDelegate {
-    var window: UIWindow? = MasqueradableWindow(frame: UIScreen.main.bounds)
-    var legacySession: Session?
-    @objc let loginConfig = LoginConfiguration(mobileVerifyName: "iosParent",
-                                         logo: UIImage(named: "parent-logomark")!,
-                                         fullLogo: UIImage(named: "parent-logo")!,
-                                         supportsCanvasNetworkLogin: false,
-                                         whatsNewURL: "https://s3.amazonaws.com/tr-learncanvas/docs/WhatsNewCanvasParent.pdf")
-    
-    @objc var visibleController: UIViewController {
-        guard var vc = window?.rootViewController else { ❨╯°□°❩╯⌢"No root view controller?!" }
-        
-        while vc.presentedViewController != nil {
-            vc = vc.presentedViewController!
-        }
-        return vc
-    }
+    lazy var window: UIWindow? = MasqueradableWindow(frame: UIScreen.main.bounds, loginDelegate: self)
 
     lazy var environment: AppEnvironment = {
         let env = AppEnvironment.shared
         env.router = Parent.router
+        Router.sharedInstance.addRoutes()
         return env
     }()
+
+    var legacySession: Session?
 
     let hasFabric = (Bundle.main.object(forInfoDictionaryKey: "Fabric") as? [String: Any])?["APIKey"] != nil
     let hasFirebase = FirebaseOptions.defaultOptions()?.apiKey != nil
@@ -61,20 +49,19 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         if hasFirebase {
             FirebaseApp.configure()
         }
-        
-        TheKeymaster.fetchesBranding = false
-        TheKeymaster.delegate = loginConfig
+        setupDefaultErrorHandling()
+        CanvasAnalytics.setHandler(self)
+        UNUserNotificationCenter.current().delegate = self
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
 
-        showLoadingState()
-        window?.makeKeyAndVisible()
-        
-        DispatchQueue.main.async {
-            self.postLaunchSetup()
+        // Keychain.clearEntries()
+        if let session = Keychain.mostRecentSession {
+            window?.rootViewController = LoadingViewController.create()
+            userDidLogin(keychainEntry: session)
+        } else {
+            window?.rootViewController = LoginNavigationController.create(loginDelegate: self, fromLaunch: true)
         }
-
-        UNUserNotificationCenter.current().delegate = self
-        
+        window?.makeKeyAndVisible()
         return true
     }
     
@@ -85,26 +72,11 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         AppStoreReview.handleLaunch()
     }
-
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        LocalizationManager.closed()
-    }
-
-    @objc func showLoadingState() {
-        guard let window = self.window else { return }
-        if let root = window.rootViewController, let tag = root.tag, tag == "LaunchScreenPlaceholder" { return }
-        let placeholder = UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateViewController(withIdentifier: "LaunchScreen")
-        placeholder.tag = "LaunchScreenPlaceholder"
-        
-        UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: {
-            window.rootViewController = placeholder
-        }, completion:nil)
-    }
     
     @objc func openCanvasURL(_ url: URL) -> Bool {
         if url.scheme == "canvas-parent" {
             if environment.currentSession != nil {
-                Router.sharedInstance.route(visibleController, toURL: url, modal: false)
+                Router.sharedInstance.route(topMostViewController()!, toURL: url, modal: false)
             } else if let window = window, let vc = Router.sharedInstance.viewControllerForURL(url) {
                 Router.sharedInstance.route(window, toRootViewController: vc)
             } else {
@@ -118,27 +90,132 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
     @objc func routeToRemindable(from response: UNNotificationResponse) {
         let userInfo = response.notification.request.content.userInfo
         if let urlString = userInfo[RemindableActionURLKey] as? String, let url = URL(string: urlString) {
-            Router.sharedInstance.route(visibleController, toURL: url, modal: true)
+            Router.sharedInstance.route(topMostViewController()!, toURL: url, modal: true)
+        }
+    }
+
+    func setup(session: KeychainEntry) {
+        environment.userDidLogin(session: session)
+        CoreWebView.keepCookieAlive(for: environment)
+        // UX requires that students are given color schemes in a specific order.
+        // The method call below ensures that we always start with the first color scheme.
+        ColorCoordinator.clearColorSchemeDictionary()
+        if Locale.current.regionCode != "CA" {
+            let crashlyticsUserId = "\(session.userID)@\(session.baseURL.host ?? session.baseURL.absoluteString)"
+            Crashlytics.sharedInstance().setUserIdentifier(crashlyticsUserId)
+        }
+        // Legacy CanvasKeymaster support
+        let legacyClient = CKIClient(baseURL: session.baseURL, token: session.accessToken)!
+        legacyClient.actAsUserID = session.actAsUserID
+        legacyClient.originalIDOfMasqueradingUser = session.originalUserID
+        legacyClient.originalBaseURL = session.originalBaseURL
+        legacyClient.fetchCurrentUser().subscribeNext { user in
+            legacyClient.setValue(user, forKey: "currentUser")
+            CanvasKeymaster.the().setup(with: legacyClient)
+            self.legacySession = legacyClient.authSession
+            Router.sharedInstance.session = legacyClient.authSession
+            NotificationCenter.default.post(name: .loggedIn, object: self, userInfo: [LoggedInNotificationContentsSession: legacyClient.authSession])
+            self.showRootView()
+        }
+    }
+
+    func showRootView() {
+        guard let legacySession = legacySession else { return }
+        do {
+            let refresher = try Student.observedStudentsRefresher(legacySession)
+            refresher.refreshingCompleted.observeValues { [weak self] _ in
+                guard let self = self, let window = self.window else { return }
+
+                let dashboardHandler = Router.sharedInstance.parentDashboardHandler()
+                guard let controller = dashboardHandler(nil) else { return }
+
+                self.addClearCacheGesture(controller.view)
+
+                let note = self.environment.currentSession?.masquerader == nil ? "MasqueradeDidEnd" : "MasqueradeDidStart"
+                controller.view.layoutIfNeeded()
+                UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
+                    NotificationCenter.default.post(name: Notification.Name(rawValue: note), object: nil)
+                    window.rootViewController = controller
+                }, completion: nil)
+            }
+            refresher.refresh(true)
+        } catch let e as NSError {
+            print(e)
         }
     }
 }
 
-// MARK: Post launch setup
-extension ParentAppDelegate {
-    @objc func postLaunchSetup() {
-        NativeLoginManager.shared().setup()
-        NativeLoginManager.shared().delegate = self
-        NativeLoginManager.shared().app = .parent
-        setupDefaultErrorHandling()
-        CanvasAnalytics.setHandler(self)
+extension ParentAppDelegate: LoginDelegate {
+    var loginLogo: UIImage { return UIImage(named: "parent-logo")! }
+    var supportsCanvasNetwork: Bool { return false }
+    var whatsNewURL: URL? {
+        return URL(string: "https://s3.amazonaws.com/tr-learncanvas/docs/WhatsNewCanvasParent.pdf")
+    }
 
-        guard let lastSession = Keychain.mostRecentSession else {
-            TheKeymaster.logout()
-            return
+    func openSupportTicket() {
+        let subject = String.localizedStringWithFormat("[Parent Login Issue] %@", NSLocalizedString("Trouble logging in", comment: ""))
+        SupportTicketViewController.present(from: topMostViewController(), supportTicketType: SupportTicketTypeProblem, defaultSubject: subject)
+    }
+
+    func changeUser() {
+        guard let window = window, !(window.rootViewController is LoginNavigationController) else { return }
+        UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft, animations: {
+            window.rootViewController = LoginNavigationController.create(loginDelegate: self)
+        }, completion: nil)
+    }
+
+    func openExternalURL(_ url: URL) {
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
+
+    func userDidLogin(keychainEntry: KeychainEntry) {
+        Keychain.addEntry(keychainEntry)
+        // TODO: Register for push notifications?
+        LocalizationManager.setCurrentLocale(keychainEntry.locale)
+        if LocalizationManager.needsRestart {
+            restartForLocalization()
+        } else {
+            setup(session: keychainEntry)
         }
+    }
 
-        self.legacySession = Session(baseURL: lastSession.baseURL, user: SessionUser(id: lastSession.userID, name: lastSession.userName, avatarURL: lastSession.userAvatarURL), token: lastSession.accessToken)
-        self.didLogin(lastSession)
+    func userDidStopActing(as keychainEntry: KeychainEntry) {
+        Keychain.removeEntry(keychainEntry)
+        // TODO: Deregister push notifications?
+        guard environment.currentSession == keychainEntry else { return }
+        environment.userDidLogout(session: keychainEntry)
+        CoreWebView.stopCookieKeepAlive()
+    }
+
+    func userDidLogout(keychainEntry: KeychainEntry) {
+        let wasCurrent = environment.currentSession == keychainEntry
+        userDidStopActing(as: keychainEntry)
+        if wasCurrent { changeUser() }
+    }
+}
+
+extension ParentAppDelegate {
+    func restartForLocalization() {
+        let alert = UIAlertController(
+            title: NSLocalizedString("Updated Language Settings", comment: ""),
+            message: NSLocalizedString("The app needs to restart to use the new language settings. Please relaunch the app.", comment: ""),
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Close App", bundle: .parent, comment: ""), style: .default) { _ in
+            UIControl().sendAction(#selector(NSXPCConnection.suspend), to: UIApplication.shared, for: nil)
+        })
+        window?.rootViewController?.present(alert, animated: true)
+    }
+
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        CoreWebView.stopCookieKeepAlive()
+        if LocalizationManager.needsRestart {
+            exit(EXIT_SUCCESS)
+        }
+    }
+
+    func topMostViewController() -> UIViewController? {
+        return window?.rootViewController?.topMostViewController()
     }
 }
 
@@ -190,9 +267,7 @@ extension ParentAppDelegate {
             }
         })
     }
-    
-    
-    
+
     @objc func handleError(_ error: NSError) {
         ErrorReporter.reportError(error, from: window?.rootViewController)
     }
@@ -200,16 +275,13 @@ extension ParentAppDelegate {
 
 // MARK: Crashlytics
 extension ParentAppDelegate {
-    
     @objc func setupCrashlytics() {
         guard !uiTesting else { return }
         guard hasFabric else {
             NSLog("WARNING: Crashlytics was not properly initialized.");
             return
         }
-        
         Fabric.with([Crashlytics.self])
-        CanvasCrashlytics.setupForReactNative()
     }
 }
 
@@ -218,88 +290,6 @@ extension ParentAppDelegate: CanvasAnalyticsHandler {
         if hasFirebase {
             Analytics.logEvent(name, parameters: parameters)
         }
-    }
-}
-
-extension ParentAppDelegate: NativeLoginManagerDelegate {
-    func didLogin(_ session: KeychainEntry) {
-        guard let legacySession = self.legacySession else {
-            return
-        }
-        Keychain.addEntry(session)
-        environment.userDidLogin(session: session)
-        CoreWebView.keepCookieAlive(for: environment)
-
-        // UX requires that students are given color schemes in a specific order.
-        // The method call below ensures that we always start with the first color scheme.
-        ColorCoordinator.clearColorSchemeDictionary()
-        // TODO: use logged in locale
-        // LocalizationManager.setCurrentLocale(client.locale)
-
-        let countryCode: String? = Locale.current.regionCode
-        if countryCode != "CA" {
-            let crashlyticsUserId = "\(session.userID)@\(session.baseURL.host ?? session.baseURL.absoluteString)"
-            Crashlytics.sharedInstance().setUserIdentifier(crashlyticsUserId)
-        }
-
-        do {
-            let refresher = try Student.observedStudentsRefresher(legacySession)
-            refresher.refreshingCompleted.observeValues { [weak self] _ in
-                guard let weakSelf = self, let window = weakSelf.window else { return }
-
-                let dashboardHandler = Router.sharedInstance.parentDashboardHandler()
-                guard let root = dashboardHandler(nil) else { return }
-
-                weakSelf.addClearCacheGesture(root.view)
-
-                UIView.transition(with: window, duration: 0.25, options: .transitionCrossDissolve, animations: {
-                    let loading = UIViewController()
-                    loading.view.backgroundColor = .white
-                    window.rootViewController = loading
-                }, completion: { _ in
-                    window.rootViewController = root
-                })
-
-            }
-            refresher.refresh(true)
-        } catch let e as NSError {
-            print(e)
-        }
-
-        Router.sharedInstance.addRoutes()
-        Router.sharedInstance.session = legacySession
-        NotificationCenter.default.post(name: .loggedIn, object: self, userInfo: [LoggedInNotificationContentsSession: legacySession])
-    }
-
-    func didLogin(_ client: CKIClient) {
-        self.legacySession = client.authSession
-        guard let token = client.authSession.token else {
-            return
-        }
-
-        var masquerader: URL? = nil
-        if let originalUserID = client.originalIDOfMasqueradingUser, let baseURL = client.originalBaseURL ?? client.baseURL {
-            masquerader = baseURL
-                .appendingPathComponent("users")
-                .appendingPathComponent(originalUserID)
-        }
-
-
-        let entry = KeychainEntry(accessToken: token, baseURL: client.authSession.baseURL, expiresAt: nil, locale: "en", masquerader: masquerader, refreshToken: nil, userAvatarURL: client.authSession.user.avatarURL, userID: client.authSession.user.id, userName: client.authSession.user.name)
-        self.didLogin(entry)
-    }
-    
-    func didLogout(_ controller: UIViewController) {
-        if let entry = environment.currentSession {
-            environment.userDidLogout(session: entry)
-            CoreWebView.stopCookieKeepAlive()
-        }
-        Keychain.clearEntries()
-
-        guard let window = window else { return }
-        UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: {
-            window.rootViewController = controller
-        }, completion:nil)
     }
 }
 

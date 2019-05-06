@@ -121,6 +121,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)loginWithMobileVerifyDetails:(NSDictionary *)details;
 - (void)loginWithSuggestedDomain:(nullable NSString *)host;
+- (void)setupWithClient:(CKIClient *)client;
 @end
 
 @interface CKIClient (CanvasKeymaster)

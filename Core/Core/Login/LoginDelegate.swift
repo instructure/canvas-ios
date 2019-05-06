@@ -25,6 +25,8 @@ public protocol LoginDelegate: class {
     func openExternalURL(_ url: URL)
     func openSupportTicket()
     func userDidLogin(keychainEntry: KeychainEntry)
+    func userDidStartActing(as keychainEntry: KeychainEntry)
+    func userDidStopActing(as keychainEntry: KeychainEntry)
     func userDidLogout(keychainEntry: KeychainEntry)
     func changeUser()
 }
@@ -36,4 +38,25 @@ extension LoginDelegate {
 
     public func openSupportTicket() {}
     public func changeUser() {}
+
+    public func userDidStartActing(as keychainEntry: KeychainEntry) {
+        userDidLogin(keychainEntry: keychainEntry)
+    }
+    public func userDidStopActing(as keychainEntry: KeychainEntry) {
+        userDidLogout(keychainEntry: keychainEntry)
+    }
+
+    public func startActing(as keychainEntry: KeychainEntry) {
+        userDidStartActing(as: keychainEntry)
+    }
+
+    public func stopActing(as keychainEntry: KeychainEntry, findOriginalFrom entries: Set<KeychainEntry> = Keychain.entries) {
+        guard let baseURL = keychainEntry.originalBaseURL, let userID = keychainEntry.originalUserID else { return }
+        if let original = entries.first(where: { $0.baseURL == baseURL && $0.userID == userID && $0.masquerader == nil }) {
+            userDidStopActing(as: keychainEntry)
+            userDidLogin(keychainEntry: original.bumpLastUsedAt())
+        } else {
+            userDidLogout(keychainEntry: keychainEntry)
+        }
+    }
 }

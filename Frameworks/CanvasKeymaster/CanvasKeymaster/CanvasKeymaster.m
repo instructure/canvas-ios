@@ -122,6 +122,12 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
     }];
 }
 
+- (void)setupWithClient:(CKIClient *)client {
+    [self setCurrentClient:client];
+    [[FXKeychain sharedKeychain] clearKeychain];
+    [self->_subjectForClientLogin sendNext:client];
+}
+
 #pragma mark - Client Management
 
 - (void)accessTokenExpired:(NSNotification *)note

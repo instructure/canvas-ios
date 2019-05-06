@@ -17,7 +17,7 @@
 import UIKit
 import Foundation
 import CanvasCore
-import CanvasKeymaster
+import Core
 
 extension AppDelegate {
     @objc func routeToPushNotificationPayloadURL(_ payload: [AnyHashable: Any]) {
@@ -29,7 +29,7 @@ extension AppDelegate {
     }
     
     fileprivate func swappedPushBetaURLString(_ urlString: String) -> String? {
-        guard let baseURLString = CanvasKeymaster.the().currentClient?.baseURL?.absoluteString else { return nil }
+        guard let baseURLString = AppEnvironment.shared.currentSession?.baseURL.absoluteString else { return nil }
         // if we are currently in beta, the payload's url doesn't have it (a known issue) so we need to swap it out
         guard let _ = baseURLString.range(of: "beta") else { return nil }
         

@@ -16,13 +16,9 @@
 
 import UIKit
 
-public protocol ActAsUserPresenterProtocol: class {
-    func didSubmit(domain: String, userID: String, completion: @escaping (Error?) -> Void)
-}
-
 public class ActAsUserViewController: UITableViewController {
     var env: AppEnvironment?
-    var presenter: ActAsUserPresenterProtocol?
+    var presenter: ActAsUserPresenter?
 
     @IBOutlet var redPanda: UIImageView!
     @IBOutlet var redPandaTopConstraint: NSLayoutConstraint!
@@ -32,10 +28,10 @@ public class ActAsUserViewController: UITableViewController {
     @IBOutlet var userIDTextField: UITextField!
     @IBOutlet var actAsUserButton: UIButton!
 
-    public static func create(env: AppEnvironment = .shared, presenter: ActAsUserPresenterProtocol) -> ActAsUserViewController {
-        let controller = self.loadFromStoryboard()
+    public static func create(env: AppEnvironment = .shared, loginDelegate: LoginDelegate) -> ActAsUserViewController {
+        let controller = loadFromStoryboard()
         controller.env = env
-        controller.presenter = presenter
+        controller.presenter = ActAsUserPresenter(env: env, loginDelegate: loginDelegate)
         return controller
     }
 

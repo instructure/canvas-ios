@@ -70,9 +70,11 @@ class KeychainTests: XCTestCase {
         let entry1 = KeychainEntry.make()
         let entry2 = KeychainEntry.make(masquerader: entry1.baseURL.appendingPathComponent("users").appendingPathComponent("42"))
         XCTAssertNotEqual(entry1, entry2)
-        XCTAssertNil(entry1.masqueradingUserID)
+        XCTAssertNil(entry1.originalBaseURL)
+        XCTAssertNil(entry1.originalUserID)
         XCTAssertNil(entry1.actAsUserID)
-        XCTAssertEqual(entry2.masqueradingUserID, "42")
+        XCTAssertEqual(entry2.originalBaseURL, entry1.baseURL)
+        XCTAssertEqual(entry2.originalUserID, "42")
         XCTAssertEqual(entry2.actAsUserID, entry2.userID)
     }
 

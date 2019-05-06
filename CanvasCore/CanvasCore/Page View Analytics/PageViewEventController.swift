@@ -16,6 +16,7 @@
 
 import Foundation
 import CanvasKeymaster
+import Core
 
 typealias ErrorHandler = (Error?) -> Void
 
@@ -93,7 +94,7 @@ open class PageViewEventController: NSObject {
     
     fileprivate func appCanLogEvents() -> Bool {
         let isNotTest = NSClassFromString("EarlGreyImpl") == nil
-        let isStudent = NativeLoginManager.shared().app == CanvasApp.student
+        let isStudent = Bundle.main.isStudentApp
         return isNotTest && isStudent
     }
     

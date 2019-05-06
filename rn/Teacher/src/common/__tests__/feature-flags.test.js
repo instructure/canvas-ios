@@ -20,11 +20,7 @@
 
 import { setSession } from '../../canvas-api'
 import { featureFlagEnabled, featureFlags, enableAllFeaturesFlagsForTesting, disableAllFeatureFlagsForTesting } from '../feature-flags'
-import app from '../../modules/app'
-
-const templates = {
-  ...require('../../__templates__/session'),
-}
+import * as templates from '../../__templates__'
 
 describe('Feature Flags', () => {
   beforeAll(() => {
@@ -39,7 +35,6 @@ describe('Feature Flags', () => {
   })
 
   beforeEach(() => {
-    app.setCurrentApp('teacher')
     global.__DEV__ = false
   })
 
@@ -66,21 +61,5 @@ describe('Feature Flags', () => {
   it('returns false if the flag is defined and the user is not from an exempted domain', () => {
     setSession(templates.session({ baseURL: 'https://mobileqa.instructure.com/' }))
     expect(featureFlagEnabled('aNewFlag')).toEqual(false)
-  })
-
-  it('returns true when the current app is exempt', () => {
-    app.setCurrentApp('student')
-    featureFlags.appSpecific = {
-      exempt: { apps: ['student'] },
-    }
-    expect(featureFlagEnabled('appSpecific')).toEqual(true)
-  })
-
-  it('returns false if the flag is defined and not exempt on current app', () => {
-    app.setCurrentApp('student')
-    featureFlags.appSpecific = {
-      exempt: { apps: ['teacher'] },
-    }
-    expect(featureFlagEnabled('appSpecific')).toEqual(false)
   })
 })

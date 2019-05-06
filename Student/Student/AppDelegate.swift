@@ -102,7 +102,7 @@ extension AppDelegate: LoginDelegate {
     var loginLogo: UIImage { return UIImage(named: "CanvasStudent")! }
 
     func changeUser() {
-        guard let window = window else { return }
+        guard let window = window, !(window.rootViewController is LoginNavigationController) else { return }
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft, animations: {
             window.rootViewController = LoginNavigationController.create(loginDelegate: self)
         }, completion: nil)
