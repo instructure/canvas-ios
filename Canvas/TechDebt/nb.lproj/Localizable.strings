@@ -1183,7 +1183,8 @@
 /* No comment provided by engineer. */
 "Switches to text comment mode" = "Bytter til tekstkommentarmodus";
 
-/* Title for Syllabus screen */
+/* Syllabus screen name
+   Title for Syllabus view controller */
 "Syllabus" = "Emneoversikt";
 
 /* Short name for TA enrollment */

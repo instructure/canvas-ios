@@ -1183,7 +1183,8 @@
 /* No comment provided by engineer. */
 "Switches to text comment mode" = "Mae'n newid i'r modd rhoi sylw ar destun";
 
-/* Title for Syllabus screen */
+/* Syllabus screen name
+   Title for Syllabus view controller */
 "Syllabus" = "Maes Llafur";
 
 /* Short name for TA enrollment */
