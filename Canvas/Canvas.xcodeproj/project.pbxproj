@@ -500,7 +500,6 @@
 		49AA2D341CF4DC540055862D /* RoundedButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2D221CF4DC540055862D /* RoundedButton.h */; };
 		49AA2D351CF4DC540055862D /* RoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2D231CF4DC540055862D /* RoundedButton.m */; };
 		49ADE0051FD84D3F0008E43C /* ReceivedFilesViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49ADE0041FD84D3F0008E43C /* ReceivedFilesViewController.storyboard */; };
-		49BC9BC71CF768FF00DCB3DD /* PSPDFKit+Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BC9BC61CF768FF00DCB3DD /* PSPDFKit+Canvas.swift */; };
 		49CE97661F900B4700121A43 /* UICollectionView+MyLittleViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 49CE97521F900B4100121A43 /* UICollectionView+MyLittleViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49CE97671F900B4700121A43 /* MLVCTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CE97531F900B4100121A43 /* MLVCTableViewController.m */; };
 		49CE97681F900B4700121A43 /* MLVCViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 49CE97541F900B4100121A43 /* MLVCViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1189,7 +1188,6 @@
 		49AA2D221CF4DC540055862D /* RoundedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundedButton.h; sourceTree = "<group>"; };
 		49AA2D231CF4DC540055862D /* RoundedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundedButton.m; sourceTree = "<group>"; };
 		49ADE0041FD84D3F0008E43C /* ReceivedFilesViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReceivedFilesViewController.storyboard; sourceTree = "<group>"; };
-		49BC9BC61CF768FF00DCB3DD /* PSPDFKit+Canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PSPDFKit+Canvas.swift"; sourceTree = "<group>"; };
 		49CE97521F900B4100121A43 /* UICollectionView+MyLittleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+MyLittleViewController.h"; sourceTree = "<group>"; };
 		49CE97531F900B4100121A43 /* MLVCTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLVCTableViewController.m; sourceTree = "<group>"; };
 		49CE97541F900B4100121A43 /* MLVCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLVCViewController.h; sourceTree = "<group>"; };
@@ -2204,7 +2202,6 @@
 			children = (
 				496D31251CF752C600A3B11E /* LegacyModuleProgressShim.swift */,
 				496D31291CF7550A00A3B11E /* NetworkMonitor.swift */,
-				49BC9BC61CF768FF00DCB3DD /* PSPDFKit+Canvas.swift */,
 				49F9FA4C1CF89F8600654758 /* Router+Canvas.swift */,
 			);
 			path = Shrug;
@@ -3661,7 +3658,6 @@
 				5EB46E081D21A75C00C859A4 /* CalendarWeekPageViewController.swift in Sources */,
 				5EB46DFA1D21A75C00C859A4 /* CalendarWeekView.swift in Sources */,
 				61592F771DA7F0A200552B44 /* ModuleDetailDataSource.swift in Sources */,
-				49BC9BC71CF768FF00DCB3DD /* PSPDFKit+Canvas.swift in Sources */,
 				5EB46DE71D21A75C00C859A4 /* NSError+CalendarKit.swift in Sources */,
 				492706A11CF4B93F00C631C6 /* RootViewController.swift in Sources */,
 				49A04E6E1CF64D130051E1E7 /* TabsTableViewController.swift in Sources */,

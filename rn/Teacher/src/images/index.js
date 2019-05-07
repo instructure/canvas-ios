@@ -111,10 +111,6 @@ const images = {
     folder: require('./files/folder.png'),
     media: require('./files/media-icon.png'),
   },
-  masquerade: {
-    redPanda: require('./masquerade/red-panda.png'),
-    whitePanda: require('./masquerade/white-panda.png'),
-  },
   discussions: {
     rate: require('./discussions/Like.png'),
     rated: require('./discussions/Liked.png'),

@@ -19,60 +19,42 @@
 #import <React/RCTEventEmitter.h>
 @import CanvasKeymaster;
 
-typedef NSString *CanvasApp NS_EXTENSIBLE_STRING_ENUM;
-
-extern CanvasApp _Nonnull CanvasAppStudent;
-extern CanvasApp _Nonnull CanvasAppTeacher;
-extern CanvasApp _Nonnull CanvasAppParent;
-
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol NativeLoginManagerDelegate;
 
 @interface NativeLoginManager : NSObject
 
-@property (nonatomic, nonnull) CanvasApp app;
 @property (nonatomic, weak) id<NativeLoginManagerDelegate> delegate;
-@property (nonatomic) BOOL shouldCleanupOnNextLogoutEvent;
 
 + (instancetype)shared;
 
-// Mainly used for testing
-//
-// Inject login information to bypass keymaster login flow
+// Send login information to React Native
 // Must have the following keys:
+//  - appId "student" | "teacher"
 //  - authToken
-//  - baseURL
 //  - user
-//
-//  user will be a canvas user. A sample of those properties:
-//    - id
-//    - name
-//    - primary_email
-//    - short_name
-//    - sortable_name
-//
-// Send nil in order to reset
-- (void)injectLoginInformation:(nullable NSDictionary<NSString *, id> *)info;
+//  - baseURL
+//  - branding
+//  - actAsUserID
+//  - countryCode
+//  - locale
+- (void)login:(nonnull NSDictionary *)body;
 
-- (void)stopMasquerding;
-
-- (void)setup;
+- (void)logout;
 
 @end
 
 @protocol NativeLoginManagerDelegate <NSObject>
 
-// Called when a login event occurred
-- (void)didLogin:(CKIClient *)client;
+// Called when changeUser is called from React Native
+- (void)changeUser;
 
-// Called when a logout event occurred
-// The view controller passed in will be a login view controller
-- (void)didLogout:(UIViewController *)controller;
+// Called when stopActing is called from React Native
+- (void)stopActing;
 
-@optional
-// Called before a logout event
-- (void)willLogout;
+// Called when logout is called from React Native
+- (void)logout;
 
 @end
 

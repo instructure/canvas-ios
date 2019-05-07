@@ -3943,7 +3943,7 @@ exports[`Profile Tests renders correctly with no session 1`] = `
 </View>
 `;
 
-exports[`Profile Tests renders correctly without masquerade 1`] = `
+exports[`Profile Tests renders correctly without act as user 1`] = `
 <View
   style={
     Object {

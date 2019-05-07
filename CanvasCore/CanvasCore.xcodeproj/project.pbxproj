@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2C195F52201948DB003B0D7D /* HelmScreenConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C195F51201948DB003B0D7D /* HelmScreenConfig.swift */; };
-		2C3283B42009651B00810C1B /* MasqueradableWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3283B32009651B00810C1B /* MasqueradableWindow.swift */; };
 		2C34211C1F7409CD00D8E158 /* OSSAttributionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C34211B1F74099400D8E158 /* OSSAttributionViewController.swift */; };
 		2C34211D1F7409CF00D8E158 /* components.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C34211A1F74099400D8E158 /* components.plist */; };
 		2C4EBB3B204DFC820085D00E /* UITabBarController+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4EBB3A204DFC820085D00E /* UITabBarController+Core.swift */; };
@@ -143,7 +142,6 @@
 		4938ACF61F8FD2340069F43D /* Todo+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938ACEF1F8FD2340069F43D /* Todo+Network.swift */; };
 		4938ACF71F8FD2340069F43D /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938ACF01F8FD2340069F43D /* Todo.swift */; };
 		4938ACF81F8FD2340069F43D /* Todo+Edits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938ACF11F8FD2340069F43D /* Todo+Edits.swift */; };
-		494AE0891F8436C1001A8F31 /* LoginConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0861F8436C0001A8F31 /* LoginConfiguration.swift */; };
 		494AE08A1F8436C1001A8F31 /* NativeLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0881F8436C1001A8F31 /* NativeLoginManager.m */; };
 		494AE08B1F8436E6001A8F31 /* NativeLoginManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 494AE0871F8436C0001A8F31 /* NativeLoginManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		494AE0991F843A09001A8F31 /* DrawerHandleViewManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 494AE0901F843A01001A8F31 /* DrawerHandleViewManager.h */; };
@@ -490,6 +488,7 @@
 		78C610CE21CA022C00913B93 /* CanvasCrashlytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 78C610CB21C9FFFC00913B93 /* CanvasCrashlytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7D0215A321BAE703009A8E69 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D0215A221BAE703009A8E69 /* Core.framework */; };
 		7D0F8D8421347CD50092E8F8 /* SVGImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0F8D8321347CD50092E8F8 /* SVGImageView.swift */; };
+		7D6410EC2280B74E008FA345 /* NativeLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6410EB2280B74E008FA345 /* NativeLoginManager.swift */; };
 		7DD89E8B20AB626600650227 /* AppStoreReview.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DD89E8A20AB626600650227 /* AppStoreReview.m */; };
 		7DF5A776208AAB8000419AB9 /* CanvadocsAnnotationStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF5A775208AAB8000419AB9 /* CanvadocsAnnotationStateManager.swift */; };
 		9F068D64207C082B0040EFFA /* registerSharedNativeViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F068D63207C082B0040EFFA /* registerSharedNativeViewControllers.swift */; };
@@ -525,7 +524,6 @@
 		0C6ED514BCD5F05D551BC00B /* Pods_defaults_CanvasCoreTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_CanvasCoreTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		210CE9F7FA304793F1B02F7C /* Pods-defaults-CanvasCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasCore.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasCore/Pods-defaults-CanvasCore.debug.xcconfig"; sourceTree = "<group>"; };
 		2C195F51201948DB003B0D7D /* HelmScreenConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelmScreenConfig.swift; sourceTree = "<group>"; };
-		2C3283B32009651B00810C1B /* MasqueradableWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasqueradableWindow.swift; sourceTree = "<group>"; };
 		2C34211A1F74099400D8E158 /* components.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = components.plist; sourceTree = "<group>"; };
 		2C34211B1F74099400D8E158 /* OSSAttributionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSSAttributionViewController.swift; sourceTree = "<group>"; };
 		2C4EBB3A204DFC820085D00E /* UITabBarController+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBarController+Core.swift"; sourceTree = "<group>"; };
@@ -685,7 +683,6 @@
 		4938ACEF1F8FD2340069F43D /* Todo+Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Todo+Network.swift"; sourceTree = "<group>"; };
 		4938ACF01F8FD2340069F43D /* Todo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
 		4938ACF11F8FD2340069F43D /* Todo+Edits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Todo+Edits.swift"; sourceTree = "<group>"; };
-		494AE0861F8436C0001A8F31 /* LoginConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginConfiguration.swift; sourceTree = "<group>"; };
 		494AE0871F8436C0001A8F31 /* NativeLoginManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NativeLoginManager.h; sourceTree = "<group>"; };
 		494AE0881F8436C1001A8F31 /* NativeLoginManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NativeLoginManager.m; sourceTree = "<group>"; };
 		494AE08D1F843A01001A8F31 /* ScrollViewDisablerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScrollViewDisablerManager.m; sourceTree = "<group>"; };
@@ -1070,6 +1067,7 @@
 		7D349C7721430D2A004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		7D349C7821430D2A004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7D349C7B21430D2C004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/TimedQuizViewController.strings"; sourceTree = "<group>"; };
+		7D6410EB2280B74E008FA345 /* NativeLoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeLoginManager.swift; sourceTree = "<group>"; };
 		7DC4D69F2146E23D007B1C06 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/TimedQuizViewController.strings"; sourceTree = "<group>"; };
 		7DC4D6A12146E249007B1C06 /* en-GB-instukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-instukhe"; path = "en-GB-instukhe.lproj/TimedQuizViewController.strings"; sourceTree = "<group>"; };
 		7DC4D6A32146E24C007B1C06 /* nb-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-instk12"; path = "nb-instk12.lproj/TimedQuizViewController.strings"; sourceTree = "<group>"; };
@@ -1188,14 +1186,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2C3283B22009650A00810C1B /* Masquerade */ = {
-			isa = PBXGroup;
-			children = (
-				2C3283B32009651B00810C1B /* MasqueradableWindow.swift */,
-			);
-			path = Masquerade;
-			sourceTree = "<group>";
-		};
 		2C3421191F74093000D8E158 /* OSSAttribution */ = {
 			isa = PBXGroup;
 			children = (
@@ -1270,10 +1260,8 @@
 				49383CF41F849921009C8F8E /* Inbox */,
 				9F544E071FBB766E00BB2D84 /* InfoPlist.strings */,
 				2CAF1B181F72AEDB007225DF /* Info.plist */,
-				4988D47B1F82DC450006D18C /* Login */,
 				9F544E0C1FBB766E00BB2D84 /* Localizable.strings */,
 				493BEFA81FB14560006E8EFC /* LTI */,
-				2C3283B22009650A00810C1B /* Masquerade */,
 				4961F5441F8FAEE70093EC86 /* Media */,
 				49CE96C11F8FFC0B00121A43 /* Modules */,
 				2C3421191F74093000D8E158 /* OSSAttribution */,
@@ -1728,6 +1716,9 @@
 				494AE0971F843A04001A8F31 /* NativeAccessibility.h */,
 				494AE0921F843A02001A8F31 /* NativeAccessibility.m */,
 				B1F4E8CB206179CC0056074A /* NativeFileSystem.m */,
+				494AE0871F8436C0001A8F31 /* NativeLoginManager.h */,
+				494AE0881F8436C1001A8F31 /* NativeLoginManager.m */,
+				7D6410EB2280B74E008FA345 /* NativeLoginManager.swift */,
 				B1CA05041FE448F300B7D5AA /* NativeNotificationCenter.h */,
 				B1CA05051FE448F300B7D5AA /* NativeNotificationCenter.m */,
 				494AE0931F843A02001A8F31 /* PushNotifications.h */,
@@ -2285,16 +2276,6 @@
 				3BDE87751FD76BE600912CB3 /* UISplitViewControllerExtensions.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		4988D47B1F82DC450006D18C /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				494AE0861F8436C0001A8F31 /* LoginConfiguration.swift */,
-				494AE0871F8436C0001A8F31 /* NativeLoginManager.h */,
-				494AE0881F8436C1001A8F31 /* NativeLoginManager.m */,
-			);
-			path = Login;
 			sourceTree = "<group>";
 		};
 		49CE95EF1F8FF3C800121A43 /* Quizzes */ = {
@@ -3048,7 +3029,6 @@
 				3BC7CEC620113F5B001DFF8C /* CKIClient+Extensions.swift in Sources */,
 				49CE96E21F8FFC4400121A43 /* MasteryPathsItem+Details.swift in Sources */,
 				2CCBD44720C0943B0082E616 /* URL+Core.swift in Sources */,
-				494AE0891F8436C1001A8F31 /* LoginConfiguration.swift in Sources */,
 				4930200E1F901CF5006BD777 /* CommentReplyView.swift in Sources */,
 				2CAF1B3A1F72B1B7007225DF /* Bundle+Core.swift in Sources */,
 				4961F5A31F8FB2A10093EC86 /* ToastNotification.swift in Sources */,
@@ -3208,6 +3188,7 @@
 				49CE979D1F900D0000121A43 /* UserEnrollment.swift in Sources */,
 				4930205C1F902364006BD777 /* NSError+SoLazy.swift in Sources */,
 				4961F68B1F8FB9620093EC86 /* FileNode.swift in Sources */,
+				7D6410EC2280B74E008FA345 /* NativeLoginManager.swift in Sources */,
 				493020711F902462006BD777 /* Session.swift in Sources */,
 				494AE09C1F843A09001A8F31 /* HapticFeedback.m in Sources */,
 				493020561F902364006BD777 /* NSURLSession+SoLazy.swift in Sources */,
@@ -3252,7 +3233,6 @@
 				4961F59F1F8FB2970093EC86 /* UIColor+RGB.swift in Sources */,
 				49DD239C1F8F9EBE004727F7 /* DiscussionTopicAPI.swift in Sources */,
 				4961F6861F8FB9620093EC86 /* FileUpload.swift in Sources */,
-				2C3283B42009651B00810C1B /* MasqueradableWindow.swift in Sources */,
 				4961F5D31F8FB3E80093EC86 /* CollectionViewController.swift in Sources */,
 				3B210C282051B7640062F6A7 /* CodableValue.swift in Sources */,
 				4961F5E11F8FB3F20093EC86 /* LockableModel.swift in Sources */,

@@ -145,6 +145,7 @@
 		7D63F78C215D4BD300151E49 /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D63F78B215D4BD300151E49 /* Brand.swift */; };
 		7D63F78E215D7B8100151E49 /* DynamicButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D63F78D215D7B8100151E49 /* DynamicButtonTests.swift */; };
 		7D63F792215D8EEC00151E49 /* GetBrandVariablesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D63F791215D8EEC00151E49 /* GetBrandVariablesTests.swift */; };
+		7D6410EE2280C345008FA345 /* ActAsUserWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6410ED2280C345008FA345 /* ActAsUserWindow.swift */; };
 		7D6A2BE2214C11AD00DB15C4 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6A2BE1214C11AD00DB15C4 /* Route.swift */; };
 		7D6A2BE4214C538F00DB15C4 /* RouteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6A2BE3214C538F00DB15C4 /* RouteTests.swift */; };
 		7D7110BF213890AD0085C2E5 /* RouteHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7110BE213890AD0085C2E5 /* RouteHandler.swift */; };
@@ -806,6 +807,7 @@
 		7D63F78B215D4BD300151E49 /* Brand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brand.swift; sourceTree = "<group>"; };
 		7D63F78D215D7B8100151E49 /* DynamicButtonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicButtonTests.swift; sourceTree = "<group>"; };
 		7D63F791215D8EEC00151E49 /* GetBrandVariablesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBrandVariablesTests.swift; sourceTree = "<group>"; };
+		7D6410ED2280C345008FA345 /* ActAsUserWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActAsUserWindow.swift; sourceTree = "<group>"; };
 		7D6A2BE1214C11AD00DB15C4 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		7D6A2BE3214C538F00DB15C4 /* RouteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteTests.swift; sourceTree = "<group>"; };
 		7D7110BE213890AD0085C2E5 /* RouteHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteHandler.swift; sourceTree = "<group>"; };
@@ -1941,9 +1943,10 @@
 		9FBFE6D122412B71002B3796 /* ActAsUser */ = {
 			isa = PBXGroup;
 			children = (
+				7D0BCEFB227BAAB400CFFCC5 /* ActAsUserPresenter.swift */,
 				9FBFE6D222412B9E002B3796 /* ActAsUserViewController.storyboard */,
 				9FBFE6D422412BC0002B3796 /* ActAsUserViewController.swift */,
-				7D0BCEFB227BAAB400CFFCC5 /* ActAsUserPresenter.swift */,
+				7D6410ED2280C345008FA345 /* ActAsUserWindow.swift */,
 			);
 			path = ActAsUser;
 			sourceTree = "<group>";
@@ -2688,6 +2691,7 @@
 				7D92D657224ACC7A0015B368 /* UploadMediaComment.swift in Sources */,
 				7DF4FFD5217133AF007E5F81 /* TabType.swift in Sources */,
 				7DEB5C3A224EB02B00F28404 /* CreateTextComment.swift in Sources */,
+				7D6410EE2280C345008FA345 /* ActAsUserWindow.swift in Sources */,
 				2C964857211E303E002C3255 /* Router.swift in Sources */,
 				7DCF203C216D5AE2003AF358 /* LockStatusViewable.swift in Sources */,
 				7D0215AB21BB18C6009A8E69 /* LoginDelegate.swift in Sources */,

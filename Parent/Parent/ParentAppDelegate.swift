@@ -29,7 +29,7 @@ let ParentAppRefresherTTL: TimeInterval = 5.minutes
 
 @UIApplicationMain
 class ParentAppDelegate: UIResponder, UIApplicationDelegate {
-    lazy var window: UIWindow? = MasqueradableWindow(frame: UIScreen.main.bounds, loginDelegate: self)
+    lazy var window: UIWindow? = ActAsUserWindow(frame: UIScreen.main.bounds, loginDelegate: self)
 
     lazy var environment: AppEnvironment = {
         let env = AppEnvironment.shared
@@ -54,7 +54,6 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         UNUserNotificationCenter.current().delegate = self
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
 
-        // Keychain.clearEntries()
         if let session = Keychain.mostRecentSession {
             window?.rootViewController = LoadingViewController.create()
             userDidLogin(keychainEntry: session)
@@ -70,6 +69,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
+        CoreWebView.keepCookieAlive(for: environment)
         AppStoreReview.handleLaunch()
     }
     
@@ -131,10 +131,8 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
 
                 self.addClearCacheGesture(controller.view)
 
-                let note = self.environment.currentSession?.masquerader == nil ? "MasqueradeDidEnd" : "MasqueradeDidStart"
                 controller.view.layoutIfNeeded()
                 UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
-                    NotificationCenter.default.post(name: Notification.Name(rawValue: note), object: nil)
                     window.rootViewController = controller
                 }, completion: nil)
             }

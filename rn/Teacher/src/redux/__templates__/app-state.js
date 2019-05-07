@@ -66,7 +66,7 @@ export const appState: Template<AppState> = template({
   files: {},
   folders: {},
   userInfo: {
-    canMasquerade: false,
+    canActAsUser: false,
     showsGradesOnCourseCards: true,
     externalTools: [],
   },

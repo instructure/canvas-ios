@@ -19,6 +19,7 @@ import UIKit
 public class ActAsUserViewController: UITableViewController {
     var env: AppEnvironment?
     var presenter: ActAsUserPresenter?
+    var initialUserID: String?
 
     @IBOutlet var redPanda: UIImageView!
     @IBOutlet var redPandaTopConstraint: NSLayoutConstraint!
@@ -28,9 +29,10 @@ public class ActAsUserViewController: UITableViewController {
     @IBOutlet var userIDTextField: UITextField!
     @IBOutlet var actAsUserButton: UIButton!
 
-    public static func create(env: AppEnvironment = .shared, loginDelegate: LoginDelegate) -> ActAsUserViewController {
+    public static func create(env: AppEnvironment = .shared, loginDelegate: LoginDelegate, userID: String? = nil) -> ActAsUserViewController {
         let controller = loadFromStoryboard()
         controller.env = env
+        controller.initialUserID = userID
         controller.presenter = ActAsUserPresenter(env: env, loginDelegate: loginDelegate)
         return controller
     }
@@ -44,6 +46,7 @@ public class ActAsUserViewController: UITableViewController {
         userIDTextField.placeholder = NSLocalizedString("User ID", bundle: .core, comment: "")
         actAsUserButton.titleLabel?.text = NSLocalizedString("Act as User", bundle: .core, comment: "")
         domainTextField.text = env?.currentSession?.baseURL.absoluteString
+        userIDTextField.text = initialUserID
 
         domainTextField.addTarget(self, action: #selector(updateActAsUserButtonDisabledStatus), for: .editingChanged)
         userIDTextField.addTarget(self, action: #selector(updateActAsUserButtonDisabledStatus), for: .editingChanged)

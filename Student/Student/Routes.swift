@@ -85,4 +85,14 @@ public let router = Router(routes: [
     RouteHandler(.logs, name: "logs") { _, _ in
         return LogEventListViewController.create()
     },
+
+    RouteHandler(.actAsUser, name: "act_as_user") { _, _ in
+        guard let loginDelegate = UIApplication.shared.delegate as? LoginDelegate else { return nil }
+        return ActAsUserViewController.create(loginDelegate: loginDelegate)
+    },
+
+    RouteHandler(.actAsUserID(":userID"), name: "act_as_user") { _, params in
+        guard let loginDelegate = UIApplication.shared.delegate as? LoginDelegate else { return nil }
+        return ActAsUserViewController.create(loginDelegate: loginDelegate, userID: params["userID"])
+    },
 ])

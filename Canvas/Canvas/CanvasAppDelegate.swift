@@ -29,12 +29,8 @@ import Core
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
-    var window: UIWindow? = MasqueradableWindow(frame: UIScreen.main.bounds)
-    @objc let loginConfig = LoginConfiguration(mobileVerifyName: "iCanvas", logo: UIImage(named: "student-logomark")!, fullLogo: UIImage(named: "student-logo")!)
+    lazy var window: UIWindow? = ActAsUserWindow(frame: UIScreen.main.bounds, loginDelegate: self)
     @objc var session: Session?
-
-    let appID = Bundle.main.bundleIdentifier ?? "com.instructure.icanvas"
-    let appGroup = "group.com.instructure.icanvas"
 
     lazy var environment: AppEnvironment = {
         let env = AppEnvironment.shared
@@ -52,30 +48,59 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
         if hasFirebase {
             FirebaseApp.configure()
         }
-        NotificationKitController.setupForPushNotifications(delegate: self)
-        TheKeymaster.fetchesBranding = true
-        TheKeymaster.delegate = loginConfig
+        DocViewerViewController.setup(.studentPSPDFKitLicense)
+        if let key = Secret.studentPSPDFKitLicense.string {
+           PSPDFKit.setLicenseKey(key)
+        }
+        prepareReactNative()
+        NetworkMonitor.engage()
+        Router.shared().addCanvasRoutes(handleError)
+        setupDefaultErrorHandling()
+        UIApplication.shared.reactive.applicationIconBadgeNumber
+            <~ TabBarBadgeCounts.applicationIconBadgeNumber
+        CanvasAnalytics.setHandler(self)
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
 
-        showLoadingState()
-        window?.makeKeyAndVisible()
-        
-        DispatchQueue.main.async {
-            self.postLaunchSetup()
+        if let session = Keychain.mostRecentSession {
+            window?.rootViewController = LoadingViewController.create()
+            userDidLogin(keychainEntry: session)
+        } else {
+            window?.rootViewController = LoginNavigationController.create(loginDelegate: self, fromLaunch: true)
         }
-        
+        window?.makeKeyAndVisible()
         return true
     }
-    
-    @objc func showLoadingState() {
-        guard let window = self.window else { return }
-        if let root = window.rootViewController, let tag = root.tag, tag == "LaunchScreenPlaceholder" { return }
-        let placeholder = UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateViewController(withIdentifier: "LaunchScreen")
-        placeholder.tag = "LaunchScreenPlaceholder"
-        
-        UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: {
-            window.rootViewController = placeholder
-        }, completion:nil)
+
+    func setup(session: KeychainEntry) {
+        environment.userDidLogin(session: session)
+        CoreWebView.keepCookieAlive(for: environment)
+        if Locale.current.regionCode != "CA" {
+            let crashlyticsUserId = "\(session.userID)@\(session.baseURL.host ?? session.baseURL.absoluteString)"
+            Crashlytics.sharedInstance().setUserIdentifier(crashlyticsUserId)
+        }
+        if hasFirebase {
+            Analytics.setUserID(session.userID)
+            Analytics.setUserProperty(session.baseURL.absoluteString, forName: "base_url")
+        }
+
+        // Legacy CanvasKeymaster support
+        let legacyClient = CKIClient(baseURL: session.baseURL, token: session.accessToken)!
+        legacyClient.actAsUserID = session.actAsUserID
+        legacyClient.originalIDOfMasqueradingUser = session.originalUserID
+        legacyClient.originalBaseURL = session.originalBaseURL
+        legacyClient.fetchCurrentUser().subscribeNext { user in
+            legacyClient.setValue(user, forKey: "currentUser")
+            CanvasKeymaster.the().setup(with: legacyClient)
+            self.session = legacyClient.authSession
+            PageViewEventController.instance.userDidChange()
+            LegacyModuleProgressShim.observeProgress(legacyClient.authSession)
+            ModuleItem.beginObservingProgress(legacyClient.authSession)
+            CKCanvasAPI.updateCurrentAPI()
+            GetBrandVariables().fetch(environment: self.environment) { response, _, _ in
+                Brand.setCurrent(Brand(core: Core.Brand.shared), applyInWindow: self.window)
+                NativeLoginManager.login(as: session)
+            }
+        }
     }
     
     func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
@@ -142,22 +167,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     }
 }
 
-// MARK: Post launch setup
-extension AppDelegate {
-    
-    @objc func postLaunchSetup() {
-        PSPDFKit.license()
-        prepareReactNative()
-        NetworkMonitor.engage()
-        excludeHelmInBranding()
-        Router.shared().addCanvasRoutes(handleError)
-        setupDefaultErrorHandling()
-        UIApplication.shared.reactive.applicationIconBadgeNumber
-            <~ TabBarBadgeCounts.applicationIconBadgeNumber
-        CanvasAnalytics.setHandler(self)
-    }
-}
-
 extension AppDelegate: CanvasAnalyticsHandler {
     func handleEvent(_ name: String, parameters: [String : Any]?) {
         if hasFirebase {
@@ -214,15 +223,6 @@ extension AppDelegate {
         })
     }
     
-    @objc var visibleController: UIViewController {
-        guard var vc = window?.rootViewController else { ❨╯°□°❩╯⌢"No root view controller?!" }
-        
-        while vc.presentedViewController != nil {
-            vc = vc.presentedViewController!
-        }
-        return vc
-    }
-    
     @objc func handleError(_ error: NSError) {
         DispatchQueue.main.async {
             ErrorReporter.reportError(error, from: self.window?.rootViewController)
@@ -249,8 +249,10 @@ extension AppDelegate {
 // MARK: Launching URLS
 extension AppDelegate {
     @objc @discardableResult func openCanvasURL(_ url: URL) -> Bool {
-        if TheKeymaster.numberOfClients == 0, let host = url.host {
-            TheKeymaster.login(withSuggestedDomain: host)
+        if Keychain.mostRecentSession == nil, let host = url.host {
+            let loginNav = LoginNavigationController.create(loginDelegate: self)
+            loginNav.login(host: host)
+            window?.rootViewController = loginNav
         }
         // the student app doesn't have as predictable of a tab bar setup and for
         // several views, does not have a route configured for them so for now we
@@ -303,62 +305,55 @@ extension AppDelegate {
     }
 }
 
-extension AppDelegate: NativeLoginManagerDelegate {
-    func willLogout() {
-        CoreWebView.stopCookieKeepAlive()
-        PageViewEventController.instance.userDidChange()
+extension AppDelegate: LoginDelegate, NativeLoginManagerDelegate {
+    var loginLogo: UIImage { return UIImage(named: "student-logo")! }
+
+    func changeUser() {
+        guard let window = window, !(window.rootViewController is LoginNavigationController) else { return }
+        UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft, animations: {
+            window.rootViewController = LoginNavigationController.create(loginDelegate: self)
+        }, completion: nil)
     }
-    
-    func didLogin(_ client: CKIClient) {
-        let session = client.authSession
-        self.session = session
-        PageViewEventController.instance.userDidChange()
-        LegacyModuleProgressShim.observeProgress(session)
-        ModuleItem.beginObservingProgress(session)
-        CKCanvasAPI.updateCurrentAPI()
-        if hasFirebase {
-            Analytics.setUserID(client.currentUser.id)
-            Analytics.setUserProperty(client.baseURL?.absoluteString, forName: "base_url")
-        }
-        if let entry = client.keychainEntry {
-            Keychain.addEntry(entry)
-            environment.userDidLogin(session: entry)
-            CoreWebView.keepCookieAlive(for: environment)
-        }
 
-        if let brandingInfo = client.branding?.jsonDictionary() as? [String: Any] {
-            Brand.setCurrent(Brand(webPayload: brandingInfo), applyInWindow: window)
-            // copy to new Core.Brand
-            if let data = try? JSONSerialization.data(withJSONObject: brandingInfo) {
-                let response = try! JSONDecoder().decode(APIBrandVariables.self, from: data)
-                Core.Brand.shared = Core.Brand(response: response)
-            }
+    func stopActing() {
+        if let session = environment.currentSession {
+            stopActing(as: session)
         }
+    }
 
-        if let locale = client.effectiveLocale {
+    func logout() {
+        if let session = environment.currentSession {
+            userDidLogout(keychainEntry: session)
+        }
+    }
+
+    func openExternalURL(_ url: URL) {
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
+
+    func userDidLogin(keychainEntry: KeychainEntry) {
+        Keychain.addEntry(keychainEntry)
+        if let locale = keychainEntry.locale {
             CanvasCore.LocalizationManager.setCurrentLocale(locale)
-		}
-
-        let countryCode: String? = Locale.current.regionCode
-        if countryCode != "CA" {
-            let crashlyticsUserId = "\(session.user.id)@\(session.baseURL.host ?? session.baseURL.absoluteString)"
-            Crashlytics.sharedInstance().setUserIdentifier(crashlyticsUserId)
+            if CanvasCore.LocalizationManager.needsRestart { return }
         }
+        setup(session: keychainEntry)
     }
-    
-    func didLogout(_ controller: UIViewController) {
-        if let entry = environment.currentSession {
-            environment.userDidLogout(session: entry)
-            CoreWebView.stopCookieKeepAlive()
-        }
-        Keychain.clearEntries()
-        NotificationKitController.deregisterPushNotifications { _ in
-            // this is a no-op because we don't want errors to prevent logging out
-        }
-        guard let window = self.window else { return }
-        UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: {
-            window.rootViewController = controller
-        }, completion:nil)
+
+    func userDidStopActing(as keychainEntry: KeychainEntry) {
+        Keychain.removeEntry(keychainEntry)
+        guard environment.currentSession == keychainEntry else { return }
+        PageViewEventController.instance.userDidChange()
+        NotificationKitController.deregisterPushNotifications { _ in }
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        environment.userDidLogout(session: keychainEntry)
+        CoreWebView.stopCookieKeepAlive()
+    }
+
+    func userDidLogout(keychainEntry: KeychainEntry) {
+        let wasCurrent = environment.currentSession == keychainEntry
+        userDidStopActing(as: keychainEntry)
+        if wasCurrent { changeUser() }
     }
 }
 

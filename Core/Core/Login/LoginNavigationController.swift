@@ -17,9 +17,12 @@
 import UIKit
 
 public class LoginNavigationController: UINavigationController {
+    weak var loginDelegate: LoginDelegate?
+
     public static func create(loginDelegate: LoginDelegate, fromLaunch: Bool = false) -> LoginNavigationController {
         let startView = LoginStartViewController.create(loginDelegate: loginDelegate, fromLaunch: fromLaunch)
         let controller = LoginNavigationController(rootViewController: startView)
+        controller.loginDelegate = loginDelegate
         return controller
     }
 
@@ -30,5 +33,13 @@ public class LoginNavigationController: UINavigationController {
         navigationBar.barStyle = .default
         navigationBar.isTranslucent = true
         isNavigationBarHidden = true
+    }
+
+    public func login(host: String) {
+        viewControllers = [
+            LoginStartViewController.create(loginDelegate: loginDelegate, fromLaunch: false),
+            LoginFindSchoolViewController.create(loginDelegate: loginDelegate, method: .normalLogin),
+            LoginWebViewController.create(host: host, loginDelegate: loginDelegate, method: .normalLogin),
+        ]
     }
 }

@@ -57,4 +57,8 @@ class RouteTests: XCTestCase {
     func testTermsOfService() {
         XCTAssertEqual(Route.termsOfService(forAccount: "1").url.path, "/accounts/1/terms_of_service")
     }
+
+    func testActAsUserID() {
+        XCTAssertEqual(Route.actAsUserID("2").url.path, "/act-as-user/2")
+    }
 }

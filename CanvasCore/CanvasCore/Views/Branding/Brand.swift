@@ -15,58 +15,26 @@
 //
     
 import UIKit
+import Core
 
 open class Brand: NSObject {
-    @objc public var navBgColor = rgb(14, g: 20, b: 34)
-    @objc public var navButtonColor = UIColor.white
-    @objc public var navTextColor = UIColor.white
-    @objc public var linkColor = rgb(227, g: 60, b: 41)
-    @objc public var primaryButtonColor = rgb(227, g: 60, b: 41)
-    @objc public var primaryButtonTextColor = UIColor.white
-    @objc public var primaryBrandColor = rgb(227, g: 60, b: 41)
-    @objc public var fontColorDark = UIColor.black
-    @objc public var headerImageURL: String = ""
+    private var core: Core.Brand
+
+    @objc public var navBgColor: UIColor { return core.navBackground }
+    @objc public var navButtonColor: UIColor { return core.navIconFill }
+    @objc public var navTextColor: UIColor { return core.navTextColor }
+    @objc public var linkColor: UIColor { return core.linkColor }
+    @objc public var primaryButtonColor: UIColor { return core.buttonPrimaryBackground }
+    @objc public var primaryButtonTextColor: UIColor { return core.buttonPrimaryText }
+    @objc public var primaryBrandColor: UIColor { return core.primary }
+    @objc public var fontColorDark: UIColor { return core.fontColorDark }
+    @objc public var headerImageURL: String { return core.headerImageUrl?.absoluteString ?? "" }
     
     @objc public let secondaryTintColor = #colorLiteral(red: 0.2117647059, green: 0.5450980392, blue: 0.8470588235, alpha: 1)
     @objc public var tintColor: UIColor { return primaryButtonColor }
     
-    @objc public init(webPayload: [String: Any]?) {
-        if let payload = webPayload {
-            if let hex = payload["ic-brand-global-nav-bgd"] as? String, let color = UIColor.colorFromHexString(hex) {
-                navBgColor = color
-            }
-            
-            if let hex = payload["ic-brand-global-nav-menu-item__text-color"] as? String, let color = UIColor.colorFromHexString(hex) {
-                navTextColor = color
-            }
-            
-            if let hex = payload["ic-brand-global-nav-ic-icon-svg-fill"] as? String, let color = UIColor.colorFromHexString(hex) {
-                navButtonColor = color
-            }
-            if let hex = payload["ic-brand-button--primary-bgd"] as? String, let color = UIColor.colorFromHexString(hex) {
-                primaryButtonColor = color
-            }
-            
-            if let hex = payload["ic-brand-button--primary-text"] as? String, let color = UIColor.colorFromHexString(hex) {
-                primaryButtonTextColor = color
-            }
-            
-            if let hex = payload["ic-brand-primary"] as? String, let color = UIColor.colorFromHexString(hex) {
-                primaryBrandColor = color
-            }
-            
-            if let hex = payload["ic-brand-font-color-dark"] as? String, let color = UIColor.colorFromHexString(hex) {
-                fontColorDark = color
-            }
-
-            if let hex = payload["ic-link-color"] as? String, let color = UIColor.colorFromHexString(hex) {
-                linkColor = color
-            }
-            
-            if let imagePath = payload["ic-brand-header-image"] as? String {
-                headerImageURL = imagePath
-            }
-        }
+    public init(core: Core.Brand) {
+        self.core = core
     }
     
     @objc open func apply(_ window: UIWindow) {
@@ -83,18 +51,10 @@ open class Brand: NSObject {
         guard headerImageURL.count > 0 else { return nil }
         return HelmManager.narBarTitleViewFromImagePath(headerImageURL)
     }
-    
-    fileprivate override init() {
-        super.init()
-    }
-}
-
-private func rgb(_ r: Int, g: Int, b: Int) -> UIColor {
-    return UIColor(red: CGFloat(r)/255.0, green: CGFloat(g)/255.0, blue: CGFloat(b)/255.0, alpha: 1.0)
 }
 
 extension Brand {
-    @objc private (set) public static var current = Brand()
+    @objc private (set) public static var current = Brand(core: Core.Brand.shared)
     
     @objc public static func setCurrent(_ brand: Brand, applyInWindow window: UIWindow? = nil) {
         current = brand

@@ -15,12 +15,12 @@
 //
 
 import Foundation
+import Core
 
 public func ResetAppIfNecessary() {
     let reset = UserDefaults.standard.bool(forKey: "reset_cache_on_next_launch")
     if (reset) {
         ResetApp()
-        CanvasKeymaster.the().logout()
         UserDefaults.standard.set(false, forKey: "reset_cache_on_next_launch")
         UserDefaults.standard.synchronize()
     }
@@ -29,6 +29,7 @@ public func ResetAppIfNecessary() {
 public func ResetApp() {
     // Clear the keychain
     FXKeychain.shared().clear()
+    Keychain.clearEntries()
     
     let fm = FileManager.default
     

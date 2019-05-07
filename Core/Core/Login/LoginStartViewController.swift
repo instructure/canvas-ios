@@ -36,7 +36,7 @@ class LoginStartViewController: UIViewController, LoginStartViewProtocol {
     var logins = [KeychainEntry]()
     var presenter: LoginStartPresenter?
 
-    static func create(loginDelegate: LoginDelegate, fromLaunch: Bool) -> LoginStartViewController {
+    static func create(loginDelegate: LoginDelegate?, fromLaunch: Bool) -> LoginStartViewController {
         let controller = loadFromStoryboard()
         controller.presenter = LoginStartPresenter(loginDelegate: loginDelegate, view: controller)
         controller.loginDelegate = loginDelegate
