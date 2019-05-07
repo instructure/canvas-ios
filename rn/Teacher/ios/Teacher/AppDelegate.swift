@@ -48,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             FirebaseApp.configure()
         }
         CanvasAnalytics.setHandler(self)
-        preparePSPDFKit()
+        DocViewerViewController.setup(.teacherPSPDFKitLicense)
         prepareReactNative()
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
 
@@ -102,12 +102,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         HelmManager.shared.onReactReload = {
             self.changeUser()
         }
-    }
-    
-    @objc func preparePSPDFKit() {
-        DocViewerViewController.setup(.teacherPSPDFKitLicense)
-        guard let key = Secret.teacherPSPDFKitLicense.string else { return }
-        PSPDFKit.setLicenseKey(key)
     }
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {

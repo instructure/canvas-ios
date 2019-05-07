@@ -37,7 +37,7 @@ extension AppDelegate: RCTBridgeDelegate {
         }
 
         HelmManager.shared.onReactReload = {
-             self.changeUser()
+            self.changeUser()
         }
 
         // Files

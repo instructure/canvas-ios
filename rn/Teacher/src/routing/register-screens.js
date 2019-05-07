@@ -168,6 +168,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/rating-request', wrap(RatingRequest), store)
   registerScreen('/logs')
   registerScreen('/act-as-user')
+  registerScreen('/act-as-user/:userID')
 
   if (isTeacher()) {
     // Files

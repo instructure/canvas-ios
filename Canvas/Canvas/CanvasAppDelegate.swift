@@ -49,9 +49,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
             FirebaseApp.configure()
         }
         DocViewerViewController.setup(.studentPSPDFKitLicense)
-        if let key = Secret.studentPSPDFKitLicense.string {
-           PSPDFKit.setLicenseKey(key)
-        }
         prepareReactNative()
         NetworkMonitor.engage()
         Router.shared().addCanvasRoutes(handleError)

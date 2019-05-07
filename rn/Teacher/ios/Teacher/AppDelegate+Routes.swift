@@ -56,7 +56,7 @@ extension AppDelegate {
 
         HelmManager.shared.registerNativeViewController(for: "/act-as-user/:userID", factory: { props in
             guard let loginDelegate = UIApplication.shared.delegate as? LoginDelegate else { return nil }
-            return ActAsUserViewController.create(loginDelegate: loginDelegate, userID: props["userID"])
+            return ActAsUserViewController.create(loginDelegate: loginDelegate, userID: props["userID"] as? String)
         })
         
         CanvasCore.registerSharedNativeViewControllers()
