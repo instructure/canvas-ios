@@ -102,7 +102,7 @@ extern NSString * const CKCanvasUserInfoVersionKey;
 #pragma mark - User Info
 - (void)getUserProfileWithBlock:(CKSimpleBlock)block;
 - (void)postAvatarNamed:(NSString *)name fileURL:(NSURL *)fileURL block:(CKAttachmentBlock)block;
-- (void)updateLoggedInUserAvatarWithURL:(NSURL *)URL block:(CKDictionaryBlock)block;
+- (void)updateLoggedInUserAvatarWithToken:(NSString *)token block:(CKDictionaryBlock)block;
 
 
 

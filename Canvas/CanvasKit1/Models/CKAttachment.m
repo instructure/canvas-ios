@@ -56,6 +56,8 @@ NSString *CKAttachmentMediaTypeAudioString = @"audio/mp4";
         _lockedForUser = [[info objectForKeyCheckingNull:@"locked_for_user"] boolValue];
         
         _contentLock = [[CKContentLock alloc] initWithInfo:info];
+
+        self.avatarToken = info[@"avatar"][@"token"];
     }
     return self;
 }
@@ -75,6 +77,7 @@ NSString *CKAttachmentMediaTypeAudioString = @"audio/mp4";
     newAttachment->mediaId = mediaId;
     newAttachment->type = type;
     newAttachment->mediaType = mediaType;
+    newAttachment.avatarToken = self.avatarToken;
     
     return newAttachment;
 }
