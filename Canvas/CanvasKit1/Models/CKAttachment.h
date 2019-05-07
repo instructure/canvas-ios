@@ -51,6 +51,7 @@ extern NSString *CKAttachmentMediaTypeAudioString;
 @property (nonatomic, strong) NSString *mediaId;
 @property (nonatomic, assign) CKAttachmentType type;
 @property (nonatomic, assign) CKAttachmentMediaType mediaType;
+@property (nullable, nonatomic, strong) NSString *avatarToken;
 
 @property (readonly) CKContentLock *contentLock;
 

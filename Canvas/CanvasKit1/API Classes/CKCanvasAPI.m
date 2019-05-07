@@ -398,7 +398,7 @@ NSString *CKDownloadsInProgressDirectory(void);
     [self uploadFileNamed:name location:fileURL endpoint:uploadUrl folderPath:folderPath block:block];
 }
 
-- (void)updateLoggedInUserAvatarWithURL:(NSURL *)URL block:(CKDictionaryBlock)block
+- (void)updateLoggedInUserAvatarWithToken:(NSString *)token block:(CKDictionaryBlock)block
 {
     NSString *urlString = [NSString stringWithFormat:@"%@://%@/api/v1/users/self", self.apiProtocol, self.hostname];//, user.ident];
     NSURL *url = [NSURL URLWithString:urlString];
@@ -410,7 +410,7 @@ NSString *CKDownloadsInProgressDirectory(void);
     }
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                       URL.absoluteString, @"user[avatar][url]",
+                                       token, @"user[avatar][token]",
                                        nil];
     
     NSDictionary *options = @{CKAPIHTTPMethodKey: @"PUT",
@@ -2106,7 +2106,7 @@ static CGFloat overallProgressForDictionaries(NSArray *progressDicts) {
 }
 
 - (void)getFileWithId:(uint64_t)fileIdent block:(CKObjectBlock)block {
-    NSString *urlString = [NSString stringWithFormat:@"%@://%@/api/v1/files/%qu", self.apiProtocol, self.hostname, fileIdent];
+    NSString *urlString = [NSString stringWithFormat:@"%@://%@/api/v1/files/%qu?include=avatar", self.apiProtocol, self.hostname, fileIdent];
     NSURL *url = [NSURL URLWithString:urlString];
     
     [self runForURL:url options:nil block:^(NSError *error, CKCanvasAPIResponse *apiResponse, BOOL isFinalValue) {
