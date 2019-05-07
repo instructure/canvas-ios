@@ -126,7 +126,6 @@
 		7D0215A521BAE863009A8E69 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D0215A421BAE863009A8E69 /* Core.framework */; };
 		9F6B43E42243ECD9003C758B /* DashboardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6B43E32243ECD9003C758B /* DashboardPresenter.swift */; };
 		9FAA5905223A999700FEC3F8 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAA5904223A999700FEC3F8 /* ProfilePresenter.swift */; };
-		9FC676A3222832C700945F64 /* CKIClientExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC676A2222832C700945F64 /* CKIClientExtensions.swift */; };
 		B11A2CF720E42D9500A2DBDD /* AccountNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11A2CF620E42D9500A2DBDD /* AccountNotificationViewController.swift */; };
 		B5CB1B611DC15AD800FE9C93 /* ArmchairLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5CB1B631DC15AD800FE9C93 /* ArmchairLocalizable.strings */; };
 		F9B946F4221492400083E660 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946F2221492400083E660 /* PSPDFKit.framework */; };
@@ -799,7 +798,6 @@
 		9F5A3D3B2048745B00F6EDCE /* Session+DiscussionKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session+DiscussionKit.swift"; sourceTree = "<group>"; };
 		9F6B43E32243ECD9003C758B /* DashboardPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardPresenter.swift; sourceTree = "<group>"; };
 		9FAA5904223A999700FEC3F8 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
-		9FC676A2222832C700945F64 /* CKIClientExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKIClientExtensions.swift; sourceTree = "<group>"; };
 		B11A2CF620E42D9500A2DBDD /* AccountNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNotificationViewController.swift; sourceTree = "<group>"; };
 		B38F4CDA7FBACEC7F04FB4BB /* Pods_Parent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Parent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5CB1B621DC15AD800FE9C93 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/ArmchairLocalizable.strings; sourceTree = "<group>"; };
@@ -1033,7 +1031,6 @@
 				619CB8B91CA9B3B60022D26F /* UINavigationController+Parent.swift */,
 				613E90E51D088DA600416EBE /* UITextField+ReturnKeyUpdate.swift */,
 				4948BE681F915D330035BAFD /* BundleExtensions.swift */,
-				9FC676A2222832C700945F64 /* CKIClientExtensions.swift */,
 			);
 			name = Extensions;
 			path = Parent/Extensions;
@@ -1631,7 +1628,6 @@
 				6182D3B91D91D7EF00D516D5 /* DetailsAttachmentCell.swift in Sources */,
 				615300121C86422E002529CF /* DetailsDateCell.swift in Sources */,
 				7893BDFD20D1A83F00231DF7 /* AdminViewController.swift in Sources */,
-				9FC676A3222832C700945F64 /* CKIClientExtensions.swift in Sources */,
 				6196FC3A1CA1A47D0032B8EF /* EventDetailsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

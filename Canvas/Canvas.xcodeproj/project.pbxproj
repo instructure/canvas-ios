@@ -605,7 +605,6 @@
 		B1CB84F11D076025004D2265 /* ExpandingComment.css in Resources */ = {isa = PBXBuildFile; fileRef = B1CB84ED1D076025004D2265 /* ExpandingComment.css */; };
 		B1CB84F21D076025004D2265 /* ExpandingComment.html in Resources */ = {isa = PBXBuildFile; fileRef = B1CB84EE1D076025004D2265 /* ExpandingComment.html */; };
 		B1CB84F31D076026004D2265 /* ExpandingComment.js in Resources */ = {isa = PBXBuildFile; fileRef = B1CB84EF1D076025004D2265 /* ExpandingComment.js */; };
-		B1EE4BBE21CC14780008E111 /* CKIClientExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EE4BBD21CC14780008E111 /* CKIClientExtensions.swift */; };
 		B5A790BB1D8C743400ACA9FE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5A790A61D8C743400ACA9FE /* Localizable.strings */; };
 		B5E212D31D88856B009D8C07 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5E212D51D88856B009D8C07 /* Localizable.strings */; };
 		B5F122C91D8C4D6C0045063A /* Canvas.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 49642BCA1CF4C66200238B3F /* Canvas.entitlements */; };
@@ -1555,7 +1554,6 @@
 		B1CB84EE1D076025004D2265 /* ExpandingComment.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ExpandingComment.html; sourceTree = "<group>"; };
 		B1CB84EF1D076025004D2265 /* ExpandingComment.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = ExpandingComment.js; sourceTree = "<group>"; };
 		B1E3D6E01D8305D900B4AC11 /* ModulesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ModulesTableViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		B1EE4BBD21CC14780008E111 /* CKIClientExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKIClientExtensions.swift; sourceTree = "<group>"; };
 		B1FF7EDE1D8758720069C9BE /* ModuleViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleViewModel.swift; sourceTree = "<group>"; };
 		B5A790A71D8C743400ACA9FE /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B5A790A81D8C743400ACA9FE /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1766,7 +1764,6 @@
 				495D8BBB1CFE17D700D41098 /* LaunchScreen.storyboard */,
 				49642BCA1CF4C66200238B3F /* Canvas.entitlements */,
 				49F9FA4A1CF7B73100654758 /* Canvas.xcassets */,
-				B1EE4BBC21CC14600008E111 /* Extensions */,
 				496D31221CF7528500A3B11E /* Shrug */,
 				49A04E721CF64ED90051E1E7 /* Calendar */,
 				49A04E5B1CF64D130051E1E7 /* Enrollments */,
@@ -2848,14 +2845,6 @@
 			path = "Module Items";
 			sourceTree = "<group>";
 		};
-		B1EE4BBC21CC14600008E111 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				B1EE4BBD21CC14780008E111 /* CKIClientExtensions.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -3688,7 +3677,6 @@
 				5EB46DF11D21A75C00C859A4 /* CalendarCollectionViewLayout.swift in Sources */,
 				61CF10AD1DBFF98800B68E45 /* MasteryPathAssignmentInfoCell.swift in Sources */,
 				5EB46DFB1D21A75C00C859A4 /* IconTodayView.swift in Sources */,
-				B1EE4BBE21CC14780008E111 /* CKIClientExtensions.swift in Sources */,
 				6181F1311DFF47AF00B94488 /* ActivityStreamTableViewController.swift in Sources */,
 				49F9FA6F1CF8FC8500654758 /* AppDelegate+Push.swift in Sources */,
 				496D31261CF752C600A3B11E /* LegacyModuleProgressShim.swift in Sources */,
