@@ -85,7 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
         legacyClient.actAsUserID = session.actAsUserID
         legacyClient.originalIDOfMasqueradingUser = session.originalUserID
         legacyClient.originalBaseURL = session.originalBaseURL
-        legacyClient.fetchCurrentUser().subscribeNext { user in
+        legacyClient.fetchCurrentUser().subscribeNext({ user in
             legacyClient.setValue(user, forKey: "currentUser")
             CanvasKeymaster.the().setup(with: legacyClient)
             self.session = legacyClient.authSession
@@ -97,7 +97,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
                 Brand.setCurrent(Brand(core: Core.Brand.shared), applyInWindow: self.window)
                 NativeLoginManager.login(as: session)
             }
-        }
+        }, error: { _ in DispatchQueue.main.async {
+            self.userDidLogout(keychainEntry: session)
+        } })
     }
     
     func application(_ application: UIApplication, handleOpen url: URL) -> Bool {

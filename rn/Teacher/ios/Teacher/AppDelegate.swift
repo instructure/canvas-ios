@@ -76,14 +76,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         legacyClient.actAsUserID = session.actAsUserID
         legacyClient.originalIDOfMasqueradingUser = session.originalUserID
         legacyClient.originalBaseURL = session.originalBaseURL
-        legacyClient.fetchCurrentUser().subscribeNext { user in
+        legacyClient.fetchCurrentUser().subscribeNext({ user in
             legacyClient.setValue(user, forKey: "currentUser")
             CanvasKeymaster.the().setup(with: legacyClient)
             GetBrandVariables().fetch(environment: self.environment) { response, _, _ in
                 Brand.setCurrent(Brand(core: Core.Brand.shared), applyInWindow: self.window)
                 NativeLoginManager.login(as: session)
             }
-        }
+        }, error: { _ in DispatchQueue.main.async {
+            self.userDidLogout(keychainEntry: session)
+        } })
     }
     
     @objc func prepareReactNative() {
