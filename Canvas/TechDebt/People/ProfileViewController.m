@@ -410,26 +410,38 @@ CGFloat square(CGFloat x){return x*x;}
                 [activityIndicator stopAnimating];
                 [activityIndicator removeFromSuperview];
                 weakSelf.avatarButton.highlighted = NO;
-                NSBundle *bundle = [NSBundle bundleForClass:self.class];
-                NSString *title = NSLocalizedStringFromTableInBundle(@"Error", nil, bundle, nil);
-                NSString *message = NSLocalizedStringFromTableInBundle(@"Unable to upload to server", nil, bundle, @"message saying that avatar couldn't be loaded to server");
-                [UIAlertController showAlertWithTitle:title message:message];
+                [weakSelf showUploadAvatarError];
                 return;
             }
 
             [weakSelf setImage:image];
             weakSelf.canvasAPI.user.avatarURL = attachment.directDownloadURL;
-            [weakAPI updateLoggedInUserAvatarWithURL:attachment.directDownloadURL block:^(NSError *error, BOOL isFinalValue, NSDictionary *dictionary) {
-                if (error) {
-                    NSLog(@"Error setting default avatar: %@", error.localizedDescription);
+            [weakAPI getFileWithId:attachment.ident block:^(NSError *error, BOOL isFinalValue, CKAttachment *file) {
+                if (file.avatarToken) {
+                    [weakAPI updateLoggedInUserAvatarWithToken:file.avatarToken block:^(NSError *error, BOOL isFinalValue, NSDictionary *dictionary) {
+                        if (error) {
+                            [weakSelf showUploadAvatarError];
+                        }
+                    }];
+                } else {
+                    [weakSelf showUploadAvatarError];
                 }
+
+                [activityIndicator stopAnimating];
+                [activityIndicator removeFromSuperview];
+                weakSelf.avatarButton.highlighted = NO;
             }];
-            
-            [activityIndicator stopAnimating];
-            [activityIndicator removeFromSuperview];
-            weakSelf.avatarButton.highlighted = NO;
         }
     }];
+}
+
+- (void)showUploadAvatarError
+{
+    NSBundle *bundle = [NSBundle bundleForClass:self.class];
+    NSString *title = NSLocalizedStringFromTableInBundle(@"Error", nil, bundle, nil);
+    NSString *message = NSLocalizedStringFromTableInBundle(@"Unable to upload to server", nil, bundle, nil);
+    [UIAlertController showAlertWithTitle:title message:message];
+
 }
 
 - (NSURL *)saveImageToFile:(UIImage *)image {
