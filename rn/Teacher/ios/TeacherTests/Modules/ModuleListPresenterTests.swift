@@ -212,7 +212,7 @@ class ModuleListPresenterTests: TeacherTestCase {
                 first.fulfill()
             }
         }
-        wait(for: [first], timeout: 1)
+        wait(for: [first], timeout: 9)
 
         let request = GetModulesRequest(courseID: "1")
         let response = [APIModule.make(["name": "Refreshed"])]
@@ -229,7 +229,7 @@ class ModuleListPresenterTests: TeacherTestCase {
             }
         }
         presenter.forceRefresh()
-        wait(for: [pending, refreshed, stopPending], timeout: 1)
+        wait(for: [pending, refreshed, stopPending], timeout: 9)
     }
 
     func testScrollsToModule() {
