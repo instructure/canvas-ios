@@ -31,9 +31,8 @@ public func inboxTab() -> UIViewController {
     empty.applyDefaultBranding()
     
     inboxSplit.viewControllers = [inboxNav, empty]
-    let icon = UIImage.icon(.email)
     let title = NSLocalizedString("Inbox", bundle: .core, comment: "Inbox tab title")
-    inboxSplit.tabBarItem = UITabBarItem(title: title, image: icon, selectedImage: nil)
+    inboxSplit.tabBarItem = UITabBarItem(title: title, image: .icon(.email), selectedImage: nil)
     inboxSplit.tabBarItem.accessibilityIdentifier = "tab-bar.inbox-btn"
     inboxSplit.extendedLayoutIncludesOpaqueBars = true
     

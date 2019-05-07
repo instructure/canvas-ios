@@ -58,7 +58,7 @@ class RootTabBarController: UITabBarController {
         
         let enrollmentsVC = HelmViewController(moduleName: "/", props: [:])
         enrollmentsVC.view.accessibilityIdentifier = "favorited-course-list.view1"
-        enrollmentsVC.tabBarItem = UITabBarItem(title: NSLocalizedString("Courses", comment: ""), image: UIImage(named: "courses"), selectedImage: nil)
+        enrollmentsVC.tabBarItem = UITabBarItem(title: NSLocalizedString("Courses", comment: ""), image: .icon(.courses), selectedImage: nil)
         enrollmentsVC.tabBarItem.accessibilityIdentifier = "tab-bar.courses-btn"
         enrollmentsVC.navigationItem.titleView = Brand.current.navBarTitleView()
         
@@ -69,7 +69,7 @@ class RootTabBarController: UITabBarController {
         emptyNav.applyDefaultBranding()
         split.viewControllers = [masterNav, emptyNav]
         split.view.accessibilityIdentifier = "favorited-course-list.view2"
-        split.tabBarItem = UITabBarItem(title: NSLocalizedString("Courses", comment: ""), image: UIImage(named: "courses"), selectedImage: nil)
+        split.tabBarItem = UITabBarItem(title: NSLocalizedString("Courses", comment: ""), image: .icon(.courses), selectedImage: nil)
         split.tabBarItem.accessibilityIdentifier = "tab-bar.courses-btn"
         split.preferredDisplayMode = .allVisible
         return split
@@ -78,7 +78,7 @@ class RootTabBarController: UITabBarController {
     @objc func toDoTab() -> UIViewController {
         let toDoVC = HelmViewController(moduleName: "/to-do", props: [:])
         toDoVC.view.accessibilityIdentifier = "to-do-list.view"
-        toDoVC.tabBarItem = UITabBarItem(title: NSLocalizedString("To Do", comment: ""), image: UIImage(named: "todo"), selectedImage: nil)
+        toDoVC.tabBarItem = UITabBarItem(title: NSLocalizedString("To Do", comment: ""), image: .icon(.todo), selectedImage: nil)
         toDoVC.tabBarItem.accessibilityIdentifier = "tab-bar.to-do-btn"
         toDoVC.tabBarItem.reactive.badgeValue <~ TabBarBadgeCounts.todoListCountString
         toDoVC.navigationItem.titleView = Brand.current.navBarTitleView()

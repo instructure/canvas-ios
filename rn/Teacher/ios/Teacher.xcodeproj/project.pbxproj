@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		13B07FBF1A68108700A75B9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Assets.xcassets */; };
 		2C3DE50E1F21498A00AE1D59 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C3DE5101F21498A00AE1D59 /* InfoPlist.strings */; };
 		2C50EDE11E735CA50096592C /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EDE01E735CA50096592C /* AssetsLibrary.framework */; };
 		2C50EDFD1E735CAC0096592C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EDFC1E735CAC0096592C /* CoreTelephony.framework */; };
@@ -17,7 +17,6 @@
 		2C50EE051E735CC00096592C /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EE041E735CC00096592C /* CoreVideo.framework */; };
 		2C50EE071E735CC60096592C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EE061E735CC60096592C /* QuartzCore.framework */; };
 		2C50EE091E735CCB0096592C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EE081E735CCB0096592C /* SystemConfiguration.framework */; };
-		2C7B27A81E6F5A1100E097B9 /* AppIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C7B27A71E6F5A1100E097B9 /* AppIcon.xcassets */; };
 		2C8E35722093AD760071ED94 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2C8E35712093AD760071ED94 /* Settings.bundle */; };
 		2C96863D1FFE9FC4005127A3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C96863B1FFE9FC3005127A3 /* LaunchScreen.storyboard */; };
 		2CA347401F2147290000BB79 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CA3473E1F2147290000BB79 /* Localizable.strings */; };
@@ -101,7 +100,7 @@
 
 /* Begin PBXFileReference section */
 		13B07F961A680F5B00A75B9A /* Teacher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Teacher.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Teacher/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Teacher/Assets.xcassets; sourceTree = "<group>"; };
 		1ED095C0D4A9D20D53D1F6BD /* Pods-defaults-common_ui_tests-TeacherUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_ui_tests-TeacherUITests.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-common_ui_tests-TeacherUITests/Pods-defaults-common_ui_tests-TeacherUITests.release.xcconfig"; sourceTree = "<group>"; };
 		2C3DE5091F21494D00AE1D59 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Teacher/Info.plist; sourceTree = "<group>"; };
 		2C3DE50F1F21498A00AE1D59 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -150,7 +149,6 @@
 		2C50EE041E735CC00096592C /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		2C50EE061E735CC60096592C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		2C50EE081E735CCB0096592C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		2C7B27A71E6F5A1100E097B9 /* AppIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppIcon.xcassets; sourceTree = "<group>"; };
 		2C8E35712093AD760071ED94 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		2C96863C1FFE9FC3005127A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Teacher/Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2CA3473F1F2147290000BB79 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Teacher/en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -289,8 +287,7 @@
 				494AE0B71F843CB4001A8F31 /* TeacherAttendanceViewController.swift */,
 				2C3DE5101F21498A00AE1D59 /* InfoPlist.strings */,
 				4943ECC91E5D0133001DC5B5 /* Teacher.entitlements */,
-				13B07FB51A68108700A75B9A /* Images.xcassets */,
-				2C7B27A71E6F5A1100E097B9 /* AppIcon.xcassets */,
+				13B07FB51A68108700A75B9A /* Assets.xcassets */,
 				2C3DE5091F21494D00AE1D59 /* Info.plist */,
 				61BD85FA1EB29270005A09A5 /* bridging-header.h */,
 				2C96863B1FFE9FC3005127A3 /* LaunchScreen.storyboard */,
@@ -571,12 +568,11 @@
 			files = (
 				2CA347401F2147290000BB79 /* Localizable.strings in Resources */,
 				2C3DE50E1F21498A00AE1D59 /* InfoPlist.strings in Resources */,
-				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				13B07FBF1A68108700A75B9A /* Assets.xcassets in Resources */,
 				B15CA247221DC5CC0014FB02 /* ModuleListViewController.storyboard in Resources */,
 				2C96863D1FFE9FC4005127A3 /* LaunchScreen.storyboard in Resources */,
 				2C8E35722093AD760071ED94 /* Settings.bundle in Resources */,
 				B1A890BE224F16F900CEE000 /* ModuleSectionHeaderView.xib in Resources */,
-				2C7B27A81E6F5A1100E097B9 /* AppIcon.xcassets in Resources */,
 				78AD913121C8180C0075FBCF /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
