@@ -161,7 +161,7 @@ extension Router {
                 self.route(dashboardVC, toURL: self.courseCalendarEventsRoute(studentID: studentID, courseID: course.id), modal: true)
             }
             dashboardVC.logoutAction = {
-                CanvasKeymaster.the().logout()
+                (UIApplication.shared.delegate as? ParentAppDelegate)?.logout()
             }
 
 

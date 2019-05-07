@@ -171,8 +171,8 @@ extension ParentAppDelegate: LoginDelegate {
     func userDidLogin(keychainEntry: KeychainEntry) {
         Keychain.addEntry(keychainEntry)
         // TODO: Register for push notifications?
-        LocalizationManager.setCurrentLocale(keychainEntry.locale)
-        if LocalizationManager.needsRestart {
+        Core.LocalizationManager.setCurrentLocale(keychainEntry.locale)
+        if Core.LocalizationManager.needsRestart {
             restartForLocalization()
         } else {
             setup(session: keychainEntry)
@@ -192,6 +192,12 @@ extension ParentAppDelegate: LoginDelegate {
         userDidStopActing(as: keychainEntry)
         if wasCurrent { changeUser() }
     }
+
+    func logout() {
+        if let session = environment.currentSession {
+            userDidLogout(keychainEntry: session)
+        }
+    }
 }
 
 extension ParentAppDelegate {
@@ -209,7 +215,7 @@ extension ParentAppDelegate {
 
     func applicationDidEnterBackground(_ application: UIApplication) {
         CoreWebView.stopCookieKeepAlive()
-        if LocalizationManager.needsRestart {
+        if Core.LocalizationManager.needsRestart {
             exit(EXIT_SUCCESS)
         }
     }

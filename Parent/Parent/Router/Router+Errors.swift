@@ -38,7 +38,7 @@ extension Router {
                             self.presentNotAuthorizedError(viewController, error: error)
                         } else {
                             DispatchQueue.main.async {
-                                CanvasKeymaster.the().logout()
+                                (UIApplication.shared.delegate as? ParentAppDelegate)?.logout()
                             }
                         }
                     }

@@ -45,7 +45,7 @@ open class AirwolfAPI {
         validateSession(session, parentID: parentID) {success in
             if !success {
                 DispatchQueue.main.async {
-                    CanvasKeymaster.the().logout()
+                    (UIApplication.shared.delegate as? ParentAppDelegate)?.logout()
                 }
             }
         }
