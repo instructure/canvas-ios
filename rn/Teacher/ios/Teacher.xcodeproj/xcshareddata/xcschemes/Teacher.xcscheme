@@ -104,11 +104,6 @@
                BlueprintName = "TeacherTests"
                ReferencedContainer = "container:Teacher.xcodeproj">
             </BuildableReference>
-            <SkippedTests>
-               <Test
-                  Identifier = "ModuleListPresenterTests">
-               </Test>
-            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>
