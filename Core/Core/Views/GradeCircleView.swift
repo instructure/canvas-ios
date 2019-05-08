@@ -16,13 +16,13 @@
 
 import UIKit
 
-let topPadding: CGFloat = 12
 public class GradeCircleReusableView: UICollectionReusableView {
-//    @IBOutlet public weak var gradeCircleView: GradeCircleView?
     public let gradeCircleView: GradeCircleView?
 
+    static let topPadding: CGFloat = 12
+
     public override init(frame: CGRect) {
-        gradeCircleView = GradeCircleView(frame: CGRect(x: 0, y: topPadding, width: frame.width, height: frame.height))
+        gradeCircleView = GradeCircleView(frame: CGRect(x: 0, y: GradeCircleReusableView.topPadding, width: frame.width, height: frame.height))
         super.init(frame: frame)
         guard let gradeCircleView = gradeCircleView else {
             return

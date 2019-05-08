@@ -60,23 +60,21 @@ extension RubricViewController: UICollectionViewDataSource, UICollectionViewDele
         if presenter.assignments.first?.useRubricForGrading ?? false {
             return CGSize(width: collectionView.frame.width, height: 156)
         } else {
-            return CGSize(width: collectionView.frame.width, height: 0)
+            return CGSize.zero
         }
     }
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionView.elementKindSectionHeader:
-            guard
-                let gradeView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "\(GradeCircleReusableView.self)", for: indexPath) as? GradeCircleReusableView,
-                let assignment = presenter.assignments.first
-            else {
+            guard let assignment = presenter.assignments.first else {
                 fatalError("Invalid view type")
             }
+            let gradeView: GradeCircleReusableView = collectionView.dequeue(ofKind: kind, for: indexPath)
             gradeView.gradeCircleView?.update(assignment)
             return gradeView
         default:
-            assert(false, "Unexpected element kind")
+            fatalError("Unexpected element kind")
         }
     }
 
