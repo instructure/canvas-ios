@@ -20,15 +20,13 @@ import TestsFoundation
 @testable import Core
 
 class GetBrandVariablesTest: CoreTestCase {
-    let request = GetBrandVariablesRequest()
-
     func testItUpdatesBrandVariables() {
+        let prev = Brand.shared
+        XCTAssertNoThrow(try GetBrandVariables().write(response: nil, urlResponse: nil, to: databaseClient))
+        XCTAssertEqual(Brand.shared, prev)
+
         let brand = APIBrandVariables.make(["ic-brand-primary": "#ffff00"])
-        api.mock(request, value: brand, response: nil, error: nil)
-
-        let getBrandVars = GetBrandVariables(env: environment)
-        addOperationAndWait(getBrandVars)
-
+        XCTAssertNoThrow(try GetBrandVariables().write(response: brand, urlResponse: nil, to: databaseClient))
         XCTAssertEqual(Brand.shared.primary.hexString, "#ffff00")
     }
 }

@@ -5,6 +5,7 @@
     "Controller.\\w+$",
     "Transitioning.\\w+$",
     "View.\\w+$",
+    "Window.\\w+$",
     "\\/Views\\/",
     "Core\/ShareExtension\/",
     "Core\/Use Cases\/SubmitFileSubmission",

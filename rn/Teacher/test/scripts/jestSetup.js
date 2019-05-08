@@ -68,8 +68,9 @@ NativeModules.NativeAccessibility = {
 }
 
 NativeModules.NativeLogin = {
+  changeUser: jest.fn(),
+  stopActing: jest.fn(),
   logout: jest.fn(),
-  switchUser: jest.fn(),
 }
 
 NativeModules.WindowTraitsManager = {

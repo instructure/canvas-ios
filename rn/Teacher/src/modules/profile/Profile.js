@@ -84,7 +84,7 @@ export class Profile extends Component<Object, State> {
   }
 
   componentDidMount () {
-    this.props.refreshCanMasquerade()
+    this.props.refreshCanActAsUser()
     this.props.refreshAccountExternalTools()
     this.props.refreshHelpLinks()
     this.refreshAvatarURL()
@@ -113,16 +113,16 @@ export class Profile extends Component<Object, State> {
 
   switchUser = () => {
     logEvent('change_user_selected')
-    NativeModules.NativeLogin.switchUser()
+    NativeModules.NativeLogin.changeUser()
   }
 
-  toggleMasquerade = async () => {
+  toggleActAsUser = async () => {
     let session = getSession()
     await this.props.navigator.dismiss()
     if (session.actAsUserID) {
-      NativeModules.NativeLogin.stopMasquerade()
+      NativeModules.NativeLogin.stopActing()
     } else {
-      this.props.navigator.show('/masquerade', { modal: true })
+      this.props.navigator.show('/act-as-user', { modal: true })
     }
   }
 
@@ -287,8 +287,8 @@ export class Profile extends Component<Object, State> {
       </View>)
     }
 
-    const masquerading = !!session.actAsUserID
-    const masqueradeTitle = masquerading ? i18n('Stop Act as User') : i18n('Act as User')
+    const actingAsUser = session.actAsUserID != null
+    const actAsUserTitle = actingAsUser ? i18n('Stop Act as User') : i18n('Act as User')
     let tools
     if (externalTools.length > 0) {
       tools = externalTools.map((tool) => {
@@ -303,23 +303,23 @@ export class Profile extends Component<Object, State> {
       return (<View>
         { buildRow(i18n('Manage Children'), this.manageObserverStudents)}
         { buildRow(i18n('Help'), this.showParentHelpMenu) }
-        { (this.props.canMasquerade || masquerading) && buildRow(masqueradeTitle, this.toggleMasquerade) }
+        { (this.props.canActAsUser || actingAsUser) && buildRow(actAsUserTitle, this.toggleActAsUser) }
         { this.state.showsDeveloperMenu && buildRow(i18n('Developer Menu'), this.showDeveloperMenu) }
-        { !masquerading && buildRow(i18n('Change User'), this.switchUser) }
-        { !masquerading && buildRow(i18n('Log Out'), this.logout) }
+        { !actingAsUser && buildRow(i18n('Change User'), this.switchUser) }
+        { !actingAsUser && buildRow(i18n('Log Out'), this.logout) }
       </View>)
     }
 
     return (<View>
       { buildRow(i18n('Files'), this.userFiles) }
       { tools }
-      { (this.props.canMasquerade || masquerading) && buildRow(masqueradeTitle, this.toggleMasquerade) }
+      { (this.props.canActAsUser || actingAsUser) && buildRow(actAsUserTitle, this.toggleActAsUser) }
       { isStudent() && buildRow(i18n('Show Grades'), null, { onValueChange: this.toggleShowGrades, value: this.props.showsGradesOnCourseCards }) }
       { this.props.helpLinks && buildRow(this.props.helpLinks.help_link_name, this.showHelpMenu, null, { testID: 'profile.help-menu-btn' }) }
       { !isParent() && buildRow(i18n('Settings'), this.settings, null, { testID: 'profile.settings-btn' }) }
       { this.state.showsDeveloperMenu && buildRow(i18n('Developer Menu'), this.showDeveloperMenu) }
-      { !masquerading && buildRow(i18n('Change User'), this.switchUser) }
-      { !masquerading && buildRow(i18n('Log Out'), this.logout) }
+      { !actingAsUser && buildRow(i18n('Change User'), this.switchUser) }
+      { !actingAsUser && buildRow(i18n('Log Out'), this.logout) }
     </View>)
   }
 

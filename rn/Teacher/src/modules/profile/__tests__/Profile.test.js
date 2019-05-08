@@ -50,17 +50,17 @@ describe('Profile Tests', () => {
     })
     defaultProps = {
       navigator: navigator,
-      refreshCanMasquerade: jest.fn(),
+      refreshCanActAsUser: jest.fn(),
       refreshAccountExternalTools: jest.fn(),
       refreshHelpLinks: jest.fn(),
-      canMasquerade: true,
+      canActAsUser: true,
       externalTools: [],
       getUserProfile: jest.fn(() => Promise.resolve({ data: template.user() })),
     }
   })
   it('renders correctly', () => {
     const tree = renderer.create(
-      <Profile { ...defaultProps } canMasquerade={true} />
+      <Profile { ...defaultProps } canActAsUser={true} />
     ).toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -68,7 +68,7 @@ describe('Profile Tests', () => {
 
   it('renders correctly with no session', () => {
     const tree = renderer.create(
-      <Profile { ...defaultProps } canMasquerade={true} />
+      <Profile { ...defaultProps } canActAsUser={true} />
     ).toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -79,7 +79,7 @@ describe('Profile Tests', () => {
     let externalTools = [template.launchDefinition()]
     defaultProps = { ...defaultProps, externalTools }
     const tree = renderer.create(
-      <Profile { ...defaultProps } canMasquerade={true} />
+      <Profile { ...defaultProps } canActAsUser={true} />
     ).toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -90,7 +90,7 @@ describe('Profile Tests', () => {
     let externalTools = null
     defaultProps = { ...defaultProps, externalTools }
     const tree = renderer.create(
-      <Profile { ...defaultProps } canMasquerade={true} />
+      <Profile { ...defaultProps } canActAsUser={true} />
     ).toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -125,9 +125,9 @@ describe('Profile Tests', () => {
     expect(defaultProps.navigator.show).toHaveBeenCalledWith('/parent/manage-children', { modal: false })
   })
 
-  it('renders correctly without masquerade', () => {
+  it('renders correctly without act as user', () => {
     const tree = renderer.create(
-      <Profile { ...defaultProps } canMasquerade={false} />
+      <Profile { ...defaultProps } canActAsUser={false} />
     ).toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -141,7 +141,7 @@ describe('Profile Tests', () => {
     instance.logout()
     expect(NativeModules.NativeLogin.logout).toHaveBeenCalled()
     instance.switchUser()
-    expect(NativeModules.NativeLogin.switchUser).toHaveBeenCalled()
+    expect(NativeModules.NativeLogin.changeUser).toHaveBeenCalled()
   })
 
   it('navigate to lti gauge tool', async () => {
@@ -453,14 +453,14 @@ describe('map state to prop', () => {
   it('maps state to props', () => {
     const state: AppState = template.appState({
       userInfo: {
-        canMasquerade: true,
+        canActAsUser: true,
         showsGradesOnCourseCards: true,
         externalTools: [],
       },
     })
 
     expect(mapStateToProps(state, {})).toMatchObject({
-      canMasquerade: true,
+      canActAsUser: true,
       showsGradesOnCourseCards: true,
       externalTools: [],
     })

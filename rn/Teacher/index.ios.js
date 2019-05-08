@@ -32,7 +32,7 @@ import store from './src/redux/store'
 import setupI18n from './i18n/setup'
 import { setSession, compareSessions, getSessionUnsafe, httpCache, getUser } from './src/canvas-api'
 import { registerScreens } from './src/routing/register-screens'
-import { setupBrandingFromNativeBrandingInfo } from './src/common/branding'
+import { setupBrandingFromNativeBrandingInfo, type Brand } from './src/common/branding'
 import logoutAction from './src/redux/logout-action'
 import loginVerify from './src/common/login-verify'
 import { hydrateStoreFromPersistedState } from './src/redux/middleware/persist'
@@ -77,7 +77,7 @@ const loginHandler = async ({
   appId: AppId,
   authToken: string,
   baseURL: string,
-  branding: Object,
+  branding: Brand,
   user: SessionUser,
   actAsUserID: ?string,
   skipHydrate: boolean,
@@ -90,11 +90,6 @@ const loginHandler = async ({
 
   if (!authToken || !baseURL) {
     return logout()
-  }
-
-  if (user) {
-    // flow already thinks the id is a string but it's not so coerce ;)
-    user.id = user.id.toString()
   }
 
   if (branding) {
@@ -143,13 +138,6 @@ const loginHandler = async ({
   Helm.loginComplete()
   loginVerify()
   beginUpdatingBadgeCounts()
-}
-
-if (NativeLogin.isTesting) {
-  const loginInfo = NativeLogin.loginInformation()
-  if (loginInfo) {
-    loginHandler(loginInfo)
-  }
 }
 
 const emitter = new NativeEventEmitter(NativeLogin)

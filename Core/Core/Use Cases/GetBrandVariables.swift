@@ -16,25 +16,13 @@
 
 import Foundation
 
-public class GetBrandVariables: OperationSet {
-    let api: API
-    let request: GetBrandVariablesRequest
+public class GetBrandVariables: APIUseCase {
+    public let request = GetBrandVariablesRequest()
+    public let cacheKey: String? = nil
 
-    lazy var fetch: APIOperation = {
-        return APIOperation(api: self.api, request: self.request)
-    }()
+    public init() {}
 
-    public init(env: AppEnvironment, force: Bool = false) {
-        self.api = env.api
-        self.request = GetBrandVariablesRequest()
-        super.init()
-        addSequence([
-            fetch,
-            BlockOperation { [weak self] in self?.save(self?.fetch.response) },
-        ])
-    }
-
-    func save(_ response: APIBrandVariables?) {
+    public func write(response: APIBrandVariables?, urlResponse: URLResponse?, to client: PersistenceClient) throws {
         guard let response = response else { return }
         Brand.shared = Brand(response: response)
     }

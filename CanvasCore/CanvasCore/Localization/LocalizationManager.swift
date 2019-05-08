@@ -26,6 +26,10 @@ public class LocalizationManager: NSObject {
         return UserDefaults.standard.string(forKey: InstUserLocale) ?? effectiveLocale
     }
 
+    public static var needsRestart: Bool {
+        return currentLocale != effectiveLocale
+    }
+
     @objc
     public static func getLocales () -> [[String: String]] {
         return Bundle.main.localizations.filter { id in id != "Base" }.map { id in
@@ -58,7 +62,7 @@ public class LocalizationManager: NSObject {
     }
 
     @objc public static func closed() {
-        if currentLocale != effectiveLocale {
+        if needsRestart {
             exit(EXIT_SUCCESS)
         }
     }

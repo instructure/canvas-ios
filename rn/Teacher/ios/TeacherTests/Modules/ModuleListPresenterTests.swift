@@ -86,16 +86,17 @@ class ModuleListPresenterTests: TeacherTestCase {
     }
 
     func testReloadModules() {
-        let expectation = XCTestExpectation(description: "reloaded")
+        let reloaded = expectation(description: "reloaded")
+        reloaded.assertForOverFulfill = false
         view.onReloadModules = {
             if self.presenter?.modules.count == 1 {
-                expectation.fulfill()
+                reloaded.fulfill()
             }
         }
         presenter.viewIsReady()
         Module.make(["courseID": courseID])
 
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [reloaded], timeout: 9)
     }
 
     func testModulesOrder() {
@@ -121,14 +122,15 @@ class ModuleListPresenterTests: TeacherTestCase {
             "id": "3",
             "itemsRaw": NSOrderedSet(array: [ModuleItem.make(["moduleID": "3"])]),
         ])
-        let expectation = XCTestExpectation(description: "reloaded")
+        let reloaded = expectation(description: "reloaded")
+        reloaded.assertForOverFulfill = false
         view.onReloadModules = {
             if self.presenter.modules.count == 3 {
-                expectation.fulfill()
+                reloaded.fulfill()
             }
         }
         presenter.viewIsReady()
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [reloaded], timeout: 9)
 
         XCTAssertEqual(presenter.modules[0]?.name, "Module 1")
         XCTAssertEqual(presenter.modules[1]?.name, "Module 2")
@@ -143,14 +145,7 @@ class ModuleListPresenterTests: TeacherTestCase {
                 ModuleItem.make(["title": "three"])
             ]),
         ])
-        let expectation = XCTestExpectation(description: "reloaded")
-        view.onReloadModules = {
-            if self.presenter.modules.first?.items.count == 3 {
-                expectation.fulfill()
-            }
-        }
-
-        let items = self.presenter.modules[0]?.items
+        let items = presenter.modules[0]?.items
         XCTAssertEqual(items?.count, 3)
         XCTAssertEqual(items?[0].title, "one")
         XCTAssertEqual(items?[1].title, "two")
@@ -158,52 +153,56 @@ class ModuleListPresenterTests: TeacherTestCase {
     }
 
     func testReloadCourse() {
-        let expectation = XCTestExpectation(description: "reloaded")
+        let reloaded = expectation(description: "reloaded")
+        reloaded.assertForOverFulfill = false
         view.onReloadCourse = {
             if self.presenter.course != nil {
-                expectation.fulfill()
+                reloaded.fulfill()
             }
         }
         presenter.viewIsReady()
         Course.make(["id": "1"])
 
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [reloaded], timeout: 9)
     }
 
     func testReloadCourseColor() {
         let color = UIColor.red
-        let expectation = XCTestExpectation(description: "course reloaded")
+        let reloaded = expectation(description: "course reloaded")
+        reloaded.assertForOverFulfill = false
         view.onReloadCourse = {
             if self.presenter.course?.color == color {
-                expectation.fulfill()
+                reloaded.fulfill()
             }
         }
         presenter.viewIsReady()
         Course.make(["id": "1"])
         Color.make(["canvasContextID": "course_1", "color": color])
 
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [reloaded], timeout: 9)
     }
 
     func testRefreshCourseColors() {
         let request = GetCustomColorsRequest()
         let response = APICustomColors(custom_colors: ["course_1": "#000000"])
         api.mock(request, value: response, response: nil, error: nil)
-        let expectation = XCTestExpectation(description: "color refreshed")
+        let reloaded = expectation(description: "color refreshed")
+        reloaded.assertForOverFulfill = false
         view.onReloadCourse = {
             if self.presenter.course?.color.hexString == "#000000" {
-                expectation.fulfill()
+                reloaded.fulfill()
             }
         }
         presenter.viewIsReady()
         Course.make(["id": "1"])
 
-        wait(for: [expectation], timeout: 0.5)
+        wait(for: [reloaded], timeout: 9)
     }
 
     func testForceRefresh() {
         presenter.viewIsReady()
-        let first = XCTestExpectation(description: "first load")
+        let first = expectation(description: "first load")
+        first.assertForOverFulfill = false
         let firstRequest = GetModulesRequest(courseID: "1")
         let firstResponse = [APIModule.make(["name": "Old Name"])]
         api.mock(firstRequest, value: firstResponse, response: nil, error: nil)
@@ -212,7 +211,7 @@ class ModuleListPresenterTests: TeacherTestCase {
                 first.fulfill()
             }
         }
-        wait(for: [first], timeout: 1)
+        wait(for: [first], timeout: 9)
 
         let request = GetModulesRequest(courseID: "1")
         let response = [APIModule.make(["name": "Refreshed"])]
@@ -229,7 +228,7 @@ class ModuleListPresenterTests: TeacherTestCase {
             }
         }
         presenter.forceRefresh()
-        wait(for: [pending, refreshed, stopPending], timeout: 1)
+        wait(for: [pending, refreshed, stopPending], timeout: 9)
     }
 
     func testScrollsToModule() {
@@ -258,15 +257,16 @@ class ModuleListPresenterTests: TeacherTestCase {
             ])
         ]
         api.mock(page2Request, value: page2Response, response: nil, error: nil)
-        let expectation = XCTestExpectation(description: "scrolled to module")
+        let scrolled = expectation(description: "scrolled to module")
+        scrolled.assertForOverFulfill = false
         view.onScrollToIndexPath = { indexPath in
             if indexPath == IndexPath(row: 0, section: 1) {
-                expectation.fulfill()
+                scrolled.fulfill()
             }
         }
         let presenter = ModuleListPresenter(env: environment, view: view, courseID: courseID, moduleID: "2")
         presenter.viewIsReady()
-        wait(for: [expectation], timeout: 2)
+        wait(for: [scrolled], timeout: 9)
         XCTAssertTrue(presenter.isSectionExpanded(1))
     }
 
@@ -296,34 +296,37 @@ class ModuleListPresenterTests: TeacherTestCase {
             ])
         ]
         api.mock(page2Request, value: page2Response, response: nil, error: nil)
-        var expectation = XCTestExpectation(description: "first page")
+        var reloaded = expectation(description: "first page")
+        reloaded.assertForOverFulfill = false
         view.onReloadModules = {
             if self.presenter.modules.count == 1 {
-                expectation.fulfill()
+                reloaded.fulfill()
             }
         }
         presenter.viewIsReady()
-        wait(for: [expectation], timeout: 1.0)
-        expectation = XCTestExpectation(description: "second page")
+        wait(for: [reloaded], timeout: 9)
+        reloaded = expectation(description: "second page")
+        reloaded.assertForOverFulfill = false
         view.onReloadModules = {
             if self.presenter.modules.count == 2 {
-                expectation.fulfill()
+                reloaded.fulfill()
             }
         }
         presenter.getNextPage()
-        wait(for: [expectation], timeout: 1.0)
+        wait(for: [reloaded], timeout: 9)
     }
 
     func testTappedSection() {
-        let expectation = XCTestExpectation(description: "loaded module")
+        let loaded = expectation(description: "loaded module")
+        loaded.assertForOverFulfill = false
         view.onReloadModules = {
             if self.presenter.modules.count == 1 {
-                expectation.fulfill()
+                loaded.fulfill()
             }
         }
         presenter.viewIsReady()
         Module.make(["courseID": courseID])
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [loaded], timeout: 9)
         XCTAssertTrue(presenter.isSectionExpanded(0))
 
         // collapse

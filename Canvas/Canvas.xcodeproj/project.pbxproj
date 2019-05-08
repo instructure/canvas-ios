@@ -500,7 +500,6 @@
 		49AA2D341CF4DC540055862D /* RoundedButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2D221CF4DC540055862D /* RoundedButton.h */; };
 		49AA2D351CF4DC540055862D /* RoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2D231CF4DC540055862D /* RoundedButton.m */; };
 		49ADE0051FD84D3F0008E43C /* ReceivedFilesViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49ADE0041FD84D3F0008E43C /* ReceivedFilesViewController.storyboard */; };
-		49BC9BC71CF768FF00DCB3DD /* PSPDFKit+Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BC9BC61CF768FF00DCB3DD /* PSPDFKit+Canvas.swift */; };
 		49CE97661F900B4700121A43 /* UICollectionView+MyLittleViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 49CE97521F900B4100121A43 /* UICollectionView+MyLittleViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49CE97671F900B4700121A43 /* MLVCTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CE97531F900B4100121A43 /* MLVCTableViewController.m */; };
 		49CE97681F900B4700121A43 /* MLVCViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 49CE97541F900B4100121A43 /* MLVCViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -606,7 +605,6 @@
 		B1CB84F11D076025004D2265 /* ExpandingComment.css in Resources */ = {isa = PBXBuildFile; fileRef = B1CB84ED1D076025004D2265 /* ExpandingComment.css */; };
 		B1CB84F21D076025004D2265 /* ExpandingComment.html in Resources */ = {isa = PBXBuildFile; fileRef = B1CB84EE1D076025004D2265 /* ExpandingComment.html */; };
 		B1CB84F31D076026004D2265 /* ExpandingComment.js in Resources */ = {isa = PBXBuildFile; fileRef = B1CB84EF1D076025004D2265 /* ExpandingComment.js */; };
-		B1EE4BBE21CC14780008E111 /* CKIClientExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EE4BBD21CC14780008E111 /* CKIClientExtensions.swift */; };
 		B5A790BB1D8C743400ACA9FE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5A790A61D8C743400ACA9FE /* Localizable.strings */; };
 		B5E212D31D88856B009D8C07 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5E212D51D88856B009D8C07 /* Localizable.strings */; };
 		B5F122C91D8C4D6C0045063A /* Canvas.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 49642BCA1CF4C66200238B3F /* Canvas.entitlements */; };
@@ -1189,7 +1187,6 @@
 		49AA2D221CF4DC540055862D /* RoundedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundedButton.h; sourceTree = "<group>"; };
 		49AA2D231CF4DC540055862D /* RoundedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundedButton.m; sourceTree = "<group>"; };
 		49ADE0041FD84D3F0008E43C /* ReceivedFilesViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReceivedFilesViewController.storyboard; sourceTree = "<group>"; };
-		49BC9BC61CF768FF00DCB3DD /* PSPDFKit+Canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PSPDFKit+Canvas.swift"; sourceTree = "<group>"; };
 		49CE97521F900B4100121A43 /* UICollectionView+MyLittleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+MyLittleViewController.h"; sourceTree = "<group>"; };
 		49CE97531F900B4100121A43 /* MLVCTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLVCTableViewController.m; sourceTree = "<group>"; };
 		49CE97541F900B4100121A43 /* MLVCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLVCViewController.h; sourceTree = "<group>"; };
@@ -1557,7 +1554,6 @@
 		B1CB84EE1D076025004D2265 /* ExpandingComment.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ExpandingComment.html; sourceTree = "<group>"; };
 		B1CB84EF1D076025004D2265 /* ExpandingComment.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = ExpandingComment.js; sourceTree = "<group>"; };
 		B1E3D6E01D8305D900B4AC11 /* ModulesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ModulesTableViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		B1EE4BBD21CC14780008E111 /* CKIClientExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKIClientExtensions.swift; sourceTree = "<group>"; };
 		B1FF7EDE1D8758720069C9BE /* ModuleViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleViewModel.swift; sourceTree = "<group>"; };
 		B5A790A71D8C743400ACA9FE /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B5A790A81D8C743400ACA9FE /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1768,7 +1764,6 @@
 				495D8BBB1CFE17D700D41098 /* LaunchScreen.storyboard */,
 				49642BCA1CF4C66200238B3F /* Canvas.entitlements */,
 				49F9FA4A1CF7B73100654758 /* Canvas.xcassets */,
-				B1EE4BBC21CC14600008E111 /* Extensions */,
 				496D31221CF7528500A3B11E /* Shrug */,
 				49A04E721CF64ED90051E1E7 /* Calendar */,
 				49A04E5B1CF64D130051E1E7 /* Enrollments */,
@@ -2204,7 +2199,6 @@
 			children = (
 				496D31251CF752C600A3B11E /* LegacyModuleProgressShim.swift */,
 				496D31291CF7550A00A3B11E /* NetworkMonitor.swift */,
-				49BC9BC61CF768FF00DCB3DD /* PSPDFKit+Canvas.swift */,
 				49F9FA4C1CF89F8600654758 /* Router+Canvas.swift */,
 			);
 			path = Shrug;
@@ -2849,14 +2843,6 @@
 				B15738061D95AA7600ADBB85 /* ModuleItemViewModel.swift */,
 			);
 			path = "Module Items";
-			sourceTree = "<group>";
-		};
-		B1EE4BBC21CC14600008E111 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				B1EE4BBD21CC14780008E111 /* CKIClientExtensions.swift */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -3661,7 +3647,6 @@
 				5EB46E081D21A75C00C859A4 /* CalendarWeekPageViewController.swift in Sources */,
 				5EB46DFA1D21A75C00C859A4 /* CalendarWeekView.swift in Sources */,
 				61592F771DA7F0A200552B44 /* ModuleDetailDataSource.swift in Sources */,
-				49BC9BC71CF768FF00DCB3DD /* PSPDFKit+Canvas.swift in Sources */,
 				5EB46DE71D21A75C00C859A4 /* NSError+CalendarKit.swift in Sources */,
 				492706A11CF4B93F00C631C6 /* RootViewController.swift in Sources */,
 				49A04E6E1CF64D130051E1E7 /* TabsTableViewController.swift in Sources */,
@@ -3692,7 +3677,6 @@
 				5EB46DF11D21A75C00C859A4 /* CalendarCollectionViewLayout.swift in Sources */,
 				61CF10AD1DBFF98800B68E45 /* MasteryPathAssignmentInfoCell.swift in Sources */,
 				5EB46DFB1D21A75C00C859A4 /* IconTodayView.swift in Sources */,
-				B1EE4BBE21CC14780008E111 /* CKIClientExtensions.swift in Sources */,
 				6181F1311DFF47AF00B94488 /* ActivityStreamTableViewController.swift in Sources */,
 				49F9FA6F1CF8FC8500654758 /* AppDelegate+Push.swift in Sources */,
 				496D31261CF752C600A3B11E /* LegacyModuleProgressShim.swift in Sources */,

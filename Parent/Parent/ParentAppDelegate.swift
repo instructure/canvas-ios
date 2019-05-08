@@ -29,7 +29,7 @@ let ParentAppRefresherTTL: TimeInterval = 5.minutes
 
 @UIApplicationMain
 class ParentAppDelegate: UIResponder, UIApplicationDelegate {
-    lazy var window: UIWindow? = MasqueradableWindow(frame: UIScreen.main.bounds, loginDelegate: self)
+    lazy var window: UIWindow? = ActAsUserWindow(frame: UIScreen.main.bounds, loginDelegate: self)
 
     lazy var environment: AppEnvironment = {
         let env = AppEnvironment.shared
@@ -54,7 +54,6 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         UNUserNotificationCenter.current().delegate = self
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
 
-        // Keychain.clearEntries()
         if let session = Keychain.mostRecentSession {
             window?.rootViewController = LoadingViewController.create()
             userDidLogin(keychainEntry: session)
@@ -70,6 +69,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
+        CoreWebView.keepCookieAlive(for: environment)
         AppStoreReview.handleLaunch()
     }
     
@@ -109,14 +109,16 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         legacyClient.actAsUserID = session.actAsUserID
         legacyClient.originalIDOfMasqueradingUser = session.originalUserID
         legacyClient.originalBaseURL = session.originalBaseURL
-        legacyClient.fetchCurrentUser().subscribeNext { user in
+        legacyClient.fetchCurrentUser().subscribeNext({ user in
             legacyClient.setValue(user, forKey: "currentUser")
             CanvasKeymaster.the().setup(with: legacyClient)
             self.legacySession = legacyClient.authSession
             Router.sharedInstance.session = legacyClient.authSession
             NotificationCenter.default.post(name: .loggedIn, object: self, userInfo: [LoggedInNotificationContentsSession: legacyClient.authSession])
             self.showRootView()
-        }
+        }, error: { _ in DispatchQueue.main.async {
+            self.userDidLogout(keychainEntry: session)
+        } })
     }
 
     func showRootView() {
@@ -131,10 +133,8 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
 
                 self.addClearCacheGesture(controller.view)
 
-                let note = self.environment.currentSession?.masquerader == nil ? "MasqueradeDidEnd" : "MasqueradeDidStart"
                 controller.view.layoutIfNeeded()
                 UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
-                    NotificationCenter.default.post(name: Notification.Name(rawValue: note), object: nil)
                     window.rootViewController = controller
                 }, completion: nil)
             }
@@ -171,8 +171,8 @@ extension ParentAppDelegate: LoginDelegate {
     func userDidLogin(keychainEntry: KeychainEntry) {
         Keychain.addEntry(keychainEntry)
         // TODO: Register for push notifications?
-        LocalizationManager.setCurrentLocale(keychainEntry.locale)
-        if LocalizationManager.needsRestart {
+        Core.LocalizationManager.setCurrentLocale(keychainEntry.locale)
+        if Core.LocalizationManager.needsRestart {
             restartForLocalization()
         } else {
             setup(session: keychainEntry)
@@ -192,6 +192,12 @@ extension ParentAppDelegate: LoginDelegate {
         userDidStopActing(as: keychainEntry)
         if wasCurrent { changeUser() }
     }
+
+    func logout() {
+        if let session = environment.currentSession {
+            userDidLogout(keychainEntry: session)
+        }
+    }
 }
 
 extension ParentAppDelegate {
@@ -209,7 +215,7 @@ extension ParentAppDelegate {
 
     func applicationDidEnterBackground(_ application: UIApplication) {
         CoreWebView.stopCookieKeepAlive()
-        if LocalizationManager.needsRestart {
+        if Core.LocalizationManager.needsRestart {
             exit(EXIT_SUCCESS)
         }
     }

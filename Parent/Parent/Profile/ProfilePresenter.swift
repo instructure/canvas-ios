@@ -77,7 +77,6 @@ public class ProfilePresenter: ProfilePresenterProtocol {
                 block: {
                     guard let delegate = UIApplication.shared.delegate as? ParentAppDelegate else { return }
                     delegate.changeUser()
-                    NotificationCenter.default.post(name: Notification.Name(rawValue: "MasqueradeDidEnd"), object: nil)
                 }
             ),
             ProfileViewCell(
@@ -86,7 +85,6 @@ public class ProfilePresenter: ProfilePresenterProtocol {
                     guard let delegate = UIApplication.shared.delegate as? ParentAppDelegate else { return }
                     guard let session = delegate.environment.currentSession else { return }
                     delegate.userDidLogout(keychainEntry: session)
-                    NotificationCenter.default.post(name: Notification.Name(rawValue: "MasqueradeDidEnd"), object: nil)
                 }
             )
         ])
@@ -98,7 +96,6 @@ public class ProfilePresenter: ProfilePresenterProtocol {
                     guard let delegate = UIApplication.shared.delegate as? ParentAppDelegate else { return }
                     guard let session = delegate.environment.currentSession else { return }
                     delegate.stopActing(as: session)
-                    NotificationCenter.default.post(name: Notification.Name(rawValue: "MasqueradeDidEnd"), object: nil)
                 }
             ))
         }

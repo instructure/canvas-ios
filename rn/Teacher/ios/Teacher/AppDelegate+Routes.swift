@@ -17,6 +17,7 @@
 import Foundation
 import CanvasCore
 import CanvasKeymaster
+import Core
 
 extension AppDelegate {
     @objc func registerNativeRoutes() {
@@ -46,6 +47,16 @@ extension AppDelegate {
             guard let courseID = props["courseID"] as? String else { return nil }
             guard let moduleID = props["moduleID"] as? String else { return nil }
             return ModuleListViewController.create(courseID: courseID, moduleID: moduleID)
+        })
+
+        HelmManager.shared.registerNativeViewController(for: "/act-as-user", factory: { props in
+            guard let loginDelegate = UIApplication.shared.delegate as? LoginDelegate else { return nil }
+            return ActAsUserViewController.create(loginDelegate: loginDelegate)
+        })
+
+        HelmManager.shared.registerNativeViewController(for: "/act-as-user/:userID", factory: { props in
+            guard let loginDelegate = UIApplication.shared.delegate as? LoginDelegate else { return nil }
+            return ActAsUserViewController.create(loginDelegate: loginDelegate, userID: props["userID"] as? String)
         })
         
         CanvasCore.registerSharedNativeViewControllers()
