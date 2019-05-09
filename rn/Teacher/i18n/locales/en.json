@@ -26,9 +26,6 @@
   "account_has_no_terms_of_use_1048a785": {
     "message": "Account has no Terms of Use"
   },
-  "act_as_is_essentially_logging_in_as_this_user_with_7870ece0": {
-    "message": "\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users'' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user."
-  },
   "act_as_user_d7ef0e48": {
     "message": "Act as User"
   },
@@ -493,9 +490,6 @@
   },
   "display_grade_as_c165e9a6": {
     "message": "Display Grade as..."
-  },
-  "domain_3b54c511": {
-    "message": "Domain"
   },
   "done_54e3d4b6": {
     "message": "Done"
@@ -1523,9 +1517,6 @@
   "there_was_an_error_loading_this_attachment_408acc12": {
     "message": "There was an error loading this attachment."
   },
-  "there_was_an_error_with_act_as_user_please_try_aga_d9f9f8f1": {
-    "message": "There was an error with Act as User. Please try again later."
-  },
   "there_was_an_problem_loading_your_messages_b80423ac": {
     "message": "There was an problem loading your messages."
   },
@@ -1694,9 +1685,6 @@
   },
   "use_camera_47a0387b": {
     "message": "Use Camera"
-  },
-  "user_id_bcace870": {
-    "message": "User ID"
   },
   "video_b9f27375": {
     "message": "Video"
