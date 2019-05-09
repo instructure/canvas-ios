@@ -40,6 +40,9 @@ class RubricViewController: UIViewController {
         let id = String(describing: RubricCollectionViewCell.self)
         let nib = UINib(nibName: id, bundle: Bundle(for: type(of: self)))
         collectionView.register(nib, forCellWithReuseIdentifier: id)
+
+        let headerID = String(describing: GradeCircleReusableView.self)
+        collectionView.register(GradeCircleReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerID)
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -52,6 +55,29 @@ class RubricViewController: UIViewController {
 }
 
 extension RubricViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        if presenter.assignments.first?.useRubricForGrading ?? false {
+            return CGSize(width: collectionView.frame.width, height: 156)
+        } else {
+            return CGSize.zero
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            guard let assignment = presenter.assignments.first else {
+                fatalError("Invalid view type")
+            }
+            let gradeView: GradeCircleReusableView = collectionView.dequeue(ofKind: kind, for: indexPath)
+            gradeView.gradeCircleView?.update(assignment)
+            return gradeView
+        default:
+            fatalError("Unexpected element kind")
+        }
+    }
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return models.count
     }

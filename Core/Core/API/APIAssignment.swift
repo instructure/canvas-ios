@@ -38,4 +38,5 @@ public struct APIAssignment: Codable, Equatable {
     let url: URL?
     let discussion_topic: APIDiscussionTopic?
     let rubric: [APIRubric]?
+    let use_rubric_for_grading: Bool?
 }

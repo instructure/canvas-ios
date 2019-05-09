@@ -39,6 +39,7 @@ class AssignmentTests: CoreTestCase {
         XCTAssertEqual(a.gradingType, api.grading_type)
         XCTAssertEqual(a.submissionTypes, api.submission_types)
         XCTAssertEqual(a.position, api.position)
+        XCTAssertFalse(a.useRubricForGrading)
 
         XCTAssertNotNil(a.submission)
     }
@@ -220,5 +221,14 @@ class AssignmentTests: CoreTestCase {
         XCTAssertEqual(a.descriptionHTML, "<i>No Content</i>")
         a.discussionTopic = DiscussionTopic.make()
         XCTAssertEqual(a.descriptionHTML, a.discussionTopic?.html)
+    }
+
+    func testUseRubricForGrading() {
+        let apiAssignment = APIAssignment.make(["use_rubric_for_grading": true])
+        let assignment = Assignment.make()
+
+        XCTAssertNoThrow( try assignment.update(fromApiModel: apiAssignment, in: databaseClient, updateSubmission: true) )
+
+        XCTAssertTrue(assignment.useRubricForGrading)
     }
 }
