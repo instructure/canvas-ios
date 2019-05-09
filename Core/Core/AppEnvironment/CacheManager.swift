@@ -24,25 +24,31 @@ public class CacheManager {
         set { UserDefaults.standard.set(newValue, forKey: "lastDeletedAt") }
     }
 
-    public func deleteAll() throws {
-        try deleteCaches()
-        try deleteDocuments()
+    public func clearIfNeeded() {
+        if lastDeletedAt == nil {
+            deleteAll()
+        }
+    }
+
+    public func deleteAll() {
+        deleteCaches()
+        deleteDocuments()
         lastDeletedAt = Clock.now
     }
 
-    public func deleteCaches() throws {
-        try deleteFilesInDirectory(.cachesDirectory)
+    public func deleteCaches() {
+        deleteFilesInDirectory(.cachesDirectory)
     }
 
-    public func deleteDocuments() throws {
-        try deleteFilesInDirectory(.documentsDirectory)
+    public func deleteDocuments() {
+        deleteFilesInDirectory(.documentsDirectory)
     }
 
-    private func deleteFilesInDirectory(_ directory: URL) throws {
+    private func deleteFilesInDirectory(_ directory: URL) {
         let fs = FileManager.default
-        let urls = try fs.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil, options: [])
+        let urls = (try? fs.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil)) ?? []
         for url in urls {
-            try fs.removeItem(at: url)
+            try? fs.removeItem(at: url)
         }
     }
 }
