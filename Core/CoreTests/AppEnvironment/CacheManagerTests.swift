@@ -29,14 +29,14 @@ class CacheManagerTests: CoreTestCase {
     func testDeleteCaches() {
         let url = write("hello", in: .cachesDirectory)
         XCTAssertTrue(FileManager.default.fileExists(atPath: url.path))
-        XCTAssertNoThrow(try manager.deleteCaches())
+        manager.deleteCaches()
         XCTAssertFalse(FileManager.default.fileExists(atPath: url.path))
     }
 
     func testDeleteDocuments() {
         let url = write("hello", in: .documentsDirectory)
         XCTAssertTrue(FileManager.default.fileExists(atPath: url.path))
-        XCTAssertNoThrow(try manager.deleteDocuments())
+        manager.deleteDocuments()
         XCTAssertFalse(FileManager.default.fileExists(atPath: url.path))
     }
 
@@ -47,7 +47,23 @@ class CacheManagerTests: CoreTestCase {
         let document = write("doc", in: .documentsDirectory)
         XCTAssertTrue(FileManager.default.fileExists(atPath: cache.path))
         XCTAssertTrue(FileManager.default.fileExists(atPath: document.path))
-        XCTAssertNoThrow(try manager.deleteAll())
+        manager.deleteAll()
+        XCTAssertFalse(FileManager.default.fileExists(atPath: cache.path))
+        XCTAssertFalse(FileManager.default.fileExists(atPath: document.path))
+        XCTAssertEqual(manager.lastDeletedAt, now)
+    }
+
+    func testClearIfNeeded() {
+        let now = Date()
+        Clock.mockNow(now)
+        UserDefaults.standard.set(now, forKey: "lastDeletedAt")
+        let cache = write("cache", in: .cachesDirectory)
+        let document = write("doc", in: .documentsDirectory)
+        manager.clearIfNeeded()
+        XCTAssertTrue(FileManager.default.fileExists(atPath: cache.path))
+        XCTAssertTrue(FileManager.default.fileExists(atPath: document.path))
+        UserDefaults.standard.removeObject(forKey: "lastDeletedAt")
+        manager.clearIfNeeded()
         XCTAssertFalse(FileManager.default.fileExists(atPath: cache.path))
         XCTAssertFalse(FileManager.default.fileExists(atPath: document.path))
         XCTAssertEqual(manager.lastDeletedAt, now)
