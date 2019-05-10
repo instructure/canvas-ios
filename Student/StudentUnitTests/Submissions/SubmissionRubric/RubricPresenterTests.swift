@@ -39,7 +39,15 @@ class RubricPresenterTests: PersistenceTestCase {
         Rubric.make(["id": "1"])
         Submission.make(["assignmentID": "2", "userID": "1", "rubricAssesmentRaw": Set( [RubricAssessment.make()] )])
         let expected: [RubricViewModel] = [
-            RubricViewModel(title: "Effort", longDescription: "Did you even try?", selectedDesc: "Great!", selectedIndex: 1, ratings: [10.0, 25.0], comment: "random comment"),
+            RubricViewModel(
+                title: "Effort",
+                longDescription: "Did you even try?",
+                selectedDesc: "Great!",
+                selectedIndex: 1,
+                ratings: [10.0, 25.0],
+                descriptions: ["Great!", "Great!"],
+                comment: "random comment"
+            ),
         ]
 
         presenter.viewIsReady()
@@ -59,7 +67,15 @@ class RubricPresenterTests: PersistenceTestCase {
         let custom = RubricAssessment.make(["points": 1.0, "comments": "this is custom", "ratingID": "3"])
         Submission.make(["assignmentID": "2", "userID": "1", "rubricAssesmentRaw": Set( [custom] )])
         let expected: [RubricViewModel] = [
-            RubricViewModel(title: "Effort", longDescription: "Did you even try?", selectedDesc: "Custom Grade", selectedIndex: 2, ratings: [10.0, 25.0, 1.0], comment: "this is custom"),
+            RubricViewModel(
+                title: "Effort",
+                longDescription: "Did you even try?",
+                selectedDesc: "Custom Grade",
+                selectedIndex: 2,
+                ratings: [10.0, 25.0, 1.0],
+                descriptions: ["Great!", "Great!", "Custom Grade"],
+                comment: "this is custom"
+            ),
         ]
 
         presenter.viewIsReady()

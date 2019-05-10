@@ -95,7 +95,7 @@ class GradeCircleViewTests: XCTestCase {
         view.update(a)
         XCTAssertEqual(view.circlePoints.text, "80")
         XCTAssertEqual(view.gradeCircle?.progress, 0.8)
-        XCTAssertEqual(view.gradeCircle?.accessibilityLabel, "80 out of 100 points possible")
+        XCTAssertEqual(view.gradeCircle?.accessibilityLabel, "Scored 80 out of 100 points possible")
     }
 
     func testItShowsLatePenalty() {

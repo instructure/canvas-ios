@@ -57,8 +57,8 @@ class GradeViewableTests: XCTestCase {
 
     func testScoreOutOfPointsPossibleText() {
         XCTAssertNil(Model(pointsPossible: nil).scoreOutOfPointsPossibleText)
-        XCTAssertEqual(Model(pointsPossible: 100, viewableScore: 10).scoreOutOfPointsPossibleText, "10 out of 100 points possible")
-        XCTAssertEqual(Model(pointsPossible: 1, viewableScore: 1).scoreOutOfPointsPossibleText, "1 out of 1 point possible")
+        XCTAssertEqual(Model(pointsPossible: 100, viewableScore: 10).scoreOutOfPointsPossibleText, "Scored 10 out of 100 points possible")
+        XCTAssertEqual(Model(pointsPossible: 1, viewableScore: 1).scoreOutOfPointsPossibleText, "Scored 1 out of 1 point possible")
     }
 
     func testGradeText() {

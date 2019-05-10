@@ -21,12 +21,11 @@ class RubricCircleView: UIView {
     private static let w: CGFloat = 49
     private static let space: CGFloat = 10
     private var buttons: [UIButton] = []
-    var rubric: RubricViewModel? {
-        didSet {
-            if rubric != oldValue {
-                setupButtons()
-            }
-        }
+    var rubric: RubricViewModel?
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        setupButtons()
     }
 
     private static var formatter: NumberFormatter = {
@@ -44,6 +43,7 @@ class RubricCircleView: UIView {
         let w = RubricCircleView.w
         let space: CGFloat = 10
         let ratings: [Double] = rubric?.ratings ?? []
+        let descriptions: [String] = rubric?.descriptions ?? []
         let howManyCanFitInWidth = Int( floor( frame.size.width / (w + space) ) )
         let count = ratings.count
 
@@ -51,6 +51,7 @@ class RubricCircleView: UIView {
 
         for i in 0..<count {
             let r = ratings[i]
+            let description = descriptions[i]
             let selected = i == (rubric?.selectedIndex ?? 0)
 
             let button = DynamicButton(frame: CGRect(x: center.x, y: center.y, width: w, height: w))
@@ -64,11 +65,15 @@ class RubricCircleView: UIView {
             let font: UIFont
             let color: UIColor
             let bgColor: UIColor
+            let format = NSLocalizedString("g_points", bundle: .core, comment: "")
+            var a11yLabel: String = String.localizedStringWithFormat(format, Int(r))
+            a11yLabel += description
 
             if selected {
                 font = UIFont.scaledNamedFont(.semibold20)
                 color = UIColor.white
                 bgColor = Brand.shared.primary
+                button.isSelected = true
             } else {
                 font = UIFont.scaledNamedFont(.regular20Monodigit)
                 color = UIColor.named(.borderDark)
@@ -78,11 +83,13 @@ class RubricCircleView: UIView {
             addSubview(button)
             buttons.append(button)
 
+            button.isUserInteractionEnabled = false
             button.backgroundColor = bgColor
             button.titleLabel?.font = font
             button.setTitleColor(color, for: .normal)
             button.layer.borderColor = color.cgColor
             button.layer.borderWidth = 1.0 / UIScreen.main.scale
+            button.accessibilityLabel = a11yLabel
 
             center.x += w + space
             if i == howManyCanFitInWidth - 1 {

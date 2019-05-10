@@ -203,7 +203,7 @@ class AssignmentDetailsPageTest: StudentTest {
             ]),
         ]))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
-        page.select(.gradeCircle).assertText(equals: "90 out of 100 points possible")
+        page.select(.gradeCircle).assertText(equals: "Scored 90 out of 100 points possible")
     }
 
     func testDisplayGradeAs() {
@@ -216,7 +216,7 @@ class AssignmentDetailsPageTest: StudentTest {
             ]),
         ]))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
-        page.select(.gradeCircle).assertText(equals: "8 out of 10 points possible")
+        page.select(.gradeCircle).assertText(equals: "Scored 8 out of 10 points possible")
         page.select(.gradeDisplayGrade).assertText(equals: "80%")
     }
 

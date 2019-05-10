@@ -154,6 +154,7 @@ class RubricCollectionViewCell: UICollectionViewCell {
 
     func update(_ rubric: RubricViewModel) {
         rubricTitle.text = rubric.title
+        rubricTitle.accessibilityTraits = .header
         selectedRatingTitle.text = rubric.selectedDesc
         circleView.rubric = rubric
         circleViewHeightConstraint.constant = RubricCircleView.computedHeight(rubric: rubric, maxWidth: bounds.size.width - (RubricCollectionViewCell.margin * 2))
