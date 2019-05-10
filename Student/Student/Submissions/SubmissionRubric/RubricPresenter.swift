@@ -28,6 +28,7 @@ struct RubricViewModel: Hashable, Equatable {
     let selectedDesc: String
     let selectedIndex: Int
     let ratings: [Double]
+    let descriptions: [String]
     let comment: String?
 }
 
@@ -93,16 +94,25 @@ class RubricPresenter {
                 description = selected?.desc ?? ""
             }
             var allRatings: [Double] = sorted.map { $0.points }
-
+            var allDescriptions: [String] = sorted.map { $0.desc }
             if selected == nil {
                 //  this is a custom assesment
                 allRatings.append(assessment.points)
                 selectedIndex = allRatings.count - 1
                 description = NSLocalizedString("Custom Grade", comment: "")
+                allDescriptions.append(description)
                 comments = assessment.comments
             }
 
-            let m = RubricViewModel(title: r.desc, longDescription: r.longDesc, selectedDesc: description, selectedIndex: selectedIndex, ratings: allRatings, comment: comments)
+            let m = RubricViewModel(
+                title: r.desc,
+                longDescription: r.longDesc,
+                selectedDesc: description,
+                selectedIndex: selectedIndex,
+                ratings: allRatings,
+                descriptions: allDescriptions,
+                comment: comments
+            )
             models.append(m)
         }
         return models
