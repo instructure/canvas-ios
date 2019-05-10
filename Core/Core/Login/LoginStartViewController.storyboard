@@ -150,18 +150,28 @@
                                         <rect key="frame" x="0.0" y="24.5" width="375" height="150.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <view key="tableFooterView" contentMode="scaleToFill" id="PGb-jA-lWX">
-                                            <rect key="frame" x="0.0" y="88" width="375" height="0.0"/>
+                                            <rect key="frame" x="0.0" y="148" width="375" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </view>
                                         <prototypes>
-                                            <tableViewCell contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="LoginPreviousUserCell" rowHeight="60" id="2S8-Fv-s54" customClass="LoginPreviousUserCell" customModule="Core" customModuleProvider="target">
+                                            <tableViewCell contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="LoginStartKeychainEntryCell" rowHeight="60" id="2S8-Fv-s54" customClass="LoginStartKeychainEntryCell" customModule="Core" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2S8-Fv-s54" id="Mfi-Ke-mgT">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <subviews>
+                                                        <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z0D-SH-YJp" customClass="AvatarView" customModule="Core" customModuleProvider="target">
+                                                            <rect key="frame" x="16" y="12.5" width="34" height="34"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="34" id="Tih-hZ-eqV"/>
+                                                                <constraint firstAttribute="height" constant="34" id="bl4-jS-YCg"/>
+                                                            </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="name" value="Firstname Lastname"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </view>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Firstname Lastname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hMF-iS-x7M" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
                                                             <rect key="frame" x="58" y="13" width="155" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -182,20 +192,6 @@
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z0D-SH-YJp" customClass="IconView" customModule="Core" customModuleProvider="target">
-                                                            <rect key="frame" x="16" y="13" width="34" height="34"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="34" id="Tih-hZ-eqV"/>
-                                                                <constraint firstAttribute="height" constant="34" id="bl4-jS-YCg"/>
-                                                            </constraints>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="userSolid"/>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="textDark"/>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                    <integer key="value" value="17"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                        </imageView>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qqe-IM-OtI" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
                                                             <rect key="frame" x="328" y="8" width="44" height="44"/>
                                                             <constraints>
@@ -231,6 +227,61 @@
                                                     <outlet property="domainLabel" destination="ubm-Qb-95q" id="m7K-18-06k"/>
                                                     <outlet property="forgetButton" destination="Qqe-IM-OtI" id="KNK-vO-uLh"/>
                                                     <outlet property="nameLabel" destination="hMF-iS-x7M" id="Sa3-k9-hiT"/>
+                                                </connections>
+                                            </tableViewCell>
+                                            <tableViewCell contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="LoginStartMDMLoginCell" rowHeight="60" id="Yec-TE-bAp" customClass="LoginStartMDMLoginCell" customModule="Core" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="88" width="375" height="60"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Yec-TE-bAp" id="5Xm-a5-KZP">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Z6q-mg-18R" customClass="IconView" customModule="Core" customModuleProvider="target">
+                                                            <rect key="frame" x="16" y="12.5" width="34" height="34"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="34" id="EqX-X7-JTl"/>
+                                                                <constraint firstAttribute="width" constant="34" id="XNQ-61-4GA"/>
+                                                            </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="textDark"/>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="userLine"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </imageView>
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Firstname Lastname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wwZ-Od-DuW" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                                            <rect key="frame" x="58" y="13" width="155" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold14"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </label>
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mobiledev.instructure.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B9O-5a-W5N" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                                            <rect key="frame" x="58" y="34.5" width="203" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold12"/>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="wwZ-Od-DuW" secondAttribute="trailing" constant="16" id="2jP-xA-MWQ"/>
+                                                        <constraint firstItem="wwZ-Od-DuW" firstAttribute="top" secondItem="5Xm-a5-KZP" secondAttribute="top" constant="13" id="BXD-dE-UYW"/>
+                                                        <constraint firstItem="Z6q-mg-18R" firstAttribute="centerY" secondItem="5Xm-a5-KZP" secondAttribute="centerY" id="V8m-l2-hGy"/>
+                                                        <constraint firstItem="B9O-5a-W5N" firstAttribute="leading" secondItem="Z6q-mg-18R" secondAttribute="trailing" constant="8" id="ZN1-gb-U5R"/>
+                                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="B9O-5a-W5N" secondAttribute="trailing" constant="16" id="bp4-M3-hIc"/>
+                                                        <constraint firstItem="Z6q-mg-18R" firstAttribute="leading" secondItem="5Xm-a5-KZP" secondAttribute="leading" constant="16" id="e98-PT-0ve"/>
+                                                        <constraint firstItem="B9O-5a-W5N" firstAttribute="top" secondItem="wwZ-Od-DuW" secondAttribute="bottom" constant="1" id="lFf-HK-Inh"/>
+                                                        <constraint firstItem="wwZ-Od-DuW" firstAttribute="leading" secondItem="Z6q-mg-18R" secondAttribute="trailing" constant="8" id="qbp-Sa-HfQ"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="domainLabel" destination="B9O-5a-W5N" id="P2Q-L4-By1"/>
+                                                    <outlet property="nameLabel" destination="wwZ-Od-DuW" id="PdZ-1K-oSG"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>

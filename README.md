@@ -211,6 +211,7 @@ limitations under the License.
 
 MDM Profile settings are saved in `UserDefaults.standard` and keyed by
 `com.apple.configuration.managed`.
+These logins are added to the list of previous logins on the start screen.
 
 Use our `MDMManager` to observe changes such as managed logins.
 
@@ -219,7 +220,7 @@ You can test this locally with command line arguments.
 `Scheme` > `Edit Scheme` > `Run` > `Arguments` > `Arguments Passed on Launch`
 
 ```
--com.apple.configuration.managed '<dict><key>enableDemo</key><true/><key>username</key><string>student</string><key>password</key><string>Canvas2019</string><key>host</key><string>canvas.instructure.com</string></dict>'
+-com.apple.configuration.managed '<dict><key>enableLogin</key><true/><key>users</key><array><dict><key>host</key><string>canvas.instructure.com</string><key>username</key><string>student</string><key>password</key><string>Canvas2019</string></dict></array></dict>'
 ```
 
 Change the `username`, `password`, and `host` to your test credentials.

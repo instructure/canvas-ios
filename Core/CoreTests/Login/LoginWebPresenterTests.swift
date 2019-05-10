@@ -26,7 +26,7 @@ class LoginWebPresenterTests: XCTestCase {
     var resultingError: Error?
     var resultingRequest: URLRequest?
     var navigationController: UINavigationController?
-    var scripts: [String] = []
+    var script: String?
 
     override func setUp() {
         super.setUp()
@@ -177,20 +177,17 @@ class LoginWebPresenterTests: XCTestCase {
     }
 
     func testWebViewFinishedLoading() {
-        let expectation = XCTestExpectation(description: "demo enabled")
-        MDMManager.shared.onLoginConfigured { _ in
-            expectation.fulfill()
-        }
         MDMManager.mockDefaults()
+        presenter.mdmLogin = MDMManager.shared.logins[0]
         presenter.viewIsReady()
         presenter.webViewFinishedLoading()
-        XCTAssertEqual(scripts.count, 3)
-        let username = scripts[0]
-        let password = scripts[1]
-        let submit = scripts[2]
-        XCTAssertEqual(username, "document.querySelector('input[name=\"pseudonym_session[unique_id]\"]').value = \"apple\"")
-        XCTAssertEqual(password, "document.querySelector('input[name=\"pseudonym_session[password]\"]').value = \"titaniumium\"")
-        XCTAssertEqual(submit, "document.querySelector('#login_form').submit()")
+        XCTAssertEqual(script, """
+            const form = document.querySelector('#login_form')
+            form.querySelector('[type=email],[type=text]').value = 'apple'
+            form.querySelector('[type=password]').value = 'titaniumium'
+            form.submit()
+            """
+        )
     }
 
     func defaultRequest() -> URLRequest {
@@ -231,6 +228,6 @@ extension LoginWebPresenterTests: LoginWebViewProtocol, LoginDelegate {
     }
 
     func evaluateJavaScript(_ script: String) {
-        scripts.append(script)
+        self.script = script
     }
 }

@@ -20,10 +20,40 @@ import Foundation
 extension MDMManager {
     static func mockDefaults() {
         let defaults: [String: Any] = [
-            "enableDemo": true,
-            "username": "apple",
-            "password": "titaniumium",
-            "host": "canvas.instructure.com",
+            "enableLogin": true,
+            "users": [[
+                "username": "apple",
+                "password": "titaniumium",
+                "host": "canvas.instructure.com",
+            ], ],
+        ]
+        UserDefaults.standard.set(defaults, forKey: MDMManager.MDMUserDefaultsKey)
+    }
+
+    static func mockNoUsers() {
+        let defaults: [String: Any] = [
+            "enableLogin": true,
+        ]
+        UserDefaults.standard.set(defaults, forKey: MDMManager.MDMUserDefaultsKey)
+    }
+
+    static func mockBadUsers() {
+        let defaults: [String: Any] = [
+            "enableLogin": true,
+            "users": [
+                [
+                    "username": "apple",
+                    "password": "titaniumium",
+                ],
+                [
+                    "username": "apple",
+                    "host": "canvas.instructure.com",
+                ],
+                [
+                    "password": "titaniumium",
+                    "host": "canvas.instructure.com",
+                ],
+            ],
         ]
         UserDefaults.standard.set(defaults, forKey: MDMManager.MDMUserDefaultsKey)
     }
