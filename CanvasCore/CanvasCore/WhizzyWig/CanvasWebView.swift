@@ -258,7 +258,7 @@ extension CanvasWebView: WKNavigationDelegate {
         let request = action.request
         
         if let url = request.url, url.absoluteString.contains("google-drive-lti") {
-            customUserAgent = CKILoginViewController.safariUserAgent()
+            customUserAgent = UserAgent.safari.description
         }
 
         if let url = request.url, url.path.contains("/external_tools/retrieve"), action.navigationType == .linkActivated {
