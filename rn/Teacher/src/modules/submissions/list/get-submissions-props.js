@@ -113,7 +113,7 @@ export function dueDate (assignment: Assignment, user: ?User | SessionUser, grou
   } else {
     override = overrides.find(override => {
       if (!user) return false
-      return override.student_ids.includes(user.id)
+      return (override.student_ids || []).includes(user.id)
     })
   }
 

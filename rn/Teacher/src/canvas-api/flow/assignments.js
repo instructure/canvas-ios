@@ -110,7 +110,7 @@ export type AssignmentDate = {
 export type AssignmentOverride = {
   id: string,
   assignment_id: string,
-  student_ids: string[],
+  student_ids: ?string[],
   group_id: string,
   course_section_id: string,
   title: string,
