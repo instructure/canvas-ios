@@ -90,6 +90,7 @@ open class CoreWebView: WKWebView {
             }
             a {
                 color: \(link.hexString);
+                overflow-wrap: break-word;
             }
             h2 {
                 font-weight: 300;
