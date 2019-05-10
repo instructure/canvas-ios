@@ -20,3 +20,6 @@
 
 #import "CommonLib/DistantObject/GREYHostApplicationDistantObject.h"
 #import "CommonLib/Config/GREYConfiguration.h"
+#import "AppFramework/Action/GREYActionBlock.h"
+#import "AppFramework/Matcher/GREYMatchersShorthand.h"
+#import "AppFramework/Matcher/GREYMatchers.h"

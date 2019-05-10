@@ -15,18 +15,22 @@
 //
 
 import Foundation
+import SwiftUITest
 
-enum SubmissionDetailsElement: String, Element {
+enum SubmissionDetailsElement: String, CaseIterable, ElementWrapper {
     case drawerGripper
     case drawerSegmentedControl
 
     static var drawerCommentsButton: Element {
-        return ChildElement(parentID: SubmissionDetailsElement.drawerSegmentedControl.id, segmentAt: 0)
+        let parentID = SubmissionDetailsElement.drawerSegmentedControl.id
+        return app.find(parentID: parentID, type: "UISegment", index: 0)
     }
     static var drawerFilesButton: Element {
-        return ChildElement(parentID: SubmissionDetailsElement.drawerSegmentedControl.id, segmentAt: 1)
+        let parentID = SubmissionDetailsElement.drawerSegmentedControl.id
+        return app.find(parentID: parentID, type: "UISegment", index: 1)
     }
     static var drawerRubricButton: Element {
-        return ChildElement(parentID: SubmissionDetailsElement.drawerSegmentedControl.id, segmentAt: 2)
+        let parentID = SubmissionDetailsElement.drawerSegmentedControl.id
+        return app.find(parentID: parentID, type: "UISegment", index: 2)
     }
 }

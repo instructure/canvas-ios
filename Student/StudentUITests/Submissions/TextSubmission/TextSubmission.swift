@@ -15,7 +15,8 @@
 //
 
 import Foundation
+import SwiftUITest
 
-enum TextSubmission: String, Element {
+enum TextSubmission: String, CaseIterable, ElementWrapper {
     case submitButton
 }

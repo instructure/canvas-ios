@@ -15,8 +15,9 @@
 //
 
 import Foundation
+import SwiftUITest
 
-struct Alert: Element {
+struct Alert {
     let greyInteraction: GREYInteraction
 
     static func button(label: String) -> Alert {
@@ -24,5 +25,15 @@ struct Alert: Element {
             grey_accessibilityLabel(label),
             grey_kindOfClass(NSClassFromString("_UIAlertControllerActionView")!),
         ])).atIndex(0))
+    }
+
+    func tap() {
+        self.greyInteraction.perform(grey_tap())
+    }
+
+    func exists() -> Bool {
+        var err: NSError?
+        greyInteraction.assert(grey_notNil(), error: &err)
+        return err == nil
     }
 }

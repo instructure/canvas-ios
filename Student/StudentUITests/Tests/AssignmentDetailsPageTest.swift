@@ -63,7 +63,7 @@ class AssignmentDetailsPageTest: StudentTest {
         page.assertHidden(.gradeCell)
         page.assertText(.submitAssignmentButton, equals: "Submit Assignment")
 
-        let description = app?.webViews.staticTexts.firstMatch.label
+        let description = xcuiApp?.webViews.staticTexts.firstMatch.label
         XCTAssertEqual(description, assignment.description)
     }
 
@@ -91,9 +91,9 @@ class AssignmentDetailsPageTest: StudentTest {
         page.assertHidden(.gradeCell)
         page.assertText(.submitAssignmentButton, equals: "View Discussion")
 
-        let authorAvatar = app?.webViews.staticTexts.element(boundBy: 0).label
-        let authorName = app?.webViews.staticTexts.element(boundBy: 1).label
-        let message = app?.webViews.staticTexts.element(boundBy: 2).label
+        let authorAvatar = xcuiApp?.webViews.staticTexts.element(boundBy: 0).label
+        let authorName = xcuiApp?.webViews.staticTexts.element(boundBy: 1).label
+        let message = xcuiApp?.webViews.staticTexts.element(boundBy: 2).label
         XCTAssertEqual(authorAvatar, "B")
         XCTAssertEqual(authorName, assignment.discussion_topic?.author.display_name)
         XCTAssertEqual(message, assignment.discussion_topic?.message)
