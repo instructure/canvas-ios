@@ -35,6 +35,9 @@
 "Bold" = "Жирный";
 
 /* No comment provided by engineer. */
+"Camera" = "Камера";
+
+/* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "Не можете найти ваше учебное заведение? Попробуйте набрать полный адрес URL учебного заведения.";
 
 /* No comment provided by engineer. */
@@ -89,13 +92,22 @@
 "Domain" = "Домен";
 
 /* No comment provided by engineer. */
+"Done" = "Готово";
+
+/* No comment provided by engineer. */
 "Error" = "Ошибка";
 
 /* No comment provided by engineer. */
 "External Tool" = "Внешний инструмент";
 
 /* No comment provided by engineer. */
+"Failed upload" = "Сбой загрузки";
+
+/* No comment provided by engineer. */
 "File Upload" = "Отправка файла";
+
+/* No comment provided by engineer. */
+"Files" = "Файлы";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "Итоговая оценка: %@";
@@ -146,6 +158,9 @@
 "Launch External Tool" = "Запуск внешнего инструмента";
 
 /* No comment provided by engineer. */
+"Library" = "Библиотека";
+
+/* No comment provided by engineer. */
 "Link" = "Ссылка";
 
 /* No comment provided by engineer. */
@@ -186,6 +201,9 @@
 
 /* No comment provided by engineer. */
 "N/A" = "Н/Д";
+
+/* No comment provided by engineer. */
+"No Content" = "Нет контента";
 
 /* No comment provided by engineer. */
 "No Due Date" = "Срок выполнения не задан";
@@ -230,6 +248,9 @@
 "Pause" = "Пауза";
 
 /* No comment provided by engineer. */
+"Permission Needed" = "Требуется разрешение";
+
+/* No comment provided by engineer. */
 "Play" = "Воспроизвести";
 
 /* No comment provided by engineer. */
@@ -260,6 +281,9 @@
 "Reply to the annotation or previous comments" = "Ответить на аннотацию или предыдущие комментарии";
 
 /* No comment provided by engineer. */
+"Retry" = "Повторить";
+
+/* No comment provided by engineer. */
 "See what's new." = "Посмотрите, что нового.";
 
 /* No comment provided by engineer. */
@@ -281,6 +305,9 @@
 "Set text color" = "Задать цвет текста";
 
 /* No comment provided by engineer. */
+"Settings" = "Настройки";
+
+/* No comment provided by engineer. */
 "Site Admin Login" = "Учетная запись администратора";
 
 /* No comment provided by engineer. */
@@ -294,6 +321,9 @@
 
 /* No comment provided by engineer. */
 "Submission failed." = "Ошибка отправки.";
+
+/* No comment provided by engineer. */
+"Submit" = "Отправить";
 
 /* No comment provided by engineer. */
 "Submit Assignment" = "Отправить задание";
@@ -347,6 +377,12 @@
 "Unordered List" = "Неупорядоченный список";
 
 /* No comment provided by engineer. */
+"Uploading %@ of %@" = "Загрузка %1$@ из %2$@";
+
+/* No comment provided by engineer. */
+"Uploading..." = "Выполняется загрузка...";
+
+/* No comment provided by engineer. */
 "URL" = "URL";
 
 /* No comment provided by engineer. */
@@ -369,6 +405,9 @@
 
 /* No comment provided by engineer. */
 "yellow" = "желтый";
+
+/* No comment provided by engineer. */
+"You must enable Microphone permissions in Settings." = "Вы должны активировать разрешения для микрофона в настройках.";
 
 /* No comment provided by engineer. */
 "You need at least one active observer enrollment to use Canvas Parent. If you're a student or teacher, try one of our other apps below." = "Вам необходимо как минимум одно активное зачисление оценщика для использования Canvas Parent. Если вы студент или преподаватель, попробуйте одно из наших приложений ниже.";

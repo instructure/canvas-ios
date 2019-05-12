@@ -1,6 +1,9 @@
 /* Privacy - Camera Usage Description */
 "NSCameraUsageDescription" = "Attach photos and videos to submission comments.";
 
+/* Privacy - Location When In Use Usage Description */
+"NSLocationWhenInUseUsageDescription" = "";
+
 /* Privacy - Microphone Usage Description */
 "NSMicrophoneUsageDescription" = "Attach audio recordings to submission comments.";
 

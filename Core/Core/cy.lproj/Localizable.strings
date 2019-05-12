@@ -35,6 +35,9 @@
 "Bold" = "Trwm";
 
 /* No comment provided by engineer. */
+"Camera" = "Camera";
+
+/* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "Methu dod o hyd i’ch ysgol? Ceisiwch deipio URL llawn yr ysgol.";
 
 /* No comment provided by engineer. */
@@ -89,13 +92,22 @@
 "Domain" = "Parth";
 
 /* No comment provided by engineer. */
+"Done" = "Wedi gorffen";
+
+/* No comment provided by engineer. */
 "Error" = "Gwall";
 
 /* No comment provided by engineer. */
 "External Tool" = "Adnodd Allanol";
 
 /* No comment provided by engineer. */
+"Failed upload" = "Wedi methu llwytho i fyny";
+
+/* No comment provided by engineer. */
 "File Upload" = "Llwytho Ffeil i Fyny";
+
+/* No comment provided by engineer. */
+"Files" = "Ffeiliau";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "Gradd Derfynol: %@";
@@ -146,6 +158,9 @@
 "Launch External Tool" = "Lansio Adnodd Allanol";
 
 /* No comment provided by engineer. */
+"Library" = "Llyfrgell";
+
+/* No comment provided by engineer. */
 "Link" = "Dolen";
 
 /* No comment provided by engineer. */
@@ -186,6 +201,9 @@
 
 /* No comment provided by engineer. */
 "N/A" = "Amherthnasol";
+
+/* No comment provided by engineer. */
+"No Content" = "Dim Cynnwys";
 
 /* No comment provided by engineer. */
 "No Due Date" = "Dim Dyddiad Erbyn";
@@ -230,6 +248,9 @@
 "Pause" = "Rhewi";
 
 /* No comment provided by engineer. */
+"Permission Needed" = "Angen Caniatâd";
+
+/* No comment provided by engineer. */
 "Play" = "Chwarae";
 
 /* No comment provided by engineer. */
@@ -260,6 +281,9 @@
 "Reply to the annotation or previous comments" = "Ymateb i’r anodiad neu sylwadau blaenorol";
 
 /* No comment provided by engineer. */
+"Retry" = "Ailgynnig";
+
+/* No comment provided by engineer. */
 "See what's new." = "Dewch i weld beth sy’n newydd.";
 
 /* No comment provided by engineer. */
@@ -281,6 +305,9 @@
 "Set text color" = "Gosod lliw’r testun";
 
 /* No comment provided by engineer. */
+"Settings" = "Gosodiadau";
+
+/* No comment provided by engineer. */
 "Site Admin Login" = "Manylion Mewngofnodi Gweinyddwr y Safle";
 
 /* No comment provided by engineer. */
@@ -294,6 +321,9 @@
 
 /* No comment provided by engineer. */
 "Submission failed." = "Cyflwyniad wedi methu.";
+
+/* No comment provided by engineer. */
+"Submit" = "Cyflwyno";
 
 /* No comment provided by engineer. */
 "Submit Assignment" = "Cyflwyno Aseiniad";
@@ -347,6 +377,12 @@
 "Unordered List" = "Rhestr ddim mewn trefn";
 
 /* No comment provided by engineer. */
+"Uploading %@ of %@" = "Wrthi'n llwytho i fyny %1$@ o %2$@";
+
+/* No comment provided by engineer. */
+"Uploading..." = "Wrthi’n llwytho i fyny...";
+
+/* No comment provided by engineer. */
 "URL" = "URL";
 
 /* No comment provided by engineer. */
@@ -369,6 +405,9 @@
 
 /* No comment provided by engineer. */
 "yellow" = "melyn";
+
+/* No comment provided by engineer. */
+"You must enable Microphone permissions in Settings." = "Rhaid i chi alluogi hawliau Microffon yn y Gosodiadau.";
 
 /* No comment provided by engineer. */
 "You need at least one active observer enrollment to use Canvas Parent. If you're a student or teacher, try one of our other apps below." = "Mae angen o leiaf un ymrestriad arsyllwr gweithredol arnoch er mwyn gallu defnyddio Canvas Parent. Os ydych chi'n fyfyriwr neu'n athro, rhowch gynnig ar un o'n rhaglenni eraill isod.";

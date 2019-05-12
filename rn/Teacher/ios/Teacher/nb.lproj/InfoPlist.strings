@@ -1,6 +1,9 @@
 /* Privacy - Camera Usage Description */
 "NSCameraUsageDescription" = "Legg ved bilder og filmer til kommentarer på innlevering.";
 
+/* Privacy - Location When In Use Usage Description */
+"NSLocationWhenInUseUsageDescription" = "";
+
 /* Privacy - Microphone Usage Description */
 "NSMicrophoneUsageDescription" = "Legg ved lydinnspilling til kommentarer på innlevering.";
 

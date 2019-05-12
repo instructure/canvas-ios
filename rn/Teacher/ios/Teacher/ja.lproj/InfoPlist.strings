@@ -1,6 +1,9 @@
 /* Privacy - Camera Usage Description */
 "NSCameraUsageDescription" = "投稿のコメントに写真や動画を添付します。";
 
+/* Privacy - Location When In Use Usage Description */
+"NSLocationWhenInUseUsageDescription" = "";
+
 /* Privacy - Microphone Usage Description */
 "NSMicrophoneUsageDescription" = "投稿コメントにオーディオ録音を添付します。";
 

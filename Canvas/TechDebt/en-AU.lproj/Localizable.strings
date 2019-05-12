@@ -916,7 +916,9 @@
 /* Online URL submission type */
 "Online URL" = "Online URL";
 
-/* Title for an error alert */
+/* Error message title
+   Error title
+   Masquerade error title */
 "Oops!" = "Oops!";
 
 /* Open a document in the application Safari */

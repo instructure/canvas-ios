@@ -71,6 +71,9 @@
 "Grade" = "Kōeke";
 
 /* No comment provided by engineer. */
+"Graded Surveys" = "Ngā rangahau kua kōeketia";
+
+/* No comment provided by engineer. */
 "Groups" = "rōpū";
 
 /* No comment provided by engineer. */
@@ -78,6 +81,9 @@
 
 /* No comment provided by engineer. */
 "Invalid url" = "Koremana url";
+
+/* No comment provided by engineer. */
+"Launch External Tool" = "Neke Taputapu Waho";
 
 /* No comment provided by engineer. */
 "No Due Date" = "Kaore he rā tika";
@@ -105,6 +111,9 @@
 
 /* Past enrollments section title in All Courses screen */
 "Past Enrollments" = "whakaurunga o Muri nei";
+
+/* No comment provided by engineer. */
+"Practice Quizzes" = "mahi quizzes";
 
 /* No comment provided by engineer. */
 "Quizzes" = "Ngā Quizzes";
@@ -158,6 +167,9 @@
 "Successfully submitted!" = "Oti pai te tuku!";
 
 /* No comment provided by engineer. */
+"Surveys" = "rangahau";
+
+/* No comment provided by engineer. */
 "Syllabus" = "Marautanga";
 
 /* No comment provided by engineer. */
@@ -180,6 +192,9 @@
 
 /* No comment provided by engineer. */
 "Updated Language Settings" = "Kua whakahoutia ngā Tautuhinga Reo";
+
+/* No comment provided by engineer. */
+"View Discussion" = "Tirohia ngā kōrerorero";
 
 /* No comment provided by engineer. */
 "View file %@ %@" = "Titiro ki te kōnae %1$@ %2$@";

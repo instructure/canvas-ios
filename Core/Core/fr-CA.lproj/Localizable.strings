@@ -35,6 +35,9 @@
 "Bold" = "Gras";
 
 /* No comment provided by engineer. */
+"Camera" = "Caméra";
+
+/* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "Vous ne trouvez pas votre école? Essayez de saisir l'URL complète de l’école.";
 
 /* No comment provided by engineer. */
@@ -89,13 +92,22 @@
 "Domain" = "Domaine";
 
 /* No comment provided by engineer. */
+"Done" = "Terminé";
+
+/* No comment provided by engineer. */
 "Error" = "Erreur";
 
 /* No comment provided by engineer. */
 "External Tool" = "Outil externe";
 
 /* No comment provided by engineer. */
+"Failed upload" = "Échec du téléversement";
+
+/* No comment provided by engineer. */
 "File Upload" = "Téléversement de fichier";
+
+/* No comment provided by engineer. */
+"Files" = "Fichiers";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "Note finale : %@";
@@ -146,6 +158,9 @@
 "Launch External Tool" = "Lancer l'outil externe";
 
 /* No comment provided by engineer. */
+"Library" = "Bibliothèque";
+
+/* No comment provided by engineer. */
 "Link" = "Lien";
 
 /* No comment provided by engineer. */
@@ -186,6 +201,9 @@
 
 /* No comment provided by engineer. */
 "N/A" = "S.O.";
+
+/* No comment provided by engineer. */
+"No Content" = "Pas de contenu";
 
 /* No comment provided by engineer. */
 "No Due Date" = "Aucune date d'échéance";
@@ -230,6 +248,9 @@
 "Pause" = "Mettre en pause";
 
 /* No comment provided by engineer. */
+"Permission Needed" = "Autorisation nécessaire";
+
+/* No comment provided by engineer. */
 "Play" = "Lecture";
 
 /* No comment provided by engineer. */
@@ -260,6 +281,9 @@
 "Reply to the annotation or previous comments" = "Répondre à l’annotation ou aux commentaires précédents";
 
 /* No comment provided by engineer. */
+"Retry" = "Réessayer";
+
+/* No comment provided by engineer. */
 "See what's new." = "Regardez ce qu'il y a de nouveau";
 
 /* No comment provided by engineer. */
@@ -281,6 +305,9 @@
 "Set text color" = "Configurer la couleur du texte";
 
 /* No comment provided by engineer. */
+"Settings" = "Paramètres";
+
+/* No comment provided by engineer. */
 "Site Admin Login" = "Connexion au site Admin";
 
 /* No comment provided by engineer. */
@@ -294,6 +321,9 @@
 
 /* No comment provided by engineer. */
 "Submission failed." = "Échec de l’envoi";
+
+/* No comment provided by engineer. */
+"Submit" = "Envoyer";
 
 /* No comment provided by engineer. */
 "Submit Assignment" = "Envoyer la tâche";
@@ -347,6 +377,12 @@
 "Unordered List" = "Liste dans le désordre";
 
 /* No comment provided by engineer. */
+"Uploading %@ of %@" = "Téléversement de %1$@ sur %2$@";
+
+/* No comment provided by engineer. */
+"Uploading..." = "Téléversement en cours...";
+
+/* No comment provided by engineer. */
 "URL" = "URL";
 
 /* No comment provided by engineer. */
@@ -369,6 +405,9 @@
 
 /* No comment provided by engineer. */
 "yellow" = "jaune";
+
+/* No comment provided by engineer. */
+"You must enable Microphone permissions in Settings." = "Vous devez activer les autorisations de Microphone dans les paramètres.";
 
 /* No comment provided by engineer. */
 "You need at least one active observer enrollment to use Canvas Parent. If you're a student or teacher, try one of our other apps below." = "Vous devez avoir au moins une inscription d'observateur active pour utiliser Canvas Parent. Si vous êtes étudiant ou enseignant, essayez l'une de nos autres applis ci-dessous.";

@@ -226,9 +226,6 @@
 /* Data encoding error title */
 "Encoding Error" = "خطأ في الترميز";
 
-/* No comment provided by engineer. */
-"End Act as User" = "إنهاء التصرف كمستخدم";
-
 /* Default text for essay cell */
 "Enter answer..." = "إدخال الإجابة...";
 
@@ -604,9 +601,6 @@
 /* stop recording button a11y label */
 "Stop" = "إيقاف";
 
-/* No comment provided by engineer. */
-"Stop acting as..." = "إيقاف التصرف باعتبارك...";
-
 /* File upload was stopped */
 "Stopped" = "تم الإيقاف";
 
@@ -842,12 +836,6 @@
 
 /* permission was rejected */
 "You must grant (appName) Microphone access in the Settings app in order to record audio." = "يجب أن تمنح (appName) حق الوصول إلى الميكروفون عبر إعدادات التطبيق من أجل تسجيل الصوت.";
-
-/* No comment provided by engineer. */
-"You will stop acting as %@ and return to your account." = "ستتوقف عن التصرف باعتبارك %@ وستعود إلى حسابك.";
-
-/* No comment provided by engineer. */
-"You will stop acting as this user and return to your account." = "ستتوقف عن التصرف باعتبارك هذا المستخدم وستعود إلى حسابك.";
 
 /* Error description for file out of space */
 "Your device is out of storage space. Please free up space and try again." = "لا توجد سعة تخزينية على جهازك. الرجاء تحرير مساحة ثم إعادة المحاولة.";

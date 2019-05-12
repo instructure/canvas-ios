@@ -1,6 +1,9 @@
 /* Privacy - Camera Usage Description */
 "NSCameraUsageDescription" = "Joindre des photos et des vidéos à l’envoi de commentaires.";
 
+/* Privacy - Location When In Use Usage Description */
+"NSLocationWhenInUseUsageDescription" = "";
+
 /* Privacy - Microphone Usage Description */
 "NSMicrophoneUsageDescription" = "Joindre les enregistrements audio à l’envoi de commentaires.";
 

@@ -226,9 +226,6 @@
 /* Data encoding error title */
 "Encoding Error" = "Hapa Whakawaehere";
 
-/* No comment provided by engineer. */
-"End Act as User" = "Whakamutu mahi hei Kaiwhakamahi";
-
 /* Default text for essay cell */
 "Enter answer..." = "Whakauru whakahoki ...";
 
@@ -604,9 +601,6 @@
 /* stop recording button a11y label */
 "Stop" = "Kāti";
 
-/* No comment provided by engineer. */
-"Stop acting as..." = "Kāti te mahi hei....";
-
 /* File upload was stopped */
 "Stopped" = "Mutu";
 
@@ -842,12 +836,6 @@
 
 /* permission was rejected */
 "You must grant (appName) Microphone access in the Settings app in order to record audio." = "Me tuku e koe (appName) te uru ki te Hopuoro i te taupānga Tautuhinga hei rēkoata ororongo.";
-
-/* No comment provided by engineer. */
-"You will stop acting as %@ and return to your account." = "Ka mutu tō mahi hei %@ ka hoki ki tāu pūkete.";
-
-/* No comment provided by engineer. */
-"You will stop acting as this user and return to your account." = "Ka mutu tō mahi hei kaiwhakamahi nei, ka hoki ki tāu pūkete.";
 
 /* Error description for file out of space */
 "Your device is out of storage space. Please free up space and try again." = "Kua kore te wāhi rokiroki i roto i tō pūrere. Tēnā koa whakawātea ake he wāhi, me te ngana anō";
