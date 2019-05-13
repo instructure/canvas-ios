@@ -16,28 +16,19 @@
 
 import Foundation
 
-public class MDMLogin: NSObject {
-    @objc public let host: String
-    @objc public let username: String
-    @objc public let password: String
-
-    fileprivate init(host: String, username: String, password: String) {
-        self.host = host
-        self.username = username
-        self.password = password
-    }
+public struct MDMLogin: Equatable {
+    public let host: String
+    public let username: String
+    public let password: String
 }
 
-@objc
 public class MDMManager: NSObject {
     public static let MDMUserDefaultsKey = "com.apple.configuration.managed"
-    @objc public static let shared = MDMManager()
-    private var token: NSObjectProtocol?
+    public static let shared = MDMManager()
 
-    // Login
-    public typealias LoginObserver = (MDMLogin) -> Void
-    @objc public private(set) var login: MDMLogin?
-    private var loginObservers: [LoginObserver] = []
+    public private(set) var logins: [MDMLogin] = []
+    @objc public private(set) var loginsRaw: [String: Any]?
+    private var token: NSObjectProtocol?
 
     override init() {
         super.init()
@@ -53,32 +44,17 @@ public class MDMManager: NSObject {
         }
     }
 
-    @objc
-    public func onLoginConfigured(callback: @escaping LoginObserver) {
-        if let login = login {
-            callback(login)
-            return
-        }
-        loginObservers.append(callback)
-    }
-
     private func update() {
-        updateLogin()
-    }
-
-    private func updateLogin() {
-        var login: MDMLogin?
-        defer { self.login = login }
-        guard let defaults = UserDefaults.standard.dictionary(forKey: MDMManager.MDMUserDefaultsKey) else { return }
-        guard let enableDemo = defaults["enableDemo"] as? Bool, enableDemo else { return }
-        guard let host = defaults["host"] as? String else { return }
-        guard let username = defaults["username"] as? String else { return }
-        guard let password = defaults["password"] as? String else { return }
-        login = MDMLogin(host: host, username: username, password: password)
-        if let login = login {
-            let observers = self.loginObservers
-            observers.forEach { $0(login) }
-            loginObservers = []
+        logins = []
+        let loginsRaw = UserDefaults.standard.dictionary(forKey: MDMManager.MDMUserDefaultsKey)
+        defer { self.loginsRaw = loginsRaw }
+        guard loginsRaw?["enableLogin"] as? Bool == true else { return }
+        guard let users = loginsRaw?["users"] as? [[String: Any]] else { return }
+        for user in users {
+            guard let host = user["host"] as? String else { continue }
+            guard let username = user["username"] as? String else { continue }
+            guard let password = user["password"] as? String else { continue }
+            logins.append(MDMLogin(host: host, username: username, password: password))
         }
     }
 }

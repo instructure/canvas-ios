@@ -21,51 +21,31 @@ import XCTest
 class MDMManagerTests: XCTestCase {
     override func setUp() {
         super.setUp()
+        _ = MDMManager.shared // init lazy static
         MDMManager.reset()
     }
 
-    func testOnLoginConfigured() {
-        var login: MDMLogin?
-        let expectation = XCTestExpectation(description: "on login configured")
-        MDMManager.shared.onLoginConfigured {
-            login = $0
-            expectation.fulfill()
-        }
+    func testUpdate() {
         MDMManager.mockDefaults()
-        NotificationCenter.default.post(name: UserDefaults.didChangeNotification, object: nil)
-        wait(for: [expectation], timeout: 0.1)
-        XCTAssertNotNil(login?.host)
-        XCTAssertEqual(login?.host, "canvas.instructure.com")
-        XCTAssertEqual(login?.username, "apple")
-        XCTAssertEqual(login?.password, "titaniumium")
-        XCTAssertNotNil(MDMManager.shared.login)
-
-    }
-
-    func testOnDemoEnabledOnlyCalledOnce() {
-        let one = XCTestExpectation(description: "first callback")
-        one.expectedFulfillmentCount = 1 // default, but being explicit here
-        MDMManager.shared.onLoginConfigured { _ in
-            one.fulfill() // automatically fails if called more than once
-        }
-        MDMManager.mockDefaults()
-        wait(for: [one], timeout: 0.1)
-        let two = XCTestExpectation(description: "second callback")
-        MDMManager.shared.onLoginConfigured { _ in
-            two.fulfill()
-        }
-        wait(for: [two], timeout: 0.1)
+        XCTAssertEqual(MDMManager.shared.logins, [
+            MDMLogin(
+                host: "canvas.instructure.com",
+                username: "apple",
+                password: "titaniumium"
+            ),
+        ])
+        MDMManager.mockNoUsers()
+        XCTAssertEqual(MDMManager.shared.logins, [])
+        MDMManager.mockBadUsers()
+        XCTAssertEqual(MDMManager.shared.logins, [])
     }
 
     func testDeinit() {
-        var config: MDMManager? = MDMManager()
-        let expectation = XCTestExpectation(description: "callback should not be called")
-        expectation.isInverted = true
-        config?.onLoginConfigured { _ in
-            expectation.fulfill()
-        }
-        config = nil
         MDMManager.mockDefaults()
-        wait(for: [expectation], timeout: 0.1)
+        var config: MDMManager? = MDMManager()
+        XCTAssertNotNil(config?.loginsRaw)
+        config = nil
+        MDMManager.reset()
+        // Not sure how to check NotificationCenter.default.removeObserver was called.
     }
 }

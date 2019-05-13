@@ -22,10 +22,17 @@ class LoginWebViewController: UIViewController, LoginWebViewProtocol {
 
     var presenter: LoginWebPresenter?
 
-    static func create(authenticationProvider: String? = nil, host: String, loginDelegate: LoginDelegate?, method: AuthenticationMethod) -> LoginWebViewController {
+    static func create(authenticationProvider: String? = nil, host: String, mdmLogin: MDMLogin? = nil, loginDelegate: LoginDelegate?, method: AuthenticationMethod) -> LoginWebViewController {
         let controller = LoginWebViewController()
         controller.title = host
-        controller.presenter = LoginWebPresenter(authenticationProvider: authenticationProvider, host: host, loginDelegate: loginDelegate, method: method, view: controller)
+        controller.presenter = LoginWebPresenter(
+            authenticationProvider: authenticationProvider,
+            host: host,
+            mdmLogin: mdmLogin,
+            loginDelegate: loginDelegate,
+            method: method,
+            view: controller
+        )
         return controller
     }
 

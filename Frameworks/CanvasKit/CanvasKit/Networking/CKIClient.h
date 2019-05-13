@@ -113,13 +113,6 @@ extern NSString *const CKIClientAccessTokenExpiredNotification;
  */
 - (instancetype)initWithBaseURL:(NSURL *)url token:(NSString *)token;
 
-#pragma mark - OAuth
-
-/**
- Tell the server to revoke the access token.
-*/
-- (RACSignal *)logout;
-
 /**
  Checks to see if the user is logged in.
  */
@@ -177,20 +170,5 @@ extern NSString *const CKIClientAccessTokenExpiredNotification;
  Creates a model from json
  */
 - (CKIModel *)parseModel:(NSValueTransformer *)transformer fromJSON:(NSDictionary *)jsonDictionary context:(id)context;
-
-#if TARGET_IPHONE_SIMULATOR || TARGET_OS_IPHONE
-#pragma mark - UIKit Exclusive Methods
-/**
- Starts the OAuth2 authentication process. The user will be asked to login to Canvas. Once logged in the user will have the option to allow the app to authenticate via Canvas.
-
- @warning CanvasKit must be prepared for OAuth2 before this method is called.
- @see CanvasKit.h
- */
-- (RACSignal *)login;
-
-- (RACSignal *)loginWithAuthenticationMethod:(CKIAuthenticationMethod)method;
-#endif
-
-- (RACSignal *)fetchBranding;
 
 @end

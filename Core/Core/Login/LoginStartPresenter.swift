@@ -16,9 +16,14 @@
 
 import Foundation
 
+enum Login: Equatable {
+    case keychain(KeychainEntry)
+    case mdm(MDMLogin)
+}
+
 protocol LoginStartViewProtocol: class {
     func update(method: String?)
-    func update(logins: [KeychainEntry])
+    func update(logins: [Login])
     func show(_ vc: UIViewController, sender: Any?)
 }
 
@@ -27,6 +32,7 @@ class LoginStartPresenter {
     weak var loginDelegate: LoginDelegate?
     weak var view: LoginStartViewProtocol?
     var session = URLSessionAPI.defaultURLSession
+    var mdmObservation: NSKeyValueObservation?
 
     init(loginDelegate: LoginDelegate?, view: LoginStartViewProtocol) {
         self.loginDelegate = loginDelegate
@@ -71,13 +77,17 @@ class LoginStartPresenter {
             self?.loadEntries()
         }
 
-        MDMManager.shared.onLoginConfigured { [weak self] login in
-            self?.showLoginForHost(login.host, method: .canvasLogin)
-        }
+        mdmObservation = MDMManager.shared.observe(\.loginsRaw, changeHandler: { [weak self] _, _ in
+            self?.loadEntries()
+        })
     }
 
     func loadEntries() {
-        view?.update(logins: Keychain.entries.sorted(by: { a, b in a.lastUsedAt > b.lastUsedAt }))
+        var logins = Keychain.entries
+            .sorted { a, b in a.lastUsedAt > b.lastUsedAt }
+            .map { Login.keychain($0) }
+        logins.append(contentsOf: MDMManager.shared.logins.map { Login.mdm($0) })
+        view?.update(logins: logins)
     }
 
     func cycleAuthMethod() {
@@ -116,21 +126,22 @@ class LoginStartPresenter {
         loginDelegate?.openExternalURL(url)
     }
 
-    func selectPreviousLogin(_ entry: KeychainEntry) {
+    func selectKeychainEntry(_ entry: KeychainEntry) {
         let controller = LoadingViewController.create()
         view?.show(controller, sender: nil)
         loginDelegate?.userDidLogin(keychainEntry: entry.bumpLastUsedAt())
     }
 
-    func removePreviousLogin(_ entry: KeychainEntry) {
+    func removeKeychainEntry(_ entry: KeychainEntry) {
         // View has already updated itself.
         loginDelegate?.userDidLogout(keychainEntry: entry)
     }
 
-    func showLoginForHost(_ host: String, method: AuthenticationMethod = .normalLogin) {
+    func selectMDMLogin(_ login: MDMLogin) {
         let controller = LoginWebViewController.create(
             authenticationProvider: nil,
-            host: host,
+            host: login.host,
+            mdmLogin: login,
             loginDelegate: loginDelegate,
             method: .canvasLogin
         )

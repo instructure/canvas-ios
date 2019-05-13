@@ -16,28 +16,26 @@
 
 import UIKit
 
-protocol LoginPreviousUserDelegate: class {
-    func removePreviousLogin(_ entry: KeychainEntry)
+protocol LoginStartKeychainEntryDelegate: class {
+    func removeKeychainEntry(_ entry: KeychainEntry)
 }
 
-class LoginPreviousUserCell: UITableViewCell {
-    @IBOutlet weak var avatarView: IconView?
+class LoginStartKeychainEntryCell: UITableViewCell {
+    @IBOutlet weak var avatarView: AvatarView?
     @IBOutlet weak var domainLabel: DynamicLabel?
     @IBOutlet weak var forgetButton: DynamicButton?
     @IBOutlet weak var nameLabel: DynamicLabel?
 
     var entry: KeychainEntry?
-    weak var delegate: LoginPreviousUserDelegate?
+    weak var delegate: LoginStartKeychainEntryDelegate?
 
-    func update(entry: KeychainEntry, delegate: LoginPreviousUserDelegate) {
+    func update(entry: KeychainEntry, delegate: LoginStartKeychainEntryDelegate) {
         self.entry = entry
         self.delegate = delegate
-        let identifier = "LoginPreviousUserItem.\(entry.baseURL.host ?? "").\(entry.userID)"
+        let identifier = "LoginStartKeychainEntryCell.\(entry.baseURL.host ?? "").\(entry.userID)"
         self.accessibilityIdentifier = identifier
-        avatarView?.load(url: entry.userAvatarURL)
-        if entry.userAvatarURL == nil {
-            avatarView?.image = .icon(.user, .solid)
-        }
+        avatarView?.name = entry.userName
+        avatarView?.url = entry.userAvatarURL
         domainLabel?.text = entry.baseURL.host
         forgetButton?.accessibilityLabel = String.localizedStringWithFormat(NSLocalizedString("Forget %@", bundle: .core, comment: ""), entry.userName)
         forgetButton?.accessibilityIdentifier = "\(identifier).removeButton"
@@ -46,6 +44,6 @@ class LoginPreviousUserCell: UITableViewCell {
 
     @IBAction func removeTapped(_ sender: UIButton) {
         guard let entry = entry else { return }
-        delegate?.removePreviousLogin(entry)
+        delegate?.removeKeychainEntry(entry)
     }
 }

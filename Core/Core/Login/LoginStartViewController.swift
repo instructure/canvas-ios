@@ -33,7 +33,7 @@ class LoginStartViewController: UIViewController, LoginStartViewProtocol {
 
     var shouldAnimateFromLaunchScreen = false
     weak var loginDelegate: LoginDelegate?
-    var logins = [KeychainEntry]()
+    var logins: [Login] = []
     var presenter: LoginStartPresenter?
 
     static func create(loginDelegate: LoginDelegate?, fromLaunch: Bool) -> LoginStartViewController {
@@ -120,7 +120,7 @@ class LoginStartViewController: UIViewController, LoginStartViewProtocol {
         authenticationMethodLabel?.isHidden = method == nil
     }
 
-    func update(logins: [KeychainEntry]) {
+    func update(logins: [Login]) {
         self.logins = logins
         previousLoginsView?.isHidden = logins.isEmpty
         previousLoginsTableView?.reloadData()
@@ -147,26 +147,38 @@ class LoginStartViewController: UIViewController, LoginStartViewProtocol {
     }
 }
 
-extension LoginStartViewController: UITableViewDataSource, UITableViewDelegate, LoginPreviousUserDelegate {
+extension LoginStartViewController: UITableViewDataSource, UITableViewDelegate, LoginStartKeychainEntryDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return logins.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeue(LoginPreviousUserCell.self, for: indexPath)
-        cell.update(entry: logins[indexPath.row], delegate: self)
-        return cell
+        switch logins[indexPath.row] {
+        case .keychain(let entry):
+            let cell: LoginStartKeychainEntryCell = tableView.dequeue(for: indexPath)
+            cell.update(entry: entry, delegate: self)
+            return cell
+        case .mdm(let login):
+            let cell: LoginStartMDMLoginCell = tableView.dequeue(for: indexPath)
+            cell.update(login: login)
+            return cell
+        }
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presenter?.selectPreviousLogin(logins[indexPath.row])
+        switch logins[indexPath.row] {
+        case .keychain(let entry):
+            presenter?.selectKeychainEntry(entry)
+        case .mdm(let login):
+            presenter?.selectMDMLogin(login)
+        }
     }
 
-    func removePreviousLogin(_ entry: KeychainEntry) {
-        guard let row = logins.firstIndex(of: entry) else { return }
+    func removeKeychainEntry(_ entry: KeychainEntry) {
+        guard let row = logins.firstIndex(of: Login.keychain(entry)) else { return }
         logins.remove(at: row)
         previousLoginsTableView?.deleteRows(at: [IndexPath(row: row, section: 0)], with: .automatic)
-        presenter?.removePreviousLogin(entry)
+        presenter?.removeKeychainEntry(entry)
         if logins.isEmpty {
             view.layoutIfNeeded()
             UIView.animate(withDuration: 0.5) {
