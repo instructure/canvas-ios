@@ -88,7 +88,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             self.userDidLogout(keychainEntry: session)
         } })
     }
-    
+
     @objc func prepareReactNative() {
         HelmManager.shared.bridge = RCTBridge(delegate: self, launchOptions: nil)
         registerNativeRoutes()
@@ -103,6 +103,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }, completion: nil)
         }
         HelmManager.shared.onReactReload = {
+            guard self.window?.rootViewController is RootTabBarController else { return }
             self.changeUser()
         }
     }

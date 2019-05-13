@@ -37,6 +37,7 @@ extension AppDelegate: RCTBridgeDelegate {
         }
 
         HelmManager.shared.onReactReload = {
+            guard self.window?.rootViewController is CanvasTabBarController else { return }
             self.changeUser()
         }
 
