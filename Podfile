@@ -44,7 +44,6 @@ abstract_target 'defaults' do
   pod 'RNSound', :path => nm_path + 'react-native-sound'
   pod 'react-native-camera', :path => nm_path + 'react-native-camera'
 
-  pod 'SDWebImage', '~> 4.1'
   pod 'ReactiveCocoa', '~> 8.0'
   pod 'Marshal', '~> 1.2.7'
   pod 'Result', '~> 4.1'
@@ -60,8 +59,6 @@ abstract_target 'defaults' do
   pod 'FXKeychain', '~> 1.5'
   pod 'Reachability', '~> 3.2'
   pod 'Mantle', '~> 1.5.5'
-  pod 'DeviceKit', '~> 1.13'
-  pod 'TPKeyboardAvoiding', '~> 1.3'
   pod 'SwiftSimplify'
 
   target 'Parent' do
