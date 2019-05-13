@@ -240,7 +240,6 @@ class AssignmentDetailsPresenter {
         filePicker.title = NSLocalizedString("Submission", bundle: .student, comment: "")
         filePicker.cancelButtonTitle = NSLocalizedString("Cancel Submission", bundle: .student, comment: "")
         filePicker.delegate = self
-        filePicker.view.tag = FilePickerTag.onlineUpload.rawValue
         let allowedUTIs = assignment?.allowedUTIs ?? []
         if allowedUTIs.contains(where: { $0.isAny || $0.isImage || $0.isVideo }) {
             filePicker.sources = [.camera, .library, .files]
@@ -251,11 +250,13 @@ class AssignmentDetailsPresenter {
         filePicker.utis = allowedUTIs
         self.filePicker = filePicker
         let nav = UINavigationController(rootViewController: filePicker)
-        view?.present(nav, animated: true, completion: nil)
+        view?.present(nav, animated: true) {
+            filePicker.view.tag = FilePickerTag.onlineUpload.rawValue
+        }
     }
 
     private func cancelOnlineUpload() {
-        view?.dismiss(animated: true) {
+        filePicker?.dismiss(animated: true) {
             let context = self.env.database.viewContext
             context.performAndWait {
                 for file in self.files {
@@ -272,7 +273,7 @@ class AssignmentDetailsPresenter {
     }
 
     private func submitOnlineUpload() {
-        view?.dismiss(animated: true) {
+        filePicker?.dismiss(animated: true) {
             for file in self.files {
                 self.fileUploader.upload(file, context: .submission(courseID: self.courseID, assignmentID: self.assignmentID)) { [weak self] error in
                     if let error = error {
@@ -288,27 +289,41 @@ class AssignmentDetailsPresenter {
         filePicker.title = NSLocalizedString("Submission", bundle: .student, comment: "")
         filePicker.cancelButtonTitle = NSLocalizedString("Cancel Submission", bundle: .student, comment: "")
         filePicker.delegate = self
-        filePicker.view.tag = FilePickerTag.mediaRecording.rawValue
         filePicker.sources = [.audio, .video]
         self.filePicker = filePicker
         let nav = UINavigationController(rootViewController: filePicker)
-        view?.present(nav, animated: true, completion: nil)
+        view?.present(nav, animated: true) {
+            filePicker.view.tag = FilePickerTag.mediaRecording.rawValue
+        }
     }
 
     private func cancelMediaRecording() {
+        filePicker?.dismiss(animated: true) {
+            // TODO: cancel media task
+            let context = self.env.database.viewContext
+            context.performAndWait {
+                for file in self.files {
+                    context.delete(file)
+                }
+                do {
+                    try context.save()
+                } catch {
+                    self.view?.showError(error)
+                }
+            }
+        }
     }
 
     private func submitMediaRecording() {
         guard
             let file = files.first,
-            let mimeClass = file.mimeClass,
-            let type = MediaCommentType(rawValue: mimeClass),
             let url = file.localFileURL,
+            let type = MediaCommentType(extension: url.pathExtension),
             let userID = userID
         else {
             return
         }
-        UploadMedia(type: type, url: url).fetch(environment: env) { [weak self] mediaID, error in
+        UploadMedia(type: type, url: url, file: file).fetch(environment: env) { [weak self] mediaID, error in
             guard let self = self else { return }
             if let error = error {
                 self.updateFile(file, error: error)
@@ -324,19 +339,25 @@ class AssignmentDetailsPresenter {
                 mediaCommentType: type
             )
             createSubmission.fetch(environment: self.env) { [weak self] _, _, error in
-                if let error = error {
-                    self?.updateFile(file, error: error)
-                    return
+                DispatchQueue.main.async {
+                    if let error = error {
+                        self?.updateFile(file, error: error)
+                        return
+                    }
+                    self?.updateFile(file, delete: true)
+                    self?.filePicker?.dismiss(animated: true, completion: nil)
                 }
-                self?.view?.dismiss(animated: true, completion: nil)
             }
         }
     }
 
-    private func updateFile(_ file: File, error: Error? = nil) {
+    private func updateFile(_ file: File, error: Error? = nil, delete: Bool = false) {
         let context = env.database.viewContext
         context.perform {
             file.uploadError = error?.localizedDescription
+            if delete {
+                context.delete(file)
+            }
             try? context.save()
         }
     }

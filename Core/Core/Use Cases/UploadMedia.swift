@@ -93,6 +93,8 @@ public class UploadMedia: NSObject, URLSessionDelegate, URLSessionDataDelegate {
             guard let file = try? context.existingObject(with: id) as? File else { return }
             file.bytesSent = Int(totalBytesSent)
             file.size = Int(totalBytesExpectedToSend)
+            file.taskID = task.taskIdentifier
+            print("uploading media")
             do {
                 try context.save()
             } catch {

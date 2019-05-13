@@ -29,7 +29,7 @@ public protocol FilePickerControllerDelegate: class {
     func canSubmit(_ controller: FilePickerViewController) -> Bool
 }
 
-public class FilePickerViewController: UIViewController, ErrorViewController {
+open class FilePickerViewController: UIViewController, ErrorViewController {
     @IBOutlet weak var emptyView: EmptyView!
     @IBOutlet weak var sourcesTabBar: UITabBar?
     @IBOutlet weak var tableView: UITableView!
@@ -51,7 +51,7 @@ public class FilePickerViewController: UIViewController, ErrorViewController {
         return loadFromStoryboard()
     }
 
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView(frame: .zero)
 
@@ -98,7 +98,7 @@ public class FilePickerViewController: UIViewController, ErrorViewController {
         reload()
     }
 
-    public override func viewWillAppear(_ animated: Bool) {
+    open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.useModalStyle()
     }
@@ -112,13 +112,25 @@ public class FilePickerViewController: UIViewController, ErrorViewController {
         tableView.reloadData()
     }
 
+    public func showPending() {
+        let spinner = UIActivityIndicatorView(style: .white)
+        spinner.startAnimating()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: spinner)
+    }
+
+    public func hidePending() {
+        updateBarButtons()
+    }
+
     func updateProgressBar() {
         let total: Int = files.reduce(0, { $0 + $1.size })
         let sent = files.reduce(0, { $0 + $1.bytesSent })
-        guard total > 0 && sent > 0 else {
+        let failed = files.first { $0.uploadError != nil } != nil
+        guard total > 0 && sent > 0 && !failed else {
             hideProgressBar()
             return
         }
+        showProgressBar()
         let progress = Float(sent) / Float(total)
         let format = NSLocalizedString("Uploading %@ of %@", bundle: .core, comment: "")
         progressView.text = String.localizedStringWithFormat(format, sent.humanReadableFileSize, total.humanReadableFileSize)
@@ -134,7 +146,7 @@ public class FilePickerViewController: UIViewController, ErrorViewController {
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Done", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(close))
             toolbarItems = [
                 UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-                UIBarButtonItem(title: cancelButtonTitle, style: .plain, target: self, action: #selector(cancel)),
+                UIBarButtonItem(title: cancelButtonTitle, style: .plain, target: self, action: #selector(cancel(sender:))),
                 UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
             ]
         } else if failed {
@@ -142,13 +154,13 @@ public class FilePickerViewController: UIViewController, ErrorViewController {
             navigationItem.leftBarButtonItems = []
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Done", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(close))
             toolbarItems = [
-                UIBarButtonItem(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(cancel)),
+                UIBarButtonItem(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(cancel(sender:))),
                 UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
                 UIBarButtonItem(title: NSLocalizedString("Retry", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(retry)),
             ]
         } else {
             navigationController?.setToolbarHidden(true, animated: true)
-            navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(cancel))
+            navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(cancel(sender:)))
             let submitButton = UIBarButtonItem(title: submitButtonTitle, style: .plain, target: self, action: #selector(submit))
             submitButton.isEnabled = delegate?.canSubmit(self) == true
             navigationItem.rightBarButtonItem = submitButton
@@ -169,7 +181,7 @@ public class FilePickerViewController: UIViewController, ErrorViewController {
     }
 
     @objc
-    func cancel() {
+    func cancel(sender: Any) {
         delegate?.cancel(self)
     }
 
@@ -198,9 +210,6 @@ public class FilePickerViewController: UIViewController, ErrorViewController {
             self.view.layoutIfNeeded()
         }
     }
-
-    func hideMediaRecorder() {
-    }
 }
 
 extension FilePickerViewController: UITabBarDelegate {
@@ -220,16 +229,21 @@ extension FilePickerViewController: UITabBarDelegate {
             AudioRecorderViewController.requestPermission { allowed in
                 if allowed {
                     let controller = AudioRecorderViewController.create()
-                    // controller.delegate = self
-                    let nav = UINavigationController(rootViewController: controller)
-                    self.present(nav, animated: true, completion: nil)
+                    controller.delegate = self
+                    controller.view.backgroundColor = UIColor.named(.backgroundLightest)
+                    self.present(controller, animated: true, completion: nil)
                 } else if let controller = self as? ApplicationViewController {
                     controller.showPermissionError(.microphone)
                 }
             }
         case .video:
-            // TODO:
-            return
+            guard UIImagePickerController.isSourceTypeAvailable(.camera) else { return }
+            let cameraController = UIImagePickerController()
+            cameraController.delegate = self
+            cameraController.sourceType = .camera
+            cameraController.mediaTypes = [kUTTypeMovie as String]
+            cameraController.cameraCaptureMode = .video
+            present(cameraController, animated: true, completion: nil)
         case .library:
             guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else { return }
             let libraryController = UIImagePickerController()
@@ -297,5 +311,16 @@ extension FilePickerViewController: UITableViewDelegate, UITableViewDataSource {
             showError(message: error)
         }
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+extension FilePickerViewController: AudioRecorderDelegate {
+    public func send(_ controller: AudioRecorderViewController, url: URL) {
+        delegate?.add(self, url: url)
+        controller.dismiss(animated: true, completion: nil)
+    }
+
+    public func cancel(_ controller: AudioRecorderViewController) {
+        controller.dismiss(animated: true, completion: nil)
     }
 }

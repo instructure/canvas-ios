@@ -18,4 +18,17 @@ import Foundation
 
 public enum MediaCommentType: String, Codable {
     case audio, video
+
+    public init?(extension: String) {
+        guard let uti = UTI(extension: `extension`) else {
+            return nil
+        }
+        if uti.isAudio {
+            self = .audio
+        } else if uti.isVideo {
+            self = .video
+        } else {
+            return nil
+        }
+    }
 }
