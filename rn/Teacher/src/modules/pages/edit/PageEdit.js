@@ -17,7 +17,7 @@
 // @flow
 
 import i18n from 'format-message'
-import * as React from 'react'
+import React, { Component } from 'react'
 import ReactNative, {
   View,
   StyleSheet,
@@ -71,7 +71,7 @@ function editingRoles () {
   }
 }
 
-export class PageEdit extends React.Component<Props, State> {
+export class PageEdit extends Component<Props, State> {
   scrollView: ?KeyboardAwareScrollView
   editor: ?RichTextEditor
 
@@ -117,7 +117,7 @@ export class PageEdit extends React.Component<Props, State> {
             keyboardDismissMode='on-drag'
           >
             {isTeacher()
-              ? <React.Fragment>
+              ? <View>
                 <FormLabel>{i18n('Title')}</FormLabel>
                 <RowWithTextInput
                   defaultValue={this.state.title}
@@ -127,7 +127,7 @@ export class PageEdit extends React.Component<Props, State> {
                   placeholder={i18n('Add title')}
                   onFocus={this._scrollToInput}
                 />
-              </React.Fragment>
+              </View>
               : <Heading1 style={style.studentTitle}>{this.state.title}</Heading1>
             }
             <FormLabel>{i18n('Description')}</FormLabel>
@@ -148,7 +148,7 @@ export class PageEdit extends React.Component<Props, State> {
               />
             </View>
             {isTeacher() &&
-              <React.Fragment>
+              <View>
                 <FormLabel>{i18n('Details')}</FormLabel>
                 { !this.state.isFrontPage &&
                   <RowWithSwitch
@@ -194,7 +194,7 @@ export class PageEdit extends React.Component<Props, State> {
                     ))}
                   </PickerIOS>
                 }
-              </React.Fragment>
+              </View>
             }
           </KeyboardAwareScrollView>
         </View>

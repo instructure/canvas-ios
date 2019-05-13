@@ -36,7 +36,7 @@ exports[`PageEdit renders 1`] = `
         }
       }
     >
-      <Component>
+      <View>
         <FormLabel>
           Title
         </FormLabel>
@@ -49,7 +49,7 @@ exports[`PageEdit renders 1`] = `
           placeholder="Add title"
           title=""
         />
-      </Component>
+      </View>
       <FormLabel>
         Description
       </FormLabel>
@@ -87,7 +87,7 @@ exports[`PageEdit renders 1`] = `
           showToolbar="always"
         />
       </View>
-      <Component>
+      <View>
         <FormLabel>
           Details
         </FormLabel>
@@ -108,7 +108,7 @@ exports[`PageEdit renders 1`] = `
           testID="pages.edit.editing_roles.row"
           title="Can Edit"
         />
-      </Component>
+      </View>
     </KeyboardAwareScrollView>
   </View>
 </Screen>
