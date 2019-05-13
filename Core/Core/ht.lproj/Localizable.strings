@@ -35,6 +35,9 @@
 "Bold" = "Gra";
 
 /* No comment provided by engineer. */
+"Camera" = "Kamera";
+
+/* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "Ou paka jwenn lekòl ou a? Eseye tape tout URL lekòl la";
 
 /* No comment provided by engineer. */
@@ -89,13 +92,22 @@
 "Domain" = "Domèn";
 
 /* No comment provided by engineer. */
+"Done" = "Fini";
+
+/* No comment provided by engineer. */
 "Error" = "Erè";
 
 /* No comment provided by engineer. */
 "External Tool" = "Zouti Ekstèn";
 
 /* No comment provided by engineer. */
+"Failed upload" = "Chajman echwe";
+
+/* No comment provided by engineer. */
 "File Upload" = "Transfè Fichye";
+
+/* No comment provided by engineer. */
+"Files" = "Fichye";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "Nòt Final: %@";
@@ -146,6 +158,9 @@
 "Launch External Tool" = "Lanse Zouti Eksteryè";
 
 /* No comment provided by engineer. */
+"Library" = "Bibliyotèk";
+
+/* No comment provided by engineer. */
 "Link" = "Lyen";
 
 /* No comment provided by engineer. */
@@ -186,6 +201,9 @@
 
 /* No comment provided by engineer. */
 "N/A" = "N/A";
+
+/* No comment provided by engineer. */
+"No Content" = "Pa gen Kontni";
 
 /* No comment provided by engineer. */
 "No Due Date" = "San Delè";
@@ -230,6 +248,9 @@
 "Pause" = "Poz";
 
 /* No comment provided by engineer. */
+"Permission Needed" = "Otorizasyon Nesesè";
+
+/* No comment provided by engineer. */
 "Play" = "Jwe";
 
 /* No comment provided by engineer. */
@@ -260,6 +281,9 @@
 "Reply to the annotation or previous comments" = "Reponn anotasyon an oswa ansyen kòmantè yo";
 
 /* No comment provided by engineer. */
+"Retry" = "Re eseye";
+
+/* No comment provided by engineer. */
 "See what's new." = "Gade kisa ki nouvo.";
 
 /* No comment provided by engineer. */
@@ -281,6 +305,9 @@
 "Set text color" = "Defini koulè tèks";
 
 /* No comment provided by engineer. */
+"Settings" = "Paramèt";
+
+/* No comment provided by engineer. */
 "Site Admin Login" = "Koneksyon Admin Sit";
 
 /* No comment provided by engineer. */
@@ -294,6 +321,9 @@
 
 /* No comment provided by engineer. */
 "Submission failed." = "Soumisyon echwe.";
+
+/* No comment provided by engineer. */
+"Submit" = "Soumèt";
 
 /* No comment provided by engineer. */
 "Submit Assignment" = "Soumèt Sesyon";
@@ -347,6 +377,12 @@
 "Unordered List" = "Lis non Òdone";
 
 /* No comment provided by engineer. */
+"Uploading %@ of %@" = "Transfè %1$@ sou %2$@";
+
+/* No comment provided by engineer. */
+"Uploading..." = "Chajman...";
+
+/* No comment provided by engineer. */
 "URL" = "URL";
 
 /* No comment provided by engineer. */
@@ -369,6 +405,9 @@
 
 /* No comment provided by engineer. */
 "yellow" = "jòn";
+
+/* No comment provided by engineer. */
+"You must enable Microphone permissions in Settings." = "Ou dwe aktive pèmisyon Mikwofòn nan Paramèt.";
 
 /* No comment provided by engineer. */
 "You need at least one active observer enrollment to use Canvas Parent. If you're a student or teacher, try one of our other apps below." = "Ou bezwen omwen enskripsyon yon obsèvatè aktif pou ka itilize Canvas Parent. Si w se yon elèv oswa pwofesè, eseye yonn nan lòt app nou yo ki pi ba a.";

@@ -71,6 +71,9 @@
 "Grade" = "Note";
 
 /* No comment provided by engineer. */
+"Graded Surveys" = "Enquêtes notées";
+
+/* No comment provided by engineer. */
 "Groups" = "Groupes";
 
 /* No comment provided by engineer. */
@@ -78,6 +81,9 @@
 
 /* No comment provided by engineer. */
 "Invalid url" = "URL non valide";
+
+/* No comment provided by engineer. */
+"Launch External Tool" = "Lancer l'outil externe";
 
 /* No comment provided by engineer. */
 "No Due Date" = "Aucune date d’échéance";
@@ -105,6 +111,9 @@
 
 /* Past enrollments section title in All Courses screen */
 "Past Enrollments" = "Inscriptions antérieures";
+
+/* No comment provided by engineer. */
+"Practice Quizzes" = "Questionnaires d'entraînement";
 
 /* No comment provided by engineer. */
 "Quizzes" = "Questionnaires";
@@ -158,6 +167,9 @@
 "Successfully submitted!" = "Envoyé avec succès!";
 
 /* No comment provided by engineer. */
+"Surveys" = "Enquêtes";
+
+/* No comment provided by engineer. */
 "Syllabus" = "Programme";
 
 /* No comment provided by engineer. */
@@ -180,6 +192,9 @@
 
 /* No comment provided by engineer. */
 "Updated Language Settings" = "Paramètres de langue mis à jour";
+
+/* No comment provided by engineer. */
+"View Discussion" = "Voir la discussion";
 
 /* No comment provided by engineer. */
 "View file %@ %@" = "Voir le fichier %1$@ %2$@";

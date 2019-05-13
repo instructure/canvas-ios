@@ -226,9 +226,6 @@
 /* Data encoding error title */
 "Encoding Error" = "Ошибка при кодировании";
 
-/* No comment provided by engineer. */
-"End Act as User" = "Завершить функцию «Действовать как пользователь»";
-
 /* Default text for essay cell */
 "Enter answer..." = "Введите ответ...";
 
@@ -604,9 +601,6 @@
 /* stop recording button a11y label */
 "Stop" = "Стоп";
 
-/* No comment provided by engineer. */
-"Stop acting as..." = "Прекратить действовать как...";
-
 /* File upload was stopped */
 "Stopped" = "Процесс остановлен";
 
@@ -842,12 +836,6 @@
 
 /* permission was rejected */
 "You must grant (appName) Microphone access in the Settings app in order to record audio." = "Вы должны предоставить (appName) доступ к микрофону в настройках для записи аудио.";
-
-/* No comment provided by engineer. */
-"You will stop acting as %@ and return to your account." = "Вы прекратите действовать как %@ и вернетесь в свою учетную запись.";
-
-/* No comment provided by engineer. */
-"You will stop acting as this user and return to your account." = "Вы прекратите действовать как этот пользователь и вернетесь в свою учетную запись.";
 
 /* Error description for file out of space */
 "Your device is out of storage space. Please free up space and try again." = "На вашем устройстве закончилась свободная память. Освободите память и попробуйте снова.";

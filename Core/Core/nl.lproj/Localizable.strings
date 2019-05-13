@@ -35,6 +35,9 @@
 "Bold" = "Vet";
 
 /* No comment provided by engineer. */
+"Camera" = "Camera";
+
+/* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "Kun je je school niet vinden? Typ de volledige URL van de school.";
 
 /* No comment provided by engineer. */
@@ -89,13 +92,22 @@
 "Domain" = "Domein";
 
 /* No comment provided by engineer. */
+"Done" = "Gereed";
+
+/* No comment provided by engineer. */
 "Error" = "Fout";
 
 /* No comment provided by engineer. */
 "External Tool" = "Externe tool";
 
 /* No comment provided by engineer. */
+"Failed upload" = "Upload mislukt";
+
+/* No comment provided by engineer. */
 "File Upload" = "Bestand uploaden";
+
+/* No comment provided by engineer. */
+"Files" = "Bestanden";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "Eindcijfer: %@";
@@ -146,6 +158,9 @@
 "Launch External Tool" = "Extern hulpmiddel lanceren";
 
 /* No comment provided by engineer. */
+"Library" = "Bibliotheek";
+
+/* No comment provided by engineer. */
 "Link" = "Link";
 
 /* No comment provided by engineer. */
@@ -186,6 +201,9 @@
 
 /* No comment provided by engineer. */
 "N/A" = "N.v.t.";
+
+/* No comment provided by engineer. */
+"No Content" = "Geen inhoud";
 
 /* No comment provided by engineer. */
 "No Due Date" = "Geen inleverdatum";
@@ -230,6 +248,9 @@
 "Pause" = "Onderbreken";
 
 /* No comment provided by engineer. */
+"Permission Needed" = "Toestemming vereist";
+
+/* No comment provided by engineer. */
 "Play" = "Afspelen";
 
 /* No comment provided by engineer. */
@@ -260,6 +281,9 @@
 "Reply to the annotation or previous comments" = "Reageer op de aantekening of op vorige opmerkingen";
 
 /* No comment provided by engineer. */
+"Retry" = "Opnieuw proberen";
+
+/* No comment provided by engineer. */
 "See what's new." = "Wat is er nieuw.";
 
 /* No comment provided by engineer. */
@@ -281,6 +305,9 @@
 "Set text color" = "Tekstkleur instellen";
 
 /* No comment provided by engineer. */
+"Settings" = "Instellingen";
+
+/* No comment provided by engineer. */
 "Site Admin Login" = "Aanmelding sitebeheer";
 
 /* No comment provided by engineer. */
@@ -294,6 +321,9 @@
 
 /* No comment provided by engineer. */
 "Submission failed." = "Inlevering mislukt.";
+
+/* No comment provided by engineer. */
+"Submit" = "Inleveren";
 
 /* No comment provided by engineer. */
 "Submit Assignment" = "Opdracht inleveren";
@@ -347,6 +377,12 @@
 "Unordered List" = "Ongeordende lijst";
 
 /* No comment provided by engineer. */
+"Uploading %@ of %@" = "Uploaden van %1$@ van %2$@";
+
+/* No comment provided by engineer. */
+"Uploading..." = "Bezig met uploaden...";
+
+/* No comment provided by engineer. */
 "URL" = "URL";
 
 /* No comment provided by engineer. */
@@ -369,6 +405,9 @@
 
 /* No comment provided by engineer. */
 "yellow" = "geel";
+
+/* No comment provided by engineer. */
+"You must enable Microphone permissions in Settings." = "Je moet Microfoon-toestemmingen inschakelen in Instellingen.";
 
 /* No comment provided by engineer. */
 "You need at least one active observer enrollment to use Canvas Parent. If you're a student or teacher, try one of our other apps below." = "Je hebt ten minste één actieve waarnemersinschrijving nodig om Canvas Parent te kunnen gebruiken. Als je een cursist of cursusleider bent, probeer dan een van onze andere apps hieronder.";

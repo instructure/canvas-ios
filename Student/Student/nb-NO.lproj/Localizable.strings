@@ -71,6 +71,9 @@
 "Grade" = "Karakter";
 
 /* No comment provided by engineer. */
+"Graded Surveys" = "Karaktergivende spørreundersøkelser";
+
+/* No comment provided by engineer. */
 "Groups" = "Grupper";
 
 /* No comment provided by engineer. */
@@ -78,6 +81,9 @@
 
 /* No comment provided by engineer. */
 "Invalid url" = "Ugyldig URL";
+
+/* No comment provided by engineer. */
+"Launch External Tool" = "Åpne eksternt verktøy";
 
 /* No comment provided by engineer. */
 "No Due Date" = "Ingen forfallsdato";
@@ -105,6 +111,9 @@
 
 /* Past enrollments section title in All Courses screen */
 "Past Enrollments" = "Tidligere påmeldinger";
+
+/* No comment provided by engineer. */
+"Practice Quizzes" = "Øvelsestester";
 
 /* No comment provided by engineer. */
 "Quizzes" = "Tester";
@@ -158,6 +167,9 @@
 "Successfully submitted!" = "Vellykket innsending!";
 
 /* No comment provided by engineer. */
+"Surveys" = "Spørreundersøkelser";
+
+/* No comment provided by engineer. */
 "Syllabus" = "Emneoversikt";
 
 /* No comment provided by engineer. */
@@ -180,6 +192,9 @@
 
 /* No comment provided by engineer. */
 "Updated Language Settings" = "Oppdatert språkinnstillinger";
+
+/* No comment provided by engineer. */
+"View Discussion" = "Vis diskusjon";
 
 /* No comment provided by engineer. */
 "View file %@ %@" = "Vis fil %1$@ %2$@";

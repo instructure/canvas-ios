@@ -71,6 +71,9 @@
 "Grade" = "Ocena";
 
 /* No comment provided by engineer. */
+"Graded Surveys" = "Ocenjene ankete";
+
+/* No comment provided by engineer. */
 "Groups" = "Skupine";
 
 /* No comment provided by engineer. */
@@ -78,6 +81,9 @@
 
 /* No comment provided by engineer. */
 "Invalid url" = "Neveljaven naslov URL";
+
+/* No comment provided by engineer. */
+"Launch External Tool" = "Zaženi zunanje orodje";
 
 /* No comment provided by engineer. */
 "No Due Date" = "Ni roka.";
@@ -105,6 +111,9 @@
 
 /* Past enrollments section title in All Courses screen */
 "Past Enrollments" = "Pretekli vpisi";
+
+/* No comment provided by engineer. */
+"Practice Quizzes" = "Kvizi za vajo";
 
 /* No comment provided by engineer. */
 "Quizzes" = "Kvizi";
@@ -158,6 +167,9 @@
 "Successfully submitted!" = "Uspešno poslano.";
 
 /* No comment provided by engineer. */
+"Surveys" = "Ankete";
+
+/* No comment provided by engineer. */
 "Syllabus" = "Učni načrt";
 
 /* No comment provided by engineer. */
@@ -180,6 +192,9 @@
 
 /* No comment provided by engineer. */
 "Updated Language Settings" = "Posodobljene nastavitve jezika";
+
+/* No comment provided by engineer. */
+"View Discussion" = "Ogled razprave";
 
 /* No comment provided by engineer. */
 "View file %@ %@" = "Ogled datoteke %1$@ %2$@";

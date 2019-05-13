@@ -35,6 +35,9 @@
 "Bold" = "غامق";
 
 /* No comment provided by engineer. */
+"Camera" = "الكاميرا";
+
+/* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "لا تستطيع العثور على مدرستك؟ حاول كتابة رابط URL الكامل للمدرسة.";
 
 /* No comment provided by engineer. */
@@ -89,13 +92,22 @@
 "Domain" = "المجال";
 
 /* No comment provided by engineer. */
+"Done" = "تم";
+
+/* No comment provided by engineer. */
 "Error" = "خطأ";
 
 /* No comment provided by engineer. */
 "External Tool" = "أداة خارجية";
 
 /* No comment provided by engineer. */
+"Failed upload" = "فشل التحميل";
+
+/* No comment provided by engineer. */
 "File Upload" = "تحميل ملف";
+
+/* No comment provided by engineer. */
+"Files" = "الملفات";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "الدرجة النهائية: %@";
@@ -146,6 +158,9 @@
 "Launch External Tool" = "تشغيل الأداة الخارجية";
 
 /* No comment provided by engineer. */
+"Library" = "المكتبة";
+
+/* No comment provided by engineer. */
 "Link" = "ارتباط";
 
 /* No comment provided by engineer. */
@@ -186,6 +201,9 @@
 
 /* No comment provided by engineer. */
 "N/A" = "لا يوجد";
+
+/* No comment provided by engineer. */
+"No Content" = "لا يوجد محتوى";
 
 /* No comment provided by engineer. */
 "No Due Date" = "لا يوجد تاريخ استحقاق";
@@ -230,6 +248,9 @@
 "Pause" = "إيقاف مؤقت";
 
 /* No comment provided by engineer. */
+"Permission Needed" = "مطلوب إذن";
+
+/* No comment provided by engineer. */
 "Play" = "تشغيل";
 
 /* No comment provided by engineer. */
@@ -260,6 +281,9 @@
 "Reply to the annotation or previous comments" = "الرد على التعليق التوضيحي أو التعليقات السابقة";
 
 /* No comment provided by engineer. */
+"Retry" = "إعادة المحاولة";
+
+/* No comment provided by engineer. */
 "See what's new." = "تعرف على الجديد.";
 
 /* No comment provided by engineer. */
@@ -281,6 +305,9 @@
 "Set text color" = "تعيين لون النص";
 
 /* No comment provided by engineer. */
+"Settings" = "إعدادات";
+
+/* No comment provided by engineer. */
 "Site Admin Login" = "تسجيل دخول مسؤول الموقع";
 
 /* No comment provided by engineer. */
@@ -294,6 +321,9 @@
 
 /* No comment provided by engineer. */
 "Submission failed." = "تعذر الإرسال.";
+
+/* No comment provided by engineer. */
+"Submit" = "إرسال";
 
 /* No comment provided by engineer. */
 "Submit Assignment" = "إرسال المهمة";
@@ -347,6 +377,12 @@
 "Unordered List" = "قائمة غير مرتبة";
 
 /* No comment provided by engineer. */
+"Uploading %@ of %@" = "جارٍ تحميل %1$@ من %2$@";
+
+/* No comment provided by engineer. */
+"Uploading..." = "يتم الآن التحميل...";
+
+/* No comment provided by engineer. */
 "URL" = "URL";
 
 /* No comment provided by engineer. */
@@ -369,6 +405,9 @@
 
 /* No comment provided by engineer. */
 "yellow" = "أصفر";
+
+/* No comment provided by engineer. */
+"You must enable Microphone permissions in Settings." = "يجب أن تقوم بتمكين أذونات الميكروفون في الإعدادات.";
 
 /* No comment provided by engineer. */
 "You need at least one active observer enrollment to use Canvas Parent. If you're a student or teacher, try one of our other apps below." = "تحتاج لتسجيل مراقب نشط واحد على الأقل لاستخدام Canvas Parent. إذا كنت طالبًا أو معلمًا، جرب إحدى تطبيقاتنا الأخرى أدناه.";

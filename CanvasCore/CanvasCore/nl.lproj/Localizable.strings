@@ -226,9 +226,6 @@
 /* Data encoding error title */
 "Encoding Error" = "Coderingsfout";
 
-/* No comment provided by engineer. */
-"End Act as User" = "Stop met optreden als gebruiker";
-
 /* Default text for essay cell */
 "Enter answer..." = "Antwoord invoeren...";
 
@@ -604,9 +601,6 @@
 /* stop recording button a11y label */
 "Stop" = "Stoppen";
 
-/* No comment provided by engineer. */
-"Stop acting as..." = "Stop met optreden als...";
-
 /* File upload was stopped */
 "Stopped" = "Gestopt";
 
@@ -842,12 +836,6 @@
 
 /* permission was rejected */
 "You must grant (appName) Microphone access in the Settings app in order to record audio." = "Je moet (appName) Microfoon-toegang verlenen in de app Instellingen om audio op te nemen.";
-
-/* No comment provided by engineer. */
-"You will stop acting as %@ and return to your account." = "Je stopt met optreden als %@ en keert terug naar je account.";
-
-/* No comment provided by engineer. */
-"You will stop acting as this user and return to your account." = "Je stopt met optreden als deze gebruiker en keert terug naar je account.";
 
 /* Error description for file out of space */
 "Your device is out of storage space. Please free up space and try again." = "Je apparaat beschikt over onvoldoende opslagruimte. Maak ruimte vrij en probeer het opnieuw.";

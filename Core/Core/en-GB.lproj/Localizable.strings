@@ -35,6 +35,9 @@
 "Bold" = "Bold";
 
 /* No comment provided by engineer. */
+"Camera" = "Camera";
+
+/* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "Can’t find your school? Try typing the school’s full URL.";
 
 /* No comment provided by engineer. */
@@ -89,13 +92,22 @@
 "Domain" = "Domain";
 
 /* No comment provided by engineer. */
+"Done" = "Done";
+
+/* No comment provided by engineer. */
 "Error" = "Error";
 
 /* No comment provided by engineer. */
 "External Tool" = "External tool";
 
 /* No comment provided by engineer. */
+"Failed upload" = "Failed upload";
+
+/* No comment provided by engineer. */
 "File Upload" = "File upload";
+
+/* No comment provided by engineer. */
+"Files" = "Files";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "Final grade: %@";
@@ -146,6 +158,9 @@
 "Launch External Tool" = "Launch external tool";
 
 /* No comment provided by engineer. */
+"Library" = "Library";
+
+/* No comment provided by engineer. */
 "Link" = "Link";
 
 /* No comment provided by engineer. */
@@ -186,6 +201,9 @@
 
 /* No comment provided by engineer. */
 "N/A" = "N/A";
+
+/* No comment provided by engineer. */
+"No Content" = "No Content";
 
 /* No comment provided by engineer. */
 "No Due Date" = "No due date";
@@ -230,6 +248,9 @@
 "Pause" = "Pause";
 
 /* No comment provided by engineer. */
+"Permission Needed" = "Permission needed";
+
+/* No comment provided by engineer. */
 "Play" = "Play";
 
 /* No comment provided by engineer. */
@@ -260,6 +281,9 @@
 "Reply to the annotation or previous comments" = "Reply to the annotation or previous comments";
 
 /* No comment provided by engineer. */
+"Retry" = "Retry";
+
+/* No comment provided by engineer. */
 "See what's new." = "See what's new.";
 
 /* No comment provided by engineer. */
@@ -281,6 +305,9 @@
 "Set text color" = "Set text colour";
 
 /* No comment provided by engineer. */
+"Settings" = "Settings";
+
+/* No comment provided by engineer. */
 "Site Admin Login" = "Site admin login";
 
 /* No comment provided by engineer. */
@@ -294,6 +321,9 @@
 
 /* No comment provided by engineer. */
 "Submission failed." = "Submission failed.";
+
+/* No comment provided by engineer. */
+"Submit" = "Submit";
 
 /* No comment provided by engineer. */
 "Submit Assignment" = "Submit assignment";
@@ -347,6 +377,12 @@
 "Unordered List" = "Unordered list";
 
 /* No comment provided by engineer. */
+"Uploading %@ of %@" = "Uploading %1$@ of %2$@";
+
+/* No comment provided by engineer. */
+"Uploading..." = "Uploading...";
+
+/* No comment provided by engineer. */
 "URL" = "URL";
 
 /* No comment provided by engineer. */
@@ -369,6 +405,9 @@
 
 /* No comment provided by engineer. */
 "yellow" = "yellow";
+
+/* No comment provided by engineer. */
+"You must enable Microphone permissions in Settings." = "You must enable Microphone permissions in Settings.";
 
 /* No comment provided by engineer. */
 "You need at least one active observer enrollment to use Canvas Parent. If you're a student or teacher, try one of our other apps below." = "You need at least one active observer enrolment to use Canvas Parent. If you're a student or teacher, try one of our other apps below.";

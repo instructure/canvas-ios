@@ -226,9 +226,6 @@
 /* Data encoding error title */
 "Encoding Error" = "Verschlüsselungsfehler";
 
-/* No comment provided by engineer. */
-"End Act as User" = "„Handeln als Benutzer“ beenden";
-
 /* Default text for essay cell */
 "Enter answer..." = "Antwort eingeben...";
 
@@ -604,9 +601,6 @@
 /* stop recording button a11y label */
 "Stop" = "Stopp";
 
-/* No comment provided by engineer. */
-"Stop acting as..." = "Aufhören, als Benutzer [...] zu handeln";
-
 /* File upload was stopped */
 "Stopped" = "Angehalten";
 
@@ -842,12 +836,6 @@
 
 /* permission was rejected */
 "You must grant (appName) Microphone access in the Settings app in order to record audio." = "Für eine Audioaufzeichnung müssen Sie (appName) in der Einstellungs-App Mikrofonzugriffsrechte erteilen.";
-
-/* No comment provided by engineer. */
-"You will stop acting as %@ and return to your account." = "Sie hören auf, als %@ zu handeln, und kehren zu Ihrem Konto zurück.";
-
-/* No comment provided by engineer. */
-"You will stop acting as this user and return to your account." = "Sie hören auf, als dieser Benutzer zu handeln, und kehren zu Ihrem Konto zurück.";
 
 /* Error description for file out of space */
 "Your device is out of storage space. Please free up space and try again." = "Der Speicher Ihres Geräts ist voll. Bitte geben Sie Speicherplatz frei, und versuchen Sie es erneut.";

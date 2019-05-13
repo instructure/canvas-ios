@@ -1,20 +1,11 @@
-/* The distance in miles that a user is from a school. */
-"%@ miles away" = "%@ milj stran.";
-
 /* No comment provided by engineer. */
 "Build all the things" = "Ustvarite vse zadeve.";
-
-/* Help label when user can't find their school. */
-"Can't find your school? Try typing the full school URL." = "Ali svoje šole ne najdete? Poskusite vnesti poln naslov URL šole.";
 
 /* No comment provided by engineer. */
 "Cancel" = "Prekliči";
 
 /* No comment provided by engineer. */
 "Cancel Request" = "Prekliči zahtevo";
-
-/* Label displayed when forcing canvas login */
-"Canvas Login" = "Prijava v sistem Canvas";
 
 /* No comment provided by engineer. */
 "Casual question or suggestion" = "Naključno vprašanje ali predlog";
@@ -25,9 +16,6 @@
 /* No comment provided by engineer. */
 "Choose One" = "Izberi eno";
 
-/* Connectivity alert close text */
-"Close" = "Zapri";
-
 /* No comment provided by engineer. */
 "Continue Editing" = "Nadaljuj urejanje";
 
@@ -37,7 +25,7 @@
 /* No comment provided by engineer. */
 "describe your problem" = "opišite težavo";
 
-/* Dismiss login expired/revoked alert button */
+/* No comment provided by engineer. */
 "Dismiss" = "Opusti";
 
 /* No comment provided by engineer. */
@@ -55,12 +43,6 @@
 /* No comment provided by engineer. */
 "Extremely critical emergency" = "Skrajno kritični nujni primer";
 
-/* Help View Controller Title */
-"Help" = "Pomoč";
-
-/* Help label when domain search has started */
-"How do I find my school?" = "Kako najdem svojo šolo?";
-
 /* No comment provided by engineer. */
 "I am stuck and can't get things done" = "Obtičal sem in zadev ne morem dokončati.";
 
@@ -71,22 +53,10 @@
 "I need help but it's not urgent" = "Potrebujem pomoč, ni pa nujno.";
 
 /* No comment provided by engineer. */
-"Invalid Canvas URL." = "Neveljavni naslov URL sistema Canvas";
-
-/* No comment provided by engineer. */
-"Invalid User Agent." = "Neveljavni agent uporabnika";
-
-/* No comment provided by engineer. */
 "Non-urgent help needed" = "Potrebna je nenujna pomoč.";
 
 /* No comment provided by engineer. */
-"Not authorized." = "Ni pooblastila.";
-
-/* No comment provided by engineer. */
 "OK" = "V redu";
-
-/* Placeholder for delete icon in Multi User Table View Cell */
-"remove user" = "odstrani uporabnika";
 
 /* No comment provided by engineer. */
 "Report a Problem" = "Poročajte o težavi";
@@ -106,30 +76,12 @@
 /* No comment provided by engineer. */
 "Send" = "Pošlji";
 
-/* Label displayed when logging in as site admin */
-"Site Admin Login" = "Prijava skrbnika mesta";
-
 /* No comment provided by engineer. */
 "Something is broken but I can work around it" = "Nekaj ne deluje, a znam to rešiti.";
 
 /* No comment provided by engineer. */
 "Success!" = "Uspešno!";
 
-/* Subtitle help text describing how to find a school. */
-"Tap here for help." = "Za pomoč tapnite tukaj.";
-
 /* No comment provided by engineer. */
 "Thanks, your request was received!" = "Hvala, vaša zahteva je prejeta.";
-
-/* No comment provided by engineer. */
-"Trouble logging in" = "Težave pri prijavi";
-
-/* Connectivity alert message */
-"We can't connect to Canvas. Have you checked your internet connection?" = "Povezave s Canvas ni mogoče vzpostaviti. Ali ste preverili internetno povezavo?";
-
-/* Connectivity alert title */
-"Whoops!" = "Ups.";
-
-/* when the access token has been revoked */
-"Your login has expired or has been removed by the server. Please log in again." = "Vaši prijavi je potekel čas ali pa jo je odstranil strežnik. Prijavite se znova.";
 

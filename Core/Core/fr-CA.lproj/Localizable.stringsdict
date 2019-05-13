@@ -37,7 +37,7 @@
 	<key>g_out_of_g_points_possible</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>%g sur %#@points@ possibles</string>
+		<string>Scored %g out of %#@points@ possible</string>
 		<key>points</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>
@@ -48,6 +48,22 @@
 			<string>%g point</string>
 			<key>other</key>
 			<string>%g points</string>
+		</dict>
+	</dict>
+	<key>g_points</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@points@</string>
+		<key>points</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d point</string>
+			<key>other</key>
+			<string>%d points</string>
 		</dict>
 	</dict>
 	<key>g_pts</key>

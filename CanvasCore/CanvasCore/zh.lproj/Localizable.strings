@@ -226,9 +226,6 @@
 /* Data encoding error title */
 "Encoding Error" = "编码错误";
 
-/* No comment provided by engineer. */
-"End Act as User" = "结束担当用户";
-
 /* Default text for essay cell */
 "Enter answer..." = "输入答案...";
 
@@ -604,9 +601,6 @@
 /* stop recording button a11y label */
 "Stop" = "停止";
 
-/* No comment provided by engineer. */
-"Stop acting as..." = "停止担当...";
-
 /* File upload was stopped */
 "Stopped" = "已阻止";
 
@@ -842,12 +836,6 @@
 
 /* permission was rejected */
 "You must grant (appName) Microphone access in the Settings app in order to record audio." = "您必须在“设置”应用中允许（appName）访问麦克风才能录制音频。";
-
-/* No comment provided by engineer. */
-"You will stop acting as %@ and return to your account." = "你将停止担当%@并返回至帐号。";
-
-/* No comment provided by engineer. */
-"You will stop acting as this user and return to your account." = "你将停止担当该用户并返回至帐号。";
 
 /* Error description for file out of space */
 "Your device is out of storage space. Please free up space and try again." = "您的设备的存储空间不足。请释放空间，然后重试。";
