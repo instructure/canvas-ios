@@ -25,10 +25,6 @@ struct SubmissionAction: Equatable {
     let options: Router.RouteOptions
 }
 
-enum FilePickerTag: Int {
-    case onlineUpload, mediaRecording
-}
-
 protocol AssignmentDetailsViewProtocol: ErrorViewController {
     func updateNavBar(subtitle: String?, backgroundColor: UIColor?)
     func update(assignment: Assignment, baseURL: URL?)
