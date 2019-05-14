@@ -35,8 +35,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
     @IBOutlet weak var scrollView: UIScrollView?
     @IBOutlet weak var loadingView: UIActivityIndicatorView?
     @IBOutlet weak var submissionButtonView: UIView?
-    @IBOutlet weak var submissionButton: UIButton?
-    @IBOutlet weak var submissionButtonLabel: DynamicLabel?
+    @IBOutlet weak var submissionButton: DynamicButton?
     @IBOutlet weak var submissionButtonIcon: UIImageView?
     @IBOutlet weak var submissionButtonDivider: DividerView?
     @IBOutlet weak var fileSubmissionButton: DynamicButton?
@@ -87,7 +86,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         descriptionHeadingLabel?.text = NSLocalizedString("Description", bundle: .student, comment: "")
         submittedLabel?.text = NSLocalizedString("Successfully submitted!", bundle: .student, comment: "")
         submittedDetailsLabel?.text = NSLocalizedString("Your submission is now waiting to be graded", bundle: .student, comment: "")
-        submissionButtonLabel?.text = NSLocalizedString("Submission & Rubric", bundle: .student, comment: "")
+        submissionButton?.setTitle(NSLocalizedString("Submission & Rubric", bundle: .student, comment: ""), for: .normal)
 
         // Routing from description
         descriptionView?.navigation = .deepLink { (url: URL) -> Bool? in
