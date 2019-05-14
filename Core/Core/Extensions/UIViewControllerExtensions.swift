@@ -97,6 +97,10 @@ extension UIViewController {
         }
         child.didMove(toParent: self)
     }
+
+    public func dismiss(_ viewControllerToDismiss: UIViewController, animated flag: Bool, completion: (() -> Void)?) {
+        viewControllerToDismiss.dismiss(animated: flag, completion: completion)
+    }
 }
 
 public enum PermissionError {

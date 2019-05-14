@@ -32,9 +32,9 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
     var expectation = XCTestExpectation(description: "expectation")
     var resultingButtonTitle: String?
     var navigationController: UINavigationController?
-    var presentedViewController: UIViewController?
-    var dismissedCount = 0
+    var filePicker: FilePickerViewController?
     let fileUploader = MockFileUploader()
+    var didChooseMediaRecordingType = false
 
     override func setUp() {
         super.setUp()
@@ -212,21 +212,39 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         XCTAssertEqual(resultingButtonTitle, "View Discussion")
     }
 
-    func testSubmitOnlineUpload() {
-        Assignment.make(["id": "1"])
+    func testSubmitSubmissionTypeOnlineUpload() {
+        Assignment.make(["id": "1", "submissionTypesRaw": [SubmissionType.online_upload.rawValue]])
+        presenter.viewIsReady()
         presenter.submit(.online_upload, from: UIViewController())
-        let nav = presentedViewController as? UINavigationController
-        let filePicker = nav?.topViewController as? FilePickerViewController
         XCTAssertNotNil(filePicker)
     }
 
-    func testSubmitMediaRecording() {
+    func testSubmitSubmissionTypeOnlineUploadEmptyExtensions() {
+        Assignment.make(["id": "1", "submissionTypesRaw": [SubmissionType.online_upload.rawValue], "allowedExtensions": []])
+        presenter.viewIsReady()
+        presenter.submit(.online_upload, from: UIViewController())
+        XCTAssertEqual(filePicker?.sources, [.files, .library, .camera])
+    }
+
+    func testSubmitOnlineUploadFilesOnly() {
+        Assignment.make(["id": "1", "submissionTypesRaw": [SubmissionType.online_upload.rawValue], "allowedExtensions": ["txt"]])
+        presenter.viewIsReady()
+        presenter.submit(.online_upload, from: UIViewController())
+        XCTAssertEqual(filePicker?.sources, [.files])
+    }
+
+    func testSubmitOnlineUploadImages() {
+        Assignment.make(["id": "1", "submissionTypesRaw": [SubmissionType.online_upload.rawValue], "allowedExtensions": ["jpg"]])
+        presenter.viewIsReady()
+        presenter.submit(.online_upload, from: UIViewController())
+        XCTAssertEqual(filePicker?.sources, [.files, .library, .camera])
+    }
+
+    func testSubmitSubmissionTypeMediaRecording() {
         let assignment = Assignment.make(["id": "1"])
         assignment.submissionTypes = [.media_recording]
         presenter.submit(.media_recording, from: UIViewController())
-        let nav = presentedViewController as? UINavigationController
-        let filePicker = nav?.topViewController as? FilePickerViewController
-        XCTAssertNotNil(filePicker)
+        XCTAssertTrue(didChooseMediaRecordingType)
     }
 
     func testSubmitOnlineURL() {
@@ -273,16 +291,6 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         XCTAssert(router.lastRoutedTo(url))
     }
 
-    func testViewFileSubmission() {
-        Assignment.make(["id": "1"])
-
-        presenter.viewFileSubmission(from: UIViewController())
-
-        let nav = presentedViewController as? UINavigationController
-        let filePicker = nav?.topViewController as? FilePickerViewController
-        XCTAssertNotNil(filePicker)
-    }
-
     func testExternalToolSubmission() {
         Assignment.make(["id": "1", "courseID": "1"])
         let request = GetSessionlessLaunchURLRequest(context: ContextModel(.course, id: "1"), id: nil, url: nil, assignmentID: "1", moduleItemID: nil, launchType: .assessment)
@@ -295,52 +303,39 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         XCTAssert(router.viewControllerCalls[0].0 is SFSafariViewController)
     }
 
-    func testAddFilePicker() {
-        let filePicker = FilePickerViewController.create()
+    func testAddOnlineUploadFile() {
         let url = URL(fileURLWithPath: "/file.txt")
-        presenter.add(filePicker, url: url)
+        presenter.addOnlineUpload(file: url)
         XCTAssertEqual(presenter.files.count, 1)
     }
 
-    func testCancelFilePicker() {
-        let filePicker = FilePickerViewController.create()
+    func testCancelOnlineUpload() {
         let url = URL(fileURLWithPath: "/file.txt")
-        presenter.add(filePicker, url: url)
-        presenter.cancel(filePicker)
+        presenter.addOnlineUpload(file: url)
+        XCTAssertEqual(presenter.files.count, 1)
+        presenter.cancelOnlineUpload()
         XCTAssertEqual(presenter.files.count, 0)
-        XCTAssertEqual(dismissedCount, 1)
         XCTAssertEqual(fileUploader.cancels.count, 1)
     }
 
-    func testSubmitFilePicker() {
-        let filePicker = FilePickerViewController.create()
+    func testSubmitOnlineUpload() {
         let url = URL(fileURLWithPath: "/file.txt")
-        presenter.add(filePicker, url: url)
-        presenter.submit(filePicker)
-        XCTAssertEqual(dismissedCount, 1)
+        presenter.addOnlineUpload(file: url)
+        presenter.submitOnlineUpload()
         XCTAssertEqual(fileUploader.uploads.count, 1)
     }
 
-    func testCanSubmitFilePicker() {
-        let filePicker = FilePickerViewController.create()
-        XCTAssertFalse(presenter.canSubmit(filePicker))
-        let url = URL(fileURLWithPath: "/file.txt")
-        presenter.add(filePicker, url: url)
-        XCTAssertTrue(presenter.canSubmit(filePicker))
+    func testCancelMediaRecording() {
+        presenter.cancelMediaRecording()
+        XCTAssertNil(resultingError)
+    }
+
+    func testSubmitMediaRecording() {
+        // TODO: help testing this
     }
 }
 
 extension AssignmentDetailsPresenterTests: AssignmentDetailsViewProtocol {
-    func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)?) {
-        completion?()
-        presentedViewController = viewControllerToPresent
-    }
-
-    func dismiss(animated flag: Bool, completion: (() -> Void)?) {
-        completion?()
-        dismissedCount += 1
-    }
-
     func showSubmitAssignmentButton(title: String?) {
         resultingButtonTitle = title
     }
@@ -362,5 +357,13 @@ extension AssignmentDetailsPresenterTests: AssignmentDetailsViewProtocol {
     func updateNavBar(subtitle: String?, backgroundColor: UIColor?) {
         resultingSubtitle = subtitle
         resultingBackgroundColor = backgroundColor
+    }
+
+    func present(filePicker: FilePickerViewController) {
+        self.filePicker = filePicker
+    }
+
+    func chooseMediaRecordingType() {
+        didChooseMediaRecordingType = true
     }
 }

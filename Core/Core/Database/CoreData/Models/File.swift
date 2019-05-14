@@ -74,7 +74,7 @@ final public class File: NSManagedObject {
     }
 
     public var isUploading: Bool {
-        return taskID != nil && uploadError == nil
+        return taskID != nil
     }
 
     public var isUploaded: Bool {

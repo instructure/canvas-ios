@@ -18,7 +18,7 @@ import UIKit
 import MobileCoreServices
 
 public enum FilePickerSource: Int, CaseIterable {
-    case camera, audio, video, library, files
+    case camera, library, files
 }
 
 public protocol FilePickerControllerDelegate: class {
@@ -44,7 +44,6 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
     public weak var delegate: FilePickerControllerDelegate?
     public var sources = FilePickerSource.allCases
     public var utis: [UTI] = [.any]
-    public var maxFiles: Int = .max
     public var files: [File] = []
 
     public static func create() -> FilePickerViewController {
@@ -61,20 +60,6 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
                 title: NSLocalizedString("Camera", bundle: .core, comment: ""),
                 image: .icon(.addCameraLine),
                 tag: FilePickerSource.camera.rawValue
-            ))
-        }
-        if sources.contains(.audio) {
-            tabBarItems.append(UITabBarItem(
-                title: NSLocalizedString("Audio", bundle: .core, comment: ""),
-                image: .icon(.addAudioLine),
-                tag: FilePickerSource.audio.rawValue
-            ))
-        }
-        if sources.contains(.video) {
-            tabBarItems.append(UITabBarItem(
-                title: NSLocalizedString("Video", bundle: .core, comment: ""),
-                image: .icon(.addVideoCameraLine),
-                tag: FilePickerSource.video.rawValue
             ))
         }
         if sources.contains(.library) {
@@ -110,16 +95,6 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
         updateBarButtons()
         updateSourceButtons()
         tableView.reloadData()
-    }
-
-    public func showPending() {
-        let spinner = UIActivityIndicatorView(style: .white)
-        spinner.startAnimating()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: spinner)
-    }
-
-    public func hidePending() {
-        updateBarButtons()
     }
 
     func updateProgressBar() {
@@ -170,7 +145,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
     func updateSourceButtons() {
         let inProgress = files.first { $0.isUploading } != nil
         let failed = files.first { $0.uploadError != nil } != nil
-        let hideSourceButtons = files.count >= maxFiles || inProgress || failed
+        let hideSourceButtons = inProgress || failed
         sourcesTabBar?.isHidden = hideSourceButtons
         dividerView.isHidden = hideSourceButtons
     }
@@ -225,25 +200,6 @@ extension FilePickerViewController: UITabBarDelegate {
             cameraController.mediaTypes = [kUTTypeMovie as String, kUTTypeImage as String]
             cameraController.cameraCaptureMode = .photo
             present(cameraController, animated: true, completion: nil)
-        case .audio:
-            AudioRecorderViewController.requestPermission { allowed in
-                if allowed {
-                    let controller = AudioRecorderViewController.create()
-                    controller.delegate = self
-                    controller.view.backgroundColor = UIColor.named(.backgroundLightest)
-                    self.present(controller, animated: true, completion: nil)
-                } else if let controller = self as? ApplicationViewController {
-                    controller.showPermissionError(.microphone)
-                }
-            }
-        case .video:
-            guard UIImagePickerController.isSourceTypeAvailable(.camera) else { return }
-            let cameraController = UIImagePickerController()
-            cameraController.delegate = self
-            cameraController.sourceType = .camera
-            cameraController.mediaTypes = [kUTTypeMovie as String]
-            cameraController.cameraCaptureMode = .video
-            present(cameraController, animated: true, completion: nil)
         case .library:
             guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else { return }
             let libraryController = UIImagePickerController()
@@ -290,10 +246,6 @@ extension FilePickerViewController: UIImagePickerControllerDelegate, UINavigatio
 }
 
 extension FilePickerViewController: UITableViewDelegate, UITableViewDataSource {
-    public func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return files.count
     }
@@ -311,16 +263,5 @@ extension FilePickerViewController: UITableViewDelegate, UITableViewDataSource {
             showError(message: error)
         }
         tableView.deselectRow(at: indexPath, animated: true)
-    }
-}
-
-extension FilePickerViewController: AudioRecorderDelegate {
-    public func send(_ controller: AudioRecorderViewController, url: URL) {
-        delegate?.add(self, url: url)
-        controller.dismiss(animated: true, completion: nil)
-    }
-
-    public func cancel(_ controller: AudioRecorderViewController) {
-        controller.dismiss(animated: true, completion: nil)
     }
 }
