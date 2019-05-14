@@ -68,6 +68,10 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
+            argument = "-com.apple.configuration.managed &apos;&lt;dict&gt;&lt;key&gt;enableLogin&lt;/key&gt;&lt;true/&gt;&lt;key&gt;users&lt;/key&gt;&lt;array&gt;&lt;dict&gt;&lt;key&gt;host&lt;/key&gt;&lt;string&gt;twilson.instructure.com&lt;/string&gt;&lt;key&gt;username&lt;/key&gt;&lt;string&gt;student1&lt;/string&gt;&lt;key&gt;password&lt;/key&gt;&lt;string&gt;password&lt;/string&gt;&lt;/dict&gt;&lt;dict&gt;&lt;key&gt;host&lt;/key&gt;&lt;string&gt;narmstrong.instructure.com&lt;/string&gt;&lt;key&gt;username&lt;/key&gt;&lt;string&gt;s&lt;/string&gt;&lt;key&gt;password&lt;/key&gt;&lt;string&gt;password&lt;/string&gt;&lt;/dict&gt;&lt;/array&gt;&lt;/dict&gt;&apos;"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
             argument = "-FIRDebugEnabled"
             isEnabled = "NO">
          </CommandLineArgument>

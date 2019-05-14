@@ -326,12 +326,43 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
     }
 
     func testCancelMediaRecording() {
+        presenter.userID = "1"
+        let url = URL(string: "data:video/x-mp4,abcde")!
+        let request = GetMediaServiceRequest()
+        MockURLSession.mock(request, error: NSError.internalError())
+        presenter.submit(mediaRecording: url, type: .video) { _ in }
         presenter.cancelMediaRecording()
-        XCTAssertNil(resultingError)
+        let task = MockURLSession.mockDataTask(request)
+        XCTAssertNotNil(task)
+        XCTAssert(task?.canceled == true)
     }
 
     func testSubmitMediaRecording() {
-        // TODO: help testing this
+        presenter.userID = "1"
+        let url = URL(string: "data:video/x-mp4,abcde")!
+        MockURLSession.mock(GetMediaServiceRequest(), value: APIMediaService(domain: "u.edu"))
+        MockURLSession.mock(PostMediaSessionRequest(), value: APIMediaSession(ks: "k"))
+        MockURLSession.mock(PostMediaUploadTokenRequest(body: .init(ks: "k")), value: APIMediaIDWrapper(id: "t"))
+        MockURLSession.mock(PostMediaUploadRequest(fileURL: url, type: .video, ks: "k", token: "t"))
+        MockURLSession.mock(PostMediaIDRequest(ks: "k", token: "t", type: .video), value: APIMediaIDWrapper(id: "2"))
+        let expectation = self.expectation(description: "upload media succeeded")
+        presenter.submit(mediaRecording: url, type: .video) { error in
+            XCTAssertNil(error)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 3)
+    }
+
+    func testSubmitMediaRecordingError() {
+        presenter.userID = "1"
+        let url = URL(string: "data:video/x-mp4,abcde")!
+        MockURLSession.mock(GetMediaServiceRequest(), error: NSError.internalError())
+        let expectation = self.expectation(description: "upload media failed")
+        presenter.submit(mediaRecording: url, type: .video) { error in
+            XCTAssertNotNil(error)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 3)
     }
 }
 

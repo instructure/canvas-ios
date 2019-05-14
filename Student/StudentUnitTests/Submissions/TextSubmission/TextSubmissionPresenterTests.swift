@@ -26,24 +26,31 @@ class TextSubmissionPresenterTests: PersistenceTestCase {
     var navigationController: UINavigationController?
 
     override func setUp() {
+        super.setUp()
         presenter = TextSubmissionPresenter(env: env, view: self, courseID: "1", assignmentID: "1", userID: "1")
     }
 
     func testSubmitError() {
         let text = "<b>submission</b>"
         let error = NSError(domain: "test", code: 5, userInfo: nil)
-        (presenter.env.api as! MockAPI).mock(submissionRequest(for: text), error: error)
-        presenter.submit(text)
-        let expectation = BlockExpectation(description: "got an error") { self.resultingError != nil }
-        wait(for: [expectation], timeout: 10)
+        MockURLSession.mock(submissionRequest(for: text), error: error)
+        let expectation = self.expectation(description: "got an error")
+        presenter.submit(text) { error in
+            XCTAssertNotNil(error)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 1)
     }
 
     func testSubmitSuccess() {
         let text = "<b>submission</b>"
-        (presenter.env.api as! MockAPI).mock(submissionRequest(for: text), value: APISubmission.make())
-        presenter.submit(text)
-        let expectation = BlockExpectation(description: "dismissed") { self.dismissed }
-        wait(for: [expectation], timeout: 10)
+        MockURLSession.mock(submissionRequest(for: text), value: APISubmission.make())
+        let expectation = self.expectation(description: "dismissed")
+        presenter.submit(text) { error in
+            XCTAssertNil(error)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 1)
     }
 
     func submissionRequest(for body: String?) -> CreateSubmissionRequest {
@@ -63,12 +70,4 @@ class TextSubmissionPresenterTests: PersistenceTestCase {
     }
 }
 
-extension TextSubmissionPresenterTests: TextSubmissionViewProtocol {
-    func dismiss(animated flag: Bool, completion: (() -> Void)?) {
-        dismissed = true
-    }
-
-    func showError(_ error: Error) {
-        resultingError = error
-    }
-}
+extension TextSubmissionPresenterTests: TextSubmissionViewProtocol {}

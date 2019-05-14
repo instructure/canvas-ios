@@ -273,7 +273,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
     }
 
     func submit(mediaRecording url: URL, type: MediaCommentType) {
-        let alert = UIAlertController(title: NSLocalizedString("Please wait", comment: ""), message: NSLocalizedString("Submission in progress...", comment: ""), preferredStyle: .alert)
+        let alert = UIAlertController(title: NSLocalizedString("Uploading", comment: ""), message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { [weak self] _ in
             self?.presenter?.cancelOnlineUpload()
         })

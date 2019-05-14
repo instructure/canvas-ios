@@ -123,7 +123,7 @@ class StudentTest: XCTestCase {
         file: StaticString = #file,
         line: UInt = #line
     ) {
-        XCTAssertNoThrow(try host.mockData(MockURLSession.mockData(
+        XCTAssertNoThrow(try host.mockData(MockDistantURLSession.mockData(
             requestable,
             value: value,
             response: response,
@@ -141,7 +141,7 @@ class StudentTest: XCTestCase {
         file: StaticString = #file,
         line: UInt = #line
     ) {
-        XCTAssertNoThrow(try host.mockData(MockURLSession.mockEncodedData(
+        XCTAssertNoThrow(try host.mockData(MockDistantURLSession.mockEncodedData(
             requestable,
             data: data,
             response: response,
@@ -159,7 +159,7 @@ class StudentTest: XCTestCase {
         file: StaticString = #file,
         line: UInt = #line
     ) {
-        XCTAssertNoThrow(try host.mockData(MockURLSession.mockData(
+        XCTAssertNoThrow(try host.mockData(MockDistantURLSession.mockData(
             request,
             data: data,
             response: response,
@@ -176,7 +176,7 @@ class StudentTest: XCTestCase {
         file: StaticString = #file,
         line: UInt = #line
     ) {
-        XCTAssertNoThrow(try host.mockDownload(MockURLSession.mockDownload(
+        XCTAssertNoThrow(try host.mockDownload(MockDistantURLSession.mockDownload(
             url,
             data: data,
             response: response,
