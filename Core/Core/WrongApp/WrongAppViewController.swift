@@ -74,14 +74,9 @@ public enum AppName: String {
     }
 }
 
-public protocol WrongAppViewControllerDelegate: class {
-    func loginAgainPressed()
-    func openURL(_: URL)
-}
-
 public class WrongAppViewController: UIViewController {
     var app: AppName?
-    weak var delegate: WrongAppViewControllerDelegate?
+    weak var delegate: LoginDelegate?
 
     @IBOutlet var messageTitle: UILabel!
     @IBOutlet var messageDescription: UILabel!
@@ -90,8 +85,8 @@ public class WrongAppViewController: UIViewController {
     @IBOutlet var loginButton: UIButton!
     @IBOutlet var canvasGuidesButton: UIButton!
 
-    public static func create(app: AppName, delegate: WrongAppViewControllerDelegate) -> WrongAppViewController {
-        let controller = self.loadFromStoryboard()
+    public static func create(app: AppName, delegate: LoginDelegate?) -> WrongAppViewController {
+        let controller = loadFromStoryboard()
         controller.app = app
         controller.delegate = delegate
         return controller
@@ -116,27 +111,28 @@ public class WrongAppViewController: UIViewController {
     }
 
     @IBAction func loginAgainButtonPressed(_ sender: UIButton) {
-        delegate?.loginAgainPressed()
+        guard let entry = AppEnvironment.shared.currentSession else { return }
+        delegate?.userDidLogout(keychainEntry: entry)
     }
 
     @IBAction func canvasGuidesButtonPressed(_ sender: UIButton) {
         guard let url = URL(string: "https://community.canvaslms.com/docs/DOC-9919") else {
             return
         }
-        delegate?.openURL(url)
+        delegate?.openExternalURL(url)
     }
 
     @IBAction func firstButtonPressed(_ sender: UIButton) {
         guard let url = app?.appsToShow().first?.url else {
             return
         }
-        delegate?.openURL(url)
+        delegate?.openExternalURL(url)
     }
 
     @IBAction func secondButtonPressed(_ sender: UIButton) {
         guard let url = app?.appsToShow().last?.url else {
             return
         }
-        delegate?.openURL(url)
+        delegate?.openExternalURL(url)
     }
 }

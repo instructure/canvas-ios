@@ -428,7 +428,8 @@ let router = Core.Router(routes: [
         return ActAsUserViewController.create(loginDelegate: loginDelegate)
     },
     Core.RouteHandler(.wrongApp, name: "wrongApp") { _, _ in
-        return WrongAppViewController.create(app: .parent, delegate: WrongAppDelegate.shared)
+        guard let loginDelegate = UIApplication.shared.delegate as? LoginDelegate else { return nil }
+        return WrongAppViewController.create(app: .parent, delegate: loginDelegate)
     },
     Core.RouteHandler(.developerMenu, name: "dev_menu") { _, _ in
         return DeveloperMenuViewController.create()
@@ -445,18 +446,4 @@ let router = Core.Router(routes: [
 
 public class ResetTransitionDelegate: NSObject, UIViewControllerTransitioningDelegate {
     public static let shared = ResetTransitionDelegate()
-}
-
-public class WrongAppDelegate: WrongAppViewControllerDelegate {
-    public static let shared = WrongAppDelegate()
-
-    public func loginAgainPressed() {
-        guard let delegate = UIApplication.shared.delegate as? ParentAppDelegate else { return }
-        guard let session = delegate.environment.currentSession else { return }
-        delegate.userDidLogout(keychainEntry: session)
-    }
-
-    public func openURL(_ url: URL) {
-        UIApplication.shared.open(url, options: [:], completionHandler: nil)
-    }
 }
