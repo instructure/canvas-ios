@@ -288,6 +288,13 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
                             })
                             alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
                             self?.present(alert, animated: true, completion: nil)
+                        } else {
+                            let alert = UIAlertController(title: NSLocalizedString("Success!", comment: ""), message: nil, preferredStyle: .alert)
+                            self?.present(alert, animated: true) {
+                                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(400)) {
+                                    alert.dismiss(animated: true, completion: nil)
+                                }
+                            }
                         }
                     }
                 }
