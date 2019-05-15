@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2C0A5C2C203650DE00B8C14F /* LoginFinished.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C0A5C2B203650DE00B8C14F /* LoginFinished.storyboard */; };
-		2C0A5C2F2036515A00B8C14F /* CKILoginFinishedViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C0A5C2D2036515A00B8C14F /* CKILoginFinishedViewController.h */; };
-		2C0A5C302036515A00B8C14F /* CKILoginFinishedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0A5C2E2036515A00B8C14F /* CKILoginFinishedViewController.m */; };
 		2C7041A5203CD7D300745253 /* UIAlertController+Show.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C7041A3203CD7D300745253 /* UIAlertController+Show.h */; };
 		2C7041A6203CD7D300745253 /* UIAlertController+Show.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7041A4203CD7D300745253 /* UIAlertController+Show.m */; };
 		3B2940161E7209AA00F2E49C /* CKIBrand.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B2940141E7209AA00F2E49C /* CKIBrand.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -219,8 +216,6 @@
 		499D1A4B1C8644A3005A86D2 /* CKIClient+CKITodoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 499D19711C8644A3005A86D2 /* CKIClient+CKITodoItem.m */; };
 		499D1A4C1C8644A3005A86D2 /* CKIClient+CKIUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 499D19721C8644A3005A86D2 /* CKIClient+CKIUser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		499D1A4D1C8644A3005A86D2 /* CKIClient+CKIUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 499D19731C8644A3005A86D2 /* CKIClient+CKIUser.m */; };
-		499D1A4E1C8644A3005A86D2 /* CKIClient+Login.h in Headers */ = {isa = PBXBuildFile; fileRef = 499D19741C8644A3005A86D2 /* CKIClient+Login.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		499D1A4F1C8644A3005A86D2 /* CKIClient+Login.m in Sources */ = {isa = PBXBuildFile; fileRef = 499D19751C8644A3005A86D2 /* CKIClient+Login.m */; };
 		499D1A501C8644A3005A86D2 /* CKIClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 499D19761C8644A3005A86D2 /* CKIClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		499D1A511C8644A3005A86D2 /* CKIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 499D19771C8644A3005A86D2 /* CKIClient.m */; };
 		499D1A521C8644A3005A86D2 /* CKIMediaServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 499D19781C8644A3005A86D2 /* CKIMediaServer.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -229,8 +224,6 @@
 		499D1A551C8644A3005A86D2 /* CKIClient+CKILiveAssessment.m in Sources */ = {isa = PBXBuildFile; fileRef = 499D197C1C8644A3005A86D2 /* CKIClient+CKILiveAssessment.m */; };
 		499D1A561C8644A3005A86D2 /* CKIClient+CKILiveAssessmentResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 499D197D1C8644A3005A86D2 /* CKIClient+CKILiveAssessmentResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		499D1A571C8644A3005A86D2 /* CKIClient+CKILiveAssessmentResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 499D197E1C8644A3005A86D2 /* CKIClient+CKILiveAssessmentResult.m */; };
-		499D1A581C8644A3005A86D2 /* CKILoginViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 499D19801C8644A3005A86D2 /* CKILoginViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		499D1A591C8644A3005A86D2 /* CKILoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 499D19811C8644A3005A86D2 /* CKILoginViewController.m */; };
 		499D1BBA1C864835005A86D2 /* EXTScope.h in Headers */ = {isa = PBXBuildFile; fileRef = 499D1BB81C864835005A86D2 /* EXTScope.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		499D1BBB1C864835005A86D2 /* metamacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 499D1BB91C864835005A86D2 /* metamacros.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		9FE0B52C1FBB7710003826AA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9FE0B52E1FBB7710003826AA /* InfoPlist.strings */; };
@@ -246,9 +239,6 @@
 /* Begin PBXFileReference section */
 		04B7BBDCB828F414AA45D2B6 /* Pods-defaults-CanvasKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasKit.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-CanvasKit/Pods-defaults-CanvasKit.debug.xcconfig"; sourceTree = "<group>"; };
 		25D4C8ECA1605DDE28318957 /* Pods-CanvasKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CanvasKit.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-CanvasKit/Pods-CanvasKit.debug.xcconfig"; sourceTree = "<group>"; };
-		2C0A5C2B203650DE00B8C14F /* LoginFinished.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginFinished.storyboard; sourceTree = "<group>"; };
-		2C0A5C2D2036515A00B8C14F /* CKILoginFinishedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CKILoginFinishedViewController.h; sourceTree = "<group>"; };
-		2C0A5C2E2036515A00B8C14F /* CKILoginFinishedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CKILoginFinishedViewController.m; sourceTree = "<group>"; };
 		2C7041A3203CD7D300745253 /* UIAlertController+Show.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+Show.h"; sourceTree = "<group>"; };
 		2C7041A4203CD7D300745253 /* UIAlertController+Show.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+Show.m"; sourceTree = "<group>"; };
 		2CD80599201BCF1A001D22CC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -462,8 +452,6 @@
 		499D19711C8644A3005A86D2 /* CKIClient+CKITodoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CKIClient+CKITodoItem.m"; sourceTree = "<group>"; };
 		499D19721C8644A3005A86D2 /* CKIClient+CKIUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CKIClient+CKIUser.h"; sourceTree = "<group>"; };
 		499D19731C8644A3005A86D2 /* CKIClient+CKIUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CKIClient+CKIUser.m"; sourceTree = "<group>"; };
-		499D19741C8644A3005A86D2 /* CKIClient+Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CKIClient+Login.h"; sourceTree = "<group>"; };
-		499D19751C8644A3005A86D2 /* CKIClient+Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CKIClient+Login.m"; sourceTree = "<group>"; };
 		499D19761C8644A3005A86D2 /* CKIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKIClient.h; sourceTree = "<group>"; };
 		499D19771C8644A3005A86D2 /* CKIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKIClient.m; sourceTree = "<group>"; };
 		499D19781C8644A3005A86D2 /* CKIMediaServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKIMediaServer.h; sourceTree = "<group>"; };
@@ -472,8 +460,6 @@
 		499D197C1C8644A3005A86D2 /* CKIClient+CKILiveAssessment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CKIClient+CKILiveAssessment.m"; sourceTree = "<group>"; };
 		499D197D1C8644A3005A86D2 /* CKIClient+CKILiveAssessmentResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CKIClient+CKILiveAssessmentResult.h"; sourceTree = "<group>"; };
 		499D197E1C8644A3005A86D2 /* CKIClient+CKILiveAssessmentResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CKIClient+CKILiveAssessmentResult.m"; sourceTree = "<group>"; };
-		499D19801C8644A3005A86D2 /* CKILoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKILoginViewController.h; sourceTree = "<group>"; };
-		499D19811C8644A3005A86D2 /* CKILoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKILoginViewController.m; sourceTree = "<group>"; };
 		499D1BB81C864835005A86D2 /* EXTScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTScope.h; sourceTree = "<group>"; };
 		499D1BB91C864835005A86D2 /* metamacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = metamacros.h; sourceTree = "<group>"; };
 		5B3DFCF020DF8291004D771E /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -593,7 +579,6 @@
 				499D18A21C8644A3005A86D2 /* Helpers */,
 				499D18AF1C8644A3005A86D2 /* Models */,
 				499D192F1C8644A3005A86D2 /* Networking */,
-				499D197F1C8644A3005A86D2 /* UIKit+CanvasKit */,
 				499D188A1C8643E6005A86D2 /* CanvasKit.h */,
 				499D188C1C8643E6005A86D2 /* Info.plist */,
 			);
@@ -856,8 +841,6 @@
 				499D19711C8644A3005A86D2 /* CKIClient+CKITodoItem.m */,
 				499D19721C8644A3005A86D2 /* CKIClient+CKIUser.h */,
 				499D19731C8644A3005A86D2 /* CKIClient+CKIUser.m */,
-				499D19741C8644A3005A86D2 /* CKIClient+Login.h */,
-				499D19751C8644A3005A86D2 /* CKIClient+Login.m */,
 				499D19761C8644A3005A86D2 /* CKIClient.h */,
 				499D19771C8644A3005A86D2 /* CKIClient.m */,
 				499D19781C8644A3005A86D2 /* CKIMediaServer.h */,
@@ -878,18 +861,6 @@
 				499D197E1C8644A3005A86D2 /* CKIClient+CKILiveAssessmentResult.m */,
 			);
 			path = "Live Assessments";
-			sourceTree = "<group>";
-		};
-		499D197F1C8644A3005A86D2 /* UIKit+CanvasKit */ = {
-			isa = PBXGroup;
-			children = (
-				499D19801C8644A3005A86D2 /* CKILoginViewController.h */,
-				499D19811C8644A3005A86D2 /* CKILoginViewController.m */,
-				2C0A5C2B203650DE00B8C14F /* LoginFinished.storyboard */,
-				2C0A5C2D2036515A00B8C14F /* CKILoginFinishedViewController.h */,
-				2C0A5C2E2036515A00B8C14F /* CKILoginFinishedViewController.m */,
-			);
-			path = "UIKit+CanvasKit";
 			sourceTree = "<group>";
 		};
 		499D1BAA1C8645F4005A86D2 /* Dependencies */ = {
@@ -963,7 +934,6 @@
 				499D19CA1C8644A3005A86D2 /* CKIModel.h in Headers */,
 				499D19EC1C8644A3005A86D2 /* CKISubmission+TextEntrySubmissionHTMLFile.h in Headers */,
 				499D1A361C8644A3005A86D2 /* CKIClient+CKIPoll.h in Headers */,
-				499D1A581C8644A3005A86D2 /* CKILoginViewController.h in Headers */,
 				499D19821C8644A3005A86D2 /* Constants.h in Headers */,
 				499D19CE1C8644A3005A86D2 /* CKIModuleItem.h in Headers */,
 				499D19D61C8644A3005A86D2 /* CKIPage.h in Headers */,
@@ -988,7 +958,6 @@
 				499D1A101C8644A3005A86D2 /* CKIClient+CKIAssignmentGroup.h in Headers */,
 				499D199D1C8644A3005A86D2 /* CKIActivityStreamMessageItem.h in Headers */,
 				499D19A11C8644A3005A86D2 /* CKIAPIV1.h in Headers */,
-				499D1A4E1C8644A3005A86D2 /* CKIClient+Login.h in Headers */,
 				499D1A401C8644A3005A86D2 /* CKIClient+CKISection.h in Headers */,
 				499D1A0C1C8644A3005A86D2 /* CKIClient+CKIActivityStreamItem.h in Headers */,
 				499D19E01C8644A3005A86D2 /* CKIQuiz.h in Headers */,
@@ -1019,7 +988,6 @@
 				499D1A181C8644A3005A86D2 /* CKIClient+CKICourse.h in Headers */,
 				499D19BC1C8644A3005A86D2 /* CKIFavorite.h in Headers */,
 				499D19C41C8644A3005A86D2 /* CKIGroupCategory.h in Headers */,
-				2C0A5C2F2036515A00B8C14F /* CKILoginFinishedViewController.h in Headers */,
 				499D1A561C8644A3005A86D2 /* CKIClient+CKILiveAssessmentResult.h in Headers */,
 				499D1A461C8644A3005A86D2 /* CKIClient+CKISubmissionRecord.h in Headers */,
 				499D1A541C8644A3005A86D2 /* CKIClient+CKILiveAssessment.h in Headers */,
@@ -1137,7 +1105,6 @@
 				499D19F61C8644A3005A86D2 /* jquery-1.4.2.min.js in Resources */,
 				499D19F71C8644A3005A86D2 /* jquery.json-2.2.min.js in Resources */,
 				499D19F41C8644A3005A86D2 /* discussion_submissions.css in Resources */,
-				2C0A5C2C203650DE00B8C14F /* LoginFinished.storyboard in Resources */,
 				9FE0B52C1FBB7710003826AA /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1183,7 +1150,6 @@
 				499D19A81C8644A3005A86D2 /* CKIAttachment.m in Sources */,
 				499D19B91C8644A3005A86D2 /* CKIEnrollment.m in Sources */,
 				499D19921C8644A3005A86D2 /* CKIActivityStreamAnnouncementItem.m in Sources */,
-				2C0A5C302036515A00B8C14F /* CKILoginFinishedViewController.m in Sources */,
 				499D19D51C8644A3005A86D2 /* CKIOutcomeLink.m in Sources */,
 				499D19F31C8644A3005A86D2 /* CKISubmissionRecord.m in Sources */,
 				499D19B51C8644A3005A86D2 /* CKIDiscussionEntry.m in Sources */,
@@ -1231,10 +1197,8 @@
 				499D1A3B1C8644A3005A86D2 /* CKIClient+CKIPollSession.m in Sources */,
 				499D1A511C8644A3005A86D2 /* CKIClient.m in Sources */,
 				499D1A131C8644A3005A86D2 /* CKIClient+CKICalendarEvent.m in Sources */,
-				499D1A591C8644A3005A86D2 /* CKILoginViewController.m in Sources */,
 				499D1A571C8644A3005A86D2 /* CKIClient+CKILiveAssessmentResult.m in Sources */,
 				499D19CF1C8644A3005A86D2 /* CKIModuleItem.m in Sources */,
-				499D1A4F1C8644A3005A86D2 /* CKIClient+Login.m in Sources */,
 				499D19C91C8644A3005A86D2 /* CKILockInfo.m in Sources */,
 				499D1A371C8644A3005A86D2 /* CKIClient+CKIPoll.m in Sources */,
 				499D19AD1C8644A3005A86D2 /* CKIConversation.m in Sources */,

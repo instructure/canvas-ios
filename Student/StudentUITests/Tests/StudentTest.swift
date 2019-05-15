@@ -16,33 +16,40 @@
 
 import Foundation
 import XCTest
+import SwiftUITest
 @testable import Core
 @testable import TestsFoundation
 
-var app: XCUIApplication?
+var xcuiApp: XCUIApplication?
+
+// Always recompute app to avoid stale testCase references
+private var getApp = { return DriverFactory.getEarlGreyDriver() }
+var app: Driver { return getApp() }
+var host: TestHost {
+    return unsafeBitCast(
+        GREYHostApplicationDistantObject.sharedInstance,
+        to: TestHost.self)
+}
 
 class StudentTest: XCTestCase {
-    var host: TestHost {
-        return unsafeBitCast(
-            GREYHostApplicationDistantObject.sharedInstance,
-            to: TestHost.self)
-    }
 
     override func setUp() {
         super.setUp()
         continueAfterFailure = false
-        if app == nil {
-            app = XCUIApplication()
+        if xcuiApp == nil {
+            xcuiApp = XCUIApplication()
 
-            var env = app!.launchEnvironment
+            var env = xcuiApp!.launchEnvironment
             env["IS_UI_TEST"] = "TRUE"
-            app!.launchEnvironment = env
+            xcuiApp!.launchEnvironment = env
 
-            app!.launch()
+            xcuiApp!.launch()
         }
         host.reset()
-        sleep(1) // FIXME: Remove this and fix flakiness better.
         // This sleep helps ensure old views got cleaned up, so EG2 doesn't find them accidentally.
+        sleep(1) // FIXME: Remove this and fix flakiness better.
+
+        getApp = { return EarlGreyDriver(xcuiApp!, testCase: self) }
     }
 
     func show(_ route: String) {
@@ -50,7 +57,7 @@ class StudentTest: XCTestCase {
     }
 
     func dismissKeyboard() {
-        guard let app = app else {
+        guard let app = xcuiApp else {
             XCTFail("app is not set")
             return
         }
@@ -62,7 +69,7 @@ class StudentTest: XCTestCase {
     }
 
     func navBarColorHex() -> String? {
-        guard let image = app?.navigationBars.firstMatch.screenshot().image,
+        guard let image = xcuiApp?.navigationBars.firstMatch.screenshot().image,
             let pixelData = image.cgImage?.dataProvider?.data,
             let data = CFDataGetBytePtr(pixelData) else {
             return nil
@@ -74,8 +81,8 @@ class StudentTest: XCTestCase {
 
     func capturePhoto() {
         allowAccessToCamera()
-        app!.buttons["PhotoCapture"].tap()
-        let usePhoto = app!.buttons["Use Photo"]
+        xcuiApp!.buttons["PhotoCapture"].tap()
+        let usePhoto = xcuiApp!.buttons["Use Photo"]
 
         // Sometimes takes a few seconds to focus
         _ = usePhoto.waitForExistence(timeout: 10)
@@ -83,7 +90,7 @@ class StudentTest: XCTestCase {
     }
 
     func allowAccessToCamera() {
-        let alert = app!.alerts["“Student” Would Like to Access the Camera"]
+        let alert = xcuiApp!.alerts["“Student” Would Like to Access the Camera"]
         if alert.exists {
             alert.buttons["OK"].tap()
         }
@@ -99,11 +106,11 @@ class StudentTest: XCTestCase {
             }
         }
         activate()
-        if !app!.buttons[id].waitForExistence(timeout: 1) {
+        if !xcuiApp!.buttons[id].waitForExistence(timeout: 1) {
             // Cause the alert handler to be invoked if the alert is currently shown.
             XCUIApplication().swipeUp()
         }
-        _ = app!.buttons[id].waitForExistence(timeout: 1)
+        _ = xcuiApp!.buttons[id].waitForExistence(timeout: 1)
         removeUIInterruptionMonitor(alertHandler)
     }
 

@@ -27,7 +27,7 @@ import ReactNative, {
 } from 'react-native'
 import Screen from '../../../routing/Screen'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import { FormLabel } from '../../../common/text'
+import { Heading1, FormLabel } from '../../../common/text'
 import RowWithTextInput from '../../../common/components/rows/RowWithTextInput'
 import RowWithSwitch from '../../../common/components/rows/RowWithSwitch'
 import RowWithDetail from '../../../common/components/rows/RowWithDetail'
@@ -40,6 +40,7 @@ import {
   PageModel,
 } from '../../../canvas-api/model-api'
 import { alertError } from '../../../redux/middleware/error-handler'
+import { isTeacher } from '../../app'
 
 const PickerItem = PickerIOS.Item
 
@@ -115,16 +116,20 @@ export class PageEdit extends Component<Props, State> {
             ref={(r) => { this.scrollView = r }}
             keyboardDismissMode='on-drag'
           >
-            <FormLabel>{i18n('Title')}</FormLabel>
-            <RowWithTextInput
-              defaultValue={this.state.title}
-              border='both'
-              onChangeText={this.handleTitleChange}
-              identifier='pages.edit.titleInput'
-              placeholder={i18n('Add title')}
-              onFocus={this._scrollToInput}
-            />
-
+            {isTeacher()
+              ? <View>
+                <FormLabel>{i18n('Title')}</FormLabel>
+                <RowWithTextInput
+                  defaultValue={this.state.title}
+                  border='both'
+                  onChangeText={this.handleTitleChange}
+                  identifier='pages.edit.titleInput'
+                  placeholder={i18n('Add title')}
+                  onFocus={this._scrollToInput}
+                />
+              </View>
+              : <Heading1 style={style.studentTitle}>{this.state.title}</Heading1>
+            }
             <FormLabel>{i18n('Description')}</FormLabel>
             <View
               style={style.description}
@@ -142,51 +147,54 @@ export class PageEdit extends Component<Props, State> {
                 onFocus={this._scrollToRCE}
               />
             </View>
-
-            <FormLabel>{i18n('Details')}</FormLabel>
-            { !this.state.isFrontPage &&
-              <RowWithSwitch
-                title={i18n('Publish')}
-                border='bottom'
-                value={this.state.published}
-                onValueChange={this.handlePublishedChange}
-                testID='pages.edit.published.row'
-                identifier='pages.edit.published.switch'
-              />
-            }
-            { !(page && page.isFrontPage) && this.state.published &&
-              <RowWithSwitch
-                title={i18n('Set as Front Page')}
-                border='both'
-                value={this.state.isFrontPage}
-                onValueChange={this.handleIsFrontPageChange}
-                testID='pages.edit.front_page.row'
-                identifier='pages.edit.front_page.switch'
-              />
-            }
-            <RowWithDetail
-              title={i18n('Can Edit')}
-              detailSelected={this.state.editingRolesPickerShown}
-              detail={editingRoles()[editingRole]}
-              disclosureIndicator
-              border='bottom'
-              onPress={this.toggleEditingRoles}
-              testID='pages.edit.editing_roles.row'
-            />
-            { this.state.editingRolesPickerShown &&
-              <PickerIOS
-                selectedValue={editingRole}
-                onValueChange={this.handleEditingRolesChange}
-                testID='pages.edit.editing_roles.picker'
-              >
-                {Object.keys(editingRoles()).map(key => (
-                  <PickerItem
-                    key={key}
-                    value={key}
-                    label={editingRoles()[key]}
+            {isTeacher() &&
+              <View>
+                <FormLabel>{i18n('Details')}</FormLabel>
+                { !this.state.isFrontPage &&
+                  <RowWithSwitch
+                    title={i18n('Publish')}
+                    border='bottom'
+                    value={this.state.published}
+                    onValueChange={this.handlePublishedChange}
+                    testID='pages.edit.published.row'
+                    identifier='pages.edit.published.switch'
                   />
-                ))}
-              </PickerIOS>
+                }
+                { !(page && page.isFrontPage) && this.state.published &&
+                  <RowWithSwitch
+                    title={i18n('Set as Front Page')}
+                    border='both'
+                    value={this.state.isFrontPage}
+                    onValueChange={this.handleIsFrontPageChange}
+                    testID='pages.edit.front_page.row'
+                    identifier='pages.edit.front_page.switch'
+                  />
+                }
+                <RowWithDetail
+                  title={i18n('Can Edit')}
+                  detailSelected={this.state.editingRolesPickerShown}
+                  detail={editingRoles()[editingRole]}
+                  disclosureIndicator
+                  border='bottom'
+                  onPress={this.toggleEditingRoles}
+                  testID='pages.edit.editing_roles.row'
+                />
+                {this.state.editingRolesPickerShown &&
+                  <PickerIOS
+                    selectedValue={editingRole}
+                    onValueChange={this.handleEditingRolesChange}
+                    testID='pages.edit.editing_roles.picker'
+                  >
+                    {Object.keys(editingRoles()).map(key => (
+                      <PickerItem
+                        key={key}
+                        value={key}
+                        label={editingRoles()[key]}
+                      />
+                    ))}
+                  </PickerIOS>
+                }
+              </View>
             }
           </KeyboardAwareScrollView>
         </View>
@@ -276,6 +284,9 @@ const style = StyleSheet.create({
     borderBottomColor: colors.seperatorColor,
     backgroundColor: 'white',
     height: 200,
+  },
+  studentTitle: {
+    padding: 12,
   },
 })
 

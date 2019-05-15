@@ -29,8 +29,7 @@ import React
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
-    var window: UIWindow? = MasqueradableWindow(frame: UIScreen.main.bounds)
-    @objc let loginConfig = LoginConfiguration(mobileVerifyName: "iosTeacher", logo: UIImage(named: "teacher-logomark")!, fullLogo: UIImage(named: "teacher-logo")!)
+    lazy var window: UIWindow? = ActAsUserWindow(frame: UIScreen.main.bounds, loginDelegate: self)
 
     let hasFabric = (Bundle.main.object(forInfoDictionaryKey: "Fabric") as? [String: Any])?["APIKey"] != nil
     let hasFirebase = FirebaseOptions.defaultOptions()?.apiKey != nil
@@ -41,78 +40,78 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         return env
     }()
 
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        if NSClassFromString("XCTestCase") != nil { return true }
+        setupCrashlytics()
+        ResetAppIfNecessary()
+        CacheManager.shared.clearIfNeeded()
+        if hasFirebase {
+            FirebaseApp.configure()
+        }
+        CanvasAnalytics.setHandler(self)
+        DocViewerViewController.setup(.teacherPSPDFKitLicense)
+        prepareReactNative()
+        try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+
+        UIApplication.shared.reactive.applicationIconBadgeNumber <~ TabBarBadgeCounts.applicationIconBadgeNumber
+
+        if let session = Keychain.mostRecentSession {
+            window?.rootViewController = LoadingViewController.create()
+            userDidLogin(keychainEntry: session)
+        } else {
+            window?.rootViewController = LoginNavigationController.create(loginDelegate: self, fromLaunch: true)
+        }
+        window?.makeKeyAndVisible()
+        return true
+    }
+
+    func setup(session: KeychainEntry) {
+        environment.userDidLogin(session: session)
+        CoreWebView.keepCookieAlive(for: environment)
+        if Locale.current.regionCode != "CA" {
+            let crashlyticsUserId = "\(session.userID)@\(session.baseURL.host ?? session.baseURL.absoluteString)"
+            Crashlytics.sharedInstance().setUserIdentifier(crashlyticsUserId)
+        }
+        // Legacy CanvasKeymaster support
+        let legacyClient = CKIClient(baseURL: session.baseURL, token: session.accessToken)!
+        legacyClient.actAsUserID = session.actAsUserID
+        legacyClient.originalIDOfMasqueradingUser = session.originalUserID
+        legacyClient.originalBaseURL = session.originalBaseURL
+        legacyClient.fetchCurrentUser().subscribeNext({ user in
+            legacyClient.setValue(user, forKey: "currentUser")
+            CanvasKeymaster.the().setup(with: legacyClient)
+            GetBrandVariables().fetch(environment: self.environment) { response, _, _ in
+                Brand.setCurrent(Brand(core: Core.Brand.shared), applyInWindow: self.window)
+                NativeLoginManager.login(as: session)
+            }
+        }, error: { _ in DispatchQueue.main.async {
+            self.userDidLogout(keychainEntry: session)
+        } })
+    }
+
+    @objc func prepareReactNative() {
+        HelmManager.shared.bridge = RCTBridge(delegate: self, launchOptions: nil)
+        registerNativeRoutes()
+        NativeLoginManager.shared().delegate = self
+        HelmManager.shared.onReactLoginComplete = {
+            NotificationKitController.setupForPushNotifications(delegate: self)
+            guard let window = self.window else { return }
+            let controller = RootTabBarController()
+            controller.view.layoutIfNeeded()
+            UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
+                window.rootViewController = controller
+            }, completion: nil)
+        }
+        HelmManager.shared.onReactReload = {
+            guard self.window?.rootViewController is RootTabBarController else { return }
+            self.changeUser()
+        }
+    }
+
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         NotificationKitController.didRegisterForRemoteNotifications(deviceToken) { [weak self] error in
             ErrorReporter.reportError(error.addingInfo(), from: self?.window?.rootViewController)
         }
-    }
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        setupCrashlytics()
-        ResetAppIfNecessary()
-        clearCache()
-        if hasFirebase {
-            FirebaseApp.configure()
-        }
-        setupForPushNotifications()
-        preparePSPDFKit()
-        try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
-        showLoadingState()
-        window?.makeKeyAndVisible()
-        UIApplication.shared.reactive.applicationIconBadgeNumber <~ TabBarBadgeCounts.applicationIconBadgeNumber
-        
-        DispatchQueue.main.async {
-            self.prepareReactNative()
-            self.initiateLoginProcess()
-            CanvasAnalytics.setHandler(self)
-        }
-        
-        return true
-    }
-    
-    @objc func prepareReactNative() {
-        HelmManager.shared.bridge = RCTBridge(delegate: self, launchOptions: nil)
-        registerNativeRoutes()
-        HelmManager.shared.onReactLoginComplete = {
-            guard let window = self.window else { return }
-            UIView.transition(with: window, duration: 0.25, options: .transitionCrossDissolve, animations: {
-                let loading = UIViewController()
-                loading.view.backgroundColor = .white
-                window.rootViewController = loading
-            }, completion: { _ in
-                window.rootViewController = RootTabBarController()
-            })
-        }
-        HelmManager.shared.onReactReload = {
-            self.showLoadingState()
-        }
-    }
-    
-    @objc func showLoadingState() {
-        guard let window = self.window else { return }
-        if let root = window.rootViewController, let tag = root.tag, tag == "LaunchScreenPlaceholder" { return }
-        let placeholder = UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateViewController(withIdentifier: "LaunchScreen")
-        placeholder.tag = "LaunchScreenPlaceholder"
-        
-        UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: {
-            window.rootViewController = placeholder
-        }, completion:nil)
-    }
-    
-    @objc func preparePSPDFKit() {
-        guard let key = Secret.teacherPSPDFKitLicense.string else { return }
-        PSPDFKit.setLicenseKey(key)
-    }
-    
-    @objc func initiateLoginProcess() {
-        CanvasKeymaster.the().fetchesBranding = true
-        CanvasKeymaster.the().delegate = loginConfig
-        
-        NativeLoginManager.shared().delegate = self
-    }
-    
-    @objc func setupForPushNotifications() {
-        NotificationKitController.setupForPushNotifications(delegate: self)
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
@@ -129,12 +128,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
+        CoreWebView.keepCookieAlive(for: environment)
         if (!uiTesting) {
             AppStoreReview.handleLaunch()
         }
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
+        CoreWebView.stopCookieKeepAlive()
         LocalizationManager.closed()
     }
     
@@ -161,16 +162,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         return true
     }
-
-    func clearCache() {
-        if CacheManager.shared.lastDeletedAt == nil {
-            do {
-                try CacheManager.shared.deleteAll()
-            } catch {
-                assertionFailure("failed to delete cache")
-            }
-        }
-    }
 }
 
 extension AppDelegate: CanvasAnalyticsHandler {
@@ -188,52 +179,59 @@ extension AppDelegate: RCTBridgeDelegate {
     }
 }
 
-extension AppDelegate: NativeLoginManagerDelegate {
-    func didLogin(_ client: CKIClient) {
-        if let brandingInfo = client.branding?.jsonDictionary() as? [String: Any] {
-            Brand.setCurrent(Brand(webPayload: brandingInfo), applyInWindow: window)
-            // copy to new Core.Brand
-            if let data = try? JSONSerialization.data(withJSONObject: brandingInfo) {
-                let response = try! JSONDecoder().decode(APIBrandVariables.self, from: data)
-                Core.Brand.shared = Core.Brand(response: response)
-            }
-        }
+extension AppDelegate: LoginDelegate, NativeLoginManagerDelegate {
+    var loginLogo: UIImage { return UIImage(named: "teacher-logo")! }
 
-        if let entry = client.keychainEntry {
-            Keychain.addEntry(entry)
-            environment.userDidLogin(session: entry)
-            CoreWebView.keepCookieAlive(for: environment)
-        }
+    func changeUser() {
+        guard let window = window, !(window.rootViewController is LoginNavigationController) else { return }
+        UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft, animations: {
+            window.rootViewController = LoginNavigationController.create(loginDelegate: self)
+        }, completion: nil)
+    }
 
-        if let locale = client.effectiveLocale {
-            LocalizationManager.setCurrentLocale(locale)
-        }
-
-        let countryCode: String? = Locale.current.regionCode
-        if countryCode != "CA" {
-            let session = client.authSession
-            let crashlyticsUserId = "\(session.user.id)@\(session.baseURL.host ?? session.baseURL.absoluteString)"
-            Crashlytics.sharedInstance().setUserIdentifier(crashlyticsUserId)
+    func stopActing() {
+        if let session = environment.currentSession {
+            stopActing(as: session)
         }
     }
-    
-    func didLogout(_ controller: UIViewController) {
-        if let entry = environment.currentSession {
-            environment.userDidLogout(session: entry)
-            CoreWebView.stopCookieKeepAlive()
+
+    func logout() {
+        if let session = environment.currentSession {
+            userDidLogout(keychainEntry: session)
         }
-        guard let window = self.window else { return }
-        Keychain.clearEntries()
-        
-        UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: {
-            window.rootViewController = controller
-        }, completion:nil)
+    }
+
+    func openExternalURL(_ url: URL) {
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
+
+    func userDidLogin(keychainEntry: KeychainEntry) {
+        Keychain.addEntry(keychainEntry)
+        if let locale = keychainEntry.locale {
+            CanvasCore.LocalizationManager.setCurrentLocale(locale)
+            if CanvasCore.LocalizationManager.needsRestart { return }
+        }
+        setup(session: keychainEntry)
+    }
+
+    func userDidStopActing(as keychainEntry: KeychainEntry) {
+        Keychain.removeEntry(keychainEntry)
+        guard environment.currentSession == keychainEntry else { return }
+        NotificationKitController.deregisterPushNotifications { _ in }
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        environment.userDidLogout(session: keychainEntry)
+        CoreWebView.stopCookieKeepAlive()
+    }
+
+    func userDidLogout(keychainEntry: KeychainEntry) {
+        let wasCurrent = environment.currentSession == keychainEntry
+        userDidStopActing(as: keychainEntry)
+        if wasCurrent { changeUser() }
     }
 }
 
 // MARK: Crashlytics
 extension AppDelegate {
-
     @objc func setupCrashlytics() {
         guard !uiTesting else { return }
         guard hasFabric else {

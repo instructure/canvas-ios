@@ -35,6 +35,9 @@
 "Bold" = "粗體";
 
 /* No comment provided by engineer. */
+"Camera" = "攝影機";
+
+/* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "找不到您的學校？請嘗試輸入學校完整 URL。";
 
 /* No comment provided by engineer. */
@@ -89,13 +92,22 @@
 "Domain" = "網域";
 
 /* No comment provided by engineer. */
+"Done" = "已完成";
+
+/* No comment provided by engineer. */
 "Error" = "錯誤";
 
 /* No comment provided by engineer. */
 "External Tool" = "外部工具";
 
 /* No comment provided by engineer. */
+"Failed upload" = "上傳失敗";
+
+/* No comment provided by engineer. */
 "File Upload" = "檔案上傳";
+
+/* No comment provided by engineer. */
+"Files" = "檔案";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "最終評分：%@";
@@ -146,6 +158,9 @@
 "Launch External Tool" = "啟動外部工具";
 
 /* No comment provided by engineer. */
+"Library" = "檔案庫";
+
+/* No comment provided by engineer. */
 "Link" = "連結";
 
 /* No comment provided by engineer. */
@@ -186,6 +201,9 @@
 
 /* No comment provided by engineer. */
 "N/A" = "不適用";
+
+/* No comment provided by engineer. */
+"No Content" = "無內容";
 
 /* No comment provided by engineer. */
 "No Due Date" = "無截止日期";
@@ -230,6 +248,9 @@
 "Pause" = "暫停";
 
 /* No comment provided by engineer. */
+"Permission Needed" = "需要權限";
+
+/* No comment provided by engineer. */
 "Play" = "播放";
 
 /* No comment provided by engineer. */
@@ -260,6 +281,9 @@
 "Reply to the annotation or previous comments" = "回覆註釋或上一則評論";
 
 /* No comment provided by engineer. */
+"Retry" = "重試";
+
+/* No comment provided by engineer. */
 "See what's new." = "看看有哪些變更。";
 
 /* No comment provided by engineer. */
@@ -281,6 +305,9 @@
 "Set text color" = "設定文字顏色";
 
 /* No comment provided by engineer. */
+"Settings" = "設定";
+
+/* No comment provided by engineer. */
 "Site Admin Login" = "網站管理員登入";
 
 /* No comment provided by engineer. */
@@ -294,6 +321,9 @@
 
 /* No comment provided by engineer. */
 "Submission failed." = "提交項目失敗。";
+
+/* No comment provided by engineer. */
+"Submit" = "提交";
 
 /* No comment provided by engineer. */
 "Submit Assignment" = "提交作業";
@@ -347,6 +377,12 @@
 "Unordered List" = "無序列表";
 
 /* No comment provided by engineer. */
+"Uploading %@ of %@" = "正在上傳第 %1$@ / 個檔案%2$@";
+
+/* No comment provided by engineer. */
+"Uploading..." = "正在上傳...";
+
+/* No comment provided by engineer. */
 "URL" = "URL";
 
 /* No comment provided by engineer. */
@@ -369,6 +405,9 @@
 
 /* No comment provided by engineer. */
 "yellow" = "黃色";
+
+/* No comment provided by engineer. */
+"You must enable Microphone permissions in Settings." = "您必須在「設定」中啟用麥克風的權限。";
 
 /* No comment provided by engineer. */
 "You need at least one active observer enrollment to use Canvas Parent. If you're a student or teacher, try one of our other apps below." = "您需要至少一個啟用的觀察者註冊以使用 Canvas Parent。如果您是學生或教師，可以試用以下其中一個應用程式。";

@@ -47,13 +47,13 @@ class SyllabusTests: StudentTest {
         NavBar.assertText(.subtitle, equals: course.course_code!)
 
         page.waitToExist(.syllabusWebView, timeout: 5)
-        let description = app?.webViews.staticTexts.firstMatch.label
+        let description = xcuiApp?.webViews.staticTexts.firstMatch.label
         XCTAssertEqual(description, "hello world")
 
-        app?.swipeLeft()
+        xcuiApp?.swipeLeft()
         page.waitToExist(.assignmentList, timeout: 5)
 
-        let cells = app?.cells.containing(NSPredicate(format: "label CONTAINS %@", assignmentName))
+        let cells = xcuiApp?.cells.containing(NSPredicate(format: "label CONTAINS %@", assignmentName))
 
         if let assignmentCell = cells?.firstMatch {
             assignmentCell.tap()

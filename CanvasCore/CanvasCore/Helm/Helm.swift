@@ -17,12 +17,13 @@
 import UIKit
 import CanvasKeymaster
 import React
+import Core
 
 public typealias ModuleName = String
 
 let HelmCanBecomeMaster = "canBecomeMaster"
 let HelmPrefersModalPresentation = "prefersModalPresentation"
-let DrawerTransition = DrawerTransitionDelegate()
+let DrawerTransition = DrawerTransitioningDelegate()
 typealias HelmPreActionHandler = (HelmViewController) -> Void
 
 public struct HelmViewControllerFactory {

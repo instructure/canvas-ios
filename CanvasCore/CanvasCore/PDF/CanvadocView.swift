@@ -275,7 +275,7 @@ public class CanvadocView: UIView {
 
 extension CanvadocView: PSPDFAnnotationStateManagerDelegate {
     public func annotationStateManager(_ manager: PSPDFAnnotationStateManager, didChangeState oldState: AnnotationString?, to newState: AnnotationString?, variant oldVariant: AnnotationVariantString?, to newVariant: AnnotationVariantString?) {
-        if let _ = newState {
+        if let state = newState, !state.rawValue.isEmpty {
             setScrollEnabled(false)
         } else {
             setScrollEnabled(true)

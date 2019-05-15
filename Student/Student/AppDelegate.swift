@@ -22,7 +22,7 @@ import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate, AppEnvironmentDelegate {
-    var window: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
+    lazy var window: UIWindow? = ActAsUserWindow(frame: UIScreen.main.bounds, loginDelegate: self)
 
     lazy var environment: AppEnvironment = {
         let env = AppEnvironment.shared
@@ -78,9 +78,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     func setup(session: KeychainEntry) {
         environment.userDidLogin(session: session)
         CoreWebView.keepCookieAlive(for: environment)
-        let getBrand = GetBrandVariables(env: environment, force: true)
-        getBrand.completionBlock = { DispatchQueue.main.async { self.showRootView() } }
-        environment.queue.addOperation(getBrand)
+        GetBrandVariables().fetch(environment: environment) { _, _, _ in DispatchQueue.main.async {
+            self.showRootView()
+        } }
     }
 
     func showRootView() {
@@ -102,7 +102,7 @@ extension AppDelegate: LoginDelegate {
     var loginLogo: UIImage { return UIImage(named: "CanvasStudent")! }
 
     func changeUser() {
-        guard let window = window else { return }
+        guard let window = window, !(window.rootViewController is LoginNavigationController) else { return }
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft, animations: {
             window.rootViewController = LoginNavigationController.create(loginDelegate: self)
         }, completion: nil)

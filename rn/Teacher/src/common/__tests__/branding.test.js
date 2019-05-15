@@ -23,13 +23,26 @@ import {
 } from '../branding'
 import colors from '../colors'
 
-describe('setupBrandingFromNativeBrandingInfo', () => {
-  it('uses defaults', () => {
-    const expected = { ...branding }
-    setupBrandingFromNativeBrandingInfo({})
-    expect(branding).toEqual(expected)
-  })
+const emptyBrand = {
+  buttonPrimaryBackground: 'white',
+  buttonPrimaryText: 'white',
+  buttonSecondaryBackground: 'white',
+  buttonSecondaryText: 'white',
+  fontColorDark: 'white',
+  headerImageBackground: 'white',
+  headerImageUrl: null,
+  linkColor: 'white',
+  navBackground: 'white',
+  navBadgeBackground: 'white',
+  navBadgeText: 'white',
+  navIconFill: 'white',
+  navIconFillActive: 'white',
+  navTextColor: 'white',
+  navTextColorActive: 'white',
+  primary: 'white',
+}
 
+describe('setupBrandingFromNativeBrandingInfo', () => {
   it('parses native branding info', () => {
     let expected = {
       link: 'linkColor',
@@ -43,29 +56,30 @@ describe('setupBrandingFromNativeBrandingInfo', () => {
       primaryBrandColor: '#374A59',
     }
 
-    let input = {
-      'ic-link-color': 'linkColor',
-      'ic-brand-global-nav-bgd': 'navBarColor',
-      'ic-brand-button--primary-text': 'primaryButtonTextColor',
-      'ic-brand-button--primary-bgd': 'primaryButtonColor',
-      'ic-brand-font-color-dark': 'fontColorDark',
-      'ic-brand-header-image': './src/images/canvas-logo.png',
-      'ic-brand-global-nav-ic-icon-svg-fill': 'navBarButtonColor',
-      'ic-brand-global-nav-menu-item__text-color': 'navBarTextColor',
-    }
-    setupBrandingFromNativeBrandingInfo(input)
+    setupBrandingFromNativeBrandingInfo({
+      ...emptyBrand,
+      buttonPrimaryBackground: 'primaryButtonColor',
+      buttonPrimaryText: 'primaryButtonTextColor',
+      fontColorDark: 'fontColorDark',
+      headerImageUrl: './src/images/canvas-logo.png',
+      linkColor: 'linkColor',
+      navBackground: 'navBarColor',
+      navIconFill: 'navBarButtonColor',
+      navTextColor: 'navBarTextColor',
+      primary: '#374A59',
+    })
 
     expect(branding).toEqual(expected)
   })
 
   it('updates created StyleSheet', () => {
-    setupBrandingFromNativeBrandingInfo({ 'ic-brand-primary': 'red' })
+    setupBrandingFromNativeBrandingInfo({ ...emptyBrand, primary: 'red' })
     const sheet = createStyleSheet(colors => ({
       test: { color: colors.primaryBrandColor },
     }))
     // $FlowFixMe StyleSheet doesn't convert to number in tests
     expect(sheet.test.color).toBe('red')
-    setupBrandingFromNativeBrandingInfo({ 'ic-brand-primary': 'blue' })
+    setupBrandingFromNativeBrandingInfo({ ...emptyBrand, primary: 'blue' })
     // $FlowFixMe StyleSheet doesn't convert to number in tests
     expect(sheet.test.color).toBe('blue')
   })
@@ -76,7 +90,7 @@ describe('createStyleSheet', () => {
     const factory = jest.fn(() => ({}))
     createStyleSheet(factory)
     expect(factory).toHaveBeenCalledWith(colors)
-    setupBrandingFromNativeBrandingInfo({})
+    setupBrandingFromNativeBrandingInfo(emptyBrand)
     expect(factory).toHaveBeenCalledTimes(2)
   })
 })

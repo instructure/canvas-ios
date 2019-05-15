@@ -35,6 +35,9 @@
 "Bold" = "ボールド";
 
 /* No comment provided by engineer. */
+"Camera" = "カメラ";
+
+/* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "学校が見つかりませんか？学校の完全なURLを入力してみてください。";
 
 /* No comment provided by engineer. */
@@ -89,13 +92,22 @@
 "Domain" = "ドメイン";
 
 /* No comment provided by engineer. */
+"Done" = "完了";
+
+/* No comment provided by engineer. */
 "Error" = "エラー";
 
 /* No comment provided by engineer. */
 "External Tool" = "外部ツール";
 
 /* No comment provided by engineer. */
+"Failed upload" = "アップロード中に失敗";
+
+/* No comment provided by engineer. */
 "File Upload" = "ファイルのアップロード";
+
+/* No comment provided by engineer. */
+"Files" = "ファイル";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "最終的な成績：%@";
@@ -146,6 +158,9 @@
 "Launch External Tool" = "外部ツールを起動する";
 
 /* No comment provided by engineer. */
+"Library" = "図書館";
+
+/* No comment provided by engineer. */
 "Link" = "リンク";
 
 /* No comment provided by engineer. */
@@ -186,6 +201,9 @@
 
 /* No comment provided by engineer. */
 "N/A" = "N/A";
+
+/* No comment provided by engineer. */
+"No Content" = "コンテンツなし";
 
 /* No comment provided by engineer. */
 "No Due Date" = "期日なし";
@@ -230,6 +248,9 @@
 "Pause" = "一時停止";
 
 /* No comment provided by engineer. */
+"Permission Needed" = "許可が必要";
+
+/* No comment provided by engineer. */
 "Play" = "再生";
 
 /* No comment provided by engineer. */
@@ -260,6 +281,9 @@
 "Reply to the annotation or previous comments" = "注釈や以前のコメントに返信する";
 
 /* No comment provided by engineer. */
+"Retry" = "再試行";
+
+/* No comment provided by engineer. */
 "See what's new." = "最新情報を見る。";
 
 /* No comment provided by engineer. */
@@ -281,6 +305,9 @@
 "Set text color" = "テキストの色を設定する";
 
 /* No comment provided by engineer. */
+"Settings" = "設定";
+
+/* No comment provided by engineer. */
 "Site Admin Login" = "サイト管理者ログイン";
 
 /* No comment provided by engineer. */
@@ -294,6 +321,9 @@
 
 /* No comment provided by engineer. */
 "Submission failed." = "提出に失敗しました。";
+
+/* No comment provided by engineer. */
+"Submit" = "提出";
 
 /* No comment provided by engineer. */
 "Submit Assignment" = "課題を提出する";
@@ -347,6 +377,12 @@
 "Unordered List" = "順不同リスト";
 
 /* No comment provided by engineer. */
+"Uploading %@ of %@" = "～の %1$@ をアップロード中%2$@";
+
+/* No comment provided by engineer. */
+"Uploading..." = "更新中...";
+
+/* No comment provided by engineer. */
 "URL" = "URL";
 
 /* No comment provided by engineer. */
@@ -369,6 +405,9 @@
 
 /* No comment provided by engineer. */
 "yellow" = "イエロー";
+
+/* No comment provided by engineer. */
+"You must enable Microphone permissions in Settings." = "「設定」でマイクの許可を有効にしなければなりません。";
 
 /* No comment provided by engineer. */
 "You need at least one active observer enrollment to use Canvas Parent. If you're a student or teacher, try one of our other apps below." = "Canvas Parent を使用するには、少なくとも1人のアクティブなオブザーバー登録が必要です。あなたが受講生か講師であれば、次の他のアプリを試してみてください。";

@@ -71,6 +71,9 @@
 "Grade" = "评分";
 
 /* No comment provided by engineer. */
+"Graded Surveys" = "评分调查";
+
+/* No comment provided by engineer. */
 "Groups" = "小组";
 
 /* No comment provided by engineer. */
@@ -78,6 +81,9 @@
 
 /* No comment provided by engineer. */
 "Invalid url" = "无效的 URL";
+
+/* No comment provided by engineer. */
+"Launch External Tool" = "启动外部工具";
 
 /* No comment provided by engineer. */
 "No Due Date" = "无截止日期";
@@ -105,6 +111,9 @@
 
 /* Past enrollments section title in All Courses screen */
 "Past Enrollments" = "以前的注册";
+
+/* No comment provided by engineer. */
+"Practice Quizzes" = "练习测验";
 
 /* No comment provided by engineer. */
 "Quizzes" = "测验";
@@ -158,6 +167,9 @@
 "Successfully submitted!" = "已成功提交。";
 
 /* No comment provided by engineer. */
+"Surveys" = "调查";
+
+/* No comment provided by engineer. */
 "Syllabus" = "教学大纲";
 
 /* No comment provided by engineer. */
@@ -180,6 +192,9 @@
 
 /* No comment provided by engineer. */
 "Updated Language Settings" = "已更新语言设置";
+
+/* No comment provided by engineer. */
+"View Discussion" = "查看讨论";
 
 /* No comment provided by engineer. */
 "View file %@ %@" = "查看文件%1$@%2$@";

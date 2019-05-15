@@ -21,11 +21,12 @@ import ReactiveSwift
 import TechDebt
 import Kingfisher
 import CanvasCore
+import Core
 
-let transitioningDelegate = DrawerTransitionDelegate()
+let transitioningDelegate = DrawerTransitioningDelegate()
 
-func profileController(_ session: Session) -> ProfileViewController {
-    let profile = ProfileViewController()
+func profileController(_ session: Session) -> TechDebt.ProfileViewController {
+    let profile = TechDebt.ProfileViewController()
     profile.canvasAPI = CKCanvasAPI.current()
     profile.user = profile.canvasAPI.user
     profile.profileImageSelected = { newProfileImage in

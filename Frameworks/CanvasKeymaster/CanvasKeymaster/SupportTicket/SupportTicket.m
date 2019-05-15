@@ -15,7 +15,6 @@
 //
 
 #import "SupportTicket.h"
-#import "UIDevice+CKMHardware.h"
 #import "CanvasKeymaster.h"
 
 static NSString * const JustACommentValue = @"just_a_comment";
@@ -90,7 +89,7 @@ static NSString * const ExtremeCriticalEmergencyValue = @"extreme_critical_emerg
     
     environmentBody[@"Hostname"] = baseURLString;
     environmentBody[@"App Version"] = [self appVersionString];
-    environmentBody[@"Platform"] = [[UIDevice currentDevice] ckm_platformString];
+    environmentBody[@"Platform"] = [[UIDevice currentDevice] model];
     environmentBody[@"OS Version"] = [[UIDevice currentDevice] systemVersion];
 
     return environmentBody;
@@ -112,7 +111,7 @@ static NSString * const ExtremeCriticalEmergencyValue = @"extreme_critical_emerg
     
     [commentAdditions appendString:[NSString stringWithFormat:@"\nHostname: %@", baseURLString]];
     [commentAdditions appendString:[NSString stringWithFormat:@"\nApp Version: %@", [self appVersionString]]];
-    [commentAdditions appendString:[NSString stringWithFormat:@"\nPlatform: %@", [[UIDevice currentDevice] ckm_platformString]]];
+    [commentAdditions appendString:[NSString stringWithFormat:@"\nPlatform: %@", [[UIDevice currentDevice] model]]];
     [commentAdditions appendString:[NSString stringWithFormat:@"\nOS Version: %@", [[UIDevice currentDevice] systemVersion]]];
     [commentAdditions appendString:@"\n-----------------------------------"];
     

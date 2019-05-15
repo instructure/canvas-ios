@@ -20,7 +20,7 @@ import { userInfo, defaultHelpLinks } from '../reducer'
 import Actions from '../actions'
 
 const {
-  refreshCanMasquerade,
+  refreshCanActAsUser,
   refreshAccountExternalTools,
   refreshHelpLinks,
 } = Actions
@@ -101,17 +101,17 @@ describe('userInfo', () => {
     })
   })
 
-  describe('refreshCanMasquerade', () => {
+  describe('refreshCanActAsUser', () => {
     it('can because permissions', () => {
       const role = template.role()
 
       const resolved = {
-        type: refreshCanMasquerade.toString(),
+        type: refreshCanActAsUser.toString(),
         payload: { result: { data: role } },
       }
 
-      expect(userInfo({ canMasquerade: false }, resolved)).toMatchObject({
-        canMasquerade: true,
+      expect(userInfo({ canActAsUser: false }, resolved)).toMatchObject({
+        canActAsUser: true,
       })
     })
 
@@ -121,24 +121,24 @@ describe('userInfo', () => {
       })
 
       const resolved = {
-        type: refreshCanMasquerade.toString(),
+        type: refreshCanActAsUser.toString(),
         payload: { result: { data: role } },
       }
 
-      expect(userInfo({ canMasquerade: true }, resolved)).toMatchObject({
-        canMasquerade: false,
+      expect(userInfo({ canActAsUser: true }, resolved)).toMatchObject({
+        canActAsUser: false,
       })
     })
 
     it('cant because rejected', () => {
       const rejected = {
-        type: refreshCanMasquerade.toString(),
+        type: refreshCanActAsUser.toString(),
         error: true,
         payload: { error: template.error() },
       }
 
-      expect(userInfo({ canMasquerade: true }, rejected)).toMatchObject({
-        canMasquerade: false,
+      expect(userInfo({ canActAsUser: true }, rejected)).toMatchObject({
+        canActAsUser: false,
       })
     })
   })

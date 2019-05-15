@@ -427,6 +427,20 @@ extension TechDebt.Router {
             return nil
         }
 
+        addRoute("/act-as-user") { params, _ in
+            if let url = params?["url"] as? URL {
+                return StudentReborn.router.match(.parse(url))
+            }
+            return nil
+        }
+
+        addRoute("/act-as-user/:userID") { params, _ in
+            if let url = params?["url"] as? URL {
+                return StudentReborn.router.match(.parse(url))
+            }
+            return nil
+        }
+
         addContextRoute([.course], subPath: "users/:userID") { (contextID, parameters) -> UIViewController? in
             guard let userID = try? parameters.stringID("userID") else { return nil }
             let props = ["userID": userID, "courseID": contextID.id]

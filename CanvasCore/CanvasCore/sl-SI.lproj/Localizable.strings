@@ -226,9 +226,6 @@
 /* Data encoding error title */
 "Encoding Error" = "Napaka pri kodiranju";
 
-/* No comment provided by engineer. */
-"End Act as User" = "Opustite vlogo uporabnika";
-
 /* Default text for essay cell */
 "Enter answer..." = "Vnos odgovora ...";
 
@@ -604,9 +601,6 @@
 /* stop recording button a11y label */
 "Stop" = "Zaustavi";
 
-/* No comment provided by engineer. */
-"Stop acting as..." = "Prenehajte nastopati v vlogi ...";
-
 /* File upload was stopped */
 "Stopped" = "Zaustavljeno";
 
@@ -842,12 +836,6 @@
 
 /* permission was rejected */
 "You must grant (appName) Microphone access in the Settings app in order to record audio." = "Za snemanje zvoka morate (aplikaciji appName) podeliti dostop do mikrofona v aplikaciji Nastavitve.";
-
-/* No comment provided by engineer. */
-"You will stop acting as %@ and return to your account." = "Prenehali boste nastopati v vlogi %@ in vrnili se boste v svoj račun.";
-
-/* No comment provided by engineer. */
-"You will stop acting as this user and return to your account." = "Prenehali boste nastopati v vlogi tega uporabnika in se boste vrnili v svoj račun.";
 
 /* Error description for file out of space */
 "Your device is out of storage space. Please free up space and try again." = "V napravi je zmanjkalo prostora na disku. Počistite prostor na disku in poskusite znova.";

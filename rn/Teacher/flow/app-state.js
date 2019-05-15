@@ -220,7 +220,7 @@ export type AppState = {
 }
 
 export type UserInfo = {
-  canMasquerade: boolean,
+  canActAsUser: boolean,
   showsGradesOnCourseCards: boolean,
   externalTools: ExternalToolLaunchDefinitionGlobalNavigationItem[],
   helpLinks?: HelpLinks,

@@ -54,18 +54,7 @@ exports[`PageDetails renders while loading 1`] = `
 <Screen
   navBarColor="#fff"
   navBarStyle="dark"
-  rightBarButtons={
-    Array [
-      Object {
-        "accessibilityLabel": "Options",
-        "action": [Function],
-        "image": Object {
-          "testUri": "../../../src/images/kabob.png",
-        },
-        "testID": "pages.details.editButton",
-      },
-    ]
-  }
+  rightBarButtons={false}
   showDismissButton={true}
   statusBarStyle="default"
   title="Page Details"

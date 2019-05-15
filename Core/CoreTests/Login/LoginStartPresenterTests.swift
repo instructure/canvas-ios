@@ -19,7 +19,7 @@ import XCTest
 import TestsFoundation
 
 class LoginStartPresenterTests: XCTestCase {
-    var logins: [KeychainEntry]?
+    var logins: [Login]?
     var loggedIn: KeychainEntry?
     var loggedOut: KeychainEntry?
     var method: String?
@@ -43,18 +43,24 @@ class LoginStartPresenterTests: XCTestCase {
         MockURLProtocolSupport.responses.append(MockURLProtocolSupport.responseWithStatusCode(200, responseData: responseData))
         MockURLProtocolSupport.responses.append(MockURLProtocolSupport.responseWithStatusCode(200, responseData: responseData))
         MockURLProtocolSupport.responses.append(MockURLProtocolSupport.responseWithStatusCode(200, responseData: responseData))
+        MDMManager.mockDefaults()
         let bill = KeychainEntry.make(lastUsedAt: Date().addingTimeInterval(100), userID: "1", userName: "Bill")
         let bob = KeychainEntry.make(lastUsedAt: Date(), userID: "3", userName: "Bob")
+        let apple = MDMManager.shared.logins[0]
         Keychain.addEntry(bill)
         Keychain.addEntry(bob)
         AppEnvironment.shared.currentSession = bill
         let presenter = LoginStartPresenter(loginDelegate: self, view: self)
         presenter.session = mockSession
         presenter.viewIsReady()
-        XCTAssertEqual(logins, [ bill, bob ])
-        let poll = expectation(for: NSPredicate(value: true), evaluatedWith: presenter) { self.logins?[0].userAvatarURL != nil }
+        XCTAssertEqual(logins, [ Login.keychain(bill), Login.keychain(bob), Login.mdm(apple) ])
+        let poll = expectation(for: NSPredicate(value: true), evaluatedWith: presenter) {
+            if case .keychain(let entry)? = self.logins?[0], entry.userAvatarURL != nil {
+                return true
+            }
+            return false
+        }
         wait(for: [poll], timeout: 5)
-        XCTAssertEqual(logins?[0].userAvatarURL, URL(string: "avatar"))
         XCTAssertEqual(AppEnvironment.shared.currentSession?.userAvatarURL, URL(string: "avatar"))
     }
 
@@ -97,28 +103,30 @@ class LoginStartPresenterTests: XCTestCase {
         XCTAssertEqual(opened, whatsNewURL)
     }
 
-    func testSelectPreviousLogin() {
+    func testSelectKeychainEntry() {
         let presenter = LoginStartPresenter(loginDelegate: self, view: self)
         let entry = KeychainEntry.make()
-        presenter.selectPreviousLogin(entry)
+        presenter.selectKeychainEntry(entry)
         XCTAssertEqual(loggedIn, entry)
         XCTAssert(shown is LoadingViewController)
     }
 
-    func testRemovePreviousLogin() {
+    func testRemoveKeychainEntry() {
         let presenter = LoginStartPresenter(loginDelegate: self, view: self)
         let entry = KeychainEntry.make()
-        presenter.removePreviousLogin(entry)
+        presenter.removeKeychainEntry(entry)
         XCTAssertEqual(loggedOut, entry)
     }
 
-    func testAppleDemoShowsLogin() {
+    func testSelectMDMLogin() {
         let presenter = LoginStartPresenter(loginDelegate: self, view: self)
         presenter.viewIsReady()
         MDMManager.mockDefaults()
-        XCTAssertNotNil(shown)
-        let login = shown as? LoginWebViewController
-        XCTAssertNotNil(login)
+        presenter.selectMDMLogin(MDMManager.shared.logins[0])
+        let shownPresenter = (shown as? LoginWebViewController)?.presenter
+        XCTAssertEqual(shownPresenter?.host, MDMManager.shared.logins[0].host)
+        XCTAssertEqual(shownPresenter?.mdmLogin, MDMManager.shared.logins[0])
+        XCTAssertEqual(shownPresenter?.method, .canvasLogin)
     }
 }
 
@@ -127,7 +135,7 @@ extension LoginStartPresenterTests: LoginStartViewProtocol {
         shown = vc
     }
 
-    func update(logins: [KeychainEntry]) {
+    func update(logins: [Login]) {
         self.logins = logins
     }
 

@@ -57,7 +57,7 @@ export class PageDetails extends Component<Props> {
   constructor (props: Props) {
     super(props)
 
-    if (isStudent) {
+    if (isStudent()) {
       ModuleItemsProgress.viewedPage(props.courseID, props.url)
     }
   }
@@ -76,6 +76,14 @@ export class PageDetails extends Component<Props> {
     }
   }
 
+  canEdit () {
+    if (this.props.isLoading) return false
+    let page = this.props.page
+    if (!page) return false
+    if (isTeacher()) return true
+    return page.editingRoles.includes('public') || page.editingRoles.includes('students')
+  }
+
   render () {
     const { course, courseColor, page, location } = this.props
     const customPageViewPath = page && page.isFrontPage && course ? { customPageViewPath: `/courses/${course.id}/wiki` } : {}
@@ -86,7 +94,7 @@ export class PageDetails extends Component<Props> {
         navBarStyle='dark'
         title={this.props.page ? this.props.page.title : i18n('Page Details')}
         subtitle={course && course.name || undefined}
-        rightBarButtons={isTeacher() && [
+        rightBarButtons={this.canEdit() && [
           {
             image: Images.kabob,
             testID: 'pages.details.editButton',
@@ -134,7 +142,7 @@ export class PageDetails extends Component<Props> {
 
   showEditActionSheet = () => {
     if (!this.props.page) return
-    const canDelete = !this.props.page.isFrontPage
+    const canDelete = !this.props.page.isFrontPage && isTeacher()
     ActionSheetIOS.showActionSheetWithOptions(
       {
         options: [i18n('Edit'), canDelete ? i18n('Delete') : null, i18n('Cancel')].filter(o => o),

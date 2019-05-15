@@ -38,6 +38,7 @@ public struct APIAssignment: Codable, Equatable {
     let discussion_topic: APIDiscussionTopic?
     let rubric: [APIRubric]?
     let submission: APISubmission?
+    let use_rubric_for_grading: Bool?
 }
 
 public struct APIAssignmentNoSubmission: Codable, Equatable {
@@ -60,6 +61,7 @@ public struct APIAssignmentNoSubmission: Codable, Equatable {
     let url: URL?
     let discussion_topic: APIDiscussionTopic?
     let rubric: [APIRubric]?
+    let use_rubric_for_grading: Bool?
 
     func toAPIAssignment() -> APIAssignment {
         return APIAssignment(
@@ -70,6 +72,7 @@ public struct APIAssignmentNoSubmission: Codable, Equatable {
             grading_type: grading_type, submission_types: submission_types,
             allowed_extensions: allowed_extensions, position: position,
             unlock_at: unlock_at, lock_at: lock_at, locked_for_user: locked_for_user,
-            url: url, discussion_topic: discussion_topic, rubric: rubric, submission: nil)
+            url: url, discussion_topic: discussion_topic, rubric: rubric, submission: nil,
+            use_rubric_for_grading: use_rubric_for_grading)
     }
 }

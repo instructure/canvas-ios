@@ -90,6 +90,7 @@ open class CoreWebView: WKWebView {
             }
             a {
                 color: \(link.hexString);
+                overflow-wrap: break-word;
             }
             h2 {
                 font-weight: 300;
@@ -261,12 +262,11 @@ extension CoreWebView {
             cookieKeepAliveTimer?.invalidate()
             let interval: TimeInterval = 10 * 60 // ten minutes
             cookieKeepAliveTimer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { _ in
-                let useCase = RequestUseCase(api: env.api, database: env.database, request: GetWebSessionRequest(to: env.api.baseURL.appendingPathComponent("users/self")))
-                useCase.addSaveOperation { data, _, _ in DispatchQueue.main.async {
+                let request = GetWebSessionRequest(to: env.api.baseURL.appendingPathComponent("users/self"))
+                env.api.makeRequest(request) { data, _, _ in DispatchQueue.main.async {
                     guard let url = data?.session_url else { return }
                     cookieKeepAliveWebView.load(URLRequest(url: url))
                 } }
-                env.queue.addOperation(useCase)
             }
             cookieKeepAliveTimer?.fire()
         }

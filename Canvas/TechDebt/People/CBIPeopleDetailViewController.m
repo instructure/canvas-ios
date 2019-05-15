@@ -22,6 +22,7 @@
 #import "CBIPeopleDetailViewController.h"
 #import "CBIPeopleViewModel.h"
 #import "CBIConversationStarter.h"
+#import "Router.h"
 #import "UIView+Circular.h"
 @import CanvasKeymaster;
 @import CanvasCore;
@@ -137,17 +138,10 @@
 
 - (void)masquerade:(NSString *)masqueradeAs
 {
-    NSBundle *bundle = [NSBundle bundleForClass:self.class];
     if (masqueradeAs.length > 0) {
-        [[TheKeymaster masqueradeAsUserWithID:masqueradeAs] subscribeNext:^(id client) {
-            NSString *title = NSLocalizedStringFromTableInBundle(@"Success!", nil, bundle, @"Masquerade success title");
-            NSString *message = [NSString stringWithFormat:NSLocalizedStringFromTableInBundle(@"You are now masquerading as %@. To Stop Masquerading go to your Profile.", nil, bundle, @"Masquerade success message"), [CKIClient currentClient].currentUser.name];
-            [UIAlertController showAlertWithTitle:title message:message];
-        } error:^(NSError *error) {
-            NSString *title = NSLocalizedStringFromTableInBundle(@"Oops!", nil, bundle, @"Title for an error alert");
-            NSString *message = NSLocalizedStringFromTableInBundle(@"You don't have permission to masquerade as this user or there is no user with that ID", nil, bundle, @"Masquerade error message");
-            [UIAlertController showAlertWithTitle:title message:message];
-        }];
+        NSString *path = [NSString stringWithFormat:@"/act-as-user/%@", masqueradeAs];
+        NSURL *url = [NSURL URLWithString:path];
+        [[Router sharedRouter] routeFromController:self toURL:url];
     }
 }
 

@@ -53,6 +53,9 @@ final public class File: NSManagedObject {
     @NSManaged public var bytesSent: Int
     @NSManaged public var taskIDRaw: NSNumber?
 
+    /// Used to group together files being attached to the same RCE content
+    @NSManaged public var batchID: String?
+
     /// The course ID of the assignment for which this file is meant to be submitted
     ///
     /// Should only be set in the case of a submission.

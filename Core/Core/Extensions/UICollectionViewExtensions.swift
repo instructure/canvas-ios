@@ -18,7 +18,7 @@ import UIKit
 
 extension UICollectionView {
 
-    public func dequeue<T: UICollectionReusableView>(_ type: T.Type, ofKind: String, for indexPath: IndexPath) -> T {
+    public func dequeue<T: UICollectionReusableView>(_ type: T.Type = T.self, ofKind: String, for indexPath: IndexPath) -> T {
         let name = String(describing: T.self)
         guard let view = dequeueReusableSupplementaryView(ofKind: ofKind, withReuseIdentifier: name, for: indexPath) as? T else {
             fatalError("Could not dequeue \(name) as reusable view.")

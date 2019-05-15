@@ -35,6 +35,9 @@
 "Bold" = "粗体";
 
 /* No comment provided by engineer. */
+"Camera" = "摄像机、照相机";
+
+/* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "找不到您的学校？尝试键入完整的学校 URL。";
 
 /* No comment provided by engineer. */
@@ -89,13 +92,22 @@
 "Domain" = "域";
 
 /* No comment provided by engineer. */
+"Done" = "完成";
+
+/* No comment provided by engineer. */
 "Error" = "错误";
 
 /* No comment provided by engineer. */
 "External Tool" = "外部工具";
 
 /* No comment provided by engineer. */
+"Failed upload" = "上传失败";
+
+/* No comment provided by engineer. */
 "File Upload" = "文件上传";
+
+/* No comment provided by engineer. */
+"Files" = "文件";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "最终评分：%@";
@@ -146,6 +158,9 @@
 "Launch External Tool" = "启动外部工具";
 
 /* No comment provided by engineer. */
+"Library" = "库";
+
+/* No comment provided by engineer. */
 "Link" = "链接";
 
 /* No comment provided by engineer. */
@@ -186,6 +201,9 @@
 
 /* No comment provided by engineer. */
 "N/A" = "不适用";
+
+/* No comment provided by engineer. */
+"No Content" = "无内容";
 
 /* No comment provided by engineer. */
 "No Due Date" = "无截止日期";
@@ -230,6 +248,9 @@
 "Pause" = "暂停";
 
 /* No comment provided by engineer. */
+"Permission Needed" = "需要权限";
+
+/* No comment provided by engineer. */
 "Play" = "播放";
 
 /* No comment provided by engineer. */
@@ -260,6 +281,9 @@
 "Reply to the annotation or previous comments" = "恢复注释或原来的评论";
 
 /* No comment provided by engineer. */
+"Retry" = "重试";
+
+/* No comment provided by engineer. */
 "See what's new." = "查看新增内容。";
 
 /* No comment provided by engineer. */
@@ -281,6 +305,9 @@
 "Set text color" = "设置文本颜色";
 
 /* No comment provided by engineer. */
+"Settings" = "设置";
+
+/* No comment provided by engineer. */
 "Site Admin Login" = "站点管理员登录";
 
 /* No comment provided by engineer. */
@@ -294,6 +321,9 @@
 
 /* No comment provided by engineer. */
 "Submission failed." = "提交失败。";
+
+/* No comment provided by engineer. */
+"Submit" = "提交";
 
 /* No comment provided by engineer. */
 "Submit Assignment" = "提交作业";
@@ -347,6 +377,12 @@
 "Unordered List" = "无序的列表";
 
 /* No comment provided by engineer. */
+"Uploading %@ of %@" = "正在上传 %1$@，共%2$@";
+
+/* No comment provided by engineer. */
+"Uploading..." = "正在上传...";
+
+/* No comment provided by engineer. */
 "URL" = "URL";
 
 /* No comment provided by engineer. */
@@ -369,6 +405,9 @@
 
 /* No comment provided by engineer. */
 "yellow" = "黄色";
+
+/* No comment provided by engineer. */
+"You must enable Microphone permissions in Settings." = "您必须在“设置”中启用麦克风权限。";
 
 /* No comment provided by engineer. */
 "You need at least one active observer enrollment to use Canvas Parent. If you're a student or teacher, try one of our other apps below." = "您需要有至少一个活跃的观察者注册学员才能使用 Canvas Parent。如果您是学生或教师，请尝试使用我们下面的这些应用。";

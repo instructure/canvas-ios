@@ -284,15 +284,96 @@ exports[`Compose renders after picking a course 1`] = `
                   "fontSize": 16,
                   "lineHeight": 19,
                 },
-                undefined,
+                Object {
+                  "color": "#2D3B45",
+                },
               ]
             }
           >
-            Select a Course
+            Learn React Native
           </Text>
           <DisclosureIndicator />
         </View>
       </TouchableHighlight>
+      <View
+        style={
+          Array [
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+              "paddingHorizontal": 16,
+            },
+            Object {
+              "alignItems": "flex-start",
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "minHeight": 54,
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "height": 54,
+              "justifyContent": "center",
+              "padding": 6,
+              "paddingLeft": 0,
+            }
+          }
+          testID="compose.recipients-placeholder"
+        >
+          <Text
+            style={
+              Object {
+                "color": "#7F91A7",
+                "fontSize": 16,
+                "lineHeight": 19,
+              }
+            }
+          >
+            To
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "row",
+              "flexWrap": "wrap",
+              "paddingVertical": 8,
+            }
+          }
+        />
+        <TouchableOpacity
+          accessibilityLabel="Add recipient"
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Object {
+              "height": 54,
+              "justifyContent": "center",
+            }
+          }
+        >
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/images/Add.png",
+              }
+            }
+            style={
+              Object {
+                "tintColor": "#368BD8",
+              }
+            }
+          />
+        </TouchableOpacity>
+      </View>
       <View
         style={
           Object {

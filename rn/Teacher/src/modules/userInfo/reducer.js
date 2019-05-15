@@ -23,9 +23,9 @@ import handleAsync from '@utils/handleAsync'
 import { getSession } from '@canvas-api/session'
 import i18n from 'format-message'
 
-const { refreshCanMasquerade, updateShowGradesOnDashboard, refreshAccountExternalTools, refreshHelpLinks } = Actions
+const { refreshCanActAsUser, updateShowGradesOnDashboard, refreshAccountExternalTools, refreshHelpLinks } = Actions
 const defaultState: UserInfo = {
-  canMasquerade: false,
+  canActAsUser: false,
   showsGradesOnCourseCards: false,
   externalTools: [],
 }
@@ -94,20 +94,20 @@ export const userInfo: Reducer<UserInfo, any> = handleActions({
       }
     },
   }),
-  [refreshCanMasquerade.toString()]: handleAsync({
+  [refreshCanActAsUser.toString()]: handleAsync({
     pending: (state) => {
       return state
     },
     resolved: (state, { result: { data } }) => {
       return {
         ...state,
-        canMasquerade: isSiteAdmin() || data.become_user === true,
+        canActAsUser: isSiteAdmin() || data.become_user === true,
       }
     },
     rejected: (state) => {
       return {
         ...state,
-        canMasquerade: false || isSiteAdmin(),
+        canActAsUser: false || isSiteAdmin(),
       }
     },
   }),

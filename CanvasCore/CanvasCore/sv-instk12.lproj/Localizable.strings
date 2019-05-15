@@ -226,9 +226,6 @@
 /* Data encoding error title */
 "Encoding Error" = "Kodningsfel";
 
-/* No comment provided by engineer. */
-"End Act as User" = "Sluta uppträd som användare";
-
 /* Default text for essay cell */
 "Enter answer..." = "Fyll i svar...";
 
@@ -604,9 +601,6 @@
 /* stop recording button a11y label */
 "Stop" = "Stopp";
 
-/* No comment provided by engineer. */
-"Stop acting as..." = "Sluta uppträda som...";
-
 /* File upload was stopped */
 "Stopped" = "Stoppades";
 
@@ -842,12 +836,6 @@
 
 /* permission was rejected */
 "You must grant (appName) Microphone access in the Settings app in order to record audio." = "Du måste tillåta (appName) Mikrofonåtkomst i Inställningar-appen för att spela in ljud";
-
-/* No comment provided by engineer. */
-"You will stop acting as %@ and return to your account." = "Du kommer sluta att uppträda som %@, och återvända till ditt konto.";
-
-/* No comment provided by engineer. */
-"You will stop acting as this user and return to your account." = "Du kommer sluta att uppträda som den här användaren och återvända till ditt konto.";
 
 /* Error description for file out of space */
 "Your device is out of storage space. Please free up space and try again." = "Din enhet har slut på lagringsutrymme. Vänligen frigör utrymme och testa igen.";

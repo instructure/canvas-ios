@@ -59,4 +59,12 @@ class RoutesTests: XCTestCase {
     func testLogs() {
         XCTAssert(router.match(Route.logs.url) is LogEventListViewController)
     }
+
+    func testActAsUser() {
+        XCTAssert(router.match(Route.actAsUser.url) is ActAsUserViewController)
+    }
+
+    func testActAsUserID() {
+        XCTAssert(router.match(Route.actAsUserID("3").url) is ActAsUserViewController)
+    }
 }

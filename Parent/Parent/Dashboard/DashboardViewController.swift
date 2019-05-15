@@ -28,7 +28,7 @@ typealias DashboardSelectCalendarEventAction = (_ session: Session, _ observeeID
 typealias DashboardSelectCourseAction = (_ session: Session, _ observeeID: String, _ course: CanvasCore.Course)->Void
 typealias DashboardSelectAlertAction = (_ session: Session, _ observeeID: String, _ alert: Alert)->Void
 
-let DrawerTransition = DrawerTransitionDelegate()
+let DrawerTransition = DrawerTransitioningDelegate()
 
 struct DashboardViewState {
     var studentCount = 0

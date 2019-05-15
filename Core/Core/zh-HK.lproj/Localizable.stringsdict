@@ -33,7 +33,7 @@
 	<key>g_out_of_g_points_possible</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>%g可能的滿分為%#@points@</string>
+		<string>Scored %g out of %#@points@ possible</string>
 		<key>points</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>
@@ -42,6 +42,20 @@
 			<string>g</string>
 			<key>other</key>
 			<string>%g分數</string>
+		</dict>
+	</dict>
+	<key>g_points</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@points@</string>
+		<key>points</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>other</key>
+			<string>%d points</string>
 		</dict>
 	</dict>
 	<key>g_pts</key>

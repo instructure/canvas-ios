@@ -226,9 +226,6 @@
 /* Data encoding error title */
 "Encoding Error" = "Erreur d'encodage";
 
-/* No comment provided by engineer. */
-"End Act as User" = "Terminer Agir en tant qu'utilisateur";
-
 /* Default text for essay cell */
 "Enter answer..." = "Saisir la réponse...";
 
@@ -604,9 +601,6 @@
 /* stop recording button a11y label */
 "Stop" = "Stop";
 
-/* No comment provided by engineer. */
-"Stop acting as..." = "Cesser d'agir en tant que...";
-
 /* File upload was stopped */
 "Stopped" = "Arrêté";
 
@@ -842,12 +836,6 @@
 
 /* permission was rejected */
 "You must grant (appName) Microphone access in the Settings app in order to record audio." = "Vous devez autoriser (appName) à accéder au microphone dans l'application Paramètres pour enregistrer du son.";
-
-/* No comment provided by engineer. */
-"You will stop acting as %@ and return to your account." = "Vous cesserez d'agir en tant que %@ et retournerez sur votre compte.";
-
-/* No comment provided by engineer. */
-"You will stop acting as this user and return to your account." = "Vous cesserez d'agir en tant que cet utilisateur et retournerez sur votre compte.";
 
 /* Error description for file out of space */
 "Your device is out of storage space. Please free up space and try again." = "Votre appareil n'a plus assez d'espace libre. Veuillez libérer de l'espace, puis réessayez.";

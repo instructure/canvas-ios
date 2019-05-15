@@ -25,13 +25,10 @@
 #import "CBIQuizViewModel.h"
 #import <TechDebt/MyLittleViewController.h>
 
-#import "CBISyllabusTabViewModel.h"
-#import "CBISyllabusViewModel.h"
 #import "CBICalendarEventViewModel.h"
 
 #import "CBIFilesTabViewModel.h"
 #import "CBIFolderViewModel.h"
-#import "CBISyllabusDetailViewController.h"
 
 #import "UnsupportedViewController.h"
 #import "CBIFileViewModel.h"
@@ -190,29 +187,11 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
         [[ExternalToolManager shared] showAuthenticatedURL:url in:session from:sender completionHandler:nil];
     };
     
-    UIViewController *(^syllabusListViewControllerBlock)(NSDictionary *params, id viewModel) = ^(NSDictionary *params, id viewModel) {
-        if(viewModel == nil){
-            CKICourse *course = [CKICourse modelWithID:[params[@"courseID"] description]];
-            CKITab *syllabusTab = [CKITab modelWithID:@"syllabus" context:course];
-            viewModel = [CBISyllabusTabViewModel viewModelForModel:syllabusTab];
-            ((CBIColorfulViewModel *)viewModel).viewControllerTitle = NSLocalizedStringFromTableInBundle(@"Course Syllabus", nil, bundle, @"Title for Course Syllabus view controller");
-        }
-        
-        ((CBIColorfulViewModel *)viewModel).tintColor = [TheKeymaster.currentClient.authSession colorForCourse:[params[@"courseID"] description]];
-        NSString * url  = [params[@"url"] description];
-        return [self MLVCTableViewControllerForViewModel:viewModel screenName:@"Syllabus List Screen" canBeMaster:YES style:UITableViewStyleGrouped url: url];
-    };
-    
     [self addRoutesWithDictionary:@{
         // TODO: SoPersistent assignments
         @"/courses/:courseID/old-assignments/:assignmentID" : ^ (NSDictionary *params, id viewModel) {
             if ([self moduleItemControllerForParams:params forClass:[CKICourse class]]) {
                 return [self moduleItemControllerForParams:params forClass:[CKICourse class]];
-            }
-        
-            NSString *assignmentID = [params[@"assignmentID"] description];
-            if ([assignmentID isEqualToString:@"syllabus"]) {
-                return syllabusListViewControllerBlock(params, viewModel);
             }
         
             if(viewModel == nil){

@@ -35,6 +35,9 @@
 "Bold" = "maia";
 
 /* No comment provided by engineer. */
+"Camera" = "kāmera";
+
+/* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "Kaore e kitea tō kura? Ngana ki te pātō te nuinga o te kura url";
 
 /* No comment provided by engineer. */
@@ -89,13 +92,22 @@
 "Domain" = "rohe";
 
 /* No comment provided by engineer. */
+"Done" = "Kua mahia";
+
+/* No comment provided by engineer. */
 "Error" = "Hapa";
 
 /* No comment provided by engineer. */
 "External Tool" = "Taputapu waho";
 
 /* No comment provided by engineer. */
+"Failed upload" = "I rahua ki te tukuake";
+
+/* No comment provided by engineer. */
 "File Upload" = "Kōnae Tukuake";
+
+/* No comment provided by engineer. */
+"Files" = "Kōnae";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "Kōeke whakamutunga: %@";
@@ -146,6 +158,9 @@
 "Launch External Tool" = "Neke Taputapu Waho";
 
 /* No comment provided by engineer. */
+"Library" = "Whare pukapuka";
+
+/* No comment provided by engineer. */
 "Link" = "hono";
 
 /* No comment provided by engineer. */
@@ -186,6 +201,9 @@
 
 /* No comment provided by engineer. */
 "N/A" = "N/A";
+
+/* No comment provided by engineer. */
+"No Content" = "Kaore Ihirangi";
 
 /* No comment provided by engineer. */
 "No Due Date" = "Kaore he ra tika";
@@ -230,6 +248,9 @@
 "Pause" = "Okioki";
 
 /* No comment provided by engineer. */
+"Permission Needed" = "E hiahiatia ana he whakāetanga";
+
+/* No comment provided by engineer. */
 "Play" = "Tākaro";
 
 /* No comment provided by engineer. */
@@ -260,6 +281,9 @@
 "Reply to the annotation or previous comments" = "Whakautu ki te whakahuatanga me ngā kōrero o mua";
 
 /* No comment provided by engineer. */
+"Retry" = "Ngana anō";
+
+/* No comment provided by engineer. */
 "See what's new." = "Tirohia ngā mea hou";
 
 /* No comment provided by engineer. */
@@ -281,6 +305,9 @@
 "Set text color" = "Whakatau tae kuputuhi";
 
 /* No comment provided by engineer. */
+"Settings" = "Ngā Tautuhinga";
+
+/* No comment provided by engineer. */
 "Site Admin Login" = "Takiuru Whakahaere Pae";
 
 /* No comment provided by engineer. */
@@ -294,6 +321,9 @@
 
 /* No comment provided by engineer. */
 "Submission failed." = "I rahua te tuku o te tāpaetanga";
+
+/* No comment provided by engineer. */
+"Submit" = "Tuku";
 
 /* No comment provided by engineer. */
 "Submit Assignment" = "Tuku Whakataunga";
@@ -347,6 +377,12 @@
 "Unordered List" = "Rārangi kaore e whakahautia";
 
 /* No comment provided by engineer. */
+"Uploading %@ of %@" = "E tukuake ana %1$@ ō %2$@";
+
+/* No comment provided by engineer. */
+"Uploading..." = "tukuake ...";
+
+/* No comment provided by engineer. */
 "URL" = "URL";
 
 /* No comment provided by engineer. */
@@ -369,6 +405,9 @@
 
 /* No comment provided by engineer. */
 "yellow" = "kōwhai";
+
+/* No comment provided by engineer. */
+"You must enable Microphone permissions in Settings." = "Me whakahohetia e koe Orooro whakaaetanga i roto i Tautuhinga";
 
 /* No comment provided by engineer. */
 "You need at least one active observer enrollment to use Canvas Parent. If you're a student or teacher, try one of our other apps below." = "E hiahia ana koe kia iti rawa te whakaurunga o ngā kaititiro kaitohu ki te whakamahi i te Canvas Parent. Mehemea he ākonga koe, kaiako rānei, ngana tētahi ō āmātou taupanga i raro";

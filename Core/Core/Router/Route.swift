@@ -93,6 +93,10 @@ public struct Route: Equatable {
 
     public static let actAsUser = Route("/act-as-user")
 
+    public static func actAsUserID(_ id: String) -> Route {
+        return Route("/act-as-user/\(id)")
+    }
+
     public static let wrongApp = Route("/wrong-app")
 
     public static let anythingElse = Route("*")

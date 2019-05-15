@@ -19,7 +19,6 @@ PODS:
   - Cartography (3.1.0)
   - Crashlytics (3.10.2):
     - Fabric (~> 1.7.7)
-  - DeviceKit (1.13.0)
   - Eureka (4.3.1)
   - Fabric (1.7.7)
   - Firebase/Core (5.20.2):
@@ -157,13 +156,9 @@ PODS:
     - RNSound/Core (= 0.10.4)
   - RNSound/Core (0.10.4):
     - React/Core
-  - SDWebImage (4.4.1):
-    - SDWebImage/Core (= 4.4.1)
-  - SDWebImage/Core (4.4.1)
   - SVProgressHUD (2.2.5)
   - SwiftSimplify (0.2.0)
   - TBBModal (1.0.2)
-  - TPKeyboardAvoiding (1.3.2)
   - yoga (0.51.0.React)
 
 DEPENDENCIES:
@@ -171,7 +166,6 @@ DEPENDENCIES:
   - BVLinearGradient (from `./rn/Teacher/node_modules/react-native-linear-gradient`)
   - Cartography (~> 3.1)
   - Crashlytics (~> 3.10.2)
-  - DeviceKit (~> 1.13)
   - Eureka (~> 4.3)
   - Fabric (~> 1.7.7)
   - Firebase/Core (~> 5.20)
@@ -213,11 +207,9 @@ DEPENDENCIES:
   - RNDeviceInfo (from `./rn/Teacher/node_modules/react-native-device-info`)
   - RNFS (from `./rn/Teacher/node_modules/react-native-fs`)
   - RNSound (from `./rn/Teacher/node_modules/react-native-sound`)
-  - SDWebImage (~> 4.1)
   - SVProgressHUD (~> 2.0)
   - SwiftSimplify
   - TBBModal (~> 1.0)
-  - TPKeyboardAvoiding (~> 1.3)
   - yoga (from `./rn/Teacher/node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -225,7 +217,6 @@ SPEC REPOS:
     - AFNetworking
     - Cartography
     - Crashlytics
-    - DeviceKit
     - Eureka
     - Fabric
     - Firebase
@@ -246,11 +237,9 @@ SPEC REPOS:
     - ReactiveObjCBridge
     - ReactiveSwift
     - Result
-    - SDWebImage
     - SVProgressHUD
     - SwiftSimplify
     - TBBModal
-    - TPKeyboardAvoiding
 
 EXTERNAL SOURCES:
   BVLinearGradient:
@@ -289,7 +278,6 @@ SPEC CHECKSUMS:
   BVLinearGradient: 8913bd8fdc47b85abc801ae8bae007bbfb6b4ce5
   Cartography: 1988b7578871a56c036e7af17195cb2190edf18c
   Crashlytics: 0360624eea1c978a743feddb2fb1ef8b37fb7a0d
-  DeviceKit: 5a4accdb2918ce0b69e62dc3bef6e4d2cc06e2e4
   Eureka: 28ea296f06710f6745266b71f17862048941a32d
   Fabric: bda89e242bce1b7b8ab264248cf3407774ce0095
   Firebase: 0c8cf33f266410c61ab3e2265cfa412200351d9c
@@ -323,13 +311,11 @@ SPEC CHECKSUMS:
   RNDeviceInfo: dc3cbee96cd2392cf03d6ff6191dc15f1606a166
   RNFS: 44ef20bb355e894d86a439be668c3c5ac70838a5
   RNSound: dcbb42c698757ee4fa9a8528317c40d18a5deb1b
-  SDWebImage: 47e9b5b925cbce75946c23f0c42dd19464189af4
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftSimplify: 374ead1c360c6e236539543d6ce5b3abda011080
   TBBModal: 376820c480cac24b262c2e10c0178c67bb288390
-  TPKeyboardAvoiding: cb69d5ddbe90ce0170e4bc2db1e5e41d4a3ad9a4
   yoga: b5d96400ca8b2936965a7a6516da7c1177f432a3
 
-PODFILE CHECKSUM: 7fb2a6be1f76b592a1a648e6f692c414c66bab05
+PODFILE CHECKSUM: bde6eccd828cecd472ba2bc5258056318b122938
 
 COCOAPODS: 1.6.1

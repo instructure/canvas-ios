@@ -34,24 +34,6 @@
 	</dict>
 	<dict>
 		<key>name</key>
-		<string>CWStatusBarNotification</string>
-		<key>url</key>
-		<string>https://github.com/cezarywojcik/CWStatusBarNotification</string>
-	</dict>
-	<dict>
-		<key>name</key>
-		<string>DeviceKit</string>
-		<key>url</key>
-		<string>https://github.com/dennisweissmann/DeviceKit</string>
-	</dict>
-	<dict>
-		<key>name</key>
-		<string>DVR</string>
-		<key>url</key>
-		<string>https://github.com/venmo/DVR</string>
-	</dict>
-	<dict>
-		<key>name</key>
 		<string>EarlGrey</string>
 		<key>url</key>
 		<string>https://github.com/google/EarlGrey</string>
@@ -109,12 +91,6 @@
 		<string>Result</string>
 		<key>url</key>
 		<string>https://github.com/antitypical/Result</string>
-	</dict>
-	<dict>
-		<key>name</key>
-		<string>TPKeyboardAvoiding</string>
-		<key>url</key>
-		<string>https://github.com/michaeltyson/TPKeyboardAvoiding</string>
 	</dict>
 	<dict>
 		<key>name</key>

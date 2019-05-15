@@ -226,9 +226,6 @@
 /* Data encoding error title */
 "Encoding Error" = "Gwall Amgodio";
 
-/* No comment provided by engineer. */
-"End Act as User" = "Gorffen Gweithredu fel Defnyddiwr";
-
 /* Default text for essay cell */
 "Enter answer..." = "Rhoi ateb...";
 
@@ -604,9 +601,6 @@
 /* stop recording button a11y label */
 "Stop" = "Stopio";
 
-/* No comment provided by engineer. */
-"Stop acting as..." = "Stopio gweithredu fel...";
-
 /* File upload was stopped */
 "Stopped" = "Wedi stopio";
 
@@ -842,12 +836,6 @@
 
 /* permission was rejected */
 "You must grant (appName) Microphone access in the Settings app in order to record audio." = "Rhaid i chi alluogi hawliau mynediad y Microffonar gyfer (appName) yn yr ap Gosodiadau er mwyn recordio sain.";
-
-/* No comment provided by engineer. */
-"You will stop acting as %@ and return to your account." = "Byddwch yn stopio gweithredu fel %@ ac yn dychwelyd i’ch cyfrif eich hun.";
-
-/* No comment provided by engineer. */
-"You will stop acting as this user and return to your account." = "Byddwch yn stopio gweithredu fel y defnyddiwr hwn ac yn dychwelyd i’ch cyfrif eich hun.";
 
 /* Error description for file out of space */
 "Your device is out of storage space. Please free up space and try again." = "Does dim lle storio ar ôl yn eich dyfais. Ewch ati i ryddhau rhywfaint o le a rhoi cynnig arall arni.";

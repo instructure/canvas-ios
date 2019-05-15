@@ -14,17 +14,22 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+import CoreData
 import Foundation
 
-public class UploadMedia {
+public class UploadMedia: NSObject, URLSessionDelegate, URLSessionDataDelegate {
     var env = AppEnvironment.shared
+    lazy var urlSession = URLSessionAPI.delegateURLSession(.ephemeral, self)
     var mediaAPI: API?
     var task: URLSessionTask?
     var callback: (String?, Error?) -> Void = { _, _ in }
+    let file: File?
     let url: URL
     let type: MediaCommentType
+    var isUploading = false
 
-    public init(type: MediaCommentType, url: URL) {
+    public init(type: MediaCommentType, url: URL, file: File? = nil) {
+        self.file = file
         self.type = type
         self.url = url
     }
@@ -48,7 +53,7 @@ public class UploadMedia {
                 else {
                     return self.callback(nil, error)
             }
-            self.mediaAPI = URLSessionAPI(accessToken: nil, baseURL: url)
+            self.mediaAPI = URLSessionAPI(accessToken: nil, baseURL: url, urlSession: self.urlSession)
             self.getSession()
         }
     }
@@ -72,11 +77,27 @@ public class UploadMedia {
     }
 
     func postUpload(ks: String, token: String) {
+        isUploading = true
         task = mediaAPI?.makeRequest(PostMediaUploadRequest(fileURL: url, type: type, ks: ks, token: token)) { (_, _, error) in
+            self.isUploading = false
             guard error == nil else {
                 return self.callback(nil, error)
             }
             self.getMediaID(ks: ks, token: token)
+        }
+    }
+
+    public func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
+        guard isUploading, let id = file?.objectID else { return }
+        env.database.performBackgroundTask { (context: NSManagedObjectContext) in
+            guard let file = try? context.existingObject(with: id) as? File else { return }
+            file.bytesSent = Int(totalBytesSent)
+            file.size = Int(totalBytesExpectedToSend)
+            do {
+                try context.save()
+            } catch {
+                Logger.shared.error(error)
+            }
         }
     }
 

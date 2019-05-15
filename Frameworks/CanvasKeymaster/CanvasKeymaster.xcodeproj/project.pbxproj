@@ -8,71 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		0427ED71F9517BC9C905670E /* Pods_defaults_CanvasKeymaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E66D20238B73967062C6B28D /* Pods_defaults_CanvasKeymaster.framework */; };
-		2C0D62A620335C6300EBE7AB /* CKMDomainSearchViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C0D62A420335C6300EBE7AB /* CKMDomainSearchViewController.h */; };
-		2C0D62A720335C6300EBE7AB /* CKMDomainSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0D62A520335C6300EBE7AB /* CKMDomainSearchViewController.m */; };
-		2CA6637C20349D7C00F0DCAB /* NSLayoutConstraintHairline.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CA6637A20349D7C00F0DCAB /* NSLayoutConstraintHairline.h */; };
-		2CA6637D20349D7C00F0DCAB /* NSLayoutConstraintHairline.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA6637B20349D7C00F0DCAB /* NSLayoutConstraintHairline.m */; };
-		2CAF046C2033A2A1007BC62D /* x-icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CAF04692033A2A0007BC62D /* x-icon@3x.png */; };
-		2CAF046D2033A2A1007BC62D /* x-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CAF046A2033A2A0007BC62D /* x-icon.png */; };
-		2CAF046E2033A2A1007BC62D /* x-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CAF046B2033A2A1007BC62D /* x-icon@2x.png */; };
-		2CB7238F20B5F5CE001C8C3F /* Arrow-Back.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CB7238C20B5F5CE001C8C3F /* Arrow-Back.png */; };
-		2CB7239020B5F5CE001C8C3F /* Arrow-Back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CB7238D20B5F5CE001C8C3F /* Arrow-Back@2x.png */; };
-		2CB7239120B5F5CE001C8C3F /* Arrow-Back@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CB7238E20B5F5CE001C8C3F /* Arrow-Back@3x.png */; };
-		2CF6EF4D209912A400B97582 /* preload-account-info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CF6EF4C209912A400B97582 /* preload-account-info.plist */; };
 		3BCAF3CC1F63B12200EEF0A7 /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1ADC6FE1C90F9EA00E85895 /* CanvasKit.framework */; };
-		49C0FB30190B167900572CA1 /* LaunchImage.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49C0FB2F190B167900572CA1 /* LaunchImage.xcassets */; };
-		49E545A21909B4AC001AD3BC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49E9586B190967B000A1BFB7 /* Foundation.framework */; };
-		49E545A41909B4AC001AD3BC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49E545A31909B4AC001AD3BC /* CoreGraphics.framework */; };
-		49E545A51909B4AC001AD3BC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49E9587C190967B000A1BFB7 /* UIKit.framework */; };
-		49E545AB1909B4AC001AD3BC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49E545A91909B4AC001AD3BC /* InfoPlist.strings */; };
-		49E545AD1909B4AC001AD3BC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E545AC1909B4AC001AD3BC /* main.m */; };
-		49E545B11909B4AC001AD3BC /* CKMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E545B01909B4AC001AD3BC /* CKMAppDelegate.m */; };
-		49E545B41909B4AC001AD3BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49E545B21909B4AC001AD3BC /* Main.storyboard */; };
-		49E545B71909B4AC001AD3BC /* CKMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E545B61909B4AC001AD3BC /* CKMViewController.m */; };
-		49E545B91909B4AC001AD3BC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49E545B81909B4AC001AD3BC /* Images.xcassets */; };
-		49E545D61909C9DC001AD3BC /* CKMLockedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E545D51909C9DC001AD3BC /* CKMLockedViewController.m */; };
-		6181F12D1DFF365900B94488 /* CKMDomainPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E958981909979B00A1BFB7 /* CKMDomainPickerViewController.m */; };
 		B10E9F751E2FDB87000F5D01 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B10E9F771E2FDB87000F5D01 /* Localizable.strings */; };
 		B10E9F7B1E2FDB88000F5D01 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B10E9F7D1E2FDB88000F5D01 /* InfoPlist.strings */; };
-		B181D2A41DFB20C600114ACE /* CKMDomainPickerViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B181D2A61DFB20C600114ACE /* CKMDomainPickerViewController.storyboard */; };
 		B181D2AA1DFB211500114ACE /* SupportTicket.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B181D2AC1DFB211500114ACE /* SupportTicket.storyboard */; };
 		B1F3780E224A8550000B7CAA /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F3780D224A8550000B7CAA /* Core.framework */; };
-		B1F37811224A868F000B7CAA /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F3780D224A8550000B7CAA /* Core.framework */; };
-		B1F37812224A868F000B7CAA /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1F3780D224A8550000B7CAA /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B1F37815224A8738000B7CAA /* PSPDFKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F37813224A8738000B7CAA /* PSPDFKitUI.framework */; };
 		B1F37816224A8738000B7CAA /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F37814224A8738000B7CAA /* PSPDFKit.framework */; };
-		B1F3781B224A88DE000B7CAA /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F37814224A8738000B7CAA /* PSPDFKit.framework */; };
-		B1F3781C224A88E2000B7CAA /* PSPDFKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F37813224A8738000B7CAA /* PSPDFKitUI.framework */; };
 		B1FC3AF61C98B4E500A8001F /* CanvasKeymaster.h in Headers */ = {isa = PBXBuildFile; fileRef = B1FC3AF51C98B4E500A8001F /* CanvasKeymaster.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B1FC3B001C98B5AE00A8001F /* CanvasKeymaster.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E958921909768F00A1BFB7 /* CanvasKeymaster.m */; };
-		B1FC3B011C98B60E00A8001F /* icon_forward_arrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B58A48EE1A894A21002445A3 /* icon_forward_arrow@3x.png */; };
-		B1FC3B021C98B60E00A8001F /* icon_forward_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B58A48EF1A894A21002445A3 /* icon_forward_arrow@2x.png */; };
-		B1FC3B031C98B60E00A8001F /* icon_forward_arrow@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = B58A48F01A894A21002445A3 /* icon_forward_arrow@1x.png */; };
-		B1FC3B071C98B60E00A8001F /* icon_help.png in Resources */ = {isa = PBXBuildFile; fileRef = BD94CF0C19A3D87B000423DE /* icon_help.png */; };
-		B1FC3B081C98B60E00A8001F /* icon_help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BD94CF0D19A3D87B000423DE /* icon_help@2x.png */; };
-		B1FC3B091C98B60E00A8001F /* icon_cancel_light.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E274A401914434100E04789 /* icon_cancel_light.png */; };
-		B1FC3B0A1C98B60E00A8001F /* icon_cancel_light@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E274A411914434100E04789 /* icon_cancel_light@2x.png */; };
-		B1FC3B0B1C98B60E00A8001F /* icon_profile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E274A421914434100E04789 /* icon_profile@2x.png */; };
-		B1FC3B0C1C98B60E00A8001F /* CKMMultiUserTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 5ED1DCD019103DCB00368AE7 /* CKMMultiUserTableViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B1FC3B0D1C98B60E00A8001F /* CKMMultiUserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED1DCD119103DCB00368AE7 /* CKMMultiUserTableViewCell.m */; };
-		B1FC3B0E1C98B60E00A8001F /* CKMMultiUserTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5ED1DCD219103DCB00368AE7 /* CKMMultiUserTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B1FC3B0F1C98B60E00A8001F /* CKMMultiUserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED1DCD319103DCB00368AE7 /* CKMMultiUserTableViewController.m */; };
-		B1FC3B141C98B60E00A8001F /* CKMDomainSuggester.h in Headers */ = {isa = PBXBuildFile; fileRef = 49E958991909979C00A1BFB7 /* CKMDomainSuggester.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B1FC3B151C98B60E00A8001F /* CKMDomainSuggester.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E9589A1909979C00A1BFB7 /* CKMDomainSuggester.m */; };
-		B1FC3B181C98B60E00A8001F /* CKMDomainSuggestionTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 49E9589D1909979C00A1BFB7 /* CKMDomainSuggestionTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B1FC3B191C98B60E00A8001F /* CKMDomainSuggestionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E9589E1909979C00A1BFB7 /* CKMDomainSuggestionTableViewController.m */; };
-		B1FC3B1A1C98B60E00A8001F /* CKMLocationSchoolSuggester.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EDE06401999FE7D009244F9 /* CKMLocationSchoolSuggester.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B1FC3B1B1C98B60E00A8001F /* CKMLocationSchoolSuggester.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDE06411999FE7D009244F9 /* CKMLocationSchoolSuggester.m */; };
-		B1FC3B1E1C98B60E00A8001F /* CKMLocationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EDE0648199A4BCC009244F9 /* CKMLocationManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B1FC3B1F1C98B60E00A8001F /* CKMLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDE0649199A4BCC009244F9 /* CKMLocationManager.m */; };
-		B1FC3B201C98B60E00A8001F /* CKMDomainHelpViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E93CC38199C1B1E004FC97F /* CKMDomainHelpViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B1FC3B211C98B60E00A8001F /* CKMDomainHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E93CC39199C1B1E004FC97F /* CKMDomainHelpViewController.m */; };
-		B1FC3B221C98B60E00A8001F /* CKMDomainHelpViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E93CC3B199C1B45004FC97F /* CKMDomainHelpViewController.storyboard */; };
-		B1FC3B231C98B62600A8001F /* UIDevice+CKMHardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E54670190AACA6001AD3BC /* UIDevice+CKMHardware.m */; };
 		B1FC3B241C98B65900A8001F /* FXKeychain+CKMKeychain.h in Headers */ = {isa = PBXBuildFile; fileRef = 49E54673190AACDA001AD3BC /* FXKeychain+CKMKeychain.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B1FC3B251C98B65900A8001F /* FXKeychain+CKMKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E54674190AACDA001AD3BC /* FXKeychain+CKMKeychain.m */; };
-		B1FC3B261C98B66000A8001F /* CLLocation+CKMDistance.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EDE064C199A5E87009244F9 /* CLLocation+CKMDistance.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B1FC3B271C98B66000A8001F /* CLLocation+CKMDistance.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDE064D199A5E87009244F9 /* CLLocation+CKMDistance.m */; };
 		B1FC3B2A1C98B66800A8001F /* ImpactTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E505F331B55ABF6007BD968 /* ImpactTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B1FC3B2B1C98B66800A8001F /* ImpactTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E505F341B55ABF6007BD968 /* ImpactTableViewController.m */; };
 		B1FC3B2C1C98B66800A8001F /* SupportTicket.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EEEB1731B56C9A7001438C3 /* SupportTicket.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -81,316 +27,116 @@
 		B1FC3B2F1C98B66800A8001F /* SupportTicketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEEB1761B56C9A7001438C3 /* SupportTicketManager.m */; };
 		B1FC3B301C98B66800A8001F /* SupportTicketViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EEEB1771B56C9A7001438C3 /* SupportTicketViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B1FC3B311C98B66800A8001F /* SupportTicketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEEB1781B56C9A7001438C3 /* SupportTicketViewController.m */; };
-		B1FC3B361C98B6B700A8001F /* CKMDomainPickerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 49E958971909979B00A1BFB7 /* CKMDomainPickerViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B5FF83371D6E3FE3005DFE19 /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1ADC6FE1C90F9EA00E85895 /* CanvasKit.framework */; };
-		B5FF83381D6E3FE3005DFE19 /* CanvasKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1ADC6FE1C90F9EA00E85895 /* CanvasKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B5FF83401D6E4041005DFE19 /* CanvasKeymaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1FC3AF31C98B4E500A8001F /* CanvasKeymaster.framework */; };
-		B5FF83411D6E4041005DFE19 /* CanvasKeymaster.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1FC3AF31C98B4E500A8001F /* CanvasKeymaster.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		BD94CF0E19A3D87B000423DE /* icon_help.png in Resources */ = {isa = PBXBuildFile; fileRef = BD94CF0C19A3D87B000423DE /* icon_help.png */; };
-		BD94CF0F19A3D87B000423DE /* icon_help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BD94CF0D19A3D87B000423DE /* icon_help@2x.png */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		B5FF83421D6E4041005DFE19 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 49E95860190967B000A1BFB7 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B1FC3AF21C98B4E500A8001F;
-			remoteInfo = CanvasKeymaster;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		B5FF833D1D6E3FE3005DFE19 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				B5FF83381D6E3FE3005DFE19 /* CanvasKit.framework in Embed Frameworks */,
-				B1F37812224A868F000B7CAA /* Core.framework in Embed Frameworks */,
-				B5FF83411D6E4041005DFE19 /* CanvasKeymaster.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0BA1F2BA47D5098035222EA1 /* Pods_CanvasKeymaster.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CanvasKeymaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2C0D62A420335C6300EBE7AB /* CKMDomainSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CKMDomainSearchViewController.h; sourceTree = "<group>"; };
-		2C0D62A520335C6300EBE7AB /* CKMDomainSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CKMDomainSearchViewController.m; sourceTree = "<group>"; };
-		2C73C9C81E0333830064A19D /* CWNotification.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CWNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2CA6637A20349D7C00F0DCAB /* NSLayoutConstraintHairline.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSLayoutConstraintHairline.h; sourceTree = "<group>"; };
-		2CA6637B20349D7C00F0DCAB /* NSLayoutConstraintHairline.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSLayoutConstraintHairline.m; sourceTree = "<group>"; };
-		2CAF04692033A2A0007BC62D /* x-icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "x-icon@3x.png"; sourceTree = "<group>"; };
-		2CAF046A2033A2A0007BC62D /* x-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "x-icon.png"; sourceTree = "<group>"; };
-		2CAF046B2033A2A1007BC62D /* x-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "x-icon@2x.png"; sourceTree = "<group>"; };
-		2CB7238C20B5F5CE001C8C3F /* Arrow-Back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Arrow-Back.png"; path = "../../../../CanvasCore/CanvasCore/CanvasCore.xcassets/back_arrow.imageset/Arrow-Back.png"; sourceTree = "<group>"; };
-		2CB7238D20B5F5CE001C8C3F /* Arrow-Back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Arrow-Back@2x.png"; path = "../../../../CanvasCore/CanvasCore/CanvasCore.xcassets/back_arrow.imageset/Arrow-Back@2x.png"; sourceTree = "<group>"; };
-		2CB7238E20B5F5CE001C8C3F /* Arrow-Back@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Arrow-Back@3x.png"; path = "../../../../CanvasCore/CanvasCore/CanvasCore.xcassets/back_arrow.imageset/Arrow-Back@3x.png"; sourceTree = "<group>"; };
-		2CF6EF4C209912A400B97582 /* preload-account-info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "preload-account-info.plist"; path = "../../../../preload-account-info.plist"; sourceTree = "<group>"; };
-		4917EDAE1D947C9D009D58B5 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AFNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		499F7FDC1C9B6812005CCD00 /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reachability.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		49C0FB2F190B167900572CA1 /* LaunchImage.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = LaunchImage.xcassets; sourceTree = "<group>"; };
-		49E545A11909B4AC001AD3BC /* CanvasKeytester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CanvasKeytester.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		49E545A31909B4AC001AD3BC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		49E545A81909B4AC001AD3BC /* CanvasKeytester-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CanvasKeytester-Info.plist"; sourceTree = "<group>"; };
-		49E545AA1909B4AC001AD3BC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		49E545AC1909B4AC001AD3BC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		49E545AE1909B4AC001AD3BC /* CanvasKeytester-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CanvasKeytester-Prefix.pch"; sourceTree = "<group>"; };
-		49E545AF1909B4AC001AD3BC /* CKMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CKMAppDelegate.h; sourceTree = "<group>"; };
-		49E545B01909B4AC001AD3BC /* CKMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CKMAppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		49E545B31909B4AC001AD3BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		49E545B51909B4AC001AD3BC /* CKMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CKMViewController.h; sourceTree = "<group>"; };
-		49E545B61909B4AC001AD3BC /* CKMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CKMViewController.m; sourceTree = "<group>"; };
-		49E545B81909B4AC001AD3BC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		49E545D41909C9DC001AD3BC /* CKMLockedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKMLockedViewController.h; sourceTree = "<group>"; };
-		49E545D51909C9DC001AD3BC /* CKMLockedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKMLockedViewController.m; sourceTree = "<group>"; };
-		49E5466F190AACA6001AD3BC /* UIDevice+CKMHardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+CKMHardware.h"; sourceTree = "<group>"; };
-		49E54670190AACA6001AD3BC /* UIDevice+CKMHardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+CKMHardware.m"; sourceTree = "<group>"; };
 		49E54673190AACDA001AD3BC /* FXKeychain+CKMKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FXKeychain+CKMKeychain.h"; sourceTree = "<group>"; };
 		49E54674190AACDA001AD3BC /* FXKeychain+CKMKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FXKeychain+CKMKeychain.m"; sourceTree = "<group>"; };
-		49E9586B190967B000A1BFB7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		49E95879190967B000A1BFB7 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		49E9587C190967B000A1BFB7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		49E958921909768F00A1BFB7 /* CanvasKeymaster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CanvasKeymaster.m; sourceTree = "<group>"; };
-		49E958971909979B00A1BFB7 /* CKMDomainPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKMDomainPickerViewController.h; sourceTree = "<group>"; };
-		49E958981909979B00A1BFB7 /* CKMDomainPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CKMDomainPickerViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		49E958991909979C00A1BFB7 /* CKMDomainSuggester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKMDomainSuggester.h; sourceTree = "<group>"; };
-		49E9589A1909979C00A1BFB7 /* CKMDomainSuggester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKMDomainSuggester.m; sourceTree = "<group>"; };
-		49E9589D1909979C00A1BFB7 /* CKMDomainSuggestionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKMDomainSuggestionTableViewController.h; sourceTree = "<group>"; };
-		49E9589E1909979C00A1BFB7 /* CKMDomainSuggestionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKMDomainSuggestionTableViewController.m; sourceTree = "<group>"; };
-		49E958A31909A66B00A1BFB7 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		49E958A51909A67500A1BFB7 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		5B58B4B720DF8189008B8856 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/Main.strings; sourceTree = "<group>"; };
 		5B58B4B820DF818A008B8856 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5B58B4B920DF818A008B8856 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		5B58B4BA20DF818A008B8856 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5B58B4BB20DF818A008B8856 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/SupportTicket.strings; sourceTree = "<group>"; };
-		5B58B4BC20DF818A008B8856 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/CKMDomainPickerViewController.strings; sourceTree = "<group>"; };
-		5B5C966F21BCFD8A00F8B80D /* en-CY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CY"; path = "en-CY.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		5B5C967021BCFD8A00F8B80D /* en-CY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CY"; path = "en-CY.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		5B5C967121BCFD8A00F8B80D /* en-CY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CY"; path = "en-CY.lproj/Main.strings"; sourceTree = "<group>"; };
 		5B5C967221BCFD8A00F8B80D /* en-CY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CY"; path = "en-CY.lproj/SupportTicket.strings"; sourceTree = "<group>"; };
-		5B5C967321BCFD8A00F8B80D /* en-CY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CY"; path = "en-CY.lproj/CKMDomainPickerViewController.strings"; sourceTree = "<group>"; };
 		5B63522A40D7F33C56E0E141 /* Pods-defaults-CanvasKeymaster.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasKeymaster.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-CanvasKeymaster/Pods-defaults-CanvasKeymaster.release.xcconfig"; sourceTree = "<group>"; };
 		5B90117121E1E8D400DC8656 /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sl-SI"; path = "sl-SI.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		5B90117221E1E8D400DC8656 /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sl-SI"; path = "sl-SI.lproj/Main.strings"; sourceTree = "<group>"; };
 		5B90117321E1E8D400DC8656 /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sl-SI"; path = "sl-SI.lproj/SupportTicket.strings"; sourceTree = "<group>"; };
-		5B90117421E1E8D400DC8656 /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sl-SI"; path = "sl-SI.lproj/CKMDomainPickerViewController.strings"; sourceTree = "<group>"; };
-		5BA3A5A221FD983700EF022A /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sl-SI"; path = "sl-SI.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		5E274A401914434100E04789 /* icon_cancel_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_cancel_light.png; sourceTree = "<group>"; };
-		5E274A411914434100E04789 /* icon_cancel_light@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_cancel_light@2x.png"; sourceTree = "<group>"; };
-		5E274A421914434100E04789 /* icon_profile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_profile@2x.png"; sourceTree = "<group>"; };
 		5E505F331B55ABF6007BD968 /* ImpactTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImpactTableViewController.h; sourceTree = "<group>"; };
 		5E505F341B55ABF6007BD968 /* ImpactTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImpactTableViewController.m; sourceTree = "<group>"; };
-		5E930139199D1CAB006F8F3B /* accounts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = accounts.json; sourceTree = "<group>"; };
-		5E93CC36199C18EE004FC97F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		5E93CC38199C1B1E004FC97F /* CKMDomainHelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKMDomainHelpViewController.h; sourceTree = "<group>"; };
-		5E93CC39199C1B1E004FC97F /* CKMDomainHelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKMDomainHelpViewController.m; sourceTree = "<group>"; };
-		5E93CC3B199C1B45004FC97F /* CKMDomainHelpViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CKMDomainHelpViewController.storyboard; sourceTree = "<group>"; };
-		5ED1DCD019103DCB00368AE7 /* CKMMultiUserTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKMMultiUserTableViewCell.h; sourceTree = "<group>"; };
-		5ED1DCD119103DCB00368AE7 /* CKMMultiUserTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKMMultiUserTableViewCell.m; sourceTree = "<group>"; };
-		5ED1DCD219103DCB00368AE7 /* CKMMultiUserTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKMMultiUserTableViewController.h; sourceTree = "<group>"; };
-		5ED1DCD319103DCB00368AE7 /* CKMMultiUserTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKMMultiUserTableViewController.m; sourceTree = "<group>"; };
-		5EDE06401999FE7D009244F9 /* CKMLocationSchoolSuggester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKMLocationSchoolSuggester.h; sourceTree = "<group>"; };
-		5EDE06411999FE7D009244F9 /* CKMLocationSchoolSuggester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKMLocationSchoolSuggester.m; sourceTree = "<group>"; };
-		5EDE0646199A00D7009244F9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		5EDE0648199A4BCC009244F9 /* CKMLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKMLocationManager.h; sourceTree = "<group>"; };
-		5EDE0649199A4BCC009244F9 /* CKMLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKMLocationManager.m; sourceTree = "<group>"; };
-		5EDE064C199A5E87009244F9 /* CLLocation+CKMDistance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+CKMDistance.h"; sourceTree = "<group>"; };
-		5EDE064D199A5E87009244F9 /* CLLocation+CKMDistance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+CKMDistance.m"; sourceTree = "<group>"; };
 		5EEEB1731B56C9A7001438C3 /* SupportTicket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupportTicket.h; sourceTree = "<group>"; };
 		5EEEB1741B56C9A7001438C3 /* SupportTicket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupportTicket.m; sourceTree = "<group>"; };
 		5EEEB1751B56C9A7001438C3 /* SupportTicketManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupportTicketManager.h; sourceTree = "<group>"; };
 		5EEEB1761B56C9A7001438C3 /* SupportTicketManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupportTicketManager.m; sourceTree = "<group>"; };
 		5EEEB1771B56C9A7001438C3 /* SupportTicketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupportTicketViewController.h; sourceTree = "<group>"; };
 		5EEEB1781B56C9A7001438C3 /* SupportTicketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupportTicketViewController.m; sourceTree = "<group>"; };
-		7D349C3D214309CB004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/Main.strings"; sourceTree = "<group>"; };
-		7D349C3E214309CC004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		7D349C3F214309CC004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		7D349C40214309CD004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7D349C41214309CD004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/SupportTicket.strings"; sourceTree = "<group>"; };
-		7D349C4321430A15004C1074 /* en-GB-instukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-instukhe"; path = "en-GB-instukhe.lproj/Main.strings"; sourceTree = "<group>"; };
-		7D349C4421430A16004C1074 /* en-GB-instukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-instukhe"; path = "en-GB-instukhe.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		7D349C4521430A17004C1074 /* en-GB-instukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-instukhe"; path = "en-GB-instukhe.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		7D349C4621430A17004C1074 /* en-GB-instukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-instukhe"; path = "en-GB-instukhe.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7D349C4721430A18004C1074 /* en-GB-instukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-instukhe"; path = "en-GB-instukhe.lproj/SupportTicket.strings"; sourceTree = "<group>"; };
-		7D349C4921430A45004C1074 /* nb-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-instk12"; path = "nb-instk12.lproj/Main.strings"; sourceTree = "<group>"; };
-		7D349C4A21430A45004C1074 /* nb-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-instk12"; path = "nb-instk12.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		7D349C4B21430A46004C1074 /* nb-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-instk12"; path = "nb-instk12.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		7D349C4C21430A47004C1074 /* nb-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-instk12"; path = "nb-instk12.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7D349C4D21430A47004C1074 /* nb-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-instk12"; path = "nb-instk12.lproj/SupportTicket.strings"; sourceTree = "<group>"; };
-		7D349C4F21430A6A004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/Main.strings"; sourceTree = "<group>"; };
-		7D349C5021430A6A004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		7D349C5121430A6B004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		7D349C5221430A6C004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7D349C5321430A6C004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/SupportTicket.strings"; sourceTree = "<group>"; };
-		7DC4D6972146E0D4007B1C06 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/CKMDomainPickerViewController.strings"; sourceTree = "<group>"; };
-		7DC4D6992146E0D7007B1C06 /* nb-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-instk12"; path = "nb-instk12.lproj/CKMDomainPickerViewController.strings"; sourceTree = "<group>"; };
-		7DC4D69B2146E0E0007B1C06 /* en-GB-instukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-instukhe"; path = "en-GB-instukhe.lproj/CKMDomainPickerViewController.strings"; sourceTree = "<group>"; };
-		7DC4D69D2146E0E4007B1C06 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/CKMDomainPickerViewController.strings"; sourceTree = "<group>"; };
 		A2C655512AEE7F55037ED04C /* Pods-CanvasKeymaster.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CanvasKeymaster.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-CanvasKeymaster/Pods-CanvasKeymaster.release.xcconfig"; sourceTree = "<group>"; };
 		B10E9F711E2FDB85000F5D01 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/SupportTicket.strings; sourceTree = "<group>"; };
-		B10E9F721E2FDB85000F5D01 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Main.strings; sourceTree = "<group>"; };
 		B10E9F761E2FDB87000F5D01 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B10E9F781E2FDB87000F5D01 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B10E9F7C1E2FDB88000F5D01 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B10E9F7E1E2FDB89000F5D01 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/CKMDomainPickerViewController.strings; sourceTree = "<group>"; };
 		B10E9F801E2FDB98000F5D01 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/SupportTicket.strings; sourceTree = "<group>"; };
-		B10E9F811E2FDB98000F5D01 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Main.strings; sourceTree = "<group>"; };
 		B10E9F821E2FDB99000F5D01 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B10E9F831E2FDB9A000F5D01 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B10E9F841E2FDB9B000F5D01 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B10E9F851E2FDB9C000F5D01 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/CKMDomainPickerViewController.strings; sourceTree = "<group>"; };
 		B10E9F871E2FDBA6000F5D01 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SupportTicket.strings; sourceTree = "<group>"; };
-		B10E9F881E2FDBA7000F5D01 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		B10E9F891E2FDBA8000F5D01 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B10E9F8A1E2FDBA9000F5D01 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B10E9F8B1E2FDBA9000F5D01 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B10E9F8C1E2FDBAA000F5D01 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CKMDomainPickerViewController.strings; sourceTree = "<group>"; };
 		B10E9F8E1E2FDBB5000F5D01 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/SupportTicket.strings"; sourceTree = "<group>"; };
-		B10E9F8F1E2FDBB6000F5D01 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/Main.strings"; sourceTree = "<group>"; };
 		B10E9F901E2FDBB7000F5D01 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		B10E9F911E2FDBB7000F5D01 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		B10E9F921E2FDBB8000F5D01 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		B10E9F931E2FDBB9000F5D01 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/CKMDomainPickerViewController.strings"; sourceTree = "<group>"; };
 		B10E9F951E2FDBC3000F5D01 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/SupportTicket.strings"; sourceTree = "<group>"; };
-		B10E9F961E2FDBC4000F5D01 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/Main.strings"; sourceTree = "<group>"; };
 		B10E9F971E2FDBC4000F5D01 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		B10E9F981E2FDBC5000F5D01 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		B10E9F991E2FDBC6000F5D01 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		B10E9F9A1E2FDBC7000F5D01 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/CKMDomainPickerViewController.strings"; sourceTree = "<group>"; };
 		B10E9F9C1E2FDBDF000F5D01 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/SupportTicket.strings; sourceTree = "<group>"; };
-		B10E9F9D1E2FDBE0000F5D01 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
 		B10E9F9E1E2FDBE1000F5D01 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B10E9F9F1E2FDBE2000F5D01 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B10E9FA01E2FDBE2000F5D01 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B10E9FA11E2FDBE3000F5D01 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/CKMDomainPickerViewController.strings; sourceTree = "<group>"; };
 		B10E9FA31E2FDBED000F5D01 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/SupportTicket.strings"; sourceTree = "<group>"; };
-		B10E9FA41E2FDBEE000F5D01 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/Main.strings"; sourceTree = "<group>"; };
 		B10E9FA51E2FDBEF000F5D01 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		B10E9FA61E2FDBF0000F5D01 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		B10E9FA71E2FDBF1000F5D01 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		B10E9FA81E2FDBF1000F5D01 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/CKMDomainPickerViewController.strings"; sourceTree = "<group>"; };
 		B10E9FAA1E2FDBFB000F5D01 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/SupportTicket.strings; sourceTree = "<group>"; };
-		B10E9FAB1E2FDBFC000F5D01 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
 		B10E9FAC1E2FDBFC000F5D01 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B10E9FAD1E2FDBFD000F5D01 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B10E9FAE1E2FDBFE000F5D01 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B10E9FAF1E2FDBFF000F5D01 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/CKMDomainPickerViewController.strings; sourceTree = "<group>"; };
 		B10E9FB11E2FDC08000F5D01 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/SupportTicket.strings; sourceTree = "<group>"; };
-		B10E9FB21E2FDC08000F5D01 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/Main.strings; sourceTree = "<group>"; };
 		B10E9FB31E2FDC09000F5D01 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B10E9FB41E2FDC0A000F5D01 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B10E9FB51E2FDC0A000F5D01 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B10E9FB61E2FDC0B000F5D01 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/CKMDomainPickerViewController.strings; sourceTree = "<group>"; };
 		B10E9FB81E2FDC14000F5D01 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SupportTicket.strings; sourceTree = "<group>"; };
-		B10E9FB91E2FDC15000F5D01 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		B10E9FBA1E2FDC16000F5D01 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B10E9FBB1E2FDC17000F5D01 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B10E9FBC1E2FDC17000F5D01 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B10E9FBD1E2FDC18000F5D01 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/CKMDomainPickerViewController.strings; sourceTree = "<group>"; };
 		B10E9FBF1E2FDC23000F5D01 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/SupportTicket.strings; sourceTree = "<group>"; };
-		B10E9FC01E2FDC24000F5D01 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/Main.strings; sourceTree = "<group>"; };
 		B10E9FC11E2FDC24000F5D01 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B10E9FC21E2FDC25000F5D01 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B10E9FC31E2FDC26000F5D01 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B10E9FC41E2FDC27000F5D01 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/CKMDomainPickerViewController.strings; sourceTree = "<group>"; };
 		B10E9FC61E2FDC30000F5D01 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/SupportTicket.strings; sourceTree = "<group>"; };
-		B10E9FC71E2FDC31000F5D01 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Main.strings; sourceTree = "<group>"; };
 		B10E9FC81E2FDC31000F5D01 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B10E9FC91E2FDC32000F5D01 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B10E9FCA1E2FDC33000F5D01 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B10E9FCB1E2FDC33000F5D01 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/CKMDomainPickerViewController.strings; sourceTree = "<group>"; };
 		B10E9FCD1E2FDC3E000F5D01 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/SupportTicket.strings; sourceTree = "<group>"; };
-		B10E9FCE1E2FDC3F000F5D01 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Main.strings; sourceTree = "<group>"; };
 		B10E9FCF1E2FDC40000F5D01 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B10E9FD01E2FDC40000F5D01 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B10E9FD11E2FDC41000F5D01 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B10E9FD21E2FDC42000F5D01 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/CKMDomainPickerViewController.strings; sourceTree = "<group>"; };
 		B10E9FD41E2FDC55000F5D01 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/SupportTicket.strings; sourceTree = "<group>"; };
-		B10E9FD51E2FDC55000F5D01 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Main.strings; sourceTree = "<group>"; };
 		B10E9FD61E2FDC56000F5D01 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B10E9FD71E2FDC57000F5D01 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B10E9FD81E2FDC57000F5D01 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B10E9FD91E2FDC58000F5D01 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/CKMDomainPickerViewController.strings; sourceTree = "<group>"; };
 		B10E9FDB1E2FDC64000F5D01 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/SupportTicket.strings"; sourceTree = "<group>"; };
-		B10E9FDC1E2FDC64000F5D01 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Main.strings"; sourceTree = "<group>"; };
 		B10E9FDD1E2FDC65000F5D01 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		B10E9FDE1E2FDC65000F5D01 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		B10E9FDF1E2FDC66000F5D01 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		B10E9FE01E2FDC67000F5D01 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/CKMDomainPickerViewController.strings"; sourceTree = "<group>"; };
 		B10E9FE21E2FDC7B000F5D01 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/SupportTicket.strings; sourceTree = "<group>"; };
-		B10E9FE31E2FDC7C000F5D01 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Main.strings; sourceTree = "<group>"; };
 		B10E9FE41E2FDC7C000F5D01 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B10E9FE51E2FDC7D000F5D01 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B10E9FE61E2FDC7E000F5D01 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B10E9FE71E2FDC7E000F5D01 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/CKMDomainPickerViewController.strings; sourceTree = "<group>"; };
 		B10E9FE91E2FDC8E000F5D01 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/SupportTicket.strings; sourceTree = "<group>"; };
-		B10E9FEA1E2FDC8F000F5D01 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		B10E9FEB1E2FDC90000F5D01 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B10E9FEC1E2FDC90000F5D01 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B10E9FED1E2FDC92000F5D01 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B10E9FEE1E2FDC92000F5D01 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/CKMDomainPickerViewController.strings; sourceTree = "<group>"; };
 		B10E9FF01E2FDCAC000F5D01 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/SupportTicket.strings; sourceTree = "<group>"; };
-		B10E9FF11E2FDCAC000F5D01 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Main.strings; sourceTree = "<group>"; };
 		B10E9FF21E2FDCAD000F5D01 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B10E9FF31E2FDCAE000F5D01 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B10E9FF41E2FDCAF000F5D01 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B10E9FF51E2FDCAF000F5D01 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/CKMDomainPickerViewController.strings; sourceTree = "<group>"; };
 		B10E9FF71E2FDCCD000F5D01 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/SupportTicket.strings"; sourceTree = "<group>"; };
-		B10E9FF81E2FDCCD000F5D01 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/Main.strings"; sourceTree = "<group>"; };
 		B10E9FF91E2FDCCE000F5D01 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		B10E9FFA1E2FDCCF000F5D01 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		B10E9FFB1E2FDCCF000F5D01 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		B10E9FFC1E2FDCD0000F5D01 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/CKMDomainPickerViewController.strings"; sourceTree = "<group>"; };
 		B10E9FFE1E2FDCD9000F5D01 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/SupportTicket.strings; sourceTree = "<group>"; };
-		B10E9FFF1E2FDCD9000F5D01 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/Main.strings; sourceTree = "<group>"; };
 		B10EA0001E2FDCDA000F5D01 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B10EA0011E2FDCDA000F5D01 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B10EA0021E2FDCDB000F5D01 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B10EA0031E2FDCDC000F5D01 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/CKMDomainPickerViewController.strings; sourceTree = "<group>"; };
-		B16702041E32817D00C901E9 /* CWNotification.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CWNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B181D2A51DFB20C600114ACE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CKMDomainPickerViewController.storyboard; sourceTree = "<group>"; };
 		B181D2AB1DFB211500114ACE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SupportTicket.storyboard; sourceTree = "<group>"; };
-		B1ADC6FA1C90F94F00E85895 /* FXKeychain.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FXKeychain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1ADC6FE1C90F9EA00E85895 /* CanvasKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B1ADC7001C90FA5800E85895 /* CocoaLumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CocoaLumberjack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B1ECFC8D1C999EEF007C8852 /* Mantle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Mantle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1F3780D224A8550000B7CAA /* Core.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1F37813224A8738000B7CAA /* PSPDFKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKitUI.framework; path = ../../../Carthage/Build/iOS/PSPDFKitUI.framework; sourceTree = "<group>"; };
 		B1F37814224A8738000B7CAA /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../../../Carthage/Build/iOS/PSPDFKit.framework; sourceTree = "<group>"; };
 		B1FC3AF31C98B4E500A8001F /* CanvasKeymaster.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasKeymaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1FC3AF51C98B4E500A8001F /* CanvasKeymaster.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CanvasKeymaster.h; sourceTree = "<group>"; };
 		B1FC3AF71C98B4E500A8001F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B58A48EE1A894A21002445A3 /* icon_forward_arrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_forward_arrow@3x.png"; sourceTree = "<group>"; };
-		B58A48EF1A894A21002445A3 /* icon_forward_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_forward_arrow@2x.png"; sourceTree = "<group>"; };
-		B58A48F01A894A21002445A3 /* icon_forward_arrow@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_forward_arrow@1x.png"; sourceTree = "<group>"; };
-		BD94CF0C19A3D87B000423DE /* icon_help.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_help.png; sourceTree = "<group>"; };
-		BD94CF0D19A3D87B000423DE /* icon_help@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_help@2x.png"; sourceTree = "<group>"; };
 		DDFE3E845A72769CE0B91EB1 /* Pods-defaults-CanvasKeymaster.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasKeymaster.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-CanvasKeymaster/Pods-defaults-CanvasKeymaster.debug.xcconfig"; sourceTree = "<group>"; };
 		E66D20238B73967062C6B28D /* Pods_defaults_CanvasKeymaster.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_CanvasKeymaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E74302FEF23A791C861D1A84 /* Pods-CanvasKeymaster.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CanvasKeymaster.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-CanvasKeymaster/Pods-CanvasKeymaster.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		49E5459E1909B4AC001AD3BC /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B5FF83371D6E3FE3005DFE19 /* CanvasKit.framework in Frameworks */,
-				B1F37811224A868F000B7CAA /* Core.framework in Frameworks */,
-				49E545A41909B4AC001AD3BC /* CoreGraphics.framework in Frameworks */,
-				49E545A51909B4AC001AD3BC /* UIKit.framework in Frameworks */,
-				49E545A21909B4AC001AD3BC /* Foundation.framework in Frameworks */,
-				B5FF83401D6E4041005DFE19 /* CanvasKeymaster.framework in Frameworks */,
-				B1F3781B224A88DE000B7CAA /* PSPDFKit.framework in Frameworks */,
-				B1F3781C224A88E2000B7CAA /* PSPDFKitUI.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		B1FC3AEF1C98B4E500A8001F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -406,46 +152,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		49E545A61909B4AC001AD3BC /* CanvasKeytester */ = {
-			isa = PBXGroup;
-			children = (
-				5ECA7A4D1912CB5D00EEA436 /* iPad */,
-				49E545AF1909B4AC001AD3BC /* CKMAppDelegate.h */,
-				49E545B01909B4AC001AD3BC /* CKMAppDelegate.m */,
-				49E545B21909B4AC001AD3BC /* Main.storyboard */,
-				49E545B51909B4AC001AD3BC /* CKMViewController.h */,
-				49E545B61909B4AC001AD3BC /* CKMViewController.m */,
-				49E545D41909C9DC001AD3BC /* CKMLockedViewController.h */,
-				49E545D51909C9DC001AD3BC /* CKMLockedViewController.m */,
-				49E545B81909B4AC001AD3BC /* Images.xcassets */,
-				49C0FB2F190B167900572CA1 /* LaunchImage.xcassets */,
-				49E545A71909B4AC001AD3BC /* Supporting Files */,
-			);
-			path = CanvasKeytester;
-			sourceTree = "<group>";
-		};
-		49E545A71909B4AC001AD3BC /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				49E545A81909B4AC001AD3BC /* CanvasKeytester-Info.plist */,
-				49E545A91909B4AC001AD3BC /* InfoPlist.strings */,
-				49E545AC1909B4AC001AD3BC /* main.m */,
-				49E545AE1909B4AC001AD3BC /* CanvasKeytester-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		49E5466E190AAC4F001AD3BC /* UIKit+CanvasKeymaster */ = {
-			isa = PBXGroup;
-			children = (
-				49E5466F190AACA6001AD3BC /* UIDevice+CKMHardware.h */,
-				49E54670190AACA6001AD3BC /* UIDevice+CKMHardware.m */,
-				2CA6637A20349D7C00F0DCAB /* NSLayoutConstraintHairline.h */,
-				2CA6637B20349D7C00F0DCAB /* NSLayoutConstraintHairline.m */,
-			);
-			path = "UIKit+CanvasKeymaster";
-			sourceTree = "<group>";
-		};
 		49E54672190AACC0001AD3BC /* FXKeychain+CanvasKeymaster */ = {
 			isa = PBXGroup;
 			children = (
@@ -458,7 +164,6 @@
 		49E9585F190967B000A1BFB7 = {
 			isa = PBXGroup;
 			children = (
-				49E545A61909B4AC001AD3BC /* CanvasKeytester */,
 				B1FC3AF41C98B4E500A8001F /* CanvasKeymaster */,
 				49E9586A190967B000A1BFB7 /* Frameworks */,
 				49E95869190967B000A1BFB7 /* Products */,
@@ -469,7 +174,6 @@
 		49E95869190967B000A1BFB7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				49E545A11909B4AC001AD3BC /* CanvasKeytester.app */,
 				B1FC3AF31C98B4E500A8001F /* CanvasKeymaster.framework */,
 			);
 			name = Products;
@@ -478,48 +182,10 @@
 		49E9586A190967B000A1BFB7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2C73C9C81E0333830064A19D /* CWNotification.framework */,
-				5E93CC36199C18EE004FC97F /* MessageUI.framework */,
-				5EDE0646199A00D7009244F9 /* CoreLocation.framework */,
-				49E958A51909A67500A1BFB7 /* libsqlite3.dylib */,
-				49E958A31909A66B00A1BFB7 /* libz.dylib */,
-				49E9586B190967B000A1BFB7 /* Foundation.framework */,
-				49E95879190967B000A1BFB7 /* XCTest.framework */,
-				49E9587C190967B000A1BFB7 /* UIKit.framework */,
-				49E545A31909B4AC001AD3BC /* CoreGraphics.framework */,
 				0BA1F2BA47D5098035222EA1 /* Pods_CanvasKeymaster.framework */,
 				E66D20238B73967062C6B28D /* Pods_defaults_CanvasKeymaster.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		49E958941909979B00A1BFB7 /* Domain Picker */ = {
-			isa = PBXGroup;
-			children = (
-				5E274A3F1914434100E04789 /* Resources */,
-				5ED1DCD019103DCB00368AE7 /* CKMMultiUserTableViewCell.h */,
-				5ED1DCD119103DCB00368AE7 /* CKMMultiUserTableViewCell.m */,
-				5ED1DCD219103DCB00368AE7 /* CKMMultiUserTableViewController.h */,
-				5ED1DCD319103DCB00368AE7 /* CKMMultiUserTableViewController.m */,
-				B181D2A61DFB20C600114ACE /* CKMDomainPickerViewController.storyboard */,
-				49E958971909979B00A1BFB7 /* CKMDomainPickerViewController.h */,
-				49E958981909979B00A1BFB7 /* CKMDomainPickerViewController.m */,
-				2C0D62A420335C6300EBE7AB /* CKMDomainSearchViewController.h */,
-				2C0D62A520335C6300EBE7AB /* CKMDomainSearchViewController.m */,
-				49E958991909979C00A1BFB7 /* CKMDomainSuggester.h */,
-				49E9589A1909979C00A1BFB7 /* CKMDomainSuggester.m */,
-				49E9589D1909979C00A1BFB7 /* CKMDomainSuggestionTableViewController.h */,
-				49E9589E1909979C00A1BFB7 /* CKMDomainSuggestionTableViewController.m */,
-				5EDE06401999FE7D009244F9 /* CKMLocationSchoolSuggester.h */,
-				5EDE06411999FE7D009244F9 /* CKMLocationSchoolSuggester.m */,
-				5EDE0648199A4BCC009244F9 /* CKMLocationManager.h */,
-				5EDE0649199A4BCC009244F9 /* CKMLocationManager.m */,
-				5E93CC38199C1B1E004FC97F /* CKMDomainHelpViewController.h */,
-				5E93CC39199C1B1E004FC97F /* CKMDomainHelpViewController.m */,
-				5E93CC3B199C1B45004FC97F /* CKMDomainHelpViewController.storyboard */,
-				2CF6EF4C209912A400B97582 /* preload-account-info.plist */,
-			);
-			path = "Domain Picker";
 			sourceTree = "<group>";
 		};
 		5DB5AE2751F714EC58C27CDD /* Pods */ = {
@@ -532,29 +198,6 @@
 			);
 			name = Pods;
 			sourceTree = "<group>";
-		};
-		5E274A3F1914434100E04789 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				5E930139199D1CAB006F8F3B /* accounts.json */,
-				B58A48EE1A894A21002445A3 /* icon_forward_arrow@3x.png */,
-				B58A48EF1A894A21002445A3 /* icon_forward_arrow@2x.png */,
-				B58A48F01A894A21002445A3 /* icon_forward_arrow@1x.png */,
-				2CAF046A2033A2A0007BC62D /* x-icon.png */,
-				2CAF046B2033A2A1007BC62D /* x-icon@2x.png */,
-				2CAF04692033A2A0007BC62D /* x-icon@3x.png */,
-				BD94CF0C19A3D87B000423DE /* icon_help.png */,
-				BD94CF0D19A3D87B000423DE /* icon_help@2x.png */,
-				5E274A401914434100E04789 /* icon_cancel_light.png */,
-				5E274A411914434100E04789 /* icon_cancel_light@2x.png */,
-				5E274A421914434100E04789 /* icon_profile@2x.png */,
-				2CB7238C20B5F5CE001C8C3F /* Arrow-Back.png */,
-				2CB7238D20B5F5CE001C8C3F /* Arrow-Back@2x.png */,
-				2CB7238E20B5F5CE001C8C3F /* Arrow-Back@3x.png */,
-			);
-			name = Resources;
-			path = CanvasKeymaster/Resources;
-			sourceTree = SOURCE_ROOT;
 		};
 		5E505F321B55ABF6007BD968 /* ZenDesk */ = {
 			isa = PBXGroup;
@@ -573,35 +216,13 @@
 			path = SupportTicket;
 			sourceTree = "<group>";
 		};
-		5ECA7A4D1912CB5D00EEA436 /* iPad */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = iPad;
-			sourceTree = "<group>";
-		};
-		5EDE064B199A5E73009244F9 /* CLLocation+CKMDistance */ = {
-			isa = PBXGroup;
-			children = (
-				5EDE064C199A5E87009244F9 /* CLLocation+CKMDistance.h */,
-				5EDE064D199A5E87009244F9 /* CLLocation+CKMDistance.m */,
-			);
-			path = "CLLocation+CKMDistance";
-			sourceTree = "<group>";
-		};
 		B1051E751C909A41007C529F /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
 				B1F37814224A8738000B7CAA /* PSPDFKit.framework */,
 				B1F37813224A8738000B7CAA /* PSPDFKitUI.framework */,
 				B1F3780D224A8550000B7CAA /* Core.framework */,
-				B16702041E32817D00C901E9 /* CWNotification.framework */,
-				4917EDAE1D947C9D009D58B5 /* AFNetworking.framework */,
-				499F7FDC1C9B6812005CCD00 /* Reachability.framework */,
-				B1ECFC8D1C999EEF007C8852 /* Mantle.framework */,
-				B1ADC7001C90FA5800E85895 /* CocoaLumberjack.framework */,
 				B1ADC6FE1C90F9EA00E85895 /* CanvasKit.framework */,
-				B1ADC6FA1C90F94F00E85895 /* FXKeychain.framework */,
 			);
 			name = Dependencies;
 			sourceTree = "<group>";
@@ -613,10 +234,7 @@
 				B10E9F771E2FDB87000F5D01 /* Localizable.strings */,
 				B1051E751C909A41007C529F /* Dependencies */,
 				5E505F321B55ABF6007BD968 /* ZenDesk */,
-				5EDE064B199A5E73009244F9 /* CLLocation+CKMDistance */,
 				49E54672190AACC0001AD3BC /* FXKeychain+CanvasKeymaster */,
-				49E5466E190AAC4F001AD3BC /* UIKit+CanvasKeymaster */,
-				49E958941909979B00A1BFB7 /* Domain Picker */,
 				B1FC3AF51C98B4E500A8001F /* CanvasKeymaster.h */,
 				49E958921909768F00A1BFB7 /* CanvasKeymaster.m */,
 				B1FC3AF71C98B4E500A8001F /* Info.plist */,
@@ -632,47 +250,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1FC3AF61C98B4E500A8001F /* CanvasKeymaster.h in Headers */,
-				B1FC3B0E1C98B60E00A8001F /* CKMMultiUserTableViewController.h in Headers */,
-				B1FC3B361C98B6B700A8001F /* CKMDomainPickerViewController.h in Headers */,
-				B1FC3B1E1C98B60E00A8001F /* CKMLocationManager.h in Headers */,
 				B1FC3B301C98B66800A8001F /* SupportTicketViewController.h in Headers */,
-				B1FC3B181C98B60E00A8001F /* CKMDomainSuggestionTableViewController.h in Headers */,
-				2C0D62A620335C6300EBE7AB /* CKMDomainSearchViewController.h in Headers */,
 				B1FC3B2A1C98B66800A8001F /* ImpactTableViewController.h in Headers */,
-				B1FC3B261C98B66000A8001F /* CLLocation+CKMDistance.h in Headers */,
 				B1FC3B2E1C98B66800A8001F /* SupportTicketManager.h in Headers */,
-				2CA6637C20349D7C00F0DCAB /* NSLayoutConstraintHairline.h in Headers */,
 				B1FC3B241C98B65900A8001F /* FXKeychain+CKMKeychain.h in Headers */,
-				B1FC3B141C98B60E00A8001F /* CKMDomainSuggester.h in Headers */,
 				B1FC3B2C1C98B66800A8001F /* SupportTicket.h in Headers */,
-				B1FC3B0C1C98B60E00A8001F /* CKMMultiUserTableViewCell.h in Headers */,
-				B1FC3B201C98B60E00A8001F /* CKMDomainHelpViewController.h in Headers */,
-				B1FC3B1A1C98B60E00A8001F /* CKMLocationSchoolSuggester.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		49E545A01909B4AC001AD3BC /* CanvasKeytester */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 49E545CC1909B4AD001AD3BC /* Build configuration list for PBXNativeTarget "CanvasKeytester" */;
-			buildPhases = (
-				49E5459D1909B4AC001AD3BC /* Sources */,
-				49E5459E1909B4AC001AD3BC /* Frameworks */,
-				49E5459F1909B4AC001AD3BC /* Resources */,
-				B5FF833D1D6E3FE3005DFE19 /* Embed Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B5FF83431D6E4041005DFE19 /* PBXTargetDependency */,
-			);
-			name = CanvasKeytester;
-			productName = CanvasKeytester;
-			productReference = 49E545A11909B4AC001AD3BC /* CanvasKeytester.app */;
-			productType = "com.apple.product-type.application";
-		};
 		B1FC3AF21C98B4E500A8001F /* CanvasKeymaster */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B1FC3AFC1C98B4E500A8001F /* Build configuration list for PBXNativeTarget "CanvasKeymaster" */;
@@ -702,9 +290,6 @@
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = Instructure;
 				TargetAttributes = {
-					49E545A01909B4AC001AD3BC = {
-						DevelopmentTeam = B6333T4PXQ;
-					};
 					B1FC3AF21C98B4E500A8001F = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = B6333T4PXQ;
@@ -751,50 +336,19 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				49E545A01909B4AC001AD3BC /* CanvasKeytester */,
 				B1FC3AF21C98B4E500A8001F /* CanvasKeymaster */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		49E5459F1909B4AC001AD3BC /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				49E545B91909B4AC001AD3BC /* Images.xcassets in Resources */,
-				BD94CF0E19A3D87B000423DE /* icon_help.png in Resources */,
-				49E545AB1909B4AC001AD3BC /* InfoPlist.strings in Resources */,
-				49E545B41909B4AC001AD3BC /* Main.storyboard in Resources */,
-				BD94CF0F19A3D87B000423DE /* icon_help@2x.png in Resources */,
-				49C0FB30190B167900572CA1 /* LaunchImage.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		B1FC3AF11C98B4E500A8001F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2CAF046C2033A2A1007BC62D /* x-icon@3x.png in Resources */,
-				2CAF046E2033A2A1007BC62D /* x-icon@2x.png in Resources */,
-				B1FC3B0A1C98B60E00A8001F /* icon_cancel_light@2x.png in Resources */,
-				B1FC3B071C98B60E00A8001F /* icon_help.png in Resources */,
-				2CB7239020B5F5CE001C8C3F /* Arrow-Back@2x.png in Resources */,
-				B1FC3B221C98B60E00A8001F /* CKMDomainHelpViewController.storyboard in Resources */,
 				B10E9F7B1E2FDB88000F5D01 /* InfoPlist.strings in Resources */,
-				2CB7238F20B5F5CE001C8C3F /* Arrow-Back.png in Resources */,
-				2CB7239120B5F5CE001C8C3F /* Arrow-Back@3x.png in Resources */,
-				2CF6EF4D209912A400B97582 /* preload-account-info.plist in Resources */,
-				B1FC3B031C98B60E00A8001F /* icon_forward_arrow@1x.png in Resources */,
 				B181D2AA1DFB211500114ACE /* SupportTicket.storyboard in Resources */,
-				B1FC3B0B1C98B60E00A8001F /* icon_profile@2x.png in Resources */,
-				B181D2A41DFB20C600114ACE /* CKMDomainPickerViewController.storyboard in Resources */,
-				B1FC3B091C98B60E00A8001F /* icon_cancel_light.png in Resources */,
-				B1FC3B011C98B60E00A8001F /* icon_forward_arrow@3x.png in Resources */,
-				B1FC3B081C98B60E00A8001F /* icon_help@2x.png in Resources */,
 				B10E9F751E2FDB87000F5D01 /* Localizable.strings in Resources */,
-				B1FC3B021C98B60E00A8001F /* icon_forward_arrow@2x.png in Resources */,
-				2CAF046D2033A2A1007BC62D /* x-icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -822,123 +376,22 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		49E5459D1909B4AC001AD3BC /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				49E545D61909C9DC001AD3BC /* CKMLockedViewController.m in Sources */,
-				49E545B71909B4AC001AD3BC /* CKMViewController.m in Sources */,
-				49E545B11909B4AC001AD3BC /* CKMAppDelegate.m in Sources */,
-				49E545AD1909B4AC001AD3BC /* main.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		B1FC3AEE1C98B4E500A8001F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1FC3B211C98B60E00A8001F /* CKMDomainHelpViewController.m in Sources */,
-				B1FC3B191C98B60E00A8001F /* CKMDomainSuggestionTableViewController.m in Sources */,
-				B1FC3B0F1C98B60E00A8001F /* CKMMultiUserTableViewController.m in Sources */,
-				B1FC3B0D1C98B60E00A8001F /* CKMMultiUserTableViewCell.m in Sources */,
-				2C0D62A720335C6300EBE7AB /* CKMDomainSearchViewController.m in Sources */,
 				B1FC3B2B1C98B66800A8001F /* ImpactTableViewController.m in Sources */,
-				B1FC3B151C98B60E00A8001F /* CKMDomainSuggester.m in Sources */,
-				6181F12D1DFF365900B94488 /* CKMDomainPickerViewController.m in Sources */,
-				B1FC3B1B1C98B60E00A8001F /* CKMLocationSchoolSuggester.m in Sources */,
-				B1FC3B271C98B66000A8001F /* CLLocation+CKMDistance.m in Sources */,
 				B1FC3B251C98B65900A8001F /* FXKeychain+CKMKeychain.m in Sources */,
 				B1FC3B2D1C98B66800A8001F /* SupportTicket.m in Sources */,
 				B1FC3B2F1C98B66800A8001F /* SupportTicketManager.m in Sources */,
-				2CA6637D20349D7C00F0DCAB /* NSLayoutConstraintHairline.m in Sources */,
 				B1FC3B311C98B66800A8001F /* SupportTicketViewController.m in Sources */,
-				B1FC3B1F1C98B60E00A8001F /* CKMLocationManager.m in Sources */,
 				B1FC3B001C98B5AE00A8001F /* CanvasKeymaster.m in Sources */,
-				B1FC3B231C98B62600A8001F /* UIDevice+CKMHardware.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		B5FF83431D6E4041005DFE19 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B1FC3AF21C98B4E500A8001F /* CanvasKeymaster */;
-			targetProxy = B5FF83421D6E4041005DFE19 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXVariantGroup section */
-		49E545A91909B4AC001AD3BC /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				49E545AA1909B4AC001AD3BC /* en */,
-				B10E9F781E2FDB87000F5D01 /* ar */,
-				B10E9F831E2FDB9A000F5D01 /* da */,
-				B10E9F8A1E2FDBA9000F5D01 /* de */,
-				B10E9F911E2FDBB7000F5D01 /* en-AU */,
-				B10E9F981E2FDBC5000F5D01 /* en-GB */,
-				B10E9F9F1E2FDBE2000F5D01 /* es */,
-				B10E9FA61E2FDBF0000F5D01 /* fr-CA */,
-				B10E9FAD1E2FDBFD000F5D01 /* fr */,
-				B10E9FB41E2FDC0A000F5D01 /* ht */,
-				B10E9FBB1E2FDC17000F5D01 /* ja */,
-				B10E9FC21E2FDC25000F5D01 /* mi */,
-				B10E9FC91E2FDC32000F5D01 /* nb */,
-				B10E9FD01E2FDC40000F5D01 /* nl */,
-				B10E9FD71E2FDC57000F5D01 /* pl */,
-				B10E9FDE1E2FDC65000F5D01 /* pt-BR */,
-				B10E9FE51E2FDC7D000F5D01 /* pt */,
-				B10E9FEC1E2FDC90000F5D01 /* ru */,
-				B10E9FF31E2FDCAE000F5D01 /* sv */,
-				B10E9FFA1E2FDCCF000F5D01 /* zh-HK */,
-				B10EA0011E2FDCDA000F5D01 /* zh */,
-				5B58B4BA20DF818A008B8856 /* cy */,
-				7D349C3E214309CC004C1074 /* da-instk12 */,
-				7D349C4421430A16004C1074 /* en-GB-instukhe */,
-				7D349C4A21430A45004C1074 /* nb-instk12 */,
-				7D349C5021430A6A004C1074 /* sv-instk12 */,
-				5B5C966F21BCFD8A00F8B80D /* en-CY */,
-				5BA3A5A221FD983700EF022A /* sl-SI */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		49E545B21909B4AC001AD3BC /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				49E545B31909B4AC001AD3BC /* Base */,
-				B10E9F721E2FDB85000F5D01 /* ar */,
-				B10E9F811E2FDB98000F5D01 /* da */,
-				B10E9F881E2FDBA7000F5D01 /* de */,
-				B10E9F8F1E2FDBB6000F5D01 /* en-AU */,
-				B10E9F961E2FDBC4000F5D01 /* en-GB */,
-				B10E9F9D1E2FDBE0000F5D01 /* es */,
-				B10E9FA41E2FDBEE000F5D01 /* fr-CA */,
-				B10E9FAB1E2FDBFC000F5D01 /* fr */,
-				B10E9FB21E2FDC08000F5D01 /* ht */,
-				B10E9FB91E2FDC15000F5D01 /* ja */,
-				B10E9FC01E2FDC24000F5D01 /* mi */,
-				B10E9FC71E2FDC31000F5D01 /* nb */,
-				B10E9FCE1E2FDC3F000F5D01 /* nl */,
-				B10E9FD51E2FDC55000F5D01 /* pl */,
-				B10E9FDC1E2FDC64000F5D01 /* pt-BR */,
-				B10E9FE31E2FDC7C000F5D01 /* pt */,
-				B10E9FEA1E2FDC8F000F5D01 /* ru */,
-				B10E9FF11E2FDCAC000F5D01 /* sv */,
-				B10E9FF81E2FDCCD000F5D01 /* zh-HK */,
-				B10E9FFF1E2FDCD9000F5D01 /* zh */,
-				5B58B4B720DF8189008B8856 /* cy */,
-				7D349C3D214309CB004C1074 /* da-instk12 */,
-				7D349C4321430A15004C1074 /* en-GB-instukhe */,
-				7D349C4921430A45004C1074 /* nb-instk12 */,
-				7D349C4F21430A6A004C1074 /* sv-instk12 */,
-				5B5C967121BCFD8A00F8B80D /* en-CY */,
-				5B90117221E1E8D400DC8656 /* sl-SI */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		B10E9F771E2FDB87000F5D01 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1005,41 +458,6 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		B181D2A61DFB20C600114ACE /* CKMDomainPickerViewController.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B181D2A51DFB20C600114ACE /* Base */,
-				B10E9F7E1E2FDB89000F5D01 /* ar */,
-				B10E9F851E2FDB9C000F5D01 /* da */,
-				B10E9F8C1E2FDBAA000F5D01 /* de */,
-				B10E9F931E2FDBB9000F5D01 /* en-AU */,
-				B10E9F9A1E2FDBC7000F5D01 /* en-GB */,
-				B10E9FA11E2FDBE3000F5D01 /* es */,
-				B10E9FA81E2FDBF1000F5D01 /* fr-CA */,
-				B10E9FAF1E2FDBFF000F5D01 /* fr */,
-				B10E9FB61E2FDC0B000F5D01 /* ht */,
-				B10E9FBD1E2FDC18000F5D01 /* ja */,
-				B10E9FC41E2FDC27000F5D01 /* mi */,
-				B10E9FCB1E2FDC33000F5D01 /* nb */,
-				B10E9FD21E2FDC42000F5D01 /* nl */,
-				B10E9FD91E2FDC58000F5D01 /* pl */,
-				B10E9FE01E2FDC67000F5D01 /* pt-BR */,
-				B10E9FE71E2FDC7E000F5D01 /* pt */,
-				B10E9FEE1E2FDC92000F5D01 /* ru */,
-				B10E9FF51E2FDCAF000F5D01 /* sv */,
-				B10E9FFC1E2FDCD0000F5D01 /* zh-HK */,
-				B10EA0031E2FDCDC000F5D01 /* zh */,
-				5B58B4BC20DF818A008B8856 /* cy */,
-				7DC4D6972146E0D4007B1C06 /* sv-instk12 */,
-				7DC4D6992146E0D7007B1C06 /* nb-instk12 */,
-				7DC4D69B2146E0E0007B1C06 /* en-GB-instukhe */,
-				7DC4D69D2146E0E4007B1C06 /* da-instk12 */,
-				5B5C967321BCFD8A00F8B80D /* en-CY */,
-				5B90117421E1E8D400DC8656 /* sl-SI */,
-			);
-			name = CKMDomainPickerViewController.storyboard;
-			sourceTree = "<group>";
-		};
 		B181D2AC1DFB211500114ACE /* SupportTicket.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1078,60 +496,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		49E545CD1909B4AD001AD3BC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = B6333T4PXQ;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CanvasKeytester/CanvasKeytester-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "CanvasKeytester/CanvasKeytester-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.instructure.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
-		};
-		49E545CE1909B4AD001AD3BC /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = B6333T4PXQ;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CanvasKeytester/CanvasKeytester-Prefix.pch";
-				INFOPLIST_FILE = "CanvasKeytester/CanvasKeytester-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.instructure.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
 		49E95889190967B000A1BFB7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1253,7 +617,6 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/AFNetworking\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/BVLinearGradient\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Cartography\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/DeviceKit\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/FXKeychain\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Interactable\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Kingfisher\"",
@@ -1273,11 +636,9 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactiveObjCBridge\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactiveSwift\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Result\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/SVProgressHUD\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/SwiftSimplify\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/TBBModal\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/TPKeyboardAvoiding\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-blur\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-camera\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-document-picker\"",
@@ -1324,7 +685,6 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/AFNetworking\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/BVLinearGradient\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Cartography\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/DeviceKit\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/FXKeychain\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Interactable\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Kingfisher\"",
@@ -1344,11 +704,9 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactiveObjCBridge\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactiveSwift\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Result\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/SVProgressHUD\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/SwiftSimplify\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/TBBModal\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/TPKeyboardAvoiding\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-blur\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-camera\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-document-picker\"",
@@ -1375,15 +733,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		49E545CC1909B4AD001AD3BC /* Build configuration list for PBXNativeTarget "CanvasKeytester" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				49E545CD1909B4AD001AD3BC /* Debug */,
-				49E545CE1909B4AD001AD3BC /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		49E95863190967B000A1BFB7 /* Build configuration list for PBXProject "CanvasKeymaster" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

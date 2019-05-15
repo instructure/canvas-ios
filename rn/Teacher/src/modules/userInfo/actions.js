@@ -29,7 +29,7 @@ export let UserInfoActions = (api: CanvasApi): * => ({
     promise: api.getHelpLinks(),
     handlesError: true,
   })),
-  refreshCanMasquerade: createAction('userInfo.canMasquerade', () => {
+  refreshCanActAsUser: createAction('userInfo.canActAsUser', () => {
     return {
       promise: api.becomeUserPermissions('self'),
       handlesError: true,

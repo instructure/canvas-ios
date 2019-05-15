@@ -1,6 +1,9 @@
 /* Privacy - Camera Usage Description */
 "NSCameraUsageDescription" = "Atodwch luniau a fideos ar gyfer sylwadau ar gyflwyniad.";
 
+/* Privacy - Location When In Use Usage Description */
+"NSLocationWhenInUseUsageDescription" = "";
+
 /* Privacy - Microphone Usage Description */
 "NSMicrophoneUsageDescription" = "Atodwch recordiadau sain ar gyfer sylwadau ar gyflwyniadau.";
 

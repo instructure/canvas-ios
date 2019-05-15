@@ -230,7 +230,11 @@ exports[`RichTextEditor should update active editor items in toolbar 1`] = `
     scrollEnabled={true}
   />
   <RichTextToolbar
-    active={Array []}
+    active={
+      Array [
+        "italic",
+      ]
+    }
     insertImage={null}
     insertLink={[Function]}
     onColorPickerShown={[Function]}
@@ -279,7 +283,11 @@ exports[`RichTextEditor should update active editor items in toolbar 2`] = `
     scrollEnabled={true}
   />
   <RichTextToolbar
-    active={Array []}
+    active={
+      Array [
+        "bold",
+      ]
+    }
     insertImage={null}
     insertLink={[Function]}
     onColorPickerShown={[Function]}

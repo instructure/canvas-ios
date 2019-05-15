@@ -1,20 +1,11 @@
-/* The distance in miles that a user is from a school. */
-"%@ miles away" = "%@ 相差很遠";
-
 /* No comment provided by engineer. */
 "Build all the things" = "建立一切";
-
-/* Help label when user can't find their school. */
-"Can't find your school? Try typing the full school URL." = "找不到您的學校？請嘗試輸入學校完整 URL。";
 
 /* No comment provided by engineer. */
 "Cancel" = "取消";
 
 /* No comment provided by engineer. */
 "Cancel Request" = "取消請求";
-
-/* Label displayed when forcing canvas login */
-"Canvas Login" = "Canvas 登入";
 
 /* No comment provided by engineer. */
 "Casual question or suggestion" = "隨意的問題或建議";
@@ -25,9 +16,6 @@
 /* No comment provided by engineer. */
 "Choose One" = "選擇一個";
 
-/* Connectivity alert close text */
-"Close" = "關閉";
-
 /* No comment provided by engineer. */
 "Continue Editing" = "繼續編輯";
 
@@ -37,7 +25,7 @@
 /* No comment provided by engineer. */
 "describe your problem" = "請形容您的問題";
 
-/* Dismiss login expired/revoked alert button */
+/* No comment provided by engineer. */
 "Dismiss" = "取消";
 
 /* No comment provided by engineer. */
@@ -55,12 +43,6 @@
 /* No comment provided by engineer. */
 "Extremely critical emergency" = "萬分危急的緊急情況";
 
-/* Help View Controller Title */
-"Help" = "幫助";
-
-/* Help label when domain search has started */
-"How do I find my school?" = "怎樣找到我的學校？";
-
 /* No comment provided by engineer. */
 "I am stuck and can't get things done" = "我遇到困難，無法完成任務";
 
@@ -71,22 +53,10 @@
 "I need help but it's not urgent" = "我需要幫助但情況並不緊急";
 
 /* No comment provided by engineer. */
-"Invalid Canvas URL." = "Canvas URL 無效。\t";
-
-/* No comment provided by engineer. */
-"Invalid User Agent." = "用戶代理無效。";
-
-/* No comment provided by engineer. */
 "Non-urgent help needed" = "不需要即時支援";
 
 /* No comment provided by engineer. */
-"Not authorized." = "未經授權。";
-
-/* No comment provided by engineer. */
 "OK" = "確定";
-
-/* Placeholder for delete icon in Multi User Table View Cell */
-"remove user" = "移除使用者";
 
 /* No comment provided by engineer. */
 "Report a Problem" = "報告問題";
@@ -106,30 +76,12 @@
 /* No comment provided by engineer. */
 "Send" = "發送";
 
-/* Label displayed when logging in as site admin */
-"Site Admin Login" = "網站管理員登入";
-
 /* No comment provided by engineer. */
 "Something is broken but I can work around it" = "出現某些故障但我能解決它";
 
 /* No comment provided by engineer. */
 "Success!" = "成功！";
 
-/* Subtitle help text describing how to find a school. */
-"Tap here for help." = "點擊此處獲取支援。";
-
 /* No comment provided by engineer. */
 "Thanks, your request was received!" = "謝謝，您的請求已經被接收！";
-
-/* No comment provided by engineer. */
-"Trouble logging in" = "登入問題";
-
-/* Connectivity alert message */
-"We can't connect to Canvas. Have you checked your internet connection?" = "我們無法連接至 Canvas。您有否檢查您的網絡連接？";
-
-/* Connectivity alert title */
-"Whoops!" = "抱歉！";
-
-/* when the access token has been revoked */
-"Your login has expired or has been removed by the server. Please log in again." = "您的登入已經過時或已被服務器移除。請重新登入。";
 

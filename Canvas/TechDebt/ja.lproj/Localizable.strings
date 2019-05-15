@@ -916,7 +916,9 @@
 /* Online URL submission type */
 "Online URL" = "オンラインURL";
 
-/* Title for an error alert */
+/* Error message title
+   Error title
+   Masquerade error title */
 "Oops!" = "しまった！";
 
 /* Open a document in the application Safari */
@@ -1183,7 +1185,8 @@
 /* No comment provided by engineer. */
 "Switches to text comment mode" = "テキストコメントモードに切り替える";
 
-/* Title for Syllabus screen */
+/* Syllabus screen name
+   Title for Syllabus view controller */
 "Syllabus" = "シラバス";
 
 /* Short name for TA enrollment */

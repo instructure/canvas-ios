@@ -17,29 +17,28 @@
 import CanvasCore
 import TechDebt
 import Marshal
+import Core
 
 extension AppDelegate: RCTBridgeDelegate {
     @objc func prepareReactNative() {
+        excludeHelmInBranding()
         NativeLoginManager.shared().delegate = self
-        NativeLoginManager.shared().app = .student
         HelmManager.shared.bridge = RCTBridge(delegate: self, launchOptions: nil)
         HelmManager.shared.onReactLoginComplete = {
             guard let session = self.session, let window = self.window else { return }
+            NotificationKitController.setupForPushNotifications(delegate: self)
 
-            let root = rootViewController(session)
-            self.addClearCacheGesture(root.view)
-
-            UIView.transition(with: window, duration: 0.25, options: .transitionCrossDissolve, animations: {
-                let loading = UIViewController()
-                loading.view.backgroundColor = .white
-                window.rootViewController = loading
-            }, completion: { _ in
-                window.rootViewController = root
-            })
+            let controller = rootViewController(session)
+            self.addClearCacheGesture(controller.view)
+            controller.view.layoutIfNeeded()
+            UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
+                window.rootViewController = controller
+            }, completion: nil)
         }
 
         HelmManager.shared.onReactReload = {
-            self.showLoadingState()
+            guard self.window?.rootViewController is CanvasTabBarController else { return }
+            self.changeUser()
         }
 
         // Files
@@ -87,6 +86,8 @@ extension AppDelegate: RCTBridgeDelegate {
         })
         
         registerScreen("/courses/:courseID/assignments/:assignmentID")
+        registerScreen("/act-as-user")
+        registerScreen("/act-as-user/:userID")
         
         let nativeFactory: ([String: Any]) -> UIViewController? = { props in
             guard let route = props["route"] as? String else { return nil }

@@ -206,7 +206,7 @@
                                                         <rect key="frame" x="0.0" y="321.5" width="343" height="179.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Grade" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="POu-Bn-aGg" userLabel="Grade Label" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="47" height="27.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="47" height="82.5"/>
                                                                 <accessibility key="accessibilityConfiguration">
                                                                     <accessibilityTraits key="traits" staticText="YES" header="YES"/>
                                                                 </accessibility>
@@ -218,133 +218,12 @@
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium16"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E1l-zH-QmF" userLabel="GradedView">
-                                                                <rect key="frame" x="0.0" y="43.5" width="343" height="128"/>
-                                                                <subviews>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6dv-th-iCc" userLabel="Grade Circle" customClass="GradeCircle" customModule="Student" customModuleProvider="target">
-                                                                        <rect key="frame" x="16" y="0.0" width="128" height="128"/>
-                                                                        <subviews>
-                                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ruj-S8-Umh" customClass="IconView" customModule="Student" customModuleProvider="target">
-                                                                                <rect key="frame" x="39" y="39" width="50" height="50"/>
-                                                                                <constraints>
-                                                                                    <constraint firstAttribute="height" constant="50" id="I7M-dU-tXy"/>
-                                                                                    <constraint firstAttribute="width" constant="50" id="usN-nv-iPK"/>
-                                                                                </constraints>
-                                                                                <userDefinedRuntimeAttributes>
-                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="checkSolid"/>
-                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="primary"/>
-                                                                                </userDefinedRuntimeAttributes>
-                                                                            </imageView>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="89" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z8i-lg-ddS" userLabel="Points Label" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                                                <rect key="frame" x="43" y="41" width="42.5" height="38.5"/>
-                                                                                <accessibility key="accessibilityConfiguration">
-                                                                                    <bool key="isElement" value="NO"/>
-                                                                                </accessibility>
-                                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
-                                                                                <nil key="textColor"/>
-                                                                                <nil key="highlightedColor"/>
-                                                                                <userDefinedRuntimeAttributes>
-                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                                                                </userDefinedRuntimeAttributes>
-                                                                            </label>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Points" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e21-w7-oNA" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                                                <rect key="frame" x="44" y="81.5" width="40" height="17"/>
-                                                                                <accessibility key="accessibilityConfiguration">
-                                                                                    <bool key="isElement" value="NO"/>
-                                                                                </accessibility>
-                                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                                <nil key="textColor"/>
-                                                                                <nil key="highlightedColor"/>
-                                                                                <userDefinedRuntimeAttributes>
-                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                                                                </userDefinedRuntimeAttributes>
-                                                                            </label>
-                                                                        </subviews>
-                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <accessibility key="accessibilityConfiguration" identifier="AssignmentDetailsPage.gradeCircle">
-                                                                            <accessibilityTraits key="traits" staticText="YES"/>
-                                                                            <bool key="isElement" value="YES"/>
-                                                                        </accessibility>
-                                                                        <constraints>
-                                                                            <constraint firstItem="ruj-S8-Umh" firstAttribute="centerY" secondItem="6dv-th-iCc" secondAttribute="centerY" id="EU0-xW-we9"/>
-                                                                            <constraint firstItem="e21-w7-oNA" firstAttribute="top" secondItem="Z8i-lg-ddS" secondAttribute="bottom" constant="2" id="J9I-0p-9MZ"/>
-                                                                            <constraint firstAttribute="width" constant="128" id="JeT-Kn-uQI"/>
-                                                                            <constraint firstItem="Z8i-lg-ddS" firstAttribute="top" secondItem="6dv-th-iCc" secondAttribute="top" constant="41" id="O3u-CW-Fn9"/>
-                                                                            <constraint firstItem="e21-w7-oNA" firstAttribute="top" secondItem="Z8i-lg-ddS" secondAttribute="bottom" constant="2" id="PhW-iE-2KE"/>
-                                                                            <constraint firstItem="Z8i-lg-ddS" firstAttribute="centerX" secondItem="6dv-th-iCc" secondAttribute="centerX" id="Qjx-oY-4fU"/>
-                                                                            <constraint firstItem="e21-w7-oNA" firstAttribute="centerX" secondItem="6dv-th-iCc" secondAttribute="centerX" id="b1q-mn-LG0"/>
-                                                                            <constraint firstItem="ruj-S8-Umh" firstAttribute="centerX" secondItem="6dv-th-iCc" secondAttribute="centerX" id="tPu-gb-6QA"/>
-                                                                            <constraint firstAttribute="height" constant="128" id="vce-jA-TJP"/>
-                                                                        </constraints>
-                                                                    </view>
-                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="TDV-cs-ZDg">
-                                                                        <rect key="frame" x="160" y="18" width="139.5" height="92.5"/>
-                                                                        <subviews>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="89%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KjD-BJ-mIT" userLabel="Display Grade" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="139.5" height="29"/>
-                                                                                <accessibility key="accessibilityConfiguration" identifier="AssignmentDetailsPage.gradeDisplayGrade"/>
-                                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                                                                <nil key="textColor"/>
-                                                                                <nil key="highlightedColor"/>
-                                                                                <userDefinedRuntimeAttributes>
-                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="heavy24"/>
-                                                                                </userDefinedRuntimeAttributes>
-                                                                            </label>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Out of 100 pts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oig-yd-g9Z" userLabel="Out Of" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                                                <rect key="frame" x="0.0" y="29" width="139.5" height="17"/>
-                                                                                <accessibility key="accessibilityConfiguration">
-                                                                                    <bool key="isElement" value="NO"/>
-                                                                                </accessibility>
-                                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                                <nil key="textColor"/>
-                                                                                <nil key="highlightedColor"/>
-                                                                                <userDefinedRuntimeAttributes>
-                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular14"/>
-                                                                                </userDefinedRuntimeAttributes>
-                                                                            </label>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Late Penatly (-2pts)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JzX-fE-dvo" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                                                <rect key="frame" x="0.0" y="46" width="139.5" height="14.5"/>
-                                                                                <accessibility key="accessibilityConfiguration" identifier="AssignmentDetailsPage.gradeLatePenalty"/>
-                                                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
-                                                                                <nil key="textColor"/>
-                                                                                <nil key="highlightedColor"/>
-                                                                                <userDefinedRuntimeAttributes>
-                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textWarning"/>
-                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold12"/>
-                                                                                </userDefinedRuntimeAttributes>
-                                                                            </label>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Final Grade: 89%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wXY-A0-b0H" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                                                <rect key="frame" x="0.0" y="60.5" width="139.5" height="32"/>
-                                                                                <accessibility key="accessibilityConfiguration">
-                                                                                    <bool key="isElement" value="NO"/>
-                                                                                </accessibility>
-                                                                                <constraints>
-                                                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="8AM-6i-Gej"/>
-                                                                                </constraints>
-                                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                                                <nil key="textColor"/>
-                                                                                <nil key="highlightedColor"/>
-                                                                                <userDefinedRuntimeAttributes>
-                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="bold17"/>
-                                                                                </userDefinedRuntimeAttributes>
-                                                                            </label>
-                                                                        </subviews>
-                                                                    </stackView>
-                                                                </subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E1l-zH-QmF" userLabel="GradedView" customClass="GradeCircleView" customModule="Core">
+                                                                <rect key="frame" x="0.0" y="98.5" width="343" height="73"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <constraints>
-                                                                    <constraint firstItem="TDV-cs-ZDg" firstAttribute="centerY" secondItem="E1l-zH-QmF" secondAttribute="centerY" id="Ab1-8F-B2H"/>
-                                                                    <constraint firstItem="6dv-th-iCc" firstAttribute="leading" secondItem="E1l-zH-QmF" secondAttribute="leading" constant="16" id="YRb-ol-4yy"/>
-                                                                    <constraint firstItem="6dv-th-iCc" firstAttribute="top" secondItem="E1l-zH-QmF" secondAttribute="top" id="Ymd-uO-UO6"/>
-                                                                    <constraint firstItem="TDV-cs-ZDg" firstAttribute="leading" secondItem="6dv-th-iCc" secondAttribute="trailing" constant="16" id="vgu-hu-zFt"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="6dv-th-iCc" secondAttribute="bottom" id="z2p-w4-Ed0"/>
-                                                                </constraints>
                                                             </view>
                                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A1G-mN-QCX" userLabel="SubmittedView">
-                                                                <rect key="frame" x="0.0" y="27.5" width="343" height="152"/>
+                                                                <rect key="frame" x="0.0" y="82.5" width="343" height="97"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="Successfully submitted!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x12-ry-KqJ" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
                                                                         <rect key="frame" x="61" y="24" width="221" height="24"/>
@@ -368,7 +247,7 @@
                                                                         </connections>
                                                                     </button>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Your submission is now waiting to be graded" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ePD-c3-2H7" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                                        <rect key="frame" x="28" y="56" width="287" height="72"/>
+                                                                        <rect key="frame" x="28" y="56" width="287" height="17"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -590,30 +469,21 @@
                         <viewLayoutGuide key="safeArea" id="1aY-Ds-3yT"/>
                     </view>
                     <connections>
-                        <outlet property="OutOfLabel" destination="Oig-yd-g9Z" id="N1n-Iq-k4p"/>
-                        <outlet property="circleComplete" destination="ruj-S8-Umh" id="qTY-Mb-4ka"/>
-                        <outlet property="circleLabel" destination="e21-w7-oNA" id="bqc-8U-Uvm"/>
-                        <outlet property="circlePoints" destination="Z8i-lg-ddS" id="ujY-4I-ruQ"/>
                         <outlet property="descriptionHeadingLabel" destination="NUD-Zm-lzB" id="1vo-Dw-a82"/>
                         <outlet property="descriptionView" destination="q3R-vd-zmQ" id="jPg-GW-koM"/>
-                        <outlet property="displayGrade" destination="KjD-BJ-mIT" id="M5s-rx-gDj"/>
                         <outlet property="dueHeadingLabel" destination="fYy-T1-vxM" id="IeU-3a-vTd"/>
                         <outlet property="dueLabel" destination="mgD-fJ-MaF" id="P8I-HU-SQF"/>
                         <outlet property="fileSubmissionButton" destination="4TE-cB-TlA" id="JoP-wp-GYy"/>
                         <outlet property="fileTypesDivider" destination="exy-Uo-OLb" id="ocv-3v-86S"/>
                         <outlet property="fileTypesHeadingLabel" destination="f0Y-Ls-hOZ" id="0yT-6D-pSq"/>
                         <outlet property="fileTypesLabel" destination="dSt-l5-NyC" id="RYa-Dr-Zxz"/>
-                        <outlet property="finalGradeLabel" destination="wXY-A0-b0H" id="NZO-lr-hJ4"/>
                         <outlet property="gradeCell" destination="laV-99-9IB" id="qnI-um-fOg"/>
                         <outlet property="gradeCellDivider" destination="f8d-eS-gk6" id="pXB-E1-8S2"/>
-                        <outlet property="gradeCircle" destination="6dv-th-iCc" id="hTM-oY-F7X"/>
-                        <outlet property="gradeCircleBottomConstraint" destination="z2p-w4-Ed0" id="izQ-Bv-oeF"/>
+                        <outlet property="gradeCircleBottomConstraint" destination="tiG-Tb-lh7" id="A3c-Ch-qZq"/>
                         <outlet property="gradeHeadingLabel" destination="POu-Bn-aGg" id="NF2-DK-7UI"/>
                         <outlet property="gradedView" destination="E1l-zH-QmF" id="JRc-bg-TcS"/>
-                        <outlet property="latePenaltyLabel" destination="JzX-fE-dvo" id="bcv-Yz-gwL"/>
                         <outlet property="loadingView" destination="Ga9-T1-JgT" id="Tnv-1m-bKK"/>
                         <outlet property="nameLabel" destination="kpV-J8-jIO" id="gzO-0P-vHc"/>
-                        <outlet property="outOfLabel" destination="Oig-yd-g9Z" id="wy4-yS-MHz"/>
                         <outlet property="pointsLabel" destination="ei9-yY-MdM" id="Pt3-FI-meS"/>
                         <outlet property="scrollView" destination="2qC-UP-t75" id="IxZ-Ml-aPC"/>
                         <outlet property="scrollviewInsetConstraint" destination="0LL-Ka-xXn" id="7BQ-NZ-Q0e"/>

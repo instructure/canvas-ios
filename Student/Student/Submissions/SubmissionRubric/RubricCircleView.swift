@@ -20,10 +20,12 @@ import Core
 class RubricCircleView: UIView {
     private static let w: CGFloat = 49
     private static let space: CGFloat = 10
-    var rubric: RubricViewModel? {
-        didSet {
-            setNeedsDisplay()
-        }
+    private var buttons: [UIButton] = []
+    var rubric: RubricViewModel?
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        setupButtons()
     }
 
     private static var formatter: NumberFormatter = {
@@ -33,76 +35,80 @@ class RubricCircleView: UIView {
         return formatter
     }()
 
+    func setupButtons() {
+        //  remove old buttons
+        buttons.forEach { $0.removeFromSuperview() }
+        buttons = []
+
+        let w = RubricCircleView.w
+        let space: CGFloat = 10
+        let ratings: [Double] = rubric?.ratings ?? []
+        let descriptions: [String] = rubric?.descriptions ?? []
+        let howManyCanFitInWidth = Int( floor( frame.size.width / (w + space) ) )
+        let count = ratings.count
+
+        var center = CGPoint(x: 0, y: 0)
+
+        for i in 0..<count {
+            let r = ratings[i]
+            let description = descriptions[i]
+            let selected = i == (rubric?.selectedIndex ?? 0)
+
+            let button = DynamicButton(frame: CGRect(x: center.x, y: center.y, width: w, height: w))
+            button.tag = i
+            button.addTarget(self, action: #selector(actionButtonClicked(sender:)), for: .primaryActionTriggered)
+            button.layer.cornerRadius = floor( w / 2 )
+            button.layer.masksToBounds = true
+            let title = RubricCircleView.formatter.string(for: r) ?? ""
+            button.setTitle(title, for: .normal)
+
+            let font: UIFont
+            let color: UIColor
+            let bgColor: UIColor
+            let format = NSLocalizedString("g_points", bundle: .core, comment: "")
+            var a11yLabel: String = String.localizedStringWithFormat(format, Int(r))
+            a11yLabel += description
+
+            if selected {
+                font = UIFont.scaledNamedFont(.semibold20)
+                color = UIColor.white
+                bgColor = Brand.shared.primary
+                button.isSelected = true
+            } else {
+                font = UIFont.scaledNamedFont(.regular20Monodigit)
+                color = UIColor.named(.borderDark)
+                bgColor = UIColor.white
+            }
+
+            addSubview(button)
+            buttons.append(button)
+
+            button.isUserInteractionEnabled = false
+            button.backgroundColor = bgColor
+            button.titleLabel?.font = font
+            button.setTitleColor(color, for: .normal)
+            button.layer.borderColor = color.cgColor
+            button.layer.borderWidth = 1.0 / UIScreen.main.scale
+            button.accessibilityLabel = a11yLabel
+
+            center.x += w + space
+            if i == howManyCanFitInWidth - 1 {
+                center.y += w + space
+                center.x = 0
+            }
+        }
+
+    }
+
+    @objc func actionButtonClicked(sender: DynamicButton) {
+        let index = sender.tag
+        print("button \(index) clicked")
+    }
+
     static func computedHeight(rubric: RubricViewModel, maxWidth: CGFloat) -> CGFloat {
         let count = CGFloat(rubric.ratings.count)
         let howManyCanFitInWidth = CGFloat( floor( maxWidth / (w + space) ) )
         let rows = CGFloat(ceil(count / howManyCanFitInWidth))
         return (rows * w) + ((rows - 1) * space)
-    }
-
-    override func draw(_ rect: CGRect) {
-        let w = RubricCircleView.w
-        let space: CGFloat = 10
-        let ratings: [Double] = rubric?.ratings ?? []
-        let howManyCanFitInWidth = Int( floor( rect.size.width / (w + space) ) )
-        let count = ratings.count
-
-        let ctx = UIGraphicsGetCurrentContext()
-        var center = CGPoint(x: w / 2, y: w / 2)
-
-        for i in 0..<count {
-            let r = ratings[i]
-            let selected = i == (rubric?.selectedIndex ?? 0)
-
-            let font: UIFont
-            let color: UIColor
-            let strokeColor: UIColor
-            let bgColor: UIColor
-
-            if selected {
-                font = UIFont.scaledNamedFont(.semibold20)
-                color = UIColor.white
-                strokeColor = UIColor.blue
-                bgColor = Brand.shared.primary
-            } else {
-                font = UIFont.scaledNamedFont(.regular20Monodigit)
-                color = UIColor.named(.borderDark)
-                strokeColor = color
-                bgColor = UIColor.white
-            }
-
-            ctx?.setLineWidth(1.0 / UIScreen.main.scale)
-            ctx?.setStrokeColor(strokeColor.cgColor)
-            ctx?.setFillColor(bgColor.cgColor)
-
-            ctx?.addArc(center: center, radius: w / 2, startAngle: 0.0, endAngle: CGFloat(.pi * 2.0), clockwise: true)
-            if selected {
-                ctx?.drawPath(using: .fill)
-            } else {
-                ctx?.strokePath()
-            }
-
-            ctx?.saveGState()
-
-            if let ctx = ctx {
-                let half: CGFloat = (w / 2.0)
-                let boundingRect = CGRect(x: center.x - half, y: center.y - half, width: w, height: w)
-                let text = RubricCircleView.formatter.string(for: r) ?? ""
-                let attr = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: UIColor.blue]
-                let textRect = text.boundingRect(with: boundingRect.size, options: .usesLineFragmentOrigin, attributes: attr, context: nil)
-                let string = NSAttributedString(string: text, attributes: [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: color])
-                let textCenter = CGPoint(x: boundingRect.origin.x + ((boundingRect.size.width - textRect.size.width) / 2.0),
-                                         y: boundingRect.origin.y + ((boundingRect.size.height - textRect.size.height) / 2.0))
-                UIGraphicsPushContext(ctx)
-                string.draw(at: textCenter)
-                UIGraphicsPopContext()
-            }
-
-            center.x += w + space
-            if i == howManyCanFitInWidth - 1 {
-                center.y += w + space
-                center.x = w / 2
-            }
-        }
     }
 }

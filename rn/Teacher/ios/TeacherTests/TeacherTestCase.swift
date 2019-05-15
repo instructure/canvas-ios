@@ -42,5 +42,6 @@ class TeacherTestCase: XCTestCase {
         environment.globalDatabase = singleSharedTestDatabase
         environment.router = router
         environment.logger = logger
+        environment.currentSession = KeychainEntry.make()
     }
 }

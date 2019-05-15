@@ -1,20 +1,11 @@
-/* The distance in miles that a user is from a school. */
-"%@ miles away" = "%@ à plusieurs miles de distance";
-
 /* No comment provided by engineer. */
 "Build all the things" = "Construire toutes les choses";
-
-/* Help label when user can't find their school. */
-"Can't find your school? Try typing the full school URL." = "Vous ne trouvez pas votre école? Essayez de saisir l'URL complète de l’école.";
 
 /* No comment provided by engineer. */
 "Cancel" = "Annuler";
 
 /* No comment provided by engineer. */
 "Cancel Request" = "Annuler la requête";
-
-/* Label displayed when forcing canvas login */
-"Canvas Login" = "Connexion à Canvas";
 
 /* No comment provided by engineer. */
 "Casual question or suggestion" = "Question ou suggestion ordinaire";
@@ -25,9 +16,6 @@
 /* No comment provided by engineer. */
 "Choose One" = "En choisir une";
 
-/* Connectivity alert close text */
-"Close" = "Fermer";
-
 /* No comment provided by engineer. */
 "Continue Editing" = "Continuer l’édition";
 
@@ -37,7 +25,7 @@
 /* No comment provided by engineer. */
 "describe your problem" = "décrivez votre problème";
 
-/* Dismiss login expired/revoked alert button */
+/* No comment provided by engineer. */
 "Dismiss" = "Rejeter";
 
 /* No comment provided by engineer. */
@@ -55,12 +43,6 @@
 /* No comment provided by engineer. */
 "Extremely critical emergency" = "État d'urgence extrêmement critique";
 
-/* Help View Controller Title */
-"Help" = "Aide";
-
-/* Help label when domain search has started */
-"How do I find my school?" = "Comment puis-je trouver mon école?";
-
 /* No comment provided by engineer. */
 "I am stuck and can't get things done" = "Je suis coincé et je ne peut pas faire avancer les choses";
 
@@ -71,22 +53,10 @@
 "I need help but it's not urgent" = "J'ai besoin d'aide, mais ce n'est pas urgent";
 
 /* No comment provided by engineer. */
-"Invalid Canvas URL." = "URL de Canvas non valide";
-
-/* No comment provided by engineer. */
-"Invalid User Agent." = "Agent utilisateur non valide.";
-
-/* No comment provided by engineer. */
 "Non-urgent help needed" = "Aide non urgente requise";
 
 /* No comment provided by engineer. */
-"Not authorized." = "Non autorisé.";
-
-/* No comment provided by engineer. */
 "OK" = "OK";
-
-/* Placeholder for delete icon in Multi User Table View Cell */
-"remove user" = "supprimez l'utilisateur";
 
 /* No comment provided by engineer. */
 "Report a Problem" = "Signaler un problème";
@@ -106,30 +76,12 @@
 /* No comment provided by engineer. */
 "Send" = "Envoyer";
 
-/* Label displayed when logging in as site admin */
-"Site Admin Login" = "Connexion au site Admin";
-
 /* No comment provided by engineer. */
 "Something is broken but I can work around it" = "Quelque chose ne fonctionne plus mais je peux quand même travailler";
 
 /* No comment provided by engineer. */
 "Success!" = "Succès!";
 
-/* Subtitle help text describing how to find a school. */
-"Tap here for help." = "Appuyer ici pour obtenir de l'aide.";
-
 /* No comment provided by engineer. */
 "Thanks, your request was received!" = "Merci, votre requête a bien été reçue!";
-
-/* No comment provided by engineer. */
-"Trouble logging in" = "Problème à la connexion";
-
-/* Connectivity alert message */
-"We can't connect to Canvas. Have you checked your internet connection?" = "Nous ne parvenons pas à nous connecter à Canvas. Avez-vous vérifié votre connexion Internet?";
-
-/* Connectivity alert title */
-"Whoops!" = "Oups!";
-
-/* when the access token has been revoked */
-"Your login has expired or has been removed by the server. Please log in again." = "Votre connexion a expiré ou a été supprimée par le serveur. Veuillez vous connecter à nouveau.";
 

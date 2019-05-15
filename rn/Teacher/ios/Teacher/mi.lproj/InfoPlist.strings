@@ -1,6 +1,9 @@
 /* Privacy - Camera Usage Description */
 "NSCameraUsageDescription" = "Tāpiritia ngā whakāhua me ngā ataata ki ngā tukunga kōrero.";
 
+/* Privacy - Location When In Use Usage Description */
+"NSLocationWhenInUseUsageDescription" = "";
+
 /* Privacy - Microphone Usage Description */
 "NSMicrophoneUsageDescription" = "Tāpiritia ngā ōrorongo oro me ngā ataata ki ngā tukunga kōrero.";
 

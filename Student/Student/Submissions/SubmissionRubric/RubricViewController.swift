@@ -38,8 +38,11 @@ class RubricViewController: UIViewController {
 
     func setupCollectionView() {
         let id = String(describing: RubricCollectionViewCell.self)
-        let nib = UINib(nibName: id, bundle: nil)
+        let nib = UINib(nibName: id, bundle: Bundle(for: type(of: self)))
         collectionView.register(nib, forCellWithReuseIdentifier: id)
+
+        let headerID = String(describing: GradeCircleReusableView.self)
+        collectionView.register(GradeCircleReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerID)
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -52,6 +55,29 @@ class RubricViewController: UIViewController {
 }
 
 extension RubricViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        if presenter.assignments.first?.useRubricForGrading ?? false {
+            return CGSize(width: collectionView.frame.width, height: 156)
+        } else {
+            return CGSize.zero
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            guard let assignment = presenter.assignments.first else {
+                fatalError("Invalid view type")
+            }
+            let gradeView: GradeCircleReusableView = collectionView.dequeue(ofKind: kind, for: indexPath)
+            gradeView.gradeCircleView?.update(assignment)
+            return gradeView
+        default:
+            fatalError("Unexpected element kind")
+        }
+    }
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return models.count
     }
@@ -60,6 +86,7 @@ extension RubricViewController: UICollectionViewDataSource, UICollectionViewDele
         let cell: RubricCollectionViewCell = collectionView.dequeue(for: indexPath)
         let r = models[indexPath.item]
         cell.update(r)
+        cell.delegate = self
         return cell
     }
 
@@ -86,7 +113,23 @@ extension RubricViewController: RubricViewProtocol {
     }
 }
 
+protocol RubricCellDelegate: class {
+    func longDescriptionTapped(cell: RubricCollectionViewCell)
+}
+extension RubricViewController: RubricCellDelegate {
+    func longDescriptionTapped(cell: RubricCollectionViewCell) {
+        guard let indexPath = self.collectionView.indexPath(for: cell) else {
+            return
+        }
+        let r = models[indexPath.item]
+        let vc = UINavigationController(rootViewController: RubricLongDescriptionViewController(longDescription: r.longDescription, title: r.title))
+        self.present(vc, animated: true, completion: nil)
+    }
+}
+
 class RubricCollectionViewCell: UICollectionViewCell {
+
+    weak var delegate: RubricCellDelegate?
 
     @IBOutlet weak var circleView: RubricCircleView!
     @IBOutlet weak var rubricTitle: DynamicLabel!
@@ -98,6 +141,7 @@ class RubricCollectionViewCell: UICollectionViewCell {
     private static var chatBubbleTextLabelFont = UIFont.scaledNamedFont(.regular14)
     @IBOutlet weak var circleViewHeightConstraint: NSLayoutConstraint!
     private static var margin: CGFloat = 16
+    @IBOutlet weak var viewLongDescriptionButton: UIButton!
     @IBOutlet weak var viewLongDescriptionToCircleViewVerticalConstraint: NSLayoutConstraint!
     @IBOutlet weak var viewLongDescriptionToCommentViewVerticalConstraint: NSLayoutConstraint!
 
@@ -110,10 +154,12 @@ class RubricCollectionViewCell: UICollectionViewCell {
 
     func update(_ rubric: RubricViewModel) {
         rubricTitle.text = rubric.title
+        rubricTitle.accessibilityTraits = .header
         selectedRatingTitle.text = rubric.selectedDesc
         circleView.rubric = rubric
         circleViewHeightConstraint.constant = RubricCircleView.computedHeight(rubric: rubric, maxWidth: bounds.size.width - (RubricCollectionViewCell.margin * 2))
         updateComment(comment: rubric.comment)
+        viewLongDescriptionButton.isHidden = rubric.longDescription.count == 0
     }
 
     func updateComment(comment: String?) {
@@ -132,11 +178,13 @@ class RubricCollectionViewCell: UICollectionViewCell {
     }
 
     static func computedHeight(rubric: RubricViewModel, containerFrame: CGRect) -> CGFloat {
-        let otherViewHeights: CGFloat = 111
+        let otherViewHeights: CGFloat = 95
+
         let circles = RubricCircleView.computedHeight(rubric: rubric, maxWidth: containerFrame.size.width - (margin * 2.0))
         var comment = commentViewSize(comment: rubric.comment, containerFrame: containerFrame).height
         if comment > 0 { comment += 12.0 /* add extra vertical spacing for additional item */ }
-        return otherViewHeights + circles + comment
+        let longDescription: CGFloat = rubric.longDescription.count == 0 ? 0 : 16
+        return otherViewHeights + circles + comment + longDescription
     }
 
     static func commentViewSize(comment: String?, containerFrame: CGRect) -> CGSize {
@@ -157,5 +205,9 @@ class RubricCollectionViewCell: UICollectionViewCell {
     }
 
     @IBAction func actionShowLongDescription(_ sender: Any) {
+        guard let delegate = self.delegate else {
+            return
+        }
+        delegate.longDescriptionTapped(cell: self)
     }
 }

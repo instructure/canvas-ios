@@ -19,6 +19,25 @@
 import { StyleSheet } from 'react-native'
 import color, { isDark } from '../common/colors'
 
+export type Brand = {
+  buttonPrimaryBackground: string,
+  buttonPrimaryText: string,
+  buttonSecondaryBackground: string,
+  buttonSecondaryText: string,
+  fontColorDark: string,
+  headerImageBackground: string,
+  headerImageUrl: ?string,
+  linkColor: string,
+  navBackground: string,
+  navBadgeBackground: string,
+  navBadgeText: string,
+  navIconFill: string,
+  navIconFillActive: string,
+  navTextColor: string,
+  navTextColorActive: string,
+  primary: string,
+}
+
 export type BrandingConfiguration = {
   link: string,
   navBarColor: string,
@@ -44,16 +63,16 @@ export const branding: BrandingConfiguration = {
 }
 
 const updates = []
-export function setupBrandingFromNativeBrandingInfo (obj: Object): void {
-  branding.link = obj[`ic-link-color`] || branding.link
-  branding.navBarColor = obj[`ic-brand-global-nav-bgd`] || branding.navBarColor
-  branding.primaryButtonTextColor = obj[`ic-brand-button--primary-text`] || branding.primaryButtonTextColor
-  branding.primaryButtonColor = obj[`ic-brand-button--primary-bgd`] || branding.primaryButtonColor
-  branding.fontColorDark = obj[`ic-brand-font-color-dark`] || branding.fontColorDark
-  branding.navBarButtonColor = obj[`ic-brand-global-nav-ic-icon-svg-fill`] || branding.navBarButtonColor
-  branding.navBarTextColor = obj[`ic-brand-global-nav-menu-item__text-color`] || branding.navBarTextColor
-  branding.primaryBrandColor = obj[`ic-brand-primary`] || branding.primaryBrandColor
-  branding.headerImage = obj[`ic-brand-header-image`] || branding.headerImage
+export function setupBrandingFromNativeBrandingInfo (obj: Brand) {
+  branding.link = obj.linkColor
+  branding.navBarColor = obj.navBackground
+  branding.primaryButtonTextColor = obj.buttonPrimaryText
+  branding.primaryButtonColor = obj.buttonPrimaryBackground
+  branding.fontColorDark = obj.fontColorDark
+  branding.navBarButtonColor = obj.navIconFill
+  branding.navBarTextColor = obj.navTextColor
+  branding.primaryBrandColor = obj.primary
+  branding.headerImage = obj.headerImageUrl || branding.headerImage
 
   //  now that we have branding data, set colors object as well
   color.link = branding.link

@@ -916,7 +916,9 @@
 /* Online URL submission type */
 "Online URL" = "URL en línea";
 
-/* Title for an error alert */
+/* Error message title
+   Error title
+   Masquerade error title */
 "Oops!" = "¡Ups!";
 
 /* Open a document in the application Safari */
@@ -1183,7 +1185,8 @@
 /* No comment provided by engineer. */
 "Switches to text comment mode" = "Cambia al modo de comentarios de texto";
 
-/* Title for Syllabus screen */
+/* Syllabus screen name
+   Title for Syllabus view controller */
 "Syllabus" = "Plan de estudio ";
 
 /* Short name for TA enrollment */

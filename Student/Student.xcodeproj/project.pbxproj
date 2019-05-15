@@ -19,7 +19,6 @@
 		3B0B0F5F219C8CFE00F04216 /* AssignmentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0042219BD9F50045E8A1 /* AssignmentListViewController.swift */; };
 		3B0B0F60219C8CFE00F04216 /* AssignmentListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0043219BD9F50045E8A1 /* AssignmentListPresenter.swift */; };
 		3B0B0F62219C8D0500F04216 /* AssignmentDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B1B0046219BD9F50045E8A1 /* AssignmentDetailsViewController.storyboard */; };
-		3B0B0F64219C8D0A00F04216 /* GradeCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B004D219BD9F50045E8A1 /* GradeCircle.swift */; };
 		3B0B0F65219C8D1100F04216 /* CourseListSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0056219BD9F50045E8A1 /* CourseListSectionHeaderView.swift */; };
 		3B0B0F66219C8D1100F04216 /* CourseListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B1B0057219BD9F50045E8A1 /* CourseListViewController.storyboard */; };
 		3B0B0F67219C8D1100F04216 /* CourseListCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0058219BD9F50045E8A1 /* CourseListCourseCell.swift */; };
@@ -45,7 +44,6 @@
 		3B1B006A219BD9F60045E8A1 /* AssignmentDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B1B0046219BD9F50045E8A1 /* AssignmentDetailsViewController.storyboard */; };
 		3B1B006B219BD9F60045E8A1 /* AssignmentDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0047219BD9F50045E8A1 /* AssignmentDetailsPresenter.swift */; };
 		3B1B006F219BD9F60045E8A1 /* AssignmentDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B004B219BD9F50045E8A1 /* AssignmentDetailsViewController.swift */; };
-		3B1B0070219BD9F60045E8A1 /* GradeCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B004D219BD9F50045E8A1 /* GradeCircle.swift */; };
 		3B1B0073219BD9F60045E8A1 /* CourseNavigationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0052219BD9F50045E8A1 /* CourseNavigationPresenter.swift */; };
 		3B1B0076219BD9F60045E8A1 /* CourseListSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0056219BD9F50045E8A1 /* CourseListSectionHeaderView.swift */; };
 		3B1B0077219BD9F60045E8A1 /* CourseListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B1B0057219BD9F50045E8A1 /* CourseListViewController.storyboard */; };
@@ -226,8 +224,10 @@
 		9F9F4EB521B5D24F00842570 /* ExternalToolSubmissionContentViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F9F4EB021B58A5D00842570 /* ExternalToolSubmissionContentViewController.storyboard */; };
 		9FA7C360219C92A6001F3BC7 /* Drawer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FDDE2E1218CCBF5002B71F0 /* Drawer.xib */; };
 		9FB25D4B21653AB40087003C /* (null) in Sources */ = {isa = PBXBuildFile; };
+		9FCC249D2279F0C10002E782 /* RubricLongDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCC249C2279F0C10002E782 /* RubricLongDescriptionViewController.swift */; };
 		9FCD79DD2188E9D90054293A /* SubmissionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCD79DC2188E9D90054293A /* SubmissionDetailsViewController.swift */; };
 		9FCD79DF2188EAC40054293A /* SubmissionDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FCD79DE2188EAC40054293A /* SubmissionDetailsViewController.storyboard */; };
+		9FCF1538227B3F50009D35F6 /* RubricLongDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCC249C2279F0C10002E782 /* RubricLongDescriptionViewController.swift */; };
 		9FDDE2E0218CCAB9002B71F0 /* Drawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDDE2DF218CCAB9002B71F0 /* Drawer.swift */; };
 		9FDDE2E2218CCBF5002B71F0 /* Drawer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FDDE2E1218CCBF5002B71F0 /* Drawer.xib */; };
 		9FF4276422398C17005AB73C /* test.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 9FF4276322398C0E005AB73C /* test.m4a */; };
@@ -240,8 +240,6 @@
 		B191D5EC226FF26A00D02948 /* UIViewControllerExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191D5EB226FF26A00D02948 /* UIViewControllerExtensionsTests.swift */; };
 		B191F4C1216138E20045506F /* TestHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191F4C0216138E20045506F /* TestHost.swift */; };
 		B191F4C921613FA00045506F /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1DF2578215F36F3006EDA4F /* Core.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		B1A8CD3E223841C600E2242D /* FileUploaderExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A8CD3D223841C600E2242D /* FileUploaderExtensions.swift */; };
-		B1A8CD4322384F9200E2242D /* FileUploaderExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A8CD3D223841C600E2242D /* FileUploaderExtensions.swift */; };
 		B1AE17A8218771CE002995E6 /* TestsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1AE17A7218771CE002995E6 /* TestsFoundation.framework */; };
 		B1AE17AA218771FA002995E6 /* TestsFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1AE17A7218771CE002995E6 /* TestsFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B1B6F07A219A89E300C1575D /* FilePickerPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B6F079219A89E300C1575D /* FilePickerPage.swift */; };
@@ -268,7 +266,6 @@
 		F9A138C4221775170008AC72 /* PSPDFKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946E7221491D00083E660 /* PSPDFKitUI.framework */; };
 		F9B946E8221491D00083E660 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946E6221491D00083E660 /* PSPDFKit.framework */; };
 		F9B946E9221491D00083E660 /* PSPDFKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946E7221491D00083E660 /* PSPDFKitUI.framework */; };
-		F9E7D0D2215BE19F00CDC1A3 /* StudentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E7D0D1215BE19F00CDC1A3 /* StudentUITests.swift */; };
 		F9E7D0DA215BE20400CDC1A3 /* EarlGrey.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E7D0D9215BE20300CDC1A3 /* EarlGrey.swift */; };
 /* End PBXBuildFile section */
 
@@ -423,7 +420,6 @@
 		3B1B0046219BD9F50045E8A1 /* AssignmentDetailsViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AssignmentDetailsViewController.storyboard; sourceTree = "<group>"; };
 		3B1B0047219BD9F50045E8A1 /* AssignmentDetailsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsPresenter.swift; sourceTree = "<group>"; };
 		3B1B004B219BD9F50045E8A1 /* AssignmentDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsViewController.swift; sourceTree = "<group>"; };
-		3B1B004D219BD9F50045E8A1 /* GradeCircle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradeCircle.swift; sourceTree = "<group>"; };
 		3B1B0052219BD9F50045E8A1 /* CourseNavigationPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseNavigationPresenter.swift; sourceTree = "<group>"; };
 		3B1B0056219BD9F50045E8A1 /* CourseListSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseListSectionHeaderView.swift; sourceTree = "<group>"; };
 		3B1B0057219BD9F50045E8A1 /* CourseListViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CourseListViewController.storyboard; sourceTree = "<group>"; };
@@ -702,6 +698,7 @@
 		9F5ADB30218B656400D8C973 /* SubmissionDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsPresenter.swift; sourceTree = "<group>"; };
 		9F9F4EB021B58A5D00842570 /* ExternalToolSubmissionContentViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ExternalToolSubmissionContentViewController.storyboard; sourceTree = "<group>"; };
 		9F9F4EB221B58AA300842570 /* ExternalToolSubmissionContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExternalToolSubmissionContentViewController.swift; sourceTree = "<group>"; };
+		9FCC249C2279F0C10002E782 /* RubricLongDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricLongDescriptionViewController.swift; sourceTree = "<group>"; };
 		9FCD79DC2188E9D90054293A /* SubmissionDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsViewController.swift; sourceTree = "<group>"; };
 		9FCD79DE2188EAC40054293A /* SubmissionDetailsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SubmissionDetailsViewController.storyboard; sourceTree = "<group>"; };
 		9FDDE2DF218CCAB9002B71F0 /* Drawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drawer.swift; sourceTree = "<group>"; };
@@ -714,7 +711,6 @@
 		B191D5EB226FF26A00D02948 /* UIViewControllerExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensionsTests.swift; sourceTree = "<group>"; };
 		B191F4BF216138E10045506F /* bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bridge.h; sourceTree = "<group>"; };
 		B191F4C0216138E20045506F /* TestHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHost.swift; sourceTree = "<group>"; };
-		B1A8CD3D223841C600E2242D /* FileUploaderExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploaderExtensions.swift; sourceTree = "<group>"; };
 		B1AE17A7218771CE002995E6 /* TestsFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TestsFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1B6F079219A89E300C1575D /* FilePickerPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePickerPage.swift; sourceTree = "<group>"; };
 		B1DF2578215F36F3006EDA4F /* Core.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -731,7 +727,6 @@
 		F9B946E6221491D00083E660 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../../Carthage/Build/iOS/PSPDFKit.framework; sourceTree = "<group>"; };
 		F9B946E7221491D00083E660 /* PSPDFKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKitUI.framework; path = ../../Carthage/Build/iOS/PSPDFKitUI.framework; sourceTree = "<group>"; };
 		F9E7D0CF215BE19F00CDC1A3 /* StudentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StudentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F9E7D0D1215BE19F00CDC1A3 /* StudentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentUITests.swift; sourceTree = "<group>"; };
 		F9E7D0D3215BE19F00CDC1A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F9E7D0D9215BE20300CDC1A3 /* EarlGrey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EarlGrey.swift; sourceTree = "<group>"; };
 		F9E7D0DC215BE23600CDC1A3 /* bridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bridge.h; sourceTree = "<group>"; };
@@ -879,6 +874,7 @@
 				3B19D27C22666180003A0565 /* RubricCollectionViewCell.xib */,
 				3B19D27F22666AD5003A0565 /* RubricViewController.storyboard */,
 				3B19D28222667028003A0565 /* RubricCircleView.swift */,
+				9FCC249C2279F0C10002E782 /* RubricLongDescriptionViewController.swift */,
 			);
 			path = SubmissionRubric;
 			sourceTree = "<group>";
@@ -921,20 +917,11 @@
 		3B1B0045219BD9F50045E8A1 /* AssignmentDetails */ = {
 			isa = PBXGroup;
 			children = (
-				3B1B004C219BD9F50045E8A1 /* Views */,
 				3B1B0046219BD9F50045E8A1 /* AssignmentDetailsViewController.storyboard */,
 				3B1B0047219BD9F50045E8A1 /* AssignmentDetailsPresenter.swift */,
 				3B1B004B219BD9F50045E8A1 /* AssignmentDetailsViewController.swift */,
 			);
 			path = AssignmentDetails;
-			sourceTree = "<group>";
-		};
-		3B1B004C219BD9F50045E8A1 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				3B1B004D219BD9F50045E8A1 /* GradeCircle.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		3B1B004F219BD9F50045E8A1 /* Courses */ = {
@@ -1360,7 +1347,6 @@
 			isa = PBXGroup;
 			children = (
 				7D979CD3215BE3E300567627 /* BundleExtensions.swift */,
-				B1A8CD3D223841C600E2242D /* FileUploaderExtensions.swift */,
 				3B3436E7215EF0FB009EF87F /* UIImageExtensions.swift */,
 				B1906E4F22679A0A00FAD2DE /* UIViewControllerExtensions.swift */,
 			);
@@ -1508,7 +1494,6 @@
 				3B437703215D87B700B32DFB /* cassettes */,
 				7D6F93572236C3A600528598 /* Submissions */,
 				F9E7D0DC215BE23600CDC1A3 /* bridge.h */,
-				F9E7D0D1215BE19F00CDC1A3 /* StudentUITests.swift */,
 				F9E7D0D3215BE19F00CDC1A3 /* Info.plist */,
 				B1E7F29D216329EF00C5F7EC /* UITestElement.swift */,
 			);
@@ -1896,7 +1881,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint autocorrect --config ../.swiftlint.yml --strict\n    swiftlint --config ../.swiftlint.yml --strict\nelse\n  echo \"warning: SwiftLint not installed, download --> `brew install swiftlint`\"\n  exit 1\nfi\n";
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint autocorrect --config ../.swiftlint.yml\n    swiftlint --config ../.swiftlint.yml --strict\nelse\n  echo \"warning: SwiftLint not installed, download --> `brew install swiftlint`\"\n  exit 1\nfi\n";
 		};
 		F9B947042215E85B0083E660 /* Carthage Copy Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1928,6 +1913,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D2FADCB225BCC8A00BCE19E /* TextSubmissionViewController.swift in Sources */,
+				9FCC249D2279F0C10002E782 /* RubricLongDescriptionViewController.swift in Sources */,
 				3B1B006B219BD9F60045E8A1 /* AssignmentDetailsPresenter.swift in Sources */,
 				3B1B007D219BD9F60045E8A1 /* QuizListViewController.swift in Sources */,
 				3B1B0067219BD9F60045E8A1 /* AssignmentListViewController.swift in Sources */,
@@ -1961,7 +1947,6 @@
 				7D08F53621541AE80042E1F4 /* CardView.swift in Sources */,
 				9F9F4EB321B58AA300842570 /* ExternalToolSubmissionContentViewController.swift in Sources */,
 				9F5ADB31218B656400D8C973 /* SubmissionDetailsPresenter.swift in Sources */,
-				B1A8CD3E223841C600E2242D /* FileUploaderExtensions.swift in Sources */,
 				2C5C698D211DFFAD00D9AD15 /* AppDelegate.swift in Sources */,
 				788152F5212B7482005BA428 /* DashboardGroupCell.swift in Sources */,
 				9FDDE2E0218CCAB9002B71F0 /* Drawer.swift in Sources */,
@@ -1976,7 +1961,6 @@
 				3B1B0079219BD9F60045E8A1 /* CourseListViewController.swift in Sources */,
 				7DC1C9D6223AB8690083F707 /* SubmissionCommentAudioCell.swift in Sources */,
 				7DD9E63E223C4E3600B45A7E /* SubmissionCommentFileView.swift in Sources */,
-				3B1B0070219BD9F60045E8A1 /* GradeCircle.swift in Sources */,
 				B1906E5022679A0A00FAD2DE /* UIViewControllerExtensions.swift in Sources */,
 				7D2000432233355F003BE403 /* SubmissionFilesViewController.swift in Sources */,
 				3B1B0066219BD9F60045E8A1 /* GroupNavigationPresenter.swift in Sources */,
@@ -2035,7 +2019,6 @@
 				7DA5C49D22386C1E003CDB4C /* SubmissionCommentTextCell.swift in Sources */,
 				3B19D28422667028003A0565 /* RubricCircleView.swift in Sources */,
 				7D067CE721505B3500B78AF2 /* DashboardSectionHeaderView.swift in Sources */,
-				3B0B0F64219C8D0A00F04216 /* GradeCircle.swift in Sources */,
 				7D005F7F2239DE920040CBD7 /* DynamicTextField.swift in Sources */,
 				7DD9E63F223C4E3600B45A7E /* SubmissionCommentFileView.swift in Sources */,
 				3B0B0F59219C8C9300F04216 /* QuizListViewController.swift in Sources */,
@@ -2053,7 +2036,6 @@
 				7DFEC227223085AB00BE236D /* SubmissionFilesCell.swift in Sources */,
 				3B0B0F6C219C8D2300F04216 /* QuizListPresenter.swift in Sources */,
 				7D0BF3242165315B00859FA1 /* CoreWebView.swift in Sources */,
-				B1A8CD4322384F9200E2242D /* FileUploaderExtensions.swift in Sources */,
 				7D005F7A2239DE5A0040CBD7 /* AvatarView.swift in Sources */,
 				7D067CE421505B2500B78AF2 /* Routes.swift in Sources */,
 				7DD9E623223C1B9500B45A7E /* SubmissionCommentHeaderCell.swift in Sources */,
@@ -2086,6 +2068,7 @@
 				3BE1307221ADFFDD001D4582 /* UrlSubmissionContentViewController.swift in Sources */,
 				B10D777721C2F69500BCE822 /* EmptyView.swift in Sources */,
 				7D101955215EBB540058FDD1 /* DynamicLabel.swift in Sources */,
+				9FCF1538227B3F50009D35F6 /* RubricLongDescriptionViewController.swift in Sources */,
 				9F2C9F7D219B0F4D001F0F32 /* Drawer.swift in Sources */,
 				7D2FADCC225BCC8A00BCE19E /* TextSubmissionViewController.swift in Sources */,
 				9FB25D4B21653AB40087003C /* (null) in Sources */,
@@ -2128,7 +2111,6 @@
 				B1E7F29E216329EF00C5F7EC /* UITestElement.swift in Sources */,
 				7D5C871A223997D400D99651 /* SubmissionCommentsTests.swift in Sources */,
 				3B363A05225271EE00FC5A7E /* SyllabusTests.swift in Sources */,
-				F9E7D0D2215BE19F00CDC1A3 /* StudentUITests.swift in Sources */,
 				7D6F93652236CF2600528598 /* SubmissionFilesTests.swift in Sources */,
 				7DB0A1C421BF2A20009ABB40 /* LoginFindSchoolPageTests.swift in Sources */,
 				7D5C87182239975D00D99651 /* SubmissionComments.swift in Sources */,

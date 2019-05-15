@@ -161,7 +161,7 @@ extension Router {
                 self.route(dashboardVC, toURL: self.courseCalendarEventsRoute(studentID: studentID, courseID: course.id), modal: true)
             }
             dashboardVC.logoutAction = {
-                CanvasKeymaster.the().logout()
+                (UIApplication.shared.delegate as? ParentAppDelegate)?.logout()
             }
 
 
@@ -424,10 +424,12 @@ let router = Core.Router(routes: [
         return vc
     },
     Core.RouteHandler(.actAsUser, name: "act_as_user") { _, _ in
-        return ActAsUserViewController.create(presenter: ActAsUserPresenter())
+        guard let loginDelegate = UIApplication.shared.delegate as? LoginDelegate else { return nil }
+        return ActAsUserViewController.create(loginDelegate: loginDelegate)
     },
     Core.RouteHandler(.wrongApp, name: "wrongApp") { _, _ in
-        return WrongAppViewController.create(app: .parent, delegate: WrongAppDelegate.shared)
+        guard let loginDelegate = UIApplication.shared.delegate as? LoginDelegate else { return nil }
+        return WrongAppViewController.create(app: .parent, delegate: loginDelegate)
     },
     Core.RouteHandler(.developerMenu, name: "dev_menu") { _, _ in
         return DeveloperMenuViewController.create()
@@ -444,16 +446,4 @@ let router = Core.Router(routes: [
 
 public class ResetTransitionDelegate: NSObject, UIViewControllerTransitioningDelegate {
     public static let shared = ResetTransitionDelegate()
-}
-
-public class WrongAppDelegate: WrongAppViewControllerDelegate {
-    public static let shared = WrongAppDelegate()
-
-    public func loginAgainPressed() {
-        CanvasKeymaster.the().logout()
-    }
-
-    public func openURL(_ url: URL) {
-        UIApplication.shared.open(url, options: [:], completionHandler: nil)
-    }
 }

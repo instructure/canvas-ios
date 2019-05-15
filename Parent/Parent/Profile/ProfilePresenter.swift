@@ -75,15 +75,16 @@ public class ProfilePresenter: ProfilePresenterProtocol {
             ProfileViewCell(
                 name: NSLocalizedString("Change User", bundle: .parent, comment: ""),
                 block: {
-                    CanvasKeymaster.the().switchUser()
-                    NotificationCenter.default.post(name: Notification.Name(rawValue: "MasqueradeDidEnd"), object: nil)
+                    guard let delegate = UIApplication.shared.delegate as? ParentAppDelegate else { return }
+                    delegate.changeUser()
                 }
             ),
             ProfileViewCell(
                 name: NSLocalizedString("Log Out", bundle: .parent, comment: ""),
                 block: {
-                    CanvasKeymaster.the().logout()
-                    NotificationCenter.default.post(name: Notification.Name(rawValue: "MasqueradeDidEnd"), object: nil)
+                    guard let delegate = UIApplication.shared.delegate as? ParentAppDelegate else { return }
+                    guard let session = delegate.environment.currentSession else { return }
+                    delegate.userDidLogout(keychainEntry: session)
                 }
             )
         ])
@@ -92,8 +93,9 @@ public class ProfilePresenter: ProfilePresenterProtocol {
             cells.append(ProfileViewCell(
                 name: NSLocalizedString("Stop Act as User", bundle: .parent, comment: ""),
                 block: {
-                    CanvasKeymaster.the().stopMasquerading()
-                    NotificationCenter.default.post(name: Notification.Name(rawValue: "MasqueradeDidEnd"), object: nil)
+                    guard let delegate = UIApplication.shared.delegate as? ParentAppDelegate else { return }
+                    guard let session = delegate.environment.currentSession else { return }
+                    delegate.stopActing(as: session)
                 }
             ))
         }

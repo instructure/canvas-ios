@@ -98,7 +98,7 @@ export default class RubricItem extends Component<RubricItemProps, RubricItemSta
       }],
       'plain-text',
       this.isCustomGrade() ? String(this.state.selectedPoints) : '',
-      'number-pad'
+      'decimal-pad'
     )
   }
 

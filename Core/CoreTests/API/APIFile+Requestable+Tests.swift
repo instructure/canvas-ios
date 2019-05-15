@@ -29,7 +29,8 @@ class PostFileUploadTargetRequestTests: XCTestCase {
         let body = PostFileUploadTargetRequest.Body(
             name: "File.jpg",
             on_duplicate: .rename,
-            parent_folder_id: nil
+            parent_folder_id: nil,
+            size: 0
         )
         let request = PostFileUploadTargetRequest(
             context: .submission(courseID: "1", assignmentID: "2"),
@@ -43,7 +44,8 @@ class PostFileUploadTargetRequestTests: XCTestCase {
         let body = PostFileUploadTargetRequest.Body(
             name: "File.jpg",
             on_duplicate: .rename,
-            parent_folder_id: nil
+            parent_folder_id: nil,
+            size: 0
         )
         let request = PostFileUploadTargetRequest(
             context: .submission(courseID: "1", assignmentID: "2"),
@@ -56,7 +58,8 @@ class PostFileUploadTargetRequestTests: XCTestCase {
         let body = PostFileUploadTargetRequest.Body(
             name: "File.jpg",
             on_duplicate: .rename,
-            parent_folder_id: nil
+            parent_folder_id: nil,
+            size: 0
         )
         let request = PostFileUploadTargetRequest(
             context: .course("1"),
@@ -69,7 +72,8 @@ class PostFileUploadTargetRequestTests: XCTestCase {
         let body = PostFileUploadTargetRequest.Body(
             name: "File.jpg",
             on_duplicate: .rename,
-            parent_folder_id: nil
+            parent_folder_id: nil,
+            size: 0
         )
         let request = PostFileUploadTargetRequest(
             context: .user("1"),
@@ -82,7 +86,8 @@ class PostFileUploadTargetRequestTests: XCTestCase {
         let body = PostFileUploadTargetRequest.Body(
             name: "File.jpg",
             on_duplicate: .rename,
-            parent_folder_id: nil
+            parent_folder_id: nil,
+            size: 0
         )
         let request = PostFileUploadTargetRequest(
             context: .myFiles,
@@ -109,7 +114,6 @@ class PostFileUploadRequestTests: XCTestCase {
     }
 
     func testPostFileUploadRequest() throws {
-        UUID.mock("3klfenalksjflkjoi9auf89eshajsnl3kjnwal")
         let target = PostFileUploadTargetRequest.Response(
             upload_url: URL(string: "s3://some/bucket/")!,
             upload_params: ["filename": "fileupload.txt"]
@@ -118,25 +122,8 @@ class PostFileUploadRequestTests: XCTestCase {
 
         XCTAssertEqual(requestable.path, "s3://some/bucket/")
         XCTAssertEqual(requestable.method, .post)
-        let contentType = "multipart/form-data; charset=utf-8; boundary=\"3klfenalksjflkjoi9auf89eshajsnl3kjnwal\""
         XCTAssertEqual(requestable.headers, [
             HttpHeader.authorization: nil,
-            HttpHeader.contentType: contentType,
         ])
-    }
-
-    func testPostFileUploadRequestEncode() throws {
-        UUID.mock("3klfenalksjflkjoi9auf89eshajsnl3kjnwal")
-        let target = PostFileUploadTargetRequest.Response(
-            upload_url: URL(string: "s3://some/bucket/")!,
-            upload_params: ["filename": "fileupload.txt"]
-        )
-        let requestable = PostFileUploadRequest(fileURL: fileURL, target: target)
-        let data = try! requestable.encode(requestable.body!)
-
-        XCTAssertNotNil(data)
-        let body = String(data: data, encoding: .utf8)!
-        let expected = try expectedPostBody()
-        XCTAssertEqual(body, expected)
     }
 }

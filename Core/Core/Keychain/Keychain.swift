@@ -44,8 +44,12 @@ public struct KeychainEntry: Codable, Hashable {
         return masquerader == nil ? nil : userID
     }
 
-    public var masqueradingUserID: String? {
+    public var originalUserID: String? {
         return masquerader?.lastPathComponent
+    }
+
+    public var originalBaseURL: URL? {
+        return masquerader?.host.flatMap { URL(string: "https://\($0)") }
     }
 
     public init(

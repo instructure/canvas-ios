@@ -14,18 +14,31 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-import WebKit
+import MobileCoreServices
 import UIKit
+import WebKit
 
 public protocol RichContentEditorDelegate: class {
-    func rce(_ editor: RichContentEditorViewController, didChangeEmpty isEmpty: Bool)
+    func rce(_ editor: RichContentEditorViewController, canSubmit: Bool)
+    func rce(_ editor: RichContentEditorViewController, didError error: Error)
 }
 
 public class RichContentEditorViewController: UIViewController {
     public weak var delegate: RichContentEditorDelegate?
+    public var fileUploadContext: FileUploadContext?
+    var presenter: RichContentEditorPresenter?
     private var html: String?
     lazy var toolbar = RichContentToolbarView()
     public lazy var webView = CoreWebView(frame: .zero)
+
+    public static func create(env: AppEnvironment = .shared, uploadTo context: FileUploadContext?) -> RichContentEditorViewController {
+        let controller = RichContentEditorViewController()
+        if let context = context {
+            controller.presenter = RichContentEditorPresenter(env: env, view: controller, uploadTo: context)
+        }
+        controller.fileUploadContext = context
+        return controller
+    }
 
     public var placeholder: String = "" {
         didSet {
@@ -45,33 +58,13 @@ public class RichContentEditorViewController: UIViewController {
         webView.scrollView.keyboardDismissMode = .interactive
         webView.loadHTMLString("""
             <style>
-                html, body {
-                    height: 100%;
-                    margin: 0;
-                    padding: 0;
-                }
-                * {
-                    outline: 0px solid transparent;
-                    -webkit-tap-highlight-color: rgba(0,0,0,0);
-                    -webkit-touch-callout: none;
-                }
-                #content {
-                    box-sizing: border-box;
-                    min-height: 100%;
-                    padding: 1em;
-                }
-                #content:empty:before {
-                    content: attr(placeholder);
-                    color: \(UIColor.named(.textDark).hexString);
-                }
-                .editor-active {
-                    border: 2px dashed \(UIColor.named(.borderDarkest).hexString);
-                }
-                .video-preview {
-                    background-color: \(UIColor.named(.backgroundDarkest).hexString);
-                    height: 111px;
-                    width: 192px;
-                }
+            :root {
+                --background-danger: \(UIColor.named(.backgroundDanger).hexString);
+                --background-darkest: \(UIColor.named(.backgroundDarkest).hexString);
+                --brand-link-color: \(Brand.shared.linkColor.ensureContrast(against: .white).hexString);
+                --brand-primary: \(Brand.shared.primary.ensureContrast(against: .white).hexString);
+                --text-dark: \(UIColor.named(.textDark).hexString);
+            }
             </style>
             <div id="content" contenteditable=\"true\" placeholder=\"\(placeholder)\">\(html ?? "")</div>
         """)
@@ -128,7 +121,9 @@ extension RichContentEditorViewController {
 
     func updateState(_ state: [String: Any?]?) {
         toolbar.updateState(state)
-        delegate?.rce(self, didChangeEmpty: state?["isEmpty"] as? Bool != false)
+        let isEmpty = state?["isEmpty"] as? Bool ?? true
+        let isUploading = state?["isUploading"] as? Bool ?? false
+        delegate?.rce(self, canSubmit: !isEmpty && !isUploading)
     }
 }
 
@@ -149,7 +144,7 @@ extension RichContentEditorViewController {
     }
 
     enum Message: String, CaseIterable {
-        case link, ready, state
+        case link, ready, state, retryUpload
     }
 
     func setupScriptMessaging() {
@@ -158,6 +153,15 @@ extension RichContentEditorViewController {
             webView.configuration.userContentController.add(messenger, name: message.rawValue)
         }
         if let url = Bundle.core.url(forResource: "RichContentEditor", withExtension: "js"), let source = try? String(contentsOf: url, encoding: .utf8) {
+            let script = WKUserScript(source: source, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
+            webView.configuration.userContentController.addUserScript(script)
+        }
+        if let url = Bundle.core.url(forResource: "RichContentEditor", withExtension: "css"), let css = try? String(contentsOf: url, encoding: .utf8) {
+            let source = """
+            var style = document.createElement('style');
+            style.textContent = \(CoreWebView.jsString(css));
+            document.head.appendChild(style);
+            """
             let script = WKUserScript(source: source, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
             webView.configuration.userContentController.addUserScript(script)
         }
@@ -172,6 +176,74 @@ extension RichContentEditorViewController {
             if let html = html { setHTML(html) }
         case .state:
             updateState(message.body as? [String: Any?])
+        case .retryUpload:
+            guard let url = (message.body as? String).flatMap({ URL(string: $0) }) else { return }
+            presenter?.retry(url)
         }
+    }
+}
+
+extension RichContentEditorViewController: RichContentEditorViewProtocol {
+    func editLink(href: String?, text: String?) {
+        backupRange()
+        let alert = UIAlertController(title: NSLocalizedString("Link to Website URL", bundle: .core, comment: ""), message: nil, preferredStyle: .alert)
+        alert.addTextField { (field: UITextField) in
+            field.placeholder = NSLocalizedString("Text", bundle: .core, comment: "")
+            field.text = href
+        }
+        alert.addTextField { (field: UITextField) in
+            field.placeholder = NSLocalizedString("URL", bundle: .core, comment: "")
+            field.text = text
+            field.keyboardType = .URL
+        }
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", bundle: .core, comment: ""), style: .default) { [weak self] _ in
+            let text = alert.textFields?[0].text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+            var href = alert.textFields?[1].text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+            if !href.isEmpty, URLComponents.parse(href).scheme == nil {
+                href = "https://\(href)"
+            }
+            self?.updateLink(href: href, text: text)
+        })
+        present(alert, animated: true)
+    }
+
+    func insertFrom(_ sourceType: UIImagePickerController.SourceType) {
+        backupRange()
+        let picker = UIImagePickerController()
+        picker.delegate = presenter
+        picker.imageExportPreset = .compatible
+        picker.sourceType = sourceType
+        picker.mediaTypes = [ kUTTypeImage as String, kUTTypeMovie as String ]
+        present(picker, animated: true)
+    }
+
+    public func insertImagePlaceholder(_ url: URL, placeholder: String) {
+        let string = CoreWebView.jsString(url.absoluteString)
+        let datauri = CoreWebView.jsString(placeholder)
+        webView.evaluateJavaScript("editor.insertImagePlaceholder(\(string), \(datauri))")
+    }
+
+    public func insertVideoPlaceholder(_ url: URL) {
+        let string = CoreWebView.jsString(url.absoluteString)
+        webView.evaluateJavaScript("editor.insertVideoPlaceholder(\(string))")
+    }
+
+    public func updateUploadProgress(of files: [File]) {
+        let data = try? JSONSerialization.data(withJSONObject: files.map { file -> [String: Any?] in [
+            "localFileURL": file.localFileURL?.absoluteString,
+            "url": file.url?.absoluteString,
+            "mediaEntryID": file.mediaEntryID,
+            "uploadError": file.uploadError,
+            "uploadErrorTitle": NSLocalizedString("Failed Upload", bundle: .core, comment: ""),
+            "bytesSent": file.bytesSent,
+            "size": file.size,
+        ] })
+        let json = data.flatMap({ String(data: $0, encoding: .utf8) }) ?? "[]"
+        webView.evaluateJavaScript("editor.updateUploadProgress(\(json))")
+    }
+
+    public func showError(_ error: Error) {
+        delegate?.rce(self, didError: error)
     }
 }

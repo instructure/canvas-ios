@@ -25,11 +25,6 @@
 #import "CKIBrand.h"
 #import "NSHTTPURLResponse+Pagination.h"
 #import "NSDictionary+DictionaryByAddingObjectsFromDictionary.h"
-#import "CKILoginFinishedViewController.h"
-
-#if TARGET_IPHONE_SIMULATOR || TARGET_OS_IPHONE
-#import "CKILoginViewController.h"
-#endif
 
 NSString *const CKIClientAccessTokenExpiredNotification = @"CKIClientAccessTokenExpiredNotification";
 
@@ -126,81 +121,6 @@ NSString *const CKIClientAccessTokenExpiredNotification = @"CKIClientAccessToken
 {
     _accessToken = accessToken;
     [self.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@", accessToken] forHTTPHeaderField:@"Authorization"];
-}
-
-#pragma mark - OAuth
-
-- (RACSignal *)postAuthCode:(NSString *)temporaryCode
-{
-    NSDictionary *params = @{
-            @"client_id": self.clientID,
-            @"client_secret": self.clientSecret,
-            @"code": temporaryCode
-    };
-
-    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-        NSURLSessionDataTask *task = [self POST:@"/login/oauth2/token" parameters:params progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-            [subscriber sendNext:responseObject];
-            [subscriber sendCompleted];
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            [subscriber sendError:error];
-            [subscriber sendCompleted];
-        }];
-
-        return [RACDisposable disposableWithBlock:^{
-            [task cancel];
-        }];
-    }];
-}
-
-- (RACSignal *)logout
-{
-    return [RACSignal createSignal:^RACDisposable *(id <RACSubscriber> subscriber) {
-        [self clearCookiesAndCache];
-        NSString *path = @"/login/oauth2/token";
-        NSURLSessionDataTask *task = [self DELETE:path parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-            [self revokeClient];
-            [subscriber sendCompleted];
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            [self revokeClient];
-            [subscriber sendError:error];
-        }];
-
-        return [RACDisposable disposableWithBlock:^{
-            [task cancel];
-        }];
-    }];
-}
-
-- (void)revokeClient
-{
-    self.accessToken = nil;
-    self.currentUser = nil;
-}
-
-- (NSURLRequest *)authenticationRequestWithMethod:(CKIAuthenticationMethod)method
-{
-    NSAssert(method < CKIAuthenticationMethodCount, @"Invalid authentication method");
-    
-    NSString *urlString = [NSString stringWithFormat:@"%@/login/oauth2/auth?client_id=%@&response_type=code&redirect_uri=https://canvas/login&mobile=1",
-                           self.baseURL.absoluteString,
-                           self.clientID];
-    
-    if (method == CKIAuthenticationMethodForcedCanvasLogin) {
-        urlString = [urlString stringByAppendingString:@"&canvas_login=1"];
-    }
-    
-    // sometimes for canvas auth the authenticationProvider is an empty string
-    // which causes this if to still pass and then breaks the login
-    if ([self.authenticationProvider length]) {
-        urlString = [urlString stringByAppendingString:[NSString stringWithFormat:@"&authentication_provider=%@", self.authenticationProvider]];
-    }
-    
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [request setValue:@"CanvasKit/1.0" forHTTPHeaderField:@"User-Agent"];
-    
-    return request;
 }
 
 - (NSString *)sessionLocale
@@ -354,7 +274,6 @@ NSString *const CKIClientAccessTokenExpiredNotification = @"CKIClientAccessToken
                 [[self fetchCurrentUser] subscribeError:^(NSError *error) {
                     if ([self isUnauthorizedError:error]) {
                         [[NSNotificationCenter defaultCenter] postNotificationName:CKIClientAccessTokenExpiredNotification object:self userInfo:nil];
-                        [self revokeClient];
                     }
                 }];
             }
@@ -475,127 +394,6 @@ NSString *const CKIClientAccessTokenExpiredNotification = @"CKIClientAccessToken
             [task cancel];
         }];
     }];
-}
-
-#if TARGET_IPHONE_SIMULATOR || TARGET_OS_IPHONE
-#pragma mark - UIKit Methods
-
-- (RACSignal *)login {
-    return [self loginWithAuthenticationMethod:CKIAuthenticationMethodDefault];
-}
-
-- (RACSignal *)loginWithAuthenticationMethod:(CKIAuthenticationMethod)method
-{
-    // don't log in again if already logged in
-    if (self.isLoggedIn) {
-        return nil;
-    }
-    
-    RACSignal *client = [[[[[self authorizeWithServerUsingWebBrowserUsingAuthenticationMethod:method] flattenMap:^__kindof RACSignal * _Nullable(NSString *temporaryCode) {
-        return [self postAuthCode:temporaryCode];
-    }] flattenMap:^__kindof RACStream * _Nullable(NSDictionary *responseObject) {
-        self.accessToken = responseObject[@"access_token"];
-        self.effectiveLocale = responseObject[@"user"][@"effective_locale"];
-        return [self fetchCurrentUser];
-    }] map:^id(CKIUser *user) {
-        self.currentUser = user;
-        return self;
-    }] doError:^(NSError *error) {
-        NSLog(@"CanvasKit OAuth failed with error: %@", error);
-        [self clearCookiesAndCache];
-    }];
-
-    return client;
-}
-
-- (RACSignal *)authorizeWithServerUsingWebBrowserUsingAuthenticationMethod:(CKIAuthenticationMethod)method
-{
-    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-        NSURLRequest *request = [self authenticationRequestWithMethod:method];
-        CKILoginViewController *loginViewController = [[CKILoginViewController alloc] initWithRequest:request method:method];
-        loginViewController.successBlock = ^(NSString *authToken) {
-            [subscriber sendNext:authToken];
-            [subscriber sendCompleted];
-        };
-        loginViewController.failureBlock = ^(NSError *error) {
-            [subscriber sendError:error];
-            [subscriber sendCompleted];
-        };
-
-        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
-        UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:loginViewController action:@selector(cancelOAuth)];
-        [button setAccessibilityIdentifier:@"cancelLoginButton"];
-        [button setAccessibilityLabel:NSLocalizedString(@"Cancel", nil)];
-        [loginViewController.navigationItem setLeftBarButtonItem:button]; 
-        [navigationController.navigationBar setBarStyle:UIBarStyleDefault];
-        [navigationController.navigationBar setBarTintColor:nil];
-        [navigationController.navigationBar setTintColor:nil];
-        [navigationController.navigationBar setTitleTextAttributes:nil];
-        
-        UIViewController *presentingViewController = [[[UIApplication sharedApplication] delegate] window].rootViewController;
-        [presentingViewController presentViewController:navigationController animated:YES completion:nil];
-        self.webLoginViewController = navigationController;
-
-        return [RACDisposable disposableWithBlock:^{
-            CKILoginFinishedViewController *finished = [CKILoginFinishedViewController new];
-            [finished setLoadingImage:[CKILoginViewController loadingImage]];
-            UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
-            [UIView transitionWithView:window duration:0.25 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
-                window.rootViewController = finished;
-            } completion:^(BOOL finished) {
-                [self.webLoginViewController.presentingViewController dismissViewControllerAnimated:NO completion:^{
-                    self.webLoginViewController = nil;
-                }];
-            }];
-        }];
-    }];
-}
-
-#endif
-
-#pragma mark - Branding
-
-- (RACSignal *)fetchBranding {
-    NSURL *branding = [self.baseURL URLByAppendingPathComponent:@"/api/v1/brand_variables"];
-    RACSignal *signal = [RACSignal createSignal:^RACDisposable * _Nullable(id < RACSubscriber >_Nonnull subscriber) {
-        NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithURL:branding completionHandler:^(NSData *_Nullable data, NSURLResponse *_Nullable response, NSError *_Nullable error) {
-            
-            void (^handleError)(NSError *) = ^(NSError *error) {
-                // Failing to fetch branding is not a fatal error, the user can still log into the app and use it
-                [subscriber sendNext:nil];
-                [subscriber sendCompleted];
-            };
-            
-            if (error) {
-                handleError(error);
-                return;
-            }
-            
-            NSError *parsingError = nil;
-            id json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&parsingError];
-
-            if (parsingError) {
-                handleError(parsingError);
-                return;
-            }
-
-            if (json) {
-                CKIBrand *brandModel = [MTLJSONAdapter modelOfClass:CKIBrand.class fromJSONDictionary:json error:&parsingError];
-                if (parsingError) {
-                    handleError(parsingError);
-                    return;
-                }
-                [subscriber sendNext:brandModel];
-                [subscriber sendCompleted];
-            }
-        }];
-        [task resume];
-
-        return [RACDisposable disposableWithBlock:^{
-            [task cancel];
-        }];
-    }];
-    return signal;
 }
 
 @end

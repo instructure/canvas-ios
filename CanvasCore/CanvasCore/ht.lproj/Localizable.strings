@@ -226,9 +226,6 @@
 /* Data encoding error title */
 "Encoding Error" = "Erè Kodaj";
 
-/* No comment provided by engineer. */
-"End Act as User" = "Fini Aksyon kòm yon Itilizatè";
-
 /* Default text for essay cell */
 "Enter answer..." = "Antre repons...";
 
@@ -604,9 +601,6 @@
 /* stop recording button a11y label */
 "Stop" = "Kanpe";
 
-/* No comment provided by engineer. */
-"Stop acting as..." = "Sispann aji tankou...";
-
 /* File upload was stopped */
 "Stopped" = "Kanpe";
 
@@ -842,12 +836,6 @@
 
 /* permission was rejected */
 "You must grant (appName) Microphone access in the Settings app in order to record audio." = "Ou dwe otorize (appName) aksè Mikwofòn nan Paramèt app la pou w ka anrejistre odyo.";
-
-/* No comment provided by engineer. */
-"You will stop acting as %@ and return to your account." = "Ou pral sispann aji tankou %@ epi sou kont ou.";
-
-/* No comment provided by engineer. */
-"You will stop acting as this user and return to your account." = "Ou pral sispann aji tankou yon itilizatè epi retounen sou kont ou.";
 
 /* Error description for file out of space */
 "Your device is out of storage space. Please free up space and try again." = "Pa gen espas estojak sou aparèy ou a ankò. Tanpri libere kèk espas epi eseye ankò.";

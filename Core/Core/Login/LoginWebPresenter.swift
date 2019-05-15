@@ -45,13 +45,21 @@ class LoginWebPresenter {
     var method = AuthenticationMethod.normalLogin
     var task: URLSessionTask?
     weak var view: LoginWebViewProtocol?
-    var submittedMDMLogin = false
+    var mdmLogin: MDMLogin?
 
-    init(authenticationProvider: String?, host: String, loginDelegate: LoginDelegate?, method: AuthenticationMethod, view: LoginWebViewProtocol) {
+    init(
+        authenticationProvider: String?,
+        host: String,
+        mdmLogin: MDMLogin? = nil,
+        loginDelegate: LoginDelegate?,
+        method: AuthenticationMethod,
+        view: LoginWebViewProtocol
+    ) {
         self.authenticationProvider = authenticationProvider
         self.host = host
         self.loginDelegate = loginDelegate
         self.method = method
+        self.mdmLogin = mdmLogin
         self.view = view
     }
 
@@ -138,8 +146,8 @@ class LoginWebPresenter {
     }
 
     func webViewFinishedLoading() {
-        if let login = MDMManager.shared.login, !submittedMDMLogin {
-            submittedMDMLogin = true
+        if let login = mdmLogin {
+            self.mdmLogin = nil
             submitLogin(login)
         }
     }
@@ -150,11 +158,12 @@ class LoginWebPresenter {
     }
 
     private func submitLogin(_ login: MDMLogin) {
-        let username = "document.querySelector('input[name=\"pseudonym_session[unique_id]\"]').value = \"\(login.username)\""
-        let password = "document.querySelector('input[name=\"pseudonym_session[password]\"]').value = \"\(login.password)\""
-        let submit = "document.querySelector('#login_form').submit()"
-        view?.evaluateJavaScript(username)
-        view?.evaluateJavaScript(password)
-        view?.evaluateJavaScript(submit)
+        let js = """
+        const form = document.querySelector('#login_form')
+        form.querySelector('[type=email],[type=text]').value = \(CoreWebView.jsString(login.username))
+        form.querySelector('[type=password]').value = \(CoreWebView.jsString(login.password))
+        form.submit()
+        """
+        view?.evaluateJavaScript(js)
     }
 }

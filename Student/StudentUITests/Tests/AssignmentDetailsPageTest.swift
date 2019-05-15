@@ -63,7 +63,7 @@ class AssignmentDetailsPageTest: StudentTest {
         page.assertHidden(.gradeCell)
         page.assertText(.submitAssignmentButton, equals: "Submit Assignment")
 
-        let description = app?.webViews.staticTexts.firstMatch.label
+        let description = xcuiApp?.webViews.staticTexts.firstMatch.label
         XCTAssertEqual(description, assignment.description)
     }
 
@@ -91,9 +91,9 @@ class AssignmentDetailsPageTest: StudentTest {
         page.assertHidden(.gradeCell)
         page.assertText(.submitAssignmentButton, equals: "View Discussion")
 
-        let authorAvatar = app?.webViews.staticTexts.element(boundBy: 0).label
-        let authorName = app?.webViews.staticTexts.element(boundBy: 1).label
-        let message = app?.webViews.staticTexts.element(boundBy: 2).label
+        let authorAvatar = xcuiApp?.webViews.staticTexts.element(boundBy: 0).label
+        let authorName = xcuiApp?.webViews.staticTexts.element(boundBy: 1).label
+        let message = xcuiApp?.webViews.staticTexts.element(boundBy: 2).label
         XCTAssertEqual(authorAvatar, "B")
         XCTAssertEqual(authorName, assignment.discussion_topic?.author.display_name)
         XCTAssertEqual(message, assignment.discussion_topic?.message)
@@ -203,7 +203,7 @@ class AssignmentDetailsPageTest: StudentTest {
             ]),
         ]))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
-        page.select(.gradeCircle).assertText(equals: "90 out of 100 points possible")
+        page.select(.gradeCircle).assertText(equals: "Scored 90 out of 100 points possible")
     }
 
     func testDisplayGradeAs() {
@@ -216,7 +216,7 @@ class AssignmentDetailsPageTest: StudentTest {
             ]),
         ]))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
-        page.select(.gradeCircle).assertText(equals: "8 out of 10 points possible")
+        page.select(.gradeCircle).assertText(equals: "Scored 8 out of 10 points possible")
         page.select(.gradeDisplayGrade).assertText(equals: "80%")
     }
 
