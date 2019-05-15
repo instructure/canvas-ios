@@ -335,7 +335,7 @@ describe('CourseNavigation', () => {
       .find('OnLayout').first().dive()
       .find('[testID="courses-details.tab.collaborations"]')
       .simulate('Press', tab)
-    expect(props.navigator.showWebView).toHaveBeenCalledWith(tab.full_url)
+    expect(props.navigator.show).toHaveBeenCalledWith(tab.full_url)
   })
 })
 
