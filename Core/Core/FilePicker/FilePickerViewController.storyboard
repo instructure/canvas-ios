@@ -21,8 +21,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PJu-Wl-5yf" userLabel="Content">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="553"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Ivp-6e-qcJ">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="547"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Ivp-6e-qcJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="553"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KBk-nG-lHe" customClass="FilePickerProgressView" customModule="Core" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
@@ -41,8 +41,8 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="tintColorName" value="borderMedium"/>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pZl-T1-Myp">
-                                                <rect key="frame" x="0.0" y="71" width="375" height="476"/>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pZl-T1-Myp">
+                                                <rect key="frame" x="0.0" y="71" width="375" height="482"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FilePickerCell" id="pcl-I5-RWL" customClass="FilePickerCell" customModule="Core" customModuleProvider="target">
@@ -115,6 +115,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Ivp-6e-qcJ" secondAttribute="bottom" id="R5u-Un-4WI"/>
                                     <constraint firstAttribute="trailing" secondItem="Ivp-6e-qcJ" secondAttribute="trailing" id="Sr0-4s-Wgu"/>
                                     <constraint firstItem="Ivp-6e-qcJ" firstAttribute="leading" secondItem="PJu-Wl-5yf" secondAttribute="leading" id="iCW-PH-ZhU"/>
                                     <constraint firstItem="Ivp-6e-qcJ" firstAttribute="top" secondItem="PJu-Wl-5yf" secondAttribute="top" id="qSt-W8-0GA"/>

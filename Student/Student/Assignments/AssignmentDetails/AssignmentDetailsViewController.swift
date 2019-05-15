@@ -16,6 +16,7 @@
 
 import Core
 import UIKit
+import MobileCoreServices
 
 class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewProtocol {
     @IBOutlet weak var nameLabel: UILabel?
@@ -114,7 +115,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
 
     @IBAction
     func viewFileSubmission() {
-        presenter?.viewFileSubmission(from: self)
+        presenter?.submit(.online_upload, from: self)
     }
 
     func updateNavBar(subtitle: String?, backgroundColor: UIColor?) {
@@ -235,6 +236,127 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil)
         alert.addAction(cancel)
         present(alert, animated: true, completion: nil)
+    }
+
+    func present(filePicker: FilePickerViewController) {
+        filePicker.delegate = self
+        let nav = UINavigationController(rootViewController: filePicker)
+        present(nav, animated: true, completion: nil)
+    }
+
+    func chooseMediaRecordingType() {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Record Audio", comment: ""), style: .default) { [weak self] _ in
+            AudioRecorderViewController.requestPermission { allowed in
+                if allowed {
+                    let controller = AudioRecorderViewController.create()
+                    controller.delegate = self
+                    controller.view.backgroundColor = UIColor.named(.backgroundLightest)
+                    self?.present(controller, animated: true, completion: nil)
+                } else {
+                    self?.showPermissionError(.microphone)
+                }
+            }
+        })
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Record Video", comment: ""), style: .default) { _ in
+            guard UIImagePickerController.isSourceTypeAvailable(.camera) else { return }
+            let cameraController = UIImagePickerController()
+            cameraController.delegate = self
+            cameraController.sourceType = .camera
+            cameraController.mediaTypes = [kUTTypeMovie as String]
+            cameraController.cameraCaptureMode = .video
+            self.present(cameraController, animated: true, completion: nil)
+        })
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel))
+        present(alert, animated: true, completion: nil)
+    }
+
+    func submit(mediaRecording url: URL, type: MediaCommentType) {
+        let alert = UIAlertController(title: NSLocalizedString("Uploading", comment: ""), message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { [weak self] _ in
+            self?.presenter?.cancelOnlineUpload()
+        })
+        present(alert, animated: true) {
+            self.presenter?.submit(mediaRecording: url, type: type) { [weak self] error in
+                DispatchQueue.main.async {
+                    alert.dismiss(animated: true) {
+                        if let error = error {
+                            let alert = UIAlertController(title: NSLocalizedString("Submission Failed", comment: ""), message: error.localizedDescription, preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: NSLocalizedString("Retry", comment: ""), style: .default) { _ in
+                                self?.submit(mediaRecording: url, type: type)
+                            })
+                            alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+                            self?.present(alert, animated: true, completion: nil)
+                        } else {
+                            let alert = UIAlertController(title: NSLocalizedString("Success!", comment: ""), message: nil, preferredStyle: .alert)
+                            self?.present(alert, animated: true) {
+                                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(400)) {
+                                    alert.dismiss(animated: true, completion: nil)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+extension AssignmentDetailsViewController: AudioRecorderDelegate {
+    func cancel(_ controller: AudioRecorderViewController) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+
+    func send(_ controller: AudioRecorderViewController, url: URL) {
+        controller.dismiss(animated: true) {
+            self.submit(mediaRecording: url, type: .audio)
+        }
+    }
+}
+
+extension AssignmentDetailsViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        picker.dismiss(animated: true) {
+            do {
+                if let videoURL = info[.mediaURL] as? URL {
+                    let destination = URL
+                        .temporaryDirectory
+                        .appendingPathComponent("videos", isDirectory: true)
+                        .appendingPathComponent(String(Clock.now.timeIntervalSince1970))
+                        .appendingPathExtension(videoURL.pathExtension)
+                    try videoURL.move(to: destination)
+                    self.submit(mediaRecording: destination, type: .video)
+                }
+            } catch {
+                self.showError(error)
+            }
+        }
+    }
+}
+
+extension AssignmentDetailsViewController: FilePickerControllerDelegate {
+    func add(_ controller: FilePickerViewController, url: URL) {
+        presenter?.addOnlineUpload(file: url)
+    }
+
+    func submit(_ controller: FilePickerViewController) {
+        controller.dismiss(animated: true) {
+            self.presenter?.submitOnlineUpload()
+        }
+    }
+
+    func cancel(_ controller: FilePickerViewController) {
+        controller.dismiss(animated: true) {
+            self.presenter?.cancelOnlineUpload()
+        }
+    }
+
+    func retry(_ controller: FilePickerViewController) {
+        // TODO: presenter?.retryOnlineUpload()
+    }
+
+    func canSubmit(_ controller: FilePickerViewController) -> Bool {
+        return presenter?.files.isEmpty == false
     }
 }
 

@@ -65,7 +65,13 @@ class TextSubmissionViewController: UIViewController, ErrorViewController, RichC
 
     @objc func submit(_ sender: Any? = nil) {
         editor?.getHTML { (html: String) in
-            self.presenter?.submit(html)
+            self.presenter?.submit(html) { [weak self] error in
+                if let error = error {
+                    self?.showError(error)
+                } else {
+                    self?.dismiss(animated: true, completion: nil)
+                }
+            }
         }
     }
 }

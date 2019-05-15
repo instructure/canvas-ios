@@ -17,10 +17,7 @@
 import Foundation
 import Core
 
-protocol TextSubmissionViewProtocol: class {
-    func showError(_ error: Error)
-    func dismiss(animated flag: Bool, completion: EmptyHandler?)
-}
+protocol TextSubmissionViewProtocol: class {}
 
 class TextSubmissionPresenter {
     let assignmentID: String
@@ -37,14 +34,10 @@ class TextSubmissionPresenter {
         self.view = view
     }
 
-    func submit(_ text: String) {
+    func submit(_ text: String, callback: @escaping (Error?) -> Void) {
         let useCase = CreateSubmission(context: ContextModel(.course, id: courseID), assignmentID: assignmentID, userID: userID, submissionType: .online_text_entry, body: text)
-        useCase.fetch(environment: env) { [weak self] (_, _, error) in
-            if let error = error {
-                self?.view?.showError(error)
-            } else {
-                self?.view?.dismiss(animated: true, completion: nil)
-            }
+        useCase.fetch(environment: env) { (_, _, error) in
+            callback(error)
         }
     }
 }
