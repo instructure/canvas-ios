@@ -43,6 +43,13 @@ class DiscussionTopicTests: CoreTestCase {
         XCTAssertTrue(topic.html.contains("Apr 22, 2019"))
     }
 
+    func testHTMLWithNoAuthorName() {
+        let topic = DiscussionTopic.make([
+            "authorName": nil,
+        ])
+        XCTAssertFalse(topic.html.contains("Strong Bad"))
+    }
+
     func testHtmlAttachmentIcon() {
         let api = APIDiscussionTopic.make([ "attachments": [ APIFile.fixture() ] ])
         XCTAssertNoThrow(try DiscussionTopic.save(api, in: databaseClient))
