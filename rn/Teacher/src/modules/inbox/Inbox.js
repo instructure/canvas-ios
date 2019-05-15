@@ -116,10 +116,12 @@ export class Inbox extends Component<InboxProps, any> {
     return (
       <View style={styles.container}>
         <FilterHeader selected={this.props.scope} onFilterChange={this._onChangeFilter} />
-        <CourseFilter courses={this.props.courses}
-          selectedCourse={this.state.selectedCourse}
-          onClearFilter={this._clearCourseFilter}
-          onSelectFilter={this._updateCourseFilter} />
+        { this.props.courses && this.props.courses.length > 0 &&
+          <CourseFilter courses={this.props.courses}
+            selectedCourse={this.state.selectedCourse}
+            onClearFilter={this._clearCourseFilter}
+            onSelectFilter={this._updateCourseFilter} />
+        }
         { conversations.length === 0 && this.props.pending
           ? this._renderLoading()
           : <FlatList
@@ -188,10 +190,13 @@ export function mapStateToProps ({ inbox, entities }: AppState) {
   const scope = inbox.selectedScope
   const scopeData = inbox[scope]
   const conversations = scopeData.refs.map((id) => inbox.conversations[id] && inbox.conversations[id].data).filter(Boolean)
-  const courses = Object.keys(entities.courses).reduce((acc, id) => {
-    acc.push(entities.courses[id].course)
-    return acc
-  }, []).filter(App.current().filterCourse)
+  const courses = Object.keys(entities.courses)
+    .reduce((acc, id) => {
+      acc.push(entities.courses[id].course)
+      return acc
+    }, [])
+    .filter(App.current().filterCourse)
+    .filter(course => !course.access_restricted_by_date)
   return {
     conversations,
     scope,

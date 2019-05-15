@@ -77,7 +77,7 @@ export default class CourseFilter extends Component<CourseFilterProps, any> {
   }
 
   renderFilterButton = () => {
-    if (!this.props.courses || this.props.courses.length === 0) {
+    if (!this.props.courses) {
       return <ActivityIndicator />
     }
     let title = i18n('Filter')

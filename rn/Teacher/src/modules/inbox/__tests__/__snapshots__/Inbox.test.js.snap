@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`filters conversations based on course 1`] = `
+exports[`Inbox filters conversations based on course 1`] = `
 <RCTSafeAreaView
   style={
     Object {
@@ -673,7 +673,7 @@ exports[`filters conversations based on course 1`] = `
 </RCTSafeAreaView>
 `;
 
-exports[`refreshed component 1`] = `
+exports[`Inbox refreshed component 1`] = `
 <RCTSafeAreaView
   style={
     Object {
@@ -1212,7 +1212,7 @@ exports[`refreshed component 1`] = `
 </RCTSafeAreaView>
 `;
 
-exports[`renders correctly 1`] = `
+exports[`Inbox renders correctly 1`] = `
 <RCTSafeAreaView
   style={
     Object {
@@ -2096,7 +2096,7 @@ exports[`renders correctly 1`] = `
 </RCTSafeAreaView>
 `;
 
-exports[`renders the activity indicator when loading conversations 1`] = `
+exports[`Inbox renders the activity indicator when loading conversations 1`] = `
 <RCTSafeAreaView
   style={
     Object {
@@ -2572,7 +2572,7 @@ exports[`renders the activity indicator when loading conversations 1`] = `
 </RCTSafeAreaView>
 `;
 
-exports[`renders the starred empty state 1`] = `
+exports[`Inbox renders the starred empty state 1`] = `
 <RCTSafeAreaView
   style={
     Object {
@@ -3111,7 +3111,7 @@ exports[`renders the starred empty state 1`] = `
 </RCTSafeAreaView>
 `;
 
-exports[`renders with an empty state 1`] = `
+exports[`Inbox renders with an empty state 1`] = `
 <RCTSafeAreaView
   style={
     Object {
