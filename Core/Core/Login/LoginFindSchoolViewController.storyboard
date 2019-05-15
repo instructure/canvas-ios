@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What’s your school’s name?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lla-jL-Stu" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="16" y="86" width="213" height="20.5"/>
+                                <rect key="frame" x="16" y="86" width="255" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -29,10 +29,10 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="VpA-YM-91x">
-                                <rect key="frame" x="339" y="86.5" width="20" height="20"/>
+                                <rect key="frame" x="339" y="88" width="20" height="20"/>
                             </activityIndicatorView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d2F-Ff-ei1" customClass="DividerView" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="114.5" width="375" height="1"/>
+                                <rect key="frame" x="0.0" y="118" width="375" height="1"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="y2k-8q-ImX"/>
@@ -42,14 +42,14 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Find your school or district" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="7h3-OI-fAs" customClass="DynamicTextField" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="16" y="115.5" width="343" height="54"/>
+                                <rect key="frame" x="16" y="119" width="343" height="54"/>
                                 <accessibility key="accessibilityConfiguration" identifier="LoginFindSchoolPage.searchField"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="54" id="1Au-oh-hh3"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="go" textContentType="url"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="go" textContentType="url"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium16"/>
@@ -60,7 +60,7 @@
                                 </connections>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IBy-2t-Shu" customClass="DividerView" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="169.5" width="375" height="1"/>
+                                <rect key="frame" x="0.0" y="173" width="375" height="1"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="nBm-C1-B3D"/>
@@ -70,7 +70,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gCN-9S-DbC">
-                                <rect key="frame" x="0.0" y="170.5" width="375" height="496.5"/>
+                                <rect key="frame" x="0.0" y="174" width="375" height="493"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="LJC-mX-QMn">
