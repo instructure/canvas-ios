@@ -315,6 +315,28 @@ describe('CourseNavigation', () => {
       .simulate('Press', tab)
     expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/syllabus')
   })
+
+  it('shows collaborations in a web view', () => {
+    const tab = template.tab({
+      id: 'collaborations',
+      full_url: 'https://canvas.instructure.com/courses/1/collaborations',
+    })
+    const props = {
+      ...defaultProps,
+      tabs: [tab],
+      navigator: template.navigator({
+        showWebView: jest.fn(),
+      }),
+    }
+
+    const tree = shallow(<CourseNavigation {...props} />)
+    tree
+      .find('TabsList').first().dive()
+      .find('OnLayout').first().dive()
+      .find('[testID="courses-details.tab.collaborations"]')
+      .simulate('Press', tab)
+    expect(props.navigator.showWebView).toHaveBeenCalledWith(tab.full_url)
+  })
 })
 
 describe('mapStateToProps', () => {
