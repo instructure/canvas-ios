@@ -110,7 +110,6 @@ export function mapStateToProps (state: AppState): CourseSelectDataProps {
   let courses = Object.keys(state.entities.courses)
     .map(id => state.entities.courses[id].course)
     .filter(App.current().filterCourse)
-    .filter(course => !course.access_restricted_by_date)
   let pending = !!state.favoriteCourses.pending
 
   const favoriteCourses = courses.filter((course) => course.is_favorite)

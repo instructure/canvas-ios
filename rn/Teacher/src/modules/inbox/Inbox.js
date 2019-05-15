@@ -196,7 +196,6 @@ export function mapStateToProps ({ inbox, entities }: AppState) {
       return acc
     }, [])
     .filter(App.current().filterCourse)
-    .filter(course => !course.access_restricted_by_date)
   return {
     conversations,
     scope,

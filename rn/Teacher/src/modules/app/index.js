@@ -25,6 +25,7 @@ export type App = {
 const teacher = {
   appId: 'teacher',
   filterCourse: (course: Course): boolean => {
+    if (course.access_restricted_by_date) return false
     const enrollments = course.enrollments
     if (!enrollments) return false
     return enrollments.some((e) =>
@@ -40,7 +41,7 @@ const teacher = {
 
 const student = {
   appId: 'student',
-  filterCourse: (course: Course): boolean => true,
+  filterCourse: (course: Course): boolean => !course.access_restricted_by_date,
 }
 
 const parent = {
