@@ -53,7 +53,7 @@ class SyllabusActionableItemsPresenter {
         }
     }()
 
-    init(env: AppEnvironment = .shared, view: SyllabusActionableItemsViewProtocol, courseID: String, sort: GetAssignments.Sort = .position) {
+    init(env: AppEnvironment = .shared, view: SyllabusActionableItemsViewProtocol, courseID: String, sort: GetAssignments.Sort = .dueAt) {
         self.courseID = courseID
         self.env = env
         self.view = view

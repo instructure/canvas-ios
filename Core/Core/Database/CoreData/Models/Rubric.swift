@@ -34,7 +34,7 @@ public final class Rubric: NSManagedObject, WriteableModel {
         let model: Rubric = context.fetch(predicate).first ?? context.insert()
         model.id = item.id.value
         model.desc = item.description
-        model.longDesc = item.long_description
+        model.longDesc = item.long_description ?? ""
         model.points = item.points
         model.criterionUseRange = item.criterion_use_range
         model.assignmentID = item.assignmentID ?? ""

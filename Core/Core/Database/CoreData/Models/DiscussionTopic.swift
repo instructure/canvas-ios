@@ -31,8 +31,8 @@ public final class DiscussionTopic: NSManagedObject, WriteableModel {
     @NSManaged public var assignment: Assignment?
     @NSManaged public var attachments: Set<File>?
     @NSManaged public var authorAvatarURL: URL?
-    @NSManaged public var authorID: String
-    @NSManaged public var authorName: String
+    @NSManaged public var authorID: String?
+    @NSManaged public var authorName: String?
 
     @discardableResult
     public static func save(_ item: APIDiscussionTopic, in context: PersistenceClient) throws -> DiscussionTopic {
@@ -68,9 +68,15 @@ public final class DiscussionTopic: NSManagedObject, WriteableModel {
             638.92l-798.6 798.72 79.85 79.85 798.6-798.72c220.02-220.13 220.02-578.49 0-798.61"/>
         </svg>
         """
+
+        var avatarHTML = ""
+        if let authorName = authorName {
+            avatarHTML = AvatarView.html(for: authorAvatarURL, name: authorName)
+        }
+
         return """
         <div style="align-items:center; display:flex; margin:1em 0;">
-            \(AvatarView.html(for: authorAvatarURL, name: authorName))
+            \(avatarHTML)
             <div style="flex:1; margin-left:8px;">
                 <div style="font-size:14px; font-weight:600;">
                     \(CoreWebView.htmlString(authorName))
