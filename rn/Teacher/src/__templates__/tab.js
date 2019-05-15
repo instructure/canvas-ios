@@ -25,4 +25,5 @@ export const tab: Template<Tab> = template({
   visibility: 'public',
   position: 0,
   html_url: '/courses/1/assignments',
+  full_url: 'canvas.instructure.com/courses/1/assignments',
 })

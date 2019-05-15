@@ -115,6 +115,7 @@ exports[`CourseNavigation renders correctly 1`] = `
     tabs={
       Array [
         Object {
+          "full_url": "canvas.instructure.com/courses/1/assignments",
           "html_url": "/courses/1/assignments",
           "id": "assignments",
           "label": "Home",
@@ -212,6 +213,7 @@ exports[`CourseNavigation renders with empty image url 1`] = `
     tabs={
       Array [
         Object {
+          "full_url": "canvas.instructure.com/courses/1/assignments",
           "html_url": "/courses/1/assignments",
           "id": "assignments",
           "label": "Home",
@@ -266,6 +268,7 @@ exports[`CourseNavigation renders with image url 1`] = `
     tabs={
       Array [
         Object {
+          "full_url": "canvas.instructure.com/courses/1/assignments",
           "html_url": "/courses/1/assignments",
           "id": "assignments",
           "label": "Home",
@@ -322,6 +325,7 @@ exports[`CourseNavigation renders without image url 1`] = `
     tabs={
       Array [
         Object {
+          "full_url": "canvas.instructure.com/courses/1/assignments",
           "html_url": "/courses/1/assignments",
           "id": "assignments",
           "label": "Home",
