@@ -26,12 +26,7 @@ import React from 'react'
 import { AssignmentDetailsEdit } from '../AssignmentDetailsEdit'
 import setProps from '../../../../test/helpers/setProps'
 import explore from '../../../../test/helpers/explore'
-
-const template = {
-  ...require('../../../__templates__/assignments'),
-  ...require('../../../__templates__/course'),
-  ...require('../../../__templates__/helm'),
-}
+import * as template from '../../../__templates__'
 
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer'
@@ -50,6 +45,7 @@ jest
   }))
   .mock('WebView', () => 'WebView')
   .mock('Button', () => 'Button')
+  .mock('Switch', () => 'Switch')
   .mock('../../../routing/Screen')
   .mock('../../assignment-details/components/AssignmentDatesEditor', () => 'AssignmentDatesEditor')
 

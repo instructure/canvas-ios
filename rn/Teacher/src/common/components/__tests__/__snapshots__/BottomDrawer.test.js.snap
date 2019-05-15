@@ -54,7 +54,6 @@ exports[`BottomDrawer renders any children 1`] = `
     verticalOnly={true}
   />
   <View
-    collapsable={undefined}
     style={
       Object {
         "height": 667,
@@ -134,7 +133,6 @@ exports[`BottomDrawer renders any children 1`] = `
       />
     </DrawerHandleView>
     <View
-      collapsable={undefined}
       style={
         Object {
           "flex": 1,
@@ -142,11 +140,7 @@ exports[`BottomDrawer renders any children 1`] = `
         }
       }
     >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-      >
+      <Text>
         Yo yo yo
       </Text>
     </View>

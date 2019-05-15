@@ -101,6 +101,7 @@ exports[`DiscussionsRow renders 1`] = `
           accessibilityTraits="button"
           accessible={true}
           activeOpacity={0.85}
+          delayPressOut={100}
           onPress={[Function]}
           style={
             Object {
@@ -258,6 +259,7 @@ exports[`DiscussionsRow renders published 1`] = `
           accessibilityTraits="button"
           accessible={true}
           activeOpacity={0.85}
+          delayPressOut={100}
           onPress={[Function]}
           style={
             Object {
@@ -415,6 +417,7 @@ exports[`DiscussionsRow renders unpublished 1`] = `
           accessibilityTraits="button"
           accessible={true}
           activeOpacity={0.85}
+          delayPressOut={100}
           onPress={[Function]}
           style={
             Object {
@@ -554,6 +557,7 @@ exports[`DiscussionsRow renders with no assignment 1`] = `
           accessibilityTraits="button"
           accessible={true}
           activeOpacity={0.85}
+          delayPressOut={100}
           onPress={[Function]}
           style={
             Object {
@@ -711,6 +715,7 @@ exports[`DiscussionsRow renders with no unread count 1`] = `
           accessibilityTraits="button"
           accessible={true}
           activeOpacity={0.85}
+          delayPressOut={100}
           onPress={[Function]}
           style={
             Object {
@@ -856,6 +861,7 @@ exports[`DiscussionsRow renders with points possible 1`] = `
           accessibilityTraits="button"
           accessible={true}
           activeOpacity={0.85}
+          delayPressOut={100}
           onPress={[Function]}
           style={
             Object {
@@ -995,6 +1001,7 @@ exports[`DiscussionsRow renders without points possible 1`] = `
           accessibilityTraits="button"
           accessible={true}
           activeOpacity={0.85}
+          delayPressOut={100}
           onPress={[Function]}
           style={
             Object {

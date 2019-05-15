@@ -2,6 +2,7 @@
 
 exports[`renders correctly 1`] = `
 <RCTSafeAreaView
+  emulateUnlessSupported={true}
   style={
     Object {
       "flex": 1,
@@ -9,6 +10,7 @@ exports[`renders correctly 1`] = `
   }
 >
   <RCTSafeAreaView
+    emulateUnlessSupported={true}
     style={
       Object {
         "backgroundColor": "white",
@@ -26,9 +28,6 @@ exports[`renders correctly 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Object {
             "fontWeight": "500",
@@ -64,9 +63,6 @@ exports[`renders correctly 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -96,20 +92,8 @@ exports[`renders correctly 1`] = `
         </View>
         <item>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={
-              Array [
-                "selected",
-                "button",
-              ]
-            }
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -117,18 +101,12 @@ exports[`renders correctly 1`] = `
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                Object {
-                  "borderBottomColor": "#e3e3e3",
-                  "borderBottomWidth": 1,
-                },
-              ]
+              Object {
+                "borderBottomColor": "#e3e3e3",
+                "borderBottomWidth": 1,
+              }
             }
             testID="edit-favorites.course-favorite.1-favorited"
-            tvParallaxProperties={undefined}
           >
             <View
               style={
@@ -161,9 +139,6 @@ exports[`renders correctly 1`] = `
                 }
               />
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -190,20 +165,8 @@ exports[`renders correctly 1`] = `
         </item>
         <item>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={
-              Array [
-                "selected",
-                "button",
-              ]
-            }
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -211,18 +174,12 @@ exports[`renders correctly 1`] = `
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                Object {
-                  "borderBottomColor": "#e3e3e3",
-                  "borderBottomWidth": 1,
-                },
-              ]
+              Object {
+                "borderBottomColor": "#e3e3e3",
+                "borderBottomWidth": 1,
+              }
             }
             testID="edit-favorites.course-favorite.2-favorited"
-            tvParallaxProperties={undefined}
           >
             <View
               style={
@@ -255,9 +212,6 @@ exports[`renders correctly 1`] = `
                 }
               />
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -290,6 +244,7 @@ exports[`renders correctly 1`] = `
 
 exports[`renders correctly as student 1`] = `
 <RCTSafeAreaView
+  emulateUnlessSupported={true}
   style={
     Object {
       "flex": 1,
@@ -297,6 +252,7 @@ exports[`renders correctly as student 1`] = `
   }
 >
   <RCTSafeAreaView
+    emulateUnlessSupported={true}
     style={
       Object {
         "backgroundColor": "white",
@@ -314,9 +270,6 @@ exports[`renders correctly as student 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Object {
             "fontWeight": "500",
@@ -352,9 +305,6 @@ exports[`renders correctly as student 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -384,20 +334,8 @@ exports[`renders correctly as student 1`] = `
         </View>
         <item>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={
-              Array [
-                "selected",
-                "button",
-              ]
-            }
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -405,18 +343,12 @@ exports[`renders correctly as student 1`] = `
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                Object {
-                  "borderBottomColor": "#e3e3e3",
-                  "borderBottomWidth": 1,
-                },
-              ]
+              Object {
+                "borderBottomColor": "#e3e3e3",
+                "borderBottomWidth": 1,
+              }
             }
             testID="edit-favorites.course-favorite.1-favorited"
-            tvParallaxProperties={undefined}
           >
             <View
               style={
@@ -449,9 +381,6 @@ exports[`renders correctly as student 1`] = `
                 }
               />
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -478,20 +407,8 @@ exports[`renders correctly as student 1`] = `
         </item>
         <item>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={
-              Array [
-                "selected",
-                "button",
-              ]
-            }
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -499,18 +416,12 @@ exports[`renders correctly as student 1`] = `
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                Object {
-                  "borderBottomColor": "#e3e3e3",
-                  "borderBottomWidth": 1,
-                },
-              ]
+              Object {
+                "borderBottomColor": "#e3e3e3",
+                "borderBottomWidth": 1,
+              }
             }
             testID="edit-favorites.course-favorite.2-favorited"
-            tvParallaxProperties={undefined}
           >
             <View
               style={
@@ -543,9 +454,6 @@ exports[`renders correctly as student 1`] = `
                 }
               />
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -593,9 +501,6 @@ exports[`renders correctly as student 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -625,20 +530,8 @@ exports[`renders correctly as student 1`] = `
         </View>
         <item>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={
-              Array [
-                "selected",
-                "button",
-              ]
-            }
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -646,18 +539,12 @@ exports[`renders correctly as student 1`] = `
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                Object {
-                  "borderBottomColor": "#e3e3e3",
-                  "borderBottomWidth": 1,
-                },
-              ]
+              Object {
+                "borderBottomColor": "#e3e3e3",
+                "borderBottomWidth": 1,
+              }
             }
             testID="edit-favorites.course-favorite.1-favorited"
-            tvParallaxProperties={undefined}
           >
             <View
               style={
@@ -690,9 +577,6 @@ exports[`renders correctly as student 1`] = `
                 }
               />
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -719,20 +603,8 @@ exports[`renders correctly as student 1`] = `
         </item>
         <item>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={
-              Array [
-                "selected",
-                "button",
-              ]
-            }
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -740,18 +612,12 @@ exports[`renders correctly as student 1`] = `
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                Object {
-                  "borderBottomColor": "#e3e3e3",
-                  "borderBottomWidth": 1,
-                },
-              ]
+              Object {
+                "borderBottomColor": "#e3e3e3",
+                "borderBottomWidth": 1,
+              }
             }
             testID="edit-favorites.course-favorite.2-favorited"
-            tvParallaxProperties={undefined}
           >
             <View
               style={
@@ -784,9 +650,6 @@ exports[`renders correctly as student 1`] = `
                 }
               />
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -819,6 +682,7 @@ exports[`renders correctly as student 1`] = `
 
 exports[`updates when courses prop changes 1`] = `
 <RCTSafeAreaView
+  emulateUnlessSupported={true}
   style={
     Object {
       "flex": 1,
@@ -826,6 +690,7 @@ exports[`updates when courses prop changes 1`] = `
   }
 >
   <RCTSafeAreaView
+    emulateUnlessSupported={true}
     style={
       Object {
         "backgroundColor": "white",
@@ -843,9 +708,6 @@ exports[`updates when courses prop changes 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Object {
             "fontWeight": "500",
@@ -881,9 +743,6 @@ exports[`updates when courses prop changes 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -913,20 +772,8 @@ exports[`updates when courses prop changes 1`] = `
         </View>
         <item>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={
-              Array [
-                "selected",
-                "button",
-              ]
-            }
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -934,18 +781,12 @@ exports[`updates when courses prop changes 1`] = `
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                Object {
-                  "borderBottomColor": "#e3e3e3",
-                  "borderBottomWidth": 1,
-                },
-              ]
+              Object {
+                "borderBottomColor": "#e3e3e3",
+                "borderBottomWidth": 1,
+              }
             }
             testID="edit-favorites.course-favorite.1-favorited"
-            tvParallaxProperties={undefined}
           >
             <View
               style={
@@ -978,9 +819,6 @@ exports[`updates when courses prop changes 1`] = `
                 }
               />
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -1013,6 +851,7 @@ exports[`updates when courses prop changes 1`] = `
 
 exports[`updates when courses prop changes 2`] = `
 <RCTSafeAreaView
+  emulateUnlessSupported={true}
   style={
     Object {
       "flex": 1,
@@ -1020,6 +859,7 @@ exports[`updates when courses prop changes 2`] = `
   }
 >
   <RCTSafeAreaView
+    emulateUnlessSupported={true}
     style={
       Object {
         "backgroundColor": "white",
@@ -1037,9 +877,6 @@ exports[`updates when courses prop changes 2`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Object {
             "fontWeight": "500",
@@ -1075,9 +912,6 @@ exports[`updates when courses prop changes 2`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -1107,20 +941,8 @@ exports[`updates when courses prop changes 2`] = `
         </View>
         <item>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={
-              Array [
-                "selected",
-                "button",
-              ]
-            }
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -1128,18 +950,12 @@ exports[`updates when courses prop changes 2`] = `
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                Object {
-                  "borderBottomColor": "#e3e3e3",
-                  "borderBottomWidth": 1,
-                },
-              ]
+              Object {
+                "borderBottomColor": "#e3e3e3",
+                "borderBottomWidth": 1,
+              }
             }
             testID="edit-favorites.course-favorite.1-favorited"
-            tvParallaxProperties={undefined}
           >
             <View
               style={
@@ -1172,9 +988,6 @@ exports[`updates when courses prop changes 2`] = `
                 }
               />
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {

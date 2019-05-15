@@ -21,6 +21,7 @@ exports[`Slider renders 1`] = `
       ]
     }
     activeOpacity={0.85}
+    delayPressOut={100}
     onPress={[Function]}
     testID="slider.zero"
     underlayColor="transparent"
@@ -129,6 +130,7 @@ exports[`Slider renders 1`] = `
       ]
     }
     activeOpacity={0.85}
+    delayPressOut={100}
     onPress={[Function]}
     testID="slider.pointsPossible"
     underlayColor="transparent"

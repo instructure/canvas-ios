@@ -22,8 +22,6 @@ exports[`Avatar renders with border 1`] = `
 >
   <Text
     accessible={false}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     style={
       Array [
         Object {
@@ -101,8 +99,6 @@ exports[`Avatar renders without default canvas avatar 1`] = `
 >
   <Text
     accessible={false}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     style={
       Array [
         Object {
@@ -143,8 +139,6 @@ exports[`Avatar renders without image 1`] = `
 >
   <Text
     accessible={false}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     style={
       Array [
         Object {
@@ -185,8 +179,6 @@ exports[`Avatar renders without image but it has a funky name 1`] = `
 >
   <Text
     accessible={false}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     style={
       Array [
         Object {

@@ -15,9 +15,6 @@ exports[`url submission renders correctly 1`] = `
 >
   <View>
     <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
       testID="url-submission-viewer.explanation"
     >
       This submission is a URL to an external page. We've included a snapshot of what the page looked like when it was submitted.
@@ -43,9 +40,6 @@ exports[`url submission renders correctly 1`] = `
     >
       <View>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -76,9 +70,6 @@ exports[`url submission renders correctly 1`] = `
       </View>
     </TouchableOpacity>
     <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
       style={
         Array [
           Object {

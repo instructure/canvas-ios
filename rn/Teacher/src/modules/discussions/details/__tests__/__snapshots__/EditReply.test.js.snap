@@ -95,9 +95,6 @@ exports[`EditReply dismisses modal activity upon save error 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -144,13 +141,13 @@ exports[`EditReply dismisses modal activity upon save error 1`] = `
       focusOnLoad={true}
       navigator={
         Object {
-          "dismiss": [Function],
-          "dismissAllModals": [Function],
+          "dismiss": [MockFunction],
+          "dismissAllModals": [MockFunction],
           "isModal": false,
-          "pop": [Function],
-          "replace": [Function],
-          "show": [Function],
-          "traitCollection": [Function],
+          "pop": [MockFunction],
+          "replace": [MockFunction],
+          "show": [MockFunction],
+          "traitCollection": [MockFunction],
         }
       }
       onChangeValue={[Function]}
@@ -257,9 +254,6 @@ exports[`EditReply renders 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -306,13 +300,13 @@ exports[`EditReply renders 1`] = `
       focusOnLoad={true}
       navigator={
         Object {
-          "dismiss": [Function],
-          "dismissAllModals": [Function],
+          "dismiss": [MockFunction],
+          "dismissAllModals": [MockFunction],
           "isModal": false,
-          "pop": [Function],
-          "replace": [Function],
-          "show": [Function],
-          "traitCollection": [Function],
+          "pop": [MockFunction],
+          "replace": [MockFunction],
+          "show": [MockFunction],
+          "traitCollection": [MockFunction],
         }
       }
       onChangeValue={[Function]}
@@ -419,9 +413,6 @@ exports[`EditReply renders title correctly when editing 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -468,13 +459,13 @@ exports[`EditReply renders title correctly when editing 1`] = `
       focusOnLoad={true}
       navigator={
         Object {
-          "dismiss": [Function],
-          "dismissAllModals": [Function],
+          "dismiss": [MockFunction],
+          "dismissAllModals": [MockFunction],
           "isModal": false,
-          "pop": [Function],
-          "replace": [Function],
-          "show": [Function],
-          "traitCollection": [Function],
+          "pop": [MockFunction],
+          "replace": [MockFunction],
+          "show": [MockFunction],
+          "traitCollection": [MockFunction],
         }
       }
       onChangeValue={[Function]}

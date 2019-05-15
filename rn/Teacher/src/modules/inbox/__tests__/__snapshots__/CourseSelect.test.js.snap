@@ -2,6 +2,7 @@
 
 exports[`CourseSelect renders 1`] = `
 <RCTSafeAreaView
+  emulateUnlessSupported={true}
   style={
     Object {
       "flex": 1,
@@ -31,9 +32,6 @@ exports[`CourseSelect renders 1`] = `
         }
       >
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -63,7 +61,6 @@ exports[`CourseSelect renders 1`] = `
       </View>
       <item>
         <TouchableHighlight
-          accessibilityLabel={undefined}
           accessibilityTraits={
             Array [
               "button",
@@ -119,8 +116,6 @@ exports[`CourseSelect renders 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
                 ellipsizeMode="tail"
                 numberOfLines={0}
                 style={
@@ -172,9 +167,6 @@ exports[`CourseSelect renders 1`] = `
         }
       >
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -204,7 +196,6 @@ exports[`CourseSelect renders 1`] = `
       </View>
       <item>
         <TouchableHighlight
-          accessibilityLabel={undefined}
           accessibilityTraits={
             Array [
               "button",
@@ -260,8 +251,6 @@ exports[`CourseSelect renders 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
                 ellipsizeMode="tail"
                 numberOfLines={0}
                 style={
@@ -292,7 +281,6 @@ exports[`CourseSelect renders 1`] = `
       </item>
       <item>
         <TouchableHighlight
-          accessibilityLabel={undefined}
           accessibilityTraits={
             Array [
               "button",
@@ -345,8 +333,6 @@ exports[`CourseSelect renders 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
                 ellipsizeMode="tail"
                 numberOfLines={0}
                 style={
@@ -382,6 +368,7 @@ exports[`CourseSelect renders 1`] = `
 
 exports[`CourseSelect renders and then selects a course and then dismisses 1`] = `
 <RCTSafeAreaView
+  emulateUnlessSupported={true}
   style={
     Object {
       "flex": 1,
@@ -411,9 +398,6 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
         }
       >
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -443,7 +427,6 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
       </View>
       <item>
         <TouchableHighlight
-          accessibilityLabel={undefined}
           accessibilityTraits={
             Array [
               "button",
@@ -499,8 +482,6 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
                 ellipsizeMode="tail"
                 numberOfLines={0}
                 style={
@@ -552,9 +533,6 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
         }
       >
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -584,7 +562,6 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
       </View>
       <item>
         <TouchableHighlight
-          accessibilityLabel={undefined}
           accessibilityTraits={
             Array [
               "button",
@@ -640,8 +617,6 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
                 ellipsizeMode="tail"
                 numberOfLines={0}
                 style={
@@ -672,7 +647,6 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
       </item>
       <item>
         <TouchableHighlight
-          accessibilityLabel={undefined}
           accessibilityTraits={
             Array [
               "button",
@@ -725,8 +699,6 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
                 ellipsizeMode="tail"
                 numberOfLines={0}
                 style={

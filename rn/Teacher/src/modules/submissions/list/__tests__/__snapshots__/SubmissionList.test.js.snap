@@ -2,6 +2,7 @@
 
 exports[`SubmissionList loaded 1`] = `
 <RCTSafeAreaView
+  emulateUnlessSupported={true}
   style={
     Object {
       "flex": 1,
@@ -40,9 +41,6 @@ exports[`SubmissionList loaded 1`] = `
       >
         <Text
           accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           numberOfLines={1}
           style={
             Array [
@@ -62,12 +60,8 @@ exports[`SubmissionList loaded 1`] = `
         </Text>
       </View>
       <View
-        accessibilityComponentType={undefined}
         accessibilityLabel="Filter Submissions. (0) selected."
-        accessibilityTraits="button"
         accessible={true}
-        collapsable={undefined}
-        hasTVPreferredFocus={undefined}
         hitSlop={
           Object {
             "bottom": 15,
@@ -77,8 +71,6 @@ exports[`SubmissionList loaded 1`] = `
           }
         }
         isTVSelectable={true}
-        nativeID={undefined}
-        onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -93,13 +85,9 @@ exports[`SubmissionList loaded 1`] = `
           }
         }
         testID="submission-list.filter"
-        tvParallaxProperties={undefined}
       >
         <View>
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -132,19 +120,8 @@ exports[`SubmissionList loaded 1`] = `
       <item>
         <View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={
-              Array [
-                "button",
-              ]
-            }
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -152,17 +129,11 @@ exports[`SubmissionList loaded 1`] = `
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                Object {
-                  "flex": 1,
-                },
-              ]
+              Object {
+                "flex": 1,
+              }
             }
             testID="submission-1"
-            tvParallaxProperties={undefined}
           >
             <View
               style={
@@ -188,31 +159,16 @@ exports[`SubmissionList loaded 1`] = `
                 }
               >
                 <View
-                  accessibilityComponentType={undefined}
                   accessibilityLabel="S1 Profile"
-                  accessibilityTraits="button"
                   accessible={true}
-                  hasTVPreferredFocus={undefined}
-                  hitSlop={undefined}
                   isTVSelectable={true}
-                  nativeID={undefined}
-                  onLayout={undefined}
                   onResponderGrant={[Function]}
                   onResponderMove={[Function]}
                   onResponderRelease={[Function]}
                   onResponderTerminate={[Function]}
                   onResponderTerminationRequest={[Function]}
                   onStartShouldSetResponder={[Function]}
-                  style={
-                    Array [
-                      Object {
-                        "backgroundColor": "transparent",
-                      },
-                      undefined,
-                    ]
-                  }
-                  testID={undefined}
-                  tvParallaxProperties={undefined}
+                  style={null}
                 >
                   <View
                     accessibilityLabel=""
@@ -259,8 +215,6 @@ exports[`SubmissionList loaded 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
                   ellipsizeMode="tail"
                   numberOfLines={2}
                   style={
@@ -286,9 +240,6 @@ exports[`SubmissionList loaded 1`] = `
                   S1
                 </Text>
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -347,19 +298,8 @@ exports[`SubmissionList loaded 1`] = `
       <item>
         <View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={
-              Array [
-                "button",
-              ]
-            }
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -367,17 +307,11 @@ exports[`SubmissionList loaded 1`] = `
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                Object {
-                  "flex": 1,
-                },
-              ]
+              Object {
+                "flex": 1,
+              }
             }
             testID="submission-2"
-            tvParallaxProperties={undefined}
           >
             <View
               style={
@@ -403,31 +337,16 @@ exports[`SubmissionList loaded 1`] = `
                 }
               >
                 <View
-                  accessibilityComponentType={undefined}
                   accessibilityLabel="S2 Profile"
-                  accessibilityTraits="button"
                   accessible={true}
-                  hasTVPreferredFocus={undefined}
-                  hitSlop={undefined}
                   isTVSelectable={true}
-                  nativeID={undefined}
-                  onLayout={undefined}
                   onResponderGrant={[Function]}
                   onResponderMove={[Function]}
                   onResponderRelease={[Function]}
                   onResponderTerminate={[Function]}
                   onResponderTerminationRequest={[Function]}
                   onStartShouldSetResponder={[Function]}
-                  style={
-                    Array [
-                      Object {
-                        "backgroundColor": "transparent",
-                      },
-                      undefined,
-                    ]
-                  }
-                  testID={undefined}
-                  tvParallaxProperties={undefined}
+                  style={null}
                 >
                   <View
                     accessibilityLabel=""
@@ -474,8 +393,6 @@ exports[`SubmissionList loaded 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
                   ellipsizeMode="tail"
                   numberOfLines={2}
                   style={
@@ -501,9 +418,6 @@ exports[`SubmissionList loaded 1`] = `
                   S2
                 </Text>
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -533,9 +447,6 @@ exports[`SubmissionList loaded 1`] = `
                 </Text>
               </View>
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -593,19 +504,8 @@ exports[`SubmissionList loaded 1`] = `
       <item>
         <View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={
-              Array [
-                "button",
-              ]
-            }
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -613,17 +513,11 @@ exports[`SubmissionList loaded 1`] = `
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                Object {
-                  "flex": 1,
-                },
-              ]
+              Object {
+                "flex": 1,
+              }
             }
             testID="submission-3"
-            tvParallaxProperties={undefined}
           >
             <View
               style={
@@ -649,31 +543,16 @@ exports[`SubmissionList loaded 1`] = `
                 }
               >
                 <View
-                  accessibilityComponentType={undefined}
                   accessibilityLabel="S3 Profile"
-                  accessibilityTraits="button"
                   accessible={true}
-                  hasTVPreferredFocus={undefined}
-                  hitSlop={undefined}
                   isTVSelectable={true}
-                  nativeID={undefined}
-                  onLayout={undefined}
                   onResponderGrant={[Function]}
                   onResponderMove={[Function]}
                   onResponderRelease={[Function]}
                   onResponderTerminate={[Function]}
                   onResponderTerminationRequest={[Function]}
                   onStartShouldSetResponder={[Function]}
-                  style={
-                    Array [
-                      Object {
-                        "backgroundColor": "transparent",
-                      },
-                      undefined,
-                    ]
-                  }
-                  testID={undefined}
-                  tvParallaxProperties={undefined}
+                  style={null}
                 >
                   <View
                     accessibilityLabel=""
@@ -720,8 +599,6 @@ exports[`SubmissionList loaded 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
                   ellipsizeMode="tail"
                   numberOfLines={2}
                   style={
@@ -747,9 +624,6 @@ exports[`SubmissionList loaded 1`] = `
                   S3
                 </Text>
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -778,10 +652,7 @@ exports[`SubmissionList loaded 1`] = `
                   Late
                 </Text>
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
                   color="#368BD8"
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -853,19 +724,8 @@ exports[`SubmissionList loaded 1`] = `
       <item>
         <View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={
-              Array [
-                "button",
-              ]
-            }
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -873,17 +733,11 @@ exports[`SubmissionList loaded 1`] = `
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                Object {
-                  "flex": 1,
-                },
-              ]
+              Object {
+                "flex": 1,
+              }
             }
             testID="submission-4"
-            tvParallaxProperties={undefined}
           >
             <View
               style={
@@ -909,31 +763,16 @@ exports[`SubmissionList loaded 1`] = `
                 }
               >
                 <View
-                  accessibilityComponentType={undefined}
                   accessibilityLabel="S4 Profile"
-                  accessibilityTraits="button"
                   accessible={true}
-                  hasTVPreferredFocus={undefined}
-                  hitSlop={undefined}
                   isTVSelectable={true}
-                  nativeID={undefined}
-                  onLayout={undefined}
                   onResponderGrant={[Function]}
                   onResponderMove={[Function]}
                   onResponderRelease={[Function]}
                   onResponderTerminate={[Function]}
                   onResponderTerminationRequest={[Function]}
                   onStartShouldSetResponder={[Function]}
-                  style={
-                    Array [
-                      Object {
-                        "backgroundColor": "transparent",
-                      },
-                      undefined,
-                    ]
-                  }
-                  testID={undefined}
-                  tvParallaxProperties={undefined}
+                  style={null}
                 >
                   <View
                     accessibilityLabel=""
@@ -980,8 +819,6 @@ exports[`SubmissionList loaded 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
                   ellipsizeMode="tail"
                   numberOfLines={2}
                   style={
@@ -1007,9 +844,6 @@ exports[`SubmissionList loaded 1`] = `
                   S4
                 </Text>
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -1039,9 +873,6 @@ exports[`SubmissionList loaded 1`] = `
                 </Text>
               </View>
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -1103,6 +934,7 @@ exports[`SubmissionList loaded 1`] = `
 
 exports[`SubmissionList renders correctly with empty list 1`] = `
 <RCTSafeAreaView
+  emulateUnlessSupported={true}
   style={
     Object {
       "flex": 1,
@@ -1141,9 +973,6 @@ exports[`SubmissionList renders correctly with empty list 1`] = `
       >
         <Text
           accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           numberOfLines={1}
           style={
             Array [
@@ -1163,12 +992,8 @@ exports[`SubmissionList renders correctly with empty list 1`] = `
         </Text>
       </View>
       <View
-        accessibilityComponentType={undefined}
         accessibilityLabel="Filter Submissions. (0) selected."
-        accessibilityTraits="button"
         accessible={true}
-        collapsable={undefined}
-        hasTVPreferredFocus={undefined}
         hitSlop={
           Object {
             "bottom": 15,
@@ -1178,8 +1003,6 @@ exports[`SubmissionList renders correctly with empty list 1`] = `
           }
         }
         isTVSelectable={true}
-        nativeID={undefined}
-        onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -1194,13 +1017,9 @@ exports[`SubmissionList renders correctly with empty list 1`] = `
           }
         }
         testID="submission-list.filter"
-        tvParallaxProperties={undefined}
       >
         <View>
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -1241,9 +1060,6 @@ exports[`SubmissionList renders correctly with empty list 1`] = `
         }
       >
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -1268,6 +1084,7 @@ exports[`SubmissionList renders correctly with empty list 1`] = `
 
 exports[`SubmissionList renders correctly with graded filter 1`] = `
 <RCTSafeAreaView
+  emulateUnlessSupported={true}
   style={
     Object {
       "flex": 1,
@@ -1306,9 +1123,6 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
       >
         <Text
           accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           numberOfLines={1}
           style={
             Array [
@@ -1328,12 +1142,8 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
         </Text>
       </View>
       <View
-        accessibilityComponentType={undefined}
         accessibilityLabel="Filter Submissions. (1) selected."
-        accessibilityTraits="button"
         accessible={true}
-        collapsable={undefined}
-        hasTVPreferredFocus={undefined}
         hitSlop={
           Object {
             "bottom": 15,
@@ -1343,8 +1153,6 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
           }
         }
         isTVSelectable={true}
-        nativeID={undefined}
-        onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -1359,13 +1167,9 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
           }
         }
         testID="submission-list.filter"
-        tvParallaxProperties={undefined}
       >
         <View>
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -1398,19 +1202,8 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
       <item>
         <View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={
-              Array [
-                "button",
-              ]
-            }
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -1418,17 +1211,11 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                Object {
-                  "flex": 1,
-                },
-              ]
+              Object {
+                "flex": 1,
+              }
             }
             testID="submission-2"
-            tvParallaxProperties={undefined}
           >
             <View
               style={
@@ -1454,31 +1241,16 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
                 }
               >
                 <View
-                  accessibilityComponentType={undefined}
                   accessibilityLabel="S2 Profile"
-                  accessibilityTraits="button"
                   accessible={true}
-                  hasTVPreferredFocus={undefined}
-                  hitSlop={undefined}
                   isTVSelectable={true}
-                  nativeID={undefined}
-                  onLayout={undefined}
                   onResponderGrant={[Function]}
                   onResponderMove={[Function]}
                   onResponderRelease={[Function]}
                   onResponderTerminate={[Function]}
                   onResponderTerminationRequest={[Function]}
                   onStartShouldSetResponder={[Function]}
-                  style={
-                    Array [
-                      Object {
-                        "backgroundColor": "transparent",
-                      },
-                      undefined,
-                    ]
-                  }
-                  testID={undefined}
-                  tvParallaxProperties={undefined}
+                  style={null}
                 >
                   <View
                     accessibilityLabel=""
@@ -1525,8 +1297,6 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
                   ellipsizeMode="tail"
                   numberOfLines={2}
                   style={
@@ -1552,9 +1322,6 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
                   S2
                 </Text>
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -1584,9 +1351,6 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
                 </Text>
               </View>
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -1644,19 +1408,8 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
       <item>
         <View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={
-              Array [
-                "button",
-              ]
-            }
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -1664,17 +1417,11 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                Object {
-                  "flex": 1,
-                },
-              ]
+              Object {
+                "flex": 1,
+              }
             }
             testID="submission-4"
-            tvParallaxProperties={undefined}
           >
             <View
               style={
@@ -1700,31 +1447,16 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
                 }
               >
                 <View
-                  accessibilityComponentType={undefined}
                   accessibilityLabel="S4 Profile"
-                  accessibilityTraits="button"
                   accessible={true}
-                  hasTVPreferredFocus={undefined}
-                  hitSlop={undefined}
                   isTVSelectable={true}
-                  nativeID={undefined}
-                  onLayout={undefined}
                   onResponderGrant={[Function]}
                   onResponderMove={[Function]}
                   onResponderRelease={[Function]}
                   onResponderTerminate={[Function]}
                   onResponderTerminationRequest={[Function]}
                   onStartShouldSetResponder={[Function]}
-                  style={
-                    Array [
-                      Object {
-                        "backgroundColor": "transparent",
-                      },
-                      undefined,
-                    ]
-                  }
-                  testID={undefined}
-                  tvParallaxProperties={undefined}
+                  style={null}
                 >
                   <View
                     accessibilityLabel=""
@@ -1771,8 +1503,6 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
                   ellipsizeMode="tail"
                   numberOfLines={2}
                   style={
@@ -1798,9 +1528,6 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
                   S4
                 </Text>
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -1830,9 +1557,6 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
                 </Text>
               </View>
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -1890,19 +1614,8 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
       <item>
         <View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={
-              Array [
-                "button",
-              ]
-            }
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -1910,17 +1623,11 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                Object {
-                  "flex": 1,
-                },
-              ]
+              Object {
+                "flex": 1,
+              }
             }
             testID="submission-5"
-            tvParallaxProperties={undefined}
           >
             <View
               style={
@@ -1946,31 +1653,16 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
                 }
               >
                 <View
-                  accessibilityComponentType={undefined}
                   accessibilityLabel="S5 Profile"
-                  accessibilityTraits="button"
                   accessible={true}
-                  hasTVPreferredFocus={undefined}
-                  hitSlop={undefined}
                   isTVSelectable={true}
-                  nativeID={undefined}
-                  onLayout={undefined}
                   onResponderGrant={[Function]}
                   onResponderMove={[Function]}
                   onResponderRelease={[Function]}
                   onResponderTerminate={[Function]}
                   onResponderTerminationRequest={[Function]}
                   onStartShouldSetResponder={[Function]}
-                  style={
-                    Array [
-                      Object {
-                        "backgroundColor": "transparent",
-                      },
-                      undefined,
-                    ]
-                  }
-                  testID={undefined}
-                  tvParallaxProperties={undefined}
+                  style={null}
                 >
                   <View
                     accessibilityLabel=""
@@ -2017,8 +1709,6 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
                   ellipsizeMode="tail"
                   numberOfLines={2}
                   style={
@@ -2044,9 +1734,6 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
                   S5
                 </Text>
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -2076,9 +1763,6 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
                 </Text>
               </View>
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -2140,6 +1824,7 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
 
 exports[`SubmissionList renders correctly with not_submitted filter 1`] = `
 <RCTSafeAreaView
+  emulateUnlessSupported={true}
   style={
     Object {
       "flex": 1,
@@ -2178,9 +1863,6 @@ exports[`SubmissionList renders correctly with not_submitted filter 1`] = `
       >
         <Text
           accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           numberOfLines={1}
           style={
             Array [
@@ -2200,12 +1882,8 @@ exports[`SubmissionList renders correctly with not_submitted filter 1`] = `
         </Text>
       </View>
       <View
-        accessibilityComponentType={undefined}
         accessibilityLabel="Filter Submissions. (1) selected."
-        accessibilityTraits="button"
         accessible={true}
-        collapsable={undefined}
-        hasTVPreferredFocus={undefined}
         hitSlop={
           Object {
             "bottom": 15,
@@ -2215,8 +1893,6 @@ exports[`SubmissionList renders correctly with not_submitted filter 1`] = `
           }
         }
         isTVSelectable={true}
-        nativeID={undefined}
-        onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -2231,13 +1907,9 @@ exports[`SubmissionList renders correctly with not_submitted filter 1`] = `
           }
         }
         testID="submission-list.filter"
-        tvParallaxProperties={undefined}
       >
         <View>
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -2270,19 +1942,8 @@ exports[`SubmissionList renders correctly with not_submitted filter 1`] = `
       <item>
         <View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={
-              Array [
-                "button",
-              ]
-            }
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -2290,17 +1951,11 @@ exports[`SubmissionList renders correctly with not_submitted filter 1`] = `
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                Object {
-                  "flex": 1,
-                },
-              ]
+              Object {
+                "flex": 1,
+              }
             }
             testID="submission-1"
-            tvParallaxProperties={undefined}
           >
             <View
               style={
@@ -2326,31 +1981,16 @@ exports[`SubmissionList renders correctly with not_submitted filter 1`] = `
                 }
               >
                 <View
-                  accessibilityComponentType={undefined}
                   accessibilityLabel="S1 Profile"
-                  accessibilityTraits="button"
                   accessible={true}
-                  hasTVPreferredFocus={undefined}
-                  hitSlop={undefined}
                   isTVSelectable={true}
-                  nativeID={undefined}
-                  onLayout={undefined}
                   onResponderGrant={[Function]}
                   onResponderMove={[Function]}
                   onResponderRelease={[Function]}
                   onResponderTerminate={[Function]}
                   onResponderTerminationRequest={[Function]}
                   onStartShouldSetResponder={[Function]}
-                  style={
-                    Array [
-                      Object {
-                        "backgroundColor": "transparent",
-                      },
-                      undefined,
-                    ]
-                  }
-                  testID={undefined}
-                  tvParallaxProperties={undefined}
+                  style={null}
                 >
                   <View
                     accessibilityLabel=""
@@ -2397,8 +2037,6 @@ exports[`SubmissionList renders correctly with not_submitted filter 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
                   ellipsizeMode="tail"
                   numberOfLines={2}
                   style={
@@ -2424,9 +2062,6 @@ exports[`SubmissionList renders correctly with not_submitted filter 1`] = `
                   S1
                 </Text>
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -2489,6 +2124,7 @@ exports[`SubmissionList renders correctly with not_submitted filter 1`] = `
 
 exports[`SubmissionList renders correctly with ungraded filter 1`] = `
 <RCTSafeAreaView
+  emulateUnlessSupported={true}
   style={
     Object {
       "flex": 1,
@@ -2527,9 +2163,6 @@ exports[`SubmissionList renders correctly with ungraded filter 1`] = `
       >
         <Text
           accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           numberOfLines={1}
           style={
             Array [
@@ -2549,12 +2182,8 @@ exports[`SubmissionList renders correctly with ungraded filter 1`] = `
         </Text>
       </View>
       <View
-        accessibilityComponentType={undefined}
         accessibilityLabel="Filter Submissions. (1) selected."
-        accessibilityTraits="button"
         accessible={true}
-        collapsable={undefined}
-        hasTVPreferredFocus={undefined}
         hitSlop={
           Object {
             "bottom": 15,
@@ -2564,8 +2193,6 @@ exports[`SubmissionList renders correctly with ungraded filter 1`] = `
           }
         }
         isTVSelectable={true}
-        nativeID={undefined}
-        onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -2580,13 +2207,9 @@ exports[`SubmissionList renders correctly with ungraded filter 1`] = `
           }
         }
         testID="submission-list.filter"
-        tvParallaxProperties={undefined}
       >
         <View>
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -2619,19 +2242,8 @@ exports[`SubmissionList renders correctly with ungraded filter 1`] = `
       <item>
         <View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={
-              Array [
-                "button",
-              ]
-            }
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -2639,17 +2251,11 @@ exports[`SubmissionList renders correctly with ungraded filter 1`] = `
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                Object {
-                  "flex": 1,
-                },
-              ]
+              Object {
+                "flex": 1,
+              }
             }
             testID="submission-3"
-            tvParallaxProperties={undefined}
           >
             <View
               style={
@@ -2675,31 +2281,16 @@ exports[`SubmissionList renders correctly with ungraded filter 1`] = `
                 }
               >
                 <View
-                  accessibilityComponentType={undefined}
                   accessibilityLabel="S3 Profile"
-                  accessibilityTraits="button"
                   accessible={true}
-                  hasTVPreferredFocus={undefined}
-                  hitSlop={undefined}
                   isTVSelectable={true}
-                  nativeID={undefined}
-                  onLayout={undefined}
                   onResponderGrant={[Function]}
                   onResponderMove={[Function]}
                   onResponderRelease={[Function]}
                   onResponderTerminate={[Function]}
                   onResponderTerminationRequest={[Function]}
                   onStartShouldSetResponder={[Function]}
-                  style={
-                    Array [
-                      Object {
-                        "backgroundColor": "transparent",
-                      },
-                      undefined,
-                    ]
-                  }
-                  testID={undefined}
-                  tvParallaxProperties={undefined}
+                  style={null}
                 >
                   <View
                     accessibilityLabel=""
@@ -2746,8 +2337,6 @@ exports[`SubmissionList renders correctly with ungraded filter 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
                   ellipsizeMode="tail"
                   numberOfLines={2}
                   style={
@@ -2773,9 +2362,6 @@ exports[`SubmissionList renders correctly with ungraded filter 1`] = `
                   S3
                 </Text>
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -2804,10 +2390,7 @@ exports[`SubmissionList renders correctly with ungraded filter 1`] = `
                   Late
                 </Text>
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
                   color="#368BD8"
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -2883,6 +2466,7 @@ exports[`SubmissionList renders correctly with ungraded filter 1`] = `
 
 exports[`SubmissionList shows loading indicator 1`] = `
 <RCTSafeAreaView
+  emulateUnlessSupported={true}
   style={
     Object {
       "flex": 1,

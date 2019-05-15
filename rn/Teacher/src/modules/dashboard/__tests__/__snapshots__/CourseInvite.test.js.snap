@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CourseInvite can hide 1`] = `
-<Component
+<_default
   contentStyle={
     Object {
       "borderColor": "#00AC18",
@@ -68,6 +68,7 @@ exports[`CourseInvite can hide 1`] = `
     accessibilityLabel="Dismiss invitation to Coolest Course"
     accessibilityTraits="button"
     activeOpacity={0.85}
+    delayPressOut={100}
     onPress={[Function]}
     style={
       Object {
@@ -94,11 +95,11 @@ exports[`CourseInvite can hide 1`] = `
       }
     />
   </TouchableHighlight>
-</Component>
+</_default>
 `;
 
 exports[`CourseInvite renders action taken -- accept 1`] = `
-<Component
+<_default
   contentStyle={
     Object {
       "borderColor": "#00AC18",
@@ -165,6 +166,7 @@ exports[`CourseInvite renders action taken -- accept 1`] = `
     accessibilityLabel="Dismiss invitation to Coolest Course"
     accessibilityTraits="button"
     activeOpacity={0.85}
+    delayPressOut={100}
     onPress={[Function]}
     style={
       Object {
@@ -191,11 +193,11 @@ exports[`CourseInvite renders action taken -- accept 1`] = `
       }
     />
   </TouchableHighlight>
-</Component>
+</_default>
 `;
 
 exports[`CourseInvite renders action taken -- reject 1`] = `
-<Component
+<_default
   contentStyle={
     Object {
       "borderColor": "#00AC18",
@@ -262,6 +264,7 @@ exports[`CourseInvite renders action taken -- reject 1`] = `
     accessibilityLabel="Dismiss invitation to Coolest Course"
     accessibilityTraits="button"
     activeOpacity={0.85}
+    delayPressOut={100}
     onPress={[Function]}
     style={
       Object {
@@ -288,11 +291,11 @@ exports[`CourseInvite renders action taken -- reject 1`] = `
       }
     />
   </TouchableHighlight>
-</Component>
+</_default>
 `;
 
 exports[`CourseInvite renders displayState acted -- accept 1`] = `
-<Component
+<_default
   contentStyle={
     Object {
       "borderColor": "#00AC18",
@@ -359,6 +362,7 @@ exports[`CourseInvite renders displayState acted -- accept 1`] = `
     accessibilityLabel="Dismiss invitation to Coolest Course"
     accessibilityTraits="button"
     activeOpacity={0.85}
+    delayPressOut={100}
     onPress={[Function]}
     style={
       Object {
@@ -385,11 +389,11 @@ exports[`CourseInvite renders displayState acted -- accept 1`] = `
       }
     />
   </TouchableHighlight>
-</Component>
+</_default>
 `;
 
 exports[`CourseInvite renders displayState acted -- reject 1`] = `
-<Component
+<_default
   contentStyle={
     Object {
       "borderColor": "#00AC18",
@@ -456,6 +460,7 @@ exports[`CourseInvite renders displayState acted -- reject 1`] = `
     accessibilityLabel="Dismiss invitation to Coolest Course"
     accessibilityTraits="button"
     activeOpacity={0.85}
+    delayPressOut={100}
     onPress={[Function]}
     style={
       Object {
@@ -482,11 +487,11 @@ exports[`CourseInvite renders displayState acted -- reject 1`] = `
       }
     />
   </TouchableHighlight>
-</Component>
+</_default>
 `;
 
 exports[`CourseInvite renders hidden 1`] = `
-<Component
+<_default
   contentStyle={
     Object {
       "borderColor": "#00AC18",
@@ -631,11 +636,11 @@ exports[`CourseInvite renders hidden 1`] = `
       </View>
     </View>
   </View>
-</Component>
+</_default>
 `;
 
 exports[`CourseInvite renders invite 1`] = `
-<Component
+<_default
   contentStyle={
     Object {
       "borderColor": "#00AC18",
@@ -780,11 +785,11 @@ exports[`CourseInvite renders invite 1`] = `
       </View>
     </View>
   </View>
-</Component>
+</_default>
 `;
 
 exports[`CourseInvite renders invite with course section 1`] = `
-<Component
+<_default
   contentStyle={
     Object {
       "borderColor": "#00AC18",
@@ -927,5 +932,5 @@ exports[`CourseInvite renders invite with course section 1`] = `
       </View>
     </View>
   </View>
-</Component>
+</_default>
 `;

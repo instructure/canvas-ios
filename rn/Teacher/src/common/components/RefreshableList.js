@@ -21,31 +21,12 @@
 import React from 'react'
 import {
   ScrollView,
-  ListView,
   RefreshControl,
 } from 'react-native'
 
 type Props = {
   refreshing: boolean,
   onRefresh: Function,
-}
-
-export class RefreshableListView extends ListView {
-  props: Props & React$ElementProps<typeof ListView>
-
-  render () {
-    return (
-      <ListView
-        {...this.props}
-        refreshControl={
-          <RefreshControl
-            refreshing={this.props.refreshing}
-            onRefresh={this.props.onRefresh}
-          />
-        }
-      />
-    )
-  }
 }
 
 // $FlowFixMe

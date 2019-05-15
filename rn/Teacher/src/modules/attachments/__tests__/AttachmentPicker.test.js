@@ -22,7 +22,7 @@ import { shallow } from 'enzyme'
 import React from 'react'
 import {
   ActionSheetIOS,
-  AlertIOS,
+  Alert,
   NativeModules,
 } from 'react-native'
 import renderer from 'react-test-renderer'
@@ -38,21 +38,6 @@ jest
   .mock('TouchableHighlight', () => 'TouchableHighlight')
   .mock('TouchableOpacity', () => 'TouchableOpacity')
   .mock('../../../common/components/AudioRecorder', () => 'AudioRecorder')
-  .mock('react-native-document-picker', () => ({
-    DocumentPicker: {
-      show: jest.fn((options, callback) => callback({
-        uri: 'file://path/to/somewhere/on/disk.pdf',
-        fileName: 'disk.pdf',
-        fileSize: 100,
-      })),
-    },
-    DocumentPickerUtil: {
-      allFiles: jest.fn(() => 'content'),
-      images: jest.fn(() => 'image'),
-      video: jest.fn(() => 'video'),
-      audio: jest.fn(() => 'audio'),
-    },
-  }))
   .mock('../../../common/permissions')
 
 describe('AttachmentPicker', () => {
@@ -265,7 +250,7 @@ describe('AttachmentPicker', () => {
   it('alerts document picker errors', () => {
     const spy = jest.fn()
     // $FlowFixMe
-    AlertIOS.alert = spy
+    Alert.alert = spy
     DocumentPicker.show = jest.fn((options, callback) => callback('ERROR', null))
     picker.pickDocument(null, jest.fn())
     expect(spy).toHaveBeenCalledWith('Upload error')
@@ -398,7 +383,7 @@ describe('AttachmentPicker', () => {
 
   it('alerts if image picker lacks permissions', () => {
     const spy = jest.fn()
-    AlertIOS.alert = spy
+    Alert.alert = spy
     const response = {
       error: 'Camera permissions not granted',
     }
@@ -409,7 +394,7 @@ describe('AttachmentPicker', () => {
 
   it('alerts image picker errors', () => {
     const spy = jest.fn()
-    AlertIOS.alert = spy
+    Alert.alert = spy
     const response = {
       error: 'FAIL',
     }

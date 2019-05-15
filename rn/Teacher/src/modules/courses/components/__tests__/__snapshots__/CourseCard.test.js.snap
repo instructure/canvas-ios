@@ -88,8 +88,6 @@ exports[`renders 1`] = `
       >
         <Text
           accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           numberOfLines={2}
           style={
             Array [
@@ -116,8 +114,6 @@ exports[`renders 1`] = `
         </Text>
         <Text
           accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           numberOfLines={1}
           style={
             Array [
@@ -285,9 +281,6 @@ exports[`renders with a grade 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             numberOfLines={2}
             style={
               Array [
@@ -328,8 +321,6 @@ exports[`renders with a grade 1`] = `
       >
         <Text
           accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           numberOfLines={2}
           style={
             Array [
@@ -356,8 +347,6 @@ exports[`renders with a grade 1`] = `
         </Text>
         <Text
           accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           numberOfLines={1}
           style={
             Array [
@@ -525,9 +514,6 @@ exports[`renders with a grade even if the grade does not exist 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             numberOfLines={2}
             style={
               Array [
@@ -568,8 +554,6 @@ exports[`renders with a grade even if the grade does not exist 1`] = `
       >
         <Text
           accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           numberOfLines={2}
           style={
             Array [
@@ -596,8 +580,6 @@ exports[`renders with a grade even if the grade does not exist 1`] = `
         </Text>
         <Text
           accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           numberOfLines={1}
           style={
             Array [
@@ -749,8 +731,6 @@ exports[`renders with empty image url 1`] = `
       >
         <Text
           accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           numberOfLines={2}
           style={
             Array [
@@ -777,8 +757,6 @@ exports[`renders with empty image url 1`] = `
         </Text>
         <Text
           accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           numberOfLines={1}
           style={
             Array [
@@ -942,8 +920,6 @@ exports[`renders with image url 1`] = `
       >
         <Text
           accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           numberOfLines={2}
           style={
             Array [
@@ -970,8 +946,6 @@ exports[`renders with image url 1`] = `
         </Text>
         <Text
           accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           numberOfLines={1}
           style={
             Array [
@@ -1123,8 +1097,6 @@ exports[`renders without image url 1`] = `
       >
         <Text
           accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           numberOfLines={2}
           style={
             Array [
@@ -1151,8 +1123,6 @@ exports[`renders without image url 1`] = `
         </Text>
         <Text
           accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           numberOfLines={1}
           style={
             Array [
@@ -1316,8 +1286,6 @@ exports[`renders without the color overlay 1`] = `
       >
         <Text
           accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           numberOfLines={2}
           style={
             Array [
@@ -1344,8 +1312,6 @@ exports[`renders without the color overlay 1`] = `
         </Text>
         <Text
           accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           numberOfLines={1}
           style={
             Array [

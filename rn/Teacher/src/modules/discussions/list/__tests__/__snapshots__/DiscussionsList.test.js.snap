@@ -18,7 +18,6 @@ exports[`DiscussionsList renders 1`] = `
       },
     ]
   }
-  subtitle={undefined}
   title="Discussions"
 >
   <View
@@ -40,9 +39,6 @@ exports[`DiscussionsList renders 1`] = `
         }
       >
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -96,7 +92,6 @@ exports[`DiscussionsList renders as student app 1`] = `
   navBarStyle="dark"
   onTraitCollectionChange={[Function]}
   rightBarButtons={false}
-  subtitle={undefined}
   title="Discussions"
 >
   <View
@@ -118,9 +113,6 @@ exports[`DiscussionsList renders as student app 1`] = `
         }
       >
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -161,7 +153,6 @@ exports[`DiscussionsList renders discussions 1`] = `
       },
     ]
   }
-  subtitle={undefined}
   title="Discussions"
 >
   <View
@@ -194,9 +185,6 @@ exports[`DiscussionsList renders discussions 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -230,7 +218,6 @@ exports[`DiscussionsList renders discussions 1`] = `
               accessible={false}
             >
               <TouchableHighlight
-                accessibilityLabel={undefined}
                 accessibilityTraits={
                   Array [
                     "button",
@@ -351,8 +338,6 @@ exports[`DiscussionsList renders discussions 1`] = `
                     }
                   >
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
                       ellipsizeMode="tail"
                       numberOfLines={2}
                       style={
@@ -404,9 +389,6 @@ exports[`DiscussionsList renders discussions 1`] = `
                           }
                         >
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             separated={
                               Array [
                                 "Due May 31, 2037 at 11:59 PM",
@@ -445,9 +427,6 @@ exports[`DiscussionsList renders discussions 1`] = `
                           }
                         >
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             style={
                               Array [
                                 Object {
@@ -485,9 +464,6 @@ exports[`DiscussionsList renders discussions 1`] = `
                             }
                           >
                             <Text
-                              accessible={true}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               separated={
                                 Array [
                                   "2 Replies",
@@ -518,8 +494,6 @@ exports[`DiscussionsList renders discussions 1`] = `
                             <Text
                               accessibilityLabel=""
                               accessible={false}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               style={
                                 Array [
                                   Object {
@@ -548,9 +522,6 @@ exports[`DiscussionsList renders discussions 1`] = `
                                 •  
                             </Text>
                             <Text
-                              accessible={true}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               separated={
                                 Array [
                                   "2 Replies",
@@ -648,7 +619,6 @@ exports[`DiscussionsList renders discussions 1`] = `
               accessible={false}
             >
               <TouchableHighlight
-                accessibilityLabel={undefined}
                 accessibilityTraits={
                   Array [
                     "button",
@@ -769,8 +739,6 @@ exports[`DiscussionsList renders discussions 1`] = `
                     }
                   >
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
                       ellipsizeMode="tail"
                       numberOfLines={2}
                       style={
@@ -822,9 +790,6 @@ exports[`DiscussionsList renders discussions 1`] = `
                           }
                         >
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             separated={
                               Array [
                                 "Due May 31, 2037 at 11:59 PM",
@@ -863,9 +828,6 @@ exports[`DiscussionsList renders discussions 1`] = `
                           }
                         >
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             style={
                               Array [
                                 Object {
@@ -903,9 +865,6 @@ exports[`DiscussionsList renders discussions 1`] = `
                             }
                           >
                             <Text
-                              accessible={true}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               separated={
                                 Array [
                                   "2 Replies",
@@ -936,8 +895,6 @@ exports[`DiscussionsList renders discussions 1`] = `
                             <Text
                               accessibilityLabel=""
                               accessible={false}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               style={
                                 Array [
                                   Object {
@@ -966,9 +923,6 @@ exports[`DiscussionsList renders discussions 1`] = `
                                 •  
                             </Text>
                             <Text
-                              accessible={true}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               separated={
                                 Array [
                                   "2 Replies",
@@ -1084,7 +1038,6 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
       },
     ]
   }
-  subtitle={undefined}
   title="Discussions"
 >
   <View
@@ -1117,9 +1070,6 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -1153,7 +1103,6 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
               accessible={false}
             >
               <TouchableHighlight
-                accessibilityLabel={undefined}
                 accessibilityTraits={
                   Array [
                     "button",
@@ -1274,8 +1223,6 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                     }
                   >
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
                       ellipsizeMode="tail"
                       numberOfLines={2}
                       style={
@@ -1327,9 +1274,6 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                           }
                         >
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             separated={
                               Array [
                                 "Last post Dec 10, 2016 at 9:03 PM",
@@ -1375,9 +1319,6 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                             }
                           >
                             <Text
-                              accessible={true}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               separated={
                                 Array [
                                   "2 Replies",
@@ -1408,8 +1349,6 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                             <Text
                               accessibilityLabel=""
                               accessible={false}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               style={
                                 Array [
                                   Object {
@@ -1438,9 +1377,6 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                                 •  
                             </Text>
                             <Text
-                              accessible={true}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               separated={
                                 Array [
                                   "2 Replies",
@@ -1538,7 +1474,6 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
               accessible={false}
             >
               <TouchableHighlight
-                accessibilityLabel={undefined}
                 accessibilityTraits={
                   Array [
                     "button",
@@ -1659,8 +1594,6 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                     }
                   >
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
                       ellipsizeMode="tail"
                       numberOfLines={2}
                       style={
@@ -1712,9 +1645,6 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                           }
                         >
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             separated={
                               Array [
                                 "Last post Dec 10, 2016 at 9:03 PM",
@@ -1760,9 +1690,6 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                             }
                           >
                             <Text
-                              accessible={true}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               separated={
                                 Array [
                                   "2 Replies",
@@ -1793,8 +1720,6 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                             <Text
                               accessibilityLabel=""
                               accessible={false}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               style={
                                 Array [
                                   Object {
@@ -1823,9 +1748,6 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                                 •  
                             </Text>
                             <Text
-                              accessible={true}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               separated={
                                 Array [
                                   "2 Replies",
@@ -1941,7 +1863,6 @@ exports[`DiscussionsList renders in correct order 1`] = `
       },
     ]
   }
-  subtitle={undefined}
   title="Discussions"
 >
   <View
@@ -1974,9 +1895,6 @@ exports[`DiscussionsList renders in correct order 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -2010,7 +1928,6 @@ exports[`DiscussionsList renders in correct order 1`] = `
               accessible={false}
             >
               <TouchableHighlight
-                accessibilityLabel={undefined}
                 accessibilityTraits={
                   Array [
                     "button",
@@ -2131,8 +2048,6 @@ exports[`DiscussionsList renders in correct order 1`] = `
                     }
                   >
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
                       ellipsizeMode="tail"
                       numberOfLines={2}
                       style={
@@ -2184,9 +2099,6 @@ exports[`DiscussionsList renders in correct order 1`] = `
                           }
                         >
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             separated={
                               Array [
                                 "Due May 31, 2037 at 11:59 PM",
@@ -2225,9 +2137,6 @@ exports[`DiscussionsList renders in correct order 1`] = `
                           }
                         >
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             style={
                               Array [
                                 Object {
@@ -2265,9 +2174,6 @@ exports[`DiscussionsList renders in correct order 1`] = `
                             }
                           >
                             <Text
-                              accessible={true}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               separated={
                                 Array [
                                   "2 Replies",
@@ -2298,8 +2204,6 @@ exports[`DiscussionsList renders in correct order 1`] = `
                             <Text
                               accessibilityLabel=""
                               accessible={false}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               style={
                                 Array [
                                   Object {
@@ -2328,9 +2232,6 @@ exports[`DiscussionsList renders in correct order 1`] = `
                                 •  
                             </Text>
                             <Text
-                              accessible={true}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               separated={
                                 Array [
                                   "2 Replies",
@@ -2428,7 +2329,6 @@ exports[`DiscussionsList renders in correct order 1`] = `
               accessible={false}
             >
               <TouchableHighlight
-                accessibilityLabel={undefined}
                 accessibilityTraits={
                   Array [
                     "button",
@@ -2549,8 +2449,6 @@ exports[`DiscussionsList renders in correct order 1`] = `
                     }
                   >
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
                       ellipsizeMode="tail"
                       numberOfLines={2}
                       style={
@@ -2602,9 +2500,6 @@ exports[`DiscussionsList renders in correct order 1`] = `
                           }
                         >
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             separated={
                               Array [
                                 "Due May 31, 2037 at 11:59 PM",
@@ -2643,9 +2538,6 @@ exports[`DiscussionsList renders in correct order 1`] = `
                           }
                         >
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             style={
                               Array [
                                 Object {
@@ -2683,9 +2575,6 @@ exports[`DiscussionsList renders in correct order 1`] = `
                             }
                           >
                             <Text
-                              accessible={true}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               separated={
                                 Array [
                                   "2 Replies",
@@ -2716,8 +2605,6 @@ exports[`DiscussionsList renders in correct order 1`] = `
                             <Text
                               accessibilityLabel=""
                               accessible={false}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               style={
                                 Array [
                                   Object {
@@ -2746,9 +2633,6 @@ exports[`DiscussionsList renders in correct order 1`] = `
                                 •  
                             </Text>
                             <Text
-                              accessible={true}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               separated={
                                 Array [
                                   "2 Replies",
@@ -2864,7 +2748,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
       },
     ]
   }
-  subtitle={undefined}
   title="Discussions"
 >
   <View
@@ -2897,9 +2780,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -2933,7 +2813,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
               accessible={false}
             >
               <TouchableHighlight
-                accessibilityLabel={undefined}
                 accessibilityTraits={
                   Array [
                     "button",
@@ -3054,8 +2933,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                     }
                   >
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
                       ellipsizeMode="tail"
                       numberOfLines={2}
                       style={
@@ -3107,9 +2984,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                           }
                         >
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             separated={
                               Array [
                                 "Due May 31, 2037 at 11:59 PM",
@@ -3148,9 +3022,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                           }
                         >
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             style={
                               Array [
                                 Object {
@@ -3188,9 +3059,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                             }
                           >
                             <Text
-                              accessible={true}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               separated={
                                 Array [
                                   "2 Replies",
@@ -3221,8 +3089,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                             <Text
                               accessibilityLabel=""
                               accessible={false}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               style={
                                 Array [
                                   Object {
@@ -3251,9 +3117,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                                 •  
                             </Text>
                             <Text
-                              accessible={true}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               separated={
                                 Array [
                                   "2 Replies",
@@ -3351,7 +3214,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
               accessible={false}
             >
               <TouchableHighlight
-                accessibilityLabel={undefined}
                 accessibilityTraits={
                   Array [
                     "button",
@@ -3472,8 +3334,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                     }
                   >
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
                       ellipsizeMode="tail"
                       numberOfLines={2}
                       style={
@@ -3525,9 +3385,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                           }
                         >
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             separated={
                               Array [
                                 "Due May 31, 2037 at 11:59 PM",
@@ -3566,9 +3423,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                           }
                         >
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             style={
                               Array [
                                 Object {
@@ -3606,9 +3460,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                             }
                           >
                             <Text
-                              accessible={true}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               separated={
                                 Array [
                                   "2 Replies",
@@ -3639,8 +3490,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                             <Text
                               accessibilityLabel=""
                               accessible={false}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               style={
                                 Array [
                                   Object {
@@ -3669,9 +3518,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                                 •  
                             </Text>
                             <Text
-                              accessible={true}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               separated={
                                 Array [
                                   "2 Replies",
@@ -3786,9 +3632,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -3822,7 +3665,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
               accessible={false}
             >
               <TouchableHighlight
-                accessibilityLabel={undefined}
                 accessibilityTraits={
                   Array [
                     "button",
@@ -3943,8 +3785,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                     }
                   >
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
                       ellipsizeMode="tail"
                       numberOfLines={2}
                       style={
@@ -3996,9 +3836,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                           }
                         >
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             separated={
                               Array [
                                 "Due May 31, 2037 at 11:59 PM",
@@ -4037,9 +3874,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                           }
                         >
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             style={
                               Array [
                                 Object {
@@ -4077,9 +3911,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                             }
                           >
                             <Text
-                              accessible={true}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               separated={
                                 Array [
                                   "2 Replies",
@@ -4110,8 +3941,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                             <Text
                               accessibilityLabel=""
                               accessible={false}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               style={
                                 Array [
                                   Object {
@@ -4140,9 +3969,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                                 •  
                             </Text>
                             <Text
-                              accessible={true}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               separated={
                                 Array [
                                   "2 Replies",

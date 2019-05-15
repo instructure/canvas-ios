@@ -2,19 +2,9 @@
 
 exports[`Render row with switch 1`] = `
 <View
-  accessibilityComponentType={undefined}
   accessibilityLabel="Row with a switch in it!, Off"
-  accessibilityTraits={
-    Array [
-      "button",
-    ]
-  }
   accessible={true}
-  hasTVPreferredFocus={undefined}
-  hitSlop={undefined}
   isTVSelectable={true}
-  nativeID={undefined}
-  onLayout={undefined}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
@@ -23,17 +13,10 @@ exports[`Render row with switch 1`] = `
   onStartShouldSetResponder={[Function]}
   style={
     Array [
-      Object {
-        "backgroundColor": "transparent",
-      },
-      Array [
-        undefined,
-        undefined,
-      ],
+      undefined,
+      undefined,
     ]
   }
-  testID={undefined}
-  tvParallaxProperties={undefined}
 >
   <View
     style={
@@ -70,8 +53,6 @@ exports[`Render row with switch 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
         ellipsizeMode="tail"
         numberOfLines={0}
         style={
@@ -115,24 +96,18 @@ exports[`Render row with switch 1`] = `
         }
       >
         <RCTSwitch
-          disabled={false}
+          accessibilityRole="button"
           identifier="test"
           onChange={[Function]}
           onResponderTerminationRequest={[Function]}
           onStartShouldSetResponder={[Function]}
-          onTintColor="#374A59"
-          onValueChange={[Function]}
           style={
-            Array [
-              Object {
-                "height": 31,
-                "width": 51,
-              },
-              undefined,
-            ]
+            Object {
+              "height": 31,
+              "width": 51,
+            }
           }
           testID="test"
-          tintColor={null}
           title="Row with a switch in it!"
           value={false}
         />

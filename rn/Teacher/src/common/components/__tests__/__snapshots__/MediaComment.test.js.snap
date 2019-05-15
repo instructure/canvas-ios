@@ -10,7 +10,7 @@ exports[`MediaComment renders defaults 1`] = `
 >
   <AudioRecorder
     doneButtonText="Send"
-    onCancel={[Function]}
+    onCancel={[MockFunction]}
     onFinishedRecording={[Function]}
   />
 </View>
@@ -50,9 +50,6 @@ exports[`MediaComment renders videos 1`] = `
     >
       <Text
         accessibilityLabel="Time elapsed: 0 minutes, 0 seconds."
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Object {
             "color": "white",
@@ -162,7 +159,6 @@ exports[`MediaComment renders videos 1`] = `
       </TouchableHighlight>
     </View>
     <Camera
-      aspect={undefined}
       captureAudio={true}
       captureMode="video"
       captureQuality="medium"

@@ -19,9 +19,6 @@ exports[`AddressBookToken renders 1`] = `
   }
 >
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     style={
       Object {
         "marginLeft": 8,
@@ -113,9 +110,6 @@ exports[`AddressBookToken renders with avatar url 1`] = `
     />
   </View>
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     style={
       Object {
         "marginLeft": 8,

@@ -22,7 +22,7 @@ import React, { Component } from 'react'
 import {
   View,
   ActionSheetIOS,
-  AlertIOS,
+  Alert,
   StyleSheet,
   Modal,
   NativeModules,
@@ -247,7 +247,7 @@ export default class AttachmentPicker extends Component<Props, any> {
         if (IMAGE_PICKER_PERMISSION_ERRORS[response.error]) {
           Permissions.alert(IMAGE_PICKER_PERMISSION_ERRORS[response.error])
         } else {
-          AlertIOS.alert(
+          Alert.alert(
             i18n('Error'),
             response.error,
             [{ text: i18n('OK'), onPress: null, style: 'cancel' }],
@@ -267,7 +267,7 @@ export default class AttachmentPicker extends Component<Props, any> {
           uri = await NativeModules.NativeFileSystem.convertToJPEG(uri)
           name = `${timestamp}.jpg`
         } catch (e) {
-          AlertIOS.alert(
+          Alert.alert(
             i18n('Error'),
             i18n('Unrecognized file format'),
             [{ text: i18n('OK'), onPress: null, style: 'cancel' }],
@@ -302,7 +302,7 @@ export default class AttachmentPicker extends Component<Props, any> {
   handleDocumentPickerResponse = (callback: Callback) => {
     return (error: any, result: *) => {
       if (error) {
-        AlertIOS.alert(i18n('Upload error'))
+        Alert.alert(i18n('Upload error'))
         return
       }
       const { uri, fileName, fileSize } = result

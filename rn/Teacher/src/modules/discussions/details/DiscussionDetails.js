@@ -28,7 +28,7 @@ import {
   Image,
   FlatList,
   ActionSheetIOS,
-  AlertIOS,
+  Alert,
   NativeModules,
 } from 'react-native'
 import i18n from 'format-message'
@@ -544,7 +544,7 @@ export class DiscussionDetails extends Component<Props, any> {
 
   _confirmDeleteDiscussion = () => {
     const alertTitle = this.props.isAnnouncement ? i18n('Are you sure you want to delete this announcement?') : i18n('Are you sure you want to delete this discussion?')
-    AlertIOS.alert(
+    Alert.alert(
       alertTitle,
       null,
       [
@@ -555,7 +555,7 @@ export class DiscussionDetails extends Component<Props, any> {
   }
 
   _confirmDeleteReply = (...args) => {
-    AlertIOS.alert(
+    Alert.alert(
       i18n('Are you sure you want to delete this reply?'),
       null,
       [

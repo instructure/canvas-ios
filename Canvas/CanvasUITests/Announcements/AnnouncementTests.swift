@@ -19,15 +19,9 @@
 import XCTest
 import TestsFoundation
 
-enum Announcements {
-    static func announcement(index: Int) -> Element {
+enum AnnouncementList {
+    static func cell(index: Int) -> Element {
         return app.find(id: "announcements.list.announcement.row-\(index)")
-    }
-}
-
-enum AnnouncementDetail {
-    static var text: Element {
-        return app.find(label: "This is the third announcement")
     }
 }
 
@@ -35,26 +29,21 @@ class AnnouncementTest: CanvasUITests {
     func testAnnouncementsMatchWebOrder() {
         Dashboard.courseCard(id: "262").waitToExist()
         Dashboard.courseCard(id: "262").tap()
-
         CourseNavigation.announcements.tap()
 
-        Announcements.announcement(index: 0).waitToExist()
-        XCTAssert(Announcements.announcement(index: 0).label.contains("Announcement Three"))
-        XCTAssert(Announcements.announcement(index: 1).label.contains("Announcement Two"))
-        XCTAssert(Announcements.announcement(index: 2).label.contains("Announcement One"))
+        AnnouncementList.cell(index: 0).waitToExist()
+        XCTAssert(AnnouncementList.cell(index: 0).label.contains("Announcement Three"))
+        XCTAssert(AnnouncementList.cell(index: 1).label.contains("Announcement Two"))
+        XCTAssert(AnnouncementList.cell(index: 2).label.contains("Announcement One"))
     }
 
     func testViewAnnouncement() {
         Dashboard.courseCard(id: "262").waitToExist()
         Dashboard.courseCard(id: "262").tap()
-
         CourseNavigation.announcements.tap()
 
-        Announcements.announcement(index: 0).waitToExist()
-        Announcements.announcement(index: 0).tapAt(.zero)
-
-        AnnouncementDetail.text.waitToExist()
-        XCTAssert(AnnouncementDetail.text.exists)
+        AnnouncementList.cell(index: 0).tap()
+        app.find(label: "This is the third announcement").waitToExist()
     }
 
     func testPreviewAnouncementAttachment() {
@@ -62,9 +51,8 @@ class AnnouncementTest: CanvasUITests {
         Dashboard.courseCard(id: "262").tap()
         CourseNavigation.announcements.tap()
 
-        Announcements.announcement(index: 0).waitToExist()
-        Announcements.announcement(index: 0).tapAt(.zero)
-        XCUIElementWrapper(app.buttons["run.jpg"]).tap()
+        AnnouncementList.cell(index: 0).tap()
+        DiscussionDetails.attachmentButton.tap()
         app.find(type: .image).waitToExist()
     }
 }

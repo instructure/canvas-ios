@@ -24,7 +24,7 @@ import {
   StyleSheet,
   Image,
   TouchableHighlight,
-  AlertIOS,
+  Alert,
   ActivityIndicator,
 } from 'react-native'
 import { connect } from 'react-redux'
@@ -159,7 +159,7 @@ export class AudioComment extends Component<Props, any> {
       const path = this.props.url && await this.props.downloadAudio(this.props.url, this.captureDownloadJob)
       sound = path && await this.props.loadAudio(path)
     } catch (error) {
-      AlertIOS.alert(i18n('Failed to load audio'))
+      Alert.alert(i18n('Failed to load audio'))
     }
 
     this.setState({
@@ -187,7 +187,7 @@ export class AudioComment extends Component<Props, any> {
     audio.play((success) => {
       this.setState({ playing: false })
       if (!success) {
-        AlertIOS.alert(i18n('Audio playback failed'))
+        Alert.alert(i18n('Audio playback failed'))
         this.setState({ audio: null })
         clearInterval(this.playbackInterval)
       }

@@ -11,9 +11,6 @@ exports[`RubricItem changes the currently selected value when a circle is presse
   }
 >
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     style={
       Array [
         Object {
@@ -147,9 +144,6 @@ exports[`RubricItem changes the currently selected value when a circle is presse
     >
       <View>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -195,9 +189,6 @@ exports[`RubricItem renders 1`] = `
   }
 >
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     style={
       Array [
         Object {
@@ -331,9 +322,6 @@ exports[`RubricItem renders 1`] = `
     >
       <View>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -379,9 +367,6 @@ exports[`RubricItem renders an already selected grade 1`] = `
   }
 >
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     style={
       Array [
         Object {
@@ -515,9 +500,6 @@ exports[`RubricItem renders an already selected grade 1`] = `
     >
       <View>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -563,9 +545,6 @@ exports[`RubricItem renders the selected custom grade 1`] = `
   }
 >
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     style={
       Array [
         Object {
@@ -688,9 +667,6 @@ exports[`RubricItem renders the selected custom grade 1`] = `
     >
       <View>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -736,9 +712,6 @@ exports[`RubricItem renders with free form 1`] = `
   }
 >
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     style={
       Array [
         Object {
@@ -818,9 +791,6 @@ exports[`RubricItem renders with free form 1`] = `
     >
       <View>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -853,8 +823,6 @@ exports[`RubricItem renders with free form 1`] = `
     </TouchableOpacity>
     <Text
       accessible={false}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
       style={
         Array [
           Object {
@@ -893,9 +861,6 @@ exports[`RubricItem renders with free form 1`] = `
     >
       <View>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -941,9 +906,6 @@ exports[`RubricItem will not show the add comment button and will show the comme
   }
 >
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     style={
       Array [
         Object {
@@ -1077,9 +1039,6 @@ exports[`RubricItem will not show the add comment button and will show the comme
     >
       <View>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -1168,9 +1127,6 @@ exports[`RubricItem will not show the add comment button and will show the comme
         }
       />
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -1220,9 +1176,6 @@ exports[`RubricItem will not show the add comment button and will show the comme
     >
       <View>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {

@@ -4,12 +4,7 @@ exports[`ToolTip renders nothing until tooltip added 1`] = `null`;
 
 exports[`ToolTip renders something interesting when showToolTip is called 1`] = `
 <View
-  accessibilityComponentType={undefined}
-  accessibilityLabel={undefined}
-  accessibilityTraits={undefined}
   accessible={true}
-  hitSlop={undefined}
-  nativeID={undefined}
   onLayout={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
@@ -30,7 +25,6 @@ exports[`ToolTip renders something interesting when showToolTip is called 1`] = 
   testID="tool-tip.dismiss"
 >
   <View
-    collapsable={undefined}
     style={
       Object {
         "height": 0,
@@ -85,8 +79,6 @@ exports[`ToolTip renders something interesting when showToolTip is called 1`] = 
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
         ellipsizeMode="tail"
         numberOfLines={3}
         style={

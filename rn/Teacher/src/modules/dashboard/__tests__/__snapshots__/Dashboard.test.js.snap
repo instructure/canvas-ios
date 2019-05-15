@@ -58,9 +58,6 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
       >
         <Text
           accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -93,9 +90,6 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
         >
           <View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -216,8 +210,6 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
               >
                 <Text
                   accessible={false}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={2}
                   style={
                     Array [
@@ -244,8 +236,6 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
                 </Text>
                 <Text
                   accessible={false}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
                     Array [
@@ -412,8 +402,6 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
               >
                 <Text
                   accessible={false}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={2}
                   style={
                     Array [
@@ -440,8 +428,6 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
                 </Text>
                 <Text
                   accessible={false}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
                     Array [
@@ -608,8 +594,6 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
               >
                 <Text
                   accessible={false}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={2}
                   style={
                     Array [
@@ -636,8 +620,6 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
                 </Text>
                 <Text
                   accessible={false}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
                     Array [
@@ -819,8 +801,6 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
               >
                 <Text
                   accessible={false}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={2}
                   style={
                     Array [
@@ -847,8 +827,6 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                 </Text>
                 <Text
                   accessible={false}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
                     Array [
@@ -1015,8 +993,6 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
               >
                 <Text
                   accessible={false}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={2}
                   style={
                     Array [
@@ -1043,8 +1019,6 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                 </Text>
                 <Text
                   accessible={false}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
                     Array [
@@ -1211,8 +1185,6 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
               >
                 <Text
                   accessible={false}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={2}
                   style={
                     Array [
@@ -1239,8 +1211,6 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                 </Text>
                 <Text
                   accessible={false}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
                     Array [
@@ -1337,9 +1307,6 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
       >
         <Text
           accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -1450,8 +1417,6 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
               >
                 <Text
                   accessible={false}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={2}
                   style={
                     Array [
@@ -1478,8 +1443,6 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                 </Text>
                 <Text
                   accessible={false}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
                     Array [
@@ -1617,9 +1580,6 @@ exports[`Dashboard render 1`] = `
       >
         <Text
           accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -1652,9 +1612,6 @@ exports[`Dashboard render 1`] = `
         >
           <View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1775,8 +1732,6 @@ exports[`Dashboard render 1`] = `
               >
                 <Text
                   accessible={false}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={2}
                   style={
                     Array [
@@ -1803,8 +1758,6 @@ exports[`Dashboard render 1`] = `
                 </Text>
                 <Text
                   accessible={false}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
                     Array [
@@ -1971,8 +1924,6 @@ exports[`Dashboard render 1`] = `
               >
                 <Text
                   accessible={false}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={2}
                   style={
                     Array [
@@ -1999,8 +1950,6 @@ exports[`Dashboard render 1`] = `
                 </Text>
                 <Text
                   accessible={false}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
                     Array [
@@ -2167,8 +2116,6 @@ exports[`Dashboard render 1`] = `
               >
                 <Text
                   accessible={false}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={2}
                   style={
                     Array [
@@ -2195,8 +2142,6 @@ exports[`Dashboard render 1`] = `
                 </Text>
                 <Text
                   accessible={false}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
                     Array [
@@ -2334,9 +2279,6 @@ exports[`Dashboard render while pending 1`] = `
       >
         <Text
           accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -2369,9 +2311,6 @@ exports[`Dashboard render while pending 1`] = `
         >
           <View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -2492,8 +2431,6 @@ exports[`Dashboard render while pending 1`] = `
               >
                 <Text
                   accessible={false}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={2}
                   style={
                     Array [
@@ -2520,8 +2457,6 @@ exports[`Dashboard render while pending 1`] = `
                 </Text>
                 <Text
                   accessible={false}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
                     Array [
@@ -2688,8 +2623,6 @@ exports[`Dashboard render while pending 1`] = `
               >
                 <Text
                   accessible={false}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={2}
                   style={
                     Array [
@@ -2716,8 +2649,6 @@ exports[`Dashboard render while pending 1`] = `
                 </Text>
                 <Text
                   accessible={false}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
                     Array [
@@ -2884,8 +2815,6 @@ exports[`Dashboard render while pending 1`] = `
               >
                 <Text
                   accessible={false}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={2}
                   style={
                     Array [
@@ -2912,8 +2841,6 @@ exports[`Dashboard render while pending 1`] = `
                 </Text>
                 <Text
                   accessible={false}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
                     Array [
@@ -3051,9 +2978,6 @@ exports[`Dashboard render without courses and *zero* total courses 1`] = `
       >
         <Text
           accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -3086,9 +3010,6 @@ exports[`Dashboard render without courses and *zero* total courses 1`] = `
         >
           <View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -3144,9 +3065,6 @@ exports[`Dashboard render without courses and *zero* total courses 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -3172,9 +3090,6 @@ exports[`Dashboard render without courses and *zero* total courses 1`] = `
               Welcome!
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -3202,16 +3117,9 @@ exports[`Dashboard render without courses and *zero* total courses 1`] = `
               Add a few of your favorite courses to make this place your home.
             </Text>
             <TouchableOpacity
-              accessibilityLabel={undefined}
               accessibilityRole="button"
               activeOpacity={0.2}
-              delayLongPress={undefined}
-              delayPressIn={undefined}
-              delayPressOut={undefined}
-              onLongPress={undefined}
               onPress={[Function]}
-              onPressIn={undefined}
-              onPressOut={undefined}
               style={
                 Array [
                   Array [
@@ -3233,9 +3141,6 @@ exports[`Dashboard render without courses and *zero* total courses 1`] = `
               testID="Dashboard.addCoursesButton"
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -3327,9 +3232,6 @@ exports[`Dashboard render without favorite courses 1`] = `
       >
         <Text
           accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -3362,9 +3264,6 @@ exports[`Dashboard render without favorite courses 1`] = `
         >
           <View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -3420,9 +3319,6 @@ exports[`Dashboard render without favorite courses 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -3448,9 +3344,6 @@ exports[`Dashboard render without favorite courses 1`] = `
               Welcome!
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -3478,16 +3371,9 @@ exports[`Dashboard render without favorite courses 1`] = `
               Add a few of your favorite courses to make this place your home.
             </Text>
             <TouchableOpacity
-              accessibilityLabel={undefined}
               accessibilityRole="button"
               activeOpacity={0.2}
-              delayLongPress={undefined}
-              delayPressIn={undefined}
-              delayPressOut={undefined}
-              onLongPress={undefined}
               onPress={[Function]}
-              onPressIn={undefined}
-              onPressOut={undefined}
               style={
                 Array [
                   Array [
@@ -3509,9 +3395,6 @@ exports[`Dashboard render without favorite courses 1`] = `
               testID="Dashboard.addCoursesButton"
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -3651,9 +3534,6 @@ exports[`Dashboard renders course invites 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -3679,9 +3559,6 @@ exports[`Dashboard renders course invites 1`] = `
                   You have been invited
                 </Text>
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
                     Array [
@@ -3718,16 +3595,9 @@ exports[`Dashboard renders course invites 1`] = `
                   }
                 >
                   <TouchableOpacity
-                    accessibilityLabel={undefined}
                     accessibilityRole="button"
                     activeOpacity={0.2}
-                    delayLongPress={undefined}
-                    delayPressIn={undefined}
-                    delayPressOut={undefined}
-                    onLongPress={undefined}
                     onPress={[Function]}
-                    onPressIn={undefined}
-                    onPressOut={undefined}
                     style={
                       Array [
                         Array [
@@ -3758,9 +3628,6 @@ exports[`Dashboard renders course invites 1`] = `
                     testID="CourseInvitation.1.rejectButton"
                   >
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -3793,16 +3660,9 @@ exports[`Dashboard renders course invites 1`] = `
                     </Text>
                   </TouchableOpacity>
                   <TouchableOpacity
-                    accessibilityLabel={undefined}
                     accessibilityRole="button"
                     activeOpacity={0.2}
-                    delayLongPress={undefined}
-                    delayPressIn={undefined}
-                    delayPressOut={undefined}
-                    onLongPress={undefined}
                     onPress={[Function]}
-                    onPressIn={undefined}
-                    onPressOut={undefined}
                     style={
                       Array [
                         Array [
@@ -3826,9 +3686,6 @@ exports[`Dashboard renders course invites 1`] = `
                     testID="CourseInvitation.1.acceptButton"
                   >
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -3930,9 +3787,6 @@ exports[`Dashboard renders course invites 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -3958,9 +3812,6 @@ exports[`Dashboard renders course invites 1`] = `
                   You have been invited
                 </Text>
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
                     Array [
@@ -3997,16 +3848,9 @@ exports[`Dashboard renders course invites 1`] = `
                   }
                 >
                   <TouchableOpacity
-                    accessibilityLabel={undefined}
                     accessibilityRole="button"
                     activeOpacity={0.2}
-                    delayLongPress={undefined}
-                    delayPressIn={undefined}
-                    delayPressOut={undefined}
-                    onLongPress={undefined}
                     onPress={[Function]}
-                    onPressIn={undefined}
-                    onPressOut={undefined}
                     style={
                       Array [
                         Array [
@@ -4037,9 +3881,6 @@ exports[`Dashboard renders course invites 1`] = `
                     testID="CourseInvitation.2.rejectButton"
                   >
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -4072,16 +3913,9 @@ exports[`Dashboard renders course invites 1`] = `
                     </Text>
                   </TouchableOpacity>
                   <TouchableOpacity
-                    accessibilityLabel={undefined}
                     accessibilityRole="button"
                     activeOpacity={0.2}
-                    delayLongPress={undefined}
-                    delayPressIn={undefined}
-                    delayPressOut={undefined}
-                    onLongPress={undefined}
                     onPress={[Function]}
-                    onPressIn={undefined}
-                    onPressOut={undefined}
                     style={
                       Array [
                         Array [
@@ -4105,9 +3939,6 @@ exports[`Dashboard renders course invites 1`] = `
                     testID="CourseInvitation.2.acceptButton"
                   >
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -4163,9 +3994,6 @@ exports[`Dashboard renders course invites 1`] = `
       >
         <Text
           accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -4198,9 +4026,6 @@ exports[`Dashboard renders course invites 1`] = `
         >
           <View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -4321,8 +4146,6 @@ exports[`Dashboard renders course invites 1`] = `
               >
                 <Text
                   accessible={false}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={2}
                   style={
                     Array [
@@ -4349,8 +4172,6 @@ exports[`Dashboard renders course invites 1`] = `
                 </Text>
                 <Text
                   accessible={false}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
                     Array [
@@ -4517,8 +4338,6 @@ exports[`Dashboard renders course invites 1`] = `
               >
                 <Text
                   accessible={false}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={2}
                   style={
                     Array [
@@ -4545,8 +4364,6 @@ exports[`Dashboard renders course invites 1`] = `
                 </Text>
                 <Text
                   accessible={false}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
                     Array [
@@ -4713,8 +4530,6 @@ exports[`Dashboard renders course invites 1`] = `
               >
                 <Text
                   accessible={false}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={2}
                   style={
                     Array [
@@ -4741,8 +4556,6 @@ exports[`Dashboard renders course invites 1`] = `
                 </Text>
                 <Text
                   accessible={false}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
                     Array [
@@ -4839,9 +4652,6 @@ exports[`Dashboard renders course invites 1`] = `
       >
         <Text
           accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -4925,9 +4735,6 @@ exports[`Dashboard renders course invites 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -4950,9 +4757,6 @@ exports[`Dashboard renders course invites 1`] = `
                     Group 1
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -4977,9 +4781,6 @@ exports[`Dashboard renders course invites 1`] = `
                     Biology 101
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -5069,9 +4870,6 @@ exports[`Dashboard renders course invites 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -5094,9 +4892,6 @@ exports[`Dashboard renders course invites 1`] = `
                     Group 2
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {

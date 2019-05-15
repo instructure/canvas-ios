@@ -19,7 +19,7 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 import React from 'react'
-import { ActionSheetIOS, AlertIOS } from 'react-native'
+import { ActionSheetIOS, Alert } from 'react-native'
 import renderer from 'react-test-renderer'
 
 import { DiscussionsList, mapStateToProps, type Props } from '../DiscussionsList'
@@ -195,7 +195,7 @@ describe('DiscussionsList', () => {
     // $FlowFixMe
     ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => callback(2))
     // $FlowFixMe
-    AlertIOS.alert = jest.fn((title, message, buttons) => buttons[1].onPress())
+    Alert.alert = jest.fn((title, message, buttons) => buttons[1].onPress())
     props.contextID = '1'
     const kabob: any = explore(render(props).toJSON()).selectByID(`discussion.kabob-${props.discussions[0].id}`)
     kabob.props.onPress()

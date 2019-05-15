@@ -72,13 +72,13 @@ exports[`PageEdit renders 1`] = `
           keyboardAware={false}
           navigator={
             Object {
-              "dismiss": [Function],
-              "dismissAllModals": [Function],
+              "dismiss": [MockFunction],
+              "dismissAllModals": [MockFunction],
               "isModal": false,
-              "pop": [Function],
-              "replace": [Function],
-              "show": [Function],
-              "traitCollection": [Function],
+              "pop": [MockFunction],
+              "replace": [MockFunction],
+              "show": [MockFunction],
+              "traitCollection": [MockFunction],
             }
           }
           onFocus={[Function]}
@@ -179,13 +179,13 @@ exports[`PageEdit renders when the student app 1`] = `
           keyboardAware={false}
           navigator={
             Object {
-              "dismiss": [Function],
-              "dismissAllModals": [Function],
+              "dismiss": [MockFunction],
+              "dismissAllModals": [MockFunction],
               "isModal": false,
-              "pop": [Function],
-              "replace": [Function],
-              "show": [Function],
-              "traitCollection": [Function],
+              "pop": [MockFunction],
+              "replace": [MockFunction],
+              "show": [MockFunction],
+              "traitCollection": [MockFunction],
             }
           }
           onFocus={[Function]}

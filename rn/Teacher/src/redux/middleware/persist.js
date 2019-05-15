@@ -17,7 +17,7 @@
 //
 
 // @flow
-import { AsyncStorage } from 'react-native'
+import AsyncStorage from '@react-native-community/async-storage'
 import { getSessionUnsafe } from '../../canvas-api'
 import type { MiddlewareAPI } from 'redux'
 import hydrate from '../hydrate-action'

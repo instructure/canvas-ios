@@ -28,7 +28,7 @@ import explore from '../../../../../test/helpers/explore'
 const { NativeAccessibility } = NativeModules
 
 jest
-  .mock('AsyncStorage', () => ({
+  .mock('@react-native-community/async-storage', () => ({
     getItem: jest.fn(() => Promise.resolve()),
     setItem: jest.fn(() => Promise.resolve()),
   }))
@@ -57,7 +57,7 @@ describe('Tutorial', () => {
     expect(tree).toBeNull()
   })
 
-  it('will render the tutorial after data from async storage has been retrieved', async () => {
+  it('will render the tutorial after data from async storage has been retrieved', () => {
     let tree = renderer.create(
       <Tutorial {...defaultProps} />
     )
@@ -113,7 +113,7 @@ describe('Tutorial', () => {
     Animated.timing = oldTiming
   })
 
-  it('focus current tutorial function should work', async () => {
+  it('focus current tutorial function should work', () => {
     let tree = renderer.create(
       <Tutorial {...defaultProps} />
     )
@@ -130,7 +130,7 @@ describe('Tutorial', () => {
     expect(NativeAccessibility.focusElement).toHaveBeenCalledWith(`${currentTutorial.id}-title`)
   })
 
-  it('focus current tutorial function should not do anything when there is no current tutorial', async () => {
+  it('focus current tutorial function should not do anything when there is no current tutorial', () => {
     let tree = renderer.create(
       <Tutorial {...defaultProps} />
     )

@@ -19,7 +19,7 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 import React from 'react'
-import { AlertIOS } from 'react-native'
+import { Alert } from 'react-native'
 import renderer from 'react-test-renderer'
 import AttachmentRow, { type Props } from '../AttachmentRow'
 import explore from '../../../../test/helpers/explore'
@@ -51,7 +51,7 @@ describe('AttachmentRow', () => {
     props.testID = 'attachment-row'
     const spy = jest.fn()
     // $FlowFixMe
-    AlertIOS.alert = spy
+    Alert.alert = spy
     const removeBtn: any = explore(render(props).toJSON()).selectByID('attachment-row.remove.btn')
     removeBtn.props.onPress()
     expect(spy).toHaveBeenCalledWith(
@@ -69,7 +69,7 @@ describe('AttachmentRow', () => {
     props.onRemovePressed = spy
     props.testID = 'attachment-row'
     // $FlowFixMe
-    AlertIOS.alert = jest.fn((title, message, buttons) => buttons[1].onPress())
+    Alert.alert = jest.fn((title, message, buttons) => buttons[1].onPress())
     const removeBtn: any = explore(render(props).toJSON()).selectByID('attachment-row.remove.btn')
     removeBtn.props.onPress()
     expect(spy).toHaveBeenCalled()

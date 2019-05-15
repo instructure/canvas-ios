@@ -58,9 +58,6 @@ exports[`SpeedGraderFilesTab ignores attachments for URL Submissions 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -158,9 +155,6 @@ exports[`SpeedGraderFilesTab renders a selected 0 index item 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -274,9 +268,6 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -364,9 +355,6 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -471,9 +459,6 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -562,9 +547,6 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -653,9 +635,6 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -753,9 +732,6 @@ exports[`SpeedGraderFilesTab renders with a submission 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -853,9 +829,6 @@ exports[`SpeedGraderFilesTab renders without a submission 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {

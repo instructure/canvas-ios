@@ -84,6 +84,7 @@ exports[`People List renders 1`] = `
       onScrollBeginDrag={[Function]}
       onScrollEndDrag={[Function]}
       refreshing={false}
+      removeClippedSubviews={false}
       renderItem={[Function]}
       scrollEventThrottle={50}
       stickyHeaderIndices={Array []}
@@ -94,7 +95,6 @@ exports[`People List renders 1`] = `
       <View>
         <View
           onLayout={[Function]}
-          style={null}
         >
           <View>
             <TypeAheadSearch
@@ -121,9 +121,6 @@ exports[`People List renders 1`] = `
             >
               <Text
                 accessibilityTraits="header"
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -141,12 +138,8 @@ exports[`People List renders 1`] = `
                 All People
               </Text>
               <View
-                accessibilityComponentType={undefined}
                 accessibilityLabel="Filter People"
-                accessibilityTraits="button"
                 accessible={true}
-                collapsable={undefined}
-                hasTVPreferredFocus={undefined}
                 hitSlop={
                   Object {
                     "bottom": 15,
@@ -156,8 +149,6 @@ exports[`People List renders 1`] = `
                   }
                 }
                 isTVSelectable={true}
-                nativeID={undefined}
-                onLayout={undefined}
                 onResponderGrant={[Function]}
                 onResponderMove={[Function]}
                 onResponderRelease={[Function]}
@@ -171,13 +162,9 @@ exports[`People List renders 1`] = `
                   }
                 }
                 testID="peopleList.filterBy"
-                tvParallaxProperties={undefined}
               >
                 <View>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -209,40 +196,32 @@ exports[`People List renders 1`] = `
           </View>
         </View>
         <View
-          onLayout={[Function]}
-          style={null}
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "height": 100,
+              "justifyContent": "center",
+            }
+          }
         >
-          <View
+          <Text
             style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "height": 100,
-                "justifyContent": "center",
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontSize": 16,
+                },
+                undefined,
+              ]
             }
           >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontFamily": ".SFUIDisplay-semibold",
-                    "fontSize": 16,
-                  },
-                  undefined,
-                ]
-              }
-            >
-              No results
-            </Text>
-          </View>
+            No results
+          </Text>
         </View>
       </View>
     </RCTScrollView>
@@ -370,6 +349,7 @@ exports[`People List test update filter 1`] = `
       onScrollBeginDrag={[Function]}
       onScrollEndDrag={[Function]}
       refreshing={false}
+      removeClippedSubviews={false}
       renderItem={[Function]}
       scrollEventThrottle={50}
       stickyHeaderIndices={Array []}
@@ -380,7 +360,6 @@ exports[`People List test update filter 1`] = `
       <View>
         <View
           onLayout={[Function]}
-          style={null}
         >
           <View>
             <TypeAheadSearch
@@ -407,9 +386,6 @@ exports[`People List test update filter 1`] = `
             >
               <Text
                 accessibilityTraits="header"
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -427,12 +403,8 @@ exports[`People List test update filter 1`] = `
                 All People
               </Text>
               <View
-                accessibilityComponentType={undefined}
                 accessibilityLabel="Filter People"
-                accessibilityTraits="button"
                 accessible={true}
-                collapsable={undefined}
-                hasTVPreferredFocus={undefined}
                 hitSlop={
                   Object {
                     "bottom": 15,
@@ -442,8 +414,6 @@ exports[`People List test update filter 1`] = `
                   }
                 }
                 isTVSelectable={true}
-                nativeID={undefined}
-                onLayout={undefined}
                 onResponderGrant={[Function]}
                 onResponderMove={[Function]}
                 onResponderRelease={[Function]}
@@ -457,13 +427,9 @@ exports[`People List test update filter 1`] = `
                   }
                 }
                 testID="peopleList.filterBy"
-                tvParallaxProperties={undefined}
               >
                 <View>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {

@@ -83,7 +83,7 @@ describe('apiResponse', () => {
   })
 })
 
-describe('apiError', async () => {
+describe('apiError', () => {
   it('should mock error', async () => {
     const fn = apiError()
     let caughtError = false

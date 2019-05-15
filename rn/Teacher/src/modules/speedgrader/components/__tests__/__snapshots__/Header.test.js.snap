@@ -32,6 +32,7 @@ exports[`SpeedGraderHeader anonymizes the avatar and name 1`] = `
     >
       <TouchableHighlight
         activeOpacity={0.85}
+        delayPressOut={100}
         onPress={[Function]}
         testID="header.context.button"
         underlayColor="white"
@@ -98,7 +99,8 @@ exports[`SpeedGraderHeader anonymizes the avatar and name 1`] = `
     >
       <TouchableHighlight
         activeOpacity={0.85}
-        onPress={[Function]}
+        delayPressOut={100}
+        onPress={[MockFunction]}
         testID="header.navigation-done"
         underlayColor="white"
       >
@@ -159,6 +161,7 @@ exports[`SpeedGraderHeader doesnt show the group name when anonymous 1`] = `
     >
       <TouchableHighlight
         activeOpacity={0.85}
+        delayPressOut={100}
         onPress={[Function]}
         testID="header.context.button"
         underlayColor="white"
@@ -225,7 +228,8 @@ exports[`SpeedGraderHeader doesnt show the group name when anonymous 1`] = `
     >
       <TouchableHighlight
         activeOpacity={0.85}
-        onPress={[Function]}
+        delayPressOut={100}
+        onPress={[MockFunction]}
         testID="header.navigation-done"
         underlayColor="white"
       >
@@ -286,6 +290,7 @@ exports[`SpeedGraderHeader renders with a grade-only submission 1`] = `
     >
       <TouchableHighlight
         activeOpacity={0.85}
+        delayPressOut={100}
         onPress={[Function]}
         testID="header.context.button"
         underlayColor="white"
@@ -352,7 +357,8 @@ exports[`SpeedGraderHeader renders with a grade-only submission 1`] = `
     >
       <TouchableHighlight
         activeOpacity={0.85}
-        onPress={[Function]}
+        delayPressOut={100}
+        onPress={[MockFunction]}
         testID="header.navigation-done"
         underlayColor="white"
       >
@@ -413,6 +419,7 @@ exports[`SpeedGraderHeader renders with a group submission 1`] = `
     >
       <TouchableHighlight
         activeOpacity={0.85}
+        delayPressOut={100}
         onPress={[Function]}
         testID="header.groupList.button"
         underlayColor="white"
@@ -479,7 +486,8 @@ exports[`SpeedGraderHeader renders with a group submission 1`] = `
     >
       <TouchableHighlight
         activeOpacity={0.85}
-        onPress={[Function]}
+        delayPressOut={100}
+        onPress={[MockFunction]}
         testID="header.navigation-done"
         underlayColor="white"
       >
@@ -540,6 +548,7 @@ exports[`SpeedGraderHeader renders with a submission 1`] = `
     >
       <TouchableHighlight
         activeOpacity={0.85}
+        delayPressOut={100}
         onPress={[Function]}
         testID="header.context.button"
         underlayColor="white"
@@ -606,7 +615,8 @@ exports[`SpeedGraderHeader renders with a submission 1`] = `
     >
       <TouchableHighlight
         activeOpacity={0.85}
-        onPress={[Function]}
+        delayPressOut={100}
+        onPress={[MockFunction]}
         testID="header.navigation-done"
         underlayColor="white"
       >
@@ -667,6 +677,7 @@ exports[`SpeedGraderHeader renders with an over-due grade-only submission 1`] = 
     >
       <TouchableHighlight
         activeOpacity={0.85}
+        delayPressOut={100}
         onPress={[Function]}
         testID="header.context.button"
         underlayColor="white"
@@ -733,7 +744,8 @@ exports[`SpeedGraderHeader renders with an over-due grade-only submission 1`] = 
     >
       <TouchableHighlight
         activeOpacity={0.85}
-        onPress={[Function]}
+        delayPressOut={100}
+        onPress={[MockFunction]}
         testID="header.navigation-done"
         underlayColor="white"
       >
@@ -794,6 +806,7 @@ exports[`SpeedGraderHeader renders with no submission 1`] = `
     >
       <TouchableHighlight
         activeOpacity={0.85}
+        delayPressOut={100}
         onPress={[Function]}
         testID="header.context.button"
         underlayColor="white"
@@ -860,7 +873,8 @@ exports[`SpeedGraderHeader renders with no submission 1`] = `
     >
       <TouchableHighlight
         activeOpacity={0.85}
-        onPress={[Function]}
+        delayPressOut={100}
+        onPress={[MockFunction]}
         testID="header.navigation-done"
         underlayColor="white"
       >

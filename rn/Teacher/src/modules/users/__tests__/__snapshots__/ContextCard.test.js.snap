@@ -21,7 +21,6 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
   <list>
     <item>
       <TouchableHighlight
-        accessibilityLabel={undefined}
         accessibilityTraits={
           Array [
             "button",
@@ -142,8 +141,6 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={2}
               style={
@@ -169,9 +166,6 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
               learn to write code
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -230,7 +224,6 @@ exports[`ContextCard renders 1`] = `
   <list>
     <item>
       <TouchableHighlight
-        accessibilityLabel={undefined}
         accessibilityTraits={
           Array [
             "button",
@@ -351,8 +344,6 @@ exports[`ContextCard renders 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={2}
               style={
@@ -378,9 +369,6 @@ exports[`ContextCard renders 1`] = `
               learn to write code
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -494,7 +482,6 @@ exports[`ContextCard renders for a user that cannot send messages 2`] = `
   <list>
     <item>
       <TouchableHighlight
-        accessibilityLabel={undefined}
         accessibilityTraits={
           Array [
             "button",
@@ -615,8 +602,6 @@ exports[`ContextCard renders for a user that cannot send messages 2`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={2}
               style={
@@ -642,9 +627,6 @@ exports[`ContextCard renders for a user that cannot send messages 2`] = `
               learn to write code
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -725,7 +707,6 @@ exports[`ContextCard renders if there is no enrollment 1`] = `
   <list>
     <item>
       <TouchableHighlight
-        accessibilityLabel={undefined}
         accessibilityTraits={
           Array [
             "button",
@@ -846,8 +827,6 @@ exports[`ContextCard renders if there is no enrollment 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={2}
               style={
@@ -873,9 +852,6 @@ exports[`ContextCard renders if there is no enrollment 1`] = `
               learn to write code
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -934,7 +910,6 @@ exports[`ContextCard renders if there is no section in the enrollment 1`] = `
   <list>
     <item>
       <TouchableHighlight
-        accessibilityLabel={undefined}
         accessibilityTraits={
           Array [
             "button",
@@ -1055,8 +1030,6 @@ exports[`ContextCard renders if there is no section in the enrollment 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={2}
               style={
@@ -1082,9 +1055,6 @@ exports[`ContextCard renders if there is no section in the enrollment 1`] = `
               learn to write code
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1143,7 +1113,6 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
   <list>
     <item>
       <TouchableHighlight
-        accessibilityLabel={undefined}
         accessibilityTraits={
           Array [
             "button",
@@ -1264,8 +1233,6 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={2}
               style={
@@ -1291,9 +1258,6 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
               learn to write code
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {

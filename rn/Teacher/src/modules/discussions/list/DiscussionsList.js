@@ -27,7 +27,7 @@ import {
   StyleSheet,
   SectionList,
   ActionSheetIOS,
-  AlertIOS,
+  Alert,
 } from 'react-native'
 import i18n from 'format-message'
 
@@ -245,7 +245,7 @@ export class DiscussionsList extends Component<Props, any> {
   }
 
   _confirmDeleteDiscussion = (discussion: Discussion) => {
-    AlertIOS.alert(
+    Alert.alert(
       i18n('Are you sure you want to delete this discussion?'),
       null,
       [

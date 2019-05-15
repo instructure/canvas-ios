@@ -26,8 +26,6 @@ import Enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 Enzyme.configure({ adapter: new Adapter() })
 
-import * as React from 'react'
-
 import * as template from '../../src/__templates__'
 
 import i18n from 'format-message'
@@ -49,6 +47,31 @@ for (const key of Object.keys(formats.time)) {
 shouldTrackAsyncActions(false)
 setSession(template.session())
 enableAllFeaturesFlagsForTesting()
+
+// import mockAsyncStorage from '@react-native-community/async-storage/jest/async-storage-mock'
+jest.mock('@react-native-community/async-storage', () => ({
+  getItem: jest.fn(),
+  setItem: jest.fn(),
+  removeItem: jest.fn(),
+  getAllKeys: jest.fn(),
+  multiRemove: jest.fn(),
+}))
+
+jest.mock('react-native-document-picker', () => ({
+  DocumentPicker: {
+    show: jest.fn((options, callback) => callback({
+      uri: 'file://path/to/somewhere/on/disk.pdf',
+      fileName: 'disk.pdf',
+      fileSize: 100,
+    })),
+  },
+  DocumentPickerUtil: {
+    allFiles: jest.fn(() => 'content'),
+    images: jest.fn(() => 'image'),
+    video: jest.fn(() => 'video'),
+    audio: jest.fn(() => 'audio'),
+  },
+}))
 
 const { NativeModules } = require('react-native')
 
@@ -170,15 +193,6 @@ NativeModules.QLPreviewManager = {
 
 jest.mock('NativeEventEmitter')
 
-jest.mock('NetInfo', () => ({
-  fetch: jest.fn(() => Promise.resolve('wifi')),
-  addEventListener: jest.fn(),
-  isConnected: {
-    addEventListener: jest.fn(),
-    fetch: () => Promise.resolve(true),
-  },
-}))
-
 jest.mock('Animated', () => {
   const ActualAnimated = require.requireActual('Animated')
   return {
@@ -299,68 +313,86 @@ jest.mock('react-native-device-info', () => {
 jest.mock('../../src/canvas-api/httpClient')
 
 // makes tree.find('FlatList').dive() useful
-jest.mock('FlatList', () => function FlatList (props: Object) {
-  const empty = (
-    typeof props.ListEmptyComponent === 'function' && <props.ListEmptyComponent /> ||
-    props.ListEmptyComponent || null
-  )
-  return (
-    <list>
-      {props.data && props.data.length > 0
-        ? props.data.map((item, index) =>
-          <item key={item.key || props.keyExtractor(item, index)}>
-            {props.renderItem({ item, index })}
-          </item>
-        )
-        : empty
-      }
-    </list>
-  )
+jest.mock('FlatList', () => {
+  const React = require('React')
+  return class FlatList extends React.Component {
+    render () {
+      const props = this.props
+      const empty = (
+        typeof props.ListEmptyComponent === 'function' && <props.ListEmptyComponent /> ||
+        props.ListEmptyComponent || null
+      )
+      return (
+        <list>
+          {props.data && props.data.length > 0
+            ? props.data.map((item, index) =>
+              <item key={item.key || props.keyExtractor(item, index)}>
+                {props.renderItem({ item, index })}
+              </item>
+            )
+            : empty
+          }
+        </list>
+      )
+    }
+  }
 })
 
 // makes tree.find('KeyboardAwareFlatList').dive() useful
-jest.mock('react-native-keyboard-aware-scroll-view/lib/KeyboardAwareFlatList', () => function KeyboardAwareFlatList (props: Object) {
-  const empty = (
-    typeof props.ListEmptyComponent === 'function' && <props.ListEmptyComponent /> ||
-    props.ListEmptyComponent || null
-  )
-  return (
-    <list>
-      {props.data && props.data.length > 0
-        ? props.data.map((item, index) =>
-          <item key={item.key || props.keyExtractor(item, index)}>
-            {props.renderItem({ item, index })}
-          </item>
-        )
-        : empty
-      }
-    </list>
-  )
+jest.mock('react-native-keyboard-aware-scroll-view/lib/KeyboardAwareFlatList', () => {
+  const React = require('React')
+  return class KeyboardAwareFlatList extends React.Component {
+    render () {
+      const props = this.props
+      const empty = (
+        typeof props.ListEmptyComponent === 'function' && <props.ListEmptyComponent /> ||
+        props.ListEmptyComponent || null
+      )
+      return (
+        <list>
+          {props.data && props.data.length > 0
+            ? props.data.map((item, index) =>
+              <item key={item.key || props.keyExtractor(item, index)}>
+                {props.renderItem({ item, index })}
+              </item>
+            )
+            : empty
+          }
+        </list>
+      )
+    }
+  }
 })
 
 // makes tree.find('SectionList').dive() useful
-jest.mock('SectionList', () => function SectionList (props: Object) {
-  const empty = (
-    typeof props.ListEmptyComponent === 'function' && <props.ListEmptyComponent /> ||
-    props.ListEmptyComponent || null
-  )
-  return (
-    <list>
-      {props.sections && props.sections.length > 0
-        ? props.sections.map((section, index) =>
-          <section key={section.key || index}>
-            {props.renderSectionHeader && props.renderSectionHeader({ section })}
-            {section.data.map((item, index) =>
-              <item key={item.key || (section.keyExtractor || props.keyExtractor)(item, index)}>
-                {(section.renderItem || props.renderItem)({ item, index })}
-              </item>
-            )}
-          </section>
-        )
-        : empty
-      }
-    </list>
-  )
+jest.mock('SectionList', () => {
+  const React = require('React')
+  return class SectionList extends React.Component {
+    render () {
+      const props = this.props
+      const empty = (
+        typeof props.ListEmptyComponent === 'function' && <props.ListEmptyComponent /> ||
+        props.ListEmptyComponent || null
+      )
+      return (
+        <list>
+          {props.sections && props.sections.length > 0
+            ? props.sections.map((section, index) =>
+              <section key={section.key || index}>
+                {props.renderSectionHeader && props.renderSectionHeader({ section })}
+                {section.data.map((item, index) =>
+                  <item key={item.key || (section.keyExtractor || props.keyExtractor)(item, index)}>
+                    {(section.renderItem || props.renderItem)({ item, index })}
+                  </item>
+                )}
+              </section>
+            )
+            : empty
+          }
+        </list>
+      )
+    }
+  }
 })
 
 // makes tree.find('KeyboardAwareScrollView').getELement().ref possible

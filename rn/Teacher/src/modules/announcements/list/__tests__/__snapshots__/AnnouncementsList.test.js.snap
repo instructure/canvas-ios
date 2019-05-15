@@ -4,8 +4,23 @@ exports[`AnnouncementsList refreshes when there are no announcements 1`] = `
 <AnnouncementsList
   announcements={Array []}
   refresh={[Function]}
-  refreshAnnouncements={[Function]}
-  refreshCourse={[Function]}
+  refreshAnnouncements={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          undefined,
+          undefined,
+        ],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
+  refreshCourse={[MockFunction]}
   refreshing={false}
 />
 `;
@@ -15,8 +30,45 @@ exports[`AnnouncementsList refreshes when there are no announcements 2`] = `
   announcements={Array []}
   context="courses"
   refresh={[Function]}
-  refreshAnnouncements={[Function]}
-  refreshCourse={[Function]}
+  refreshAnnouncements={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          undefined,
+          undefined,
+        ],
+        Array [
+          "courses",
+          undefined,
+        ],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
+  refreshCourse={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          undefined,
+        ],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
   refreshing={false}
 />
 `;
@@ -106,7 +158,22 @@ exports[`AnnouncementsList refreshes when there are no permissions 1`] = `
   }
   permissions={Object {}}
   refresh={[Function]}
-  refreshAnnouncements={[Function]}
+  refreshAnnouncements={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          undefined,
+          undefined,
+        ],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
   refreshing={false}
 />
 `;
@@ -116,7 +183,22 @@ exports[`AnnouncementsList refreshes with new props 1`] = `
   announcements={Array []}
   permissions={Object {}}
   refresh={[Function]}
-  refreshAnnouncements={[Function]}
+  refreshAnnouncements={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          undefined,
+          undefined,
+        ],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
   refreshing={false}
 />
 `;
@@ -151,7 +233,6 @@ exports[`AnnouncementsList renders 1`] = `
     <list>
       <item>
         <TouchableHighlight
-          accessibilityLabel={undefined}
           accessibilityTraits={
             Array [
               "button",
@@ -204,8 +285,6 @@ exports[`AnnouncementsList renders 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
                 ellipsizeMode="tail"
                 numberOfLines={0}
                 style={
@@ -240,9 +319,6 @@ exports[`AnnouncementsList renders 1`] = `
                 testID="announcements.list.announcement.row-0.subtitle.custom-container"
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -314,7 +390,6 @@ exports[`AnnouncementsList renders 1`] = `
       </item>
       <item>
         <TouchableHighlight
-          accessibilityLabel={undefined}
           accessibilityTraits={
             Array [
               "button",
@@ -367,8 +442,6 @@ exports[`AnnouncementsList renders 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
                 ellipsizeMode="tail"
                 numberOfLines={0}
                 style={
@@ -403,9 +476,6 @@ exports[`AnnouncementsList renders 1`] = `
                 testID="announcements.list.announcement.row-1.subtitle.custom-container"
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -519,9 +589,6 @@ exports[`AnnouncementsList renders empty list 1`] = `
         }
       >
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -598,7 +665,6 @@ exports[`AnnouncementsList renders while refreshing 1`] = `
     <list>
       <item>
         <TouchableHighlight
-          accessibilityLabel={undefined}
           accessibilityTraits={
             Array [
               "button",
@@ -651,8 +717,6 @@ exports[`AnnouncementsList renders while refreshing 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
                 ellipsizeMode="tail"
                 numberOfLines={0}
                 style={
@@ -687,9 +751,6 @@ exports[`AnnouncementsList renders while refreshing 1`] = `
                 testID="announcements.list.announcement.row-0.subtitle.custom-container"
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -761,7 +822,6 @@ exports[`AnnouncementsList renders while refreshing 1`] = `
       </item>
       <item>
         <TouchableHighlight
-          accessibilityLabel={undefined}
           accessibilityTraits={
             Array [
               "button",
@@ -814,8 +874,6 @@ exports[`AnnouncementsList renders while refreshing 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
                 ellipsizeMode="tail"
                 numberOfLines={0}
                 style={
@@ -850,9 +908,6 @@ exports[`AnnouncementsList renders while refreshing 1`] = `
                 testID="announcements.list.announcement.row-1.subtitle.custom-container"
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -946,7 +1001,6 @@ exports[`AnnouncementsList renders with no create_announcement permission 1`] = 
     <list>
       <item>
         <TouchableHighlight
-          accessibilityLabel={undefined}
           accessibilityTraits={
             Array [
               "button",
@@ -999,8 +1053,6 @@ exports[`AnnouncementsList renders with no create_announcement permission 1`] = 
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
                 ellipsizeMode="tail"
                 numberOfLines={0}
                 style={
@@ -1035,9 +1087,6 @@ exports[`AnnouncementsList renders with no create_announcement permission 1`] = 
                 testID="announcements.list.announcement.row-0.subtitle.custom-container"
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -1109,7 +1158,6 @@ exports[`AnnouncementsList renders with no create_announcement permission 1`] = 
       </item>
       <item>
         <TouchableHighlight
-          accessibilityLabel={undefined}
           accessibilityTraits={
             Array [
               "button",
@@ -1162,8 +1210,6 @@ exports[`AnnouncementsList renders with no create_announcement permission 1`] = 
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
                 ellipsizeMode="tail"
                 numberOfLines={0}
                 style={
@@ -1198,9 +1244,6 @@ exports[`AnnouncementsList renders with no create_announcement permission 1`] = 
                 testID="announcements.list.announcement.row-1.subtitle.custom-container"
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {

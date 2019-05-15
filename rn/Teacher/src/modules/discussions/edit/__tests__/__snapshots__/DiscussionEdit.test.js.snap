@@ -100,13 +100,13 @@ exports[`DiscussionEdit renders 1`] = `
           keyboardAware={false}
           navigator={
             Object {
-              "dismiss": [Function],
-              "dismissAllModals": [Function],
+              "dismiss": [MockFunction],
+              "dismissAllModals": [MockFunction],
               "isModal": false,
-              "pop": [Function],
-              "replace": [Function],
-              "show": [Function],
-              "traitCollection": [Function],
+              "pop": [MockFunction],
+              "replace": [MockFunction],
+              "show": [MockFunction],
+              "traitCollection": [MockFunction],
             }
           }
           onFocus={[Function]}
@@ -277,13 +277,13 @@ exports[`DiscussionEdit renders new form 1`] = `
           keyboardAware={false}
           navigator={
             Object {
-              "dismiss": [Function],
-              "dismissAllModals": [Function],
+              "dismiss": [MockFunction],
+              "dismissAllModals": [MockFunction],
               "isModal": false,
-              "pop": [Function],
-              "replace": [Function],
-              "show": [Function],
-              "traitCollection": [Function],
+              "pop": [MockFunction],
+              "replace": [MockFunction],
+              "show": [MockFunction],
+              "traitCollection": [MockFunction],
             }
           }
           onFocus={[Function]}
@@ -447,13 +447,13 @@ exports[`DiscussionEdit updates from props 1`] = `
           keyboardAware={false}
           navigator={
             Object {
-              "dismiss": [Function],
-              "dismissAllModals": [Function],
+              "dismiss": [MockFunction],
+              "dismissAllModals": [MockFunction],
               "isModal": false,
-              "pop": [Function],
-              "replace": [Function],
-              "show": [Function],
-              "traitCollection": [Function],
+              "pop": [MockFunction],
+              "replace": [MockFunction],
+              "show": [MockFunction],
+              "traitCollection": [MockFunction],
             }
           }
           onFocus={[Function]}
@@ -624,13 +624,28 @@ exports[`DiscussionEdit updates with new props 1`] = `
           keyboardAware={false}
           navigator={
             Object {
-              "dismiss": [Function],
-              "dismissAllModals": [Function],
+              "dismiss": [MockFunction],
+              "dismissAllModals": [MockFunction] {
+                "calls": Array [
+                  Array [],
+                ],
+                "results": Array [
+                  Object {
+                    "type": "return",
+                    "value": Promise {
+                      "_40": 0,
+                      "_55": undefined,
+                      "_65": 1,
+                      "_72": null,
+                    },
+                  },
+                ],
+              },
               "isModal": false,
-              "pop": [Function],
-              "replace": [Function],
-              "show": [Function],
-              "traitCollection": [Function],
+              "pop": [MockFunction],
+              "replace": [MockFunction],
+              "show": [MockFunction],
+              "traitCollection": [MockFunction],
             }
           }
           onFocus={[Function]}

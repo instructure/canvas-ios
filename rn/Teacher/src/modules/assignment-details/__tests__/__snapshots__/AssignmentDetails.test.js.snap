@@ -2,6 +2,7 @@
 
 exports[`renders 1`] = `
 <RCTSafeAreaView
+  emulateUnlessSupported={true}
   style={
     Object {
       "flex": 1,
@@ -9,10 +10,10 @@ exports[`renders 1`] = `
   }
 >
   <RCTScrollView
-    onRefresh={[Function]}
+    onRefresh={[MockFunction]}
     refreshControl={
       <RefreshControlMock
-        onRefresh={[Function]}
+        onRefresh={[MockFunction]}
         refreshing={false}
       />
     }
@@ -20,10 +21,7 @@ exports[`renders 1`] = `
   >
     <RCTRefreshControl />
     <View>
-      <TouchableHighlight
-        onPress={undefined}
-        testID={undefined}
-      >
+      <TouchableHighlight>
         <View
           style={
             Array [
@@ -63,7 +61,6 @@ exports[`renders 1`] = `
               }
             >
               <View
-                accessibilityLabel={undefined}
                 accessible={false}
                 style={
                   Object {
@@ -75,9 +72,6 @@ exports[`renders 1`] = `
               />
               <Text
                 accessibilityTraits="header"
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -106,9 +100,6 @@ exports[`renders 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -164,9 +155,6 @@ exports[`renders 1`] = `
                     testID="assignment-details.published-icon.published-status-img"
                   />
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -272,9 +260,6 @@ exports[`renders 1`] = `
                   testID="assignment-details.assignment-section.due-title-img"
                 />
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -308,13 +293,9 @@ exports[`renders 1`] = `
                 }
               >
                 <View
-                  accessibilityLabel={undefined}
                   accessible={true}
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -335,9 +316,6 @@ exports[`renders 1`] = `
                     testID="assignment-details.assignment-dates.due-date-lbl"
                   >
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -359,9 +337,6 @@ exports[`renders 1`] = `
                       Due:
                     </Text>
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -383,9 +358,6 @@ exports[`renders 1`] = `
                   </Text>
                 </View>
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -406,9 +378,6 @@ exports[`renders 1`] = `
                   testID="assignment-details.assignment-dates.due-for-lbl"
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -430,9 +399,6 @@ exports[`renders 1`] = `
                     For:
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -454,13 +420,9 @@ exports[`renders 1`] = `
                 </Text>
                 <View>
                   <View
-                    accessibilityLabel={undefined}
                     accessible={true}
                   >
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -481,9 +443,6 @@ exports[`renders 1`] = `
                       testID="assignment-details.assignment-dates.available-from-lbl"
                     >
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -505,9 +464,6 @@ exports[`renders 1`] = `
                         Available From:
                       </Text>
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -529,13 +485,9 @@ exports[`renders 1`] = `
                     </Text>
                   </View>
                   <View
-                    accessibilityLabel={undefined}
                     accessible={true}
                   >
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -556,9 +508,6 @@ exports[`renders 1`] = `
                       testID="assignment-details.assignment-dates.available-to-lbl"
                     >
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -580,9 +529,6 @@ exports[`renders 1`] = `
                         Available Until:
                       </Text>
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -689,7 +635,6 @@ exports[`renders 1`] = `
               }
             >
               <View
-                accessibilityLabel={undefined}
                 accessible={false}
                 style={
                   Object {
@@ -700,9 +645,6 @@ exports[`renders 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -736,9 +678,6 @@ exports[`renders 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -761,9 +700,6 @@ exports[`renders 1`] = `
                   Online Text Entry
                 </Text>
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -786,9 +722,6 @@ exports[`renders 1`] = `
                   Online URL
                 </Text>
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -811,9 +744,6 @@ exports[`renders 1`] = `
                   Media Recording
                 </Text>
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -855,9 +785,6 @@ exports[`renders 1`] = `
         }
       >
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -896,13 +823,13 @@ exports[`renders 1`] = `
             html="a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion."
             navigator={
               Object {
-                "dismiss": [Function],
-                "dismissAllModals": [Function],
+                "dismiss": [MockFunction],
+                "dismissAllModals": [MockFunction],
                 "isModal": false,
-                "pop": [Function],
-                "replace": [Function],
-                "show": [Function],
-                "traitCollection": [Function],
+                "pop": [MockFunction],
+                "replace": [MockFunction],
+                "show": [MockFunction],
+                "traitCollection": [MockFunction],
               }
             }
             onError={[Function]}
@@ -933,6 +860,7 @@ exports[`renders 1`] = `
 
 exports[`renders as a designer 1`] = `
 <RCTSafeAreaView
+  emulateUnlessSupported={true}
   style={
     Object {
       "flex": 1,
@@ -940,10 +868,10 @@ exports[`renders as a designer 1`] = `
   }
 >
   <RCTScrollView
-    onRefresh={[Function]}
+    onRefresh={[MockFunction]}
     refreshControl={
       <RefreshControlMock
-        onRefresh={[Function]}
+        onRefresh={[MockFunction]}
         refreshing={false}
       />
     }
@@ -951,10 +879,7 @@ exports[`renders as a designer 1`] = `
   >
     <RCTRefreshControl />
     <View>
-      <TouchableHighlight
-        onPress={undefined}
-        testID={undefined}
-      >
+      <TouchableHighlight>
         <View
           style={
             Array [
@@ -994,7 +919,6 @@ exports[`renders as a designer 1`] = `
               }
             >
               <View
-                accessibilityLabel={undefined}
                 accessible={false}
                 style={
                   Object {
@@ -1006,9 +930,6 @@ exports[`renders as a designer 1`] = `
               />
               <Text
                 accessibilityTraits="header"
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -1037,9 +958,6 @@ exports[`renders as a designer 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -1095,9 +1013,6 @@ exports[`renders as a designer 1`] = `
                     testID="assignment-details.published-icon.published-status-img"
                   />
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -1203,9 +1118,6 @@ exports[`renders as a designer 1`] = `
                   testID="assignment-details.assignment-section.due-title-img"
                 />
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -1239,13 +1151,9 @@ exports[`renders as a designer 1`] = `
                 }
               >
                 <View
-                  accessibilityLabel={undefined}
                   accessible={true}
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -1266,9 +1174,6 @@ exports[`renders as a designer 1`] = `
                     testID="assignment-details.assignment-dates.due-date-lbl"
                   >
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -1290,9 +1195,6 @@ exports[`renders as a designer 1`] = `
                       Due:
                     </Text>
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -1314,9 +1216,6 @@ exports[`renders as a designer 1`] = `
                   </Text>
                 </View>
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -1337,9 +1236,6 @@ exports[`renders as a designer 1`] = `
                   testID="assignment-details.assignment-dates.due-for-lbl"
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -1361,9 +1257,6 @@ exports[`renders as a designer 1`] = `
                     For:
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -1385,13 +1278,9 @@ exports[`renders as a designer 1`] = `
                 </Text>
                 <View>
                   <View
-                    accessibilityLabel={undefined}
                     accessible={true}
                   >
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -1412,9 +1301,6 @@ exports[`renders as a designer 1`] = `
                       testID="assignment-details.assignment-dates.available-from-lbl"
                     >
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -1436,9 +1322,6 @@ exports[`renders as a designer 1`] = `
                         Available From:
                       </Text>
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -1460,13 +1343,9 @@ exports[`renders as a designer 1`] = `
                     </Text>
                   </View>
                   <View
-                    accessibilityLabel={undefined}
                     accessible={true}
                   >
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -1487,9 +1366,6 @@ exports[`renders as a designer 1`] = `
                       testID="assignment-details.assignment-dates.available-to-lbl"
                     >
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -1511,9 +1387,6 @@ exports[`renders as a designer 1`] = `
                         Available Until:
                       </Text>
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -1620,7 +1493,6 @@ exports[`renders as a designer 1`] = `
               }
             >
               <View
-                accessibilityLabel={undefined}
                 accessible={false}
                 style={
                   Object {
@@ -1631,9 +1503,6 @@ exports[`renders as a designer 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -1667,9 +1536,6 @@ exports[`renders as a designer 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -1711,9 +1577,6 @@ exports[`renders as a designer 1`] = `
         }
       >
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -1752,13 +1615,13 @@ exports[`renders as a designer 1`] = `
             html="a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion."
             navigator={
               Object {
-                "dismiss": [Function],
-                "dismissAllModals": [Function],
+                "dismiss": [MockFunction],
+                "dismissAllModals": [MockFunction],
                 "isModal": false,
-                "pop": [Function],
-                "replace": [Function],
-                "show": [Function],
-                "traitCollection": [Function],
+                "pop": [MockFunction],
+                "replace": [MockFunction],
+                "show": [MockFunction],
+                "traitCollection": [MockFunction],
               }
             }
             onError={[Function]}
@@ -1789,6 +1652,7 @@ exports[`renders as a designer 1`] = `
 
 exports[`renders loading 1`] = `
 <RCTSafeAreaView
+  emulateUnlessSupported={true}
   style={
     Object {
       "flex": 1,
@@ -1796,10 +1660,10 @@ exports[`renders loading 1`] = `
   }
 >
   <RCTScrollView
-    onRefresh={[Function]}
+    onRefresh={[MockFunction]}
     refreshControl={
       <RefreshControlMock
-        onRefresh={[Function]}
+        onRefresh={[MockFunction]}
         refreshing={true}
       />
     }
@@ -1807,10 +1671,7 @@ exports[`renders loading 1`] = `
   >
     <RCTRefreshControl />
     <View>
-      <TouchableHighlight
-        onPress={undefined}
-        testID={undefined}
-      >
+      <TouchableHighlight>
         <View
           style={
             Array [
@@ -1850,7 +1711,6 @@ exports[`renders loading 1`] = `
               }
             >
               <View
-                accessibilityLabel={undefined}
                 accessible={false}
                 style={
                   Object {
@@ -1862,9 +1722,6 @@ exports[`renders loading 1`] = `
               />
               <Text
                 accessibilityTraits="header"
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -1893,9 +1750,6 @@ exports[`renders loading 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -1951,9 +1805,6 @@ exports[`renders loading 1`] = `
                     testID="assignment-details.published-icon.published-status-img"
                   />
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -2059,9 +1910,6 @@ exports[`renders loading 1`] = `
                   testID="assignment-details.assignment-section.due-title-img"
                 />
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -2095,13 +1943,9 @@ exports[`renders loading 1`] = `
                 }
               >
                 <View
-                  accessibilityLabel={undefined}
                   accessible={true}
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -2122,9 +1966,6 @@ exports[`renders loading 1`] = `
                     testID="assignment-details.assignment-dates.due-date-lbl"
                   >
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -2146,9 +1987,6 @@ exports[`renders loading 1`] = `
                       Due:
                     </Text>
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -2170,9 +2008,6 @@ exports[`renders loading 1`] = `
                   </Text>
                 </View>
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -2193,9 +2028,6 @@ exports[`renders loading 1`] = `
                   testID="assignment-details.assignment-dates.due-for-lbl"
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -2217,9 +2049,6 @@ exports[`renders loading 1`] = `
                     For:
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -2241,13 +2070,9 @@ exports[`renders loading 1`] = `
                 </Text>
                 <View>
                   <View
-                    accessibilityLabel={undefined}
                     accessible={true}
                   >
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -2268,9 +2093,6 @@ exports[`renders loading 1`] = `
                       testID="assignment-details.assignment-dates.available-from-lbl"
                     >
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -2292,9 +2114,6 @@ exports[`renders loading 1`] = `
                         Available From:
                       </Text>
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -2316,13 +2135,9 @@ exports[`renders loading 1`] = `
                     </Text>
                   </View>
                   <View
-                    accessibilityLabel={undefined}
                     accessible={true}
                   >
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -2343,9 +2158,6 @@ exports[`renders loading 1`] = `
                       testID="assignment-details.assignment-dates.available-to-lbl"
                     >
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -2367,9 +2179,6 @@ exports[`renders loading 1`] = `
                         Available Until:
                       </Text>
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -2476,7 +2285,6 @@ exports[`renders loading 1`] = `
               }
             >
               <View
-                accessibilityLabel={undefined}
                 accessible={false}
                 style={
                   Object {
@@ -2487,9 +2295,6 @@ exports[`renders loading 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -2523,9 +2328,6 @@ exports[`renders loading 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -2565,9 +2367,6 @@ exports[`renders loading 1`] = `
         }
       >
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -2606,13 +2405,13 @@ exports[`renders loading 1`] = `
             html="a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion."
             navigator={
               Object {
-                "dismiss": [Function],
-                "dismissAllModals": [Function],
+                "dismiss": [MockFunction],
+                "dismissAllModals": [MockFunction],
                 "isModal": false,
-                "pop": [Function],
-                "replace": [Function],
-                "show": [Function],
-                "traitCollection": [Function],
+                "pop": [MockFunction],
+                "replace": [MockFunction],
+                "show": [MockFunction],
+                "traitCollection": [MockFunction],
               }
             }
             onError={[Function]}
@@ -2645,6 +2444,7 @@ exports[`renders with no assignment 1`] = `null`;
 
 exports[`renders with no submission types 1`] = `
 <RCTSafeAreaView
+  emulateUnlessSupported={true}
   style={
     Object {
       "flex": 1,
@@ -2652,10 +2452,10 @@ exports[`renders with no submission types 1`] = `
   }
 >
   <RCTScrollView
-    onRefresh={[Function]}
+    onRefresh={[MockFunction]}
     refreshControl={
       <RefreshControlMock
-        onRefresh={[Function]}
+        onRefresh={[MockFunction]}
         refreshing={false}
       />
     }
@@ -2663,10 +2463,7 @@ exports[`renders with no submission types 1`] = `
   >
     <RCTRefreshControl />
     <View>
-      <TouchableHighlight
-        onPress={undefined}
-        testID={undefined}
-      >
+      <TouchableHighlight>
         <View
           style={
             Array [
@@ -2706,7 +2503,6 @@ exports[`renders with no submission types 1`] = `
               }
             >
               <View
-                accessibilityLabel={undefined}
                 accessible={false}
                 style={
                   Object {
@@ -2718,9 +2514,6 @@ exports[`renders with no submission types 1`] = `
               />
               <Text
                 accessibilityTraits="header"
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -2749,9 +2542,6 @@ exports[`renders with no submission types 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -2807,9 +2597,6 @@ exports[`renders with no submission types 1`] = `
                     testID="assignment-details.published-icon.published-status-img"
                   />
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -2915,9 +2702,6 @@ exports[`renders with no submission types 1`] = `
                   testID="assignment-details.assignment-section.due-title-img"
                 />
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -2951,13 +2735,9 @@ exports[`renders with no submission types 1`] = `
                 }
               >
                 <View
-                  accessibilityLabel={undefined}
                   accessible={true}
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -2978,9 +2758,6 @@ exports[`renders with no submission types 1`] = `
                     testID="assignment-details.assignment-dates.due-date-lbl"
                   >
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -3002,9 +2779,6 @@ exports[`renders with no submission types 1`] = `
                       Due:
                     </Text>
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -3026,9 +2800,6 @@ exports[`renders with no submission types 1`] = `
                   </Text>
                 </View>
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -3049,9 +2820,6 @@ exports[`renders with no submission types 1`] = `
                   testID="assignment-details.assignment-dates.due-for-lbl"
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -3073,9 +2841,6 @@ exports[`renders with no submission types 1`] = `
                     For:
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -3097,13 +2862,9 @@ exports[`renders with no submission types 1`] = `
                 </Text>
                 <View>
                   <View
-                    accessibilityLabel={undefined}
                     accessible={true}
                   >
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -3124,9 +2885,6 @@ exports[`renders with no submission types 1`] = `
                       testID="assignment-details.assignment-dates.available-from-lbl"
                     >
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -3148,9 +2906,6 @@ exports[`renders with no submission types 1`] = `
                         Available From:
                       </Text>
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -3172,13 +2927,9 @@ exports[`renders with no submission types 1`] = `
                     </Text>
                   </View>
                   <View
-                    accessibilityLabel={undefined}
                     accessible={true}
                   >
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -3199,9 +2950,6 @@ exports[`renders with no submission types 1`] = `
                       testID="assignment-details.assignment-dates.available-to-lbl"
                     >
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -3223,9 +2971,6 @@ exports[`renders with no submission types 1`] = `
                         Available Until:
                       </Text>
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -3332,7 +3077,6 @@ exports[`renders with no submission types 1`] = `
               }
             >
               <View
-                accessibilityLabel={undefined}
                 accessible={false}
                 style={
                   Object {
@@ -3343,9 +3087,6 @@ exports[`renders with no submission types 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -3379,9 +3120,6 @@ exports[`renders with no submission types 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -3423,9 +3161,6 @@ exports[`renders with no submission types 1`] = `
         }
       >
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -3464,13 +3199,13 @@ exports[`renders with no submission types 1`] = `
             html="a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion."
             navigator={
               Object {
-                "dismiss": [Function],
-                "dismissAllModals": [Function],
+                "dismiss": [MockFunction],
+                "dismissAllModals": [MockFunction],
                 "isModal": false,
-                "pop": [Function],
-                "replace": [Function],
-                "show": [Function],
-                "traitCollection": [Function],
+                "pop": [MockFunction],
+                "replace": [MockFunction],
+                "show": [MockFunction],
+                "traitCollection": [MockFunction],
               }
             }
             onError={[Function]}
@@ -3501,6 +3236,7 @@ exports[`renders with no submission types 1`] = `
 
 exports[`renders with not_graded submission type 1`] = `
 <RCTSafeAreaView
+  emulateUnlessSupported={true}
   style={
     Object {
       "flex": 1,
@@ -3508,10 +3244,10 @@ exports[`renders with not_graded submission type 1`] = `
   }
 >
   <RCTScrollView
-    onRefresh={[Function]}
+    onRefresh={[MockFunction]}
     refreshControl={
       <RefreshControlMock
-        onRefresh={[Function]}
+        onRefresh={[MockFunction]}
         refreshing={false}
       />
     }
@@ -3519,10 +3255,7 @@ exports[`renders with not_graded submission type 1`] = `
   >
     <RCTRefreshControl />
     <View>
-      <TouchableHighlight
-        onPress={undefined}
-        testID={undefined}
-      >
+      <TouchableHighlight>
         <View
           style={
             Array [
@@ -3562,7 +3295,6 @@ exports[`renders with not_graded submission type 1`] = `
               }
             >
               <View
-                accessibilityLabel={undefined}
                 accessible={false}
                 style={
                   Object {
@@ -3574,9 +3306,6 @@ exports[`renders with not_graded submission type 1`] = `
               />
               <Text
                 accessibilityTraits="header"
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -3605,9 +3334,6 @@ exports[`renders with not_graded submission type 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -3663,9 +3389,6 @@ exports[`renders with not_graded submission type 1`] = `
                     testID="assignment-details.published-icon.published-status-img"
                   />
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -3771,9 +3494,6 @@ exports[`renders with not_graded submission type 1`] = `
                   testID="assignment-details.assignment-section.due-title-img"
                 />
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -3807,13 +3527,9 @@ exports[`renders with not_graded submission type 1`] = `
                 }
               >
                 <View
-                  accessibilityLabel={undefined}
                   accessible={true}
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -3834,9 +3550,6 @@ exports[`renders with not_graded submission type 1`] = `
                     testID="assignment-details.assignment-dates.due-date-lbl"
                   >
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -3858,9 +3571,6 @@ exports[`renders with not_graded submission type 1`] = `
                       Due:
                     </Text>
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -3882,9 +3592,6 @@ exports[`renders with not_graded submission type 1`] = `
                   </Text>
                 </View>
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -3905,9 +3612,6 @@ exports[`renders with not_graded submission type 1`] = `
                   testID="assignment-details.assignment-dates.due-for-lbl"
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -3929,9 +3633,6 @@ exports[`renders with not_graded submission type 1`] = `
                     For:
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -3953,13 +3654,9 @@ exports[`renders with not_graded submission type 1`] = `
                 </Text>
                 <View>
                   <View
-                    accessibilityLabel={undefined}
                     accessible={true}
                   >
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -3980,9 +3677,6 @@ exports[`renders with not_graded submission type 1`] = `
                       testID="assignment-details.assignment-dates.available-from-lbl"
                     >
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -4004,9 +3698,6 @@ exports[`renders with not_graded submission type 1`] = `
                         Available From:
                       </Text>
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -4028,13 +3719,9 @@ exports[`renders with not_graded submission type 1`] = `
                     </Text>
                   </View>
                   <View
-                    accessibilityLabel={undefined}
                     accessible={true}
                   >
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -4055,9 +3742,6 @@ exports[`renders with not_graded submission type 1`] = `
                       testID="assignment-details.assignment-dates.available-to-lbl"
                     >
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -4079,9 +3763,6 @@ exports[`renders with not_graded submission type 1`] = `
                         Available Until:
                       </Text>
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -4188,7 +3869,6 @@ exports[`renders with not_graded submission type 1`] = `
               }
             >
               <View
-                accessibilityLabel={undefined}
                 accessible={false}
                 style={
                   Object {
@@ -4199,9 +3879,6 @@ exports[`renders with not_graded submission type 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -4235,9 +3912,6 @@ exports[`renders with not_graded submission type 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -4277,9 +3951,6 @@ exports[`renders with not_graded submission type 1`] = `
         }
       >
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -4318,13 +3989,13 @@ exports[`renders with not_graded submission type 1`] = `
             html="a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion."
             navigator={
               Object {
-                "dismiss": [Function],
-                "dismissAllModals": [Function],
+                "dismiss": [MockFunction],
+                "dismissAllModals": [MockFunction],
                 "isModal": false,
-                "pop": [Function],
-                "replace": [Function],
-                "show": [Function],
-                "traitCollection": [Function],
+                "pop": [MockFunction],
+                "replace": [MockFunction],
+                "show": [MockFunction],
+                "traitCollection": [MockFunction],
               }
             }
             onError={[Function]}
@@ -4355,6 +4026,7 @@ exports[`renders with not_graded submission type 1`] = `
 
 exports[`renders without description 1`] = `
 <RCTSafeAreaView
+  emulateUnlessSupported={true}
   style={
     Object {
       "flex": 1,
@@ -4362,10 +4034,10 @@ exports[`renders without description 1`] = `
   }
 >
   <RCTScrollView
-    onRefresh={[Function]}
+    onRefresh={[MockFunction]}
     refreshControl={
       <RefreshControlMock
-        onRefresh={[Function]}
+        onRefresh={[MockFunction]}
         refreshing={true}
       />
     }
@@ -4373,10 +4045,7 @@ exports[`renders without description 1`] = `
   >
     <RCTRefreshControl />
     <View>
-      <TouchableHighlight
-        onPress={undefined}
-        testID={undefined}
-      >
+      <TouchableHighlight>
         <View
           style={
             Array [
@@ -4416,7 +4085,6 @@ exports[`renders without description 1`] = `
               }
             >
               <View
-                accessibilityLabel={undefined}
                 accessible={false}
                 style={
                   Object {
@@ -4428,9 +4096,6 @@ exports[`renders without description 1`] = `
               />
               <Text
                 accessibilityTraits="header"
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -4459,9 +4124,6 @@ exports[`renders without description 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -4517,9 +4179,6 @@ exports[`renders without description 1`] = `
                     testID="assignment-details.published-icon.published-status-img"
                   />
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -4625,9 +4284,6 @@ exports[`renders without description 1`] = `
                   testID="assignment-details.assignment-section.due-title-img"
                 />
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -4661,13 +4317,9 @@ exports[`renders without description 1`] = `
                 }
               >
                 <View
-                  accessibilityLabel={undefined}
                   accessible={true}
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -4688,9 +4340,6 @@ exports[`renders without description 1`] = `
                     testID="assignment-details.assignment-dates.due-date-lbl"
                   >
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -4712,9 +4361,6 @@ exports[`renders without description 1`] = `
                       Due:
                     </Text>
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -4736,9 +4382,6 @@ exports[`renders without description 1`] = `
                   </Text>
                 </View>
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -4759,9 +4402,6 @@ exports[`renders without description 1`] = `
                   testID="assignment-details.assignment-dates.due-for-lbl"
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -4783,9 +4423,6 @@ exports[`renders without description 1`] = `
                     For:
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -4807,13 +4444,9 @@ exports[`renders without description 1`] = `
                 </Text>
                 <View>
                   <View
-                    accessibilityLabel={undefined}
                     accessible={true}
                   >
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -4834,9 +4467,6 @@ exports[`renders without description 1`] = `
                       testID="assignment-details.assignment-dates.available-from-lbl"
                     >
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -4858,9 +4488,6 @@ exports[`renders without description 1`] = `
                         Available From:
                       </Text>
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -4882,13 +4509,9 @@ exports[`renders without description 1`] = `
                     </Text>
                   </View>
                   <View
-                    accessibilityLabel={undefined}
                     accessible={true}
                   >
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -4909,9 +4532,6 @@ exports[`renders without description 1`] = `
                       testID="assignment-details.assignment-dates.available-to-lbl"
                     >
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -4933,9 +4553,6 @@ exports[`renders without description 1`] = `
                         Available Until:
                       </Text>
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -5042,7 +4659,6 @@ exports[`renders without description 1`] = `
               }
             >
               <View
-                accessibilityLabel={undefined}
                 accessible={false}
                 style={
                   Object {
@@ -5053,9 +4669,6 @@ exports[`renders without description 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -5089,9 +4702,6 @@ exports[`renders without description 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -5114,9 +4724,6 @@ exports[`renders without description 1`] = `
                   Online Text Entry
                 </Text>
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -5139,9 +4746,6 @@ exports[`renders without description 1`] = `
                   Online URL
                 </Text>
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -5164,9 +4768,6 @@ exports[`renders without description 1`] = `
                   Media Recording
                 </Text>
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -5208,9 +4809,6 @@ exports[`renders without description 1`] = `
         }
       >
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -5251,9 +4849,6 @@ exports[`renders without description 1`] = `
           testID="assignment-details.description-default-view.view"
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Object {
                 "alignItems": "flex-start",

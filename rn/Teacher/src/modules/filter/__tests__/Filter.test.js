@@ -19,7 +19,7 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 import React from 'react'
-import { AlertIOS } from 'react-native'
+import { Alert } from 'react-native'
 import Filter from '../Filter'
 import renderer from 'react-test-renderer'
 import explore from '../../../../test/helpers/explore'
@@ -28,7 +28,7 @@ import defaultFilterOptions from '../filter-options'
 jest
   .mock('TouchableHighlight', () => 'TouchableHighlight')
   .mock('../../../routing/Screen')
-  .mock('AlertIOS', () => ({
+  .mock('Alert', () => ({
     prompt: jest.fn(),
   }))
 
@@ -105,14 +105,14 @@ describe('Filter', () => {
     let row = explore(view.toJSON()).selectByID('filter.option-lessthan')
     row.props.onPress()
 
-    expect(AlertIOS.prompt).toHaveBeenCalled()
-    expect(AlertIOS.prompt.mock.calls[0][0]).toEqual('Scored less than…')
-    expect(AlertIOS.prompt.mock.calls[0][1]).toEqual(defaultProps.filterPromptMessage)
-    expect(AlertIOS.prompt.mock.calls[0][3]).toEqual('plain-text')
-    expect(AlertIOS.prompt.mock.calls[0][4]).toEqual('')
-    expect(AlertIOS.prompt.mock.calls[0][5]).toEqual('numeric')
+    expect(Alert.prompt).toHaveBeenCalled()
+    expect(Alert.prompt.mock.calls[0][0]).toEqual('Scored less than…')
+    expect(Alert.prompt.mock.calls[0][1]).toEqual(defaultProps.filterPromptMessage)
+    expect(Alert.prompt.mock.calls[0][3]).toEqual('plain-text')
+    expect(Alert.prompt.mock.calls[0][4]).toEqual('')
+    expect(Alert.prompt.mock.calls[0][5]).toEqual('numeric')
 
-    AlertIOS.prompt.mock.calls[0][2]('10')
+    Alert.prompt.mock.calls[0][2]('10')
 
     let instance = view.getInstance()
     let option = instance.state.filterOptions.find(option => option.type === 'lessthan')

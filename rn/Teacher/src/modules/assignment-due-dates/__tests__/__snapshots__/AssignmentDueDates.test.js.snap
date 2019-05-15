@@ -2,7 +2,6 @@
 
 exports[`renders 1`] = `
 <Screen
-  navBarColor={undefined}
   navBarStyle="dark"
   rightBarButtons={
     Array [
@@ -38,7 +37,6 @@ exports[`renders 1`] = `
 
 exports[`renders with overrides 1`] = `
 <Screen
-  navBarColor={undefined}
   navBarStyle="dark"
   rightBarButtons={
     Array [
@@ -76,9 +74,6 @@ exports[`renders with overrides 1`] = `
         >
           <Text
             accessibilityTraits="header"
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -99,9 +94,6 @@ exports[`renders with overrides 1`] = `
             accessible={true}
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -125,9 +117,6 @@ exports[`renders with overrides 1`] = `
               For
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -162,9 +151,6 @@ exports[`renders with overrides 1`] = `
             accessible={true}
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -188,9 +174,6 @@ exports[`renders with overrides 1`] = `
               Available From
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -225,9 +208,6 @@ exports[`renders with overrides 1`] = `
             accessible={true}
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -251,9 +231,6 @@ exports[`renders with overrides 1`] = `
               Available Until
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -292,7 +269,6 @@ exports[`renders with overrides 1`] = `
 
 exports[`renders with overrides and specific student ids and sections 1`] = `
 <Screen
-  navBarColor={undefined}
   navBarStyle="dark"
   rightBarButtons={
     Array [
@@ -330,9 +306,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
         >
           <Text
             accessibilityTraits="header"
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -353,9 +326,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             accessible={true}
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -379,9 +349,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
               For
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -416,9 +383,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             accessible={true}
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -442,9 +406,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
               Available From
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -479,9 +440,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             accessible={true}
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -505,9 +463,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
               Available Until
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -547,9 +502,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
         >
           <Text
             accessibilityTraits="header"
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -570,9 +522,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             accessible={true}
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -596,9 +545,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
               For
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -633,9 +579,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             accessible={true}
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -659,9 +602,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
               Available From
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -696,9 +636,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             accessible={true}
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -722,9 +659,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
               Available Until
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -764,9 +698,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
         >
           <Text
             accessibilityTraits="header"
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -787,9 +718,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             accessible={true}
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -813,9 +741,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
               For
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -850,9 +775,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             accessible={true}
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -876,9 +798,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
               Available From
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -913,9 +832,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             accessible={true}
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -939,9 +855,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
               Available Until
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -981,9 +894,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
         >
           <Text
             accessibilityTraits="header"
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -1004,9 +914,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             accessible={true}
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1030,9 +937,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
               For
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1067,9 +971,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             accessible={true}
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1093,9 +994,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
               Available From
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1130,9 +1028,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             accessible={true}
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1156,9 +1051,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
               Available Until
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {

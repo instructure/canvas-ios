@@ -22,6 +22,7 @@ import {
   NativeModules,
 } from 'react-native'
 import i18n from 'format-message'
+import { underscored_crc32 } from 'format-message-generate-id'
 import translations from './locales/index'
 
 // Some crashing happening because a locale is not returned, so I've made this an optional
@@ -52,7 +53,7 @@ export default function (locale: ?string): void {
   const sanitizedLocale = sanitizeLocale(locale)
   currentLocale = sanitizedLocale
   i18n.setup({
-    // generateId underscored_crc32 done via babel transform
+    generateId: underscored_crc32,
     locale: sanitizedLocale,
     translations,
     missingTranslation: 'ignore',

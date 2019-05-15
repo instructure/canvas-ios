@@ -26,9 +26,6 @@ exports[`SubmissionHeader anonymous and muted 1`] = `
   >
     <Text
       accessibilityTraits="header"
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
       numberOfLines={1}
       style={
         Array [
@@ -47,9 +44,6 @@ exports[`SubmissionHeader anonymous and muted 1`] = `
       All Submissions
     </Text>
     <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
       style={
         Array [
           Object {
@@ -95,9 +89,6 @@ exports[`SubmissionHeader anonymous and muted 1`] = `
   >
     <View>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -154,9 +145,6 @@ exports[`SubmissionHeader anonymous grading 1`] = `
   >
     <Text
       accessibilityTraits="header"
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
       numberOfLines={1}
       style={
         Array [
@@ -175,9 +163,6 @@ exports[`SubmissionHeader anonymous grading 1`] = `
       All Submissions
     </Text>
     <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
       style={
         Array [
           Object {
@@ -223,9 +208,6 @@ exports[`SubmissionHeader anonymous grading 1`] = `
   >
     <View>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -282,9 +264,6 @@ exports[`SubmissionHeader muted grading 1`] = `
   >
     <Text
       accessibilityTraits="header"
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
       numberOfLines={1}
       style={
         Array [
@@ -303,9 +282,6 @@ exports[`SubmissionHeader muted grading 1`] = `
       All Submissions
     </Text>
     <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
       style={
         Array [
           Object {
@@ -351,9 +327,6 @@ exports[`SubmissionHeader muted grading 1`] = `
   >
     <View>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {

@@ -2,15 +2,9 @@
 
 exports[`Render row with detail label 1`] = `
 <View
-  accessibilityComponentType={undefined}
   accessibilityLabel="Row with a switch in it!, this is a detail label"
-  accessibilityTraits={Array []}
   accessible={true}
-  hasTVPreferredFocus={undefined}
-  hitSlop={undefined}
   isTVSelectable={true}
-  nativeID={undefined}
-  onLayout={undefined}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
@@ -19,17 +13,10 @@ exports[`Render row with detail label 1`] = `
   onStartShouldSetResponder={[Function]}
   style={
     Array [
-      Object {
-        "backgroundColor": "transparent",
-      },
-      Array [
-        undefined,
-        undefined,
-      ],
+      undefined,
+      undefined,
     ]
   }
-  testID={undefined}
-  tvParallaxProperties={undefined}
 >
   <View
     style={
@@ -66,8 +53,6 @@ exports[`Render row with detail label 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
         ellipsizeMode="tail"
         numberOfLines={0}
         style={
@@ -119,9 +104,6 @@ exports[`Render row with detail label 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             numberOfLines={1}
             style={
               Array [
@@ -138,7 +120,6 @@ exports[`Render row with detail label 1`] = `
                 },
               ]
             }
-            testID={undefined}
           >
             this is a detail label
           </Text>
