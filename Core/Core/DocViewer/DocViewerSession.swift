@@ -107,14 +107,14 @@ class DocViewerSession: NSObject, URLSessionTaskDelegate {
     }
 }
 
-class NoFollowRedirect: NSObject, URLSessionTaskDelegate {
-    static var session = URLSession(configuration: .ephemeral, delegate: NoFollowRedirect(), delegateQueue: nil)
+public class NoFollowRedirect: NSObject, URLSessionTaskDelegate {
+    public static var session = URLSession(configuration: .ephemeral, delegate: NoFollowRedirect(), delegateQueue: nil)
 
     private override init() {
         super.init()
     }
 
-    func urlSession(
+    public func urlSession(
         _ session: URLSession,
         task: URLSessionTask,
         willPerformHTTPRedirection response: HTTPURLResponse,

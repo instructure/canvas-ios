@@ -39,12 +39,9 @@ struct CalendarEventCellViewModel: TableViewCellViewModel {
     let submittedImage: UIImage?
     let highlightColor: UIColor
 
-    // TODO: remove this once MBL-11071 is deployed
-    let showSubmissionStatus: Bool
-
     let calendarEvent: CalendarEvent
 
-    init(calendarEvent: CalendarEvent, courseName: String?, highlightColor: UIColor, showSubmissionStatus: Bool = true) {
+    init(calendarEvent: CalendarEvent, courseName: String?, highlightColor: UIColor) {
         self.calendarEvent = calendarEvent
         name = calendarEvent.title ?? ""
         subtitle = courseName ?? ""
@@ -53,7 +50,6 @@ struct CalendarEventCellViewModel: TableViewCellViewModel {
         submittedColor = calendarEvent.submittedColor
         submittedImage = calendarEvent.submittedImage
         self.highlightColor = highlightColor
-        self.showSubmissionStatus = showSubmissionStatus
     }
     
     static func tableViewDidLoad(_ tableView: UITableView) {
@@ -70,9 +66,8 @@ struct CalendarEventCellViewModel: TableViewCellViewModel {
         cell.titleLabel.text = name
         cell.courseNameLabel.text = subtitle
         cell.typeImageView.tintColor = UIColor.white
-        cell.typeImageView.backgroundColor = showSubmissionStatus ? submittedColor : UIColor.parentLightGreyColor()
-        cell.statusLabel.isHidden = !showSubmissionStatus
-        let imageToUse = showSubmissionStatus ? submittedImage : image
+        cell.typeImageView.backgroundColor = submittedColor
+        let imageToUse = submittedImage
         cell.statusLabel.text = submittedText
         cell.statusLabel.backgroundColor = submittedColor
         let imageSize = CGSize(width: CalendarEventCell.iconImageDiameter-CalendarEventCell.iconSubtrator, height: CalendarEventCell.iconImageDiameter-CalendarEventCell.iconSubtrator)

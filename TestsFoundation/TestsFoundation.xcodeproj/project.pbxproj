@@ -36,7 +36,7 @@
 		7DB0A1C921C07F39009ABB40 /* APIUserFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1C821C07F39009ABB40 /* APIUserFixture.swift */; };
 		7DB0A1CE21C16D5A009ABB40 /* KeychainEntryFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1CD21C16D5A009ABB40 /* KeychainEntryFixture.swift */; };
 		7DB0A1D421C1C90D009ABB40 /* APIAccountResultsFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1D321C1C90D009ABB40 /* APIAccountResultsFixture.swift */; };
-		7DBFD31722454609000A18DC /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBFD31622454609000A18DC /* MockURLSession.swift */; };
+		7DBFD31722454609000A18DC /* MockDistantURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBFD31622454609000A18DC /* MockDistantURLSession.swift */; };
 		7DBFD3192245480B000A18DC /* MockMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBFD3182245480B000A18DC /* MockMessage.swift */; };
 		7DC4A557222EF9A800FA03DC /* APIDiscussionEntryFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4A556222EF9A800FA03DC /* APIDiscussionEntryFixture.swift */; };
 		7DCF2048216D6597003AF358 /* APIQuizFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF2047216D6597003AF358 /* APIQuizFixture.swift */; };
@@ -66,6 +66,7 @@
 		B1E789BA21B1D0D30087FE4A /* LogEventFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E789B921B1D0D30087FE4A /* LogEventFixture.swift */; };
 		B1F13292224BC016002C0555 /* ModuleItemTypeFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F13291224BC016002C0555 /* ModuleItemTypeFixture.swift */; };
 		B1F13296224BFE03002C0555 /* ModuleItemFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F13295224BFE03002C0555 /* ModuleItemFixture.swift */; };
+		B1F428DC228B5C3C00EC8C37 /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F428DB228B5C3C00EC8C37 /* MockURLSession.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,7 +101,7 @@
 		7DB0A1C821C07F39009ABB40 /* APIUserFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIUserFixture.swift; sourceTree = "<group>"; };
 		7DB0A1CD21C16D5A009ABB40 /* KeychainEntryFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainEntryFixture.swift; sourceTree = "<group>"; };
 		7DB0A1D321C1C90D009ABB40 /* APIAccountResultsFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAccountResultsFixture.swift; sourceTree = "<group>"; };
-		7DBFD31622454609000A18DC /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
+		7DBFD31622454609000A18DC /* MockDistantURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDistantURLSession.swift; sourceTree = "<group>"; };
 		7DBFD3182245480B000A18DC /* MockMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMessage.swift; sourceTree = "<group>"; };
 		7DC4A556222EF9A800FA03DC /* APIDiscussionEntryFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDiscussionEntryFixture.swift; sourceTree = "<group>"; };
 		7DCF2047216D6597003AF358 /* APIQuizFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIQuizFixture.swift; sourceTree = "<group>"; };
@@ -130,6 +131,7 @@
 		B1E789B921B1D0D30087FE4A /* LogEventFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogEventFixture.swift; sourceTree = "<group>"; };
 		B1F13291224BC016002C0555 /* ModuleItemTypeFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemTypeFixture.swift; sourceTree = "<group>"; };
 		B1F13295224BFE03002C0555 /* ModuleItemFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemFixture.swift; sourceTree = "<group>"; };
+		B1F428DB228B5C3C00EC8C37 /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
 		F92C1A2922838400007E0942 /* AppFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AppFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -296,7 +298,8 @@
 				7D47769721AF356200B441CE /* APIQuizRequestable.swift */,
 				B171A10821B9E51F000325D3 /* MockAPI.swift */,
 				7DBFD3182245480B000A18DC /* MockMessage.swift */,
-				7DBFD31622454609000A18DC /* MockURLSession.swift */,
+				7DBFD31622454609000A18DC /* MockDistantURLSession.swift */,
+				B1F428DB228B5C3C00EC8C37 /* MockURLSession.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -423,7 +426,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1911CEF21C84B1000F42F91 /* MockNotificationManager.swift in Sources */,
-				7DBFD31722454609000A18DC /* MockURLSession.swift in Sources */,
+				7DBFD31722454609000A18DC /* MockDistantURLSession.swift in Sources */,
 				3B84C392218BB102005946BA /* DateExtensions.swift in Sources */,
 				3B6386A72264F781002DEE72 /* APIRubricFixture.swift in Sources */,
 				B1A32BE02159A28D0071B41E /* APISubmissionFixture.swift in Sources */,
@@ -446,6 +449,7 @@
 				7DC4A557222EF9A800FA03DC /* APIDiscussionEntryFixture.swift in Sources */,
 				B1A32BDE2159A1D70071B41E /* APIAssignmentFixture.swift in Sources */,
 				7DB0A1D421C1C90D009ABB40 /* APIAccountResultsFixture.swift in Sources */,
+				B1F428DC228B5C3C00EC8C37 /* MockURLSession.swift in Sources */,
 				3BAA4177218A361100701E03 /* EnrollmentFixture.swift in Sources */,
 				B171A10921B9E51F000325D3 /* MockAPI.swift in Sources */,
 				3B0CEB732150406400D07CFA /* Group+Fixture.swift in Sources */,

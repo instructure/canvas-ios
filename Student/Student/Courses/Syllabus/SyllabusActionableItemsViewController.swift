@@ -32,7 +32,7 @@ class SyllabusActionableItemsViewController: UITableViewController {
     var color: UIColor?
     var titleSubtitleView: TitleSubtitleView = TitleSubtitleView.create()
 
-    convenience init(env: AppEnvironment = .shared, courseID: String, sort: GetAssignments.Sort = .position) {
+    convenience init(env: AppEnvironment = .shared, courseID: String, sort: GetAssignments.Sort = .dueAt) {
         self.init(nibName: nil, bundle: nil)
         presenter = SyllabusActionableItemsPresenter(view: self, courseID: courseID, sort: sort)
     }

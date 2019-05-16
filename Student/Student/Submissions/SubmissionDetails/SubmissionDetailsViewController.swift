@@ -50,6 +50,7 @@ class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewPr
         }
         picker?.dataSource = self
         picker?.delegate = self
+        pickerButton?.setTitleColor(.named(.textDark), for: .disabled)
         presenter?.viewIsReady()
     }
 

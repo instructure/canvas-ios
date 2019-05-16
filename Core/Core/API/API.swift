@@ -79,7 +79,7 @@ public struct URLSessionAPI: API {
                     #if DEBUG
                     print(response ?? "", String(data: data, encoding: .utf8) ?? "", error)
                     #endif
-                    callback(nil, response, error)
+                    callback(nil, response, APIError.from(data: data, response: response, error: error))
                 }
             }
             task.resume()

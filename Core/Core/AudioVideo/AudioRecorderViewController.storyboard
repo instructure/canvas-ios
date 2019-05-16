@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -112,7 +112,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="13i-Ay-AxK" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="16" y="182" width="163.5" height="42"/>
+                                <rect key="frame" x="16" y="180" width="163.5" height="44"/>
                                 <accessibility key="accessibilityConfiguration" identifier="AudioRecorder.clearButton"/>
                                 <inset key="contentEdgeInsets" minX="38" minY="12" maxX="38" maxY="12"/>
                                 <state key="normal" title="Delete"/>
@@ -149,11 +149,11 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="azE-St-Zbf" firstAttribute="centerX" secondItem="mbJ-rF-8Pv" secondAttribute="centerX" id="32u-9x-Oml"/>
+                            <constraint firstItem="vd2-8i-O1Q" firstAttribute="bottom" secondItem="HYf-Ke-XMw" secondAttribute="bottom" constant="16" id="9lO-68-j3a"/>
+                            <constraint firstItem="P04-42-aRA" firstAttribute="top" secondItem="vd2-8i-O1Q" secondAttribute="top" constant="8" id="GEJ-Fg-uG4"/>
                             <constraint firstAttribute="trailing" secondItem="HYf-Ke-XMw" secondAttribute="trailing" constant="16" id="HsO-bH-mcp"/>
                             <constraint firstItem="azE-St-Zbf" firstAttribute="centerY" secondItem="mbJ-rF-8Pv" secondAttribute="centerY" id="QhB-YZ-7Au"/>
                             <constraint firstAttribute="trailing" secondItem="P04-42-aRA" secondAttribute="trailing" constant="8" id="SXm-Hh-t2s"/>
-                            <constraint firstItem="P04-42-aRA" firstAttribute="top" secondItem="mbJ-rF-8Pv" secondAttribute="top" constant="8" id="TBa-Jd-pVJ"/>
-                            <constraint firstItem="7hp-Ut-gdC" firstAttribute="top" secondItem="mbJ-rF-8Pv" secondAttribute="top" constant="16" id="V8O-Be-FpN"/>
                             <constraint firstItem="P04-42-aRA" firstAttribute="leading" secondItem="7hp-Ut-gdC" secondAttribute="trailing" id="Y48-XC-gUo"/>
                             <constraint firstItem="vd2-8i-O1Q" firstAttribute="bottom" secondItem="13i-Ay-AxK" secondAttribute="bottom" constant="16" id="cQv-kV-4OV"/>
                             <constraint firstItem="jJc-OK-0DG" firstAttribute="centerY" secondItem="mbJ-rF-8Pv" secondAttribute="centerY" id="jEE-KO-RSk"/>
@@ -163,7 +163,7 @@
                             <constraint firstAttribute="centerX" secondItem="13i-Ay-AxK" secondAttribute="trailing" constant="8" id="sdq-oO-PbV"/>
                             <constraint firstItem="jJc-OK-0DG" firstAttribute="leading" secondItem="mbJ-rF-8Pv" secondAttribute="leading" constant="16" id="tQf-jS-qv2"/>
                             <constraint firstItem="7hp-Ut-gdC" firstAttribute="centerX" secondItem="mbJ-rF-8Pv" secondAttribute="centerX" id="tmZ-PV-W3u"/>
-                            <constraint firstAttribute="bottom" secondItem="HYf-Ke-XMw" secondAttribute="bottom" constant="16" id="uGX-6t-awd"/>
+                            <constraint firstItem="7hp-Ut-gdC" firstAttribute="top" secondItem="vd2-8i-O1Q" secondAttribute="top" constant="16" id="yet-Di-Lua"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="vd2-8i-O1Q"/>
                     </view>
