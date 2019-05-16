@@ -110,6 +110,7 @@ class SubmissionCommentsTests: StudentTest {
         SubmissionDetailsElement.drawerGripper.tap() // Make it full height.
 
         XCTAssertFalse(SubmissionComments.addCommentButton.isEnabled)
+        SubmissionComments.commentTextView.tap()
         SubmissionComments.commentTextView.typeText("First!")
         XCTAssertTrue(SubmissionComments.addCommentButton.isEnabled)
 
