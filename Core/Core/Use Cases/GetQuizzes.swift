@@ -26,7 +26,7 @@ public struct GetQuizzes: CollectionUseCase {
     }
 
     public var cacheKey: String? {
-        return "get-\(courseID)-quizzes"
+        return "get-courses-\(courseID)-quizzes"
     }
 
     public var request: GetQuizzesRequest {
@@ -45,25 +45,11 @@ public struct GetQuizzes: CollectionUseCase {
         )
     }
 
-    public func write(response: [APIQuiz]?, urlResponse: URLResponse?, to client: PersistenceClient) throws {
-        guard let response = response else {
-            return
-        }
+    public func write(response: [APIQuiz]?, urlResponse: URLResponse?, to client: PersistenceClient) {
+        guard let response = response else { return }
         for item in response {
-            let predicate = NSPredicate(format: "%K == %@", #keyPath(Quiz.htmlURL), item.html_url as CVarArg)
-            let model: Quiz = client.fetch(predicate).first ?? client.insert()
+            let model = Quiz.save(item, in: client)
             model.courseID = courseID
-            model.details = item.description
-            model.dueAt = item.due_at
-            model.htmlURL = item.html_url
-            model.id = item.id
-            model.lockAt = item.lock_at
-            model.pointsPossible = item.points_possible
-            model.questionCount = item.question_count
-            model.quizType = item.quiz_type
-            model.title = item.title
-            let orderDate = (item.quiz_type == .assignment ? item.due_at : item.lock_at) ?? Date.distantFuture
-            model.order = orderDate.isoString()
         }
     }
 }

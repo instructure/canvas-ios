@@ -53,7 +53,7 @@ public class ActAsUserPresenter {
                     .appendingPathComponent(session.originalUserID ?? session.userID),
                 refreshToken: session.refreshToken,
                 userAvatarURL: user.avatar_url,
-                userID: user.id,
+                userID: user.id.value,
                 userName: user.short_name,
                 userEmail: user.email
             )

@@ -74,4 +74,19 @@ class IDTests: XCTestCase {
         let decoded = try! JSONDecoder().decode(APIAssignment.self, from: encoded)
         XCTAssertEqual(decoded.id, "")
     }
+
+    func testExpandTildeID() {
+        XCTAssertEqual(ID.expandTildeID("1~1"), "10000000000001")
+        XCTAssertEqual(ID.expandTildeID("123456789~123456789"), "1234567890000123456789")
+        XCTAssertEqual(ID.expandTildeID("1~z"), "1~z")
+        XCTAssertEqual(ID.expandTildeID("1~1~"), "1~1~")
+        XCTAssertEqual(ID.expandTildeID("12"), "12")
+        XCTAssertEqual(ID.expandTildeID("self"), "self")
+        XCTAssertEqual(ID("1~1"), "10000000000001")
+        XCTAssertEqual(ID("123456789~123456789"), "1234567890000123456789")
+        XCTAssertEqual(ID("1~z"), "1~z")
+        XCTAssertEqual(ID("1~1~"), "1~1~")
+        XCTAssertEqual(ID("12"), "12")
+        XCTAssertEqual(ID("self"), "self")
+    }
 }

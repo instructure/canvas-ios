@@ -40,4 +40,35 @@ class QuizTests: CoreTestCase {
         XCTAssertNil(quiz.viewableGrade)
         XCTAssertNil(quiz.viewableScore)
     }
+
+    func testAllowedAttemptsText() {
+        XCTAssertEqual(Quiz.make([ "allowedAttempts": -1 ]).allowedAttemptsText, "Unlimited")
+        XCTAssertEqual(Quiz.make([ "allowedAttempts": 1 ]).allowedAttemptsText, "1")
+        XCTAssertEqual(Quiz.make([ "allowedAttempts": 10 ]).allowedAttemptsText, "10")
+    }
+
+    func testQuestionCountText() {
+        XCTAssertEqual(Quiz.make([ "questionCount": 1 ]).questionCountText, "1")
+        XCTAssertEqual(Quiz.make([ "questionCount": 10 ]).questionCountText, "10")
+    }
+
+    func testNQuestionsText() {
+        XCTAssertEqual(Quiz.make([ "questionCount": 1 ]).nQuestionsText, "1 Question")
+        XCTAssertEqual(Quiz.make([ "questionCount": 10 ]).nQuestionsText, "10 Questions")
+    }
+
+    func testTimeLimitText() {
+        XCTAssertEqual(Quiz.make([ "timeLimitRaw": nil ]).timeLimitText, "None")
+        XCTAssertEqual(Quiz.make([ "timeLimitRaw": 10 ]).timeLimitText, "10min")
+    }
+
+    func testSave() {
+        var quiz = Quiz.save(APIQuiz.make(), in: databaseClient)
+        XCTAssertEqual(quiz.order, Date.distantFuture.isoString())
+        let date = Date()
+        quiz = Quiz.save(APIQuiz.make([ "quiz_type": "assignment", "due_at": date ]), in: databaseClient)
+        XCTAssertEqual(quiz.order, date.isoString())
+        quiz = Quiz.save(APIQuiz.make([ "quiz_type": "survey", "lock_at": date ]), in: databaseClient)
+        XCTAssertEqual(quiz.order, date.isoString())
+    }
 }

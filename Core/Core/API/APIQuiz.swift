@@ -18,7 +18,7 @@ import Foundation
 
 // https://canvas.instructure.com/doc/api/quizzes.html#Quiz
 public struct APIQuiz: Codable, Equatable {
-    let id: String
+    let id: ID
     let title: String
     let html_url: URL
     // let mobile_url: URL
@@ -26,7 +26,7 @@ public struct APIQuiz: Codable, Equatable {
     let description: String?
     let quiz_type: QuizType
     // let assignment_group_id: String?
-    // let time_limit: Double? // minutes
+    let time_limit: Double? // minutes
     // let shuffle_answers: Bool
     // let hide_results: QuizHideResults?
     // let show_correct_answers: Bool?
@@ -35,7 +35,7 @@ public struct APIQuiz: Codable, Equatable {
     // let hide_correct_answers_at: Date?
     // let one_time_results: Bool
     // let scoring_policy: ScoringPolicy?
-    // let allowed_attempts: Int?
+    let allowed_attempts: Int
     // let one_question_at_a_time: Bool
     let question_count: Int
     let points_possible: Double?
