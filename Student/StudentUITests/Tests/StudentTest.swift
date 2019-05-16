@@ -49,7 +49,7 @@ class StudentTest: XCTestCase {
         // This sleep helps ensure old views got cleaned up, so EG2 doesn't find them accidentally.
         sleep(1) // FIXME: Remove this and fix flakiness better.
 
-        getApp = { return EarlGreyDriver(xcuiApp!, testCase: self) }
+        getApp = { return DriverFactory.getXCUITestDriver(xcuiApp!, testCase: self) }
     }
 
     func show(_ route: String) {
