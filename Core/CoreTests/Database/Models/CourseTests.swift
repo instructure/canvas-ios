@@ -135,4 +135,12 @@ class CourseTests: CoreTestCase {
         XCTAssertEqual(c.displayGrade, "N/A")
     }
 
+    func testShowColorOverlay() {
+        let c = Course.make(["imageDownloadURL": nil])
+        XCTAssertTrue(c.showColorOverlay(hideOverlaySetting: false))
+
+        c.imageDownloadURL = URL(string: "https://google.com")!
+        XCTAssertFalse(c.showColorOverlay(hideOverlaySetting: true))
+        XCTAssertTrue(c.showColorOverlay(hideOverlaySetting: false))
+    }
 }

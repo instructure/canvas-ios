@@ -47,3 +47,9 @@ struct APIUser: Codable, Equatable {
 public struct APICustomColors: Codable, Equatable {
     let custom_colors: [String: String]
 }
+
+public struct APIUserSettings: Codable, Equatable {
+    let manual_mark_as_read: Bool
+    let collapse_global_nav: Bool
+    let hide_dashcard_color_overlays: Bool
+}

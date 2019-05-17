@@ -335,6 +335,11 @@
         <attribute name="key" attributeType="String" syncable="YES"/>
         <attribute name="lastRefresh" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
     </entity>
+    <entity name="UserSettings" representedClassName="Core.UserSettings" syncable="YES">
+        <attribute name="collapseGlobalNav" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="hideDashcardColorOverlays" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="manualMarkAsRead" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
     <elements>
         <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="375"/>
         <element name="CalendarEventItem" positionX="-531" positionY="-18" width="128" height="150"/>
@@ -358,5 +363,6 @@
         <element name="SubmissionComment" positionX="-369" positionY="-18" width="128" height="225"/>
         <element name="Tab" positionX="108.015625" positionY="177.67578125" width="128" height="165"/>
         <element name="TTL" positionX="-173.30859375" positionY="-128.48046875" width="128" height="75"/>
+        <element name="UserSettings" positionX="-540" positionY="-27" width="128" height="90"/>
     </elements>
 </model>

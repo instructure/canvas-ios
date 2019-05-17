@@ -109,4 +109,11 @@ extension Course {
 
         return scoreString
     }
+
+    public func showColorOverlay(hideOverlaySetting: Bool) -> Bool {
+        if imageDownloadURL == nil {
+            return true
+        }
+        return !hideOverlaySetting
+    }
 }

@@ -46,4 +46,10 @@ class APIUserRequestableTests: XCTestCase {
         XCTAssertEqual(request.method, .put)
         XCTAssertEqual(request.body, body)
     }
+
+    func testGetUserSettingsRequest() {
+        let request = GetUserSettingsRequest(userID: "self")
+        XCTAssertEqual(request.path, "users/self/settings")
+        XCTAssertEqual(request.method, .get)
+    }
 }
