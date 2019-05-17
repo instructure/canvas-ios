@@ -20,6 +20,7 @@ import Core
 extension Quiz: Fixture {
     public static var template: Template {
         return [
+            "allowedAttempts": 1,
             "courseID": "1",
             "id": "123",
             "title": "What kind of pokemon are you?",

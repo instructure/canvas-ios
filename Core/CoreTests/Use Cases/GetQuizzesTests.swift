@@ -19,16 +19,25 @@ import XCTest
 @testable import Core
 
 class GetQuizzesTest: CoreTestCase {
-
     let courseID = "1"
-    lazy var request: GetQuizzesRequest = { [weak self] in
-        return GetQuizzesRequest(courseID: self!.courseID)
-    }()
+
+    func testProperties() {
+        let useCase = GetQuizzes(courseID: courseID)
+        XCTAssertEqual(useCase.cacheKey, "get-courses-1-quizzes")
+        XCTAssertEqual(useCase.request.courseID, courseID)
+        XCTAssertEqual(useCase.scope.order.count, 3)
+    }
+
+    func testWriteNothing() {
+        GetQuizzes(courseID: courseID).write(response: nil, urlResponse: nil, to: databaseClient)
+        let quizzes: [Quiz] = databaseClient.fetch()
+        XCTAssertEqual(quizzes.count, 0)
+    }
 
     func testItCreatesQuizzes() {
         let groupQuiz = APIQuiz.make()
         let getQuizzes = GetQuizzes(courseID: courseID)
-        try! getQuizzes.write(response: [groupQuiz], urlResponse: nil, to: databaseClient)
+        getQuizzes.write(response: [groupQuiz], urlResponse: nil, to: databaseClient)
 
         let quizzes: [Quiz] = databaseClient.fetch(predicate: nil, sortDescriptors: nil)
         XCTAssertEqual(quizzes.count, 1)
@@ -44,7 +53,7 @@ class GetQuizzesTest: CoreTestCase {
         let getQuizzes = GetQuizzes(courseID: courseID)
         let expectation = XCTestExpectation(description: "quizzes written")
         getQuizzes.fetch(environment: environment) { response, urlResponse, _ in
-            try! getQuizzes.write(response: response, urlResponse: urlResponse, to: self.databaseClient)
+            getQuizzes.write(response: response, urlResponse: urlResponse, to: self.databaseClient)
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 1)

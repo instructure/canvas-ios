@@ -24,6 +24,7 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
 
     var resultingError: NSError?
     var resultingAssignment: Assignment?
+    var resultingQuiz: Quiz?
     var resultingBaseURL: URL?
     var resultingSubtitle: String?
     var resultingBackgroundColor: UIColor?
@@ -167,7 +168,7 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         let c = Course.make(["enrollments": Set([Enrollment.make()])])
 
         //  when
-        presenter.showSubmitAssignmentButton(assignment: a, course: c)
+        presenter.showSubmitAssignmentButton(assignment: a, quiz: nil, course: c)
 
         //  then
         XCTAssertEqual(resultingButtonTitle, "Submit Assignment")
@@ -186,7 +187,7 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         let c = Course.make(["enrollments": Set([Enrollment.make()])])
 
         //  when
-        presenter.showSubmitAssignmentButton(assignment: a, course: c)
+        presenter.showSubmitAssignmentButton(assignment: a, quiz: nil, course: c)
 
         //  then
         XCTAssertEqual(resultingButtonTitle, "Resubmit Assignment")
@@ -198,7 +199,7 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
 
         let c = Course.make(["enrollments": Set([Enrollment.make()])])
 
-        presenter.showSubmitAssignmentButton(assignment: a, course: c)
+        presenter.showSubmitAssignmentButton(assignment: a, quiz: nil, course: c)
         XCTAssertEqual(resultingButtonTitle, "Launch External Tool")
     }
 
@@ -208,8 +209,18 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
 
         let c = Course.make(["enrollments": Set([Enrollment.make()])])
 
-        presenter.showSubmitAssignmentButton(assignment: a, course: c)
+        presenter.showSubmitAssignmentButton(assignment: a, quiz: nil, course: c)
         XCTAssertEqual(resultingButtonTitle, "View Discussion")
+    }
+
+    func testShowSubmitAssignmentButtonQuiz() {
+        let a = Assignment.make()
+        a.submissionTypes = [.online_quiz]
+        let q = Quiz.make()
+        let c = Course.make(["enrollments": Set([Enrollment.make()])])
+
+        presenter.showSubmitAssignmentButton(assignment: a, quiz: q, course: c)
+        XCTAssertEqual(resultingButtonTitle, "Take Quiz")
     }
 
     func testSubmitSubmissionTypeOnlineUpload() {
@@ -375,9 +386,10 @@ extension AssignmentDetailsPresenterTests: AssignmentDetailsViewProtocol {
         resultingSubmissionTypes = types
     }
 
-    func update(assignment: Assignment, baseURL: URL?) {
+    func update(assignment: Assignment, quiz: Quiz?, baseURL: URL?) {
         resultingAssignment = assignment
         resultingBaseURL = baseURL
+        resultingQuiz = quiz
         expectation.fulfill()
     }
 

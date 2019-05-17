@@ -34,6 +34,6 @@ extension APICourse: Fixture {
     }
 }
 
-extension APICourse: Context {
+extension APICourse: APIContext {
     public var contextType: ContextType { return .course }
 }

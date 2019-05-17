@@ -29,6 +29,6 @@ extension APIGroup: Fixture {
     }
 }
 
-extension APIGroup: Context {
+extension APIGroup: APIContext {
     public var contextType: ContextType { return .group }
 }

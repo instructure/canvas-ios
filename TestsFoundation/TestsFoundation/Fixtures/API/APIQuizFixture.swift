@@ -20,6 +20,7 @@ import Foundation
 extension APIQuiz: Fixture {
     public static var template: Template {
         return [
+            "allowed_attempts": 1,
             "id": "123",
             "title": "What kind of pokemon are you?",
             "html_url": "/courses/1/quizzes/123",

@@ -27,3 +27,16 @@ public struct GetQuizzesRequest: APIRequestable {
         return "\(context.pathComponent)/quizzes?per_page=100"
     }
 }
+
+// https://canvas.instructure.com/doc/api/quizzes.html#method.quizzes/quizzes_api.show
+public struct GetQuizRequest: APIRequestable {
+    public typealias Response = APIQuiz
+
+    let courseID: String
+    let quizID: String
+
+    public var path: String {
+        let context = ContextModel(.course, id: courseID)
+        return "\(context.pathComponent)/quizzes/\(quizID)"
+    }
+}

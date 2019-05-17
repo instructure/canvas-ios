@@ -917,8 +917,8 @@
 		3B1B0045219BD9F50045E8A1 /* AssignmentDetails */ = {
 			isa = PBXGroup;
 			children = (
-				3B1B0046219BD9F50045E8A1 /* AssignmentDetailsViewController.storyboard */,
 				3B1B0047219BD9F50045E8A1 /* AssignmentDetailsPresenter.swift */,
+				3B1B0046219BD9F50045E8A1 /* AssignmentDetailsViewController.storyboard */,
 				3B1B004B219BD9F50045E8A1 /* AssignmentDetailsViewController.swift */,
 			);
 			path = AssignmentDetails;

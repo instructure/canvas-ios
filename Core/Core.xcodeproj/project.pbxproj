@@ -179,6 +179,8 @@
 		7D80AC5B212DB0B500C40ECE /* URLResponseExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D80AC5A212DB0B500C40ECE /* URLResponseExtensionsTests.swift */; };
 		7D819FF7228C7C7E00C61EDD /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D819FF6228C7C7E00C61EDD /* APIError.swift */; };
 		7D819FF9228C898100C61EDD /* APIErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D819FF8228C898100C61EDD /* APIErrorTests.swift */; };
+		7D819FFF228DB48C00C61EDD /* GetQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D819FFE228DB48C00C61EDD /* GetQuiz.swift */; };
+		7D81A001228DC1F000C61EDD /* GetQuizTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D81A000228DC1F000C61EDD /* GetQuizTests.swift */; };
 		7D8262EB212B1A7B00BD268D /* APIRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8262EA212B1A7B00BD268D /* APIRequestable.swift */; };
 		7D8262EF212B228F00BD268D /* APICourseRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8262EE212B228F00BD268D /* APICourseRequestable.swift */; };
 		7D8262F1212B28FE00BD268D /* APITabRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8262F0212B28FE00BD268D /* APITabRequestable.swift */; };
@@ -245,8 +247,6 @@
 		7DCF1ED6216C05FE003AF358 /* GradeViewableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF1ED5216C05FE003AF358 /* GradeViewableTests.swift */; };
 		7DCF1ED8216C060B003AF358 /* SubmissionViewableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF1ED7216C060B003AF358 /* SubmissionViewableTests.swift */; };
 		7DCF202D216D461C003AF358 /* UITableViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF202C216D461B003AF358 /* UITableViewExtensions.swift */; };
-		7DCF2030216D521D003AF358 /* QuestionCountViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF202F216D521D003AF358 /* QuestionCountViewable.swift */; };
-		7DCF2032216D530D003AF358 /* QuestionCountViewableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF2031216D530D003AF358 /* QuestionCountViewableTests.swift */; };
 		7DCF2034216D5458003AF358 /* APIQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF2033216D5458003AF358 /* APIQuiz.swift */; };
 		7DCF2036216D546C003AF358 /* APIQuizRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF2035216D546C003AF358 /* APIQuizRequestable.swift */; };
 		7DCF2038216D55E6003AF358 /* QuizType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF2037216D55E6003AF358 /* QuizType.swift */; };
@@ -844,6 +844,8 @@
 		7D80AC5A212DB0B500C40ECE /* URLResponseExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLResponseExtensionsTests.swift; sourceTree = "<group>"; };
 		7D819FF6228C7C7E00C61EDD /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		7D819FF8228C898100C61EDD /* APIErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrorTests.swift; sourceTree = "<group>"; };
+		7D819FFE228DB48C00C61EDD /* GetQuiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetQuiz.swift; sourceTree = "<group>"; };
+		7D81A000228DC1F000C61EDD /* GetQuizTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetQuizTests.swift; sourceTree = "<group>"; };
 		7D8262EA212B1A7B00BD268D /* APIRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestable.swift; sourceTree = "<group>"; };
 		7D8262EE212B228F00BD268D /* APICourseRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICourseRequestable.swift; sourceTree = "<group>"; };
 		7D8262F0212B28FE00BD268D /* APITabRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITabRequestable.swift; sourceTree = "<group>"; };
@@ -908,8 +910,6 @@
 		7DCF1ED5216C05FE003AF358 /* GradeViewableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeViewableTests.swift; sourceTree = "<group>"; };
 		7DCF1ED7216C060B003AF358 /* SubmissionViewableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionViewableTests.swift; sourceTree = "<group>"; };
 		7DCF202C216D461B003AF358 /* UITableViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewExtensions.swift; sourceTree = "<group>"; };
-		7DCF202F216D521D003AF358 /* QuestionCountViewable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCountViewable.swift; sourceTree = "<group>"; };
-		7DCF2031216D530D003AF358 /* QuestionCountViewableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCountViewableTests.swift; sourceTree = "<group>"; };
 		7DCF2033216D5458003AF358 /* APIQuiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIQuiz.swift; sourceTree = "<group>"; };
 		7DCF2035216D546C003AF358 /* APIQuizRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIQuizRequestable.swift; sourceTree = "<group>"; };
 		7DCF2037216D55E6003AF358 /* QuizType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizType.swift; sourceTree = "<group>"; };
@@ -1829,7 +1829,6 @@
 				7DCF1EC1216BE0BC003AF358 /* DueViewable.swift */,
 				7DCF1EC4216BE2B5003AF358 /* GradeViewable.swift */,
 				7DCF203B216D5AE2003AF358 /* LockStatusViewable.swift */,
-				7DCF202F216D521D003AF358 /* QuestionCountViewable.swift */,
 				7DCF1ECA216BF544003AF358 /* SubmissionViewable.swift */,
 				7DF4FFBE21700133007E5F81 /* TabViewable.swift */,
 			);
@@ -1842,7 +1841,6 @@
 				7DCF1ED3216C05A0003AF358 /* DueViewableTests.swift */,
 				7DCF1ED5216C05FE003AF358 /* GradeViewableTests.swift */,
 				7DCF203D216D5C4C003AF358 /* LockStatusViewable.swift */,
-				7DCF2031216D530D003AF358 /* QuestionCountViewableTests.swift */,
 				7DCF1ED7216C060B003AF358 /* SubmissionViewableTests.swift */,
 				7DF4FFC021700BCE007E5F81 /* TabViewableTests.swift */,
 			);
@@ -2011,6 +2009,7 @@
 				9FD504ED2180C17400B395BA /* GetFile.swift */,
 				9FE84DD9214FE06300B95A68 /* GetGroup.swift */,
 				B15CA270221DE1C80014FB02 /* GetModules.swift */,
+				7D819FFE228DB48C00C61EDD /* GetQuiz.swift */,
 				7DCF2043216D622B003AF358 /* GetQuizzes.swift */,
 				9FAE410421B6CA4C00FE7F58 /* GetSessionlessLaunchURL.swift */,
 				9FCD79D72188DFD00054293A /* GetSubmission.swift */,
@@ -2141,6 +2140,7 @@
 				9FD504F52180FC7200B395BA /* GetFileTest.swift */,
 				9FE84DDB214FE5C500B95A68 /* GetGroupTest.swift */,
 				B15CA272221DE1FA0014FB02 /* GetModulesTests.swift */,
+				7D81A000228DC1F000C61EDD /* GetQuizTests.swift */,
 				7DCF2045216D652C003AF358 /* GetQuizzesTests.swift */,
 				9FAE410621B6CB7F00FE7F58 /* GetSessionlessLaunchURLTests.swift */,
 				7D5C871E2239A45300D99651 /* GetSubmissionCommentsTests.swift */,
@@ -2543,9 +2543,9 @@
 				3BBCF844224C193B004B519D /* HorizontalMenuView.swift in Sources */,
 				7D1758C1215A8F5600F88613 /* ListFormatter.swift in Sources */,
 				B19792F1217536230000369C /* Database.xcdatamodeld in Sources */,
+				7D819FFF228DB48C00C61EDD /* GetQuiz.swift in Sources */,
 				7D29D2F9218A2BC60036437C /* DocViewerConstants.swift in Sources */,
 				B1381F15212E5E4A001F908C /* APIOperation.swift in Sources */,
-				7DCF2030216D521D003AF358 /* QuestionCountViewable.swift in Sources */,
 				7D8262F3212B2E3100BD268D /* APIFavoriteRequestable.swift in Sources */,
 				7DA5C48C22385F95003CDB4C /* GetSubmissionComments.swift in Sources */,
 				7D2E828A2270BBA200735854 /* FilePickerCell.swift in Sources */,
@@ -2762,7 +2762,6 @@
 				B191D5E8226E2CBA00D02948 /* CacheManagerTests.swift in Sources */,
 				B19792FF2176A0F00000369C /* TabTests.swift in Sources */,
 				2C96485B211E30B3002C3255 /* RouterTests.swift in Sources */,
-				7DCF2032216D530D003AF358 /* QuestionCountViewableTests.swift in Sources */,
 				7D80AC1B212B6A7700C40ECE /* APIFavoriteRequestableTests.swift in Sources */,
 				7DDC450F215BF4AA003F3209 /* UIFontExtensionsTests.swift in Sources */,
 				7D2DC2F62199F27B008FE29A /* DocViewerPointAnnotationTests.swift in Sources */,
@@ -2883,6 +2882,7 @@
 				7D1758C8215A9A7800F88613 /* TitleSubtitleViewTests.swift in Sources */,
 				9FCD79DA2188E3CD0054293A /* GetSubmissionTest.swift in Sources */,
 				7DCF1ED6216C05FE003AF358 /* GradeViewableTests.swift in Sources */,
+				7D81A001228DC1F000C61EDD /* GetQuizTests.swift in Sources */,
 				7D0215A121B88BDC009A8E69 /* UITabBarExtensionsTests.swift in Sources */,
 				7DC4A559222EFC9900FA03DC /* Int64ExtensionsTests.swift in Sources */,
 				7D20F61B21C31CE900B77E5E /* UICollectionViewExtensionsTests.swift in Sources */,

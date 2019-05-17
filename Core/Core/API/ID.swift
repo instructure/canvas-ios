@@ -32,7 +32,7 @@ public struct ID: Codable, Equatable, CustomStringConvertible {
         }
 
         if let string = try? decoder.singleValueContainer().decode(String.self) {
-            value = string
+            value = ID.expandTildeID(string)
             return
         }
 
@@ -51,11 +51,20 @@ public struct ID: Codable, Equatable, CustomStringConvertible {
     enum IDError: Error {
         case missingValue
     }
+
+    public static func expandTildeID(_ id: String) -> String {
+        let parts: [String] = id.components(separatedBy: "~")
+        if parts.count == 2, let shardID = Int64(parts[0]), let resourceID = Int64(parts[1]) {
+            let shardFactor: Int64 = 10_000_000_000_000
+            return (Decimal(shardID) * Decimal(shardFactor) + Decimal(resourceID)).description
+        }
+        return id
+    }
 }
 
 extension ID: ExpressibleByStringLiteral {
     public init(stringLiteral value: String) {
-        self.value = value
+        self.value = ID.expandTildeID(value)
     }
 
     public init(extendedGraphemeClusterLiteral value: String) {

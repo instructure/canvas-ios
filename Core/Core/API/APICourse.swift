@@ -18,7 +18,7 @@ import Foundation
 
 // https://canvas.instructure.com/doc/api/courses.html#Course
 public struct APICourse: Codable, Equatable {
-    let id: String
+    let id: ID
     // let sis_course_id: String?
     // let uuid: String?
     // let integration_id: String?

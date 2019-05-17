@@ -41,7 +41,6 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
     @IBOutlet weak var submissionButtonDivider: DividerView?
     @IBOutlet weak var fileSubmissionButton: DynamicButton?
 
-    var refreshControl: UIRefreshControl?
     @IBOutlet weak var gradeCell: UIView?
     @IBOutlet weak var gradeCellDivider: DividerView?
     @IBOutlet weak var gradedView: GradeCircleView?
@@ -51,8 +50,19 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
     @IBOutlet weak var submittedDetailsLabel: UILabel?
     @IBOutlet weak var submitAssignmentButton: DynamicButton!
     @IBOutlet weak var scrollviewInsetConstraint: NSLayoutConstraint!
+
+    @IBOutlet weak var quizAttemptsLabel: UILabel?
+    @IBOutlet weak var quizAttemptsValueLabel: UILabel?
+    @IBOutlet weak var quizHeadingLabel: UILabel?
+    @IBOutlet weak var quizQuestionsLabel: UILabel?
+    @IBOutlet weak var quizQuestionsValueLabel: UILabel?
+    @IBOutlet weak var quizTimeLimitLabel: UILabel?
+    @IBOutlet weak var quizTimeLimitValueLabel: UILabel?
+    @IBOutlet weak var quizView: UIView?
+
     let scrollViewInsetPadding: CGFloat = 24.0
 
+    var refreshControl: UIRefreshControl?
     let titleSubtitleView = TitleSubtitleView.create()
     var presenter: AssignmentDetailsPresenter?
 
@@ -85,6 +95,10 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         fileTypesHeadingLabel?.text = NSLocalizedString("File Types", bundle: .student, comment: "")
         gradeHeadingLabel?.text = NSLocalizedString("Grade", bundle: .student, comment: "")
         descriptionHeadingLabel?.text = NSLocalizedString("Description", bundle: .student, comment: "")
+        quizAttemptsLabel?.text = NSLocalizedString("Allowed Attempts:", bundle: .student, comment: "")
+        quizHeadingLabel?.text = NSLocalizedString("Settings", bundle: .student, comment: "")
+        quizQuestionsLabel?.text = NSLocalizedString("Questions:", bundle: .student, comment: "")
+        quizTimeLimitLabel?.text = NSLocalizedString("Time Limit:", bundle: .student, comment: "")
         submittedLabel?.text = NSLocalizedString("Successfully submitted!", bundle: .student, comment: "")
         submittedDetailsLabel?.text = NSLocalizedString("Your submission is now waiting to be graded", bundle: .student, comment: "")
         submissionButton?.setTitle(NSLocalizedString("Submission & Rubric", bundle: .student, comment: ""), for: .normal)
@@ -179,7 +193,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         submittedView?.isHidden = true
     }
 
-    func update(assignment: Assignment, baseURL: URL?) {
+    func update(assignment: Assignment, quiz: Quiz?, baseURL: URL?) {
         nameLabel?.text = assignment.name
         pointsLabel?.text = assignment.pointsPossibleText
         statusIconView?.isHidden = assignment.submissionStatusIsHidden
@@ -194,15 +208,30 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         fileTypesHeadingLabel?.isHidden = !assignment.hasFileTypes
         fileTypesLabel?.isHidden = !assignment.hasFileTypes
         fileTypesDivider?.isHidden = !assignment.hasFileTypes
+        descriptionHeadingLabel?.text = quiz == nil
+            ? NSLocalizedString("Description", bundle: .student, comment: "")
+            : NSLocalizedString("Instructions", bundle: .student, comment: "")
         descriptionView?.loadHTMLString(assignment.descriptionHTML, baseURL: baseURL)
         updateGradeCell(assignment)
 
         submissionButtonView?.isHidden = !assignment.isSubmittable
         submissionButtonDivider?.isHidden = !assignment.isSubmittable
+        updateQuizSettings(quiz)
 
         scrollView?.isHidden = false
         loadingView?.stopAnimating()
         refreshControl?.endRefreshing()
+    }
+
+    func updateQuizSettings(_ quiz: Quiz?) {
+        guard let quiz = quiz else {
+            quizView?.isHidden = true
+            return
+        }
+        quizAttemptsValueLabel?.text = quiz.allowedAttemptsText
+        quizQuestionsValueLabel?.text = quiz.questionCountText
+        quizTimeLimitValueLabel?.text = quiz.timeLimitText
+        quizView?.isHidden = false
     }
 
     func showError(_ error: Error) {

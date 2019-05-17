@@ -27,7 +27,7 @@ struct SubmissionAction: Equatable {
 
 protocol AssignmentDetailsViewProtocol: ErrorViewController {
     func updateNavBar(subtitle: String?, backgroundColor: UIColor?)
-    func update(assignment: Assignment, baseURL: URL?)
+    func update(assignment: Assignment, quiz: Quiz?, baseURL: URL?)
     func showSubmitAssignmentButton(title: String?)
     func chooseSubmissionType(_ types: [SubmissionType])
     func chooseMediaRecordingType()
@@ -50,6 +50,8 @@ class AssignmentDetailsPresenter {
     lazy var courses = env.subscribe(GetCourseUseCase(courseID: courseID)) { [weak self] in
         self?.update()
     }
+
+    var quizzes: Store<GetQuiz>?
 
     var fileUploadInProgress = false
     lazy var files: Store<LocalUseCase<File>> = env.subscribe(scope: Scope.where(#keyPath(File.assignmentID), equals: assignmentID)) { [weak self] in
@@ -103,20 +105,27 @@ class AssignmentDetailsPresenter {
     init(env: AppEnvironment = .shared, view: AssignmentDetailsViewProtocol, courseID: String, assignmentID: String, fragment: String? = nil) {
         self.env = env
         self.view = view
-        self.courseID = courseID
-        self.assignmentID = assignmentID
+        self.courseID = ID.expandTildeID(courseID)
+        self.assignmentID = ID.expandTildeID(assignmentID)
         self.fragment = fragment
     }
 
     func update() {
+        if quizzes?.useCase.quizID != assignment?.quizID {
+            quizzes = assignment?.quizID.flatMap { quizID in env.subscribe(GetQuiz(courseID: courseID, quizID: quizID)) { [weak self] in
+                self?.update()
+            } }
+            quizzes?.refresh()
+        }
         guard let assignment = assignments.first, let course = courses.first else { return }
         let baseURL = fragmentHash.flatMap { URL(string: $0, relativeTo: assignment.htmlURL) } ?? assignment.htmlURL
         if let submission = assignment.submission {
             userID = submission.userID
         }
-        showSubmitAssignmentButton(assignment: assignment, course: course)
+        let quiz = quizzes?.first
+        showSubmitAssignmentButton(assignment: assignment, quiz: quiz, course: course)
         view?.updateNavBar(subtitle: course.name, backgroundColor: course.color)
-        view?.update(assignment: assignment, baseURL: baseURL)
+        view?.update(assignment: assignment, quiz: quiz, baseURL: baseURL)
     }
 
     func viewIsReady() {
@@ -129,6 +138,7 @@ class AssignmentDetailsPresenter {
     func refresh() {
         courses.refresh(force: true)
         assignments.refresh(force: true)
+        quizzes?.refresh(force: true)
     }
 
     func routeToSubmission(view: UIViewController) {
@@ -150,7 +160,7 @@ class AssignmentDetailsPresenter {
         return true
     }
 
-    func showSubmitAssignmentButton(assignment: Assignment?, course: Course?) {
+    func showSubmitAssignmentButton(assignment: Assignment?, quiz: Quiz?, course: Course?) {
         guard let assignment = assignment, let course = course else { return }
         let canMakeSubmission = assignment.canMakeSubmissions
         let isOpen = assignment.isOpenForSubmissions()
@@ -168,6 +178,12 @@ class AssignmentDetailsPresenter {
 
         if assignment.isLTIAssignment {
             view?.showSubmitAssignmentButton(title: NSLocalizedString("Launch External Tool", comment: ""))
+            return
+        }
+
+        if quiz != nil {
+            // TODO: takeability
+            view?.showSubmitAssignmentButton(title: NSLocalizedString("Take Quiz", comment: ""))
             return
         }
 

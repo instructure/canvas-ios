@@ -18,15 +18,6 @@ import XCTest
 @testable import Core
 
 class ContextModelTests: XCTestCase {
-    func testExpandTildeID() {
-        XCTAssertEqual(ContextModel.expandTildeID("1~1"), "10000000000001")
-        XCTAssertEqual(ContextModel.expandTildeID("123456789~123456789"), "1234567890000123456789")
-        XCTAssertEqual(ContextModel.expandTildeID("1~z"), "1~z")
-        XCTAssertEqual(ContextModel.expandTildeID("1~1~"), "1~1~")
-        XCTAssertEqual(ContextModel.expandTildeID("12"), "12")
-        XCTAssertEqual(ContextModel.expandTildeID("self"), "self")
-    }
-
     func testCurrentUser() {
         XCTAssertEqual(ContextModel.currentUser, ContextModel(.user, id: "self"))
     }
