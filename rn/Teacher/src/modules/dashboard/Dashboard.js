@@ -33,6 +33,7 @@ import EnrollmentsActions from '@modules/enrollments/actions'
 import GroupsActions from '@modules/groups/actions'
 import GroupsFavoriteActions from '@modules/groups/favorites/actions'
 import DashboardActions from '@modules/dashboard/actions'
+import UserInfoActions from '@modules/userInfo/actions'
 import {
   Heading1,
 } from '@common/text'
@@ -75,6 +76,7 @@ type Props = {
   hideInvite?: (string) => any,
   showGrades?: boolean,
   pending: number,
+  hideOverlays: boolean,
 }
 type State = {
   width?: number,
@@ -221,6 +223,7 @@ export class Dashboard extends React.Component<Props, State> {
         key={item.id}
         style={{ width: cardSize, height: cardSize, padding }}
         color={item.color}
+        hideOverlay={this.props.hideOverlays}
         course={item}
         grade={extractGradeInfo(item)}
         showGrade={this.props.showGrades}
@@ -594,7 +597,21 @@ export function mapStateToProps (isFullDashboard: boolean) {
     const pending = state.favoriteCourses.pending + accountNotifications.pending
     const error = state.favoriteCourses.error || accountNotifications.error
     const showGrades = state.userInfo.showsGradesOnCourseCards
-    return { pending, error, announcements, courses, concludedCourses, totalCourseCount, isFullDashboard, groups, showGrades, allCourses: allCoursesStringKeys, sections, enrollments }
+    return {
+      pending,
+      error,
+      announcements,
+      courses,
+      concludedCourses,
+      totalCourseCount,
+      isFullDashboard,
+      groups,
+      showGrades,
+      allCourses: allCoursesStringKeys,
+      sections,
+      enrollments,
+      hideOverlays: state.userInfo.userSettings.hide_dashcard_color_overlays || false,
+    }
   }
 }
 
@@ -605,6 +622,7 @@ const Refreshed = refresh(
     props.refreshUserEnrollments()
     props.refreshGroupFavorites()
     props.getDashboardCards()
+    props.getUserSettings()
 
     if (isStudent()) {
       props.refreshUsersGroups()
@@ -622,5 +640,6 @@ const Connected = connect(mapStateToProps(true), {
   ...GroupsActions,
   ...GroupsFavoriteActions,
   ...DashboardActions,
+  ...UserInfoActions,
 })(Refreshed)
 export default Connected

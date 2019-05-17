@@ -85,6 +85,16 @@ describe('mapStateToProps with dashboardPositions', () => {
   it('has course count', () => {
     expect(props.totalCourseCount).toEqual(courseTemplates.length)
   })
+
+  it('has hidden overlay setting', () => {
+    expect(props.hideOverlays).toEqual(false)
+
+    state.userInfo.userSettings.hide_dashcard_color_overlays = true
+    expect(mapStateToProps(true)(state).hideOverlays).toEqual(true)
+
+    state.userInfo.userSettings.hide_dashcard_color_overlays = false
+    expect(mapStateToProps(true)(state).hideOverlays).toEqual(false)
+  })
 })
 
 describe('mapStateToProps with no courses', () => {

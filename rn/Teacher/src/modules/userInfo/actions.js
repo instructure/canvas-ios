@@ -38,6 +38,11 @@ export let UserInfoActions = (api: CanvasApi): * => ({
   updateShowGradesOnDashboard: createAction('userInfo.updateShowGradesOnDashboard', (showsGradesOnCourseCards: boolean) => {
     return { showsGradesOnCourseCards }
   }),
+  getUserSettings: createAction('userInfo.getUserSettings', (userID: string = 'self') => {
+    return {
+      promise: api.getUserSettings(userID),
+    }
+  }),
 })
 
 export default (UserInfoActions(canvas): *)
