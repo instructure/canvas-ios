@@ -43,6 +43,12 @@ export let UserInfoActions = (api: CanvasApi): * => ({
       promise: api.getUserSettings(userID),
     }
   }),
+  updateUserSettings: createAction('userInfo.updateUserSettings', (userID: string = 'self', hideOverlay: boolean) => {
+    return {
+      promise: api.updateUserSettings(userID, hideOverlay),
+      hideOverlay,
+    }
+  }),
 })
 
 export default (UserInfoActions(canvas): *)

@@ -24,6 +24,7 @@ const {
   refreshAccountExternalTools,
   refreshHelpLinks,
   getUserSettings,
+  updateUserSettings,
 } = Actions
 
 import * as template from '../../../__templates__/'
@@ -182,5 +183,24 @@ describe('userInfo', () => {
     }
     const result = userInfo(defaultState, action)
     expect(result.userSettings.hide_dashcard_color_overlays).toEqual(true)
+  })
+
+  it('updateUserSettings', () => {
+    const action = {
+      type: updateUserSettings.toString(),
+      payload: {
+        hideOverlay: true,
+      },
+      pending: true,
+    }
+    const defaultState = {
+      userSettings: {},
+    }
+
+    expect(userInfo(defaultState, action).userSettings.hide_dashcard_color_overlays).toEqual(true)
+
+    action.pending = false
+    action.error = true
+    expect(userInfo(defaultState, action).userSettings.hide_dashcard_color_overlays).toEqual(false)
   })
 })
