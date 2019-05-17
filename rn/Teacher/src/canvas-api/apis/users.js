@@ -54,3 +54,7 @@ export function createUser (createUserData: CreateUser): ApiPromise<User> {
 export function getToDoCount (): ApiPromise<Object> {
   return httpClient.get('users/self/todo_item_count')
 }
+
+export function getUserSettings (userID: string = 'self'): ApiPromise<UserSettings> {
+  return httpClient.get(`/users/${userID}/settings`)
+}

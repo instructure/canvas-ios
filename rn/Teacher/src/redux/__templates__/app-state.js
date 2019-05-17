@@ -69,5 +69,6 @@ export const appState: Template<AppState> = template({
     canActAsUser: false,
     showsGradesOnCourseCards: true,
     externalTools: [],
+    userSettings: {},
   },
 })

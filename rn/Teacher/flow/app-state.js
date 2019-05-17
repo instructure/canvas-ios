@@ -224,6 +224,7 @@ export type UserInfo = {
   showsGradesOnCourseCards: boolean,
   externalTools: ExternalToolLaunchDefinitionGlobalNavigationItem[],
   helpLinks?: HelpLinks,
+  userSettings: UserSettings,
 }
 
 // I moved this to the bottom because something with it is making vscode syntax highlighting stop working in this file

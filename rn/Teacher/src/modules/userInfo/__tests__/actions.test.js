@@ -33,6 +33,18 @@ describe('UserInfo Actions', () => {
       payload: { handlesError: true, result: { data: { become_user: false } } },
     }])
   })
+
+  it('getUserSettings', async () => {
+    let actions = UserInfoActions({ getUserSettings: apiResponse({ hide_dashcard_color_overlays: true }) })
+    let result = await testAsyncAction(actions.getUserSettings())
+    expect(result).toMatchObject([{
+      type: 'userInfo.getUserSettings',
+      payload: { },
+    }, {
+      type: 'userInfo.getUserSettings',
+      payload: { result: { data: { hide_dashcard_color_overlays: true } } },
+    }])
+  })
 })
 
 describe('refreshHelpLinks', () => {
