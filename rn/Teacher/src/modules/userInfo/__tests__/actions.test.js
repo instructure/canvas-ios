@@ -51,17 +51,17 @@ describe('UserInfo Actions', () => {
     let result = await testAsyncAction(actions.updateUserSettings('self', true))
     expect(result).toMatchObject([{
       type: 'userInfo.updateUserSettings',
-      payload: { hideOverlay: true }
+      payload: { hideOverlay: true },
     }, {
       type: 'userInfo.updateUserSettings',
       payload: {
         result: {
           data: {
-            hide_dashcard_color_overlays: true
-          }
+            hide_dashcard_color_overlays: true,
+          },
         },
-        hideOverlay: true
-      }
+        hideOverlay: true,
+      },
     }])
   })
 })

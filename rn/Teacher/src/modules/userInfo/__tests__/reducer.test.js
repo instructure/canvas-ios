@@ -189,12 +189,12 @@ describe('userInfo', () => {
     const action = {
       type: updateUserSettings.toString(),
       payload: {
-        hideOverlay: true
+        hideOverlay: true,
       },
-      pending: true
+      pending: true,
     }
     const defaultState = {
-      userSettings: {}
+      userSettings: {},
     }
 
     expect(userInfo(defaultState, action).userSettings.hide_dashcard_color_overlays).toEqual(true)
