@@ -3,6 +3,7 @@
 exports[`CourseNavigation refreshes courses and tabs 1`] = `
 <CourseNavigation
   courseID="1"
+  getUserSettings={[Function]}
   navigator={
     Object {
       "dismiss": [Function],
@@ -61,6 +62,7 @@ exports[`CourseNavigation refreshes when props change 1`] = `
     }
   }
   courseID="1"
+  getUserSettings={[Function]}
   navigator={
     Object {
       "dismiss": [Function],
@@ -111,6 +113,7 @@ exports[`CourseNavigation renders correctly 1`] = `
     onSelectTab={[Function]}
     refreshing={false}
     selectedTabId={null}
+    showColorOverlay={true}
     subtitle="Default Term"
     tabs={
       Array [
@@ -166,6 +169,7 @@ exports[`CourseNavigation renders correctly without tabs 1`] = `
     onSelectTab={[Function]}
     refreshing={false}
     selectedTabId={null}
+    showColorOverlay={true}
     subtitle="Default Term"
     tabs={Array []}
     title="Learn React Native"
@@ -209,6 +213,7 @@ exports[`CourseNavigation renders with empty image url 1`] = `
     onSelectTab={[Function]}
     refreshing={false}
     selectedTabId={null}
+    showColorOverlay={true}
     subtitle="Default Term"
     tabs={
       Array [
@@ -264,6 +269,7 @@ exports[`CourseNavigation renders with image url 1`] = `
     onSelectTab={[Function]}
     refreshing={false}
     selectedTabId={null}
+    showColorOverlay={true}
     subtitle="Default Term"
     tabs={
       Array [
@@ -321,6 +327,7 @@ exports[`CourseNavigation renders without image url 1`] = `
     onSelectTab={[Function]}
     refreshing={false}
     selectedTabId={null}
+    showColorOverlay={true}
     subtitle="Default Term"
     tabs={
       Array [

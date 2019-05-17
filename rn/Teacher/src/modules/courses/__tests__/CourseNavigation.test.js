@@ -44,6 +44,7 @@ const defaultProps = {
   courseColors: template.customColors(),
   courseID: course.id,
   refreshing: false,
+  showColorOverlay: true,
 }
 
 describe('CourseNavigation', () => {
@@ -56,6 +57,7 @@ describe('CourseNavigation', () => {
     const refreshCourses = jest.fn()
     const refreshTabs = jest.fn()
     const refreshLTITools = jest.fn()
+    const getUserSettings = jest.fn()
     const refreshProps = {
       navigator: template.navigator(),
       courseID: course.id,
@@ -63,18 +65,21 @@ describe('CourseNavigation', () => {
       refreshCourses,
       refreshTabs,
       refreshLTITools,
+      getUserSettings,
     }
 
     const tree = shallow(<Refreshed {...refreshProps} />)
     expect(tree).toMatchSnapshot()
     expect(refreshCourses).toHaveBeenCalled()
     expect(refreshTabs).toHaveBeenCalledWith(course.id)
+    expect(getUserSettings).toHaveBeenCalled()
   })
 
   it('refreshes when props change', () => {
     const refreshCourses = jest.fn()
     const refreshTabs = jest.fn()
     const refreshLTITools = jest.fn()
+    const getUserSettings = jest.fn()
     const refreshProps = {
       navigator: template.navigator(),
       courseID: course.id,
@@ -83,6 +88,7 @@ describe('CourseNavigation', () => {
       refreshCourses,
       refreshTabs,
       refreshLTITools,
+      getUserSettings,
     }
 
     const tree = shallow(<Refreshed {...refreshProps} />)
@@ -91,6 +97,7 @@ describe('CourseNavigation', () => {
     tree.setProps(refreshProps)
     expect(refreshCourses).toHaveBeenCalled()
     expect(refreshTabs).toHaveBeenCalledWith(course.id)
+    expect(getUserSettings).toHaveBeenCalled()
   })
 
   it('renders correctly without tabs', () => {
@@ -370,11 +377,49 @@ describe('mapStateToProps', () => {
       color: '#fff',
       pending: 0,
       error: undefined,
+      showColorOverlay: true,
     }
 
     const props = mapStateToProps(state, { courseID: '1' })
 
     expect(props).toEqual(expected)
+  })
+
+  it('returns the correct showColorOverlay', () => {
+    let course = template.course({ image_download_url: 'https://google.com' })
+    const tabs = { tabs: [template.tab()], pending: 0 }
+    const attendanceTool = { pending: 0 }
+    const state = template.appState({
+      entities: {
+        courses: {
+          '1': {
+            course,
+            color: '#fff',
+            tabs,
+            attendanceTool,
+          },
+        },
+      },
+      favoriteCourses: {
+        pending: 0,
+        courseRefs: ['1'],
+      },
+      userInfo: {
+        userSettings: {},
+      },
+    })
+
+    expect(mapStateToProps(state, { courseID: '1' }).showColorOverlay).toEqual(true)
+
+    state.userInfo.userSettings.hide_dashcard_color_overlays = true
+    expect(mapStateToProps(state, { courseID: '1' }).showColorOverlay).toEqual(false)
+
+    state.userInfo.userSettings.hide_dashcard_color_overlays = false
+    expect(mapStateToProps(state, { courseID: '1' }).showColorOverlay).toEqual(true)
+
+    state.userInfo.userSettings.hide_dashcard_color_overlays = true
+    state.entities.courses['1'].course.image_download_url = null
+    expect(mapStateToProps(state, { courseID: '1' }).showColorOverlay).toEqual(true)
   })
 
   it('returns basic props without course', () => {
@@ -393,6 +438,7 @@ describe('mapStateToProps', () => {
       course: null,
       color: '',
       attendanceTabID: null,
+      showColorOverlay: true,
     })
   })
 
@@ -423,6 +469,7 @@ describe('mapStateToProps', () => {
       pending: 0,
       error: undefined,
       attendanceTabID: '1',
+      showColorOverlay: true,
     }
 
     const props = mapStateToProps(state, { courseID: '1' })

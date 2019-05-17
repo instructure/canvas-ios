@@ -38,6 +38,7 @@ type TabsListProps = {
   title: string,
   subtitle: string,
   color: string,
+  showColorOverlay: boolean,
   imageURL: ?string,
   defaultView: ?string,
   onSelectTab: (Tab) => void,
@@ -87,6 +88,11 @@ export default class TabsList extends Component<TabsListProps, any> {
     let compactMode = this.props.windowTraits.horizontal === 'compact'
     let bothCompact = this.props.windowTraits.horizontal === 'compact' && this.props.windowTraits.vertical === 'compact'
     let navbarHeight = bothCompact ? 52 : 64
+    // when there is no color overlay, the navbar is visible and as such we don't want
+    // to add extra height to the scroll collapse for a fake navbar
+    if (!this.props.showColorOverlay) {
+      navbarHeight = 0
+    }
     let headerHeight = bothCompact ? 150 : 235
     let headerBottomContainerMarginTop = bothCompact ? 8 : 44
     let headerBottomContainerHorizontalMargin = bothCompact ? 44 : 0
@@ -167,44 +173,47 @@ export default class TabsList extends Component<TabsListProps, any> {
                         resizeMode='cover'
                       />
                   }
-                  <Animated.View
-                    style={[styles.headerImageOverlay, {
-                      backgroundColor: color,
-                      opacity: imageURL
-                        ? this.animatedValue.interpolate({
-                          inputRange: [-headerHeight, -navbarHeight],
-                          outputRange: [0.8, 1],
-                          extrapolate: 'clamp',
-                        })
-                        : 1,
-                    }]}
-                  />
+                  {this.props.showColorOverlay &&
+                    <Animated.View
+                      style={[styles.headerImageOverlay, {
+                        backgroundColor: color,
+                        opacity: imageURL
+                          ? this.animatedValue.interpolate({
+                            inputRange: [-headerHeight, -navbarHeight],
+                            outputRange: [0.8, 1],
+                            extrapolate: 'clamp',
+                          })
+                          : 1,
+                      }]}
+                    />
+                  }
                 </View>
               )}
             </OnLayout>
-
-            <View style={[styles.headerBottomContainer, {
-              marginTop: headerBottomContainerMarginTop,
-              marginHorizontal: headerBottomContainerHorizontalMargin,
-            }]} >
-              <Animated.Text
-                style={[styles.headerTitle, {
-                  opacity: fadeOut,
-                }]}
-                testID='course-details.title-lbl'
-                numberOfLines={3}
-              >
-                { title }
-              </Animated.Text>
-              <Animated.Text
-                style={[styles.headerSubtitle, {
-                  opacity: fadeOut,
-                }]}
-                testID='course-details.subtitle-lbl'
-              >
-                { subtitle }
-              </Animated.Text>
-            </View>
+            {this.props.showColorOverlay &&
+              <View style={[styles.headerBottomContainer, {
+                marginTop: headerBottomContainerMarginTop,
+                marginHorizontal: headerBottomContainerHorizontalMargin,
+              }]} >
+                <Animated.Text
+                  style={[styles.headerTitle, {
+                    opacity: fadeOut,
+                  }]}
+                  testID='course-details.title-lbl'
+                  numberOfLines={3}
+                >
+                  { title }
+                </Animated.Text>
+                <Animated.Text
+                  style={[styles.headerSubtitle, {
+                    opacity: fadeOut,
+                  }]}
+                  testID='course-details.subtitle-lbl'
+                >
+                  { subtitle }
+                </Animated.Text>
+              </View>
+            }
           </Animated.View>
         }
       </View>

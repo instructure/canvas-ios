@@ -29,6 +29,7 @@ import Images from '../../images'
 import CourseDetailsActions from './tabs/actions'
 import CourseActions from './actions'
 import LTIActions from '../external-tools/actions'
+import UserInfoActions from '../userInfo/actions'
 import refresh from '../../utils/refresh'
 import Screen from '../../routing/Screen'
 import i18n from 'format-message'
@@ -39,6 +40,7 @@ import * as LTITools from '../../common/LTITools'
 import TabsList from '../tabs/TabsList'
 import { featureFlagEnabled } from '@common/feature-flags'
 import { logEvent } from '@common/CanvasAnalytics'
+import showColorOverlayForCourse from '../../common/show-color-overlay-for-course'
 
 type RoutingParams = {
   +courseID: string,
@@ -51,10 +53,12 @@ export type CourseNavigationDataProps = {
   course: ?Course,
   color: string,
   attendanceTabID: ?string,
+  showColorOverlay: boolean,
 }
 
 export type CourseNavigationProps = CourseNavigationDataProps
   & typeof CourseActions
+  & typeof UserInfoActions
   & RoutingParams
   & RefreshProps
   & { navigator: Navigator }
@@ -168,7 +172,8 @@ export class CourseNavigation extends Component<CourseNavigationProps, any> {
     let compactMode = this.state.windowTraits.horizontal === 'compact'
     let screenProps = {}
     if (compactMode) {
-      screenProps.navBarTransparent = true
+      // when we have the color overlay we want the nav bar to be transparent
+      screenProps.navBarTransparent = this.props.showColorOverlay
       screenProps.automaticallyAdjustsScrollViewInsets = false
       screenProps.drawUnderNavBar = true
     } else {
@@ -201,6 +206,7 @@ export class CourseNavigation extends Component<CourseNavigationProps, any> {
           title={name}
           subtitle={termName}
           color={courseColor}
+          showColorOverlay={this.props.showColorOverlay}
           defaultView={course.default_view}
           imageURL={course.image_download_url}
           onSelectTab={this.selectTab}
@@ -225,6 +231,7 @@ export function mapStateToProps (state: AppState, { courseID }: RoutingParams): 
       course: null,
       color: '',
       attendanceTabID: null,
+      showColorOverlay: true,
     }
   }
 
@@ -258,6 +265,7 @@ export function mapStateToProps (state: AppState, { courseID }: RoutingParams): 
     pending,
     error,
     attendanceTabID,
+    showColorOverlay: showColorOverlayForCourse(course, state.userInfo.userSettings.hide_dashcard_color_overlays || false),
   }
 }
 
@@ -268,9 +276,15 @@ export let Refreshed: any = refresh(
     }
     props.refreshCourses()
     props.refreshTabs(props.courseID)
+    props.getUserSettings()
   },
   props => !props.course || props.tabs.length === 0,
   props => Boolean(props.pending)
 )(CourseNavigation)
-let Connected = connect(mapStateToProps, { ...CourseDetailsActions, ...CourseActions, ...LTIActions })(Refreshed)
+let Connected = connect(mapStateToProps, {
+  ...CourseDetailsActions,
+  ...CourseActions,
+  ...LTIActions,
+  ...UserInfoActions,
+})(Refreshed)
 export default (Connected: Component<CourseNavigationProps, any>)
