@@ -45,6 +45,25 @@ describe('UserInfo Actions', () => {
       payload: { result: { data: { hide_dashcard_color_overlays: true } } },
     }])
   })
+
+  it('updateUserSettings', async () => {
+    let actions = UserInfoActions({ updateUserSettings: apiResponse({ hide_dashcard_color_overlays: true }) })
+    let result = await testAsyncAction(actions.updateUserSettings('self', true))
+    expect(result).toMatchObject([{
+      type: 'userInfo.updateUserSettings',
+      payload: { hideOverlay: true }
+    }, {
+      type: 'userInfo.updateUserSettings',
+      payload: {
+        result: {
+          data: {
+            hide_dashcard_color_overlays: true
+          }
+        },
+        hideOverlay: true
+      }
+    }])
+  })
 })
 
 describe('refreshHelpLinks', () => {

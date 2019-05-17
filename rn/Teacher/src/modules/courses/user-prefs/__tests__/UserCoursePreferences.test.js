@@ -41,11 +41,15 @@ let defaultProps: any = {
   color: '#333',
   updateCourseColor: jest.fn(),
   refreshCourses: jest.fn(),
+  getUserSettings: jest.fn(),
+  updateUserSettings: jest.fn(),
   updateCourseNickname: jest.fn(),
   refresh: jest.fn(),
   refreshing: false,
   pending: 0,
   error: '',
+  showColorOverlay: true,
+  hideOverlaySetting: false,
 }
 
 describe('UserCoursePreferences', () => {
@@ -56,6 +60,20 @@ describe('UserCoursePreferences', () => {
   it('renders', () => {
     let tree = renderer.create(
       <UserCoursePreferences {...defaultProps} />
+    ).toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
+  it('renders without the color overlay', () => {
+    let course = templates.course({ image_download_url: 'https://google.com' })
+    let tree = renderer.create(
+      <UserCoursePreferences
+        {...defaultProps}
+        course={course}
+        showColorOverlay={false}
+        hideOverlaySettings
+      />
     ).toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -84,6 +102,7 @@ describe('UserCoursePreferences', () => {
     component.getInstance().refresh()
     setProps(component, defaultProps)
     expect(defaultProps.refreshCourses).toHaveBeenCalled()
+    expect(defaultProps.getUserSettings).toHaveBeenCalled()
   })
 
   it('calls dismiss when done is pressed', () => {
@@ -92,6 +111,16 @@ describe('UserCoursePreferences', () => {
     )
     tree.getInstance().dismiss()
     expect(defaultProps.navigator.dismiss).toHaveBeenCalled()
+  })
+
+  it('calls updateUserSettings when the switch is toggled', () => {
+    let tree = renderer.create(
+      <UserCoursePreferences {...defaultProps} />
+    ).toJSON()
+
+    let toggle = explore(tree).selectByID('course-preferences.overlay-switch') || {}
+    toggle.props.onValueChange(true)
+    expect(defaultProps.updateUserSettings).toHaveBeenCalledWith('self', false)
   })
 
   it('calls props.updateCourseColor when a color is pressed', () => {

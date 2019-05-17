@@ -29,6 +29,7 @@ const {
   refreshAccountExternalTools,
   refreshHelpLinks,
   getUserSettings,
+  updateUserSettings,
 } = Actions
 const defaultState: UserInfo = {
   canActAsUser: false,
@@ -128,5 +129,19 @@ export const userInfo: Reducer<UserInfo, any> = handleActions({
         userSettings: data,
       }
     },
+  }),
+  [updateUserSettings.toString()]: handleAsync({
+    pending: (state, { hideOverlay }) => ({
+      userSettings: {
+        ...state.userSettings,
+        hide_dashcard_color_overlays: hideOverlay,
+      },
+    }),
+    rejected: (state, { hideOverlay }) => ({
+      userSettings: {
+        ...state.userSettings,
+        hide_dashcard_color_overlays: !hideOverlay,
+      },
+    }),
   }),
 }, defaultState)
