@@ -109,6 +109,14 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
             picker.cameraDevice = .front
             self?.present(picker, animated: true)
         })
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Choose File", bundle: .student, comment: ""), style: .default) { [weak self] _ in
+            let picker = FilePickerViewController.create()
+            picker.delegate = self
+            picker.title = NSLocalizedString("Attachments", bundle: .student, comment: "")
+            picker.submitButtonTitle = NSLocalizedString("Send", bundle: .student, comment: "")
+            let nav = UINavigationController(rootViewController: picker)
+            self?.present(nav, animated: true, completion: nil)
+        })
         alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", bundle: .student, comment: ""), style: .cancel))
         present(alert, animated: true)
     }
@@ -250,4 +258,25 @@ extension SubmissionCommentsViewController: UITextViewDelegate {
         addCommentPlaceholder?.isHidden = !textView.text.isEmpty
         setInsets()
     }
+}
+
+extension SubmissionCommentsViewController: FilePickerControllerDelegate {
+    func retry(_ controller: FilePickerViewController) {
+    }
+
+    func canSubmit(_ controller: FilePickerViewController) -> Bool {
+        return controller.files?.isEmpty == false
+    }
+
+    func cancel(_ controller: FilePickerViewController) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+
+    func submit(_ controller: FilePickerViewController) {
+        controller.dismiss(animated: true) {
+            self.presenter?.addFileComment(batchID: controller.batchID)
+        }
+    }
+
+    func filePicker(_ controller: FilePickerViewController, didPickFile file: File) {}
 }

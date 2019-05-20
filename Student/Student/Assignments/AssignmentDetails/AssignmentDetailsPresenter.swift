@@ -51,23 +51,8 @@ class AssignmentDetailsPresenter {
         self?.update()
     }
 
-    var fileUploadInProgress = false
-    lazy var files: Store<LocalUseCase<File>> = env.subscribe(scope: Scope.where(#keyPath(File.assignmentID), equals: assignmentID)) { [weak self] in
-        self?.update()
-        let files = self?.files.map { $0 } ?? []
-        self?.filePicker?.files = files
-        self?.filePicker?.reload()
-
-        if self?.fileUploadInProgress == true && files.allSatisfy({ $0.isUploaded }) {
-            self?.fileUploadInProgress = false
-            self?.filePicker?.dismiss(animated: true, completion: nil)
-        }
-        self?.fileUploadInProgress = files.first { $0.isUploading } != nil
-    }
-
     let env: AppEnvironment
     weak var view: AssignmentDetailsViewProtocol?
-    weak var filePicker: FilePickerViewController?
     let courseID: String
     let assignmentID: String
     var userID: String?
@@ -76,8 +61,14 @@ class AssignmentDetailsPresenter {
         guard let fragment = fragment, !fragment.isEmpty else { return nil }
         return "#\(fragment)"
     }
-    var fileUploader: FileUploader = UploadFile.shared
     var mediaUploader: UploadMedia?
+
+    var fileSubmissionState: UploadBatch.State?
+    lazy var fileUpload = UploadBatch(
+        environment: env,
+        batchID: "assignment-\(assignmentID)",
+        callback: nil
+    )
 
     let supportedSubmissionTypes: [SubmissionType] = [
         .discussion_topic,
@@ -90,14 +81,6 @@ class AssignmentDetailsPresenter {
 
     var assignment: Assignment? {
         return assignments.first
-    }
-
-    var fileSubmissionState: FileSubmissionState? {
-        if files.isEmpty {
-            return nil
-        }
-        let failed = files.first { $0.uploadError != nil } != nil
-        return failed ? .failed : .pending
     }
 
     init(env: AppEnvironment = .shared, view: AssignmentDetailsViewProtocol, courseID: String, assignmentID: String, fragment: String? = nil) {
@@ -123,7 +106,10 @@ class AssignmentDetailsPresenter {
         colors.refresh()
         courses.refresh()
         assignments.refresh()
-        files.refresh()
+        fileUpload.subscribe { [weak self] state in
+            self?.fileSubmissionState = state
+            self?.update()
+        }
     }
 
     func refresh() {
@@ -155,7 +141,7 @@ class AssignmentDetailsPresenter {
         let canMakeSubmission = assignment.canMakeSubmissions
         let isOpen = assignment.isOpenForSubmissions()
         let amStudent = course.enrollments?.hasRole(.student) ?? false
-        let filesUploading = !files.isEmpty
+        let filesUploading = fileSubmissionState == .uploading
         let canSubmit = canMakeSubmission
             && isOpen
             && amStudent
@@ -203,7 +189,7 @@ class AssignmentDetailsPresenter {
             let route = Route.assignmentTextSubmission(courseID: courseID, assignmentID: assignmentID, userID: userID ?? "")
             env.router.route(to: route, from: viewController, options: [.modal, .embedInNav])
         case .online_upload:
-            let filePicker = FilePickerViewController.create()
+            let filePicker = FilePickerViewController.create(environment: env, batchID: "assignment-\(assignmentID)")
             filePicker.title = NSLocalizedString("Submission", bundle: .student, comment: "")
             filePicker.cancelButtonTitle = NSLocalizedString("Cancel Submission", bundle: .student, comment: "")
             let allowedUTIs = assignment?.allowedUTIs ?? []
@@ -211,9 +197,7 @@ class AssignmentDetailsPresenter {
             if assignment?.allowedExtensions.isEmpty == true || allowedUTIs.contains(where: { $0.isImage || $0.isVideo }) {
                 filePicker.sources.append(contentsOf: [.library, .camera])
             }
-            filePicker.files = self.files.map { $0 }
             filePicker.utis = allowedUTIs
-            self.filePicker = filePicker
             view?.present(filePicker: filePicker)
         case .online_url:
             let route = Route.assignmentUrlSubmission(courseID: courseID, assignmentID: assignmentID, userID: userID ?? "")
@@ -239,38 +223,22 @@ class AssignmentDetailsPresenter {
         }
     }
 
-    func addOnlineUpload(file url: URL) {
-        let context = env.database.viewContext
-        context.performAndWait {
-            do {
-                let file: File = context.insert()
-                file.localFileURL = url
-                file.size = url.lookupFileSize()
-                file.prepareForSubmission(courseID: self.courseID, assignmentID: self.assignmentID)
-                try context.save()
-            } catch {
-                self.view?.showError(error)
-            }
-        }
-    }
-
     func cancelOnlineUpload() {
-        let context = self.env.database.viewContext
-        context.performAndWait {
-            for file in self.files {
-                self.fileUploader.cancel(file)
-                context.delete(file)
-            }
-            try? context.save()
-        }
+        fileUpload.cancel()
     }
 
     func submitOnlineUpload() {
-        for file in files {
-            self.fileUploader.upload(file, context: .submission(courseID: courseID, assignmentID: assignmentID)) { [weak self] error in
-                if let error = error {
-                    self?.view?.showError(error)
+        let context = env.database.viewContext
+        context.performAndWait {
+            do {
+                let files: [File] = context.all(where: #keyPath(File.batchID), equals: self.fileUpload.batchID)
+                for file in files {
+                    file.prepareForSubmission(courseID: self.courseID, assignmentID: self.assignmentID)
                 }
+                try context.save()
+                self.fileUpload.upload(to: .submission(courseID: courseID, assignmentID: assignmentID))
+            } catch {
+                self.view?.showError(error)
             }
         }
     }

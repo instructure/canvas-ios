@@ -16,6 +16,7 @@
 
 import Foundation
 import Core
+import CoreData
 
 protocol SubmissionCommentsViewProtocol: class {
     func reload()
@@ -84,6 +85,21 @@ class SubmissionCommentsPresenter {
             isGroup: assignment.first?.gradedIndividually == false,
             type: type,
             url: url
+        ).fetch(environment: env) { [weak self] comment, error in
+            if error != nil || comment == nil {
+                self?.view?.showError(error ?? NSError.instructureError(NSLocalizedString("Could not save the comment", bundle: .student, comment: "")))
+            }
+        }
+    }
+
+    func addFileComment(batchID: String) {
+        UploadFileComment(
+            courseID: context.id,
+            assignmentID: assignmentID,
+            userID: userID,
+            submissionID: submissionID,
+            isGroup: assignment.first?.gradedIndividually == false,
+            batchID: batchID
         ).fetch(environment: env) { [weak self] comment, error in
             if error != nil || comment == nil {
                 self?.view?.showError(error ?? NSError.instructureError(NSLocalizedString("Could not save the comment", bundle: .student, comment: "")))

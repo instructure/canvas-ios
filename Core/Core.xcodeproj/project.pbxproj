@@ -361,6 +361,8 @@
 		B1445307212E5B6E0009D848 /* FetchedResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1445301212E5B6E0009D848 /* FetchedResultsController.swift */; };
 		B1445308212E5B6E0009D848 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1445302212E5B6E0009D848 /* Persistence.swift */; };
 		B144530B212E5BCC0009D848 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B144530A212E5BCC0009D848 /* AsyncOperation.swift */; };
+		B14B704B228F118100B568D6 /* UploadBatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14B704A228F118100B568D6 /* UploadBatch.swift */; };
+		B14B704D228F30A100B568D6 /* UploadFileComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14B704C228F30A100B568D6 /* UploadFileComment.swift */; };
 		B14D555E213056DD0066D275 /* APIOperationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14D555D213056DD0066D275 /* APIOperationTest.swift */; };
 		B14D55612130B6740066D275 /* TestOperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14D55602130B6740066D275 /* TestOperationQueue.swift */; };
 		B14FE5D12134E9D200328CD7 /* DatabaseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14FE5D02134E9D200328CD7 /* DatabaseOperation.swift */; };
@@ -429,6 +431,7 @@
 		B1A8CD3722375D6400E2242D /* FileUploadTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A8CD3622375D6400E2242D /* FileUploadTarget.swift */; };
 		B1A8CD3A223766FA00E2242D /* UploadFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A8CD39223766FA00E2242D /* UploadFile.swift */; };
 		B1AAFFFE226988440088BC20 /* UITableViewCellExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AAFFFD226988440088BC20 /* UITableViewCellExtensionsTests.swift */; };
+		B1AC8594228F08CA00D6BD0B /* FilePickerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AC8593228F08CA00D6BD0B /* FilePickerPresenter.swift */; };
 		B1AE17AE21877C37002995E6 /* APIEnrollmentRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AE17AD21877C36002995E6 /* APIEnrollmentRequestable.swift */; };
 		B1B42C1622403AFD0087399A /* FileUploaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B42C1522403AFD0087399A /* FileUploaderTests.swift */; };
 		B1B4C1C9219631AC00FA9E0E /* EmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1B4C1C8219631AC00FA9E0E /* EmptyView.xib */; };
@@ -1026,6 +1029,8 @@
 		B1445301212E5B6E0009D848 /* FetchedResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedResultsController.swift; sourceTree = "<group>"; };
 		B1445302212E5B6E0009D848 /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		B144530A212E5BCC0009D848 /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
+		B14B704A228F118100B568D6 /* UploadBatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadBatch.swift; sourceTree = "<group>"; };
+		B14B704C228F30A100B568D6 /* UploadFileComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadFileComment.swift; sourceTree = "<group>"; };
 		B14D555D213056DD0066D275 /* APIOperationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIOperationTest.swift; sourceTree = "<group>"; };
 		B14D55602130B6740066D275 /* TestOperationQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestOperationQueue.swift; sourceTree = "<group>"; };
 		B14FE5D02134E9D200328CD7 /* DatabaseOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseOperation.swift; sourceTree = "<group>"; };
@@ -1091,6 +1096,7 @@
 		B1A8CD3622375D6400E2242D /* FileUploadTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadTarget.swift; sourceTree = "<group>"; };
 		B1A8CD39223766FA00E2242D /* UploadFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadFile.swift; sourceTree = "<group>"; };
 		B1AAFFFD226988440088BC20 /* UITableViewCellExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCellExtensionsTests.swift; sourceTree = "<group>"; };
+		B1AC8593228F08CA00D6BD0B /* FilePickerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePickerPresenter.swift; sourceTree = "<group>"; };
 		B1AE17AD21877C36002995E6 /* APIEnrollmentRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnrollmentRequestable.swift; sourceTree = "<group>"; };
 		B1B42C1522403AFD0087399A /* FileUploaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploaderTests.swift; sourceTree = "<group>"; };
 		B1B4C1C8219631AC00FA9E0E /* EmptyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyView.xib; sourceTree = "<group>"; };
@@ -1549,6 +1555,7 @@
 				7D2E827F2270BB7600735854 /* FilePickerCell.swift */,
 				7D2E82812270BB7600735854 /* FilePickerViewController.swift */,
 				7D2E82822270BB7600735854 /* FilePickerViewController.storyboard */,
+				B1AC8593228F08CA00D6BD0B /* FilePickerPresenter.swift */,
 			);
 			path = FilePicker;
 			sourceTree = "<group>";
@@ -2016,7 +2023,9 @@
 				9FCD79D72188DFD00054293A /* GetSubmission.swift */,
 				7DA5C48B22385F95003CDB4C /* GetSubmissionComments.swift */,
 				B195DC44213201DE00797FE4 /* GetUserGroups.swift */,
+				B14B704A228F118100B568D6 /* UploadBatch.swift */,
 				B1A8CD39223766FA00E2242D /* UploadFile.swift */,
+				B14B704C228F30A100B568D6 /* UploadFileComment.swift */,
 				B17855B0226ABDB100B30C80 /* UploadMedia.swift */,
 				7D92D656224ACC7A0015B368 /* UploadMediaComment.swift */,
 			);
@@ -2538,6 +2547,7 @@
 				B1A6BC82218A5066000515E3 /* APILatePolicy.swift in Sources */,
 				7D7110CA2139A57A0085C2E5 /* URLComponentsExtensions.swift in Sources */,
 				7D85D8E9226E5DFE002DBF63 /* SectionHeaderView.swift in Sources */,
+				B14B704B228F118100B568D6 /* UploadBatch.swift in Sources */,
 				7DF4FFDC21713636007E5F81 /* Assignment.swift in Sources */,
 				7DB3C6592285F0C700325B72 /* LoginStartMDMLoginCell.swift in Sources */,
 				3BBCF844224C193B004B519D /* HorizontalMenuView.swift in Sources */,
@@ -2601,6 +2611,7 @@
 				7D8262F5212B300F00BD268D /* APIGroupRequestable.swift in Sources */,
 				9FCF1542227B6DB6009D35F6 /* GradeCircleView.swift in Sources */,
 				7D80AC29212C76E600C40ECE /* APIOAuthRequestable.swift in Sources */,
+				B1AC8594228F08CA00D6BD0B /* FilePickerPresenter.swift in Sources */,
 				7D29D31C218B87050036437C /* DocViewerAnnotationProvider.swift in Sources */,
 				7D819FF7228C7C7E00C61EDD /* APIError.swift in Sources */,
 				B1A890B8224ED64B00CEE000 /* UIScrollViewExtensions.swift in Sources */,
@@ -2617,6 +2628,7 @@
 				7D6A2BE2214C11AD00DB15C4 /* Route.swift in Sources */,
 				7836B0D32199021500FA25AE /* ShareExtensionPresenter.swift in Sources */,
 				7DD6CC6B21BD6DB1004C4BB6 /* LoadingViewController.swift in Sources */,
+				B14B704D228F30A100B568D6 /* UploadFileComment.swift in Sources */,
 				B14FE5D12134E9D200328CD7 /* DatabaseOperation.swift in Sources */,
 				9FBE5367223C1EE9001EC40C /* APIPermissionsRequestable.swift in Sources */,
 				3B84C38D218B9A84005946BA /* AssignmentDates.swift in Sources */,

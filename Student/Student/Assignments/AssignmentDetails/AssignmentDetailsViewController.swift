@@ -153,12 +153,22 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
                 submittedLabel?.text = NSLocalizedString("Submission Failed", bundle: .core, comment: "")
                 submittedLabel?.textColor = UIColor.named(.textDanger).ensureContrast(against: .white)
                 fileSubmissionButton?.setTitle(NSLocalizedString("Tap to view details", bundle: .core, comment: ""), for: .normal)
-            case .pending:
+                return
+            case .uploading:
                 submittedLabel?.text = NSLocalizedString("Submission Uploading...", bundle: .core, comment: "")
                 submittedLabel?.textColor = UIColor.named(.textSuccess).ensureContrast(against: .white)
                 fileSubmissionButton?.setTitle(NSLocalizedString("Tap to view progress", bundle: .core, comment: ""), for: .normal)
+                return
+            case .staged:
+                submittedLabel?.text = NSLocalizedString("Submission In Progress...", bundle: .core, comment: "")
+                submittedLabel?.textColor = UIColor.named(.textSuccess).ensureContrast(against: .white)
+                fileSubmissionButton?.setTitle(NSLocalizedString("Tap to view progress", bundle: .core, comment: ""), for: .normal)
+                return
+            case .completed:
+                if let nav = presentedViewController as? UINavigationController, let filePicker = nav.viewControllers.first as? FilePickerViewController {
+                    filePicker.dismiss(animated: true, completion: nil)
+                }
             }
-            return
         }
 
         guard submission.workflowState != .unsubmitted else {
@@ -335,10 +345,6 @@ extension AssignmentDetailsViewController: UIImagePickerControllerDelegate, UINa
 }
 
 extension AssignmentDetailsViewController: FilePickerControllerDelegate {
-    func add(_ controller: FilePickerViewController, url: URL) {
-        presenter?.addOnlineUpload(file: url)
-    }
-
     func submit(_ controller: FilePickerViewController) {
         controller.dismiss(animated: true) {
             self.presenter?.submitOnlineUpload()
@@ -356,7 +362,7 @@ extension AssignmentDetailsViewController: FilePickerControllerDelegate {
     }
 
     func canSubmit(_ controller: FilePickerViewController) -> Bool {
-        return presenter?.files.isEmpty == false
+        return controller.files?.isEmpty == false
     }
 }
 

@@ -20,6 +20,7 @@ public enum FileUploadContext {
     case course(String)
     case user(String)
     case submission(courseID: String, assignmentID: String)
+    case submissionComment(courseID: String, assignmentID: String)
 
     public static var myFiles: FileUploadContext {
         return .user("self")

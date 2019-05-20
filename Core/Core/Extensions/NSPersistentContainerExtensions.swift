@@ -79,11 +79,21 @@ extension NSPersistentContainer {
         }
     }
 
-    public func fetchedResultsController<T>(predicate: NSPredicate? = nil, sortDescriptors: [NSSortDescriptor], sectionNameKeyPath: String? = nil) -> NSFetchedResultsController<T> {
+    /// Creates a NSFetchedResultsController
+    ///
+    /// - Parameters:
+    ///     - context: The NSManagedObjectContext to use or the `viewContext` if `nil`.
+    public func fetchedResultsController<T>(
+        context: NSManagedObjectContext? = nil,
+        predicate: NSPredicate? = nil,
+        sortDescriptors: [NSSortDescriptor],
+        sectionNameKeyPath: String? = nil
+    ) -> NSFetchedResultsController<T> {
         let request = NSFetchRequest<T>(entityName: String(describing: T.self))
         request.predicate = predicate ?? NSPredicate(value: true)
         request.sortDescriptors = sortDescriptors
-        return NSFetchedResultsController(fetchRequest: request, managedObjectContext: viewContext, sectionNameKeyPath: sectionNameKeyPath, cacheName: nil)
+        let context = context ?? viewContext
+        return NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: sectionNameKeyPath, cacheName: nil)
     }
 }
 

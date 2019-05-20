@@ -69,6 +69,9 @@ public struct PostFileUploadTargetRequest: APIRequestable {
         case let .submission(courseID, assignmentID):
             let context = ContextModel(.course, id: courseID)
             return "\(context.pathComponent)/assignments/\(assignmentID)/submissions/self/files"
+        case let .submissionComment(courseID, assignmentID):
+            let context = ContextModel(.course, id: courseID)
+            return "\(context.pathComponent)/assignments/\(assignmentID)/submissions/self/comments/files"
         }
     }
 
