@@ -86,7 +86,7 @@ async function finalizeReleaseNotes (tag, app) {
   }
 
   try {
-    let result = await run('git', ['log', `${tag}...HEAD`, `--pretty=format:commit:%H%n%B${delimiter}`])
+    let result = await run('git', ['log', `${tag}...HEAD`, `--pretty=format:commit:%H%n%B"${delimiter}"`])
     parseGitLog(result, app.toLowerCase())
   } catch (e) {
     console.log(e)

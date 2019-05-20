@@ -65,7 +65,7 @@ fi
 
 curl https://app.bitrise.io/app/$SLUG/build/start.json --data '{
     "build_params": {
-        "branch": "master",
+        "branch": "release-notes-error",
         "environments": [
             {
                 "is_expand": true,
