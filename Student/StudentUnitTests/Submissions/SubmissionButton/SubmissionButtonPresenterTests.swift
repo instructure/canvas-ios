@@ -270,33 +270,4 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
         presenter.imagePickerController(imagePicker, didFinishPickingMediaWithInfo: [.mediaURL: url])
         XCTAssert(imagePicker.dismissed)
     }
-/*
-    func testSubmitMediaType() {
-        let url = URL(string: "data:audio/x-aac,")!
-        MockURLSession.mock(GetMediaServiceRequest(), value: APIMediaService(domain: "u.edu"))
-        MockURLSession.mock(PostMediaSessionRequest(), value: APIMediaSession(ks: "k"))
-        MockURLSession.mock(PostMediaUploadTokenRequest(body: .init(ks: "k")), value: APIMediaIDWrapper(id: "t"))
-        MockURLSession.mock(PostMediaUploadRequest(fileURL: url, type: .audio, ks: "k", token: "t"))
-        MockURLSession.mock(PostMediaIDRequest(ks: "k", token: "t", type: .audio), value: APIMediaIDWrapper(id: "2"))
-        let expectation = self.expectation(description: "upload media succeeded")
-        presenter.submitMediaType(.audio, url: url) { error in
-            XCTAssertNil(error)
-            expectation.fulfill()
-        }
-        wait(for: [expectation], timeout: 3)
-        XCTAssertNotNil(view.presented)
-    }
-
-    func testSubmitMediaTypeError() {
-        let url = URL(string: "data:video/x-mp4,")!
-        MockURLSession.mock(GetMediaServiceRequest(), error: NSError.internalError())
-        let expectation = self.expectation(description: "upload media failed")
-        presenter.submitMediaType(.video, url: url) { error in
-            XCTAssertNotNil(error)
-            expectation.fulfill()
-        }
-        wait(for: [expectation], timeout: 3)
-        XCTAssertNotNil(view.presented)
-    }
-*/
 }

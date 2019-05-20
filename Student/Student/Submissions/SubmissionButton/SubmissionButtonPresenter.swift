@@ -250,7 +250,7 @@ extension SubmissionButtonPresenter: AudioRecorderDelegate, UIImagePickerControl
         }
         let doneUploading = { (error: Error?) -> Void in
             DispatchQueue.main.async { uploading.dismiss(animated: true) {
-                if let error = error { reportError(error) }
+                if let error = error { return reportError(error) }
                 reportSuccess()
             } }
         }

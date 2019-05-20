@@ -41,7 +41,7 @@ class LTIToolsTests: CoreTestCase {
         wait(for: [doneNil], timeout: 1)
         XCTAssertNil(url)
 
-        api.mock(request, value: APIGetSessionlessLaunchResponse(id: "", name: "", url: actualURL), error: APIRequestableError.invalidPath(""))
+        api.mock(request, error: APIRequestableError.invalidPath(""))
         let doneError = expectation(description: "callback completed")
         tools.getSessionlessLaunchURL { result in
             url = result

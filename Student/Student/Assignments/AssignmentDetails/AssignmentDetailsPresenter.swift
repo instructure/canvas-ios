@@ -78,10 +78,10 @@ class AssignmentDetailsPresenter {
     init(env: AppEnvironment = .shared, view: AssignmentDetailsViewProtocol, courseID: String, assignmentID: String, fragment: String? = nil) {
         self.env = env
         self.view = view
-        self.courseID = ID.expandTildeID(courseID)
-        self.assignmentID = ID.expandTildeID(assignmentID)
+        self.courseID = courseID
+        self.assignmentID = assignmentID
         self.fragment = fragment
-        self.submissionButtonPresenter = SubmissionButtonPresenter(env: env, view: view, assignmentID: self.assignmentID)
+        self.submissionButtonPresenter = SubmissionButtonPresenter(env: env, view: view, assignmentID: assignmentID)
     }
 
     func update() {
