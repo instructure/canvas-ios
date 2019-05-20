@@ -28,58 +28,74 @@ public let router = Router(routes: [
 
     RouteHandler(.course(":courseID"), name: "course") {_, params in
         guard let courseID = params["courseID"] else { return nil }
-        return CourseNavigationViewController(courseID: courseID)
+        return CourseNavigationViewController(courseID: ID.expandTildeID(courseID))
     },
 
     RouteHandler(.syllabus(courseID: ":courseID", includeAssignmentPath: false), name: "syllabus") { _, params in
         guard let courseID = params["courseID"] else { return nil }
-        return SyllabusViewController.create(courseID: courseID)
+        return SyllabusViewController.create(courseID: ID.expandTildeID(courseID))
     },
 
     RouteHandler(.syllabus(courseID: ":courseID"), name: "syllabus") { _, params in
         guard let courseID = params["courseID"] else { return nil }
-        return SyllabusViewController.create(courseID: courseID)
+        return SyllabusViewController.create(courseID: ID.expandTildeID(courseID))
     },
 
     RouteHandler(.course(":courseID", assignment: ":assignmentID"), name: "course_assignment") { url, params in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
-        return AssignmentDetailsViewController.create(courseID: courseID, assignmentID: assignmentID, fragment: url.fragment)
+        return AssignmentDetailsViewController.create(
+            courseID: ID.expandTildeID(courseID),
+            assignmentID: ID.expandTildeID(assignmentID),
+            fragment: url.fragment
+        )
     },
 
     RouteHandler(.group(":groupID"), name: "group") {_, params in
         guard let groupID = params["groupID"] else { return nil }
-        return GroupNavigationViewController(groupID: groupID)
+        return GroupNavigationViewController(groupID: ID.expandTildeID(groupID))
     },
 
     RouteHandler(.quizzes(forCourse: ":courseID"), name: "course_quiz") { _, params in
         guard let courseID = params["courseID"] else { return nil }
-        return QuizListViewController.create(courseID: courseID)
+        return QuizListViewController.create(courseID: ID.expandTildeID(courseID))
     },
 
     RouteHandler(.assignments(forCourse: ":courseID"), name: "course_assignments") { _, params in
         guard let courseID = params["courseID"] else { return nil }
-        return AssignmentListViewController(courseID: courseID)
+        return AssignmentListViewController(courseID: ID.expandTildeID(courseID))
     },
 
     RouteHandler(.submission(forCourse: ":courseID", assignment: ":assignmentID", user: ":userID"), name: "submission") { _, params in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"], let userID = params["userID"] else {
             return nil
         }
-        return SubmissionDetailsViewController.create(context: ContextModel(.course, id: courseID), assignmentID: assignmentID, userID: userID)
+        return SubmissionDetailsViewController.create(
+            context: ContextModel(.course, id: ID.expandTildeID(courseID)),
+            assignmentID: ID.expandTildeID(assignmentID),
+            userID: ID.expandTildeID(userID)
+        )
     },
 
     RouteHandler(.assignmentTextSubmission(courseID: ":courseID", assignmentID: ":assignmentID", userID: ":userID"), name: "assignment_text_submission") { _, params in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"], let userID = params["userID"] else {
             return nil
         }
-        return TextSubmissionViewController.create(courseID: courseID, assignmentID: assignmentID, userID: userID)
+        return TextSubmissionViewController.create(
+            courseID: ID.expandTildeID(courseID),
+            assignmentID: ID.expandTildeID(assignmentID),
+            userID: ID.expandTildeID(userID)
+        )
     },
 
     RouteHandler(.assignmentUrlSubmission(courseID: ":courseID", assignmentID: ":assignmentID", userID: ":userID"), name: "assignment_url_submission") { _, params in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"], let userID = params["userID"] else {
             return nil
         }
-        return UrlSubmissionViewController.create(courseID: courseID, assignmentID: assignmentID, userID: userID)
+        return UrlSubmissionViewController.create(
+            courseID: ID.expandTildeID(courseID),
+            assignmentID: ID.expandTildeID(assignmentID),
+            userID: ID.expandTildeID(userID)
+        )
     },
 
     RouteHandler(.logs, name: "logs") { _, _ in

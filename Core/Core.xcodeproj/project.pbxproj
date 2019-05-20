@@ -316,8 +316,6 @@
 		9FAE40FF21B6C54700FE7F58 /* APIExternalToolRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAE40FE21B6C54700FE7F58 /* APIExternalToolRequestable.swift */; };
 		9FAE410121B6C56D00FE7F58 /* APIExternalTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAE410021B6C56D00FE7F58 /* APIExternalTool.swift */; };
 		9FAE410321B6C88000FE7F58 /* APIExternalToolRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAE410221B6C88000FE7F58 /* APIExternalToolRequestableTests.swift */; };
-		9FAE410521B6CA4C00FE7F58 /* GetSessionlessLaunchURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAE410421B6CA4C00FE7F58 /* GetSessionlessLaunchURL.swift */; };
-		9FAE410721B6CB7F00FE7F58 /* GetSessionlessLaunchURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAE410621B6CB7F00FE7F58 /* GetSessionlessLaunchURLTests.swift */; };
 		9FAE410A21B6D0A600FE7F58 /* LTITools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAE410921B6D0A600FE7F58 /* LTITools.swift */; };
 		9FBE5356223AD1A4001EC40C /* DeveloperMenuViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FBE5355223AD1A4001EC40C /* DeveloperMenuViewController.storyboard */; };
 		9FBE5358223AD1AB001EC40C /* DeveloperMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBE5357223AD1AB001EC40C /* DeveloperMenuViewController.swift */; };
@@ -979,8 +977,6 @@
 		9FAE40FE21B6C54700FE7F58 /* APIExternalToolRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIExternalToolRequestable.swift; sourceTree = "<group>"; };
 		9FAE410021B6C56D00FE7F58 /* APIExternalTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIExternalTool.swift; sourceTree = "<group>"; };
 		9FAE410221B6C88000FE7F58 /* APIExternalToolRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIExternalToolRequestableTests.swift; sourceTree = "<group>"; };
-		9FAE410421B6CA4C00FE7F58 /* GetSessionlessLaunchURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSessionlessLaunchURL.swift; sourceTree = "<group>"; };
-		9FAE410621B6CB7F00FE7F58 /* GetSessionlessLaunchURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSessionlessLaunchURLTests.swift; sourceTree = "<group>"; };
 		9FAE410921B6D0A600FE7F58 /* LTITools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTITools.swift; sourceTree = "<group>"; };
 		9FBE5355223AD1A4001EC40C /* DeveloperMenuViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DeveloperMenuViewController.storyboard; sourceTree = "<group>"; };
 		9FBE5357223AD1AB001EC40C /* DeveloperMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeveloperMenuViewController.swift; sourceTree = "<group>"; };
@@ -2011,7 +2007,6 @@
 				B15CA270221DE1C80014FB02 /* GetModules.swift */,
 				7D819FFE228DB48C00C61EDD /* GetQuiz.swift */,
 				7DCF2043216D622B003AF358 /* GetQuizzes.swift */,
-				9FAE410421B6CA4C00FE7F58 /* GetSessionlessLaunchURL.swift */,
 				9FCD79D72188DFD00054293A /* GetSubmission.swift */,
 				7DA5C48B22385F95003CDB4C /* GetSubmissionComments.swift */,
 				B195DC44213201DE00797FE4 /* GetUserGroups.swift */,
@@ -2142,7 +2137,6 @@
 				B15CA272221DE1FA0014FB02 /* GetModulesTests.swift */,
 				7D81A000228DC1F000C61EDD /* GetQuizTests.swift */,
 				7DCF2045216D652C003AF358 /* GetQuizzesTests.swift */,
-				9FAE410621B6CB7F00FE7F58 /* GetSessionlessLaunchURLTests.swift */,
 				7D5C871E2239A45300D99651 /* GetSubmissionCommentsTests.swift */,
 				9FCD79D92188E3CD0054293A /* GetSubmissionTest.swift */,
 				B195DC5421324DA600797FE4 /* GetUserGroupsTest.swift */,
@@ -2710,7 +2704,6 @@
 				3B346755213052C700F9BC2E /* NSErrorExtensions.swift in Sources */,
 				7D8262EF212B228F00BD268D /* APICourseRequestable.swift in Sources */,
 				3B5369E2219CDD3500D3F62E /* URLExtensions.swift in Sources */,
-				9FAE410521B6CA4C00FE7F58 /* GetSessionlessLaunchURL.swift in Sources */,
 				787BD02121AE5C28000C90A1 /* DiscussionEntry.swift in Sources */,
 				3B69254021A12E020023ED75 /* Int64Extensions.swift in Sources */,
 				3B032CBA2150258F00B570F7 /* PresenterUseCase.swift in Sources */,
@@ -2736,7 +2729,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9FAE410721B6CB7F00FE7F58 /* GetSessionlessLaunchURLTests.swift in Sources */,
 				7D5C87212239A99E00D99651 /* SubmissionCommentTests.swift in Sources */,
 				B1A6BC8A218A977D000515E3 /* APIEnrollmentRequestableTests.swift in Sources */,
 				7D80AC5B212DB0B500C40ECE /* URLResponseExtensionsTests.swift in Sources */,
