@@ -44,7 +44,7 @@ class UrlSubmissionViewController: UIViewController {
         borderView.backgroundColor = .named(.ash)
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .plain, target: self, action: #selector(submit))
-        navigationItem.rightBarButtonItem?.accessibilityIdentifier = "UrlSubmissionPage.submit"
+        navigationItem.rightBarButtonItem?.accessibilityIdentifier = "URLSubmission.submit"
         addCancelButton(side: .left)
     }
 

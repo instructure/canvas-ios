@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2018-present Instructure, Inc.
+// Copyright (C) 2019-present Instructure, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,21 +15,14 @@
 //
 
 import Foundation
+import SwiftUITest
 
-enum CommentListPage: String, UITestElement, CaseIterable {
-    case replyButton
-    case replyTextView
-    case tableView
-}
-
-struct CommentListItem: RawRepresentable, UITestElement {
-    let rawValue: String
-
-    static func item(_ id: String) -> CommentListItem {
-        return CommentListItem(rawValue: id)
+struct SubmissionFiles {
+    static func cell(fileID: String) -> Element {
+        return app.find(id: "SubmissionFiles.cell.\(fileID)")
     }
 
-    static func deleteButton(_ id: String) -> CommentListItem {
-        return CommentListItem(rawValue: "\(id).deleteButton")
+    static func checkView(fileID: String) -> Element {
+        return app.find(id: "SubmissionFiles.cell.\(fileID).checkView")
     }
 }

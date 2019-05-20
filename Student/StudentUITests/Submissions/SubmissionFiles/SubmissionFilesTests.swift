@@ -45,17 +45,17 @@ class SubmissionFilesTests: StudentTest {
         ]))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
-        SubmissionDetailsElement.drawerFilesButton.tap()
+        SubmissionDetails.drawerFilesButton.tap()
 
-        XCTAssertTrue(SubmissionFilesElement.cell(fileID: "1").isVisible)
+        XCTAssertTrue(SubmissionFiles.cell(fileID: "1").isVisible)
 
-        XCTAssertTrue(SubmissionFilesElement.checkView(fileID: "1").isVisible)
-        XCTAssertTrue(SubmissionFilesElement.cell(fileID: "2").isVisible)
-        XCTAssertFalse(SubmissionFilesElement.checkView(fileID: "2").isVisible)
+        XCTAssertTrue(SubmissionFiles.checkView(fileID: "1").isVisible)
+        XCTAssertTrue(SubmissionFiles.cell(fileID: "2").isVisible)
+        XCTAssertFalse(SubmissionFiles.checkView(fileID: "2").isVisible)
 
-        SubmissionFilesElement.cell(fileID: "2").tap()
+        SubmissionFiles.cell(fileID: "2").tap()
 
-        XCTAssertFalse(SubmissionFilesElement.checkView(fileID: "1").isVisible)
-        XCTAssertTrue(SubmissionFilesElement.checkView(fileID: "2").isVisible)
+        XCTAssertFalse(SubmissionFiles.checkView(fileID: "1").isVisible)
+        XCTAssertTrue(SubmissionFiles.checkView(fileID: "2").isVisible)
     }
 }

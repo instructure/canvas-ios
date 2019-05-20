@@ -21,7 +21,6 @@ import TestsFoundation
 class AssignmentDetailsPageTest: StudentTest {
     let page = AssignmentDetailsPage.self
     let filePicker = FilePickerPage.self
-    let submissionDetailsPage = SubmissionDetailsPage.self
 
     lazy var course: APICourse = {
         let course = APICourse.make()
@@ -243,7 +242,7 @@ class AssignmentDetailsPageTest: StudentTest {
         show("/courses/\(course.id)/assignments/\(assignment.id)")
         page.waitToExist(.viewSubmissionButton, timeout: 5)
         page.tap(.viewSubmissionButton)
-        submissionDetailsPage.assertExists(.emptySubmitButton)
+        XCTAssertTrue(SubmissionDetails.emptySubmitButton.exists)
     }
 
     func testSubmissionButtonNavigatesToSubmission() {
@@ -253,7 +252,7 @@ class AssignmentDetailsPageTest: StudentTest {
         ]))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
         page.tap(.viewSubmissionButton)
-        submissionDetailsPage.assertVisible(.attemptPickerToggle)
+        XCTAssertTrue(SubmissionDetails.attemptPickerToggle.isVisible)
     }
 
     func testSubmitUrlSubmission() {

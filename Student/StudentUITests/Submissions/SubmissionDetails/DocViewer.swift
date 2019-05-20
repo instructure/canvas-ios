@@ -15,10 +15,9 @@
 //
 
 import Foundation
+import SwiftUITest
 
-enum UrlSubmissionPage: String, UITestElement, CaseIterable {
-    case url
-    case preview
-    case loadingView
-    case submit
+enum DocViewer: String, ElementWrapper, CaseIterable {
+    case searchButton
+    case shareButton
 }

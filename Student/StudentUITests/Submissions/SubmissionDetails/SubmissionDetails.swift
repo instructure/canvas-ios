@@ -17,20 +17,32 @@
 import Foundation
 import SwiftUITest
 
-enum SubmissionDetailsElement: String, CaseIterable, ElementWrapper {
+enum SubmissionDetails: String, CaseIterable, ElementWrapper {
+    case attemptPicker
+    case attemptPickerToggle
+    case discussionWebView
     case drawerGripper
     case drawerSegmentedControl
+    case emptyAssignmentDueBy
+    case emptySubmitButton
+    case emptyView
+    case externalToolButton
+    case mediaPlayer
+    case onlineQuizWebView
+    case onlineTextEntryWebView
+    case urlButton
+    case urlSubmissionBlurb
 
     static var drawerCommentsButton: Element {
-        let parentID = SubmissionDetailsElement.drawerSegmentedControl.id
+        let parentID = SubmissionDetails.drawerSegmentedControl.id
         return app.find(parentID: parentID, type: "UISegment", index: 0)
     }
     static var drawerFilesButton: Element {
-        let parentID = SubmissionDetailsElement.drawerSegmentedControl.id
+        let parentID = SubmissionDetails.drawerSegmentedControl.id
         return app.find(parentID: parentID, type: "UISegment", index: 1)
     }
     static var drawerRubricButton: Element {
-        let parentID = SubmissionDetailsElement.drawerSegmentedControl.id
+        let parentID = SubmissionDetails.drawerSegmentedControl.id
         return app.find(parentID: parentID, type: "UISegment", index: 2)
     }
 }
