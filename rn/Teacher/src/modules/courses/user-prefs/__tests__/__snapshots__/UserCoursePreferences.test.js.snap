@@ -254,69 +254,6 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
               }
             }
           />
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "height": 54,
-                "justifyContent": "space-between",
-                "paddingHorizontal": 16,
-              }
-            }
-          >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "fontWeight": "600",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              Color Overlay
-            </Text>
-            <RCTSwitch
-              disabled={false}
-              onChange={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              onTintColor="#374A59"
-              onValueChange={[Function]}
-              style={
-                Array [
-                  Object {
-                    "height": 31,
-                    "width": 51,
-                  },
-                  undefined,
-                ]
-              }
-              testID="course-preferences.overlay-switch"
-              value={true}
-            />
-          </View>
-          <View
-            style={
-              Object {
-                "backgroundColor": "#C7CDD1",
-                "height": 0.5,
-              }
-            }
-          />
           <View>
             <Text
               accessible={true}
@@ -1077,69 +1014,6 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
               }
               testID="nameInput"
               value="Learn React Native"
-            />
-          </View>
-          <View
-            style={
-              Object {
-                "backgroundColor": "#C7CDD1",
-                "height": 0.5,
-              }
-            }
-          />
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "height": 54,
-                "justifyContent": "space-between",
-                "paddingHorizontal": 16,
-              }
-            }
-          >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "fontWeight": "600",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              Color Overlay
-            </Text>
-            <RCTSwitch
-              disabled={false}
-              onChange={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              onTintColor="#374A59"
-              onValueChange={[Function]}
-              style={
-                Array [
-                  Object {
-                    "height": 31,
-                    "width": 51,
-                  },
-                  undefined,
-                ]
-              }
-              testID="course-preferences.overlay-switch"
-              value={true}
             />
           </View>
           <View
@@ -1939,69 +1813,6 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
               }
               testID="nameInput"
               value="New Course Name"
-            />
-          </View>
-          <View
-            style={
-              Object {
-                "backgroundColor": "#C7CDD1",
-                "height": 0.5,
-              }
-            }
-          />
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "height": 54,
-                "justifyContent": "space-between",
-                "paddingHorizontal": 16,
-              }
-            }
-          >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "fontWeight": "600",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              Color Overlay
-            </Text>
-            <RCTSwitch
-              disabled={false}
-              onChange={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              onTintColor="#374A59"
-              onValueChange={[Function]}
-              style={
-                Array [
-                  Object {
-                    "height": 31,
-                    "width": 51,
-                  },
-                  undefined,
-                ]
-              }
-              testID="course-preferences.overlay-switch"
-              value={true}
             />
           </View>
           <View
@@ -2985,69 +2796,6 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
               }
             }
           />
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "height": 54,
-                "justifyContent": "space-between",
-                "paddingHorizontal": 16,
-              }
-            }
-          >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "fontWeight": "600",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              Color Overlay
-            </Text>
-            <RCTSwitch
-              disabled={false}
-              onChange={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              onTintColor="#374A59"
-              onValueChange={[Function]}
-              style={
-                Array [
-                  Object {
-                    "height": 31,
-                    "width": 51,
-                  },
-                  undefined,
-                ]
-              }
-              testID="course-preferences.overlay-switch"
-              value={true}
-            />
-          </View>
-          <View
-            style={
-              Object {
-                "backgroundColor": "#C7CDD1",
-                "height": 0.5,
-              }
-            }
-          />
           <View>
             <Text
               accessible={true}
@@ -4021,69 +3769,6 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
               }
             }
           />
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "height": 54,
-                "justifyContent": "space-between",
-                "paddingHorizontal": 16,
-              }
-            }
-          >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "fontWeight": "600",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              Color Overlay
-            </Text>
-            <RCTSwitch
-              disabled={false}
-              onChange={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              onTintColor="#374A59"
-              onValueChange={[Function]}
-              style={
-                Array [
-                  Object {
-                    "height": 31,
-                    "width": 51,
-                  },
-                  undefined,
-                ]
-              }
-              testID="course-preferences.overlay-switch"
-              value={true}
-            />
-          </View>
-          <View
-            style={
-              Object {
-                "backgroundColor": "#C7CDD1",
-                "height": 0.5,
-              }
-            }
-          />
           <View>
             <Text
               accessible={true}
@@ -5047,69 +4732,6 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
               }
               testID="nameInput"
               value="Learn React Native"
-            />
-          </View>
-          <View
-            style={
-              Object {
-                "backgroundColor": "#C7CDD1",
-                "height": 0.5,
-              }
-            }
-          />
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "height": 54,
-                "justifyContent": "space-between",
-                "paddingHorizontal": 16,
-              }
-            }
-          >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "fontWeight": "600",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              Color Overlay
-            </Text>
-            <RCTSwitch
-              disabled={false}
-              onChange={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              onTintColor="#374A59"
-              onValueChange={[Function]}
-              style={
-                Array [
-                  Object {
-                    "height": 31,
-                    "width": 51,
-                  },
-                  undefined,
-                ]
-              }
-              testID="course-preferences.overlay-switch"
-              value={true}
             />
           </View>
           <View
@@ -6109,69 +5731,6 @@ exports[`UserCoursePreferences renders 1`] = `
               }
             }
           />
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "height": 54,
-                "justifyContent": "space-between",
-                "paddingHorizontal": 16,
-              }
-            }
-          >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "fontWeight": "600",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              Color Overlay
-            </Text>
-            <RCTSwitch
-              disabled={false}
-              onChange={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              onTintColor="#374A59"
-              onValueChange={[Function]}
-              style={
-                Array [
-                  Object {
-                    "height": 31,
-                    "width": 51,
-                  },
-                  undefined,
-                ]
-              }
-              testID="course-preferences.overlay-switch"
-              value={true}
-            />
-          </View>
-          <View
-            style={
-              Object {
-                "backgroundColor": "#C7CDD1",
-                "height": 0.5,
-              }
-            }
-          />
           <View>
             <Text
               accessible={true}
@@ -7135,69 +6694,6 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
               }
               testID="nameInput"
               value="Learn React Native"
-            />
-          </View>
-          <View
-            style={
-              Object {
-                "backgroundColor": "#C7CDD1",
-                "height": 0.5,
-              }
-            }
-          />
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "height": 54,
-                "justifyContent": "space-between",
-                "paddingHorizontal": 16,
-              }
-            }
-          >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "fontWeight": "600",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              Color Overlay
-            </Text>
-            <RCTSwitch
-              disabled={false}
-              onChange={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              onTintColor="#374A59"
-              onValueChange={[Function]}
-              style={
-                Array [
-                  Object {
-                    "height": 31,
-                    "width": 51,
-                  },
-                  undefined,
-                ]
-              }
-              testID="course-preferences.overlay-switch"
-              value={true}
             />
           </View>
           <View
@@ -8181,69 +7677,6 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
               }
             }
           />
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "height": 54,
-                "justifyContent": "space-between",
-                "paddingHorizontal": 16,
-              }
-            }
-          >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "fontWeight": "600",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              Color Overlay
-            </Text>
-            <RCTSwitch
-              disabled={false}
-              onChange={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              onTintColor="#374A59"
-              onValueChange={[Function]}
-              style={
-                Array [
-                  Object {
-                    "height": 31,
-                    "width": 51,
-                  },
-                  undefined,
-                ]
-              }
-              testID="course-preferences.overlay-switch"
-              value={true}
-            />
-          </View>
-          <View
-            style={
-              Object {
-                "backgroundColor": "#C7CDD1",
-                "height": 0.5,
-              }
-            }
-          />
           <View>
             <Text
               accessible={true}
@@ -9210,69 +8643,6 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
               }
               testID="nameInput"
               value="Learn React Native"
-            />
-          </View>
-          <View
-            style={
-              Object {
-                "backgroundColor": "#C7CDD1",
-                "height": 0.5,
-              }
-            }
-          />
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "height": 54,
-                "justifyContent": "space-between",
-                "paddingHorizontal": 16,
-              }
-            }
-          >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "fontWeight": "600",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              Color Overlay
-            </Text>
-            <RCTSwitch
-              disabled={false}
-              onChange={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              onTintColor="#374A59"
-              onValueChange={[Function]}
-              style={
-                Array [
-                  Object {
-                    "height": 31,
-                    "width": 51,
-                  },
-                  undefined,
-                ]
-              }
-              testID="course-preferences.overlay-switch"
-              value={true}
             />
           </View>
           <View

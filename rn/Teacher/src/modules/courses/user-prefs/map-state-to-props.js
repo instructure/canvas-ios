@@ -24,18 +24,15 @@ export type StateProps = {
   pending: number,
   error: ?string,
   showColorOverlay: boolean,
-  hideOverlaySetting: boolean,
 }
 
 export default function stateToProps (state: AppState, ownProps: {courseID: string}): StateProps {
   let course: CourseState = state.entities.courses[ownProps.courseID]
-  let hideOverlaySetting = state.userInfo.userSettings.hide_dashcard_color_overlays || false
   return {
     course: course.course,
     color: course.color,
     pending: state.favoriteCourses.pending + course.pending,
     error: course.error,
-    showColorOverlay: showColorOverlayForCourse(course.course, hideOverlaySetting),
-    hideOverlaySetting,
+    showColorOverlay: showColorOverlayForCourse(course.course, state.userInfo.userSettings.hide_dashcard_color_overlays),
   }
 }

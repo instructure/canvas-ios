@@ -49,7 +49,6 @@ let defaultProps: any = {
   pending: 0,
   error: '',
   showColorOverlay: true,
-  hideOverlaySetting: false,
 }
 
 describe('UserCoursePreferences', () => {
@@ -72,7 +71,6 @@ describe('UserCoursePreferences', () => {
         {...defaultProps}
         course={course}
         showColorOverlay={false}
-        hideOverlaySettings
       />
     ).toJSON()
 
@@ -111,16 +109,6 @@ describe('UserCoursePreferences', () => {
     )
     tree.getInstance().dismiss()
     expect(defaultProps.navigator.dismiss).toHaveBeenCalled()
-  })
-
-  it('calls updateUserSettings when the switch is toggled', () => {
-    let tree = renderer.create(
-      <UserCoursePreferences {...defaultProps} />
-    ).toJSON()
-
-    let toggle = explore(tree).selectByID('course-preferences.overlay-switch') || {}
-    toggle.props.onValueChange(true)
-    expect(defaultProps.updateUserSettings).toHaveBeenCalledWith('self', false)
   })
 
   it('calls props.updateCourseColor when a color is pressed', () => {
