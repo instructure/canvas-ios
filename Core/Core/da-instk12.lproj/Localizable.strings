@@ -35,6 +35,9 @@
 "Bold" = "Fed";
 
 /* No comment provided by engineer. */
+"Camera" = "Kamera";
+
+/* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "Kan du ikke finde din skole? Prøv at indtaste skolens fulde URL.";
 
 /* No comment provided by engineer. */
@@ -89,13 +92,22 @@
 "Domain" = "Domæne";
 
 /* No comment provided by engineer. */
+"Done" = "Udført";
+
+/* No comment provided by engineer. */
 "Error" = "Fejl";
 
 /* No comment provided by engineer. */
 "External Tool" = "Eksternt værktøj";
 
 /* No comment provided by engineer. */
+"Failed upload" = "Upload mislykkedes";
+
+/* No comment provided by engineer. */
 "File Upload" = "Filoverførsel";
+
+/* No comment provided by engineer. */
+"Files" = "Filer";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "Endelig vurdering: %@";
@@ -146,6 +158,9 @@
 "Launch External Tool" = "Start eksternt værktøj";
 
 /* No comment provided by engineer. */
+"Library" = "Bibliotek";
+
+/* No comment provided by engineer. */
 "Link" = "Link";
 
 /* No comment provided by engineer. */
@@ -186,6 +201,9 @@
 
 /* No comment provided by engineer. */
 "N/A" = "N/A";
+
+/* No comment provided by engineer. */
+"No Content" = "Intet indhold";
 
 /* No comment provided by engineer. */
 "No Due Date" = "Ingen afleveringsdato";
@@ -230,6 +248,9 @@
 "Pause" = "Pause";
 
 /* No comment provided by engineer. */
+"Permission Needed" = "Tilladelse nødvendig";
+
+/* No comment provided by engineer. */
 "Play" = "Afspil";
 
 /* No comment provided by engineer. */
@@ -260,6 +281,9 @@
 "Reply to the annotation or previous comments" = "Besvar anmærkningen eller tidligere kommentarer";
 
 /* No comment provided by engineer. */
+"Retry" = "Prøv igen";
+
+/* No comment provided by engineer. */
 "See what's new." = "Se, hvad der er nyt";
 
 /* No comment provided by engineer. */
@@ -281,6 +305,9 @@
 "Set text color" = "Indstil tekstfarve";
 
 /* No comment provided by engineer. */
+"Settings" = "Indstillinger";
+
+/* No comment provided by engineer. */
 "Site Admin Login" = "Websted admin login";
 
 /* No comment provided by engineer. */
@@ -294,6 +321,9 @@
 
 /* No comment provided by engineer. */
 "Submission failed." = "Aflevering mislykkedes.";
+
+/* No comment provided by engineer. */
+"Submit" = "Aflever";
 
 /* No comment provided by engineer. */
 "Submit Assignment" = "Aflever opgave";
@@ -347,6 +377,12 @@
 "Unordered List" = "Ikke ordnet liste";
 
 /* No comment provided by engineer. */
+"Uploading %@ of %@" = "Overfører %1$@ af %2$@";
+
+/* No comment provided by engineer. */
+"Uploading..." = "Uploader ...";
+
+/* No comment provided by engineer. */
 "URL" = "URL";
 
 /* No comment provided by engineer. */
@@ -369,6 +405,9 @@
 
 /* No comment provided by engineer. */
 "yellow" = "gul";
+
+/* No comment provided by engineer. */
+"You must enable Microphone permissions in Settings." = "Du skal aktivere mikrofontilladelser i indstillinger.";
 
 /* No comment provided by engineer. */
 "You need at least one active observer enrollment to use Canvas Parent. If you're a student or teacher, try one of our other apps below." = "Du har brug for mindst en aktiv observatørtilmelding for at bruge Canvas Parent. Hvis du er elev eller lærer, kan du prøve en af vores andre apps nedenfor.";
