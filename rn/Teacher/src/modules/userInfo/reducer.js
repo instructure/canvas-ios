@@ -132,12 +132,14 @@ export const userInfo: Reducer<UserInfo, any> = handleActions({
   }),
   [updateUserSettings.toString()]: handleAsync({
     pending: (state, { hideOverlay }) => ({
+      ...state,
       userSettings: {
         ...state.userSettings,
         hide_dashcard_color_overlays: hideOverlay,
       },
     }),
     rejected: (state, { hideOverlay }) => ({
+      ...state,
       userSettings: {
         ...state.userSettings,
         hide_dashcard_color_overlays: !hideOverlay,

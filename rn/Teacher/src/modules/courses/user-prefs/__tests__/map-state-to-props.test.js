@@ -48,7 +48,6 @@ test('finds the correct data', () => {
     course: { id: 2 },
     color: '#333',
     showColorOverlay: true,
-    hideOverlaySetting: false,
   })
 })
 
@@ -78,29 +77,4 @@ test('returns the correct value for showColorOverlay', () => {
 
   state.userInfo.userSettings.hide_dashcard_color_overlays = false
   expect(stateToProps(state, { courseID: '1' }).showColorOverlay).toEqual(true)
-})
-
-test('returns the hideOverlaySetting', () => {
-  let state = templates.appState({
-    entities: {
-      courses: {
-        '1': {
-          course: templates.course(),
-        },
-      },
-    },
-    favoriteCourses: {
-      pending: 0,
-    },
-    userInfo: {
-      userSettings: {},
-    },
-  })
-  expect(stateToProps(state, { courseID: '1' }).hideOverlaySetting).toEqual(false)
-
-  state.userInfo.userSettings.hide_dashcard_color_overlays = true
-  expect(stateToProps(state, { courseID: '1' }).hideOverlaySetting).toEqual(true)
-
-  state.userInfo.userSettings.hide_dashcard_color_overlays = false
-  expect(stateToProps(state, { courseID: '1' }).hideOverlaySetting).toEqual(false)
 })

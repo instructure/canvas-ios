@@ -194,10 +194,13 @@ describe('userInfo', () => {
       pending: true,
     }
     const defaultState = {
+      other: 'other',
       userSettings: {},
     }
 
-    expect(userInfo(defaultState, action).userSettings.hide_dashcard_color_overlays).toEqual(true)
+    let state = userInfo(defaultState, action)
+    expect(state.userSettings.hide_dashcard_color_overlays).toEqual(true)
+    expect(state.other).toEqual('other')
 
     action.pending = false
     action.error = true

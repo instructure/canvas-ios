@@ -23,7 +23,6 @@ import {
   Image,
   Dimensions,
   NativeModules,
-  Switch,
 } from 'react-native'
 import { connect } from 'react-redux'
 import i18n from 'format-message'
@@ -57,11 +56,9 @@ type Props = {
   course: Course,
   color: string,
   showColorOverlay: boolean,
-  hideOverlaySetting: boolean,
   updateCourseColor: (string, string) => void,
   updateCourseNickname: (Course, string) => Course,
   getUserSettings: () => void,
-  updateUserSettings: (string, boolean) => void,
   pending: number,
   error: ?string,
 } & RefreshProps
@@ -104,11 +101,6 @@ export class UserCoursePreferences extends Component<Props, any> {
   updateColor = (color: string): void => {
     HapticFeedback.generate('selection')
     this.props.updateCourseColor(this.props.course.id, color)
-  }
-
-  onChangeColorOverlay = (showColorOverlay: boolean) => {
-    // the user settings is in the negative "hide_dashcard_color_overlays"
-    this.props.updateUserSettings('self', !showColorOverlay)
   }
 
   dismiss = () => {
@@ -189,16 +181,6 @@ export class UserCoursePreferences extends Component<Props, any> {
               style={styles.nickname}
               onChangeText={(text) => this.setState({ name: text })}
               testID='nameInput'
-            />
-          </View>
-          <View style={styles.separator} />
-          <View style={styles.row}>
-            <Text style={styles.rowTitle}>{i18n('Color Overlay')}</Text>
-            <Switch
-              testID='course-preferences.overlay-switch'
-              value={!this.props.hideOverlaySetting}
-              onValueChange={this.onChangeColorOverlay}
-              onTintColor={colors.primaryBrandColor}
             />
           </View>
           <View style={styles.separator} />
