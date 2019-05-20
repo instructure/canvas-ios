@@ -28,6 +28,7 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
     var resultingSubtitle: String?
     var resultingBackgroundColor: UIColor?
     var presenter: AssignmentDetailsPresenter!
+    var presentedView: UIViewController?
     var expectation = XCTestExpectation(description: "expectation")
     var resultingButtonTitle: String?
     var navigationController: UINavigationController?
@@ -112,7 +113,8 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
     func testUseCaseFetchesData() {
         //  given
         Course.make()
-        let expected = Assignment.make()
+        Quiz.make()
+        let expected = Assignment.make([ "quizID": "1" ])
 
         presenter.viewIsReady()
         wait(for: [expectation], timeout: 1)
@@ -150,19 +152,44 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         XCTAssertEqual(router?.calls.last?.0, .parse("/course/1/files/2?courseID=1&assignmentID=1"))
     }
 
-    func testAssignmentAsAssignmentDetailsViewModel() {
-        let assignment: Assignment = Assignment.make([
-            "submission": Submission.make(["scoreRaw": 100, "grade": "A"]),
-        ])
-        XCTAssertEqual(assignment.viewableScore, 100)
-        XCTAssertEqual(assignment.viewableGrade, "A")
+    func testSubmit() {
+        presenter.submit(button: UIView())
+        XCTAssertFalse(mockButton.submitted)
+
+        Assignment.make()
+        presenter.refresh()
+        presenter.submit(button: UIView())
+        XCTAssertTrue(mockButton.submitted)
+    }
+
+    func testViewFileSubmission() {
+        presenter.viewFileSubmission()
+        XCTAssertNil(presentedView)
+
+        Assignment.make()
+        presenter.refresh()
+        presenter.viewFileSubmission()
+        XCTAssertNotNil(presentedView)
+    }
+
+    func testFileSubmissionState() {
+        XCTAssertNil(presenter.fileSubmissionState)
+        File.make([ "uploadError": nil, "assignmentID": "1" ])
+        presenter.viewIsReady()
+        XCTAssertEqual(presenter.fileSubmissionState, .pending)
+
+        File.make([ "uploadError": "doh", "assignmentID": "1" ])
+        presenter.refresh()
+        XCTAssertEqual(presenter.fileSubmissionState, .failed)
     }
 }
 
 extension AssignmentDetailsPresenterTests: AssignmentDetailsViewProtocol {
     func open(_ url: URL) {}
 
-    func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)?) {}
+    func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)?) {
+        presentedView = viewControllerToPresent
+    }
 
     func showSubmitAssignmentButton(title: String?) {
         resultingButtonTitle = title
