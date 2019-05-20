@@ -45,7 +45,7 @@ function run (cmd, args, opts) {
     command.on('exit', code => {
       if (code === 0) return resolve(result)
       console.error(command.stderr.toString())
-      reject(`${cmd} ${args.join(' ')} failed with code ${code}.`)
+      reject(`${cmd} ${args.join(' ')} failed with code ${code}. ${command.stderr.toString()}`)
     })
   })
 }
@@ -86,10 +86,11 @@ async function finalizeReleaseNotes (tag, app) {
   }
 
   try {
-    let result = await run('git', ['log', `${tag}...HEAD`, `--pretty=format:commit:%H%n%B"${delimiter}"`])
+    let result = await run('git', ['log', `${tag}...HEAD`, `--pretty=format:commit:%H%n%B${delimiter}`])
     parseGitLog(result, app.toLowerCase())
   } catch (e) {
     console.log(e)
+    throw e
   }
 }
 
