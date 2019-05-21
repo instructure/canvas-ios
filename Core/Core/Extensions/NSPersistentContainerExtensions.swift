@@ -79,12 +79,7 @@ extension NSPersistentContainer {
         }
     }
 
-    /// Creates a NSFetchedResultsController
-    ///
-    /// - Parameters:
-    ///     - context: The NSManagedObjectContext to use or the `viewContext` if `nil`.
     public func fetchedResultsController<T>(
-        context: NSManagedObjectContext? = nil,
         predicate: NSPredicate? = nil,
         sortDescriptors: [NSSortDescriptor],
         sectionNameKeyPath: String? = nil
@@ -92,8 +87,7 @@ extension NSPersistentContainer {
         let request = NSFetchRequest<T>(entityName: String(describing: T.self))
         request.predicate = predicate ?? NSPredicate(value: true)
         request.sortDescriptors = sortDescriptors
-        let context = context ?? viewContext
-        return NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: sectionNameKeyPath, cacheName: nil)
+        return NSFetchedResultsController(fetchRequest: request, managedObjectContext: viewContext, sectionNameKeyPath: sectionNameKeyPath, cacheName: nil)
     }
 }
 

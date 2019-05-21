@@ -17,6 +17,7 @@
 import Foundation
 
 public class UploadBatch {
+    public class Token: NSObject {}
     public typealias Callback = (State?) -> Void
 
     public enum State: Equatable {
@@ -34,20 +35,6 @@ public class UploadBatch {
             default: return false
             }
         }
-
-        public var completed: Bool {
-            switch self {
-            case .completed: return true
-            default: return false
-            }
-        }
-
-        public var failed: Bool {
-            switch self {
-            case .failed: return true
-            default: return false
-            }
-        }
     }
 
     let env: AppEnvironment
@@ -55,28 +42,42 @@ public class UploadBatch {
     public lazy var files: Store<LocalUseCase<File>> = env.subscribe(scope: .where(#keyPath(File.batchID), equals: batchID)) { [weak self] in
         self?.update()
     }
-    private var subscribers: [Callback] = []
+    private var subscribers: [Token: Callback] = [:]
     public var state: State?
     public var uploader: FileUploader = UploadFile.shared
+    var token: Token?
 
     public init(environment: AppEnvironment = .shared, batchID: String = UUID.string, callback: Callback?) {
         self.env = environment
         self.batchID = batchID
 
         if let callback = callback {
-            subscribe(callback)
+            token = subscribe(callback)
         }
 
         files.refresh()
     }
 
-    public func subscribe(_ callback: @escaping Callback) {
-        subscribers.append(callback)
+    deinit {
+        if let token = token {
+            unsubscribe(token)
+        }
+    }
+
+    @discardableResult
+    public func subscribe(_ callback: @escaping Callback) -> Token {
+        let token = Token()
+        subscribers[token] = callback
         callback(state)
+        return token
+    }
+
+    public func unsubscribe(_ token: Token) {
+        subscribers.removeValue(forKey: token)
     }
 
     private func notify() {
-        for callback in subscribers {
+        for (_, callback) in subscribers {
             callback(state)
         }
     }
@@ -100,8 +101,12 @@ public class UploadBatch {
         }
     }
 
-    public func upload(to context: FileUploadContext, callback: Callback? = nil) {
-        if let callback = callback { subscribe(callback) }
+    @discardableResult
+    public func upload(to context: FileUploadContext, callback: Callback? = nil) -> Token? {
+        var token: Token?
+        if let callback = callback {
+            token = subscribe(callback)
+        }
         self.state = nil
         for file in files {
             uploader.upload(file, context: context) { error in
@@ -110,6 +115,7 @@ public class UploadBatch {
                 }
             }
         }
+        return token
     }
 
     public func cancel() {
@@ -127,11 +133,13 @@ public class UploadBatch {
         if files.isEmpty {
             state = nil
         } else if files.allSatisfy({ $0.isUploaded }) {
-            guard state?.completed != true else { return }
-            state = .completed(fileIDs: Set(files.compactMap { $0.id }))
+            let fileIDs = Set(files.compactMap { $0.id })
+            if state == .completed(fileIDs: fileIDs) { return }
+            state = .completed(fileIDs: fileIDs)
         } else if let error = files.compactMap({ $0.uploadError }).first {
-            guard state?.failed != true else { return }
-            state = State.failed(NSError.instructureError(error))
+            let error = NSError.instructureError(error)
+            if state == .failed(error) { return }
+            state = State.failed(error)
         } else if files.first(where: { $0.isUploading }) != nil {
             state = .uploading
         } else {

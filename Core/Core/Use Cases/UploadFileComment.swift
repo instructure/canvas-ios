@@ -29,6 +29,7 @@ public class UploadFileComment {
     let submissionID: String
     let userID: String
     var task: URLSessionTask?
+    var token: UploadBatch.Token?
 
     private static var placeholderSuffix = 1
 
@@ -48,9 +49,15 @@ public class UploadFileComment {
         self.batchID = batchID
     }
 
+    deinit {
+        if let token = token {
+            uploadBatch.unsubscribe(token)
+        }
+    }
+
     public func cancel() {
         task?.cancel()
-        // TODO: uploadBatch.cancel()
+        uploadBatch.cancel()
     }
 
     public func fetch(environment: AppEnvironment = .shared, _ callback: @escaping (SubmissionComment?, Error?) -> Void) {
@@ -77,7 +84,7 @@ public class UploadFileComment {
                 self.placeholderID = placeholder.id
                 UploadFileComment.placeholderSuffix += 1
                 let context = FileUploadContext.submissionComment(courseID: self.courseID, assignmentID: self.assignmentID)
-                self.uploadBatch.upload(to: context) { state in
+                self.token = self.uploadBatch.upload(to: context) { state in
                     switch state {
                     case .staged?, .uploading?, nil: break
                     case let .completed(fileIDs: fileIDs)?:

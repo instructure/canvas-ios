@@ -67,12 +67,11 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
     public private(set) var pending: Bool = false
     public private(set) var error: Error?
 
-    init(env: AppEnvironment, useCase: U, context: NSManagedObjectContext? = nil, eventHandler: @escaping EventHandler) {
+    init(env: AppEnvironment, useCase: U, eventHandler: @escaping EventHandler) {
         self.env = env
         self.useCase = useCase
         let scope = useCase.scope
         let frc = env.database.fetchedResultsController(
-            context: context,
             predicate: scope.predicate,
             sortDescriptors: scope.order,
             sectionNameKeyPath: scope.sectionNameKeyPath

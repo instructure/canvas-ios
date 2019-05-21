@@ -44,7 +44,7 @@ public class MockURLSession: URLSession {
         URLSessionAPI.cachingURLSession = MockURLSession()
         URLSessionAPI.delegateURLSession = { _, _ in MockURLSession() }
         NoFollowRedirect.session = MockURLSession()
-        AppEnvironment.shared.api = URLSessionAPI()
+        AppEnvironment.shared.api = URLSessionAPI(accessToken: nil, actAsUserID: nil, baseURL: nil, urlSession: MockURLSession())
         return true
     }()
 
@@ -62,13 +62,23 @@ public class MockURLSession: URLSession {
         error: Error? = nil,
         baseURL: URL = URL(string: "https://canvas.instructure.com")!
     ) {
-        let request = try! requestable.urlRequest(relativeTo: baseURL, accessToken: nil, actAsUserID: nil)
         var data: Data?
         if let value = value {
             let encoder = JSONEncoder()
             encoder.dateEncodingStrategy = .iso8601
             data = try! encoder.encode(value)
         }
+        mock(requestable, data: data, response: response, error: error, baseURL: baseURL)
+    }
+
+    public static func mock<R: APIRequestable>(
+        _ requestable: R,
+        data: Data? = nil,
+        response: URLResponse? = nil,
+        error: Error? = nil,
+        baseURL: URL = URL(string: "https://canvas.instructure.com")!
+        ) {
+        let request = try! requestable.urlRequest(relativeTo: baseURL, accessToken: nil, actAsUserID: nil)
         let task = MockDataTask()
         task.mock = MockData(data: data, response: response, error: error)
         MockURLSession.dataMocks[request] = task

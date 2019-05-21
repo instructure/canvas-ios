@@ -57,6 +57,7 @@ class CoreTestCase: XCTestCase {
         environment.logger = logger
         environment.currentSession = KeychainEntry.make()
         notificationManager = NotificationManager(notificationCenter: notificationCenter, logger: logger)
+        URLSessionAPI.delegateURLSession = { _, _ in MockURLSession() }
     }
 
     func addOperationAndWait(_ operation: Operation) {

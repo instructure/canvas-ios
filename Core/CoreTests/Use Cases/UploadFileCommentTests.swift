@@ -18,8 +18,9 @@ import XCTest
 @testable import Core
 import TestsFoundation
 
-class UploadMediaCommentTests: CoreTestCase {
-    let upload = UploadMediaComment(courseID: "1", assignmentID: "2", userID: "3", submissionID: "4", isGroup: false, type: .audio, url: URL(string: "data:text/plain,abcde")!)
+class UploadFileCommentTests: CoreTestCase {
+    let upload = UploadFileComment(courseID: "1", assignmentID: "2", userID: "3", submissionID: "4", isGroup: false, batchID: "5")
+    let uploader = MockFileUploader()
     var comment: SubmissionComment?
     var error: Error?
     var called: XCTestExpectation?
@@ -27,13 +28,13 @@ class UploadMediaCommentTests: CoreTestCase {
     override func setUp() {
         super.setUp()
         UUID.mock("zzxxzz")
-        upload.mediaAPI = api
         upload.env = environment
         upload.callback = { [weak self] (comment, error) in
             self?.comment = comment
             self?.error = error
             self?.called?.fulfill()
         }
+        upload.uploadBatch.uploader = uploader
     }
 
     override func tearDown() {
@@ -63,36 +64,53 @@ class UploadMediaCommentTests: CoreTestCase {
             courseID: upload.courseID,
             assignmentID: upload.assignmentID,
             userID: upload.userID,
-            body: .init(comment: .init(mediaID: "2", type: upload.type, forGroup: upload.isGroup), submission: nil)
+            body: .init(comment: .init(fileIDs: ["2"], forGroup: upload.isGroup), submission: nil)
         ), error: NSError.internalError())
-        upload.putComment(mediaID: "2")
+        upload.putComment(fileIDs: ["2"])
         XCTAssertNotNil(error)
     }
 
-    func testSuccess() {
-        let baseURL = URL(string: "https://u.edu/")!
-        environment.api = URLSessionAPI(accessToken: nil, actAsUserID: nil, baseURL: nil, urlSession: MockURLSession())
-        let api = MockURLSession.self
-        api.mock(GetMediaServiceRequest(), value: APIMediaService(domain: "u.edu"))
-        api.mock(PostMediaSessionRequest(), value: APIMediaSession(ks: "k"))
-        api.mock(PostMediaUploadTokenRequest(body: .init(ks: "k")), data: "<id>t</id>".data(using: .utf8), baseURL: baseURL)
-        api.mock(PostMediaUploadRequest(fileURL: upload.url, type: upload.type, ks: "k", token: "t"), value: nil, baseURL: baseURL)
-        api.mock(PostMediaIDRequest(ks: "k", token: "t", type: upload.type), data: "<id>2</id>".data(using: .utf8), baseURL: baseURL)
+    func testUploadError() throws {
+        let file = File.make(["id": nil, "batchID": "5"])
         api.mock(PutSubmissionGradeRequest(
             courseID: upload.courseID,
             assignmentID: upload.assignmentID,
             userID: upload.userID,
-            body: .init(comment: .init(mediaID: "2", type: upload.type, forGroup: upload.isGroup), submission: nil)
+            body: .init(comment: .init(fileIDs: ["2"], forGroup: upload.isGroup), submission: nil)
         ), value: APISubmission.make([
             "submission_comments": [ APISubmissionComment.fixture() ],
         ]))
-        let called = self.expectation(description: "callback was called")
+        let called = self.expectation(description: "error callback was called")
+        called.assertForOverFulfill = false
+        upload.fetch(environment: environment) { comment, error in
+            XCTAssertNil(comment)
+            XCTAssertNotNil(error)
+            called.fulfill()
+        }
+        file.uploadError = "doh"
+        try databaseClient.save()
+        wait(for: [called], timeout: 1)
+    }
+
+    func testSuccess() throws {
+        let file = File.make(["id": nil, "batchID": "5"])
+        api.mock(PutSubmissionGradeRequest(
+            courseID: upload.courseID,
+            assignmentID: upload.assignmentID,
+            userID: upload.userID,
+            body: .init(comment: .init(fileIDs: ["1"], forGroup: upload.isGroup), submission: nil)
+        ), value: APISubmission.make([
+            "submission_comments": [ APISubmissionComment.fixture() ],
+        ]))
+        let called = self.expectation(description: "success callback was called")
+        called.assertForOverFulfill = false
         upload.fetch(environment: environment) { comment, error in
             XCTAssertNotNil(comment)
             XCTAssertNil(error)
             called.fulfill()
         }
+        file.id = "1"
+        try databaseClient.save()
         wait(for: [called], timeout: 1)
-        api.dataMocks = [:]
     }
 }

@@ -30,16 +30,10 @@ final public class SubmissionComment: NSManagedObject {
     @NSManaged public var mediaTypeRaw: String?
     @NSManaged public var mediaURL: URL?
     @NSManaged public var submissionID: String
-    @NSManaged public var fileIDsRaw: String?
 
     public var mediaType: MediaCommentType? {
         get { return mediaTypeRaw.flatMap { MediaCommentType(rawValue: $0) } }
         set { mediaTypeRaw = newValue?.rawValue }
-    }
-
-    public var fileIDs: [String]? {
-        get { return fileIDsRaw?.split(separator: ",").map(String.init) }
-        set { fileIDsRaw = newValue?.joined(separator: ",") }
     }
 
     /// If set, this comment represents an actual submission attempt
