@@ -16,11 +16,10 @@
 
 import Foundation
 @testable import Core
+import SwiftUITest
 import TestsFoundation
 
-class UrlSubmissionPageTests: StudentTest {
-    let page = UrlSubmissionPage.self
-
+class URLSubmissionTests: StudentTest {
     func testSumbitUrl() {
         let course = APICourse.make()
         mockData(GetCourseRequest(courseID: course.id), value: course)
@@ -29,14 +28,16 @@ class UrlSubmissionPageTests: StudentTest {
         mockData(CreateSubmissionRequest(context: course, assignmentID: assignment.id.value, body: nil), noCallback: true)
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1/urlsubmission")
-        page.assertVisible(.url)
-        page.assertVisible(.preview)
-        page.assertHidden(.loadingView)
-        page.typeText("www.amazon.com", in: .url)
-        page.tap(label: "Done")
-        page.tap(.submit)
-        page.assertExists(.loadingView)
-        page.assertVisible(.loadingView)
+        XCTAssertTrue(URLSubmission.url.isVisible)
+        XCTAssertTrue(URLSubmission.url.isVisible)
+        XCTAssertTrue(URLSubmission.preview.isVisible)
+        XCTAssertFalse(URLSubmission.loadingView.isVisible)
+        URLSubmission.url.tap()
+        URLSubmission.url.typeText("www.amazon.com")
+        app.find(label: "Done").tap()
+        URLSubmission.submit.tap()
+        XCTAssertTrue(URLSubmission.loadingView.exists)
+        XCTAssertTrue(URLSubmission.loadingView.isVisible)
 
         mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make([
             "assignment_id": assignment.id.value,
@@ -46,7 +47,7 @@ class UrlSubmissionPageTests: StudentTest {
         ]))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
-        SubmissionDetailsPage.waitToExist(.urlButton, timeout: 5)
-        SubmissionDetailsPage.assertText(.urlButton, equals: "http://www.amazon.com")
+        XCTAssertTrue(SubmissionDetails.urlButton.waitToExist(Timeout(value: 5)))
+        XCTAssertEqual(SubmissionDetails.urlButton.label, "http://www.amazon.com")
     }
 }
