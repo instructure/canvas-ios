@@ -54,3 +54,13 @@ export function createUser (createUserData: CreateUser): ApiPromise<User> {
 export function getToDoCount (): ApiPromise<Object> {
   return httpClient.get('users/self/todo_item_count')
 }
+
+export function getUserSettings (userID: string = 'self'): ApiPromise<UserSettings> {
+  return httpClient.get(`/users/${userID}/settings`)
+}
+
+export function updateUserSettings (userID: string = 'self', hideOverlay: boolean): ApiPromise<UserSettings> {
+  return httpClient.put(`/users/${userID}/settings`, {
+    hide_dashcard_color_overlays: hideOverlay,
+  })
+}

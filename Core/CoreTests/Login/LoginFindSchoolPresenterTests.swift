@@ -22,7 +22,7 @@ class LoginFindSchoolPresenterTests: XCTestCase {
     var helpURL: URL?
     var opened: URL?
     var shown: UIViewController?
-    var results: [(domain: String, name: String)]?
+    var results: [APIAccountResults]?
 
     func testViewIsReady() {
         let presenter = LoginFindSchoolPresenter(loginDelegate: nil, method: .normalLogin, view: self)
@@ -103,7 +103,7 @@ extension LoginFindSchoolPresenterTests: LoginFindSchoolViewProtocol, LoginDeleg
     func show(_ vc: UIViewController, sender: Any?) {
         shown = vc
     }
-    func update(results: [(domain: String, name: String)]) {
+    func update(results: [APIAccountResults]) {
         self.results = results
     }
 }

@@ -222,23 +222,33 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
                   testID="course-card.kabob-1"
                   underlayColor="#ffffff00"
                 >
-                  <Image
-                    source={
-                      Object {
-                        "uri": "moreLine",
-                      }
-                    }
+                  <View
                     style={
                       Object {
-                        "height": 18,
+                        "backgroundColor": undefined,
+                        "borderRadius": 15,
+                        "padding": 4,
                         "position": "absolute",
-                        "right": 8,
-                        "tintColor": "white",
-                        "top": 10,
-                        "width": 18,
+                        "right": 4,
+                        "top": 6,
                       }
                     }
-                  />
+                  >
+                    <Image
+                      source={
+                        Object {
+                          "uri": "moreLine",
+                        }
+                      }
+                      style={
+                        Object {
+                          "height": 18,
+                          "tintColor": "white",
+                          "width": 18,
+                        }
+                      }
+                    />
+                  </View>
                 </TouchableHighlight>
               </View>
               <View
@@ -410,23 +420,33 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
                   testID="course-card.kabob-2"
                   underlayColor="#ffffff00"
                 >
-                  <Image
-                    source={
-                      Object {
-                        "uri": "moreLine",
-                      }
-                    }
+                  <View
                     style={
                       Object {
-                        "height": 18,
+                        "backgroundColor": undefined,
+                        "borderRadius": 15,
+                        "padding": 4,
                         "position": "absolute",
-                        "right": 8,
-                        "tintColor": "white",
-                        "top": 10,
-                        "width": 18,
+                        "right": 4,
+                        "top": 6,
                       }
                     }
-                  />
+                  >
+                    <Image
+                      source={
+                        Object {
+                          "uri": "moreLine",
+                        }
+                      }
+                      style={
+                        Object {
+                          "height": 18,
+                          "tintColor": "white",
+                          "width": 18,
+                        }
+                      }
+                    />
+                  </View>
                 </TouchableHighlight>
               </View>
               <View
@@ -598,23 +618,33 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
                   testID="course-card.kabob-3"
                   underlayColor="#ffffff00"
                 >
-                  <Image
-                    source={
-                      Object {
-                        "uri": "moreLine",
-                      }
-                    }
+                  <View
                     style={
                       Object {
-                        "height": 18,
+                        "backgroundColor": undefined,
+                        "borderRadius": 15,
+                        "padding": 4,
                         "position": "absolute",
-                        "right": 8,
-                        "tintColor": "white",
-                        "top": 10,
-                        "width": 18,
+                        "right": 4,
+                        "top": 6,
                       }
                     }
-                  />
+                  >
+                    <Image
+                      source={
+                        Object {
+                          "uri": "moreLine",
+                        }
+                      }
+                      style={
+                        Object {
+                          "height": 18,
+                          "tintColor": "white",
+                          "width": 18,
+                        }
+                      }
+                    />
+                  </View>
                 </TouchableHighlight>
               </View>
               <View
@@ -801,23 +831,33 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                   testID="course-card.kabob-1"
                   underlayColor="#ffffff00"
                 >
-                  <Image
-                    source={
-                      Object {
-                        "uri": "moreLine",
-                      }
-                    }
+                  <View
                     style={
                       Object {
-                        "height": 18,
+                        "backgroundColor": undefined,
+                        "borderRadius": 15,
+                        "padding": 4,
                         "position": "absolute",
-                        "right": 8,
-                        "tintColor": "white",
-                        "top": 10,
-                        "width": 18,
+                        "right": 4,
+                        "top": 6,
                       }
                     }
-                  />
+                  >
+                    <Image
+                      source={
+                        Object {
+                          "uri": "moreLine",
+                        }
+                      }
+                      style={
+                        Object {
+                          "height": 18,
+                          "tintColor": "white",
+                          "width": 18,
+                        }
+                      }
+                    />
+                  </View>
                 </TouchableHighlight>
               </View>
               <View
@@ -989,23 +1029,33 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                   testID="course-card.kabob-2"
                   underlayColor="#ffffff00"
                 >
-                  <Image
-                    source={
-                      Object {
-                        "uri": "moreLine",
-                      }
-                    }
+                  <View
                     style={
                       Object {
-                        "height": 18,
+                        "backgroundColor": undefined,
+                        "borderRadius": 15,
+                        "padding": 4,
                         "position": "absolute",
-                        "right": 8,
-                        "tintColor": "white",
-                        "top": 10,
-                        "width": 18,
+                        "right": 4,
+                        "top": 6,
                       }
                     }
-                  />
+                  >
+                    <Image
+                      source={
+                        Object {
+                          "uri": "moreLine",
+                        }
+                      }
+                      style={
+                        Object {
+                          "height": 18,
+                          "tintColor": "white",
+                          "width": 18,
+                        }
+                      }
+                    />
+                  </View>
                 </TouchableHighlight>
               </View>
               <View
@@ -1177,23 +1227,33 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                   testID="course-card.kabob-3"
                   underlayColor="#ffffff00"
                 >
-                  <Image
-                    source={
-                      Object {
-                        "uri": "moreLine",
-                      }
-                    }
+                  <View
                     style={
                       Object {
-                        "height": 18,
+                        "backgroundColor": undefined,
+                        "borderRadius": 15,
+                        "padding": 4,
                         "position": "absolute",
-                        "right": 8,
-                        "tintColor": "white",
-                        "top": 10,
-                        "width": 18,
+                        "right": 4,
+                        "top": 6,
                       }
                     }
-                  />
+                  >
+                    <Image
+                      source={
+                        Object {
+                          "uri": "moreLine",
+                        }
+                      }
+                      style={
+                        Object {
+                          "height": 18,
+                          "tintColor": "white",
+                          "width": 18,
+                        }
+                      }
+                    />
+                  </View>
                 </TouchableHighlight>
               </View>
               <View
@@ -1408,23 +1468,33 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                   testID="course-card.kabob-4"
                   underlayColor="#ffffff00"
                 >
-                  <Image
-                    source={
-                      Object {
-                        "uri": "moreLine",
-                      }
-                    }
+                  <View
                     style={
                       Object {
-                        "height": 18,
+                        "backgroundColor": undefined,
+                        "borderRadius": 15,
+                        "padding": 4,
                         "position": "absolute",
-                        "right": 8,
-                        "tintColor": "white",
-                        "top": 10,
-                        "width": 18,
+                        "right": 4,
+                        "top": 6,
                       }
                     }
-                  />
+                  >
+                    <Image
+                      source={
+                        Object {
+                          "uri": "moreLine",
+                        }
+                      }
+                      style={
+                        Object {
+                          "height": 18,
+                          "tintColor": "white",
+                          "width": 18,
+                        }
+                      }
+                    />
+                  </View>
                 </TouchableHighlight>
               </View>
               <View
@@ -1724,23 +1794,33 @@ exports[`Dashboard render 1`] = `
                   testID="course-card.kabob-1"
                   underlayColor="#ffffff00"
                 >
-                  <Image
-                    source={
-                      Object {
-                        "uri": "moreLine",
-                      }
-                    }
+                  <View
                     style={
                       Object {
-                        "height": 18,
+                        "backgroundColor": undefined,
+                        "borderRadius": 15,
+                        "padding": 4,
                         "position": "absolute",
-                        "right": 8,
-                        "tintColor": "white",
-                        "top": 10,
-                        "width": 18,
+                        "right": 4,
+                        "top": 6,
                       }
                     }
-                  />
+                  >
+                    <Image
+                      source={
+                        Object {
+                          "uri": "moreLine",
+                        }
+                      }
+                      style={
+                        Object {
+                          "height": 18,
+                          "tintColor": "white",
+                          "width": 18,
+                        }
+                      }
+                    />
+                  </View>
                 </TouchableHighlight>
               </View>
               <View
@@ -1912,23 +1992,33 @@ exports[`Dashboard render 1`] = `
                   testID="course-card.kabob-2"
                   underlayColor="#ffffff00"
                 >
-                  <Image
-                    source={
-                      Object {
-                        "uri": "moreLine",
-                      }
-                    }
+                  <View
                     style={
                       Object {
-                        "height": 18,
+                        "backgroundColor": undefined,
+                        "borderRadius": 15,
+                        "padding": 4,
                         "position": "absolute",
-                        "right": 8,
-                        "tintColor": "white",
-                        "top": 10,
-                        "width": 18,
+                        "right": 4,
+                        "top": 6,
                       }
                     }
-                  />
+                  >
+                    <Image
+                      source={
+                        Object {
+                          "uri": "moreLine",
+                        }
+                      }
+                      style={
+                        Object {
+                          "height": 18,
+                          "tintColor": "white",
+                          "width": 18,
+                        }
+                      }
+                    />
+                  </View>
                 </TouchableHighlight>
               </View>
               <View
@@ -2100,23 +2190,33 @@ exports[`Dashboard render 1`] = `
                   testID="course-card.kabob-3"
                   underlayColor="#ffffff00"
                 >
-                  <Image
-                    source={
-                      Object {
-                        "uri": "moreLine",
-                      }
-                    }
+                  <View
                     style={
                       Object {
-                        "height": 18,
+                        "backgroundColor": undefined,
+                        "borderRadius": 15,
+                        "padding": 4,
                         "position": "absolute",
-                        "right": 8,
-                        "tintColor": "white",
-                        "top": 10,
-                        "width": 18,
+                        "right": 4,
+                        "top": 6,
                       }
                     }
-                  />
+                  >
+                    <Image
+                      source={
+                        Object {
+                          "uri": "moreLine",
+                        }
+                      }
+                      style={
+                        Object {
+                          "height": 18,
+                          "tintColor": "white",
+                          "width": 18,
+                        }
+                      }
+                    />
+                  </View>
                 </TouchableHighlight>
               </View>
               <View
@@ -2416,23 +2516,33 @@ exports[`Dashboard render while pending 1`] = `
                   testID="course-card.kabob-1"
                   underlayColor="#ffffff00"
                 >
-                  <Image
-                    source={
-                      Object {
-                        "uri": "moreLine",
-                      }
-                    }
+                  <View
                     style={
                       Object {
-                        "height": 18,
+                        "backgroundColor": undefined,
+                        "borderRadius": 15,
+                        "padding": 4,
                         "position": "absolute",
-                        "right": 8,
-                        "tintColor": "white",
-                        "top": 10,
-                        "width": 18,
+                        "right": 4,
+                        "top": 6,
                       }
                     }
-                  />
+                  >
+                    <Image
+                      source={
+                        Object {
+                          "uri": "moreLine",
+                        }
+                      }
+                      style={
+                        Object {
+                          "height": 18,
+                          "tintColor": "white",
+                          "width": 18,
+                        }
+                      }
+                    />
+                  </View>
                 </TouchableHighlight>
               </View>
               <View
@@ -2604,23 +2714,33 @@ exports[`Dashboard render while pending 1`] = `
                   testID="course-card.kabob-2"
                   underlayColor="#ffffff00"
                 >
-                  <Image
-                    source={
-                      Object {
-                        "uri": "moreLine",
-                      }
-                    }
+                  <View
                     style={
                       Object {
-                        "height": 18,
+                        "backgroundColor": undefined,
+                        "borderRadius": 15,
+                        "padding": 4,
                         "position": "absolute",
-                        "right": 8,
-                        "tintColor": "white",
-                        "top": 10,
-                        "width": 18,
+                        "right": 4,
+                        "top": 6,
                       }
                     }
-                  />
+                  >
+                    <Image
+                      source={
+                        Object {
+                          "uri": "moreLine",
+                        }
+                      }
+                      style={
+                        Object {
+                          "height": 18,
+                          "tintColor": "white",
+                          "width": 18,
+                        }
+                      }
+                    />
+                  </View>
                 </TouchableHighlight>
               </View>
               <View
@@ -2792,23 +2912,33 @@ exports[`Dashboard render while pending 1`] = `
                   testID="course-card.kabob-3"
                   underlayColor="#ffffff00"
                 >
-                  <Image
-                    source={
-                      Object {
-                        "uri": "moreLine",
-                      }
-                    }
+                  <View
                     style={
                       Object {
-                        "height": 18,
+                        "backgroundColor": undefined,
+                        "borderRadius": 15,
+                        "padding": 4,
                         "position": "absolute",
-                        "right": 8,
-                        "tintColor": "white",
-                        "top": 10,
-                        "width": 18,
+                        "right": 4,
+                        "top": 6,
                       }
                     }
-                  />
+                  >
+                    <Image
+                      source={
+                        Object {
+                          "uri": "moreLine",
+                        }
+                      }
+                      style={
+                        Object {
+                          "height": 18,
+                          "tintColor": "white",
+                          "width": 18,
+                        }
+                      }
+                    />
+                  </View>
                 </TouchableHighlight>
               </View>
               <View
@@ -4200,23 +4330,33 @@ exports[`Dashboard renders course invites 1`] = `
                   testID="course-card.kabob-1"
                   underlayColor="#ffffff00"
                 >
-                  <Image
-                    source={
-                      Object {
-                        "uri": "moreLine",
-                      }
-                    }
+                  <View
                     style={
                       Object {
-                        "height": 18,
+                        "backgroundColor": undefined,
+                        "borderRadius": 15,
+                        "padding": 4,
                         "position": "absolute",
-                        "right": 8,
-                        "tintColor": "white",
-                        "top": 10,
-                        "width": 18,
+                        "right": 4,
+                        "top": 6,
                       }
                     }
-                  />
+                  >
+                    <Image
+                      source={
+                        Object {
+                          "uri": "moreLine",
+                        }
+                      }
+                      style={
+                        Object {
+                          "height": 18,
+                          "tintColor": "white",
+                          "width": 18,
+                        }
+                      }
+                    />
+                  </View>
                 </TouchableHighlight>
               </View>
               <View
@@ -4388,23 +4528,33 @@ exports[`Dashboard renders course invites 1`] = `
                   testID="course-card.kabob-2"
                   underlayColor="#ffffff00"
                 >
-                  <Image
-                    source={
-                      Object {
-                        "uri": "moreLine",
-                      }
-                    }
+                  <View
                     style={
                       Object {
-                        "height": 18,
+                        "backgroundColor": undefined,
+                        "borderRadius": 15,
+                        "padding": 4,
                         "position": "absolute",
-                        "right": 8,
-                        "tintColor": "white",
-                        "top": 10,
-                        "width": 18,
+                        "right": 4,
+                        "top": 6,
                       }
                     }
-                  />
+                  >
+                    <Image
+                      source={
+                        Object {
+                          "uri": "moreLine",
+                        }
+                      }
+                      style={
+                        Object {
+                          "height": 18,
+                          "tintColor": "white",
+                          "width": 18,
+                        }
+                      }
+                    />
+                  </View>
                 </TouchableHighlight>
               </View>
               <View
@@ -4576,23 +4726,33 @@ exports[`Dashboard renders course invites 1`] = `
                   testID="course-card.kabob-3"
                   underlayColor="#ffffff00"
                 >
-                  <Image
-                    source={
-                      Object {
-                        "uri": "moreLine",
-                      }
-                    }
+                  <View
                     style={
                       Object {
-                        "height": 18,
+                        "backgroundColor": undefined,
+                        "borderRadius": 15,
+                        "padding": 4,
                         "position": "absolute",
-                        "right": 8,
-                        "tintColor": "white",
-                        "top": 10,
-                        "width": 18,
+                        "right": 4,
+                        "top": 6,
                       }
                     }
-                  />
+                  >
+                    <Image
+                      source={
+                        Object {
+                          "uri": "moreLine",
+                        }
+                      }
+                      style={
+                        Object {
+                          "height": 18,
+                          "tintColor": "white",
+                          "width": 18,
+                        }
+                      }
+                    />
+                  </View>
                 </TouchableHighlight>
               </View>
               <View

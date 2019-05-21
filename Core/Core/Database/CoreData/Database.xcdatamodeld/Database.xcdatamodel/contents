@@ -241,6 +241,7 @@
         <attribute name="viewUserLogins" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="Quiz" representedClassName="Core.Quiz" syncable="YES">
+        <attribute name="allowedAttempts" optional="YES" attributeType="Integer 64" defaultValueString="1" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="courseID" attributeType="String" syncable="YES"/>
         <attribute name="details" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="dueAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
@@ -251,6 +252,7 @@
         <attribute name="pointsPossibleRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="questionCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="quizTypeRaw" attributeType="String" syncable="YES"/>
+        <attribute name="timeLimitRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Rubric" representedClassName="Core.Rubric" syncable="YES">
@@ -348,7 +350,7 @@
         <element name="Module" positionX="-369" positionY="-18" width="128" height="135"/>
         <element name="ModuleItem" positionX="-540" positionY="-27" width="128" height="225"/>
         <element name="Permissions" positionX="-369" positionY="-18" width="128" height="1080"/>
-        <element name="Quiz" positionX="-26.7890625" positionY="226.0703125" width="128" height="195"/>
+        <element name="Quiz" positionX="-26.7890625" positionY="226.0703125" width="128" height="240"/>
         <element name="Rubric" positionX="-540" positionY="-27" width="128" height="180"/>
         <element name="RubricAssessment" positionX="-540" positionY="-27" width="128" height="135"/>
         <element name="RubricRating" positionX="-531" positionY="-18" width="128" height="150"/>

@@ -20,22 +20,13 @@ public struct ContextModel: Context, Equatable, Hashable {
     public let contextType: ContextType
     public let id: String
 
-    public static func expandTildeID(_ id: String) -> String {
-        let parts: [String] = id.components(separatedBy: "~")
-        if parts.count == 2, let shardID = Int64(parts[0]), let resourceID = Int64(parts[1]) {
-            let shardFactor: Int64 = 10_000_000_000_000
-            return (Decimal(shardID) * Decimal(shardFactor) + Decimal(resourceID)).description
-        }
-        return id
-    }
-
     public static var currentUser: ContextModel {
         return ContextModel(.user, id: "self")
     }
 
     public init(_ contextType: ContextType, id: String) {
         self.contextType = contextType
-        self.id = ContextModel.expandTildeID(id)
+        self.id = ID.expandTildeID(id)
     }
 
     private init?(parts: [Substring]) {

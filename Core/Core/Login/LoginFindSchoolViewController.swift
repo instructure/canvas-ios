@@ -23,7 +23,7 @@ class LoginFindSchoolViewController: UIViewController, LoginFindSchoolViewProtoc
     @IBOutlet weak var resultsTableView: UITableView?
     @IBOutlet weak var searchField: UITextField?
 
-    var accounts = [(domain: String, name: String)]()
+    var accounts = [APIAccountResults]()
     let logoView = UIImageView()
     var presenter: LoginFindSchoolPresenter?
 
@@ -84,7 +84,7 @@ class LoginFindSchoolViewController: UIViewController, LoginFindSchoolViewProtoc
         NotificationCenter.default.removeObserver(self)
     }
 
-    func update(results: [(domain: String, name: String)]) {
+    func update(results: [APIAccountResults]) {
         accounts = results
         loadingView?.stopAnimating()
         resultsTableView?.reloadData()
@@ -130,7 +130,8 @@ extension LoginFindSchoolViewController: UITableViewDataSource, UITableViewDeleg
         if accounts.isEmpty {
             presenter?.showHelp()
         } else {
-            presenter?.showLoginForHost(accounts[indexPath.row].domain)
+            let account = accounts[indexPath.row]
+            presenter?.showLoginForHost(account.domain, authenticationProvider: account.authentication_provider)
         }
     }
 }

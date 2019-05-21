@@ -56,7 +56,7 @@ public class UploadBatch {
         self?.update()
     }
     private var subscribers: [Callback] = []
-    var state: State?
+    public var state: State?
 
     public init(environment: AppEnvironment = .shared, batchID: String = UUID.string, callback: Callback?) {
         self.env = environment

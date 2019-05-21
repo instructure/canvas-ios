@@ -95,23 +95,33 @@ exports[`renders 1`] = `
           testID="course-card.kabob-1"
           underlayColor="#ffffff00"
         >
-          <Image
-            source={
-              Object {
-                "uri": "moreLine",
-              }
-            }
+          <View
             style={
               Object {
-                "height": 18,
+                "backgroundColor": undefined,
+                "borderRadius": 15,
+                "padding": 4,
                 "position": "absolute",
-                "right": 8,
-                "tintColor": "white",
-                "top": 10,
-                "width": 18,
+                "right": 4,
+                "top": 6,
               }
             }
-          />
+          >
+            <Image
+              source={
+                Object {
+                  "uri": "moreLine",
+                }
+              }
+              style={
+                Object {
+                  "height": 18,
+                  "tintColor": "white",
+                  "width": 18,
+                }
+              }
+            />
+          </View>
         </TouchableHighlight>
       </View>
       <View
@@ -327,23 +337,33 @@ exports[`renders with a grade 1`] = `
           testID="course-card.kabob-1"
           underlayColor="#ffffff00"
         >
-          <Image
-            source={
-              Object {
-                "uri": "moreLine",
-              }
-            }
+          <View
             style={
               Object {
-                "height": 18,
+                "backgroundColor": undefined,
+                "borderRadius": 15,
+                "padding": 4,
                 "position": "absolute",
-                "right": 8,
-                "tintColor": "white",
-                "top": 10,
-                "width": 18,
+                "right": 4,
+                "top": 6,
               }
             }
-          />
+          >
+            <Image
+              source={
+                Object {
+                  "uri": "moreLine",
+                }
+              }
+              style={
+                Object {
+                  "height": 18,
+                  "tintColor": "white",
+                  "width": 18,
+                }
+              }
+            />
+          </View>
         </TouchableHighlight>
       </View>
       <View
@@ -559,23 +579,33 @@ exports[`renders with a grade even if the grade does not exist 1`] = `
           testID="course-card.kabob-1"
           underlayColor="#ffffff00"
         >
-          <Image
-            source={
-              Object {
-                "uri": "moreLine",
-              }
-            }
+          <View
             style={
               Object {
-                "height": 18,
+                "backgroundColor": undefined,
+                "borderRadius": 15,
+                "padding": 4,
                 "position": "absolute",
-                "right": 8,
-                "tintColor": "white",
-                "top": 10,
-                "width": 18,
+                "right": 4,
+                "top": 6,
               }
             }
-          />
+          >
+            <Image
+              source={
+                Object {
+                  "uri": "moreLine",
+                }
+              }
+              style={
+                Object {
+                  "height": 18,
+                  "tintColor": "white",
+                  "width": 18,
+                }
+              }
+            />
+          </View>
         </TouchableHighlight>
       </View>
       <View
@@ -732,23 +762,33 @@ exports[`renders with empty image url 1`] = `
           testID="course-card.kabob-1"
           underlayColor="#ffffff00"
         >
-          <Image
-            source={
-              Object {
-                "uri": "moreLine",
-              }
-            }
+          <View
             style={
               Object {
-                "height": 18,
+                "backgroundColor": undefined,
+                "borderRadius": 15,
+                "padding": 4,
                 "position": "absolute",
-                "right": 8,
-                "tintColor": "white",
-                "top": 10,
-                "width": 18,
+                "right": 4,
+                "top": 6,
               }
             }
-          />
+          >
+            <Image
+              source={
+                Object {
+                  "uri": "moreLine",
+                }
+              }
+              style={
+                Object {
+                  "height": 18,
+                  "tintColor": "white",
+                  "width": 18,
+                }
+              }
+            />
+          </View>
         </TouchableHighlight>
       </View>
       <View
@@ -917,23 +957,33 @@ exports[`renders with image url 1`] = `
           testID="course-card.kabob-1"
           underlayColor="#ffffff00"
         >
-          <Image
-            source={
-              Object {
-                "uri": "moreLine",
-              }
-            }
+          <View
             style={
               Object {
-                "height": 18,
+                "backgroundColor": undefined,
+                "borderRadius": 15,
+                "padding": 4,
                 "position": "absolute",
-                "right": 8,
-                "tintColor": "white",
-                "top": 10,
-                "width": 18,
+                "right": 4,
+                "top": 6,
               }
             }
-          />
+          >
+            <Image
+              source={
+                Object {
+                  "uri": "moreLine",
+                }
+              }
+              style={
+                Object {
+                  "height": 18,
+                  "tintColor": "white",
+                  "width": 18,
+                }
+              }
+            />
+          </View>
         </TouchableHighlight>
       </View>
       <View
@@ -1090,23 +1140,228 @@ exports[`renders without image url 1`] = `
           testID="course-card.kabob-1"
           underlayColor="#ffffff00"
         >
-          <Image
-            source={
-              Object {
-                "uri": "moreLine",
-              }
-            }
+          <View
             style={
               Object {
-                "height": 18,
+                "backgroundColor": undefined,
+                "borderRadius": 15,
+                "padding": 4,
                 "position": "absolute",
-                "right": 8,
-                "tintColor": "white",
-                "top": 10,
-                "width": 18,
+                "right": 4,
+                "top": 6,
               }
             }
-          />
+          >
+            <Image
+              source={
+                Object {
+                  "uri": "moreLine",
+                }
+              }
+              style={
+                Object {
+                  "height": 18,
+                  "tintColor": "white",
+                  "width": 18,
+                }
+              }
+            />
+          </View>
+        </TouchableHighlight>
+      </View>
+      <View
+        accessible={false}
+        style={
+          Object {
+            "flex": 1,
+            "paddingHorizontal": 10,
+          }
+        }
+      >
+        <Text
+          accessible={false}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          numberOfLines={2}
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "color": "#333",
+                "fontSize": 18,
+                "fontWeight": "600",
+                "marginTop": 8,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
+          }
+        >
+          Learn React Native
+        </Text>
+        <Text
+          accessible={false}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          numberOfLines={1}
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "color": "#8B969D",
+                "fontSize": 12,
+                "fontWeight": "600",
+                "marginTop": 2,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
+          }
+        >
+          rn 101
+        </Text>
+      </View>
+    </View>
+  </TouchableHighlight>
+</A11yGroup>
+`;
+
+exports[`renders without the color overlay 1`] = `
+<A11yGroup>
+  <TouchableHighlight
+    accessible={false}
+    onLayout={[Function]}
+    onPress={[Function]}
+    style={
+      Array [
+        Object {
+          "height": 160,
+        },
+        Object {},
+        Object {
+          "height": 100,
+        },
+      ]
+    }
+    testID="course-1"
+    underlayColor="transparent"
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "white",
+          "borderColor": "#e3e3e3",
+          "borderRadius": 4,
+          "borderWidth": 0.5,
+          "flex": 1,
+          "shadowColor": "#000",
+          "shadowOffset": Object {
+            "height": 1,
+            "width": 0,
+          },
+          "shadowOpacity": 0.2,
+          "shadowRadius": 1,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "borderTopLeftRadius": 4,
+            "borderTopRightRadius": 4,
+            "flex": 1,
+            "overflow": "hidden",
+          }
+        }
+      >
+        <Image
+          source={
+            Object {
+              "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+            }
+          }
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        />
+        <View
+          accessibilityLabel="Learn React Native "
+          accessibilityTraits="button"
+          accessible={true}
+          style={
+            Object {
+              "backgroundColor": undefined,
+              "borderTopLeftRadius": 4,
+              "borderTopRightRadius": 4,
+              "bottom": 0,
+              "left": 0,
+              "opacity": 1,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        />
+        <TouchableHighlight
+          accessibilityLabel="Open Learn React Native user preferences"
+          accessibilityTraits="button"
+          accessible={true}
+          onPress={[Function]}
+          style={
+            Object {
+              "height": 43,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+              "width": 43,
+            }
+          }
+          testID="course-card.kabob-1"
+          underlayColor="#ffffff00"
+        >
+          <View
+            style={
+              Object {
+                "backgroundColor": "#333",
+                "borderRadius": 15,
+                "padding": 4,
+                "position": "absolute",
+                "right": 4,
+                "top": 6,
+              }
+            }
+          >
+            <Image
+              source={
+                Object {
+                  "uri": "moreLine",
+                }
+              }
+              style={
+                Object {
+                  "height": 18,
+                  "tintColor": "white",
+                  "width": 18,
+                }
+              }
+            />
+          </View>
         </TouchableHighlight>
       </View>
       <View

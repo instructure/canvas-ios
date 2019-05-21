@@ -320,6 +320,151 @@ exports[`Profile Tests renders correctly 1`] = `
           </View>
           <View>
             <TouchableHighlight
+              accessibilityLabel="Color Overlay, On"
+              accessibilityTraits={
+                Array [
+                  "button",
+                ]
+              }
+              onPress={[Function]}
+              style={
+                Array [
+                  undefined,
+                  undefined,
+                ]
+              }
+              testID="profile.color-overlay-toggle"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "white",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "minHeight": 54,
+                      "paddingBottom": 12,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 12,
+                    },
+                    Object {
+                      "backgroundColor": "white",
+                    },
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      },
+                      Object {
+                        "marginLeft": 0,
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    numberOfLines={0}
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Array [
+                          Object {
+                            "fontWeight": "600",
+                          },
+                          Object {
+                            "fontSize": 20,
+                            "fontWeight": "300",
+                          },
+                        ],
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                      ]
+                    }
+                  >
+                    Color Overlay
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "flex": 0,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "flex": 1,
+                        "flexDirection": "row",
+                        "justifyContent": "flex-end",
+                      }
+                    }
+                  >
+                    <RCTSwitch
+                      disabled={false}
+                      onChange={[Function]}
+                      onResponderTerminationRequest={[Function]}
+                      onStartShouldSetResponder={[Function]}
+                      onTintColor="#374A59"
+                      onValueChange={[Function]}
+                      style={
+                        Array [
+                          Object {
+                            "height": 31,
+                            "width": 51,
+                          },
+                          undefined,
+                        ]
+                      }
+                      testID={undefined}
+                      tintColor={null}
+                      title="Color Overlay"
+                      titleStyles={
+                        Object {
+                          "fontSize": 20,
+                          "fontWeight": "300",
+                        }
+                      }
+                      value={true}
+                    />
+                  </View>
+                </View>
+              </View>
+            </TouchableHighlight>
+            <View
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "#C7CDD1",
+                    "height": 0.5,
+                  },
+                  Object {
+                    "marginLeft": 16,
+                  },
+                ]
+              }
+            />
+          </View>
+          <View>
+            <TouchableHighlight
               accessibilityLabel={undefined}
               accessibilityTraits={
                 Array [
@@ -1135,6 +1280,29 @@ exports[`Profile Tests renders correctly for students 1`] = `
             />
           </View>
           <View
+            key="Color Overlay"
+          >
+            <RowWithSwitch
+              onValueChange={[Function]}
+              testID="profile.color-overlay-toggle"
+              title="Color Overlay"
+              titleStyles={
+                Object {
+                  "fontSize": 20,
+                  "fontWeight": "300",
+                }
+              }
+              value={true}
+            />
+            <RowSeparator
+              style={
+                Object {
+                  "marginLeft": 16,
+                }
+              }
+            />
+          </View>
+          <View
             key="profile.settings-btn"
           >
             <Row
@@ -1793,6 +1961,151 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
                         }
                       }
                       value={false}
+                    />
+                  </View>
+                </View>
+              </View>
+            </TouchableHighlight>
+            <View
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "#C7CDD1",
+                    "height": 0.5,
+                  },
+                  Object {
+                    "marginLeft": 16,
+                  },
+                ]
+              }
+            />
+          </View>
+          <View>
+            <TouchableHighlight
+              accessibilityLabel="Color Overlay, On"
+              accessibilityTraits={
+                Array [
+                  "button",
+                ]
+              }
+              onPress={[Function]}
+              style={
+                Array [
+                  undefined,
+                  undefined,
+                ]
+              }
+              testID="profile.color-overlay-toggle"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "white",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "minHeight": 54,
+                      "paddingBottom": 12,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 12,
+                    },
+                    Object {
+                      "backgroundColor": "white",
+                    },
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      },
+                      Object {
+                        "marginLeft": 0,
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    numberOfLines={0}
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Array [
+                          Object {
+                            "fontWeight": "600",
+                          },
+                          Object {
+                            "fontSize": 20,
+                            "fontWeight": "300",
+                          },
+                        ],
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                      ]
+                    }
+                  >
+                    Color Overlay
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "flex": 0,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "flex": 1,
+                        "flexDirection": "row",
+                        "justifyContent": "flex-end",
+                      }
+                    }
+                  >
+                    <RCTSwitch
+                      disabled={false}
+                      onChange={[Function]}
+                      onResponderTerminationRequest={[Function]}
+                      onStartShouldSetResponder={[Function]}
+                      onTintColor="#374A59"
+                      onValueChange={[Function]}
+                      style={
+                        Array [
+                          Object {
+                            "height": 31,
+                            "width": 51,
+                          },
+                          undefined,
+                        ]
+                      }
+                      testID={undefined}
+                      tintColor={null}
+                      title="Color Overlay"
+                      titleStyles={
+                        Object {
+                          "fontSize": 20,
+                          "fontWeight": "300",
+                        }
+                      }
+                      value={true}
                     />
                   </View>
                 </View>
@@ -2727,6 +3040,151 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
           </View>
           <View>
             <TouchableHighlight
+              accessibilityLabel="Color Overlay, On"
+              accessibilityTraits={
+                Array [
+                  "button",
+                ]
+              }
+              onPress={[Function]}
+              style={
+                Array [
+                  undefined,
+                  undefined,
+                ]
+              }
+              testID="profile.color-overlay-toggle"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "white",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "minHeight": 54,
+                      "paddingBottom": 12,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 12,
+                    },
+                    Object {
+                      "backgroundColor": "white",
+                    },
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      },
+                      Object {
+                        "marginLeft": 0,
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    numberOfLines={0}
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Array [
+                          Object {
+                            "fontWeight": "600",
+                          },
+                          Object {
+                            "fontSize": 20,
+                            "fontWeight": "300",
+                          },
+                        ],
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                      ]
+                    }
+                  >
+                    Color Overlay
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "flex": 0,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "flex": 1,
+                        "flexDirection": "row",
+                        "justifyContent": "flex-end",
+                      }
+                    }
+                  >
+                    <RCTSwitch
+                      disabled={false}
+                      onChange={[Function]}
+                      onResponderTerminationRequest={[Function]}
+                      onStartShouldSetResponder={[Function]}
+                      onTintColor="#374A59"
+                      onValueChange={[Function]}
+                      style={
+                        Array [
+                          Object {
+                            "height": 31,
+                            "width": 51,
+                          },
+                          undefined,
+                        ]
+                      }
+                      testID={undefined}
+                      tintColor={null}
+                      title="Color Overlay"
+                      titleStyles={
+                        Object {
+                          "fontSize": 20,
+                          "fontWeight": "300",
+                        }
+                      }
+                      value={true}
+                    />
+                  </View>
+                </View>
+              </View>
+            </TouchableHighlight>
+            <View
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "#C7CDD1",
+                    "height": 0.5,
+                  },
+                  Object {
+                    "marginLeft": 16,
+                  },
+                ]
+              }
+            />
+          </View>
+          <View>
+            <TouchableHighlight
               accessibilityLabel={undefined}
               accessibilityTraits={
                 Array [
@@ -3495,6 +3953,151 @@ exports[`Profile Tests renders correctly with no session 1`] = `
           </View>
           <View>
             <TouchableHighlight
+              accessibilityLabel="Color Overlay, On"
+              accessibilityTraits={
+                Array [
+                  "button",
+                ]
+              }
+              onPress={[Function]}
+              style={
+                Array [
+                  undefined,
+                  undefined,
+                ]
+              }
+              testID="profile.color-overlay-toggle"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "white",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "minHeight": 54,
+                      "paddingBottom": 12,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 12,
+                    },
+                    Object {
+                      "backgroundColor": "white",
+                    },
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      },
+                      Object {
+                        "marginLeft": 0,
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    numberOfLines={0}
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Array [
+                          Object {
+                            "fontWeight": "600",
+                          },
+                          Object {
+                            "fontSize": 20,
+                            "fontWeight": "300",
+                          },
+                        ],
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                      ]
+                    }
+                  >
+                    Color Overlay
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "flex": 0,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "flex": 1,
+                        "flexDirection": "row",
+                        "justifyContent": "flex-end",
+                      }
+                    }
+                  >
+                    <RCTSwitch
+                      disabled={false}
+                      onChange={[Function]}
+                      onResponderTerminationRequest={[Function]}
+                      onStartShouldSetResponder={[Function]}
+                      onTintColor="#374A59"
+                      onValueChange={[Function]}
+                      style={
+                        Array [
+                          Object {
+                            "height": 31,
+                            "width": 51,
+                          },
+                          undefined,
+                        ]
+                      }
+                      testID={undefined}
+                      tintColor={null}
+                      title="Color Overlay"
+                      titleStyles={
+                        Object {
+                          "fontSize": 20,
+                          "fontWeight": "300",
+                        }
+                      }
+                      value={true}
+                    />
+                  </View>
+                </View>
+              </View>
+            </TouchableHighlight>
+            <View
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "#C7CDD1",
+                    "height": 0.5,
+                  },
+                  Object {
+                    "marginLeft": 16,
+                  },
+                ]
+              }
+            />
+          </View>
+          <View>
+            <TouchableHighlight
               accessibilityLabel={undefined}
               accessibilityTraits={
                 Array [
@@ -4145,6 +4748,151 @@ exports[`Profile Tests renders correctly without act as user 1`] = `
                   >
                     Files
                   </Text>
+                </View>
+              </View>
+            </TouchableHighlight>
+            <View
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "#C7CDD1",
+                    "height": 0.5,
+                  },
+                  Object {
+                    "marginLeft": 16,
+                  },
+                ]
+              }
+            />
+          </View>
+          <View>
+            <TouchableHighlight
+              accessibilityLabel="Color Overlay, On"
+              accessibilityTraits={
+                Array [
+                  "button",
+                ]
+              }
+              onPress={[Function]}
+              style={
+                Array [
+                  undefined,
+                  undefined,
+                ]
+              }
+              testID="profile.color-overlay-toggle"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "white",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "minHeight": 54,
+                      "paddingBottom": 12,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 12,
+                    },
+                    Object {
+                      "backgroundColor": "white",
+                    },
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      },
+                      Object {
+                        "marginLeft": 0,
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    numberOfLines={0}
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Array [
+                          Object {
+                            "fontWeight": "600",
+                          },
+                          Object {
+                            "fontSize": 20,
+                            "fontWeight": "300",
+                          },
+                        ],
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                      ]
+                    }
+                  >
+                    Color Overlay
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "flex": 0,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "flex": 1,
+                        "flexDirection": "row",
+                        "justifyContent": "flex-end",
+                      }
+                    }
+                  >
+                    <RCTSwitch
+                      disabled={false}
+                      onChange={[Function]}
+                      onResponderTerminationRequest={[Function]}
+                      onStartShouldSetResponder={[Function]}
+                      onTintColor="#374A59"
+                      onValueChange={[Function]}
+                      style={
+                        Array [
+                          Object {
+                            "height": 31,
+                            "width": 51,
+                          },
+                          undefined,
+                        ]
+                      }
+                      testID={undefined}
+                      tintColor={null}
+                      title="Color Overlay"
+                      titleStyles={
+                        Object {
+                          "fontSize": 20,
+                          "fontWeight": "300",
+                        }
+                      }
+                      value={true}
+                    />
+                  </View>
                 </View>
               </View>
             </TouchableHighlight>

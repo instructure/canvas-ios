@@ -14,10 +14,20 @@
 // limitations under the License.
 //
 
+import SafariServices
 import XCTest
 @testable import Core
 
 class LTIToolsTests: CoreTestCase {
+    class MockView: UIViewController {
+        var presented: UIViewController?
+        override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
+            presented = viewControllerToPresent
+            completion?()
+        }
+    }
+    let mockView = MockView()
+
     func testGetSessionlessLaunchURL() {
         let tools = LTITools(
             env: environment,
@@ -41,7 +51,7 @@ class LTIToolsTests: CoreTestCase {
         wait(for: [doneNil], timeout: 1)
         XCTAssertNil(url)
 
-        api.mock(request, value: APIGetSessionlessLaunchResponse(id: "", name: "", url: actualURL), error: APIRequestableError.invalidPath(""))
+        api.mock(request, error: APIRequestableError.invalidPath(""))
         let doneError = expectation(description: "callback completed")
         tools.getSessionlessLaunchURL { result in
             url = result
@@ -58,5 +68,51 @@ class LTIToolsTests: CoreTestCase {
         }
         wait(for: [doneValue], timeout: 1)
         XCTAssertEqual(url, actualURL)
+    }
+
+    func testPresentToolInSFSafariViewController() {
+        let tools = LTITools(
+            env: environment,
+            context: ContextModel(.course, id: "1"),
+            id: nil,
+            url: nil,
+            launchType: nil,
+            assignmentID: nil,
+            moduleItemID: nil
+        )
+        let request = GetSessionlessLaunchURLRequest(context: ContextModel(.course, id: "1"), id: nil, url: nil, assignmentID: nil, moduleItemID: nil, launchType: nil)
+        let actualURL = URL(string: "https://canvas.instructure.com")!
+
+        api.mock(request)
+        var success = false
+        let doneNil = expectation(description: "callback completed")
+        tools.presentToolInSFSafariViewController(from: mockView, animated: false) { result in
+            success = result
+            doneNil.fulfill()
+        }
+        wait(for: [doneNil], timeout: 1)
+        XCTAssertFalse(success)
+        XCTAssertNil(mockView.presented)
+
+        api.mock(request, error: APIRequestableError.invalidPath(""))
+        let doneError = expectation(description: "callback completed")
+        tools.presentToolInSFSafariViewController(from: mockView, animated: false) { result in
+            success = result
+            doneError.fulfill()
+        }
+        wait(for: [doneError], timeout: 1)
+        XCTAssertFalse(success)
+        XCTAssertNil(mockView.presented)
+
+        api.mock(request, value: APIGetSessionlessLaunchResponse(id: "", name: "", url: actualURL))
+        let doneValue = expectation(description: "callback completed")
+        tools.presentToolInSFSafariViewController(from: mockView, animated: false) { result in
+            success = result
+            doneValue.fulfill()
+        }
+        wait(for: [doneValue], timeout: 1)
+        XCTAssertTrue(success)
+        XCTAssert(mockView.presented is SFSafariViewController)
+
     }
 }

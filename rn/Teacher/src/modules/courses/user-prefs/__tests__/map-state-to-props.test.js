@@ -14,13 +14,10 @@
 // limitations under the License.
 //
 
-// @flow
+/* eslint-disable flowtype/require-valid-file-annotation */
 
 import stateToProps from '../map-state-to-props'
-
-const templates = {
-  ...require('../../../../redux/__templates__/app-state'),
-}
+import * as templates from '../../../../__templates__'
 
 test('finds the correct data', () => {
   let state = templates.appState({
@@ -41,11 +38,43 @@ test('finds the correct data', () => {
     favoriteCourses: {
       pending: 0,
     },
+    userInfo: {
+      userSettings: {},
+    },
   })
 
   let data = stateToProps(state, { courseID: '2' })
   expect(data).toMatchObject({
     course: { id: 2 },
     color: '#333',
+    showColorOverlay: true,
   })
+})
+
+test('returns the correct value for showColorOverlay', () => {
+  let state = templates.appState({
+    entities: {
+      courses: {
+        '1': {
+          course: templates.course({ image_download_url: null }),
+        },
+      },
+    },
+    favoriteCourses: {
+      pending: 0,
+    },
+    userInfo: {
+      userSettings: {},
+    },
+  })
+  expect(stateToProps(state, { courseID: '1' }).showColorOverlay).toEqual(true)
+
+  state.entities.courses['1'].course.image_download_url = 'https://google.com'
+  expect(stateToProps(state, { courseID: '1' }).showColorOverlay).toEqual(true)
+
+  state.userInfo.userSettings.hide_dashcard_color_overlays = true
+  expect(stateToProps(state, { courseID: '1' }).showColorOverlay).toEqual(false)
+
+  state.userInfo.userSettings.hide_dashcard_color_overlays = false
+  expect(stateToProps(state, { courseID: '1' }).showColorOverlay).toEqual(true)
 })

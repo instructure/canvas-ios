@@ -16,7 +16,6 @@
 
 import Core
 import UIKit
-import MobileCoreServices
 
 class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewProtocol {
     @IBOutlet weak var nameLabel: UILabel?
@@ -41,7 +40,6 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
     @IBOutlet weak var submissionButtonDivider: DividerView?
     @IBOutlet weak var fileSubmissionButton: DynamicButton?
 
-    var refreshControl: UIRefreshControl?
     @IBOutlet weak var gradeCell: UIView?
     @IBOutlet weak var gradeCellDivider: DividerView?
     @IBOutlet weak var gradedView: GradeCircleView?
@@ -51,8 +49,19 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
     @IBOutlet weak var submittedDetailsLabel: UILabel?
     @IBOutlet weak var submitAssignmentButton: DynamicButton!
     @IBOutlet weak var scrollviewInsetConstraint: NSLayoutConstraint!
+
+    @IBOutlet weak var quizAttemptsLabel: UILabel?
+    @IBOutlet weak var quizAttemptsValueLabel: UILabel?
+    @IBOutlet weak var quizHeadingLabel: UILabel?
+    @IBOutlet weak var quizQuestionsLabel: UILabel?
+    @IBOutlet weak var quizQuestionsValueLabel: UILabel?
+    @IBOutlet weak var quizTimeLimitLabel: UILabel?
+    @IBOutlet weak var quizTimeLimitValueLabel: UILabel?
+    @IBOutlet weak var quizView: UIView?
+
     let scrollViewInsetPadding: CGFloat = 24.0
 
+    var refreshControl: UIRefreshControl?
     let titleSubtitleView = TitleSubtitleView.create()
     var presenter: AssignmentDetailsPresenter?
 
@@ -85,6 +94,10 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         fileTypesHeadingLabel?.text = NSLocalizedString("File Types", bundle: .student, comment: "")
         gradeHeadingLabel?.text = NSLocalizedString("Grade", bundle: .student, comment: "")
         descriptionHeadingLabel?.text = NSLocalizedString("Description", bundle: .student, comment: "")
+        quizAttemptsLabel?.text = NSLocalizedString("Allowed Attempts:", bundle: .student, comment: "")
+        quizHeadingLabel?.text = NSLocalizedString("Settings", bundle: .student, comment: "")
+        quizQuestionsLabel?.text = NSLocalizedString("Questions:", bundle: .student, comment: "")
+        quizTimeLimitLabel?.text = NSLocalizedString("Time Limit:", bundle: .student, comment: "")
         submittedLabel?.text = NSLocalizedString("Successfully submitted!", bundle: .student, comment: "")
         submittedDetailsLabel?.text = NSLocalizedString("Your submission is now waiting to be graded", bundle: .student, comment: "")
         submissionButton?.setTitle(NSLocalizedString("Submission & Rubric", bundle: .student, comment: ""), for: .normal)
@@ -115,7 +128,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
 
     @IBAction
     func viewFileSubmission() {
-        presenter?.submit(.online_upload, from: self)
+        presenter?.viewFileSubmission()
     }
 
     func updateNavBar(subtitle: String?, backgroundColor: UIColor?) {
@@ -141,7 +154,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         submittedLabel?.textColor = UIColor.named(.textSuccess).ensureContrast(against: .white)
         submittedLabel?.text = NSLocalizedString("Successfully submitted!", bundle: .student, comment: "")
 
-        if let fileSubmissionState = presenter?.fileSubmissionState {
+        if let fileSubmissionState = presenter?.fileUpload.state {
             gradeCell?.isHidden = false
             gradeCellDivider?.isHidden = false
             gradedView?.isHidden = true
@@ -189,7 +202,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         submittedView?.isHidden = true
     }
 
-    func update(assignment: Assignment, baseURL: URL?) {
+    func update(assignment: Assignment, quiz: Quiz?, baseURL: URL?) {
         nameLabel?.text = assignment.name
         pointsLabel?.text = assignment.pointsPossibleText
         statusIconView?.isHidden = assignment.submissionStatusIsHidden
@@ -204,20 +217,30 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         fileTypesHeadingLabel?.isHidden = !assignment.hasFileTypes
         fileTypesLabel?.isHidden = !assignment.hasFileTypes
         fileTypesDivider?.isHidden = !assignment.hasFileTypes
+        descriptionHeadingLabel?.text = quiz == nil
+            ? NSLocalizedString("Description", bundle: .student, comment: "")
+            : NSLocalizedString("Instructions", bundle: .student, comment: "")
         descriptionView?.loadHTMLString(assignment.descriptionHTML, baseURL: baseURL)
         updateGradeCell(assignment)
 
         submissionButtonView?.isHidden = !assignment.isSubmittable
         submissionButtonDivider?.isHidden = !assignment.isSubmittable
+        updateQuizSettings(quiz)
 
         scrollView?.isHidden = false
         loadingView?.stopAnimating()
         refreshControl?.endRefreshing()
     }
 
-    func showError(_ error: Error) {
-        // FIXME: Proper error handling
-        assertionFailure(error.localizedDescription)
+    func updateQuizSettings(_ quiz: Quiz?) {
+        guard let quiz = quiz else {
+            quizView?.isHidden = true
+            return
+        }
+        quizAttemptsValueLabel?.text = quiz.allowedAttemptsText
+        quizQuestionsValueLabel?.text = quiz.questionCountText
+        quizTimeLimitValueLabel?.text = quiz.timeLimitText
+        quizView?.isHidden = false
     }
 
     func showSubmitAssignmentButton(title: String?) {
@@ -230,146 +253,12 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
             submitAssignmentButton.alpha = 0
         }
     }
-
-    func chooseSubmissionType(_ types: [SubmissionType]) {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        // set ipad properties to display modal
-        alert.popoverPresentationController?.sourceView = submitAssignmentButton?.superview
-        alert.popoverPresentationController?.sourceRect =  CGRect(origin: submitAssignmentButton?.superview?.center ?? .zero, size: .zero)
-        alert.popoverPresentationController?.permittedArrowDirections = []
-        for type in types {
-            let action = UIAlertAction(title: type.localizedString, style: .default) { _ in
-                self.presenter?.submit(type, from: self)
-            }
-            alert.addAction(action)
-        }
-        let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil)
-        alert.addAction(cancel)
-        present(alert, animated: true, completion: nil)
-    }
-
-    func present(filePicker: FilePickerViewController) {
-        filePicker.delegate = self
-        let nav = UINavigationController(rootViewController: filePicker)
-        present(nav, animated: true, completion: nil)
-    }
-
-    func chooseMediaRecordingType() {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Record Audio", comment: ""), style: .default) { [weak self] _ in
-            AudioRecorderViewController.requestPermission { allowed in
-                if allowed {
-                    let controller = AudioRecorderViewController.create()
-                    controller.delegate = self
-                    controller.view.backgroundColor = UIColor.named(.backgroundLightest)
-                    self?.present(controller, animated: true, completion: nil)
-                } else {
-                    self?.showPermissionError(.microphone)
-                }
-            }
-        })
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Record Video", comment: ""), style: .default) { _ in
-            guard UIImagePickerController.isSourceTypeAvailable(.camera) else { return }
-            let cameraController = UIImagePickerController()
-            cameraController.delegate = self
-            cameraController.sourceType = .camera
-            cameraController.mediaTypes = [kUTTypeMovie as String]
-            cameraController.cameraCaptureMode = .video
-            self.present(cameraController, animated: true, completion: nil)
-        })
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel))
-        present(alert, animated: true, completion: nil)
-    }
-
-    func submit(mediaRecording url: URL, type: MediaCommentType) {
-        let alert = UIAlertController(title: NSLocalizedString("Uploading", comment: ""), message: nil, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { [weak self] _ in
-            self?.presenter?.cancelOnlineUpload()
-        })
-        present(alert, animated: true) {
-            self.presenter?.submit(mediaRecording: url, type: type) { [weak self] error in
-                DispatchQueue.main.async {
-                    alert.dismiss(animated: true) {
-                        if let error = error {
-                            let alert = UIAlertController(title: NSLocalizedString("Submission Failed", comment: ""), message: error.localizedDescription, preferredStyle: .alert)
-                            alert.addAction(UIAlertAction(title: NSLocalizedString("Retry", comment: ""), style: .default) { _ in
-                                self?.submit(mediaRecording: url, type: type)
-                            })
-                            alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
-                            self?.present(alert, animated: true, completion: nil)
-                        } else {
-                            let alert = UIAlertController(title: NSLocalizedString("Success!", comment: ""), message: nil, preferredStyle: .alert)
-                            self?.present(alert, animated: true) {
-                                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(400)) {
-                                    alert.dismiss(animated: true, completion: nil)
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-extension AssignmentDetailsViewController: AudioRecorderDelegate {
-    func cancel(_ controller: AudioRecorderViewController) {
-        controller.dismiss(animated: true, completion: nil)
-    }
-
-    func send(_ controller: AudioRecorderViewController, url: URL) {
-        controller.dismiss(animated: true) {
-            self.submit(mediaRecording: url, type: .audio)
-        }
-    }
-}
-
-extension AssignmentDetailsViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        picker.dismiss(animated: true) {
-            do {
-                if let videoURL = info[.mediaURL] as? URL {
-                    let destination = URL
-                        .temporaryDirectory
-                        .appendingPathComponent("videos", isDirectory: true)
-                        .appendingPathComponent(String(Clock.now.timeIntervalSince1970))
-                        .appendingPathExtension(videoURL.pathExtension)
-                    try videoURL.move(to: destination)
-                    self.submit(mediaRecording: destination, type: .video)
-                }
-            } catch {
-                self.showError(error)
-            }
-        }
-    }
-}
-
-extension AssignmentDetailsViewController: FilePickerControllerDelegate {
-    func submit(_ controller: FilePickerViewController) {
-        controller.dismiss(animated: true) {
-            self.presenter?.submitOnlineUpload()
-        }
-    }
-
-    func cancel(_ controller: FilePickerViewController) {
-        controller.dismiss(animated: true) {
-            self.presenter?.cancelOnlineUpload()
-        }
-    }
-
-    func retry(_ controller: FilePickerViewController) {
-        // TODO: presenter?.retryOnlineUpload()
-    }
-
-    func canSubmit(_ controller: FilePickerViewController) -> Bool {
-        return controller.files?.isEmpty == false
-    }
 }
 
 // MARK: - Events
 extension AssignmentDetailsViewController {
     @IBAction func actionSubmitAssignment(_ sender: UIButton) {
-        presenter?.submitAssignment(from: self)
+        presenter?.submit(button: sender)
     }
 
     @IBAction func didTapSubmission(_ sender: UIButton) {

@@ -32,7 +32,7 @@ public struct APIDiscussionTopic: Codable, Equatable {
 }
 
 public struct APIDiscussionAuthor: Codable, Equatable {
-    let id: String?
+    let id: ID?
     let display_name: String?
     let avatar_image_url: URL?
     let html_url: URL?

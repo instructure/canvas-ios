@@ -41,7 +41,7 @@ class QuizListCell: UITableViewCell {
             pointsLabel?.isHidden = true
             pointsDot?.isHidden = true
         }
-        questionsLabel?.text = quiz?.questionCountText
+        questionsLabel?.text = quiz?.nQuestionsText
         if let statusText = quiz?.lockStatusText {
             statusLabel?.text = statusText
             statusLabel?.isHidden = false

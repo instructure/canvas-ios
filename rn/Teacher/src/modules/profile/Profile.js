@@ -87,6 +87,7 @@ export class Profile extends Component<Object, State> {
     this.props.refreshCanActAsUser()
     this.props.refreshAccountExternalTools()
     this.props.refreshHelpLinks()
+    this.props.getUserSettings()
     this.refreshAvatarURL()
     this.enableDeveloperMenu()
   }
@@ -184,6 +185,12 @@ export class Profile extends Component<Object, State> {
 
   toggleShowGrades = () => {
     this.props.updateShowGradesOnDashboard(!this.props.showsGradesOnCourseCards)
+  }
+
+  toggleColorOverlay = (showColorOverlay: boolean) => {
+    // the setting is in the negative to hide it
+    // so we must negate the show
+    this.props.updateUserSettings('self', !showColorOverlay)
   }
 
   handleActions = async (index: number) => {
@@ -315,6 +322,7 @@ export class Profile extends Component<Object, State> {
       { tools }
       { (this.props.canActAsUser || actingAsUser) && buildRow(actAsUserTitle, this.toggleActAsUser) }
       { isStudent() && buildRow(i18n('Show Grades'), null, { onValueChange: this.toggleShowGrades, value: this.props.showsGradesOnCourseCards }) }
+      { buildRow(i18n('Color Overlay'), null, { onValueChange: this.toggleColorOverlay, value: !this.props.userSettings.hide_dashcard_color_overlays, testID: 'profile.color-overlay-toggle' }) }
       { this.props.helpLinks && buildRow(this.props.helpLinks.help_link_name, this.showHelpMenu, null, { testID: 'profile.help-menu-btn' }) }
       { !isParent() && buildRow(i18n('Settings'), this.settings, null, { testID: 'profile.settings-btn' }) }
       { this.state.showsDeveloperMenu && buildRow(i18n('Developer Menu'), this.showDeveloperMenu) }

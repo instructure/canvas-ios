@@ -28,6 +28,6 @@ extension APIUser: Fixture {
     }
 }
 
-extension APIUser: Context {
+extension APIUser: APIContext {
     public var contextType: ContextType { return .user }
 }

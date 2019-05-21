@@ -23,9 +23,9 @@ class SubmissionDetailsEmptyView: UIView {
     @IBOutlet weak var dueLabel: DynamicLabel?
     @IBOutlet weak var submitButton: DynamicButton?
 
-    var submitCallback: (() -> Void)?
-    @IBAction func submitButtonTapped(_ sender: Any) {
-        submitCallback?()
+    var submitCallback: ((UIButton) -> Void)?
+    @IBAction func submitButtonTapped(_ sender: UIButton) {
+        submitCallback?(sender)
     }
 
     var dueText: String? {
@@ -33,10 +33,15 @@ class SubmissionDetailsEmptyView: UIView {
         set { dueLabel?.text = newValue }
     }
 
+    var submitButtonTitle: String? {
+        get { return submitButton?.title(for: .normal) }
+        set { submitButton?.setTitle(newValue, for: .normal) }
+    }
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         loadFromXib()
         headingLabel?.text = NSLocalizedString("No Submission", bundle: .student, comment: "")
-        submitButton?.setTitle(NSLocalizedString("Submit Assignment", bundle: .student, comment: ""), for: .normal)
+        submitButtonTitle = NSLocalizedString("Submit Assignment", bundle: .student, comment: "")
     }
 }

@@ -29,6 +29,7 @@ import i18n from 'format-message'
 import stateToProps from './map-state-to-props'
 import ColorButton from './components/ColorButton'
 import CoursesActions from '../actions'
+import UserInfoActions from '../../userInfo/actions'
 import CourseSettingsActions from '../settings/actions'
 import refresh from '../../../utils/refresh'
 import { RefreshableScrollView } from '../../../common/components/RefreshableList'
@@ -54,8 +55,10 @@ type Props = {
   navigator: Navigator,
   course: Course,
   color: string,
+  showColorOverlay: boolean,
   updateCourseColor: (string, string) => void,
   updateCourseNickname: (Course, string) => Course,
+  getUserSettings: () => void,
   pending: number,
   error: ?string,
 } & RefreshProps
@@ -153,22 +156,24 @@ export class UserCoursePreferences extends Component<Props, any> {
         onRefresh={this.props.refresh}
       >
         <View style={styles.imageWrapper}>
-          { this.props.course.image_download_url &&
+          {this.props.course.image_download_url &&
             <Image source={{ uri: this.props.course.image_download_url }} style={styles.image} />
           }
-          <View
-            style={[
-              styles.color,
-              {
-                backgroundColor: this.props.color,
-                opacity: this.props.course.image_download_url ? 0.8 : 1,
-              },
-            ]}
-          />
+          {this.props.showColorOverlay &&
+            <View
+              style={[
+                styles.color,
+                {
+                  backgroundColor: this.props.color,
+                  opacity: this.props.course.image_download_url ? 0.8 : 1,
+                },
+              ]}
+            />
+          }
         </View>
         <View style={styles.bottom}>
-          <View style={styles.nicknameWrapper}>
-            <Text style={styles.nicknameLabel}>
+          <View style={styles.row}>
+            <Text style={styles.rowTitle}>
               {i18n('Nickname')}
             </Text>
             <TextInput
@@ -220,13 +225,17 @@ export class UserCoursePreferences extends Component<Props, any> {
 }
 
 export let Refreshed: any = refresh(
-  props => props.refreshCourses(),
+  props => {
+    props.refreshCourses()
+    props.getUserSettings()
+  },
   props => !props.course,
   props => Boolean(props.pending)
 )(UserCoursePreferences)
 const actions = {
   ...CoursesActions,
   ...CourseSettingsActions,
+  ...UserInfoActions,
 }
 let connected = connect(stateToProps, actions)(Refreshed)
 export default (connected: UserCoursePreferences)
@@ -249,14 +258,14 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
   },
-  nicknameWrapper: {
+  row: {
     height: 54,
     paddingHorizontal: 16,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  nicknameLabel: {
+  rowTitle: {
     fontWeight: '600',
   },
   nickname: {
