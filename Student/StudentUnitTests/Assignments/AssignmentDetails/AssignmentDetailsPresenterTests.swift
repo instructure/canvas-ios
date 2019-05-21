@@ -171,17 +171,6 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         presenter.viewFileSubmission()
         XCTAssertNotNil(presentedView)
     }
-
-    func testFileSubmissionState() {
-        XCTAssertNil(presenter.fileSubmissionState)
-        File.make([ "uploadError": nil, "assignmentID": "1" ])
-        presenter.viewIsReady()
-        XCTAssertEqual(presenter.fileSubmissionState, .pending)
-
-        File.make([ "uploadError": "doh", "assignmentID": "1" ])
-        presenter.refresh()
-        XCTAssertEqual(presenter.fileSubmissionState, .failed)
-    }
 }
 
 extension AssignmentDetailsPresenterTests: AssignmentDetailsViewProtocol {

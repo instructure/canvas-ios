@@ -57,6 +57,7 @@ public class UploadBatch {
     }
     private var subscribers: [Callback] = []
     public var state: State?
+    public var uploader: FileUploader = UploadFile.shared
 
     public init(environment: AppEnvironment = .shared, batchID: String = UUID.string, callback: Callback?) {
         self.env = environment
@@ -102,8 +103,8 @@ public class UploadBatch {
     public func upload(to context: FileUploadContext, callback: Callback? = nil) {
         if let callback = callback { subscribe(callback) }
         self.state = nil
-        files.forEach { file in
-            UploadFile.shared.upload(file, context: context) { error in
+        for file in files {
+            uploader.upload(file, context: context) { error in
                 if let error = error {
                     callback?(.failed(error))
                 }
@@ -115,7 +116,7 @@ public class UploadBatch {
         let context = env.database.viewContext
         context.performAndWait {
             for file in self.files {
-                UploadFile.shared.cancel(file)
+                self.uploader.cancel(file)
                 context.delete(file)
                 try? context.save()
             }
