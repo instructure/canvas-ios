@@ -49,12 +49,6 @@ public class UploadFileComment {
         self.batchID = batchID
     }
 
-    deinit {
-        if let token = token {
-            uploadBatch.unsubscribe(token)
-        }
-    }
-
     public func cancel() {
         task?.cancel()
         uploadBatch.cancel()
@@ -89,8 +83,10 @@ public class UploadFileComment {
                     case .staged?, .uploading?, nil: break
                     case let .completed(fileIDs: fileIDs)?:
                         self.putComment(fileIDs: Array(fileIDs))
+                        self.unsubscribe()
                     case .failed(let error)?:
                         self.callback(nil, error)
+                        self.unsubscribe()
                     }
                 }
             } catch {
@@ -116,6 +112,12 @@ public class UploadFileComment {
                     e = error
                 }
             }
+        }
+    }
+
+    private func unsubscribe() {
+        if let token = self.token {
+            self.uploadBatch.unsubscribe(token)
         }
     }
 }
