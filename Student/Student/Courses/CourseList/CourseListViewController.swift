@@ -52,9 +52,7 @@ class CourseListViewController: UIViewController, CourseListViewProtocol {
         // Collection View Setup
         collectionView?.refreshControl = refreshControl
 
-        let id = String(describing: CourseCardCell.self)
-        let nib = UINib(nibName: id, bundle: Bundle(for: type(of: self)))
-        collectionView?.register(nib, forCellWithReuseIdentifier: id)
+        collectionView?.registerCell(CourseCardCell.self, bundle: Bundle(for: type(of: self)))
 
         presenter?.viewIsReady()
     }
