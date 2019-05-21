@@ -26,6 +26,7 @@ class CourseCardCell: UICollectionViewCell {
     @IBOutlet var abbrevationLabel: UILabel?
 
     var optionsCallback: (() -> Void)?
+    var optionsButtonCircle: CALayer?
 
     var course: Course? = nil {
         didSet {
@@ -84,14 +85,43 @@ class CourseCardCell: UICollectionViewCell {
         optionsCallback = nil
     }
 
-    func configure(with model: Course) {
+    func configure(with model: Course, hideDashcardColorOverlays: Bool) {
         let color = model.color.ensureContrast(against: .named(.white))
         course = model
         titleLabel?.text = model.name
         titleLabel?.textColor = color
         abbrevationLabel?.text = model.courseCode
-        topView?.backgroundColor = color
+
+        if (model.showColorOverlay(hideOverlaySetting: hideDashcardColorOverlays)) {
+            configureWithOverlay(color: color)
+        } else {
+            configureWithoutOverlay(color: color)
+        }
+
         imageView?.load(url: model.imageDownloadURL)
+    }
+
+    func configureWithOverlay(color: UIColor) {
+        topView?.backgroundColor = color
+        imageView?.alpha = 0.4
+        optionsButton?.backgroundColor = .clear
+        optionsButton?.layer.cornerRadius = 0
+        optionsButtonCircle?.removeFromSuperlayer()
+    }
+
+    func configureWithoutOverlay(color: UIColor) {
+        topView?.backgroundColor = .white
+        imageView?.alpha = 1
+
+        guard let optionsButton = optionsButton else {
+            return
+        }
+        let circleLayer = CALayer()
+        circleLayer.frame = CGRect(x: 4, y: 4, width: optionsButton.bounds.width - 8, height: optionsButton.bounds.height - 8)
+        circleLayer.backgroundColor = color.cgColor
+        circleLayer.cornerRadius = circleLayer.frame.width / 2
+        optionsButton.layer.insertSublayer(circleLayer, below: optionsButton.imageView?.layer)
+        optionsButtonCircle = circleLayer
     }
 
     @IBAction func optionsButtonTapped(_ sender: Any) {

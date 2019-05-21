@@ -43,6 +43,13 @@ class DashboardPresenter {
         }
     }()
 
+    lazy var settings: Store<GetUserSettings> = {
+        let useCase = GetUserSettings(userID: "self")
+        return environment.subscribe(useCase) { [weak self] in
+            self?.update()
+        }
+    }()
+
     init(env: AppEnvironment = .shared, view: DashboardViewProtocol?) {
         self.environment = env
         self.router = env.router
@@ -93,6 +100,7 @@ class DashboardPresenter {
         groups.exhaust(while: { _ in true })
         colors.refresh(force: force)
         courses.exhaust(while: { _ in true })
+        settings.refresh(force: force)
     }
 
     func update() {

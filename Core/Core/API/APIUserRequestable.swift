@@ -78,3 +78,15 @@ struct UpdateCustomColorRequest: APIRequestable {
         return "users/\(userID)/colors/\(context.canvasContextID)"
     }
 }
+
+// https://canvas.instructure.com/doc/api/users.html#method.users.settings
+public struct GetUserSettingsRequest: APIRequestable {
+    public typealias Response = APIUserSettings
+
+    let userID: String
+
+    public let method = APIMethod.get
+    public var path: String {
+        return "users/\(userID)/settings"
+    }
+}

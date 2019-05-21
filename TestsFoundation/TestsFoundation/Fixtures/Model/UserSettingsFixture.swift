@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2018-present Instructure, Inc.
+// Copyright (C) 2019-present Instructure, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,30 +14,15 @@
 // limitations under the License.
 //
 
+import Foundation
 @testable import Core
 
-extension APIUser: Fixture {
+extension UserSettings: Fixture {
     public static var template: Template {
         return [
-            "id": "1",
-            "name": "Bob",
-            "sortable_name": "Bob",
-            "short_name": "Bob",
-            "effective_locale": "en",
-        ]
-    }
-}
-
-extension APIUser: APIContext {
-    public var contextType: ContextType { return .user }
-}
-
-extension APIUserSettings: Fixture {
-    public static var template: Template {
-        return [
-            "manual_mark_as_read": false,
-            "collapse_global_nav": false,
-            "hide_dashcard_color_overlays": false
+            "manualMarkedAsRead": false,
+            "collapseGlobalNav": false,
+            "hideDashcardColorOverlays": false,
         ]
     }
 }
