@@ -239,6 +239,14 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
         XCTAssertEqual(fileUploader.cancels.count, 1)
     }
 
+    func testCanSubmitFilePicker() {
+        let url = URL(fileURLWithPath: "/file.txt")
+        let filePicker = FilePickerViewController.create(environment: env, batchID: presenter.fileUpload.batchID)
+        XCTAssertFalse(presenter.canSubmit(filePicker))
+        try! presenter.fileUpload.addFile(url)
+        XCTAssertTrue(presenter.canSubmit(filePicker))
+    }
+
     func testPickMediaRecordingType() {
         presenter.pickMediaRecordingType()
         XCTAssert(view.presented is UIAlertController)

@@ -23,14 +23,14 @@ public class UploadBatch {
         case staged
         case uploading
         case failed(Error)
-        case completed(fileIDs: [String])
+        case completed(fileIDs: Set<String>)
 
         public static func == (lhs: State, rhs: State) -> Bool {
             switch (lhs, rhs) {
             case (.staged, .staged): return true
             case (.uploading, .uploading): return true
             case (.failed, .failed): return true
-            case (.completed, .completed): return true
+            case let (.completed(fileIDs: lhs), .completed(fileIDs: rhs)): return lhs == rhs
             default: return false
             }
         }
@@ -128,7 +128,7 @@ public class UploadBatch {
             state = nil
         } else if files.allSatisfy({ $0.isUploaded }) {
             guard state?.completed != true else { return }
-            state = .completed(fileIDs: files.compactMap { $0.id })
+            state = .completed(fileIDs: Set(files.compactMap { $0.id }))
         } else if let error = files.compactMap({ $0.uploadError }).first {
             guard state?.failed != true else { return }
             state = State.failed(NSError.instructureError(error))

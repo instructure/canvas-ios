@@ -361,6 +361,7 @@
 		B144530B212E5BCC0009D848 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B144530A212E5BCC0009D848 /* AsyncOperation.swift */; };
 		B14B704B228F118100B568D6 /* UploadBatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14B704A228F118100B568D6 /* UploadBatch.swift */; };
 		B14B704D228F30A100B568D6 /* UploadFileComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14B704C228F30A100B568D6 /* UploadFileComment.swift */; };
+		B14B705322945F7100B568D6 /* UploadBatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14B705222945F7100B568D6 /* UploadBatchTests.swift */; };
 		B14D555E213056DD0066D275 /* APIOperationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14D555D213056DD0066D275 /* APIOperationTest.swift */; };
 		B14D55612130B6740066D275 /* TestOperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14D55602130B6740066D275 /* TestOperationQueue.swift */; };
 		B14FE5D12134E9D200328CD7 /* DatabaseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14FE5D02134E9D200328CD7 /* DatabaseOperation.swift */; };
@@ -1027,6 +1028,7 @@
 		B144530A212E5BCC0009D848 /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
 		B14B704A228F118100B568D6 /* UploadBatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadBatch.swift; sourceTree = "<group>"; };
 		B14B704C228F30A100B568D6 /* UploadFileComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadFileComment.swift; sourceTree = "<group>"; };
+		B14B705222945F7100B568D6 /* UploadBatchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadBatchTests.swift; sourceTree = "<group>"; };
 		B14D555D213056DD0066D275 /* APIOperationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIOperationTest.swift; sourceTree = "<group>"; };
 		B14D55602130B6740066D275 /* TestOperationQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestOperationQueue.swift; sourceTree = "<group>"; };
 		B14FE5D02134E9D200328CD7 /* DatabaseOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseOperation.swift; sourceTree = "<group>"; };
@@ -2149,6 +2151,7 @@
 				7D5C871E2239A45300D99651 /* GetSubmissionCommentsTests.swift */,
 				9FCD79D92188E3CD0054293A /* GetSubmissionTest.swift */,
 				B195DC5421324DA600797FE4 /* GetUserGroupsTest.swift */,
+				B14B705222945F7100B568D6 /* UploadBatchTests.swift */,
 				7D86285C224C15BA003A37DC /* UploadMediaCommentTests.swift */,
 				B17855B2226ABDDD00B30C80 /* UploadMediaTests.swift */,
 			);
@@ -2845,6 +2848,7 @@
 				B1EF7AB721E7E41F00D653D7 /* StoreTests.swift in Sources */,
 				7D5C871F2239A45300D99651 /* GetSubmissionCommentsTests.swift in Sources */,
 				7D80AC56212CF41900C40ECE /* APIRequestableTests.swift in Sources */,
+				B14B705322945F7100B568D6 /* UploadBatchTests.swift in Sources */,
 				7D8B78FB215EC9BE005E08F1 /* BrandTests.swift in Sources */,
 				B1A464BD225669B50052F8DF /* DispatchExtensionsTests.swift in Sources */,
 				7D3A1EEF227BEFD00094531E /* ActAsUserPresenterTests.swift in Sources */,

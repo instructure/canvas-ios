@@ -81,7 +81,7 @@ public class UploadFileComment {
                     switch state {
                     case .staged?, .uploading?, nil: break
                     case let .completed(fileIDs: fileIDs)?:
-                        self.putComment(fileIDs: fileIDs)
+                        self.putComment(fileIDs: Array(fileIDs))
                     case .failed(let error)?:
                         self.callback(nil, error)
                     }
