@@ -63,7 +63,7 @@ class DashboardViewController: UIViewController, DashboardViewProtocol {
         collectionView?.delegate = self
         collectionView?.dataSource = self
         collectionView?.refreshControl = refreshControl
-        collectionView?.registerCell(CourseCardCell.self, bundle: Bundle(for: type(of: self)))
+        collectionView?.registerCell(CourseCardCell.self)
 
         // Debug logs
         #if DEBUG

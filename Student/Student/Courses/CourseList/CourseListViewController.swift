@@ -52,7 +52,7 @@ class CourseListViewController: UIViewController, CourseListViewProtocol {
         // Collection View Setup
         collectionView?.refreshControl = refreshControl
 
-        collectionView?.registerCell(CourseCardCell.self, bundle: Bundle(for: type(of: self)))
+        collectionView?.registerCell(CourseCardCell.self)
 
         presenter?.viewIsReady()
     }

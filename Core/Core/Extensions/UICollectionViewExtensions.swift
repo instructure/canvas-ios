@@ -37,9 +37,9 @@ extension UICollectionView {
 
     /// Registers a reusable cell object.
     /// This assumes that the reuse identifier matches the type name.
-    public func registerCell(_ cellClass: AnyClass, bundle: Bundle? = nil) {
+    public func registerCell(_ cellClass: AnyClass) {
         let className = String(describing: cellClass)
-        let nib = UINib(nibName: className, bundle: bundle)
+        let nib = UINib(nibName: className, bundle: Bundle(for: cellClass))
         register(nib, forCellWithReuseIdentifier: className)
     }
 }

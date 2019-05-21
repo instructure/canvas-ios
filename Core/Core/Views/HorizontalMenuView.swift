@@ -49,7 +49,7 @@ public class HorizontalMenuView: UIView {
         contentView = loadFromXib()
         backgroundColor = UIColor.named(.backgroundLightest)
         contentView.backgroundColor = UIColor.named(.backgroundLightest)
-        collectionView.registerCell(HorizontalMenuViewCell.self, bundle: Bundle.core)
+        collectionView.registerCell(HorizontalMenuViewCell.self)
         collectionView.dataSource = self
         collectionView.delegate = self
     }
