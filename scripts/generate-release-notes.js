@@ -39,13 +39,17 @@ function run (cmd, args, opts) {
     const command = spawn(cmd, args, opts)
     command.on('error', reject)
     let result = ''
+    let error = ''
     command.stdout.on('data', data => {
       result += data.toString()
+    })
+    command.stderr.on('data', data => {
+      error += data.toString()
     })
     command.on('exit', code => {
       if (code === 0) return resolve(result)
       console.error(command.stderr.toString())
-      reject(`${cmd} failed with code ${code}.`)
+      reject(`${cmd} ${args.join(' ')} failed with code ${code}. ${error}`)
     })
   })
 }
@@ -55,7 +59,7 @@ async function generateReleaseNotes () {
   var app = yargs.argv.app
 
   console.log('Executing git fetch to make sure we have the latest tags....')
-  await run('git', ['fetch'])
+  await run('git', ['fetch', '--tags'])
   if (tag && app) {
     await finalizeReleaseNotes(tag, app)
   } else {
@@ -80,13 +84,14 @@ async function finalizeReleaseNotes (tag, app) {
 
   // Make sure that the tag passed in is valid
   let tags = await run('git', ['tag'])
-  if (!tags.includes(tag)) {
+
+  if (!tags.split('\n').includes(tag)) {
     console.log('Invalid tag. Run `git tag` to see available tags.')
     process.exit(1)
   }
 
   try {
-    let result = await run('git', ['log', `${tag}...HEAD`, `--pretty=format:commit:%H%n%B${delimiter}`])
+    let result = await run('git', ['log', `${tag}...HEAD`, `--pretty=format:commit:%H%n%B${delimiter}`, '--'])
     parseGitLog(result, app.toLowerCase())
   } catch (e) {
     console.log(e)
