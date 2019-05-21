@@ -15,11 +15,11 @@
 //
 
 import Foundation
+import SwiftUITest
 
-enum PSPDFDoc: String, UITestElement, CaseIterable {
-    case view = "PDF View"
-
-    var a11yID: String {
-        return rawValue
-    }
+enum URLSubmission: String, ElementWrapper, CaseIterable {
+    case url
+    case preview
+    case loadingView
+    case submit
 }

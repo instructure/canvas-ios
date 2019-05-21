@@ -18,7 +18,7 @@ import UIKit
 
 protocol LoginFindSchoolViewProtocol: class {
     func show(_ vc: UIViewController, sender: Any?)
-    func update(results: [(domain: String, name: String)])
+    func update(results: [APIAccountResults])
 }
 
 class LoginFindSchoolPresenter {
@@ -48,8 +48,12 @@ class LoginFindSchoolPresenter {
         searchTask = api.makeRequest(GetAccountsSearchRequest(searchTerm: query)) { [weak self] (results, _, error) in DispatchQueue.main.async {
             guard let self = self, error == nil else { return }
             self.accounts = results ?? []
-            self.view?.update(results: self.accounts.map { (account) -> (domain: String, name: String) in
-                return (domain: account.domain, name: account.name.trimmingCharacters(in: .whitespacesAndNewlines))
+            self.view?.update(results: self.accounts.map { (account) -> APIAccountResults in
+                return APIAccountResults(
+                    name: account.name.trimmingCharacters(in: .whitespacesAndNewlines),
+                    domain: account.domain,
+                    authentication_provider: account.authentication_provider
+                )
             })
             self.searchTask = nil
         } }
@@ -60,18 +64,18 @@ class LoginFindSchoolPresenter {
         loginDelegate?.openExternalURL(url)
     }
 
-    func showLoginForHost(_ host: String) {
-        let authenticationProvider = accounts.first(where: { $0.domain == host })?.authentication_provider
+    func showLoginForHost(_ host: String, authenticationProvider: String? = nil) {
+        let provider = authenticationProvider ?? accounts.first(where: { $0.domain == host })?.authentication_provider
         let controller: UIViewController
         if method == .manualOAuthLogin {
             controller = LoginManualOAuthViewController.create(
-                authenticationProvider: authenticationProvider,
+                authenticationProvider: provider,
                 host: host,
                 loginDelegate: loginDelegate
             )
         } else {
             controller = LoginWebViewController.create(
-                authenticationProvider: authenticationProvider,
+                authenticationProvider: provider,
                 host: host,
                 loginDelegate: loginDelegate,
                 method: method

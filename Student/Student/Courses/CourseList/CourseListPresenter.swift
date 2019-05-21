@@ -36,6 +36,13 @@ class CourseListPresenter {
         }
     }()
 
+    lazy var settings: Store<GetUserSettings> = {
+        let useCase = GetUserSettings(userID: "self")
+        return environment.subscribe(useCase) { [weak self] in
+            self?.update()
+        }
+    }()
+
     init(env: AppEnvironment = .shared, view: CourseListViewProtocol?) {
         self.environment = env
         self.router = env.router
@@ -49,6 +56,7 @@ class CourseListPresenter {
     func viewIsReady() {
         current.refresh()
         past.refresh()
+        settings.refresh()
         view?.update()
     }
 

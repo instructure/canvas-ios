@@ -18,7 +18,6 @@ import Foundation
 import SafariServices
 
 public class LTITools {
-
     let env: AppEnvironment
     let context: Context
     let id: String?
@@ -27,7 +26,15 @@ public class LTITools {
     let assignmentID: String?
     let moduleItemID: String?
 
-    public init(env: AppEnvironment, context: Context, id: String?, url: URL?, launchType: GetSessionlessLaunchURLRequest.LaunchType?, assignmentID: String?, moduleItemID: String?) {
+    public init(
+        env: AppEnvironment,
+        context: Context,
+        id: String? = nil,
+        url: URL? = nil,
+        launchType: GetSessionlessLaunchURLRequest.LaunchType? = nil,
+        assignmentID: String? = nil,
+        moduleItemID: String? = nil
+    ) {
         self.env = env
         self.context = context
         self.id = id
@@ -50,16 +57,9 @@ public class LTITools {
     }
 
     public func getSessionlessLaunchURL(completionBlock: @escaping (URL?) -> Void) {
-        let getSessionlessLaunchURL = GetSessionlessLaunchURL(api: env.api, context: context, id: id, url: url, launchType: launchType, assignmentID: assignmentID, moduleItemID: moduleItemID)
-        getSessionlessLaunchURL.completionBlock = { [weak getSessionlessLaunchURL] in
-            var url: URL?
-            defer { DispatchQueue.main.async { completionBlock(url) } }
-            let op = getSessionlessLaunchURL
-            if op?.errors.isEmpty == true {
-                url = op?.response?.url
-            }
+        let request = GetSessionlessLaunchURLRequest(context: context, id: id, url: url, assignmentID: assignmentID, moduleItemID: moduleItemID, launchType: launchType)
+        env.api.makeRequest(request) { response, _, _ in
+            DispatchQueue.main.async { completionBlock(response?.url) }
         }
-
-        env.queue.addOperation(getSessionlessLaunchURL)
     }
 }

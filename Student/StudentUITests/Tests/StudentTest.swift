@@ -49,7 +49,10 @@ class StudentTest: XCTestCase {
         // This sleep helps ensure old views got cleaned up, so EG2 doesn't find them accidentally.
         sleep(1) // FIXME: Remove this and fix flakiness better.
 
-        getApp = { return DriverFactory.getXCUITestDriver(xcuiApp!, testCase: self) }
+        getApp = {
+            // return DriverFactory.getXCUITestDriver(xcuiApp!, testCase: self)
+            return EarlGreyDriver(xcuiApp!, testCase: self)
+        }
     }
 
     func show(_ route: String) {
@@ -77,6 +80,12 @@ class StudentTest: XCTestCase {
         let red = UInt(data[0]), green = UInt(data[1]), blue = UInt(data[2]), alpha = UInt(data[3])
         let num = (alpha << 24) + (red << 16) + (green << 8) + blue
         return "#\(String(num, radix: 16))".replacingOccurrences(of: "#ff", with: "#")
+    }
+
+    func findID(for label: String) -> String {
+        return xcuiApp!.descendants(matching: .any).matching(NSPredicate(
+            format: "%K == %@", #keyPath(XCUIElement.label), label
+        )).firstMatch.identifier
     }
 
     func capturePhoto() {

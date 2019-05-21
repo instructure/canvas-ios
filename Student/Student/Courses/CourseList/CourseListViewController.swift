@@ -52,6 +52,8 @@ class CourseListViewController: UIViewController, CourseListViewProtocol {
         // Collection View Setup
         collectionView?.refreshControl = refreshControl
 
+        collectionView?.registerCell(CourseCardCell.self)
+
         presenter?.viewIsReady()
     }
 
@@ -114,10 +116,13 @@ extension CourseListViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let hideDashcardColorOverlays = presenter?.settings.first?.hideDashcardColorOverlays ?? false
+
         if indexPath.section == CourseListViewSection.current.rawValue {
-            let cell: CourseListCourseCell = collectionView.dequeue(for: indexPath)
+            let cell: CourseCardCell = collectionView.dequeue(for: indexPath)
             guard let model = presenter.current[indexPath.row] else { return UICollectionViewCell(frame: CGRect.zero) }
-            cell.configure(with: model)
+
+            cell.configure(with: model, hideDashcardColorOverlays: hideDashcardColorOverlays)
             cell.optionsCallback = { [unowned self, model] in
                 // TODO:
                 //self.delegate?.courseWasSelected(model.courseID)
@@ -130,9 +135,9 @@ extension CourseListViewController: UICollectionViewDataSource {
             return cell
         }
 
-        let cell: CourseListCourseCell = collectionView.dequeue(for: indexPath)
+        let cell: CourseCardCell = collectionView.dequeue(for: indexPath)
         guard let past = presenter.past[indexPath.row] else { return UICollectionViewCell(frame: CGRect.zero) }
-        cell.configure(with: past)
+        cell.configure(with: past, hideDashcardColorOverlays: hideDashcardColorOverlays)
         return cell
     }
 

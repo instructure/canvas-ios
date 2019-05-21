@@ -15,8 +15,21 @@
 //
 
 import Foundation
+import SwiftUITest
 
-enum DocViewer: String, UITestElement, CaseIterable {
-    case searchButton
-    case shareButton
+enum CommentList: String, ElementWrapper, CaseIterable {
+    case replyButton
+    case replyTextView
+}
+
+struct CommentListItem: RawRepresentable, ElementWrapper {
+    let rawValue: String
+
+    static func item(_ id: String) -> CommentListItem {
+        return CommentListItem(rawValue: id)
+    }
+
+    static func deleteButton(_ id: String) -> CommentListItem {
+        return CommentListItem(rawValue: "\(id).deleteButton")
+    }
 }
