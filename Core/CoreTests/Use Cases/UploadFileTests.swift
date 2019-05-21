@@ -19,7 +19,7 @@ import TestsFoundation
 @testable import Core
 import XCTest
 
-class FileUploaderTests: CoreTestCase {
+class UploadFileTests: CoreTestCase {
     class MockURLSession: URLSession {
         var finishedAndInvalidated = false
         override func finishTasksAndInvalidate() {
