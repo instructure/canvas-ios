@@ -64,6 +64,10 @@ class DashboardViewController: UIViewController, DashboardViewProtocol {
         collectionView?.dataSource = self
         collectionView?.refreshControl = refreshControl
 
+        let id = String(describing: CourseCardCell.self)
+        let nib = UINib(nibName: id, bundle: Bundle(for: type(of: self)))
+        collectionView?.register(nib, forCellWithReuseIdentifier: id)
+
         // Debug logs
         #if DEBUG
         let logs = UIBarButtonItem(title: "Logs", style: .plain, target: self, action: #selector(showLogs))
@@ -170,7 +174,7 @@ extension DashboardViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == DashboardViewSection.courses.rawValue {
-            let cell: DashboardCourseCell = collectionView.dequeue(for: indexPath)
+            let cell: CourseCardCell = collectionView.dequeue(for: indexPath)
             guard let model = presenter?.courses[indexPath.row] else { return UICollectionViewCell(frame: CGRect.zero) }
             cell.configure(with: model)
             cell.optionsCallback = { [weak self, model] in

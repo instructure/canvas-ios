@@ -103,7 +103,7 @@
 		788152DB212B3470005BA428 /* DashboardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152DA212B3470005BA428 /* DashboardPresenter.swift */; };
 		788152DD212B34F2005BA428 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152DC212B34F2005BA428 /* DashboardViewController.swift */; };
 		788152DF212B35F8005BA428 /* DashboardViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 788152DE212B35F8005BA428 /* DashboardViewController.storyboard */; };
-		788152ED212B4FA4005BA428 /* DashboardCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152EC212B4FA4005BA428 /* DashboardCourseCell.swift */; };
+		788152ED212B4FA4005BA428 /* CourseCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152EC212B4FA4005BA428 /* CourseCardCell.swift */; };
 		788152F5212B7482005BA428 /* DashboardGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152F4212B7482005BA428 /* DashboardGroupCell.swift */; };
 		788152FC212B83D0005BA428 /* DashboardSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152FA212B83D0005BA428 /* DashboardSectionHeaderView.swift */; };
 		788FD3D7218D040200C185BD /* ShareAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 788FD3D6218D040200C185BD /* ShareAssets.xcassets */; };
@@ -112,7 +112,7 @@
 		7D005F7F2239DE920040CBD7 /* DynamicTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE2ADCC21B70537008D91AB /* DynamicTextField.swift */; };
 		7D067CE021505AF200B78AF2 /* StudentReborn.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D067CDE21505AF200B78AF2 /* StudentReborn.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7D067CE421505B2500B78AF2 /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7110C221389AD90085C2E5 /* Routes.swift */; };
-		7D067CE521505B3500B78AF2 /* DashboardCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152EC212B4FA4005BA428 /* DashboardCourseCell.swift */; };
+		7D067CE521505B3500B78AF2 /* CourseCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152EC212B4FA4005BA428 /* CourseCardCell.swift */; };
 		7D067CE621505B3500B78AF2 /* DashboardGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152F4212B7482005BA428 /* DashboardGroupCell.swift */; };
 		7D067CE721505B3500B78AF2 /* DashboardSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152FA212B83D0005BA428 /* DashboardSectionHeaderView.swift */; };
 		7D067CE821505B3500B78AF2 /* DashboardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152DA212B3470005BA428 /* DashboardPresenter.swift */; };
@@ -218,6 +218,8 @@
 		7DFEC22C223085B300BE236D /* SubmissionFilesViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D79636C22307FC000CCF943 /* SubmissionFilesViewController.storyboard */; };
 		7DFEC22D223085B700BE236D /* SubmissionFilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7963682230646B00CCF943 /* SubmissionFilesViewController.swift */; };
 		9F2C9F7D219B0F4D001F0F32 /* Drawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDDE2DF218CCAB9002B71F0 /* Drawer.swift */; };
+		9F55262222947027009144F9 /* CourseCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F55262122947027009144F9 /* CourseCardCell.xib */; };
+		9F5526272294727F009144F9 /* CourseCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F55262122947027009144F9 /* CourseCardCell.xib */; };
 		9F5ADB31218B656400D8C973 /* SubmissionDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5ADB30218B656400D8C973 /* SubmissionDetailsPresenter.swift */; };
 		9F74200B21932DCE00108A0F /* SubmissionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCD79DC2188E9D90054293A /* SubmissionDetailsViewController.swift */; };
 		9F74200C21932DEB00108A0F /* SubmissionDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FCD79DE2188EAC40054293A /* SubmissionDetailsViewController.storyboard */; };
@@ -635,7 +637,7 @@
 		788152DA212B3470005BA428 /* DashboardPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardPresenter.swift; sourceTree = "<group>"; };
 		788152DC212B34F2005BA428 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		788152DE212B35F8005BA428 /* DashboardViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DashboardViewController.storyboard; sourceTree = "<group>"; };
-		788152EC212B4FA4005BA428 /* DashboardCourseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCourseCell.swift; sourceTree = "<group>"; };
+		788152EC212B4FA4005BA428 /* CourseCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseCardCell.swift; sourceTree = "<group>"; };
 		788152F4212B7482005BA428 /* DashboardGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardGroupCell.swift; sourceTree = "<group>"; };
 		788152FA212B83D0005BA428 /* DashboardSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardSectionHeaderView.swift; sourceTree = "<group>"; };
 		788FD3D6218D040200C185BD /* ShareAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ShareAssets.xcassets; sourceTree = "<group>"; };
@@ -703,6 +705,7 @@
 		7DD9E640223C4E4400B45A7E /* SubmissionCommentFileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubmissionCommentFileView.xib; sourceTree = "<group>"; };
 		7DEE3169223C08A20042FE2A /* SubmissionCommentVideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentVideoCell.swift; sourceTree = "<group>"; };
 		7DFD649C2244287400A37291 /* MockURLSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
+		9F55262122947027009144F9 /* CourseCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseCardCell.xib; sourceTree = "<group>"; };
 		9F5ADB30218B656400D8C973 /* SubmissionDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsPresenter.swift; sourceTree = "<group>"; };
 		9F9F4EB021B58A5D00842570 /* ExternalToolSubmissionContentViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ExternalToolSubmissionContentViewController.storyboard; sourceTree = "<group>"; };
 		9F9F4EB221B58AA300842570 /* ExternalToolSubmissionContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExternalToolSubmissionContentViewController.swift; sourceTree = "<group>"; };
@@ -935,6 +938,7 @@
 		3B1B004F219BD9F50045E8A1 /* Courses */ = {
 			isa = PBXGroup;
 			children = (
+				9F552628229477CD009144F9 /* Views */,
 				3BBCF82D224BFF0A004B519D /* Syllabus */,
 				3B1B0050219BD9F50045E8A1 /* CourseNavigation */,
 				3B1B0054219BD9F50045E8A1 /* CourseList */,
@@ -1287,7 +1291,6 @@
 			isa = PBXGroup;
 			children = (
 				7D08F53521541AE80042E1F4 /* CardView.swift */,
-				788152EC212B4FA4005BA428 /* DashboardCourseCell.swift */,
 				788152F4212B7482005BA428 /* DashboardGroupCell.swift */,
 				788152FA212B83D0005BA428 /* DashboardSectionHeaderView.swift */,
 			);
@@ -1413,6 +1416,15 @@
 				7DAFB457219F48D000311275 /* empty.pdf */,
 			);
 			path = Fixtures;
+			sourceTree = "<group>";
+		};
+		9F552628229477CD009144F9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				788152EC212B4FA4005BA428 /* CourseCardCell.swift */,
+				9F55262122947027009144F9 /* CourseCardCell.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		9FCD79DB2188E7B40054293A /* SubmissionDetails */ = {
@@ -1807,6 +1819,7 @@
 				3B54260121B094DF0009D069 /* UrlSubmissionViewController.storyboard in Resources */,
 				2C5C6996211DFFAE00D9AD15 /* Assets.xcassets in Resources */,
 				9FCD79DF2188EAC40054293A /* SubmissionDetailsViewController.storyboard in Resources */,
+				9F55262222947027009144F9 /* CourseCardCell.xib in Resources */,
 				3BBCF848224C19A2004B519D /* SyllabusViewController.storyboard in Resources */,
 				7DD9E641223C4E4400B45A7E /* SubmissionCommentFileView.xib in Resources */,
 				9FDDE2E2218CCBF5002B71F0 /* Drawer.xib in Resources */,
@@ -1848,6 +1861,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F5526272294727F009144F9 /* CourseCardCell.xib in Resources */,
 				7DFEC22C223085B300BE236D /* SubmissionFilesViewController.storyboard in Resources */,
 				5B5E29762185A057001C9C79 /* InfoPlist.strings in Resources */,
 				7DA61A5D216561A60085BAE8 /* Localizable.strings in Resources */,
@@ -1966,7 +1980,7 @@
 				7D101951215EBB4B0058FDD1 /* DynamicButton.swift in Sources */,
 				3B3436E9215EF0FB009EF87F /* UIImageExtensions.swift in Sources */,
 				7DA5C49C22386AEF003CDB4C /* SubmissionCommentTextCell.swift in Sources */,
-				788152ED212B4FA4005BA428 /* DashboardCourseCell.swift in Sources */,
+				788152ED212B4FA4005BA428 /* CourseCardCell.swift in Sources */,
 				3B1B0076219BD9F60045E8A1 /* CourseListSectionHeaderView.swift in Sources */,
 				7DD9E637223C4AA100B45A7E /* SubmissionCommentAttemptCell.swift in Sources */,
 				3B1B0073219BD9F60045E8A1 /* CourseNavigationPresenter.swift in Sources */,
@@ -2072,7 +2086,7 @@
 				3BBCF83A224C142C004B519D /* SyllabusPresenter.swift in Sources */,
 				3B4B75B1222DE7F3002CCBEC /* CourseNavigationViewController.swift in Sources */,
 				7DA5C497223863EF003CDB4C /* SubmissionCommentsViewController.swift in Sources */,
-				7D067CE521505B3500B78AF2 /* DashboardCourseCell.swift in Sources */,
+				7D067CE521505B3500B78AF2 /* CourseCardCell.swift in Sources */,
 				7DA057552193A3A800A3CFBB /* IconView.swift in Sources */,
 				3B19D2702266475B003A0565 /* RubricPresenter.swift in Sources */,
 				7D979CD5215BE3E600567627 /* BundleExtensions.swift in Sources */,

@@ -17,7 +17,7 @@
 import UIKit
 import Core
 
-class DashboardCourseCell: UICollectionViewCell {
+class CourseCardCell: UICollectionViewCell {
     @IBOutlet var topView: UIView?
     @IBOutlet var optionsButton: UIButton?
     @IBOutlet var imageView: UIImageView?
