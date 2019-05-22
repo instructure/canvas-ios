@@ -20,6 +20,10 @@ import Core
 class SubmissionCommentTextCell: UITableViewCell {
     @IBOutlet weak var commentLabel: DynamicLabel?
     @IBOutlet weak var chatBubbleView: IconView?
+    @IBOutlet weak var attachmentsStackView: UIStackView?
+
+    var onTapAttachment: ((File) -> Void)?
+    private var comment: SubmissionComment?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,6 +31,7 @@ class SubmissionCommentTextCell: UITableViewCell {
     }
 
     func update(comment: SubmissionComment) {
+        self.comment = comment
         accessibilityIdentifier = "SubmissionComments.textCell.\(comment.id)"
         accessibilityLabel = String.localizedStringWithFormat(
             NSLocalizedString("On %@ %@ commented \"%@\"", bundle: .student, comment: ""),
@@ -35,5 +40,34 @@ class SubmissionCommentTextCell: UITableViewCell {
             comment.comment
         )
         commentLabel?.text = comment.comment
+
+        attachmentsStackView?.arrangedSubviews.forEach { subview in
+            attachmentsStackView?.removeArrangedSubview(subview)
+            subview.removeFromSuperview()
+        }
+        comment.attachments?.sorted(by: File.idCompare).enumerated().forEach { index, attachment in
+            let color = Brand.shared.linkColor.ensureContrast(against: .white)
+            let button = UIButton(type: .system)
+            button.setImage(UIImage.icon(.attachment).withRenderingMode(.alwaysTemplate), for: .normal)
+            button.tintColor = color
+            button.imageView?.contentMode = .scaleAspectFit
+            button.setTitle(attachment.displayName, for: .normal)
+            button.titleLabel?.font = UIFont.scaledNamedFont(.medium14)
+            button.titleLabel?.lineBreakMode = .byTruncatingTail
+            button.setTitleColor(color, for: .normal)
+            button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 18, bottom: 8, right: 8)
+            button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -12, bottom: 0, right: 0)
+            button.layer.cornerRadius = 4
+            button.layer.borderColor = UIColor.named(.borderMedium).ensureContrast(against: .white).cgColor
+            button.layer.borderWidth = 1
+            button.tag = index
+            button.addTarget(self, action: #selector(tapAttachment(sender:)), for: .touchUpInside)
+            attachmentsStackView?.addArrangedSubview(button)
+        }
+    }
+
+    @objc func tapAttachment(sender: UIButton) {
+        guard let attachments = comment?.attachments.flatMap(Array.init) else { return }
+        onTapAttachment?(attachments[sender.tag])
     }
 }

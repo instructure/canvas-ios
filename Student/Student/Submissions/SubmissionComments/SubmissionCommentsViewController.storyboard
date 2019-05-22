@@ -46,7 +46,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Um-tb-BF2" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="219.5" y="28" width="88.5" height="17"/>
+                                                    <rect key="frame" x="207" y="28" width="101" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -56,7 +56,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="March 13 at 10:51 AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="brg-4l-HGS" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="183.5" y="45" width="124.5" height="14.5"/>
+                                                    <rect key="frame" x="143.5" y="48.5" width="164.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -101,7 +101,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6at-Xx-e6I" customClass="IconView" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="224.5" y="-5" width="135.5" height="42"/>
+                                                    <rect key="frame" x="224.5" y="-5" width="135.5" height="34"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="jWm-AB-N4T"/>
                                                     </constraints>
@@ -110,7 +110,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" text="Comment Text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jQO-Zk-01K" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="236.5" y="12" width="111.5" height="17"/>
+                                                    <rect key="frame" x="236.5" y="12" width="111.5" height="9"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -119,19 +119,26 @@
                                                         <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular14"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="AEd-pd-uUK">
+                                                    <rect key="frame" x="15" y="37" width="345" height="0.0"/>
+                                                </stackView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="6at-Xx-e6I" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3mt-Xn-QrW" secondAttribute="leadingMargin" id="1Hn-8t-iWp"/>
                                                 <constraint firstItem="6at-Xx-e6I" firstAttribute="trailing" secondItem="jQO-Zk-01K" secondAttribute="trailing" constant="12" id="1SK-Mo-Kh7"/>
+                                                <constraint firstItem="AEd-pd-uUK" firstAttribute="leading" secondItem="3mt-Xn-QrW" secondAttribute="leadingMargin" id="BV8-JY-FP2"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="AEd-pd-uUK" secondAttribute="bottom" id="CYN-Rn-Kow"/>
                                                 <constraint firstItem="jQO-Zk-01K" firstAttribute="leading" secondItem="6at-Xx-e6I" secondAttribute="leading" constant="12" id="QDL-QU-SPg"/>
+                                                <constraint firstItem="AEd-pd-uUK" firstAttribute="top" secondItem="6at-Xx-e6I" secondAttribute="bottom" constant="8" id="Ry1-aK-WGN"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="AEd-pd-uUK" secondAttribute="trailing" id="Vsq-8w-8JV"/>
                                                 <constraint firstItem="6at-Xx-e6I" firstAttribute="top" secondItem="3mt-Xn-QrW" secondAttribute="top" constant="-5" id="WSq-Ai-vUZ"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="6at-Xx-e6I" secondAttribute="trailing" id="cHV-hj-oSx"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="6at-Xx-e6I" secondAttribute="bottom" id="gbg-UH-cQO"/>
                                                 <constraint firstItem="6at-Xx-e6I" firstAttribute="bottom" secondItem="jQO-Zk-01K" secondAttribute="bottom" constant="8" id="svM-JY-RTC"/>
                                                 <constraint firstItem="jQO-Zk-01K" firstAttribute="top" secondItem="6at-Xx-e6I" secondAttribute="top" constant="17" id="wXK-m1-TVE"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="attachmentsStackView" destination="AEd-pd-uUK" id="aT0-yl-brg"/>
                                             <outlet property="chatBubbleView" destination="6at-Xx-e6I" id="1iR-WZ-blv"/>
                                             <outlet property="commentLabel" destination="jQO-Zk-01K" id="dFb-A9-V8w"/>
                                         </connections>
@@ -174,7 +181,7 @@
                                                         <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium12"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2V9-9A-X5r" customClass="IconView" customModule="Student" customModuleProvider="target">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2V9-9A-X5r" customClass="IconView" customModule="Student" customModuleProvider="target">
                                                     <rect key="frame" x="15" y="59" width="40" height="40"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="backgroundLight"/>
@@ -211,7 +218,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="893-hG-e0V" customClass="IconView" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="15" y="-5" width="135.5" height="42"/>
+                                                    <rect key="frame" x="15" y="-5" width="118" height="34"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="6G6-Mn-eLP"/>
                                                     </constraints>
@@ -221,7 +228,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" text="Comment Text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eMn-Vx-0Ll" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="27" y="12" width="111.5" height="17"/>
+                                                    <rect key="frame" x="27" y="12" width="94" height="9"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -230,19 +237,26 @@
                                                         <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular14"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ahz-cJ-JGc">
+                                                    <rect key="frame" x="15" y="37" width="345" height="0.0"/>
+                                                </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="893-hG-e0V" secondAttribute="bottom" id="32s-kk-vSM"/>
+                                                <constraint firstItem="ahz-cJ-JGc" firstAttribute="leading" secondItem="Fyz-QS-eeN" secondAttribute="leadingMargin" id="BIc-Un-i6k"/>
                                                 <constraint firstItem="eMn-Vx-0Ll" firstAttribute="leading" secondItem="893-hG-e0V" secondAttribute="leading" constant="12" id="D5X-oJ-6Ss"/>
+                                                <constraint firstItem="ahz-cJ-JGc" firstAttribute="top" secondItem="893-hG-e0V" secondAttribute="bottom" constant="8" id="Hln-hN-ZS8"/>
                                                 <constraint firstItem="eMn-Vx-0Ll" firstAttribute="top" secondItem="893-hG-e0V" secondAttribute="top" constant="17" id="J8c-eQ-EOL"/>
                                                 <constraint firstItem="893-hG-e0V" firstAttribute="bottom" secondItem="eMn-Vx-0Ll" secondAttribute="bottom" constant="8" id="KXz-Qr-37n"/>
                                                 <constraint firstItem="893-hG-e0V" firstAttribute="leading" secondItem="Fyz-QS-eeN" secondAttribute="leadingMargin" id="S6B-aM-bSU"/>
                                                 <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="893-hG-e0V" secondAttribute="trailing" id="SKY-j8-Lrf"/>
                                                 <constraint firstItem="893-hG-e0V" firstAttribute="trailing" secondItem="eMn-Vx-0Ll" secondAttribute="trailing" constant="12" id="d9a-Ua-eXn"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="ahz-cJ-JGc" secondAttribute="trailing" id="lJZ-x7-e1O"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="ahz-cJ-JGc" secondAttribute="bottom" id="mFy-w7-0Jh"/>
                                                 <constraint firstItem="893-hG-e0V" firstAttribute="top" secondItem="Fyz-QS-eeN" secondAttribute="top" constant="-5" id="nW6-IQ-5gp"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="attachmentsStackView" destination="ahz-cJ-JGc" id="UXN-QI-OQt"/>
                                             <outlet property="chatBubbleView" destination="893-hG-e0V" id="jbJ-VX-qw5"/>
                                             <outlet property="commentLabel" destination="eMn-Vx-0Ll" id="FVy-xC-zeC"/>
                                         </connections>

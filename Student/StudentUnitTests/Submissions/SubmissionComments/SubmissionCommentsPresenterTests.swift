@@ -66,4 +66,11 @@ class SubmissionCommentsPresenterTests: PersistenceTestCase {
         wait(for: [view.expectError!], timeout: 5)
         XCTAssertNotNil(view.error)
     }
+
+    func testShowAttachment() {
+        let url = URL(string: "https://canvas.instructure.com/files/803/download")!
+        let file = File.make(["url": url])
+        presenter.showAttachment(file, from: UIViewController())
+        XCTAssertTrue(router.lastRoutedTo(url, withOptions: [.modal, .embedInNav]))
+    }
 }

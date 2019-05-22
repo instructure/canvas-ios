@@ -106,4 +106,9 @@ class SubmissionCommentsPresenter {
             }
         }
     }
+
+    func showAttachment(_ attachment: File, from viewController: UIViewController) {
+        guard let url = attachment.url else { return }
+        env.router.route(to: url, from: viewController, options: [.modal, .embedInNav])
+    }
 }

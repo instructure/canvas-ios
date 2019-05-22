@@ -247,6 +247,10 @@ extension SubmissionCommentsViewController: UITableViewDataSource, UITableViewDe
         let reuseID = currentUserID == comment.authorID ? "myComment" : "theirComment"
         let cell: SubmissionCommentTextCell = tableView.dequeue(withID: reuseID, for: indexPath)
         cell.update(comment: comment)
+        cell.onTapAttachment = { [weak self] file in
+            guard let self = self else { return }
+            self.presenter?.showAttachment(file, from: self)
+        }
         cell.transform = CGAffineTransform(scaleX: 1, y: -1)
         return cell
     }
