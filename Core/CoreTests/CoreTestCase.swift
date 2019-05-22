@@ -62,4 +62,10 @@ class CoreTestCase: XCTestCase {
     func addOperationAndWait(_ operation: Operation) {
         queue.addOperations([operation], waitUntilFinished: true)
     }
+
+    func waitForMainAsync() {
+        let main = expectation(description: "main.async")
+        DispatchQueue.main.async { main.fulfill() }
+        wait(for: [main], timeout: 1)
+    }
 }
