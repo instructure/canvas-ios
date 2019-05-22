@@ -126,7 +126,8 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
       <item>
         <A11yGroup>
           <TouchableHighlight
-            accessible={false}
+            accessibilityLabel="Biology 101 "
+            accessibilityTraits="button"
             onLayout={[Function]}
             onPress={[Function]}
             style={
@@ -188,9 +189,6 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
                   }
                 />
                 <View
-                  accessibilityLabel="Biology 101 "
-                  accessibilityTraits="button"
-                  accessible={true}
                   style={
                     Object {
                       "backgroundColor": "#27B9CD",
@@ -205,51 +203,6 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
                     }
                   }
                 />
-                <TouchableHighlight
-                  accessibilityLabel="Open Biology 101 user preferences"
-                  accessibilityTraits="button"
-                  accessible={true}
-                  onPress={[Function]}
-                  style={
-                    Object {
-                      "height": 43,
-                      "position": "absolute",
-                      "right": 0,
-                      "top": 0,
-                      "width": 43,
-                    }
-                  }
-                  testID="course-card.kabob-1"
-                  underlayColor="#ffffff00"
-                >
-                  <View
-                    style={
-                      Object {
-                        "backgroundColor": undefined,
-                        "borderRadius": 15,
-                        "padding": 4,
-                        "position": "absolute",
-                        "right": 4,
-                        "top": 6,
-                      }
-                    }
-                  >
-                    <Image
-                      source={
-                        Object {
-                          "uri": "moreLine",
-                        }
-                      }
-                      style={
-                        Object {
-                          "height": 18,
-                          "tintColor": "white",
-                          "width": 18,
-                        }
-                      }
-                    />
-                  </View>
-                </TouchableHighlight>
               </View>
               <View
                 accessible={false}
@@ -319,12 +272,58 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
               </View>
             </View>
           </TouchableHighlight>
+          <TouchableHighlight
+            accessibilityLabel="Open Biology 101 user preferences"
+            accessibilityTraits="button"
+            accessible={true}
+            onPress={[Function]}
+            style={
+              Object {
+                "height": 43,
+                "position": "absolute",
+                "right": 8,
+                "top": 8,
+                "width": 43,
+              }
+            }
+            testID="course-card.kabob-1"
+            underlayColor="#ffffff00"
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "borderRadius": 15,
+                  "padding": 4,
+                  "position": "absolute",
+                  "right": 4,
+                  "top": 6,
+                }
+              }
+            >
+              <Image
+                source={
+                  Object {
+                    "uri": "moreLine",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 18,
+                    "tintColor": "white",
+                    "width": 18,
+                  }
+                }
+              />
+            </View>
+          </TouchableHighlight>
         </A11yGroup>
       </item>
       <item>
         <A11yGroup>
           <TouchableHighlight
-            accessible={false}
+            accessibilityLabel="American Literature Psysicks foobar hello world 401 "
+            accessibilityTraits="button"
             onLayout={[Function]}
             onPress={[Function]}
             style={
@@ -386,9 +385,6 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
                   }
                 />
                 <View
-                  accessibilityLabel="American Literature Psysicks foobar hello world 401 "
-                  accessibilityTraits="button"
-                  accessible={true}
                   style={
                     Object {
                       "backgroundColor": "#8F3E97",
@@ -403,51 +399,6 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
                     }
                   }
                 />
-                <TouchableHighlight
-                  accessibilityLabel="Open American Literature Psysicks foobar hello world 401 user preferences"
-                  accessibilityTraits="button"
-                  accessible={true}
-                  onPress={[Function]}
-                  style={
-                    Object {
-                      "height": 43,
-                      "position": "absolute",
-                      "right": 0,
-                      "top": 0,
-                      "width": 43,
-                    }
-                  }
-                  testID="course-card.kabob-2"
-                  underlayColor="#ffffff00"
-                >
-                  <View
-                    style={
-                      Object {
-                        "backgroundColor": undefined,
-                        "borderRadius": 15,
-                        "padding": 4,
-                        "position": "absolute",
-                        "right": 4,
-                        "top": 6,
-                      }
-                    }
-                  >
-                    <Image
-                      source={
-                        Object {
-                          "uri": "moreLine",
-                        }
-                      }
-                      style={
-                        Object {
-                          "height": 18,
-                          "tintColor": "white",
-                          "width": 18,
-                        }
-                      }
-                    />
-                  </View>
-                </TouchableHighlight>
               </View>
               <View
                 accessible={false}
@@ -517,12 +468,58 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
               </View>
             </View>
           </TouchableHighlight>
+          <TouchableHighlight
+            accessibilityLabel="Open American Literature Psysicks foobar hello world 401 user preferences"
+            accessibilityTraits="button"
+            accessible={true}
+            onPress={[Function]}
+            style={
+              Object {
+                "height": 43,
+                "position": "absolute",
+                "right": 8,
+                "top": 8,
+                "width": 43,
+              }
+            }
+            testID="course-card.kabob-2"
+            underlayColor="#ffffff00"
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "borderRadius": 15,
+                  "padding": 4,
+                  "position": "absolute",
+                  "right": 4,
+                  "top": 6,
+                }
+              }
+            >
+              <Image
+                source={
+                  Object {
+                    "uri": "moreLine",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 18,
+                    "tintColor": "white",
+                    "width": 18,
+                  }
+                }
+              />
+            </View>
+          </TouchableHighlight>
         </A11yGroup>
       </item>
       <item>
         <A11yGroup>
           <TouchableHighlight
-            accessible={false}
+            accessibilityLabel="Foobar 102 "
+            accessibilityTraits="button"
             onLayout={[Function]}
             onPress={[Function]}
             style={
@@ -584,9 +581,6 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
                   }
                 />
                 <View
-                  accessibilityLabel="Foobar 102 "
-                  accessibilityTraits="button"
-                  accessible={true}
                   style={
                     Object {
                       "backgroundColor": "#8F3E99",
@@ -601,51 +595,6 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
                     }
                   }
                 />
-                <TouchableHighlight
-                  accessibilityLabel="Open Foobar 102 user preferences"
-                  accessibilityTraits="button"
-                  accessible={true}
-                  onPress={[Function]}
-                  style={
-                    Object {
-                      "height": 43,
-                      "position": "absolute",
-                      "right": 0,
-                      "top": 0,
-                      "width": 43,
-                    }
-                  }
-                  testID="course-card.kabob-3"
-                  underlayColor="#ffffff00"
-                >
-                  <View
-                    style={
-                      Object {
-                        "backgroundColor": undefined,
-                        "borderRadius": 15,
-                        "padding": 4,
-                        "position": "absolute",
-                        "right": 4,
-                        "top": 6,
-                      }
-                    }
-                  >
-                    <Image
-                      source={
-                        Object {
-                          "uri": "moreLine",
-                        }
-                      }
-                      style={
-                        Object {
-                          "height": 18,
-                          "tintColor": "white",
-                          "width": 18,
-                        }
-                      }
-                    />
-                  </View>
-                </TouchableHighlight>
               </View>
               <View
                 accessible={false}
@@ -713,6 +662,51 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
                   FOO 102
                 </Text>
               </View>
+            </View>
+          </TouchableHighlight>
+          <TouchableHighlight
+            accessibilityLabel="Open Foobar 102 user preferences"
+            accessibilityTraits="button"
+            accessible={true}
+            onPress={[Function]}
+            style={
+              Object {
+                "height": 43,
+                "position": "absolute",
+                "right": 8,
+                "top": 8,
+                "width": 43,
+              }
+            }
+            testID="course-card.kabob-3"
+            underlayColor="#ffffff00"
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "borderRadius": 15,
+                  "padding": 4,
+                  "position": "absolute",
+                  "right": 4,
+                  "top": 6,
+                }
+              }
+            >
+              <Image
+                source={
+                  Object {
+                    "uri": "moreLine",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 18,
+                    "tintColor": "white",
+                    "width": 18,
+                  }
+                }
+              />
             </View>
           </TouchableHighlight>
         </A11yGroup>
@@ -735,7 +729,8 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
       <item>
         <A11yGroup>
           <TouchableHighlight
-            accessible={false}
+            accessibilityLabel="Biology 101 "
+            accessibilityTraits="button"
             onLayout={[Function]}
             onPress={[Function]}
             style={
@@ -797,9 +792,6 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                   }
                 />
                 <View
-                  accessibilityLabel="Biology 101 "
-                  accessibilityTraits="button"
-                  accessible={true}
                   style={
                     Object {
                       "backgroundColor": "#27B9CD",
@@ -814,51 +806,6 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                     }
                   }
                 />
-                <TouchableHighlight
-                  accessibilityLabel="Open Biology 101 user preferences"
-                  accessibilityTraits="button"
-                  accessible={true}
-                  onPress={[Function]}
-                  style={
-                    Object {
-                      "height": 43,
-                      "position": "absolute",
-                      "right": 0,
-                      "top": 0,
-                      "width": 43,
-                    }
-                  }
-                  testID="course-card.kabob-1"
-                  underlayColor="#ffffff00"
-                >
-                  <View
-                    style={
-                      Object {
-                        "backgroundColor": undefined,
-                        "borderRadius": 15,
-                        "padding": 4,
-                        "position": "absolute",
-                        "right": 4,
-                        "top": 6,
-                      }
-                    }
-                  >
-                    <Image
-                      source={
-                        Object {
-                          "uri": "moreLine",
-                        }
-                      }
-                      style={
-                        Object {
-                          "height": 18,
-                          "tintColor": "white",
-                          "width": 18,
-                        }
-                      }
-                    />
-                  </View>
-                </TouchableHighlight>
               </View>
               <View
                 accessible={false}
@@ -928,12 +875,58 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
               </View>
             </View>
           </TouchableHighlight>
+          <TouchableHighlight
+            accessibilityLabel="Open Biology 101 user preferences"
+            accessibilityTraits="button"
+            accessible={true}
+            onPress={[Function]}
+            style={
+              Object {
+                "height": 43,
+                "position": "absolute",
+                "right": 8,
+                "top": 8,
+                "width": 43,
+              }
+            }
+            testID="course-card.kabob-1"
+            underlayColor="#ffffff00"
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "borderRadius": 15,
+                  "padding": 4,
+                  "position": "absolute",
+                  "right": 4,
+                  "top": 6,
+                }
+              }
+            >
+              <Image
+                source={
+                  Object {
+                    "uri": "moreLine",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 18,
+                    "tintColor": "white",
+                    "width": 18,
+                  }
+                }
+              />
+            </View>
+          </TouchableHighlight>
         </A11yGroup>
       </item>
       <item>
         <A11yGroup>
           <TouchableHighlight
-            accessible={false}
+            accessibilityLabel="American Literature Psysicks foobar hello world 401 "
+            accessibilityTraits="button"
             onLayout={[Function]}
             onPress={[Function]}
             style={
@@ -995,9 +988,6 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                   }
                 />
                 <View
-                  accessibilityLabel="American Literature Psysicks foobar hello world 401 "
-                  accessibilityTraits="button"
-                  accessible={true}
                   style={
                     Object {
                       "backgroundColor": "#8F3E97",
@@ -1012,51 +1002,6 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                     }
                   }
                 />
-                <TouchableHighlight
-                  accessibilityLabel="Open American Literature Psysicks foobar hello world 401 user preferences"
-                  accessibilityTraits="button"
-                  accessible={true}
-                  onPress={[Function]}
-                  style={
-                    Object {
-                      "height": 43,
-                      "position": "absolute",
-                      "right": 0,
-                      "top": 0,
-                      "width": 43,
-                    }
-                  }
-                  testID="course-card.kabob-2"
-                  underlayColor="#ffffff00"
-                >
-                  <View
-                    style={
-                      Object {
-                        "backgroundColor": undefined,
-                        "borderRadius": 15,
-                        "padding": 4,
-                        "position": "absolute",
-                        "right": 4,
-                        "top": 6,
-                      }
-                    }
-                  >
-                    <Image
-                      source={
-                        Object {
-                          "uri": "moreLine",
-                        }
-                      }
-                      style={
-                        Object {
-                          "height": 18,
-                          "tintColor": "white",
-                          "width": 18,
-                        }
-                      }
-                    />
-                  </View>
-                </TouchableHighlight>
               </View>
               <View
                 accessible={false}
@@ -1126,12 +1071,58 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
               </View>
             </View>
           </TouchableHighlight>
+          <TouchableHighlight
+            accessibilityLabel="Open American Literature Psysicks foobar hello world 401 user preferences"
+            accessibilityTraits="button"
+            accessible={true}
+            onPress={[Function]}
+            style={
+              Object {
+                "height": 43,
+                "position": "absolute",
+                "right": 8,
+                "top": 8,
+                "width": 43,
+              }
+            }
+            testID="course-card.kabob-2"
+            underlayColor="#ffffff00"
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "borderRadius": 15,
+                  "padding": 4,
+                  "position": "absolute",
+                  "right": 4,
+                  "top": 6,
+                }
+              }
+            >
+              <Image
+                source={
+                  Object {
+                    "uri": "moreLine",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 18,
+                    "tintColor": "white",
+                    "width": 18,
+                  }
+                }
+              />
+            </View>
+          </TouchableHighlight>
         </A11yGroup>
       </item>
       <item>
         <A11yGroup>
           <TouchableHighlight
-            accessible={false}
+            accessibilityLabel="Foobar 102 "
+            accessibilityTraits="button"
             onLayout={[Function]}
             onPress={[Function]}
             style={
@@ -1193,9 +1184,6 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                   }
                 />
                 <View
-                  accessibilityLabel="Foobar 102 "
-                  accessibilityTraits="button"
-                  accessible={true}
                   style={
                     Object {
                       "backgroundColor": "#8F3E99",
@@ -1210,51 +1198,6 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                     }
                   }
                 />
-                <TouchableHighlight
-                  accessibilityLabel="Open Foobar 102 user preferences"
-                  accessibilityTraits="button"
-                  accessible={true}
-                  onPress={[Function]}
-                  style={
-                    Object {
-                      "height": 43,
-                      "position": "absolute",
-                      "right": 0,
-                      "top": 0,
-                      "width": 43,
-                    }
-                  }
-                  testID="course-card.kabob-3"
-                  underlayColor="#ffffff00"
-                >
-                  <View
-                    style={
-                      Object {
-                        "backgroundColor": undefined,
-                        "borderRadius": 15,
-                        "padding": 4,
-                        "position": "absolute",
-                        "right": 4,
-                        "top": 6,
-                      }
-                    }
-                  >
-                    <Image
-                      source={
-                        Object {
-                          "uri": "moreLine",
-                        }
-                      }
-                      style={
-                        Object {
-                          "height": 18,
-                          "tintColor": "white",
-                          "width": 18,
-                        }
-                      }
-                    />
-                  </View>
-                </TouchableHighlight>
               </View>
               <View
                 accessible={false}
@@ -1322,6 +1265,51 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                   FOO 102
                 </Text>
               </View>
+            </View>
+          </TouchableHighlight>
+          <TouchableHighlight
+            accessibilityLabel="Open Foobar 102 user preferences"
+            accessibilityTraits="button"
+            accessible={true}
+            onPress={[Function]}
+            style={
+              Object {
+                "height": 43,
+                "position": "absolute",
+                "right": 8,
+                "top": 8,
+                "width": 43,
+              }
+            }
+            testID="course-card.kabob-3"
+            underlayColor="#ffffff00"
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "borderRadius": 15,
+                  "padding": 4,
+                  "position": "absolute",
+                  "right": 4,
+                  "top": 6,
+                }
+              }
+            >
+              <Image
+                source={
+                  Object {
+                    "uri": "moreLine",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 18,
+                    "tintColor": "white",
+                    "width": 18,
+                  }
+                }
+              />
             </View>
           </TouchableHighlight>
         </A11yGroup>
@@ -1372,7 +1360,8 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
       <item>
         <A11yGroup>
           <TouchableHighlight
-            accessible={false}
+            accessibilityLabel="Foobar 102 "
+            accessibilityTraits="button"
             onLayout={[Function]}
             onPress={[Function]}
             style={
@@ -1434,9 +1423,6 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                   }
                 />
                 <View
-                  accessibilityLabel="Foobar 102 "
-                  accessibilityTraits="button"
-                  accessible={true}
                   style={
                     Object {
                       "backgroundColor": undefined,
@@ -1451,51 +1437,6 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                     }
                   }
                 />
-                <TouchableHighlight
-                  accessibilityLabel="Open Foobar 102 user preferences"
-                  accessibilityTraits="button"
-                  accessible={true}
-                  onPress={[Function]}
-                  style={
-                    Object {
-                      "height": 43,
-                      "position": "absolute",
-                      "right": 0,
-                      "top": 0,
-                      "width": 43,
-                    }
-                  }
-                  testID="course-card.kabob-4"
-                  underlayColor="#ffffff00"
-                >
-                  <View
-                    style={
-                      Object {
-                        "backgroundColor": undefined,
-                        "borderRadius": 15,
-                        "padding": 4,
-                        "position": "absolute",
-                        "right": 4,
-                        "top": 6,
-                      }
-                    }
-                  >
-                    <Image
-                      source={
-                        Object {
-                          "uri": "moreLine",
-                        }
-                      }
-                      style={
-                        Object {
-                          "height": 18,
-                          "tintColor": "white",
-                          "width": 18,
-                        }
-                      }
-                    />
-                  </View>
-                </TouchableHighlight>
               </View>
               <View
                 accessible={false}
@@ -1563,6 +1504,51 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                   FOO 102
                 </Text>
               </View>
+            </View>
+          </TouchableHighlight>
+          <TouchableHighlight
+            accessibilityLabel="Open Foobar 102 user preferences"
+            accessibilityTraits="button"
+            accessible={true}
+            onPress={[Function]}
+            style={
+              Object {
+                "height": 43,
+                "position": "absolute",
+                "right": 8,
+                "top": 8,
+                "width": 43,
+              }
+            }
+            testID="course-card.kabob-4"
+            underlayColor="#ffffff00"
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "borderRadius": 15,
+                  "padding": 4,
+                  "position": "absolute",
+                  "right": 4,
+                  "top": 6,
+                }
+              }
+            >
+              <Image
+                source={
+                  Object {
+                    "uri": "moreLine",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 18,
+                    "tintColor": "white",
+                    "width": 18,
+                  }
+                }
+              />
             </View>
           </TouchableHighlight>
         </A11yGroup>
@@ -1698,7 +1684,8 @@ exports[`Dashboard render 1`] = `
       <item>
         <A11yGroup>
           <TouchableHighlight
-            accessible={false}
+            accessibilityLabel="Biology 101 "
+            accessibilityTraits="button"
             onLayout={[Function]}
             onPress={[Function]}
             style={
@@ -1760,9 +1747,6 @@ exports[`Dashboard render 1`] = `
                   }
                 />
                 <View
-                  accessibilityLabel="Biology 101 "
-                  accessibilityTraits="button"
-                  accessible={true}
                   style={
                     Object {
                       "backgroundColor": "#27B9CD",
@@ -1777,51 +1761,6 @@ exports[`Dashboard render 1`] = `
                     }
                   }
                 />
-                <TouchableHighlight
-                  accessibilityLabel="Open Biology 101 user preferences"
-                  accessibilityTraits="button"
-                  accessible={true}
-                  onPress={[Function]}
-                  style={
-                    Object {
-                      "height": 43,
-                      "position": "absolute",
-                      "right": 0,
-                      "top": 0,
-                      "width": 43,
-                    }
-                  }
-                  testID="course-card.kabob-1"
-                  underlayColor="#ffffff00"
-                >
-                  <View
-                    style={
-                      Object {
-                        "backgroundColor": undefined,
-                        "borderRadius": 15,
-                        "padding": 4,
-                        "position": "absolute",
-                        "right": 4,
-                        "top": 6,
-                      }
-                    }
-                  >
-                    <Image
-                      source={
-                        Object {
-                          "uri": "moreLine",
-                        }
-                      }
-                      style={
-                        Object {
-                          "height": 18,
-                          "tintColor": "white",
-                          "width": 18,
-                        }
-                      }
-                    />
-                  </View>
-                </TouchableHighlight>
               </View>
               <View
                 accessible={false}
@@ -1891,12 +1830,58 @@ exports[`Dashboard render 1`] = `
               </View>
             </View>
           </TouchableHighlight>
+          <TouchableHighlight
+            accessibilityLabel="Open Biology 101 user preferences"
+            accessibilityTraits="button"
+            accessible={true}
+            onPress={[Function]}
+            style={
+              Object {
+                "height": 43,
+                "position": "absolute",
+                "right": 8,
+                "top": 8,
+                "width": 43,
+              }
+            }
+            testID="course-card.kabob-1"
+            underlayColor="#ffffff00"
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "borderRadius": 15,
+                  "padding": 4,
+                  "position": "absolute",
+                  "right": 4,
+                  "top": 6,
+                }
+              }
+            >
+              <Image
+                source={
+                  Object {
+                    "uri": "moreLine",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 18,
+                    "tintColor": "white",
+                    "width": 18,
+                  }
+                }
+              />
+            </View>
+          </TouchableHighlight>
         </A11yGroup>
       </item>
       <item>
         <A11yGroup>
           <TouchableHighlight
-            accessible={false}
+            accessibilityLabel="American Literature Psysicks foobar hello world 401 "
+            accessibilityTraits="button"
             onLayout={[Function]}
             onPress={[Function]}
             style={
@@ -1958,9 +1943,6 @@ exports[`Dashboard render 1`] = `
                   }
                 />
                 <View
-                  accessibilityLabel="American Literature Psysicks foobar hello world 401 "
-                  accessibilityTraits="button"
-                  accessible={true}
                   style={
                     Object {
                       "backgroundColor": "#8F3E97",
@@ -1975,51 +1957,6 @@ exports[`Dashboard render 1`] = `
                     }
                   }
                 />
-                <TouchableHighlight
-                  accessibilityLabel="Open American Literature Psysicks foobar hello world 401 user preferences"
-                  accessibilityTraits="button"
-                  accessible={true}
-                  onPress={[Function]}
-                  style={
-                    Object {
-                      "height": 43,
-                      "position": "absolute",
-                      "right": 0,
-                      "top": 0,
-                      "width": 43,
-                    }
-                  }
-                  testID="course-card.kabob-2"
-                  underlayColor="#ffffff00"
-                >
-                  <View
-                    style={
-                      Object {
-                        "backgroundColor": undefined,
-                        "borderRadius": 15,
-                        "padding": 4,
-                        "position": "absolute",
-                        "right": 4,
-                        "top": 6,
-                      }
-                    }
-                  >
-                    <Image
-                      source={
-                        Object {
-                          "uri": "moreLine",
-                        }
-                      }
-                      style={
-                        Object {
-                          "height": 18,
-                          "tintColor": "white",
-                          "width": 18,
-                        }
-                      }
-                    />
-                  </View>
-                </TouchableHighlight>
               </View>
               <View
                 accessible={false}
@@ -2089,12 +2026,58 @@ exports[`Dashboard render 1`] = `
               </View>
             </View>
           </TouchableHighlight>
+          <TouchableHighlight
+            accessibilityLabel="Open American Literature Psysicks foobar hello world 401 user preferences"
+            accessibilityTraits="button"
+            accessible={true}
+            onPress={[Function]}
+            style={
+              Object {
+                "height": 43,
+                "position": "absolute",
+                "right": 8,
+                "top": 8,
+                "width": 43,
+              }
+            }
+            testID="course-card.kabob-2"
+            underlayColor="#ffffff00"
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "borderRadius": 15,
+                  "padding": 4,
+                  "position": "absolute",
+                  "right": 4,
+                  "top": 6,
+                }
+              }
+            >
+              <Image
+                source={
+                  Object {
+                    "uri": "moreLine",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 18,
+                    "tintColor": "white",
+                    "width": 18,
+                  }
+                }
+              />
+            </View>
+          </TouchableHighlight>
         </A11yGroup>
       </item>
       <item>
         <A11yGroup>
           <TouchableHighlight
-            accessible={false}
+            accessibilityLabel="Foobar 102 "
+            accessibilityTraits="button"
             onLayout={[Function]}
             onPress={[Function]}
             style={
@@ -2156,9 +2139,6 @@ exports[`Dashboard render 1`] = `
                   }
                 />
                 <View
-                  accessibilityLabel="Foobar 102 "
-                  accessibilityTraits="button"
-                  accessible={true}
                   style={
                     Object {
                       "backgroundColor": "#8F3E99",
@@ -2173,51 +2153,6 @@ exports[`Dashboard render 1`] = `
                     }
                   }
                 />
-                <TouchableHighlight
-                  accessibilityLabel="Open Foobar 102 user preferences"
-                  accessibilityTraits="button"
-                  accessible={true}
-                  onPress={[Function]}
-                  style={
-                    Object {
-                      "height": 43,
-                      "position": "absolute",
-                      "right": 0,
-                      "top": 0,
-                      "width": 43,
-                    }
-                  }
-                  testID="course-card.kabob-3"
-                  underlayColor="#ffffff00"
-                >
-                  <View
-                    style={
-                      Object {
-                        "backgroundColor": undefined,
-                        "borderRadius": 15,
-                        "padding": 4,
-                        "position": "absolute",
-                        "right": 4,
-                        "top": 6,
-                      }
-                    }
-                  >
-                    <Image
-                      source={
-                        Object {
-                          "uri": "moreLine",
-                        }
-                      }
-                      style={
-                        Object {
-                          "height": 18,
-                          "tintColor": "white",
-                          "width": 18,
-                        }
-                      }
-                    />
-                  </View>
-                </TouchableHighlight>
               </View>
               <View
                 accessible={false}
@@ -2285,6 +2220,51 @@ exports[`Dashboard render 1`] = `
                   FOO 102
                 </Text>
               </View>
+            </View>
+          </TouchableHighlight>
+          <TouchableHighlight
+            accessibilityLabel="Open Foobar 102 user preferences"
+            accessibilityTraits="button"
+            accessible={true}
+            onPress={[Function]}
+            style={
+              Object {
+                "height": 43,
+                "position": "absolute",
+                "right": 8,
+                "top": 8,
+                "width": 43,
+              }
+            }
+            testID="course-card.kabob-3"
+            underlayColor="#ffffff00"
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "borderRadius": 15,
+                  "padding": 4,
+                  "position": "absolute",
+                  "right": 4,
+                  "top": 6,
+                }
+              }
+            >
+              <Image
+                source={
+                  Object {
+                    "uri": "moreLine",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 18,
+                    "tintColor": "white",
+                    "width": 18,
+                  }
+                }
+              />
             </View>
           </TouchableHighlight>
         </A11yGroup>
@@ -2420,7 +2400,8 @@ exports[`Dashboard render while pending 1`] = `
       <item>
         <A11yGroup>
           <TouchableHighlight
-            accessible={false}
+            accessibilityLabel="Biology 101 "
+            accessibilityTraits="button"
             onLayout={[Function]}
             onPress={[Function]}
             style={
@@ -2482,9 +2463,6 @@ exports[`Dashboard render while pending 1`] = `
                   }
                 />
                 <View
-                  accessibilityLabel="Biology 101 "
-                  accessibilityTraits="button"
-                  accessible={true}
                   style={
                     Object {
                       "backgroundColor": "#27B9CD",
@@ -2499,51 +2477,6 @@ exports[`Dashboard render while pending 1`] = `
                     }
                   }
                 />
-                <TouchableHighlight
-                  accessibilityLabel="Open Biology 101 user preferences"
-                  accessibilityTraits="button"
-                  accessible={true}
-                  onPress={[Function]}
-                  style={
-                    Object {
-                      "height": 43,
-                      "position": "absolute",
-                      "right": 0,
-                      "top": 0,
-                      "width": 43,
-                    }
-                  }
-                  testID="course-card.kabob-1"
-                  underlayColor="#ffffff00"
-                >
-                  <View
-                    style={
-                      Object {
-                        "backgroundColor": undefined,
-                        "borderRadius": 15,
-                        "padding": 4,
-                        "position": "absolute",
-                        "right": 4,
-                        "top": 6,
-                      }
-                    }
-                  >
-                    <Image
-                      source={
-                        Object {
-                          "uri": "moreLine",
-                        }
-                      }
-                      style={
-                        Object {
-                          "height": 18,
-                          "tintColor": "white",
-                          "width": 18,
-                        }
-                      }
-                    />
-                  </View>
-                </TouchableHighlight>
               </View>
               <View
                 accessible={false}
@@ -2613,12 +2546,58 @@ exports[`Dashboard render while pending 1`] = `
               </View>
             </View>
           </TouchableHighlight>
+          <TouchableHighlight
+            accessibilityLabel="Open Biology 101 user preferences"
+            accessibilityTraits="button"
+            accessible={true}
+            onPress={[Function]}
+            style={
+              Object {
+                "height": 43,
+                "position": "absolute",
+                "right": 8,
+                "top": 8,
+                "width": 43,
+              }
+            }
+            testID="course-card.kabob-1"
+            underlayColor="#ffffff00"
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "borderRadius": 15,
+                  "padding": 4,
+                  "position": "absolute",
+                  "right": 4,
+                  "top": 6,
+                }
+              }
+            >
+              <Image
+                source={
+                  Object {
+                    "uri": "moreLine",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 18,
+                    "tintColor": "white",
+                    "width": 18,
+                  }
+                }
+              />
+            </View>
+          </TouchableHighlight>
         </A11yGroup>
       </item>
       <item>
         <A11yGroup>
           <TouchableHighlight
-            accessible={false}
+            accessibilityLabel="American Literature Psysicks foobar hello world 401 "
+            accessibilityTraits="button"
             onLayout={[Function]}
             onPress={[Function]}
             style={
@@ -2680,9 +2659,6 @@ exports[`Dashboard render while pending 1`] = `
                   }
                 />
                 <View
-                  accessibilityLabel="American Literature Psysicks foobar hello world 401 "
-                  accessibilityTraits="button"
-                  accessible={true}
                   style={
                     Object {
                       "backgroundColor": "#8F3E97",
@@ -2697,51 +2673,6 @@ exports[`Dashboard render while pending 1`] = `
                     }
                   }
                 />
-                <TouchableHighlight
-                  accessibilityLabel="Open American Literature Psysicks foobar hello world 401 user preferences"
-                  accessibilityTraits="button"
-                  accessible={true}
-                  onPress={[Function]}
-                  style={
-                    Object {
-                      "height": 43,
-                      "position": "absolute",
-                      "right": 0,
-                      "top": 0,
-                      "width": 43,
-                    }
-                  }
-                  testID="course-card.kabob-2"
-                  underlayColor="#ffffff00"
-                >
-                  <View
-                    style={
-                      Object {
-                        "backgroundColor": undefined,
-                        "borderRadius": 15,
-                        "padding": 4,
-                        "position": "absolute",
-                        "right": 4,
-                        "top": 6,
-                      }
-                    }
-                  >
-                    <Image
-                      source={
-                        Object {
-                          "uri": "moreLine",
-                        }
-                      }
-                      style={
-                        Object {
-                          "height": 18,
-                          "tintColor": "white",
-                          "width": 18,
-                        }
-                      }
-                    />
-                  </View>
-                </TouchableHighlight>
               </View>
               <View
                 accessible={false}
@@ -2811,12 +2742,58 @@ exports[`Dashboard render while pending 1`] = `
               </View>
             </View>
           </TouchableHighlight>
+          <TouchableHighlight
+            accessibilityLabel="Open American Literature Psysicks foobar hello world 401 user preferences"
+            accessibilityTraits="button"
+            accessible={true}
+            onPress={[Function]}
+            style={
+              Object {
+                "height": 43,
+                "position": "absolute",
+                "right": 8,
+                "top": 8,
+                "width": 43,
+              }
+            }
+            testID="course-card.kabob-2"
+            underlayColor="#ffffff00"
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "borderRadius": 15,
+                  "padding": 4,
+                  "position": "absolute",
+                  "right": 4,
+                  "top": 6,
+                }
+              }
+            >
+              <Image
+                source={
+                  Object {
+                    "uri": "moreLine",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 18,
+                    "tintColor": "white",
+                    "width": 18,
+                  }
+                }
+              />
+            </View>
+          </TouchableHighlight>
         </A11yGroup>
       </item>
       <item>
         <A11yGroup>
           <TouchableHighlight
-            accessible={false}
+            accessibilityLabel="Foobar 102 "
+            accessibilityTraits="button"
             onLayout={[Function]}
             onPress={[Function]}
             style={
@@ -2878,9 +2855,6 @@ exports[`Dashboard render while pending 1`] = `
                   }
                 />
                 <View
-                  accessibilityLabel="Foobar 102 "
-                  accessibilityTraits="button"
-                  accessible={true}
                   style={
                     Object {
                       "backgroundColor": "#8F3E99",
@@ -2895,51 +2869,6 @@ exports[`Dashboard render while pending 1`] = `
                     }
                   }
                 />
-                <TouchableHighlight
-                  accessibilityLabel="Open Foobar 102 user preferences"
-                  accessibilityTraits="button"
-                  accessible={true}
-                  onPress={[Function]}
-                  style={
-                    Object {
-                      "height": 43,
-                      "position": "absolute",
-                      "right": 0,
-                      "top": 0,
-                      "width": 43,
-                    }
-                  }
-                  testID="course-card.kabob-3"
-                  underlayColor="#ffffff00"
-                >
-                  <View
-                    style={
-                      Object {
-                        "backgroundColor": undefined,
-                        "borderRadius": 15,
-                        "padding": 4,
-                        "position": "absolute",
-                        "right": 4,
-                        "top": 6,
-                      }
-                    }
-                  >
-                    <Image
-                      source={
-                        Object {
-                          "uri": "moreLine",
-                        }
-                      }
-                      style={
-                        Object {
-                          "height": 18,
-                          "tintColor": "white",
-                          "width": 18,
-                        }
-                      }
-                    />
-                  </View>
-                </TouchableHighlight>
               </View>
               <View
                 accessible={false}
@@ -3007,6 +2936,51 @@ exports[`Dashboard render while pending 1`] = `
                   FOO 102
                 </Text>
               </View>
+            </View>
+          </TouchableHighlight>
+          <TouchableHighlight
+            accessibilityLabel="Open Foobar 102 user preferences"
+            accessibilityTraits="button"
+            accessible={true}
+            onPress={[Function]}
+            style={
+              Object {
+                "height": 43,
+                "position": "absolute",
+                "right": 8,
+                "top": 8,
+                "width": 43,
+              }
+            }
+            testID="course-card.kabob-3"
+            underlayColor="#ffffff00"
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "borderRadius": 15,
+                  "padding": 4,
+                  "position": "absolute",
+                  "right": 4,
+                  "top": 6,
+                }
+              }
+            >
+              <Image
+                source={
+                  Object {
+                    "uri": "moreLine",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 18,
+                    "tintColor": "white",
+                    "width": 18,
+                  }
+                }
+              />
             </View>
           </TouchableHighlight>
         </A11yGroup>
@@ -4234,7 +4208,8 @@ exports[`Dashboard renders course invites 1`] = `
       <item>
         <A11yGroup>
           <TouchableHighlight
-            accessible={false}
+            accessibilityLabel="Biology 101 "
+            accessibilityTraits="button"
             onLayout={[Function]}
             onPress={[Function]}
             style={
@@ -4296,9 +4271,6 @@ exports[`Dashboard renders course invites 1`] = `
                   }
                 />
                 <View
-                  accessibilityLabel="Biology 101 "
-                  accessibilityTraits="button"
-                  accessible={true}
                   style={
                     Object {
                       "backgroundColor": "#27B9CD",
@@ -4313,51 +4285,6 @@ exports[`Dashboard renders course invites 1`] = `
                     }
                   }
                 />
-                <TouchableHighlight
-                  accessibilityLabel="Open Biology 101 user preferences"
-                  accessibilityTraits="button"
-                  accessible={true}
-                  onPress={[Function]}
-                  style={
-                    Object {
-                      "height": 43,
-                      "position": "absolute",
-                      "right": 0,
-                      "top": 0,
-                      "width": 43,
-                    }
-                  }
-                  testID="course-card.kabob-1"
-                  underlayColor="#ffffff00"
-                >
-                  <View
-                    style={
-                      Object {
-                        "backgroundColor": undefined,
-                        "borderRadius": 15,
-                        "padding": 4,
-                        "position": "absolute",
-                        "right": 4,
-                        "top": 6,
-                      }
-                    }
-                  >
-                    <Image
-                      source={
-                        Object {
-                          "uri": "moreLine",
-                        }
-                      }
-                      style={
-                        Object {
-                          "height": 18,
-                          "tintColor": "white",
-                          "width": 18,
-                        }
-                      }
-                    />
-                  </View>
-                </TouchableHighlight>
               </View>
               <View
                 accessible={false}
@@ -4427,12 +4354,58 @@ exports[`Dashboard renders course invites 1`] = `
               </View>
             </View>
           </TouchableHighlight>
+          <TouchableHighlight
+            accessibilityLabel="Open Biology 101 user preferences"
+            accessibilityTraits="button"
+            accessible={true}
+            onPress={[Function]}
+            style={
+              Object {
+                "height": 43,
+                "position": "absolute",
+                "right": 8,
+                "top": 8,
+                "width": 43,
+              }
+            }
+            testID="course-card.kabob-1"
+            underlayColor="#ffffff00"
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "borderRadius": 15,
+                  "padding": 4,
+                  "position": "absolute",
+                  "right": 4,
+                  "top": 6,
+                }
+              }
+            >
+              <Image
+                source={
+                  Object {
+                    "uri": "moreLine",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 18,
+                    "tintColor": "white",
+                    "width": 18,
+                  }
+                }
+              />
+            </View>
+          </TouchableHighlight>
         </A11yGroup>
       </item>
       <item>
         <A11yGroup>
           <TouchableHighlight
-            accessible={false}
+            accessibilityLabel="American Literature Psysicks foobar hello world 401 "
+            accessibilityTraits="button"
             onLayout={[Function]}
             onPress={[Function]}
             style={
@@ -4494,9 +4467,6 @@ exports[`Dashboard renders course invites 1`] = `
                   }
                 />
                 <View
-                  accessibilityLabel="American Literature Psysicks foobar hello world 401 "
-                  accessibilityTraits="button"
-                  accessible={true}
                   style={
                     Object {
                       "backgroundColor": "#8F3E97",
@@ -4511,51 +4481,6 @@ exports[`Dashboard renders course invites 1`] = `
                     }
                   }
                 />
-                <TouchableHighlight
-                  accessibilityLabel="Open American Literature Psysicks foobar hello world 401 user preferences"
-                  accessibilityTraits="button"
-                  accessible={true}
-                  onPress={[Function]}
-                  style={
-                    Object {
-                      "height": 43,
-                      "position": "absolute",
-                      "right": 0,
-                      "top": 0,
-                      "width": 43,
-                    }
-                  }
-                  testID="course-card.kabob-2"
-                  underlayColor="#ffffff00"
-                >
-                  <View
-                    style={
-                      Object {
-                        "backgroundColor": undefined,
-                        "borderRadius": 15,
-                        "padding": 4,
-                        "position": "absolute",
-                        "right": 4,
-                        "top": 6,
-                      }
-                    }
-                  >
-                    <Image
-                      source={
-                        Object {
-                          "uri": "moreLine",
-                        }
-                      }
-                      style={
-                        Object {
-                          "height": 18,
-                          "tintColor": "white",
-                          "width": 18,
-                        }
-                      }
-                    />
-                  </View>
-                </TouchableHighlight>
               </View>
               <View
                 accessible={false}
@@ -4625,12 +4550,58 @@ exports[`Dashboard renders course invites 1`] = `
               </View>
             </View>
           </TouchableHighlight>
+          <TouchableHighlight
+            accessibilityLabel="Open American Literature Psysicks foobar hello world 401 user preferences"
+            accessibilityTraits="button"
+            accessible={true}
+            onPress={[Function]}
+            style={
+              Object {
+                "height": 43,
+                "position": "absolute",
+                "right": 8,
+                "top": 8,
+                "width": 43,
+              }
+            }
+            testID="course-card.kabob-2"
+            underlayColor="#ffffff00"
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "borderRadius": 15,
+                  "padding": 4,
+                  "position": "absolute",
+                  "right": 4,
+                  "top": 6,
+                }
+              }
+            >
+              <Image
+                source={
+                  Object {
+                    "uri": "moreLine",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 18,
+                    "tintColor": "white",
+                    "width": 18,
+                  }
+                }
+              />
+            </View>
+          </TouchableHighlight>
         </A11yGroup>
       </item>
       <item>
         <A11yGroup>
           <TouchableHighlight
-            accessible={false}
+            accessibilityLabel="Foobar 102 "
+            accessibilityTraits="button"
             onLayout={[Function]}
             onPress={[Function]}
             style={
@@ -4692,9 +4663,6 @@ exports[`Dashboard renders course invites 1`] = `
                   }
                 />
                 <View
-                  accessibilityLabel="Foobar 102 "
-                  accessibilityTraits="button"
-                  accessible={true}
                   style={
                     Object {
                       "backgroundColor": "#8F3E99",
@@ -4709,51 +4677,6 @@ exports[`Dashboard renders course invites 1`] = `
                     }
                   }
                 />
-                <TouchableHighlight
-                  accessibilityLabel="Open Foobar 102 user preferences"
-                  accessibilityTraits="button"
-                  accessible={true}
-                  onPress={[Function]}
-                  style={
-                    Object {
-                      "height": 43,
-                      "position": "absolute",
-                      "right": 0,
-                      "top": 0,
-                      "width": 43,
-                    }
-                  }
-                  testID="course-card.kabob-3"
-                  underlayColor="#ffffff00"
-                >
-                  <View
-                    style={
-                      Object {
-                        "backgroundColor": undefined,
-                        "borderRadius": 15,
-                        "padding": 4,
-                        "position": "absolute",
-                        "right": 4,
-                        "top": 6,
-                      }
-                    }
-                  >
-                    <Image
-                      source={
-                        Object {
-                          "uri": "moreLine",
-                        }
-                      }
-                      style={
-                        Object {
-                          "height": 18,
-                          "tintColor": "white",
-                          "width": 18,
-                        }
-                      }
-                    />
-                  </View>
-                </TouchableHighlight>
               </View>
               <View
                 accessible={false}
@@ -4821,6 +4744,51 @@ exports[`Dashboard renders course invites 1`] = `
                   FOO 102
                 </Text>
               </View>
+            </View>
+          </TouchableHighlight>
+          <TouchableHighlight
+            accessibilityLabel="Open Foobar 102 user preferences"
+            accessibilityTraits="button"
+            accessible={true}
+            onPress={[Function]}
+            style={
+              Object {
+                "height": 43,
+                "position": "absolute",
+                "right": 8,
+                "top": 8,
+                "width": 43,
+              }
+            }
+            testID="course-card.kabob-3"
+            underlayColor="#ffffff00"
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "borderRadius": 15,
+                  "padding": 4,
+                  "position": "absolute",
+                  "right": 4,
+                  "top": 6,
+                }
+              }
+            >
+              <Image
+                source={
+                  Object {
+                    "uri": "moreLine",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 18,
+                    "tintColor": "white",
+                    "width": 18,
+                  }
+                }
+              />
             </View>
           </TouchableHighlight>
         </A11yGroup>
