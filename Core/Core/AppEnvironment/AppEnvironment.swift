@@ -26,7 +26,6 @@ open class AppEnvironment {
     public var database: NSPersistentContainer
     public var globalDatabase: NSPersistentContainer = NSPersistentContainer.create()
     public var logger: LoggerProtocol
-    public let queue = OperationQueue()
     public var router: RouterProtocol
     public var currentSession: KeychainEntry?
 

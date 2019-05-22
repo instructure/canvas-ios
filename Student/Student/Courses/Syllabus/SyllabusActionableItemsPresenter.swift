@@ -32,26 +32,17 @@ class SyllabusActionableItemsPresenter {
     var assignmentViewModels: [SyllabusActionableItemsViewController.ViewModel] = []
     var calendarViewModels: [SyllabusActionableItemsViewController.ViewModel] = []
 
-    lazy var course: Store<GetCourseUseCase> = {
-        let useCase = GetCourseUseCase(courseID: courseID)
-        return self.env.subscribe(useCase) { [weak self] in
-            self?.update()
-        }
-    }()
+    lazy var course = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
+        self?.update()
+    }
 
-    private lazy var assignments: Store<GetAssignments> = {
-        let useCase = GetAssignments(courseID: self.courseID, sort: sort)
-        return self.env.subscribe(useCase) { [weak self] in
-            self?.updateAssignments()
-        }
-    }()
+    private lazy var assignments = env.subscribe(GetAssignments(courseID: self.courseID, sort: sort)) { [weak self] in
+        self?.updateAssignments()
+    }
 
-    private lazy var calendarEvents: Store<GetCalendarEvents> = {
-        let useCase = GetCalendarEvents(context: ContextModel(.course, id: courseID))
-        return self.env.subscribe(useCase) { [weak self] in
-            self?.updateCalendarEvents()
-        }
-    }()
+    private lazy var calendarEvents = env.subscribe(GetCalendarEvents(context: ContextModel(.course, id: courseID))) { [weak self] in
+        self?.updateCalendarEvents()
+    }
 
     init(env: AppEnvironment = .shared, view: SyllabusActionableItemsViewProtocol, courseID: String, sort: GetAssignments.Sort = .dueAt) {
         self.courseID = courseID

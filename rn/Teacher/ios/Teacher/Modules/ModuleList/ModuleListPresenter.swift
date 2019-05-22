@@ -33,30 +33,20 @@ class ModuleListPresenter {
         return courses.first
     }
 
-    lazy var modules: Store<GetModules> = {
-        let useCase = GetModules(courseID: courseID)
-        return env.subscribe(useCase) { [weak self] in
-            self?.view?.reloadModules()
-
-            if let moduleID = self?.moduleID, self?.hasScrolledToModule == false {
-                self?.scroll(toModule: moduleID)
-            }
+    lazy var modules = env.subscribe(GetModules(courseID: courseID)) { [weak self] in
+        self?.view?.reloadModules()
+        if let moduleID = self?.moduleID, self?.hasScrolledToModule == false {
+            self?.scroll(toModule: moduleID)
         }
-    }()
+    }
 
-    private lazy var courses: Store<GetCourseUseCase> = {
-        let useCase = GetCourseUseCase(courseID: courseID)
-        return env.subscribe(useCase) { [weak self] in
-            self?.view?.reloadCourse()
-        }
-    }()
+    private lazy var courses = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
+        self?.view?.reloadCourse()
+    }
 
-    private lazy var colors: Store<GetCustomColors> = {
-        let useCase = GetCustomColors()
-        return env.subscribe(useCase) { [weak self] in
-            self?.view?.reloadCourse()
-        }
-    }()
+    private lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
+        self?.view?.reloadCourse()
+    }
 
     init(env: AppEnvironment, view: ModuleListViewProtocol, courseID: String, moduleID: String? = nil) {
         self.env = env

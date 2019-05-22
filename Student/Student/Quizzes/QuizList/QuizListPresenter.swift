@@ -26,7 +26,7 @@ class QuizListPresenter {
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.update()
     }
-    lazy var course = env.subscribe(GetCourseUseCase(courseID: courseID)) { [weak self] in
+    lazy var course = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
         self?.update()
     }
     lazy var quizzes = env.subscribe(GetQuizzes(courseID: courseID)) { [weak self] in

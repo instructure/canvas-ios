@@ -47,7 +47,7 @@ class SubmissionDetailsPresenter {
         self?.update()
     }
 
-    lazy var course = env.subscribe(GetCourseUseCase(courseID: context.id)) { [weak self] in
+    lazy var course = env.subscribe(GetCourse(courseID: context.id)) { [weak self] in
         self?.update()
     }
 

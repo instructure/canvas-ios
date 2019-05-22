@@ -20,18 +20,25 @@ import XCTest
 
 class LoggerTests: CoreTestCase {
     var theLogger: Logger!
+    var updated: XCTestExpectation?
+    lazy var events: Store<LocalUseCase<LogEvent>> = environment.subscribe(scope: .all(orderBy: #keyPath(LogEvent.timestamp))) { [weak self] in
+        self?.updated?.fulfill()
+    }
 
     override func setUp() {
         super.setUp()
 
         theLogger = Logger()
         theLogger.database = database
+        events.refresh()
     }
     func testLog() {
         let now = Date()
         Clock.mockNow(now)
+        updated = expectation(description: "updated")
+        updated?.assertForOverFulfill = false
         theLogger.log("log message")
-        theLogger.queue.waitUntilAllOperationsAreFinished()
+        wait(for: [updated!], timeout: 1)
         let event: LogEvent = databaseClient.fetch().first!
         XCTAssertEqual(event.message, "log message")
         XCTAssertEqual(event.timestamp, now)
@@ -41,8 +48,10 @@ class LoggerTests: CoreTestCase {
     func testError() {
         let now = Date()
         Clock.mockNow(now)
+        updated = expectation(description: "updated")
+        updated?.assertForOverFulfill = false
         theLogger.error("error message")
-        theLogger.queue.waitUntilAllOperationsAreFinished()
+        wait(for: [updated!], timeout: 1)
         let event: LogEvent = databaseClient.fetch().first!
         XCTAssertEqual(event.message, "error message")
         XCTAssertEqual(event.timestamp, now)
@@ -55,9 +64,10 @@ class LoggerTests: CoreTestCase {
         let before: [LogEvent] = databaseClient.fetch()
         XCTAssertEqual(before.count, 2)
 
+        updated = expectation(description: "updated")
+        updated?.assertForOverFulfill = false
         theLogger.clearAll()
-
-        theLogger.queue.waitUntilAllOperationsAreFinished()
+        wait(for: [updated!], timeout: 1)
         databaseClient.refresh()
         let after: [LogEvent] = databaseClient.fetch()
         XCTAssertEqual(after.count, 0)

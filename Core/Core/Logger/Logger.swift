@@ -29,7 +29,6 @@ public protocol Loggable {
 }
 
 public protocol LoggerProtocol {
-    var queue: OperationQueue { get }
     func log(_ message: String)
     func error(_ message: String)
     func clearAll()
@@ -37,13 +36,11 @@ public protocol LoggerProtocol {
 
 public class Logger: LoggerProtocol {
     public var database: Persistence
-    public let queue: OperationQueue
 
     public static let shared = Logger()
 
     public init() {
         self.database = NSPersistentContainer.create()
-        self.queue = OperationQueue()
     }
 
     public func log(_ message: String = #function) {
@@ -60,23 +57,21 @@ public class Logger: LoggerProtocol {
 
     private func logEvent(_ type: LoggableType, message: String) {
         print("[\(type.rawValue)]", message)
-        let insert = DatabaseOperation(database: database) { client in
+        database.performBackgroundTask { client in
             let event: LogEvent = client.insert()
             event.timestamp = Clock.now
             event.type = type
             event.message = message
+            try? client.save()
         }
-        queue.addOperation(insert)
     }
 
     public func clearAll() {
-        let clear = DatabaseOperation(database: database) { client in
+        database.performBackgroundTask { client in
             let events: [LogEvent] = client.fetch()
-            for event in events {
-                try client.delete(event)
-            }
+            try? client.delete(events)
+            try? client.save()
         }
-        queue.addOperation(clear)
     }
 }
 

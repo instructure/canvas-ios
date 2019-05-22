@@ -57,6 +57,7 @@ class SubmissionCommentsPresenterTests: PersistenceTestCase {
 
     func testAddComment() {
         view.expectError = expectation(description: "error")
+        view.expectError?.assertForOverFulfill = false
         presenter.addComment(text: "hello")
         wait(for: [view.expectError!], timeout: 5)
         XCTAssertNotNil(view.error)
@@ -64,6 +65,7 @@ class SubmissionCommentsPresenterTests: PersistenceTestCase {
 
     func testAddMediaComment() {
         view.expectError = expectation(description: "error")
+        view.expectError?.assertForOverFulfill = false
         presenter.addMediaComment(type: .audio, url: URL(string: "/")!)
         wait(for: [view.expectError!], timeout: 5)
         XCTAssertNotNil(view.error)
@@ -72,6 +74,7 @@ class SubmissionCommentsPresenterTests: PersistenceTestCase {
     func testAddFileCommentError() throws {
         let file = File.make(["id": nil, "batchID": "1"])
         view.expectError = self.expectation(description: "error")
+        view.expectError?.assertForOverFulfill = false
         presenter.viewIsReady()
         presenter.addFileComment(batchID: "1")
         file.uploadError = "doh"

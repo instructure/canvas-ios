@@ -28,19 +28,13 @@ class AssignmentListPresenter {
     let env: AppEnvironment
     weak var view: AssignmentListViewProtocol?
 
-    lazy var course: Store<GetCourseUseCase> = {
-        let useCase = GetCourseUseCase(courseID: courseID)
-        return self.env.subscribe(useCase) { [weak self] in
-            self?.update()
-        }
-    }()
+    lazy var course = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
+        self?.update()
+    }
 
-    lazy var assignments: Store<GetAssignments> = {
-        let useCase = GetAssignments(courseID: self.courseID, sort: sort)
-        return self.env.subscribe(useCase) { [weak self] in
-            self?.update()
-        }
-    }()
+    lazy var assignments = env.subscribe(GetAssignments(courseID: self.courseID, sort: sort)) { [weak self] in
+        self?.update()
+    }
 
     init(env: AppEnvironment = .shared, view: AssignmentListViewProtocol, courseID: String, sort: GetAssignments.Sort = .position) {
         self.courseID = courseID
