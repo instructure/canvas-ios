@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2019-present Instructure, Inc.
+// Copyright (C) 2018-present Instructure, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,14 +17,9 @@
 import Foundation
 import SwiftUITest
 
-struct SubmissionFilesElement {
-    private static let className: String = String(describing: SubmissionFilesElement.self)
-
-    static func cell(fileID: String) -> Element {
-        return app.find(id: "\(className).cell.\(fileID)")
-    }
-
-    static func checkView(fileID: String) -> Element {
-        return app.find(id: "\(className).cell.\(fileID).checkView")
-    }
+enum URLSubmission: String, ElementWrapper, CaseIterable {
+    case url
+    case preview
+    case loadingView
+    case submit
 }

@@ -16,10 +16,10 @@
 
 import Foundation
 @testable import Core
+import SwiftUITest
 import TestsFoundation
 
 class SubmissionDetailsTests: StudentTest {
-    let page = SubmissionDetailsPage.self
     let assignmentDetailsPage = AssignmentDetailsPage.self
 
     lazy var course: APICourse = {
@@ -41,9 +41,9 @@ class SubmissionDetailsTests: StudentTest {
         ]))
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
 
-        page.waitToExist(.emptyAssignmentDueBy, timeout: 5)
-        page.assertText(.emptyAssignmentDueBy, equals: "This assignment was due by October 31, 2018 at 10:00 PM")
-        page.assertVisible(.emptySubmitButton)
+        XCTAssertTrue(SubmissionDetails.emptyAssignmentDueBy.waitToExist(Timeout(value: 5)))
+        XCTAssertEqual(SubmissionDetails.emptyAssignmentDueBy.label, "This assignment was due by October 31, 2018 at 10:00 PM")
+        XCTAssertTrue(SubmissionDetails.emptySubmitButton.isVisible)
     }
 
     func testOneSubmission() {
@@ -57,14 +57,13 @@ class SubmissionDetailsTests: StudentTest {
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
 
-        page.waitToExist(.onlineTextEntryWebView, timeout: 5)
-        page.assertHidden(.emptyView)
-        page.assertHidden(.attemptPicker)
-        page.assertHidden(.attemptPickerArrow)
-        page.assertVisible(.attemptPickerToggle)
-        page.assertEnabled(.attemptPickerToggle, false)
-        page.assertText(.attemptPickerToggle, equals: DateFormatter.localizedString(from: submittedAt, dateStyle: .medium, timeStyle: .short))
-        page.assertVisible(.onlineTextEntryWebView)
+        XCTAssertTrue(SubmissionDetails.onlineTextEntryWebView.waitToExist(Timeout(value: 5)))
+        XCTAssertFalse(SubmissionDetails.emptyView.isVisible)
+        XCTAssertFalse(SubmissionDetails.attemptPicker.isVisible)
+        XCTAssertTrue(SubmissionDetails.attemptPickerToggle.isVisible)
+        XCTAssertFalse(SubmissionDetails.attemptPickerToggle.isEnabled)
+        XCTAssertEqual(SubmissionDetails.attemptPickerToggle.label, DateFormatter.localizedString(from: submittedAt, dateStyle: .medium, timeStyle: .short))
+        XCTAssertTrue(SubmissionDetails.onlineTextEntryWebView.isVisible)
         let body = xcuiApp?.webViews.staticTexts.firstMatch.label
         XCTAssertEqual(body, "hi")
     }
@@ -96,17 +95,16 @@ class SubmissionDetailsTests: StudentTest {
         let date1 = DateFormatter.localizedString(from: submittedAt1, dateStyle: .medium, timeStyle: .short)
         let date2 = DateFormatter.localizedString(from: submittedAt2, dateStyle: .medium, timeStyle: .short)
 
-        page.assertHidden(.emptyView)
-        page.assertHidden(.attemptPicker)
-        page.assertVisible(.attemptPickerArrow)
-        page.assertVisible(.attemptPickerToggle)
-        page.assertEnabled(.attemptPickerToggle)
-        page.assertText(.attemptPickerToggle, equals: date2)
+        XCTAssertFalse(SubmissionDetails.emptyView.isVisible)
+        XCTAssertFalse(SubmissionDetails.attemptPicker.isVisible)
+        XCTAssertTrue(SubmissionDetails.attemptPickerToggle.isVisible)
+        XCTAssertTrue(SubmissionDetails.attemptPickerToggle.isEnabled)
+        XCTAssertEqual(SubmissionDetails.attemptPickerToggle.label, date2)
 
-        page.tap(.attemptPickerToggle)
-        page.assertVisible(.attemptPicker)
-        page.pick(.attemptPicker, column: 0, value: date1)
-        page.assertText(.attemptPickerToggle, equals: date1)
+        SubmissionDetails.attemptPickerToggle.tap()
+        XCTAssertTrue(SubmissionDetails.attemptPicker.isVisible)
+        SubmissionDetails.attemptPicker.pick(column: 0, value: date1)
+        XCTAssertEqual(SubmissionDetails.attemptPickerToggle.label, date1)
     }
 
     func testPDFSubmission() {
@@ -133,16 +131,16 @@ class SubmissionDetailsTests: StudentTest {
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
 
-        PSPDFDoc.waitToExist(.view, timeout: 5)
-        PSPDFDoc.assertVisible(.view)
+        XCTAssertTrue(PSPDFDoc.view.waitToExist(Timeout(value: 5)))
+        XCTAssertTrue(PSPDFDoc.view.isVisible)
 
-        DocViewer.assertVisible(.searchButton)
-        DocViewer.tap(.searchButton)
+        XCTAssertTrue(DocViewer.searchButton.isVisible)
+        DocViewer.searchButton.tap()
         // PSPDFKit's search view has no accessibility identifiers
         XCTAssertEqual(xcuiApp?.searchFields.count, 1)
-        PSPDFDoc.tap(label: "Done")
+        app.find(label: "Done").tap()
 
-        DocViewer.assertVisible(.shareButton)
+        XCTAssertTrue(DocViewer.shareButton.isVisible)
         // TODO: Test share sheet?
     }
 
@@ -190,31 +188,28 @@ class SubmissionDetailsTests: StudentTest {
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
 
-        PSPDFDoc.waitToExist(.view, timeout: 5)
+        XCTAssertTrue(PSPDFDoc.view.waitToExist(Timeout(value: 5)))
 
         // 😱 PSPDFAnnotations are not in the accessibility tree
-        // these x,y coordinates are valid only on iPhone 8
-        PSPDFDoc.tap(.view, at: CGPoint(x: 32, y: 32))
-        PSPDFDoc.tapCalloutAction("Comments")
+        PSPDFDoc.page.tapAt(CGPoint(x: 32, y: 32))
+        app.find(label: "Comments").tap()
 
-        CommentListPage.assertVisible(.tableView)
+        XCTAssertTrue(CommentListItem.item("2").isVisible)
+        XCTAssertFalse(CommentListItem.deleteButton("2").isVisible)
 
-        CommentListItem.assertVisible(.item("2"))
-        CommentListItem.assertHidden(.deleteButton("2"))
+        XCTAssertFalse(CommentList.replyButton.isEnabled)
+        CommentList.replyTextView.tap()
+        CommentList.replyTextView.typeText("I don't know.")
+        XCTAssertTrue(CommentList.replyButton.isEnabled)
+        CommentList.replyButton.tap()
+        XCTAssertFalse(CommentList.replyButton.isEnabled)
 
-        CommentListPage.assertEnabled(.replyButton, false)
-        CommentListPage.typeText("I don't know.", in: .replyTextView)
-        CommentListPage.assertEnabled(.replyButton)
-        CommentListPage.tap(.replyButton)
-        CommentListPage.assertEnabled(.replyButton, false)
-
-        let replyID = String(CommentListPage.findIdentifier(for: "Delete comment").split(separator: ".")[1])
-        CommentListItem.assertVisible(.item(replyID))
-        CommentListItem.assertEnabled(.deleteButton(replyID))
-        CommentListItem.tap(.deleteButton(replyID))
-        CommentListPage.assertAlertExists()
-        CommentListPage.tapAlertAction("Delete")
-        CommentListItem.assertHidden(.item(replyID))
+        let replyID = String(findID(for: "Delete comment").split(separator: ".")[1])
+        XCTAssertTrue(CommentListItem.item(replyID).isVisible)
+        XCTAssertTrue(CommentListItem.deleteButton(replyID).isVisible)
+        CommentListItem.deleteButton(replyID).tap()
+        app.find(label: "Delete").tap()
+        XCTAssertFalse(CommentListItem.item(replyID).isVisible)
     }
 
     func testDiscussionSubmission() {
@@ -232,13 +227,12 @@ class SubmissionDetailsTests: StudentTest {
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
 
-        page.assertHidden(.emptyView)
-        page.assertHidden(.attemptPicker)
-        page.assertHidden(.attemptPickerArrow)
-        page.assertVisible(.attemptPickerToggle)
-        page.assertEnabled(.attemptPickerToggle, false)
-        page.assertText(.attemptPickerToggle, equals: DateFormatter.localizedString(from: submittedAt, dateStyle: .medium, timeStyle: .short))
-        page.assertVisible(.discussionWebView)
+        XCTAssertFalse(SubmissionDetails.emptyView.isVisible)
+        XCTAssertFalse(SubmissionDetails.attemptPicker.isVisible)
+        XCTAssertTrue(SubmissionDetails.attemptPickerToggle.isVisible)
+        XCTAssertFalse(SubmissionDetails.attemptPickerToggle.isEnabled)
+        XCTAssertEqual(SubmissionDetails.attemptPickerToggle.label, DateFormatter.localizedString(from: submittedAt, dateStyle: .medium, timeStyle: .short))
+        XCTAssertTrue(SubmissionDetails.discussionWebView.isVisible)
     }
 
     func testQuizSubmission() {
@@ -252,8 +246,8 @@ class SubmissionDetailsTests: StudentTest {
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
 
-        page.assertHidden(.emptyView)
-        page.assertVisible(.onlineQuizWebView)
+        XCTAssertFalse(SubmissionDetails.emptyView.isVisible)
+        XCTAssertTrue(SubmissionDetails.onlineQuizWebView.isVisible)
     }
 
     func testUrlSubmission() {
@@ -267,13 +261,12 @@ class SubmissionDetailsTests: StudentTest {
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
 
-        page.waitToExist(.urlSubmissionBlurb, timeout: 5)
-        page.assertVisible(.urlSubmissionBlurb)
-        page.assertVisible(.urlButton)
-        page.assertVisible(.urlPreview)
+        XCTAssertTrue(SubmissionDetails.urlSubmissionBlurb.waitToExist(Timeout(value: 5)))
+        XCTAssertTrue(SubmissionDetails.urlSubmissionBlurb.isVisible)
+        XCTAssertTrue(SubmissionDetails.urlButton.isVisible)
 
-        page.assertHidden(.emptyView)
-        page.assertText(.urlSubmissionBlurb, equals: "This submission is a URL to an external page. We've included a snapshot of a what the page looked like when it was submitted.")
+        XCTAssertFalse(SubmissionDetails.emptyView.isVisible)
+        XCTAssertEqual(SubmissionDetails.urlSubmissionBlurb.label, "This submission is a URL to an external page. We've included a snapshot of a what the page looked like when it was submitted.")
     }
 
     func testExternalToolSubmission() {
@@ -282,9 +275,9 @@ class SubmissionDetailsTests: StudentTest {
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
 
-        page.waitToExist(.externalToolButton, timeout: 5)
-        page.assertVisible(.externalToolButton)
-        page.assertHidden(.emptyView)
+        XCTAssertTrue(SubmissionDetails.externalToolButton.waitToExist(Timeout(value: 5)))
+        XCTAssertTrue(SubmissionDetails.externalToolButton.isVisible)
+        XCTAssertFalse(SubmissionDetails.emptyView.isVisible)
     }
 
     func testMediaSubmission() {
@@ -299,7 +292,7 @@ class SubmissionDetailsTests: StudentTest {
         ]))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
-        page.waitToExist(.mediaPlayer, timeout: 2)
-        page.assertVisible(.mediaPlayer)
+        XCTAssertTrue(SubmissionDetails.mediaPlayer.waitToExist(Timeout(value: 2)))
+        XCTAssertTrue(SubmissionDetails.mediaPlayer.isVisible)
     }
 }

@@ -20,7 +20,7 @@
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="https://" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ezm-Hd-igs" customClass="DynamicTextField" customModule="Student" customModuleProvider="target">
                                 <rect key="frame" x="16" y="36" width="343" height="30"/>
-                                <accessibility key="accessibilityConfiguration" identifier="UrlSubmissionPage.url"/>
+                                <accessibility key="accessibilityConfiguration" identifier="URLSubmission.url"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="25g-mF-Nwt"/>
                                 </constraints>
@@ -36,7 +36,7 @@
                                 </connections>
                             </textField>
                             <wkWebView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="doz-0C-rzv" customClass="CoreWebView" customModule="Student" customModuleProvider="target">
-                                <rect key="frame" x="16" y="119.5" width="343" height="531.5"/>
+                                <rect key="frame" x="16" y="116" width="343" height="535"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -44,8 +44,10 @@
                                 </wkWebViewConfiguration>
                             </wkWebView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Preview" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HUl-LN-a0G" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                <rect key="frame" x="16" y="91" width="343" height="20.5"/>
-                                <accessibility key="accessibilityConfiguration" identifier="UrlSubmissionPage.preview"/>
+                                <rect key="frame" x="16" y="91" width="343" height="17"/>
+                                <accessibility key="accessibilityConfiguration" identifier="URLSubmission.preview">
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -74,7 +76,7 @@
                                     </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <accessibility key="accessibilityConfiguration" identifier="UrlSubmissionPage.loadingView"/>
+                                <accessibility key="accessibilityConfiguration" identifier="URLSubmission.loadingView"/>
                                 <constraints>
                                     <constraint firstItem="s9b-UK-acu" firstAttribute="centerX" secondItem="Vba-b2-M5N" secondAttribute="centerX" id="CkB-av-KOP"/>
                                     <constraint firstItem="s9b-UK-acu" firstAttribute="centerY" secondItem="Vba-b2-M5N" secondAttribute="centerY" id="qgR-u1-Oqq"/>

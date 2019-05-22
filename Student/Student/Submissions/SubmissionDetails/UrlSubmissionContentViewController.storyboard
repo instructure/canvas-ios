@@ -20,7 +20,7 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This submission is a URL to an external page. We've included a snapshot of a what the page looked like when it was submitted." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qIN-xp-4Y0" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
                                 <rect key="frame" x="16" y="40" width="343" height="80"/>
-                                <accessibility key="accessibilityConfiguration" identifier="SubmissionDetailsPage.urlSubmissionBlurb"/>
+                                <accessibility key="accessibilityConfiguration" identifier="SubmissionDetails.urlSubmissionBlurb"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="BV8-kG-jy1"/>
                                 </constraints>
@@ -33,7 +33,7 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yzx-td-6QU" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
                                 <rect key="frame" x="20" y="130" width="335" height="50"/>
-                                <accessibility key="accessibilityConfiguration" identifier="SubmissionDetailsPage.urlButton"/>
+                                <accessibility key="accessibilityConfiguration" identifier="SubmissionDetails.urlButton"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="EeB-Ch-QH4"/>
                                 </constraints>
@@ -46,7 +46,6 @@
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Y5V-BG-NEv">
                                 <rect key="frame" x="20" y="196" width="335" height="451"/>
-                                <accessibility key="accessibilityConfiguration" identifier="SubmissionDetailsPage.urlPreview"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V3F-Fa-g3P">
                                 <rect key="frame" x="20" y="196" width="335" height="451"/>

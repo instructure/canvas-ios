@@ -163,7 +163,7 @@ class SubmissionDetailsPresenterTests: PersistenceTestCase {
         presenter.update()
 
         XCTAssert(view.embedded is CoreWebViewController)
-        XCTAssertEqual(view.embedded?.view.accessibilityIdentifier, "SubmissionDetailsPage.onlineQuizWebView")
+        XCTAssertEqual(view.embedded?.view.accessibilityIdentifier, "SubmissionDetails.onlineQuizWebView")
     }
 
     func testEmbedTextEntry() {
@@ -172,7 +172,7 @@ class SubmissionDetailsPresenterTests: PersistenceTestCase {
         presenter.update()
 
         XCTAssert(view.embedded is CoreWebViewController)
-        XCTAssertEqual(view.embedded?.view.accessibilityIdentifier, "SubmissionDetailsPage.onlineTextEntryWebView")
+        XCTAssertEqual(view.embedded?.view.accessibilityIdentifier, "SubmissionDetails.onlineTextEntryWebView")
     }
 
     func testEmbedUpload() {
@@ -192,7 +192,7 @@ class SubmissionDetailsPresenterTests: PersistenceTestCase {
         presenter.update()
 
         XCTAssert(view.embedded is CoreWebViewController)
-        XCTAssertEqual(view.embedded?.view.accessibilityIdentifier, "SubmissionDetailsPage.discussionWebView")
+        XCTAssertEqual(view.embedded?.view.accessibilityIdentifier, "SubmissionDetails.discussionWebView")
     }
 
     func testEmbedURL() {

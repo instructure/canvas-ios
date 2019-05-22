@@ -49,7 +49,7 @@ class SubmissionCommentsTests: StudentTest {
         ]))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
-        SubmissionDetailsElement.drawerGripper.tap()
+        SubmissionDetails.drawerGripper.tap()
 
         XCTAssertTrue(SubmissionComments.attemptCell(submissionID: "1", attempt: 1).isVisible)
         XCTAssertTrue(SubmissionComments.fileView(fileID: "1").isVisible)
@@ -66,7 +66,7 @@ class SubmissionCommentsTests: StudentTest {
         ]))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
-        SubmissionDetailsElement.drawerGripper.tap()
+        SubmissionDetails.drawerGripper.tap()
 
         XCTAssertTrue(SubmissionComments.attemptCell(submissionID: "1", attempt: 1).isVisible)
         XCTAssertTrue(SubmissionComments.attemptView(attempt: 1).isVisible)
@@ -96,7 +96,7 @@ class SubmissionCommentsTests: StudentTest {
         ]))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
-        SubmissionDetailsElement.drawerGripper.tap()
+        SubmissionDetails.drawerGripper.tap()
 
         XCTAssertTrue(SubmissionComments.textCell(commentID: "1").isVisible)
         XCTAssertTrue(SubmissionComments.textCell(commentID: "2").isVisible)
@@ -106,8 +106,8 @@ class SubmissionCommentsTests: StudentTest {
         mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make())
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
-        SubmissionDetailsElement.drawerGripper.tap()
-        SubmissionDetailsElement.drawerGripper.tap() // Make it full height.
+        SubmissionDetails.drawerGripper.tap()
+        SubmissionDetails.drawerGripper.tap() // Make it full height.
 
         XCTAssertFalse(SubmissionComments.addCommentButton.isEnabled)
         SubmissionComments.commentTextView.tap()
@@ -158,7 +158,7 @@ class SubmissionCommentsTests: StudentTest {
         mockDataRequest(URLRequest(url: testm4a), data: try! Data(contentsOf: testm4a))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
-        SubmissionDetailsElement.drawerGripper.tap()
+        SubmissionDetails.drawerGripper.tap()
 
         XCTAssertTrue(SubmissionComments.audioCell(commentID: "1").isVisible)
         XCTAssertTrue(SubmissionComments.audioCell(commentID: "2").isVisible)
@@ -191,7 +191,7 @@ class SubmissionCommentsTests: StudentTest {
 
         host.logIn(domain: "canvas.instructure.com", token: "t")
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
-        SubmissionDetailsElement.drawerGripper.tap()
+        SubmissionDetails.drawerGripper.tap()
 
         SubmissionComments.addMediaButton.tap()
 

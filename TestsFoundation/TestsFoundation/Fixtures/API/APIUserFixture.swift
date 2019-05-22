@@ -31,3 +31,13 @@ extension APIUser: Fixture {
 extension APIUser: APIContext {
     public var contextType: ContextType { return .user }
 }
+
+extension APIUserSettings: Fixture {
+    public static var template: Template {
+        return [
+            "manual_mark_as_read": false,
+            "collapse_global_nav": false,
+            "hide_dashcard_color_overlays": false
+        ]
+    }
+}

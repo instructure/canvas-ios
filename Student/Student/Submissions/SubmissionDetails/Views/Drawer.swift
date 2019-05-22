@@ -65,7 +65,7 @@ class Drawer: UIView {
         drawer?.backgroundColor = UIColor.clear
 
         gripper?.layer.cornerRadius = 2
-        tabs?.accessibilityIdentifier = "SubmissionDetailsElement.drawerSegmentedControl"
+        tabs?.accessibilityIdentifier = "SubmissionDetails.drawerSegmentedControl"
         tabs?.setTitle(NSLocalizedString("Comments", bundle: .student, comment: ""), forSegmentAt: Tab.comments.rawValue)
         tabs?.setTitle(NSLocalizedString("Files", bundle: .student, comment: ""), forSegmentAt: Tab.files.rawValue)
         tabs?.setTitle(NSLocalizedString("Rubric", bundle: .student, comment: ""), forSegmentAt: Tab.rubric.rawValue)

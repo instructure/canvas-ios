@@ -15,20 +15,9 @@
 //
 
 import Foundation
+import SwiftUITest
 
-enum SubmissionDetailsPage: String, UITestElement, CaseIterable {
-    case emptyAssignmentDueBy
-    case emptySubmitButton
-    case emptyView
-    case attemptPicker
-    case attemptPickerArrow
-    case attemptPickerToggle
-    case onlineTextEntryWebView
-    case discussionWebView
-    case onlineQuizWebView
-    case urlButton
-    case urlSubmissionBlurb
-    case urlPreview
-    case externalToolButton
-    case mediaPlayer
+enum DocViewer: String, ElementWrapper, CaseIterable {
+    case searchButton
+    case shareButton
 }

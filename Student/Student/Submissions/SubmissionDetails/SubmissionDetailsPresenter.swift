@@ -144,13 +144,13 @@ class SubmissionDetailsPresenter {
             if let quizID = assignment.quizID,
                 let url = URL(string: "/courses/\(assignment.courseID)/quizzes/\(quizID)/history?version=\(selectedAttempt)&headless=1", relativeTo: env.api.baseURL) {
                 let controller = CoreWebViewController(env: env)
-                controller.webView.accessibilityIdentifier = "SubmissionDetailsPage.onlineQuizWebView"
+                controller.webView.accessibilityIdentifier = "SubmissionDetails.onlineQuizWebView"
                 controller.webView.load(URLRequest(url: url))
                 return controller
             }
         case .some(.online_text_entry):
             let controller = CoreWebViewController(env: env)
-            controller.webView.accessibilityIdentifier = "SubmissionDetailsPage.onlineTextEntryWebView"
+            controller.webView.accessibilityIdentifier = "SubmissionDetails.onlineTextEntryWebView"
             controller.webView.loadHTMLString(submission.body ?? "")
             return controller
         case .some(.online_upload):
@@ -169,7 +169,7 @@ class SubmissionDetailsPresenter {
             guard let previewUrl = submission.previewUrl else { break }
 
             let controller = CoreWebViewController(env: env)
-            controller.webView.accessibilityIdentifier = "SubmissionDetailsPage.discussionWebView"
+            controller.webView.accessibilityIdentifier = "SubmissionDetails.discussionWebView"
             controller.webView.load(URLRequest(url: previewUrl))
             return controller
         case .some(.online_url):
@@ -181,7 +181,7 @@ class SubmissionDetailsPresenter {
             let player = AVPlayer(url: mediaComment.url)
             let controller = AVPlayerViewController()
             controller.player = player
-            controller.view.accessibilityIdentifier = "SubmissionDetailsPage.mediaPlayer"
+            controller.view.accessibilityIdentifier = "SubmissionDetails.mediaPlayer"
             return controller
         default:
             return nil
