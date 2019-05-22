@@ -61,6 +61,7 @@ const whitelist = [
   'numbered-list',
   'outcomes',
   'paint',
+  'paperclip',
   'pause',
   'pdf',
   'play',
@@ -101,7 +102,7 @@ for (const icon of whitelist) {
     let slug = (overrides[icon] || {})[type] || icon
     const filepath = `tmp/${name}${type}.svg`
     const folder = `${assetsFolder}/${name}${type}.imageset`
-    run(`curl -sSL https://raw.githubusercontent.com/instructure/instructure-ui/master/packages/ui-icons/src/__svg__/${type}/${slug}.svg > ${filepath}`)
+    run(`curl -sSL https://raw.githubusercontent.com/instructure/instructure-ui/master/packages/ui-icons/svg/${type}/${slug}.svg > ${filepath}`)
     run(`mkdir -p ${folder}`)
     // Icons in tab & nav bar need intrinsic size of 24x24
     run(`cairosvg "${filepath}" -d72 -W24 -H24 -o "${folder}/${name}.pdf"`)
