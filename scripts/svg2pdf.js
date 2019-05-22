@@ -15,10 +15,7 @@ const PDFDocument = require('pdfkit')
 
 if (require.main == module) {
   const [ , , svg, pdf, size ] = process.argv
-  if (size) {
-    size = size.split(/\d+/).map(n => +n)
-  }
-  convert(svg, pdf, size)
+  convert(svg, pdf, size ? size.split(/\D+/).map(n => +n) : null)
 }
 
 function convert(svgPath, pdfPath, size) {
@@ -33,7 +30,7 @@ function convert(svgPath, pdfPath, size) {
   ).split(/\s+/).map(n => +n)
   pdf.addPage({ size: size || viewBox.slice(2) })
   if (size) {
-    pdf.scale(size[0] / viewBox[2], size[1] / viewBox[3])
+    pdf.scale(Math.min(size[0] / viewBox[2], size[1] / viewBox[3]))
   }
   for (const path of svg.querySelectorAll('path')) {
     pdf
