@@ -9,6 +9,7 @@
     "danger": "danger",
     "export-translations": "./scripts/translations/export.js",
     "import-translations": "./scripts/translations/import.js",
+    "svg2pdf": "./scripts/svg2pdf.js",
     "test": "./scripts/coverage/coverage.js --test",
     "update-headers": "./scripts/update-headers.js"
   },
@@ -21,7 +22,9 @@
     "format-message-parse": "^5.1.2",
     "format-message-print": "^5.1.2",
     "highlight.js": "^9.13.1",
+    "jsdom": "^15.1.0",
     "mkdirp": "^0.5.1",
+    "pdfkit": "^0.9.1",
     "prompt": "1.0",
     "yargs": "^12.0.2"
   }
