@@ -3,7 +3,8 @@
 exports[`renders 1`] = `
 <A11yGroup>
   <TouchableHighlight
-    accessible={false}
+    accessibilityLabel="Learn React Native "
+    accessibilityTraits="button"
     onLayout={[Function]}
     onPress={[Function]}
     style={
@@ -61,9 +62,6 @@ exports[`renders 1`] = `
           }
         />
         <View
-          accessibilityLabel="Learn React Native "
-          accessibilityTraits="button"
-          accessible={true}
           style={
             Object {
               "backgroundColor": "#333",
@@ -78,51 +76,6 @@ exports[`renders 1`] = `
             }
           }
         />
-        <TouchableHighlight
-          accessibilityLabel="Open Learn React Native user preferences"
-          accessibilityTraits="button"
-          accessible={true}
-          onPress={[Function]}
-          style={
-            Object {
-              "height": 43,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "width": 43,
-            }
-          }
-          testID="course-card.kabob-1"
-          underlayColor="#ffffff00"
-        >
-          <View
-            style={
-              Object {
-                "backgroundColor": undefined,
-                "borderRadius": 15,
-                "padding": 4,
-                "position": "absolute",
-                "right": 4,
-                "top": 6,
-              }
-            }
-          >
-            <Image
-              source={
-                Object {
-                  "uri": "moreLine",
-                }
-              }
-              style={
-                Object {
-                  "height": 18,
-                  "tintColor": "white",
-                  "width": 18,
-                }
-              }
-            />
-          </View>
-        </TouchableHighlight>
       </View>
       <View
         accessible={false}
@@ -192,13 +145,59 @@ exports[`renders 1`] = `
       </View>
     </View>
   </TouchableHighlight>
+  <TouchableHighlight
+    accessibilityLabel="Open Learn React Native user preferences"
+    accessibilityTraits="button"
+    accessible={true}
+    onPress={[Function]}
+    style={
+      Object {
+        "height": 43,
+        "position": "absolute",
+        "right": 8,
+        "top": 8,
+        "width": 43,
+      }
+    }
+    testID="course-card.kabob-1"
+    underlayColor="#ffffff00"
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": undefined,
+          "borderRadius": 15,
+          "padding": 4,
+          "position": "absolute",
+          "right": 4,
+          "top": 6,
+        }
+      }
+    >
+      <Image
+        source={
+          Object {
+            "uri": "moreLine",
+          }
+        }
+        style={
+          Object {
+            "height": 18,
+            "tintColor": "white",
+            "width": 18,
+          }
+        }
+      />
+    </View>
+  </TouchableHighlight>
 </A11yGroup>
 `;
 
 exports[`renders with a grade 1`] = `
 <A11yGroup>
   <TouchableHighlight
-    accessible={false}
+    accessibilityLabel="Learn React Native A-"
+    accessibilityTraits="button"
     onLayout={[Function]}
     onPress={[Function]}
     style={
@@ -256,9 +255,6 @@ exports[`renders with a grade 1`] = `
           }
         />
         <View
-          accessibilityLabel="Learn React Native A-"
-          accessibilityTraits="button"
-          accessible={true}
           style={
             Object {
               "backgroundColor": "#333",
@@ -320,51 +316,6 @@ exports[`renders with a grade 1`] = `
             A-
           </Text>
         </View>
-        <TouchableHighlight
-          accessibilityLabel="Open Learn React Native user preferences"
-          accessibilityTraits="button"
-          accessible={true}
-          onPress={[Function]}
-          style={
-            Object {
-              "height": 43,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "width": 43,
-            }
-          }
-          testID="course-card.kabob-1"
-          underlayColor="#ffffff00"
-        >
-          <View
-            style={
-              Object {
-                "backgroundColor": undefined,
-                "borderRadius": 15,
-                "padding": 4,
-                "position": "absolute",
-                "right": 4,
-                "top": 6,
-              }
-            }
-          >
-            <Image
-              source={
-                Object {
-                  "uri": "moreLine",
-                }
-              }
-              style={
-                Object {
-                  "height": 18,
-                  "tintColor": "white",
-                  "width": 18,
-                }
-              }
-            />
-          </View>
-        </TouchableHighlight>
       </View>
       <View
         accessible={false}
@@ -434,13 +385,59 @@ exports[`renders with a grade 1`] = `
       </View>
     </View>
   </TouchableHighlight>
+  <TouchableHighlight
+    accessibilityLabel="Open Learn React Native user preferences"
+    accessibilityTraits="button"
+    accessible={true}
+    onPress={[Function]}
+    style={
+      Object {
+        "height": 43,
+        "position": "absolute",
+        "right": 8,
+        "top": 8,
+        "width": 43,
+      }
+    }
+    testID="course-card.kabob-1"
+    underlayColor="#ffffff00"
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": undefined,
+          "borderRadius": 15,
+          "padding": 4,
+          "position": "absolute",
+          "right": 4,
+          "top": 6,
+        }
+      }
+    >
+      <Image
+        source={
+          Object {
+            "uri": "moreLine",
+          }
+        }
+        style={
+          Object {
+            "height": 18,
+            "tintColor": "white",
+            "width": 18,
+          }
+        }
+      />
+    </View>
+  </TouchableHighlight>
 </A11yGroup>
 `;
 
 exports[`renders with a grade even if the grade does not exist 1`] = `
 <A11yGroup>
   <TouchableHighlight
-    accessible={false}
+    accessibilityLabel="Learn React Native N/A"
+    accessibilityTraits="button"
     onLayout={[Function]}
     onPress={[Function]}
     style={
@@ -498,9 +495,6 @@ exports[`renders with a grade even if the grade does not exist 1`] = `
           }
         />
         <View
-          accessibilityLabel="Learn React Native N/A"
-          accessibilityTraits="button"
-          accessible={true}
           style={
             Object {
               "backgroundColor": "#333",
@@ -562,51 +556,6 @@ exports[`renders with a grade even if the grade does not exist 1`] = `
             N/A
           </Text>
         </View>
-        <TouchableHighlight
-          accessibilityLabel="Open Learn React Native user preferences"
-          accessibilityTraits="button"
-          accessible={true}
-          onPress={[Function]}
-          style={
-            Object {
-              "height": 43,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "width": 43,
-            }
-          }
-          testID="course-card.kabob-1"
-          underlayColor="#ffffff00"
-        >
-          <View
-            style={
-              Object {
-                "backgroundColor": undefined,
-                "borderRadius": 15,
-                "padding": 4,
-                "position": "absolute",
-                "right": 4,
-                "top": 6,
-              }
-            }
-          >
-            <Image
-              source={
-                Object {
-                  "uri": "moreLine",
-                }
-              }
-              style={
-                Object {
-                  "height": 18,
-                  "tintColor": "white",
-                  "width": 18,
-                }
-              }
-            />
-          </View>
-        </TouchableHighlight>
       </View>
       <View
         accessible={false}
@@ -676,13 +625,59 @@ exports[`renders with a grade even if the grade does not exist 1`] = `
       </View>
     </View>
   </TouchableHighlight>
+  <TouchableHighlight
+    accessibilityLabel="Open Learn React Native user preferences"
+    accessibilityTraits="button"
+    accessible={true}
+    onPress={[Function]}
+    style={
+      Object {
+        "height": 43,
+        "position": "absolute",
+        "right": 8,
+        "top": 8,
+        "width": 43,
+      }
+    }
+    testID="course-card.kabob-1"
+    underlayColor="#ffffff00"
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": undefined,
+          "borderRadius": 15,
+          "padding": 4,
+          "position": "absolute",
+          "right": 4,
+          "top": 6,
+        }
+      }
+    >
+      <Image
+        source={
+          Object {
+            "uri": "moreLine",
+          }
+        }
+        style={
+          Object {
+            "height": 18,
+            "tintColor": "white",
+            "width": 18,
+          }
+        }
+      />
+    </View>
+  </TouchableHighlight>
 </A11yGroup>
 `;
 
 exports[`renders with empty image url 1`] = `
 <A11yGroup>
   <TouchableHighlight
-    accessible={false}
+    accessibilityLabel="Learn React Native "
+    accessibilityTraits="button"
     onLayout={[Function]}
     onPress={[Function]}
     style={
@@ -728,9 +723,6 @@ exports[`renders with empty image url 1`] = `
         }
       >
         <View
-          accessibilityLabel="Learn React Native "
-          accessibilityTraits="button"
-          accessible={true}
           style={
             Object {
               "backgroundColor": "#333",
@@ -745,51 +737,6 @@ exports[`renders with empty image url 1`] = `
             }
           }
         />
-        <TouchableHighlight
-          accessibilityLabel="Open Learn React Native user preferences"
-          accessibilityTraits="button"
-          accessible={true}
-          onPress={[Function]}
-          style={
-            Object {
-              "height": 43,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "width": 43,
-            }
-          }
-          testID="course-card.kabob-1"
-          underlayColor="#ffffff00"
-        >
-          <View
-            style={
-              Object {
-                "backgroundColor": undefined,
-                "borderRadius": 15,
-                "padding": 4,
-                "position": "absolute",
-                "right": 4,
-                "top": 6,
-              }
-            }
-          >
-            <Image
-              source={
-                Object {
-                  "uri": "moreLine",
-                }
-              }
-              style={
-                Object {
-                  "height": 18,
-                  "tintColor": "white",
-                  "width": 18,
-                }
-              }
-            />
-          </View>
-        </TouchableHighlight>
       </View>
       <View
         accessible={false}
@@ -859,13 +806,59 @@ exports[`renders with empty image url 1`] = `
       </View>
     </View>
   </TouchableHighlight>
+  <TouchableHighlight
+    accessibilityLabel="Open Learn React Native user preferences"
+    accessibilityTraits="button"
+    accessible={true}
+    onPress={[Function]}
+    style={
+      Object {
+        "height": 43,
+        "position": "absolute",
+        "right": 8,
+        "top": 8,
+        "width": 43,
+      }
+    }
+    testID="course-card.kabob-1"
+    underlayColor="#ffffff00"
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": undefined,
+          "borderRadius": 15,
+          "padding": 4,
+          "position": "absolute",
+          "right": 4,
+          "top": 6,
+        }
+      }
+    >
+      <Image
+        source={
+          Object {
+            "uri": "moreLine",
+          }
+        }
+        style={
+          Object {
+            "height": 18,
+            "tintColor": "white",
+            "width": 18,
+          }
+        }
+      />
+    </View>
+  </TouchableHighlight>
 </A11yGroup>
 `;
 
 exports[`renders with image url 1`] = `
 <A11yGroup>
   <TouchableHighlight
-    accessible={false}
+    accessibilityLabel="Learn React Native "
+    accessibilityTraits="button"
     onLayout={[Function]}
     onPress={[Function]}
     style={
@@ -923,9 +916,6 @@ exports[`renders with image url 1`] = `
           }
         />
         <View
-          accessibilityLabel="Learn React Native "
-          accessibilityTraits="button"
-          accessible={true}
           style={
             Object {
               "backgroundColor": "#333",
@@ -940,51 +930,6 @@ exports[`renders with image url 1`] = `
             }
           }
         />
-        <TouchableHighlight
-          accessibilityLabel="Open Learn React Native user preferences"
-          accessibilityTraits="button"
-          accessible={true}
-          onPress={[Function]}
-          style={
-            Object {
-              "height": 43,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "width": 43,
-            }
-          }
-          testID="course-card.kabob-1"
-          underlayColor="#ffffff00"
-        >
-          <View
-            style={
-              Object {
-                "backgroundColor": undefined,
-                "borderRadius": 15,
-                "padding": 4,
-                "position": "absolute",
-                "right": 4,
-                "top": 6,
-              }
-            }
-          >
-            <Image
-              source={
-                Object {
-                  "uri": "moreLine",
-                }
-              }
-              style={
-                Object {
-                  "height": 18,
-                  "tintColor": "white",
-                  "width": 18,
-                }
-              }
-            />
-          </View>
-        </TouchableHighlight>
       </View>
       <View
         accessible={false}
@@ -1054,13 +999,59 @@ exports[`renders with image url 1`] = `
       </View>
     </View>
   </TouchableHighlight>
+  <TouchableHighlight
+    accessibilityLabel="Open Learn React Native user preferences"
+    accessibilityTraits="button"
+    accessible={true}
+    onPress={[Function]}
+    style={
+      Object {
+        "height": 43,
+        "position": "absolute",
+        "right": 8,
+        "top": 8,
+        "width": 43,
+      }
+    }
+    testID="course-card.kabob-1"
+    underlayColor="#ffffff00"
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": undefined,
+          "borderRadius": 15,
+          "padding": 4,
+          "position": "absolute",
+          "right": 4,
+          "top": 6,
+        }
+      }
+    >
+      <Image
+        source={
+          Object {
+            "uri": "moreLine",
+          }
+        }
+        style={
+          Object {
+            "height": 18,
+            "tintColor": "white",
+            "width": 18,
+          }
+        }
+      />
+    </View>
+  </TouchableHighlight>
 </A11yGroup>
 `;
 
 exports[`renders without image url 1`] = `
 <A11yGroup>
   <TouchableHighlight
-    accessible={false}
+    accessibilityLabel="Learn React Native "
+    accessibilityTraits="button"
     onLayout={[Function]}
     onPress={[Function]}
     style={
@@ -1106,9 +1097,6 @@ exports[`renders without image url 1`] = `
         }
       >
         <View
-          accessibilityLabel="Learn React Native "
-          accessibilityTraits="button"
-          accessible={true}
           style={
             Object {
               "backgroundColor": "#333",
@@ -1123,51 +1111,6 @@ exports[`renders without image url 1`] = `
             }
           }
         />
-        <TouchableHighlight
-          accessibilityLabel="Open Learn React Native user preferences"
-          accessibilityTraits="button"
-          accessible={true}
-          onPress={[Function]}
-          style={
-            Object {
-              "height": 43,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "width": 43,
-            }
-          }
-          testID="course-card.kabob-1"
-          underlayColor="#ffffff00"
-        >
-          <View
-            style={
-              Object {
-                "backgroundColor": undefined,
-                "borderRadius": 15,
-                "padding": 4,
-                "position": "absolute",
-                "right": 4,
-                "top": 6,
-              }
-            }
-          >
-            <Image
-              source={
-                Object {
-                  "uri": "moreLine",
-                }
-              }
-              style={
-                Object {
-                  "height": 18,
-                  "tintColor": "white",
-                  "width": 18,
-                }
-              }
-            />
-          </View>
-        </TouchableHighlight>
       </View>
       <View
         accessible={false}
@@ -1237,13 +1180,59 @@ exports[`renders without image url 1`] = `
       </View>
     </View>
   </TouchableHighlight>
+  <TouchableHighlight
+    accessibilityLabel="Open Learn React Native user preferences"
+    accessibilityTraits="button"
+    accessible={true}
+    onPress={[Function]}
+    style={
+      Object {
+        "height": 43,
+        "position": "absolute",
+        "right": 8,
+        "top": 8,
+        "width": 43,
+      }
+    }
+    testID="course-card.kabob-1"
+    underlayColor="#ffffff00"
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": undefined,
+          "borderRadius": 15,
+          "padding": 4,
+          "position": "absolute",
+          "right": 4,
+          "top": 6,
+        }
+      }
+    >
+      <Image
+        source={
+          Object {
+            "uri": "moreLine",
+          }
+        }
+        style={
+          Object {
+            "height": 18,
+            "tintColor": "white",
+            "width": 18,
+          }
+        }
+      />
+    </View>
+  </TouchableHighlight>
 </A11yGroup>
 `;
 
 exports[`renders without the color overlay 1`] = `
 <A11yGroup>
   <TouchableHighlight
-    accessible={false}
+    accessibilityLabel="Learn React Native "
+    accessibilityTraits="button"
     onLayout={[Function]}
     onPress={[Function]}
     style={
@@ -1301,9 +1290,6 @@ exports[`renders without the color overlay 1`] = `
           }
         />
         <View
-          accessibilityLabel="Learn React Native "
-          accessibilityTraits="button"
-          accessible={true}
           style={
             Object {
               "backgroundColor": undefined,
@@ -1318,51 +1304,6 @@ exports[`renders without the color overlay 1`] = `
             }
           }
         />
-        <TouchableHighlight
-          accessibilityLabel="Open Learn React Native user preferences"
-          accessibilityTraits="button"
-          accessible={true}
-          onPress={[Function]}
-          style={
-            Object {
-              "height": 43,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "width": 43,
-            }
-          }
-          testID="course-card.kabob-1"
-          underlayColor="#ffffff00"
-        >
-          <View
-            style={
-              Object {
-                "backgroundColor": "#333",
-                "borderRadius": 15,
-                "padding": 4,
-                "position": "absolute",
-                "right": 4,
-                "top": 6,
-              }
-            }
-          >
-            <Image
-              source={
-                Object {
-                  "uri": "moreLine",
-                }
-              }
-              style={
-                Object {
-                  "height": 18,
-                  "tintColor": "white",
-                  "width": 18,
-                }
-              }
-            />
-          </View>
-        </TouchableHighlight>
       </View>
       <View
         accessible={false}
@@ -1430,6 +1371,51 @@ exports[`renders without the color overlay 1`] = `
           rn 101
         </Text>
       </View>
+    </View>
+  </TouchableHighlight>
+  <TouchableHighlight
+    accessibilityLabel="Open Learn React Native user preferences"
+    accessibilityTraits="button"
+    accessible={true}
+    onPress={[Function]}
+    style={
+      Object {
+        "height": 43,
+        "position": "absolute",
+        "right": 8,
+        "top": 8,
+        "width": 43,
+      }
+    }
+    testID="course-card.kabob-1"
+    underlayColor="#ffffff00"
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#333",
+          "borderRadius": 15,
+          "padding": 4,
+          "position": "absolute",
+          "right": 4,
+          "top": 6,
+        }
+      }
+    >
+      <Image
+        source={
+          Object {
+            "uri": "moreLine",
+          }
+        }
+        style={
+          Object {
+            "height": 18,
+            "tintColor": "white",
+            "width": 18,
+          }
+        }
+      />
     </View>
   </TouchableHighlight>
 </A11yGroup>
