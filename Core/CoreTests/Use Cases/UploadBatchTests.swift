@@ -208,4 +208,21 @@ class UploadBatchTests: CoreTestCase {
         wait(for: [expectation], timeout: 0.5)
         XCTAssertNil(batch)
     }
+
+    func testUploadError() throws {
+        let expectation = self.expectation(description: "upload error")
+        let error = NSError.instructureError("doh")
+        let batch = UploadBatch(environment: environment, batchID: "1", callback: nil)
+        let uploader = MockFileUploader()
+        uploader.error = error
+        let url = URL(string: "data:audio/x-aac,")!
+        try batch.addFile(url)
+        batch.uploader = uploader
+        batch.upload(to: .course("1")) { state in
+            if state == .failed(error) {
+                expectation.fulfill()
+            }
+        }
+        wait(for: [expectation], timeout: 0.5)
+    }
 }

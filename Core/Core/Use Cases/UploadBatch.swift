@@ -109,9 +109,10 @@ public class UploadBatch {
         }
         self.state = nil
         for file in files {
-            uploader.upload(file, context: context) { error in
+            uploader.upload(file, context: context) { [weak self] error in
                 if let error = error {
-                    callback?(.failed(error))
+                    self?.state = .failed(error)
+                    self?.notify()
                 }
             }
         }

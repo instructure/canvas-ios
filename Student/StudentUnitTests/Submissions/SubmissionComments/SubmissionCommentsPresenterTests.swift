@@ -21,8 +21,10 @@ import TestsFoundation
 
 class SubmissionCommentsView: SubmissionCommentsViewProtocol {
     var didReload = false
+    var expectReload: XCTestExpectation?
     func reload() {
         didReload = true
+        expectReload?.fulfill()
     }
 
     var error: Error?
@@ -65,6 +67,35 @@ class SubmissionCommentsPresenterTests: PersistenceTestCase {
         presenter.addMediaComment(type: .audio, url: URL(string: "/")!)
         wait(for: [view.expectError!], timeout: 5)
         XCTAssertNotNil(view.error)
+    }
+
+    func testAddFileCommentError() throws {
+        let file = File.make(["id": nil, "batchID": "1"])
+        view.expectError = self.expectation(description: "error")
+        presenter.viewIsReady()
+        presenter.addFileComment(batchID: "1")
+        file.uploadError = "doh"
+        try databaseClient.save()
+        wait(for: [view.expectError!], timeout: 5)
+    }
+
+    func testAddFileCommentSuccess() throws {
+        let file = File.make(["id": nil, "batchID": "1"])
+        api.mock(PutSubmissionGradeRequest(
+            courseID: "1",
+            assignmentID: "1",
+            userID: "1",
+            body: .init(comment: .init(fileIDs: ["1"], forGroup: true), submission: nil)
+        ), value: APISubmission.make([
+            "submission_comments": [ APISubmissionComment.fixture() ],
+        ]))
+        presenter.viewIsReady()
+        view.expectReload = self.expectation(description: "reload")
+        view.expectReload?.assertForOverFulfill = false
+        presenter.addFileComment(batchID: "1")
+        file.id = "1"
+        try databaseClient.save()
+        wait(for: [view.expectReload!], timeout: 5)
     }
 
     func testShowAttachment() {
