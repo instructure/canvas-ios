@@ -281,6 +281,4 @@ extension SubmissionCommentsViewController: FilePickerControllerDelegate {
             self.presenter?.addFileComment(batchID: controller.batchID)
         }
     }
-
-    func filePicker(_ controller: FilePickerViewController, didPickFile file: File) {}
 }

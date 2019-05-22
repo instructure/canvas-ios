@@ -77,7 +77,7 @@ public class MockURLSession: URLSession {
         response: URLResponse? = nil,
         error: Error? = nil,
         baseURL: URL = URL(string: "https://canvas.instructure.com")!
-        ) {
+    ) {
         let request = try! requestable.urlRequest(relativeTo: baseURL, accessToken: nil, actAsUserID: nil)
         let task = MockDataTask()
         task.mock = MockData(data: data, response: response, error: error)
