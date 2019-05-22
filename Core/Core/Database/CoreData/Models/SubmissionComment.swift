@@ -30,6 +30,7 @@ final public class SubmissionComment: NSManagedObject {
     @NSManaged public var mediaTypeRaw: String?
     @NSManaged public var mediaURL: URL?
     @NSManaged public var submissionID: String
+    @NSManaged public var attachments: Set<File>?
 
     public var mediaType: MediaCommentType? {
         get { return mediaTypeRaw.flatMap { MediaCommentType(rawValue: $0) } }
@@ -61,6 +62,9 @@ final public class SubmissionComment: NSManagedObject {
         model.mediaType = item.media_comment?.media_type
         model.mediaURL = item.media_comment?.url
         model.submissionID = submissionID
+        if let attachments = item.attachments, let files = try? File.save(attachments, in: client) {
+            model.attachments = Set(files)
+        }
         return model
     }
 

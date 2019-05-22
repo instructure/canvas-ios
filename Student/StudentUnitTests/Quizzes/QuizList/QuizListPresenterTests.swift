@@ -27,6 +27,7 @@ class QuizListPresenterTests: PersistenceTestCase {
     var presenter: QuizListPresenter!
 
     let update = XCTestExpectation(description: "presenter updated")
+    var onUpdateNavBar: ((String?, UIColor?) -> Void)?
 
     var color: UIColor?
     var navigationController: UINavigationController?
@@ -48,16 +49,18 @@ class QuizListPresenterTests: PersistenceTestCase {
     func testLoadCourse() {
         XCTAssertNil(resultingSubtitle)
         XCTAssertNil(resultingBackgroundColor)
-        update.expectedFulfillmentCount = 6
 
         let c = Course.make()
         Color.make(["canvasContextID": c.canvasContextID, "color": UIColor.red])
 
+        let expectation = self.expectation(description: "navbar")
+        expectation.assertForOverFulfill = false
+        onUpdateNavBar = {
+            if $0 == c.name && $1 == c.color { expectation.fulfill() }
+        }
         presenter.viewIsReady()
 
-        wait(for: [update], timeout: 1)
-        XCTAssertEqual(resultingSubtitle, c.name)
-        XCTAssertEqual(resultingBackgroundColor, c.color)
+        wait(for: [expectation], timeout: 5)
     }
 
     func testLoadQuizzes() {
@@ -122,5 +125,6 @@ extension QuizListPresenterTests: QuizListViewProtocol {
     func updateNavBar(subtitle: String?, color: UIColor?) {
         resultingBackgroundColor = color
         resultingSubtitle = subtitle
+        onUpdateNavBar?(subtitle, color)
     }
 }

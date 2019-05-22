@@ -75,7 +75,7 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
         super.setUp()
         presenter = SubmissionButtonPresenter(env: env, view: view, assignmentID: "1")
         presenter.assignment = Assignment.make([ "submission": Submission.make() ])
-        presenter.fileUploader = fileUploader
+        presenter.fileUpload.uploader = fileUploader
     }
 
     func testButtonText() {
@@ -220,17 +220,9 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
         XCTAssertEqual(filePicker?.sources, [.files, .library, .camera])
     }
 
-    func testAddFile() {
-        let url = URL(fileURLWithPath: "/file.txt")
-        presenter.add(filePicker, url: url)
-        XCTAssertEqual(presenter.files.count, 1)
-    }
-
     func testSubmitFiles() {
         let url = URL(fileURLWithPath: "/file.txt")
-        XCTAssertFalse(presenter.canSubmit(filePicker))
-        presenter.add(filePicker, url: url)
-        XCTAssertTrue(presenter.canSubmit(filePicker))
+        try! presenter.fileUpload.addFile(url)
         presenter.submit(filePicker)
         XCTAssert(filePicker.dismissed)
         XCTAssertEqual(fileUploader.uploads.count, 1)
@@ -242,11 +234,17 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
 
     func testCancelFileUpload() {
         let url = URL(fileURLWithPath: "/file.txt")
-        presenter.add(filePicker, url: url)
-        XCTAssertEqual(presenter.files.count, 1)
+        try! presenter.fileUpload.addFile(url)
         presenter.cancel(filePicker)
-        XCTAssertEqual(presenter.files.count, 0)
         XCTAssertEqual(fileUploader.cancels.count, 1)
+    }
+
+    func testCanSubmitFilePicker() {
+        let url = URL(fileURLWithPath: "/file.txt")
+        let filePicker = FilePickerViewController.create(environment: env, batchID: presenter.fileUpload.batchID)
+        XCTAssertFalse(presenter.canSubmit(filePicker))
+        try! presenter.fileUpload.addFile(url)
+        XCTAssertTrue(presenter.canSubmit(filePicker))
     }
 
     func testPickMediaRecordingType() {

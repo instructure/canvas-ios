@@ -79,7 +79,11 @@ extension NSPersistentContainer {
         }
     }
 
-    public func fetchedResultsController<T>(predicate: NSPredicate? = nil, sortDescriptors: [NSSortDescriptor], sectionNameKeyPath: String? = nil) -> NSFetchedResultsController<T> {
+    public func fetchedResultsController<T>(
+        predicate: NSPredicate? = nil,
+        sortDescriptors: [NSSortDescriptor],
+        sectionNameKeyPath: String? = nil
+    ) -> NSFetchedResultsController<T> {
         let request = NSFetchRequest<T>(entityName: String(describing: T.self))
         request.predicate = predicate ?? NSPredicate(value: true)
         request.sortDescriptors = sortDescriptors

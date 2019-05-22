@@ -61,19 +61,7 @@ class AssignmentDetailsPresenter {
         return assignments.first
     }
 
-    lazy var files: Store<LocalUseCase<File>> = env.subscribe(scope: Scope.where(#keyPath(File.assignmentID), equals: assignmentID)) { [weak self] in
-        self?.update()
-    }
-    enum FileSubmissionState {
-        case pending, failed
-    }
-    var fileSubmissionState: FileSubmissionState? {
-        if files.isEmpty {
-            return nil
-        }
-        let failed = files.first { $0.uploadError != nil } != nil
-        return failed ? .failed : .pending
-    }
+    lazy var fileUpload = UploadBatch(environment: env, batchID: "assignment-\(assignmentID)", callback: nil)
 
     init(env: AppEnvironment = .shared, view: AssignmentDetailsViewProtocol, courseID: String, assignmentID: String, fragment: String? = nil) {
         self.env = env
@@ -106,6 +94,9 @@ class AssignmentDetailsPresenter {
         colors.refresh()
         courses.refresh()
         assignments.refresh()
+        fileUpload.subscribe { [weak self] _ in
+            self?.update()
+        }
     }
 
     func refresh() {

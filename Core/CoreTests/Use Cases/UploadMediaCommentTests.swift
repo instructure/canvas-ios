@@ -16,6 +16,7 @@
 
 import XCTest
 @testable import Core
+import TestsFoundation
 
 class UploadMediaCommentTests: CoreTestCase {
     let upload = UploadMediaComment(courseID: "1", assignmentID: "2", userID: "3", submissionID: "4", isGroup: false, type: .audio, url: URL(string: "data:text/plain,abcde")!)
@@ -37,6 +38,7 @@ class UploadMediaCommentTests: CoreTestCase {
 
     override func tearDown() {
         UUID.reset()
+        super.tearDown()
     }
 
     func testCancel() {
@@ -68,10 +70,14 @@ class UploadMediaCommentTests: CoreTestCase {
     }
 
     func testSuccess() {
+        let baseURL = URL(string: "https://u.edu/")!
+        environment.api = URLSessionAPI(accessToken: nil, actAsUserID: nil, baseURL: nil, urlSession: MockURLSession())
+        let api = MockURLSession.self
+        api.mock(GetMediaServiceRequest(), value: APIMediaService(domain: "u.edu"))
         api.mock(PostMediaSessionRequest(), value: APIMediaSession(ks: "k"))
-        api.mock(PostMediaUploadTokenRequest(body: .init(ks: "k")), value: APIMediaIDWrapper(id: "t"))
-        api.mock(PostMediaUploadRequest(fileURL: upload.url, type: upload.type, ks: "k", token: "t"))
-        api.mock(PostMediaIDRequest(ks: "k", token: "t", type: upload.type), value: APIMediaIDWrapper(id: "2"))
+        api.mock(PostMediaUploadTokenRequest(body: .init(ks: "k")), data: "<id>t</id>".data(using: .utf8), baseURL: baseURL)
+        api.mock(PostMediaUploadRequest(fileURL: upload.url, type: upload.type, ks: "k", token: "t"), value: nil, baseURL: baseURL)
+        api.mock(PostMediaIDRequest(ks: "k", token: "t", type: upload.type), data: "<id>2</id>".data(using: .utf8), baseURL: baseURL)
         api.mock(PutSubmissionGradeRequest(
             courseID: upload.courseID,
             assignmentID: upload.assignmentID,
@@ -80,7 +86,13 @@ class UploadMediaCommentTests: CoreTestCase {
         ), value: APISubmission.make([
             "submission_comments": [ APISubmissionComment.fixture() ],
         ]))
-        upload.fetch(environment: environment) { _, _ in }
-        XCTAssertNil(error)
+        let called = self.expectation(description: "callback was called")
+        upload.fetch(environment: environment) { comment, error in
+            XCTAssertNotNil(comment)
+            XCTAssertNil(error)
+            called.fulfill()
+        }
+        wait(for: [called], timeout: 1)
+        api.dataMocks = [:]
     }
 }

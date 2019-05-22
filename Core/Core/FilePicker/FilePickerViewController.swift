@@ -25,11 +25,10 @@ public protocol FilePickerControllerDelegate: class {
     func cancel(_ controller: FilePickerViewController)
     func submit(_ controller: FilePickerViewController)
     func retry(_ controller: FilePickerViewController)
-    func add(_ controller: FilePickerViewController, url: URL)
     func canSubmit(_ controller: FilePickerViewController) -> Bool
 }
 
-open class FilePickerViewController: UIViewController, ErrorViewController {
+open class FilePickerViewController: UIViewController, ErrorViewController, FilePickerViewProtocol {
     @IBOutlet weak var emptyView: EmptyView!
     @IBOutlet weak var sourcesTabBar: UITabBar?
     @IBOutlet weak var tableView: UITableView!
@@ -44,10 +43,19 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
     public weak var delegate: FilePickerControllerDelegate?
     public var sources = FilePickerSource.allCases
     public var utis: [UTI] = [.any]
-    public var files: [File] = []
+    public var batchID: String!
+    public var files: Store<LocalUseCase<File>>? {
+        return presenter?.batch.files
+    }
+    private var presenter: FilePickerPresenter?
 
-    public static func create() -> FilePickerViewController {
-        return loadFromStoryboard()
+    public static func create(environment: AppEnvironment = .shared, batchID: String = UUID.string) -> FilePickerViewController {
+        let presenter = FilePickerPresenter(environment: environment, batchID: batchID)
+        let controller = loadFromStoryboard()
+        controller.batchID = batchID
+        controller.presenter = presenter
+        presenter.view = controller
+        return controller
     }
 
     open override func viewDidLoad() {
@@ -80,7 +88,8 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
         let linkColor = Brand.shared.linkColor.ensureContrast(against: .named(.backgroundLightest))
         sourcesTabBar?.tintColor = linkColor
         sourcesTabBar?.unselectedItemTintColor = linkColor
-        reload()
+        update()
+        presenter?.viewIsReady()
     }
 
     open override func viewWillAppear(_ animated: Bool) {
@@ -88,9 +97,9 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
         navigationController?.navigationBar.useModalStyle()
     }
 
-    public func reload() {
+    func update() {
         guard viewIfLoaded != nil else { return }
-        emptyView.isHidden = !files.isEmpty
+        emptyView.isHidden = files?.isEmpty == false
         updateProgressBar()
         updateBarButtons()
         updateSourceButtons()
@@ -98,6 +107,10 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
     }
 
     func updateProgressBar() {
+        guard let files = files else {
+            hideProgressBar()
+            return
+        }
         let total: Int = files.reduce(0, { $0 + $1.size })
         let sent = files.reduce(0, { $0 + $1.bytesSent })
         let failed = files.first { $0.uploadError != nil } != nil
@@ -113,6 +126,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
     }
 
     func updateBarButtons() {
+        guard let files = files else { return }
         let inProgress = files.first { $0.isUploading } != nil
         let failed = files.first { $0.uploadError != nil } != nil
         if inProgress {
@@ -143,8 +157,8 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
     }
 
     func updateSourceButtons() {
-        let inProgress = files.first { $0.isUploading } != nil
-        let failed = files.first { $0.uploadError != nil } != nil
+        let inProgress = files?.first { $0.isUploading } != nil
+        let failed = files?.first { $0.uploadError != nil } != nil
         let hideSourceButtons = inProgress || failed
         sourcesTabBar?.isHidden = hideSourceButtons
         dividerView.isHidden = hideSourceButtons
@@ -219,7 +233,7 @@ extension FilePickerViewController: UITabBarDelegate {
 extension FilePickerViewController: UIDocumentPickerDelegate {
     public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
         for url in urls {
-            delegate?.add(self, url: url)
+            presenter?.add(url: url)
         }
     }
 }
@@ -229,7 +243,7 @@ extension FilePickerViewController: UIImagePickerControllerDelegate, UINavigatio
         picker.dismiss(animated: true, completion: nil)
         do {
             if let image = info[.editedImage] as? UIImage ?? info[.originalImage] as? UIImage {
-                delegate?.add(self, url: try image.write())
+                presenter?.add(url: try image.write())
             } else if let videoURL = info[.mediaURL] as? URL {
                 let destination = URL
                     .temporaryDirectory
@@ -237,7 +251,7 @@ extension FilePickerViewController: UIImagePickerControllerDelegate, UINavigatio
                     .appendingPathComponent(String(Clock.now.timeIntervalSince1970))
                     .appendingPathExtension(videoURL.pathExtension)
                 try videoURL.move(to: destination)
-                delegate?.add(self, url: destination)
+                presenter?.add(url: destination)
             }
         } catch {
             showError(error)
@@ -247,19 +261,19 @@ extension FilePickerViewController: UIImagePickerControllerDelegate, UINavigatio
 
 extension FilePickerViewController: UITableViewDelegate, UITableViewDataSource {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return files.count
+        return files?.count ?? 0
     }
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(FilePickerCell.self, for: indexPath)
-        cell.file = files[indexPath.row]
+        cell.file = files?[indexPath.row]
         cell.accessibilityIdentifier = "FilePickerListItem.\(indexPath.row)"
 
         return cell
     }
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let error = files[indexPath.row].uploadError {
+        if let error = files?[indexPath.row]?.uploadError {
             showError(message: error)
         }
         tableView.deselectRow(at: indexPath, animated: true)

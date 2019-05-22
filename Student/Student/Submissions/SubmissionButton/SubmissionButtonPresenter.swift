@@ -26,12 +26,14 @@ class SubmissionButtonPresenter: NSObject {
     var assignment: Assignment?
     let assignmentID: String
     let env: AppEnvironment
+    let fileUpload: UploadBatch
     weak var view: SubmissionButtonViewProtocol?
 
     init(env: AppEnvironment = .shared, view: SubmissionButtonViewProtocol, assignmentID: String) {
         self.env = env
         self.view = view
         self.assignmentID = assignmentID
+        self.fileUpload = UploadBatch(environment: env, batchID: "assignment-\(assignmentID)", callback: nil)
     }
 
     func buttonText(course: Course, assignment: Assignment, quiz: Quiz?) -> String? {
@@ -52,7 +54,7 @@ class SubmissionButtonPresenter: NSObject {
             assignment.canMakeSubmissions &&
             assignment.isOpenForSubmissions() &&
             (course.enrollments?.hasRole(.student) ?? false) &&
-            files.isEmpty
+            fileUpload.state == nil
         )
         guard canSubmit else { return nil }
 
@@ -109,20 +111,7 @@ class SubmissionButtonPresenter: NSObject {
     }
 
     // MARK: - online_upload
-    lazy var filePicker = FilePickerViewController.create()
-    var fileUploader: FileUploader = UploadFile.shared
-    var fileUploadInProgress = false
-    lazy var files: Store<LocalUseCase<File>> = env.subscribe(scope: Scope.where(#keyPath(File.assignmentID), equals: assignmentID)) { [weak self] in
-        let files = self?.files.map { $0 } ?? []
-        self?.filePicker.files = files
-        self?.filePicker.reload()
-
-        if self?.fileUploadInProgress == true && files.allSatisfy({ $0.isUploaded }) {
-            self?.fileUploadInProgress = false
-            self?.filePicker.dismiss(animated: true, completion: nil)
-        }
-        self?.fileUploadInProgress = files.first { $0.isUploading } != nil
-    }
+    lazy var filePicker = FilePickerViewController.create(environment: env, batchID: "assignment-\(assignmentID)")
 }
 
 extension SubmissionButtonPresenter: FilePickerControllerDelegate {
@@ -138,33 +127,22 @@ extension SubmissionButtonPresenter: FilePickerControllerDelegate {
         filePicker.utis = allowedUTIs
         filePicker.delegate = self
         view?.present(UINavigationController(rootViewController: filePicker), animated: true, completion: nil)
-        files.refresh()
-    }
-
-    func add(_ controller: FilePickerViewController, url: URL) {
-        guard let assignment = assignment else { return }
-        let context = env.database.viewContext
-        context.performAndWait {
-            do {
-                let file: File = context.insert()
-                file.localFileURL = url
-                file.size = url.lookupFileSize()
-                file.prepareForSubmission(courseID: assignment.courseID, assignmentID: assignment.id)
-                try context.save()
-            } catch {
-                self.view?.showError(error)
-            }
-        }
     }
 
     func submit(_ controller: FilePickerViewController) {
         guard let assignment = assignment else { return }
         controller.dismiss(animated: true) {
-            for file in self.files {
-                self.fileUploader.upload(file, context: .submission(courseID: assignment.courseID, assignmentID: assignment.id)) { [weak self] error in
-                    if let error = error {
-                        self?.view?.showError(error)
+            let context = self.env.database.viewContext
+            context.performAndWait {
+                do {
+                    let files: [File] = context.all(where: #keyPath(File.batchID), equals: self.fileUpload.batchID)
+                    for file in files {
+                        file.prepareForSubmission(courseID: assignment.courseID, assignmentID: assignment.id)
                     }
+                    try context.save()
+                    self.fileUpload.upload(to: .submission(courseID: assignment.courseID, assignmentID: assignment.id))
+                } catch {
+                    self.view?.showError(error)
                 }
             }
         }
@@ -172,14 +150,7 @@ extension SubmissionButtonPresenter: FilePickerControllerDelegate {
 
     func cancel(_ controller: FilePickerViewController) {
         controller.dismiss(animated: true) {
-            let context = self.env.database.viewContext
-            context.performAndWait {
-                for file in self.files {
-                    self.fileUploader.cancel(file)
-                    context.delete(file)
-                }
-                try? context.save()
-            }
+            self.fileUpload.cancel()
         }
     }
 
@@ -188,7 +159,7 @@ extension SubmissionButtonPresenter: FilePickerControllerDelegate {
     }
 
     func canSubmit(_ controller: FilePickerViewController) -> Bool {
-        return files.isEmpty == false
+        return controller.files?.isEmpty == false
     }
 }
 

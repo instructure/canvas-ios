@@ -19,7 +19,7 @@ import TestsFoundation
 @testable import Core
 import XCTest
 
-class FileUploaderTests: CoreTestCase {
+class UploadFileTests: CoreTestCase {
     class MockURLSession: URLSession {
         var finishedAndInvalidated = false
         override func finishTasksAndInvalidate() {
@@ -61,7 +61,7 @@ class FileUploaderTests: CoreTestCase {
     override func setUp() {
         super.setUp()
         environment.currentSession = user
-        fileUploader = UploadFile(bundleID: "core-tests", appGroup: nil, environment: environment)
+        fileUploader = UploadFile(environment: environment, appGroup: nil)
         fileUploader.backgroundAPI = api
         files.refresh()
     }
@@ -164,7 +164,7 @@ class FileUploaderTests: CoreTestCase {
 
     func testInitIdentifier() {
         Keychain.addEntry(user)
-        let session = UploadFile.Session(bundleID: "core-tests", appGroup: nil, userID: user.userID, baseURL: user.baseURL, actAsUserID: user.actAsUserID)
+        let session = UploadFile.Session(appGroup: nil, userID: user.userID, baseURL: user.baseURL, actAsUserID: user.actAsUserID)
         let identifier = session.identifier
         let uploader = UploadFile(backgroundSessionIdentifier: identifier)
         XCTAssertNotNil(uploader)

@@ -103,7 +103,8 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         submissionButton?.setTitle(NSLocalizedString("Submission & Rubric", bundle: .student, comment: ""), for: .normal)
 
         // Routing from description
-        descriptionView?.navigation = .deepLink { (url: URL) -> Bool? in
+        descriptionView?.navigation = .deepLink { [weak self] (url: URL) -> Bool? in
+            guard let self = self else { return nil }
             return self.presenter?.route(to: url, from: self)
         }
 
@@ -154,7 +155,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         submittedLabel?.textColor = UIColor.named(.textSuccess).ensureContrast(against: .white)
         submittedLabel?.text = NSLocalizedString("Successfully submitted!", bundle: .student, comment: "")
 
-        if let fileSubmissionState = presenter?.fileSubmissionState {
+        if let fileSubmissionState = presenter?.fileUpload.state {
             gradeCell?.isHidden = false
             gradeCellDivider?.isHidden = false
             gradedView?.isHidden = true
@@ -166,12 +167,22 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
                 submittedLabel?.text = NSLocalizedString("Submission Failed", bundle: .core, comment: "")
                 submittedLabel?.textColor = UIColor.named(.textDanger).ensureContrast(against: .white)
                 fileSubmissionButton?.setTitle(NSLocalizedString("Tap to view details", bundle: .core, comment: ""), for: .normal)
-            case .pending:
+                return
+            case .uploading:
                 submittedLabel?.text = NSLocalizedString("Submission Uploading...", bundle: .core, comment: "")
                 submittedLabel?.textColor = UIColor.named(.textSuccess).ensureContrast(against: .white)
                 fileSubmissionButton?.setTitle(NSLocalizedString("Tap to view progress", bundle: .core, comment: ""), for: .normal)
+                return
+            case .staged:
+                submittedLabel?.text = NSLocalizedString("Submission In Progress...", bundle: .core, comment: "")
+                submittedLabel?.textColor = UIColor.named(.textSuccess).ensureContrast(against: .white)
+                fileSubmissionButton?.setTitle(NSLocalizedString("Tap to view progress", bundle: .core, comment: ""), for: .normal)
+                return
+            case .completed:
+                if let nav = presentedViewController as? UINavigationController, let filePicker = nav.viewControllers.first as? FilePickerViewController {
+                    filePicker.dismiss(animated: true, completion: nil)
+                }
             }
-            return
         }
 
         guard submission.workflowState != .unsubmitted else {

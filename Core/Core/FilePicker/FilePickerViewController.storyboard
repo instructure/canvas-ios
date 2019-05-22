@@ -15,7 +15,7 @@
             <objects>
                 <viewController storyboardIdentifier="FilePickerViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="322-BI-Xkc" customClass="FilePickerViewController" customModule="Core" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="d2d-X9-ntc">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PJu-Wl-5yf" userLabel="Content">
