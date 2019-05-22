@@ -181,34 +181,6 @@ class UploadBatchTests: CoreTestCase {
         XCTAssertEqual(uploader.cancels.count, 1)
     }
 
-    func testUnsubscribe() {
-        let expectation = self.expectation(description: "failed to unsubscribe")
-        expectation.isInverted = true
-        let batch = UploadBatch(environment: environment, batchID: "1", callback: nil)
-        let token = batch.subscribe {
-            if $0 == .staged {
-                expectation.fulfill()
-            }
-        }
-        batch.unsubscribe(token)
-        File.make(["batchID": "1", "taskIDRaw": nil, "id": nil, "uploadError": nil])
-        wait(for: [expectation], timeout: 0.5)
-    }
-
-    func testDeinitUnsubscribe() {
-        let expectation = self.expectation(description: "failed to unsubscribe")
-        expectation.isInverted = true
-        var batch: UploadBatch? = UploadBatch(environment: environment, batchID: "1") {
-            if $0 == .staged {
-                expectation.fulfill()
-            }
-        }
-        batch = nil
-        File.make(["batchID": "1", "taskIDRaw": nil, "id": nil, "uploadError": nil])
-        wait(for: [expectation], timeout: 0.5)
-        XCTAssertNil(batch)
-    }
-
     func testUploadError() throws {
         let expectation = self.expectation(description: "upload error")
         let error = NSError.instructureError("doh")
