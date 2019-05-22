@@ -61,6 +61,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         }
     }
 
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        if userActivity.activityType == NSUserActivityTypeBrowsingWeb, let url = userActivity.webpageURL, let login = GetSSOLogin(url: url) {
+            window?.rootViewController = LoadingViewController.create()
+            login.fetch(environment: environment) { [weak self] (session, error) -> Void in
+                guard let session = session, error == nil else {
+                    self?.changeUser()
+                    return
+                }
+                self?.userDidLogin(keychainEntry: session)
+            }
+            return true
+        }
+        return false
+    }
+
     func setupNotifications() {
         if ProcessInfo.isUITest {
             return
@@ -110,7 +125,7 @@ extension AppDelegate: LoginDelegate {
 
     func openExternalURL(_ url: URL) {
         // FIXME: Should open SFSafariViewController?
-        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        UIApplication.shared.open(url)
     }
 
     func userDidLogin(keychainEntry: KeychainEntry) {
