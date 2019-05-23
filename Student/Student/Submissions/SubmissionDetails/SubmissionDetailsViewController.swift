@@ -44,9 +44,8 @@ class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewPr
     override func viewDidLoad() {
         setupTitleViewInNavbar(title: NSLocalizedString("Submission", bundle: .student, comment: ""))
         drawer?.tabs?.addTarget(self, action: #selector(drawerTabChanged), for: .valueChanged)
-        emptyView?.submitCallback = { [weak self] in
-            guard let self = self else { return }
-            self.presenter?.submit(from: self)
+        emptyView?.submitCallback = { [weak self] button in
+            self?.presenter?.submit(button: button)
         }
         picker?.dataSource = self
         picker?.delegate = self
@@ -65,8 +64,10 @@ class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewPr
         let isSubmitted = submission?.workflowState != .unsubmitted
         contentView?.isHidden = !isSubmitted && !assignment.isExternalToolAssignment
         drawer?.fileCount = submission?.attachments?.count ?? 0
-        emptyView?.isHidden = isSubmitted || assignment.isExternalToolAssignment
+        let title = presenter.submissionButtonText
+        emptyView?.isHidden = isSubmitted || title == nil
         emptyView?.dueText = assignment.assignmentDueByText
+        emptyView?.submitButtonTitle = title
         pickerButton?.isHidden = !isSubmitted
         if let submittedAt = submission?.submittedAt {
             pickerButton?.setTitle(DateFormatter.localizedString(from: submittedAt, dateStyle: .medium, timeStyle: .short), for: .normal)

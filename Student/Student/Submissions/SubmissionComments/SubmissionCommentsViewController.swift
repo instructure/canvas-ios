@@ -109,6 +109,14 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
             picker.cameraDevice = .front
             self?.present(picker, animated: true)
         })
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Choose File", bundle: .student, comment: ""), style: .default) { [weak self] _ in
+            let picker = FilePickerViewController.create()
+            picker.delegate = self
+            picker.title = NSLocalizedString("Attachments", bundle: .student, comment: "")
+            picker.submitButtonTitle = NSLocalizedString("Send", bundle: .student, comment: "")
+            let nav = UINavigationController(rootViewController: picker)
+            self?.present(nav, animated: true, completion: nil)
+        })
         alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", bundle: .student, comment: ""), style: .cancel))
         present(alert, animated: true)
     }
@@ -239,6 +247,10 @@ extension SubmissionCommentsViewController: UITableViewDataSource, UITableViewDe
         let reuseID = currentUserID == comment.authorID ? "myComment" : "theirComment"
         let cell: SubmissionCommentTextCell = tableView.dequeue(withID: reuseID, for: indexPath)
         cell.update(comment: comment)
+        cell.onTapAttachment = { [weak self] file in
+            guard let self = self else { return }
+            self.presenter?.showAttachment(file, from: self)
+        }
         cell.transform = CGAffineTransform(scaleX: 1, y: -1)
         return cell
     }
@@ -249,5 +261,24 @@ extension SubmissionCommentsViewController: UITextViewDelegate {
         addCommentButton?.isEnabled = !(textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
         addCommentPlaceholder?.isHidden = !textView.text.isEmpty
         setInsets()
+    }
+}
+
+extension SubmissionCommentsViewController: FilePickerControllerDelegate {
+    func retry(_ controller: FilePickerViewController) {
+    }
+
+    func canSubmit(_ controller: FilePickerViewController) -> Bool {
+        return controller.files?.isEmpty == false
+    }
+
+    func cancel(_ controller: FilePickerViewController) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+
+    func submit(_ controller: FilePickerViewController) {
+        controller.dismiss(animated: true) {
+            self.presenter?.addFileComment(batchID: controller.batchID)
+        }
     }
 }

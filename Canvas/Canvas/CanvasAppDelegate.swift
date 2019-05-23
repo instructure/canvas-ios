@@ -359,6 +359,17 @@ extension AppDelegate: LoginDelegate, NativeLoginManagerDelegate {
 //  MARK: - Handle siri notifications
 extension AppDelegate {
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        if userActivity.activityType == NSUserActivityTypeBrowsingWeb, let url = userActivity.webpageURL, let login = GetSSOLogin(url: url) {
+            window?.rootViewController = LoadingViewController.create()
+            login.fetch(environment: environment) { [weak self] (session, error) -> Void in
+                guard let session = session, error == nil else {
+                    self?.changeUser()
+                    return
+                }
+                self?.userDidLogin(keychainEntry: session)
+            }
+            return true
+        }
         if let path = userActivity.userInfo?["url"] as? String, let url = URL(string: path) {
             openCanvasURL(url)
             return true

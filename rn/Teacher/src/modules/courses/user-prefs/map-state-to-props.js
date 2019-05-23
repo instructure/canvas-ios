@@ -16,11 +16,14 @@
 
 // @flow
 
+import showColorOverlayForCourse from '../../../common/show-color-overlay-for-course'
+
 export type StateProps = {
   course: Course,
   color: string,
   pending: number,
   error: ?string,
+  showColorOverlay: boolean,
 }
 
 export default function stateToProps (state: AppState, ownProps: {courseID: string}): StateProps {
@@ -30,5 +33,6 @@ export default function stateToProps (state: AppState, ownProps: {courseID: stri
     color: course.color,
     pending: state.favoriteCourses.pending + course.pending,
     error: course.error,
+    showColorOverlay: showColorOverlayForCourse(course.course, state.userInfo.userSettings.hide_dashcard_color_overlays),
   }
 }

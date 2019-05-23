@@ -63,6 +63,7 @@ class DashboardViewController: UIViewController, DashboardViewProtocol {
         collectionView?.delegate = self
         collectionView?.dataSource = self
         collectionView?.refreshControl = refreshControl
+        collectionView?.registerCell(CourseCardCell.self)
 
         // Debug logs
         #if DEBUG
@@ -170,9 +171,10 @@ extension DashboardViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == DashboardViewSection.courses.rawValue {
-            let cell: DashboardCourseCell = collectionView.dequeue(for: indexPath)
+            let cell: CourseCardCell = collectionView.dequeue(for: indexPath)
             guard let model = presenter?.courses[indexPath.row] else { return UICollectionViewCell(frame: CGRect.zero) }
-            cell.configure(with: model)
+            let hideDashcardColorOverlays = presenter?.settings.first?.hideDashcardColorOverlays ?? false
+            cell.configure(with: model, hideDashcardColorOverlays: hideDashcardColorOverlays)
             cell.optionsCallback = { [weak self, model] in
                 // TODO:
                 //self.delegate?.courseWasSelected(model.courseID)

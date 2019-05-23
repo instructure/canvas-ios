@@ -18,7 +18,7 @@ import Foundation
 
 // https://canvas.instructure.com/doc/api/users.html#UserDisplay
 struct APIUserDisplay: Codable, Equatable {
-    let id: String
+    let id: ID
     let short_name: String
     let avatar_image_url: URL?
     let html_url: URL
@@ -26,7 +26,7 @@ struct APIUserDisplay: Codable, Equatable {
 
 // https://canvas.instructure.com/doc/api/users.html#User
 struct APIUser: Codable, Equatable {
-    let id: String
+    let id: ID
     let name: String
     let sortable_name: String
     let short_name: String
@@ -46,4 +46,10 @@ struct APIUser: Codable, Equatable {
 
 public struct APICustomColors: Codable, Equatable {
     let custom_colors: [String: String]
+}
+
+public struct APIUserSettings: Codable, Equatable {
+    let manual_mark_as_read: Bool
+    let collapse_global_nav: Bool
+    let hide_dashcard_color_overlays: Bool
 }

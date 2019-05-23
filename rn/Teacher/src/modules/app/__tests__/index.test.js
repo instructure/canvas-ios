@@ -29,6 +29,13 @@ describe('App', () => {
     })
 
     describe('filterCourse', () => {
+      it('filters courses access restricted by date', () => {
+        const restricted = templates.course({ access_restricted_by_date: true })
+        const available = templates.course({ access_restricted_by_date: false })
+        const result = [restricted, available].filter(app.filterCourse)
+        expect(result).toEqual([available])
+      })
+
       it('filters courses based on enrollment types', () => {
         let courses = [
           templates.course({ enrollments: [templates.enrollment({ type: 'teacher' })] }),
@@ -40,6 +47,22 @@ describe('App', () => {
 
         const result = courses.filter(app.filterCourse)
         expect(result.every(c => c.enrollments && c.enrollments[0].type !== 'student')).toEqual(true)
+      })
+    })
+  })
+
+  describe('student', () => {
+    beforeEach(() => {
+      App.setCurrentApp('student')
+      app = App.current()
+    })
+
+    describe('filterCourse', () => {
+      it('filters courses access restricted by date', () => {
+        const restricted = templates.course({ access_restricted_by_date: true })
+        const available = templates.course({ access_restricted_by_date: false })
+        const result = [restricted, available].filter(app.filterCourse)
+        expect(result).toEqual([available])
       })
     })
   })

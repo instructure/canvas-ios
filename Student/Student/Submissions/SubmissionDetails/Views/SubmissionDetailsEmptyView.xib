@@ -40,7 +40,7 @@
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This assignment is due by 11:59pm." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7av-C4-4Bu" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
                             <rect key="frame" x="16" y="344.5" width="343" height="20.5"/>
-                            <accessibility key="accessibilityConfiguration" identifier="SubmissionDetailsPage.emptyAssignmentDueBy"/>
+                            <accessibility key="accessibilityConfiguration" identifier="SubmissionDetails.emptyAssignmentDueBy"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -51,7 +51,7 @@
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XGB-xT-EY9" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
                             <rect key="frame" x="63.5" y="389" width="248" height="48"/>
-                            <accessibility key="accessibilityConfiguration" identifier="SubmissionDetailsPage.emptySubmitButton"/>
+                            <accessibility key="accessibilityConfiguration" identifier="SubmissionDetails.emptySubmitButton"/>
                             <constraints>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="48" id="o9r-V4-NWQ"/>
                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="248" id="pMn-9L-HAZ"/>

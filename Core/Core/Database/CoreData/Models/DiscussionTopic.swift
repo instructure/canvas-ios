@@ -50,7 +50,7 @@ public final class DiscussionTopic: NSManagedObject, WriteableModel {
             return try File.save(attachment, in: context)
         } ?? [])
         model.authorAvatarURL = item.author.avatar_image_url
-        model.authorID = item.author.id
+        model.authorID = item.author.id?.value
         model.authorName = item.author.display_name
         return model
     }

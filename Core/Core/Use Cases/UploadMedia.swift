@@ -50,8 +50,8 @@ public class UploadMedia: NSObject, URLSessionDelegate, URLSessionDataDelegate {
                 error == nil,
                 let domain = data?.domain.replacingOccurrences(of: "https://", with: ""),
                 let url = URL(string: "https://\(domain)")
-                else {
-                    return self.callback(nil, error)
+            else {
+                return self.callback(nil, error)
             }
             self.mediaAPI = URLSessionAPI(accessToken: nil, baseURL: url, urlSession: self.urlSession)
             self.getSession()

@@ -18,22 +18,22 @@ import Foundation
 
 // https://canvas.instructure.com/doc/api/brand_configs.html
 public struct APIBrandVariables: Codable, Equatable {
-    let button_primary_bgd: String
-    let button_primary_text: String
-    let button_secondary_bgd: String
-    let button_secondary_text: String
-    let font_color_dark: String
-    let header_image_bgd: String
+    let button_primary_bgd: String?
+    let button_primary_text: String?
+    let button_secondary_bgd: String?
+    let button_secondary_text: String?
+    let font_color_dark: String?
+    let header_image_bgd: String?
     let header_image: URL?
-    let link_color: String
-    let nav_badge_bgd: String
-    let nav_badge_text: String
-    let nav_bgd: String
-    let nav_icon_fill: String
-    let nav_icon_fill_active: String
-    let nav_text_color: String
-    let nav_text_color_active: String
-    let primary: String
+    let link_color: String?
+    let nav_badge_bgd: String?
+    let nav_badge_text: String?
+    let nav_bgd: String?
+    let nav_icon_fill: String?
+    let nav_icon_fill_active: String?
+    let nav_text_color: String?
+    let nav_text_color_active: String?
+    let primary: String?
 
     enum CodingKeys: String, CodingKey {
         case button_primary_bgd = "ic-brand-button--primary-bgd"

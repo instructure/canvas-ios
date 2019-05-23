@@ -18,7 +18,7 @@ import Foundation
 import Core
 import AVKit
 
-public protocol SubmissionDetailsViewProtocol: ErrorViewController, ColoredNavViewProtocol {
+protocol SubmissionDetailsViewProtocol: ColoredNavViewProtocol, SubmissionButtonViewProtocol {
     func reload()
     func reloadNavBar()
     func embed(_ controller: UIViewController?)
@@ -33,26 +33,25 @@ class SubmissionDetailsPresenter {
     let env: AppEnvironment
     weak var view: SubmissionDetailsViewProtocol?
 
-    lazy var submissions: Store<GetSubmission> = {
-        let useCase = GetSubmission(context: context, assignmentID: assignmentID, userID: userID)
-        return env.subscribe(useCase) { [weak self] in
-            self?.update()
-        }
-    }()
+    let submissionButtonPresenter: SubmissionButtonPresenter
+    var submissionButtonText: String? {
+        guard let course = course.first, let assignment = assignment.first else { return nil }
+        return submissionButtonPresenter.buttonText(course: course, assignment: assignment, quiz: quizzes?.first)
+    }
 
-    lazy var assignment: Store<GetAssignment> = {
-        let useCase = GetAssignment(courseID: context.id, assignmentID: assignmentID)
-        return env.subscribe(useCase) { [weak self] in
-            self?.update()
-        }
-    }()
+    lazy var submissions = env.subscribe(GetSubmission(context: context, assignmentID: assignmentID, userID: userID)) { [weak self] in
+        self?.update()
+    }
 
-    lazy var course: Store<GetCourseUseCase> = {
-        let useCase = GetCourseUseCase(courseID: context.id)
-        return env.subscribe(useCase) { [weak self] in
-            self?.update()
-        }
-    }()
+    lazy var assignment = env.subscribe(GetAssignment(courseID: context.id, assignmentID: assignmentID)) { [weak self] in
+        self?.update()
+    }
+
+    lazy var course = env.subscribe(GetCourse(courseID: context.id)) { [weak self] in
+        self?.update()
+    }
+
+    var quizzes: Store<GetQuiz>?
 
     var selectedAttempt: Int = 0
     var selectedFileID: String?
@@ -68,6 +67,7 @@ class SubmissionDetailsPresenter {
         self.userID = userID
         self.env = env
         self.view = view
+        self.submissionButtonPresenter = SubmissionButtonPresenter(env: env, view: view, assignmentID: assignmentID)
     }
 
     func viewIsReady() {
@@ -78,6 +78,13 @@ class SubmissionDetailsPresenter {
     }
 
     func update() {
+        if quizzes?.useCase.quizID != assignment.first?.quizID {
+            quizzes = assignment.first?.quizID.flatMap { quizID in env.subscribe(GetQuiz(courseID: context.id, quizID: quizID)) { [weak self] in
+                self?.update()
+            } }
+            quizzes?.refresh()
+        }
+
         let assignment = self.assignment.first
         let submission = submissions.filter({ $0.attempt == selectedAttempt }).first ?? submissions.first
         selectedAttempt = submission?.attempt ?? selectedAttempt
@@ -137,13 +144,13 @@ class SubmissionDetailsPresenter {
             if let quizID = assignment.quizID,
                 let url = URL(string: "/courses/\(assignment.courseID)/quizzes/\(quizID)/history?version=\(selectedAttempt)&headless=1", relativeTo: env.api.baseURL) {
                 let controller = CoreWebViewController(env: env)
-                controller.webView.accessibilityIdentifier = "SubmissionDetailsPage.onlineQuizWebView"
+                controller.webView.accessibilityIdentifier = "SubmissionDetails.onlineQuizWebView"
                 controller.webView.load(URLRequest(url: url))
                 return controller
             }
         case .some(.online_text_entry):
             let controller = CoreWebViewController(env: env)
-            controller.webView.accessibilityIdentifier = "SubmissionDetailsPage.onlineTextEntryWebView"
+            controller.webView.accessibilityIdentifier = "SubmissionDetails.onlineTextEntryWebView"
             controller.webView.loadHTMLString(submission.body ?? "")
             return controller
         case .some(.online_upload):
@@ -162,7 +169,7 @@ class SubmissionDetailsPresenter {
             guard let previewUrl = submission.previewUrl else { break }
 
             let controller = CoreWebViewController(env: env)
-            controller.webView.accessibilityIdentifier = "SubmissionDetailsPage.discussionWebView"
+            controller.webView.accessibilityIdentifier = "SubmissionDetails.discussionWebView"
             controller.webView.load(URLRequest(url: previewUrl))
             return controller
         case .some(.online_url):
@@ -174,7 +181,7 @@ class SubmissionDetailsPresenter {
             let player = AVPlayer(url: mediaComment.url)
             let controller = AVPlayerViewController()
             controller.player = player
-            controller.view.accessibilityIdentifier = "SubmissionDetailsPage.mediaPlayer"
+            controller.view.accessibilityIdentifier = "SubmissionDetails.mediaPlayer"
             return controller
         default:
             return nil
@@ -200,14 +207,17 @@ class SubmissionDetailsPresenter {
                 presenter: self
             )
         case .rubric:
-            return RubricViewController.create(env: env,
-                                               courseID: context.id,
-                                               assignmentID: assignmentID,
-                                               userID: userID)
+            return RubricViewController.create(
+                env: env,
+                courseID: context.id,
+                assignmentID: assignmentID,
+                userID: userID
+            )
         }
     }
 
-    func submit(from viewController: UIViewController) {
-        // TODO: share submit button logic currently in AssignmentDetails
+    func submit(button: UIView) {
+        guard let assignment = assignment.first else { return }
+        submissionButtonPresenter.submitAssignment(assignment, button: button)
     }
 }

@@ -24,19 +24,13 @@ class CourseNavigationPresenter {
     var context: Context
     let env: AppEnvironment
 
-    lazy var courses: Store<GetCourseUseCase> = {
-        let useCase = GetCourseUseCase(courseID: context.id)
-        return self.env.subscribe(useCase) { [weak self] in
-            self?.update()
-        }
-    }()
+    lazy var courses = env.subscribe(GetCourse(courseID: context.id)) { [weak self] in
+        self?.update()
+    }
 
-    lazy var tabs: Store<GetContextTabs> = {
-        let useCase = GetContextTabs(context: context)
-        return self.env.subscribe(useCase) { [weak self] in
-            self?.update()
-        }
-    }()
+    lazy var tabs = env.subscribe(GetContextTabs(context: context)) { [weak self] in
+        self?.update()
+    }
 
     init(courseID: String, view: CourseNavigationViewProtocol, env: AppEnvironment = .shared) {
         self.context = ContextModel(.course, id: courseID)

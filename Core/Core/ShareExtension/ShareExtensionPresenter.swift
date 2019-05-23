@@ -35,19 +35,13 @@ class ShareExtensionPresenter {
     var userID: String?
     var assignment: Assignment?
 
-    lazy var assignments: Store<GetAssignment> = {
-        let useCase = GetAssignment(courseID: courseID, assignmentID: assignmentID, include: [.submission])
-        return self.env.subscribe(useCase) { [weak self] in
-            self?.update()
-        }
-    }()
+    lazy var assignments = env.subscribe(GetAssignment(courseID: courseID, assignmentID: assignmentID, include: [.submission])) { [weak self] in
+        self?.update()
+    }
 
-    lazy var courses: Store<GetCourseUseCase> = {
-        let useCase = GetCourseUseCase(courseID: courseID)
-        return self.env.subscribe(useCase) { [weak self] in
-            self?.update()
-        }
-    }()
+    lazy var courses = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
+        self?.update()
+    }
 
     init(env: AppEnvironment = .shared, view: ShareExtensionViewProtocol, courseID: String, assignmentID: String) {
         self.env = env

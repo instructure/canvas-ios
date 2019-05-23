@@ -26,12 +26,17 @@ class RubricViewController: UIViewController {
     }
 
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var emptyView: UIView!
+    @IBOutlet weak var emptyViewLabel: UILabel!
     var models: [RubricViewModel] = []
     var presenter: RubricPresenter!
     var cellHeightCache = [Int: CGFloat]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        emptyViewLabel.text = NSLocalizedString("There is no rubric for this assignment", comment: "")
+
         setupCollectionView()
         presenter.viewIsReady()
     }
@@ -109,7 +114,7 @@ extension RubricViewController: RubricViewProtocol {
     }
 
     func showEmptyState() {
-        print("***** show empty state here *****")
+        emptyView?.isHidden = false
     }
 }
 

@@ -33,7 +33,7 @@ class TextSubmissionPresenterTests: PersistenceTestCase {
     func testSubmitError() {
         let text = "<b>submission</b>"
         let error = NSError(domain: "test", code: 5, userInfo: nil)
-        MockURLSession.mock(submissionRequest(for: text), error: error)
+        MockURLSession.mock(submissionRequest(for: text), value: nil, error: error)
         let expectation = self.expectation(description: "got an error")
         presenter.submit(text) { error in
             XCTAssertNotNil(error)

@@ -18,6 +18,6 @@ import Foundation
 
 // https://canvas.instructure.com/doc/api/favorites.html#Favorite
 struct APIFavorite: Codable, Equatable {
-    let context_id: String
+    let context_id: ID
     let context_type: String
 }

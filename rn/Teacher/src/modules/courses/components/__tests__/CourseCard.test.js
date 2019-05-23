@@ -30,6 +30,7 @@ let defaultProps = {
   onPress: () => {},
   course: courseTemplate.course(),
   color: '#333',
+  hideOverlay: false,
   style: {},
   initialHeight: 100,
   onCoursePreferencesPressed: () => {},
@@ -42,6 +43,16 @@ it('renders', () => {
     />
   ).toJSON()
 
+  expect(tree).toMatchSnapshot()
+})
+
+it('renders without the color overlay', () => {
+  let tree = renderer.create(
+    <CourseCard
+      {...defaultProps}
+      hideOverlay
+    />
+  ).toJSON()
   expect(tree).toMatchSnapshot()
 })
 

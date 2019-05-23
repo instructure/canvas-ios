@@ -66,3 +66,9 @@ export type CreateUser = {
     communication_channel_skip_confirmation?: boolean,
   },
 }
+
+export type UserSettings = {
+  manual_mark_as_read: boolean,
+  collapse_global_nav: boolean,
+  hide_dashcard_color_overlays: boolean,
+}

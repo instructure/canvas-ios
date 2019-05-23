@@ -2,7 +2,7 @@
 "--:--" = "--:--";
 
 /* No comment provided by engineer. */
-"\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user." = "Att ”agera som\" loggar i huvudsak in som den här användaren utan lösenord. Du kommer att kunna utföra åtgärder som om du vore den här användaren, och från andra användares perspektiv som om den här användaren utförde dem. I historik-loggar registreras dock att du var den som utförde åtgärderna på den här användarens vägnar.";
+"\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user." = "Att \"agera som\" loggar i huvudsak in som den här användaren utan lösenord. Du kommer att kunna utföra åtgärder som om du vore den här användaren, och från andra användares perspektiv som om den här användaren utförde dem. I historik-loggar registreras dock att du var den som utförde åtgärderna på den här användarens vägnar.";
 
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ Medelbetyg";
@@ -33,6 +33,9 @@
 
 /* No comment provided by engineer. */
 "Bold" = "Fet";
+
+/* No comment provided by engineer. */
+"Camera" = "Kamera";
 
 /* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "Hittar du inte din skola? Försök att skriva in skolans fullständiga URL.";
@@ -89,13 +92,22 @@
 "Domain" = "Domän";
 
 /* No comment provided by engineer. */
+"Done" = "Färdig";
+
+/* No comment provided by engineer. */
 "Error" = "Fel";
 
 /* No comment provided by engineer. */
 "External Tool" = "Externt verktyg";
 
 /* No comment provided by engineer. */
+"Failed upload" = "Det gick inte att ladda upp";
+
+/* No comment provided by engineer. */
 "File Upload" = "Filuppladdning";
+
+/* No comment provided by engineer. */
+"Files" = "Filer";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "Slutlig bedömning: %@";
@@ -146,6 +158,9 @@
 "Launch External Tool" = "Starta externt verktyg";
 
 /* No comment provided by engineer. */
+"Library" = "Bibliotek";
+
+/* No comment provided by engineer. */
 "Link" = "Länk";
 
 /* No comment provided by engineer. */
@@ -186,6 +201,9 @@
 
 /* No comment provided by engineer. */
 "N/A" = "Ej tillgängligt";
+
+/* No comment provided by engineer. */
+"No Content" = "Inget innehåll";
 
 /* No comment provided by engineer. */
 "No Due Date" = "Inget inlämningsdatum";
@@ -230,6 +248,9 @@
 "Pause" = "Paus";
 
 /* No comment provided by engineer. */
+"Permission Needed" = "Tillstånd behövs";
+
+/* No comment provided by engineer. */
 "Play" = "Spela upp";
 
 /* No comment provided by engineer. */
@@ -260,6 +281,9 @@
 "Reply to the annotation or previous comments" = "Svara på noteringen eller tidigare kommentarer";
 
 /* No comment provided by engineer. */
+"Retry" = "Försök igen";
+
+/* No comment provided by engineer. */
 "See what's new." = "Se vad som är nytt";
 
 /* No comment provided by engineer. */
@@ -281,6 +305,9 @@
 "Set text color" = "Ange textfärg";
 
 /* No comment provided by engineer. */
+"Settings" = "Inställningar";
+
+/* No comment provided by engineer. */
 "Site Admin Login" = "Sidoadministratörs inloggning";
 
 /* No comment provided by engineer. */
@@ -294,6 +321,9 @@
 
 /* No comment provided by engineer. */
 "Submission failed." = "Inlämningen misslyckades.";
+
+/* No comment provided by engineer. */
+"Submit" = "Lämna in";
 
 /* No comment provided by engineer. */
 "Submit Assignment" = "Lämna in uppgift";
@@ -347,6 +377,12 @@
 "Unordered List" = "Ej ordnad lista";
 
 /* No comment provided by engineer. */
+"Uploading %@ of %@" = "Laddar upp %1$@ av %2$@";
+
+/* No comment provided by engineer. */
+"Uploading..." = "Laddar upp...";
+
+/* No comment provided by engineer. */
 "URL" = "URL";
 
 /* No comment provided by engineer. */
@@ -369,6 +405,9 @@
 
 /* No comment provided by engineer. */
 "yellow" = "gul";
+
+/* No comment provided by engineer. */
+"You must enable Microphone permissions in Settings." = "Du måste aktivera mikrofonbehörigheter i Inställningar.";
 
 /* No comment provided by engineer. */
 "You need at least one active observer enrollment to use Canvas Parent. If you're a student or teacher, try one of our other apps below." = "Du behöver minst en aktiv observerar-registrering för att använda Canvas Parent. Om du är elev eller lärare, prova en av våra appar nedan.";

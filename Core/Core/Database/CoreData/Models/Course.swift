@@ -37,9 +37,9 @@ final public class Course: NSManagedObject, Context, WriteableModel {
 
     @discardableResult
     public static func save(_ item: APICourse, in context: PersistenceClient) throws -> Course {
-        let predicate = NSPredicate(format: "%K == %@", #keyPath(Course.id), item.id)
+        let predicate = NSPredicate(format: "%K == %@", #keyPath(Course.id), item.id.value)
         let model: Course = context.fetch(predicate).first ?? context.insert()
-        model.id = item.id
+        model.id = item.id.value
         model.name = item.name
         model.isFavorite = item.is_favorite ?? false
         model.courseCode = item.course_code
@@ -108,5 +108,12 @@ extension Course {
         }
 
         return scoreString
+    }
+
+    public func showColorOverlay(hideOverlaySetting: Bool) -> Bool {
+        if imageDownloadURL == nil {
+            return true
+        }
+        return !hideOverlaySetting
     }
 }

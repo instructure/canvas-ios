@@ -2,9 +2,8 @@
 /*
 Downloads and generates all the icons from instructure.design.
 
-Depends on node & cairosvg
- brew install node cairo libffi python
- pip3 install cairosvg
+Depends on node
+ brew install node
 
 Run this script from the repo root directory
  yarn build-icons
@@ -13,13 +12,14 @@ Run this script from the repo root directory
 const fs = require('fs')
 const path = require('path')
 const { execSync } = require('child_process')
+const convert = require('./svg2pdf')
 
 const echo = (out) => console.log(out)
 const run = (cmd) => execSync(cmd, { stdio: 'inherit' })
 
 // List of all icons we want to export from
-// https://github.com/instructure/instructure-ui/tree/master/packages/ui-icons/src/__svg__/Line
-// https://github.com/instructure/instructure-ui/tree/master/packages/ui-icons/src/__svg__/Solid
+// https://github.com/instructure/instructure-ui/tree/master/packages/ui-icons/svg/Line
+// https://github.com/instructure/instructure-ui/tree/master/packages/ui-icons/svg/Solid
 const whitelist = [
   'add',
   'alerts',
@@ -61,6 +61,7 @@ const whitelist = [
   'numbered-list',
   'outcomes',
   'paint',
+  'paperclip',
   'pause',
   'pdf',
   'play',
@@ -101,16 +102,15 @@ for (const icon of whitelist) {
     let slug = (overrides[icon] || {})[type] || icon
     const filepath = `tmp/${name}${type}.svg`
     const folder = `${assetsFolder}/${name}${type}.imageset`
-    run(`curl -sSL https://raw.githubusercontent.com/instructure/instructure-ui/master/packages/ui-icons/src/__svg__/${type}/${slug}.svg > ${filepath}`)
+    run(`curl -sSL https://raw.githubusercontent.com/instructure/instructure-ui/master/packages/ui-icons/svg/${type}/${slug}.svg > ${filepath}`)
     run(`mkdir -p ${folder}`)
     // Icons in tab & nav bar need intrinsic size of 24x24
-    run(`cairosvg "${filepath}" -d72 -W24 -H24 -o "${folder}/${name}.pdf"`)
-    run(`LC_ALL=C sed -i '' 's/cairo [^ ]* (http:\\/\\/cairographics.org)//' "${folder}/${name}.pdf"`)
+    convert(filepath, `${folder}/${name}.pdf`, [ 24, 24 ])
     fs.writeFileSync(`${folder}/Contents.json`, `{
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "${name}.pdf"${ !/right|left|list|play/i.test(name) ? '' : `,
+      "filename" : "${name}.pdf"${ !/right|left|list|play|forward|reply/i.test(name) ? '' : `,
       "language-direction" : "left-to-right"` }
     }
   ],

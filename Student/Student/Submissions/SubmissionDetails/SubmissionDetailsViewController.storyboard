@@ -28,7 +28,7 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Iq-2N-D4G" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="38"/>
-                                <accessibility key="accessibilityConfiguration" identifier="SubmissionDetailsPage.attemptPickerToggle"/>
+                                <accessibility key="accessibilityConfiguration" identifier="SubmissionDetails.attemptPickerToggle"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="38" id="4ET-91-dZS"/>
                                 </constraints>
@@ -44,7 +44,6 @@
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="u5L-w3-mKu" customClass="IconView" customModule="Student" customModuleProvider="target">
                                 <rect key="frame" x="343" y="17" width="16" height="16"/>
-                                <accessibility key="accessibilityConfiguration" identifier="SubmissionDetailsPage.attemptPickerArrow"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="16" id="d6K-gN-0PI"/>
                                     <constraint firstAttribute="width" constant="16" id="zdF-j0-28M"/>
@@ -57,7 +56,7 @@
                             <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z8l-gf-K01">
                                 <rect key="frame" x="0.0" y="38" width="375" height="216"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <accessibility key="accessibilityConfiguration" identifier="SubmissionDetailsPage.attemptPicker"/>
+                                <accessibility key="accessibilityConfiguration" identifier="SubmissionDetails.attemptPicker"/>
                             </pickerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FS1-GB-kdN" customClass="DividerView" customModule="Student" customModuleProvider="target">
                                 <rect key="frame" x="16" y="38" width="343" height="1"/>

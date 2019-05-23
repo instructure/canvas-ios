@@ -155,4 +155,30 @@ class SubmissionTests: CoreTestCase {
         let submissions: [Submission] = databaseClient.fetch()
         XCTAssertEqual(submissions.first?.rubricAssessments?["1"], assessments.first)
     }
+
+    func testSaveCommentAttachments() throws {
+        let item = APISubmission.make([
+            "submission_comments": [
+                APISubmissionComment.fixture([
+                    "attachments": [
+                        APIFile.fixture(["id": "1"]),
+                        APIFile.fixture(["id": "2"]),
+                    ],
+                ]),
+            ],
+        ])
+        try Submission.save(item, in: databaseClient)
+        let submissions: [Submission] = databaseClient.fetch()
+        let submission = submissions.first
+        XCTAssertNotNil(submission)
+
+        let comments: [SubmissionComment] = databaseClient.fetch()
+        let comment = comments.first
+        XCTAssertNotNil(comment)
+        XCTAssertNotNil(comment?.submissionID)
+        XCTAssertEqual(comment?.submissionID, submission?.id)
+        let fileIDs = comment?.attachments?.map { $0.id }
+        XCTAssertTrue(fileIDs?.contains("1") == true)
+        XCTAssertTrue(fileIDs?.contains("2") == true)
+    }
 }

@@ -29,6 +29,13 @@ public protocol Context {
     var id: String { get }
 }
 
+public protocol APIContext: Context {
+    var id: ID { get }
+}
+extension APIContext {
+    var id: String { return id.value }
+}
+
 public extension Context {
     var canvasContextID: String {
         return "\(contextType)_\(id)"

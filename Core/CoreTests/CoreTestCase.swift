@@ -28,7 +28,6 @@ class CoreTestCase: XCTestCase {
         return database.viewContext
     }
     var api = MockAPI()
-    var queue = OperationQueue()
     var router = TestRouter()
     var logger = TestLogger()
     var environment: AppEnvironment!
@@ -51,15 +50,16 @@ class CoreTestCase: XCTestCase {
         environment.api = api
         environment.globalDatabase = database
         environment.database = database
-        queue = environment.queue
-        environment.queue.maxConcurrentOperationCount = 1
         environment.router = router
         environment.logger = logger
         environment.currentSession = KeychainEntry.make()
         notificationManager = NotificationManager(notificationCenter: notificationCenter, logger: logger)
+        URLSessionAPI.delegateURLSession = { _, _ in MockURLSession() }
     }
 
-    func addOperationAndWait(_ operation: Operation) {
-        queue.addOperations([operation], waitUntilFinished: true)
+    func waitForMainAsync() {
+        let main = expectation(description: "main.async")
+        DispatchQueue.main.async { main.fulfill() }
+        wait(for: [main], timeout: 1)
     }
 }

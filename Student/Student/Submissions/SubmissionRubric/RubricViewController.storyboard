@@ -46,18 +46,57 @@
                                     <outlet property="delegate" destination="lkh-x4-Wd8" id="j0O-aY-YFg"/>
                                 </connections>
                             </collectionView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ls2-gZ-h3j">
+                                <rect key="frame" x="0.0" y="291.5" width="375" height="84.5"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RXI-be-h0l" customClass="IconView" customModule="Student" customModuleProvider="target">
+                                        <rect key="frame" x="167.5" y="0.0" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="8uC-vN-VGQ"/>
+                                            <constraint firstAttribute="height" constant="40" id="piC-Fr-Nci"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="ash"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="rubricLine"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There is no rubric for this assignment" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKN-3v-yJh" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
+                                        <rect key="frame" x="45.5" y="64" width="284.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular16"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="vKN-3v-yJh" secondAttribute="bottom" id="0dO-1Q-aC4"/>
+                                    <constraint firstItem="vKN-3v-yJh" firstAttribute="top" secondItem="RXI-be-h0l" secondAttribute="bottom" constant="24" id="7Qy-XO-paM"/>
+                                    <constraint firstItem="vKN-3v-yJh" firstAttribute="centerX" secondItem="ls2-gZ-h3j" secondAttribute="centerX" id="fTy-a0-MpT"/>
+                                    <constraint firstItem="RXI-be-h0l" firstAttribute="top" secondItem="ls2-gZ-h3j" secondAttribute="top" id="hLW-7V-fV1"/>
+                                    <constraint firstItem="RXI-be-h0l" firstAttribute="centerX" secondItem="ls2-gZ-h3j" secondAttribute="centerX" id="wuR-Hd-YNF"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="YpA-cs-tZJ" firstAttribute="bottom" secondItem="MNC-v2-gd3" secondAttribute="bottom" id="2hh-A1-Rh8"/>
                             <constraint firstItem="MNC-v2-gd3" firstAttribute="top" secondItem="YpA-cs-tZJ" secondAttribute="top" id="K43-Tw-gZi"/>
+                            <constraint firstItem="ls2-gZ-h3j" firstAttribute="centerY" secondItem="w0K-cg-DHX" secondAttribute="centerY" id="aP2-X5-brc"/>
+                            <constraint firstItem="YpA-cs-tZJ" firstAttribute="trailing" secondItem="ls2-gZ-h3j" secondAttribute="trailing" id="oW4-fw-6kg"/>
                             <constraint firstItem="YpA-cs-tZJ" firstAttribute="trailing" secondItem="MNC-v2-gd3" secondAttribute="trailing" id="oq9-dG-ItQ"/>
                             <constraint firstItem="MNC-v2-gd3" firstAttribute="leading" secondItem="YpA-cs-tZJ" secondAttribute="leading" id="ozF-kB-RUV"/>
+                            <constraint firstItem="ls2-gZ-h3j" firstAttribute="leading" secondItem="YpA-cs-tZJ" secondAttribute="leading" id="tOS-FF-M5l"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="YpA-cs-tZJ"/>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="MNC-v2-gd3" id="d5Y-du-RTT"/>
+                        <outlet property="emptyView" destination="ls2-gZ-h3j" id="Vp2-6w-VTB"/>
+                        <outlet property="emptyViewLabel" destination="vKN-3v-yJh" id="SfC-U7-zma"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="reu-i7-pSx" userLabel="First Responder" sceneMemberID="firstResponder"/>

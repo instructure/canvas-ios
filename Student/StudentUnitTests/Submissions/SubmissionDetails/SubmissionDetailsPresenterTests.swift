@@ -21,6 +21,8 @@ import TestsFoundation
 import AVKit
 
 class SubmissionDetailsView: SubmissionDetailsViewProtocol {
+    func open(_ url: URL) {}
+
     var color: UIColor?
     var navigationController: UINavigationController?
     let navigationItem = UINavigationItem(title: "Test")
@@ -48,6 +50,11 @@ class SubmissionDetailsView: SubmissionDetailsViewProtocol {
     var didReloadNavbar = false
     func reloadNavBar() {
         didReloadNavbar = true
+    }
+
+    var presented: UIViewController?
+    func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)?) {
+        presented = viewControllerToPresent
     }
 }
 
@@ -156,7 +163,7 @@ class SubmissionDetailsPresenterTests: PersistenceTestCase {
         presenter.update()
 
         XCTAssert(view.embedded is CoreWebViewController)
-        XCTAssertEqual(view.embedded?.view.accessibilityIdentifier, "SubmissionDetailsPage.onlineQuizWebView")
+        XCTAssertEqual(view.embedded?.view.accessibilityIdentifier, "SubmissionDetails.onlineQuizWebView")
     }
 
     func testEmbedTextEntry() {
@@ -165,7 +172,7 @@ class SubmissionDetailsPresenterTests: PersistenceTestCase {
         presenter.update()
 
         XCTAssert(view.embedded is CoreWebViewController)
-        XCTAssertEqual(view.embedded?.view.accessibilityIdentifier, "SubmissionDetailsPage.onlineTextEntryWebView")
+        XCTAssertEqual(view.embedded?.view.accessibilityIdentifier, "SubmissionDetails.onlineTextEntryWebView")
     }
 
     func testEmbedUpload() {
@@ -185,7 +192,7 @@ class SubmissionDetailsPresenterTests: PersistenceTestCase {
         presenter.update()
 
         XCTAssert(view.embedded is CoreWebViewController)
-        XCTAssertEqual(view.embedded?.view.accessibilityIdentifier, "SubmissionDetailsPage.discussionWebView")
+        XCTAssertEqual(view.embedded?.view.accessibilityIdentifier, "SubmissionDetails.discussionWebView")
     }
 
     func testEmbedURL() {
@@ -217,5 +224,13 @@ class SubmissionDetailsPresenterTests: PersistenceTestCase {
         presenter.update()
 
         XCTAssertNil(view.embedded)
+    }
+
+    func testSubmit() {
+        Assignment.make([ "submissionTypesRaw": [ "online_text_entry", "online_upload", "online_url" ] ])
+        presenter.update()
+        presenter.submit(button: UIView())
+
+        XCTAssertNotNil(view.presented)
     }
 }

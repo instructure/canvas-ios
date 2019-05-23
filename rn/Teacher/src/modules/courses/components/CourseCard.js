@@ -34,6 +34,7 @@ type Props = {
   grade: ?CourseGradeInfo,
   showGrade?: boolean,
   color: string,
+  hideOverlay: boolean,
   style: ViewStyleProp,
   onPress: Function,
   initialHeight?: number,
@@ -50,15 +51,32 @@ export default class CourseCard extends Component<Props, State> {
   }
 
   createImageStyles () {
+    let opacity = 1
+    let backgroundColor = this.props.color
+
+    if (this.props.course.image_download_url) {
+      if (this.props.hideOverlay) {
+        backgroundColor = undefined
+      } else {
+        opacity = 0.8
+      }
+    }
+
     return StyleSheet.flatten([styles.imageColor, {
-      backgroundColor: this.props.color,
-      opacity: this.props.course.image_download_url ? 0.8 : 1,
+      backgroundColor,
+      opacity,
     }])
   }
 
   createTitleStyles () {
     return StyleSheet.flatten([styles.title, {
       color: this.props.color,
+    }])
+  }
+
+  createKabobWrapperStyles () {
+    return StyleSheet.flatten([styles.kabobWrapper, {
+      backgroundColor: this.props.hideOverlay ? this.props.color : undefined,
     }])
   }
 
@@ -101,7 +119,8 @@ export default class CourseCard extends Component<Props, State> {
           style={[styles.card, this.props.style, { height: this.state.height }]}
           testID={'course-' + course.id}
           onPress={this.onPress}
-          accessible={false}
+          accessibilityTraits='button'
+          accessibilityLabel={`${course.name} ${gradeDisplay || ''}`}
           underlayColor='transparent'
         >
           <View style={styles.cardContainer}>
@@ -109,11 +128,7 @@ export default class CourseCard extends Component<Props, State> {
               {Boolean(course.image_download_url) &&
                 <Image source={{ uri: course.image_download_url }} style={styles.image} />
               }
-              <View style={this.createImageStyles()}
-                accessible={true}
-                accessibilityTraits='button'
-                accessibilityLabel={`${course.name} ${gradeDisplay || ''}`}
-              />
+              <View style={this.createImageStyles()} />
               { showGrade &&
                 <View style={styles.gradePill}>
                   {hideTotalGrade ? (
@@ -131,17 +146,6 @@ export default class CourseCard extends Component<Props, State> {
                   )}
                 </View>
               }
-              <TouchableHighlight
-                style={styles.kabobButton}
-                onPress={this.onCoursePreferencesPressed}
-                accessibilityTraits='button'
-                accessible={true}
-                accessibilityLabel={i18n('Open {courseName} user preferences', { courseName: course.name })}
-                underlayColor='#ffffff00'
-                testID={`course-card.kabob-${course.id}`}
-              >
-                <Image style={styles.kabob} source={icon('more')} />
-              </TouchableHighlight>
             </View>
             <View style={styles.titleWrapper} accessible={false}>
               <Text numberOfLines={2} style={this.createTitleStyles()} accessible={false}>
@@ -149,6 +153,19 @@ export default class CourseCard extends Component<Props, State> {
               </Text>
               <Text numberOfLines={1} style={styles.code} accessible={false}>{course.course_code}</Text>
             </View>
+          </View>
+        </TouchableHighlight>
+        <TouchableHighlight
+          style={styles.kabobButton}
+          onPress={this.onCoursePreferencesPressed}
+          accessibilityTraits='button'
+          accessible={true}
+          accessibilityLabel={i18n('Open {courseName} user preferences', { courseName: course.name })}
+          underlayColor='#ffffff00'
+          testID={`course-card.kabob-${course.id}`}
+        >
+          <View style={this.createKabobWrapperStyles()}>
+            <Image style={styles.kabob} source={icon('more')} />
           </View>
         </TouchableHighlight>
       </A11yGroup>
@@ -194,15 +211,19 @@ const styles = StyleSheet.create({
   },
   kabobButton: {
     position: 'absolute',
-    top: 0,
-    right: 0,
+    top: 8,
+    right: 8,
     width: 43,
     height: 43,
   },
-  kabob: {
+  kabobWrapper: {
     position: 'absolute',
-    top: 10,
-    right: 8,
+    top: 6,
+    right: 4,
+    padding: 4,
+    borderRadius: 15,
+  },
+  kabob: {
     width: 18,
     height: 18,
     tintColor: 'white',

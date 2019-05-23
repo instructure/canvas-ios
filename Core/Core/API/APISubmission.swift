@@ -66,6 +66,7 @@ public struct APISubmissionComment: Codable, Equatable {
     let created_at: Date
     let edited_at: Date?
     let media_comment: APISubmissionCommentMedia?
+    let attachments: [APIFile]?
 }
 
 public struct APISubmissionCommentAuthor: Codable, Equatable {

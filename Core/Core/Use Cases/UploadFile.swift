@@ -31,14 +31,12 @@ public protocol FileUploader {
 
 public class UploadFile: NSObject, URLSessionDelegate, URLSessionTaskDelegate, URLSessionDataDelegate, FileUploader {
     struct Session: Codable {
-        let bundleID: String
         let appGroup: String?
         let userID: String
         let baseURL: URL
         let actAsUserID: String?
 
-        init(bundleID: String, appGroup: String?, userID: String, baseURL: URL, actAsUserID: String?) {
-            self.bundleID = bundleID
+        init(appGroup: String?, userID: String, baseURL: URL, actAsUserID: String?) {
             self.appGroup = appGroup
             self.userID = userID
             self.baseURL = baseURL
@@ -73,8 +71,9 @@ public class UploadFile: NSObject, URLSessionDelegate, URLSessionTaskDelegate, U
     public let database: NSPersistentContainer
     public var notificationManager: NotificationManager = .shared
     var backgroundSession: URLSession!
+    private let context: NSManagedObjectContext
     lazy var backgroundAPI: API = URLSessionAPI(urlSession: backgroundSession)
-    public static var shared = UploadFile(bundleID: Bundle.main.bundleIdentifier ?? Bundle.coreBundleID, appGroup: Bundle.main.appGroupID())
+    public static var shared = UploadFile(appGroup: Bundle.main.appGroupID())
 
     /// Completion handler that should be called once all background tasks have finished.
     ///
@@ -92,14 +91,14 @@ public class UploadFile: NSObject, URLSessionDelegate, URLSessionTaskDelegate, U
     }
 
     /// Initialize from foreground.
-    public convenience init(bundleID: String, appGroup: String?, environment: AppEnvironment = .shared) {
+    public convenience init(environment: AppEnvironment = .shared, appGroup: String? = nil) {
         guard let user = environment.currentSession else {
-            self.init(identifier: "\(bundleID).fileuploads", api: URLSessionAPI(), database: .create(), appGroup: appGroup)
+            self.init(identifier: "com.instructure.core.fileuploads", api: URLSessionAPI(), database: .create(), appGroup: appGroup)
             return
         }
         let api = environment.api
         let database = environment.database
-        let session = Session(bundleID: bundleID, appGroup: appGroup, userID: user.userID, baseURL: user.baseURL, actAsUserID: user.actAsUserID)
+        let session = Session(appGroup: appGroup, userID: user.userID, baseURL: user.baseURL, actAsUserID: user.actAsUserID)
         let identifier = session.identifier
         self.init(identifier: identifier, api: api, database: database, appGroup: appGroup)
     }
@@ -110,6 +109,7 @@ public class UploadFile: NSObject, URLSessionDelegate, URLSessionTaskDelegate, U
         self.database = database
         let configuration = URLSessionConfiguration.background(withIdentifier: identifier)
         configuration.sharedContainerIdentifier = appGroup
+        self.context = database.newBackgroundContext()
         super.init()
         backgroundSession = URLSessionAPI.delegateURLSession(configuration, self)
     }
@@ -126,32 +126,23 @@ public class UploadFile: NSObject, URLSessionDelegate, URLSessionTaskDelegate, U
                 callback(error)
                 return
             }
-            var task: URLSessionTask?
-            var error: Error?
             self.performAndWait { context in
-                guard let target = target else {
-                    callback(FileUploaderError.invalidTarget)
-                    return
-                }
-                guard let file = context.object(with: objectID) as? File else {
-                    callback(FileUploaderError.fileNotFound)
+                guard let target = target, let file = context.object(with: objectID) as? File else {
+                    callback(NSError.internalError())
                     return
                 }
                 do {
                     let request = PostFileUploadRequest(fileURL: url, target: target)
-                    task = try self.backgroundAPI.uploadTask(request)
-                    file.taskID = task?.taskIdentifier
+                    let task = try self.backgroundAPI.uploadTask(request)
+                    file.taskID = task.taskIdentifier
                     file.id = nil
                     try context.save()
-                } catch let e {
-                    error = e
+                    task.resume()
+                } catch {
+                    callback(error)
                 }
             }
-            if error == nil {
-                Logger.shared.log("Starting upload \(String(describing: task?.taskIdentifier))")
-                task?.resume()
-            }
-            callback(error)
+            callback(nil)
         }
     }
 
@@ -245,7 +236,6 @@ public class UploadFile: NSObject, URLSessionDelegate, URLSessionTaskDelegate, U
     }
 
     private func performAndWait(block: (NSManagedObjectContext) -> Void) {
-        let context = database.newBackgroundContext()
         context.performAndWait {
             block(context)
         }

@@ -18,12 +18,12 @@ import Foundation
 
 // https://canvas.instructure.com/doc/api/sections.html#Section
 struct APISection: Codable, Equatable {
-    let id: String
+    let id: ID
     let name: String
     // let sis_section_id: String?
     // let integration_id: String?
     // let sis_import_id: String?
-    let course_id: String?
+    let course_id: ID?
     // let sis_course_id: String?
     let start_at: Date?
     let end_at: Date?

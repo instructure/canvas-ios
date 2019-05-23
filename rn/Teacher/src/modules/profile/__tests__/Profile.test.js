@@ -55,7 +55,12 @@ describe('Profile Tests', () => {
       refreshHelpLinks: jest.fn(),
       canActAsUser: true,
       externalTools: [],
+      userSettings: {
+        hide_dashcard_color_overlays: false,
+      },
       getUserProfile: jest.fn(() => Promise.resolve({ data: template.user() })),
+      getUserSettings: jest.fn(),
+      updateUserSettings: jest.fn(),
     }
   })
   it('renders correctly', () => {
@@ -446,6 +451,18 @@ describe('Profile Tests', () => {
     const helpBtn = view.find('[testID="profile.help-menu-btn"]')
     helpBtn.simulate('Press')
     expect(actionSheet.options.length).toEqual(2)
+  })
+
+  it('refreshes the user settings', () => {
+    shallow(<Profile {...defaultProps} />)
+    expect(defaultProps.getUserSettings).toHaveBeenCalled()
+  })
+
+  it('updates the user settings', () => {
+    let tree = shallow(<Profile {...defaultProps} />)
+    let row = tree.find('[testID="profile.color-overlay-toggle"]')
+    row.simulate('valueChange', true)
+    expect(defaultProps.updateUserSettings).toHaveBeenCalledWith('self', false)
   })
 })
 

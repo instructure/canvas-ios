@@ -23,6 +23,8 @@ const {
   refreshCanActAsUser,
   refreshAccountExternalTools,
   refreshHelpLinks,
+  getUserSettings,
+  updateUserSettings,
 } = Actions
 
 import * as template from '../../../__templates__/'
@@ -167,5 +169,41 @@ describe('userInfo', () => {
       const result = userInfo(defaultState, action)
       expect(result.helpLinks).toMatchObject(defaultHelpLinks())
     })
+  })
+
+  it('getUserSettings', () => {
+    const action = {
+      type: getUserSettings.toString(),
+      payload: { result: { data: {
+        hide_dashcard_color_overlays: true,
+      } } },
+    }
+    const defaultState = {
+      userSettings: {},
+    }
+    const result = userInfo(defaultState, action)
+    expect(result.userSettings.hide_dashcard_color_overlays).toEqual(true)
+  })
+
+  it('updateUserSettings', () => {
+    const action = {
+      type: updateUserSettings.toString(),
+      payload: {
+        hideOverlay: true,
+      },
+      pending: true,
+    }
+    const defaultState = {
+      other: 'other',
+      userSettings: {},
+    }
+
+    let state = userInfo(defaultState, action)
+    expect(state.userSettings.hide_dashcard_color_overlays).toEqual(true)
+    expect(state.other).toEqual('other')
+
+    action.pending = false
+    action.error = true
+    expect(userInfo(defaultState, action).userSettings.hide_dashcard_color_overlays).toEqual(false)
   })
 })
