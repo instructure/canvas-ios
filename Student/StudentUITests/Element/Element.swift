@@ -114,6 +114,10 @@ struct EGElementWrapper: Element {
         return err == nil
     }
 
+    var isEnabledNow: Bool {
+        return isEnabled
+    }
+
     func tap() {
         element.perform(grey_tap())
     }
