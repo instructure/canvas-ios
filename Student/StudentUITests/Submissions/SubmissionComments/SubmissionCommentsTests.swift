@@ -27,26 +27,26 @@ class SubmissionCommentsTests: StudentTest {
     }()
 
     lazy var assignment: APIAssignment = {
-        let assignment = APIAssignment.make([
-            "submission_types": [ "online_upload" ],
-            "allowed_extensions": [ "pdf" ],
-        ])
+        let assignment = APIAssignment.make(
+            submission_types: [ .online_upload ],
+            allowed_extensions: [ "pdf" ]
+        )
         mockData(GetAssignmentRequest(courseID: course.id, assignmentID: assignment.id.value, include: []), value: assignment)
         return assignment
     }()
 
     func testFileComments() {
-        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make([
-            "id": "1",
-            "attempt": 1,
-            "user_id": "1",
-            "user": [ "id": "1", "short_name": "Student" ],
-            "submission_type": "online_upload",
-            "attachments": [
-                APIFile.fixture([ "id": "1", "display_name": "File 1" ]),
-                APIFile.fixture([ "id": "2", "display_name": "File 2" ]),
+        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
+            id: "1",
+            user_id: "1",
+            submission_type: .online_upload,
+            attempt: 1,
+            attachments: [
+                APIFile.make(id: "1", display_name: "File 1"),
+                APIFile.make(id: "2", display_name: "File 2"),
             ],
-        ]))
+            user: APISubmissionUser.make(id: "1", short_name: "Student")
+        ))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
         SubmissionDetails.drawerGripper.tap()
@@ -57,13 +57,13 @@ class SubmissionCommentsTests: StudentTest {
     }
 
     func testAttemptComments() {
-        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make([
-            "id": "1",
-            "attempt": 1,
-            "user_id": "1",
-            "user": [ "id": "1", "short_name": "Student" ],
-            "submission_type": "online_quiz",
-        ]))
+        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
+            id: "1",
+            user_id: "1",
+            submission_type: .online_quiz,
+            attempt: 1,
+            user: APISubmissionUser.make(id: "1", short_name: "Student")
+        ))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
         SubmissionDetails.drawerGripper.tap()
@@ -73,27 +73,27 @@ class SubmissionCommentsTests: StudentTest {
     }
 
     func testTextComments() {
-        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make([
-            "id": "1",
-            "attempt": 1,
-            "user_id": "1",
-            "submission_type": "online_upload",
-            "attachments": [],
-            "submission_comments": [
-                APISubmissionComment.fixture([
-                    "id": "1",
-                    "comment": "This document is completely empty",
-                    "author_id": "2",
-                    "author": APISubmissionCommentAuthor.fixture([ "display_name": "Teacher" ]),
-                ]),
-                APISubmissionComment.fixture([
-                    "id": "2",
-                    "comment": "Oops, I meant a different file",
-                    "author_id": "1",
-                    "author": APISubmissionCommentAuthor.fixture([ "display_name": "Student" ]),
-                ]),
-            ],
-        ]))
+        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
+            id: "1",
+            user_id: "1",
+            submission_type: .online_upload,
+            attempt: 1,
+            attachments: [],
+            submission_comments: [
+                APISubmissionComment.make(
+                    id: "1",
+                    author_id: "2",
+                    author: APISubmissionCommentAuthor.make(display_name: "Teacher"),
+                    comment: "This document is completely empty"
+                ),
+                APISubmissionComment.make(
+                    id: "2",
+                    author_id: "1",
+                    author: APISubmissionCommentAuthor.make(display_name: "Student"),
+                    comment: "Oops, I meant a different file"
+                ),
+            ]
+        ))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
         SubmissionDetails.drawerGripper.tap()
@@ -114,47 +114,47 @@ class SubmissionCommentsTests: StudentTest {
         SubmissionComments.commentTextView.typeText("First!")
         XCTAssertTrue(SubmissionComments.addCommentButton.isEnabled)
 
-        mockData(PutSubmissionGradeRequest(courseID: course.id, assignmentID: assignment.id.value, userID: "1", body: nil), value: APISubmission.make([
-            "submission_comments": [ APISubmissionComment.fixture([
-                "id": "42",
-                "author_id": "1",
-                "author": APISubmissionCommentAuthor.fixture([ "display_name": "Student" ]),
-                "comment": "First!",
-            ]), ],
-        ]))
+        mockData(PutSubmissionGradeRequest(courseID: course.id, assignmentID: assignment.id.value, userID: "1", body: nil), value: APISubmission.make(
+            submission_comments: [ APISubmissionComment.make(
+                id: "42",
+                author_id: "1",
+                author: APISubmissionCommentAuthor.make(display_name: "Student"),
+                comment: "First!"
+            ), ]
+        ))
         SubmissionComments.addCommentButton.tap()
         XCTAssertTrue(SubmissionComments.textCell(commentID: "42").isVisible)
     }
 
     func testAudioComments() {
         let testm4a = Bundle(for: SubmissionCommentsTests.self).url(forResource: "test", withExtension: "m4a")!
-        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make([
-            "id": "1",
-            "attempt": 1,
-            "user_id": "1",
-            "submission_type": "online_upload",
-            "attachments": [],
-            "submission_comments": [
-                APISubmissionComment.fixture([
-                    "id": "1",
-                    "author_id": "2",
-                    "author": APISubmissionCommentAuthor.fixture([ "display_name": "Teacher" ]),
-                    "media_comment": APIMediaComment.fixture([
-                        "media_type": "audio",
-                        "url": testm4a.absoluteString,
-                    ]),
-                ]),
-                APISubmissionComment.fixture([
-                    "id": "2",
-                    "author_id": "1",
-                    "author": APISubmissionCommentAuthor.fixture([ "display_name": "Student" ]),
-                    "media_comment": APIMediaComment.fixture([
-                        "media_type": "audio",
-                        "url": testm4a.absoluteString,
-                    ]),
-                ]),
-            ],
-        ]))
+        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
+            id: "1",
+            user_id: "1",
+            submission_type: .online_upload,
+            attempt: 1,
+            attachments: [],
+            submission_comments: [
+                APISubmissionComment.make(
+                    id: "1",
+                    author_id: "2",
+                    author: APISubmissionCommentAuthor.make(display_name: "Teacher"),
+                    media_comment: APISubmissionCommentMedia.make(
+                        url: testm4a,
+                        media_type: .audio
+                    )
+                ),
+                APISubmissionComment.make(
+                    id: "2",
+                    author_id: "1",
+                    author: APISubmissionCommentAuthor.make(display_name: "Student"),
+                    media_comment: APISubmissionCommentMedia.make(
+                        url: testm4a,
+                        media_type: .audio
+                    )
+                ),
+            ]
+        ))
         mockDataRequest(URLRequest(url: testm4a), data: try! Data(contentsOf: testm4a))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
@@ -178,16 +178,16 @@ class SubmissionCommentsTests: StudentTest {
             assignmentID: assignment.id.value,
             userID: "1",
             body: nil
-        ), value: APISubmission.make([
-            "submission_comments": [ APISubmissionComment.fixture([
-                "id": "42",
-                "media_comment": [
-                    "url": "data:audio/x-m4a,",
-                    "media_id": "23",
-                    "media_type": "audio",
-                ],
-            ]), ],
-        ]))
+        ), value: APISubmission.make(
+            submission_comments: [ APISubmissionComment.make(
+                id: "42",
+                media_comment: APISubmissionCommentMedia.make(
+                    url: URL(string: "data:audio/x-m4a,")!,
+                    media_id: "23",
+                    media_type: .audio
+                )
+            ), ]
+        ))
 
         host.logIn(domain: "canvas.instructure.com", token: "t")
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")

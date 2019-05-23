@@ -141,8 +141,8 @@ class SubmissionTests: CoreTestCase {
     }
 
     func testSaveRubricAssessmentsOnSubmission() {
-        let assessmentItem = APIRubricAssessment.fixture()
-        let item = APISubmission.make([ "rubric_assessment": ["1": assessmentItem] ])
+        let assessmentItem = APIRubricAssessment.make()
+        let item = APISubmission.make(rubric_assessment: ["1": assessmentItem])
         _ = try? Submission.save(item, in: databaseClient)
 
         let assessments: [RubricAssessment] = databaseClient.fetch()
@@ -151,16 +151,16 @@ class SubmissionTests: CoreTestCase {
     }
 
     func testSaveCommentAttachments() throws {
-        let item = APISubmission.make([
-            "submission_comments": [
-                APISubmissionComment.fixture([
-                    "attachments": [
-                        APIFile.fixture(["id": "1"]),
-                        APIFile.fixture(["id": "2"]),
-                    ],
-                ]),
-            ],
-        ])
+        let item = APISubmission.make(
+            submission_comments: [
+                APISubmissionComment.make(
+                    attachments: [
+                        APIFile.make(id: "1"),
+                        APIFile.make(id: "2"),
+                    ]
+                ),
+            ]
+        )
         try Submission.save(item, in: databaseClient)
         let submissions: [Submission] = databaseClient.fetch()
         let submission = submissions.first

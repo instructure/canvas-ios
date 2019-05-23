@@ -37,7 +37,7 @@ class GetQuizTest: CoreTestCase {
     }
 
     func testWrite() {
-        let quiz = APIQuiz.make([ "id": quizID ])
+        let quiz = APIQuiz.make(id: ID(stringLiteral: quizID))
         GetQuiz(courseID: courseID, quizID: quizID).write(response: quiz, urlResponse: nil, to: databaseClient)
         XCTAssertNoThrow(try databaseClient.save())
         let quizzes: [Quiz] = databaseClient.fetch(predicate: nil, sortDescriptors: nil)

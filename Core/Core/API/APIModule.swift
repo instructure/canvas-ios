@@ -28,7 +28,7 @@ public struct APIModule: Codable, Equatable {
 
 // https://canvas.instructure.com/doc/api/modules.html#ModuleItem
 public struct APIModuleItem: Codable, Equatable {
-    struct ContentDetails: Codable, Equatable {
+    public struct ContentDetails: Codable, Equatable {
         let due_at: Date?
     }
 
@@ -49,6 +49,30 @@ public struct APIModuleItem: Codable, Equatable {
     /// Only present if the caller has permission to view unpublished items
     let published: Bool?
     let content_details: ContentDetails // include[]=content_details
+
+    init(
+        id: ID,
+        module_id: ID,
+        position: Int,
+        title: String,
+        indent: Int,
+        content: ModuleItemType,
+        html_url: URL?,
+        url: URL?,
+        published: Bool?,
+        content_details: ContentDetails
+    ) {
+        self.id = id
+        self.module_id = module_id
+        self.position = position
+        self.title = title
+        self.indent = indent
+        self.content = content
+        self.html_url = html_url
+        self.url = url
+        self.published = published
+        self.content_details = content_details
+    }
 
     public enum CodingKeys: String, CodingKey {
         case id

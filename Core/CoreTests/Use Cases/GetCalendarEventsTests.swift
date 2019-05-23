@@ -32,7 +32,7 @@ class GetCalendarEventsTests: CoreTestCase {
     }
 
     func testItCreatesCalendarEvents() {
-        let event = APICalendarEvent.make(["id": "1", "context_code": "course_1"])
+        let event = APICalendarEvent.make(id: "1", context_code: "course_1")
         try! useCase.write(response: [event], urlResponse: nil, to: databaseClient)
 
         let events: [CalendarEventItem] = databaseClient.fetch(predicate: nil, sortDescriptors: nil)

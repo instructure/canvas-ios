@@ -23,7 +23,7 @@ class URLSubmissionTests: StudentTest {
     func testSumbitUrl() {
         let course = APICourse.make()
         mockData(GetCourseRequest(courseID: course.id), value: course)
-        let assignment = APIAssignment.make([ "submission_types": [ "online_url" ] ])
+        let assignment = APIAssignment.make(submission_types: [ .online_url ])
         mockData(GetAssignmentRequest(courseID: course.id, assignmentID: assignment.id.value, include: []), value: assignment)
         mockData(CreateSubmissionRequest(context: course, assignmentID: assignment.id.value, body: nil), noCallback: true)
 
@@ -39,12 +39,12 @@ class URLSubmissionTests: StudentTest {
         XCTAssertTrue(URLSubmission.loadingView.exists)
         XCTAssertTrue(URLSubmission.loadingView.isVisible)
 
-        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make([
-            "assignment_id": assignment.id.value,
-            "user_id": "1",
-            "submission_type": "online_url",
-            "url": "http://www.amazon.com",
-        ]))
+        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
+            assignment_id: assignment.id,
+            user_id: "1",
+            submission_type: .online_url,
+            url: URL(string: "http://www.amazon.com")
+        ))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
         XCTAssertTrue(SubmissionDetails.urlButton.waitToExist(Timeout(value: 5)))

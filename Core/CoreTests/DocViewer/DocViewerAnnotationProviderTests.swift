@@ -63,8 +63,8 @@ class DocViewerAnnotationProviderTests: XCTestCase {
 
     func testGetReplies() {
         let provider = getProvider(annotations: [
-            APIDocViewerAnnotation.make([ "id": "2", "type": "commentReply", "inreplyto": "1" ]),
-            APIDocViewerAnnotation.make([ "id": "3", "type": "commentReply", "inreplyto": "1" ]),
+            APIDocViewerAnnotation.make(id: "2", type: .commentReply, inreplyto: "1"),
+            APIDocViewerAnnotation.make(id: "3", type: .commentReply, inreplyto: "1"),
         ])
         XCTAssertEqual(provider.getReplies(to: try PSPDFAnnotation(dictionary: ["name": "1"])).count, 2)
     }

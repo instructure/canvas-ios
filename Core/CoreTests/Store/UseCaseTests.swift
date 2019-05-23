@@ -227,7 +227,7 @@ class WriteableModelTests: CoreTestCase {
 
     func testWrite() {
         let useCase = TestUseCase()
-        try! useCase.write(response: APIGroup.make(["id": "1"]), urlResponse: nil, to: databaseClient)
+        try! useCase.write(response: APIGroup.make(id: "1"), urlResponse: nil, to: databaseClient)
         let group: Group = databaseClient.fetch().first!
         XCTAssertEqual(group.id, "1")
     }

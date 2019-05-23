@@ -17,16 +17,24 @@
 import Foundation
 @testable import Core
 
-extension APICalendarEvent: Fixture {
-    public static var template: Template {
-        return [
-            "id": "1",
-            "title": "calendar event #1",
-            "type": "event",
-            "start_at": "2018-05-18T06:00:00Z",
-            "end_at": "2018-05-18T06:00:00Z",
-            "html_url": "https://narmstrong.instructure.com/calendar?event_id=10&include_contexts=course_1",
-            "context_code": "course_1",
-        ]
+extension APICalendarEvent {
+    public static func make(
+        id: ID = "1",
+        html_url: URL = URL(string: "https://narmstrong.instructure.com/calendar?event_id=10&include_contexts=course_1")!,
+        title: String = "calendar event #1",
+        start_at: Date? = Date(fromISOString: "2018-05-18T06:00:00Z"),
+        end_at: Date? = Date(fromISOString: "2018-05-18T06:00:00Z"),
+        type: String? = "event",
+        context_code: String = "course_1"
+    ) -> APICalendarEvent {
+        return APICalendarEvent(
+            id: id,
+            html_url: html_url,
+            title: title,
+            start_at: start_at,
+            end_at: end_at,
+            type: type,
+            context_code: context_code
+        )
     }
 }

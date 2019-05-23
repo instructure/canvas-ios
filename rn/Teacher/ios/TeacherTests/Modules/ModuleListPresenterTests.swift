@@ -204,7 +204,7 @@ class ModuleListPresenterTests: TeacherTestCase {
         let first = expectation(description: "first load")
         first.assertForOverFulfill = false
         let firstRequest = GetModulesRequest(courseID: "1")
-        let firstResponse = [APIModule.make(["name": "Old Name"])]
+        let firstResponse = [APIModule.make(name: "Old Name")]
         api.mock(firstRequest, value: firstResponse, response: nil, error: nil)
         view.onReloadModules = {
             if self.presenter.modules.count == 1, self.presenter.modules[0]?.name == "Old Name" {
@@ -214,7 +214,7 @@ class ModuleListPresenterTests: TeacherTestCase {
         wait(for: [first], timeout: 9)
 
         let request = GetModulesRequest(courseID: "1")
-        let response = [APIModule.make(["name": "Refreshed"])]
+        let response = [APIModule.make(name: "Refreshed")]
         api.mock(request, value: response, response: nil, error: nil)
         let refreshed = expectation(description: "modules refreshed")
         refreshed.assertForOverFulfill = false
@@ -234,11 +234,10 @@ class ModuleListPresenterTests: TeacherTestCase {
     func testScrollsToModule() {
         let page1Request = GetModulesRequest(courseID: "1")
         let page1Response = [
-            APIModule.make([
-                "id": "1",
-                "courseID": courseID,
-                "position": 1
-            ])
+            APIModule.make(
+                id: "1",
+                position: 1
+            )
         ]
         let prev = "https://cgnuonline-eniversity.edu/api/v1/courses/1/modules"
         let curr = "https://cgnuonline-eniversity.edu/api/v1/courses/1/modules?page=2"
@@ -250,11 +249,10 @@ class ModuleListPresenterTests: TeacherTestCase {
         api.mock(page1Request, value: page1Response, response: urlResponse, error: nil)
         let page2Request = page1Request.getNext(from: urlResponse)!
         let page2Response = [
-            APIModule.make([
-                "id": "2",
-                "courseID": courseID,
-                "position": 2
-            ])
+            APIModule.make(
+                id: "2",
+                position: 2
+            )
         ]
         api.mock(page2Request, value: page2Response, response: nil, error: nil)
         let scrolled = expectation(description: "scrolled to module")
@@ -273,11 +271,10 @@ class ModuleListPresenterTests: TeacherTestCase {
     func testGetsNextPage() {
         let page1Request = GetModulesRequest(courseID: "1")
         let page1Response = [
-            APIModule.make([
-                "id": "1",
-                "courseID": courseID,
-                "position": 1
-            ])
+            APIModule.make(
+                id: "1",
+                position: 1
+            )
         ]
         let prev = "https://cgnuonline-eniversity.edu/api/v1/courses/1/modules"
         let curr = "https://cgnuonline-eniversity.edu/api/v1/courses/1/modules?page=2"
@@ -289,11 +286,10 @@ class ModuleListPresenterTests: TeacherTestCase {
         api.mock(page1Request, value: page1Response, response: urlResponse, error: nil)
         let page2Request = page1Request.getNext(from: urlResponse)!
         let page2Response = [
-            APIModule.make([
-                "id": "2",
-                "courseID": courseID,
-                "position": 2
-            ])
+            APIModule.make(
+                id: "2",
+                position: 2
+            )
         ]
         api.mock(page2Request, value: page2Response, response: nil, error: nil)
         var reloaded = expectation(description: "first page")

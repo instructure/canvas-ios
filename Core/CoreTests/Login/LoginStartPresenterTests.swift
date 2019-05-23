@@ -39,7 +39,7 @@ class LoginStartPresenterTests: XCTestCase {
 
     func testViewIsReady() {
         let mockSession = URLSession.mockSession()
-        let responseData = try? JSONEncoder().encode(APIUser.make([ "avatar_url": "avatar" ]))
+        let responseData = try? JSONEncoder().encode(APIUser.make(avatar_url: URL(string: "avatar")))
         MockURLProtocolSupport.responses.append(MockURLProtocolSupport.responseWithStatusCode(200, responseData: responseData))
         MockURLProtocolSupport.responses.append(MockURLProtocolSupport.responseWithStatusCode(200, responseData: responseData))
         MockURLProtocolSupport.responses.append(MockURLProtocolSupport.responseWithStatusCode(200, responseData: responseData))

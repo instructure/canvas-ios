@@ -21,7 +21,7 @@ import TestsFoundation
 
 class FileTests: CoreTestCase {
     func testSave() {
-        let item = APIFile.make(["id": "1"])
+        let item = APIFile.make(id: "1")
         XCTAssertNoThrow(try File.save(item, in: databaseClient))
         let files: [File] = databaseClient.fetch()
         XCTAssertEqual(files.count, 1)

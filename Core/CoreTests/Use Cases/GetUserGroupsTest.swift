@@ -21,7 +21,7 @@ import XCTest
 class GetUserGroupsTest: CoreTestCase {
     func testItSavesUserGroups() {
         let request = GetGroupsRequest(context: ContextModel.currentUser)
-        let group = APIGroup.make(["id": "1", "name": "Group One", "members_count": 2])
+        let group = APIGroup.make(id: "1", name: "Group One", members_count: 2)
         api.mock(request, value: [group])
 
         let getUserGroups = GetUserGroups()

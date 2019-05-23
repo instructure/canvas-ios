@@ -66,9 +66,9 @@ class QuizTests: CoreTestCase {
         var quiz = Quiz.save(APIQuiz.make(), in: databaseClient)
         XCTAssertEqual(quiz.order, Date.distantFuture.isoString())
         let date = Date()
-        quiz = Quiz.save(APIQuiz.make([ "quiz_type": "assignment", "due_at": date ]), in: databaseClient)
+        quiz = Quiz.save(APIQuiz.make(quiz_type: .assignment, due_at: date), in: databaseClient)
         XCTAssertEqual(quiz.order, date.isoString())
-        quiz = Quiz.save(APIQuiz.make([ "quiz_type": "survey", "lock_at": date ]), in: databaseClient)
+        quiz = Quiz.save(APIQuiz.make(quiz_type: .survey, lock_at: date), in: databaseClient)
         XCTAssertEqual(quiz.order, date.isoString())
     }
 }

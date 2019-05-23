@@ -33,7 +33,7 @@ class GetGroupTest: CoreTestCase {
 
     func testItUpdatesGroup() {
         let group = Group.make(["id": "1", "name": "Old Name"])
-        let response = APIGroup.make(["id": "1", "name": "New Name"])
+        let response = APIGroup.make(id: "1", name: "New Name")
 
         let getGroup = GetGroup(groupID: "1", env: environment)
         try! getGroup.write(response: response, urlResponse: nil, to: databaseClient)

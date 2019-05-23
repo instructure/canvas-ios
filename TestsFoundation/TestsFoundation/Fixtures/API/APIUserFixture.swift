@@ -14,17 +14,34 @@
 // limitations under the License.
 //
 
+import Foundation
 @testable import Core
 
-extension APIUser: Fixture {
-    public static var template: Template {
-        return [
-            "id": "1",
-            "name": "Bob",
-            "sortable_name": "Bob",
-            "short_name": "Bob",
-            "effective_locale": "en",
-        ]
+extension APIUser {
+    public static func make(
+        id: ID = "1",
+        name: String = "Bob",
+        sortable_name: String = "Bob",
+        short_name: String = "Bob",
+        login_id: String? = nil,
+        avatar_url: URL? = nil,
+        email: String? = nil,
+        locale: String? = "en",
+        effective_locale: String? = nil,
+        bio: String? = nil
+    ) -> APIUser {
+        return APIUser(
+            id: id,
+            name: name,
+            sortable_name: sortable_name,
+            short_name: short_name,
+            login_id: login_id,
+            avatar_url: avatar_url,
+            email: email,
+            locale: locale,
+            effective_locale: effective_locale,
+            bio: bio
+        )
     }
 }
 
@@ -32,12 +49,16 @@ extension APIUser: APIContext {
     public var contextType: ContextType { return .user }
 }
 
-extension APIUserSettings: Fixture {
-    public static var template: Template {
-        return [
-            "manual_mark_as_read": false,
-            "collapse_global_nav": false,
-            "hide_dashcard_color_overlays": false
-        ]
+extension APIUserSettings {
+    public static func make(
+        manual_mark_as_read: Bool = false,
+        collapse_global_nav: Bool = false,
+        hide_dashcard_color_overlays: Bool = false
+    ) -> APIUserSettings {
+        return APIUserSettings(
+            manual_mark_as_read: manual_mark_as_read,
+            collapse_global_nav: collapse_global_nav,
+            hide_dashcard_color_overlays: hide_dashcard_color_overlays
+        )
     }
 }

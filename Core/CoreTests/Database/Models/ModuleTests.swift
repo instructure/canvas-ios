@@ -21,7 +21,7 @@ import TestsFoundation
 
 class ModuleTests: CoreTestCase {
     func testSave() {
-        let items = [APIModule.make(["id": "1"]), APIModule.make(["id": "2"])]
+        let items = [APIModule.make(id: "1"), APIModule.make(id: "2")]
         Module.save(items, forCourse: "1", in: databaseClient)
 
         let modules: [Module] = databaseClient.fetch()
@@ -34,12 +34,12 @@ class ModuleTests: CoreTestCase {
     }
 
     func testSaveItems() {
-        let module = APIModule.make([
-            "items": [
-                APIModuleItem.fixture(["id": "1"]),
-                APIModuleItem.fixture(["id": "2"]),
-            ],
-        ])
+        let module = APIModule.make(
+            items: [
+                APIModuleItem.make(id: "1"),
+                APIModuleItem.make(id: "2"),
+            ]
+        )
         Module.save(module, forCourse: "1", in: databaseClient)
 
         let modules: [Module] = databaseClient.fetch()

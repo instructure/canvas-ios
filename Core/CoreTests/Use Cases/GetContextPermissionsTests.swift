@@ -19,7 +19,7 @@ import XCTest
 
 class GetContextPermissionsTests: CoreTestCase {
     func testItCreatesPermissions() {
-        let response = APIPermissions.make(["become_user": true ])
+        let response = APIPermissions.make(become_user: true)
 
         let context = ContextModel(.account, id: "1")
 
@@ -34,7 +34,7 @@ class GetContextPermissionsTests: CoreTestCase {
 
     func testItUpdatesPermissions() {
         let permissions = Permissions.make(["becomeUser": true])
-        let response = APIPermissions.make(["become_user": false])
+        let response = APIPermissions.make(become_user: false)
 
         let context = ContextModel(.account, id: "1")
 

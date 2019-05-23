@@ -83,9 +83,9 @@ class UploadMediaCommentTests: CoreTestCase {
             assignmentID: upload.assignmentID,
             userID: upload.userID,
             body: .init(comment: .init(mediaID: "2", type: upload.type, forGroup: upload.isGroup), submission: nil)
-        ), value: APISubmission.make([
-            "submission_comments": [ APISubmissionComment.fixture() ],
-        ]))
+        ), value: APISubmission.make(
+            submission_comments: [ .make() ]
+        ))
         let called = self.expectation(description: "callback was called")
         upload.fetch(environment: environment) { comment, error in
             XCTAssertNotNil(comment)
