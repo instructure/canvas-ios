@@ -58,10 +58,10 @@ class SubmissionDetailsTests: StudentTest {
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
 
         XCTAssertTrue(SubmissionDetails.onlineTextEntryWebView.waitToExist(Timeout(value: 5)))
-        XCTAssertFalse(SubmissionDetails.emptyView.isVisible)
-        XCTAssertFalse(SubmissionDetails.attemptPicker.isVisible)
+        XCTAssertFalse(SubmissionDetails.emptyView.isVisibleNow)
+        XCTAssertFalse(SubmissionDetails.attemptPicker.isVisibleNow)
         XCTAssertTrue(SubmissionDetails.attemptPickerToggle.isVisible)
-        XCTAssertFalse(SubmissionDetails.attemptPickerToggle.isEnabled)
+        XCTAssertFalse(SubmissionDetails.attemptPickerToggle.isEnabledNow)
         XCTAssertEqual(SubmissionDetails.attemptPickerToggle.label, DateFormatter.localizedString(from: submittedAt, dateStyle: .medium, timeStyle: .short))
         XCTAssertTrue(SubmissionDetails.onlineTextEntryWebView.isVisible)
         let body = xcuiApp?.webViews.staticTexts.firstMatch.label
@@ -95,8 +95,8 @@ class SubmissionDetailsTests: StudentTest {
         let date1 = DateFormatter.localizedString(from: submittedAt1, dateStyle: .medium, timeStyle: .short)
         let date2 = DateFormatter.localizedString(from: submittedAt2, dateStyle: .medium, timeStyle: .short)
 
-        XCTAssertFalse(SubmissionDetails.emptyView.isVisible)
-        XCTAssertFalse(SubmissionDetails.attemptPicker.isVisible)
+        XCTAssertFalse(SubmissionDetails.emptyView.isVisibleNow)
+        XCTAssertFalse(SubmissionDetails.attemptPicker.isVisibleNow)
         XCTAssertTrue(SubmissionDetails.attemptPickerToggle.isVisible)
         XCTAssertTrue(SubmissionDetails.attemptPickerToggle.isEnabled)
         XCTAssertEqual(SubmissionDetails.attemptPickerToggle.label, date2)
@@ -195,21 +195,21 @@ class SubmissionDetailsTests: StudentTest {
         app.find(label: "Comments").tap()
 
         XCTAssertTrue(CommentListItem.item("2").isVisible)
-        XCTAssertFalse(CommentListItem.deleteButton("2").isVisible)
+        XCTAssertFalse(CommentListItem.deleteButton("2").isVisibleNow)
 
-        XCTAssertFalse(CommentList.replyButton.isEnabled)
+        XCTAssertFalse(CommentList.replyButton.isEnabledNow)
         CommentList.replyTextView.tap()
         CommentList.replyTextView.typeText("I don't know.")
         XCTAssertTrue(CommentList.replyButton.isEnabled)
         CommentList.replyButton.tap()
-        XCTAssertFalse(CommentList.replyButton.isEnabled)
+        XCTAssertFalse(CommentList.replyButton.isEnabledNow)
 
         let replyID = String(findID(for: "Delete comment").split(separator: ".")[1])
         XCTAssertTrue(CommentListItem.item(replyID).isVisible)
         XCTAssertTrue(CommentListItem.deleteButton(replyID).isVisible)
         CommentListItem.deleteButton(replyID).tap()
         app.find(label: "Delete").tap()
-        XCTAssertFalse(CommentListItem.item(replyID).isVisible)
+        CommentListItem.item(replyID).waitToVanish(Timeout(value: 1))
     }
 
     func testDiscussionSubmission() {
@@ -227,10 +227,10 @@ class SubmissionDetailsTests: StudentTest {
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
 
-        XCTAssertFalse(SubmissionDetails.emptyView.isVisible)
-        XCTAssertFalse(SubmissionDetails.attemptPicker.isVisible)
+        XCTAssertFalse(SubmissionDetails.emptyView.isVisibleNow)
+        XCTAssertFalse(SubmissionDetails.attemptPicker.isVisibleNow)
         XCTAssertTrue(SubmissionDetails.attemptPickerToggle.isVisible)
-        XCTAssertFalse(SubmissionDetails.attemptPickerToggle.isEnabled)
+        XCTAssertFalse(SubmissionDetails.attemptPickerToggle.isEnabledNow)
         XCTAssertEqual(SubmissionDetails.attemptPickerToggle.label, DateFormatter.localizedString(from: submittedAt, dateStyle: .medium, timeStyle: .short))
         XCTAssertTrue(SubmissionDetails.discussionWebView.isVisible)
     }
@@ -246,7 +246,7 @@ class SubmissionDetailsTests: StudentTest {
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
 
-        XCTAssertFalse(SubmissionDetails.emptyView.isVisible)
+        XCTAssertFalse(SubmissionDetails.emptyView.isVisibleNow)
         XCTAssertTrue(SubmissionDetails.onlineQuizWebView.isVisible)
     }
 
@@ -265,7 +265,7 @@ class SubmissionDetailsTests: StudentTest {
         XCTAssertTrue(SubmissionDetails.urlSubmissionBlurb.isVisible)
         XCTAssertTrue(SubmissionDetails.urlButton.isVisible)
 
-        XCTAssertFalse(SubmissionDetails.emptyView.isVisible)
+        XCTAssertFalse(SubmissionDetails.emptyView.isVisibleNow)
         XCTAssertEqual(SubmissionDetails.urlSubmissionBlurb.label, "This submission is a URL to an external page. We've included a snapshot of a what the page looked like when it was submitted.")
     }
 
@@ -277,7 +277,7 @@ class SubmissionDetailsTests: StudentTest {
 
         XCTAssertTrue(SubmissionDetails.externalToolButton.waitToExist(Timeout(value: 5)))
         XCTAssertTrue(SubmissionDetails.externalToolButton.isVisible)
-        XCTAssertFalse(SubmissionDetails.emptyView.isVisible)
+        XCTAssertFalse(SubmissionDetails.emptyView.isVisibleNow)
     }
 
     func testMediaSubmission() {
