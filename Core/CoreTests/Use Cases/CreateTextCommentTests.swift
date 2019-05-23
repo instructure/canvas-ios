@@ -79,9 +79,9 @@ class CreateTextCommentTests: CoreTestCase {
             assignmentID: create.assignmentID,
             userID: create.userID,
             body: .init(comment: .init(text: "comment", forGroup: create.isGroup), submission: nil)
-        ), value: APISubmission.make([
-            "submission_comments": [ APISubmissionComment.fixture() ],
-        ]))
+        ), value: APISubmission.make(
+            submission_comments: [ .make() ]
+        ))
         let called = expectation(description: "called")
         create.fetch(environment: environment) { [weak self] comment, error in
             self?.comment = comment

@@ -23,7 +23,7 @@ class AssignmentTests: CoreTestCase {
     func testUpdateFromAPIItemWithAPISubmission() {
         let client = databaseClient
         let a = Assignment.make(["name": "a"])
-        let api = APIAssignment.make(["name": "api_a", "submission": APISubmission.fixture()])
+        let api = APIAssignment.make(name: "api_a", submission: .make())
 
         XCTAssertNil(a.submission)
 
@@ -47,7 +47,7 @@ class AssignmentTests: CoreTestCase {
     func testUpdateFromAPIItemWithAPISubmissionButDoNotMutateSubmission() {
         let client = databaseClient
         let a = Assignment.make(["name": "a"])
-        let api = APIAssignment.make(["name": "api_a", "submission": APISubmission.fixture()])
+        let api = APIAssignment.make(name: "api_a", submission: .make())
 
         XCTAssertNil(a.submission)
 
@@ -60,7 +60,7 @@ class AssignmentTests: CoreTestCase {
         let client = databaseClient
         let submission: Submission = client.make(["grade": "A"])
         let a: Assignment = client.make(["name": "a", "submission": submission])
-        let api = APIAssignment.make(["name": "api_a", "submission": nil])
+        let api = APIAssignment.make(name: "api_a", submission: nil)
         XCTAssertNil(api.submission)
 
         XCTAssertNoThrow( try a.update(fromApiModel: api, in: client, updateSubmission: true) )
@@ -224,7 +224,7 @@ class AssignmentTests: CoreTestCase {
     }
 
     func testUseRubricForGrading() {
-        let apiAssignment = APIAssignment.make(["use_rubric_for_grading": true])
+        let apiAssignment = APIAssignment.make(use_rubric_for_grading: true)
         let assignment = Assignment.make()
 
         XCTAssertNoThrow( try assignment.update(fromApiModel: apiAssignment, in: databaseClient, updateSubmission: true) )

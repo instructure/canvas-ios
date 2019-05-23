@@ -19,11 +19,11 @@ import XCTest
 
 class UserSettingsTests: CoreTestCase {
     func testSaveUserSettings() {
-        let apiSettings = APIUserSettings.make([
-            "manual_mark_as_read": true,
-            "collapse_global_nav": true,
-            "hide_dashcard_color_overlays": true,
-        ])
+        let apiSettings = APIUserSettings.make(
+            manual_mark_as_read: true,
+            collapse_global_nav: true,
+            hide_dashcard_color_overlays: true
+        )
 
         XCTAssertNoThrow( try UserSettings.save(apiSettings, in: databaseClient) )
 

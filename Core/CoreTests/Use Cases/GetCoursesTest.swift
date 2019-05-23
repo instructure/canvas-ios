@@ -23,7 +23,7 @@ class GetCoursesTest: CoreTestCase {
     let request = GetCoursesRequest(includeUnpublished: true)
 
     func testItCreatesCourses() {
-        let course = APICourse.make(["id": "1", "name": "Course 1"])
+        let course = APICourse.make(id: "1", name: "Course 1")
         let getCourses = GetCourses()
         try! getCourses.write(response: [course], urlResponse: nil, to: databaseClient)
 

@@ -51,7 +51,7 @@ class DiscussionTopicTests: CoreTestCase {
     }
 
     func testHtmlAttachmentIcon() {
-        let api = APIDiscussionTopic.make([ "attachments": [ APIFile.fixture() ] ])
+        let api = APIDiscussionTopic.make(attachments: [ APIFile.make() ])
         XCTAssertNoThrow(try DiscussionTopic.save(api, in: databaseClient))
         let topics: [DiscussionTopic] =  databaseClient.fetch()
         XCTAssertTrue(topics.first!.html.contains("<svg"))

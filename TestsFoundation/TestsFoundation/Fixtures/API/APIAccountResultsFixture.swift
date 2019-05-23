@@ -14,13 +14,19 @@
 // limitations under the License.
 //
 
+import Foundation
 @testable import Core
 
-extension APIAccountResults: Fixture {
-    public static var template: Template {
-        return [
-            "name": "Crazy Go Nuts University",
-            "domain": "cgnuonline-eniversity.edu",
-        ]
+extension APIAccountResults {
+    public static func make(
+        name: String = "Crazy Go Nuts University",
+        domain: String = "cgnuonline-eniversity.edu",
+        authentication_provider: String? = nil
+    ) -> APIAccountResults {
+        return APIAccountResults(
+            name: name,
+            domain: domain,
+            authentication_provider: authentication_provider
+        )
     }
 }

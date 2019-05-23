@@ -22,7 +22,7 @@ class SyllabusTests: StudentTest {
     let page = SyllabusPage.self
     let html = "hello world"
     lazy var course: APICourse = {
-        let course = APICourse.make(["syllabus_body": html, "course_code": "abc"])
+        let course = APICourse.make(course_code: "abc", syllabus_body: html)
         mockData(GetCourseRequest(courseID: course.id), value: course)
         return course
     }()
@@ -38,7 +38,7 @@ class SyllabusTests: StudentTest {
             course.canvasContextID: "#123456",
             ]))
 
-        _ = mockAssignments([APIAssignment.make([ "name": assignmentName, "description": "hello world", "submission": APISubmission.fixture()])])
+        _ = mockAssignments([APIAssignment.make(name: assignmentName, description: "hello world", submission: APISubmission.make())])
 
         show("/courses/\(course.id)/assignments/syllabus")
 

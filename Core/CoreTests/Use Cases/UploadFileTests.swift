@@ -120,7 +120,7 @@ class UploadFileTests: CoreTestCase {
         wait(for: [sent], timeout: 0.1)
 
         // receive data
-        let response = APIFile.make(["id": "45"])
+        let response = APIFile.make(id: "45")
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
         let data = try! encoder.encode(response)

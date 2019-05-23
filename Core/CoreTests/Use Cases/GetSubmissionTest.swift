@@ -20,10 +20,10 @@ import XCTest
 class GetSubmissionTest: CoreTestCase {
     func testItCreatesSubmission() {
         let context = ContextModel(.course, id: "1")
-        let apiSubmission = APISubmission.make([
-            "assignment_id": "2",
-            "user_id": "3",
-        ])
+        let apiSubmission = APISubmission.make(
+            assignment_id: "2",
+            user_id: "3"
+        )
 
         let getSubmission = GetSubmission(context: context, assignmentID: "2", userID: "3")
         try! getSubmission.write(response: apiSubmission, urlResponse: nil, to: databaseClient)
@@ -37,15 +37,15 @@ class GetSubmissionTest: CoreTestCase {
 
     func testItCreatesSubmissionHistory() {
         let context = ContextModel(.course, id: "1")
-        let apiSubmission = APISubmission.make([
-            "attempt": 2,
-            "assignment_id": "2",
-            "user_id": "3",
-            "submission_history": [
-                APISubmission.fixture([ "attempt": 2, "assignment_id": "2", "user_id": "3" ]),
-                APISubmission.fixture([ "attempt": 1, "assignment_id": "2", "user_id": "3" ]),
-            ],
-        ])
+        let apiSubmission = APISubmission.make(
+            assignment_id: "2",
+            user_id: "3",
+            attempt: 2,
+            submission_history: [
+                APISubmission.make(assignment_id: "2", user_id: "3", attempt: 2),
+                APISubmission.make(assignment_id: "2", user_id: "3", attempt: 1),
+            ]
+        )
         let getSubmission = GetSubmission(context: context, assignmentID: "2", userID: "3")
         try! getSubmission.write(response: apiSubmission, urlResponse: nil, to: databaseClient)
 
@@ -60,12 +60,12 @@ class GetSubmissionTest: CoreTestCase {
         let context = ContextModel(.course, id: "1")
         Submission.make([ "attempt": 2, "assignmentID": "2", "userID": "3", "late": false ])
         Submission.make([ "attempt": 1, "assignmentID": "2", "userID": "3" ])
-        let apiSubmission = APISubmission.make([
-            "attempt": 2,
-            "assignment_id": "2",
-            "user_id": "3",
-            "late": true,
-        ])
+        let apiSubmission = APISubmission.make(
+            assignment_id: "2",
+            user_id: "3",
+            late: true,
+            attempt: 2
+        )
 
         let getSubmission = GetSubmission(context: context, assignmentID: "2", userID: "3")
         try! getSubmission.write(response: apiSubmission, urlResponse: nil, to: databaseClient)

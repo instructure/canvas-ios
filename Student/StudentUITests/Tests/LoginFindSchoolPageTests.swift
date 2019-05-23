@@ -48,7 +48,7 @@ class LoginFindSchoolPageTests: StudentTest {
 
     func testFoundResults() {
         mockData(GetAccountsSearchRequest(searchTerm: "cgnu"), value: [
-            APIAccountResults.make([ "name": "Crazy Go Nuts University", "domain": "http://cgnuonline-eniversity.edu" ]),
+            APIAccountResults.make(name: "Crazy Go Nuts University", domain: "http://cgnuonline-eniversity.edu"),
         ])
 
         show(Route.login.url.path)

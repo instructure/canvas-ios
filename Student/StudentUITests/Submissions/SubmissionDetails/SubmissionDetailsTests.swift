@@ -35,10 +35,10 @@ class SubmissionDetailsTests: StudentTest {
 
     func testNoSubmission() {
         let dueAt = DateComponents(calendar: Calendar.current, year: 2018, month: 10, day: 31, hour: 22, minute: 0).date
-        let assignment = mockAssignment(APIAssignment.make([ "due_at": dueAt ]))
-        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make([
-            "workflow_state": "unsubmitted",
-        ]))
+        let assignment = mockAssignment(APIAssignment.make(due_at: dueAt))
+        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
+            workflow_state: .unsubmitted
+        ))
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
 
         XCTAssertTrue(SubmissionDetails.emptyAssignmentDueBy.waitToExist(Timeout(value: 5)))
@@ -49,11 +49,11 @@ class SubmissionDetailsTests: StudentTest {
     func testOneSubmission() {
         let assignment = mockAssignment(APIAssignment.make())
         let submittedAt = DateComponents(calendar: Calendar.current, year: 2018, month: 10, day: 31, hour: 22, minute: 0).date!
-        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make([
-            "body": "hi",
-            "submission_type": "online_text_entry",
-            "submitted_at": submittedAt,
-        ]))
+        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
+            body: "hi",
+            submission_type: .online_text_entry,
+            submitted_at: submittedAt
+        ))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
 
@@ -72,23 +72,23 @@ class SubmissionDetailsTests: StudentTest {
         let assignment = mockAssignment(APIAssignment.make())
         let submittedAt1 = DateComponents(calendar: Calendar.current, year: 2018, month: 10, day: 31, hour: 22, minute: 0).date!
         let submittedAt2 = DateComponents(calendar: Calendar.current, year: 2018, month: 11, day: 1, hour: 22, minute: 0).date!
-        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make([
-            "attempt": 2,
-            "submission_history": [
-                APISubmission.fixture([
-                    "attempt": 1,
-                    "body": "one",
-                    "submission_type": "online_text_entry",
-                    "submitted_at": submittedAt1,
-                ]),
-                APISubmission.fixture([
-                    "attempt": 2,
-                    "body": "two",
-                    "submission_type": "online_text_entry",
-                    "submitted_at": submittedAt2,
-                ]),
-            ],
-        ]))
+        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
+            attempt: 2,
+            submission_history: [
+                APISubmission.make(
+                    body: "one",
+                    submission_type: .online_text_entry,
+                    submitted_at: submittedAt1,
+                    attempt: 1
+                ),
+                APISubmission.make(
+                    body: "two",
+                    submission_type: .online_text_entry,
+                    submitted_at: submittedAt2,
+                    attempt: 2
+                ),
+            ]
+        ))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
 
@@ -112,21 +112,21 @@ class SubmissionDetailsTests: StudentTest {
         let previewURL = URL(string: "https://preview.url")!
         let sessionURL = URL(string: "https://doc.viewer/session/123")!
         let downloadURL = URL(string: "https://doc.viewer/session/123/download")!
-        let assignment = mockAssignment(APIAssignment.make([ "submission_types": [ "online_upload" ] ]))
-        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make([
-            "submission_type": "online_upload",
-            "attachments": [ APIFile.fixture([
-                "preview_url": previewURL.absoluteString,
-            ]), ],
-        ]))
+        let assignment = mockAssignment(APIAssignment.make(submission_types: [ .online_upload ]))
+        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
+            submission_type: .online_upload,
+            attachments: [ APIFile.make(
+                preview_url: previewURL
+            ), ]
+        ))
         mockDataRequest(URLRequest(url: previewURL), response: HTTPURLResponse(
             url: previewURL, statusCode: 301, httpVersion: nil, headerFields: [
                 "Location": "\(sessionURL.absoluteString)/view",
             ]
         ))
-        mockData(GetDocViewerMetadataRequest(path: sessionURL.absoluteString), value: APIDocViewerMetadata.make([
-            "urls": APIDocViewerURLsMetadata.fixture([ "pdf_download": downloadURL.absoluteString ]),
-        ]))
+        mockData(GetDocViewerMetadataRequest(path: sessionURL.absoluteString), value: APIDocViewerMetadata.make(
+            urls: .make(pdf_download: downloadURL)
+        ))
         mockDownload(downloadURL, data: url)
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
@@ -149,40 +149,38 @@ class SubmissionDetailsTests: StudentTest {
         let previewURL = URL(string: "https://preview.url")!
         let sessionURL = URL(string: "https://canvas.instructure.com/session/123")!
         let downloadURL = URL(string: "https://canvas.instructure.com/session/123/download")!
-        let assignment = mockAssignment(APIAssignment.make([ "submission_types": [ "online_upload" ] ]))
-        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make([
-            "submission_type": "online_upload",
-            "attachments": [ APIFile.fixture([
-                "preview_url": previewURL.absoluteString,
-            ]), ],
-        ]))
+        let assignment = mockAssignment(APIAssignment.make(submission_types: [ .online_upload ]))
+        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
+            submission_type: .online_upload,
+            attachments: [ APIFile.make(
+                preview_url: previewURL
+            ), ]
+        ))
         mockDataRequest(URLRequest(url: previewURL), response: HTTPURLResponse(
             url: previewURL, statusCode: 301, httpVersion: nil, headerFields: [
                 "Location": "\(sessionURL.absoluteString)/view",
             ]
         ))
-        mockData(GetDocViewerMetadataRequest(path: sessionURL.absoluteString), value: APIDocViewerMetadata.make([
-            "annotations": APIDocViewerAnnotationsMetadata.fixture([
-                "permissions": "readwrite",
-            ]),
-            "urls": APIDocViewerURLsMetadata.fixture([ "pdf_download": downloadURL.absoluteString ]),
-        ]))
+        mockData(GetDocViewerMetadataRequest(path: sessionURL.absoluteString), value: APIDocViewerMetadata.make(
+            annotations: .make(permissions: .readwrite),
+            urls: .make(pdf_download: downloadURL)
+        ))
         mockData(GetDocViewerAnnotationsRequest(sessionID: sessionURL.lastPathComponent), value: APIDocViewerAnnotations(data: [
-            APIDocViewerAnnotation.make([
-                "id": "1",
-                "user_name": "Student",
-                "type": APIDocViewerAnnotationType.text.rawValue,
-                "color": DocViewerAnnotationColor.green.rawValue,
-                "rect": [ [ 0, (11 * 72) - 240 ], [ 170, (11 * 72) ] ],
-            ]),
-            APIDocViewerAnnotation.make([
-                "id": "2",
-                "user_id": "2",
-                "user_name": "Teacher",
-                "type": APIDocViewerAnnotationType.commentReply.rawValue,
-                "contents": "Why is the document empty?",
-                "inreplyto": "1",
-            ]),
+            APIDocViewerAnnotation.make(
+                id: "1",
+                user_name: "Student",
+                type: .text,
+                color: DocViewerAnnotationColor.green.rawValue,
+                rect: [ [ 0, (11 * 72) - 240 ], [ 170, (11 * 72) ] ]
+            ),
+            APIDocViewerAnnotation.make(
+                id: "2",
+                user_id: "2",
+                user_name: "Teacher",
+                type: .commentReply,
+                contents: "Why is the document empty?",
+                inreplyto: "1"
+            ),
         ]))
         mockDownload(downloadURL, data: url)
 
@@ -213,17 +211,17 @@ class SubmissionDetailsTests: StudentTest {
     }
 
     func testDiscussionSubmission() {
-        let assignment = mockAssignment(APIAssignment.make([ "submission_types": [ "discussion_topic" ] ]))
+        let assignment = mockAssignment(APIAssignment.make(submission_types: [ .discussion_topic ]))
         let submittedAt = DateComponents(calendar: Calendar.current, year: 2018, month: 10, day: 31, hour: 22, minute: 0).date!
-        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make([
-            "submission_type": "discussion_topic",
-            "submitted_at": submittedAt,
-            "preview_url": "https://canvas.instructure.com",
-            "discussion_entries": [
-                APIDiscussionEntry.fixture([ "id": "1", "message": "First entry" ]),
-                APIDiscussionEntry.fixture([ "id": "2", "message": "Second entry" ]),
+        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
+            submission_type: .discussion_topic,
+            submitted_at: submittedAt,
+            discussion_entries: [
+                APIDiscussionEntry.make(id: "1", message: "First entry"),
+                APIDiscussionEntry.make(id: "2", message: "Second entry"),
             ],
-        ]))
+            preview_url: URL(string: "https://canvas.instructure.com")
+        ))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
 
@@ -236,13 +234,13 @@ class SubmissionDetailsTests: StudentTest {
     }
 
     func testQuizSubmission() {
-        let assignment = mockAssignment(APIAssignment.make([
-            "submission_types": [ "online_quiz" ],
-            "quiz_id": "1",
-        ]))
-        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make([
-            "submission_type": "online_quiz",
-        ]))
+        let assignment = mockAssignment(APIAssignment.make(
+            quiz_id: "1",
+            submission_types: [ .online_quiz ]
+        ))
+        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
+            submission_type: .online_quiz
+        ))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
 
@@ -252,12 +250,12 @@ class SubmissionDetailsTests: StudentTest {
 
     func testUrlSubmission() {
         let url = URL(string: "https://www.instructure.com/")!
-        let assignment = mockAssignment(APIAssignment.make([ "submission_types": [ "online_url" ] ]))
-        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make([
-            "submission_type": "online_url",
-            "url": url.absoluteString,
-            "attachments": [ APIFile.fixture() ],
-        ]))
+        let assignment = mockAssignment(APIAssignment.make(submission_types: [ .online_url ]))
+        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
+            submission_type: .online_url,
+            attachments: [ APIFile.make() ],
+            url: url
+        ))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
 
@@ -270,7 +268,7 @@ class SubmissionDetailsTests: StudentTest {
     }
 
     func testExternalToolSubmission() {
-        let assignment = mockAssignment(APIAssignment.make([ "submission_types": [ "external_tool" ] ]))
+        let assignment = mockAssignment(APIAssignment.make(submission_types: [ .external_tool ]))
         mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make())
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
@@ -282,14 +280,14 @@ class SubmissionDetailsTests: StudentTest {
 
     func testMediaSubmission() {
         let url = Bundle(for: SubmissionDetailsTests.self).url(forResource: "test", withExtension: "m4a")!
-        let assignment = mockAssignment(APIAssignment.make([ "submission_types": [ "media_recording" ] ]))
-        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make([
-            "submission_type": "media_recording",
-            "media_comment": APIMediaComment.fixture([
-                "media_type": "audio",
-                "url": url.absoluteString,
-            ]),
-        ]))
+        let assignment = mockAssignment(APIAssignment.make(submission_types: [ .media_recording ]))
+        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
+            submission_type: .media_recording,
+            media_comment: APIMediaComment.make(
+                media_type: .audio,
+                url: url
+            )
+        ))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
         XCTAssertTrue(SubmissionDetails.mediaPlayer.waitToExist(Timeout(value: 2)))

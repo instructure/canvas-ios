@@ -32,7 +32,7 @@ class RubricTests: CoreTestCase {
 
     func testSaveRating() {
         RubricRating.make(["id": "1", "assignmentID": "2"])
-        let item = APIRubricRating.make(["id": "1", "assignmentID": "2", "points": 100.0])
+        let item = APIRubricRating.make(id: "1", points: 100.0, assignmentID: "2")
 
         let rating = try? RubricRating.save(item, in: databaseClient)
 
@@ -45,7 +45,7 @@ class RubricTests: CoreTestCase {
 
     func testSaveAssessment() {
         RubricAssessment.make(["id": "1", "submissionID": "1", "points": 2.0])
-        let item = APIRubricAssessment.make(["points": 200.0])
+        let item = APIRubricAssessment.make(points: 200.0)
 
         let assessment = try? RubricAssessment.save(item, in: databaseClient, id: "1", submissionID: "1")
 

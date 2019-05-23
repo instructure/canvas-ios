@@ -14,14 +14,25 @@
 // limitations under the License.
 //
 
+import Foundation
 @testable import Core
 
-extension APIDiscussionEntry: Fixture {
-    public static var template: Template {
-        return [
-            "id": "1",
-            "user_id": "1",
-            "message": "message",
-        ]
+extension APIDiscussionEntry {
+    public static func make(
+        id: ID = "1",
+        user_id: ID = "1",
+        parent_id: ID? = nil,
+        created_at: Date? = nil,
+        updated_at: Date? = nil,
+        message: String = "message"
+    ) -> APIDiscussionEntry {
+        return APIDiscussionEntry(
+            id: id,
+            user_id: user_id,
+            parent_id: parent_id,
+            created_at: created_at,
+            updated_at: updated_at,
+            message: message
+        )
     }
 }

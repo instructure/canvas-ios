@@ -42,7 +42,7 @@ class GetContextTabsTest: CoreTestCase {
     }
 
     func testItCreatesTabs() {
-        let groupTab = APITab.make(["html_url": "https://twilson.instructure.com/groups/16"])
+        let groupTab = APITab.make(html_url: URL(string: "https://twilson.instructure.com/groups/16")!)
         let getContextTabs = GetContextTabs(context: context)
         try! getContextTabs.write(response: [groupTab], urlResponse: nil, to: databaseClient)
 
@@ -56,8 +56,8 @@ class GetContextTabsTest: CoreTestCase {
         let context1 = ContextModel(.group, id: Group.make(["id": "1"]).id)
         let context2 = ContextModel(.group, id: Group.make(["id": "2"]).id)
 
-        let groupTab1 = APITab.make(["id": "home", "html_url": "https://twilson.instructure.com/groups/1"])
-        let groupTab2 = APITab.make(["id": "assignments", "html_url": "https://twilson.instructure.com/groups/2"])
+        let groupTab1 = APITab.make(id: "home", html_url: URL(string: "https://twilson.instructure.com/groups/1")!)
+        let groupTab2 = APITab.make(id: "assignments", html_url: URL(string: "https://twilson.instructure.com/groups/2")!)
 
         let getContextTabs1 = GetContextTabs(context: context1)
         try! getContextTabs1.write(response: [groupTab1], urlResponse: nil, to: databaseClient)

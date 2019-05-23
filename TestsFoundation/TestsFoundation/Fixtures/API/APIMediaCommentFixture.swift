@@ -17,14 +17,20 @@
 import Foundation
 @testable import Core
 
-extension APIMediaComment: Fixture {
-    public static var template: Template {
-        return [
-            "content-type": "video/mp4",
-            "display_name": "Submission",
-            "media_id": "m-1234567890",
-            "media_type": "video",
-            "url": "https://google.com"
-        ]
+extension APIMediaComment {
+    public static func make(
+        content_type: String = "video/mp4",
+        display_name: String? = "Submission",
+        media_id: String = "m-1234567890",
+        media_type: MediaCommentType = .video,
+        url: URL = URL(string: "https://google.com")!
+    ) -> APIMediaComment {
+        return APIMediaComment(
+            content_type: content_type,
+            display_name: display_name,
+            media_id: media_id,
+            media_type: media_type,
+            url: url
+        )
     }
 }

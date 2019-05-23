@@ -31,7 +31,7 @@ struct APIDocViewerAnnotationsMetadata: Codable, Equatable {
 }
 
 // https://canvadocs.instructure.com/docs/docs/sessionModes.html
-enum APIDocViewerPermissions: String, Codable {
+public enum APIDocViewerPermissions: String, Codable {
     case none, read, readwrite, readwritemanage
 }
 
@@ -77,7 +77,7 @@ struct APIDocViewerAnnotation: Codable, Equatable {
     let width: Double?
 }
 
-enum APIDocViewerAnnotationType: String, Codable {
+public enum APIDocViewerAnnotationType: String, Codable {
     case commentReply, freetext, highlight, ink, square, strikeout, text
 }
 
@@ -92,7 +92,7 @@ struct APIDocViewerInkPoint: Codable, Equatable {
     let opacity: Double?
 }
 
-enum APIDocViewerError: Error, Equatable {
+public enum APIDocViewerError: Error, Equatable {
     case tooBig
     case noData
     case badDateFormat(String)

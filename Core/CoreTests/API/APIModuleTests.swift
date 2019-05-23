@@ -24,9 +24,9 @@ class APIModuleItemTests: XCTestCase {
     let decoder = JSONDecoder()
 
     func testCodableContent() {
-        let file = try! decoder.decode(APIModuleItem.self, from: try! encoder.encode(APIModuleItem.make(["type": "File", "content_id": "1"])))
+        let file = try! decoder.decode(APIModuleItem.self, from: try! encoder.encode(APIModuleItem.make(content: .file("1"))))
         XCTAssertEqual(file.content, .file("1"))
-        let subheader = try! decoder.decode(APIModuleItem.self, from: try! encoder.encode(APIModuleItem.make(["type": "SubHeader", "content_id": "1"])))
+        let subheader = try! decoder.decode(APIModuleItem.self, from: try! encoder.encode(APIModuleItem.make(content: .subHeader)))
         XCTAssertEqual(subheader.content, .subHeader)
     }
 }

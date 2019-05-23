@@ -89,9 +89,9 @@ class SubmissionCommentsPresenterTests: PersistenceTestCase {
             assignmentID: "1",
             userID: "1",
             body: .init(comment: .init(fileIDs: ["1"], forGroup: true), submission: nil)
-        ), value: APISubmission.make([
-            "submission_comments": [ APISubmissionComment.fixture() ],
-        ]))
+        ), value: APISubmission.make(
+            submission_comments: [ APISubmissionComment.make() ]
+        ))
         presenter.viewIsReady()
         view.expectReload = self.expectation(description: "reload")
         view.expectReload?.assertForOverFulfill = false
