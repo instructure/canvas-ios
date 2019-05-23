@@ -16,42 +16,7 @@
 
 import Foundation
 
-public class GetCourse: DetailUseCase<GetCourseRequest, Course> {
-    let courseID: String
-
-    public init(courseID: String, env: AppEnvironment = .shared) {
-        self.courseID = courseID
-        let request = GetCourseRequest(courseID: courseID)
-        super.init(api: env.api, database: env.database, request: request)
-    }
-
-    override public var predicate: NSPredicate {
-        return NSPredicate(format: "%K == %@", #keyPath(Course.id), courseID)
-    }
-
-    override public func updateModel(_ model: Course, using item: APICourse, in client: PersistenceClient) throws {
-        if model.id.isEmpty { model.id = item.id.value }
-        model.name = item.name
-        model.isFavorite = item.is_favorite ?? false
-        model.courseCode = item.course_code
-        model.imageDownloadURL = item.image_download_url
-
-        try model.enrollments?.forEach { try client.delete($0) }
-        model.enrollments = nil
-
-        if let apiEnrollments = item.enrollments {
-            let enrollmentModels: [Enrollment] = try apiEnrollments.map { apiItem in
-                let e: Enrollment = client.insert()
-                try e.update(fromApiModel: apiItem, course: model, in: client)
-                return e
-            }
-            model.enrollments = Set(enrollmentModels)
-        }
-    }
-}
-
-// TODO: rename to GetCourse when we migrate to using Store
-public class GetCourseUseCase: APIUseCase {
+public class GetCourse: APIUseCase {
     public typealias Model = Course
 
     public let courseID: String

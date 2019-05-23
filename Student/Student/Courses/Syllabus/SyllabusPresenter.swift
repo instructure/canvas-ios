@@ -28,19 +28,13 @@ class SyllabusPresenter {
     let env: AppEnvironment
     let courseID: String
 
-    lazy var courses: Store<GetCourseUseCase> = {
-        let useCase = GetCourseUseCase(courseID: courseID)
-        return env.subscribe(useCase) { [weak self] in
-            self?.update()
-        }
-    }()
+    lazy var courses = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
+        self?.update()
+    }
 
-    lazy var colors: Store<GetCustomColors> = {
-        let useCase = GetCustomColors()
-        return env.subscribe(useCase) { [weak self] in
-            self?.update()
-        }
-    }()
+    lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
+        self?.update()
+    }
 
     init(courseID: String, view: SyllabuseViewProtocol, env: AppEnvironment = .shared) {
         self.courseID = courseID

@@ -84,7 +84,6 @@ extension GREYHostApplicationDistantObject: TestHost {
     func logIn(domain: String, token: String) {
         let baseURL = URL(string: "https://\(domain)")!
         appDelegate.setup(session: KeychainEntry(accessToken: token, baseURL: baseURL, expiresAt: nil, locale: "en", refreshToken: nil, userID: "", userName: ""))
-        appDelegate.environment.queue.waitUntilAllOperationsAreFinished()
     }
 
     func show(_ route: String) {
@@ -96,7 +95,6 @@ extension GREYHostApplicationDistantObject: TestHost {
         }
         appDelegate.window!.rootViewController = controller
         controller.loadViewIfNeeded()
-        appDelegate.environment.queue.waitUntilAllOperationsAreFinished()
     }
 
     func setScreenshotDir() {
