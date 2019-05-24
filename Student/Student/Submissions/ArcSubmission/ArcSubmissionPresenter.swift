@@ -21,6 +21,35 @@ protocol ArcSubmissionView: ErrorViewController {
     func load(_ url: URL)
 }
 
+private struct FormBody: Codable {
+    struct ContentItems: Codable {
+        let graph: [Item]
+
+        enum CodingKeys: String, CodingKey {
+            case graph = "@graph"
+        }
+    }
+
+    struct Item: Codable {
+        let url: URL
+    }
+
+    let contentItems: ContentItems
+
+    enum CodingKeys: String, CodingKey {
+        case contentItems = "content_items"
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let string = try container.decode(String.self, forKey: .contentItems)
+        guard let data = string.data(using: .utf8) else {
+            throw NSError.internalError()
+        }
+        contentItems = try JSONDecoder().decode(ContentItems.self, from: data)
+    }
+}
+
 class ArcSubmissionPresenter {
     let env: AppEnvironment
     weak var view: ArcSubmissionView?
@@ -41,12 +70,31 @@ class ArcSubmissionPresenter {
     func viewIsReady() {
         let context = ContextModel(.course, id: courseID)
         let url = env.api.baseURL.appendingPathComponent("\(context.pathComponent)/external_tools/\(arcID)/resource_selection")
-        env.api.makeRequest(GetWebSessionRequest(to: url)) { [weak self] session, _, error in
-            guard let session = session, error == nil else {
-                self?.view?.showError(error ?? NSError.internalError())
+        view?.load(url)
+    }
+
+    func submit(form: Any, callback: @escaping (Error?) -> Void) {
+        do {
+            let data = try JSONSerialization.data(withJSONObject: form, options: [])
+            let body = try JSONDecoder().decode(FormBody.self, from: data)
+            guard let url = body.contentItems.graph.first?.url else {
+                callback(NSError.internalError())
                 return
             }
-            self?.view?.load(session.session_url)
+            submit(url: url, callback: callback)
+        } catch {
+            callback(error)
+        }
+    }
+
+    func submit(url: URL, callback: @escaping (Error?) -> Void) {
+        CreateSubmission(
+            context: ContextModel(.course, id: courseID),
+            assignmentID: assignmentID,
+            userID: userID,
+            submissionType: .basic_lti_launch, url: url
+        ).fetch(environment: env) { _, _, error in
+            callback(error)
         }
     }
 }

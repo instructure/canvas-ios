@@ -23,7 +23,7 @@ protocol ArcSubmissionDelegate: class {
 }
 
 class ArcSubmissionViewController: UIViewController, ArcSubmissionView {
-    @IBOutlet weak var webView: WKWebView!
+    var webView: WKWebView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
 
     weak var delegate: ArcSubmissionDelegate?
@@ -49,8 +49,27 @@ class ArcSubmissionViewController: UIViewController, ArcSubmissionView {
 
         addCancelButton(side: .left)
 
-        webView.navigationDelegate = self
         spinner.startAnimating()
+
+        let config = WKWebViewConfiguration()
+        config.processPool = CoreWebView.processPool
+        webView = WKWebView(frame: .zero, configuration: config)
+        webView.navigationDelegate = self
+        webView.addScript(js)
+        webView.handle("submit") { [weak self] message in
+            self?.presenter?.submit(form: message.body) { error in
+                DispatchQueue.main.async {
+                    if let error = error {
+                        self?.webView.reload()
+                        self?.showError(error)
+                        return
+                    }
+                    self?.dismiss(animated: true, completion: nil)
+                }
+            }
+        }
+        view.addSubview(webView)
+        webView.pin(inside: view)
         presenter?.viewIsReady()
     }
 
@@ -60,12 +79,23 @@ class ArcSubmissionViewController: UIViewController, ArcSubmissionView {
             self.webView.load(URLRequest(url: url))
         }
     }
+
+    var js: String {
+        return """
+            HTMLFormElement.prototype.submit = function() {
+                let formData = {}
+                for (const [ name, value ] of new FormData(this)) {
+                    formData[name] = value
+                }
+                window.webkit.messageHandlers.submit.postMessage(formData)
+            }
+        """
+    }
 }
 
 extension ArcSubmissionViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         if navigationAction.request.url?.absoluteString.contains("success/external_tool_dialog") == true {
-            // TODO: intercept post body here
             decisionHandler(.cancel)
             return
         }
