@@ -14,15 +14,20 @@
 // limitations under the License.
 //
 
+import CoreData
 import Foundation
 import XCTest
 @testable import Core
 
 class LoggerTests: CoreTestCase {
     var theLogger: Logger!
-    var updated: XCTestExpectation?
-    lazy var events: Store<LocalUseCase<LogEvent>> = environment.subscribe(scope: .all(orderBy: #keyPath(LogEvent.timestamp))) { [weak self] in
-        self?.updated?.fulfill()
+
+    func waitForCount(_ count: Int) {
+        let done = expectation(for: NSPredicate(block: { (client, _) -> Bool in
+            let events: [LogEvent] = (client as! NSManagedObjectContext).fetch()
+            return events.count == count
+        }), evaluatedWith: databaseClient)
+        wait(for: [done], timeout: 5)
     }
 
     override func setUp() {
@@ -30,15 +35,12 @@ class LoggerTests: CoreTestCase {
 
         theLogger = Logger()
         theLogger.database = database
-        events.refresh()
     }
     func testLog() {
         let now = Date()
         Clock.mockNow(now)
-        updated = expectation(description: "updated")
-        updated?.assertForOverFulfill = false
         theLogger.log("log message")
-        wait(for: [updated!], timeout: 1)
+        waitForCount(1)
         let event: LogEvent = databaseClient.fetch().first!
         XCTAssertEqual(event.message, "log message")
         XCTAssertEqual(event.timestamp, now)
@@ -48,10 +50,8 @@ class LoggerTests: CoreTestCase {
     func testError() {
         let now = Date()
         Clock.mockNow(now)
-        updated = expectation(description: "updated")
-        updated?.assertForOverFulfill = false
         theLogger.error("error message")
-        wait(for: [updated!], timeout: 1)
+        waitForCount(1)
         let event: LogEvent = databaseClient.fetch().first!
         XCTAssertEqual(event.message, "error message")
         XCTAssertEqual(event.timestamp, now)
@@ -61,13 +61,10 @@ class LoggerTests: CoreTestCase {
     func testClearAll() {
         LogEvent.make()
         LogEvent.make()
-        let before: [LogEvent] = databaseClient.fetch()
-        XCTAssertEqual(before.count, 2)
+        waitForCount(2)
 
-        updated = expectation(description: "updated")
-        updated?.assertForOverFulfill = false
         theLogger.clearAll()
-        wait(for: [updated!], timeout: 1)
+        waitForCount(0)
         databaseClient.refresh()
         let after: [LogEvent] = databaseClient.fetch()
         XCTAssertEqual(after.count, 0)
