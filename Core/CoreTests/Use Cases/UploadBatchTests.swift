@@ -29,7 +29,10 @@ class UploadBatchTests: CoreTestCase {
     }
 
     func testInitWithCallback() {
-        File.make(["batchID": "1", "id": nil])
+        let file = File.make()
+        file.batchID = "1"
+        file.id = nil
+        try! databaseClient.save()
         let expectation = self.expectation(description: "callback")
         expectation.assertForOverFulfill = false
         var state: UploadBatch.State?
@@ -61,7 +64,7 @@ class UploadBatchTests: CoreTestCase {
                 expectation.fulfill()
             }
         }
-        File.make(["batchID": "1", "id": "1"])
+        File.make(from: .make(id: "1"), batchID: "1")
         wait(for: [expectation], timeout: 0.1)
     }
 
@@ -74,7 +77,7 @@ class UploadBatchTests: CoreTestCase {
                 expectation.fulfill()
             }
         }
-        File.make(["batchID": "1", "uploadError": error.localizedDescription, "id": nil])
+        File.make(batchID: "1", removeID: true, uploadError: error.localizedDescription)
         wait(for: [expectation], timeout: 0.1)
     }
 
@@ -87,7 +90,7 @@ class UploadBatchTests: CoreTestCase {
                 expectation.fulfill()
             }
         }
-        File.make(["batchID": "1", "taskIDRaw": 1, "id": nil])
+        File.make(batchID: "1", removeID: true, taskID: 1)
         wait(for: [expectation], timeout: 0.1)
     }
 
@@ -100,7 +103,7 @@ class UploadBatchTests: CoreTestCase {
                 expectation.fulfill()
             }
         }
-        File.make(["batchID": "1", "taskIDRaw": nil, "id": nil, "uploadError": nil])
+        File.make(batchID: "1", removeID: true)
         wait(for: [expectation], timeout: 0.1)
     }
 
@@ -115,7 +118,9 @@ class UploadBatchTests: CoreTestCase {
                 expectation.fulfill()
             }
         }
-        let file = File.make(["batchID": "1", "id": "1"])
+        let file = File.make()
+        file.batchID = "1"
+        file.id = "1"
         file.size = 2 // trigger update
         try! databaseClient.save()
         wait(for: [expectation], timeout: 0.5)
@@ -132,7 +137,9 @@ class UploadBatchTests: CoreTestCase {
                 expectation.fulfill()
             }
         }
-        let file = File.make(["batchID": "1", "uploadError": "doh"])
+        let file = File.make()
+        file.batchID = "1"
+        file.uploadError = "doh"
         file.size = 2 // trigger update
         try! databaseClient.save()
         wait(for: [expectation], timeout: 0.5)

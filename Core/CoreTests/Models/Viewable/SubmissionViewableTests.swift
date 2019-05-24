@@ -53,8 +53,8 @@ class SubmissionViewableTests: XCTestCase {
 
     func testIsSubmitted() {
         XCTAssertFalse(Model(submission: nil).isSubmitted)
-        XCTAssertFalse(Model(submission: Submission.make(["workflowStateRaw": "unsubmitted"])).isSubmitted)
-        XCTAssertTrue(Model(submission: Submission.make(["workflowStateRaw": "submitted"])).isSubmitted)
+        XCTAssertFalse(Model(submission: Submission.make(from: .make(workflow_state: .unsubmitted))).isSubmitted)
+        XCTAssertTrue(Model(submission: Submission.make(from: .make(workflow_state: .submitted))).isSubmitted)
     }
 
     func testStatusIsHidden() {
@@ -65,34 +65,34 @@ class SubmissionViewableTests: XCTestCase {
 
     func testStatusColor() {
         XCTAssertEqual(Model(submission: nil).submissionStatusColor, UIColor.named(.ash))
-        XCTAssertEqual(Model(submission: Submission.make(["workflowStateRaw": "submitted"])).submissionStatusColor, UIColor.named(.shamrock))
+        XCTAssertEqual(Model(submission: Submission.make(from: .make(workflow_state: .submitted))).submissionStatusColor, UIColor.named(.shamrock))
     }
 
     func testStatusIcon() {
         XCTAssertEqual(Model(submission: nil).submissionStatusIcon, UIImage.icon(.no, .solid))
-        XCTAssertEqual(Model(submission: Submission.make(["workflowStateRaw": "submitted"])).submissionStatusIcon, UIImage.icon(.complete, .solid))
+        XCTAssertEqual(Model(submission: Submission.make(from: .make(workflow_state: .submitted))).submissionStatusIcon, UIImage.icon(.complete, .solid))
     }
 
     func testStatusText() {
         XCTAssertEqual(Model(submission: nil).submissionStatusText, "Not Submitted")
-        XCTAssertEqual(Model(submission: Submission.make(["workflowStateRaw": "submitted"])).submissionStatusText, "Submitted")
+        XCTAssertEqual(Model(submission: Submission.make(from: .make(submitted_at: nil, workflow_state: .submitted))).submissionStatusText, "Submitted")
         let submittedAt = DateComponents(calendar: Calendar.current, year: 2018, month: 10, day: 1).date!
-        XCTAssertEqual(Model(submission: Submission.make(["workflowStateRaw": "submitted", "submittedAt": submittedAt])).submissionStatusText, "Submitted Oct 1, 2018 at 12:00 AM")
+        XCTAssertEqual(Model(submission: Submission.make(from: .make(submitted_at: submittedAt, workflow_state: .submitted))).submissionStatusText, "Submitted Oct 1, 2018 at 12:00 AM")
     }
 
     func testHasLatePenalty() {
         XCTAssertFalse(Model(submission: nil).hasLatePenalty)
-        XCTAssertFalse(Model(submission: Submission.make([ "late": true ])).hasLatePenalty)
-        XCTAssertFalse(Model(submission: Submission.make([ "pointsDeductedRaw": 0, "late": true ])).hasLatePenalty)
-        XCTAssertTrue(Model(submission: Submission.make([ "pointsDeductedRaw": 10, "late": true ])).hasLatePenalty)
+        XCTAssertFalse(Model(submission: Submission.make(from: .make(late: true))).hasLatePenalty)
+        XCTAssertFalse(Model(submission: Submission.make(from: .make(late: true, points_deducted: 0 ))).hasLatePenalty)
+        XCTAssertTrue(Model(submission: Submission.make(from: .make(late: true, points_deducted: 10 ))).hasLatePenalty)
     }
 
     func testLatePenaltyText() {
         XCTAssertNil(Model(submission: nil).latePenaltyText)
-        XCTAssertNil(Model(submission: Submission.make([ "late": false ])).latePenaltyText)
-        XCTAssertNil(Model(submission: Submission.make([ "late": true ])).latePenaltyText)
-        XCTAssertEqual(Model(submission: Submission.make([ "late": true, "pointsDeductedRaw": 10 ])).latePenaltyText, "Late penalty (-10 pts)")
-        XCTAssertEqual(Model(submission: Submission.make([ "late": true, "pointsDeductedRaw": 1 ])).latePenaltyText, "Late penalty (-1 pt)")
+        XCTAssertNil(Model(submission: Submission.make(from: .make(late: false))).latePenaltyText)
+        XCTAssertNil(Model(submission: Submission.make(from: .make(late: true))).latePenaltyText)
+        XCTAssertEqual(Model(submission: Submission.make(from: .make(late: true, points_deducted: 10 ))).latePenaltyText, "Late penalty (-10 pts)")
+        XCTAssertEqual(Model(submission: Submission.make(from: .make(late: true, points_deducted: 1 ))).latePenaltyText, "Late penalty (-1 pt)")
     }
 
     func testIsSubmittable() {

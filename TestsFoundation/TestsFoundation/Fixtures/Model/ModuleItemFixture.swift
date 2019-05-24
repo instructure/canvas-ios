@@ -14,26 +14,19 @@
 // limitations under the License.
 //
 
+import CoreData
 import Foundation
 @testable import Core
 
-extension ModuleItem: Fixture {
-    public static let template: Template = [
-        "id": "1",
-        "title": "Module Item 1",
-        "position": 1,
-        "published": true,
-        "moduleID": "1",
-        "courseID": "1",
-        "indent": 0,
-        "htmlURL": URL(string: "https://canvas.example.edu/courses/222/modules/items/768")!,
-        "url": URL(string: "https://canvas.example.edu/api/v1/courses/222/assignments/987")!,
-        "typeRaw": ModuleItemType.assignment("1").data,
-    ]
-}
-
-extension ModuleItemType {
-    public var data: Data {
-        return try! JSONEncoder().encode(self)
+extension ModuleItem {
+    @discardableResult
+    public static func make(
+        from api: APIModuleItem = .make(),
+        forCourse courseID: String = "1",
+        in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
+    ) -> ModuleItem {
+        let model = ModuleItem.save(api, forCourse: courseID, in: context)
+        try! context.save()
+        return model
     }
 }

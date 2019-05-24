@@ -14,18 +14,19 @@
 // limitations under the License.
 //
 
+import CoreData
 import Foundation
 @testable import Core
 
-extension SubmissionComment: Fixture {
-    public static var template: Template {
-        return [
-            "id": "1",
-            "authorID": "1",
-            "authorName": "Steve",
-            "comment": "comment",
-            "createdAt": Date(fromISOString: "2019-03-13T21:00:36Z"),
-            "submissionID": "1",
-        ]
+extension SubmissionComment {
+    @discardableResult
+    public static func make(
+        from api: APISubmissionComment = .make(),
+        forSubmission submissionID: String = "1",
+        in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
+    ) -> SubmissionComment {
+        let model = SubmissionComment.save(api, forSubmission: submissionID, in: context)
+        try! context.save()
+        return model
     }
 }

@@ -29,9 +29,9 @@ class GetContextTabsTest: CoreTestCase {
     }
 
     func testScopeSort() {
-        Tab.make(["position": 3, "label": "3"])
-        Tab.make(["position": 1, "label": "1"])
-        Tab.make(["position": 2, "label": "2"])
+        Tab.make(from: .make(label: "3", position: 3))
+        Tab.make(from: .make(label: "1", position: 1))
+        Tab.make(from: .make(label: "2", position: 2))
 
         let useCase = GetContextTabs(context: context)
 
@@ -53,8 +53,8 @@ class GetContextTabsTest: CoreTestCase {
     }
 
     func testItCreatesTabsMultipleRequests() {
-        let context1 = ContextModel(.group, id: Group.make(["id": "1"]).id)
-        let context2 = ContextModel(.group, id: Group.make(["id": "2"]).id)
+        let context1 = ContextModel(.group, id: Group.make(from: .make(id: "1")).id)
+        let context2 = ContextModel(.group, id: Group.make(from: .make(id: "2")).id)
 
         let groupTab1 = APITab.make(id: "home", html_url: URL(string: "https://twilson.instructure.com/groups/1")!)
         let groupTab2 = APITab.make(id: "assignments", html_url: URL(string: "https://twilson.instructure.com/groups/2")!)

@@ -29,6 +29,6 @@ class SubmissionCommentTests: CoreTestCase {
 
     func testAttempt() {
         XCTAssertNil(SubmissionComment.make().attempt)
-        XCTAssertEqual(SubmissionComment.make([ "id": "submission-1-2" ]).attempt, 2)
+        XCTAssertEqual(SubmissionComment.make(from: .make(id: "submission-1-2")).attempt, 2)
     }
 }

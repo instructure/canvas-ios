@@ -94,29 +94,6 @@ public enum ModuleItemType: Equatable, Codable {
         }
     }
 
-    public static func == (lhs: ModuleItemType, rhs: ModuleItemType) -> Bool {
-        switch (lhs, rhs) {
-        case let (.file(lhs), .file(rhs)):
-            return lhs == rhs
-        case let (.discussion(lhs), .discussion(rhs)):
-            return lhs == rhs
-        case let (.assignment(lhs), .assignment(rhs)):
-            return lhs == rhs
-        case let (.quiz(lhs), .quiz(rhs)):
-            return lhs == rhs
-        case let (.externalURL(lhs), .externalURL(rhs)):
-            return lhs == rhs
-        case let (.externalTool(lhsID, lhsURL), .externalTool(rhsID, rhsURL)):
-            return lhsID == rhsID && lhsURL == rhsURL
-        case let (.page(lhs), .page(rhs)):
-            return lhs == rhs
-        case (.subHeader, .subHeader):
-            return true
-        default:
-            return false
-        }
-    }
-
     public var icon: UIImage? {
         switch self {
         case .subHeader:

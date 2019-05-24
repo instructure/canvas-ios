@@ -51,7 +51,7 @@ class SyllabusActionableItemsPresenterTests: PersistenceTestCase {
 
     func testUseCaseFetchesData() {
         //  given
-        Assignment.make()
+        Assignment.make(from: .make(name: "Assignment One"))
 
         //   when
         presenter.viewIsReady()
@@ -91,54 +91,54 @@ class SyllabusActionableItemsPresenterTests: PersistenceTestCase {
 
     func testFormattedDate() {
         NSTimeZone.default = NSTimeZone(forSecondsFromGMT: 0) as TimeZone
-        let a = Assignment.make(["dueAt": Date(fromISOString: "2018-05-15T20:00:00Z")])
+        let a = Assignment.make(from: .make(due_at: Date(fromISOString: "2018-05-15T20:00:00Z")))
         let str = presenter.formattedDueDate(a.dueAt)
         XCTAssertEqual(str, "May 15, 2018 at 8:00 PM")
     }
 
     func testIconForDiscussion() {
-        let a = Assignment.make(["id": "1", "submissionTypesRaw": ["discussion_topic"]])
+        let a = Assignment.make(from: .make(id: "1", submission_types: [ .discussion_topic ]))
         let icon = presenter.icon(for: a)
         let expected = UIImage.icon(.discussion, .line)
         XCTAssertEqual(icon, expected)
     }
 
     func testIconForAssignment() {
-        let a = Assignment.make(["id": "1"])
+        let a = Assignment.make(from: .make(id: "1"))
         let icon = presenter.icon(for: a)
         let expected = UIImage.icon(.assignment, .line)
         XCTAssertEqual(icon, expected)
     }
 
     func testIconForQuiz() {
-        let a = Assignment.make(["id": "1", "quizID": "1"])
+        let a = Assignment.make(from: .make(id: "1", quiz_id: "1"))
         let icon = presenter.icon(for: a)
         let expected = UIImage.icon(.quiz, .line)
         XCTAssertEqual(icon, expected)
     }
 
     func testIconForExternalTool() {
-        let a = Assignment.make(["id": "1", "submissionTypesRaw": ["external_tool"]])
+        let a = Assignment.make(from: .make(id: "1", submission_types: [ .external_tool ]))
         let icon = presenter.icon(for: a)
         let expected = UIImage.icon(.lti, .line)
         XCTAssertEqual(icon, expected)
     }
 
     func testIconForLocked() {
-        let a = Assignment.make(["id": "1", "submissionTypesRaw": ["external_tool"], "lockedForUser": true])
+        let a = Assignment.make(from: .make(id: "1", submission_types: [ .external_tool ], locked_for_user: true))
         let icon = presenter.icon(for: a)
         let expected = UIImage.icon(.lock, .line)
         XCTAssertEqual(icon, expected)
     }
 
     func testSortOrder() {
-        Assignment.make(["name": "a", "dueAt": Date(fromISOString: "2017-05-15T20:00:00Z")])
-        Assignment.make(["name": "b", "dueAt": Date(fromISOString: "2018-05-15T20:00:00Z")])
-        Assignment.make(["name": "c", "dueAt": nil])
+        Assignment.make(from: .make(id: "1", name: "a", due_at: Date(fromISOString: "2017-05-15T20:00:00Z")))
+        Assignment.make(from: .make(id: "2", name: "b", due_at: Date(fromISOString: "2018-05-15T20:00:00Z")))
+        Assignment.make(from: .make(id: "3", name: "c", due_at: nil))
 
-        CalendarEventItem.make(["title": "cA", "endAt": Date(fromISOString: "2016-05-15T20:00:00Z")])
-        CalendarEventItem.make(["title": "cB", "endAt": Date(fromISOString: "2017-06-15T20:00:00Z")])
-        CalendarEventItem.make(["title": "cC", "endAt": nil])
+        CalendarEventItem.make(from: .make(id: "1", title: "cA", end_at: Date(fromISOString: "2016-05-15T20:00:00Z")))
+        CalendarEventItem.make(from: .make(id: "2", title: "cB", end_at: Date(fromISOString: "2017-06-15T20:00:00Z")))
+        CalendarEventItem.make(from: .make(id: "3", title: "cC", end_at: nil))
 
         presenter.viewIsReady()
 

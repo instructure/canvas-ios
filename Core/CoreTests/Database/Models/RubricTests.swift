@@ -20,9 +20,9 @@ import XCTest
 
 class RubricTests: CoreTestCase {
     func testRubricScope() {
-        let two = Rubric.make(["position": 2, "id": "2"])
-        let one = Rubric.make(["position": 1, "id": "1"])
-        let scope = Rubric.scope(assignmentID: "2")
+        let two = Rubric.make(from: .make(id: "2", position: 2))
+        let one = Rubric.make(from: .make(id: "1", position: 1))
+        let scope = Rubric.scope(assignmentID: "1")
 
         let rubrics: [Rubric] = databaseClient.fetch(predicate: scope.predicate, sortDescriptors: scope.order)
         XCTAssertEqual(rubrics.count, 2)
@@ -31,7 +31,7 @@ class RubricTests: CoreTestCase {
     }
 
     func testSaveRating() {
-        RubricRating.make(["id": "1", "assignmentID": "2"])
+        RubricRating.make(from: .make(id: "1", assignmentID: "2"))
         let item = APIRubricRating.make(id: "1", points: 100.0, assignmentID: "2")
 
         let rating = try? RubricRating.save(item, in: databaseClient)
@@ -44,7 +44,7 @@ class RubricTests: CoreTestCase {
     }
 
     func testSaveAssessment() {
-        RubricAssessment.make(["id": "1", "submissionID": "1", "points": 2.0])
+        RubricAssessment.make(from: .make(submissionID: "1", points: 2.0), id: "1")
         let item = APIRubricAssessment.make(points: 200.0)
 
         let assessment = try? RubricAssessment.save(item, in: databaseClient, id: "1", submissionID: "1")

@@ -14,14 +14,21 @@
 // limitations under the License.
 //
 
+import CoreData
 import Foundation
 @testable import Core
 
-extension Course: Fixture {
-    public static var template: Template {
-        return [
-            "id": "1",
-            "name": "Course One",
-        ]
+extension Color {
+    @discardableResult
+    public static func make(
+        canvasContextID: String = "course_1",
+        color: UIColor = .red,
+        in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
+    ) -> Color {
+        let model: Color = context.insert()
+        model.canvasContextID = canvasContextID
+        model.color = color
+        try! context.save()
+        return model
     }
 }

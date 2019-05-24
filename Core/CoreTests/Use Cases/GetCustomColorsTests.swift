@@ -25,8 +25,8 @@ class GetCustomColorsTests: CoreTestCase {
     }
 
     func testScope() {
-        let course = Color.make(["canvasContextID": "course_1"])
-        let group = Color.make(["canvasContextID": "group_1"])
+        let course = Color.make(canvasContextID: "course_1")
+        let group = Color.make(canvasContextID: "group_1")
         XCTAssert(useCase.scope.predicate.evaluate(with: course))
         XCTAssert(useCase.scope.predicate.evaluate(with: group))
     }

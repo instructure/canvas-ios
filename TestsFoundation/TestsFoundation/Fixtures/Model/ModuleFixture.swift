@@ -14,15 +14,19 @@
 // limitations under the License.
 //
 
+import CoreData
 import Foundation
 @testable import Core
 
-extension Module: Fixture {
-    public static let template: Template = [
-        "id": "1",
-        "name": "Module 1",
-        "position": 1,
-        "courseID": "1",
-        "published": true,
-    ]
+extension Module {
+    @discardableResult
+    public static func make(
+        from api: APIModule = .make(),
+        forCourse courseID: String = "1",
+        in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
+    ) -> Module {
+        let model = Module.save(api, forCourse: courseID, in: context)
+        try! context.save()
+        return model
+    }
 }

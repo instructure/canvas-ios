@@ -20,7 +20,7 @@ import XCTest
 
 class DiscussionTopicTests: CoreTestCase {
     func testProperties() {
-        let topic = DiscussionTopic.make()
+        let topic = DiscussionTopic.make(from: .make(title: "Graded Discussion"))
 
         XCTAssertEqual(topic.id, "1")
         XCTAssertEqual(topic.title, "Graded Discussion")
@@ -34,19 +34,19 @@ class DiscussionTopicTests: CoreTestCase {
     }
 
     func testHtml() {
-        let topic = DiscussionTopic.make([
-            "authorName": "Strong Bad",
-            "postedAt": DateComponents(calendar: .current, timeZone: .current, year: 2019, month: 4, day: 22).date,
-        ])
+        let topic = DiscussionTopic.make(from: .make(
+            posted_at: DateComponents(calendar: .current, timeZone: .current, year: 2019, month: 4, day: 22).date,
+            author: .make(display_name: "Strong Bad")
+        ))
         XCTAssertTrue(topic.html.contains("SB"))
         XCTAssertTrue(topic.html.contains("Strong Bad"))
         XCTAssertTrue(topic.html.contains("Apr 22, 2019"))
     }
 
     func testHTMLWithNoAuthorName() {
-        let topic = DiscussionTopic.make([
-            "authorName": nil,
-        ])
+        let topic = DiscussionTopic.make(from: .make(
+            author: .make(display_name: nil)
+        ))
         XCTAssertFalse(topic.html.contains("Strong Bad"))
     }
 

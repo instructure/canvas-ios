@@ -53,14 +53,14 @@ class SubmissionTests: CoreTestCase {
         XCTAssertEqual(submission.workflowState, .unsubmitted)
 
         submission.discussionEntries = [
-            DiscussionEntry.make([ "id": "2" ]),
-            DiscussionEntry.make([ "id": "1" ]),
+            DiscussionEntry.make(from: .make(id: "2")),
+            DiscussionEntry.make(from: .make(id: "1")),
         ]
         XCTAssertEqual(submission.discussionEntriesOrdered.first?.id, "1")
     }
 
     func testMediaSubmission() {
-        let submission = Submission.make(["mediaComment": MediaComment.make()])
+        let submission = Submission.make(from: .make(media_comment: .make()))
         XCTAssertNotNil(submission.mediaComment)
     }
 
@@ -79,13 +79,13 @@ class SubmissionTests: CoreTestCase {
             XCTAssertEqual(submission.icon, UIImage.icon(icon))
         }
         submission.type = .media_recording
-        submission.mediaComment = MediaComment.make(["mediaTypeRaw": "audio"])
+        submission.mediaComment = MediaComment.make(from: .make(media_type: .audio))
         XCTAssertEqual(submission.icon, UIImage.icon(.audio))
         submission.mediaComment?.mediaType = .video
         XCTAssertEqual(submission.icon, UIImage.icon(.video))
 
         submission.type = .online_upload
-        submission.attachments = Set([ File.make([ "mimeClass": "pdf" ]) ])
+        submission.attachments = Set([ File.make(from: .make(mime_class: "pdf")) ])
         XCTAssertEqual(submission.icon, UIImage.icon(.pdf))
 
         submission.type = .on_paper
@@ -96,13 +96,13 @@ class SubmissionTests: CoreTestCase {
     }
 
     func testSubtitle() {
-        let submission = Submission.make([
-            "attempt": 1,
-            "body": "<a style=\"stuff\">Text</z>",
-            "discussionEntries": Set([ DiscussionEntry.make([ "message": "<p>reply<p>" ]) ]),
-            "attachments": Set([ File.make([ "size": 1234 ]) ]),
-            "url": URL(string: "https://instructure.com"),
-        ])
+        let submission = Submission.make(from: .make(
+            body: "<a style=\"stuff\">Text</z>",
+            attempt: 1,
+            attachments: [ .make(size: 1234) ],
+            discussion_entries: [ .make(message: "<p>reply<p>") ],
+            url: URL(string: "https://instructure.com")
+        ))
         let map: [SubmissionType: String] = [
             .basic_lti_launch: "Attempt 1",
             .external_tool: "Attempt 1",
@@ -116,7 +116,7 @@ class SubmissionTests: CoreTestCase {
             XCTAssertEqual(submission.subtitle, subtitle)
         }
         submission.type = .media_recording
-        submission.mediaComment = MediaComment.make(["mediaTypeRaw": "audio"])
+        submission.mediaComment = MediaComment.make(from: .make(media_type: .audio))
         XCTAssertEqual(submission.subtitle, "Audio")
         submission.mediaComment?.mediaType = .video
         XCTAssertEqual(submission.subtitle, "Video")
@@ -132,10 +132,13 @@ class SubmissionTests: CoreTestCase {
     }
 
     func testRubricAssessments() {
-        let assessA = RubricAssessment.make(["id": "A"])
-        let assessB = RubricAssessment.make(["id": "B"])
-        let submisison = Submission.make(["rubricAssesmentRaw": Set( [ assessA, assessB ] )])
-        let map = submisison.rubricAssessments ?? [:]
+        let submission = Submission.make(from: .make(rubric_assessment: [
+            "A": .make(),
+            "B": .make(),
+        ]))
+        let assessA = RubricAssessment.make(id: "A")
+        let assessB = RubricAssessment.make(id: "B")
+        let map = submission.rubricAssessments ?? [:]
         XCTAssertEqual(map[assessA.id], assessA)
         XCTAssertEqual(map[assessB.id], assessB)
     }

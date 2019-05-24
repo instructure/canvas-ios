@@ -17,12 +17,17 @@
 import Foundation
 @testable import Core
 
-extension FileUploadTarget: Fixture {
-    public static var template: Template = [
-        "upload_url": "https://canvas.s3.bucket.com/bucket/1",
-        "upload_params": [
+extension FileUploadTarget {
+    public static func make(
+        upload_url: URL = URL(string: "https://canvas.s3.bucket.com/bucket/1")!,
+        upload_params: [String: String] = [
             "param1": "foo",
             "param2": "bar"
         ]
-    ]
+    ) -> FileUploadTarget {
+        return FileUploadTarget(
+            upload_url: upload_url,
+            upload_params: upload_params
+        )
+    }
 }

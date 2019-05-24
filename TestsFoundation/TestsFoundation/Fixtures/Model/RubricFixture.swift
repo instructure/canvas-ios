@@ -14,43 +14,44 @@
 // limitations under the License.
 //
 
+import CoreData
 import Foundation
 @testable import Core
 
-extension Rubric: Fixture {
-    public static var template: Template {
-        return [
-            "id": "1",
-            "points": 25.0,
-            "desc": "Effort",
-            "longDesc": "Did you even try?",
-            "criterionUseRange": false,
-            "assignmentID": "2",
-            "ratings": Set( [ RubricRating.make(["id": "1", "points": 10.0]), RubricRating.make(["id": "2", "points": 25.0])] ),
-        ]
+extension Rubric {
+    @discardableResult
+    public static func make(
+        from api: APIRubric = .make(),
+        in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
+    ) -> Rubric {
+        let model = try! Rubric.save(api, in: context)
+        try! context.save()
+        return model
     }
 }
 
-extension RubricRating: Fixture {
-    public static var template: Template {
-        return [
-            "id": "1",
-            "points": 25.0,
-            "desc": "Great!",
-            "longDesc": "You did great!!",
-            "assignmentID": "2",
-        ]
+extension RubricRating {
+    @discardableResult
+    public static func make(
+        from api: APIRubricRating = .make(),
+        in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
+    ) -> RubricRating {
+        let model = try! RubricRating.save(api, in: context)
+        try! context.save()
+        return model
     }
 }
 
-extension RubricAssessment: Fixture {
-    public static var template: Template {
-        return [
-            "id": "1",
-            "ratingID": "2",
-            "comments": "random comment",
-            "points": 25.0,
-            "submissionID": "1",
-        ]
+extension RubricAssessment {
+    @discardableResult
+    public static func make(
+        from api: APIRubricAssessment = .make(),
+        id: String = "1",
+        submissionID: String = "1",
+        in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
+    ) -> RubricAssessment {
+        let model = try! RubricAssessment.save(api, in: context, id: id, submissionID: submissionID)
+        try! context.save()
+        return model
     }
 }

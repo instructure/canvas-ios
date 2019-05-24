@@ -28,13 +28,13 @@ class GroupTests: CoreTestCase {
 
     func testColor() {
         let a = Group.make()
-        _ = Color.make([#keyPath(Color.canvasContextID): a.canvasContextID])
+        _ = Color.make(canvasContextID: a.canvasContextID)
 
         XCTAssertEqual(a.color, .red)
     }
 
     func testColorWithCourseID() {
-        let a = Group.make(["courseID": "1"])
+        let a = Group.make(from: .make(course_id: "1"))
         _ = Color.make()
 
         XCTAssertEqual(a.color, .red)

@@ -24,7 +24,7 @@ class AssignmentDatesTests: XCTestCase {
     var a: Assignment!
     override func setUp() {
         df = ISO8601DateFormatter()
-        a = Assignment.make(["lockAt": nil, "unlockAt": nil])
+        a = Assignment.make(from: .make(unlock_at: nil, lock_at: nil))
 
         let now    = df.date(from: "2018-10-01T06:00:00Z")!
         Clock.mockNow(now)
