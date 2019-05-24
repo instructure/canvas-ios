@@ -20,9 +20,9 @@ import UIKit
 import Core
 
 enum SubmissionButtonAlertView {
-    static func chooseTypeAlert(_ presenter: SubmissionButtonPresenter, assignment: Assignment, button: UIView) -> UIAlertController {
+    static func chooseTypeAlert(_ presenter: SubmissionButtonPresenter, assignment: Assignment, types: [SubmissionType], button: UIView) -> UIAlertController {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        for type in assignment.submissionTypes {
+        for type in types {
             let action = UIAlertAction(title: type.localizedString, style: .default) { [weak presenter] _ in
                 presenter?.submitType(type, for: assignment)
             }

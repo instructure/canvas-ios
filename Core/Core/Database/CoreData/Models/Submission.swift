@@ -177,7 +177,7 @@ extension Submission {
     public var icon: UIImage? {
         guard let type = type else { return nil }
         switch type {
-        case .basic_lti_launch, .external_tool:
+        case .basic_lti_launch, .external_tool, .arc:
             return UIImage.icon(.lti)
         case .discussion_topic:
             return UIImage.icon(.discussion)
@@ -199,7 +199,7 @@ extension Submission {
     public var subtitle: String? {
         guard let type = type else { return nil }
         switch type {
-        case .basic_lti_launch, .external_tool, .online_quiz:
+        case .basic_lti_launch, .external_tool, .online_quiz, .arc:
             return String.localizedStringWithFormat(
                 NSLocalizedString("Attempt %d", bundle: .core, comment: ""),
                 attempt

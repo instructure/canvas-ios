@@ -43,6 +43,10 @@ class AssignmentDetailsPresenter {
         self?.update()
     }
 
+    lazy var arc = env.subscribe(GetArc(courseID: courseID)) { [weak self] in
+        self?.updateArc()
+    }
+
     var quizzes: Store<GetQuiz>?
 
     let env: AppEnvironment
@@ -84,16 +88,31 @@ class AssignmentDetailsPresenter {
         if let submission = assignment.submission {
             userID = submission.userID
         }
+        if let arcID = arc.first?.id {
+            submissionButtonPresenter.arcID = .some(arcID)
+        } else {
+            submissionButtonPresenter.arcID = .none
+        }
         let title = submissionButtonPresenter.buttonText(course: course, assignment: assignment, quiz: quizzes?.first)
         view?.showSubmitAssignmentButton(title: title)
         view?.updateNavBar(subtitle: course.name, backgroundColor: course.color)
         view?.update(assignment: assignment, quiz: quizzes?.first, baseURL: baseURL)
     }
 
+    func updateArc() {
+        if let arcID = arc.first?.id {
+            submissionButtonPresenter.arcID = .some(arcID)
+        } else {
+            submissionButtonPresenter.arcID = .none
+        }
+        update()
+    }
+
     func viewIsReady() {
         colors.refresh()
         courses.refresh()
         assignments.refresh()
+        arc.refresh()
         fileUpload.subscribe { [weak self] _ in
             self?.update()
         }
@@ -103,6 +122,7 @@ class AssignmentDetailsPresenter {
         courses.refresh(force: true)
         assignments.refresh(force: true)
         quizzes?.refresh(force: true)
+        arc.refresh(force: true)
     }
 
     func routeToSubmission(view: UIViewController) {

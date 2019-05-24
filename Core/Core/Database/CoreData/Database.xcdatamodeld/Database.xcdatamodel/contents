@@ -38,6 +38,8 @@
         <attribute name="color" attributeType="Transformable" customClassName="UIKit.UIColor" syncable="YES"/>
     </entity>
     <entity name="Course" representedClassName="Core.Course" syncable="YES">
+        <attribute name="arcEnabledRaw" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="arcID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="courseCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="defaultViewRaw" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" attributeType="String" syncable="YES"/>
@@ -91,6 +93,11 @@
         <attribute name="typeRaw" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="enrollments" inverseEntity="Course" syncable="YES"/>
+    </entity>
+    <entity name="ExternalTool" representedClassName="Core.ExternalTool" syncable="YES">
+        <attribute name="arc" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="courseID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="File" representedClassName="Core.File" syncable="YES">
         <attribute name="assignmentID" optional="YES" attributeType="String" syncable="YES"/>
@@ -346,7 +353,7 @@
         <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="375"/>
         <element name="CalendarEventItem" positionX="-531" positionY="-18" width="128" height="150"/>
         <element name="Color" positionX="-177.3046875" positionY="-36" width="128" height="75"/>
-        <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="165"/>
+        <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="195"/>
         <element name="DiscussionEntry" positionX="-513.66796875" positionY="535.73828125" width="128" height="150"/>
         <element name="DiscussionTopic" positionX="-540" positionY="-27" width="128" height="255"/>
         <element name="Enrollment" positionX="-578.41796875" positionY="2.78125" width="128" height="315"/>
@@ -366,5 +373,6 @@
         <element name="Tab" positionX="108.015625" positionY="177.67578125" width="128" height="165"/>
         <element name="TTL" positionX="-173.30859375" positionY="-128.48046875" width="128" height="75"/>
         <element name="UserSettings" positionX="-540" positionY="-27" width="128" height="90"/>
+        <element name="ExternalTool" positionX="-540" positionY="-27" width="128" height="90"/>
     </elements>
 </model>

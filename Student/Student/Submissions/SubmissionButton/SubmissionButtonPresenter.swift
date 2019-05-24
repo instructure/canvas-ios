@@ -22,11 +22,18 @@ import Core
 protocol SubmissionButtonViewProtocol: ApplicationViewController, ErrorViewController {
 }
 
+enum ArcID {
+    case pending
+    case none
+    case some(String)
+}
+
 class SubmissionButtonPresenter: NSObject {
     var assignment: Assignment?
     let assignmentID: String
     let env: AppEnvironment
     let fileUpload: UploadBatch
+    var arcID: ArcID = .pending
     weak var view: SubmissionButtonViewProtocol?
 
     init(env: AppEnvironment = .shared, view: SubmissionButtonViewProtocol, assignmentID: String) {
@@ -50,6 +57,10 @@ class SubmissionButtonPresenter: NSObject {
             return NSLocalizedString("Take Quiz", bundle: .student, comment: "")
         }
 
+        if case .pending = arcID {
+            return nil
+        }
+
         let canSubmit = (
             assignment.canMakeSubmissions &&
             assignment.isOpenForSubmissions() &&
@@ -66,12 +77,15 @@ class SubmissionButtonPresenter: NSObject {
     func submitAssignment(_ assignment: Assignment, button: UIView) {
         guard assignment.canMakeSubmissions else { return }
         self.assignment = assignment
-        let types = assignment.submissionTypes
+        var types = assignment.submissionTypes
+        if case .some(_) = arcID {
+            types.append(.arc)
+        }
         if types.count == 1, let type = types.first {
             return submitType(type, for: assignment)
         }
 
-        let alert = SubmissionButtonAlertView.chooseTypeAlert(self, assignment: assignment, button: button)
+        let alert = SubmissionButtonAlertView.chooseTypeAlert(self, assignment: assignment, types: types, button: button)
         view?.present(alert, animated: true, completion: nil)
     }
 
@@ -105,6 +119,11 @@ class SubmissionButtonPresenter: NSObject {
         case .online_url:
             let route = Route.assignmentUrlSubmission(courseID: courseID, assignmentID: assignment.id, userID: userID)
             env.router.route(to: route, from: view, options: [.modal, .embedInNav])
+        case .arc:
+            guard case let .some(arcID) = arcID else { break }
+            let arc = ArcSubmissionViewController.create(environment: env, courseID: courseID, assignmentID: assignment.id, userID: userID, arcID: arcID)
+            let nav = UINavigationController(rootViewController: arc)
+            view.present(nav, animated: true, completion: nil)
         case .none, .not_graded, .on_paper:
             break
         }

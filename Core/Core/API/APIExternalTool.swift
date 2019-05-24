@@ -16,8 +16,17 @@
 
 import Foundation
 
+public struct APIExternalTool: Codable, Equatable {
+    public let id: ID
+    public let name: String
+    public let domain: String?
+    public let url: URL
+
+    public var arc: Bool {
+        return domain?.contains("arc.instructure.com") == true
+    }
+}
+
 public struct APIGetSessionlessLaunchResponse: Codable, Equatable {
-    let id: String
-    let name: String
-    let url: URL
+    public let url: URL
 }
