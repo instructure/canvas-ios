@@ -15,6 +15,7 @@
 //
 
 import Foundation
+import UIKit
 
 public enum UserAgent: CustomStringConvertible {
     case `default`

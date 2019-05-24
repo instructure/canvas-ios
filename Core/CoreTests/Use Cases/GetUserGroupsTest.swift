@@ -34,7 +34,7 @@ class GetUserGroupsTest: CoreTestCase {
     }
 
     func testItDeletesOldUserGroups() {
-        let old = Group.make(["showOnDashboard": true])
+        let old = Group.make(showOnDashboard: true)
         let request = GetGroupsRequest(context: ContextModel.currentUser)
         api.mock(request, value: [])
 
@@ -52,7 +52,7 @@ class GetUserGroupsTest: CoreTestCase {
     }
 
     func testItDoesNotDeleteNonUserGroups() {
-        let notMember = Group.make(["showOnDashboard": false])
+        let notMember = Group.make(showOnDashboard: false)
         let request = GetGroupsRequest(context: ContextModel.currentUser)
         api.mock(request, value: [])
 

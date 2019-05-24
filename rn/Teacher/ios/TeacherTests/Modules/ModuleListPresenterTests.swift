@@ -94,34 +94,31 @@ class ModuleListPresenterTests: TeacherTestCase {
             }
         }
         presenter.viewIsReady()
-        Module.make(["courseID": courseID])
+        Module.make(forCourse: courseID)
 
         wait(for: [reloaded], timeout: 9)
     }
 
     func testModulesOrder() {
         let courseID = "1"
-        Module.make([
-            "position": 1,
-            "name": "Module 1",
-            "courseID": courseID,
-            "id": "1",
-            "itemsRaw": NSOrderedSet(array: [ModuleItem.make(["moduleID": "1"])]),
-        ])
-        Module.make([
-            "position": 2,
-            "name": "Module 2",
-            "courseID": courseID,
-            "id": "2",
-            "itemsRaw": NSOrderedSet(array: [ModuleItem.make(["moduleID": "2"])]),
-        ])
-        Module.make([
-            "position": 3,
-            "name": "Module 3",
-            "courseID": courseID,
-            "id": "3",
-            "itemsRaw": NSOrderedSet(array: [ModuleItem.make(["moduleID": "3"])]),
-        ])
+        Module.make(from: .make(
+            id: "1",
+            name: "Module 1",
+            position: 1,
+            items: [ .make(module_id: "1") ]
+        ), forCourse: courseID)
+        Module.make(from: .make(
+            id: "2",
+            name: "Module 2",
+            position: 2,
+            items: [ .make(module_id: "2") ]
+        ), forCourse: courseID)
+        Module.make(from: .make(
+            id: "3",
+            name: "Module 3",
+            position: 3,
+            items: [ .make(module_id: "3") ]
+        ), forCourse: courseID)
         let reloaded = expectation(description: "reloaded")
         reloaded.assertForOverFulfill = false
         view.onReloadModules = {
@@ -138,13 +135,13 @@ class ModuleListPresenterTests: TeacherTestCase {
     }
 
     func testModuleItemsOrder() {
-        Module.make([
-            "itemsRaw": NSOrderedSet(array: [
-                ModuleItem.make(["title": "one"]),
-                ModuleItem.make(["title": "two"]),
-                ModuleItem.make(["title": "three"])
-            ]),
-        ])
+        Module.make(from: .make(
+            items: [
+                .make(id: "1", title: "one"),
+                .make(id: "2", title: "two"),
+                .make(id: "3", title: "three"),
+            ]
+        ))
         let items = presenter.modules[0]?.items
         XCTAssertEqual(items?.count, 3)
         XCTAssertEqual(items?[0].title, "one")
@@ -161,7 +158,7 @@ class ModuleListPresenterTests: TeacherTestCase {
             }
         }
         presenter.viewIsReady()
-        Course.make(["id": "1"])
+        Course.make(from: .make(id: "1"))
 
         wait(for: [reloaded], timeout: 9)
     }
@@ -176,8 +173,8 @@ class ModuleListPresenterTests: TeacherTestCase {
             }
         }
         presenter.viewIsReady()
-        Course.make(["id": "1"])
-        Color.make(["canvasContextID": "course_1", "color": color])
+        Course.make(from: .make(id: "1"))
+        Color.make(canvasContextID: "course_1", color: color)
 
         wait(for: [reloaded], timeout: 9)
     }
@@ -194,7 +191,7 @@ class ModuleListPresenterTests: TeacherTestCase {
             }
         }
         presenter.viewIsReady()
-        Course.make(["id": "1"])
+        Course.make(from: .make(id: "1"))
 
         wait(for: [reloaded], timeout: 9)
     }
@@ -321,7 +318,7 @@ class ModuleListPresenterTests: TeacherTestCase {
             }
         }
         presenter.viewIsReady()
-        Module.make(["courseID": courseID])
+        Module.make(forCourse: courseID)
         wait(for: [loaded], timeout: 9)
         XCTAssertTrue(presenter.isSectionExpanded(0))
 
@@ -339,7 +336,7 @@ class ModuleListPresenterTests: TeacherTestCase {
 
     func testShowItemExternalTool() {
         let url = URL(string: "https://canvas.instructure.com/courses/1/external_tools/1?sessionless_launch=YES")!
-        let item = ModuleItem.make(["typeRaw": ModuleItemType.externalTool("1", url).data])
+        let item = ModuleItem.make(from: .make(content: .externalTool("1", url)))
         let vc = MockViewController()
         presenter.showItem(item, from: vc)
         XCTAssertNotNil(vc.presented as? SFSafariViewController)
@@ -347,7 +344,7 @@ class ModuleListPresenterTests: TeacherTestCase {
 
     func testShowItemExternalURL() {
         let url = URL(string: "https://google.com")!
-        let item = ModuleItem.make(["typeRaw": ModuleItemType.externalURL(url).data])
+        let item = ModuleItem.make(from: .make(content: .externalURL(url)))
         let vc = MockViewController()
         presenter.showItem(item, from: vc)
         XCTAssertNotNil(vc.presented as? SFSafariViewController)
@@ -355,7 +352,7 @@ class ModuleListPresenterTests: TeacherTestCase {
 
     func testShowItem() {
         let url = URL(string: "/courses/1/assignments/2")!
-        let item = ModuleItem.make(["url": url])
+        let item = ModuleItem.make(from: .make(url: url))
         presenter.showItem(item, from: MockViewController())
         XCTAssertTrue(router.lastRoutedTo(.course("1", assignment: "2")))
     }

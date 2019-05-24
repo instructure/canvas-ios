@@ -23,42 +23,42 @@ class ModuleItemTypeTests: XCTestCase {
     let decoder = JSONDecoder()
 
     func testCodableFile() {
-        let fixture = ModuleItemType.make(["type": "File", "content_id": "1"])
+        let fixture = ModuleItemType.file("1")
         let data = try! encoder.encode(fixture)
         let type = try! decoder.decode(ModuleItemType.self, from: data)
         XCTAssertEqual(type, .file("1"))
     }
 
     func testCodablePage() {
-        let fixture = ModuleItemType.make(["type": "Page", "page_url": "my-page-title"])
+        let fixture = ModuleItemType.page("my-page-title")
         let data = try! encoder.encode(fixture)
         let type = try! decoder.decode(ModuleItemType.self, from: data)
         XCTAssertEqual(type, .page("my-page-title"))
     }
 
     func testCodableDiscussion() {
-        let fixture = ModuleItemType.make(["type": "Discussion", "content_id": "1"])
+        let fixture = ModuleItemType.discussion("1")
         let data = try! encoder.encode(fixture)
         let type = try! decoder.decode(ModuleItemType.self, from: data)
         XCTAssertEqual(type, .discussion("1"))
     }
 
     func testCodableAssignment() {
-        let fixture = ModuleItemType.make(["type": "Assignment", "content_id": "1"])
+        let fixture = ModuleItemType.assignment("1")
         let data = try! encoder.encode(fixture)
         let type = try! decoder.decode(ModuleItemType.self, from: data)
         XCTAssertEqual(type, .assignment("1"))
     }
 
     func testCodableQuiz() {
-        let fixture = ModuleItemType.make(["type": "Quiz", "content_id": "1"])
+        let fixture = ModuleItemType.quiz("1")
         let data = try! encoder.encode(fixture)
         let type = try! decoder.decode(ModuleItemType.self, from: data)
         XCTAssertEqual(type, .quiz("1"))
     }
 
     func testCodableSubHeader() {
-        let fixture = ModuleItemType.make(["type": "SubHeader", "content_id": "1"])
+        let fixture = ModuleItemType.subHeader
         let data = try! encoder.encode(fixture)
         let type = try! decoder.decode(ModuleItemType.self, from: data)
         XCTAssertEqual(type, .subHeader)
@@ -66,7 +66,7 @@ class ModuleItemTypeTests: XCTestCase {
 
     func testCodableExternalURL() {
         let url = "https://www.example.com/externalurl"
-        let fixture = ModuleItemType.make(["type": "ExternalUrl", "external_url": "https://www.example.com/externalurl"])
+        let fixture = ModuleItemType.externalURL(URL(string: "https://www.example.com/externalurl")!)
         let data = try! encoder.encode(fixture)
         let type = try! decoder.decode(ModuleItemType.self, from: data)
         XCTAssertEqual(type, .externalURL(URL(string: url)!))
@@ -74,16 +74,9 @@ class ModuleItemTypeTests: XCTestCase {
 
     func testCodableExternalTool() {
         let url = "https://www.example.com/externalurl"
-        let fixture = ModuleItemType.make(["type": "ExternalTool", "external_url": "https://www.example.com/externalurl", "content_id": "1"])
+        let fixture = ModuleItemType.externalTool("1", URL(string: "https://www.example.com/externalurl")!)
         let data = try! encoder.encode(fixture)
         let type = try! decoder.decode(ModuleItemType.self, from: data)
         XCTAssertEqual(type, .externalTool("1", URL(string: url)!))
-    }
-
-    func testEquatable() {
-        XCTAssertEqual(ModuleItemType.assignment("1"), .assignment("1"))
-        XCTAssertNotEqual(ModuleItemType.assignment("1"), .assignment("2"))
-        XCTAssertNotEqual(ModuleItemType.file("1"), .subHeader)
-        XCTAssertNotEqual(ModuleItemType.file("1"), .assignment("1"))
     }
 }

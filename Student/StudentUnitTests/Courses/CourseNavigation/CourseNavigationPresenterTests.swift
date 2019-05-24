@@ -35,7 +35,7 @@ class CourseNavigationPresenterTests: PersistenceTestCase {
 
     @discardableResult
     func tab() -> Tab {
-        return Tab.make(["contextRaw": "course_1"])
+        return Tab.make(context: ContextModel(.course, id: "1"))
     }
 
     func testLoadTabs() {
@@ -51,9 +51,9 @@ class CourseNavigationPresenterTests: PersistenceTestCase {
     }
 
     func testTabsAreOrderedByPosition() {
-        Tab.make(["position": 2, "id": "b", "contextRaw": "course_1"])
-        Tab.make(["position": 3, "id": "c", "contextRaw": "course_1"])
-        Tab.make(["position": 1, "id": "a", "contextRaw": "course_1"])
+        Tab.make(from: .make(id: "b", position: 2), context: ContextModel(.course, id: "1"))
+        Tab.make(from: .make(id: "c", position: 3), context: ContextModel(.course, id: "1"))
+        Tab.make(from: .make(id: "a", position: 1), context: ContextModel(.course, id: "1"))
 
         presenter.viewIsReady()
         wait(for: [expectation], timeout: 0.1)

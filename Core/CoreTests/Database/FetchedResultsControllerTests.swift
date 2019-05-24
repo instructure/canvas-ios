@@ -14,6 +14,7 @@
 // limitations under the License.
 //
 
+import CoreData
 import XCTest
 @testable import Core
 import TestsFoundation
@@ -28,8 +29,8 @@ class FetchedResultsControllerTests: CoreTestCase {
     var expectation = XCTestExpectation(description: "delegate was called")
 
     func testFetch() {
-        let a: Course = p.make(["id": "1", "name": "a"])
-        let b: Course = p.make(["id": "2", "name": "b"])
+        let a = Course.make(from: .make(id: "1", name: "a"))
+        let b = Course.make(from: .make(id: "2", name: "b"))
 
         let expected = [a, b]
 
@@ -42,8 +43,8 @@ class FetchedResultsControllerTests: CoreTestCase {
     }
 
     func testFetchWithAdd() {
-        let a: Course = p.make(["id": "1", "name": "a"])
-        let b: Course = p.make(["id": "2", "name": "b"])
+        let a = Course.make(from: .make(id: "1", name: "a"))
+        let b = Course.make(from: .make(id: "2", name: "b"))
 
         let expected = [a, b]
 
@@ -57,7 +58,7 @@ class FetchedResultsControllerTests: CoreTestCase {
 
         var c: Course?
         database.perform { (_) in
-            c = Course.make(["id": "3", "name": "c"])
+            c = Course.make(from: .make(id: "3", name: "c"))
         }
 
         wait(for: [expectation], timeout: 0.1)
@@ -69,8 +70,8 @@ class FetchedResultsControllerTests: CoreTestCase {
     }
 
     func testObjectAtIndex() {
-        _ = p.make(["id": "1", "name": "a"]) as Course
-        let b: Course = p.make(["id": "2", "name": "b"])
+        Course.make(from: .make(id: "1", name: "a"))
+        let b = Course.make(from: .make(id: "2", name: "b"))
         let indexPath = IndexPath(item: 1, section: 0)
 
         frc = database.fetchedResultsController(sortDescriptors: [NSSortDescriptor(key: "name", ascending: true)])
@@ -81,9 +82,9 @@ class FetchedResultsControllerTests: CoreTestCase {
     }
 
     func testPredicate() {
-        let a: Course = p.make(["id": "1", "name": "foo"])
-        let _: Course = p.make(["id": "2", "name": "bar"])
-        let c: Course = p.make(["id": "3", "name": "foobar"])
+        let a = Course.make(from: .make(id: "1", name: "foo"))
+        Course.make(from: .make(id: "2", name: "bar"))
+        let c = Course.make(from: .make(id: "3", name: "foobar"))
         let expected = [a, c]
 
         let pred = NSPredicate(format: "name contains[c] %@", "foo")
@@ -98,9 +99,9 @@ class FetchedResultsControllerTests: CoreTestCase {
     }
 
     func testSort() {
-        let c: Course = p.make(["id": "3", "name": "c"])
-        let a: Course = p.make(["id": "1", "name": "a"])
-        let b: Course = p.make(["id": "2", "name": "b"])
+        let c = Course.make(from: .make(id: "3", name: "c"))
+        let a = Course.make(from: .make(id: "1", name: "a"))
+        let b = Course.make(from: .make(id: "2", name: "b"))
         let expected = [c, b, a]
 
         let sort = NSSortDescriptor(key: "name", ascending: false)
@@ -113,11 +114,11 @@ class FetchedResultsControllerTests: CoreTestCase {
     }
 
     func testSections() {
-        let _: Course = p.make(["id": "1", "name": "a", "courseCode": "red"])
-        let _: Course = p.make(["id": "2", "name": "b", "courseCode": "blue"])
-        let _: Course = p.make(["id": "3", "name": "c", "courseCode": "red"])
-        let _: Course = p.make(["id": "4", "name": "d", "courseCode": "blue"])
-        let _: Course = p.make(["id": "5", "name": "e", "courseCode": "green"])
+        Course.make(from: .make(id: "1", name: "a", course_code: "red"))
+        Course.make(from: .make(id: "2", name: "b", course_code: "blue"))
+        Course.make(from: .make(id: "3", name: "c", course_code: "red"))
+        Course.make(from: .make(id: "4", name: "d", course_code: "blue"))
+        Course.make(from: .make(id: "5", name: "e", course_code: "green"))
 
         let expected: [FetchedSection] = [
             FetchedSection(name: "blue", numberOfObjects: 2),
@@ -136,11 +137,11 @@ class FetchedResultsControllerTests: CoreTestCase {
     }
 
     func testSectionsWithNilKeyValue() {
-        let _: Course = p.make(["id": "1", "name": "a", "courseCode": "red"])
-        let _: Course = p.make(["id": "2", "name": "b", "courseCode": "blue"])
-        let _: Course = p.make(["id": "3", "name": "c", "courseCode": "red"])
-        let _: Course = p.make(["id": "4", "name": "d", "courseCode": "blue"])
-        let e: Course = p.make(["id": "5", "name": "e"])
+        Course.make(from: .make(id: "1", name: "a", course_code: "red"))
+        Course.make(from: .make(id: "2", name: "b", course_code: "blue"))
+        Course.make(from: .make(id: "3", name: "c", course_code: "red"))
+        Course.make(from: .make(id: "4", name: "d", course_code: "blue"))
+        let e = Course.make(from: .make(id: "5", name: "e"))
 
         let expected: [FetchedSection] = [
             FetchedSection(name: "", numberOfObjects: 1),
@@ -162,11 +163,11 @@ class FetchedResultsControllerTests: CoreTestCase {
     }
 
     func testObjectAtKeyPathWithSections() {
-        let _: Course = p.make(["id": "1", "name": "a", "courseCode": "red"])
-        let _: Course = p.make(["id": "2", "name": "b", "courseCode": "blue"])
-        let c: Course = p.make(["id": "3", "name": "c", "courseCode": "red"])
-        let _: Course = p.make(["id": "4", "name": "d", "courseCode": "blue"])
-        let e: Course = p.make(["id": "5", "name": "e"])
+        Course.make(from: .make(id: "1", name: "a", course_code: "red"))
+        Course.make(from: .make(id: "2", name: "b", course_code: "blue"))
+        let c = Course.make(from: .make(id: "3", name: "c", course_code: "red"))
+        Course.make(from: .make(id: "4", name: "d", course_code: "blue"))
+        let e = Course.make(from: .make(id: "5", name: "e"))
 
         let expected: [FetchedSection] = [
             FetchedSection(name: "", numberOfObjects: 1),
@@ -191,8 +192,8 @@ class FetchedResultsControllerTests: CoreTestCase {
     }
 
     func testObservingValueChangesInSections() {
-        let a: Course = p.make(["id": "1", "name": "a", "courseCode": "red"])
-        let b: Course = p.make(["id": "2", "name": "b", "courseCode": "blue"])
+        let a = Course.make(from: .make(id: "1", name: "a", course_code: "red"))
+        let b = Course.make(from: .make(id: "2", name: "b", course_code: "blue"))
 
         var expected: [FetchedSection] = [
             FetchedSection(name: "blue", numberOfObjects: 1),
@@ -230,10 +231,10 @@ class FetchedResultsControllerTests: CoreTestCase {
     }
 
     func testSortingOfSectionsWithDates() {
-        let first = Date(fromISOString: "2019-09-09T00:00:00Z")
-        let second = Date(fromISOString: "2019-09-10T00:00:00Z")
-        let _: TTL = p.make(["key": "a", "lastRefresh": first])
-        let _: TTL = p.make(["key": "b", "lastRefresh": second])
+        let first = Date(fromISOString: "2019-09-09T00:00:00Z")!
+        let second = Date(fromISOString: "2019-09-10T00:00:00Z")!
+        TTL.make(key: "a", lastRefresh: first)
+        TTL.make(key: "b", lastRefresh: second)
 
         let expected: [FetchedSection] = [
             FetchedSection(name: "2019-09-09 00:00:00 +0000", numberOfObjects: 1),
@@ -250,7 +251,7 @@ class FetchedResultsControllerTests: CoreTestCase {
     }
 
     func testObservingValueChangesInRowsOnBackgroundThread() {
-        let _: Course = p.make(["id": "1", "name": "a"])
+        Course.make(from: .make(id: "1", name: "a"))
         frc = database.fetchedResultsController(sortDescriptors: [NSSortDescriptor(key: "name", ascending: true)])
         frc.delegate = self
         frc.performFetch()
@@ -259,7 +260,7 @@ class FetchedResultsControllerTests: CoreTestCase {
         let opExpectation = XCTestExpectation(description: "opExpectation")
         let op = BlockOperation {
             self.database.performBackgroundTask { client in
-                Course.make(["id": "2", "name": "b", "courseCode": "blue"], client: client)
+                Course.make(from: .make(id: "2", name: "b", course_code: "blue"), in: client as! NSManagedObjectContext)
                 let courses: [Course] = client.fetch()
                 XCTAssertEqual(courses.count, 2)
                 opExpectation.fulfill()

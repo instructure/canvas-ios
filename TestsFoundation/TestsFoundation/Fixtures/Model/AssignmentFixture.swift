@@ -14,14 +14,19 @@
 // limitations under the License.
 //
 
+import CoreData
 import Foundation
 @testable import Core
 
-extension TTL: Fixture {
-    public static var template: Template {
-        return [
-            "key": "a",
-            "lastRefresh": Date(),
-        ]
+extension Assignment {
+    @discardableResult
+    public static func make(
+        from api: APIAssignment = .make(),
+        in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
+    ) -> Assignment {
+        let model: Assignment = context.insert()
+        try! model.update(fromApiModel: api, in: context, updateSubmission: true)
+        try! context.save()
+        return model
     }
 }

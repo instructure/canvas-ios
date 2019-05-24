@@ -14,19 +14,18 @@
 // limitations under the License.
 //
 
+import CoreData
 import Foundation
 @testable import Core
 
-extension Assignment: Fixture {
-    public static var template: Template {
-        return [
-            "id": "1",
-            "courseID": "1",
-            "name": "Assignment One",
-            "pointsPossibleRaw": 10,
-            "htmlURL": URL(string: "https://canvas.instructure.com/courses/1/assignments/1")!,
-            "gradingTypeRaw": GradingType.not_graded.rawValue,
-            "submissionTypesRaw": [SubmissionType.none.rawValue],
-        ]
+extension Course {
+    @discardableResult
+    public static func make(
+        from api: APICourse = .make(),
+        in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
+    ) -> Course {
+        let model = try! Course.save(api, in: context)
+        try! context.save()
+        return model
     }
 }

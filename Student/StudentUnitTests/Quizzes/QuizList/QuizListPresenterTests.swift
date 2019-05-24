@@ -51,7 +51,7 @@ class QuizListPresenterTests: PersistenceTestCase {
         XCTAssertNil(resultingBackgroundColor)
 
         let c = Course.make()
-        Color.make(["canvasContextID": c.canvasContextID, "color": UIColor.red])
+        Color.make(canvasContextID: c.canvasContextID, color: UIColor.red)
 
         let expectation = self.expectation(description: "navbar")
         expectation.assertForOverFulfill = false
@@ -64,10 +64,10 @@ class QuizListPresenterTests: PersistenceTestCase {
     }
 
     func testLoadQuizzes() {
-        Quiz.make([ "quizTypeRaw": "assignment" ])
-        Quiz.make([ "quizTypeRaw": "graded_survey" ])
-        Quiz.make([ "quizTypeRaw": "practice_quiz" ])
-        Quiz.make([ "quizTypeRaw": "survey" ])
+        Quiz.make(from: .make(id: "a", quiz_type: .assignment))
+        Quiz.make(from: .make(id: "g", quiz_type: .graded_survey))
+        Quiz.make(from: .make(id: "p", quiz_type: .practice_quiz))
+        Quiz.make(from: .make(id: "s", quiz_type: .survey))
         presenter.viewIsReady()
 
         XCTAssertEqual(presenter.quiz(IndexPath(row: 0, section: 0))?.quizType, QuizType.assignment)
@@ -85,17 +85,17 @@ class QuizListPresenterTests: PersistenceTestCase {
     }
 
     func testSection() {
-        Quiz.make([ "quizTypeRaw": "survey" ])
+        Quiz.make(from: .make(quiz_type: .survey))
         presenter.viewIsReady()
         XCTAssertEqual(presenter.section(0)?.name, "survey")
     }
 
     func testSectionTitle() {
-        Quiz.make([ "quizTypeRaw": "assignment" ])
-        Quiz.make([ "quizTypeRaw": "graded_survey" ])
-        Quiz.make([ "quizTypeRaw": "practice_quiz" ])
-        Quiz.make([ "quizTypeRaw": "survey" ])
-        Quiz.make([ "quizTypeRaw": "invalid" ])
+        Quiz.make(from: .make(id: "i", quiz_type: .assignment)).setValue("invalid", forKey: "quizTypeRaw")
+        Quiz.make(from: .make(id: "a", quiz_type: .assignment))
+        Quiz.make(from: .make(id: "g", quiz_type: .graded_survey))
+        Quiz.make(from: .make(id: "p", quiz_type: .practice_quiz))
+        Quiz.make(from: .make(id: "s", quiz_type: .survey))
         presenter.viewIsReady()
 
         XCTAssertEqual(presenter.sectionTitle(0), "Assignments")

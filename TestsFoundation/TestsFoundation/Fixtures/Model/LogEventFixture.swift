@@ -14,15 +14,23 @@
 // limitations under the License.
 //
 
+import CoreData
 import Foundation
 @testable import Core
 
-extension LogEvent: Fixture {
-    public static var template: Template {
-        return [
-            "timestamp": Clock.now,
-            "typeRaw": LoggableType.log.rawValue,
-            "message": "log message",
-        ]
+extension LogEvent {
+    @discardableResult
+    public static func make(
+        message: String = "log message",
+        timestamp: Date = Clock.now,
+        type: LoggableType = .log,
+        in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
+    ) -> LogEvent {
+        let model: LogEvent = context.insert()
+        model.message = message
+        model.timestamp = timestamp
+        model.type = type
+        try! context.save()
+        return model
     }
 }

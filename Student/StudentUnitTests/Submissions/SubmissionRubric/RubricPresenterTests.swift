@@ -23,7 +23,7 @@ class RubricPresenterTests: PersistenceTestCase {
     var presenter: RubricPresenter!
     var view: SubmissionCommentsView!
     var courseID = "1"
-    var assignmentID = "2"
+    var assignmentID = "1"
     var userID = "1"
     var models: [RubricViewModel] = []
     var showEmptyStateFlag = false
@@ -36,17 +36,23 @@ class RubricPresenterTests: PersistenceTestCase {
     }
 
     func testViewIsReady() {
-        Rubric.make(["id": "1"])
-        Submission.make(["assignmentID": "2", "userID": "1", "rubricAssesmentRaw": Set( [RubricAssessment.make()] )])
+        Rubric.make(from: .make(id: "1", ratings: [
+            .make(id: "1", points: 10, position: 1),
+            .make(id: "2", points: 25, position: 2),
+        ]))
+        Submission.make(from: .make(rubric_assessment: [
+            "1": .make(points: 10.0, rating_id: "1"),
+            "2": .make(points: 25.0, rating_id: "2"),
+        ]))
         let expected: [RubricViewModel] = [
             RubricViewModel(
                 title: "Effort",
                 longDescription: "Did you even try?",
-                selectedDesc: "Great!",
-                selectedIndex: 1,
+                selectedDesc: "Excellent",
+                selectedIndex: 0,
                 ratings: [10.0, 25.0],
-                descriptions: ["Great!", "Great!"],
-                comment: "random comment"
+                descriptions: ["Excellent", "Excellent"],
+                comment: "You failed at punctuation!"
             ),
         ]
 
@@ -63,9 +69,13 @@ class RubricPresenterTests: PersistenceTestCase {
     }
 
     func testCustomGradeIsHandled() {
-        Rubric.make(["id": "1"])
-        let custom = RubricAssessment.make(["points": 1.0, "comments": "this is custom", "ratingID": "3"])
-        Submission.make(["assignmentID": "2", "userID": "1", "rubricAssesmentRaw": Set( [custom] )])
+        Rubric.make(from: .make(id: "1", ratings: [
+            .make(id: "1", points: 10, position: 1),
+            .make(id: "2", points: 25, position: 2),
+        ]))
+        Submission.make(from: .make(rubric_assessment: [
+            "1": .make(points: 1.0, comments: "this is custom", rating_id: "3"),
+        ]))
         let expected: [RubricViewModel] = [
             RubricViewModel(
                 title: "Effort",
@@ -73,7 +83,7 @@ class RubricPresenterTests: PersistenceTestCase {
                 selectedDesc: "Custom Grade",
                 selectedIndex: 2,
                 ratings: [10.0, 25.0, 1.0],
-                descriptions: ["Great!", "Great!", "Custom Grade"],
+                descriptions: ["Excellent", "Excellent", "Custom Grade"],
                 comment: "this is custom"
             ),
         ]
