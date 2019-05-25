@@ -34,7 +34,7 @@ public class GetArc: CollectionUseCase {
     }
 
     public var cacheKey: String? {
-        return "\(courseID)-arc"
+        return "course_\(courseID)_arc"
     }
 
     public init(courseID: String) {

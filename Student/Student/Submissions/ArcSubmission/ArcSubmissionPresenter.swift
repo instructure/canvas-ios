@@ -21,35 +21,6 @@ protocol ArcSubmissionView: ErrorViewController {
     func load(_ url: URL)
 }
 
-private struct FormBody: Codable {
-    struct ContentItems: Codable {
-        let graph: [Item]
-
-        enum CodingKeys: String, CodingKey {
-            case graph = "@graph"
-        }
-    }
-
-    struct Item: Codable {
-        let url: URL
-    }
-
-    let contentItems: ContentItems
-
-    enum CodingKeys: String, CodingKey {
-        case contentItems = "content_items"
-    }
-
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        let string = try container.decode(String.self, forKey: .contentItems)
-        guard let data = string.data(using: .utf8) else {
-            throw NSError.internalError()
-        }
-        contentItems = try JSONDecoder().decode(ContentItems.self, from: data)
-    }
-}
-
 class ArcSubmissionPresenter {
     let env: AppEnvironment
     weak var view: ArcSubmissionView?
@@ -74,17 +45,19 @@ class ArcSubmissionPresenter {
     }
 
     func submit(form: Any, callback: @escaping (Error?) -> Void) {
-        do {
-            let data = try JSONSerialization.data(withJSONObject: form, options: [])
-            let body = try JSONDecoder().decode(FormBody.self, from: data)
-            guard let url = body.contentItems.graph.first?.url else {
-                callback(NSError.internalError())
-                return
-            }
-            submit(url: url, callback: callback)
-        } catch {
-            callback(error)
+        guard
+            let form = form as? [String: Any],
+            let itemsRaw = form["content_items"] as? String,
+            let itemsData = itemsRaw.data(using: .utf8),
+            let items = try? JSONSerialization.jsonObject(with: itemsData, options: []) as? [String: Any],
+            let graph = items["@graph"] as? [[String: Any]],
+            let urlRaw = graph.first?["url"] as? String,
+            let url = URL(string: urlRaw)
+        else {
+            callback(NSError.internalError())
+            return
         }
+        submit(url: url, callback: callback)
     }
 
     func submit(url: URL, callback: @escaping (Error?) -> Void) {

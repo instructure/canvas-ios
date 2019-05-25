@@ -179,33 +179,6 @@ open class CoreWebView: WKWebView {
     }
 }
 
-public typealias MessageHandler = (WKScriptMessage) -> Void
-
-extension WKWebView {
-    public func addScript(_ js: String, injectionTime: WKUserScriptInjectionTime = .atDocumentEnd) {
-        let script = WKUserScript(source: js, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
-        configuration.userContentController.addUserScript(script)
-    }
-
-    public func handle(_ name: String, handler: @escaping MessageHandler) {
-        let passer = MessagePasser(handler: handler)
-        configuration.userContentController.add(passer, name: name)
-    }
-}
-
-private class MessagePasser: NSObject, WKScriptMessageHandler {
-    let handler: MessageHandler
-
-    init(handler: @escaping MessageHandler) {
-        self.handler = handler
-        super.init()
-    }
-
-    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        handler(message)
-    }
-}
-
 extension CoreWebView: WKNavigationDelegate {
     public func webView(_ webView: WKWebView, decidePolicyFor action: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         // Check for #fragment link click

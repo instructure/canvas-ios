@@ -122,6 +122,8 @@ class AssignmentDetailsPresenter {
         courses.refresh(force: true)
         assignments.refresh(force: true)
         quizzes?.refresh(force: true)
+
+        submissionButtonPresenter.arcID = .pending
         arc.refresh(force: true)
     }
 

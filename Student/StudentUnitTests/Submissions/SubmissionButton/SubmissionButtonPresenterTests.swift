@@ -128,7 +128,7 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
     }
 
     func testSubmitAssignmentChooseArc() {
-        let a = Assignment.make([ "submissionTypesRaw": [ "online_upload" ], "submission": Submission.make() ])
+        let a = Assignment.make(from: .make(submission_types: [ .online_upload ]))
         presenter.arcID = .some("1")
         presenter.submitAssignment(a, button: button)
         let alert = view.presented as? UIAlertController
@@ -204,7 +204,7 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
     }
 
     func testSubmitTypeArc() {
-        let a = Assignment.make([ "submission": Submission.make() ])
+        let a = Assignment.make()
         presenter.arcID = .some("4")
         presenter.submitType(.arc, for: a)
         let nav = view.presented as? UINavigationController

@@ -37,4 +37,14 @@ class APIExternalToolRequestableTests: XCTestCase {
             URLQueryItem(name: "module_item_id", value: "4"),
         ])
     }
+
+    func testGetExternalToolsRequest() {
+        let request = GetExternalToolsRequest(context: ContextModel(.course, id: "1"), includeParents: true, perPage: 99)
+        XCTAssertEqual(request.path, "courses/1/external_tools")
+        XCTAssertEqual(request.cacheKey, "course_1_external_tools")
+        XCTAssertEqual(request.queryItems, [
+            URLQueryItem(name: "per_page", value: "99"),
+            URLQueryItem(name: "include_parents", value: "true"),
+        ])
+    }
 }

@@ -75,7 +75,7 @@ public struct GetExternalToolsRequest: APIRequestable {
     }
 
     public var cacheKey: String {
-        return "\(context.canvasContextID)-external-tools"
+        return "\(context.canvasContextID)_external_tools"
     }
 
     public var path: String {

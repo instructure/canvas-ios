@@ -16,6 +16,7 @@
 
 @testable import Student
 import XCTest
+@testable import Core
 
 class ArcSubmissionPresenterTests: PersistenceTestCase {
     class View: UIViewController, ArcSubmissionView {
@@ -35,12 +36,89 @@ class ArcSubmissionPresenterTests: PersistenceTestCase {
 
     override func setUp() {
         super.setUp()
-
         presenter = ArcSubmissionPresenter(environment: env, view: view, courseID: "1", assignmentID: "2", userID: "3", arcID: "4")
     }
 
     func testViewIsReady() {
         presenter.viewIsReady()
         XCTAssertEqual(view.url, env.api.baseURL.appendingPathComponent("courses/1/external_tools/4/resource_selection"))
+    }
+
+    func testSubmitForm() {
+        let request = CreateSubmissionRequest(
+            context: ContextModel(.course, id: "1"),
+            assignmentID: "1",
+            body: .init(submission: .init(
+                text_comment: nil,
+                submission_type: .basic_lti_launch,
+                body: nil,
+                url: URL(string: "https://arc.com/media/1")!,
+                file_ids: nil,
+                media_comment_id: nil,
+                media_comment_type: nil
+            ))
+        )
+        api.mock(request, value: nil, response: nil, error: nil)
+        let form: [String: Any] = [
+            "content_items": "{ \"@graph\": [ {\"url\": \"https://arc.com/media/1\"} ] }",
+        ]
+        let expectation = XCTestExpectation(description: "submit form")
+        presenter.submit(form: form) { error in
+            XCTAssertNil(error)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.1)
+    }
+
+    func testSubmitFormRequestError() {
+        let request = CreateSubmissionRequest(
+            context: ContextModel(.course, id: "1"),
+            assignmentID: "2",
+            body: .init(submission: .init(
+                text_comment: nil,
+                submission_type: .basic_lti_launch,
+                body: nil,
+                url: URL(string: "https://arc.com/media/1")!,
+                file_ids: nil,
+                media_comment_id: nil,
+                media_comment_type: nil
+            ))
+        )
+        api.mock(request, value: nil, response: nil, error: NSError.instructureError("doh"))
+        let form: [String: Any] = [
+            "content_items": "{ \"@graph\": [ {\"url\": \"https://arc.com/media/1\"} ] }",
+        ]
+        let expectation = XCTestExpectation(description: "submit form")
+        presenter.submit(form: form) { error in
+            XCTAssertNotNil(error)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.1)
+    }
+
+    func testSubmitFormError() {
+        let request = CreateSubmissionRequest(
+            context: ContextModel(.course, id: "1"),
+            assignmentID: "2",
+            body: .init(submission: .init(
+                text_comment: nil,
+                submission_type: .basic_lti_launch,
+                body: nil,
+                url: URL(string: "https://arc.com/media/1")!,
+                file_ids: nil,
+                media_comment_id: nil,
+                media_comment_type: nil
+                ))
+        )
+        api.mock(request, value: nil, response: nil, error: NSError.instructureError("doh"))
+        let form: [String: Any] = [
+            "content_items": "{ \"@graph\": [ {\"oops\": \"https://arc.com/media/1\"} ] }",
+        ]
+        let expectation = XCTestExpectation(description: "submit form")
+        presenter.submit(form: form) { error in
+            XCTAssertNotNil(error)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.1)
     }
 }
