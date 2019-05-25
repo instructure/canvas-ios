@@ -14,16 +14,18 @@
 // limitations under the License.
 //
 
+import CoreData
 import Foundation
 @testable import Core
 
-extension Group: Fixture {
-    public static var template: Template {
-        return [
-            "id": "1",
-            "name": "Group One",
-            "showOnDashboard": false,
-            "concluded": false,
-        ]
+extension Submission {
+    @discardableResult
+    public static func make(
+        from api: APISubmission = .make(),
+        in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
+    ) -> Submission {
+        let model = try! Submission.save(api, in: context)
+        try! context.save()
+        return model
     }
 }

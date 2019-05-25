@@ -74,8 +74,8 @@ class SubmissionDetailsPresenterTests: PersistenceTestCase {
     }
 
     func testUpdate() {
-        Submission.make(["assignmentID": "1", "userID": "1", "attempt": 1])
-        Submission.make(["assignmentID": "1", "userID": "1", "attempt": 2, "attachments": Set([File.make([ "id": "1" ]), File.make([ "id": "2" ])])])
+        Submission.make(from: .make(assignment_id: "1", user_id: "1", attempt: 1))
+        Submission.make(from: .make(assignment_id: "1", user_id: "1", attempt: 2, attachments: [ .make(id: "1"), .make(id: "2") ]))
         presenter.selectedAttempt = 7
         presenter.selectedFileID = "7"
         presenter.update()
@@ -98,16 +98,16 @@ class SubmissionDetailsPresenterTests: PersistenceTestCase {
     }
 
     func testSelectAttempt() {
-        Submission.make(["assignmentID": "1", "userID": "1", "attempt": 1, "attachments": Set([File.make([ "id": "1" ])])])
-        Submission.make(["assignmentID": "1", "userID": "1", "attempt": 2])
+        Submission.make(from: .make(assignment_id: "1", user_id: "1", attempt: 1, attachments: [ .make(id: "1") ]))
+        Submission.make(from: .make(assignment_id: "1", user_id: "1", attempt: 2))
         presenter.select(attempt: 1)
         XCTAssertEqual(presenter.selectedAttempt, 1)
         XCTAssertEqual(presenter.selectedFileID, "1")
     }
 
     func testSelectFileID() {
-        Submission.make(["assignmentID": "1", "userID": "1", "attempt": 1])
-        Submission.make(["assignmentID": "1", "userID": "1", "attempt": 2, "attachments": Set([File.make([ "id": "1" ]), File.make([ "id": "2" ])])])
+        Submission.make(from: .make(assignment_id: "1", user_id: "1", attempt: 1))
+        Submission.make(from: .make(assignment_id: "1", user_id: "1", attempt: 2, attachments: [ .make(id: "1"), .make(id: "2") ]))
         presenter.select(fileID: "2")
         XCTAssertEqual(presenter.selectedFileID, "2")
         presenter.select(fileID: "bogus")
@@ -115,8 +115,8 @@ class SubmissionDetailsPresenterTests: PersistenceTestCase {
     }
 
     func testSelectDrawerTabComments() {
-        Submission.make(["assignmentID": "1", "userID": "1", "attempt": 1, "attachments": Set([File.make([ "id": "1" ]), File.make([ "id": "2" ])])])
-        Submission.make(["assignmentID": "1", "userID": "1", "attempt": 2, "attachments": Set([File.make([ "id": "3" ]), File.make([ "id": "4" ])])])
+        Submission.make(from: .make(assignment_id: "1", user_id: "1", attempt: 1, attachments: [ .make(id: "1"), .make(id: "2") ]))
+        Submission.make(from: .make(assignment_id: "1", user_id: "1", attempt: 2, attachments: [ .make(id: "3"), .make(id: "4") ]))
         presenter.update()
         presenter.select(drawerTab: nil)
         XCTAssertEqual(presenter.selectedDrawerTab, .comments)
@@ -129,8 +129,8 @@ class SubmissionDetailsPresenterTests: PersistenceTestCase {
     }
 
     func testSelectDrawerTabFiles() {
-        Submission.make(["assignmentID": "1", "userID": "1", "attempt": 1, "attachments": Set([File.make([ "id": "1" ]), File.make([ "id": "2" ])])])
-        Submission.make(["assignmentID": "1", "userID": "1", "attempt": 2, "attachments": Set([File.make([ "id": "3" ]), File.make([ "id": "4" ])])])
+        Submission.make(from: .make(assignment_id: "1", user_id: "1", attempt: 1, attachments: [ .make(id: "1"), .make(id: "2") ]))
+        Submission.make(from: .make(assignment_id: "1", user_id: "1", attempt: 2, attachments: [ .make(id: "3"), .make(id: "4") ]))
         presenter.update()
         presenter.select(drawerTab: .files)
         XCTAssertEqual(presenter.selectedDrawerTab, .files)
@@ -143,23 +143,23 @@ class SubmissionDetailsPresenterTests: PersistenceTestCase {
     }
 
     func testSelectDrawerTabRubric() {
-        Submission.make(["assignmentID": "1", "userID": "1", "attempt": 2, "attachments": Set([File.make([ "id": "1" ]), File.make([ "id": "2" ])])])
+        Submission.make(from: .make(assignment_id: "1", user_id: "1", attempt: 1, attachments: [ .make(id: "1"), .make(id: "2") ]))
         presenter.select(drawerTab: .rubric)
         XCTAssertEqual(presenter.selectedDrawerTab, .rubric)
         XCTAssertNil(view.embeddedInDrawer)
     }
 
     func testEmbedExternalTool() {
-        Assignment.make([ "submissionTypesRaw": [ "external_tool" ] ])
-        Submission.make([ "typeRaw": "external_tool" ])
+        Assignment.make(from: .make(submission_types: [ .external_tool ]))
+        Submission.make(from: .make(submission_type: .external_tool))
         presenter.update()
 
         XCTAssert(view.embedded is ExternalToolSubmissionContentViewController)
     }
 
     func testEmbedQuiz() {
-        Assignment.make([ "quizID": "1" ])
-        Submission.make([ "typeRaw": "online_quiz", "attempt": 2 ])
+        Assignment.make(from: .make(quiz_id: "1"))
+        Submission.make(from: .make(submission_type: .online_quiz, attempt: 2))
         presenter.update()
 
         XCTAssert(view.embedded is CoreWebViewController)
@@ -168,7 +168,7 @@ class SubmissionDetailsPresenterTests: PersistenceTestCase {
 
     func testEmbedTextEntry() {
         Assignment.make()
-        Submission.make([ "typeRaw": "online_text_entry" ])
+        Submission.make(from: .make(submission_type: .online_text_entry))
         presenter.update()
 
         XCTAssert(view.embedded is CoreWebViewController)
@@ -177,10 +177,10 @@ class SubmissionDetailsPresenterTests: PersistenceTestCase {
 
     func testEmbedUpload() {
         Assignment.make()
-        Submission.make([
-            "typeRaw": "online_upload",
-            "attachments": Set([ File.make() ]),
-        ])
+        Submission.make(from: .make(
+            submission_type: .online_upload,
+            attachments: [ .make() ]
+        ))
         presenter.update()
 
         XCTAssert(view.embedded is DocViewerViewController)
@@ -188,7 +188,7 @@ class SubmissionDetailsPresenterTests: PersistenceTestCase {
 
     func testEmbedDiscussion() {
         Assignment.make()
-        Submission.make([ "typeRaw": "discussion_topic", "previewUrl": URL(string: "preview") ])
+        Submission.make(from: .make(submission_type: .discussion_topic, preview_url: URL(string: "preview")))
         presenter.update()
 
         XCTAssert(view.embedded is CoreWebViewController)
@@ -197,7 +197,7 @@ class SubmissionDetailsPresenterTests: PersistenceTestCase {
 
     func testEmbedURL() {
         Assignment.make()
-        Submission.make([ "typeRaw": "online_url" ])
+        Submission.make(from: .make(submission_type: .online_url))
         presenter.update()
 
         XCTAssert(view.embedded is UrlSubmissionContentViewController)
@@ -205,7 +205,7 @@ class SubmissionDetailsPresenterTests: PersistenceTestCase {
 
     func testEmbedMediaSubmission() {
         Assignment.make()
-        Submission.make([ "typeRaw": "media_recording", "mediaComment": MediaComment.make() ])
+        Submission.make(from: .make(submission_type: .media_recording, media_comment: .make() ))
         presenter.update()
 
         XCTAssert(view.embedded is AVPlayerViewController)
@@ -220,14 +220,14 @@ class SubmissionDetailsPresenterTests: PersistenceTestCase {
 
     func testEmbedWeird() {
         Assignment.make()
-        Submission.make([ "typeRaw": "some_invalid_string" ])
+        Submission.make().setValue("some_invalid_string", forKey: "typeRaw")
         presenter.update()
 
         XCTAssertNil(view.embedded)
     }
 
     func testSubmit() {
-        Assignment.make([ "submissionTypesRaw": [ "online_text_entry", "online_upload", "online_url" ] ])
+        Assignment.make(from: .make(submission_types: [ .online_text_entry, .online_upload, .online_url ]))
         presenter.update()
         presenter.submit(button: UIView())
 

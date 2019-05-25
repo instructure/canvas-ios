@@ -14,19 +14,18 @@
 // limitations under the License.
 //
 
+import CoreData
 import Foundation
 @testable import Core
 
-extension CalendarEventItem: Fixture {
-    public static var template: Template {
-        return [
-            "id": "1",
-            "contextRaw": "course_1",
-            "title": "calendar event #1",
-            "type": "event",
-            "startAt": Date().addDays(-365),
-            "endAt": Date().addDays(365),
-            "htmlUrl": URL(string: "https://narmstrong.instructure.com/calendar?event_id=10&include_contexts=course_1")!,
-        ]
+extension CalendarEventItem {
+    @discardableResult
+    public static func make(
+        from api: APICalendarEvent = .make(),
+        in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
+    ) -> CalendarEventItem {
+        let model = try! CalendarEventItem.save(api, in: context)
+        try! context.save()
+        return model
     }
 }

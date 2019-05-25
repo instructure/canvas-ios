@@ -71,7 +71,7 @@ class UploadFileCommentTests: CoreTestCase {
     }
 
     func testUploadError() throws {
-        let file = File.make(["id": nil, "batchID": "5"])
+        let file = File.make(batchID: "5", removeID: true)
         api.mock(PutSubmissionGradeRequest(
             courseID: upload.courseID,
             assignmentID: upload.assignmentID,
@@ -93,7 +93,7 @@ class UploadFileCommentTests: CoreTestCase {
     }
 
     func testSuccess() throws {
-        let file = File.make(["id": nil, "batchID": "5"])
+        let file = File.make(batchID: "5", removeID: true)
         api.mock(PutSubmissionGradeRequest(
             courseID: upload.courseID,
             assignmentID: upload.assignmentID,

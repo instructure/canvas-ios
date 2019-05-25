@@ -14,31 +14,20 @@
 // limitations under the License.
 //
 
+import CoreData
 import Foundation
 @testable import Core
 
-extension Enrollment: Fixture {
-    public static var template: Template {
-        return [
-            "typeRaw": "student",
-            "roleRaw": "StudentEnrollment",
-            "roleID": "3",
-            "userID": "1",
-            "stateRaw": "active",
-            "canvasContextID": "course_1",
-            "computedCurrentScoreRaw": 74.38,
-            "computedFinalScoreRaw": 49.03,
-            "computedCurrentGrade": nil,
-            "computedFinalGrade": nil,
-//            "has_grading_periods": true,
-//            "multiple_grading_periods_enabled": true,
-//            "totals_for_all_grading_periods_option": true,
-//            "current_grading_period_title": "Forever",
-//            "current_grading_period_id": "1",
-            "currentPeriodComputedCurrentScoreRaw": 74.38,
-            "currentPeriodComputedFinalScoreRaw": 49.03,
-            "currentPeriodComputedCurrentGrade": nil,
-            "currentPeriodComputedFinalGrade": nil
-        ]
+extension Enrollment {
+    @discardableResult
+    public static func make(
+        from api: APIEnrollment = .make(),
+        course: Course? = nil,
+        in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
+    ) -> Enrollment {
+        let model: Enrollment = context.insert()
+        try! model.update(fromApiModel: api, course: course, in: context)
+        try! context.save()
+        return model
     }
 }

@@ -188,7 +188,7 @@ class PermissionsTests: CoreTestCase {
     func testDoesntChangePropertiesUnlessInTheResponse() {
         let apiPermissions = APIPermissions.make(become_user: true)
 
-        let permissions = Permissions.make(["manageSis": true])
+        let permissions = Permissions.make(from: .make(manage_sis: true))
 
         XCTAssertNoThrow(try Permissions.save(apiPermissions, for: ContextModel(.account, id: "1"), in: databaseClient))
         XCTAssertNoThrow(try databaseClient.save())

@@ -47,7 +47,8 @@ class GetQuizzesTest: CoreTestCase {
     }
 
     func testItDeletesQuizzesThatNoLongerExist() {
-        let quiz = Quiz.make(["courseID": courseID])
+        let quiz = Quiz.make()
+        quiz.courseID = courseID
         let request = GetQuizzesRequest(courseID: courseID)
         api.mock(request, value: [], response: nil, error: nil)
         let getQuizzes = GetQuizzes(courseID: courseID)

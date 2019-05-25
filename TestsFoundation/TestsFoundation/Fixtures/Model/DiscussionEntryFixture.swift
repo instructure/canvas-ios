@@ -14,26 +14,31 @@
 // limitations under the License.
 //
 
+import CoreData
 import Foundation
 @testable import Core
 
-extension DiscussionEntry: Fixture {
-    public static var template: Template {
-        return [
-            "id": "1",
-        ]
+extension DiscussionEntry {
+    @discardableResult
+    public static func make(
+        from api: APIDiscussionEntry = .make(),
+        in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
+    ) -> DiscussionEntry {
+        let model = DiscussionEntry.save(api, in: context)
+        try! context.save()
+        return model
     }
 }
 
 
-extension DiscussionTopic: Fixture {
-    public static var template: Template {
-        return [
-            "id": "1",
-            "title": "Graded Discussion",
-            "assignmentID": "1",
-            "discussionSubEntryCount": 1,
-            "published": true
-        ]
+extension DiscussionTopic {
+    @discardableResult
+    public static func make(
+        from api: APIDiscussionTopic = .make(),
+        in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
+    ) -> DiscussionTopic {
+        let model = try! DiscussionTopic.save(api, in: context)
+        try! context.save()
+        return model
     }
 }

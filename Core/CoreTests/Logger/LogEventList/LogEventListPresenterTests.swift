@@ -38,8 +38,8 @@ class LogEventListPresenterTests: CoreTestCase {
     }
 
     func testApplyFilter() {
-        LogEvent.make(["typeRaw": LoggableType.log.rawValue])
-        LogEvent.make(["typeRaw": LoggableType.error.rawValue])
+        LogEvent.make(type: .log)
+        LogEvent.make(type: .error)
         presenter.viewIsReady()
         XCTAssertEqual(presenter.events.count, 2)
 
@@ -53,8 +53,8 @@ class LogEventListPresenterTests: CoreTestCase {
     }
 
     func testClearFilter() {
-        LogEvent.make(["typeRaw": LoggableType.log.rawValue])
-        LogEvent.make(["typeRaw": LoggableType.error.rawValue])
+        LogEvent.make(type: .log)
+        LogEvent.make(type: .error)
         presenter.viewIsReady()
         XCTAssertEqual(presenter.events.count, 2)
 

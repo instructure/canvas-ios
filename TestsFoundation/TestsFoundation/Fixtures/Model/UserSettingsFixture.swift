@@ -14,15 +14,18 @@
 // limitations under the License.
 //
 
+import CoreData
 import Foundation
 @testable import Core
 
-extension UserSettings: Fixture {
-    public static var template: Template {
-        return [
-            "manualMarkedAsRead": false,
-            "collapseGlobalNav": false,
-            "hideDashcardColorOverlays": false,
-        ]
+extension UserSettings {
+    @discardableResult
+    public static func make(
+        from api: APIUserSettings = .make(),
+        in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
+    ) -> UserSettings {
+        let model = try! UserSettings.save(api, in: context)
+        try! context.save()
+        return model
     }
 }

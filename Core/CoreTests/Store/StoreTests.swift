@@ -155,7 +155,7 @@ class StoreTests: CoreTestCase {
             }
         }
 
-        Course.make(["id": "1"])
+        Course.make(from: .make(id: "1"))
         let now = Date()
         Clock.mockNow(now)
         let cache: TTL = databaseClient.insert()
@@ -251,8 +251,8 @@ class StoreTests: CoreTestCase {
     }
 
     func testSequence() {
-        Course.make(["id": "1"])
-        Course.make(["id": "2"])
+        Course.make(from: .make(id: "1"))
+        Course.make(from: .make(id: "2"))
         let useCase = TestUseCase(courses: nil, requestError: nil, writeError: nil, urlResponse: nil)
         let store = Store(env: environment, useCase: useCase) { }
 
@@ -263,8 +263,8 @@ class StoreTests: CoreTestCase {
     }
 
     func testSubscriptInt() {
-        let one = Course.make(["id": "1", "name": "A"])
-        let two = Course.make(["id": "2", "name": "B"])
+        let one = Course.make(from: .make(id: "1", name: "A"))
+        let two = Course.make(from: .make(id: "2", name: "B"))
         let useCase = TestUseCase(courses: nil, requestError: nil, writeError: nil, urlResponse: nil)
         let store = Store(env: environment, useCase: useCase) { }
 
@@ -273,8 +273,8 @@ class StoreTests: CoreTestCase {
     }
 
     func testFirst() {
-        let one = Course.make(["id": "1", "name": "A"])
-        Course.make(["id": "2", "name": "B"])
+        let one = Course.make(from: .make(id: "1", name: "A"))
+        Course.make(from: .make(id: "2", name: "B"))
         let useCase = TestUseCase(courses: nil, requestError: nil, writeError: nil, urlResponse: nil)
         let store = Store(env: environment, useCase: useCase) { }
 
@@ -282,8 +282,8 @@ class StoreTests: CoreTestCase {
     }
 
     func testLast() {
-        Course.make(["id": "1", "name": "A"])
-        let two = Course.make(["id": "2", "name": "B"])
+        Course.make(from: .make(id: "1", name: "A"))
+        let two = Course.make(from: .make(id: "2", name: "B"))
         let useCase = TestUseCase(courses: nil, requestError: nil, writeError: nil, urlResponse: nil)
         let store = Store(env: environment, useCase: useCase) { }
 
@@ -291,8 +291,8 @@ class StoreTests: CoreTestCase {
     }
 
     func testAll() {
-        let one = Course.make(["id": "1", "name": "A"])
-        let two = Course.make(["id": "2", "name": "B"])
+        let one = Course.make(from: .make(id: "1", name: "A"))
+        let two = Course.make(from: .make(id: "2", name: "B"))
         let useCase = TestUseCase(courses: nil, requestError: nil, writeError: nil, urlResponse: nil)
         let store = Store(env: environment, useCase: useCase) { }
 

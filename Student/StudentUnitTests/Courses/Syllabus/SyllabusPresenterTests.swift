@@ -44,7 +44,7 @@ class SyllabusPresenterTests: PersistenceTestCase {
     func testLoadHtml() {
         //  given
         let expectedSyllabusHtml = "foobar"
-        Course.make(["syllabusBody": expectedSyllabusHtml])
+        Course.make(from: .make(syllabus_body: expectedSyllabusHtml))
 
         //  when
         presenter.viewIsReady()
@@ -55,8 +55,8 @@ class SyllabusPresenterTests: PersistenceTestCase {
 
     func testLoadNavBarStuff() {
         //  given
-        let course = Course.make(["courseCode": "abc"])
-        Color.make([#keyPath(Color.canvasContextID): course.canvasContextID])
+        let course = Course.make(from: .make(course_code: "abc"))
+        Color.make(canvasContextID: course.canvasContextID)
 
         //  when
         presenter.viewIsReady()
@@ -69,7 +69,7 @@ class SyllabusPresenterTests: PersistenceTestCase {
     func testShowAssignmentsOnly() {
         //  given
         let expectedSyllabusHtml = ""
-        Course.make(["syllabusBody": expectedSyllabusHtml])
+        Course.make(from: .make(syllabus_body: expectedSyllabusHtml))
 
         //  when
         presenter.viewIsReady()

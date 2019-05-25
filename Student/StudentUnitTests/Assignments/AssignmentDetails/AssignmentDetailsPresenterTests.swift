@@ -52,7 +52,7 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         //  given
         Assignment.make()
         let c = Course.make()
-        Color.make(["canvasContextID": c.canvasContextID])
+        Color.make(canvasContextID: c.canvasContextID)
 
         presenter.viewIsReady()
         wait(for: [expectation], timeout: 1)
@@ -63,7 +63,7 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
     func testLoadAssignment() {
         //  given
         Course.make()
-        let expected = Assignment.make([ "submission": Submission.make() ])
+        let expected = Assignment.make()
 
         //  when
         presenter.viewIsReady()
@@ -75,7 +75,7 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
 
     func testBaseURLWithNilFragment() {
         let expected = URL(string: "https://canvas.instructure.com/courses/1/assignments/1")!
-        Assignment.make(["htmlURL": expected])
+        Assignment.make(from: .make(html_url: expected))
         Course.make()
         presenter = AssignmentDetailsPresenter(env: env, view: self, courseID: "1", assignmentID: "1", fragment: nil)
 
@@ -87,7 +87,7 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
     func testBaseURLWithFragment() {
         let url = URL(string: "https://canvas.instructure.com/courses/1/assignments/1")!
         let fragment = "fragment"
-        Assignment.make(["htmlURL": url])
+        Assignment.make(from: .make(html_url: url))
         Course.make()
         let expected = URL(string: "https://canvas.instructure.com/courses/1/assignments/1#fragment")!
 
@@ -101,7 +101,7 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
     func testBaseURLWithEmptyFragment() {
         let expected = URL(string: "https://canvas.instructure.com/courses/1/assignments/1")!
         let fragment = ""
-        Assignment.make(["htmlURL": expected])
+        Assignment.make(from: .make(html_url: expected))
         Course.make()
         presenter = AssignmentDetailsPresenter(env: env, view: self, courseID: "1", assignmentID: "1", fragment: fragment)
 
@@ -114,7 +114,7 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         //  given
         Course.make()
         Quiz.make()
-        let expected = Assignment.make([ "quizID": "1" ])
+        let expected = Assignment.make(from: .make(quiz_id: "1"))
 
         presenter.viewIsReady()
         wait(for: [expectation], timeout: 1)
@@ -125,7 +125,7 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
 
     func testRoutesToSubmission() {
         Course.make()
-        Assignment.make([ "id": "1", "submission": Submission.make([ "userID": "2" ]) ])
+        Assignment.make(from: .make(id: "1", submission: .make(user_id: "2")))
 
         presenter.viewIsReady()
         wait(for: [expectation], timeout: 1)

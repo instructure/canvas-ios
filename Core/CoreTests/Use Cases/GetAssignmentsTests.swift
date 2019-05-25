@@ -114,7 +114,7 @@ class GetAssignmentsTests: CoreTestCase {
     }
 
     func testItDeletesSubmission() {
-        Assignment.make(["id": "1", "courseID": "1", "submission": Submission.make()])
+        Assignment.make(from: .make(id: "1", course_id: "1", submission: .make()))
         let preCheckAssignments: [Assignment] = databaseClient.fetch()
         let apiAssignment = APIAssignment.make(
             id: "1",
@@ -136,7 +136,7 @@ class GetAssignmentsTests: CoreTestCase {
     }
 
     func testItDoesntGetSubmission() {
-        Assignment.make(["id": "1"])
+        Assignment.make(from: .make(id: "1", submission: nil))
         let apiAssignment = APIAssignment.make(
             id: "1",
             submission: nil
@@ -151,7 +151,7 @@ class GetAssignmentsTests: CoreTestCase {
     }
 
     func testDoesntDeleteSubmissionWithoutInclude() {
-        Assignment.make(["id": "1", "submission": Submission.make()])
+        Assignment.make(from: .make(id: "1", submission: .make()))
         let preCheckAssignments: [Assignment] = databaseClient.fetch()
         let apiAssignment = APIAssignment.make(
             id: "1",
@@ -211,12 +211,12 @@ class GetAssignmentsTests: CoreTestCase {
         let api6 = APIAssignment.make(id: "6", course_id: "1", name: "api6", due_at: nil)
         let api7 = APIAssignment.make(id: "7", course_id: "1", name: "api7", due_at: dateD)
 
-        let a2 = Assignment.make(["id": "2"])
-        let a3 = Assignment.make(["id": "3"])
-        let a4 = Assignment.make(["id": "4"])
-        let a5 = Assignment.make(["id": "5"])
-        let a6 = Assignment.make(["id": "6"])
-        let a7 = Assignment.make(["id": "7"])
+        let a2 = Assignment.make(from: .make(id: "2"))
+        let a3 = Assignment.make(from: .make(id: "3"))
+        let a4 = Assignment.make(from: .make(id: "4"))
+        let a5 = Assignment.make(from: .make(id: "5"))
+        let a6 = Assignment.make(from: .make(id: "6"))
+        let a7 = Assignment.make(from: .make(id: "7"))
 
        //   must do this so dueAtOrder property gets updated
         try? a2.update(fromApiModel: api2, in: databaseClient, updateSubmission: false)
@@ -236,10 +236,10 @@ class GetAssignmentsTests: CoreTestCase {
     }
 
     func testSortOrderPosition() {
-        let a = Assignment.make(["position": 3, "id": "2"])
-        let b = Assignment.make(["position": 1, "id": "3"])
-        let c = Assignment.make(["position": 5, "id": "4"])
-        let d = Assignment.make(["position": 4, "id": "5"])
+        let a = Assignment.make(from: .make(id: "2", position: 3))
+        let b = Assignment.make(from: .make(id: "3", position: 1))
+        let c = Assignment.make(from: .make(id: "4", position: 5))
+        let d = Assignment.make(from: .make(id: "5", position: 4))
 
         let useCase = GetAssignments(courseID: "1")
 
@@ -267,7 +267,7 @@ class GetAssignmentsTests: CoreTestCase {
     }
 
     func testItChangesRubrics() {
-        Assignment.make(["id": "2", "courseID": "2", "rubric": Set([Rubric.make(["id": "1"])])])
+        Assignment.make(from: .make(id: "2", course_id: "2", rubric: [.make(id: "1")]))
 
         let apiAssignment = APIAssignment.make(
             id: "2",
@@ -289,7 +289,7 @@ class GetAssignmentsTests: CoreTestCase {
     }
 
     func testItDeletesRubrics() {
-        Assignment.make(["id": "2", "courseID": "2", "rubric": Set([Rubric.make()])])
+        Assignment.make(from: .make(id: "2", course_id: "2", rubric: [.make()]))
 
         let apiAssignment = APIAssignment.make(id: "2")
 
@@ -303,9 +303,9 @@ class GetAssignmentsTests: CoreTestCase {
     }
 
     func testItDeletesRubricRatings() {
-        let singleRating = RubricRating.make(["id": "1"])
-        let singleRubric = Rubric.make(["ratings": Set([singleRating])])
-        Assignment.make(["id": "2", "courseID": "2", "rubric": Set([singleRubric])])
+        Assignment.make(from: .make(id: "2", course_id: "2", rubric: [
+            .make(ratings: [.make(id: "1")]),
+        ]))
         var assignments: [Assignment] = databaseClient.fetch()
         var assignment = assignments.first
         XCTAssertNotNil(assignment?.rubric?.first?.ratings?.first)
@@ -325,10 +325,9 @@ class GetAssignmentsTests: CoreTestCase {
     }
 
     func testItChangesRatingsCorrectly() {
-        let singleRating = RubricRating.make(["id": "1", "assignmentID": "2"])
-        let singleRubric = Rubric.make(["assignmentID": "2", "ratings": Set([singleRating])])
-
-        Assignment.make(["id": "2", "courseID": "2", "rubric": Set([singleRubric])])
+        Assignment.make(from: .make(id: "2", course_id: "2", rubric: [
+            .make(ratings: [.make(id: "1", assignmentID: "2")], assignmentID: "2"),
+        ]))
 
         let apiAssignment = APIAssignment.make(
             id: "2",

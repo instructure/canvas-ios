@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2019-present Instructure, Inc.
+// Copyright (C) 2018-present Instructure, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,13 +18,32 @@ import CoreData
 import Foundation
 @testable import Core
 
-extension MediaComment {
+extension File {
     @discardableResult
     public static func make(
-        from api: APIMediaComment = .make(),
+        from api: APIFile = .make(),
+        assignmentID: String? = nil,
+        batchID: String? = nil,
+        courseID: String? = nil,
+        removeID: Bool = false,
+        removeURL: Bool = false,
+        taskID: Int? = nil,
+        uploadError: String? = nil,
         in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
-    ) -> MediaComment {
-        let model = try! MediaComment.save(api, in: context)
+    ) -> File {
+        let model = try! File.save(api, in: context)
+        model.batchID = batchID
+        if let assignmentID = assignmentID, let courseID = courseID {
+            model.prepareForSubmission(courseID: courseID, assignmentID: assignmentID)
+        }
+        if removeID {
+            model.id = nil
+        }
+        if removeURL {
+            model.url = nil
+        }
+        model.taskID = taskID
+        model.uploadError = uploadError
         try! context.save()
         return model
     }

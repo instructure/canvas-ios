@@ -58,8 +58,8 @@ class GetSubmissionTest: CoreTestCase {
 
     func testNoHistoryDoesntDelete() {
         let context = ContextModel(.course, id: "1")
-        Submission.make([ "attempt": 2, "assignmentID": "2", "userID": "3", "late": false ])
-        Submission.make([ "attempt": 1, "assignmentID": "2", "userID": "3" ])
+        Submission.make(from: .make(assignment_id: "2", user_id: "3", late: false, attempt: 2))
+        Submission.make(from: .make(assignment_id: "2", user_id: "3", attempt: 1))
         let apiSubmission = APISubmission.make(
             assignment_id: "2",
             user_id: "3",

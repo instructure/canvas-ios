@@ -74,17 +74,17 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
     override func setUp() {
         super.setUp()
         presenter = SubmissionButtonPresenter(env: env, view: view, assignmentID: "1")
-        presenter.assignment = Assignment.make([ "submission": Submission.make() ])
+        presenter.assignment = Assignment.make(from: .make(submission: .make()))
         presenter.fileUpload.uploader = fileUploader
         presenter.arcID = .none
     }
 
     func testButtonText() {
-        let a = Assignment.make([
-            "submissionTypesRaw": [ "online_upload" ],
-            "submission": Submission.make(["workflowStateRaw": "unsubmitted"]),
-        ])
-        let c = Course.make([ "enrollments": Set([ Enrollment.make() ]) ])
+        let a = Assignment.make(from: .make(
+            submission: .make(workflow_state: .unsubmitted),
+            submission_types: [ .online_upload ]
+        ))
+        let c = Course.make(from: .make(enrollments: [ .make() ]))
         XCTAssertEqual(presenter.buttonText(course: c, assignment: a, quiz: nil), "Submit Assignment")
 
         a.submission?.workflowState = .submitted
@@ -110,7 +110,7 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
     }
 
     func testSubmitAssignment() {
-        let a = Assignment.make([ "submissionTypesRaw": [ "none" ], "submission": Submission.make() ])
+        let a = Assignment.make(from: .make(submission_types: [ .none ]))
         presenter.submitAssignment(a, button: button)
         XCTAssertNil(view.presented)
         XCTAssert(router.calls.isEmpty)
@@ -121,7 +121,7 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
     }
 
     func testSubmitAssignmentChoose() {
-        let a = Assignment.make([ "submissionTypesRaw": [ "online_text_entry", "online_url" ], "submission": Submission.make() ])
+        let a = Assignment.make(from: .make(submission_types: [ .online_text_entry, .online_url ]))
         presenter.submitAssignment(a, button: button)
         XCTAssert(view.presented is UIAlertController)
         XCTAssert(router.calls.isEmpty)
@@ -137,17 +137,16 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
     }
 
     func testSubmitTypeMissingSubmission() {
-        let a = Assignment.make()
+        let a = Assignment.make(from: .make(submission: nil))
         presenter.submitType(.online_text_entry, for: a)
         XCTAssertNil(view.presented)
         XCTAssert(router.calls.isEmpty)
     }
 
     func testSubmitTypeLTI() {
-        let a = Assignment.make([
-            "discussionTopic": DiscussionTopic.make([ "htmlUrl": URL(string: "/discussion") ]),
-            "submission": Submission.make(),
-        ])
+        let a = Assignment.make(from: .make(
+            discussion_topic: .make(html_url: URL(string: "/discussion"))
+        ))
         var asyncDone = expectation(description: "async task complete")
         presenter.submitType(.external_tool, for: a)
         DispatchQueue.main.async { asyncDone.fulfill() }
@@ -165,10 +164,7 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
 
     func testSubmitTypeDiscussion() {
         let url = URL(string: "/discussion")!
-        let a = Assignment.make([
-            "discussionTopic": DiscussionTopic.make(),
-            "submission": Submission.make(),
-        ])
+        let a = Assignment.make(from: .make(discussion_topic: .make()))
         presenter.submitType(.discussion_topic, for: a)
         XCTAssert(router.calls.isEmpty)
 
@@ -178,31 +174,31 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
     }
 
     func testSubmitTypeMedia() {
-        let a = Assignment.make([ "submission": Submission.make() ])
+        let a = Assignment.make()
         presenter.submitType(.media_recording, for: a)
         XCTAssert(view.presented is UIAlertController)
     }
 
     func testSubmitTypeText() {
-        let a = Assignment.make([ "submission": Submission.make() ])
+        let a = Assignment.make()
         presenter.submitType(.online_text_entry, for: a)
         XCTAssert(router.lastRoutedTo(Route.assignmentTextSubmission(courseID: "1", assignmentID: "1", userID: "1")))
     }
 
     func testSubmitTypeQuiz() {
-        let a = Assignment.make([ "submission": Submission.make() ])
+        let a = Assignment.make()
         presenter.submitType(.online_quiz, for: a)
         XCTAssert(router.calls.isEmpty) // Not done yet
     }
 
     func testSubmitTypeUpload() {
-        let a = Assignment.make([ "submission": Submission.make() ])
+        let a = Assignment.make()
         presenter.submitType(.online_upload, for: a)
         XCTAssert(view.presented is UINavigationController)
     }
 
     func testSubmitTypeURL() {
-        let a = Assignment.make([ "submission": Submission.make() ])
+        let a = Assignment.make()
         presenter.submitType(.online_url, for: a)
         XCTAssert(router.lastRoutedTo(Route.assignmentUrlSubmission(courseID: "1", assignmentID: "1", userID: "1")))
     }
@@ -217,28 +213,28 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
     }
 
     func testSubmitTypeBad() {
-        let a = Assignment.make([ "submission": Submission.make() ])
+        let a = Assignment.make()
         presenter.submitType(.on_paper, for: a)
         XCTAssertNil(view.presented)
         XCTAssert(router.calls.isEmpty)
     }
 
     func testPickFilesEmptyExtensions() {
-        let a = Assignment.make([ "submissionTypesRaw": [ "online_upload" ], "allowedExtensions": [] ])
+        let a = Assignment.make(from: .make(submission_types: [ .online_upload ], allowed_extensions: []))
         presenter.pickFiles(for: a)
         let filePicker = (view.presented as? UINavigationController)?.viewControllers.first as? FilePickerViewController
         XCTAssertEqual(filePicker?.sources, [.files, .library, .camera])
     }
 
     func testPickFilesFilesOnly() {
-        let a = Assignment.make([ "submissionTypesRaw": [ "online_upload" ], "allowedExtensions": [ "txt" ] ])
+        let a = Assignment.make(from: .make(submission_types: [ .online_upload ], allowed_extensions: [ "txt" ]))
         presenter.pickFiles(for: a)
         let filePicker = (view.presented as? UINavigationController)?.viewControllers.first as? FilePickerViewController
         XCTAssertEqual(filePicker?.sources, [.files])
     }
 
     func testPickFilesImages() {
-        let a = Assignment.make([ "submissionTypesRaw": [ "online_upload" ], "allowedExtensions": [ "jpg" ] ])
+        let a = Assignment.make(from: .make(submission_types: [ .online_upload ], allowed_extensions: [ "jpg" ]))
         presenter.pickFiles(for: a)
         let filePicker = (view.presented as? UINavigationController)?.viewControllers.first as? FilePickerViewController
         XCTAssertEqual(filePicker?.sources, [.files, .library, .camera])
