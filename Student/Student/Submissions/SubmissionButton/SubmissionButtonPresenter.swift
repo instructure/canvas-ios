@@ -22,7 +22,7 @@ import Core
 protocol SubmissionButtonViewProtocol: ApplicationViewController, ErrorViewController {
 }
 
-enum ArcID {
+enum ArcID: Equatable {
     case pending
     case none
     case some(String)
@@ -57,7 +57,7 @@ class SubmissionButtonPresenter: NSObject {
             return NSLocalizedString("Take Quiz", bundle: .student, comment: "")
         }
 
-        if case .pending = arcID {
+        if arcID == .pending {
             return nil
         }
 
@@ -78,7 +78,7 @@ class SubmissionButtonPresenter: NSObject {
         guard assignment.canMakeSubmissions else { return }
         self.assignment = assignment
         var types = assignment.submissionTypes
-        if case .some(_) = arcID {
+        if case .some(_) = arcID, types.contains(.online_upload) {
             types.append(.arc)
         }
         if types.count == 1, let type = types.first {
@@ -231,9 +231,9 @@ extension SubmissionButtonPresenter: AudioRecorderDelegate, UIImagePickerControl
             self?.view?.present(failure, animated: true, completion: nil)
         }
         let reportSuccess = { [weak self] in
-            let success = UIAlertController(title: NSLocalizedString("Success!", bundle: .student, comment: ""), message: nil, preferredStyle: .alert)
+            let success = UIAlertController(title: NSLocalizedString("Successfully submitted!", bundle: .student, comment: ""), message: nil, preferredStyle: .alert)
             self?.view?.present(success, animated: true) {
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(400)) {
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
                     success.dismiss(animated: true, completion: nil)
                 }
             }

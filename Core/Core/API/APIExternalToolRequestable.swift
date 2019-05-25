@@ -66,6 +66,13 @@ public struct GetExternalToolsRequest: APIRequestable {
 
     let context: Context
     let includeParents: Bool
+    let perPage: Int
+
+    public init(context: Context, includeParents: Bool, perPage: Int = 10) {
+        self.context = context
+        self.includeParents = includeParents
+        self.perPage = perPage
+    }
 
     public var cacheKey: String {
         return "\(context.canvasContextID)-external-tools"
@@ -76,7 +83,9 @@ public struct GetExternalToolsRequest: APIRequestable {
     }
 
     public var query: [APIQueryItem] {
-        var query: [APIQueryItem] = []
+        var query: [APIQueryItem] = [
+            .value("per_page", String(perPage)),
+        ]
         if includeParents {
             query.append(.value("include_parents", "true"))
         }

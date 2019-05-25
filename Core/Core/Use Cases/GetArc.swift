@@ -16,7 +16,7 @@
 
 import Foundation
 
-public class GetArc: APIUseCase {
+public class GetArc: CollectionUseCase {
     public typealias Response = [APIExternalTool]
     public typealias Model = ExternalTool
 
@@ -30,11 +30,11 @@ public class GetArc: APIUseCase {
     }
 
     public var request: GetExternalToolsRequest {
-        return GetExternalToolsRequest(context: ContextModel(.course, id: courseID), includeParents: true)
+        return GetExternalToolsRequest(context: ContextModel(.course, id: courseID), includeParents: true, perPage: 99)
     }
 
     public var cacheKey: String? {
-        return "\(courseID)-arc-id"
+        return "\(courseID)-arc"
     }
 
     public init(courseID: String) {
@@ -42,7 +42,8 @@ public class GetArc: APIUseCase {
     }
 
     public func write(response: [APIExternalTool]?, urlResponse: URLResponse?, to client: PersistenceClient) throws {
-        guard let response = response else { return }
-        ExternalTool.save(response, courseID: courseID, in: client)
+        if let arc = response?.first(where: { $0.arc }) {
+            ExternalTool.save(arc, courseID: courseID, in: client)
+        }
     }
 }

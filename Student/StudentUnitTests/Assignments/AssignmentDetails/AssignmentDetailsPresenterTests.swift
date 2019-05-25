@@ -171,6 +171,11 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         presenter.viewFileSubmission()
         XCTAssertNotNil(presentedView)
     }
+
+    func testArc() {
+        XCTAssertEqual(presenter.submissionButtonPresenter.arcID, .pending)
+        presenter.refresh()
+    }
 }
 
 extension AssignmentDetailsPresenterTests: AssignmentDetailsViewProtocol {

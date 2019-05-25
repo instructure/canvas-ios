@@ -30,9 +30,4 @@ public final class ExternalTool: NSManagedObject {
         tool.courseID = courseID
         return tool
     }
-
-    @discardableResult
-    public static func save(_ items: [APIExternalTool], courseID: String?, in context: PersistenceClient) -> [ExternalTool] {
-        return items.map { save($0, courseID: courseID, in: context) }
-    }
 }

@@ -92,7 +92,8 @@ class ArcSubmissionPresenter {
             context: ContextModel(.course, id: courseID),
             assignmentID: assignmentID,
             userID: userID,
-            submissionType: .basic_lti_launch, url: url
+            submissionType: .basic_lti_launch,
+            url: url
         ).fetch(environment: env) { _, _, error in
             callback(error)
         }
