@@ -87,6 +87,7 @@ class InfinitePagedImagesView: UIScrollView {
             let imageView = UIImageView(image: image)
             imageView.translatesAutoresizingMaskIntoConstraints = false
             imageView.clipsToBounds = true
+            imageView.isAccessibilityElement = true
 
             imageView.addConstraint(NSLayoutConstraint(item: imageView, attribute: .width, relatedBy: .lessThanOrEqual, toItem: nil, attribute: .notAnAttribute, multiplier: 0, constant: ceil(image.size.width)))
             imageView.addConstraint(NSLayoutConstraint(item: imageView, attribute: .height, relatedBy: .lessThanOrEqual, toItem: nil, attribute: .notAnAttribute, multiplier: 0, constant: ceil(image.size.height)))
