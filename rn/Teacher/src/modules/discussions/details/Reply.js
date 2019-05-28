@@ -301,7 +301,9 @@ export default class Reply extends Component<Props, State> {
   }
 
   _renderUnreadDot (reply: DiscussionReply, state: ReadState) {
-    return state === 'unread' && !reply.deleted ? (<View style={style.unreadDot}/>) : <View />
+    return state === 'unread' && !reply.deleted ? (
+      <View style={style.unreadDot} accessible={true} accessibilityLabel={i18n('Unread')} />
+    ) : <View />
   }
 
   _actionMore = () => {
