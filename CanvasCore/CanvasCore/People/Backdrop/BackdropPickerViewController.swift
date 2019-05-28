@@ -240,6 +240,8 @@ open class BackdropPickerViewController: UIViewController, UICollectionViewDeleg
     
     open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! BackdropCell
+        cell.isAccessibilityElement = true
+        cell.accessibilityLabel = String(format: NSLocalizedString("Image %d", comment: "Image # in collection"), indexPath.item)
         if let image = self.imageForPath(indexPath) {
             cell.image = image
         } else {
