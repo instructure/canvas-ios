@@ -232,6 +232,7 @@ exports[`QuizRow renders 1`] = `
             20 pts
           </Text>
           <Text
+            accessibilityLabel=""
             accessible={false}
             allowFontScaling={true}
             ellipsizeMode="tail"
@@ -570,6 +571,7 @@ exports[`QuizRow renders multiple question count 1`] = `
             20 pts
           </Text>
           <Text
+            accessibilityLabel=""
             accessible={false}
             allowFontScaling={true}
             ellipsizeMode="tail"
@@ -908,6 +910,7 @@ exports[`QuizRow renders published 1`] = `
             20 pts
           </Text>
           <Text
+            accessibilityLabel=""
             accessible={false}
             allowFontScaling={true}
             ellipsizeMode="tail"
@@ -1247,6 +1250,7 @@ exports[`QuizRow renders selected 1`] = `
             20 pts
           </Text>
           <Text
+            accessibilityLabel=""
             accessible={false}
             allowFontScaling={true}
             ellipsizeMode="tail"
@@ -1585,6 +1589,7 @@ exports[`QuizRow renders single question count 1`] = `
             20 pts
           </Text>
           <Text
+            accessibilityLabel=""
             accessible={false}
             allowFontScaling={true}
             ellipsizeMode="tail"
@@ -1923,6 +1928,7 @@ exports[`QuizRow renders unpublished 1`] = `
             20 pts
           </Text>
           <Text
+            accessibilityLabel=""
             accessible={false}
             allowFontScaling={true}
             ellipsizeMode="tail"

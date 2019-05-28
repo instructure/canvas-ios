@@ -50,10 +50,9 @@ export default class DiscussionsRow extends PureComponent<Props> {
     const discussionDetails = this.discussionDetails(discussion)
     const unreadDot = this.renderUnreadDot(discussion)
     return (
-      <View accessible={false}>
+      <View>
         <View accessible={false}>
           <Row accessible={true}
-            accessibilityLabel={`${discussion.title}`}
             renderImage={this.renderIcon}
             title={discussion.title}
             titleProps={{ ellipsizeMode: 'tail', numberOfLines: 2 }}
