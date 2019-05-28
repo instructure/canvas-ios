@@ -24,11 +24,11 @@ class GetRecentlyGradedSubmissionsTests: CoreTestCase {
     }
 
     func testItCreatesSubmissionsWithAssignments() {
-        let apiSubmission = APISubmission.make([
-            "id": "1",
-            "assignment_id": "2",
-            "assignment": APIAssignmentNoSubmission.fixture(["id": "2"]),
-        ])
+        let apiSubmission = APISubmission.make(
+            id: "1",
+            assignment_id: "2",
+            assignment: APIAssignmentNoSubmission.make(id: "2")
+        )
 
         let useCase = GetRecentlyGradedSubmissions(userID: "1")
         try! useCase.write(response: [apiSubmission], urlResponse: nil, to: databaseClient)
@@ -50,8 +50,8 @@ class GetRecentlyGradedSubmissionsTests: CoreTestCase {
     }
 
     func testScope() {
-        let firstSubmission = Submission.make(["gradedAt": Date(fromISOString: "2019-04-29T18:17:21.890Z")])
-        let secondSubmission = Submission.make(["gradedAt": Date(fromISOString: "2019-04-28T18:17:21.890Z")])
+        let firstSubmission = Submission.make(from: APISubmission.make(assignment_id: "1", graded_at: Date(fromISOString: "2019-04-29T18:17:21.890Z")), in: databaseClient)
+        let secondSubmission = Submission.make(from: APISubmission.make(assignment_id: "2", graded_at: Date(fromISOString: "2019-04-28T18:17:21.890Z")), in: databaseClient)
 
         let useCase = GetRecentlyGradedSubmissions(userID: "self")
 

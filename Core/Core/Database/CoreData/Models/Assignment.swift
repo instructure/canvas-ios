@@ -153,16 +153,6 @@ extension Assignment {
         return utis
     }
 
-    static let scoreFormatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .percent
-        formatter.decimalSeparator = "."
-        formatter.multiplier = 1
-        formatter.maximumFractionDigits = 2
-        formatter.roundingMode = .down
-        return formatter
-    }()
-
     public var gradeText: String? {
         guard let submission = submission else {
             return nil
@@ -181,7 +171,7 @@ extension Assignment {
 
         case .points:
             guard let score = submission.score, let pointsPossible = pointsPossible else { return nil }
-            return Assignment.scoreFormatter.string(from: NSNumber(value: score / pointsPossible * 100))
+            return NumberFormatter.localizedString(from: NSNumber(value: score / pointsPossible * 100), number: .decimal)
 
         case .letter_grade, .percent, .not_graded:
             return submission.grade
