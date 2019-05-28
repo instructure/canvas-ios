@@ -116,7 +116,7 @@ extension UIColor {
         let minRatio: CGFloat = 4.5
         guard inHighContrast && contrast(against: against) < minRatio else { return self }
 
-        // This can iterate up to 200ish times, if perfomance becomes a problem we can instead
+        // This can iterate up to 200ish times, if performance becomes a problem we can instead
         // return against.luminance < 0.5 ? .white : .black
 
         var hue: CGFloat = 0, saturation: CGFloat = 0, brightness: CGFloat = 0, alpha: CGFloat = 1

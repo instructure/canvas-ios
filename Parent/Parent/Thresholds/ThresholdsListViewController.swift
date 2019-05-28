@@ -64,7 +64,7 @@ class ThresholdsListViewController: UITableViewController {
         controller.session = session
         controller.studentID = studentID
         controller.studentObserver = try! Student.observer(session, studentID: studentID)
-        // TOOD: is there a better way of syncing just one student without an api call for a single one?
+        // TODO: is there a better way of syncing just one student without an api call for a single one?
         // This should pull the whole list, then the observer will pick up any changes to that given object
         controller.studentSyncProducer = try! Student.observedStudentsSyncProducer(session)
 

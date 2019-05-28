@@ -30,7 +30,7 @@ let DisabledMenuItems: [String] = [
 // IF NATIVE:
 // 2. Use the CanvadocsAnnotationService to pull the metadata, the document, and the annotations
 // 3. Instantiate this class, injecting the necessary stuff
-// 4. Insert the resulting view controller from `getPDFViewController` into the view heirarchy wherever you want
+// 4. Insert the resulting view controller from `getPDFViewController` into the view hierarchy wherever you want
 
 open class CanvadocsPDFDocumentPresenter: NSObject {
     @objc var pdfDocument: PSPDFDocument

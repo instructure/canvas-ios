@@ -48,12 +48,12 @@ extension Session {
         return color
     }
     
-    // for objc compatability
+    // for objc compatibility
     @objc public func colorForCourse(_ courseID: String) -> UIColor {
         return color(for: .course(withID: courseID))
     }
     
-    // for objc compatability
+    // for objc compatibility
     @objc public func colorForGroup(_ groupID: String) -> UIColor {
         return color(for: .group(withID: groupID))
     }
