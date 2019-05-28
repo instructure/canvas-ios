@@ -136,20 +136,23 @@ extension GradesTodayWidgetViewController: UITableViewDataSource {
         return UIFont.scaledNamedFont(.bold20).lineHeight + VERTICAL_PADDING
     }
 
-    var ASSIGNMENT_GRADE_ROW_HEIGHT: CGFloat {
+    var ROW_HEIGHT: CGFloat {
         return UIFont.scaledNamedFont(.medium12).lineHeight + UIFont.scaledNamedFont(.semibold16).lineHeight + VERTICAL_PADDING
     }
 
-    var COURSE_GRADE_ROW_HEIGHT: CGFloat {
-        return UIFont.scaledNamedFont(.semibold16).lineHeight + VERTICAL_PADDING
-    }
-
     func numberOfSections(in tableView: UITableView) -> Int {
+        if error != nil {
+            return 1
+        }
         return 2
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if expanded == false {
+            return 0
+        }
+
+        if section == 0 && presenter.submissions.count == 0 {
             return 0
         }
 
@@ -182,6 +185,7 @@ extension GradesTodayWidgetViewController: UITableViewDataSource {
         if error != nil {
             return 1
         }
+
         if section == 0 {
             return presenter.submissions.count
         } else {
@@ -190,11 +194,7 @@ extension GradesTodayWidgetViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0 {
-            return self.ASSIGNMENT_GRADE_ROW_HEIGHT
-        } else {
-            return self.COURSE_GRADE_ROW_HEIGHT
-        }
+        return self.ROW_HEIGHT
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -294,9 +294,10 @@ extension GradesTodayWidgetViewController: NCWidgetProviding {
 
     func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
         expanded = activeDisplayMode == .expanded
-        let sectionsHeight = self.SECTION_HEADER_HEIGHT * CGFloat(2)
-        let assignmentGradesHeight = self.ASSIGNMENT_GRADE_ROW_HEIGHT * CGFloat(presenter.submissions.count)
-        let courseGradesHeight = self.COURSE_GRADE_ROW_HEIGHT * CGFloat(presenter.courses.count)
+        let numSections = presenter.submissions.count > 0 ? 2 : 1
+        let sectionsHeight = self.SECTION_HEADER_HEIGHT * CGFloat(numSections)
+        let assignmentGradesHeight = self.ROW_HEIGHT * CGFloat(presenter.submissions.count)
+        let courseGradesHeight = self.ROW_HEIGHT * CGFloat(presenter.courses.count)
         let tableViewHeight = sectionsHeight + assignmentGradesHeight + courseGradesHeight
         preferredContentSize = CGSize(width: 0, height:
             expanded ? tableViewHeight : maxSize.height)
