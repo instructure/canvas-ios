@@ -53,7 +53,7 @@ public class ProfilePresenter: ProfilePresenterProtocol {
         if self.canMasquerade {
             cells.append(ProfileViewCell(
                 name: NSLocalizedString("Act as User", bundle: .parent, comment: ""),
-                block: { [weak self] in
+                block: { [weak self] _ in
                     self?.view?.show(.actAsUser, options: [.modal, .embedInNav])
                 }
             ))
@@ -62,26 +62,26 @@ public class ProfilePresenter: ProfilePresenterProtocol {
         cells.append(contentsOf: [
             ProfileViewCell(
                 name: NSLocalizedString("Manage Children", bundle: .parent, comment: ""),
-                block: { [weak self] in
+                block: { [weak self] _ in
                     self?.view?.show(.profileObservees, options: nil)
                 }
             ),
             ProfileViewCell(
                 name: NSLocalizedString("Help", bundle: .parent, comment: ""),
-                block: { [weak self] in
-                    self?.showHelpMenu()
+                block: { [weak self] cell in
+                    self?.showHelpMenu(source: cell)
                 }
             ),
             ProfileViewCell(
                 name: NSLocalizedString("Change User", bundle: .parent, comment: ""),
-                block: {
+                block: { _ in
                     guard let delegate = UIApplication.shared.delegate as? ParentAppDelegate else { return }
                     delegate.changeUser()
                 }
             ),
             ProfileViewCell(
                 name: NSLocalizedString("Log Out", bundle: .parent, comment: ""),
-                block: {
+                block: { _ in
                     guard let delegate = UIApplication.shared.delegate as? ParentAppDelegate else { return }
                     guard let session = delegate.environment.currentSession else { return }
                     delegate.userDidLogout(keychainEntry: session)
@@ -92,7 +92,7 @@ public class ProfilePresenter: ProfilePresenterProtocol {
         if env.currentSession?.actAsUserID != nil {
             cells.append(ProfileViewCell(
                 name: NSLocalizedString("Stop Act as User", bundle: .parent, comment: ""),
-                block: {
+                block: { _ in
                     guard let delegate = UIApplication.shared.delegate as? ParentAppDelegate else { return }
                     guard let session = delegate.environment.currentSession else { return }
                     delegate.stopActing(as: session)
@@ -103,7 +103,7 @@ public class ProfilePresenter: ProfilePresenterProtocol {
         if showDevMenu {
             cells.append(ProfileViewCell(
                 name: NSLocalizedString("Developer Menu", bundle: .parent, comment: ""),
-                block: { [weak self] in
+                block: { [weak self] _ in
                     self?.view?.show(.developerMenu, options: [.modal, .embedInNav ])
                 }
             ))
@@ -125,7 +125,7 @@ public class ProfilePresenter: ProfilePresenterProtocol {
         self.view?.reload()
     }
 
-    func showHelpMenu() {
+    func showHelpMenu(source cell: UITableViewCell) {
         let helpMenu = UIAlertController(title: NSLocalizedString("Help", bundle: .parent, comment: ""), message: nil, preferredStyle: .actionSheet)
 
         helpMenu.addAction(UIAlertAction(title: NSLocalizedString("View Canvas Guides", bundle: .parent, comment: ""), style: .default) { [weak self] _ in
@@ -146,6 +146,8 @@ public class ProfilePresenter: ProfilePresenterProtocol {
 
         helpMenu.addAction(UIAlertAction(title: NSLocalizedString("Cancel", bundle: .parent, comment: ""), style: .cancel))
 
+        helpMenu.popoverPresentationController?.sourceView = cell
+        helpMenu.popoverPresentationController?.sourceRect = CGRect(origin: CGPoint(x: cell.bounds.maxX, y: cell.bounds.midY), size: .zero)
         view?.present(helpMenu, animated: true, completion: nil)
     }
 }
