@@ -41,6 +41,8 @@ final public class Submission: NSManagedObject {
     @NSManaged public var discussionEntries: Set<DiscussionEntry>?
     @NSManaged public var previewUrl: URL?
     @NSManaged public var url: URL?
+    @NSManaged public var gradedAt: Date?
+
     @NSManaged public var rubricAssesmentRaw: Set<RubricAssessment>?
     @NSManaged public var mediaComment: MediaComment?
 
@@ -120,6 +122,7 @@ extension Submission: WriteableModel {
         model.type = item.submission_type
         model.url = item.url
         model.previewUrl = item.preview_url
+        model.gradedAt = item.graded_at
 
         model.attachments = Set(try item.attachments?.map { attachment in
             return try File.save(attachment, in: client)
@@ -153,8 +156,12 @@ extension Submission: WriteableModel {
         }
 
         let assignmentPredicate = NSPredicate(format: "%K == %@", #keyPath(Assignment.id), item.assignment_id.value)
-        if let assignment: Assignment = client.fetch(assignmentPredicate).first {
-            assignment.submission = model // trigger assignment change notification
+        if let apiAssignment = item.assignment {
+            let assignment: Assignment = client.fetch(assignmentPredicate).first ?? client.insert()
+            try assignment.update(fromApiModel: apiAssignment.toAPIAssignment(), in: client, updateSubmission: false)
+            assignment.submission = model
+        } else if let assignment: Assignment = client.fetch(assignmentPredicate).first {
+            assignment.submission = model
         }
 
         if let rubricAssessmentMap = item.rubric_assessment {

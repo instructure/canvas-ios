@@ -152,6 +152,31 @@ extension Assignment {
 
         return utis
     }
+
+    public var gradeText: String? {
+        guard let submission = submission else {
+            return nil
+        }
+        switch gradingType {
+        case .gpa_scale:
+            guard let grade = submission.grade else { return nil }
+            let format = NSLocalizedString("%@ GPA", bundle: .core, comment: "")
+            return String.localizedStringWithFormat(format, grade)
+
+        case .pass_fail:
+            guard let score = submission.score else { return nil }
+            return score == 0
+                ? NSLocalizedString("Incomplete", bundle: .core, comment: "")
+                : NSLocalizedString("Complete", bundle: .core, comment: "")
+
+        case .points:
+            guard let score = submission.score, let pointsPossible = pointsPossible else { return nil }
+            return NumberFormatter.localizedString(from: NSNumber(value: score / pointsPossible * 100), number: .decimal)
+
+        case .letter_grade, .percent, .not_graded:
+            return submission.grade
+        }
+    }
 }
 
 extension Assignment: DueViewable, GradeViewable, SubmissionViewable {

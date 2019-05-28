@@ -290,6 +290,7 @@
         <attribute name="body" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="excusedRaw" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="grade" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="gradedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="id" attributeType="String" syncable="YES"/>
         <attribute name="late" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="latePolicyStatusRaw" optional="YES" attributeType="String" syncable="YES"/>

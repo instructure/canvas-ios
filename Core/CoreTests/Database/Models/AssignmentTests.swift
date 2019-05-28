@@ -222,6 +222,58 @@ class AssignmentTests: CoreTestCase {
         XCTAssertEqual(a.descriptionHTML, a.discussionTopic?.html)
     }
 
+    func testGradeTextReturnsNil() {
+        let a = Assignment.make()
+        XCTAssertNil(a.gradeText)
+    }
+
+    func testGradeTextReturnsGPA() {
+        let a = Assignment.make()
+        a.gradingType = .gpa_scale
+        let s = Submission.make()
+        s.grade = "3.0"
+        a.submission = s
+        XCTAssertEqual(a.gradeText, "3.0 GPA")
+    }
+
+    func testGradeTextReturnsPassFail() {
+        let a = Assignment.make()
+        a.gradingType = .pass_fail
+        let s = Submission.make()
+        s.score = 0
+        a.submission = s
+        XCTAssertEqual(a.gradeText, "Incomplete")
+        s.score = 1
+        XCTAssertEqual(a.gradeText, "Complete")
+    }
+
+    func testGradeTextReturnsPoints() {
+        let a = Assignment.make()
+        a.gradingType = .points
+        a.pointsPossible = 100
+        let s = Submission.make()
+        s.score = 50
+        a.submission = s
+        XCTAssertEqual(a.gradeText, "50")
+    }
+
+    func testGradeTextReturnsOthers() {
+        let a = Assignment.make()
+        a.gradingType = .percent
+        let s = Submission.make()
+        s.grade = "80%"
+        a.submission = s
+        XCTAssertEqual(a.gradeText, "80%")
+
+        a.gradingType = .letter_grade
+        s.grade = "A+"
+        XCTAssertEqual(a.gradeText, "A+")
+
+        a.gradingType = .not_graded
+        s.grade = ""
+        XCTAssertEqual(a.gradeText, "")
+    }
+
     func testUseRubricForGrading() {
         let apiAssignment = APIAssignment.make(use_rubric_for_grading: true)
         let assignment = Assignment.make()

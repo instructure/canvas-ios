@@ -37,11 +37,13 @@ extension APISubmission {
         preview_url: URL? = nil,
         url: URL? = nil,
         media_comment: APIMediaComment? = nil,
+        graded_at: Date? = nil,
         late_policy_status: LatePolicyStatus? = nil,
         points_deducted: Double? = nil,
         submission_comments: [APISubmissionComment]? = nil,
         submission_history: [APISubmission]? = nil,
         user: APISubmissionUser? = nil,
+        assignment: APIAssignmentNoSubmission? = nil,
         rubric_assessment: APIRubricAssessmentMap? = nil
     ) -> APISubmission {
         return APISubmission(
@@ -63,11 +65,13 @@ extension APISubmission {
             preview_url: preview_url,
             url: url,
             media_comment: media_comment,
+            graded_at: graded_at,
             late_policy_status: late_policy_status,
             points_deducted: points_deducted,
             submission_comments: submission_comments,
             submission_history: submission_history,
             user: user,
+            assignment: assignment,
             rubric_assessment: rubric_assessment
         )
     }

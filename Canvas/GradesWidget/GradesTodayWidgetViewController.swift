@@ -18,7 +18,7 @@ import UIKit
 import NotificationCenter
 import Core
 
-let COURSE_ROW_HEIGHT: CGFloat = 55
+let VERTICAL_PADDING = CGFloat(20)
 let DEFAULT_ERROR_MESSAGE = NSLocalizedString("Failed to load grades", comment: "")
 
 enum GradesWidgetError: Error {
@@ -69,6 +69,7 @@ class GradesTodayWidgetViewController: UIViewController {
     }()
 
     var error: Error?
+    var expanded: Bool = false
 
     @IBOutlet var tableView: UITableView!
 
@@ -86,11 +87,14 @@ class GradesTodayWidgetViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.showsVerticalScrollIndicator = false
-        tableView.estimatedRowHeight = COURSE_ROW_HEIGHT
         tableView.rowHeight = UITableView.automaticDimension
+        tableView.separatorStyle = .none
 
-        let nib = UINib(nibName: String(describing: GradeWidgetCell.self), bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: "cell")
+        let courseNib = UINib(nibName: String(describing: GradeWidgetCell.self), bundle: nil)
+        tableView.register(courseNib, forCellReuseIdentifier: "course-cell")
+
+        let assignmentNib = UINib(nibName: String(describing: GradedAssignmentCell.self), bundle: nil)
+        tableView.register(assignmentNib, forCellReuseIdentifier: "assignment-cell")
 
         login()
     }
@@ -128,11 +132,69 @@ class GradesTodayWidgetViewController: UIViewController {
 }
 
 extension GradesTodayWidgetViewController: UITableViewDataSource {
+    var SECTION_HEADER_HEIGHT: CGFloat {
+        return UIFont.scaledNamedFont(.bold20).lineHeight + VERTICAL_PADDING
+    }
+
+    var ASSIGNMENT_GRADE_ROW_HEIGHT: CGFloat {
+        return UIFont.scaledNamedFont(.medium12).lineHeight + UIFont.scaledNamedFont(.semibold16).lineHeight + VERTICAL_PADDING
+    }
+
+    var COURSE_GRADE_ROW_HEIGHT: CGFloat {
+        return UIFont.scaledNamedFont(.semibold16).lineHeight + VERTICAL_PADDING
+    }
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if expanded == false {
+            return 0
+        }
+
+        return self.SECTION_HEADER_HEIGHT
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: self.SECTION_HEADER_HEIGHT))
+        view.backgroundColor = .clear
+
+        let sectionFont = UIFont.scaledNamedFont(.bold20)
+        let title = UILabel(frame: CGRect(x: 16, y: 16, width: tableView.frame.size.width, height: sectionFont.lineHeight))
+        title.font = sectionFont
+        title.textColor = UIColor.named(.textDarkest)
+        title.text = section == 0
+            ? NSLocalizedString("Recently Graded Assignments", comment: "")
+            : NSLocalizedString("Course Grades", comment: "")
+
+        let bottomBorder = UIView()
+        bottomBorder.backgroundColor = UIColor.named(.borderDark).withAlphaComponent(0.25)
+        bottomBorder.frame = CGRect(x: 16, y: self.SECTION_HEADER_HEIGHT, width: tableView.frame.size.width - 32, height: 1)
+
+        view.addSubview(title)
+        view.addSubview(bottomBorder)
+
+        return view
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if error != nil {
             return 1
         }
-        return presenter.courses.count
+        if section == 0 {
+            return presenter.submissions.count
+        } else {
+            return presenter.courses.count
+        }
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return self.ASSIGNMENT_GRADE_ROW_HEIGHT
+        } else {
+            return self.COURSE_GRADE_ROW_HEIGHT
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -140,12 +202,17 @@ extension GradesTodayWidgetViewController: UITableViewDataSource {
             return errorCell(error)
         }
 
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? GradeWidgetCell else  {
+        if indexPath.section == 0 {
+            return assignmentGradeCell(indexPath: indexPath)
+        } else {
+            return courseGradeCell(indexPath: indexPath)
+        }
+    }
+
+    func courseGradeCell(indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "course-cell", for: indexPath) as? GradeWidgetCell else  {
             fatalError("Incorrect cell type found; expected: GradeWidgetCell")
         }
-
-        cell.courseNameLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
-        cell.gradeLabel?.font = UIFont.preferredFont(forTextStyle: .body)
 
         guard let course = presenter.courses[indexPath.row] else {
             fatalError("Course failed to load")
@@ -153,6 +220,22 @@ extension GradesTodayWidgetViewController: UITableViewDataSource {
 
         cell.courseNameLabel?.text = course.name
         cell.gradeLabel?.text = course.displayGrade
+        cell.dotView.layer.cornerRadius = cell.dotView.bounds.size.height / 2
+        cell.dotView.backgroundColor = course.color
+        return cell
+    }
+
+    func assignmentGradeCell(indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "assignment-cell", for: indexPath) as? GradedAssignmentCell else {
+            fatalError("Incorrect cel type found; expected: GradedAssignmentCell")
+        }
+        guard let submission = presenter.submissions[indexPath.row], let assignment = submission.assignment, let course = presenter.courses.first(where: { $0.id == assignment.courseID }) else {
+            return cell
+        }
+
+        cell.courseNameLabel?.text = course.name
+        cell.assignmentNameLabel?.text = assignment.name
+        cell.gradeLabel?.text = assignment.gradeText
         cell.dotView.layer.cornerRadius = cell.dotView.bounds.size.height / 2
         cell.dotView.backgroundColor = course.color
         return cell
@@ -173,7 +256,30 @@ extension GradesTodayWidgetViewController: UITableViewDataSource {
 extension GradesTodayWidgetViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        guard let course = presenter.courses[indexPath.row], let host = AppEnvironment.shared.currentSession?.baseURL.host else {
+
+        guard let host = AppEnvironment.shared.currentSession?.baseURL.host else {
+            extensionContext?.open(URL(string: "canvas-courses://")!, completionHandler: nil)
+            return
+        }
+
+        if indexPath.section == 0 {
+            openAssignment(indexPath: indexPath, host: host)
+        } else {
+            openCourse(indexPath: indexPath, host: host)
+        }
+    }
+
+    func openAssignment(indexPath: IndexPath, host: String) {
+        guard let submission = presenter.submissions[indexPath.row], let assignment = submission.assignment else {
+            extensionContext?.open(URL(string: "canvas-courses://")!, completionHandler: nil)
+            return
+        }
+
+        extensionContext?.open(URL(string: "canvas-courses://\(host)/courses/\(assignment.courseID)/assignments/\(assignment.id)")!)
+    }
+
+    func openCourse(indexPath: IndexPath, host: String) {
+        guard let course = presenter.courses[indexPath.row] else {
             extensionContext?.open(URL(string: "canvas-courses://")!, completionHandler: nil)
             return
         }
@@ -187,7 +293,14 @@ extension GradesTodayWidgetViewController: NCWidgetProviding {
     }
 
     func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
-        preferredContentSize = activeDisplayMode == .expanded ? CGSize(width: 0, height: CGFloat(presenter.courses.count) * tableView.estimatedRowHeight) : maxSize
+        expanded = activeDisplayMode == .expanded
+        let sectionsHeight = self.SECTION_HEADER_HEIGHT * CGFloat(2)
+        let assignmentGradesHeight = self.ASSIGNMENT_GRADE_ROW_HEIGHT * CGFloat(presenter.submissions.count)
+        let courseGradesHeight = self.COURSE_GRADE_ROW_HEIGHT * CGFloat(presenter.courses.count)
+        let tableViewHeight = sectionsHeight + assignmentGradesHeight + courseGradesHeight
+        preferredContentSize = CGSize(width: 0, height:
+            expanded ? tableViewHeight : maxSize.height)
+        self.tableView.reloadData()
     }
 }
 
@@ -195,4 +308,11 @@ class GradeWidgetCell: UITableViewCell {
     @IBOutlet weak var gradeLabel: UILabel!
     @IBOutlet weak var courseNameLabel: UILabel!
     @IBOutlet weak var dotView: UIView!
+}
+
+class GradedAssignmentCell: UITableViewCell {
+    @IBOutlet weak var dotView: UIView!
+    @IBOutlet weak var courseNameLabel: UILabel!
+    @IBOutlet weak var assignmentNameLabel: UILabel!
+    @IBOutlet weak var gradeLabel: UILabel!
 }

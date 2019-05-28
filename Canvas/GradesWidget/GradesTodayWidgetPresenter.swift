@@ -36,6 +36,13 @@ class GradesTodayWidgetPresenter {
         })
     }()
 
+    lazy var submissions: Store<GetRecentlyGradedSubmissions> = {
+        let useCase = GetRecentlyGradedSubmissions(userID: "self")
+        return env.subscribe(useCase, { [weak self] in
+            self?.view?.reload()
+        })
+    }()
+
     init(env: AppEnvironment = .shared, view: GradesTodayWidgetViewController) {
         self.env = env
         self.view = view
@@ -44,6 +51,7 @@ class GradesTodayWidgetPresenter {
     func viewIsReady() {
         courses.refresh(force: false)
         colors.refresh(force: false)
+        submissions.refresh(force: false)
     }
 
 }
