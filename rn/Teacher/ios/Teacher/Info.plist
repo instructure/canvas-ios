@@ -20,6 +20,8 @@
 	<string>1.7</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleSpokenName</key>
+	<string>Canvas Teacher</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
