@@ -20,7 +20,7 @@ import CoreData
 public class Permissions: NSManagedObject {
     @NSManaged public var context: String
 
-    // ALL PERMISSONS MUST HAVE DEFAULT VALUE NO IN THE XCDATAMODEL FILE
+    // ALL PERMISSIONS MUST HAVE DEFAULT VALUE NO IN THE XCDATAMODEL FILE
 
     // Account level
     @NSManaged public var becomeUser: Bool

@@ -91,7 +91,7 @@ public final class FileUploadViewModel: FileUploadViewModelType, FileUploadViewM
             .map { $0.errorMessage }
             .sample(on: tappedErrorInfoButtonProperty.signal)
             .map { errorMessage in
-                let defaultErrorMessage = NSLocalizedString("An error occured, please try again.",
+                let defaultErrorMessage = NSLocalizedString("An error occurred, please try again.",
                                                             tableName: "Localizable",
                                                             bundle: .core, value: "",
                                                             comment: "Default error message displayed when a file fails to upload")

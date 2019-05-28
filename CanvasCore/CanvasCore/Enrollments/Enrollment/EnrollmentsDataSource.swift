@@ -88,7 +88,7 @@ open class EnrollmentsDataSource: NSObject {
         }
         
         return Enrollment.put(session, color: color, forContextID: contextID)
-            .concat(SignalProducer(value: ())) // this will trigger the save since put-ing the color has an empty reponse
+            .concat(SignalProducer(value: ())) // this will trigger the save since put-ing the color has an empty response
             .observe(on: UIScheduler())
             .flatMap(.merge, updateColorAndSave)
     }
