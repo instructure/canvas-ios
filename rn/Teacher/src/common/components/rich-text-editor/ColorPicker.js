@@ -30,34 +30,25 @@ type Props = {
   pickedColor: (color: string) => void,
 }
 
-const COLORS = [
-  'white',
-  'black',
-  '#8B969E',
-  '#EC463D',
-  '#E42565',
-  '#8E4195',
-  '#654C9B',
-  '#4656A2',
-  '#2684C2',
-  '#3BA5DA',
-  '#2EBCD1',
-  '#219588',
-  '#479F4B',
-  '#8CC152',
-  '#FBBF40',
-  '#F69637',
-  '#ED5A34',
-  '#EE6491',
-]
-
 export default class ColorPicker extends Component<Props, any> {
+  COLORS = {
+    'white': i18n('white'),
+    '#2D3B45': i18n('black'),
+    '#8B969E': i18n('grey'),
+    '#EE0612': i18n('red'),
+    '#FC5E13': i18n('orange'),
+    '#FFC100': i18n('yellow'),
+    '#89C540': i18n('green'),
+    '#1482C8': i18n('blue'),
+    '#65469F': i18n('purple'),
+  }
+
   render () {
     return (
       <View style={styles.container}>
         <ScrollView horizontal={true} testID={'color-picker.options'}>
           <View style={styles.scrollViewContent}>
-            {COLORS.map((color) => {
+            {Object.keys(this.COLORS).map(color => {
               const style = {
                 backgroundColor: color,
                 borderWidth: color === 'white' ? 1 : 0,
@@ -70,8 +61,11 @@ export default class ColorPicker extends Component<Props, any> {
                   key={color}
                   testID={`color-picker-option-${color}`}
                   underlayColor='transparent'
-                  accessibilityLabel={`${i18n('Choose')} ${color}`}
-                  accessibilityTraits={['button']}
+                  accessibilityLabel={i18n('Set text color to {colorName} ({hexCode})', {
+                    colorName: this.COLORS[color],
+                    hexCode: color,
+                  })}
+                  accessibilityTraits='button'
                 >
                   <View style={[styles.option, style]} />
                 </TouchableHighlight>

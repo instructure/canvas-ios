@@ -50,9 +50,9 @@ describe('ColorPicker', () => {
 
     expect(pickedColor).toHaveBeenCalledWith('white')
 
-    const black: any = explore(tree).selectByID('color-picker-option-black')
+    const black: any = explore(tree).selectByID('color-picker-option-#2D3B45')
     black.props.onPress()
 
-    expect(pickedColor).toHaveBeenCalledWith('black')
+    expect(pickedColor).toHaveBeenCalledWith('#2D3B45')
   })
 })
