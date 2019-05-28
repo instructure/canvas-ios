@@ -60,3 +60,35 @@ public struct GetSessionlessLaunchURLRequest: APIRequestable {
         return query
     }
 }
+
+public struct GetExternalToolsRequest: APIRequestable {
+    public typealias Response = [APIExternalTool]
+
+    let context: Context
+    let includeParents: Bool
+    let perPage: Int
+
+    public init(context: Context, includeParents: Bool, perPage: Int = 10) {
+        self.context = context
+        self.includeParents = includeParents
+        self.perPage = perPage
+    }
+
+    public var cacheKey: String {
+        return "\(context.canvasContextID)_external_tools"
+    }
+
+    public var path: String {
+        return "\(context.pathComponent)/external_tools"
+    }
+
+    public var query: [APIQueryItem] {
+        var query: [APIQueryItem] = [
+            .value("per_page", String(perPage)),
+        ]
+        if includeParents {
+            query.append(.value("include_parents", "true"))
+        }
+        return query
+    }
+}

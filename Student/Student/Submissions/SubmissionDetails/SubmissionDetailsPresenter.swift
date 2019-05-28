@@ -51,6 +51,10 @@ class SubmissionDetailsPresenter {
         self?.update()
     }
 
+    lazy var arc = env.subscribe(GetArc(courseID: context.id)) { [weak self] in
+        self?.updateArc()
+    }
+
     var quizzes: Store<GetQuiz>?
 
     var selectedAttempt: Int = 0
@@ -74,6 +78,7 @@ class SubmissionDetailsPresenter {
         submissions.refresh(force: true)
         assignment.refresh()
         course.refresh()
+        arc.refresh()
         view?.reloadNavBar()
     }
 
@@ -110,6 +115,15 @@ class SubmissionDetailsPresenter {
         }
         view?.reload()
         view?.reloadNavBar()
+    }
+
+    func updateArc() {
+        if let arcID = arc.first?.id {
+            submissionButtonPresenter.arcID = .some(arcID)
+        } else {
+            submissionButtonPresenter.arcID = .none
+        }
+        update()
     }
 
     func select(attempt: Int, fileID: String? = nil) {

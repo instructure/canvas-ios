@@ -233,4 +233,21 @@ class SubmissionDetailsPresenterTests: PersistenceTestCase {
 
         XCTAssertNotNil(view.presented)
     }
+
+    func testArcIDNone() {
+        XCTAssertEqual(presenter.submissionButtonPresenter.arcID, .pending)
+        Assignment.make()
+        Course.make()
+        presenter.viewIsReady()
+        XCTAssertEqual(presenter.submissionButtonPresenter.arcID, .none)
+    }
+
+    func testArcIDSome() {
+        XCTAssertEqual(presenter.submissionButtonPresenter.arcID, .pending)
+        Assignment.make()
+        Course.make()
+        ExternalTool.make(from: .make(id: "4", domain: "arc.instructure.com"), forCourse: "1")
+        presenter.viewIsReady()
+        XCTAssertEqual(presenter.submissionButtonPresenter.arcID, .some("4"))
+    }
 }

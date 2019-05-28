@@ -60,7 +60,7 @@ class LTIToolsTests: CoreTestCase {
         wait(for: [doneError], timeout: 1)
         XCTAssertNil(url)
 
-        api.mock(request, value: APIGetSessionlessLaunchResponse(id: "", name: "", url: actualURL))
+        api.mock(request, value: APIGetSessionlessLaunchResponse(url: actualURL))
         let doneValue = expectation(description: "callback completed")
         tools.getSessionlessLaunchURL { result in
             url = result
@@ -104,7 +104,7 @@ class LTIToolsTests: CoreTestCase {
         XCTAssertFalse(success)
         XCTAssertNil(mockView.presented)
 
-        api.mock(request, value: APIGetSessionlessLaunchResponse(id: "", name: "", url: actualURL))
+        api.mock(request, value: APIGetSessionlessLaunchResponse(url: actualURL))
         let doneValue = expectation(description: "callback completed")
         tools.presentToolInSFSafariViewController(from: mockView, animated: false) { result in
             success = result

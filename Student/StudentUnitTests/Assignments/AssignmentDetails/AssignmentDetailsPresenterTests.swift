@@ -171,6 +171,25 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         presenter.viewFileSubmission()
         XCTAssertNotNil(presentedView)
     }
+
+    func testArcIDNone() {
+        XCTAssertEqual(presenter.submissionButtonPresenter.arcID, .pending)
+        Assignment.make()
+        Course.make()
+        presenter.viewIsReady()
+        wait(for: [expectation], timeout: 0.5)
+        XCTAssertEqual(presenter.submissionButtonPresenter.arcID, .none)
+    }
+
+    func testArcIDSome() {
+        XCTAssertEqual(presenter.submissionButtonPresenter.arcID, .pending)
+        Assignment.make()
+        Course.make()
+        ExternalTool.make(from: .make(id: "4", domain: "arc.instructure.com"), forCourse: "1")
+        presenter.viewIsReady()
+        wait(for: [expectation], timeout: 0.5)
+        XCTAssertEqual(presenter.submissionButtonPresenter.arcID, .some("4"))
+    }
 }
 
 extension AssignmentDetailsPresenterTests: AssignmentDetailsViewProtocol {

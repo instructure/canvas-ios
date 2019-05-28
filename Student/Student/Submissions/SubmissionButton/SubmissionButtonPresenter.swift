@@ -22,11 +22,18 @@ import Core
 protocol SubmissionButtonViewProtocol: ApplicationViewController, ErrorViewController {
 }
 
+enum ArcID: Equatable {
+    case pending
+    case none
+    case some(String)
+}
+
 class SubmissionButtonPresenter: NSObject {
     var assignment: Assignment?
     let assignmentID: String
     let env: AppEnvironment
     let fileUpload: UploadBatch
+    var arcID: ArcID = .pending
     weak var view: SubmissionButtonViewProtocol?
 
     init(env: AppEnvironment = .shared, view: SubmissionButtonViewProtocol, assignmentID: String) {
@@ -50,6 +57,10 @@ class SubmissionButtonPresenter: NSObject {
             return NSLocalizedString("Take Quiz", bundle: .student, comment: "")
         }
 
+        if arcID == .pending {
+            return nil
+        }
+
         let canSubmit = (
             assignment.canMakeSubmissions &&
             assignment.isOpenForSubmissions() &&
@@ -67,11 +78,11 @@ class SubmissionButtonPresenter: NSObject {
         guard assignment.canMakeSubmissions else { return }
         self.assignment = assignment
         let types = assignment.submissionTypes
-        if types.count == 1, let type = types.first {
+        let arc = types.contains(.online_upload) && arcID != .pending && arcID != .none
+        if !arc && types.count == 1, let type = types.first {
             return submitType(type, for: assignment)
         }
-
-        let alert = SubmissionButtonAlertView.chooseTypeAlert(self, assignment: assignment, button: button)
+        let alert = SubmissionButtonAlertView.chooseTypeAlert(self, assignment: assignment, arc: arc, button: button)
         view?.present(alert, animated: true, completion: nil)
     }
 
@@ -108,6 +119,14 @@ class SubmissionButtonPresenter: NSObject {
         case .none, .not_graded, .on_paper:
             break
         }
+    }
+
+    // MARK: - arc
+    func submitArc(assignment: Assignment) {
+        guard case let .some(arcID) = arcID, let userID = assignment.submission?.userID else { return }
+        let arc = ArcSubmissionViewController.create(environment: env, courseID: assignment.courseID, assignmentID: assignment.id, userID: userID, arcID: arcID)
+        let nav = UINavigationController(rootViewController: arc)
+        view?.present(nav, animated: true, completion: nil)
     }
 
     // MARK: - online_upload
@@ -212,9 +231,9 @@ extension SubmissionButtonPresenter: AudioRecorderDelegate, UIImagePickerControl
             self?.view?.present(failure, animated: true, completion: nil)
         }
         let reportSuccess = { [weak self] in
-            let success = UIAlertController(title: NSLocalizedString("Success!", bundle: .student, comment: ""), message: nil, preferredStyle: .alert)
+            let success = UIAlertController(title: NSLocalizedString("Successfully submitted!", bundle: .student, comment: ""), message: nil, preferredStyle: .alert)
             self?.view?.present(success, animated: true) {
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(400)) {
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
                     success.dismiss(animated: true, completion: nil)
                 }
             }

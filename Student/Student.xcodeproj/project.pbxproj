@@ -242,6 +242,13 @@
 		B107189821963BC000ED1DC7 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B107189721963BC000ED1DC7 /* EmptyView.swift */; };
 		B10D777221C2EA5B00BCE822 /* BlockExpectation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10D777121C2EA5B00BCE822 /* BlockExpectation.swift */; };
 		B10D777721C2F69500BCE822 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B107189721963BC000ED1DC7 /* EmptyView.swift */; };
+		B150C620229732830096D58C /* ArcSubmissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B150C61F229732830096D58C /* ArcSubmissionViewController.swift */; };
+		B150C622229733510096D58C /* ArcSubmissionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B150C621229733510096D58C /* ArcSubmissionPresenter.swift */; };
+		B150C62722973CF20096D58C /* ArcSubmissionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B150C621229733510096D58C /* ArcSubmissionPresenter.swift */; };
+		B150C62922973FDA0096D58C /* ArcSubmissionViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B150C62822973FDA0096D58C /* ArcSubmissionViewController.storyboard */; };
+		B150C62A22977A610096D58C /* ArcSubmissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B150C61F229732830096D58C /* ArcSubmissionViewController.swift */; };
+		B150C62B22977A750096D58C /* ArcSubmissionViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B150C62822973FDA0096D58C /* ArcSubmissionViewController.storyboard */; };
+		B150C630229875AB0096D58C /* ArcSubmissionPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B150C62F229875AB0096D58C /* ArcSubmissionPresenterTests.swift */; };
 		B1906E5022679A0A00FAD2DE /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1906E4F22679A0A00FAD2DE /* UIViewControllerExtensions.swift */; };
 		B1906E5522679A1A00FAD2DE /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1906E4F22679A0A00FAD2DE /* UIViewControllerExtensions.swift */; };
 		B191D5EC226FF26A00D02948 /* UIViewControllerExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191D5EB226FF26A00D02948 /* UIViewControllerExtensionsTests.swift */; };
@@ -718,6 +725,10 @@
 		9FFA7552218C8E540036FD41 /* SubmissionDetailsPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsPresenterTests.swift; sourceTree = "<group>"; };
 		B107189721963BC000ED1DC7 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		B10D777121C2EA5B00BCE822 /* BlockExpectation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockExpectation.swift; sourceTree = "<group>"; };
+		B150C61F229732830096D58C /* ArcSubmissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcSubmissionViewController.swift; sourceTree = "<group>"; };
+		B150C621229733510096D58C /* ArcSubmissionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcSubmissionPresenter.swift; sourceTree = "<group>"; };
+		B150C62822973FDA0096D58C /* ArcSubmissionViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ArcSubmissionViewController.storyboard; sourceTree = "<group>"; };
+		B150C62F229875AB0096D58C /* ArcSubmissionPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcSubmissionPresenterTests.swift; sourceTree = "<group>"; };
 		B1906E4F22679A0A00FAD2DE /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
 		B191D5EB226FF26A00D02948 /* UIViewControllerExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensionsTests.swift; sourceTree = "<group>"; };
 		B191F4BF216138E10045506F /* bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bridge.h; sourceTree = "<group>"; };
@@ -1237,6 +1248,7 @@
 		7D2DC30D219CB65E008FE29A /* Submissions */ = {
 			isa = PBXGroup;
 			children = (
+				B150C61A229732680096D58C /* ArcSubmission */,
 				7D873697228F175300D25BF7 /* SubmissionButton */,
 				3B19D266226646DF003A0565 /* SubmissionRubric */,
 				7DA5C49222386374003CDB4C /* SubmissionComments */,
@@ -1251,6 +1263,7 @@
 		7D2DC30E219CB743008FE29A /* Submissions */ = {
 			isa = PBXGroup;
 			children = (
+				B150C62E229875950096D58C /* ArcSubmission */,
 				7D87369F228F5A0F00D25BF7 /* SubmissionButton */,
 				3B300C792277851F00743C59 /* SubmissionRubric */,
 				7D5C871B22399E3F00D99651 /* SubmissionComments */,
@@ -1461,6 +1474,24 @@
 				9FFA7552218C8E540036FD41 /* SubmissionDetailsPresenterTests.swift */,
 			);
 			path = SubmissionDetails;
+			sourceTree = "<group>";
+		};
+		B150C61A229732680096D58C /* ArcSubmission */ = {
+			isa = PBXGroup;
+			children = (
+				B150C621229733510096D58C /* ArcSubmissionPresenter.swift */,
+				B150C61F229732830096D58C /* ArcSubmissionViewController.swift */,
+				B150C62822973FDA0096D58C /* ArcSubmissionViewController.storyboard */,
+			);
+			path = ArcSubmission;
+			sourceTree = "<group>";
+		};
+		B150C62E229875950096D58C /* ArcSubmission */ = {
+			isa = PBXGroup;
+			children = (
+				B150C62F229875AB0096D58C /* ArcSubmissionPresenterTests.swift */,
+			);
+			path = ArcSubmission;
 			sourceTree = "<group>";
 		};
 		B1BCFF8F21BF24A700F58D0F /* Views */ = {
@@ -1837,6 +1868,7 @@
 				3BE1307421AE0074001D4582 /* UrlSubmissionContentViewController.storyboard in Resources */,
 				7D1758E4215AA06C00F88613 /* Localizable.strings in Resources */,
 				3B19D28022666AD5003A0565 /* RubricViewController.storyboard in Resources */,
+				B150C62922973FDA0096D58C /* ArcSubmissionViewController.storyboard in Resources */,
 				3B1B0077219BD9F60045E8A1 /* CourseListViewController.storyboard in Resources */,
 				7D1758E8215AA07E00F88613 /* Localizable.stringsdict in Resources */,
 				788152DF212B35F8005BA428 /* DashboardViewController.storyboard in Resources */,
@@ -1890,6 +1922,7 @@
 				7D09E5AA2192156A006150FA /* Assets.xcassets in Resources */,
 				9FA7C360219C92A6001F3BC7 /* Drawer.xib in Resources */,
 				7DD9E642223C4E4400B45A7E /* SubmissionCommentFileView.xib in Resources */,
+				B150C62B22977A750096D58C /* ArcSubmissionViewController.storyboard in Resources */,
 				7D067CEA21505B3500B78AF2 /* DashboardViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1978,6 +2011,7 @@
 				7D09E5B921935933006150FA /* SubmissionDetailsEmptyView.swift in Sources */,
 				788152DB212B3470005BA428 /* DashboardPresenter.swift in Sources */,
 				7DD9E622223C1B9500B45A7E /* SubmissionCommentHeaderCell.swift in Sources */,
+				B150C622229733510096D58C /* ArcSubmissionPresenter.swift in Sources */,
 				7D101954215EBB540058FDD1 /* DynamicLabel.swift in Sources */,
 				7D979CD4215BE3E300567627 /* BundleExtensions.swift in Sources */,
 				3BBCF839224C142C004B519D /* SyllabusPresenter.swift in Sources */,
@@ -2007,6 +2041,7 @@
 				7DEE316A223C08A20042FE2A /* SubmissionCommentVideoCell.swift in Sources */,
 				7D0BF3232165315B00859FA1 /* CoreWebView.swift in Sources */,
 				3B19D28322667028003A0565 /* RubricCircleView.swift in Sources */,
+				B150C620229732830096D58C /* ArcSubmissionViewController.swift in Sources */,
 				9FCD79DD2188E9D90054293A /* SubmissionDetailsViewController.swift in Sources */,
 				3B1B0079219BD9F60045E8A1 /* CourseListViewController.swift in Sources */,
 				7DC1C9D6223AB8690083F707 /* SubmissionCommentAudioCell.swift in Sources */,
@@ -2041,6 +2076,7 @@
 				B191D5EC226FF26A00D02948 /* UIViewControllerExtensionsTests.swift in Sources */,
 				7D8736A1228F5A2800D25BF7 /* SubmissionButtonPresenterTests.swift in Sources */,
 				3B6065FA2194EEF800D04D53 /* PersistenceTestCase.swift in Sources */,
+				B150C630229875AB0096D58C /* ArcSubmissionPresenterTests.swift in Sources */,
 				B10D777221C2EA5B00BCE822 /* BlockExpectation.swift in Sources */,
 				3B1B009A219BDA560045E8A1 /* QuizListPresenterTests.swift in Sources */,
 				3B1B0095219BDA560045E8A1 /* AssignmentDetailsPresenterTests.swift in Sources */,
@@ -2083,6 +2119,7 @@
 				7D067CE821505B3500B78AF2 /* DashboardPresenter.swift in Sources */,
 				7DD9E638223C4AA100B45A7E /* SubmissionCommentAttemptCell.swift in Sources */,
 				7D10194F215EBA7B0058FDD1 /* DividerView.swift in Sources */,
+				B150C62A22977A610096D58C /* ArcSubmissionViewController.swift in Sources */,
 				7D63F781215D37B100151E49 /* CardView.swift in Sources */,
 				3B0B0F65219C8D1100F04216 /* CourseListSectionHeaderView.swift in Sources */,
 				7DFEC227223085AB00BE236D /* SubmissionFilesCell.swift in Sources */,
@@ -2096,6 +2133,7 @@
 				7DA5C497223863EF003CDB4C /* SubmissionCommentsViewController.swift in Sources */,
 				7D067CE521505B3500B78AF2 /* CourseCardCell.swift in Sources */,
 				7DA057552193A3A800A3CFBB /* IconView.swift in Sources */,
+				B150C62722973CF20096D58C /* ArcSubmissionPresenter.swift in Sources */,
 				3B19D2702266475B003A0565 /* RubricPresenter.swift in Sources */,
 				7D979CD5215BE3E600567627 /* BundleExtensions.swift in Sources */,
 				9F74200B21932DCE00108A0F /* SubmissionDetailsViewController.swift in Sources */,
