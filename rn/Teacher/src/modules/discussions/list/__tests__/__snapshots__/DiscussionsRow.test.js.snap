@@ -1,14 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DiscussionsRow renders 1`] = `
-<View
-  accessible={false}
->
+<View>
   <View
     accessible={false}
   >
     <Row
-      accessibilityLabel="Dear Ivy Iversen, your last name cannot start with your first name"
       accessible={true}
       border="bottom"
       disclosureIndicator={false}
@@ -161,14 +158,11 @@ exports[`DiscussionsRow renders 1`] = `
 `;
 
 exports[`DiscussionsRow renders published 1`] = `
-<View
-  accessible={false}
->
+<View>
   <View
     accessible={false}
   >
     <Row
-      accessibilityLabel="Dear Ivy Iversen, your last name cannot start with your first name"
       accessible={true}
       border="bottom"
       disclosureIndicator={false}
@@ -321,14 +315,11 @@ exports[`DiscussionsRow renders published 1`] = `
 `;
 
 exports[`DiscussionsRow renders unpublished 1`] = `
-<View
-  accessible={false}
->
+<View>
   <View
     accessible={false}
   >
     <Row
-      accessibilityLabel="Dear Ivy Iversen, your last name cannot start with your first name"
       accessible={true}
       border="bottom"
       disclosureIndicator={false}
@@ -481,14 +472,11 @@ exports[`DiscussionsRow renders unpublished 1`] = `
 `;
 
 exports[`DiscussionsRow renders with no assignment 1`] = `
-<View
-  accessible={false}
->
+<View>
   <View
     accessible={false}
   >
     <Row
-      accessibilityLabel="Dear Ivy Iversen, your last name cannot start with your first name"
       accessible={true}
       border="bottom"
       disclosureIndicator={false}
@@ -623,14 +611,11 @@ exports[`DiscussionsRow renders with no assignment 1`] = `
 `;
 
 exports[`DiscussionsRow renders with no unread count 1`] = `
-<View
-  accessible={false}
->
+<View>
   <View
     accessible={false}
   >
     <Row
-      accessibilityLabel="Dear Ivy Iversen, your last name cannot start with your first name"
       accessible={true}
       border="bottom"
       disclosureIndicator={false}
@@ -771,14 +756,11 @@ exports[`DiscussionsRow renders with no unread count 1`] = `
 `;
 
 exports[`DiscussionsRow renders with points possible 1`] = `
-<View
-  accessible={false}
->
+<View>
   <View
     accessible={false}
   >
     <Row
-      accessibilityLabel="Dear Ivy Iversen, your last name cannot start with your first name"
       accessible={true}
       border="bottom"
       disclosureIndicator={false}
@@ -931,14 +913,11 @@ exports[`DiscussionsRow renders with points possible 1`] = `
 `;
 
 exports[`DiscussionsRow renders without points possible 1`] = `
-<View
-  accessible={false}
->
+<View>
   <View
     accessible={false}
   >
     <Row
-      accessibilityLabel="Dear Ivy Iversen, your last name cannot start with your first name"
       accessible={true}
       border="bottom"
       disclosureIndicator={false}
