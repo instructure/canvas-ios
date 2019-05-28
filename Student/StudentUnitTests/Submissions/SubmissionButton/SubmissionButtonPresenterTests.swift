@@ -203,10 +203,10 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
         XCTAssert(router.lastRoutedTo(Route.assignmentUrlSubmission(courseID: "1", assignmentID: "1", userID: "1")))
     }
 
-    func testSubmitTypeArc() {
+    func testSubmitArc() {
         let a = Assignment.make()
         presenter.arcID = .some("4")
-        presenter.submitType(.arc, for: a)
+        presenter.submitArc(assignment: a)
         let nav = view.presented as? UINavigationController
         XCTAssertNotNil(nav)
         XCTAssertNotNil(nav?.topViewController as? ArcSubmissionViewController)

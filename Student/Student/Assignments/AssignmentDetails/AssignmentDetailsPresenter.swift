@@ -88,11 +88,6 @@ class AssignmentDetailsPresenter {
         if let submission = assignment.submission {
             userID = submission.userID
         }
-        if let arcID = arc.first?.id {
-            submissionButtonPresenter.arcID = .some(arcID)
-        } else {
-            submissionButtonPresenter.arcID = .none
-        }
         let title = submissionButtonPresenter.buttonText(course: course, assignment: assignment, quiz: quizzes?.first)
         view?.showSubmitAssignmentButton(title: title)
         view?.updateNavBar(subtitle: course.name, backgroundColor: course.color)

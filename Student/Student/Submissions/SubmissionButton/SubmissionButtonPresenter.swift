@@ -77,15 +77,12 @@ class SubmissionButtonPresenter: NSObject {
     func submitAssignment(_ assignment: Assignment, button: UIView) {
         guard assignment.canMakeSubmissions else { return }
         self.assignment = assignment
-        var types = assignment.submissionTypes
-        if case .some(_) = arcID, types.contains(.online_upload) {
-            types.append(.arc)
-        }
-        if types.count == 1, let type = types.first {
+        let types = assignment.submissionTypes
+        let arc = types.contains(.online_upload) && arcID != .pending && arcID != .none
+        if !arc && types.count == 1, let type = types.first {
             return submitType(type, for: assignment)
         }
-
-        let alert = SubmissionButtonAlertView.chooseTypeAlert(self, assignment: assignment, types: types, button: button)
+        let alert = SubmissionButtonAlertView.chooseTypeAlert(self, assignment: assignment, arc: arc, button: button)
         view?.present(alert, animated: true, completion: nil)
     }
 
@@ -119,14 +116,17 @@ class SubmissionButtonPresenter: NSObject {
         case .online_url:
             let route = Route.assignmentUrlSubmission(courseID: courseID, assignmentID: assignment.id, userID: userID)
             env.router.route(to: route, from: view, options: [.modal, .embedInNav])
-        case .arc:
-            guard case let .some(arcID) = arcID else { break }
-            let arc = ArcSubmissionViewController.create(environment: env, courseID: courseID, assignmentID: assignment.id, userID: userID, arcID: arcID)
-            let nav = UINavigationController(rootViewController: arc)
-            view.present(nav, animated: true, completion: nil)
         case .none, .not_graded, .on_paper:
             break
         }
+    }
+
+    // MARK: - arc
+    func submitArc(assignment: Assignment) {
+        guard case let .some(arcID) = arcID, let userID = assignment.submission?.userID else { return }
+        let arc = ArcSubmissionViewController.create(environment: env, courseID: assignment.courseID, assignmentID: assignment.id, userID: userID, arcID: arcID)
+        let nav = UINavigationController(rootViewController: arc)
+        view?.present(nav, animated: true, completion: nil)
     }
 
     // MARK: - online_upload
