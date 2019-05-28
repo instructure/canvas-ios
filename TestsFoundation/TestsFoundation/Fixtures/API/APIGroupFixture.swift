@@ -17,15 +17,27 @@
 import Foundation
 @testable import Core
 
-extension APIGroup: Fixture {
-    public static var template: Template {
-        return [
-            "id": "1",
-            "name": "Group One",
-            "members_count": 1,
-            "group_category_id": "1",
-            "concluded": false,
-        ]
+extension APIGroup {
+    public static func make(
+        id: ID = "1",
+        name: String = "Group One",
+        concluded: Bool = false,
+        members_count: Int = 1,
+        avatar_url: URL? = nil,
+        course_id: ID? = nil,
+        group_category_id: ID = "1",
+        permissions: Permissions? = nil
+    ) -> APIGroup {
+        return APIGroup(
+            id: id,
+            name: name,
+            concluded: concluded,
+            members_count: members_count,
+            avatar_url: avatar_url,
+            course_id: course_id,
+            group_category_id: group_category_id,
+            permissions: permissions
+        )
     }
 }
 

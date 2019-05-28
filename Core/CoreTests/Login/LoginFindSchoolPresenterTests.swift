@@ -34,7 +34,7 @@ class LoginFindSchoolPresenterTests: XCTestCase {
         let presenter = LoginFindSchoolPresenter(loginDelegate: nil, method: .normalLogin, view: self)
         let mockAPI = MockAPI()
         mockAPI.mock(GetAccountsSearchRequest(searchTerm: "a"), value: [
-            APIAccountResults.make([ "name": "A", "domain": "a.instructure.com" ]),
+            APIAccountResults.make(name: "A", domain: "a.instructure.com"),
         ])
         presenter.api = mockAPI
         presenter.search(query: "a")
@@ -82,7 +82,7 @@ class LoginFindSchoolPresenterTests: XCTestCase {
 
     func testShowLoginForAccount() {
         let presenter = LoginFindSchoolPresenter(loginDelegate: nil, method: .normalLogin, view: self)
-        let account = APIAccountResults.make([ "authentication_provider": "ldap" ])
+        let account = APIAccountResults.make(authentication_provider: "ldap")
         presenter.accounts = [account]
         presenter.showLoginForHost(account.domain)
         XCTAssert(shown is LoginWebViewController)

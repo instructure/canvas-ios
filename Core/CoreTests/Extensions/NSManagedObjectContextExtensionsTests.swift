@@ -20,9 +20,9 @@ import XCTest
 
 class NSManagedObjectContextExtensionsTests: CoreTestCase {
     func testAll() {
-        let yes = Course.make(["id": "1"])
-        let yess = Course.make(["id": "1"])
-        let no = Course.make(["id": "2"])
+        let yes = Course.make(from: .make(id: "1"))
+        let yess = Course.make(from: .make(id: "1"))
+        let no = Course.make(from: .make(id: "2"))
         let results: [Course] = databaseClient.all(where: #keyPath(Course.id), equals: "1")
         XCTAssertTrue(results.contains(yes))
         XCTAssertTrue(results.contains(yess))
@@ -30,9 +30,9 @@ class NSManagedObjectContextExtensionsTests: CoreTestCase {
     }
 
     func testFirst() {
-        let yes = Course.make(["id": "1"])
-        let yess = Course.make(["id": "1"])
-        let no = Course.make(["id": "2"])
+        let yes = Course.make(from: .make(id: "1"))
+        let yess = Course.make(from: .make(id: "1"))
+        let no = Course.make(from: .make(id: "2"))
         guard let result: Course = databaseClient.first(where: #keyPath(Course.id), equals: "1") else {
             XCTFail()
             return

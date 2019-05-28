@@ -25,7 +25,7 @@ class GetBrandVariablesTest: CoreTestCase {
         XCTAssertNoThrow(try GetBrandVariables().write(response: nil, urlResponse: nil, to: databaseClient))
         XCTAssertEqual(Brand.shared, prev)
 
-        let brand = APIBrandVariables.make(["ic-brand-primary": "#ffff00"])
+        let brand = APIBrandVariables.make(primary: "#ffff00")
         XCTAssertNoThrow(try GetBrandVariables().write(response: brand, urlResponse: nil, to: databaseClient))
         XCTAssertEqual(Brand.shared.primary.hexString, "#ffff00")
     }

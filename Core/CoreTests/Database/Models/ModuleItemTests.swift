@@ -35,27 +35,27 @@ class ModuleItemTests: CoreTestCase {
     }
 
     func testSaveDueAt() {
-        let item = APIModuleItem.make(["content_details": ["due_at": Date().isoString()]])
+        let item = APIModuleItem.make(content_details: .make(due_at: Date()))
         let model = ModuleItem.save(item, forCourse: "1", in: databaseClient)
         XCTAssertNotNil(model.dueAt)
         XCTAssertEqual(model.dueAt, item.content_details.due_at)
     }
 
     func testType() {
-        ModuleItem.make(["id": "1", "typeRaw": ModuleItemType.assignment("1").data])
+        ModuleItem.make(from: .make(id: "1", content: .assignment("1")))
         let item: ModuleItem = databaseClient.fetch().first!
         XCTAssertEqual(item.id, "1")
         XCTAssertEqual(item.type, .assignment("1"))
     }
 
     func testSavePublished() {
-        let published = APIModuleItem.make(["published": true])
+        let published = APIModuleItem.make(published: true)
         XCTAssertTrue(ModuleItem.save(published, forCourse: "1", in: databaseClient).published)
 
-        let notPublished = APIModuleItem.make(["published": false])
+        let notPublished = APIModuleItem.make(published: false)
         XCTAssertFalse(ModuleItem.save(notPublished, forCourse: "1", in: databaseClient).published)
 
-        let empty = APIModuleItem.make(["published": nil])
+        let empty = APIModuleItem.make(published: nil)
         XCTAssertFalse(ModuleItem.save(empty, forCourse: "1", in: databaseClient).published)
     }
 }

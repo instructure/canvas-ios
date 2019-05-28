@@ -19,7 +19,7 @@ import XCTest
 
 class GetContextPermissionsTests: CoreTestCase {
     func testItCreatesPermissions() {
-        let response = APIPermissions.make(["become_user": true ])
+        let response = APIPermissions.make(become_user: true)
 
         let context = ContextModel(.account, id: "1")
 
@@ -33,8 +33,8 @@ class GetContextPermissionsTests: CoreTestCase {
     }
 
     func testItUpdatesPermissions() {
-        let permissions = Permissions.make(["becomeUser": true])
-        let response = APIPermissions.make(["become_user": false])
+        let permissions = Permissions.make(from: .make(become_user: true))
+        let response = APIPermissions.make(become_user: false)
 
         let context = ContextModel(.account, id: "1")
 
@@ -51,7 +51,7 @@ class GetContextPermissionsTests: CoreTestCase {
     }
 
     func testScope() {
-        let model = Permissions.make(["becomeUser": true])
+        let model = Permissions.make(from: .make(become_user: true))
         let getContextPermissions = GetContextPermissions(context: ContextModel(.account, id: "1"), permissions: [.becomeUser])
 
         let permissions: Permissions = databaseClient.fetch(predicate: getContextPermissions.scope.predicate, sortDescriptors: getContextPermissions.scope.order).first!

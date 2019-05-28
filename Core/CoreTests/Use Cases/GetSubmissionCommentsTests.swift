@@ -20,10 +20,10 @@ import XCTest
 class GetSubmissionCommentsTests: CoreTestCase {
     func testItCreatesSubmission() {
         let context = ContextModel(.course, id: "1")
-        let apiSubmission = APISubmission.make([
-            "assignment_id": "2",
-            "user_id": "3",
-        ])
+        let apiSubmission = APISubmission.make(
+            assignment_id: "2",
+            user_id: "3"
+        )
 
         let getSubmission = GetSubmissionComments(context: context, assignmentID: "2", userID: "3", submissionID: apiSubmission.id.value)
         try! getSubmission.write(response: apiSubmission, urlResponse: nil, to: databaseClient)
@@ -37,19 +37,19 @@ class GetSubmissionCommentsTests: CoreTestCase {
 
     func testItCreatesSubmissionComments() {
         let context = ContextModel(.course, id: "1")
-        let apiSubmission = APISubmission.make([
-            "attempt": 2,
-            "assignment_id": "2",
-            "user_id": "3",
-            "submission_history": [
-                APISubmission.fixture([ "attempt": 2, "assignment_id": "2", "user_id": "3", "submission_type": "online_text_entry" ]),
-                APISubmission.fixture([ "attempt": 1, "assignment_id": "2", "user_id": "3", "submission_type": "online_text_entry" ]),
+        let apiSubmission = APISubmission.make(
+            assignment_id: "2",
+            user_id: "3",
+            attempt: 2,
+            submission_comments: [
+                APISubmissionComment.make(id: "1"),
+                APISubmissionComment.make(id: "2"),
             ],
-            "submission_comments": [
-                APISubmissionComment.fixture([ "id": "1" ]),
-                APISubmissionComment.fixture([ "id": "2" ]),
-            ],
-        ])
+            submission_history: [
+                APISubmission.make(assignment_id: "2", user_id: "3", submission_type: .online_text_entry, attempt: 2),
+                APISubmission.make(assignment_id: "2", user_id: "3", submission_type: .online_text_entry, attempt: 1),
+            ]
+        )
         let getSubmission = GetSubmissionComments(context: context, assignmentID: "2", userID: "3", submissionID: apiSubmission.id.value)
         try! getSubmission.write(response: apiSubmission, urlResponse: nil, to: databaseClient)
 

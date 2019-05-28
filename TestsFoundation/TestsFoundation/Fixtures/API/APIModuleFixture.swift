@@ -17,29 +17,58 @@
 import Foundation
 @testable import Core
 
-extension APIModule: Fixture {
-    public static let template: Template = [
-        "id": "1",
-        "name": "Module 1",
-        "position": 1,
-        "published": true,
-        "workflow_state": "active"
-    ]
+extension APIModule {
+    public static func make(
+        id: ID = "1",
+        name: String = "Module 1",
+        position: Int = 1,
+        published: Bool = true,
+        items: [APIModuleItem]? = nil
+    ) -> APIModule {
+        return APIModule(
+            id: id,
+            name: name,
+            position: position,
+            published: published,
+            items: items
+        )
+    }
 }
 
-extension APIModuleItem: Fixture {
-    public static let template: Template = [
-        "id": "1",
-        "module_id": "1",
-        "position": 1,
-        "title": "Module Item 1",
-        "indent": 0,
-        "type": "Assignment",
-        "content_id": "1",
-        "html_url": "https://canvas.example.edu/courses/222/modules/items/768",
-        "url": "https://canvas.example.edu/api/v1/courses/222/assignments/987",
-        "content_details": [
-            "due_at": nil,
-        ],
-    ]
+extension APIModuleItem {
+    public static func make(
+        id: ID = "1",
+        module_id: ID = "1",
+        position: Int = 1,
+        title: String = "Module Item 1",
+        indent: Int = 0,
+        content: ModuleItemType = .assignment("1"),
+        html_url: URL? = URL(string: "https://canvas.example.edu/courses/222/modules/items/768"),
+        url: URL? = URL(string: "https://canvas.example.edu/api/v1/courses/222/assignments/987"),
+        published: Bool? = nil,
+        content_details: ContentDetails = .make()
+    ) -> APIModuleItem {
+        return APIModuleItem(
+            id: id,
+            module_id: module_id,
+            position: position,
+            title: title,
+            indent: indent,
+            content: content,
+            html_url: html_url,
+            url: url,
+            published: published,
+            content_details: content_details
+        )
+    }
+}
+
+extension APIModuleItem.ContentDetails {
+    public static func make(
+        due_at: Date? = nil
+    ) -> APIModuleItem.ContentDetails {
+        return APIModuleItem.ContentDetails(
+            due_at: due_at
+        )
+    }
 }

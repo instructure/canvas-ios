@@ -27,16 +27,16 @@ class RichContentEditorPresenterTests: CoreTestCase {
     lazy var presenter = RichContentEditorPresenter(view: self, uploadTo: .myFiles)
 
     func testUpdate() {
-        let file = File.make([ "batchID": presenter.batchID, "url": nil ])
+        let file = File.make(batchID: presenter.batchID, removeURL: true)
         presenter.update()
         XCTAssertEqual(viewFiles, [file])
         XCTAssertEqual(databaseClient.fetch() as [File], [file])
     }
 
     func testUpdateDeletesComplete() {
-        File.make([ "batchID": presenter.batchID, "url": nil, "mediaEntryID": "2" ])
-        File.make([ "batchID": presenter.batchID, "url": URL(string: "/") ])
-        File.make([ "batchID": presenter.batchID, "url": nil, "uploadError": "bhlargh" ])
+        File.make(from: .make(id: "2", media_entry_id: "2"), batchID: presenter.batchID, removeURL: true)
+        File.make(from: .make(id: "3", url: URL(string: "/")!), batchID: presenter.batchID)
+        File.make(batchID: presenter.batchID, removeURL: true, uploadError: "doh")
         presenter.update()
         XCTAssertEqual((databaseClient.fetch() as [File]).count, 0)
     }

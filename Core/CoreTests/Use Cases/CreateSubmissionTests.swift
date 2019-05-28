@@ -23,17 +23,17 @@ class CreateSubmissionTests: CoreTestCase {
         let submissionType = SubmissionType.online_url
         let context = ContextModel(.course, id: "1")
         let url = URL(string: "http://www.instructure.com")!
-        let template: APISubmission = APISubmission.make([
-            "assignment_id": "2",
-            "grade": "A-",
-            "score": 97,
-            "late": true,
-            "excused": true,
-            "missing": true,
-            "workflow_state": SubmissionWorkflowState.submitted.rawValue,
-            "late_policy_status": LatePolicyStatus.late.rawValue,
-            "points_deducted": 10,
-            ])
+        let template: APISubmission = APISubmission.make(
+            assignment_id: "2",
+            grade: "A-",
+            score: 97,
+            late: true,
+            excused: true,
+            missing: true,
+            workflow_state: .submitted,
+            late_policy_status: .late,
+            points_deducted: 10
+        )
 
         //  when
         let createSubmission = CreateSubmission(context: context, assignmentID: "1", userID: "1", submissionType: submissionType, url: url)

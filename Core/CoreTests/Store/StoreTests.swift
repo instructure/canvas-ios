@@ -103,7 +103,7 @@ class StoreTests: CoreTestCase {
     }
 
     func testSubscribeWithoutCache() {
-        let course = APICourse.make(["id": "1"])
+        let course = APICourse.make(id: "1")
         let useCase = TestUseCase(courses: [course])
         eventsExpectation.expectedFulfillmentCount = 3
         store = environment.subscribe(useCase, storeUpdated)
@@ -127,7 +127,7 @@ class StoreTests: CoreTestCase {
     }
 
     func testSubscribeWithForceRefresh() {
-        let course = APICourse.make(["id": "1"])
+        let course = APICourse.make(id: "1")
         let useCase = TestUseCase(courses: [course])
         eventsExpectation.expectedFulfillmentCount = 3
         store = environment.subscribe(useCase, storeUpdated)
@@ -143,7 +143,7 @@ class StoreTests: CoreTestCase {
     }
 
     func testSubscribeWithCache() {
-        let course = APICourse.make(["id": "1"])
+        let course = APICourse.make(id: "1")
         let useCase = TestUseCase(courses: [course])
         let multipleEvents = XCTestExpectation(description: "too many store events")
         multipleEvents.isInverted = true
@@ -155,7 +155,7 @@ class StoreTests: CoreTestCase {
             }
         }
 
-        Course.make(["id": "1"])
+        Course.make(from: .make(id: "1"))
         let now = Date()
         Clock.mockNow(now)
         let cache: TTL = databaseClient.insert()
@@ -230,7 +230,7 @@ class StoreTests: CoreTestCase {
         let secondPage = XCTestExpectation(description: "second page of courses")
         secondPage.expectedFulfillmentCount = 6
 
-        let course1 = APICourse.make(["id": "1"])
+        let course1 = APICourse.make(id: "1")
         let useCase = TestUseCase(courses: [course1], urlResponse: response)
         eventsExpectation.expectedFulfillmentCount = 3
         store = environment.subscribe(useCase) {
@@ -243,7 +243,7 @@ class StoreTests: CoreTestCase {
         wait(for: [eventsExpectation], timeout: 1.0)
 
         XCTAssertEqual(store.count, 1)
-        let course2 = APICourse.make(["id": "2"])
+        let course2 = APICourse.make(id: "2")
         api.mock(useCase.getNext(from: response)!, value: [course2], response: nil, error: nil)
         store.getNextPage()
         wait(for: [secondPage], timeout: 1.0)
@@ -251,8 +251,8 @@ class StoreTests: CoreTestCase {
     }
 
     func testSequence() {
-        Course.make(["id": "1"])
-        Course.make(["id": "2"])
+        Course.make(from: .make(id: "1"))
+        Course.make(from: .make(id: "2"))
         let useCase = TestUseCase(courses: nil, requestError: nil, writeError: nil, urlResponse: nil)
         let store = Store(env: environment, useCase: useCase) { }
 
@@ -263,8 +263,8 @@ class StoreTests: CoreTestCase {
     }
 
     func testSubscriptInt() {
-        let one = Course.make(["id": "1", "name": "A"])
-        let two = Course.make(["id": "2", "name": "B"])
+        let one = Course.make(from: .make(id: "1", name: "A"))
+        let two = Course.make(from: .make(id: "2", name: "B"))
         let useCase = TestUseCase(courses: nil, requestError: nil, writeError: nil, urlResponse: nil)
         let store = Store(env: environment, useCase: useCase) { }
 
@@ -273,8 +273,8 @@ class StoreTests: CoreTestCase {
     }
 
     func testFirst() {
-        let one = Course.make(["id": "1", "name": "A"])
-        Course.make(["id": "2", "name": "B"])
+        let one = Course.make(from: .make(id: "1", name: "A"))
+        Course.make(from: .make(id: "2", name: "B"))
         let useCase = TestUseCase(courses: nil, requestError: nil, writeError: nil, urlResponse: nil)
         let store = Store(env: environment, useCase: useCase) { }
 
@@ -282,8 +282,8 @@ class StoreTests: CoreTestCase {
     }
 
     func testLast() {
-        Course.make(["id": "1", "name": "A"])
-        let two = Course.make(["id": "2", "name": "B"])
+        Course.make(from: .make(id: "1", name: "A"))
+        let two = Course.make(from: .make(id: "2", name: "B"))
         let useCase = TestUseCase(courses: nil, requestError: nil, writeError: nil, urlResponse: nil)
         let store = Store(env: environment, useCase: useCase) { }
 
@@ -291,8 +291,8 @@ class StoreTests: CoreTestCase {
     }
 
     func testAll() {
-        let one = Course.make(["id": "1", "name": "A"])
-        let two = Course.make(["id": "2", "name": "B"])
+        let one = Course.make(from: .make(id: "1", name: "A"))
+        let two = Course.make(from: .make(id: "2", name: "B"))
         let useCase = TestUseCase(courses: nil, requestError: nil, writeError: nil, urlResponse: nil)
         let store = Store(env: environment, useCase: useCase) { }
 
@@ -339,8 +339,8 @@ class StoreTests: CoreTestCase {
             "Link": "<\(curr)>; rel=\"current\",<>;, <\(prev)>; rel=\"prev\", <\(next)>; rel=\"next\"; count=1",
         ]
         let urlResponse = HTTPURLResponse(url: URL(string: curr)!, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: headers)!
-        let page1 = [APICourse.make(["id": "1"])]
-        let page2 = [APICourse.make(["id": "2"])]
+        let page1 = [APICourse.make(id: "1")]
+        let page2 = [APICourse.make(id: "2")]
         let useCase = TestUseCase(courses: page1, urlResponse: urlResponse)
         api.mock(useCase.getNext(from: urlResponse)!, value: page2, response: nil, error: nil)
         let expectation = XCTestExpectation(description: "exhausted")
@@ -362,8 +362,8 @@ class StoreTests: CoreTestCase {
             "Link": "<\(curr)>; rel=\"current\",<>;, <\(prev)>; rel=\"prev\", <\(next)>; rel=\"next\"; count=1",
         ]
         let urlResponse = HTTPURLResponse(url: URL(string: curr)!, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: headers)!
-        let page1 = [APICourse.make(["id": "1"])]
-        let page2 = [APICourse.make(["id": "2"])]
+        let page1 = [APICourse.make(id: "1")]
+        let page2 = [APICourse.make(id: "2")]
         let useCase = TestUseCase(courses: page1, urlResponse: urlResponse)
         api.mock(useCase.getNext(from: urlResponse)!, value: page2, response: nil, error: nil)
         let expectation = XCTestExpectation(description: "exhausted")

@@ -20,7 +20,7 @@ import { getSessionUnsafe } from '../../canvas-api'
 import type { MiddlewareAPI } from 'redux'
 import hydrate from '../hydrate-action'
 
-const STORE_VERSION = '17'
+const STORE_VERSION = '18'
 
 function storeName (session: Session): string {
   return `redux.state.${session.baseURL}.${session.user.id}.${STORE_VERSION}`

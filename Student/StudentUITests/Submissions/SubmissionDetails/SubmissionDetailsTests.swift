@@ -35,10 +35,10 @@ class SubmissionDetailsTests: StudentTest {
 
     func testNoSubmission() {
         let dueAt = DateComponents(calendar: Calendar.current, year: 2018, month: 10, day: 31, hour: 22, minute: 0).date
-        let assignment = mockAssignment(APIAssignment.make([ "due_at": dueAt ]))
-        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make([
-            "workflow_state": "unsubmitted",
-        ]))
+        let assignment = mockAssignment(APIAssignment.make(due_at: dueAt))
+        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
+            workflow_state: .unsubmitted
+        ))
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
 
         XCTAssertTrue(SubmissionDetails.emptyAssignmentDueBy.waitToExist(Timeout(value: 5)))
@@ -49,19 +49,19 @@ class SubmissionDetailsTests: StudentTest {
     func testOneSubmission() {
         let assignment = mockAssignment(APIAssignment.make())
         let submittedAt = DateComponents(calendar: Calendar.current, year: 2018, month: 10, day: 31, hour: 22, minute: 0).date!
-        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make([
-            "body": "hi",
-            "submission_type": "online_text_entry",
-            "submitted_at": submittedAt,
-        ]))
+        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
+            body: "hi",
+            submission_type: .online_text_entry,
+            submitted_at: submittedAt
+        ))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
 
         XCTAssertTrue(SubmissionDetails.onlineTextEntryWebView.waitToExist(Timeout(value: 5)))
-        XCTAssertFalse(SubmissionDetails.emptyView.isVisible)
-        XCTAssertFalse(SubmissionDetails.attemptPicker.isVisible)
+        XCTAssertFalse(SubmissionDetails.emptyView.isVisibleNow)
+        XCTAssertFalse(SubmissionDetails.attemptPicker.isVisibleNow)
         XCTAssertTrue(SubmissionDetails.attemptPickerToggle.isVisible)
-        XCTAssertFalse(SubmissionDetails.attemptPickerToggle.isEnabled)
+        XCTAssertFalse(SubmissionDetails.attemptPickerToggle.isEnabledNow)
         XCTAssertEqual(SubmissionDetails.attemptPickerToggle.label, DateFormatter.localizedString(from: submittedAt, dateStyle: .medium, timeStyle: .short))
         XCTAssertTrue(SubmissionDetails.onlineTextEntryWebView.isVisible)
         let body = xcuiApp?.webViews.staticTexts.firstMatch.label
@@ -72,31 +72,31 @@ class SubmissionDetailsTests: StudentTest {
         let assignment = mockAssignment(APIAssignment.make())
         let submittedAt1 = DateComponents(calendar: Calendar.current, year: 2018, month: 10, day: 31, hour: 22, minute: 0).date!
         let submittedAt2 = DateComponents(calendar: Calendar.current, year: 2018, month: 11, day: 1, hour: 22, minute: 0).date!
-        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make([
-            "attempt": 2,
-            "submission_history": [
-                APISubmission.fixture([
-                    "attempt": 1,
-                    "body": "one",
-                    "submission_type": "online_text_entry",
-                    "submitted_at": submittedAt1,
-                ]),
-                APISubmission.fixture([
-                    "attempt": 2,
-                    "body": "two",
-                    "submission_type": "online_text_entry",
-                    "submitted_at": submittedAt2,
-                ]),
-            ],
-        ]))
+        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
+            attempt: 2,
+            submission_history: [
+                APISubmission.make(
+                    body: "one",
+                    submission_type: .online_text_entry,
+                    submitted_at: submittedAt1,
+                    attempt: 1
+                ),
+                APISubmission.make(
+                    body: "two",
+                    submission_type: .online_text_entry,
+                    submitted_at: submittedAt2,
+                    attempt: 2
+                ),
+            ]
+        ))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
 
         let date1 = DateFormatter.localizedString(from: submittedAt1, dateStyle: .medium, timeStyle: .short)
         let date2 = DateFormatter.localizedString(from: submittedAt2, dateStyle: .medium, timeStyle: .short)
 
-        XCTAssertFalse(SubmissionDetails.emptyView.isVisible)
-        XCTAssertFalse(SubmissionDetails.attemptPicker.isVisible)
+        XCTAssertFalse(SubmissionDetails.emptyView.isVisibleNow)
+        XCTAssertFalse(SubmissionDetails.attemptPicker.isVisibleNow)
         XCTAssertTrue(SubmissionDetails.attemptPickerToggle.isVisible)
         XCTAssertTrue(SubmissionDetails.attemptPickerToggle.isEnabled)
         XCTAssertEqual(SubmissionDetails.attemptPickerToggle.label, date2)
@@ -112,21 +112,21 @@ class SubmissionDetailsTests: StudentTest {
         let previewURL = URL(string: "https://preview.url")!
         let sessionURL = URL(string: "https://doc.viewer/session/123")!
         let downloadURL = URL(string: "https://doc.viewer/session/123/download")!
-        let assignment = mockAssignment(APIAssignment.make([ "submission_types": [ "online_upload" ] ]))
-        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make([
-            "submission_type": "online_upload",
-            "attachments": [ APIFile.fixture([
-                "preview_url": previewURL.absoluteString,
-            ]), ],
-        ]))
+        let assignment = mockAssignment(APIAssignment.make(submission_types: [ .online_upload ]))
+        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
+            submission_type: .online_upload,
+            attachments: [ APIFile.make(
+                preview_url: previewURL
+            ), ]
+        ))
         mockDataRequest(URLRequest(url: previewURL), response: HTTPURLResponse(
             url: previewURL, statusCode: 301, httpVersion: nil, headerFields: [
                 "Location": "\(sessionURL.absoluteString)/view",
             ]
         ))
-        mockData(GetDocViewerMetadataRequest(path: sessionURL.absoluteString), value: APIDocViewerMetadata.make([
-            "urls": APIDocViewerURLsMetadata.fixture([ "pdf_download": downloadURL.absoluteString ]),
-        ]))
+        mockData(GetDocViewerMetadataRequest(path: sessionURL.absoluteString), value: APIDocViewerMetadata.make(
+            urls: .make(pdf_download: downloadURL)
+        ))
         mockDownload(downloadURL, data: url)
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
@@ -149,40 +149,38 @@ class SubmissionDetailsTests: StudentTest {
         let previewURL = URL(string: "https://preview.url")!
         let sessionURL = URL(string: "https://canvas.instructure.com/session/123")!
         let downloadURL = URL(string: "https://canvas.instructure.com/session/123/download")!
-        let assignment = mockAssignment(APIAssignment.make([ "submission_types": [ "online_upload" ] ]))
-        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make([
-            "submission_type": "online_upload",
-            "attachments": [ APIFile.fixture([
-                "preview_url": previewURL.absoluteString,
-            ]), ],
-        ]))
+        let assignment = mockAssignment(APIAssignment.make(submission_types: [ .online_upload ]))
+        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
+            submission_type: .online_upload,
+            attachments: [ APIFile.make(
+                preview_url: previewURL
+            ), ]
+        ))
         mockDataRequest(URLRequest(url: previewURL), response: HTTPURLResponse(
             url: previewURL, statusCode: 301, httpVersion: nil, headerFields: [
                 "Location": "\(sessionURL.absoluteString)/view",
             ]
         ))
-        mockData(GetDocViewerMetadataRequest(path: sessionURL.absoluteString), value: APIDocViewerMetadata.make([
-            "annotations": APIDocViewerAnnotationsMetadata.fixture([
-                "permissions": "readwrite",
-            ]),
-            "urls": APIDocViewerURLsMetadata.fixture([ "pdf_download": downloadURL.absoluteString ]),
-        ]))
+        mockData(GetDocViewerMetadataRequest(path: sessionURL.absoluteString), value: APIDocViewerMetadata.make(
+            annotations: .make(permissions: .readwrite),
+            urls: .make(pdf_download: downloadURL)
+        ))
         mockData(GetDocViewerAnnotationsRequest(sessionID: sessionURL.lastPathComponent), value: APIDocViewerAnnotations(data: [
-            APIDocViewerAnnotation.make([
-                "id": "1",
-                "user_name": "Student",
-                "type": APIDocViewerAnnotationType.text.rawValue,
-                "color": DocViewerAnnotationColor.green.rawValue,
-                "rect": [ [ 0, (11 * 72) - 240 ], [ 170, (11 * 72) ] ],
-            ]),
-            APIDocViewerAnnotation.make([
-                "id": "2",
-                "user_id": "2",
-                "user_name": "Teacher",
-                "type": APIDocViewerAnnotationType.commentReply.rawValue,
-                "contents": "Why is the document empty?",
-                "inreplyto": "1",
-            ]),
+            APIDocViewerAnnotation.make(
+                id: "1",
+                user_name: "Student",
+                type: .text,
+                color: DocViewerAnnotationColor.green.rawValue,
+                rect: [ [ 0, (11 * 72) - 240 ], [ 170, (11 * 72) ] ]
+            ),
+            APIDocViewerAnnotation.make(
+                id: "2",
+                user_id: "2",
+                user_name: "Teacher",
+                type: .commentReply,
+                contents: "Why is the document empty?",
+                inreplyto: "1"
+            ),
         ]))
         mockDownload(downloadURL, data: url)
 
@@ -195,69 +193,69 @@ class SubmissionDetailsTests: StudentTest {
         app.find(label: "Comments").tap()
 
         XCTAssertTrue(CommentListItem.item("2").isVisible)
-        XCTAssertFalse(CommentListItem.deleteButton("2").isVisible)
+        XCTAssertFalse(CommentListItem.deleteButton("2").isVisibleNow)
 
-        XCTAssertFalse(CommentList.replyButton.isEnabled)
+        XCTAssertFalse(CommentList.replyButton.isEnabledNow)
         CommentList.replyTextView.tap()
         CommentList.replyTextView.typeText("I don't know.")
         XCTAssertTrue(CommentList.replyButton.isEnabled)
         CommentList.replyButton.tap()
-        XCTAssertFalse(CommentList.replyButton.isEnabled)
+        XCTAssertFalse(CommentList.replyButton.isEnabledNow)
 
         let replyID = String(findID(for: "Delete comment").split(separator: ".")[1])
         XCTAssertTrue(CommentListItem.item(replyID).isVisible)
         XCTAssertTrue(CommentListItem.deleteButton(replyID).isVisible)
         CommentListItem.deleteButton(replyID).tap()
         app.find(label: "Delete").tap()
-        XCTAssertFalse(CommentListItem.item(replyID).isVisible)
+        CommentListItem.item(replyID).waitToVanish(Timeout(value: 1))
     }
 
     func testDiscussionSubmission() {
-        let assignment = mockAssignment(APIAssignment.make([ "submission_types": [ "discussion_topic" ] ]))
+        let assignment = mockAssignment(APIAssignment.make(submission_types: [ .discussion_topic ]))
         let submittedAt = DateComponents(calendar: Calendar.current, year: 2018, month: 10, day: 31, hour: 22, minute: 0).date!
-        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make([
-            "submission_type": "discussion_topic",
-            "submitted_at": submittedAt,
-            "preview_url": "https://canvas.instructure.com",
-            "discussion_entries": [
-                APIDiscussionEntry.fixture([ "id": "1", "message": "First entry" ]),
-                APIDiscussionEntry.fixture([ "id": "2", "message": "Second entry" ]),
+        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
+            submission_type: .discussion_topic,
+            submitted_at: submittedAt,
+            discussion_entries: [
+                APIDiscussionEntry.make(id: "1", message: "First entry"),
+                APIDiscussionEntry.make(id: "2", message: "Second entry"),
             ],
-        ]))
+            preview_url: URL(string: "https://canvas.instructure.com")
+        ))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
 
-        XCTAssertFalse(SubmissionDetails.emptyView.isVisible)
-        XCTAssertFalse(SubmissionDetails.attemptPicker.isVisible)
+        XCTAssertFalse(SubmissionDetails.emptyView.isVisibleNow)
+        XCTAssertFalse(SubmissionDetails.attemptPicker.isVisibleNow)
         XCTAssertTrue(SubmissionDetails.attemptPickerToggle.isVisible)
-        XCTAssertFalse(SubmissionDetails.attemptPickerToggle.isEnabled)
+        XCTAssertFalse(SubmissionDetails.attemptPickerToggle.isEnabledNow)
         XCTAssertEqual(SubmissionDetails.attemptPickerToggle.label, DateFormatter.localizedString(from: submittedAt, dateStyle: .medium, timeStyle: .short))
         XCTAssertTrue(SubmissionDetails.discussionWebView.isVisible)
     }
 
     func testQuizSubmission() {
-        let assignment = mockAssignment(APIAssignment.make([
-            "submission_types": [ "online_quiz" ],
-            "quiz_id": "1",
-        ]))
-        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make([
-            "submission_type": "online_quiz",
-        ]))
+        let assignment = mockAssignment(APIAssignment.make(
+            quiz_id: "1",
+            submission_types: [ .online_quiz ]
+        ))
+        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
+            submission_type: .online_quiz
+        ))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
 
-        XCTAssertFalse(SubmissionDetails.emptyView.isVisible)
+        XCTAssertFalse(SubmissionDetails.emptyView.isVisibleNow)
         XCTAssertTrue(SubmissionDetails.onlineQuizWebView.isVisible)
     }
 
     func testUrlSubmission() {
         let url = URL(string: "https://www.instructure.com/")!
-        let assignment = mockAssignment(APIAssignment.make([ "submission_types": [ "online_url" ] ]))
-        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make([
-            "submission_type": "online_url",
-            "url": url.absoluteString,
-            "attachments": [ APIFile.fixture() ],
-        ]))
+        let assignment = mockAssignment(APIAssignment.make(submission_types: [ .online_url ]))
+        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
+            submission_type: .online_url,
+            attachments: [ APIFile.make() ],
+            url: url
+        ))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
 
@@ -265,31 +263,31 @@ class SubmissionDetailsTests: StudentTest {
         XCTAssertTrue(SubmissionDetails.urlSubmissionBlurb.isVisible)
         XCTAssertTrue(SubmissionDetails.urlButton.isVisible)
 
-        XCTAssertFalse(SubmissionDetails.emptyView.isVisible)
+        XCTAssertFalse(SubmissionDetails.emptyView.isVisibleNow)
         XCTAssertEqual(SubmissionDetails.urlSubmissionBlurb.label, "This submission is a URL to an external page. We've included a snapshot of a what the page looked like when it was submitted.")
     }
 
     func testExternalToolSubmission() {
-        let assignment = mockAssignment(APIAssignment.make([ "submission_types": [ "external_tool" ] ]))
+        let assignment = mockAssignment(APIAssignment.make(submission_types: [ .external_tool ]))
         mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make())
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
 
         XCTAssertTrue(SubmissionDetails.externalToolButton.waitToExist(Timeout(value: 5)))
         XCTAssertTrue(SubmissionDetails.externalToolButton.isVisible)
-        XCTAssertFalse(SubmissionDetails.emptyView.isVisible)
+        XCTAssertFalse(SubmissionDetails.emptyView.isVisibleNow)
     }
 
     func testMediaSubmission() {
         let url = Bundle(for: SubmissionDetailsTests.self).url(forResource: "test", withExtension: "m4a")!
-        let assignment = mockAssignment(APIAssignment.make([ "submission_types": [ "media_recording" ] ]))
-        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make([
-            "submission_type": "media_recording",
-            "media_comment": APIMediaComment.fixture([
-                "media_type": "audio",
-                "url": url.absoluteString,
-            ]),
-        ]))
+        let assignment = mockAssignment(APIAssignment.make(submission_types: [ .media_recording ]))
+        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
+            submission_type: .media_recording,
+            media_comment: APIMediaComment.make(
+                media_type: .audio,
+                url: url
+            )
+        ))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
         XCTAssertTrue(SubmissionDetails.mediaPlayer.waitToExist(Timeout(value: 2)))

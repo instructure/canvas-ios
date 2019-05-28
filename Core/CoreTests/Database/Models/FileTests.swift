@@ -21,7 +21,7 @@ import TestsFoundation
 
 class FileTests: CoreTestCase {
     func testSave() {
-        let item = APIFile.make(["id": "1"])
+        let item = APIFile.make(id: "1")
         XCTAssertNoThrow(try File.save(item, in: databaseClient))
         let files: [File] = databaseClient.fetch()
         XCTAssertEqual(files.count, 1)
@@ -29,11 +29,11 @@ class FileTests: CoreTestCase {
     }
 
     func testIcon() {
-        XCTAssertEqual(File.make([ "mimeClass": "audio" ]).icon, UIImage.icon(.audio))
-        XCTAssertEqual(File.make([ "mimeClass": "video" ]).icon, UIImage.icon(.video))
-        XCTAssertEqual(File.make([ "mimeClass": "pdf" ]).icon, UIImage.icon(.pdf))
-        XCTAssertEqual(File.make([ "mimeClass": "doc" ]).icon, UIImage.icon(.document))
-        XCTAssertEqual(File.make([ "mimeClass": "bogus" ]).icon, UIImage.icon(.document))
+        XCTAssertEqual(File.make(from: .make(mime_class: "audio")).icon, UIImage.icon(.audio))
+        XCTAssertEqual(File.make(from: .make(mime_class: "video")).icon, UIImage.icon(.video))
+        XCTAssertEqual(File.make(from: .make(mime_class: "pdf")).icon, UIImage.icon(.pdf))
+        XCTAssertEqual(File.make(from: .make(mime_class: "doc")).icon, UIImage.icon(.document))
+        XCTAssertEqual(File.make(from: .make(mime_class: "bogus")).icon, UIImage.icon(.document))
     }
 
     func testIsUploading() {

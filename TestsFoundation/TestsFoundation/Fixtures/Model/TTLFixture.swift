@@ -14,27 +14,21 @@
 // limitations under the License.
 //
 
+import CoreData
 import Foundation
 @testable import Core
 
-extension File: Fixture {
-    public static var template: Template {
-        return [
-            "id": "1",
-            "uuid": "uuid-1234",
-            "folderID": "1",
-            "displayName": "File",
-            "filename": "File.jpg",
-            "contentType": "image/jpeg",
-            "url": URL(string: "https://canvas.instructure.com/files/1/download"),
-            "size": 1024,
-            "createdAt": Date(),
-            "updatedAt": Date(),
-            "locked": false,
-            "hidden": false,
-            "hiddenForUser": false,
-            "mimeClass": "JPEG",
-            "lockedForUser": false
-        ]
+extension TTL {
+    @discardableResult
+    public static func make(
+        key: String = "a",
+        lastRefresh: Date = Date(),
+        in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
+    ) -> TTL {
+        let model: TTL = context.insert()
+        model.key = key
+        model.lastRefresh = lastRefresh
+        try! context.save()
+        return model
     }
 }

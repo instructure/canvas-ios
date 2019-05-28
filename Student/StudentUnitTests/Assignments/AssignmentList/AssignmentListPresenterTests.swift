@@ -54,7 +54,7 @@ class AssignmentListPresenterTests: PersistenceTestCase {
 
     func testUseCaseFetchesData() {
         //  given
-        Assignment.make()
+        Assignment.make(from: .make(name: "Assignment One"))
 
         //   when
         presenter.viewIsReady()

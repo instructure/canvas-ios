@@ -33,28 +33,28 @@ class GradeCircleViewTests: XCTestCase {
 
     func testItHidesWhenSubmissionIsUnsubmitted() {
         let a = Assignment.make()
-        a.submission = Submission.make(["workflowStateRaw": "unsubmitted"])
+        a.submission = Submission.make(from: .make(workflow_state: .unsubmitted))
         view.update(a)
         XCTAssertTrue(view.isHidden)
     }
 
     func testItHidesWhenNoGrade() {
         let a = Assignment.make()
-        a.submission = Submission.make([
-            "workflowStateRaw": "submitted",
-            "grade": nil,
-        ])
+        a.submission = Submission.make(from: .make(
+            grade: nil,
+            workflow_state: .submitted
+        ))
         view.update(a)
         XCTAssertTrue(view.isHidden)
     }
 
     func testItShowsCorrectViewsForPassFail() {
-        let a = Assignment.make(["gradingTypeRaw": "pass_fail"])
-        a.submission = Submission.make([
-            "workflowStateRaw": "graded",
-            "grade": "Complete",
-            "scoreRaw": nil,
-        ])
+        let a = Assignment.make(from: .make(grading_type: .pass_fail))
+        a.submission = Submission.make(from: .make(
+            grade: "Complete",
+            score: nil,
+            workflow_state: .graded
+        ))
         view.update(a)
         XCTAssertTrue(view.circlePoints.isHidden)
         XCTAssertTrue(view.circleLabel.isHidden)
@@ -70,12 +70,12 @@ class GradeCircleViewTests: XCTestCase {
     }
 
     func testItShowsCorrectViewsForNonPassFail() {
-        let a = Assignment.make(["gradingTypeRaw": "points"])
-        a.submission = Submission.make([
-            "workflowStateRaw": "graded",
-            "grade": "10",
-            "scoreRaw": 10,
-        ])
+        let a = Assignment.make(from: .make(grading_type: .points))
+        a.submission = Submission.make(from: .make(
+            grade: "10",
+            score: 10,
+            workflow_state: .graded
+        ))
         view.update(a)
         XCTAssertFalse(view.circlePoints.isHidden)
         XCTAssertFalse(view.circleLabel.isHidden)
@@ -83,15 +83,15 @@ class GradeCircleViewTests: XCTestCase {
     }
 
     func testItUpdatesCircle() {
-        let a = Assignment.make([
-            "gradingTypeRaw": "points",
-            "pointsPossibleRaw": 100,
-        ])
-        a.submission = Submission.make([
-            "workflowStateRaw": "graded",
-            "scoreRaw": 80,
-            "grade": "80",
-        ])
+        let a = Assignment.make(from: .make(
+            points_possible: 100,
+            grading_type: .points
+        ))
+        a.submission = Submission.make(from: .make(
+            grade: "80",
+            score: 80,
+            workflow_state: .graded
+        ))
         view.update(a)
         XCTAssertEqual(view.circlePoints.text, "80")
         XCTAssertEqual(view.gradeCircle?.progress, 0.8)
@@ -99,17 +99,17 @@ class GradeCircleViewTests: XCTestCase {
     }
 
     func testItShowsLatePenalty() {
-        let a = Assignment.make([
-            "gradingTypeRaw": "points",
-            "pointsPossibleRaw": 100,
-        ])
-        a.submission = Submission.make([
-            "workflowStateRaw": "graded",
-            "scoreRaw": 80,
-            "grade": "80",
-            "late": true,
-            "pointsDeductedRaw": 10,
-        ])
+        let a = Assignment.make(from: .make(
+            points_possible: 100,
+            grading_type: .points
+        ))
+        a.submission = Submission.make(from: .make(
+            grade: "80",
+            score: 80,
+            late: true,
+            workflow_state: .graded,
+            points_deducted: 10
+        ))
         view.update(a)
         XCTAssertFalse(view.latePenaltyLabel.isHidden)
         XCTAssertFalse(view.finalGradeLabel.isHidden)
@@ -118,15 +118,15 @@ class GradeCircleViewTests: XCTestCase {
     }
 
     func testDisplayGrade() {
-        let a = Assignment.make([
-            "gradingTypeRaw": "points",
-            "pointsPossibleRaw": 100,
-        ])
-        a.submission = Submission.make([
-            "workflowStateRaw": "graded",
-            "scoreRaw": 80,
-            "grade": "80",
-        ])
+        let a = Assignment.make(from: .make(
+            points_possible: 100,
+            grading_type: .points
+        ))
+        a.submission = Submission.make(from: .make(
+            grade: "80",
+            score: 80,
+            workflow_state: .graded
+        ))
         view.update(a)
         XCTAssertTrue(view.displayGrade.isHidden)
 
@@ -142,15 +142,15 @@ class GradeCircleViewTests: XCTestCase {
     }
 
     func testItRendersGradeInformation() {
-        let a = Assignment.make([
-            "gradingTypeRaw": "points",
-            "pointsPossibleRaw": 100,
-        ])
-        a.submission = Submission.make([
-            "workflowStateRaw": "graded",
-            "scoreRaw": 80,
-            "grade": "80",
-        ])
+        let a = Assignment.make(from: .make(
+            points_possible: 100,
+            grading_type: .points
+        ))
+        a.submission = Submission.make(from: .make(
+            grade: "80",
+            score: 80,
+            workflow_state: .graded
+        ))
         view.update(a)
         XCTAssertEqual(view.circleLabel.text, "Points")
         XCTAssertEqual(view.outOfLabel.text, "Out of 100 pts")

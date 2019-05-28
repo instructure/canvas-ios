@@ -14,11 +14,19 @@
 // limitations under the License.
 //
 
+import CoreData
 import Foundation
 @testable import Core
 
-extension Permissions: Fixture {
-    public static var template: Template {
-        return [ "context": "account_1" ]
+extension Permissions {
+    @discardableResult
+    public static func make(
+        from api: APIPermissions = .make(),
+        for context: Context = ContextModel(.account, id: "1"),
+        in db: NSManagedObjectContext = singleSharedTestDatabase.viewContext
+    ) -> Permissions {
+        let model = try! Permissions.save(api, for: context, in: db)
+        try! db.save()
+        return model
     }
 }

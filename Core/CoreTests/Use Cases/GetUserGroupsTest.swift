@@ -21,7 +21,7 @@ import XCTest
 class GetUserGroupsTest: CoreTestCase {
     func testItSavesUserGroups() {
         let request = GetGroupsRequest(context: ContextModel.currentUser)
-        let group = APIGroup.make(["id": "1", "name": "Group One", "members_count": 2])
+        let group = APIGroup.make(id: "1", name: "Group One", members_count: 2)
         api.mock(request, value: [group])
 
         let getUserGroups = GetUserGroups()
@@ -34,7 +34,7 @@ class GetUserGroupsTest: CoreTestCase {
     }
 
     func testItDeletesOldUserGroups() {
-        let old = Group.make(["showOnDashboard": true])
+        let old = Group.make(showOnDashboard: true)
         let request = GetGroupsRequest(context: ContextModel.currentUser)
         api.mock(request, value: [])
 
@@ -52,7 +52,7 @@ class GetUserGroupsTest: CoreTestCase {
     }
 
     func testItDoesNotDeleteNonUserGroups() {
-        let notMember = Group.make(["showOnDashboard": false])
+        let notMember = Group.make(showOnDashboard: false)
         let request = GetGroupsRequest(context: ContextModel.currentUser)
         api.mock(request, value: [])
 

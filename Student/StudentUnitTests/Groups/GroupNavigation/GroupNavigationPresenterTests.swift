@@ -49,9 +49,9 @@ class GroupNavigationPresenterTests: PersistenceTestCase {
 
     func testTabsAreOrderedByPosition() {
         presenter.viewIsReady()
-        Tab.make(["position": 2, "id": "b", "contextRaw": "group_1"])
-        Tab.make(["position": 3, "id": "c", "contextRaw": "group_1"])
-        Tab.make(["position": 1, "id": "a", "contextRaw": "group_1"])
+        Tab.make(from: .make(id: "b", position: 2), context: ContextModel(.group, id: "1"))
+        Tab.make(from: .make(id: "c", position: 3), context: ContextModel(.group, id: "1"))
+        Tab.make(from: .make(id: "a", position: 1), context: ContextModel(.group, id: "1"))
         presenter.viewIsReady()
         wait(for: [expectation], timeout: 1)
 
@@ -65,7 +65,7 @@ class GroupNavigationPresenterTests: PersistenceTestCase {
         var color: Color!
         var group: Group!
         group = Group.make()
-        color = Color.make(["canvasContextID": group.canvasContextID, "color": UIColor.init(hexString: "#ff0")])
+        color = Color.make(canvasContextID: group.canvasContextID, color: UIColor(hexString: "#ff0")!)
         Tab.make()
 
         presenter = GroupNavigationPresenter(groupID: Group.make().id, view: self, env: env)

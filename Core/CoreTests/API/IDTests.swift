@@ -61,7 +61,7 @@ class IDTests: XCTestCase {
     }
 
     func testEncodeAndDecodeTogether() {
-        let object = APIAssignment.make(["id": "2"])
+        let object = APIAssignment.make(id: "2")
         let encoded = try! JSONEncoder().encode(object)
         let decoded = try! JSONDecoder().decode(APIAssignment.self, from: encoded)
         XCTAssertEqual(decoded.id, "2")
@@ -69,7 +69,7 @@ class IDTests: XCTestCase {
     }
 
     func testEncodeAndDecodeEmpty() {
-        let object = APIAssignment.make(["id": ""])
+        let object = APIAssignment.make(id: "")
         let encoded = try! JSONEncoder().encode(object)
         let decoded = try! JSONDecoder().decode(APIAssignment.self, from: encoded)
         XCTAssertEqual(decoded.id, "")

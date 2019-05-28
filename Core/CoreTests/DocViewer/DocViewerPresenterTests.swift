@@ -62,7 +62,7 @@ class DocViewerPresenterTests: CoreTestCase {
         session.sessionID = "abcd"
         session.sessionURL = URL(string: "session")
         session.localURL = url
-        session.metadata = APIDocViewerMetadata.make([ "rotations": [ "0": 90 ] ])
+        session.metadata = APIDocViewerMetadata.make(rotations: [ "0": 90 ])
         presenter.sessionIsReady()
         let providers = document?.documentProviders.first?.annotationManager.annotationProviders
         XCTAssertTrue(providers?.contains(where: { $0 is DocViewerAnnotationProvider }) ?? false)
@@ -188,7 +188,7 @@ class DocViewerPresenterTests: CoreTestCase {
     func testAnnotationDidExceedLimit() {
         presenter.annotationDidExceedLimit(annotation: APIDocViewerAnnotation.make())
         XCTAssertFalse(resetted)
-        presenter.annotationDidExceedLimit(annotation: APIDocViewerAnnotation.make([ "type": "ink" ]))
+        presenter.annotationDidExceedLimit(annotation: APIDocViewerAnnotation.make(type: .ink))
         XCTAssertTrue(resetted)
     }
 

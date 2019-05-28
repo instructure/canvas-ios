@@ -20,14 +20,15 @@ import XCTest
 
 class QuizTests: CoreTestCase {
     func testPointsPossible() {
-        let quiz = Quiz.make([ "pointsPossibleRaw": nil ])
+        let quiz = Quiz.make(from: .make(points_possible: nil))
         XCTAssertNil(quiz.pointsPossible)
         quiz.pointsPossible = 15.7
         XCTAssertEqual(quiz.pointsPossibleRaw, NSNumber(value: 15.7))
     }
 
     func testQuizType() {
-        let quiz = Quiz.make([ "quizTypeRaw": "invalid" ])
+        let quiz = Quiz.make()
+        quiz.quizTypeRaw = "invalid"
         XCTAssertEqual(quiz.quizType, .assignment)
         quiz.quizType = .graded_survey
         XCTAssertEqual(quiz.quizTypeRaw, "graded_survey")
@@ -42,33 +43,33 @@ class QuizTests: CoreTestCase {
     }
 
     func testAllowedAttemptsText() {
-        XCTAssertEqual(Quiz.make([ "allowedAttempts": -1 ]).allowedAttemptsText, "Unlimited")
-        XCTAssertEqual(Quiz.make([ "allowedAttempts": 1 ]).allowedAttemptsText, "1")
-        XCTAssertEqual(Quiz.make([ "allowedAttempts": 10 ]).allowedAttemptsText, "10")
+        XCTAssertEqual(Quiz.make(from: .make(allowed_attempts: -1)).allowedAttemptsText, "Unlimited")
+        XCTAssertEqual(Quiz.make(from: .make(allowed_attempts: 1)).allowedAttemptsText, "1")
+        XCTAssertEqual(Quiz.make(from: .make(allowed_attempts: 10)).allowedAttemptsText, "10")
     }
 
     func testQuestionCountText() {
-        XCTAssertEqual(Quiz.make([ "questionCount": 1 ]).questionCountText, "1")
-        XCTAssertEqual(Quiz.make([ "questionCount": 10 ]).questionCountText, "10")
+        XCTAssertEqual(Quiz.make(from: .make(question_count: 1)).questionCountText, "1")
+        XCTAssertEqual(Quiz.make(from: .make(question_count: 10)).questionCountText, "10")
     }
 
     func testNQuestionsText() {
-        XCTAssertEqual(Quiz.make([ "questionCount": 1 ]).nQuestionsText, "1 Question")
-        XCTAssertEqual(Quiz.make([ "questionCount": 10 ]).nQuestionsText, "10 Questions")
+        XCTAssertEqual(Quiz.make(from: .make(question_count: 1)).nQuestionsText, "1 Question")
+        XCTAssertEqual(Quiz.make(from: .make(question_count: 10)).nQuestionsText, "10 Questions")
     }
 
     func testTimeLimitText() {
-        XCTAssertEqual(Quiz.make([ "timeLimitRaw": nil ]).timeLimitText, "None")
-        XCTAssertEqual(Quiz.make([ "timeLimitRaw": 10 ]).timeLimitText, "10min")
+        XCTAssertEqual(Quiz.make(from: .make(time_limit: nil)).timeLimitText, "None")
+        XCTAssertEqual(Quiz.make(from: .make(time_limit: 10)).timeLimitText, "10min")
     }
 
     func testSave() {
         var quiz = Quiz.save(APIQuiz.make(), in: databaseClient)
         XCTAssertEqual(quiz.order, Date.distantFuture.isoString())
         let date = Date()
-        quiz = Quiz.save(APIQuiz.make([ "quiz_type": "assignment", "due_at": date ]), in: databaseClient)
+        quiz = Quiz.save(APIQuiz.make(quiz_type: .assignment, due_at: date), in: databaseClient)
         XCTAssertEqual(quiz.order, date.isoString())
-        quiz = Quiz.save(APIQuiz.make([ "quiz_type": "survey", "lock_at": date ]), in: databaseClient)
+        quiz = Quiz.save(APIQuiz.make(quiz_type: .survey, lock_at: date), in: databaseClient)
         XCTAssertEqual(quiz.order, date.isoString())
     }
 }

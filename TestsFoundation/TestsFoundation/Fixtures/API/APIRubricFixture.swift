@@ -17,40 +17,63 @@
 import Foundation
 @testable import Core
 
-extension APIRubric: Fixture {
-    public static var template: Template {
-        return [
-            "id": "1",
-            "points": 25.0,
-            "description": "Effort",
-            "long_description": "Did you even try?",
-            "criterion_use_range": false,
-            "ratings": [APIRubricRating.fixture()],
-            "assignmentID": "1",
-        ]
+extension APIRubric {
+    public static func make(
+        id: ID = "1",
+        points: Double = 25.0,
+        description: String = "Effort",
+        long_description: String? = "Did you even try?",
+        criterion_use_range: Bool = false,
+        ratings: [APIRubricRating]? = [ .make() ],
+        assignmentID: String? = "1",
+        position: Int? = nil
+    ) -> APIRubric {
+        return APIRubric(
+            id: id,
+            points: points,
+            description: description,
+            long_description: long_description,
+            criterion_use_range: criterion_use_range,
+            ratings: ratings,
+            assignmentID: assignmentID,
+            position: position
+        )
     }
 }
 
-extension APIRubricRating: Fixture {
-    public static var template: Template {
-        return [
-            "id": "1",
-            "points": 25.0,
-            "description": "Excellent",
-            "long_description": "Like the best!"
-        ]
+extension APIRubricRating {
+    public static func make(
+        id: ID = "1",
+        points: Double? = 25.0,
+        description: String = "Excellent",
+        long_description: String = "Like the best!",
+        assignmentID: String? = nil,
+        position: Int? = nil
+    ) -> APIRubricRating {
+        return APIRubricRating(
+            id: id,
+            points: points,
+            description: description,
+            long_description: long_description,
+            assignmentID: assignmentID,
+            position: position
+        )
     }
 }
 
 
-extension APIRubricAssessment: Fixture {
-    public static var template: Template {
-        return [
-            "id": "1",
-            "submissionID": "1",
-            "rating_id": "1",
-            "points": 25.0,
-            "comments": "You failed at punctuation!",
-        ]
+extension APIRubricAssessment {
+    public static func make(
+        submissionID: String? = "1",
+        points: Double? = 25.0,
+        comments: String? = "You failed at punctuation!",
+        rating_id: String? = "1"
+    ) -> APIRubricAssessment {
+        return APIRubricAssessment(
+            submissionID: submissionID,
+            points: points,
+            comments: comments,
+            rating_id: rating_id
+        )
     }
 }

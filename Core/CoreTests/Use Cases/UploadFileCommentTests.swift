@@ -71,15 +71,15 @@ class UploadFileCommentTests: CoreTestCase {
     }
 
     func testUploadError() throws {
-        let file = File.make(["id": nil, "batchID": "5"])
+        let file = File.make(batchID: "5", removeID: true)
         api.mock(PutSubmissionGradeRequest(
             courseID: upload.courseID,
             assignmentID: upload.assignmentID,
             userID: upload.userID,
             body: .init(comment: .init(fileIDs: ["2"], forGroup: upload.isGroup), submission: nil)
-        ), value: APISubmission.make([
-            "submission_comments": [ APISubmissionComment.fixture() ],
-        ]))
+        ), value: APISubmission.make(
+            submission_comments: [ APISubmissionComment.make() ]
+        ))
         let called = self.expectation(description: "error callback was called")
         called.assertForOverFulfill = false
         upload.fetch(environment: environment) { comment, error in
@@ -93,15 +93,15 @@ class UploadFileCommentTests: CoreTestCase {
     }
 
     func testSuccess() throws {
-        let file = File.make(["id": nil, "batchID": "5"])
+        let file = File.make(batchID: "5", removeID: true)
         api.mock(PutSubmissionGradeRequest(
             courseID: upload.courseID,
             assignmentID: upload.assignmentID,
             userID: upload.userID,
             body: .init(comment: .init(fileIDs: ["1"], forGroup: upload.isGroup), submission: nil)
-        ), value: APISubmission.make([
-            "submission_comments": [ APISubmissionComment.fixture() ],
-        ]))
+        ), value: APISubmission.make(
+            submission_comments: [ APISubmissionComment.make() ]
+        ))
         let called = self.expectation(description: "success callback was called")
         called.assertForOverFulfill = false
         upload.fetch(environment: environment) { comment, error in

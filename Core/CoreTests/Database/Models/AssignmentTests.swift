@@ -22,8 +22,8 @@ class AssignmentTests: CoreTestCase {
 
     func testUpdateFromAPIItemWithAPISubmission() {
         let client = databaseClient
-        let a = Assignment.make(["name": "a"])
-        let api = APIAssignment.make(["name": "api_a", "submission": APISubmission.fixture()])
+        let a = Assignment.make(from: .make(name: "a", submission: nil))
+        let api = APIAssignment.make(name: "api_a", submission: .make())
 
         XCTAssertNil(a.submission)
 
@@ -46,8 +46,8 @@ class AssignmentTests: CoreTestCase {
 
     func testUpdateFromAPIItemWithAPISubmissionButDoNotMutateSubmission() {
         let client = databaseClient
-        let a = Assignment.make(["name": "a"])
-        let api = APIAssignment.make(["name": "api_a", "submission": APISubmission.fixture()])
+        let a = Assignment.make(from: .make(name: "a", submission: nil))
+        let api = APIAssignment.make(name: "api_a", submission: .make())
 
         XCTAssertNil(a.submission)
 
@@ -58,9 +58,8 @@ class AssignmentTests: CoreTestCase {
 
     func testUpdateFromAPIItemWithExistingSubmission() {
         let client = databaseClient
-        let submission: Submission = client.make(["grade": "A"])
-        let a: Assignment = client.make(["name": "a", "submission": submission])
-        let api = APIAssignment.make(["name": "api_a", "submission": nil])
+        let a = Assignment.make(from: .make(name: "a", submission: .make(grade: "A")))
+        let api = APIAssignment.make(name: "api_a", submission: nil)
         XCTAssertNil(api.submission)
 
         XCTAssertNoThrow( try a.update(fromApiModel: api, in: client, updateSubmission: true) )
@@ -192,7 +191,7 @@ class AssignmentTests: CoreTestCase {
     }
 
     func testIsDiscussion() {
-        let a = Assignment.make([ "submissionTypesRaw": ["discussion_topic"] ])
+        let a = Assignment.make(from: .make(submission_types: [ .discussion_topic ] ))
         XCTAssertTrue(a.isDiscussion)
         a.submissionTypes.append(.basic_lti_launch)
         XCTAssertFalse(a.isDiscussion)
@@ -201,19 +200,19 @@ class AssignmentTests: CoreTestCase {
     func testViewableScore() {
         let a = Assignment.make()
         XCTAssertNil(a.viewableScore)
-        a.submission = Submission.make([ "scoreRaw": 10 ])
+        a.submission = Submission.make(from: .make(score: 10))
         XCTAssertEqual(a.viewableScore, 10)
     }
 
     func testViewableGrade() {
         let a = Assignment.make()
         XCTAssertNil(a.viewableGrade)
-        a.submission = Submission.make([ "grade": "C" ])
+        a.submission = Submission.make(from: .make(grade: "C"))
         XCTAssertEqual(a.viewableGrade, "C")
     }
 
     func testDescriptionHTML() {
-        let a = Assignment.make([ "details": nil ])
+        let a = Assignment.make(from: .make(description: nil))
         XCTAssertEqual(a.descriptionHTML, "<i>No Content</i>")
         a.details = "details"
         XCTAssertEqual(a.descriptionHTML, "details")
@@ -276,7 +275,7 @@ class AssignmentTests: CoreTestCase {
     }
 
     func testUseRubricForGrading() {
-        let apiAssignment = APIAssignment.make(["use_rubric_for_grading": true])
+        let apiAssignment = APIAssignment.make(use_rubric_for_grading: true)
         let assignment = Assignment.make()
 
         XCTAssertNoThrow( try assignment.update(fromApiModel: apiAssignment, in: databaseClient, updateSubmission: true) )

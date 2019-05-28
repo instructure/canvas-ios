@@ -32,8 +32,8 @@ class GetGroupTest: CoreTestCase {
     }
 
     func testItUpdatesGroup() {
-        let group = Group.make(["id": "1", "name": "Old Name"])
-        let response = APIGroup.make(["id": "1", "name": "New Name"])
+        let group = Group.make(from: .make(id: "1", name: "Old Name"))
+        let response = APIGroup.make(id: "1", name: "New Name")
 
         let getGroup = GetGroup(groupID: "1", env: environment)
         try! getGroup.write(response: response, urlResponse: nil, to: databaseClient)
@@ -47,7 +47,7 @@ class GetGroupTest: CoreTestCase {
     }
 
     func testScope() {
-        let group = Group.make(["id": "1", "name": "Old Name"])
+        let group = Group.make(from: .make(id: "1", name: "Old Name"))
         let getGroup = GetGroup(groupID: "1", env: environment)
 
         let groups: [Group] = databaseClient.fetch(predicate: getGroup.scope.predicate, sortDescriptors: getGroup.scope.order)

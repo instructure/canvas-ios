@@ -23,7 +23,7 @@ class GetCoursesTest: CoreTestCase {
     let request = GetCoursesRequest(includeUnpublished: true)
 
     func testItCreatesCourses() {
-        let course = APICourse.make(["id": "1", "name": "Course 1"])
+        let course = APICourse.make(id: "1", name: "Course 1")
         let getCourses = GetCourses()
         try! getCourses.write(response: [course], urlResponse: nil, to: databaseClient)
 
@@ -43,10 +43,10 @@ class GetCoursesTest: CoreTestCase {
     }
 
     func testScopeShowFavorites() {
-        let c = Course.make(["name": "c", "isFavorite": true])
-        let a = Course.make(["name": "a", "isFavorite": true])
-        Course.make(["name": "b", "isFavorite": true])
-        let d = Course.make(["name": "d", "isFavorite": false])
+        let c = Course.make(from: .make(id: "3", name: "c", is_favorite: true))
+        let a = Course.make(from: .make(id: "1", name: "a", is_favorite: true))
+        Course.make(from: .make(id: "2", name: "b", is_favorite: true))
+        let d = Course.make(from: .make(id: "4", name: "d", is_favorite: false))
         let useCase = GetCourses(showFavorites: true)
         let courses: [Course] = databaseClient.fetch(predicate: useCase.scope.predicate, sortDescriptors: useCase.scope.order)
 
@@ -57,9 +57,9 @@ class GetCoursesTest: CoreTestCase {
     }
 
     func testScopeShowAll() {
-        let c = Course.make(["name": "3", "isFavorite": true])
-        let a = Course.make(["name": "1", "isFavorite": true])
-        Course.make(["name": "2", "isFavorite": true])
+        let c = Course.make(from: .make(id: "3", name: "3", is_favorite: true))
+        let a = Course.make(from: .make(id: "1", name: "1", is_favorite: true))
+        Course.make(from: .make(id: "2", name: "2", is_favorite: true))
 
         let useCase = GetCourses()
         let courses: [Course] = databaseClient.fetch(predicate: useCase.scope.predicate, sortDescriptors: useCase.scope.order)

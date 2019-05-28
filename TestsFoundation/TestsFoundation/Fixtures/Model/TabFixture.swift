@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2019-present Instructure, Inc.
+// Copyright (C) 2018-present Instructure, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,12 +14,20 @@
 // limitations under the License.
 //
 
+import CoreData
 import Foundation
-import Core
+@testable import Core
 
-extension ModuleItemType: Fixture {
-    public static let template: Template = [
-        "type": "assignment",
-        "content_id": "1"
-    ]
+extension Tab {
+    @discardableResult
+    public static func make(
+        from api: APITab = .make(),
+        context: Context = ContextModel(.group, id: "1"),
+        in db: NSManagedObjectContext = singleSharedTestDatabase.viewContext
+    ) -> Tab {
+        let model: Tab = db.insert()
+        try! model.save(api, in: db, context: context)
+        try! db.save()
+        return model
+    }
 }

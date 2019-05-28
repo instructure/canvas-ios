@@ -72,7 +72,7 @@ class SubmissionCommentsPresenterTests: PersistenceTestCase {
     }
 
     func testAddFileCommentError() throws {
-        let file = File.make(["id": nil, "batchID": "1"])
+        let file = File.make(batchID: "1", removeID: true)
         view.expectError = self.expectation(description: "error")
         view.expectError?.assertForOverFulfill = false
         presenter.viewIsReady()
@@ -83,15 +83,15 @@ class SubmissionCommentsPresenterTests: PersistenceTestCase {
     }
 
     func testAddFileCommentSuccess() throws {
-        let file = File.make(["id": nil, "batchID": "1"])
+        let file = File.make(batchID: "1", removeID: true)
         api.mock(PutSubmissionGradeRequest(
             courseID: "1",
             assignmentID: "1",
             userID: "1",
             body: .init(comment: .init(fileIDs: ["1"], forGroup: true), submission: nil)
-        ), value: APISubmission.make([
-            "submission_comments": [ APISubmissionComment.fixture() ],
-        ]))
+        ), value: APISubmission.make(
+            submission_comments: [ APISubmissionComment.make() ]
+        ))
         presenter.viewIsReady()
         view.expectReload = self.expectation(description: "reload")
         view.expectReload?.assertForOverFulfill = false
@@ -103,7 +103,7 @@ class SubmissionCommentsPresenterTests: PersistenceTestCase {
 
     func testShowAttachment() {
         let url = URL(string: "https://canvas.instructure.com/files/803/download")!
-        let file = File.make(["url": url])
+        let file = File.make(from: .make(url: url))
         presenter.showAttachment(file, from: UIViewController())
         XCTAssertTrue(router.lastRoutedTo(url, withOptions: [.modal, .embedInNav]))
     }

@@ -14,6 +14,7 @@
 // limitations under the License.
 //
 
+import CoreData
 import XCTest
 @testable import Core
 import TestsFoundation
@@ -48,19 +49,19 @@ class PersistenceTests: CoreTestCase {
     }
 
     func testUpdateMany() {
-        Course.make(["id": "1", "name": "a"])
-        Course.make(["id": "2", "name": "b"])
+        Course.make(from: .make(id: "1", name: "a"))
+        Course.make(from: .make(id: "2", name: "b"))
 
-        let aa: Course = Course.make(["id": "1"])
+        let aa: Course = Course.make(from: .make(id: "1"))
         aa.name = "aa"
-        Course.make(["id": "2", "name": "bb"])
+        Course.make(from: .make(id: "2", name: "bb"))
 
         let objs: [Course] = client.fetch()
-        XCTAssertEqual(objs.count, 4)
+        XCTAssertEqual(objs.count, 2)
     }
 
     func testDelete() {
-        let a = Course.make(["id": "1", "name": "a"])
+        let a = Course.make(from: .make(id: "1", name: "a"))
 
         var objs: [Course] = client.fetch()
         XCTAssertEqual(objs.count, 1)
@@ -72,8 +73,8 @@ class PersistenceTests: CoreTestCase {
     }
 
     func testDeleteCollection() {
-        let a = Course.make(["id": "1", "name": "a"])
-        let b = Course.make(["id": "2", "name": "b"])
+        let a = Course.make(from: .make(id: "1", name: "a"))
+        let b = Course.make(from: .make(id: "2", name: "b"))
 
         var objs: [Course] = client.fetch()
         XCTAssertEqual(objs.count, 2)
@@ -97,11 +98,11 @@ class PersistenceTests: CoreTestCase {
     }
 
     func testPerformSaveOnBackground() {
-        Course.make(["id": "5", "name": "n"])
+        Course.make(from: .make(id: "5", name: "n"))
 
         let expectation = XCTestExpectation(description: "expectation")
         self.database.performBackgroundTask { client in
-            Course.make(["id": "1", "name": "a"], client: client)
+            Course.make(from: .make(id: "1", name: "a"), in: client as! NSManagedObjectContext)
             expectation.fulfill()
         }
 
@@ -113,7 +114,7 @@ class PersistenceTests: CoreTestCase {
     }
 
     func testPerformSaveOnBackgroundWithExistingObject() {
-        Course.make(["id": "1", "name": "a"])
+        Course.make(from: .make(id: "1", name: "a"))
         let expectedName = "updated"
 
         let expectation = XCTestExpectation(description: "expectation")
@@ -139,7 +140,7 @@ class PersistenceTests: CoreTestCase {
     }
 
     func testPerformBlock() {
-        Course.make(["id": "1", "name": "a"])
+        Course.make(from: .make(id: "1", name: "a"))
         let expectedName = "updated"
 
         let expectation = XCTestExpectation(description: "expectation")
@@ -161,8 +162,8 @@ class PersistenceTests: CoreTestCase {
     }
 
     func testFetchWithMoreThanOneObject() {
-        Course.make(["id": "1", "name": "a"])
-        Course.make(["id": "2", "name": "b"])
+        Course.make(from: .make(id: "1", name: "a"))
+        Course.make(from: .make(id: "2", name: "b"))
 
         let objs: [Course] = client.fetch()
         XCTAssertEqual(objs.count, 2)
@@ -177,8 +178,8 @@ class PersistenceTests: CoreTestCase {
     }
 
     func testFetchWithPredicate() {
-        Course.make(["id": "1", "name": "a"])
-        Course.make(["id": "2", "name": "b"])
+        Course.make(from: .make(id: "1", name: "a"))
+        Course.make(from: .make(id: "2", name: "b"))
 
         let objs: [Course] = client.fetch()
         XCTAssertEqual(objs.count, 2)
@@ -192,9 +193,9 @@ class PersistenceTests: CoreTestCase {
     }
 
     func testFetchWithSortDescriptors() {
-        Course.make(["id": "1", "name": "a"])
-        Course.make(["id": "2", "name": "b"])
-        Course.make(["id": "3", "name": "c"])
+        Course.make(from: .make(id: "1", name: "a"))
+        Course.make(from: .make(id: "2", name: "b"))
+        Course.make(from: .make(id: "3", name: "c"))
 
         let models: [Course] = client.fetch(predicate: nil, sortDescriptors: [NSSortDescriptor(key: "name", ascending: false)])
             XCTAssertEqual(models.count, 3)
@@ -205,9 +206,9 @@ class PersistenceTests: CoreTestCase {
 
     func testFetchedResultsController() {
         //  given
-        let a: Course = client.make(["id": "1", "name": "foo"])
-        let _: Course = client.make(["id": "2", "name": "bar"])
-        let c: Course = client.make(["id": "3", "name": "foobar"])
+        let a = Course.make(from: .make(id: "1", name: "foo"))
+        Course.make(from: .make(id: "2", name: "bar"))
+        let c = Course.make(from: .make(id: "3", name: "foobar"))
         let expected = [a, c]
 
         let pred = NSPredicate(format: "name contains[c] %@", "foo")

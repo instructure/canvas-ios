@@ -14,20 +14,20 @@
 // limitations under the License.
 //
 
+import CoreData
 import Foundation
-import Core
+@testable import Core
 
-extension Quiz: Fixture {
-    public static var template: Template {
-        return [
-            "allowedAttempts": 1,
-            "courseID": "1",
-            "id": "123",
-            "title": "What kind of pokemon are you?",
-            "htmlURL": URL(string: "http://canvas.example.edu/courses/1/quizzes/2")!,
-            "quizTypeRaw": QuizType.survey.rawValue,
-            "questionCount": 5,
-            "pointsPossibleRaw": 11.1,
-        ]
+extension Group {
+    @discardableResult
+    public static func make(
+        from api: APIGroup = .make(),
+        showOnDashboard: Bool = false,
+        in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
+    ) -> Group {
+        let model = try! Group.save(api, in: context)
+        model.showOnDashboard = showOnDashboard
+        try! context.save()
+        return model
     }
 }

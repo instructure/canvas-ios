@@ -17,16 +17,24 @@
 import Foundation
 @testable import Core
 
-extension APITab: Fixture {
-    public static var template: Template {
-        return [
-            "id": "home",
-            "html_url": "/groups/16",
-            "full_url": "https://twilson.instructure.com/groups/16",
-            "position": 1,
-            "visibility": "public",
-            "label": "Home",
-            "type": "internal",
-        ]
+extension APITab {
+    public static func make(
+        id: ID = "home",
+        html_url: URL = URL(string: "/groups/16")!,
+        label: String = "Home",
+        type: TabType = .internal,
+        hidden: Bool? = nil,
+        visibility: TabVisibility = .public,
+        position: Int = 1
+    ) -> APITab {
+        return APITab(
+            id: id,
+            html_url: html_url,
+            label: label,
+            type: type,
+            hidden: hidden,
+            visibility: visibility,
+            position: position
+        )
     }
 }

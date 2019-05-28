@@ -91,22 +91,22 @@ class PermissionsTests: CoreTestCase {
     }
 
     func testSave() {
-        let apiPermissions = APIPermissions.make([
-            "become_user": true, "import_sis": true, "manage_account_memberships": true, "manage_account_settings": true, "manage_alerts": true,
-            "manage_catalog": true, "manage_courses": true, "manage_developer_keys": true, "manage_feature_flags": true, "manage_global_outcomes": true,
-            "manage_jobs": true, "manage_master_courses": true, "manage_role_overrides": true, "manage_storage_quotas": true, "manage_sis": true,
-            "manage_site_settings": true, "manage_user_logins": true, "manage_user_observers": true, "read_course_content": true,
-            "read_course_list": true, "read_messages": true, "reset_any_mfa": true, "site_admin": true, "view_course_changes": true,
-            "view_error_reports": true, "view_grade_changes": true, "view_jobs": true, "view_notifications": true, "view_statistics": true,
-            "undelete_courses": true, "change_course_state": true, "comment_on_others_submissions": true, "create_collaborations": true,
-            "create_conferences": true, "create_forum": true, "generate_observer_pairing_code": true, "import_outcomes": true, "lti_add_edit": true,
-            "manage_admin_users": true, "manage_assignments": true, "manage_calendar": true, "manage_content": true, "manage_files": true,
-            "manage_grades": true, "manage_groups": true, "manage_interaction_alerts": true, "manage_outcomes": true, "manage_sections": true,
-            "manage_students": true, "manage_user_notes": true, "manage_rubrics": true, "manage_wiki": true, "moderate_forum": true,
-            "post_to_forum": true, "read_announcements": true, "read_email_addresses": true, "read_forum": true, "read_question_banks": true,
-            "read_reports": true, "read_roster": true, "read_sis": true, "select_final_grade": true, "send_messages": true, "send_messages_all": true,
-            "view_all_grades": true, "view_audit_trail": true, "view_group_pages": true, "view_user_logins": true,
-        ])
+        let apiPermissions = APIPermissions.make(
+            become_user: true, import_sis: true, manage_account_memberships: true, manage_account_settings: true, manage_alerts: true,
+            manage_catalog: true, manage_courses: true, manage_developer_keys: true, manage_feature_flags: true, manage_global_outcomes: true,
+            manage_jobs: true, manage_master_courses: true, manage_role_overrides: true, manage_storage_quotas: true, manage_sis: true,
+            manage_site_settings: true, manage_user_logins: true, manage_user_observers: true, read_course_content: true,
+            read_course_list: true, read_messages: true, reset_any_mfa: true, site_admin: true, view_course_changes: true,
+            view_error_reports: true, view_grade_changes: true, view_jobs: true, view_notifications: true, view_statistics: true,
+            undelete_courses: true, change_course_state: true, comment_on_others_submissions: true, create_collaborations: true,
+            create_conferences: true, create_forum: true, generate_observer_pairing_code: true, import_outcomes: true, lti_add_edit: true,
+            manage_admin_users: true, manage_assignments: true, manage_calendar: true, manage_content: true, manage_files: true,
+            manage_grades: true, manage_groups: true, manage_interaction_alerts: true, manage_outcomes: true, manage_sections: true,
+            manage_students: true, manage_user_notes: true, manage_rubrics: true, manage_wiki: true, moderate_forum: true,
+            post_to_forum: true, read_announcements: true, read_email_addresses: true, read_forum: true, read_question_banks: true,
+            read_reports: true, read_roster: true, read_sis: true, select_final_grade: true, send_messages: true, send_messages_all: true,
+            view_all_grades: true, view_audit_trail: true, view_group_pages: true, view_user_logins: true
+        )
         let context = ContextModel(.account, id: "self")
 
         XCTAssertNoThrow(try Permissions.save(apiPermissions, for: context, in: databaseClient))
@@ -186,9 +186,9 @@ class PermissionsTests: CoreTestCase {
     }
 
     func testDoesntChangePropertiesUnlessInTheResponse() {
-        let apiPermissions = APIPermissions.make(["become_user": true])
+        let apiPermissions = APIPermissions.make(become_user: true)
 
-        let permissions = Permissions.make(["manageSis": true])
+        let permissions = Permissions.make(from: .make(manage_sis: true))
 
         XCTAssertNoThrow(try Permissions.save(apiPermissions, for: ContextModel(.account, id: "1"), in: databaseClient))
         XCTAssertNoThrow(try databaseClient.save())

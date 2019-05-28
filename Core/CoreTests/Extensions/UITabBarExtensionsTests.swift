@@ -29,10 +29,10 @@ class UITabBarExtensionsTests: XCTestCase {
         XCTAssertEqual(tabBar.items?.first?.badgeColor, UIColor.named(.crimson))
         XCTAssertEqual(tabBar.barStyle, .default)
 
-        let shiny = Brand(response: APIBrandVariables.make([
-            "ic-brand-global-nav-bgd": "#ffffff",
-            "ic-brand-global-nav-menu-item__text-color": "#333",
-        ]))
+        let shiny = Brand(response: APIBrandVariables.make(
+            nav_bgd: "#ffffff",
+            nav_text_color: "#333"
+        ))
         tabBar.useGlobalNavStyle(brand: shiny)
         XCTAssertEqual(tabBar.tintColor, shiny.navTextColor)
     }

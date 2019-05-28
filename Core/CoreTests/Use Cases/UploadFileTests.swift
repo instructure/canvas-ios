@@ -120,7 +120,7 @@ class UploadFileTests: CoreTestCase {
         wait(for: [sent], timeout: 0.1)
 
         // receive data
-        let response = APIFile.make(["id": "45"])
+        let response = APIFile.make(id: "45")
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
         let data = try! encoder.encode(response)
@@ -175,7 +175,7 @@ class UploadFileTests: CoreTestCase {
         let notifications = MockNotificationManager()
         fileUploader.notificationManager = notifications
         let task = MockAPITask(taskIdentifier: 1)
-        File.make(["taskIDRaw": task.taskIdentifier, "assignmentID": assignmentID, "courseID": courseID])
+        File.make(assignmentID: assignmentID, courseID: courseID, taskID: task.taskIdentifier)
         let expectation = XCTestExpectation(description: "notification sent")
         onUpdate = {
             if !notifications.mock.requests.isEmpty {
@@ -193,7 +193,7 @@ class UploadFileTests: CoreTestCase {
         let notifications = MockNotificationManager()
         fileUploader.notificationManager = notifications
         let task = MockAPITask(taskIdentifier: 1)
-        File.make(["taskIDRaw": task.taskIdentifier, "assignmentID": assignmentID, "courseID": courseID])
+        File.make(assignmentID: assignmentID, courseID: courseID, taskID: task.taskIdentifier)
         let expectation = XCTestExpectation(description: "notification sent")
         onUpdate = {
             if !notifications.mock.requests.isEmpty {
