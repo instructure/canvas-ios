@@ -25,7 +25,7 @@ exports[`ColorPicker renders 1`] = `
         }
       >
         <TouchableHighlight
-          accessibilityLabel="Set text color to white (white)"
+          accessibilityLabel="Set text color to white (#FFFFFF)"
           accessibilityTraits="button"
           onPress={[Function]}
           style={
@@ -34,7 +34,7 @@ exports[`ColorPicker renders 1`] = `
               "width": 44,
             }
           }
-          testID="color-picker-option-white"
+          testID="color-picker-option-#FFFFFF"
           underlayColor="transparent"
         >
           <View
@@ -48,9 +48,9 @@ exports[`ColorPicker renders 1`] = `
                   "margin": 6,
                 },
                 Object {
-                  "backgroundColor": "white",
-                  "borderColor": "#E6E9EA",
-                  "borderWidth": 1,
+                  "backgroundColor": "#FFFFFF",
+                  "borderColor": "transparent",
+                  "borderWidth": 0,
                 },
               ]
             }

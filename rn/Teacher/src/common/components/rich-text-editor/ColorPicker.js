@@ -32,7 +32,7 @@ type Props = {
 
 export default class ColorPicker extends Component<Props, any> {
   COLORS = {
-    'white': i18n('white'),
+    '#FFFFFF': i18n('white'),
     '#2D3B45': i18n('black'),
     '#8B969E': i18n('grey'),
     '#EE0612': i18n('red'),
