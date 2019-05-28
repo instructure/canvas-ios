@@ -254,7 +254,7 @@ class AssignmentTests: CoreTestCase {
         let s = Submission.make()
         s.score = 50
         a.submission = s
-        XCTAssertEqual(a.gradeText, "50%")
+        XCTAssertEqual(a.gradeText, "50")
     }
 
     func testGradeTextReturnsOthers() {
