@@ -25,6 +25,7 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
   rightBarButtons={
     Array [
       Object {
+        "accessibilityLabel": "Edit Dashboard",
         "action": [Function],
         "disabled": false,
         "testID": "dashboard.edit-btn",
@@ -1583,6 +1584,7 @@ exports[`Dashboard render 1`] = `
   rightBarButtons={
     Array [
       Object {
+        "accessibilityLabel": "Edit Dashboard",
         "action": [Function],
         "disabled": false,
         "testID": "dashboard.edit-btn",
@@ -2299,6 +2301,7 @@ exports[`Dashboard render while pending 1`] = `
   rightBarButtons={
     Array [
       Object {
+        "accessibilityLabel": "Edit Dashboard",
         "action": [Function],
         "disabled": true,
         "testID": "dashboard.edit-btn",
@@ -3015,6 +3018,7 @@ exports[`Dashboard render without courses and *zero* total courses 1`] = `
   rightBarButtons={
     Array [
       Object {
+        "accessibilityLabel": "Edit Dashboard",
         "action": [Function],
         "disabled": true,
         "testID": "dashboard.edit-btn",
@@ -3287,6 +3291,7 @@ exports[`Dashboard render without favorite courses 1`] = `
   rightBarButtons={
     Array [
       Object {
+        "accessibilityLabel": "Edit Dashboard",
         "action": [Function],
         "disabled": false,
         "testID": "dashboard.edit-btn",
@@ -3559,6 +3564,7 @@ exports[`Dashboard renders course invites 1`] = `
   rightBarButtons={
     Array [
       Object {
+        "accessibilityLabel": "Edit Dashboard",
         "action": [Function],
         "disabled": false,
         "testID": "dashboard.edit-btn",
