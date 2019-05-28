@@ -6,6 +6,8 @@
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
 	<string>Student</string>
+    <key>CFBundleSpokenName</key>
+    <string>Canvas Student</string>
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
