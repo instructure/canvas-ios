@@ -67,14 +67,7 @@ extension TechDebt.Router {
 
         addContextRoute([.group], subPath: "tabs") { contextID, _ in
             guard let currentSession = currentSession else { return nil }
-            guard FeatureFlags.featureFlagEnabled(.newGroupNavigation) else {
-                return try TabsTableViewController(session: currentSession, contextID: contextID, route: route)
-            }
-            
-            return HelmViewController(
-                moduleName: "/groups/:groupID",
-                props: ["groupID": contextID.id]
-            )
+            return try TabsTableViewController(session: currentSession, contextID: contextID, route: route)
         }
         
         addContextRoute([.course], subPath: "assignments") { contextID, _ in
