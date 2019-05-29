@@ -101,9 +101,10 @@ export class Profile extends Component<Object, State> {
     } catch (e) {}
   }
 
-  logout = () => {
+  logout = async () => {
     purgeUserStoreData()
     httpCache.purgeUserData()
+    await this.props.navigator.dismiss()
     NativeModules.NativeLogin.logout()
   }
 
@@ -112,8 +113,9 @@ export class Profile extends Component<Object, State> {
     LTITools.launchExternalTool(url)
   }
 
-  switchUser = () => {
+  switchUser = async () => {
     logEvent('change_user_selected')
+    await this.props.navigator.dismiss()
     NativeModules.NativeLogin.changeUser()
   }
 
